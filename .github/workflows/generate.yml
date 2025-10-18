@@ -1,0 +1,29 @@
+name: Generate Photo Gallery
+
+on:
+  schedule:
+    - cron: '0 15 * * *'  # JST 0:00に自動実行
+  workflow_dispatch:       # 手動実行も可
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - name: Install deps
+        run: pip install feedparser
+      - name: Run script
+        env:
+          HATENA_USER: ${{ secrets.HATENA_USER }}
+          HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
+          HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
+        run: python main.py
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
