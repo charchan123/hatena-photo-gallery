@@ -2,8 +2,8 @@ name: Generate Photo Gallery
 
 on:
   schedule:
-    - cron: '0 15 * * *'  # JST 0:00に自動実行
-  workflow_dispatch:       # 手動実行も可
+    - cron: '0 15 * * *'  # 毎日JST 0:00に実行
+  workflow_dispatch:       # 手動実行も可能
 
 jobs:
   build:
@@ -15,13 +15,10 @@ jobs:
         with:
           python-version: 3.11
       - name: Install deps
-        run: |
-          pip install feedparser
-          pip install beautifulsoup4
+        run: pip install beautifulsoup4 feedparser
       - name: Run script
         env:
           HATENA_USER: ${{ secrets.HATENA_USER }}
-          HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
           HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
         run: python main.py
       - name: Deploy to GitHub Pages
