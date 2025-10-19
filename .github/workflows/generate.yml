@@ -15,7 +15,9 @@ jobs:
         with:
           python-version: 3.11
       - name: Install deps
-        run: pip install feedparser
+        run: |
+          pip install feedparser
+          pip install beautifulsoup4
       - name: Run script
         env:
           HATENA_USER: ${{ secrets.HATENA_USER }}
