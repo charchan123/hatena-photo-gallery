@@ -1,52 +1,33 @@
-import feedparser, os
 from bs4 import BeautifulSoup
+import glob
+import os
 
-USER = os.getenv("HATENA_USER")
-BLOG_ID = os.getenv("HATENA_BLOG_ID")
-ATOM_URL = f"https://blog.hatena.ne.jp/{USER}/{BLOG_ID}/atom/entry"
+output_dir = "output"
+os.makedirs(output_dir, exist_ok=True)
 
-def fetch_entries():
-    print(f"📡 はてなブログから画像を取得中…")
-    feed = feedparser.parse(ATOM_URL)
-    entries = []
-    for e in feed.entries:
-        html = e.content[0].value
-        soup = BeautifulSoup(html, "html.parser")
-        imgs = soup.find_all("img")
+html_files = glob.glob("articles/*.html")  # ← HTMLファイルを保存したフォルダ
 
-        for img in imgs:
-            alt = img.get("alt", "").strip()
-            src = img.get("src")
-            if alt and src:
-                entries.append({"alt": alt, "src": src})
+images = []
 
-    print(f"🧩 {len(entries)}枚の画像を検出しました")
-    return entries
+for file_path in html_files:
+    with open(file_path, "r", encoding="utf-8") as f:
+        soup = BeautifulSoup(f, "html.parser")
 
-def generate_html(entries):
-    os.makedirs("output", exist_ok=True)
-    grouped = {}
-    for e in entries:
-        grouped.setdefault(e["alt"], []).append(e["src"])
+    for img in soup.find_all("img"):
+        src = img.get("src")
+        alt = img.get("alt", "（altなし）")
+        if src:
+            images.append({"src": src, "alt": alt})
 
-    for alt, imgs in grouped.items():
-        html = f"<h1>{alt}</h1><div class='gallery'>\n"
-        for i in imgs:
-            html += f'<img src="{i}" alt="{alt}" loading="lazy">\n'
-        html += "</div>"
-        with open(f"output/{alt}.html", "w", encoding="utf-8") as f:
-            f.write(html)
+# HTMLギャラリー生成
+gallery_html = "<h1>画像ギャラリー</h1><div style='display:flex;flex-wrap:wrap;gap:10px;'>"
 
-    # トップページ
-    index = "<h1>フォトギャラリー</h1><ul>"
-    for alt in grouped.keys():
-        index += f'<li><a href="{alt}.html">{alt}</a></li>'
-    index += "</ul>"
-    with open("output/index.html", "w", encoding="utf-8") as f:
-        f.write(index)
+for img in images:
+    gallery_html += f"<div style='width:200px;text-align:center;'><img src='{img['src']}' alt='{img['alt']}' style='width:100%;'><p>{img['alt']}</p></div>"
 
-    print(f"✅ ギャラリーページを生成しました！（/output）")
+gallery_html += "</div>"
 
-if __name__ == "__main__":
-    entries = fetch_entries()
-    generate_html(entries)
+with open(os.path.join(output_dir, "gallery.html"), "w", encoding="utf-8") as f:
+    f.write(gallery_html)
+
+print(f"✅ {len(images)}枚の画像をギャラリーに追加しました！")
