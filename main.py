@@ -123,7 +123,7 @@ for group, names in aiuo_dict.items():
             f.write(html)
 
     # トップページ
-    index = "<h2>五十音別分類</h2>\n<ul>\n"
+    index = "<h2>五十音別分類</h2>\n\n<ul>\n"
     for group in AIUO_GROUPS.keys():
         index += f'<li><a href="{group}.html">{group}</a></li>\n'
     index += "</ul>\n"
