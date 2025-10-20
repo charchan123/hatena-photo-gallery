@@ -19,6 +19,7 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
+
 # 画像を抽出
 def fetch_images():
     print("📂 ローカルHTMLから画像を取得中…")
@@ -93,26 +94,26 @@ def generate_gallery(entries):
             html += f'<li><a href="{safe_name}.html">{alt}</a></li>\n'
         html += "</ul>\n"
 
-        # スタイル＆ナビ
-        html += """
-        <div class="nav">
-        あ行｜<a href="か行.html">か行</a>｜
-        <a href="さ行.html">さ行</a>｜
-        <a href="た行.html">た行</a>｜
-        <a href="な行.html">な行</a>｜
-        <a href="は行.html">は行</a>｜
-        <a href="ま行.html">ま行</a>｜
-        <a href="や行.html">や行</a>｜
-        <a href="ら行.html">ら行</a>｜
-        <a href="わ行.html">わ行</a>
-        </div>
+        # ナビゲーション生成（現在の行を太字表示）
+        nav_links = []
+        for g in AIUO_GROUPS.keys():
+            if g == group:
+                nav_links.append(f"<strong>{g}</strong>")
+            else:
+                nav_links.append(f'<a href="{g}.html">{g}</a>')
+        nav_html = "<div class='nav'>" + "｜".join(nav_links) + "</div>"
+
+        # スタイル
+        html += f"""
+        {nav_html}
         <style>
-        body {font-family:sans-serif; background:#fafafa; color:#333; padding:20px;}
-        ul {list-style:none; padding:0;}
-        li {margin:4px 0;}
-        a {color:#007acc; text-decoration:none;}
-        a:hover {text-decoration:underline;}
-        .nav {margin-top:20px;}
+        body {{font-family:sans-serif; background:#fafafa; color:#333; padding:20px;}}
+        ul {{list-style:none; padding:0;}}
+        li {{margin:4px 0;}}
+        a {{color:#007acc; text-decoration:none;}}
+        a:hover {{text-decoration:underline;}}
+        .nav {{margin-top:20px; font-size:1.1em;}}
+        strong {{color:#000; text-decoration:underline;}}
         </style>
         """
 
