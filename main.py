@@ -58,7 +58,7 @@ def generate_gallery(entries):
 
     # 各キノコページ
     for alt, imgs in grouped.items():
-        html = f"<h1>{alt}</h1>\n<div class='gallery'>\n"
+        html = f"<h2>{alt}</h2>\n<div class='gallery'>\n"
         for src in imgs:
             html += f'<img src="{src}" alt="{alt}" loading="lazy">\n'
         html += "</div>\n"
