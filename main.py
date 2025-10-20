@@ -19,7 +19,6 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-
 # 画像を抽出
 def fetch_images():
     print("📂 ローカルHTMLから画像を取得中…")
@@ -28,21 +27,17 @@ def fetch_images():
     for html_file in html_files:
         with open(html_file, encoding="utf-8") as f:
             soup = BeautifulSoup(f, "html.parser")
-
             entry_content = soup.find("div", class_="entry-content hatenablog-entry")
             if not entry_content:
                 continue
-
             imgs = entry_content.find_all("img")
             for img in imgs:
                 alt = img.get("alt", "").strip()
                 src = img.get("src")
                 if alt and src:
                     entries.append({"alt": alt, "src": src})
-
     print(f"🧩 {len(entries)}枚の画像を検出しました")
     return entries
-
 
 # 五十音を判定する関数
 def get_aiuo_group(name):
@@ -54,7 +49,6 @@ def get_aiuo_group(name):
             return group
     return "その他"
 
-
 # HTML生成
 def generate_gallery(entries):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -64,17 +58,17 @@ def generate_gallery(entries):
 
     # 各キノコページ
     for alt, imgs in grouped.items():
-        html = f"<h1>{alt}</h1><div class='gallery'>\n"
+        html = f"<h1>{alt}</h1>\n<div class='gallery'>\n"
         for src in imgs:
             html += f'<img src="{src}" alt="{alt}" loading="lazy">\n'
         html += "</div>\n"
         html += """
-        <style>
-        .gallery {display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:8px;}
-        .gallery img {width:100%; border-radius:8px;}
-        body {font-family:sans-serif; background:#fafafa; color:#333; padding:20px;}
-        </style>
-        """
+<style>
+.gallery {display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:8px;}
+.gallery img {width:100%; border-radius:8px;}
+body {font-family:sans-serif; background:#fafafa; color:#333; padding:20px;}
+</style>
+"""
         safe_name = alt.replace(" ", "_")
         with open(f"{OUTPUT_DIR}/{safe_name}.html", "w", encoding="utf-8") as f:
             f.write(html)
@@ -86,39 +80,36 @@ def generate_gallery(entries):
         if group in aiuo_dict:
             aiuo_dict[group].append(alt)
 
-# 各行ページ生成
-for group, names in aiuo_dict.items():
-    html = f"<h2>{group}のキノコ</h2>\n\n<ul>\n"
-    for alt in sorted(names):
-        safe_name = alt.replace(" ", "_")
-        html += f'<li><a href="{safe_name}.html">{alt}</a></li>\n'
-    html += "</ul>\n\n"  # ← ここでリストの後に空行を追加（前後1行空けるため）
+    # 各行ページ生成
+    for group, names in aiuo_dict.items():
+        html = f"<h2>{group}のキノコ</h2>\n\n<ul>\n"
+        for alt in sorted(names):
+            safe_name = alt.replace(" ", "_")
+            html += f'<li><a href="{safe_name}.html">{alt}</a></li>\n'
+        html += "</ul>\n\n"  # 前後1行空け
 
-    # ナビゲーション生成（現在の行を太字表示）
-    nav_links = []
-    for g in AIUO_GROUPS.keys():
-        if g == group:
-            nav_links.append(f"<strong>{g}</strong>")
-        else:
-            nav_links.append(f'<a href="{g}.html">{g}</a>')
-    nav_html = "<div class='nav'>" + "｜".join(nav_links) + "</div>"
-
-    html += nav_html  # ← 空行を入れた後にナビを追加
+        # ナビゲーション生成（現在の行を太字表示）
+        nav_links = []
+        for g in AIUO_GROUPS.keys():
+            if g == group:
+                nav_links.append(f"<strong>{g}</strong>")
+            else:
+                nav_links.append(f'<a href="{g}.html">{g}</a>')
+        nav_html = "<div class='nav'>" + "｜".join(nav_links) + "</div>"
+        html += nav_html + "\n"
 
         # スタイル
-        html += f"""
-        {nav_html}
-        <style>
-        body {{font-family:sans-serif; background:#fafafa; color:#333; padding:20px;}}
-        ul {{list-style:none; padding:0;}}
-        li {{margin:4px 0;}}
-        a {{color:#007acc; text-decoration:none;}}
-        a:hover {{text-decoration:underline;}}
-        .nav {{margin-top:20px; font-size:1.1em;}}
-        strong {{color:#000; text-decoration:underline;}}
-        </style>
-        """
-
+        html += """
+<style>
+body {font-family:sans-serif; background:#fafafa; color:#333; padding:20px;}
+ul {list-style:none; padding:0;}
+li {margin:4px 0;}
+a {color:#007acc; text-decoration:none;}
+a:hover {text-decoration:underline;}
+.nav {margin-top:20px; font-size:1.1em;}
+strong {color:#000; text-decoration:underline;}
+</style>
+"""
         with open(f"{OUTPUT_DIR}/{group}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
@@ -131,7 +122,6 @@ for group, names in aiuo_dict.items():
         f.write(index)
 
     print(f"✅ ギャラリーページを生成しました！（{OUTPUT_DIR}/）")
-
 
 if __name__ == "__main__":
     entries = fetch_images()
