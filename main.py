@@ -88,11 +88,11 @@ def generate_gallery(entries):
 
     # 各行ページ生成
     for group, names in aiuo_dict.items():
-        html = f"<h2>{group}のキノコ</h2>\n<ul>\n\n"
+        html = f"<h2>{group}のキノコ</h2>\n<ul>\n"
         for alt in sorted(names):
             safe_name = alt.replace(" ", "_")
             html += f'<li><a href="{safe_name}.html">{alt}</a></li>\n'
-        html += "</ul>\n\n"
+        html += "</ul>\n"
 
         # ナビゲーション生成（現在の行を太字表示）
         nav_links = []
@@ -121,7 +121,7 @@ def generate_gallery(entries):
             f.write(html)
 
     # トップページ
-    index = "<h2>五十音別分類</h2>\n<ul>\n\n"
+    index = "<h2>五十音別分類</h2>\n<ul>\n"
     for group in AIUO_GROUPS.keys():
         index += f'<li><a href="{group}.html">{group}</a></li>\n'
     index += "</ul>\n"
