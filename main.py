@@ -58,7 +58,7 @@ def generate_gallery(entries):
 
     # 各キノコページ
     for alt, imgs in grouped.items():
-        html = f"<h5>{alt}</h5>\n<div class='gallery'>\n"
+        html = f"<h2>{alt}</h2>\n<div class='gallery'>\n"
         for src in imgs:
             html += f'<img src="{src}" alt="{alt}" loading="lazy">\n'
         html += "</div>\n"
@@ -82,7 +82,7 @@ body {font-family:sans-serif; background:#fafafa; color:#333; padding:20px;}
 
     # 各行ページ生成
     for group, names in aiuo_dict.items():
-        html = f"<h5>{group}のキノコ</h5>\n\n<ul>\n"
+        html = f"<h2>{group}のキノコ</h2>\n\n<ul>\n"
         for alt in sorted(names):
             safe_name = alt.replace(" ", "_")
             html += f'<li><a href="{safe_name}.html">{alt}</a></li>\n'
@@ -114,7 +114,7 @@ strong {color:#000; text-decoration:underline;}
             f.write(html)
 
     # トップページ
-    index = "<h5>五十音別分類</h5>\n\n<ul>\n"
+    index = "<h2>五十音別分類</h2>\n\n<ul>\n"
     for group in AIUO_GROUPS.keys():
         index += f'<li><a href="{group}.html">{group}</a></li>\n'
     index += "</ul>\n"
