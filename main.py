@@ -13,12 +13,20 @@ def fetch_images():
     for html_file in html_files:
         with open(html_file, encoding="utf-8") as f:
             soup = BeautifulSoup(f, "html.parser")
-            imgs = soup.find_all("img")
+
+            # ★ ここを追加：「記事本文」内の画像だけを対象にする
+            entry_content = soup.find("div", class_="entry-content hatenablog-entry")
+            if not entry_content:
+                continue  # 見つからない場合はスキップ
+
+            imgs = entry_content.find_all("img")  # ←限定範囲で取得
+
             for img in imgs:
                 alt = img.get("alt", "").strip()
                 src = img.get("src")
                 if alt and src:
                     entries.append({"alt": alt, "src": src})
+
     print(f"🧩 {len(entries)}枚の画像を検出しました")
     return entries
 
