@@ -86,22 +86,24 @@ def generate_gallery(entries):
         if group in aiuo_dict:
             aiuo_dict[group].append(alt)
 
-    # 各行ページ生成
-    for group, names in aiuo_dict.items():
-        html = f"<h2>{group}のキノコ</h2>\n<ul>\n"
-        for alt in sorted(names):
-            safe_name = alt.replace(" ", "_")
-            html += f'<li><a href="{safe_name}.html">{alt}</a></li>\n'
-        html += "</ul>\n"
+# 各行ページ生成
+for group, names in aiuo_dict.items():
+    html = f"<h2>{group}のキノコ</h2>\n\n<ul>\n"
+    for alt in sorted(names):
+        safe_name = alt.replace(" ", "_")
+        html += f'<li><a href="{safe_name}.html">{alt}</a></li>\n'
+    html += "</ul>\n\n"  # ← ここでリストの後に空行を追加（前後1行空けるため）
 
-        # ナビゲーション生成（現在の行を太字表示）
-        nav_links = []
-        for g in AIUO_GROUPS.keys():
-            if g == group:
-                nav_links.append(f"<strong>{g}</strong>")
-            else:
-                nav_links.append(f'<a href="{g}.html">{g}</a>')
-        nav_html = "<div class='nav'>" + "｜".join(nav_links) + "</div>"
+    # ナビゲーション生成（現在の行を太字表示）
+    nav_links = []
+    for g in AIUO_GROUPS.keys():
+        if g == group:
+            nav_links.append(f"<strong>{g}</strong>")
+        else:
+            nav_links.append(f'<a href="{g}.html">{g}</a>')
+    nav_html = "<div class='nav'>" + "｜".join(nav_links) + "</div>"
+
+    html += nav_html  # ← 空行を入れた後にナビを追加
 
         # スタイル
         html += f"""
