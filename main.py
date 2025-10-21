@@ -19,6 +19,13 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
+# 💡 iframe高さ自動調整スクリプト
+SCRIPT_TAG = """
+<script>
+window.parent.postMessage({ type: "setHeight", height: document.body.scrollHeight }, "*");
+</script>
+"""
+
 # 画像を抽出
 def fetch_images():
     print("📂 ローカルHTMLから画像を取得中…")
@@ -56,12 +63,16 @@ def generate_gallery(entries):
     for e in entries:
         grouped.setdefault(e["alt"], []).append(e["src"])
 
-    # 各キノコページ
+    # 各キノコページ生成
     for alt, imgs in grouped.items():
         html = f"<h2>{alt}</h2>\n<div class='gallery'>\n"
         for src in imgs:
             html += f'<img src="{src}" alt="{alt}" loading="lazy">\n'
         html += "</div>\n"
+
+        # 💡 高さ自動調整スクリプトを挿入
+        html += SCRIPT_TAG
+
         html += """
 <style>
 .gallery {display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:8px;}
@@ -86,7 +97,7 @@ body {font-family:sans-serif; background:#fafafa; color:#333; padding:20px;}
         for alt in sorted(names):
             safe_name = alt.replace(" ", "_")
             html += f'<li><a href="{safe_name}.html">{alt}</a></li>\n'
-        html += "</ul>\n\n"  # 前後1行空け
+        html += "</ul>\n\n"
 
         # ナビゲーション生成（現在の行を太字表示）
         nav_links = []
@@ -98,7 +109,9 @@ body {font-family:sans-serif; background:#fafafa; color:#333; padding:20px;}
         nav_html = "<div class='nav'>" + "｜".join(nav_links) + "</div>"
         html += nav_html + "\n"
 
-        # スタイル
+        # 💡 高さ自動調整スクリプトを挿入
+        html += SCRIPT_TAG
+
         html += """
 <style>
 body {font-family:sans-serif; background:#fafafa; color:#333; padding:20px;}
@@ -118,6 +131,10 @@ strong {color:#000; text-decoration:underline;}
     for group in AIUO_GROUPS.keys():
         index += f'<li><a href="{group}.html">{group}</a></li>\n'
     index += "</ul>\n"
+
+    # 💡 高さ自動調整スクリプトを挿入
+    index += SCRIPT_TAG
+
     with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
         f.write(index)
 
