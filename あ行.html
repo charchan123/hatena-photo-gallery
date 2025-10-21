@@ -32,19 +32,27 @@ body {
   background: #fafafa;
   color: #333;
   padding: 16px;
+  text-align: left; /* 全体を左揃え */
 }
 h2 {
   font-size: 1.4em;
   margin-bottom: 12px;
-  text-align: center;
+  text-align: left; /* 見出しも左揃え */
 }
 ul { list-style: none; padding: 0; }
-li { margin: 6px 0; text-align: center; }
+li { margin: 6px 0; text-align: left; }
 a { color: #007acc; text-decoration: none; }
 a:hover { text-decoration: underline; }
-.nav { margin-top: 24px; font-size: 1.1em; text-align: center; flex-wrap: wrap; line-height: 2em; }
+.nav {
+  margin-top: 24px;
+  font-size: 1.1em;
+  flex-wrap: wrap;
+  line-height: 2em;
+  text-align: left;
+}
 strong { color: #000; text-decoration: underline; }
 
+/* ギャラリーグリッド */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
