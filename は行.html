@@ -15,12 +15,16 @@ function sendHeight() {
 }
 window.addEventListener("load", sendHeight);
 window.addEventListener("resize", sendHeight);
+
 // ページ内リンククリック時も高さ送信（遷移後に測定）
 document.addEventListener("click", e => {
   const a = e.target.closest("a");
   if (!a) return;
   setTimeout(sendHeight, 100);
 });
+
+// pushState/popstate 対応（SPA的な履歴変更にも対応）
+window.addEventListener('popstate', sendHeight);
 </script>
 
 <style>
