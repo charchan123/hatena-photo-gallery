@@ -17,7 +17,7 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# 💡 iframe高さ自動調整スクリプト
+# 💡 iframe 高さ自動調整スクリプト（リンククリック対応版）
 SCRIPT_TAG = """
 <script>
 function sendHeight() {
@@ -25,6 +25,12 @@ function sendHeight() {
 }
 window.addEventListener("load", sendHeight);
 window.addEventListener("resize", sendHeight);
+// ページ内リンククリック時も高さ送信（遷移後に測定）
+document.addEventListener("click", e => {
+  const a = e.target.closest("a");
+  if (!a) return;
+  setTimeout(sendHeight, 100);
+});
 </script>
 """
 
@@ -42,12 +48,12 @@ body {
   background: #fafafa;
   color: #333;
   padding: 16px;
-  text-align: left; /* 全体を左揃え */
+  text-align: left;
 }
 h2 {
   font-size: 1.4em;
   margin-bottom: 12px;
-  text-align: left; /* 見出しも左揃え */
+  text-align: left;
 }
 ul { list-style: none; padding: 0; }
 li { margin: 6px 0; text-align: left; }
