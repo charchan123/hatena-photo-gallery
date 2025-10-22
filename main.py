@@ -17,28 +17,51 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# 💡 iframe 高さ自動調整スクリプト（リンククリック対応版）
+# 💡 iframe 内で完結する「高さ自動送信スクリプト（完全版）」
 SCRIPT_TAG = """
 <script>
-function sendHeight() {
-  window.parent.postMessage({ type: "setHeight", height: document.body.scrollHeight }, "*");
-}
-window.addEventListener("load", sendHeight);
-window.addEventListener("resize", sendHeight);
+(function() {
+  // 親が存在しない（直アクセス）なら処理しない
+  if (window === window.parent) return;
 
-// ページ内リンククリック時も高さ送信（遷移後に測定）
-document.addEventListener("click", e => {
-  const a = e.target.closest("a");
-  if (!a) return;
-  setTimeout(sendHeight, 100);
-});
+  // 高さを親へ送信
+  const sendHeight = () => {
+    const height = document.documentElement.scrollHeight;
+    window.parent.postMessage({ type: "setHeight", height }, "*");
+  };
 
-// pushState/popstate 対応（SPA的な履歴変更にも対応）
-window.addEventListener('popstate', sendHeight);
+  // 初回送信＋画像読込後の再送信
+  window.addEventListener("load", () => {
+    sendHeight();
+    setTimeout(sendHeight, 800);
+  });
+
+  // リサイズ・履歴変化にも対応
+  window.addEventListener("resize", sendHeight);
+  window.addEventListener("popstate", sendHeight);
+  window.addEventListener("hashchange", sendHeight);
+
+  // DOM変更を監視（SPA的な変化にも対応）
+  const observer = new MutationObserver(() => sendHeight());
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  // 画像の読み込み完了時にも再送信
+  document.querySelectorAll("img").forEach(img => {
+    img.addEventListener("load", sendHeight);
+  });
+
+  // 内部リンククリック時も再送信
+  document.addEventListener("click", e => {
+    const a = e.target.closest("a");
+    if (a && a.getAttribute("href")) {
+      setTimeout(sendHeight, 600);
+    }
+  });
+})();
 </script>
 """
 
-# 💡 左揃え＋レスポンシブ＋fade-in対応スタイル
+# 💡 左揃え＋フェードイン＋レスポンシブ
 STYLE_TAG = """
 <style>
 html, body {
@@ -91,7 +114,7 @@ strong { color: #000; text-decoration: underline; }
   transform: translateY(0);
 }
 
-/* スマホ向け最適化 */
+/* スマホ対応 */
 @media (max-width: 600px) {
   body { padding: 12px; }
   h2 { font-size: 1.2em; }
@@ -100,6 +123,7 @@ strong { color: #000; text-decoration: underline; }
 </style>
 
 <script>
+// フェードイン
 document.addEventListener("DOMContentLoaded", () => {
   const imgs = document.querySelectorAll(".gallery img");
   const observer = new IntersectionObserver(entries => {
@@ -135,7 +159,7 @@ def fetch_images():
     print(f"🧩 {len(entries)}枚の画像を検出しました")
     return entries
 
-# 五十音判定
+# 五十音分類
 def get_aiuo_group(name):
     if not name:
         return "その他"
@@ -152,7 +176,7 @@ def generate_gallery(entries):
     for e in entries:
         grouped.setdefault(e["alt"], []).append(e["src"])
 
-    # 各キノコページ生成
+    # 各キノコページ
     for alt, imgs in grouped.items():
         html = f"<h2>{alt}</h2>\n<div class='gallery'>\n"
         for src in imgs:
@@ -163,7 +187,7 @@ def generate_gallery(entries):
         with open(f"{OUTPUT_DIR}/{safe_name}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
-    # 五十音別ページ生成
+    # 五十音別ページ
     aiuo_dict = {k: [] for k in AIUO_GROUPS.keys()}
     for alt in grouped.keys():
         group = get_aiuo_group(alt)
@@ -171,13 +195,13 @@ def generate_gallery(entries):
             aiuo_dict[group].append(alt)
 
     for group, names in aiuo_dict.items():
-        html = f"<h2>{group}のキノコ</h2>\n\n<ul>\n"
+        html = f"<h2>{group}のキノコ</h2>\n<ul>\n"
         for alt in sorted(names):
             safe_name = alt.replace(" ", "_")
             html += f'<li><a href="{safe_name}.html">{alt}</a></li>\n'
-        html += "</ul>\n\n"
+        html += "</ul>\n"
 
-        # ナビ生成
+        # ナビリンク
         nav_links = []
         for g in AIUO_GROUPS.keys():
             if g == group:
@@ -190,8 +214,8 @@ def generate_gallery(entries):
         with open(f"{OUTPUT_DIR}/{group}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
-    # index.html 生成
-    index = "<h2>五十音別分類</h2>\n\n<ul>\n"
+    # index.html
+    index = "<h2>五十音別分類</h2>\n<ul>\n"
     for group in AIUO_GROUPS.keys():
         index += f'<li><a href="{group}.html">{group}</a></li>\n'
     index += "</ul>\n" + SCRIPT_TAG + STYLE_TAG
