@@ -1,30 +1,51 @@
 <h2>な行のキノコ</h2>
-
 <ul>
 <li><a href="ナラタケ.html">ナラタケ</a></li>
 <li><a href="ニカワハリタケ.html">ニカワハリタケ</a></li>
 <li><a href="ヌメリササタケ.html">ヌメリササタケ</a></li>
 <li><a href="ヌメリスギタケモドキ.html">ヌメリスギタケモドキ</a></li>
 </ul>
-
 <div class='nav'><a href="あ行.html">あ行</a>｜<a href="か行.html">か行</a>｜<a href="さ行.html">さ行</a>｜<a href="た行.html">た行</a>｜<strong>な行</strong>｜<a href="は行.html">は行</a>｜<a href="ま行.html">ま行</a>｜<a href="や行.html">や行</a>｜<a href="ら行.html">ら行</a>｜<a href="わ行.html">わ行</a></div>
 
 <script>
-function sendHeight() {
-  window.parent.postMessage({ type: "setHeight", height: document.body.scrollHeight }, "*");
-}
-window.addEventListener("load", sendHeight);
-window.addEventListener("resize", sendHeight);
+(function() {
+  // 親が存在しない（直アクセス）なら処理しない
+  if (window === window.parent) return;
 
-// ページ内リンククリック時も高さ送信（遷移後に測定）
-document.addEventListener("click", e => {
-  const a = e.target.closest("a");
-  if (!a) return;
-  setTimeout(sendHeight, 100);
-});
+  // 高さを親へ送信
+  const sendHeight = () => {
+    const height = document.documentElement.scrollHeight;
+    window.parent.postMessage({ type: "setHeight", height }, "*");
+  };
 
-// pushState/popstate 対応（SPA的な履歴変更にも対応）
-window.addEventListener('popstate', sendHeight);
+  // 初回送信＋画像読込後の再送信
+  window.addEventListener("load", () => {
+    sendHeight();
+    setTimeout(sendHeight, 800);
+  });
+
+  // リサイズ・履歴変化にも対応
+  window.addEventListener("resize", sendHeight);
+  window.addEventListener("popstate", sendHeight);
+  window.addEventListener("hashchange", sendHeight);
+
+  // DOM変更を監視（SPA的な変化にも対応）
+  const observer = new MutationObserver(() => sendHeight());
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  // 画像の読み込み完了時にも再送信
+  document.querySelectorAll("img").forEach(img => {
+    img.addEventListener("load", sendHeight);
+  });
+
+  // 内部リンククリック時も再送信
+  document.addEventListener("click", e => {
+    const a = e.target.closest("a");
+    if (a && a.getAttribute("href")) {
+      setTimeout(sendHeight, 600);
+    }
+  });
+})();
 </script>
 
 <style>
@@ -78,7 +99,7 @@ strong { color: #000; text-decoration: underline; }
   transform: translateY(0);
 }
 
-/* スマホ向け最適化 */
+/* スマホ対応 */
 @media (max-width: 600px) {
   body { padding: 12px; }
   h2 { font-size: 1.2em; }
@@ -87,6 +108,7 @@ strong { color: #000; text-decoration: underline; }
 </style>
 
 <script>
+// フェードイン
 document.addEventListener("DOMContentLoaded", () => {
   const imgs = document.querySelectorAll(".gallery img");
   const observer = new IntersectionObserver(entries => {
