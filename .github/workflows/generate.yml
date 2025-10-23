@@ -2,29 +2,33 @@ name: Generate Photo Gallery
 
 on:
   schedule:
-    - cron: '0 15 * * *'  # 毎日JST 0:00に実行
+    - cron: '0 15 * * *'  # 毎日 JST 0:00 に実行
   workflow_dispatch:       # 手動実行も可能
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: '3.11'
+
       - name: Install dependencies
-        run: pip install -r requirements.txt          
-      - name: Install deps
-        run: pip install beautifulsoup4 feedparser
-      - name: Run script
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run main.py
         env:
           HATENA_USER: ${{ secrets.HATENA_USER }}
           HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
         run: python main.py
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./output
