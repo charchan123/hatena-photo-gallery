@@ -14,6 +14,8 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: 3.11
+      - name: Install dependencies
+        run: pip install -r requirements.txt          
       - name: Install deps
         run: pip install beautifulsoup4 feedparser
       - name: Run script
