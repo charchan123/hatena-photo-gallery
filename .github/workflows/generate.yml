@@ -2,12 +2,13 @@ name: Generate Photo Gallery
 
 on:
   schedule:
-    - cron: '0 15 * * *'  # 毎日 JST 0:00 に実行
-  workflow_dispatch:       # 手動実行も可能
+    - cron: '0 15 * * *'  # JST 0:00 に実行（UTC+9 → 15:00 UTC）
+  workflow_dispatch:       # 手動実行も可能（GitHub Actions 画面で "Run workflow" ボタン）
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -15,11 +16,12 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: 3.11
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
+          pip install -r requirements.txt || true
+          pip install beautifulsoup4 feedparser requests
 
       - name: Run main.py
         env:
