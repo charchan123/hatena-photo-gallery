@@ -1,6 +1,8 @@
-import os, glob
+import os, glob, requests, feedparser
 from bs4 import BeautifulSoup
 
+# ===== 基本設定 =====
+BLOG_RSS_URL = "https://charchan123.hatenablog.com/rss"  # ←あなたのブログRSSに変更
 ARTICLES_DIR = "articles"
 OUTPUT_DIR = "output"
 
@@ -17,129 +19,90 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# 💡 iframe 内で完結する「高さ自動送信スクリプト（完全版）」
+# ===== iframe 高さ自動送信スクリプト =====
 SCRIPT_TAG = """
 <script>
 (function() {
-  // 親が存在しない（直アクセス）なら処理しない
   if (window === window.parent) return;
-
-  // 高さを親へ送信
   const sendHeight = () => {
     const height = document.documentElement.scrollHeight;
     window.parent.postMessage({ type: "setHeight", height }, "*");
   };
-
-  // 初回送信＋画像読込後の再送信
-  window.addEventListener("load", () => {
-    sendHeight();
-    setTimeout(sendHeight, 800);
-  });
-
-  // リサイズ・履歴変化にも対応
+  window.addEventListener("load", () => { sendHeight(); setTimeout(sendHeight, 800); });
   window.addEventListener("resize", sendHeight);
   window.addEventListener("popstate", sendHeight);
   window.addEventListener("hashchange", sendHeight);
-
-  // DOM変更を監視（SPA的な変化にも対応）
   const observer = new MutationObserver(() => sendHeight());
   observer.observe(document.body, { childList: true, subtree: true });
-
-  // 画像の読み込み完了時にも再送信
-  document.querySelectorAll("img").forEach(img => {
-    img.addEventListener("load", sendHeight);
-  });
-
-  // 内部リンククリック時も再送信
+  document.querySelectorAll("img").forEach(img => img.addEventListener("load", sendHeight));
   document.addEventListener("click", e => {
     const a = e.target.closest("a");
-    if (a && a.getAttribute("href")) {
-      setTimeout(sendHeight, 600);
-    }
+    if (a && a.getAttribute("href")) setTimeout(sendHeight, 600);
   });
 })();
 </script>
 """
 
-# 💡 左揃え＋フェードイン＋レスポンシブ
+# ===== スタイル + フェードイン効果 =====
 STYLE_TAG = """
 <style>
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  height: auto !important;
-}
+html, body { margin:0; padding:0; overflow-x:hidden; height:auto!important; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: #fafafa;
-  color: #333;
-  padding: 16px;
-  text-align: left;
+  background: #fafafa; color: #333; padding:16px; text-align:left;
 }
-h2 {
-  font-size: 1.4em;
-  margin-bottom: 12px;
-  text-align: left;
-}
-ul { list-style: none; padding: 0; }
-li { margin: 6px 0; text-align: left; }
-a { color: #007acc; text-decoration: none; }
-a:hover { text-decoration: underline; }
-.nav {
-  margin-top: 24px;
-  font-size: 1.1em;
-  flex-wrap: wrap;
-  line-height: 2em;
-  text-align: left;
-}
-strong { color: #000; text-decoration: underline; }
-
-/* ギャラリーグリッド */
+h2 { font-size:1.4em; margin-bottom:12px; text-align:left; }
+ul { list-style:none; padding:0; }
+li { margin:6px 0; text-align:left; }
+a { color:#007acc; text-decoration:none; }
+a:hover { text-decoration:underline; }
+.nav { margin-top:24px; font-size:1.1em; line-height:2em; text-align:left; flex-wrap:wrap; }
+strong { color:#000; text-decoration:underline; }
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 10px;
-  margin-top: 20px;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:10px; margin-top:20px;
 }
 .gallery img {
-  width: 100%;
-  border-radius: 8px;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  width:100%; border-radius:8px; opacity:0; transform:translateY(10px);
+  transition:opacity 0.6s ease-out, transform 0.6s ease-out;
 }
-.gallery img.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* スマホ対応 */
-@media (max-width: 600px) {
-  body { padding: 12px; }
-  h2 { font-size: 1.2em; }
-  .gallery { gap: 6px; }
+.gallery img.visible { opacity:1; transform:translateY(0); }
+@media (max-width:600px) {
+  body { padding:12px; } h2 { font-size:1.2em; } .gallery { gap:6px; }
 }
 </style>
-
 <script>
-// フェードイン
 document.addEventListener("DOMContentLoaded", () => {
-  const imgs = document.querySelectorAll(".gallery img");
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  imgs.forEach(img => observer.observe(img));
+  const imgs=document.querySelectorAll(".gallery img");
+  const obs=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target);}});
+  },{threshold:0.1});
+  imgs.forEach(img=>obs.observe(img));
 });
 </script>
 """
 
-# 画像抽出
+# ===== はてなブログの記事をRSSから自動取得 =====
+def fetch_hatena_articles():
+    os.makedirs(ARTICLES_DIR, exist_ok=True)
+    print("📰 はてなブログの記事を取得中…")
+
+    feed = feedparser.parse(BLOG_RSS_URL)
+    print(f"📡 {len(feed.entries)}件の記事を検出")
+
+    for i, entry in enumerate(feed.entries, 1):
+        url = entry.link
+        print(f"({i}) {url}")
+        r = requests.get(url)
+        if r.status_code == 200:
+            filename = f"{ARTICLES_DIR}/article{i}.html"
+            with open(filename, "w", encoding="utf-8") as f:
+                f.write(r.text)
+            print(f"✅ {filename} 保存完了")
+        else:
+            print(f"⚠️ 取得失敗: {url} [{r.status_code}]")
+
+# ===== HTML から画像を抽出 =====
 def fetch_images():
     print("📂 HTMLから画像を取得中…")
     entries = []
@@ -159,7 +122,7 @@ def fetch_images():
     print(f"🧩 {len(entries)}枚の画像を検出しました")
     return entries
 
-# 五十音分類
+# ===== 五十音グループ判定 =====
 def get_aiuo_group(name):
     if not name:
         return "その他"
@@ -169,20 +132,19 @@ def get_aiuo_group(name):
             return group
     return "その他"
 
-# HTML生成
+# ===== ギャラリーHTML生成 =====
 def generate_gallery(entries):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     grouped = {}
     for e in entries:
         grouped.setdefault(e["alt"], []).append(e["src"])
 
-    # 各キノコページ
+    # 各キノコページ生成
     for alt, imgs in grouped.items():
         html = f"<h2>{alt}</h2>\n<div class='gallery'>\n"
         for src in imgs:
             html += f'<img src="{src}" alt="{alt}" loading="lazy">\n'
         html += "</div>\n" + SCRIPT_TAG + STYLE_TAG
-
         safe_name = alt.replace(" ", "_")
         with open(f"{OUTPUT_DIR}/{safe_name}.html", "w", encoding="utf-8") as f:
             f.write(html)
@@ -200,17 +162,11 @@ def generate_gallery(entries):
             safe_name = alt.replace(" ", "_")
             html += f'<li><a href="{safe_name}.html">{alt}</a></li>\n'
         html += "</ul>\n"
-
-        # ナビリンク
         nav_links = []
         for g in AIUO_GROUPS.keys():
-            if g == group:
-                nav_links.append(f"<strong>{g}</strong>")
-            else:
-                nav_links.append(f'<a href="{g}.html">{g}</a>')
+            nav_links.append(f"<strong>{g}</strong>" if g == group else f'<a href="{g}.html">{g}</a>')
         html += "<div class='nav'>" + "｜".join(nav_links) + "</div>\n"
         html += SCRIPT_TAG + STYLE_TAG
-
         with open(f"{OUTPUT_DIR}/{group}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
@@ -219,12 +175,12 @@ def generate_gallery(entries):
     for group in AIUO_GROUPS.keys():
         index += f'<li><a href="{group}.html">{group}</a></li>\n'
     index += "</ul>\n" + SCRIPT_TAG + STYLE_TAG
-
     with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
         f.write(index)
-
     print(f"✅ ギャラリーページ生成完了！（{OUTPUT_DIR}/）")
 
+# ===== メイン実行 =====
 if __name__ == "__main__":
+    fetch_hatena_articles()
     entries = fetch_images()
     generate_gallery(entries)
