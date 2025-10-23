@@ -2,8 +2,8 @@ name: Generate Photo Gallery
 
 on:
   schedule:
-    - cron: '0 15 * * *'  # JST 0:00（UTC 15:00）に毎日実行
-  workflow_dispatch:       # 手動実行も可能
+    - cron: '0 15 * * *'  # JST 0:00に実行
+  workflow_dispatch:
 
 jobs:
   build:
