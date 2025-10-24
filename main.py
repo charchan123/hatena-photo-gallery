@@ -1,8 +1,11 @@
-import os, glob, requests, feedparser
+import os, glob, time, requests, feedparser
 from bs4 import BeautifulSoup
 
-# ===== 基本設定 =====
-BLOG_RSS_URL = "https://charchan123.hatenablog.com/rss"  # ←あなたのブログRSSに変更
+# ====== 設定 ======
+HATENA_USER = os.getenv("HATENA_USER", "charchan123")
+HATENA_BLOG_ID = os.getenv("HATENA_BLOG_ID", "charchan123.hatenablog.com")
+
+BLOG_RSS_URL = "https://exsudoporus-ruber.hatenablog.jp/rss"
 ARTICLES_DIR = "articles"
 OUTPUT_DIR = "output"
 
@@ -19,7 +22,7 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ===== iframe 高さ自動送信スクリプト =====
+# ====== iframe 高さ自動調整 ======
 SCRIPT_TAG = """
 <script>
 (function() {
@@ -43,7 +46,7 @@ SCRIPT_TAG = """
 </script>
 """
 
-# ===== スタイル + フェードイン効果 =====
+# ====== スタイル + フェードイン ======
 STYLE_TAG = """
 <style>
 html, body { margin:0; padding:0; overflow-x:hidden; height:auto!important; }
@@ -82,47 +85,63 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 """
 
-# ===== はてなブログの記事をRSSから自動取得 =====
+# ====== はてなブログの記事をRSSから取得 ======
 def fetch_hatena_articles():
     os.makedirs(ARTICLES_DIR, exist_ok=True)
-    print("📰 はてなブログの記事を取得中…")
+    print(f"📰 はてなブログRSS取得: {BLOG_RSS_URL}")
 
     feed = feedparser.parse(BLOG_RSS_URL)
-    print(f"📡 {len(feed.entries)}件の記事を検出")
+    if not feed.entries:
+        raise RuntimeError("❌ RSSフィードが取得できません。URLまたはブログの公開設定を確認してください。")
+
+    print(f"📡 {len(feed.entries)}件の記事を検出しました。")
 
     for i, entry in enumerate(feed.entries, 1):
         url = entry.link
         print(f"({i}) {url}")
-        r = requests.get(url)
-        if r.status_code == 200:
-            filename = f"{ARTICLES_DIR}/article{i}.html"
-            with open(filename, "w", encoding="utf-8") as f:
-                f.write(r.text)
-            print(f"✅ {filename} 保存完了")
+        for retry in range(3):
+            try:
+                r = requests.get(url, timeout=10)
+                if r.status_code == 200:
+                    filename = f"{ARTICLES_DIR}/article{i}.html"
+                    with open(filename, "w", encoding="utf-8") as f:
+                        f.write(r.text)
+                    print(f"✅ 保存完了: {filename}")
+                    break
+                else:
+                    print(f"⚠️ [{r.status_code}] 再試行 {retry+1}/3")
+            except Exception as e:
+                print(f"⚠️ 取得失敗: {e}")
+                time.sleep(3)
         else:
-            print(f"⚠️ 取得失敗: {url} [{r.status_code}]")
+            print(f"❌ 最終的に取得できませんでした: {url}")
 
-# ===== HTML から画像を抽出 =====
+# ====== HTMLから画像を抽出 ======
 def fetch_images():
-    print("📂 HTMLから画像を取得中…")
+    print("📂 HTMLから画像を抽出中…")
     entries = []
     html_files = glob.glob(f"{ARTICLES_DIR}/*.html")
     for html_file in html_files:
         with open(html_file, encoding="utf-8") as f:
             soup = BeautifulSoup(f, "html.parser")
+            # パターン① 標準構造
             entry_content = soup.find("div", class_="entry-content hatenablog-entry")
+            # パターン② カスタムテーマ対応
+            if not entry_content:
+                entry_content = soup.find("div", class_="entry-content")
             if not entry_content:
                 continue
+
             imgs = entry_content.find_all("img")
             for img in imgs:
                 alt = img.get("alt", "").strip()
                 src = img.get("src")
                 if alt and src:
                     entries.append({"alt": alt, "src": src})
-    print(f"🧩 {len(entries)}枚の画像を検出しました")
+    print(f"🧩 検出画像数: {len(entries)} 枚")
     return entries
 
-# ===== 五十音グループ判定 =====
+# ====== 五十音グループ判定 ======
 def get_aiuo_group(name):
     if not name:
         return "その他"
@@ -132,7 +151,7 @@ def get_aiuo_group(name):
             return group
     return "その他"
 
-# ===== ギャラリーHTML生成 =====
+# ====== ギャラリーHTML生成 ======
 def generate_gallery(entries):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     grouped = {}
@@ -145,7 +164,7 @@ def generate_gallery(entries):
         for src in imgs:
             html += f'<img src="{src}" alt="{alt}" loading="lazy">\n'
         html += "</div>\n" + SCRIPT_TAG + STYLE_TAG
-        safe_name = alt.replace(" ", "_")
+        safe_name = alt.replace(" ", "_").replace("/", "_")
         with open(f"{OUTPUT_DIR}/{safe_name}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
@@ -159,7 +178,7 @@ def generate_gallery(entries):
     for group, names in aiuo_dict.items():
         html = f"<h2>{group}のキノコ</h2>\n<ul>\n"
         for alt in sorted(names):
-            safe_name = alt.replace(" ", "_")
+            safe_name = alt.replace(" ", "_").replace("/", "_")
             html += f'<li><a href="{safe_name}.html">{alt}</a></li>\n'
         html += "</ul>\n"
         nav_links = []
@@ -177,10 +196,14 @@ def generate_gallery(entries):
     index += "</ul>\n" + SCRIPT_TAG + STYLE_TAG
     with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
         f.write(index)
+
     print(f"✅ ギャラリーページ生成完了！（{OUTPUT_DIR}/）")
 
-# ===== メイン実行 =====
+# ====== メイン実行 ======
 if __name__ == "__main__":
     fetch_hatena_articles()
     entries = fetch_images()
-    generate_gallery(entries)
+    if entries:
+        generate_gallery(entries)
+    else:
+        print("⚠️ 画像が見つかりませんでした。")
