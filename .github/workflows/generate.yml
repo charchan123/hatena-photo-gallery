@@ -2,7 +2,7 @@ name: Generate Photo Gallery
 
 on:
   schedule:
-    - cron: '0 15 * * *'  # JST 0:00に実行
+    - cron: '0 15 * * *'
   workflow_dispatch:
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run main.py (fetch + generate)
+      - name: Run main.py
         env:
           HATENA_USER: ${{ secrets.HATENA_USER }}
           HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
