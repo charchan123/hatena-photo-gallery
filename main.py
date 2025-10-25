@@ -135,17 +135,32 @@ def generate_gallery(entries):
     for e in entries:
         grouped.setdefault(e["alt"], []).append(e["src"])
 
-    # 各キノコページ
+    # ====== 共通リンク群（あ行～わ行） ======
+    group_links = " | ".join(
+        [f'<a href="{g}.html">{g}</a>' for g in AIUO_GROUPS.keys()]
+    )
+    group_links_html = f"<div style='margin-top:40px; text-align:center;'>{group_links}</div>"
+
+    # ====== 各キノコページ ======
     for alt, imgs in grouped.items():
         html = f"<h2>{alt}</h2><div class='gallery'>"
         for src in imgs:
             html += f'<img src="{src}" alt="{alt}" loading="lazy">'
-        html += "</div>" + SCRIPT_TAG + STYLE_TAG
+        html += "</div>"
+
+        # 「戻る」リンクを追加
+        html += """
+        <div style='margin-top:40px; text-align:center;'>
+          <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
+        </div>
+        """
+
+        html += SCRIPT_TAG + STYLE_TAG
         safe = alt.replace("/", "_").replace(" ", "_")
         with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
-    # 五十音分類ページ
+    # ====== 五十音分類ページ ======
     aiuo_dict = {k: [] for k in AIUO_GROUPS.keys()}
     for alt in grouped.keys():
         g = get_aiuo_group(alt)
@@ -157,11 +172,16 @@ def generate_gallery(entries):
         for n in sorted(names):
             safe = n.replace("/", "_").replace(" ", "_")
             html += f'<li><a href="{safe}.html">{n}</a></li>'
-        html += "</ul>" + SCRIPT_TAG + STYLE_TAG
+        html += "</ul>"
+
+        # 行リンクを下部に追加
+        html += group_links_html
+        html += SCRIPT_TAG + STYLE_TAG
+
         with open(f"{OUTPUT_DIR}/{g}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
-    # index.html
+    # ====== index.html ======
     index = "<h2>五十音別分類</h2><ul>"
     for g in AIUO_GROUPS.keys():
         index += f'<li><a href="{g}.html">{g}</a></li>'
