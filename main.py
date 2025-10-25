@@ -211,6 +211,15 @@ def generate_gallery(entries):
     group_links = " | ".join([f'<a href="{g}.html">{g}</a>' for g in AIUO_GROUPS.keys()])
     group_links_html = f"<div style='margin-top:40px; text-align:center;'>{group_links}</div>"
 
+    # 安全なファイル名生成関数
+    def safe_filename(name):
+        import re
+        name = re.sub(r'[:<>\"|*?\\/\r\n]', '_', name)  # 禁止文字を _
+        name = name.strip()
+        if not name:
+            name = "unnamed"
+        return name
+
     # 各キノコページ
     for alt, imgs in grouped.items():
         html = f"<h2>{alt}</h2><div class='gallery'>"
@@ -223,7 +232,7 @@ def generate_gallery(entries):
         </div>
         """
         html += SCRIPT_STYLE_TAG
-        safe = alt.replace("/", "_").replace(" ", "_")
+        safe = safe_filename(alt)
         with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
@@ -237,18 +246,18 @@ def generate_gallery(entries):
     for g, names in aiuo_dict.items():
         html = f"<h2>{g}のキノコ</h2><ul>"
         for n in sorted(names):
-            safe = n.replace("/", "_").replace(" ", "_")
+            safe = safe_filename(n)
             html += f'<li><a href="{safe}.html">{n}</a></li>'
         html += "</ul>"
         html += group_links_html
         html += SCRIPT_STYLE_TAG
-        with open(f"{OUTPUT_DIR}/{g}.html", "w", encoding="utf-8") as f:
+        with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
     # index.html
     index = "<h2>五十音別分類</h2><ul>"
     for g in AIUO_GROUPS.keys():
-        index += f'<li><a href="{g}.html">{g}</a></li>'
+        index += f'<li><a href="{safe_filename(g)}.html">{g}</a></li>'
     index += "</ul>" + SCRIPT_STYLE_TAG
     with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
         f.write(index)
