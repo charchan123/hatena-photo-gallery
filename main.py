@@ -1,9 +1,6 @@
 import os, glob, time, requests
 from bs4 import BeautifulSoup
 import xml.etree.ElementTree as ET
-from dotenv import load_dotenv
-
-load_dotenv()
 
 # ====== 設定 ======
 HATENA_USER = os.getenv("HATENA_USER")
