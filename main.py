@@ -33,9 +33,9 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== iframe 高さ調整 + スタイル（完全版） ======
+# ====== iframe 高さ調整 + スタイル（完全版・min-height 0 対応） ======
 SCRIPT_STYLE_TAG = """<style>
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background:#fafafa; color:#333; padding:16px; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background:#fafafa; color:#333; padding:16px; min-height: 0; }
 .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; }
 .gallery img { width:100%; border-radius:8px; transition:opacity 0.5s ease-out; opacity:0; }
 .gallery img.visible { opacity:1; }
@@ -44,6 +44,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
 (function() {
   // iframe外で二重実行防止
   if (window === window.parent) return;
+
+  // body min-height を 0 に
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.style.minHeight = '0px';
+  });
 
   // ===== 高さ送信 =====
   const sendHeight = () => {
