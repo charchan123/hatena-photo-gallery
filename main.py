@@ -33,7 +33,7 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列（完全安定版） ======
+# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列（中央寄せ安定版） ======
 SCRIPT_STYLE_TAG = """<style>
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -46,8 +46,9 @@ body {
 /* ==== ギャラリー設定 ==== */
 .gallery {
   width: 100%;
-  max-width: 400px;   /* PCでは2列分（160×2 + 余白）を想定 */
-  margin: 0 auto;     /* 中央寄せ */
+  margin: 0 auto;
+  display: grid;              /* ★中央寄せ補正 */
+  justify-content: center;    /* ★横方向中央寄せ */
 }
 
 /* ==== 画像設定 ==== */
@@ -66,7 +67,7 @@ body {
 /* ==== スマホでは1列に ==== */
 @media (max-width: 480px) {
   .gallery {
-    max-width: 200px; /* 1列表示 */
+    justify-content: center;
   }
 }
 </style>
@@ -130,13 +131,6 @@ body {
         ? window.innerWidth - 32   // padding 16px × 2
         : defaultColumnWidth;
 
-      const maxWidth = isMobile
-        ? "100%"
-        : (columnWidth * 2 + gutter) + "px";
-
-      gallery.style.maxWidth = maxWidth;
-      gallery.style.margin = "0 auto";
-
       if (gallery.msnry) {
         gallery.msnry.options.columnWidth = columnWidth;
         gallery.msnry.layout();
@@ -145,7 +139,7 @@ body {
           itemSelector: 'img',
           columnWidth: columnWidth,
           gutter: gutter,
-          fitWidth: true
+          fitWidth: false   // ★ここを false に変更
         });
       }
     }
