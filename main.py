@@ -33,13 +33,17 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== iframe 高さ調整 + スタイル（完全版・min-height 0 対応） ======
+# ====== iframe 高さ調整 + スタイル（Masonry対応版） ======
 SCRIPT_STYLE_TAG = """<style>
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background:#fafafa; color:#333; padding:16px; min-height: 0; }
-.gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; }
-.gallery img { width:100%; border-radius:8px; transition:opacity 0.5s ease-out; opacity:0; }
+.gallery img { width:100%; border-radius:8px; transition:opacity 0.5s ease-out; opacity:0; margin-bottom:10px; }
 .gallery img.visible { opacity:1; }
 </style>
+
+<!-- Masonry.js と imagesLoaded -->
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+
 <script>
 (function() {
   // iframe外で二重実行防止
@@ -57,7 +61,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
     console.log("[iframe] sendHeight ->", height);
   };
 
-  // ページロード時
   window.addEventListener("load", () => {
     sendHeight();
     setTimeout(sendHeight, 500);
@@ -69,19 +72,16 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
     } catch(e) { console.warn(e); }
   });
 
-  // リサイズ時
   window.addEventListener("resize", sendHeight);
-
-  // DOM変化監視
   const observer = new MutationObserver(sendHeight);
   observer.observe(document.body, { childList: true, subtree: true });
-
-  // 低くなるケース用：1秒ごとに送信
   setInterval(sendHeight, 1000);
 
-  // ===== ギャラリー画像フェードイン =====
+  // ===== ギャラリー画像フェードイン + Masonry初期化 =====
   document.addEventListener("DOMContentLoaded", () => {
     const imgs = document.querySelectorAll(".gallery img");
+
+    // 画像フェードイン
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if(e.isIntersecting){
@@ -91,6 +91,23 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
       });
     }, {threshold:0.1});
     imgs.forEach(i => obs.observe(i));
+
+    // Masonry 初期化
+    const gallery = document.querySelector('.gallery');
+    if (gallery) {
+      const msnry = new Masonry(gallery, {
+        itemSelector: 'img',
+        columnWidth: 160,
+        gutter: 10,
+        fitWidth: true
+      });
+
+      // 画像ロード完了後にレイアウト再計算
+      imagesLoaded(gallery, () => {
+        msnry.layout();
+        sendHeight();  // 高さ送信も更新
+      });
+    }
   });
 
   // ===== リンククリックでトップに戻す =====
