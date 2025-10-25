@@ -35,49 +35,33 @@ AIUO_GROUPS = {
 # ====== iframe 高さ調整 + スタイル ======
 SCRIPT_TAG = """<script>
 (function() {
-  // 親と同じウィンドウなら何もしない（iframe外で二重実行しないため）
-  if (window === window.parent) return;
+  // ===== ページ読み込み時にトップへ =====
+  window.addEventListener("load", () => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+    // Safari対策：少し遅れてもう一度実行
+    setTimeout(() => window.scrollTo(0, 0), 200);
+  });
 
-  const sendHeight = () => {
-    const height = document.documentElement.scrollHeight;
-    window.parent.postMessage({ type: "setHeight", height }, "*");
-    console.log("[iframe] sendHeight ->", height);
-  };
-  window.addEventListener("load", () => { sendHeight(); setTimeout(sendHeight, 800); });
-  window.addEventListener("resize", sendHeight);
-  const observer = new MutationObserver(() => sendHeight());
-  observer.observe(document.body, { childList: true, subtree: true });
-
-  // ====== クリック時の親スクロール依頼処理 ======
-  function scrollToTopBoth() {
-    // iframe内スクロールをリセット
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    // 親ページにもスクロール依頼を送る
-    try {
-      window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*");
-      console.log("[iframe] postMessage sent: scrollTopRequest");
-    } catch (e) {
-      console.warn("[iframe] postMessage failed:", e);
-    }
-  }
-
+  // ===== 「戻る」クリックでトップへ戻す =====
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (!a) return;
-    const href = a.getAttribute("href") || "";
 
-    // 五十音リンク・戻るリンク・HTMLリンクを対象
+    const href = a.getAttribute("href") || "";
+    // 「javascript:history.back()」リンクの場合
+    if (href.startsWith("javascript:history.back")) {
+      e.preventDefault(); // 通常動作を先に止める
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setTimeout(() => history.back(), 150); // 少し遅れて戻る
+      return;
+    }
+
+    // ===== 五十音リンクをクリックした場合もトップへ =====
     if (
-      href.endsWith(".html") ||
-      href.startsWith("#") ||
-      href.startsWith("javascript") ||
-      href === "javascript:void(0)" ||
-      href.includes("index") ||
-      a.classList.contains("back-link")
+      href.endsWith(".html") &&
+      /[あかさたなはまやらわ]行/.test(href)
     ) {
-      console.log("[iframe] link clicked -> requesting parent scroll", href);
-      // ページ遷移後に実行するため少し遅延
-      setTimeout(scrollToTopBoth, 200);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   });
 })();
