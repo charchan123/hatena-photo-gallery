@@ -1,5 +1,5 @@
 <h2>五十音別分類</h2><ul><li><a href="あ行.html">あ行</a></li><li><a href="か行.html">か行</a></li><li><a href="さ行.html">さ行</a></li><li><a href="た行.html">た行</a></li><li><a href="な行.html">な行</a></li><li><a href="は行.html">は行</a></li><li><a href="ま行.html">ま行</a></li><li><a href="や行.html">や行</a></li><li><a href="ら行.html">ら行</a></li><li><a href="わ行.html">わ行</a></li></ul><style>
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background:#fafafa; color:#333; padding:16px; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background:#fafafa; color:#333; padding:16px; min-height: 0; }
 .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; }
 .gallery img { width:100%; border-radius:8px; transition:opacity 0.5s ease-out; opacity:0; }
 .gallery img.visible { opacity:1; }
@@ -8,6 +8,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
 (function() {
   // iframe外で二重実行防止
   if (window === window.parent) return;
+
+  // body min-height を 0 に
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.style.minHeight = '0px';
+  });
 
   // ===== 高さ送信 =====
   const sendHeight = () => {
