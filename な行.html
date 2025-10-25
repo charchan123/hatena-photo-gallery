@@ -10,8 +10,9 @@ body {
 /* ==== ギャラリー設定 ==== */
 .gallery {
   width: 100%;
-  max-width: 400px;   /* PCでは2列分（160×2 + 余白）を想定 */
-  margin: 0 auto;     /* 中央寄せ */
+  margin: 0 auto;
+  display: grid;              /* ★中央寄せ補正 */
+  justify-content: center;    /* ★横方向中央寄せ */
 }
 
 /* ==== 画像設定 ==== */
@@ -30,7 +31,7 @@ body {
 /* ==== スマホでは1列に ==== */
 @media (max-width: 480px) {
   .gallery {
-    max-width: 200px; /* 1列表示 */
+    justify-content: center;
   }
 }
 </style>
@@ -94,13 +95,6 @@ body {
         ? window.innerWidth - 32   // padding 16px × 2
         : defaultColumnWidth;
 
-      const maxWidth = isMobile
-        ? "100%"
-        : (columnWidth * 2 + gutter) + "px";
-
-      gallery.style.maxWidth = maxWidth;
-      gallery.style.margin = "0 auto";
-
       if (gallery.msnry) {
         gallery.msnry.options.columnWidth = columnWidth;
         gallery.msnry.layout();
@@ -109,7 +103,7 @@ body {
           itemSelector: 'img',
           columnWidth: columnWidth,
           gutter: gutter,
-          fitWidth: true
+          fitWidth: false   // ★ここを false に変更
         });
       }
     }
