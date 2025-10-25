@@ -1,8 +1,9 @@
 <h2>な行のキノコ</h2><ul><li><a href="ナラタケ.html">ナラタケ</a></li><li><a href="ナラタケ(広義).html">ナラタケ(広義)</a></li><li><a href="ニオイコベニタケ.html">ニオイコベニタケ</a></li><li><a href="ニオイコベニタケ似のベニタケ.html">ニオイコベニタケ似のベニタケ</a></li><li><a href="ニカワハリタケ.html">ニカワハリタケ</a></li><li><a href="ニカワホウキタケ.html">ニカワホウキタケ</a></li><li><a href="ニガイグチモドキ.html">ニガイグチモドキ</a></li><li><a href="ニガクリタケ.html">ニガクリタケ</a></li><li><a href="ニシキタケ.html">ニシキタケ</a></li><li><a href="ニセアシベニイグチ？.html">ニセアシベニイグチ？</a></li><li><a href="ニセショウロ.html">ニセショウロ</a></li><li><a href="ニセショウロ？.html">ニセショウロ？</a></li><li><a href="ニワタケ.html">ニワタケ</a></li><li><a href="ヌメリササタケ.html">ヌメリササタケ</a></li><li><a href="ヌメリスギタケ.html">ヌメリスギタケ</a></li><li><a href="ヌメリスギタケモドキ.html">ヌメリスギタケモドキ</a></li><li><a href="ヌメリツバイグチ_or_ヌメリイグチ.html">ヌメリツバイグチ or ヌメリイグチ</a></li><li><a href="ノイバラハルシメジ.html">ノイバラハルシメジ</a></li><li><a href="ノウタケ.html">ノウタケ</a></li></ul><div style='margin-top:40px; text-align:center;'><a href="あ行.html">あ行</a> | <a href="か行.html">か行</a> | <a href="さ行.html">さ行</a> | <a href="た行.html">た行</a> | <a href="な行.html">な行</a> | <a href="は行.html">は行</a> | <a href="ま行.html">ま行</a> | <a href="や行.html">や行</a> | <a href="ら行.html">ら行</a> | <a href="わ行.html">わ行</a></div><script>
 (function() {
-  // 親と同じウィンドウなら何もしない（iframe外で二重実行しないため）
+  // iframe外で二重実行防止
   if (window === window.parent) return;
 
+  // ===== 高さ調整 =====
   const sendHeight = () => {
     const height = document.documentElement.scrollHeight;
     window.parent.postMessage({ type: "setHeight", height }, "*");
@@ -10,36 +11,39 @@
   };
   window.addEventListener("load", () => { sendHeight(); setTimeout(sendHeight, 800); });
   window.addEventListener("resize", sendHeight);
-  const observer = new MutationObserver(() => sendHeight());
+  const observer = new MutationObserver(sendHeight);
   observer.observe(document.body, { childList: true, subtree: true });
 
   // ===== ページ読み込み時にトップへ =====
   window.addEventListener("load", () => {
-    window.scrollTo({ top: 0, behavior: "instant" });
-    // Safari対策：少し遅れてもう一度実行
-    setTimeout(() => window.scrollTo(0, 0), 200);
+    window.scrollTo(0,0);
+    setTimeout(() => window.scrollTo(0,0), 200);
+    try {
+      window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*");
+    } catch(e){ console.warn(e); }
   });
 
-  // ===== 「戻る」クリックでトップへ戻す =====
+  // ===== リンククリックでトップに戻す処理 =====
+  function scrollToTopBoth() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    try {
+      window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*");
+    } catch(e){ console.warn(e); }
+  }
+
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (!a) return;
-
     const href = a.getAttribute("href") || "";
-    // 「javascript:history.back()」リンクの場合
-    if (href.startsWith("javascript:history.back")) {
-      e.preventDefault(); // 通常動作を先に止める
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      setTimeout(() => history.back(), 150); // 少し遅れて戻る
-      return;
-    }
 
-    // ===== 五十音リンクをクリックした場合もトップへ =====
+    // 「戻るリンク」や五十音リンク、htmlリンクなど対象
     if (
-      href.endsWith(".html") &&
-      /[あかさたなはまやらわ]行/.test(href)
+      href.startsWith("javascript:history.back") ||
+      href.startsWith("#") ||
+      href.endsWith(".html") ||
+      href.includes("index")
     ) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      setTimeout(scrollToTopBoth, 150);
     }
   });
 })();
