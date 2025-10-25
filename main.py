@@ -33,7 +33,7 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列（中央寄せ安定版） ======
+# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列（完全安定＋中央寄せ修正版） ======
 SCRIPT_STYLE_TAG = """<style>
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -46,9 +46,9 @@ body {
 /* ==== ギャラリー設定 ==== */
 .gallery {
   width: 100%;
-  margin: 0 auto;
-  display: grid;              /* ★中央寄せ補正 */
-  justify-content: center;    /* ★横方向中央寄せ */
+  max-width: 400px !important;   /* ★ 2列分の最大幅を強制適用 */
+  margin: 0 auto;                /* 中央寄せ */
+  display: block;
 }
 
 /* ==== 画像設定 ==== */
@@ -67,7 +67,7 @@ body {
 /* ==== スマホでは1列に ==== */
 @media (max-width: 480px) {
   .gallery {
-    justify-content: center;
+    max-width: 100% !important;
   }
 }
 </style>
@@ -111,7 +111,7 @@ body {
     // フェードイン
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if(e.isIntersecting){
+        if (e.isIntersecting) {
           e.target.classList.add("visible");
           obs.unobserve(e.target);
         }
@@ -126,10 +126,21 @@ body {
     const defaultColumnWidth = 160;
 
     function setMasonryLayout() {
-      const isMobile = window.innerWidth <= 480;
+      // ★ 修正：iframe 内の実幅で判定
+      const viewportWidth = document.documentElement.clientWidth;
+      const isMobile = viewportWidth <= 480;
+
       const columnWidth = isMobile
-        ? window.innerWidth - 32   // padding 16px × 2
+        ? viewportWidth - 32   // padding 16px × 2
         : defaultColumnWidth;
+
+      const maxWidth = isMobile
+        ? "100%"
+        : (columnWidth * 2 + gutter) + "px";
+
+      gallery.style.maxWidth = maxWidth;
+      gallery.style.margin = "0 auto";
+      gallery.style.display = "block";
 
       if (gallery.msnry) {
         gallery.msnry.options.columnWidth = columnWidth;
@@ -139,7 +150,7 @@ body {
           itemSelector: 'img',
           columnWidth: columnWidth,
           gutter: gutter,
-          fitWidth: false   // ★ここを false に変更
+          fitWidth: true,   // fitWidthをtrueに戻す（中央寄せ補正）
         });
       }
     }
