@@ -26,13 +26,11 @@ jobs:
           HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
         run: python main.py
 
-      # ===== ここから追加 =====
       - name: Upload generated HTML as artifact
         uses: actions/upload-artifact@v3
         with:
           name: photo-gallery-html
-          path: ./output/*.html   # main.py が output に生成する HTML を想定
-      # ====================
+          path: ./output/*.html   # main.py が output に生成する HTML を想定      
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
