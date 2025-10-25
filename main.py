@@ -33,7 +33,7 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列（安定版） ======
+# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列（完全安定版） ======
 SCRIPT_STYLE_TAG = """<style>
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -42,9 +42,15 @@ body {
   padding: 16px;
   min-height: 0;
 }
+
+/* ==== ギャラリー設定 ==== */
 .gallery {
-  margin: 0 auto;
+  width: 100%;
+  max-width: 400px;   /* PCでは2列分（160×2 + 余白）を想定 */
+  margin: 0 auto;     /* 中央寄せ */
 }
+
+/* ==== 画像設定 ==== */
 .gallery img {
   width: 100%;
   display: block;
@@ -53,11 +59,15 @@ body {
   opacity: 0;
   margin-bottom: 10px;
 }
+
+/* フェードイン */
 .gallery img.visible { opacity: 1; }
 
-/* スマホでは1列表示 */
+/* ==== スマホでは1列に ==== */
 @media (max-width: 480px) {
-  .gallery { max-width: 100% !important; }
+  .gallery {
+    max-width: 200px; /* 1列表示 */
+  }
 }
 </style>
 
@@ -67,14 +77,12 @@ body {
 
 <script>
 (function() {
-  // ===== 二重実行防止 =====
   if (window === window.parent) return;
 
   document.addEventListener("DOMContentLoaded", () => {
     document.body.style.minHeight = '0px';
   });
 
-  // ===== 高さ送信 =====
   const sendHeight = () => {
     const height = document.documentElement.scrollHeight;
     window.parent.postMessage({ type: "setHeight", height }, "*");
@@ -96,7 +104,6 @@ body {
   observer.observe(document.body, { childList: true, subtree: true });
   setInterval(sendHeight, 1000);
 
-  // ===== Masonry初期化 + フェードイン =====
   document.addEventListener("DOMContentLoaded", () => {
     const imgs = document.querySelectorAll(".gallery img");
 
@@ -120,8 +127,9 @@ body {
     function setMasonryLayout() {
       const isMobile = window.innerWidth <= 480;
       const columnWidth = isMobile
-        ? window.innerWidth - 32  // padding 16px × 2
+        ? window.innerWidth - 32   // padding 16px × 2
         : defaultColumnWidth;
+
       const maxWidth = isMobile
         ? "100%"
         : (columnWidth * 2 + gutter) + "px";
@@ -137,7 +145,7 @@ body {
           itemSelector: 'img',
           columnWidth: columnWidth,
           gutter: gutter,
-          fitWidth: true,
+          fitWidth: true
         });
       }
     }
@@ -153,7 +161,7 @@ body {
     });
   });
 
-  // ===== トップスクロール =====
+  // トップへ戻る
   function scrollToTopBoth() {
     window.scrollTo({ top: 0, behavior: "smooth" });
     try {
