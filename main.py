@@ -114,15 +114,15 @@ def fetch_hatena_articles_api():
 
     print(f"📦 合計 {count} 件の記事を保存しました。")
 
-# ====== HTMLから画像とaltを抽出（本文限定 + altフィルタ） ======
+# ====== HTMLから画像とaltを抽出（本文限定 + altフィルタ + iframe/a除外） ======
 def fetch_images():
     import re
 
     print("📂 HTMLから画像抽出中…")
     entries = []
 
-    # 除外したい alt パターンのリスト
-    exclude_alt_patterns = [
+    # 除外したい alt/text パターンのリスト
+    exclude_patterns = [
         r'はてなブックマーク',                  # 部分一致
         r'^\d{4}年',                             # 年付きテキスト
         r'^この記事をはてなブックマークに追加$', # 完全一致
@@ -137,14 +137,25 @@ def fetch_images():
             body_div = soup.find(class_="entry-body")
             if not body_div:
                 body_div = soup  # 本文限定が見つからなければ全体
+
+            # ===== iframe / a タグで除外対象を削除 =====
+            for iframe in body_div.find_all("iframe"):
+                title = iframe.get("title", "")
+                if any(re.search(p, title) for p in exclude_patterns):
+                    iframe.decompose()
+            for a in body_div.find_all("a"):
+                text = a.get_text(strip=True)
+                if any(re.search(p, text) for p in exclude_patterns):
+                    a.decompose()
+
+            # ===== img タグを抽出 =====
             imgs = body_div.find_all("img")
             for img in imgs:
                 alt = img.get("alt", "").strip()
                 src = img.get("src")
                 if not alt or not src:
                     continue
-                # 除外パターンをすべてチェック
-                if any(re.search(p, alt) for p in exclude_alt_patterns):
+                if any(re.search(p, alt) for p in exclude_patterns):
                     continue
                 entries.append({"alt": alt, "src": src})
 
