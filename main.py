@@ -35,31 +35,24 @@ AIUO_GROUPS = {
 # ====== iframe 高さ調整 + スタイル ======
 SCRIPT_TAG = """<script>
 (function() {
-  // === 二重実行防止 ===
+  // 親と同じウィンドウなら何もしない（iframe外で二重実行しないため）
   if (window === window.parent) return;
 
-  // === iframeの高さを親に通知 ===
   const sendHeight = () => {
     const height = document.documentElement.scrollHeight;
     window.parent.postMessage({ type: "setHeight", height }, "*");
     console.log("[iframe] sendHeight ->", height);
   };
-  window.addEventListener("load", () => { 
-    sendHeight(); 
-    // レイアウト確定後の微調整
-    setTimeout(sendHeight, 800); 
-    setTimeout(sendHeight, 2000); // 遅延レンダリング対策
-  });
+  window.addEventListener("load", () => { sendHeight(); setTimeout(sendHeight, 800); });
   window.addEventListener("resize", sendHeight);
   const observer = new MutationObserver(() => sendHeight());
   observer.observe(document.body, { childList: true, subtree: true });
 
-  // === スクロール制御（iframe内トップ＆親側へ通知） ===
+  // ====== クリック時の親スクロール依頼処理 ======
   function scrollToTopBoth() {
-    // iframe内スクロール
+    // iframe内スクロールをリセット
     window.scrollTo({ top: 0, behavior: "smooth" });
-
-    // 親へ「スクロールして」と通知（安全にtry-catch）
+    // 親ページにもスクロール依頼を送る
     try {
       window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*");
       console.log("[iframe] postMessage sent: scrollTopRequest");
@@ -68,21 +61,12 @@ SCRIPT_TAG = """<script>
     }
   }
 
-  // === ページ読み込み時にもトップに戻す（履歴戻り対応） ===
-  window.addEventListener("pageshow", (event) => {
-    if (event.persisted || performance.getEntriesByType("navigation")[0]?.type === "back_forward") {
-      console.log("[iframe] pageshow -> reset scroll");
-      scrollToTopBoth();
-    }
-  });
-
-  // === リンククリック時のスクロール処理 ===
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (!a) return;
     const href = a.getAttribute("href") || "";
 
-    // 五十音リンク・戻るリンク・HTMLリンクすべて対象
+    // 五十音リンク・戻るリンク・HTMLリンクを対象
     if (
       href.endsWith(".html") ||
       href.startsWith("#") ||
@@ -91,9 +75,9 @@ SCRIPT_TAG = """<script>
       href.includes("index") ||
       a.classList.contains("back-link")
     ) {
-      console.log("[iframe] link clicked -> trigger scrollTopBoth", href);
-      // ページ遷移後に発火（若干の遅延で確実化）
-      setTimeout(scrollToTopBoth, 300);
+      console.log("[iframe] link clicked -> requesting parent scroll", href);
+      // ページ遷移後に実行するため少し遅延
+      setTimeout(scrollToTopBoth, 200);
     }
   });
 })();
