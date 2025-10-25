@@ -1,13 +1,20 @@
-import os, glob, time, requests, feedparser
+import os, glob, time, requests
 from bs4 import BeautifulSoup
+import xml.etree.ElementTree as ET
 
 # ====== 設定 ======
-HATENA_USER = os.getenv("HATENA_USER", "charchan123")
-HATENA_BLOG_ID = os.getenv("HATENA_BLOG_ID", "charchan123.hatenablog.com")
+HATENA_USER = os.getenv("HATENA_USER")
+HATENA_BLOG_ID = os.getenv("HATENA_BLOG_ID")
+HATENA_API_KEY = os.getenv("HATENA_API_KEY")
 
-BLOG_RSS_URL = "https://exsudoporus-ruber.hatenablog.jp/rss"
 ARTICLES_DIR = "articles"
 OUTPUT_DIR = "output"
+
+# ====== API エンドポイント ======
+ATOM_ENDPOINT = f"https://blog.hatena.ne.jp/{HATENA_USER}/{HATENA_BLOG_ID}/atom/entry"
+
+HEADERS = {"Content-Type": "application/xml"}
+AUTH = (HATENA_USER, HATENA_API_KEY)
 
 AIUO_GROUPS = {
     "あ行": list("あいうえおアイウエオ"),
@@ -22,9 +29,8 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== iframe 高さ自動調整 ======
-SCRIPT_TAG = """
-<script>
+# ====== iframe 高さ調整 + スタイル ======
+SCRIPT_TAG = """<script>
 (function() {
   if (window === window.parent) return;
   const sendHeight = () => {
@@ -33,115 +39,83 @@ SCRIPT_TAG = """
   };
   window.addEventListener("load", () => { sendHeight(); setTimeout(sendHeight, 800); });
   window.addEventListener("resize", sendHeight);
-  window.addEventListener("popstate", sendHeight);
-  window.addEventListener("hashchange", sendHeight);
   const observer = new MutationObserver(() => sendHeight());
   observer.observe(document.body, { childList: true, subtree: true });
-  document.querySelectorAll("img").forEach(img => img.addEventListener("load", sendHeight));
-  document.addEventListener("click", e => {
-    const a = e.target.closest("a");
-    if (a && a.getAttribute("href")) setTimeout(sendHeight, 600);
-  });
 })();
-</script>
-"""
+</script>"""
 
-# ====== スタイル + フェードイン ======
-STYLE_TAG = """
-<style>
-html, body { margin:0; padding:0; overflow-x:hidden; height:auto!important; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: #fafafa; color: #333; padding:16px; text-align:left;
-}
-h2 { font-size:1.4em; margin-bottom:12px; text-align:left; }
-ul { list-style:none; padding:0; }
-li { margin:6px 0; text-align:left; }
-a { color:#007acc; text-decoration:none; }
-a:hover { text-decoration:underline; }
-.nav { margin-top:24px; font-size:1.1em; line-height:2em; text-align:left; flex-wrap:wrap; }
-strong { color:#000; text-decoration:underline; }
-.gallery {
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:10px; margin-top:20px;
-}
-.gallery img {
-  width:100%; border-radius:8px; opacity:0; transform:translateY(10px);
-  transition:opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-.gallery img.visible { opacity:1; transform:translateY(0); }
-@media (max-width:600px) {
-  body { padding:12px; } h2 { font-size:1.2em; } .gallery { gap:6px; }
-}
+STYLE_TAG = """<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background:#fafafa; color:#333; padding:16px; }
+.gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; }
+.gallery img { width:100%; border-radius:8px; transition:opacity 0.5s ease-out; opacity:0; }
+.gallery img.visible { opacity:1; }
 </style>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded",()=>{
   const imgs=document.querySelectorAll(".gallery img");
   const obs=new IntersectionObserver(es=>{
     es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target);}});
   },{threshold:0.1});
-  imgs.forEach(img=>obs.observe(img));
+  imgs.forEach(i=>obs.observe(i));
 });
-</script>
-"""
+</script>"""
 
-# ====== はてなブログの記事をRSSから取得 ======
-def fetch_hatena_articles():
+# ====== APIから全記事を取得 ======
+def fetch_hatena_articles_api():
     os.makedirs(ARTICLES_DIR, exist_ok=True)
-    print(f"📰 はてなブログRSS取得: {BLOG_RSS_URL}")
+    print(f"📡 はてなブログAPIから全記事取得中…")
 
-    feed = feedparser.parse(BLOG_RSS_URL)
-    if not feed.entries:
-        raise RuntimeError("❌ RSSフィードが取得できません。URLまたはブログの公開設定を確認してください。")
+    url = ATOM_ENDPOINT
+    count = 0
 
-    print(f"📡 {len(feed.entries)}件の記事を検出しました。")
+    while url:
+        print(f"🔗 Fetching: {url}")
+        r = requests.get(url, auth=AUTH, headers=HEADERS)
+        if r.status_code != 200:
+            raise RuntimeError(f"❌ API取得失敗: {r.status_code} {r.text}")
 
-    for i, entry in enumerate(feed.entries, 1):
-        url = entry.link
-        print(f"({i}) {url}")
-        for retry in range(3):
-            try:
-                r = requests.get(url, timeout=10)
-                if r.status_code == 200:
-                    filename = f"{ARTICLES_DIR}/article{i}.html"
-                    with open(filename, "w", encoding="utf-8") as f:
-                        f.write(r.text)
-                    print(f"✅ 保存完了: {filename}")
-                    break
-                else:
-                    print(f"⚠️ [{r.status_code}] 再試行 {retry+1}/3")
-            except Exception as e:
-                print(f"⚠️ 取得失敗: {e}")
-                time.sleep(3)
+        root = ET.fromstring(r.text)
+        ns = {"atom": "http://www.w3.org/2005/Atom"}
+
+        entries = root.findall("atom:entry", ns)
+        for i, entry in enumerate(entries, 1):
+            content = entry.find("atom:content", ns)
+            if content is None:
+                continue
+            html_content = content.text or ""
+            filename = f"{ARTICLES_DIR}/article_{count+i}.html"
+            with open(filename, "w", encoding="utf-8") as f:
+                f.write(html_content)
+            print(f"✅ 保存完了: {filename}")
+
+        count += len(entries)
+        # 次ページへのリンク
+        next_link = root.find("atom:link[@rel='next']", ns)
+        if next_link is not None and "href" in next_link.attrib:
+            url = next_link.attrib["href"]
         else:
-            print(f"❌ 最終的に取得できませんでした: {url}")
+            url = None
+            break
 
-# ====== HTMLから画像を抽出 ======
+    print(f"📦 合計 {count} 件の記事を保存しました。")
+
+# ====== HTMLから画像とaltを抽出 ======
 def fetch_images():
-    print("📂 HTMLから画像を抽出中…")
+    print("📂 HTMLから画像抽出中…")
     entries = []
-    html_files = glob.glob(f"{ARTICLES_DIR}/*.html")
-    for html_file in html_files:
+    for html_file in glob.glob(f"{ARTICLES_DIR}/*.html"):
         with open(html_file, encoding="utf-8") as f:
             soup = BeautifulSoup(f, "html.parser")
-            # パターン① 標準構造
-            entry_content = soup.find("div", class_="entry-content hatenablog-entry")
-            # パターン② カスタムテーマ対応
-            if not entry_content:
-                entry_content = soup.find("div", class_="entry-content")
-            if not entry_content:
-                continue
-
-            imgs = entry_content.find_all("img")
+            imgs = soup.find_all("img")
             for img in imgs:
                 alt = img.get("alt", "").strip()
                 src = img.get("src")
                 if alt and src:
                     entries.append({"alt": alt, "src": src})
-    print(f"🧩 検出画像数: {len(entries)} 枚")
+    print(f"🧩 画像検出数: {len(entries)} 枚")
     return entries
 
-# ====== 五十音グループ判定 ======
+# ====== 五十音分類 ======
 def get_aiuo_group(name):
     if not name:
         return "その他"
@@ -151,57 +125,52 @@ def get_aiuo_group(name):
             return group
     return "その他"
 
-# ====== ギャラリーHTML生成 ======
+# ====== ギャラリー生成 ======
 def generate_gallery(entries):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     grouped = {}
     for e in entries:
         grouped.setdefault(e["alt"], []).append(e["src"])
 
-    # 各キノコページ生成
+    # 各キノコページ
     for alt, imgs in grouped.items():
-        html = f"<h2>{alt}</h2>\n<div class='gallery'>\n"
+        html = f"<h2>{alt}</h2><div class='gallery'>"
         for src in imgs:
-            html += f'<img src="{src}" alt="{alt}" loading="lazy">\n'
-        html += "</div>\n" + SCRIPT_TAG + STYLE_TAG
-        safe_name = alt.replace(" ", "_").replace("/", "_")
-        with open(f"{OUTPUT_DIR}/{safe_name}.html", "w", encoding="utf-8") as f:
+            html += f'<img src="{src}" alt="{alt}" loading="lazy">'
+        html += "</div>" + SCRIPT_TAG + STYLE_TAG
+        safe = alt.replace("/", "_").replace(" ", "_")
+        with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
-    # 五十音別ページ
+    # 五十音分類ページ
     aiuo_dict = {k: [] for k in AIUO_GROUPS.keys()}
     for alt in grouped.keys():
-        group = get_aiuo_group(alt)
-        if group in aiuo_dict:
-            aiuo_dict[group].append(alt)
+        g = get_aiuo_group(alt)
+        if g in aiuo_dict:
+            aiuo_dict[g].append(alt)
 
-    for group, names in aiuo_dict.items():
-        html = f"<h2>{group}のキノコ</h2>\n<ul>\n"
-        for alt in sorted(names):
-            safe_name = alt.replace(" ", "_").replace("/", "_")
-            html += f'<li><a href="{safe_name}.html">{alt}</a></li>\n'
-        html += "</ul>\n"
-        nav_links = []
-        for g in AIUO_GROUPS.keys():
-            nav_links.append(f"<strong>{g}</strong>" if g == group else f'<a href="{g}.html">{g}</a>')
-        html += "<div class='nav'>" + "｜".join(nav_links) + "</div>\n"
-        html += SCRIPT_TAG + STYLE_TAG
-        with open(f"{OUTPUT_DIR}/{group}.html", "w", encoding="utf-8") as f:
+    for g, names in aiuo_dict.items():
+        html = f"<h2>{g}のキノコ</h2><ul>"
+        for n in sorted(names):
+            safe = n.replace("/", "_").replace(" ", "_")
+            html += f'<li><a href="{safe}.html">{n}</a></li>'
+        html += "</ul>" + SCRIPT_TAG + STYLE_TAG
+        with open(f"{OUTPUT_DIR}/{g}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
     # index.html
-    index = "<h2>五十音別分類</h2>\n<ul>\n"
-    for group in AIUO_GROUPS.keys():
-        index += f'<li><a href="{group}.html">{group}</a></li>\n'
-    index += "</ul>\n" + SCRIPT_TAG + STYLE_TAG
+    index = "<h2>五十音別分類</h2><ul>"
+    for g in AIUO_GROUPS.keys():
+        index += f'<li><a href="{g}.html">{g}</a></li>'
+    index += "</ul>" + SCRIPT_TAG + STYLE_TAG
     with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
         f.write(index)
 
-    print(f"✅ ギャラリーページ生成完了！（{OUTPUT_DIR}/）")
+    print("✅ ギャラリーページ生成完了")
 
-# ====== メイン実行 ======
+# ====== メイン ======
 if __name__ == "__main__":
-    fetch_hatena_articles()
+    fetch_hatena_articles_api()
     entries = fetch_images()
     if entries:
         generate_gallery(entries)
