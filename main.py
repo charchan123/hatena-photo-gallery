@@ -216,7 +216,7 @@ def generate_gallery(entries):
           <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
         """
-        html += SCRIPT_TAG + STYLE_TAG
+        html += SCRIPT_STYLE_TAG
         safe = alt.replace("/", "_").replace(" ", "_")
         with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
             f.write(html)
