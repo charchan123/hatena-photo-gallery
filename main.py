@@ -33,32 +33,70 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== iframe 高さ調整 + スタイル ======
-SCRIPT_TAG = """<script>
+# ====== iframe 高さ調整 + スタイル（完全版） ======
+SCRIPT_STYLE_TAG = """<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background:#fafafa; color:#333; padding:16px; }
+.gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; }
+.gallery img { width:100%; border-radius:8px; transition:opacity 0.5s ease-out; opacity:0; }
+.gallery img.visible { opacity:1; }
+</style>
+<script>
 (function() {
+  // iframe外で二重実行防止
   if (window === window.parent) return;
+
+  // ===== 高さ送信 =====
   const sendHeight = () => {
     const height = document.documentElement.scrollHeight;
     window.parent.postMessage({ type: "setHeight", height }, "*");
     console.log("[iframe] sendHeight ->", height);
   };
-  window.addEventListener("load", () => { sendHeight(); setTimeout(sendHeight, 800); });
+
+  // ページロード時
+  window.addEventListener("load", () => {
+    sendHeight();
+    setTimeout(sendHeight, 500);
+    setTimeout(sendHeight, 1000);
+    window.scrollTo(0,0);
+    setTimeout(() => window.scrollTo(0,0), 200);
+    try {
+      window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*");
+    } catch(e) { console.warn(e); }
+  });
+
+  // リサイズ時
   window.addEventListener("resize", sendHeight);
+
+  // DOM変化監視
   const observer = new MutationObserver(sendHeight);
   observer.observe(document.body, { childList: true, subtree: true });
 
-  window.addEventListener("load", () => {
-    window.scrollTo(0,0);
-    setTimeout(() => window.scrollTo(0,0), 200);
-    try { window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*"); } catch(e){ console.warn(e); }
+  // 低くなるケース用：1秒ごとに送信
+  setInterval(sendHeight, 1000);
+
+  // ===== ギャラリー画像フェードイン =====
+  document.addEventListener("DOMContentLoaded", () => {
+    const imgs = document.querySelectorAll(".gallery img");
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          e.target.classList.add("visible");
+          obs.unobserve(e.target);
+        }
+      });
+    }, {threshold:0.1});
+    imgs.forEach(i => obs.observe(i));
   });
 
+  // ===== リンククリックでトップに戻す =====
   function scrollToTopBoth() {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    try { window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*"); } catch(e){ console.warn(e); }
+    try {
+      window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*");
+    } catch(e) { console.warn(e); }
   }
 
-  document.addEventListener("click", (e) => {
+  document.addEventListener("click", e => {
     const a = e.target.closest("a");
     if (!a) return;
     const href = a.getAttribute("href") || "";
@@ -67,22 +105,6 @@ SCRIPT_TAG = """<script>
     }
   });
 })();
-</script>"""
-
-STYLE_TAG = """<style>
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background:#fafafa; color:#333; padding:16px; }
-.gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; }
-.gallery img { width:100%; border-radius:8px; transition:opacity 0.5s ease-out; opacity:0; }
-.gallery img.visible { opacity:1; }
-</style>
-<script>
-document.addEventListener("DOMContentLoaded",()=>{
-  const imgs=document.querySelectorAll(".gallery img");
-  const obs=new IntersectionObserver(es=>{
-    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target);}});
-  },{threshold:0.1});
-  imgs.forEach(i=>obs.observe(i));
-});
 </script>"""
 
 # ====== APIから全記事を取得 ======
