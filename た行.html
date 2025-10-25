@@ -1,23 +1,32 @@
 <h2>た行のキノコ</h2><ul><li><a href="タイワンアリタケ.html">タイワンアリタケ</a></li><li><a href="タマキクラゲ.html">タマキクラゲ</a></li><li><a href="タマゴタケ.html">タマゴタケ</a></li><li><a href="タマゴテングタケモドキ.html">タマゴテングタケモドキ</a></li><li><a href="ダイダイイグチ.html">ダイダイイグチ</a></li><li><a href="チシオタケ.html">チシオタケ</a></li><li><a href="チチアワタケ.html">チチアワタケ</a></li><li><a href="チャアミガサタケ.html">チャアミガサタケ</a></li><li><a href="チャコブタケ.html">チャコブタケ</a></li><li><a href="チャナメツムタケ.html">チャナメツムタケ</a></li><li><a href="ツクツクボウシタケ.html">ツクツクボウシタケ</a></li><li><a href="ツチカブリ？.html">ツチカブリ？</a></li><li><a href="ツチグリの仲間.html">ツチグリの仲間</a></li><li><a href="ツバアブラシメジ.html">ツバアブラシメジ</a></li><li><a href="ツバマツオウジ.html">ツバマツオウジ</a></li><li><a href="ツルタケ.html">ツルタケ</a></li><li><a href="ツルタケの仲間.html">ツルタケの仲間</a></li><li><a href="テングタケ.html">テングタケ</a></li><li><a href="テングタケダマシ.html">テングタケダマシ</a></li><li><a href="テングツルタケ.html">テングツルタケ</a></li><li><a href="トビイロノボリリュウタケ.html">トビイロノボリリュウタケ</a></li><li><a href="ドクツルタケ.html">ドクツルタケ</a></li><li><a href="ドクヤマドリ.html">ドクヤマドリ</a></li></ul><div style='margin-top:40px; text-align:center;'><a href="あ行.html">あ行</a> | <a href="か行.html">か行</a> | <a href="さ行.html">さ行</a> | <a href="た行.html">た行</a> | <a href="な行.html">な行</a> | <a href="は行.html">は行</a> | <a href="ま行.html">ま行</a> | <a href="や行.html">や行</a> | <a href="ら行.html">ら行</a> | <a href="わ行.html">わ行</a></div><script>
 (function() {
+  // 親と同じウィンドウなら何もしない（iframe外で二重実行しないため）
   if (window === window.parent) return;
+
   const sendHeight = () => {
     const height = document.documentElement.scrollHeight;
     window.parent.postMessage({ type: "setHeight", height }, "*");
+    console.log("[iframe] sendHeight ->", height);
   };
   window.addEventListener("load", () => { sendHeight(); setTimeout(sendHeight, 800); });
   window.addEventListener("resize", sendHeight);
   const observer = new MutationObserver(() => sendHeight());
   observer.observe(document.body, { childList: true, subtree: true });
-  // ページ内のリンクをクリックしたときに iframe をトップまでスクロール
+
+  // リンククリックで親に「スクロールしてくれ」と頼む
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (!a) return;
-    // 同一ドメイン内の遷移 or javascriptリンク時のみスクロール処理
-    if (a.getAttribute("href")?.endsWith(".html") || a.href.startsWith("javascript")) {
+    // .html への遷移、javascript:history.back() 等を対象
+    const href = a.getAttribute("href") || "";
+    if (href.endsWith(".html") || href.startsWith("javascript") || href === "javascript:void(0)" || href === "#") {
+      console.log("[iframe] link clicked -> requesting parent scroll", href);
+      // 遷移が起きる場合は短い遅延を置く
       setTimeout(() => {
-        window.parent.postMessage({ type: "scrollTop" }, "*");
-      }, 100); // ページ遷移後に実行
+        // デバッグ用に pathname も送る（親が特定しやすく）
+        window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*");
+        console.log("[iframe] postMessage sent: scrollTopRequest");
+      }, 100);
     }
   });
 })();
