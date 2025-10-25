@@ -23,6 +23,7 @@ jobs:
         env:
           HATENA_USER: ${{ secrets.HATENA_USER }}
           HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
+          HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
         run: python main.py
 
       - name: Deploy to GitHub Pages
