@@ -44,6 +44,17 @@ SCRIPT_TAG = """<script>
   window.addEventListener("resize", sendHeight);
   const observer = new MutationObserver(() => sendHeight());
   observer.observe(document.body, { childList: true, subtree: true });
+  // ページ内のリンクをクリックしたときに iframe をトップまでスクロール
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (!a) return;
+    // 同一ドメイン内の遷移 or javascriptリンク時のみスクロール処理
+    if (a.getAttribute("href")?.endsWith(".html") || a.href.startsWith("javascript")) {
+      setTimeout(() => {
+        window.parent.postMessage({ type: "scrollTop" }, "*");
+      }, 100); // ページ遷移後に実行
+    }
+  });
 })();
 </script>"""
 
