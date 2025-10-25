@@ -235,7 +235,7 @@ def generate_gallery(entries):
             html += f'<li><a href="{safe}.html">{n}</a></li>'
         html += "</ul>"
         html += group_links_html
-        html += SCRIPT_TAG + STYLE_TAG
+        html += SCRIPT_STYLE_TAG
         with open(f"{OUTPUT_DIR}/{g}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
