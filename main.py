@@ -116,8 +116,20 @@ def fetch_hatena_articles_api():
 
 # ====== HTMLから画像とaltを抽出（本文限定 + altフィルタ） ======
 def fetch_images():
+    import re
+
     print("📂 HTMLから画像抽出中…")
     entries = []
+
+    # 除外したい alt パターンのリスト
+    exclude_alt_patterns = [
+        r'はてなブックマーク',                  # 部分一致
+        r'^\d{4}年',                             # 年付きテキスト
+        r'^この記事をはてなブックマークに追加$', # 完全一致
+        r'^ワ行$',                               # 完全一致
+        # 追加する場合はここにパターンを追記
+    ]
+
     for html_file in glob.glob(f"{ARTICLES_DIR}/*.html"):
         with open(html_file, encoding="utf-8") as f:
             soup = BeautifulSoup(f, "html.parser")
@@ -129,12 +141,13 @@ def fetch_images():
             for img in imgs:
                 alt = img.get("alt", "").strip()
                 src = img.get("src")
-                # 不要な alt を除外
                 if not alt or not src:
                     continue
-                if re.match(r'はてなブックマーク|^\d{4}年', alt):
+                # 除外パターンをすべてチェック
+                if any(re.search(p, alt) for p in exclude_alt_patterns):
                     continue
                 entries.append({"alt": alt, "src": src})
+
     print(f"🧩 画像検出数: {len(entries)} 枚")
     return entries
 
