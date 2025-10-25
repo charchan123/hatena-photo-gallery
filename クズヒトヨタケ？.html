@@ -17,20 +17,36 @@
   const observer = new MutationObserver(() => sendHeight());
   observer.observe(document.body, { childList: true, subtree: true });
 
-  // リンククリックで親に「スクロールしてくれ」と頼む
+  // ====== クリック時の親スクロール依頼処理 ======
+  function scrollToTopBoth() {
+    // iframe内スクロールをリセット
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    // 親ページにもスクロール依頼を送る
+    try {
+      window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*");
+      console.log("[iframe] postMessage sent: scrollTopRequest");
+    } catch (e) {
+      console.warn("[iframe] postMessage failed:", e);
+    }
+  }
+
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (!a) return;
-    // .html への遷移、javascript:history.back() 等を対象
     const href = a.getAttribute("href") || "";
-    if (href.endsWith(".html") || href.startsWith("javascript") || href === "javascript:void(0)" || href === "#") {
+
+    // 五十音リンク・戻るリンク・HTMLリンクを対象
+    if (
+      href.endsWith(".html") ||
+      href.startsWith("#") ||
+      href.startsWith("javascript") ||
+      href === "javascript:void(0)" ||
+      href.includes("index") ||
+      a.classList.contains("back-link")
+    ) {
       console.log("[iframe] link clicked -> requesting parent scroll", href);
-      // 遷移が起きる場合は短い遅延を置く
-      setTimeout(() => {
-        // デバッグ用に pathname も送る（親が特定しやすく）
-        window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*");
-        console.log("[iframe] postMessage sent: scrollTopRequest");
-      }, 100);
+      // ページ遷移後に実行するため少し遅延
+      setTimeout(scrollToTopBoth, 200);
     }
   });
 })();
