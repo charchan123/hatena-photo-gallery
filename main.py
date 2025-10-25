@@ -1,11 +1,17 @@
 import os, glob, time, requests
 from bs4 import BeautifulSoup
 import xml.etree.ElementTree as ET
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # ====== 設定 ======
 HATENA_USER = os.getenv("HATENA_USER")
 HATENA_BLOG_ID = os.getenv("HATENA_BLOG_ID")
 HATENA_API_KEY = os.getenv("HATENA_API_KEY")
+
+if not all([HATENA_USER, HATENA_BLOG_ID, HATENA_API_KEY]):
+    raise EnvironmentError("環境変数が未設定です。HATENA_USER, HATENA_BLOG_ID, HATENA_API_KEY を確認してください。")
 
 ARTICLES_DIR = "articles"
 OUTPUT_DIR = "output"
@@ -13,8 +19,8 @@ OUTPUT_DIR = "output"
 # ====== API エンドポイント ======
 ATOM_ENDPOINT = f"https://blog.hatena.ne.jp/{HATENA_USER}/{HATENA_BLOG_ID}/atom/entry"
 
-HEADERS = {"Content-Type": "application/xml"}
 AUTH = (HATENA_USER, HATENA_API_KEY)
+HEADERS = {}
 
 AIUO_GROUPS = {
     "あ行": list("あいうえおアイウエオ"),
