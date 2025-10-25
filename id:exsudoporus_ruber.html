@@ -1,0 +1,27 @@
+<h2>id:exsudoporus_ruber</h2><div class='gallery'><img src="https://cdn.profile-image.st-hatena.com/users/exsudoporus_ruber/profile.png?1760753084" alt="id:exsudoporus_ruber" loading="lazy"><img src="https://cdn.profile-image.st-hatena.com/users/exsudoporus_ruber/profile.png?1760753084" alt="id:exsudoporus_ruber" loading="lazy"></div><script>
+(function() {
+  if (window === window.parent) return;
+  const sendHeight = () => {
+    const height = document.documentElement.scrollHeight;
+    window.parent.postMessage({ type: "setHeight", height }, "*");
+  };
+  window.addEventListener("load", () => { sendHeight(); setTimeout(sendHeight, 800); });
+  window.addEventListener("resize", sendHeight);
+  const observer = new MutationObserver(() => sendHeight());
+  observer.observe(document.body, { childList: true, subtree: true });
+})();
+</script><style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background:#fafafa; color:#333; padding:16px; }
+.gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; }
+.gallery img { width:100%; border-radius:8px; transition:opacity 0.5s ease-out; opacity:0; }
+.gallery img.visible { opacity:1; }
+</style>
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+  const imgs=document.querySelectorAll(".gallery img");
+  const obs=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target);}});
+  },{threshold:0.1});
+  imgs.forEach(i=>obs.observe(i));
+});
+</script>
