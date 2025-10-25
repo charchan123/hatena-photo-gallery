@@ -33,26 +33,36 @@ AIUO_GROUPS = {
 }
 
 # ====== iframe 高さ調整 + スタイル ======
+# 既存の SCRIPT_TAG をこれと置き換えてください（抜粋）
 SCRIPT_TAG = """<script>
 (function() {
+  // 親と同じウィンドウなら何もしない（iframe外で二重実行しないため）
   if (window === window.parent) return;
+
   const sendHeight = () => {
     const height = document.documentElement.scrollHeight;
     window.parent.postMessage({ type: "setHeight", height }, "*");
+    console.log("[iframe] sendHeight ->", height);
   };
   window.addEventListener("load", () => { sendHeight(); setTimeout(sendHeight, 800); });
   window.addEventListener("resize", sendHeight);
   const observer = new MutationObserver(() => sendHeight());
   observer.observe(document.body, { childList: true, subtree: true });
-  // ページ内のリンクをクリックしたときに iframe をトップまでスクロール
+
+  // リンククリックで親に「スクロールしてくれ」と頼む
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (!a) return;
-    // 同一ドメイン内の遷移 or javascriptリンク時のみスクロール処理
-    if (a.getAttribute("href")?.endsWith(".html") || a.href.startsWith("javascript")) {
+    // .html への遷移、javascript:history.back() 等を対象
+    const href = a.getAttribute("href") || "";
+    if (href.endsWith(".html") || href.startsWith("javascript") || href === "javascript:void(0)" || href === "#") {
+      console.log("[iframe] link clicked -> requesting parent scroll", href);
+      // 遷移が起きる場合は短い遅延を置く
       setTimeout(() => {
-        window.parent.postMessage({ type: "scrollTop" }, "*");
-      }, 100); // ページ遷移後に実行
+        // デバッグ用に pathname も送る（親が特定しやすく）
+        window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*");
+        console.log("[iframe] postMessage sent: scrollTopRequest");
+      }, 100);
     }
   });
 })();
