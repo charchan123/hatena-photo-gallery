@@ -27,7 +27,7 @@ jobs:
         run: python main.py
 
       - name: Upload generated HTML as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: photo-gallery-html
           path: ./output/*.html   # main.py が output に生成する HTML を想定      
