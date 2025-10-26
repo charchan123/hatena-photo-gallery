@@ -1,34 +1,7 @@
 <h2>さ行のキノコ</h2><ul><li><a href="サザナミイグチ.html">サザナミイグチ</a></li><li><a href="サザナミイグチorフリルイグチ(仮称)？.html">サザナミイグチorフリルイグチ(仮称)？</a></li><li><a href="サトタマゴタケ.html">サトタマゴタケ</a></li><li><a href="シイタケ.html">シイタケ</a></li><li><a href="ショウゲンジ.html">ショウゲンジ</a></li><li><a href="シロウロコツルタケ.html">シロウロコツルタケ</a></li><li><a href="シロオニタケ.html">シロオニタケ</a></li><li><a href="シロキクラゲ.html">シロキクラゲ</a></li><li><a href="シロソウメンタケ.html">シロソウメンタケ</a></li><li><a href="シロヌメリイグチ.html">シロヌメリイグチ</a></li><li><a href="シロハツ.html">シロハツ</a></li><li><a href="ジャガイモタケ.html">ジャガイモタケ</a></li><li><a href="スギタケモドキ.html">スギタケモドキ</a></li><li><a href="セイタカイグチ.html">セイタカイグチ</a></li><li><a href="センニンタケ.html">センニンタケ</a></li></ul><div style='margin-top:40px; text-align:center;'><a href="あ行.html">あ行</a> | <a href="か行.html">か行</a> | <a href="さ行.html">さ行</a> | <a href="た行.html">た行</a> | <a href="な行.html">な行</a> | <a href="は行.html">は行</a> | <a href="ま行.html">ま行</a> | <a href="や行.html">や行</a> | <a href="ら行.html">ら行</a> | <a href="わ行.html">わ行</a></div><style>
-body { 
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-  background:#fafafa; 
-  color:#333; 
-  padding:16px; 
-  min-height:0;
-  box-sizing: border-box;
-  text-align: center; /* iframe内の全体中央揃え */
-}
-
-/* Masonryコンテナ */
-.gallery {
-  display: inline-block; /* ← 中央寄せのため block→inline-block */
-  text-align: left;      /* ← 画像は左揃えに戻す */
-  max-width: 420px;      /* 160×2 + gutter10 + α */
-  box-sizing: border-box;
-}
-
-/* 画像設定 */
-.gallery img { 
-  width:100%; 
-  border-radius:8px; 
-  transition:opacity 0.5s ease-out; 
-  opacity:0; 
-  margin-bottom:10px;
-}
-
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background:#fafafa; color:#333; padding:16px; min-height: 0; }
+.gallery img { width:100%; border-radius:8px; transition:opacity 0.5s ease-out; opacity:0; margin-bottom:10px; }
 .gallery img.visible { opacity:1; }
-
-/* スマホでは1列 */
 @media (max-width: 400px) {
   .gallery { max-width: 100% !important; }
 }
@@ -41,25 +14,18 @@ body {
 <script>
 (function() {
   if (window === window.parent) return;
-
-  document.addEventListener("DOMContentLoaded", () => { 
-    document.body.style.minHeight = '0px'; 
-  });
+  document.addEventListener("DOMContentLoaded", () => { document.body.style.minHeight = '0px'; });
 
   const sendHeight = () => {
     const height = document.documentElement.scrollHeight;
     window.parent.postMessage({ type: "setHeight", height }, "*");
+    console.log("[iframe] sendHeight ->", height);
   };
 
   window.addEventListener("load", () => {
-    sendHeight(); 
-    setTimeout(sendHeight, 500); 
-    setTimeout(sendHeight, 1000);
-    window.scrollTo(0,0); 
-    setTimeout(() => window.scrollTo(0,0), 200);
-    try { 
-      window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*"); 
-    } catch(e) { console.warn(e); }
+    sendHeight(); setTimeout(sendHeight, 500); setTimeout(sendHeight, 1000);
+    window.scrollTo(0,0); setTimeout(() => window.scrollTo(0,0), 200);
+    try { window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*"); } catch(e) { console.warn(e); }
   });
 
   window.addEventListener("resize", sendHeight);
@@ -70,26 +36,26 @@ body {
   document.addEventListener("DOMContentLoaded", () => {
     const imgs = document.querySelectorAll(".gallery img");
 
-    // ==== フェードイン ====
+    // 画像フェードイン
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if(e.isIntersecting){ 
-          e.target.classList.add("visible"); 
-          obs.unobserve(e.target); 
-        }
+        if(e.isIntersecting){ e.target.classList.add("visible"); obs.unobserve(e.target); }
       });
     }, {threshold:0.1});
     imgs.forEach(i => obs.observe(i));
 
-    // ==== Masonry ====
+    // Masonry 初期化
     const gallery = document.querySelector('.gallery');
     if (gallery) {
       const gutter = 10;
       const defaultColumnWidth = 160;
 
+      // 縦2列表示（PC）
       const setMasonryLayout = () => {
         const isMobile = window.innerWidth <= 400;
-        const columnWidth = isMobile ? window.innerWidth - 32 : defaultColumnWidth; // padding16×2
+        const columnWidth = isMobile ? window.innerWidth - 32 : defaultColumnWidth; // padding16px×2
+        gallery.style.maxWidth = isMobile ? "100%" : (columnWidth * 2 + gutter) + "px";
+        gallery.style.margin = "0 auto";
 
         if (gallery.msnry) {
           gallery.msnry.options.columnWidth = columnWidth;
@@ -99,7 +65,7 @@ body {
             itemSelector: 'img',
             columnWidth: columnWidth,
             gutter: gutter,
-            fitWidth: false   // ← 左詰めに戻す（これが重要）
+            fitWidth: true
           });
         }
       };
@@ -109,20 +75,16 @@ body {
     }
   });
 
-  // ==== 戻る（スクロール維持） ====
   function scrollToTopBoth() {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    try { 
-      window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*"); 
-    } catch(e) { console.warn(e); }
+    try { window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*"); } catch(e) { console.warn(e); }
   }
 
   document.addEventListener("click", e => {
     const a = e.target.closest("a");
     if (!a) return;
     const href = a.getAttribute("href") || "";
-    if (href.startsWith("javascript:history.back") || href.startsWith("#") || 
-        href.endsWith(".html") || href.includes("index")) {
+    if (href.startsWith("javascript:history.back") || href.startsWith("#") || href.endsWith(".html") || href.includes("index")) {
       setTimeout(scrollToTopBoth, 150);
     }
   });
