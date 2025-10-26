@@ -380,30 +380,30 @@ def generate_gallery(entries):
     # 安全なファイル名生成関数
     def safe_filename(name):
         import re
-        name = re.sub(r'[:<>\"|*?\\/\r\n]', '_', name)  # 禁止文字を _
+        name = re.sub(r'[:<>\"|*?\\/\r\n]', '_', name)
         name = name.strip()
         if not name:
             name = "unnamed"
         return name
 
     # 各キノコページ
-for alt, imgs in grouped.items():
-    html = f"<h2>{alt}</h2><div class='gallery'>"
-    for src in imgs:
-        article_url = f"https://{HATENA_BLOG_ID}.hatena.blog/"  # 仮リンク（あとで実URLに変更可）
-        html += f'''
+    for alt, imgs in grouped.items():
+        html = f"<h2>{alt}</h2><div class='gallery'>"
+        for src in imgs:
+            article_url = f"https://{HATENA_BLOG_ID}.hatena.blog/"  # 仮リンク
+            html += f'''
 <img src="{src}" alt="{alt}" loading="lazy" data-url="{article_url}">
 '''
-    html += "</div>"
-    html += """
-    <div style='margin-top:40px; text-align:center;'>
-      <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
-    </div>
-    """
-    html += SCRIPT_STYLE_TAG
-    safe = safe_filename(alt)
-    with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
-        f.write(html)
+        html += "</div>"
+        html += """
+        <div style='margin-top:40px; text-align:center;'>
+          <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
+        </div>
+        """
+        html += SCRIPT_STYLE_TAG
+        safe = safe_filename(alt)
+        with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
+            f.write(html)
 
     # 五十音ページ
     aiuo_dict = {k: [] for k in AIUO_GROUPS.keys()}
