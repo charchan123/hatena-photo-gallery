@@ -1,19 +1,23 @@
 <h2>あ行のキノコ</h2><ul><li><a href="アイシメジ.html">アイシメジ</a></li><li><a href="アイタケ.html">アイタケ</a></li><li><a href="アオゾメクロツブタケ.html">アオゾメクロツブタケ</a></li><li><a href="アオロウジ.html">アオロウジ</a></li><li><a href="アカカバイロタケ.html">アカカバイロタケ</a></li><li><a href="アカツムタケ.html">アカツムタケ</a></li><li><a href="アカハツ.html">アカハツ</a></li><li><a href="アカモミタケ.html">アカモミタケ</a></li><li><a href="アカヤマドリ.html">アカヤマドリ</a></li><li><a href="アクニオイタケ.html">アクニオイタケ</a></li><li><a href="アクニオイタケ？.html">アクニオイタケ？</a></li><li><a href="アケボノアワタケ.html">アケボノアワタケ</a></li><li><a href="アシボソアミガサタケ？.html">アシボソアミガサタケ？</a></li><li><a href="アシボソニガイグチ.html">アシボソニガイグチ</a></li><li><a href="アシボソノボリリュウ.html">アシボソノボリリュウ</a></li><li><a href="アミガサタケ.html">アミガサタケ</a></li><li><a href="アミスギタケ.html">アミスギタケ</a></li><li><a href="アミタケ.html">アミタケ</a></li><li><a href="アミヒラタケ？.html">アミヒラタケ？</a></li><li><a href="アラゲキクラゲ.html">アラゲキクラゲ</a></li><li><a href="アワタケ(広義).html">アワタケ(広義)</a></li><li><a href="アワタケの仲間.html">アワタケの仲間</a></li><li><a href="アンズタケ.html">アンズタケ</a></li><li><a href="イタチタケ.html">イタチタケ</a></li><li><a href="イボテングタケ.html">イボテングタケ</a></li><li><a href="ウコンガサ.html">ウコンガサ</a></li><li><a href="ウコンハツ.html">ウコンハツ</a></li><li><a href="ウスタケ.html">ウスタケ</a></li><li><a href="ウスヒラタケ.html">ウスヒラタケ</a></li><li><a href="ウスフジフウセンタケ？.html">ウスフジフウセンタケ？</a></li><li><a href="ウツロベニハナイグチ.html">ウツロベニハナイグチ</a></li><li><a href="ウラグロニガイグチ.html">ウラグロニガイグチ</a></li><li><a href="ウラベニガサ.html">ウラベニガサ</a></li><li><a href="エノキタケ.html">エノキタケ</a></li><li><a href="オオオニテングタケ.html">オオオニテングタケ</a></li><li><a href="オオキイロフウセンタケ(仮称).html">オオキイロフウセンタケ(仮称)</a></li><li><a href="オオキツネタケ.html">オオキツネタケ</a></li><li><a href="オオキヌハダトマヤタケ.html">オオキヌハダトマヤタケ</a></li><li><a href="オオゴムタケ.html">オオゴムタケ</a></li><li><a href="オオシロカラカサタケ.html">オオシロカラカサタケ</a></li><li><a href="オオダイアシベニイグチ.html">オオダイアシベニイグチ</a></li><li><a href="オオミノクロアワタケ？.html">オオミノクロアワタケ？</a></li><li><a href="オオワライタケ.html">オオワライタケ</a></li><li><a href="オチバタケの仲間？.html">オチバタケの仲間？</a></li><li><a href="オニイグチモドキ.html">オニイグチモドキ</a></li><li><a href="オニタケ？.html">オニタケ？</a></li><li><a href="オニナラタケ.html">オニナラタケ</a></li></ul><div style='margin-top:40px; text-align:center;'><a href="あ行.html">あ行</a> | <a href="か行.html">か行</a> | <a href="さ行.html">さ行</a> | <a href="た行.html">た行</a> | <a href="な行.html">な行</a> | <a href="は行.html">は行</a> | <a href="ま行.html">ま行</a> | <a href="や行.html">や行</a> | <a href="ら行.html">ら行</a> | <a href="わ行.html">わ行</a></div><style>
 body { 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-  background:#fafafa; color:#333; padding:16px; min-height:0;
+  background:#fafafa; 
+  color:#333; 
+  padding:16px; 
+  min-height:0;
+  box-sizing: border-box;
+  text-align: center; /* iframe内の全体中央揃え */
 }
 
-/* ギャラリー本体 */
+/* Masonryコンテナ */
 .gallery {
-  display: block;
-  width: calc(100% - 20px); /* ← iframe幅に応じて自動調整（左右の余白確保） */
-  max-width: 420px;         /* 160×2 + gutter(10) + α */
-  margin-left: auto;
-  margin-right: auto;
+  display: inline-block; /* ← 中央寄せのため block→inline-block */
+  text-align: left;      /* ← 画像は左揃えに戻す */
+  max-width: 420px;      /* 160×2 + gutter10 + α */
   box-sizing: border-box;
 }
 
+/* 画像設定 */
 .gallery img { 
   width:100%; 
   border-radius:8px; 
@@ -45,7 +49,6 @@ body {
   const sendHeight = () => {
     const height = document.documentElement.scrollHeight;
     window.parent.postMessage({ type: "setHeight", height }, "*");
-    console.log("[iframe] sendHeight ->", height);
   };
 
   window.addEventListener("load", () => {
@@ -78,7 +81,7 @@ body {
     }, {threshold:0.1});
     imgs.forEach(i => obs.observe(i));
 
-    // ==== Masonry 初期化 ====
+    // ==== Masonry ====
     const gallery = document.querySelector('.gallery');
     if (gallery) {
       const gutter = 10;
@@ -87,8 +90,6 @@ body {
       const setMasonryLayout = () => {
         const isMobile = window.innerWidth <= 400;
         const columnWidth = isMobile ? window.innerWidth - 32 : defaultColumnWidth; // padding16×2
-        gallery.style.maxWidth = isMobile ? "100%" : (columnWidth * 2 + gutter + 20) + "px"; // 余白補正(+20)
-        gallery.style.margin = "0 auto";
 
         if (gallery.msnry) {
           gallery.msnry.options.columnWidth = columnWidth;
@@ -98,7 +99,7 @@ body {
             itemSelector: 'img',
             columnWidth: columnWidth,
             gutter: gutter,
-            fitWidth: true   // ← 維持（戻る機能が崩れない）
+            fitWidth: false   // ← 左詰めに戻す（これが重要）
           });
         }
       };
@@ -108,7 +109,7 @@ body {
     }
   });
 
-  // ==== トップへ戻る ====
+  // ==== 戻る（スクロール維持） ====
   function scrollToTopBoth() {
     window.scrollTo({ top: 0, behavior: "smooth" });
     try { 
