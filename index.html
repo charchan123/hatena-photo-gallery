@@ -1,7 +1,30 @@
 <h2>五十音別分類</h2><ul><li><a href="あ行.html">あ行</a></li><li><a href="か行.html">か行</a></li><li><a href="さ行.html">さ行</a></li><li><a href="た行.html">た行</a></li><li><a href="な行.html">な行</a></li><li><a href="は行.html">は行</a></li><li><a href="ま行.html">ま行</a></li><li><a href="や行.html">や行</a></li><li><a href="ら行.html">ら行</a></li><li><a href="わ行.html">わ行</a></li></ul><style>
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background:#fafafa; color:#333; padding:16px; min-height: 0; }
-.gallery img { width:100%; border-radius:8px; transition:opacity 0.5s ease-out; opacity:0; margin-bottom:10px; }
+body { 
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+  background:#fafafa; color:#333; padding:16px; min-height:0;
+}
+
+/* ギャラリー本体 */
+.gallery {
+  display: block;
+  width: calc(100% - 20px); /* ← iframe幅に応じて自動調整（左右の余白確保） */
+  max-width: 420px;         /* 160×2 + gutter(10) + α */
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+.gallery img { 
+  width:100%; 
+  border-radius:8px; 
+  transition:opacity 0.5s ease-out; 
+  opacity:0; 
+  margin-bottom:10px;
+}
+
 .gallery img.visible { opacity:1; }
+
+/* スマホでは1列 */
 @media (max-width: 400px) {
   .gallery { max-width: 100% !important; }
 }
@@ -14,7 +37,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
 <script>
 (function() {
   if (window === window.parent) return;
-  document.addEventListener("DOMContentLoaded", () => { document.body.style.minHeight = '0px'; });
+
+  document.addEventListener("DOMContentLoaded", () => { 
+    document.body.style.minHeight = '0px'; 
+  });
 
   const sendHeight = () => {
     const height = document.documentElement.scrollHeight;
@@ -23,9 +49,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
   };
 
   window.addEventListener("load", () => {
-    sendHeight(); setTimeout(sendHeight, 500); setTimeout(sendHeight, 1000);
-    window.scrollTo(0,0); setTimeout(() => window.scrollTo(0,0), 200);
-    try { window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*"); } catch(e) { console.warn(e); }
+    sendHeight(); 
+    setTimeout(sendHeight, 500); 
+    setTimeout(sendHeight, 1000);
+    window.scrollTo(0,0); 
+    setTimeout(() => window.scrollTo(0,0), 200);
+    try { 
+      window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*"); 
+    } catch(e) { console.warn(e); }
   });
 
   window.addEventListener("resize", sendHeight);
@@ -36,25 +67,27 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
   document.addEventListener("DOMContentLoaded", () => {
     const imgs = document.querySelectorAll(".gallery img");
 
-    // 画像フェードイン
+    // ==== フェードイン ====
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if(e.isIntersecting){ e.target.classList.add("visible"); obs.unobserve(e.target); }
+        if(e.isIntersecting){ 
+          e.target.classList.add("visible"); 
+          obs.unobserve(e.target); 
+        }
       });
     }, {threshold:0.1});
     imgs.forEach(i => obs.observe(i));
 
-    // Masonry 初期化
+    // ==== Masonry 初期化 ====
     const gallery = document.querySelector('.gallery');
     if (gallery) {
       const gutter = 10;
       const defaultColumnWidth = 160;
 
-      // 縦2列表示（PC）
       const setMasonryLayout = () => {
         const isMobile = window.innerWidth <= 400;
-        const columnWidth = isMobile ? window.innerWidth - 32 : defaultColumnWidth; // padding16px×2
-        gallery.style.maxWidth = isMobile ? "100%" : (columnWidth * 2 + gutter) + "px";
+        const columnWidth = isMobile ? window.innerWidth - 32 : defaultColumnWidth; // padding16×2
+        gallery.style.maxWidth = isMobile ? "100%" : (columnWidth * 2 + gutter + 20) + "px"; // 余白補正(+20)
         gallery.style.margin = "0 auto";
 
         if (gallery.msnry) {
@@ -65,7 +98,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
             itemSelector: 'img',
             columnWidth: columnWidth,
             gutter: gutter,
-            fitWidth: true
+            fitWidth: true   // ← 維持（戻る機能が崩れない）
           });
         }
       };
@@ -75,16 +108,20 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
     }
   });
 
+  // ==== トップへ戻る ====
   function scrollToTopBoth() {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    try { window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*"); } catch(e) { console.warn(e); }
+    try { 
+      window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*"); 
+    } catch(e) { console.warn(e); }
   }
 
   document.addEventListener("click", e => {
     const a = e.target.closest("a");
     if (!a) return;
     const href = a.getAttribute("href") || "";
-    if (href.startsWith("javascript:history.back") || href.startsWith("#") || href.endsWith(".html") || href.includes("index")) {
+    if (href.startsWith("javascript:history.back") || href.startsWith("#") || 
+        href.endsWith(".html") || href.includes("index")) {
       setTimeout(scrollToTopBoth, 150);
     }
   });
