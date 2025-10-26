@@ -35,6 +35,13 @@ a.back-link {
   color: #333;
   text-decoration: none;
 }
+.glightbox-desc a {
+  color: #ddd !important;
+  text-decoration: underline;
+}
+.glightbox-desc a:hover {
+  color: #fff !important;
+}
 </style>
 
 <!-- Masonry.js と imagesLoaded -->
@@ -133,3 +140,18 @@ a.back-link {
   });
 })();
 </script>
+
+<!-- ▼ Lightbox 追加コード ▼ -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  GLightbox({
+    selector: '.glightbox',
+    touchNavigation: true,
+    loop: true,
+    autoplayVideos: false
+  });
+});
+</script>
+<!-- ▲ Lightbox 追加コードここまで ▲ -->
