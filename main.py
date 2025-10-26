@@ -33,7 +33,7 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列版 完全修正版2 ======
+# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列版 最終完全版 ======
 SCRIPT_STYLE_TAG = """<style>
 body { 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
@@ -123,11 +123,12 @@ a.back-link {
 
       const setMasonryLayout = () => {
         const isMobile = window.innerWidth <= 400;
-        const columns = isMobile ? 1 : 2;
+        const columns = isMobile ? 1 : 2;  // PCは2列固定
         const columnWidth = isMobile ? window.innerWidth - 32 : defaultColumnWidth;
-        const galleryWidth = columnWidth * columns + gutter * (columns - 1);
+        const galleryWidth = isMobile ? window.innerWidth : columnWidth * columns + gutter;
 
         gallery.style.width = galleryWidth + "px";
+        gallery.style.margin = "0 auto";
 
         // 画像幅を Masonry の列幅に合わせる
         gallery.querySelectorAll("img").forEach(img => {
