@@ -1,139 +1,45 @@
-<h2>サトタマゴタケ</h2><div class='gallery'><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250315/20250315201641.jpg" alt="サトタマゴタケ" loading="lazy"></div>
-        <div style='margin-top:40px; text-align:center;'>
-          <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
-        </div>
-        <style>
-body { 
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-  background:#fafafa; 
-  color:#333; 
-  padding:16px; 
-  min-height: 0; 
-  box-sizing: border-box;
-}
-.gallery-wrapper {
-  width: 100%;
-}
-.gallery {
-  position: relative; /* Masonryの位置計算用 */
-  margin: 0 auto;
-}
-.gallery img { 
-  display: block;
-  border-radius:8px; 
-  transition:opacity 0.5s ease-out; 
-  opacity:0; 
-  margin-bottom:10px; 
-}
-.gallery img.visible { 
-  opacity:1; 
-}
-@media (max-width: 400px) {
-  .gallery {
-    width: 100% !important;
-  }
-}
-a.back-link {
-  display: inline-block;
-  margin-top: 16px;
-  color: #333;
-  text-decoration: none;
-}
+<h2>サトタマゴタケ</h2><div class='gallery'><a href="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250315/20250315201641.jpg" class="glightbox" data-title="サトタマゴタケ" data-description="元記事: articles/article_75.html"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250315/20250315201641.jpg" alt="サトタマゴタケ" loading="lazy"></a></div><div style='margin-top:40px;text-align:center;'><a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background:#fafafa; color:#333; padding:16px; min-height:0; box-sizing:border-box; }
+.gallery-wrapper { width:100%; }
+.gallery { position:relative; margin:0 auto; }
+.gallery img { display:block; border-radius:8px; transition:opacity 0.5s ease-out; opacity:0; margin-bottom:10px; }
+.gallery img.visible { opacity:1; }
+@media (max-width:400px) { .gallery { width:100% !important; } }
+a.back-link { display:inline-block; margin-top:16px; color:#333; text-decoration:none; }
 </style>
 
-<!-- Masonry.js と imagesLoaded -->
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 
 <script>
-(function() {
-  if (window === window.parent) return;
+document.addEventListener("DOMContentLoaded", () => {
+  const imgs = document.querySelectorAll(".gallery img");
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){ e.target.classList.add("visible"); obs.unobserve(e.target); }
+    });
+  }, {threshold:0.1});
+  imgs.forEach(i => obs.observe(i));
 
-  const sendHeight = () => {
-    const height = document.documentElement.scrollHeight;
-    window.parent.postMessage({ type: "setHeight", height }, "*");
-  };
-
-  window.addEventListener("load", () => {
-    sendHeight(); 
-    setTimeout(sendHeight, 500); 
-    setTimeout(sendHeight, 1000);
-    window.scrollTo(0,0); 
-    setTimeout(() => window.scrollTo(0,0), 200);
-    try { 
-      window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*"); 
-    } catch(e) { console.warn(e); }
-  });
-
-  window.addEventListener("resize", sendHeight);
-  const observer = new MutationObserver(sendHeight);
-  observer.observe(document.body, { childList: true, subtree: true });
-  setInterval(sendHeight, 1000);
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const imgs = document.querySelectorAll(".gallery img");
-
-    // 画像フェードイン
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if(e.isIntersecting){ 
-          e.target.classList.add("visible"); 
-          obs.unobserve(e.target); 
-        }
-      });
-    }, {threshold:0.1});
-    imgs.forEach(i => obs.observe(i));
-
-    const gallery = document.querySelector('.gallery');
-    if (gallery) {
-      const gutter = 10;
-      const defaultColumnWidth = 160;
-
-      const setMasonryLayout = () => {
-        const isMobile = window.innerWidth <= 400;
-        const columns = isMobile ? 1 : 2;
-        const columnWidth = isMobile ? window.innerWidth - 32 : defaultColumnWidth;
-        const galleryWidth = columnWidth * columns + gutter * (columns - 1);
-
-        gallery.style.width = galleryWidth + "px";
-
-        // 画像幅を Masonry の列幅に合わせる
-        gallery.querySelectorAll("img").forEach(img => {
-          img.style.width = columnWidth + "px";
-        });
-
-        if (gallery.msnry) {
-          gallery.msnry.options.columnWidth = columnWidth;
-          gallery.msnry.layout();
-        } else {
-          gallery.msnry = new Masonry(gallery, {
-            itemSelector: 'img',
-            columnWidth: columnWidth,
-            gutter: gutter,
-            fitWidth: true
-          });
-        }
-      };
-
-      imagesLoaded(gallery, () => { setMasonryLayout(); sendHeight(); });
-      window.addEventListener('resize', () => { setMasonryLayout(); sendHeight(); });
-    }
-  });
-
-  function scrollToTopBoth() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    try { 
-      window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*"); 
-    } catch(e) { console.warn(e); }
+  const gallery = document.querySelector('.gallery');
+  if(gallery){
+    const gutter = 10;
+    const defaultColumnWidth = 160;
+    const setMasonryLayout = () => {
+      const isMobile = window.innerWidth <= 400;
+      const columns = isMobile ? 1 : 2;
+      const columnWidth = isMobile ? window.innerWidth-32 : defaultColumnWidth;
+      const galleryWidth = columnWidth*columns + gutter*(columns-1);
+      gallery.style.width = galleryWidth + "px";
+      gallery.querySelectorAll("img").forEach(img => img.style.width = columnWidth+"px");
+      if(gallery.msnry){ gallery.msnry.options.columnWidth=columnWidth; gallery.msnry.layout(); }
+      else{ gallery.msnry = new Masonry(gallery,{ itemSelector:'img', columnWidth:columnWidth, gutter:gutter, fitWidth:true }); }
+    };
+    imagesLoaded(gallery, () => { setMasonryLayout(); });
+    window.addEventListener('resize', ()=>{ setMasonryLayout(); });
   }
-
-  document.addEventListener("click", e => {
-    const a = e.target.closest("a");
-    if (!a) return;
-    const href = a.getAttribute("href") || "";
-    if (href.startsWith("javascript:history.back") || href.startsWith("#") || href.endsWith(".html") || href.includes("index")) {
-      setTimeout(scrollToTopBoth, 150);
-    }
-  });
-})();
+  GLightbox({ selector: '.glightbox' });
+});
 </script>
