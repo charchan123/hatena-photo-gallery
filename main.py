@@ -33,7 +33,7 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列版 最終完全版 ======
+# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列版 最終完全版（PC2列固定） ======
 SCRIPT_STYLE_TAG = """<style>
 body { 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
@@ -119,31 +119,32 @@ a.back-link {
     const gallery = document.querySelector('.gallery');
     if (gallery) {
       const gutter = 10;
-      const defaultColumnWidth = 160;
+      const columnWidth = 160;  // PC固定列幅
 
       const setMasonryLayout = () => {
         const isMobile = window.innerWidth <= 400;
-        const columns = isMobile ? 1 : 2;  // PCは2列固定
-        const columnWidth = isMobile ? window.innerWidth - 32 : defaultColumnWidth;
-        const galleryWidth = isMobile ? window.innerWidth : columnWidth * columns + gutter;
+        const columns = isMobile ? 1 : 2; // PCは2列固定
+        const colWidth = isMobile ? window.innerWidth - 32 : columnWidth;
+        const galleryWidth = isMobile ? window.innerWidth : colWidth * columns + gutter;
 
         gallery.style.width = galleryWidth + "px";
         gallery.style.margin = "0 auto";
 
         // 画像幅を Masonry の列幅に合わせる
         gallery.querySelectorAll("img").forEach(img => {
-          img.style.width = columnWidth + "px";
+          img.style.width = colWidth + "px";
         });
 
         if (gallery.msnry) {
-          gallery.msnry.options.columnWidth = columnWidth;
+          gallery.msnry.options.columnWidth = colWidth;
+          gallery.msnry.options.fitWidth = false; // ここが重要
           gallery.msnry.layout();
         } else {
           gallery.msnry = new Masonry(gallery, {
             itemSelector: 'img',
-            columnWidth: columnWidth,
+            columnWidth: colWidth,
             gutter: gutter,
-            fitWidth: true
+            fitWidth: false // ここも false に
           });
         }
       };
