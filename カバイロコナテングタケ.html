@@ -1,15 +1,7 @@
 <h2>カバイロコナテングタケ</h2><div class='gallery'>
-<a href="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929214951.jpg" class="glightbox" 
-   data-title="カバイロコナテングタケ" 
-   data-description='<a href="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/" target="_blank" style="color:#ddd;text-decoration:underline;">元記事を見る</a>'>
-   <img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929214951.jpg" alt="カバイロコナテングタケ" loading="lazy">
-</a>
+<img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929214951.jpg" alt="カバイロコナテングタケ" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/">
 
-<a href="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929215048.jpg" class="glightbox" 
-   data-title="カバイロコナテングタケ" 
-   data-description='<a href="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/" target="_blank" style="color:#ddd;text-decoration:underline;">元記事を見る</a>'>
-   <img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929215048.jpg" alt="カバイロコナテングタケ" loading="lazy">
-</a>
+<img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929215048.jpg" alt="カバイロコナテングタケ" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/">
 </div>
         <div style='margin-top:40px; text-align:center;'>
           <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
@@ -157,17 +149,102 @@ a.back-link {
 })();
 </script>
 
-<!-- ▼ Lightbox 追加コード ▼ -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<!-- ▼ 自前Lightboxに差し替え ▼ -->
+<style>
+/* Lightbox 背景 */
+.lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Lightbox内のコンテンツ */
+.lightbox-content {
+  position: relative;
+  background: #000;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+  padding: 8px;
+  max-width: 95%;
+  max-height: 95%;
+}
+
+/* 画像（高さに合わせてLightbox全体を調整） */
+.lightbox-content img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 6px;
+}
+
+/* 閉じるボタン */
+.lightbox-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* 元記事リンク */
+.lightbox-link {
+  display: block;
+  text-align: center;
+  color: #ddd;
+  font-size: 14px;
+  margin-top: 6px;
+  text-decoration: none;
+}
+.lightbox-link:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+</style>
+
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  GLightbox({
-    selector: '.glightbox',
-    touchNavigation: true,
-    loop: true,
-    autoplayVideos: false
+  // Lightbox要素を動的に追加
+  const lb = document.createElement("div");
+  lb.className = "lightbox";
+  lb.innerHTML = `
+    <div class="lightbox-content">
+      <span class="lightbox-close">&times;</span>
+      <img id="lightbox-img" src="" alt="">
+      <a id="lightbox-link" class="lightbox-link" href="#" target="_blank">元記事を見る</a>
+    </div>`;
+  document.body.appendChild(lb);
+
+  const lbImg = lb.querySelector("#lightbox-img");
+  const lbLink = lb.querySelector("#lightbox-link");
+
+  // 画像クリックでLightbox表示
+  document.querySelectorAll(".gallery img").forEach(img => {
+    img.addEventListener("click", () => {
+      lb.style.display = "flex";
+      lbImg.src = img.src;
+      lbLink.href = img.dataset.url || "#";
+      lbImg.onload = () => {
+        // 高さを画像に合わせて自然に調整
+        lb.style.alignItems = "center";
+      };
+    });
+  });
+
+  // 閉じる処理
+  lb.querySelector(".lightbox-close").addEventListener("click", () => lb.style.display = "none");
+  lb.addEventListener("click", e => {
+    if (e.target === lb) lb.style.display = "none";
   });
 });
 </script>
-<!-- ▲ Lightbox 追加コードここまで ▲ -->
+<!-- ▲ 自前Lightboxここまで ▲ -->
+
