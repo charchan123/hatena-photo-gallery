@@ -33,7 +33,7 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列（完全安定＋中央寄せハイブリッド版） ======
+# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列（iframe完全安定・余白維持） ======
 SCRIPT_STYLE_TAG = """<style>
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -44,35 +44,33 @@ body {
   box-sizing: border-box;
 }
 
-/* ==== ギャラリー設定 ==== */
+/* ==== ギャラリー ==== */
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* ★ PCでは2列固定 */
-  gap: 10px;
-  max-width: 420px;  /* 画像＋余白分の幅 */
-  margin: 0 auto;
+  width: 100%;
+  max-width: 420px;             /* 2列分＋余白を確保 */
+  margin: 0 auto;               /* 中央寄せ */
   box-sizing: border-box;
 }
 
-/* ==== スマホでは1列に ==== */
-@media (max-width: 480px) {
-  .gallery {
-    grid-template-columns: 1fr;
-    max-width: 100%;
-  }
-}
-
-/* ==== 画像設定 ==== */
+/* ==== 画像 ==== */
 .gallery img {
   width: 100%;
   display: block;
   border-radius: 8px;
   transition: opacity 0.5s ease-out;
   opacity: 0;
+  margin-bottom: 10px;          /* 縦の余白 */
 }
 
 /* フェードイン */
 .gallery img.visible { opacity: 1; }
+
+/* ==== スマホでは1列に ==== */
+@media (max-width: 480px) {
+  .gallery {
+    max-width: 100%;
+  }
+}
 </style>
 
 <!-- Masonry.js と imagesLoaded -->
@@ -84,9 +82,10 @@ body {
   if (window === window.parent) return;
 
   document.addEventListener("DOMContentLoaded", () => {
-    document.body.style.minHeight = '0px';
+    document.body.style.minHeight = "0px";
   });
 
+  // ===== 高さ送信 =====
   const sendHeight = () => {
     const height = document.documentElement.scrollHeight;
     window.parent.postMessage({ type: "setHeight", height }, "*");
@@ -98,9 +97,6 @@ body {
     setTimeout(sendHeight, 1000);
     window.scrollTo(0, 0);
     setTimeout(() => window.scrollTo(0, 0), 200);
-    try {
-      window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*");
-    } catch (e) { console.warn(e); }
   });
 
   window.addEventListener("resize", sendHeight);
@@ -109,21 +105,36 @@ body {
   setInterval(sendHeight, 1000);
 
   document.addEventListener("DOMContentLoaded", () => {
-    const gallery = document.querySelector('.gallery');
+    const gallery = document.querySelector(".gallery");
     if (!gallery) return;
     const imgs = gallery.querySelectorAll("img");
 
-    // Masonry（高さが違う時の補正用）
-    imagesLoaded(gallery, () => {
-      new Masonry(gallery, {
-        itemSelector: "img",
-        percentPosition: true,
-        gutter: 10
-      });
-      sendHeight();
-    });
+    const gutter = 10;
 
-    // フェードイン効果
+    // Masonry初期化関数
+    function setMasonryLayout() {
+      const containerWidth = gallery.clientWidth;
+      const isMobile = window.innerWidth <= 480;
+
+      // PCでは2列分の幅で割り算
+      const columnWidth = isMobile
+        ? containerWidth
+        : (containerWidth - gutter) / 2;
+
+      if (gallery.msnry) {
+        gallery.msnry.options.columnWidth = columnWidth;
+        gallery.msnry.layout();
+      } else {
+        gallery.msnry = new Masonry(gallery, {
+          itemSelector: "img",
+          columnWidth: columnWidth,
+          gutter: gutter,
+          fitWidth: true,
+        });
+      }
+    }
+
+    // 画像フェードイン
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -133,24 +144,19 @@ body {
       });
     }, { threshold: 0.1 });
     imgs.forEach(i => obs.observe(i));
+
+    // 画像読み込み後にレイアウト
+    imagesLoaded(gallery, () => {
+      setMasonryLayout();
+      sendHeight();
+    });
+
+    window.addEventListener("resize", () => {
+      setMasonryLayout();
+      sendHeight();
+    });
   });
 
-  // ==== トップへ戻る ====
-  function scrollToTopBoth() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    try {
-      window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*");
-    } catch (e) { console.warn(e); }
-  }
-
-  document.addEventListener("click", e => {
-    const a = e.target.closest("a");
-    if (!a) return;
-    const href = a.getAttribute("href") || "";
-    if (href.startsWith("javascript:history.back") || href.startsWith("#") || href.endsWith(".html") || href.includes("index")) {
-      setTimeout(scrollToTopBoth, 150);
-    }
-  });
 })();
 </script>"""
 
