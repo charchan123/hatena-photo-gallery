@@ -33,7 +33,7 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列版 完全修正版 ======
+# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列版 完全修正版2 ======
 SCRIPT_STYLE_TAG = """<style>
 body { 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
@@ -52,8 +52,6 @@ body {
 }
 .gallery img { 
   display: block;
-  width: auto;          /* 画像の横幅は Masonry で制御 */
-  max-width: 100%;
   border-radius:8px; 
   transition:opacity 0.5s ease-out; 
   opacity:0; 
@@ -130,6 +128,11 @@ a.back-link {
         const galleryWidth = columnWidth * columns + gutter * (columns - 1);
 
         gallery.style.width = galleryWidth + "px";
+
+        // 画像幅を Masonry の列幅に合わせる
+        gallery.querySelectorAll("img").forEach(img => {
+          img.style.width = columnWidth + "px";
+        });
 
         if (gallery.msnry) {
           gallery.msnry.options.columnWidth = columnWidth;
