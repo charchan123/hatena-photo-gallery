@@ -71,6 +71,13 @@ a.back-link {
   color: #333;
   text-decoration: none;
 }
+.glightbox-desc a {
+  color: #ddd !important;
+  text-decoration: underline;
+}
+.glightbox-desc a:hover {
+  color: #fff !important;
+}
 </style>
 
 <!-- Masonry.js と imagesLoaded -->
@@ -170,6 +177,21 @@ a.back-link {
 })();
 </script>
 """
+
+<!-- ▼ Lightbox 追加コード ▼ -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  GLightbox({
+    selector: '.glightbox',
+    touchNavigation: true,
+    loop: true,
+    autoplayVideos: false
+  });
+});
+</script>
+<!-- ▲ Lightbox 追加コードここまで ▲ -->
 
 # ====== APIから全記事を取得 ======
 def fetch_hatena_articles_api():
@@ -283,7 +305,13 @@ def generate_gallery(entries):
     for alt, imgs in grouped.items():
         html = f"<h2>{alt}</h2><div class='gallery'>"
         for src in imgs:
-            html += f'<img src="{src}" alt="{alt}" loading="lazy">'
+            html += f'''
+<a href="{img["src"]}" class="glightbox" 
+   data-title="{alt}" 
+   data-description='<a href="{img["article_url"]}" target="_blank" style="color:#ddd;text-decoration:underline;">元記事を見る</a>'>
+   <img src="{img["src"]}" alt="{alt}" loading="lazy">
+</a>
+'''
         html += "</div>"
         html += """
         <div style='margin-top:40px; text-align:center;'>
