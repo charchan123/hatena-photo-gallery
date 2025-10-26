@@ -176,7 +176,6 @@ a.back-link {
   });
 })();
 </script>
-"""
 
 <!-- ▼ Lightbox 追加コード ▼ -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
@@ -192,6 +191,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 <!-- ▲ Lightbox 追加コードここまで ▲ -->
+"""
 
 # ====== APIから全記事を取得 ======
 def fetch_hatena_articles_api():
@@ -304,12 +304,13 @@ def generate_gallery(entries):
     # 各キノコページ
     for alt, imgs in grouped.items():
         html = f"<h2>{alt}</h2><div class='gallery'>"
-        for src in imgs:
-            html += f'''
-<a href="{img["src"]}" class="glightbox" 
+for src in imgs:
+    article_url = f"https://{HATENA_BLOG_ID}.hatena.blog/"  # 仮リンク（実URLが必要なら後で差し替え）
+    html += f'''
+<a href="{src}" class="glightbox" 
    data-title="{alt}" 
-   data-description='<a href="{img["article_url"]}" target="_blank" style="color:#ddd;text-decoration:underline;">元記事を見る</a>'>
-   <img src="{img["src"]}" alt="{alt}" loading="lazy">
+   data-description='<a href="{article_url}" target="_blank" style="color:#ddd;text-decoration:underline;">元記事を見る</a>'>
+   <img src="{src}" alt="{alt}" loading="lazy">
 </a>
 '''
         html += "</div>"
