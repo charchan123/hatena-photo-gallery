@@ -33,7 +33,7 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列（完全安定＋中央寄せ修正版） ======
+# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列（完全安定＋中央寄せ完全動作版） ======
 SCRIPT_STYLE_TAG = """<style>
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -46,7 +46,7 @@ body {
 /* ==== ギャラリー設定 ==== */
 .gallery {
   width: 100%;
-  max-width: 400px !important;   /* ★ 2列分の最大幅を強制適用 */
+  max-width: 400px !important;   /* PCでは2列分の最大幅を想定 */
   margin: 0 auto;                /* 中央寄せ */
   display: block;
 }
@@ -106,9 +106,35 @@ body {
   setInterval(sendHeight, 1000);
 
   document.addEventListener("DOMContentLoaded", () => {
-    const imgs = document.querySelectorAll(".gallery img");
+    const gallery = document.querySelector('.gallery');
+    if (!gallery) return;
 
-    // フェードイン
+    const imgs = gallery.querySelectorAll("img");
+    const gutter = 10;
+
+    // ==== Masonryレイアウト関数 ====
+    function setMasonryLayout() {
+      const galleryWidth = gallery.clientWidth;
+      const isMobile = galleryWidth <= 480;
+
+      const columnWidth = isMobile
+        ? galleryWidth
+        : (galleryWidth - gutter) / 2;
+
+      if (gallery.msnry) {
+        gallery.msnry.options.columnWidth = columnWidth;
+        gallery.msnry.layout();
+      } else {
+        gallery.msnry = new Masonry(gallery, {
+          itemSelector: "img",
+          columnWidth: columnWidth,
+          gutter: gutter,
+          fitWidth: true
+        });
+      }
+    }
+
+    // ==== フェードイン設定 ====
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -118,42 +144,6 @@ body {
       });
     }, { threshold: 0.1 });
     imgs.forEach(i => obs.observe(i));
-
-    const gallery = document.querySelector('.gallery');
-    if (!gallery) return;
-
-    const gutter = 10;
-    const defaultColumnWidth = 160;
-
-    function setMasonryLayout() {
-      // ★ 修正：iframe 内の実幅で判定
-      const viewportWidth = document.documentElement.clientWidth;
-      const isMobile = viewportWidth <= 480;
-
-      const columnWidth = isMobile
-        ? viewportWidth - 32   // padding 16px × 2
-        : defaultColumnWidth;
-
-      const maxWidth = isMobile
-        ? "100%"
-        : (columnWidth * 2 + gutter) + "px";
-
-      gallery.style.maxWidth = maxWidth;
-      gallery.style.margin = "0 auto";
-      gallery.style.display = "block";
-
-      if (gallery.msnry) {
-        gallery.msnry.options.columnWidth = columnWidth;
-        gallery.msnry.layout();
-      } else {
-        gallery.msnry = new Masonry(gallery, {
-          itemSelector: 'img',
-          columnWidth: columnWidth,
-          gutter: gutter,
-          fitWidth: true,   // fitWidthをtrueに戻す（中央寄せ補正）
-        });
-      }
-    }
 
     imagesLoaded(gallery, () => {
       setMasonryLayout();
@@ -166,7 +156,7 @@ body {
     });
   });
 
-  // トップへ戻る
+  // ==== トップへ戻る ====
   function scrollToTopBoth() {
     window.scrollTo({ top: 0, behavior: "smooth" });
     try {
