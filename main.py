@@ -33,7 +33,7 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列版 ======
+# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列版 完全修正版 ======
 SCRIPT_STYLE_TAG = """<style>
 body { 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
@@ -43,21 +43,35 @@ body {
   min-height: 0; 
   box-sizing: border-box;
 }
+.gallery-wrapper {
+  width: 100%;
+}
+.gallery {
+  position: relative; /* Masonryの位置計算用 */
+  margin: 0 auto;
+}
 .gallery img { 
-  width:100%; 
+  display: block;
+  width: auto;          /* 画像の横幅は Masonry で制御 */
+  max-width: 100%;
   border-radius:8px; 
   transition:opacity 0.5s ease-out; 
   opacity:0; 
   margin-bottom:10px; 
-  display:block;
 }
 .gallery img.visible { 
   opacity:1; 
 }
 @media (max-width: 400px) {
-  .gallery { 
-    width: 100% !important; 
+  .gallery {
+    width: 100% !important;
   }
+}
+a.back-link {
+  display: inline-block;
+  margin-top: 16px;
+  color: #333;
+  text-decoration: none;
 }
 </style>
 
@@ -93,6 +107,7 @@ body {
   document.addEventListener("DOMContentLoaded", () => {
     const imgs = document.querySelectorAll(".gallery img");
 
+    // 画像フェードイン
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if(e.isIntersecting){ 
@@ -115,7 +130,6 @@ body {
         const galleryWidth = columnWidth * columns + gutter * (columns - 1);
 
         gallery.style.width = galleryWidth + "px";
-        gallery.style.margin = "0 auto";
 
         if (gallery.msnry) {
           gallery.msnry.options.columnWidth = columnWidth;
