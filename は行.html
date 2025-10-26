@@ -5,14 +5,25 @@ body {
   color: #333;
   padding: 16px;
   min-height: 0;
+  box-sizing: border-box;
 }
 
 /* ==== ギャラリー設定 ==== */
 .gallery {
-  width: 100%;
-  max-width: 400px !important;   /* PCでは2列分の最大幅を想定 */
-  margin: 0 auto;                /* 中央寄せ */
-  display: block;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* ★ PCでは2列固定 */
+  gap: 10px;
+  max-width: 420px;  /* 画像＋余白分の幅 */
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* ==== スマホでは1列に ==== */
+@media (max-width: 480px) {
+  .gallery {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
 }
 
 /* ==== 画像設定 ==== */
@@ -22,18 +33,10 @@ body {
   border-radius: 8px;
   transition: opacity 0.5s ease-out;
   opacity: 0;
-  margin-bottom: 10px;
 }
 
 /* フェードイン */
 .gallery img.visible { opacity: 1; }
-
-/* ==== スマホでは1列に ==== */
-@media (max-width: 480px) {
-  .gallery {
-    max-width: 100% !important;
-  }
-}
 </style>
 
 <!-- Masonry.js と imagesLoaded -->
@@ -57,11 +60,11 @@ body {
     sendHeight();
     setTimeout(sendHeight, 500);
     setTimeout(sendHeight, 1000);
-    window.scrollTo(0,0);
-    setTimeout(() => window.scrollTo(0,0), 200);
+    window.scrollTo(0, 0);
+    setTimeout(() => window.scrollTo(0, 0), 200);
     try {
       window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*");
-    } catch(e) { console.warn(e); }
+    } catch (e) { console.warn(e); }
   });
 
   window.addEventListener("resize", sendHeight);
@@ -72,33 +75,19 @@ body {
   document.addEventListener("DOMContentLoaded", () => {
     const gallery = document.querySelector('.gallery');
     if (!gallery) return;
-
     const imgs = gallery.querySelectorAll("img");
-    const gutter = 10;
 
-    // ==== Masonryレイアウト関数 ====
-    function setMasonryLayout() {
-      const galleryWidth = gallery.clientWidth;
-      const isMobile = galleryWidth <= 480;
+    // Masonry（高さが違う時の補正用）
+    imagesLoaded(gallery, () => {
+      new Masonry(gallery, {
+        itemSelector: "img",
+        percentPosition: true,
+        gutter: 10
+      });
+      sendHeight();
+    });
 
-      const columnWidth = isMobile
-        ? galleryWidth
-        : (galleryWidth - gutter) / 2;
-
-      if (gallery.msnry) {
-        gallery.msnry.options.columnWidth = columnWidth;
-        gallery.msnry.layout();
-      } else {
-        gallery.msnry = new Masonry(gallery, {
-          itemSelector: "img",
-          columnWidth: columnWidth,
-          gutter: gutter,
-          fitWidth: true
-        });
-      }
-    }
-
-    // ==== フェードイン設定 ====
+    // フェードイン効果
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -108,16 +97,6 @@ body {
       });
     }, { threshold: 0.1 });
     imgs.forEach(i => obs.observe(i));
-
-    imagesLoaded(gallery, () => {
-      setMasonryLayout();
-      sendHeight();
-    });
-
-    window.addEventListener("resize", () => {
-      setMasonryLayout();
-      sendHeight();
-    });
   });
 
   // ==== トップへ戻る ====
@@ -125,7 +104,7 @@ body {
     window.scrollTo({ top: 0, behavior: "smooth" });
     try {
       window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*");
-    } catch(e) { console.warn(e); }
+    } catch (e) { console.warn(e); }
   }
 
   document.addEventListener("click", e => {
