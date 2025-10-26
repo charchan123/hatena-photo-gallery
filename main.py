@@ -33,23 +33,27 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列版（中央寄せ・切れなし） ======
+# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列（左詰め・中央見え） ======
 SCRIPT_STYLE_TAG = """<style>
 body { 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-  background:#fafafa; color:#333; padding:16px; min-height:0;
+  background:#fafafa; 
+  color:#333; 
+  padding:16px; 
+  min-height:0;
+  box-sizing: border-box;
+  text-align: center; /* iframe内の全体中央揃え */
 }
 
-/* ギャラリー本体 */
+/* Masonryコンテナ */
 .gallery {
-  display: block;
-  width: calc(100% - 20px); /* ← iframe幅に応じて自動調整（左右の余白確保） */
-  max-width: 420px;         /* 160×2 + gutter(10) + α */
-  margin-left: auto;
-  margin-right: auto;
+  display: inline-block; /* ← 中央寄せのため block→inline-block */
+  text-align: left;      /* ← 画像は左揃えに戻す */
+  max-width: 420px;      /* 160×2 + gutter10 + α */
   box-sizing: border-box;
 }
 
+/* 画像設定 */
 .gallery img { 
   width:100%; 
   border-radius:8px; 
@@ -81,7 +85,6 @@ body {
   const sendHeight = () => {
     const height = document.documentElement.scrollHeight;
     window.parent.postMessage({ type: "setHeight", height }, "*");
-    console.log("[iframe] sendHeight ->", height);
   };
 
   window.addEventListener("load", () => {
@@ -114,7 +117,7 @@ body {
     }, {threshold:0.1});
     imgs.forEach(i => obs.observe(i));
 
-    // ==== Masonry 初期化 ====
+    // ==== Masonry ====
     const gallery = document.querySelector('.gallery');
     if (gallery) {
       const gutter = 10;
@@ -123,8 +126,6 @@ body {
       const setMasonryLayout = () => {
         const isMobile = window.innerWidth <= 400;
         const columnWidth = isMobile ? window.innerWidth - 32 : defaultColumnWidth; // padding16×2
-        gallery.style.maxWidth = isMobile ? "100%" : (columnWidth * 2 + gutter + 20) + "px"; // 余白補正(+20)
-        gallery.style.margin = "0 auto";
 
         if (gallery.msnry) {
           gallery.msnry.options.columnWidth = columnWidth;
@@ -134,7 +135,7 @@ body {
             itemSelector: 'img',
             columnWidth: columnWidth,
             gutter: gutter,
-            fitWidth: true   // ← 維持（戻る機能が崩れない）
+            fitWidth: false   // ← 左詰めに戻す（これが重要）
           });
         }
       };
@@ -144,7 +145,7 @@ body {
     }
   });
 
-  // ==== トップへ戻る ====
+  // ==== 戻る（スクロール維持） ====
   function scrollToTopBoth() {
     window.scrollTo({ top: 0, behavior: "smooth" });
     try { 
