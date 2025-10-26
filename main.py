@@ -33,7 +33,7 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列（完全安定版） ======
+# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列（中央寄せ＆切れなし安定版） ======
 SCRIPT_STYLE_TAG = """<style>
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -41,13 +41,16 @@ body {
   color: #333;
   padding: 16px;
   min-height: 0;
+  box-sizing: border-box;
 }
 
 /* ==== ギャラリー設定 ==== */
 .gallery {
   width: 100%;
-  max-width: 400px;   /* PCでは2列分（160×2 + 余白）を想定 */
-  margin: 0 auto;     /* 中央寄せ */
+  max-width: 420px;           /* ← 幅を少し広げて切れ防止 */
+  margin: 0 auto;
+  position: relative;
+  box-sizing: border-box;
 }
 
 /* ==== 画像設定 ==== */
@@ -66,7 +69,7 @@ body {
 /* ==== スマホでは1列に ==== */
 @media (max-width: 480px) {
   .gallery {
-    max-width: 200px; /* 1列表示 */
+    max-width: 100%;
   }
 }
 </style>
@@ -94,9 +97,6 @@ body {
     setTimeout(sendHeight, 1000);
     window.scrollTo(0,0);
     setTimeout(() => window.scrollTo(0,0), 200);
-    try {
-      window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*");
-    } catch(e) { console.warn(e); }
   });
 
   window.addEventListener("resize", sendHeight);
@@ -105,29 +105,17 @@ body {
   setInterval(sendHeight, 1000);
 
   document.addEventListener("DOMContentLoaded", () => {
-    const imgs = document.querySelectorAll(".gallery img");
-
-    // フェードイン
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if(e.isIntersecting){
-          e.target.classList.add("visible");
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    imgs.forEach(i => obs.observe(i));
-
     const gallery = document.querySelector('.gallery');
     if (!gallery) return;
 
+    const imgs = document.querySelectorAll(".gallery img");
     const gutter = 10;
     const defaultColumnWidth = 160;
 
     function setMasonryLayout() {
       const isMobile = window.innerWidth <= 480;
       const columnWidth = isMobile
-        ? window.innerWidth - 32   // padding 16px × 2
+        ? window.innerWidth - 32   // padding分
         : defaultColumnWidth;
 
       const maxWidth = isMobile
@@ -145,10 +133,21 @@ body {
           itemSelector: 'img',
           columnWidth: columnWidth,
           gutter: gutter,
-          fitWidth: true
+          fitWidth: false   // ← ✅ 二重中央寄せ防止（これが今回の肝）
         });
       }
     }
+
+    // フェードイン設定
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add("visible");
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    imgs.forEach(i => obs.observe(i));
 
     imagesLoaded(gallery, () => {
       setMasonryLayout();
