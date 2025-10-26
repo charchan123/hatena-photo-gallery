@@ -33,7 +33,8 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-<style>
+# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列版 ======
+SCRIPT_STYLE_TAG = """<style>
 body { 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
   background:#fafafa; 
@@ -68,7 +69,6 @@ body {
 (function() {
   if (window === window.parent) return;
 
-  // iframe高さ通知
   const sendHeight = () => {
     const height = document.documentElement.scrollHeight;
     window.parent.postMessage({ type: "setHeight", height }, "*");
@@ -90,11 +90,9 @@ body {
   observer.observe(document.body, { childList: true, subtree: true });
   setInterval(sendHeight, 1000);
 
-  // DOMContentLoaded で処理
   document.addEventListener("DOMContentLoaded", () => {
     const imgs = document.querySelectorAll(".gallery img");
 
-    // 画像フェードイン
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if(e.isIntersecting){ 
@@ -105,7 +103,6 @@ body {
     }, {threshold:0.1});
     imgs.forEach(i => obs.observe(i));
 
-    // Masonry 初期化
     const gallery = document.querySelector('.gallery');
     if (gallery) {
       const gutter = 10;
@@ -114,11 +111,11 @@ body {
       const setMasonryLayout = () => {
         const isMobile = window.innerWidth <= 400;
         const columns = isMobile ? 1 : 2;
-        const columnWidth = isMobile ? window.innerWidth - 32 : defaultColumnWidth; // padding16px×2
+        const columnWidth = isMobile ? window.innerWidth - 32 : defaultColumnWidth;
         const galleryWidth = columnWidth * columns + gutter * (columns - 1);
 
         gallery.style.width = galleryWidth + "px";
-        gallery.style.margin = "0 auto"; // 中央寄せ
+        gallery.style.margin = "0 auto";
 
         if (gallery.msnry) {
           gallery.msnry.options.columnWidth = columnWidth;
@@ -138,7 +135,6 @@ body {
     }
   });
 
-  // スクロールトップ処理
   function scrollToTopBoth() {
     window.scrollTo({ top: 0, behavior: "smooth" });
     try { 
@@ -146,7 +142,6 @@ body {
     } catch(e) { console.warn(e); }
   }
 
-  // aタグクリック処理
   document.addEventListener("click", e => {
     const a = e.target.closest("a");
     if (!a) return;
@@ -157,6 +152,7 @@ body {
   });
 })();
 </script>
+"""
 
 # ====== APIから全記事を取得 ======
 def fetch_hatena_articles_api():
