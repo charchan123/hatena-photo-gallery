@@ -33,13 +33,41 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列版 ======
+# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列（完全安定版） ======
 SCRIPT_STYLE_TAG = """<style>
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background:#fafafa; color:#333; padding:16px; min-height: 0; }
-.gallery img { width:100%; border-radius:8px; transition:opacity 0.5s ease-out; opacity:0; margin-bottom:10px; }
-.gallery img.visible { opacity:1; }
-@media (max-width: 400px) {
-  .gallery { max-width: 100% !important; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #fafafa;
+  color: #333;
+  padding: 16px;
+  min-height: 0;
+}
+
+/* ==== ギャラリー設定 ==== */
+.gallery {
+  width: 100%;
+  max-width: 400px;   /* PCでは2列分（160×2 + 余白）を想定 */
+  margin: 0 auto;     /* 中央寄せ */
+}
+
+/* ==== 画像設定 ==== */
+.gallery img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  transition: opacity 0.5s ease-out;
+  opacity: 0;
+  margin-bottom: 10px;
+}
+
+/* フェードイン */
+.gallery img.visible { opacity: 1; }
+
+/* ==== スマホでは1列に ==== */
+@media (max-width: 480px) {
+  .gallery {
+    max-width: 200px; /* 1列表示 */
+  }
 }
 </style>
 
@@ -50,18 +78,25 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
 <script>
 (function() {
   if (window === window.parent) return;
-  document.addEventListener("DOMContentLoaded", () => { document.body.style.minHeight = '0px'; });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.style.minHeight = '0px';
+  });
 
   const sendHeight = () => {
     const height = document.documentElement.scrollHeight;
     window.parent.postMessage({ type: "setHeight", height }, "*");
-    console.log("[iframe] sendHeight ->", height);
   };
 
   window.addEventListener("load", () => {
-    sendHeight(); setTimeout(sendHeight, 500); setTimeout(sendHeight, 1000);
-    window.scrollTo(0,0); setTimeout(() => window.scrollTo(0,0), 200);
-    try { window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*"); } catch(e) { console.warn(e); }
+    sendHeight();
+    setTimeout(sendHeight, 500);
+    setTimeout(sendHeight, 1000);
+    window.scrollTo(0,0);
+    setTimeout(() => window.scrollTo(0,0), 200);
+    try {
+      window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*");
+    } catch(e) { console.warn(e); }
   });
 
   window.addEventListener("resize", sendHeight);
@@ -72,48 +107,66 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-
   document.addEventListener("DOMContentLoaded", () => {
     const imgs = document.querySelectorAll(".gallery img");
 
-    // 画像フェードイン
+    // フェードイン
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if(e.isIntersecting){ e.target.classList.add("visible"); obs.unobserve(e.target); }
+        if(e.isIntersecting){
+          e.target.classList.add("visible");
+          obs.unobserve(e.target);
+        }
       });
-    }, {threshold:0.1});
+    }, { threshold: 0.1 });
     imgs.forEach(i => obs.observe(i));
 
-    // Masonry 初期化
     const gallery = document.querySelector('.gallery');
-    if (gallery) {
-      const gutter = 10;
-      const defaultColumnWidth = 160;
+    if (!gallery) return;
 
-      // 縦2列表示（PC）
-      const setMasonryLayout = () => {
-        const isMobile = window.innerWidth <= 400;
-        const columnWidth = isMobile ? window.innerWidth - 32 : defaultColumnWidth; // padding16px×2
-        gallery.style.maxWidth = isMobile ? "100%" : (columnWidth * 2 + gutter) + "px";
-        gallery.style.margin = "0 auto";
+    const gutter = 10;
+    const defaultColumnWidth = 160;
 
-        if (gallery.msnry) {
-          gallery.msnry.options.columnWidth = columnWidth;
-          gallery.msnry.layout();
-        } else {
-          gallery.msnry = new Masonry(gallery, {
-            itemSelector: 'img',
-            columnWidth: columnWidth,
-            gutter: gutter,
-            fitWidth: true
-          });
-        }
-      };
+    function setMasonryLayout() {
+      const isMobile = window.innerWidth <= 480;
+      const columnWidth = isMobile
+        ? window.innerWidth - 32   // padding 16px × 2
+        : defaultColumnWidth;
 
-      imagesLoaded(gallery, () => { setMasonryLayout(); sendHeight(); });
-      window.addEventListener('resize', () => { setMasonryLayout(); sendHeight(); });
+      const maxWidth = isMobile
+        ? "100%"
+        : (columnWidth * 2 + gutter) + "px";
+
+      gallery.style.maxWidth = maxWidth;
+      gallery.style.margin = "0 auto";
+
+      if (gallery.msnry) {
+        gallery.msnry.options.columnWidth = columnWidth;
+        gallery.msnry.layout();
+      } else {
+        gallery.msnry = new Masonry(gallery, {
+          itemSelector: 'img',
+          columnWidth: columnWidth,
+          gutter: gutter,
+          fitWidth: true
+        });
+      }
     }
+
+    imagesLoaded(gallery, () => {
+      setMasonryLayout();
+      sendHeight();
+    });
+
+    window.addEventListener("resize", () => {
+      setMasonryLayout();
+      sendHeight();
+    });
   });
 
+  // トップへ戻る
   function scrollToTopBoth() {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    try { window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*"); } catch(e) { console.warn(e); }
+    try {
+      window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*");
+    } catch(e) { console.warn(e); }
   }
 
   document.addEventListener("click", e => {
