@@ -169,50 +169,96 @@ a.back-link {
 })();
 </script>
 
-<!-- ▼ 自前Lightboxに差し替え ▼ -->
+<!-- ▼ アニメーション＆ナビ付き Lightboxに差し替え ▼ -->
 <style>
 /* Lightbox 背景 */
 .lightbox {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.9);
   display: none;
   justify-content: center;
   align-items: center;
   z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-/* Lightbox内のコンテンツ */
+/* 表示時 */
+.lightbox.show {
+  display: flex;
+  opacity: 1;
+}
+
+/* コンテンツ */
 .lightbox-content {
   position: relative;
-  background: #000;
+  background: transparent;
   border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.8);
-  padding: 8px;
+  text-align: center;
   max-width: 95%;
   max-height: 95%;
 }
 
-/* 画像（高さに合わせてLightbox全体を調整） */
+/* 画像 */
 .lightbox-content img {
   display: block;
   width: auto;
   height: auto;
   max-width: 100%;
   max-height: 80vh;
-  border-radius: 6px;
+  border-radius: 8px;
+  transition: opacity 0.3s ease;
 }
+
+/* フェード切り替え */
+.lightbox-content img.fade-out {
+  opacity: 0;
+}
+
+/* ボタン共通 */
+.lb-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 28px;
+  font-weight: bold;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  user-select: none;
+}
+.lb-btn:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+/* 左右ボタン */
+.lb-prev { left: -60px; }
+.lb-next { right: -60px; }
 
 /* 閉じるボタン */
 .lightbox-close {
   position: absolute;
-  top: 8px;
-  right: 12px;
+  top: -50px;
+  right: 0;
   font-size: 28px;
-  font-weight: bold;
+  background: rgba(0,0,0,0.5);
   color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
   cursor: pointer;
+}
+.lightbox-close:hover {
+  background: rgba(255,255,255,0.3);
 }
 
 /* 元記事リンク */
@@ -221,7 +267,7 @@ a.back-link {
   text-align: center;
   color: #ddd;
   font-size: 14px;
-  margin-top: 6px;
+  margin-top: 8px;
   text-decoration: none;
 }
 .lightbox-link:hover {
@@ -232,39 +278,86 @@ a.back-link {
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  // Lightbox要素を動的に追加
+  // Lightbox要素を作成
   const lb = document.createElement("div");
   lb.className = "lightbox";
   lb.innerHTML = `
     <div class="lightbox-content">
       <span class="lightbox-close">&times;</span>
+      <span class="lb-btn lb-prev">←</span>
       <img id="lightbox-img" src="" alt="">
+      <span class="lb-btn lb-next">→</span>
       <a id="lightbox-link" class="lightbox-link" href="#" target="_blank">元記事を見る</a>
-    </div>`;
+    </div>
+  `;
   document.body.appendChild(lb);
 
   const lbImg = lb.querySelector("#lightbox-img");
   const lbLink = lb.querySelector("#lightbox-link");
+  const closeBtn = lb.querySelector(".lightbox-close");
+  const prevBtn = lb.querySelector(".lb-prev");
+  const nextBtn = lb.querySelector(".lb-next");
 
-  // 画像クリックでLightbox表示
-  document.querySelectorAll(".gallery img").forEach(img => {
-    img.addEventListener("click", () => {
-      lb.style.display = "flex";
+  const imgs = Array.from(document.querySelectorAll(".gallery img"));
+  let currentIndex = 0;
+
+  function showLightbox(index) {
+    const img = imgs[index];
+    if (!img) return;
+    currentIndex = index;
+
+    lb.style.display = "flex";
+    requestAnimationFrame(() => lb.classList.add("show"));
+
+    lbImg.classList.add("fade-out");
+    setTimeout(() => {
       lbImg.src = img.src;
       lbLink.href = img.dataset.url || "#";
-      lbImg.onload = () => {
-        // 高さを画像に合わせて自然に調整
-        lb.style.alignItems = "center";
-      };
-    });
+      lbImg.classList.remove("fade-out");
+    }, 200);
+
+    // スクロール位置調整（縦中央へ）
+    setTimeout(() => {
+      window.scrollTo({
+        top: (document.body.scrollHeight / 2) - (window.innerHeight / 2),
+        behavior: "smooth"
+      });
+    }, 100);
+  }
+
+  function hideLightbox() {
+    lb.classList.remove("show");
+    setTimeout(() => lb.style.display = "none", 300);
+  }
+
+  imgs.forEach((img, i) => {
+    img.addEventListener("click", () => showLightbox(i));
   });
 
-  // 閉じる処理
-  lb.querySelector(".lightbox-close").addEventListener("click", () => lb.style.display = "none");
+  closeBtn.addEventListener("click", hideLightbox);
   lb.addEventListener("click", e => {
-    if (e.target === lb) lb.style.display = "none";
+    if (e.target === lb) hideLightbox();
+  });
+
+  // 前後ボタン
+  prevBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    showLightbox((currentIndex - 1 + imgs.length) % imgs.length);
+  });
+  nextBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    showLightbox((currentIndex + 1) % imgs.length);
+  });
+
+  // キーボード操作
+  document.addEventListener("keydown", e => {
+    if (lb.style.display === "flex") {
+      if (e.key === "ArrowLeft") showLightbox((currentIndex - 1 + imgs.length) % imgs.length);
+      if (e.key === "ArrowRight") showLightbox((currentIndex + 1) % imgs.length);
+      if (e.key === "Escape") hideLightbox();
+    }
   });
 });
 </script>
-<!-- ▲ 自前Lightboxここまで ▲ -->
+<!-- ▲ Lightboxここまで ▲ -->
 
