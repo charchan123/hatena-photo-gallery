@@ -389,9 +389,9 @@ def generate_gallery(entries):
     # 各キノコページ
     for alt, imgs in grouped.items():
         html = f"<h2>{alt}</h2><div class='gallery'>"
-        for src in imgs:
-            article_url = f"https://{HATENA_BLOG_ID}.hatena.blog/"  # 仮リンク（実URLが必要なら後で差し替え）
-html += f'''
+for src in imgs:
+    article_url = f"https://{HATENA_BLOG_ID}.hatena.blog/"  # 仮リンク（あとで実URLでもOK）
+    html += f'''
 <img src="{src}" alt="{alt}" loading="lazy" data-url="{article_url}">
 '''
         html += "</div>"
