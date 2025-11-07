@@ -188,7 +188,7 @@ def generate_gallery(entries):
     index = "<h2>五十音別分類</h2><ul>"
     for g in AIUO_GROUPS.keys():
         index += f'<li><a href="{safe_filename(g)}.html">{g}</a></li>'
-    index += "</ul>" + SCRIPT_STYLE_TAG
+    index += "</ul>" + EXTERNAL_LINKS
     with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
         f.write(index)
 
