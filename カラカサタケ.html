@@ -151,5 +151,25 @@ document.addEventListener("DOMContentLoaded", () => {
   lb.addEventListener("click", e => {
     if (e.target === lb) lb.classList.remove("show");
   });
+
+  // ===== iframe高さを親へ随時送信 =====
+function sendDynamicHeight() {
+  const height = document.documentElement.scrollHeight;
+  window.parent.postMessage({ type: "setHeight", height }, "*");
+}
+
+// ページロード完了後に定期送信
+window.addEventListener("load", () => {
+  sendDynamicHeight();
+  setTimeout(sendDynamicHeight, 300);
+  setTimeout(sendDynamicHeight, 1000);
+  setTimeout(sendDynamicHeight, 3000);
+});
+
+// リサイズやDOM変化も監視
+window.addEventListener("resize", sendDynamicHeight);
+const obs = new MutationObserver(sendDynamicHeight);
+obs.observe(document.body, { childList: true, subtree: true });
+setInterval(sendDynamicHeight, 2000); // 安全用バックアップ送信
 });
 </script>
