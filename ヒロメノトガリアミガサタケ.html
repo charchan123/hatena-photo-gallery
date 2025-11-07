@@ -57,11 +57,13 @@ body {
   margin-bottom: 10px;
   border-radius: 6px;
   cursor: zoom-in;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.6s ease, transform 0.6s ease;
   opacity: 0;
+  transform: translateY(10px);
 }
 .gallery img.visible {
   opacity: 1;
+  transform: translateY(0);
 }
 @media (max-width: 480px) {
   .gallery {
@@ -122,27 +124,28 @@ body {
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  // Masonry-like fade-in layout
   const gallery = document.querySelector(".gallery");
   if (!gallery) return;
 
-  const imgs = gallery.querySelectorAll("img");
-  const obs = new IntersectionObserver(entries => {
+  // ====== Fade-in Animation ======
+  const fadeObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.classList.add("visible");
-        obs.unobserve(e.target);
+        fadeObs.unobserve(e.target);
       }
     });
   }, {threshold: 0.1});
-  imgs.forEach(img => obs.observe(img));
+
+  const imgs = gallery.querySelectorAll("img");
+  imgs.forEach(img => fadeObs.observe(img));
 
   imagesLoaded(gallery, () => {
-    // Trigger reflow for masonry columns
     gallery.style.visibility = "visible";
+    sendHeight();
   });
 
-  // Lightbox作成
+  // ====== Lightbox ======
   const lb = document.createElement("div");
   lb.id = "lb-overlay";
   lb.innerHTML = `
@@ -164,6 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
       lbImg.src = img.src;
       lbCaption.textContent = img.alt || "";
       lbLink.href = img.dataset.url || "#";
+      sendHeight();
     });
   });
 
@@ -172,32 +176,28 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === lb) lb.classList.remove("show");
   });
 
-  // ===== iframe高さを親へ随時送信 =====
-function sendDynamicHeight() {
-  const height = document.documentElement.scrollHeight;
-  window.parent.postMessage({ type: "setHeight", height }, "*");
-}
-
-// ページロード完了後に定期送信
-window.addEventListener("load", () => {
-  sendDynamicHeight();
-  setTimeout(sendDynamicHeight, 300);
-  setTimeout(sendDynamicHeight, 1000);
-  setTimeout(sendDynamicHeight, 3000);
-});
-
-// 親からの高さ再送信リクエスト対応
-window.addEventListener("message", (e) => {
-  if (e.data && e.data.type === "requestHeight") {
-    const height = document.documentElement.scrollHeight;
+  // ====== iframe高さ通信 ======
+  function sendHeight() {
+    const height = document.body.scrollHeight;
     window.parent.postMessage({ type: "setHeight", height }, "*");
   }
-});
 
-// リサイズやDOM変化も監視
-window.addEventListener("resize", sendDynamicHeight);
-const obs = new MutationObserver(sendDynamicHeight);
-obs.observe(document.body, { childList: true, subtree: true });
-setInterval(sendDynamicHeight, 2000); // 安全用バックアップ送信
+  // 初期送信＆数回再送
+  window.addEventListener("load", () => {
+    sendHeight();
+    setTimeout(sendHeight, 500);
+    setTimeout(sendHeight, 1500);
+    setTimeout(sendHeight, 3000);
+  });
+
+  // 親からの再リクエスト対応
+  window.addEventListener("message", (e) => {
+    if (e.data && e.data.type === "requestHeight") sendHeight();
+  });
+
+  // リサイズ・DOM変化監視
+  window.addEventListener("resize", sendHeight);
+  const mo = new MutationObserver(sendHeight);
+  mo.observe(document.body, { childList: true, subtree: true });
 });
 </script>
