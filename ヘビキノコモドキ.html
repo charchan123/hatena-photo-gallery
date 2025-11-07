@@ -22,336 +22,136 @@
         </div>
         <style>
 body { 
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background:#fafafa; 
   color:#333; 
-  padding:16px; 
-  min-height: 0; 
-  box-sizing: border-box;
-}
-.gallery-wrapper {
-  width: 100%;
+  padding:16px;
+  box-sizing:border-box;
 }
 .gallery {
-  position: relative; /* Masonryの位置計算用 */
+  column-count: 2;
+  column-gap: 10px;
+  max-width: 800px;
   margin: 0 auto;
 }
-.gallery img { 
-  display: block;
-  border-radius:8px; 
-  transition:opacity 0.5s ease-out; 
-  opacity:0; 
-  margin-bottom:10px; 
+.gallery img {
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  cursor: zoom-in;
+  transition: opacity 0.3s ease;
+  opacity: 0;
 }
-.gallery img.visible { 
-  opacity:1; 
+.gallery img.visible {
+  opacity: 1;
 }
-@media (max-width: 400px) {
+@media (max-width: 480px) {
   .gallery {
-    width: 100% !important;
+    column-count: 1;
   }
 }
-a.back-link {
-  display: inline-block;
-  margin-top: 16px;
-  color: #333;
-  text-decoration: none;
+
+/* Lightbox */
+#lb-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 9999;
 }
-.glightbox-desc a {
-  color: #ddd !important;
+#lb-overlay.show {
+  visibility: visible;
+  opacity: 1;
+}
+#lb-overlay img {
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.8);
+}
+#lb-overlay .lb-caption {
+  position: absolute;
+  top: 20px; left: 20px;
+  color: #fff;
+  font-size: 16px;
+}
+#lb-overlay .lb-link {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ccc;
+  font-size: 14px;
   text-decoration: underline;
 }
-.glightbox-desc a:hover {
-  color: #fff !important;
+#lb-overlay .lb-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
 }
 </style>
 
-<!-- Masonry.js と imagesLoaded -->
-<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 
 <script>
-(function() {
-  if (window === window.parent) return;
+document.addEventListener("DOMContentLoaded", () => {
+  // Masonry-like fade-in layout
+  const gallery = document.querySelector(".gallery");
+  if (!gallery) return;
 
-  const sendHeight = () => {
-    const height = document.documentElement.scrollHeight;
-    window.parent.postMessage({ type: "setHeight", height }, "*");
-  };
+  const imgs = gallery.querySelectorAll("img");
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add("visible");
+        obs.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.1});
+  imgs.forEach(img => obs.observe(img));
 
-  window.addEventListener("load", () => {
-    sendHeight(); 
-    setTimeout(sendHeight, 500); 
-    setTimeout(sendHeight, 1000);
-    window.scrollTo(0,0); 
-    setTimeout(() => window.scrollTo(0,0), 200);
-    try { 
-      window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*"); 
-    } catch(e) { console.warn(e); }
+  imagesLoaded(gallery, () => {
+    // Trigger reflow for masonry columns
+    gallery.style.visibility = "visible";
   });
 
-  window.addEventListener("resize", sendHeight);
-  const observer = new MutationObserver(sendHeight);
-  observer.observe(document.body, { childList: true, subtree: true });
-  setInterval(sendHeight, 1000);
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const imgs = document.querySelectorAll(".gallery img");
-
-    // 画像フェードイン
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if(e.isIntersecting){ 
-          e.target.classList.add("visible"); 
-          obs.unobserve(e.target); 
-        }
-      });
-    }, {threshold:0.1});
-    imgs.forEach(i => obs.observe(i));
-
-    const gallery = document.querySelector('.gallery');
-    if (gallery) {
-      const gutter = 10;
-      const defaultColumnWidth = 160;
-
-      const setMasonryLayout = () => {
-        const isMobile = window.innerWidth <= 400;
-        const columns = isMobile ? 1 : 2;
-        const columnWidth = isMobile ? window.innerWidth - 32 : defaultColumnWidth;
-        const galleryWidth = columnWidth * columns + gutter * (columns - 1);
-
-        gallery.style.width = galleryWidth + "px";
-
-        // 画像幅を Masonry の列幅に合わせる
-        gallery.querySelectorAll("img").forEach(img => {
-          img.style.width = columnWidth + "px";
-        });
-
-        if (gallery.msnry) {
-          gallery.msnry.options.columnWidth = columnWidth;
-          gallery.msnry.layout();
-        } else {
-          gallery.msnry = new Masonry(gallery, {
-            itemSelector: 'img',
-            columnWidth: columnWidth,
-            gutter: gutter,
-            fitWidth: true
-          });
-        }
-      };
-
-      imagesLoaded(gallery, () => { setMasonryLayout(); sendHeight(); });
-      window.addEventListener('resize', () => { setMasonryLayout(); sendHeight(); });
-    }
-  });
-
-  function scrollToTopBoth() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    try { 
-      window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*"); 
-    } catch(e) { console.warn(e); }
-  }
-
-  document.addEventListener("click", e => {
-    const a = e.target.closest("a");
-    if (!a) return;
-    const href = a.getAttribute("href") || "";
-    if (href.startsWith("javascript:history.back") || href.startsWith("#") || href.endsWith(".html") || href.includes("index")) {
-      setTimeout(scrollToTopBoth, 150);
-    }
-  });
-})();
-</script>
-
-<!-- ▼ アニメーション＆ナビ付き Lightboxに差し替え ▼ -->
-<style>
-/* Lightbox 背景 */
-.lightbox {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.9);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-/* 表示時 */
-.lightbox.show {
-  display: flex;
-  opacity: 1;
-}
-
-/* コンテンツ */
-.lightbox-content {
-  position: relative;
-  background: transparent;
-  border-radius: 8px;
-  text-align: center;
-  max-width: 95%;
-  max-height: 95%;
-}
-
-/* 画像 */
-.lightbox-content img {
-  display: block;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 80vh;
-  border-radius: 8px;
-  transition: opacity 0.3s ease;
-}
-
-/* フェード切り替え */
-.lightbox-content img.fade-out {
-  opacity: 0;
-}
-
-/* ボタン共通 */
-.lb-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
-  color: #fff;
-  font-size: 28px;
-  font-weight: bold;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 40px;
-  cursor: pointer;
-  user-select: none;
-}
-.lb-btn:hover {
-  background: rgba(255,255,255,0.3);
-}
-
-/* 左右ボタン */
-.lb-prev { left: -60px; }
-.lb-next { right: -60px; }
-
-/* 閉じるボタン */
-.lightbox-close {
-  position: absolute;
-  top: -50px;
-  right: 0;
-  font-size: 28px;
-  background: rgba(0,0,0,0.5);
-  color: #fff;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 40px;
-  cursor: pointer;
-}
-.lightbox-close:hover {
-  background: rgba(255,255,255,0.3);
-}
-
-/* 元記事リンク */
-.lightbox-link {
-  display: block;
-  text-align: center;
-  color: #ddd;
-  font-size: 14px;
-  margin-top: 8px;
-  text-decoration: none;
-}
-.lightbox-link:hover {
-  color: #fff;
-  text-decoration: underline;
-}
-</style>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  // Lightbox要素を作成
+  // Lightbox作成
   const lb = document.createElement("div");
-  lb.className = "lightbox";
+  lb.id = "lb-overlay";
   lb.innerHTML = `
-    <div class="lightbox-content">
-      <span class="lightbox-close">&times;</span>
-      <span class="lb-btn lb-prev">←</span>
-      <img id="lightbox-img" src="" alt="">
-      <span class="lb-btn lb-next">→</span>
-      <a id="lightbox-link" class="lightbox-link" href="#" target="_blank">元記事を見る</a>
-    </div>
+    <span class="lb-close">&times;</span>
+    <img src="" alt="">
+    <div class="lb-caption"></div>
+    <a class="lb-link" href="#" target="_blank">元記事を見る</a>
   `;
   document.body.appendChild(lb);
 
-  const lbImg = lb.querySelector("#lightbox-img");
-  const lbLink = lb.querySelector("#lightbox-link");
-  const closeBtn = lb.querySelector(".lightbox-close");
-  const prevBtn = lb.querySelector(".lb-prev");
-  const nextBtn = lb.querySelector(".lb-next");
+  const lbImg = lb.querySelector("img");
+  const lbCaption = lb.querySelector(".lb-caption");
+  const lbLink = lb.querySelector(".lb-link");
+  const lbClose = lb.querySelector(".lb-close");
 
-  const imgs = Array.from(document.querySelectorAll(".gallery img"));
-  let currentIndex = 0;
-
-  function showLightbox(index) {
-    const img = imgs[index];
-    if (!img) return;
-    currentIndex = index;
-
-    lb.style.display = "flex";
-    requestAnimationFrame(() => lb.classList.add("show"));
-
-    lbImg.classList.add("fade-out");
-    setTimeout(() => {
+  imgs.forEach(img => {
+    img.addEventListener("click", () => {
+      lb.classList.add("show");
       lbImg.src = img.src;
+      lbCaption.textContent = img.alt || "";
       lbLink.href = img.dataset.url || "#";
-      lbImg.classList.remove("fade-out");
-    }, 200);
-
-    // スクロール位置調整（縦中央へ）
-    setTimeout(() => {
-      window.scrollTo({
-        top: (document.body.scrollHeight / 2) - (window.innerHeight / 2),
-        behavior: "smooth"
-      });
-    }, 100);
-  }
-
-  function hideLightbox() {
-    lb.classList.remove("show");
-    setTimeout(() => lb.style.display = "none", 300);
-  }
-
-  imgs.forEach((img, i) => {
-    img.addEventListener("click", () => showLightbox(i));
+    });
   });
 
-  closeBtn.addEventListener("click", hideLightbox);
+  lbClose.addEventListener("click", () => lb.classList.remove("show"));
   lb.addEventListener("click", e => {
-    if (e.target === lb) hideLightbox();
-  });
-
-  // 前後ボタン
-  prevBtn.addEventListener("click", e => {
-    e.stopPropagation();
-    showLightbox((currentIndex - 1 + imgs.length) % imgs.length);
-  });
-  nextBtn.addEventListener("click", e => {
-    e.stopPropagation();
-    showLightbox((currentIndex + 1) % imgs.length);
-  });
-
-  // キーボード操作
-  document.addEventListener("keydown", e => {
-    if (lb.style.display === "flex") {
-      if (e.key === "ArrowLeft") showLightbox((currentIndex - 1 + imgs.length) % imgs.length);
-      if (e.key === "ArrowRight") showLightbox((currentIndex + 1) % imgs.length);
-      if (e.key === "Escape") hideLightbox();
-    }
+    if (e.target === lb) lb.classList.remove("show");
   });
 });
 </script>
-<!-- ▲ Lightboxここまで ▲ -->
-
