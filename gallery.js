@@ -1,79 +1,80 @@
-// gallery.js
-(async function() {
-  const container = document.getElementById("mushroomGallery");
-  if (!container) return;
-
+// gallery.js（はてなブログ対応版ラッパーJS）
+(function() {
   // CSS読み込み
   const css = document.createElement("link");
   css.rel = "stylesheet";
   css.href = "https://charchan123.github.io/hatena-photo-gallery/gallery.css";
   document.head.appendChild(css);
 
-  // ギャラリーHTML読み込み
-  try {
-    const res = await fetch("https://charchan123.github.io/hatena-photo-gallery/index.html");
-    if (!res.ok) throw new Error("HTML取得失敗");
-    const html = await res.text();
-    container.innerHTML = html;
-  } catch (e) {
-    container.innerHTML = "<p>ギャラリーの読み込みに失敗しました。</p>";
-    console.error(e);
-    return;
-  }
+  // DOMが読み込まれたらギャラリー生成
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById("mushroomGallery");
+    if (!container) return;
 
-  // imagesLoaded 読み込み
-  const script = document.createElement("script");
-  script.src = "https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js";
-  document.body.appendChild(script);
-  await new Promise(res => script.onload = res);
+    // ===== ギャラリーHTML =====
+    container.innerHTML = `
+      <div class="gallery">
+        <img src="https://charchan123.github.io/hatena-photo-gallery/images/sample1.jpg" alt="キノコ1" loading="lazy" data-url="#">
+        <img src="https://charchan123.github.io/hatena-photo-gallery/images/sample2.jpg" alt="キノコ2" loading="lazy" data-url="#">
+        <img src="https://charchan123.github.io/hatena-photo-gallery/images/sample3.jpg" alt="キノコ3" loading="lazy" data-url="#">
+        <!-- 他の画像もここに追加 -->
+      </div>
+    `;
 
-  const gallery = container.querySelector(".gallery");
-  if (!gallery) return;
+    // ===== imagesLoaded 読み込み =====
+    const script = document.createElement("script");
+    script.src = "https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js";
+    document.body.appendChild(script);
+    script.onload = () => {
+      const gallery = container.querySelector(".gallery");
+      if (!gallery) return;
 
-  // ====== Fade-in Animation ======
-  const fadeObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add("visible");
-        fadeObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
+      // ===== Fade-in Animation =====
+      const fadeObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add("visible");
+            fadeObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
 
-  const imgs = gallery.querySelectorAll("img");
-  imgs.forEach(img => fadeObs.observe(img));
+      const imgs = gallery.querySelectorAll("img");
+      imgs.forEach(img => fadeObs.observe(img));
 
-  imagesLoaded(gallery, () => {
-    gallery.style.visibility = "visible";
-  });
+      imagesLoaded(gallery, () => {
+        gallery.style.visibility = "visible";
+      });
 
-  // ====== Lightbox ======
-  const lb = document.createElement("div");
-  lb.id = "lb-overlay";
-  lb.innerHTML = `
-    <span class="lb-close">&times;</span>
-    <img src="" alt="">
-    <div class="lb-caption"></div>
-    <a class="lb-link" href="#" target="_blank">元記事を見る</a>
-  `;
-  document.body.appendChild(lb);
+      // ===== Lightbox =====
+      const lb = document.createElement("div");
+      lb.id = "lb-overlay";
+      lb.innerHTML = `
+        <span class="lb-close">&times;</span>
+        <img src="" alt="">
+        <div class="lb-caption"></div>
+        <a class="lb-link" href="#" target="_blank">元記事を見る</a>
+      `;
+      document.body.appendChild(lb);
 
-  const lbImg = lb.querySelector("img");
-  const lbCaption = lb.querySelector(".lb-caption");
-  const lbLink = lb.querySelector(".lb-link");
-  const lbClose = lb.querySelector(".lb-close");
+      const lbImg = lb.querySelector("img");
+      const lbCaption = lb.querySelector(".lb-caption");
+      const lbLink = lb.querySelector(".lb-link");
+      const lbClose = lb.querySelector(".lb-close");
 
-  imgs.forEach(img => {
-    img.addEventListener("click", () => {
-      lb.classList.add("show");
-      lbImg.src = img.src;
-      lbCaption.textContent = img.alt || "";
-      lbLink.href = img.dataset.url || "#";
-    });
-  });
+      imgs.forEach(img => {
+        img.addEventListener("click", () => {
+          lb.classList.add("show");
+          lbImg.src = img.src;
+          lbCaption.textContent = img.alt || "";
+          lbLink.href = img.dataset.url || "#";
+        });
+      });
 
-  lbClose.addEventListener("click", () => lb.classList.remove("show"));
-  lb.addEventListener("click", e => {
-    if (e.target === lb) lb.classList.remove("show");
+      lbClose.addEventListener("click", () => lb.classList.remove("show"));
+      lb.addEventListener("click", e => {
+        if (e.target === lb) lb.classList.remove("show");
+      });
+    };
   });
 })();
