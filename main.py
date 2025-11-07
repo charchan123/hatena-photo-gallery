@@ -161,7 +161,7 @@ def generate_gallery(entries):
           <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
         """
-        html += SCRIPT_STYLE_TAG
+        html += EXTERNAL_LINKS
         safe = safe_filename(alt)
         with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
             f.write(html)
@@ -180,7 +180,7 @@ def generate_gallery(entries):
             html += f'<li><a href="{safe}.html">{n}</a></li>'
         html += "</ul>"
         html += group_links_html
-        html += SCRIPT_STYLE_TAG
+        html += EXTERNAL_LINKS
         with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
