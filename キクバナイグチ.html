@@ -164,6 +164,14 @@ window.addEventListener("load", () => {
   setTimeout(sendDynamicHeight, 3000);
 });
 
+// 親からの高さ再送信リクエスト対応
+window.addEventListener("message", (e) => {
+  if (e.data && e.data.type === "requestHeight") {
+    const height = document.documentElement.scrollHeight;
+    window.parent.postMessage({ type: "setHeight", height }, "*");
+  }
+});
+
 // リサイズやDOM変化も監視
 window.addEventListener("resize", sendDynamicHeight);
 const obs = new MutationObserver(sendDynamicHeight);
