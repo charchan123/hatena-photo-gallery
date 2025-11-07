@@ -190,4 +190,94 @@ document.addEventListener("DOMContentLoaded", () => {
   const mo = new MutationObserver(sendHeight);
   mo.observe(document.body, { childList: true, subtree: true });
 });
+
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const gallery = document.querySelector(".gallery");
+  if (!gallery) return;
+
+  // ====== Fade-in Animation ======
+  const fadeObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add("visible");
+        fadeObs.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.1});
+
+  const imgs = gallery.querySelectorAll("img");
+  imgs.forEach(img => fadeObs.observe(img));
+
+  imagesLoaded(gallery, () => {
+    gallery.style.visibility = "visible";
+    sendHeight();
+  });
+
+  // ====== Lightbox ======
+  const lb = document.createElement("div");
+  lb.id = "lb-overlay";
+  lb.innerHTML = `
+    <span class="lb-close">&times;</span>
+    <img src="" alt="">
+    <div class="lb-caption"></div>
+    <a class="lb-link" href="#" target="_blank">元記事を見る</a>
+  `;
+  document.body.appendChild(lb);
+
+  const lbImg = lb.querySelector("img");
+  const lbCaption = lb.querySelector(".lb-caption");
+  const lbLink = lb.querySelector(".lb-link");
+  const lbClose = lb.querySelector(".lb-close");
+
+  imgs.forEach(img => {
+    img.addEventListener("click", () => {
+      lb.classList.add("show");
+      lbImg.src = img.src;
+      lbCaption.textContent = img.alt || "";
+      lbLink.href = img.dataset.url || "#";
+      sendHeight();
+    });
+  });
+
+  lbClose.addEventListener("click", () => lb.classList.remove("show"));
+  lb.addEventListener("click", e => {
+    if (e.target === lb) lb.classList.remove("show");
+  });
+
+  // ====== iframe高さ通信 ======
+  function sendHeight() {
+    const height = document.documentElement.scrollHeight;
+    window.parent.postMessage({ type: "setHeight", height: height }, "*");
+  }
+
+  // 初期送信＆再送
+  window.addEventListener("load", () => {
+    sendHeight();
+    setTimeout(sendHeight, 800);
+    setTimeout(sendHeight, 2000);
+    setTimeout(sendHeight, 4000);
+  });
+
+  // 親からの高さ再要求対応
+  window.addEventListener("message", (e) => {
+    if (e.data && e.data.type === "requestHeight") sendHeight();
+  });
+
+  // リサイズ・DOM変化監視
+  window.addEventListener("resize", sendHeight);
+  const mo = new MutationObserver(sendHeight);
+  mo.observe(document.body, { childList: true, subtree: true });
+
+  // ====== リンククリックで親に「scrollTopRequest」を通知 ======
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (a && a.getAttribute("href")) {
+      window.parent.postMessage({ type: "scrollTopRequest" }, "*");
+    }
+  });
+});
+
 </script>
