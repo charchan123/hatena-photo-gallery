@@ -174,10 +174,13 @@ document.addEventListener("click", (e) => {
   if (!a) return;
 
   // 「戻る」や「〇行」など、ページ内移動リンク
-  if (a.getAttribute("href") && (
+  if (
+    a.getAttribute("href") &&
+    (
       a.getAttribute("href").startsWith("javascript:history.back()") ||
       a.getAttribute("href").endsWith(".html")
-    )) {
+    )
+  ) {
     // 親ページの iframe を探して位置を取得
     const iframes = window.parent.document.querySelectorAll("iframe");
     for (let iframe of iframes) {
@@ -189,6 +192,5 @@ document.addEventListener("click", (e) => {
       }
     }
   }
-  });
 });
 </script>
