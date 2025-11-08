@@ -189,6 +189,7 @@ document.addEventListener("click", (e) => {
     href.endsWith(".html") ||
     href.includes("index")
   ) {
+    console.log("🖱 クリックリンク送信:", href);
     // 親ページに「タイトルまでスクロールして」と指示を送信
     window.parent.postMessage({ type: "scrollToTitle", offset: 100 }, "*");
   }
