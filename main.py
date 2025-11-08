@@ -168,12 +168,15 @@ document.addEventListener("DOMContentLoaded", () => {
 LIGHTGALLERY_TAGS = """
 <!-- LightGallery (CSS/JS) -->
 <link rel="stylesheet" href="lightgallery/lightgallery-bundle.min.css">
-<script src="lightgallery/lightgallery.min.js"></script>
-<script src="lightgallery/lg-zoom.min.js"></script>
-<script src="lightgallery/lg-thumbnail.min.js"></script>
+
+<script type="text/javascript" src="lightgallery/lightgallery.min.js"></script>
+<script type="text/javascript" src="lightgallery/lg-zoom.min.js"></script>
+<script type="text/javascript" src="lightgallery/lg-thumbnail.min.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("window.lightGallery =", window.lightGallery);
+    console.log("typeof lightGallery =", typeof lightGallery);
   document.querySelectorAll('.gallery').forEach(gallery => {
     const imgs = Array.from(gallery.querySelectorAll('img'));
     if (imgs.length === 0) return;
