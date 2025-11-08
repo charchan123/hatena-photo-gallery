@@ -34,7 +34,7 @@ body {
   .gallery { column-count: 1; }
 }
 
-/* Lightbox */
+/* Lightbox (既存ローカル簡易ライトボックス用) */
 #lb-overlay {
   position: fixed;
   top:0; left:0;
@@ -117,6 +117,54 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("🖱 クリックリンク送信:", href);
       window.parent.postMessage({type:"scrollToTitle", offset:100}, "*");
     }
+  });
+});
+</script>
+<!-- LightGallery (CSS/JS) -->
+<link rel="stylesheet" href="https://unpkg.com/lightgallery@2.8.0/css/lightgallery-bundle.min.css">
+<script src="https://unpkg.com/lightgallery@2.8.0/lightgallery.umd.min.js"></script>
+<script src="https://unpkg.com/lightgallery@2.8.0/plugins/zoom/lg-zoom.umd.min.js"></script>
+<script src="https://unpkg.com/lightgallery@2.8.0/plugins/thumbnail/lg-thumbnail.umd.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // 各 .gallery ごとに、内部の <img> を読み取って dynamicEl 配列を作る（HTMLはそのまま）
+  document.querySelectorAll('.gallery').forEach(gallery => {
+    const imgs = Array.from(gallery.querySelectorAll('img'));
+    if (imgs.length === 0) return;
+    const items = imgs.map(img => {
+      return {
+        src: img.src,
+        thumb: img.src,
+        subHtml: `<h4>${(img.alt || '').replace(/"/g,'&quot;')}</h4>`
+      };
+    });
+
+    imgs.forEach((img, idx) => {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', (ev) => {
+        // body に対して dynamic モードで LightGallery を起動（元の DOM は変更しない）
+        lightGallery(document.body, {
+          dynamic: true,
+          dynamicEl: items,
+          index: idx,
+          plugins: [lgZoom, lgThumbnail],
+          speed: 400,
+          thumbnail: true,
+          download: false,
+          zoom: true,
+          fullScreen: true,
+          actualSize: false,
+          slideShow: true,
+          autoplay: false,
+          mobileSettings: {
+            controls: true,
+            showCloseIcon: true,
+            download: false
+          }
+        });
+      });
+    });
   });
 });
 </script>
