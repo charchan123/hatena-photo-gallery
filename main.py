@@ -74,7 +74,7 @@ body {
   .gallery { column-count: 1; }
 }
 
-/* Lightbox */
+/* Lightbox (既存ローカル簡易ライトボックス用) */
 #lb-overlay {
   position: fixed;
   top:0; left:0;
@@ -163,6 +163,58 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>"""
+
+# ====== LightGallery タグ（**タイルは触らず、クリック時に動的にスライドを開く方式**）=====
+LIGHTGALLERY_TAGS = """
+<!-- LightGallery (CSS/JS) -->
+<link rel="stylesheet" href="https://unpkg.com/lightgallery@2.8.0/css/lightgallery-bundle.min.css">
+<script src="https://unpkg.com/lightgallery@2.8.0/lightgallery.umd.min.js"></script>
+<script src="https://unpkg.com/lightgallery@2.8.0/plugins/zoom/lg-zoom.umd.min.js"></script>
+<script src="https://unpkg.com/lightgallery@2.8.0/plugins/thumbnail/lg-thumbnail.umd.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // 各 .gallery ごとに、内部の <img> を読み取って dynamicEl 配列を作る（HTMLはそのまま）
+  document.querySelectorAll('.gallery').forEach(gallery => {
+    const imgs = Array.from(gallery.querySelectorAll('img'));
+    if (imgs.length === 0) return;
+    const items = imgs.map(img => {
+      return {
+        src: img.src,
+        thumb: img.src,
+        subHtml: `<h4>${(img.alt || '').replace(/"/g,'&quot;')}</h4>`
+      };
+    });
+
+    imgs.forEach((img, idx) => {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', (ev) => {
+        // body に対して dynamic モードで LightGallery を起動（元の DOM は変更しない）
+        lightGallery(document.body, {
+          dynamic: true,
+          dynamicEl: items,
+          index: idx,
+          plugins: [lgZoom, lgThumbnail],
+          speed: 400,
+          thumbnail: true,
+          download: false,
+          zoom: true,
+          fullScreen: true,
+          actualSize: false,
+          slideShow: true,
+          autoplay: false,
+          mobileSettings: {
+            controls: true,
+            showCloseIcon: true,
+            download: false
+          }
+        });
+      });
+    });
+  });
+});
+</script>
+"""
 
 # ====== APIから全記事を取得 ======
 def fetch_hatena_articles_api():
@@ -278,7 +330,9 @@ def generate_gallery(entries):
             <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
         """
-        html += STYLE_TAG + SCRIPT_TAG
+        # ここでタイル用のSTYLE_TAG / SCRIPT_TAG をそのまま足し、
+        # さらに LightGallery の読み込み＆初期化スクリプトを追加します（タイルは触らない）
+        html += STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS
         safe = safe_filename(alt)
         with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
             f.write(html)
@@ -296,14 +350,14 @@ def generate_gallery(entries):
             html += f'<li><a href="{safe}.html">{n}</a></li>'
         html += "</ul>"
         html += group_links_html
-        html += STYLE_TAG + SCRIPT_TAG
+        html += STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS
         with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
     index = "<h2>五十音別分類</h2><ul>"
     for g in AIUO_GROUPS.keys():
         index += f'<li><a href="{safe_filename(g)}.html">{g}</a></li>'
-    index += "</ul>" + STYLE_TAG + SCRIPT_TAG
+    index += "</ul>" + STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS
     with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
         f.write(index)
 
