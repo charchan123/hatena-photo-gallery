@@ -1,4 +1,10 @@
 <h2>五十音別分類</h2><ul><li><a href="あ行.html">あ行</a></li><li><a href="か行.html">か行</a></li><li><a href="さ行.html">さ行</a></li><li><a href="た行.html">た行</a></li><li><a href="な行.html">な行</a></li><li><a href="は行.html">は行</a></li><li><a href="ま行.html">ま行</a></li><li><a href="や行.html">や行</a></li><li><a href="ら行.html">ら行</a></li><li><a href="わ行.html">わ行</a></li></ul><style>
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden; /* 縦スクロールバーを非表示 */
+}
 body { 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background:#fafafa; 
@@ -245,7 +251,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (a && a.getAttribute("href")) {
-      window.parent.postMessage({ type: "scrollTopRequest" }, "*");
+      // ====== リンククリックで iframe 内トップにスクロール ======
+document.addEventListener("click", (e) => {
+  const a = e.target.closest("a");
+  if (a && a.getAttribute("href")) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+});
     }
   });
 });

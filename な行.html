@@ -1,4 +1,10 @@
 <h2>な行のキノコ</h2><ul><li><a href="ナラタケ.html">ナラタケ</a></li><li><a href="ナラタケ(広義).html">ナラタケ(広義)</a></li><li><a href="ニオイコベニタケ.html">ニオイコベニタケ</a></li><li><a href="ニオイコベニタケ似のベニタケ.html">ニオイコベニタケ似のベニタケ</a></li><li><a href="ニカワハリタケ.html">ニカワハリタケ</a></li><li><a href="ニカワホウキタケ.html">ニカワホウキタケ</a></li><li><a href="ニガイグチモドキ.html">ニガイグチモドキ</a></li><li><a href="ニガクリタケ.html">ニガクリタケ</a></li><li><a href="ニシキタケ.html">ニシキタケ</a></li><li><a href="ニセアシベニイグチ？.html">ニセアシベニイグチ？</a></li><li><a href="ニセショウロ.html">ニセショウロ</a></li><li><a href="ニセショウロ？.html">ニセショウロ？</a></li><li><a href="ニワタケ.html">ニワタケ</a></li><li><a href="ヌメリササタケ.html">ヌメリササタケ</a></li><li><a href="ヌメリスギタケ.html">ヌメリスギタケ</a></li><li><a href="ヌメリスギタケモドキ.html">ヌメリスギタケモドキ</a></li><li><a href="ヌメリツバイグチ or ヌメリイグチ.html">ヌメリツバイグチ or ヌメリイグチ</a></li><li><a href="ノイバラハルシメジ.html">ノイバラハルシメジ</a></li><li><a href="ノウタケ.html">ノウタケ</a></li></ul><div style='margin-top:40px; text-align:center;'><a href="あ行.html">あ行</a> | <a href="か行.html">か行</a> | <a href="さ行.html">さ行</a> | <a href="た行.html">た行</a> | <a href="な行.html">な行</a> | <a href="は行.html">は行</a> | <a href="ま行.html">ま行</a> | <a href="や行.html">や行</a> | <a href="ら行.html">ら行</a> | <a href="わ行.html">わ行</a></div><style>
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden; /* 縦スクロールバーを非表示 */
+}
 body { 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background:#fafafa; 
@@ -245,7 +251,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (a && a.getAttribute("href")) {
-      window.parent.postMessage({ type: "scrollTopRequest" }, "*");
+      // ====== リンククリックで iframe 内トップにスクロール ======
+document.addEventListener("click", (e) => {
+  const a = e.target.closest("a");
+  if (a && a.getAttribute("href")) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+});
     }
   });
 });

@@ -13,6 +13,12 @@
           <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
         <style>
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden; /* 縦スクロールバーを非表示 */
+}
 body { 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background:#fafafa; 
@@ -259,7 +265,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (a && a.getAttribute("href")) {
-      window.parent.postMessage({ type: "scrollTopRequest" }, "*");
+      // ====== リンククリックで iframe 内トップにスクロール ======
+document.addEventListener("click", (e) => {
+  const a = e.target.closest("a");
+  if (a && a.getAttribute("href")) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+});
     }
   });
 });

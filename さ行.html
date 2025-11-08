@@ -1,4 +1,10 @@
 <h2>さ行のキノコ</h2><ul><li><a href="サザナミイグチ.html">サザナミイグチ</a></li><li><a href="サザナミイグチorフリルイグチ(仮称)？.html">サザナミイグチorフリルイグチ(仮称)？</a></li><li><a href="サトタマゴタケ.html">サトタマゴタケ</a></li><li><a href="シイタケ.html">シイタケ</a></li><li><a href="ショウゲンジ.html">ショウゲンジ</a></li><li><a href="シロウロコツルタケ.html">シロウロコツルタケ</a></li><li><a href="シロオニタケ.html">シロオニタケ</a></li><li><a href="シロキクラゲ.html">シロキクラゲ</a></li><li><a href="シロソウメンタケ.html">シロソウメンタケ</a></li><li><a href="シロヌメリイグチ.html">シロヌメリイグチ</a></li><li><a href="シロハツ.html">シロハツ</a></li><li><a href="ジャガイモタケ.html">ジャガイモタケ</a></li><li><a href="スギタケモドキ.html">スギタケモドキ</a></li><li><a href="セイタカイグチ.html">セイタカイグチ</a></li><li><a href="センニンタケ.html">センニンタケ</a></li></ul><div style='margin-top:40px; text-align:center;'><a href="あ行.html">あ行</a> | <a href="か行.html">か行</a> | <a href="さ行.html">さ行</a> | <a href="た行.html">た行</a> | <a href="な行.html">な行</a> | <a href="は行.html">は行</a> | <a href="ま行.html">ま行</a> | <a href="や行.html">や行</a> | <a href="ら行.html">ら行</a> | <a href="わ行.html">わ行</a></div><style>
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden; /* 縦スクロールバーを非表示 */
+}
 body { 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background:#fafafa; 
@@ -245,7 +251,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (a && a.getAttribute("href")) {
-      window.parent.postMessage({ type: "scrollTopRequest" }, "*");
+      // ====== リンククリックで iframe 内トップにスクロール ======
+document.addEventListener("click", (e) => {
+  const a = e.target.closest("a");
+  if (a && a.getAttribute("href")) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+});
     }
   });
 });

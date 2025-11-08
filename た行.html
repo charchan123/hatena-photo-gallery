@@ -1,4 +1,10 @@
 <h2>た行のキノコ</h2><ul><li><a href="タイワンアリタケ.html">タイワンアリタケ</a></li><li><a href="タマキクラゲ.html">タマキクラゲ</a></li><li><a href="タマゴタケ.html">タマゴタケ</a></li><li><a href="タマゴテングタケモドキ.html">タマゴテングタケモドキ</a></li><li><a href="ダイダイイグチ.html">ダイダイイグチ</a></li><li><a href="チシオタケ.html">チシオタケ</a></li><li><a href="チチアワタケ.html">チチアワタケ</a></li><li><a href="チャアミガサタケ.html">チャアミガサタケ</a></li><li><a href="チャコブタケ.html">チャコブタケ</a></li><li><a href="チャナメツムタケ.html">チャナメツムタケ</a></li><li><a href="ツクツクボウシタケ.html">ツクツクボウシタケ</a></li><li><a href="ツチカブリ？.html">ツチカブリ？</a></li><li><a href="ツチグリの仲間.html">ツチグリの仲間</a></li><li><a href="ツバアブラシメジ.html">ツバアブラシメジ</a></li><li><a href="ツバマツオウジ.html">ツバマツオウジ</a></li><li><a href="ツルタケ.html">ツルタケ</a></li><li><a href="ツルタケの仲間.html">ツルタケの仲間</a></li><li><a href="テングタケ.html">テングタケ</a></li><li><a href="テングタケダマシ.html">テングタケダマシ</a></li><li><a href="テングツルタケ.html">テングツルタケ</a></li><li><a href="トビイロノボリリュウタケ.html">トビイロノボリリュウタケ</a></li><li><a href="ドクツルタケ.html">ドクツルタケ</a></li><li><a href="ドクヤマドリ.html">ドクヤマドリ</a></li></ul><div style='margin-top:40px; text-align:center;'><a href="あ行.html">あ行</a> | <a href="か行.html">か行</a> | <a href="さ行.html">さ行</a> | <a href="た行.html">た行</a> | <a href="な行.html">な行</a> | <a href="は行.html">は行</a> | <a href="ま行.html">ま行</a> | <a href="や行.html">や行</a> | <a href="ら行.html">ら行</a> | <a href="わ行.html">わ行</a></div><style>
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden; /* 縦スクロールバーを非表示 */
+}
 body { 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background:#fafafa; 
@@ -245,7 +251,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (a && a.getAttribute("href")) {
-      window.parent.postMessage({ type: "scrollTopRequest" }, "*");
+      // ====== リンククリックで iframe 内トップにスクロール ======
+document.addEventListener("click", (e) => {
+  const a = e.target.closest("a");
+  if (a && a.getAttribute("href")) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+});
     }
   });
 });
