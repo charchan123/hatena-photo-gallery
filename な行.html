@@ -122,28 +122,24 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 <!-- LightGallery (CSS/JS) -->
 <link rel="stylesheet" href="lightgallery/lightgallery-bundle.min.css">
-<script src="lightgallery/lightgallery.umd.js"></script>
-<script src="lightgallery/lg-zoom.umd.js"></script>
-<script src="lightgallery/lg-thumbnail.umd.js"></script>
+<script src="lightgallery/lightgallery.min.js"></script>
+<script src="lightgallery/lg-zoom.min.js"></script>
+<script src="lightgallery/lg-thumbnail.min.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  // 各 .gallery ごとに、内部の <img> を読み取って dynamicEl 配列を作る（HTMLはそのまま）
   document.querySelectorAll('.gallery').forEach(gallery => {
     const imgs = Array.from(gallery.querySelectorAll('img'));
     if (imgs.length === 0) return;
-    const items = imgs.map(img => {
-      return {
-        src: img.src,
-        thumb: img.src,
-        subHtml: `<h4>${(img.alt || '').replace(/"/g,'&quot;')}</h4>`
-      };
-    });
+    const items = imgs.map(img => ({
+      src: img.src,
+      thumb: img.src,
+      subHtml: `<h4>${(img.alt || '').replace(/"/g,'&quot;')}</h4>`
+    }));
 
     imgs.forEach((img, idx) => {
       img.style.cursor = 'zoom-in';
-      img.addEventListener('click', (ev) => {
-        // body に対して dynamic モードで LightGallery を起動（元の DOM は変更しない）
+      img.addEventListener('click', () => {
         lightGallery(document.body, {
           dynamic: true,
           dynamicEl: items,
