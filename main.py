@@ -33,10 +33,24 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列版 完全修正版2 ======
+# ====== iframe高さ自動調整＋共通リンク ======
 EXTERNAL_LINKS = """
 <link rel="stylesheet" href="gallery.css">
 <script src="gallery.js"></script>
+<script>
+window.addEventListener("load", () => {
+  function postHeight() {
+    if (window.parent !== window) {
+      window.parent.postMessage(
+        { type: "galleryHeight", height: document.body.scrollHeight },
+        "*"
+      );
+    }
+  }
+  postHeight();
+  new ResizeObserver(postHeight).observe(document.body);
+});
+</script>
 """
 
 # ====== APIから全記事を取得 ======
@@ -68,32 +82,22 @@ def fetch_hatena_articles_api():
 
     print(f"📦 合計 {count} 件の記事を保存しました。")
 
-# ====== HTMLから画像とaltを抽出（本文限定 + altフィルタ + iframe/a除外） ======
+# ====== HTMLから画像とaltを抽出 ======
 def fetch_images():
-    import re
-
     print("📂 HTMLから画像抽出中…")
     entries = []
-
-    # 除外したい alt/text パターンのリスト
     exclude_patterns = [
-        r'はてなブックマーク',                  # 部分一致
-        r'^\d{4}年',                             # 年付きテキスト
-        r'^この記事をはてなブックマークに追加$', # 完全一致
-        r'^ワ行$',                               # 完全一致
-        r'キノコと田舎遊び',  # 部分一致
-        # 追加する場合はここにパターンを追記
+        r'はてなブックマーク',
+        r'^\d{4}年',
+        r'^この記事をはてなブックマークに追加$',
+        r'^ワ行$',
+        r'キノコと田舎遊び',
     ]
 
     for html_file in glob.glob(f"{ARTICLES_DIR}/*.html"):
         with open(html_file, encoding="utf-8") as f:
             soup = BeautifulSoup(f, "html.parser")
-            # 本文に限定（entry-body クラス内）
-            body_div = soup.find(class_="entry-body")
-            if not body_div:
-                body_div = soup  # 本文限定が見つからなければ全体
-
-            # ===== iframe / a タグで除外対象を削除 =====
+            body_div = soup.find(class_="entry-body") or soup
             for iframe in body_div.find_all("iframe"):
                 title = iframe.get("title", "")
                 if any(re.search(p, title) for p in exclude_patterns):
@@ -102,10 +106,7 @@ def fetch_images():
                 text = a.get_text(strip=True)
                 if any(re.search(p, text) for p in exclude_patterns):
                     a.decompose()
-
-            # ===== img タグを抽出 =====
-            imgs = body_div.find_all("img")
-            for img in imgs:
+            for img in body_div.find_all("img"):
                 alt = img.get("alt", "").strip()
                 src = img.get("src")
                 if not alt or not src:
@@ -134,39 +135,42 @@ def generate_gallery(entries):
     for e in entries:
         grouped.setdefault(e["alt"], []).append(e["src"])
 
-    # 共通リンク
     group_links = " | ".join([f'<a href="{g}.html">{g}</a>' for g in AIUO_GROUPS.keys()])
     group_links_html = f"<div style='margin-top:40px; text-align:center;'>{group_links}</div>"
 
-    # 安全なファイル名生成関数
     def safe_filename(name):
-        import re
-        name = re.sub(r'[:<>\"|*?\\/\r\n]', '_', name)
-        name = name.strip()
-        if not name:
-            name = "unnamed"
-        return name
+        name = re.sub(r'[:<>\"|*?\\/\r\n]', '_', name).strip()
+        return name or "unnamed"
 
-    # 各キノコページ
+    # ===== 各キノコページ =====
     for alt, imgs in grouped.items():
-        html = f"<h2>{alt}</h2><div class='gallery'>"
+        html = f"""<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>{alt}</title>
+{EXTERNAL_LINKS}
+</head>
+<body>
+<h2>{alt}</h2>
+<div class='gallery'>
+"""
         for src in imgs:
-            article_url = f"https://{HATENA_BLOG_ID}.hatena.blog/"  # 仮リンク
-            html += f'''
-<img src="{src}" alt="{alt}" loading="lazy" data-url="{article_url}">
-'''
-        html += "</div>"
+            article_url = f"https://{HATENA_BLOG_ID}.hatena.blog/"
+            html += f'<img src="{src}" alt="{alt}" loading="lazy" data-url="{article_url}">\n'
+
         html += """
-        <div style='margin-top:40px; text-align:center;'>
-          <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
-        </div>
-        """
-        html += EXTERNAL_LINKS
+</div>
+<div style='margin-top:40px; text-align:center;'>
+  <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
+</div>
+</body></html>
+"""
         safe = safe_filename(alt)
         with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
-    # 五十音ページ
+    # ===== 五十音ページ =====
     aiuo_dict = {k: [] for k in AIUO_GROUPS.keys()}
     for alt in grouped.keys():
         g = get_aiuo_group(alt)
@@ -174,25 +178,46 @@ def generate_gallery(entries):
             aiuo_dict[g].append(alt)
 
     for g, names in aiuo_dict.items():
-        html = f"<h2>{g}のキノコ</h2><ul>"
+        html = f"""<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>{g}のキノコ</title>
+{EXTERNAL_LINKS}
+</head>
+<body>
+<h2>{g}のキノコ</h2>
+<ul>
+"""
         for n in sorted(names):
             safe = safe_filename(n)
-            html += f'<li><a href="{safe}.html">{n}</a></li>'
-        html += "</ul>"
-        html += group_links_html
-        html += EXTERNAL_LINKS
+            html += f'<li><a href="{safe}.html">{n}</a></li>\n'
+        html += "</ul>" + group_links_html + "</body></html>"
+
         with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
-    # index.html
-    index = "<h2>五十音別分類</h2><ul>"
+    # ===== index.html =====
+    index = """<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>キノコ図鑑ギャラリー</title>
+{EXTERNAL_LINKS}
+</head>
+<body>
+<h2>五十音別分類</h2>
+<ul>
+""".replace("{EXTERNAL_LINKS}", EXTERNAL_LINKS)
     for g in AIUO_GROUPS.keys():
-        index += f'<li><a href="{safe_filename(g)}.html">{g}</a></li>'
-    index += "</ul>" + EXTERNAL_LINKS
+        index += f'<li><a href="{safe_filename(g)}.html">{g}</a></li>\n'
+    index += "</ul></body></html>"
+
     with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
         f.write(index)
 
     print("✅ ギャラリーページ生成完了")
+
 
 # ====== メイン ======
 if __name__ == "__main__":
