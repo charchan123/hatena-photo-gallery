@@ -231,6 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+"""
 
 # ====== APIから全記事を取得 ======
 def fetch_hatena_articles_api():
