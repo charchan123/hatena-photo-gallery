@@ -250,18 +250,16 @@ def get_aiuo_group(name):
             return group
     return "その他"
 
-# ====== ギャラリー生成（Masonry＋LightGallery対応・完全版） ======
+# ====== ギャラリー生成（LightGallery対応版） ======
 def generate_gallery(entries):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     grouped = {}
     for e in entries:
         grouped.setdefault(e["alt"], []).append(e["src"])
 
-    # 五十音リンク
     group_links = " | ".join([f'<a href="{g}.html">{g}</a>' for g in AIUO_GROUPS.keys()])
     group_links_html = f"<div style='margin-top:40px; text-align:center;'>{group_links}</div>"
 
-    # ファイル名安全化
     def safe_filename(name):
         name = re.sub(r'[:<>\"|*?\\/\r\n]', '_', name)
         name = name.strip()
@@ -269,9 +267,8 @@ def generate_gallery(entries):
             name = "unnamed"
         return name
 
-    # LightGallery関連タグ
+    # LightGallery用CSS/JSタグ
     LIGHTGALLERY_TAGS = """
-<!-- LightGallery -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.0/css/lightgallery-bundle.min.css">
 <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.0/lightgallery.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.0/plugins/thumbnail/lg-thumbnail.umd.min.js"></script>
@@ -282,70 +279,36 @@ document.addEventListener("DOMContentLoaded", () => {
     galleries.forEach(g => {
         lightGallery(g, {
             plugins: [lgThumbnail, lgZoom],
-            licenseKey: '0000-0000-000-0000', // デモ用キー
+            licenseKey: '0000-0000-000-0000', // デモ用
             speed: 500,
             download: false,
-            thumbnail: true,
-            selector: 'a'
+            thumbnail: true
         });
     });
 });
 </script>
-
-<style>
-/* LightGalleryとMasonryを自然に共存させる調整 */
-.gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-}
-
-.gallery a {
-    display: block;
-    flex: 1 1 calc(33.333% - 8px);
-    max-width: 300px;
-}
-
-.gallery img {
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.gallery img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-</style>
 """
 
-    # ==== 各ページ生成 ====
+    # 各altごとのギャラリー生成
     for alt, imgs in grouped.items():
         html = f"<h2>{alt}</h2><div class='gallery'>"
         for src in imgs:
-            article_url = f"https://{HATENA_BLOG_ID}.hatena.blog/"
-            # LightGallery対応：<a>でラップしてdata-sub-html属性を追加
-            html += f'<a href="{src}" data-sub-html="{alt}" data-url="{article_url}"><img src="{src}" alt="{alt}" loading="lazy"></a>'
+            # タイル表示維持、クリックでLightGallery
+            html += f'<a href="{src}" data-sub-html="{alt}"><img src="{src}" alt="{alt}" loading="lazy"></a>'
         html += "</div>"
 
-        # 戻るリンク
         html += """
         <div style='margin-top:40px; text-align:center;'>
             <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
         """
-
-        # CSS・JS統合
         html += STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS
 
-        # 保存
         safe = safe_filename(alt)
         with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
-    # ==== 五十音別ページ ====
+    # 五十音別ページ生成
     aiuo_dict = {k: [] for k in AIUO_GROUPS.keys()}
     for alt in grouped.keys():
         g = get_aiuo_group(alt)
@@ -357,12 +320,13 @@ document.addEventListener("DOMContentLoaded", () => {
         for n in sorted(names):
             safe = safe_filename(n)
             html += f'<li><a href="{safe}.html">{n}</a></li>'
-        html += "</ul>" + group_links_html
+        html += "</ul>"
+        html += group_links_html
         html += STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS
         with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
-    # ==== index.html ====
+    # インデックスページ
     index = "<h2>五十音別分類</h2><ul>"
     for g in AIUO_GROUPS.keys():
         index += f'<li><a href="{safe_filename(g)}.html">{g}</a></li>'
@@ -370,7 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
     with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
         f.write(index)
 
-    print("✅ ギャラリーページ生成完了（Masonry＋LightGallery対応）")
+    print("✅ ギャラリーページ生成完了（LightGallery対応）")
 
 # ====== メイン ======
 if __name__ == "__main__":
