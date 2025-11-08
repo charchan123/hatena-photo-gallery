@@ -347,7 +347,6 @@ document.addEventListener("DOMContentLoaded", () => {
     font-size: 26px !important;
 }
 </style>
-"""
 
     # ==== 各ページ生成 ====
     for alt, imgs in grouped.items():
