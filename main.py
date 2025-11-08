@@ -270,36 +270,37 @@ def generate_gallery(entries):
         return name
 
     # LightGallery関連タグ（スライドショー機能完全対応）
-    LIGHTGALLERY_TAGS = """
+LIGHTGALLERY_TAGS = """
 <!-- LightGallery -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.0/css/lightgallery-bundle.min.css">
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.0/lightgallery.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.0/plugins/zoom/lg-zoom.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.0/plugins/thumbnail/lg-thumbnail.umd.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/lightgallery@2.8.0/css/lightgallery-bundle.min.css">
+<script src="https://unpkg.com/lightgallery@2.8.0/lightgallery.umd.min.js"></script>
+<script src="https://unpkg.com/lightgallery@2.8.0/plugins/zoom/lg-zoom.umd.min.js"></script>
+<script src="https://unpkg.com/lightgallery@2.8.0/plugins/thumbnail/lg-thumbnail.umd.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    const galleries = document.querySelectorAll('.gallery');
-    galleries.forEach(gallery => {
-        lightGallery(gallery, {
-            selector: 'a', // <a>タグ単位でスライド
-            plugins: [lgZoom, lgThumbnail],
-            speed: 400,
-            thumbnail: true,
-            download: false,
-            zoom: true,
-            fullScreen: true,
-            actualSize: false,
-            slideShow: true,
-            autoplay: false,
-            mobileSettings: {
-                controls: true,
-                showCloseIcon: true,
-                download: false
-            }
-        });
+  const galleries = document.querySelectorAll('.gallery');
+  galleries.forEach(gallery => {
+    lightGallery(gallery, {
+      selector: 'a',
+      plugins: [lgZoom, lgThumbnail],
+      speed: 400,
+      thumbnail: true,
+      download: false,
+      zoom: true,
+      fullScreen: true,
+      actualSize: false,
+      slideShow: true,
+      autoplay: false,
+      mobileSettings: {
+        controls: true,
+        showCloseIcon: true,
+        download: false
+      }
     });
+  });
 });
 </script>
+"""
 
 <style>
 /* ---- LightGallery ＋ Masonry ---- */
