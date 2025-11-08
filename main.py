@@ -33,8 +33,8 @@ AIUO_GROUPS = {
 
 # ====== iframe高さ調整 + Masonry縦2列 + Lightbox対応 ======
 EXTERNAL_LINKS = """
-<link rel="stylesheet" href="gallery.css">
-<script src="gallery.js"></script>
+<link rel="stylesheet" href="https://charchan123.github.io/hatena-photo-gallery/gallery.css">
+<script src="https://charchan123.github.io/hatena-photo-gallery/gallery.js"></script>
 <script>
 window.addEventListener("load", () => {
   const h = document.body.scrollHeight;
