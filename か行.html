@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, {threshold:0.1});
     gallery.querySelectorAll("img").forEach(img=>fadeObs.observe(img));
 
-    imagesLoaded(gallery, ()=>{ gallery.style.visibility="visible"; sendHeight(); });
+    imagesLoaded(gallery, ()=>{ gallery.style.visibility="visible"; sendHeight();
 
   // ===== LightGallery 初期化 =====
   if (typeof lightGallery === 'function') {
