@@ -1,6 +1,7 @@
-import os, glob, time, requests, re
+import os, glob, time, requests
 from bs4 import BeautifulSoup
 import xml.etree.ElementTree as ET
+import re
 
 # ====== 設定 ======
 HATENA_USER = os.getenv("HATENA_USER")
@@ -15,6 +16,7 @@ OUTPUT_DIR = "output"
 
 # ====== API エンドポイント ======
 ATOM_ENDPOINT = f"https://blog.hatena.ne.jp/{HATENA_USER}/{HATENA_BLOG_ID}/atom/entry"
+
 AUTH = (HATENA_USER, HATENA_API_KEY)
 HEADERS = {}
 
@@ -31,83 +33,86 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== iframe高さ調整 + Masonry縦2列 + Lightbox対応 ======
+# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列版 完全修正版2 ======
 EXTERNAL_LINKS = """
-<link rel="stylesheet" href="output/gallery.css">
-<script src="output/gallery.js"></script>
-<script>
-window.addEventListener("load", () => {
-  const h = document.body.scrollHeight;
-  parent.postMessage({ type: "galleryHeight", height: h }, "*");
-});
-</script>
+<link rel="stylesheet" href="gallery.css">
+<script src="gallery.js"></script>
 """
 
-# ====== はてなブログ記事をAPIで取得 ======
+# ====== APIから全記事を取得 ======
 def fetch_hatena_articles_api():
     os.makedirs(ARTICLES_DIR, exist_ok=True)
     print(f"📡 はてなブログAPIから全記事取得中…")
+
     url = ATOM_ENDPOINT
     count = 0
-
     while url:
         print(f"🔗 Fetching: {url}")
         r = requests.get(url, auth=AUTH, headers=HEADERS)
         if r.status_code != 200:
             raise RuntimeError(f"❌ API取得失敗: {r.status_code} {r.text}")
-
         root = ET.fromstring(r.text)
         ns = {"atom": "http://www.w3.org/2005/Atom"}
         entries = root.findall("atom:entry", ns)
-
         for i, entry in enumerate(entries, 1):
             content = entry.find("atom:content", ns)
-            if content is None:
-                continue
+            if content is None: continue
             html_content = content.text or ""
             filename = f"{ARTICLES_DIR}/article_{count+i}.html"
             with open(filename, "w", encoding="utf-8") as f:
                 f.write(html_content)
             print(f"✅ 保存完了: {filename}")
-
         count += len(entries)
         next_link = root.find("atom:link[@rel='next']", ns)
         url = next_link.attrib["href"] if next_link is not None else None
 
     print(f"📦 合計 {count} 件の記事を保存しました。")
 
-# ====== HTMLから画像とaltを抽出 ======
+# ====== HTMLから画像とaltを抽出（本文限定 + altフィルタ + iframe/a除外） ======
 def fetch_images():
+    import re
+
     print("📂 HTMLから画像抽出中…")
     entries = []
+
+    # 除外したい alt/text パターンのリスト
     exclude_patterns = [
-        r'はてなブックマーク', r'^\d{4}年', r'^この記事をはてなブックマークに追加$',
-        r'^ワ行$', r'キノコと田舎遊び'
+        r'はてなブックマーク',                  # 部分一致
+        r'^\d{4}年',                             # 年付きテキスト
+        r'^この記事をはてなブックマークに追加$', # 完全一致
+        r'^ワ行$',                               # 完全一致
+        r'キノコと田舎遊び',  # 部分一致
+        # 追加する場合はここにパターンを追記
     ]
 
     for html_file in glob.glob(f"{ARTICLES_DIR}/*.html"):
         with open(html_file, encoding="utf-8") as f:
             soup = BeautifulSoup(f, "html.parser")
+            # 本文に限定（entry-body クラス内）
+            body_div = soup.find(class_="entry-body")
+            if not body_div:
+                body_div = soup  # 本文限定が見つからなければ全体
 
-        body_div = soup.find(class_="entry-body") or soup
-        for iframe in body_div.find_all("iframe"):
-            title = iframe.get("title", "")
-            if any(re.search(p, title) for p in exclude_patterns):
-                iframe.decompose()
-        for a in body_div.find_all("a"):
-            text = a.get_text(strip=True)
-            if any(re.search(p, text) for p in exclude_patterns):
-                a.decompose()
+            # ===== iframe / a タグで除外対象を削除 =====
+            for iframe in body_div.find_all("iframe"):
+                title = iframe.get("title", "")
+                if any(re.search(p, title) for p in exclude_patterns):
+                    iframe.decompose()
+            for a in body_div.find_all("a"):
+                text = a.get_text(strip=True)
+                if any(re.search(p, text) for p in exclude_patterns):
+                    a.decompose()
 
-        imgs = body_div.find_all("img")
-        for img in imgs:
-            alt = img.get("alt", "").strip()
-            src = img.get("src")
-            if not alt or not src:
-                continue
-            if any(re.search(p, alt) for p in exclude_patterns):
-                continue
-            entries.append({"alt": alt, "src": src})
+            # ===== img タグを抽出 =====
+            imgs = body_div.find_all("img")
+            for img in imgs:
+                alt = img.get("alt", "").strip()
+                src = img.get("src")
+                if not alt or not src:
+                    continue
+                if any(re.search(p, alt) for p in exclude_patterns):
+                    continue
+                entries.append({"alt": alt, "src": src})
 
     print(f"🧩 画像検出数: {len(entries)} 枚")
     return entries
@@ -129,28 +134,36 @@ def generate_gallery(entries):
     for e in entries:
         grouped.setdefault(e["alt"], []).append(e["src"])
 
+    # 共通リンク
     group_links = " | ".join([f'<a href="{g}.html">{g}</a>' for g in AIUO_GROUPS.keys()])
     group_links_html = f"<div style='margin-top:40px; text-align:center;'>{group_links}</div>"
 
+    # 安全なファイル名生成関数
     def safe_filename(name):
+        import re
         name = re.sub(r'[:<>\"|*?\\/\r\n]', '_', name)
-        return name.strip() or "unnamed"
+        name = name.strip()
+        if not name:
+            name = "unnamed"
+        return name
 
-    # 各キノコページ生成
+    # 各キノコページ
     for alt, imgs in grouped.items():
-        html = f"""
-<meta charset="UTF-8">
-<h2>{alt}</h2>
-<div class='gallery'>
-"""
+        html = f"<h2>{alt}</h2><div class='gallery'>"
         for src in imgs:
-            article_url = f"https://{HATENA_BLOG_ID}.hatena.blog/"
-            html += f'<img src="{src}" alt="{alt}" loading="lazy" data-url="{article_url}">\n'
+            article_url = f"https://{HATENA_BLOG_ID}.hatena.blog/"  # 仮リンク
+            html += f'''
+<img src="{src}" alt="{alt}" loading="lazy" data-url="{article_url}">
+'''
         html += "</div>"
-        html += "<div style='margin-top:40px; text-align:center;'><a href='javascript:history.back()'>← 戻る</a></div>"
+        html += """
+        <div style='margin-top:40px; text-align:center;'>
+          <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
+        </div>
+        """
         html += EXTERNAL_LINKS
-
-        with open(f"{OUTPUT_DIR}/{safe_filename(alt)}.html", "w", encoding="utf-8") as f:
+        safe = safe_filename(alt)
+        with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
     # 五十音ページ
@@ -161,16 +174,18 @@ def generate_gallery(entries):
             aiuo_dict[g].append(alt)
 
     for g, names in aiuo_dict.items():
-        html = f"<meta charset='UTF-8'><h2>{g}のキノコ</h2><ul>"
+        html = f"<h2>{g}のキノコ</h2><ul>"
         for n in sorted(names):
             safe = safe_filename(n)
             html += f'<li><a href="{safe}.html">{n}</a></li>'
-        html += "</ul>" + group_links_html + EXTERNAL_LINKS
+        html += "</ul>"
+        html += group_links_html
+        html += EXTERNAL_LINKS
         with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
     # index.html
-    index = "<meta charset='UTF-8'><h2>五十音別分類</h2><ul>"
+    index = "<h2>五十音別分類</h2><ul>"
     for g in AIUO_GROUPS.keys():
         index += f'<li><a href="{safe_filename(g)}.html">{g}</a></li>'
     index += "</ul>" + EXTERNAL_LINKS
