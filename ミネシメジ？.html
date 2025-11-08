@@ -1,4 +1,4 @@
-<h2>ミネシメジ？</h2><div class='gallery'><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018234823.jpg" alt="ミネシメジ？" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/"></div>
+<h2>ミネシメジ？</h2><div class='gallery'><a href="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018234823.jpg" data-sub-html="ミネシメジ？" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018234823.jpg" alt="ミネシメジ？" loading="lazy"></a></div>
         <div style='margin-top:40px; text-align:center;'>
             <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
@@ -124,3 +124,51 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+<!-- LightGallery -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.0/css/lightgallery-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.0/lightgallery.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.0/plugins/thumbnail/lg-thumbnail.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.0/plugins/zoom/lg-zoom.umd.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const galleries = document.querySelectorAll('.gallery');
+    galleries.forEach(g => {
+        lightGallery(g, {
+            plugins: [lgThumbnail, lgZoom],
+            licenseKey: '0000-0000-000-0000', // デモ用キー
+            speed: 500,
+            download: false,
+            thumbnail: true,
+            selector: 'a'
+        });
+    });
+});
+</script>
+
+<style>
+/* LightGalleryとMasonryを自然に共存させる調整 */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.gallery a {
+    display: block;
+    flex: 1 1 calc(33.333% - 8px);
+    max-width: 300px;
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+</style>
