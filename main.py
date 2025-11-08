@@ -11,7 +11,7 @@ if not all([HATENA_USER, HATENA_BLOG_ID, HATENA_API_KEY]):
     raise EnvironmentError("環境変数が未設定です。HATENA_USER, HATENA_BLOG_ID, HATENA_API_KEY を確認してください。")
 
 ARTICLES_DIR = "articles"
-OUTPUT_DIR = "output"
+OUTPUT_DIR = "."
 
 # ====== API エンドポイント ======
 ATOM_ENDPOINT = f"https://blog.hatena.ne.jp/{HATENA_USER}/{HATENA_BLOG_ID}/atom/entry"
