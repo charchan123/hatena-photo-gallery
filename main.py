@@ -269,7 +269,7 @@ def generate_gallery(entries):
             name = "unnamed"
         return name
 
-    # LightGallery関連タグ（スライドショー機能完全対応）
+# LightGallery関連タグ（スライドショー機能完全対応）
 LIGHTGALLERY_TAGS = """
 <!-- LightGallery -->
 <link rel="stylesheet" href="https://unpkg.com/lightgallery@2.8.0/css/lightgallery-bundle.min.css">
@@ -300,10 +300,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
-"""
 
 <style>
-/* ---- LightGallery ＋ Masonry ---- */
+/* ---- LightGallery + Masonry ---- */
 .gallery {
     display: flex;
     flex-wrap: wrap;
@@ -347,6 +346,7 @@ document.addEventListener("DOMContentLoaded", () => {
     font-size: 26px !important;
 }
 </style>
+"""
 
     # ==== 各ページ生成 ====
     for alt, imgs in grouped.items():
