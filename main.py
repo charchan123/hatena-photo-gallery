@@ -164,6 +164,85 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>"""
 
+# LightGallery関連タグ（スライドショー機能完全対応）
+LIGHTGALLERY_TAGS = """
+<!-- LightGallery -->
+<link rel="stylesheet" href="https://unpkg.com/lightgallery@2.8.0/css/lightgallery-bundle.min.css">
+<script src="https://unpkg.com/lightgallery@2.8.0/lightgallery.umd.min.js"></script>
+<script src="https://unpkg.com/lightgallery@2.8.0/plugins/zoom/lg-zoom.umd.min.js"></script>
+<script src="https://unpkg.com/lightgallery@2.8.0/plugins/thumbnail/lg-thumbnail.umd.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const galleries = document.querySelectorAll('.gallery');
+  galleries.forEach(gallery => {
+    lightGallery(gallery, {
+      selector: 'a',
+      plugins: [lgZoom, lgThumbnail],
+      speed: 400,
+      thumbnail: true,
+      download: false,
+      zoom: true,
+      fullScreen: true,
+      actualSize: false,
+      slideShow: true,
+      autoplay: false,
+      mobileSettings: {
+        controls: true,
+        showCloseIcon: true,
+        download: false
+      }
+    });
+  });
+});
+</script>
+
+<style>
+/* ---- LightGallery + Masonry ---- */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.gallery a {
+    display: block;
+    position: relative;
+    flex: 1 1 calc(33.333% - 8px);
+    max-width: 300px;
+    overflow: hidden;
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    cursor: zoom-in;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* LightGallery内の背景と矢印の色など */
+.lg-backdrop {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.lg-prev, .lg-next {
+    color: white !important;
+    font-size: 28px !important;
+}
+
+.lg-close {
+    color: white !important;
+    font-size: 26px !important;
+}
+</style>
+"""
+
 # ====== APIから全記事を取得 ======
 def fetch_hatena_articles_api():
     os.makedirs(ARTICLES_DIR, exist_ok=True)
@@ -268,85 +347,6 @@ def generate_gallery(entries):
         if not name:
             name = "unnamed"
         return name
-
-# LightGallery関連タグ（スライドショー機能完全対応）
-LIGHTGALLERY_TAGS = """
-<!-- LightGallery -->
-<link rel="stylesheet" href="https://unpkg.com/lightgallery@2.8.0/css/lightgallery-bundle.min.css">
-<script src="https://unpkg.com/lightgallery@2.8.0/lightgallery.umd.min.js"></script>
-<script src="https://unpkg.com/lightgallery@2.8.0/plugins/zoom/lg-zoom.umd.min.js"></script>
-<script src="https://unpkg.com/lightgallery@2.8.0/plugins/thumbnail/lg-thumbnail.umd.min.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const galleries = document.querySelectorAll('.gallery');
-  galleries.forEach(gallery => {
-    lightGallery(gallery, {
-      selector: 'a',
-      plugins: [lgZoom, lgThumbnail],
-      speed: 400,
-      thumbnail: true,
-      download: false,
-      zoom: true,
-      fullScreen: true,
-      actualSize: false,
-      slideShow: true,
-      autoplay: false,
-      mobileSettings: {
-        controls: true,
-        showCloseIcon: true,
-        download: false
-      }
-    });
-  });
-});
-</script>
-
-<style>
-/* ---- LightGallery + Masonry ---- */
-.gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-}
-
-.gallery a {
-    display: block;
-    position: relative;
-    flex: 1 1 calc(33.333% - 8px);
-    max-width: 300px;
-    overflow: hidden;
-}
-
-.gallery img {
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
-    cursor: zoom-in;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.gallery img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-/* LightGallery内の背景と矢印の色など */
-.lg-backdrop {
-    background: rgba(0, 0, 0, 0.9);
-}
-
-.lg-prev, .lg-next {
-    color: white !important;
-    font-size: 28px !important;
-}
-
-.lg-close {
-    color: white !important;
-    font-size: 26px !important;
-}
-</style>
-"""
 
     # ==== 各ページ生成 ====
     for alt, imgs in grouped.items():
