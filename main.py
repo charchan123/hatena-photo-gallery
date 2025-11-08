@@ -167,10 +167,10 @@ document.addEventListener("DOMContentLoaded", () => {
 # ====== LightGallery タグ（**タイルは触らず、クリック時に動的にスライドを開く方式**）=====
 LIGHTGALLERY_TAGS = """
 <!-- LightGallery (CSS/JS) -->
-<link rel="stylesheet" href="https://unpkg.com/lightgallery@2.8.0/css/lightgallery-bundle.min.css">
-<script src="https://unpkg.com/lightgallery@2.8.0/lightgallery.umd.min.js"></script>
-<script src="https://unpkg.com/lightgallery@2.8.0/plugins/zoom/lg-zoom.umd.min.js"></script>
-<script src="https://unpkg.com/lightgallery@2.8.0/plugins/thumbnail/lg-thumbnail.umd.min.js"></script>
+<link rel="stylesheet" href="lightgallery/lightgallery-bundle.min.css">
+<script src="lightgallery/lightgallery.umd.js"></script>
+<script src="lightgallery/lg-zoom.umd.js"></script>
+<script src="lightgallery/lg-thumbnail.umd.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
