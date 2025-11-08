@@ -3,7 +3,7 @@ import glob
 from pathlib import Path
 
 # === 設定 ===
-OUTPUT_DIR = "docs"  # GitHub Pages用ディレクトリ
+OUTPUT_DIR = "."  # GitHub Pages用ディレクトリ
 IMG_DIR = "images"   # 画像ディレクトリ
 BASE_URL = "https://charchan123.github.io/hatena-photo-gallery/"
 
