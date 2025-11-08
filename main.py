@@ -35,6 +35,12 @@ AIUO_GROUPS = {
 
 # ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列版 完全修正版2 ======
 SCRIPT_STYLE_TAG = """<style>
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden; /* 縦スクロールバーを非表示 */
+}
 body { 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background:#fafafa; 
@@ -281,7 +287,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (a && a.getAttribute("href")) {
-      window.parent.postMessage({ type: "scrollTopRequest" }, "*");
+      // ====== リンククリックで iframe 内トップにスクロール ======
+document.addEventListener("click", (e) => {
+  const a = e.target.closest("a");
+  if (a && a.getAttribute("href")) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+});
     }
   });
 });
