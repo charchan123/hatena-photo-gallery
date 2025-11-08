@@ -208,28 +208,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const mo = new MutationObserver(sendHeight);
   mo.observe(document.body, { childList: true, subtree: true });
 
-  // ====== 「戻る」や「〇行」クリック時に親ページをスクロール ======
-  document.addEventListener("click", (e) => {
+  function scrollToTopBoth() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    try { 
+      window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*"); 
+    } catch(e) { console.warn(e); }
+  }
+
+  document.addEventListener("click", e => {
     const a = e.target.closest("a");
     if (!a) return;
-
-    const href = a.getAttribute("href");
-    if (
-      href &&
-      (
-        href.startsWith("javascript:history.back()") ||
-        href.endsWith(".html")
-      )
-    ) {
-      const iframes = window.parent.document.querySelectorAll("iframe");
-      for (let iframe of iframes) {
-        if (iframe.contentWindow === window) {
-          const rect = iframe.getBoundingClientRect();
-          const top = window.parent.scrollY + rect.top;
-          window.parent.scrollTo({ top: top, behavior: "smooth" });
-          break;
-        }
-      }
+    const href = a.getAttribute("href") || "";
+    if (href.startsWith("javascript:history.back") || href.startsWith("#") || href.endsWith(".html") || href.includes("index")) {
+      setTimeout(scrollToTopBoth, 150);
     }
   });
 });
