@@ -37,18 +37,17 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== iframe 高さ調整 + Masonry縦2列＋レスポンシブ1列版 完全修正版2 ======
-SCRIPT_STYLE_TAG = """<style>
-
+# ====== 共通スタイル ======
+STYLE_TAG = """<style>
 html, body {
   margin: 0;
   padding: 0;
-  overflow-y: hidden; /* 縦スクロールバーを非表示 */
+  overflow-y: hidden;
 }
-body { 
+body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background:#fafafa; 
-  color:#333; 
+  background:#fafafa;
+  color:#333;
   padding:16px;
   box-sizing:border-box;
 }
@@ -72,95 +71,53 @@ body {
   transform: translateY(0);
 }
 @media (max-width: 480px) {
-  .gallery {
-    column-count: 1;
-  }
+  .gallery { column-count: 1; }
 }
 
 /* Lightbox */
 #lb-overlay {
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
+  top:0; left:0;
+  width:100vw; height:100vh;
   background: rgba(0,0,0,0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  visibility: hidden;
-  opacity: 0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  visibility:hidden;
+  opacity:0;
   transition: opacity 0.3s ease;
-  z-index: 9999;
+  z-index:9999;
 }
-#lb-overlay.show {
-  visibility: visible;
-  opacity: 1;
-}
-#lb-overlay img {
-  max-width: 90%;
-  max-height: 80vh;
-  border-radius: 6px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.8);
-}
-#lb-overlay .lb-caption {
-  position: absolute;
-  top: 20px; left: 20px;
-  color: #fff;
-  font-size: 16px;
-}
-#lb-overlay .lb-link {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #ccc;
-  font-size: 14px;
-  text-decoration: underline;
-}
-#lb-overlay .lb-close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  color: #fff;
-  font-size: 28px;
-  cursor: pointer;
-}
-</style>
+#lb-overlay.show { visibility:visible; opacity:1; }
+#lb-overlay img { max-width:90%; max-height:80vh; border-radius:6px; box-shadow:0 0 10px rgba(0,0,0,0.8);}
+#lb-overlay .lb-caption { position:absolute; top:20px; left:20px; color:#fff; font-size:16px; }
+#lb-overlay .lb-link { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); color:#ccc; font-size:14px; text-decoration:underline; }
+#lb-overlay .lb-close { position:absolute; top:20px; right:30px; color:#fff; font-size:28px; cursor:pointer; }
+</style>"""
 
-<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
-
+# ====== 共通スクリプト ======
+SCRIPT_TAG = """<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  // ====== iframe 高さ送信用関数 ======
   function sendHeight() {
     const height = document.documentElement.scrollHeight;
-    window.parent.postMessage({ type: "setHeight", height: height }, "*");
+    window.parent.postMessage({ type:"setHeight", height:height }, "*");
   }
 
-  // ====== 画像ギャラリー処理 ======
   const gallery = document.querySelector(".gallery");
   if (gallery) {
-    // Fade-in Animation
-    const fadeObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add("visible");
-          fadeObs.unobserve(e.target);
-        }
+    const fadeObs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add("visible"); fadeObs.unobserve(e.target); }
       });
-    }, {threshold: 0.1});
+    }, {threshold:0.1});
+    gallery.querySelectorAll("img").forEach(img=>fadeObs.observe(img));
 
-    const imgs = gallery.querySelectorAll("img");
-    imgs.forEach(img => fadeObs.observe(img));
+    imagesLoaded(gallery, ()=>{ gallery.style.visibility="visible"; sendHeight(); });
 
-    imagesLoaded(gallery, () => {
-      gallery.style.visibility = "visible";
-      sendHeight();
-    });
-
-    // Lightbox
     const lb = document.createElement("div");
-    lb.id = "lb-overlay";
-    lb.innerHTML = `
+    lb.id="lb-overlay";
+    lb.innerHTML=`
       <span class="lb-close">&times;</span>
       <img src="" alt="">
       <div class="lb-caption"></div>
@@ -173,8 +130,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const lbLink = lb.querySelector(".lb-link");
     const lbClose = lb.querySelector(".lb-close");
 
-    imgs.forEach(img => {
-      img.addEventListener("click", () => {
+    gallery.querySelectorAll("img").forEach(img=>{
+      img.addEventListener("click", ()=>{
         lb.classList.add("show");
         lbImg.src = img.src;
         lbCaption.textContent = img.alt || "";
@@ -183,56 +140,29 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    lbClose.addEventListener("click", () => lb.classList.remove("show"));
-    lb.addEventListener("click", e => {
-      if (e.target === lb) lb.classList.remove("show");
-    });
+    lbClose.addEventListener("click", ()=>lb.classList.remove("show"));
+    lb.addEventListener("click", e=>{ if(e.target===lb) lb.classList.remove("show"); });
   }
 
-  // ====== iframe 高さ送信 ======
-  sendHeight(); // DOMContentLoaded 時に送信
-  window.addEventListener("load", () => {
-    sendHeight();
-    setTimeout(sendHeight, 800);
-    setTimeout(sendHeight, 2000);
-    setTimeout(sendHeight, 4000);
+  sendHeight();
+  window.addEventListener("load", ()=>{
+    sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); setTimeout(sendHeight,4000);
   });
-
-  // 親から高さ再要求
-  window.addEventListener("message", (e) => {
-    if (e.data && e.data.type === "requestHeight") sendHeight();
-  });
-
-  // リサイズ・DOM変化監視
+  window.addEventListener("message", e=>{ if(e.data?.type==="requestHeight") sendHeight(); });
   window.addEventListener("resize", sendHeight);
-  const mo = new MutationObserver(sendHeight);
-  mo.observe(document.body, { childList: true, subtree: true });
+  new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true});
 
-  function scrollToTopBoth() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    try { 
-      window.parent.postMessage({ type: "scrollTopRequest", pathname: location.pathname }, "*"); 
-    } catch(e) { console.warn(e); }
-  }
-
-  // ====== iframe 内クリックイベント ======
-document.addEventListener("click", (e) => {
-  const a = e.target.closest("a");
-  if (!a) return;
-  const href = a.getAttribute("href") || "";
-  if (
-    href.startsWith("javascript:history.back") ||
-    href.endsWith(".html") ||
-    href.includes("index")
-  ) {
-    console.log("🖱 クリックリンク送信:", href);
-    // 親ページに「タイトルまでスクロールして」と指示を送信
-    window.parent.postMessage({ type: "scrollToTitle", offset: 100 }, "*");
-  }
+  document.addEventListener("click", e=>{
+    const a = e.target.closest("a");
+    if(!a) return;
+    const href = a.getAttribute("href")||"";
+    if(href.startsWith("javascript:history.back") || href.endsWith(".html") || href.includes("index")){
+      console.log("🖱 クリックリンク送信:", href);
+      window.parent.postMessage({type:"scrollToTitle", offset:100}, "*");
+    }
+  });
 });
-});
-</script>
-"""
+</script>"""
 
 # ====== APIから全記事を取得 ======
 def fetch_hatena_articles_api():
@@ -266,9 +196,8 @@ def fetch_hatena_articles_api():
 
     print(f"📦 合計 {count} 件の記事を保存しました。")
 
-# ====== HTMLから画像とaltを抽出（本文限定 + altフィルタ + iframe/a除外） ======
+# ====== HTMLから画像とaltを抽出 ======
 def fetch_images():
-    import re
     print("📂 HTMLから画像抽出中…")
     entries = []
 
@@ -332,7 +261,6 @@ def generate_gallery(entries):
     group_links_html = f"<div style='margin-top:40px; text-align:center;'>{group_links}</div>"
 
     def safe_filename(name):
-        import re
         name = re.sub(r'[:<>\"|*?\\/\r\n]', '_', name)
         name = name.strip()
         if not name:
@@ -350,7 +278,7 @@ def generate_gallery(entries):
             <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
         """
-        html += SCRIPT_STYLE_TAG
+        html += STYLE_TAG + SCRIPT_TAG
         safe = safe_filename(alt)
         with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
             f.write(html)
@@ -368,14 +296,14 @@ def generate_gallery(entries):
             html += f'<li><a href="{safe}.html">{n}</a></li>'
         html += "</ul>"
         html += group_links_html
-        html += SCRIPT_STYLE_TAG
+        html += STYLE_TAG + SCRIPT_TAG
         with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
     index = "<h2>五十音別分類</h2><ul>"
     for g in AIUO_GROUPS.keys():
         index += f'<li><a href="{safe_filename(g)}.html">{g}</a></li>'
-    index += "</ul>" + SCRIPT_STYLE_TAG
+    index += "</ul>" + STYLE_TAG + SCRIPT_TAG
     with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
         f.write(index)
 
