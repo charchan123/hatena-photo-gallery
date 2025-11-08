@@ -216,19 +216,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ====== iframe 内クリックイベント ======
-  document.addEventListener("click", (e) => {
-    const a = e.target.closest("a");
-    if (!a) return;
-    const href = a.getAttribute("href") || "";
-    if (
-      href.startsWith("javascript:history.back") ||
-      href.endsWith(".html") ||
-      href.includes("index")
-    ) {
-      // 親ページに「スクロールトップして」と指示を送信
-      window.parent.postMessage({ type: "scrollToIframeTop" }, "*");
-    }
-  });
+document.addEventListener("click", (e) => {
+  const a = e.target.closest("a");
+  if (!a) return;
+  const href = a.getAttribute("href") || "";
+  if (
+    href.startsWith("javascript:history.back") ||
+    href.endsWith(".html") ||
+    href.includes("index")
+  ) {
+    // 親ページに「タイトルまでスクロールして」と指示を送信
+    window.parent.postMessage({ type: "scrollToTitle", offset: 100 }, "*");
+  }
+});
 });
 </script>
 """
