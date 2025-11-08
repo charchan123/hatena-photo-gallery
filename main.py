@@ -214,6 +214,26 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 """
 
+# LightGalleryテストスクリプト
+LIGHTGALLERY_DEBUG = """
+<script>
+console.log("🧪 LightGalleryテスト開始");
+console.log("window.lightGallery =", window.lightGallery);
+console.log("typeof lightGallery =", typeof lightGallery);
+</script>
+
+<script>
+fetch('./lightgallery/lightgallery.min.js')
+  .then(r => r.text())
+  .then(code => {
+    console.log("📦 LightGallery 手動ロード開始");
+    eval(code);
+    console.log("✅ eval後 typeof lightGallery =", typeof lightGallery);
+  })
+  .catch(e => console.error("❌ 読み込みエラー:", e));
+</script>
+"""
+
 # ====== APIから全記事を取得 ======
 def fetch_hatena_articles_api():
     os.makedirs(ARTICLES_DIR, exist_ok=True)
@@ -330,7 +350,7 @@ def generate_gallery(entries):
         """
         # ここでタイル用のSTYLE_TAG / SCRIPT_TAG をそのまま足し、
         # さらに LightGallery の読み込み＆初期化スクリプトを追加します（タイルは触らない）
-        html += STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS
+        html += STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS + LIGHTGALLERY_DEBUG
         safe = safe_filename(alt)
         with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
             f.write(html)
@@ -348,14 +368,14 @@ def generate_gallery(entries):
             html += f'<li><a href="{safe}.html">{n}</a></li>'
         html += "</ul>"
         html += group_links_html
-        html += STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS
+        html += STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS + LIGHTGALLERY_DEBUG
         with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
     index = "<h2>五十音別分類</h2><ul>"
     for g in AIUO_GROUPS.keys():
         index += f'<li><a href="{safe_filename(g)}.html">{g}</a></li>'
-    index += "</ul>" + STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS
+    index += "</ul>" + STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS + LIGHTGALLERY_DEBUG
     with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
         f.write(index)
 
