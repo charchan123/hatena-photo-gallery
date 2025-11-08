@@ -331,7 +331,7 @@ def generate_gallery(entries):
         html += "</div>"
         html += """
         <div style='margin-top:40px; text-align:center;'>
-            <a href="#" style='text-decoration:none;color:#007acc;'>← 戻る</a>
+            <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
         """
         html += SCRIPT_STYLE_TAG
