@@ -170,3 +170,20 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+
+<script>
+console.log("🧪 LightGalleryテスト開始");
+console.log("window.lightGallery =", window.lightGallery);
+console.log("typeof lightGallery =", typeof lightGallery);
+</script>
+
+<script>
+fetch('./lightgallery/lightgallery.min.js')
+  .then(r => r.text())
+  .then(code => {
+    console.log("📦 LightGallery 手動ロード開始");
+    eval(code);
+    console.log("✅ eval後 typeof lightGallery =", typeof lightGallery);
+  })
+  .catch(e => console.error("❌ 読み込みエラー:", e));
+</script>
