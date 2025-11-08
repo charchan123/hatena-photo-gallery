@@ -208,28 +208,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const mo = new MutationObserver(sendHeight);
   mo.observe(document.body, { childList: true, subtree: true });
 
-// リンククリックで iframe トップまでスクロール
-document.addEventListener("click", (e) => {
-  const a = e.target.closest("a");
-  if (!a) return;
-
-  // 「戻る」や「〇行」など、ページ内移動リンク
-  if (
-    a.getAttribute("href") &&
-    (
-      a.getAttribute("href").startsWith("javascript:history.back()") ||
-      a.getAttribute("href").endsWith(".html")
-    )
-  ) {
-    // 親ページの iframe を探して位置を取得
-    const iframes = window.parent.document.querySelectorAll("iframe");
-    for (let iframe of iframes) {
-      if (iframe.contentWindow === window) {
-        const rect = iframe.getBoundingClientRect();
-        const top = window.parent.scrollY + rect.top;
-        window.parent.scrollTo({ top: top, behavior: "smooth" });
-        break;
-      }
+  // リンククリックでトップスクロール
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (a && a.getAttribute("href")) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   });
 });
