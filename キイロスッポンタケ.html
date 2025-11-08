@@ -1,22 +1,6 @@
-<h2>キイロスッポンタケ</h2><div class='gallery'>
-<img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525194355.jpg" alt="キイロスッポンタケ" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/">
-
-<img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525195222.jpg" alt="キイロスッポンタケ" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/">
-
-<img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525195533.jpg" alt="キイロスッポンタケ" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/">
-
-<img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525195643.jpg" alt="キイロスッポンタケ" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/">
-
-<img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525195850.jpg" alt="キイロスッポンタケ" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/">
-
-<img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525201938.jpg" alt="キイロスッポンタケ" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/">
-
-<img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525202426.jpg" alt="キイロスッポンタケ" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/">
-
-<img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525202609.jpg" alt="キイロスッポンタケ" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/">
-</div>
+<h2>キイロスッポンタケ</h2><div class='gallery'><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525194355.jpg" alt="キイロスッポンタケ" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525195222.jpg" alt="キイロスッポンタケ" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525195533.jpg" alt="キイロスッポンタケ" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525195643.jpg" alt="キイロスッポンタケ" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525195850.jpg" alt="キイロスッポンタケ" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525201938.jpg" alt="キイロスッポンタケ" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525202426.jpg" alt="キイロスッポンタケ" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525202609.jpg" alt="キイロスッポンタケ" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/"></div>
         <div style='margin-top:40px; text-align:center;'>
-          <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
+            <a href="#" style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
         <style>
 
@@ -164,87 +148,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ====== iframe高さ通信 ======
   function sendHeight() {
-    const height = document.body.scrollHeight;
-    window.parent.postMessage({ type: "setHeight", height }, "*");
-  }
-
-  // 初期送信＆数回再送
-  window.addEventListener("load", () => {
-    sendHeight();
-    setTimeout(sendHeight, 500);
-    setTimeout(sendHeight, 1500);
-    setTimeout(sendHeight, 3000);
-  });
-
-  // 親からの再リクエスト対応
-  window.addEventListener("message", (e) => {
-    if (e.data && e.data.type === "requestHeight") sendHeight();
-  });
-
-  // リサイズ・DOM変化監視
-  window.addEventListener("resize", sendHeight);
-  const mo = new MutationObserver(sendHeight);
-  mo.observe(document.body, { childList: true, subtree: true });
-});
-
-<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const gallery = document.querySelector(".gallery");
-  if (!gallery) return;
-
-  // ====== Fade-in Animation ======
-  const fadeObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add("visible");
-        fadeObs.unobserve(e.target);
-      }
-    });
-  }, {threshold: 0.1});
-
-  const imgs = gallery.querySelectorAll("img");
-  imgs.forEach(img => fadeObs.observe(img));
-
-  imagesLoaded(gallery, () => {
-    gallery.style.visibility = "visible";
-    sendHeight();
-  });
-
-  // ====== Lightbox ======
-  const lb = document.createElement("div");
-  lb.id = "lb-overlay";
-  lb.innerHTML = `
-    <span class="lb-close">&times;</span>
-    <img src="" alt="">
-    <div class="lb-caption"></div>
-    <a class="lb-link" href="#" target="_blank">元記事を見る</a>
-  `;
-  document.body.appendChild(lb);
-
-  const lbImg = lb.querySelector("img");
-  const lbCaption = lb.querySelector(".lb-caption");
-  const lbLink = lb.querySelector(".lb-link");
-  const lbClose = lb.querySelector(".lb-close");
-
-  imgs.forEach(img => {
-    img.addEventListener("click", () => {
-      lb.classList.add("show");
-      lbImg.src = img.src;
-      lbCaption.textContent = img.alt || "";
-      lbLink.href = img.dataset.url || "#";
-      sendHeight();
-    });
-  });
-
-  lbClose.addEventListener("click", () => lb.classList.remove("show"));
-  lb.addEventListener("click", e => {
-    if (e.target === lb) lb.classList.remove("show");
-  });
-
-  // ====== iframe高さ通信 ======
-  function sendHeight() {
     const height = document.documentElement.scrollHeight;
     window.parent.postMessage({ type: "setHeight", height: height }, "*");
   }
@@ -267,19 +170,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const mo = new MutationObserver(sendHeight);
   mo.observe(document.body, { childList: true, subtree: true });
 
-  // ====== リンククリックで親に「scrollTopRequest」を通知 ======
+  // ====== リンククリックでトップスクロール ======
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (a && a.getAttribute("href")) {
-      // ====== リンククリックで iframe 内トップにスクロール ======
-document.addEventListener("click", (e) => {
-  const a = e.target.closest("a");
-  if (a && a.getAttribute("href")) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-});
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   });
-});
 
+});
 </script>
