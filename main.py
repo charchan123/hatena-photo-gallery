@@ -161,6 +161,21 @@ document.addEventListener("DOMContentLoaded", () => {
       window.parent.postMessage({type:"scrollToTitle", offset:100}, "*");
     }
   });
+
+// ===== LightGallery スライドショー初期化 =====
+const galleryElem = document.querySelector('.gallery');
+if (galleryElem && typeof lightGallery === 'function') {
+  console.log('🎬 LightGallery 初期化開始');
+  lightGallery(galleryElem, {
+    plugins: [lgZoom, lgThumbnail],
+    speed: 500,
+    licenseKey: '0000-0000-000-0000',
+    download: false
+  });
+} else {
+  console.warn('⚠️ LightGallery 初期化失敗: 要素または関数が見つかりません');
+} 
+
 });
 </script>"""
 
