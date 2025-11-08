@@ -74,49 +74,54 @@ document.addEventListener("DOMContentLoaded", () => {
     }, {threshold:0.1});
     gallery.querySelectorAll("img").forEach(img=>fadeObs.observe(img));
 
-    imagesLoaded(gallery, ()=>{ gallery.style.visibility="visible"; sendHeight();
+    // imagesLoaded コールバック開始
+    imagesLoaded(gallery, () => {
+      gallery.style.visibility="visible";
+      sendHeight();
 
-  // ===== LightGallery 初期化 =====
-  if (typeof lightGallery === 'function') {
-    console.log('🎬 LightGallery 初期化開始 (imagesLoaded後)');
-    lightGallery(gallery, {
-      plugins: [lgZoom, lgThumbnail],
-      speed: 500,
-      licenseKey: '0000-0000-000-0000',
-      download: false
-    });
-  } else {
-    console.warn('⚠️ LightGallery 初期化失敗: 関数が見つかりません');
-  }
-});
+      // ===== LightGallery 初期化 =====
+      if (typeof lightGallery === 'function') {
+        console.log('🎬 LightGallery 初期化開始 (imagesLoaded後)');
+        lightGallery(gallery, {
+          plugins: [lgZoom, lgThumbnail],
+          speed: 500,
+          licenseKey: '0000-0000-000-0000',
+          download: false
+        });
+      } else {
+        console.warn('⚠️ LightGallery 初期化失敗: 関数が見つかりません');
+      }
 
-    const lb = document.createElement("div");
-    lb.id="lb-overlay";
-    lb.innerHTML=`
-      <span class="lb-close">&times;</span>
-      <img src="" alt="">
-      <div class="lb-caption"></div>
-      <a class="lb-link" href="#" target="_blank">元記事を見る</a>
-    `;
-    document.body.appendChild(lb);
+      // --- 簡易ライトボックス作成 ---
+      const lb = document.createElement("div");
+      lb.id="lb-overlay";
+      lb.innerHTML=`
+        <span class="lb-close">&times;</span>
+        <img src="" alt="">
+        <div class="lb-caption"></div>
+        <a class="lb-link" href="#" target="_blank">元記事を見る</a>
+      `;
+      document.body.appendChild(lb);
 
-    const lbImg = lb.querySelector("img");
-    const lbCaption = lb.querySelector(".lb-caption");
-    const lbLink = lb.querySelector(".lb-link");
-    const lbClose = lb.querySelector(".lb-close");
+      const lbImg = lb.querySelector("img");
+      const lbCaption = lb.querySelector(".lb-caption");
+      const lbLink = lb.querySelector(".lb-link");
+      const lbClose = lb.querySelector(".lb-close");
 
-    gallery.querySelectorAll("img").forEach(img=>{
-      img.addEventListener("click", ()=>{
-        lb.classList.add("show");
-        lbImg.src = img.src;
-        lbCaption.textContent = img.alt || "";
-        lbLink.href = img.dataset.url || "#";
-        sendHeight();
+      gallery.querySelectorAll("img").forEach(img=>{
+        img.addEventListener("click", ()=>{
+          lb.classList.add("show");
+          lbImg.src = img.src;
+          lbCaption.textContent = img.alt || "";
+          lbLink.href = img.dataset.url || "#";
+          sendHeight();
+        });
       });
-    });
 
-    lbClose.addEventListener("click", ()=>lb.classList.remove("show"));
-    lb.addEventListener("click", e=>{ if(e.target===lb) lb.classList.remove("show"); });
+      lbClose.addEventListener("click", ()=>lb.classList.remove("show"));
+      lb.addEventListener("click", e=>{ if(e.target===lb) lb.classList.remove("show"); });
+
+    }); // imagesLoaded コールバック終了
   }
 
   sendHeight();
@@ -136,6 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
       window.parent.postMessage({type:"scrollToTitle", offset:100}, "*");
     }
   });
+
 });
 </script>
 <!-- LightGallery (CSS/JS) -->
