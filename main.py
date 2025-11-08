@@ -164,85 +164,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>"""
 
-# LightGallery関連タグ（スライドショー機能完全対応）
-LIGHTGALLERY_TAGS = """
-<!-- LightGallery -->
-<link rel="stylesheet" href="https://unpkg.com/lightgallery@2.8.0/css/lightgallery-bundle.min.css">
-<script src="https://unpkg.com/lightgallery@2.8.0/lightgallery.umd.min.js"></script>
-<script src="https://unpkg.com/lightgallery@2.8.0/plugins/zoom/lg-zoom.umd.min.js"></script>
-<script src="https://unpkg.com/lightgallery@2.8.0/plugins/thumbnail/lg-thumbnail.umd.min.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const galleries = document.querySelectorAll('.gallery');
-  galleries.forEach(gallery => {
-    lightGallery(gallery, {
-      selector: 'a',
-      plugins: [lgZoom, lgThumbnail],
-      speed: 400,
-      thumbnail: true,
-      download: false,
-      zoom: true,
-      fullScreen: true,
-      actualSize: false,
-      slideShow: true,
-      autoplay: false,
-      mobileSettings: {
-        controls: true,
-        showCloseIcon: true,
-        download: false
-      }
-    });
-  });
-});
-</script>
-
-<style>
-/* ---- LightGallery + Masonry ---- */
-.gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-}
-
-.gallery a {
-    display: block;
-    position: relative;
-    flex: 1 1 calc(33.333% - 8px);
-    max-width: 300px;
-    overflow: hidden;
-}
-
-.gallery img {
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
-    cursor: zoom-in;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.gallery img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-/* LightGallery内の背景と矢印の色など */
-.lg-backdrop {
-    background: rgba(0, 0, 0, 0.9);
-}
-
-.lg-prev, .lg-next {
-    color: white !important;
-    font-size: 28px !important;
-}
-
-.lg-close {
-    color: white !important;
-    font-size: 26px !important;
-}
-</style>
-"""
-
 # ====== APIから全記事を取得 ======
 def fetch_hatena_articles_api():
     os.makedirs(ARTICLES_DIR, exist_ok=True)
@@ -329,18 +250,16 @@ def get_aiuo_group(name):
             return group
     return "その他"
 
-# ====== ギャラリー生成（LightGalleryスライド完全対応版） ======
+# ====== ギャラリー生成 ======
 def generate_gallery(entries):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     grouped = {}
     for e in entries:
         grouped.setdefault(e["alt"], []).append(e["src"])
 
-    # 五十音リンク
     group_links = " | ".join([f'<a href="{g}.html">{g}</a>' for g in AIUO_GROUPS.keys()])
     group_links_html = f"<div style='margin-top:40px; text-align:center;'>{group_links}</div>"
 
-    # ファイル名安全化
     def safe_filename(name):
         name = re.sub(r'[:<>\"|*?\\/\r\n]', '_', name)
         name = name.strip()
@@ -348,30 +267,22 @@ def generate_gallery(entries):
             name = "unnamed"
         return name
 
-    # ==== 各ページ生成 ====
     for alt, imgs in grouped.items():
         html = f"<h2>{alt}</h2><div class='gallery'>"
         for src in imgs:
             article_url = f"https://{HATENA_BLOG_ID}.hatena.blog/"
-            # LightGallery用に必ず<a>で囲む
-            html += f'<a href="{src}" data-sub-html="<h4>{alt}</h4><p>{article_url}</p>"><img src="{src}" alt="{alt}" loading="lazy"></a>'
+            html += f'<img src="{src}" alt="{alt}" loading="lazy" data-url="{article_url}">'
         html += "</div>"
-
-        # 戻るリンク
         html += """
         <div style='margin-top:40px; text-align:center;'>
             <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
         """
-
-        # スタイル・スクリプト統合
-        html += STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS
-
+        html += STYLE_TAG + SCRIPT_TAG
         safe = safe_filename(alt)
         with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
-    # ==== 五十音別ページ ====
     aiuo_dict = {k: [] for k in AIUO_GROUPS.keys()}
     for alt in grouped.keys():
         g = get_aiuo_group(alt)
@@ -383,20 +294,20 @@ def generate_gallery(entries):
         for n in sorted(names):
             safe = safe_filename(n)
             html += f'<li><a href="{safe}.html">{n}</a></li>'
-        html += "</ul>" + group_links_html
-        html += STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS
+        html += "</ul>"
+        html += group_links_html
+        html += STYLE_TAG + SCRIPT_TAG
         with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
-    # ==== index.html ====
     index = "<h2>五十音別分類</h2><ul>"
     for g in AIUO_GROUPS.keys():
         index += f'<li><a href="{safe_filename(g)}.html">{g}</a></li>'
-    index += "</ul>" + STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS
+    index += "</ul>" + STYLE_TAG + SCRIPT_TAG
     with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
         f.write(index)
 
-    print("✅ ギャラリーページ生成完了（LightGalleryスライド対応）")
+    print("✅ ギャラリーページ生成完了")
 
 # ====== メイン ======
 if __name__ == "__main__":
