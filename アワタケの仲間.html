@@ -59,6 +59,21 @@ document.addEventListener("DOMContentLoaded", () => {
       gallery.style.visibility="visible";
       sendHeight();
 
+      // ===== LightGallery 初期化 =====
+      if (typeof lightGallery === 'function') {
+        console.log('🎬 LightGallery 初期化開始 (imagesLoaded後)');
+        lightGallery(gallery, {
+          plugins: [lgZoom, lgThumbnail],
+          speed: 500,
+          licenseKey: '0000-0000-000-0000',
+          download: false,
+          thumbnail: true,
+          zoom: true,
+        });
+      } else {
+        console.warn('⚠️ LightGallery 初期化失敗: 関数が見つかりません');
+      }
+
     }); // imagesLoaded コールバック終了
   }
 
