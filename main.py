@@ -73,26 +73,6 @@ body {
 @media (max-width: 480px) {
   .gallery { column-count: 1; }
 }
-
-/* Lightbox (既存ローカル簡易ライトボックス用) */
-#lb-overlay {
-  position: fixed;
-  top:0; left:0;
-  width:100vw; height:100vh;
-  background: rgba(0,0,0,0.9);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  visibility:hidden;
-  opacity:0;
-  transition: opacity 0.3s ease;
-  z-index:9999;
-}
-#lb-overlay.show { visibility:visible; opacity:1; }
-#lb-overlay img { max-width:90%; max-height:80vh; border-radius:6px; box-shadow:0 0 10px rgba(0,0,0,0.8);}
-#lb-overlay .lb-caption { position:absolute; top:20px; left:20px; color:#fff; font-size:16px; }
-#lb-overlay .lb-link { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); color:#ccc; font-size:14px; text-decoration:underline; }
-#lb-overlay .lb-close { position:absolute; top:20px; right:30px; color:#fff; font-size:28px; cursor:pointer; }
 </style>"""
 
 # ====== 共通スクリプト ======
@@ -131,42 +111,11 @@ document.addEventListener("DOMContentLoaded", () => {
         console.warn('⚠️ LightGallery 初期化失敗: 関数が見つかりません');
       }
 
-      // --- 簡易ライトボックス作成 ---
-      const lb = document.createElement("div");
-      lb.id="lb-overlay";
-      lb.innerHTML=`
-        <span class="lb-close">&times;</span>
-        <img src="" alt="">
-        <div class="lb-caption"></div>
-        <a class="lb-link" href="#" target="_blank">元記事を見る</a>
-      `;
-      document.body.appendChild(lb);
-
-      const lbImg = lb.querySelector("img");
-      const lbCaption = lb.querySelector(".lb-caption");
-      const lbLink = lb.querySelector(".lb-link");
-      const lbClose = lb.querySelector(".lb-close");
-
-      gallery.querySelectorAll("img").forEach(img=>{
-        img.addEventListener("click", ()=>{
-          lb.classList.add("show");
-          lbImg.src = img.src;
-          lbCaption.textContent = img.alt || "";
-          lbLink.href = img.dataset.url || "#";
-          sendHeight();
-        });
-      });
-
-      lbClose.addEventListener("click", ()=>lb.classList.remove("show"));
-      lb.addEventListener("click", e=>{ if(e.target===lb) lb.classList.remove("show"); });
-
     }); // imagesLoaded コールバック終了
   }
 
   sendHeight();
-  window.addEventListener("load", ()=>{
-    sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); setTimeout(sendHeight,4000);
-  });
+  window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); setTimeout(sendHeight,4000); });
   window.addEventListener("message", e=>{ if(e.data?.type==="requestHeight") sendHeight(); });
   window.addEventListener("resize", sendHeight);
   new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true});
@@ -180,11 +129,10 @@ document.addEventListener("DOMContentLoaded", () => {
       window.parent.postMessage({type:"scrollToTitle", offset:100}, "*");
     }
   });
-
 });
 </script>"""
 
-# ====== LightGallery タグ（**タイルは触らず、クリック時に動的にスライドを開く方式**）=====
+# ====== LightGallery タグ ======
 LIGHTGALLERY_TAGS = """
 <!-- LightGallery (CSS/JS) -->
 <link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
@@ -200,8 +148,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (imgs.length === 0) return;
 
     const items = imgs.map(img => ({
-      src: img.src,             // メイン画像URL
-      thumb: img.src,           // サムネイルも同じURL（必要なら別URLに変更）
+      src: img.src,
+      thumb: img.src,
       subHtml: `<h4>${(img.alt || '').replace(/"/g,'&quot;')}</h4>`
     }));
 
@@ -214,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
           index: idx,
           plugins: [lgZoom, lgThumbnail],
           speed: 400,
-          thumbnail: true,   // サムネイル表示有効
+          thumbnail: true,
           download: false,
           zoom: true,
           fullScreen: true,
@@ -234,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 """
 
-# LightGalleryテストスクリプト
+# ====== LightGallery デバッグ ======
 LIGHTGALLERY_DEBUG = """
 <script>
 console.log("🧪 LightGalleryテスト開始");
@@ -368,8 +316,6 @@ def generate_gallery(entries):
             <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
         """
-        # ここでタイル用のSTYLE_TAG / SCRIPT_TAG をそのまま足し、
-        # さらに LightGallery の読み込み＆初期化スクリプトを追加します（タイルは触らない）
         html += STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS + LIGHTGALLERY_DEBUG
         safe = safe_filename(alt)
         with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
