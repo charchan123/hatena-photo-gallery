@@ -26,25 +26,25 @@ jobs:
           HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
         run: python main.py
 
-      - name: Deploy to GitHub Pages (keep fonts/images)
+      - name: Prepare gh-pages branch
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          # gh-pages ブランチに切り替え
           git fetch origin gh-pages
-          git checkout gh-pages
-          git pull origin gh-pages
+          mkdir gh-pages
+          cd gh-pages
+          git init
+          git remote add origin https://github.com/${{ github.repository }}.git
+          git fetch origin gh-pages
+          git checkout gh-pages || git checkout --orphan gh-pages
+          cd ..
 
-          # fonts と images を output にコピー（存在すれば）
-          cp -r fonts ./output/fonts || true
-          cp -r images ./output/images || true
+      - name: Copy static assets to output
+        run: |
+          cp -r gh-pages/fonts output/fonts || true
+          cp -r gh-pages/images output/images || true
+          cp -r gh-pages/lightgallery output/lightgallery || true
 
-          # output の内容をステージング
-          git add -A ./output
-
-          # コミット
-          git commit -m "Update photo gallery" || echo "Nothing to commit"
-
-          # push
-          git push origin gh-pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
