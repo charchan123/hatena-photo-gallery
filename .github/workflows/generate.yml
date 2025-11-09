@@ -26,14 +26,25 @@ jobs:
           HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
         run: python main.py
 
-      - name: Upload generated HTML as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: photo-gallery-html
-          path: ./output/*.html   # main.py が output に生成する HTML を想定      
+      - name: Deploy to GitHub Pages (keep fonts/images)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./output
+          # gh-pages ブランチに切り替え
+          git fetch origin gh-pages
+          git checkout gh-pages
+          git pull origin gh-pages
+
+          # fonts と images を output にコピー（存在すれば）
+          cp -r fonts ./output/fonts || true
+          cp -r images ./output/images || true
+
+          # output の内容をステージング
+          git add -A ./output
+
+          # コミット
+          git commit -m "Update photo gallery" || echo "Nothing to commit"
+
+          # push
+          git push origin gh-pages
