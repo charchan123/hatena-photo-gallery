@@ -59,19 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
       gallery.style.visibility="visible";
       sendHeight();
 
-      // ===== LightGallery 初期化 =====
-      if (typeof lightGallery === 'function') {
-        console.log('🎬 LightGallery 初期化開始 (imagesLoaded後)');
-        lightGallery(gallery, {
-          plugins: [lgZoom, lgThumbnail],
-          speed: 500,
-          licenseKey: '0000-0000-000-0000',
-          download: false
-        });
-      } else {
-        console.warn('⚠️ LightGallery 初期化失敗: 関数が見つかりません');
-      }
-
     }); // imagesLoaded コールバック終了
   }
 
@@ -106,21 +93,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (imgs.length === 0) return;
 
     const items = imgs.map(img => ({
-      src: img.src,
-      thumb: img.src,
+      src: img.src,             // メイン画像URL（はてなCDN等の絶対URL）
+      thumb: img.src,           // サムネイルも同じURL（必要なら別URLに変更）
       subHtml: `<h4>${(img.alt || '').replace(/"/g,'&quot;')}</h4>`
     }));
 
     imgs.forEach((img, idx) => {
       img.style.cursor = 'zoom-in';
       img.addEventListener('click', () => {
-        lightGallery(gallery, {
-          dynamic: false,
+        // <-- dynamic:true に変更。ターゲットは document.body が安定動作します
+        lightGallery(document.body, {
+          dynamic: true,            // ← ここを true にする
           dynamicEl: items,
           index: idx,
           plugins: [lgZoom, lgThumbnail],
           speed: 400,
-          thumbnail: true,
+          thumbnail: true,          // サムネイル有効
           download: false,
           zoom: true,
           fullScreen: true,
