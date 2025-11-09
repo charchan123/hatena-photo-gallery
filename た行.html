@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
     imgs.forEach((img, idx) => {
       img.style.cursor = 'zoom-in';
       img.addEventListener('click', () => {
-        lightGallery(document.body, {
+        lightGallery(gallery, {
           dynamic: true,
           dynamicEl: items,
           index: idx,
