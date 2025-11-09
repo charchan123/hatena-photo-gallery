@@ -188,20 +188,20 @@ document.addEventListener("DOMContentLoaded", () => {
 LIGHTGALLERY_TAGS = """
 <!-- LightGallery (CSS/JS) -->
 <link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
+<link rel="stylesheet" href="./lightgallery/lg-thumbnail.css">
 <script type="text/javascript" src="./lightgallery/lightgallery.min.js"></script>
 <script type="text/javascript" src="./lightgallery/lg-zoom.min.js"></script>
 <script type="text/javascript" src="./lightgallery/lg-thumbnail.min.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("window.lightGallery =", window.lightGallery);
-    console.log("typeof lightGallery =", typeof lightGallery);
   document.querySelectorAll('.gallery').forEach(gallery => {
     const imgs = Array.from(gallery.querySelectorAll('img'));
     if (imgs.length === 0) return;
+
     const items = imgs.map(img => ({
-      src: img.src,
-      thumb: img.src,
+      src: img.src,             // メイン画像URL
+      thumb: img.src,           // サムネイルも同じURL（必要なら別URLに変更）
       subHtml: `<h4>${(img.alt || '').replace(/"/g,'&quot;')}</h4>`
     }));
 
@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
           index: idx,
           plugins: [lgZoom, lgThumbnail],
           speed: 400,
-          thumbnail: true,
+          thumbnail: true,   // サムネイル表示有効
           download: false,
           zoom: true,
           fullScreen: true,
