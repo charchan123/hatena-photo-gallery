@@ -209,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
       img.style.cursor = 'zoom-in';
       img.addEventListener('click', () => {
         lightGallery(gallery, {
-          dynamic: true,
+          dynamic: false,
           dynamicEl: items,
           index: idx,
           plugins: [lgZoom, lgThumbnail],
