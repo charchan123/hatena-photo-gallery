@@ -185,6 +185,13 @@ document.addEventListener("DOMContentLoaded", () => {
             download: false
           }
         });
+
+        // ===== 自動フルスク解除 =====
+galleryInstance = lightGallery(...);  // ← 既存のあなたの初期化部分
+
+galleryInstance.on('lgAfterSlide', (event) => {
+  const index = event.detail.index;
+  const total = event.detail.instance.galleryItems.length;
       });
     });
   });
