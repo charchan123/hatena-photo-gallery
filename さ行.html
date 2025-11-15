@@ -54,6 +54,22 @@ document.addEventListener("DOMContentLoaded", () => {
     imagesLoaded(gallery, () => {
       gallery.style.visibility="visible";
       sendHeight();
+
+      // ===== LightGallery 初期化 =====
+      if (typeof lightGallery === 'function') {
+        console.log('🎬 LightGallery 初期化開始 (imagesLoaded後)');
+        lightGallery(gallery, {
+          plugins: [lgZoom, lgThumbnail],
+          speed: 500,
+          licenseKey: '0000-0000-000-0000',
+          download: false,
+          thumbnail: true,
+          zoom: true,
+        });
+      } else {
+        console.warn('⚠️ LightGallery 初期化失敗: 関数が見つかりません');
+      }
+
     }); // imagesLoaded コールバック終了
   }
 
@@ -118,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
           thumbnail: true,
           download: false,
           zoom: true,
-          fullScreen: false,     // ← LightGallery側のフルスクリーン機能は OFF（競合防止）
+          fullScreen: true,
           actualSize: false,
           slideShow: true,
           autoplay: false,
@@ -143,13 +159,11 @@ document.addEventListener("DOMContentLoaded", () => {
             ESC でフルスクリーン解除時
             ギャラリーも閉じる
         ========================== */
-        const escListener = () => {
+        document.addEventListener('fullscreenchange', () => {
           if (!document.fullscreenElement) {
             try { galleryInstance.closeGallery(); } catch(e) {}
-            document.removeEventListener('fullscreenchange', escListener);
           }
-        };
-        document.addEventListener('fullscreenchange', escListener);
+        });
 
       });
     });
