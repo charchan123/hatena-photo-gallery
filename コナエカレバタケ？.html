@@ -115,41 +115,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
     imgs.forEach((img, idx) => {
       img.style.cursor = 'zoom-in';
+
       img.addEventListener('click', () => {
 
-        // ★ 追加: LightGalleryを開く前に Fullscreen API を叩く
+        /* =========================
+            フルスクリーン突入
+        ========================== */
         const el = document.documentElement;
         if (el.requestFullscreen) el.requestFullscreen();
         else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
         else if (el.msRequestFullscreen) el.msRequestFullscreen();
 
-// LightGalleryインスタンス作成
-const gallery = lightGallery(document.body, {
-  dynamic: true,
-  dynamicEl: items,
-  index: idx,
-  plugins: [lgZoom, lgThumbnail],
-  speed: 400,
-  thumbnail: true,
-  download: false,
-  zoom: true,
-  fullScreen: true,
-  actualSize: false,
-  slideShow: true,
-  autoplay: false,
-  mobileSettings: {
-    controls: true,
-    showCloseIcon: true,
-    download: false
-  }
-});
+        /* =========================
+            LightGallery 起動
+        ========================== */
+        const galleryInstance = lightGallery(document.body, {
+          dynamic: true,
+          dynamicEl: items,
+          index: idx,
+          plugins: [lgZoom, lgThumbnail],
+          speed: 400,
+          thumbnail: true,
+          download: false,
+          zoom: true,
+          fullScreen: true,
+          actualSize: false,
+          slideShow: true,
+          autoplay: false,
+          mobileSettings: {
+            controls: true,
+            showCloseIcon: true,
+            download: false
+          }
+        });
 
-// LightGalleryが閉じられたらフルスクリーン解除
-gallery.on('lgAfterClose', () => {
-  if (document.fullscreenElement) {
-    document.exitFullscreen().catch(() => {});
-  }
-});
+        /* =========================
+            ギャラリーが閉じたら
+            フルスクリーン解除
+        ========================== */
+        galleryInstance.on('lgAfterClose', () => {
+          if (document.fullscreenElement) {
+            document.exitFullscreen().catch(()=>{});
+          }
+        });
+
+        /* =========================
+            ESC でフルスクリーン解除時
+            ギャラリーも閉じる
+        ========================== */
+        document.addEventListener('fullscreenchange', () => {
+          if (!document.fullscreenElement) {
+            try { galleryInstance.closeGallery(); } catch(e) {}
+          }
+        });
+
       });
     });
   });
