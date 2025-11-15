@@ -165,33 +165,33 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
         else if (el.msRequestFullscreen) el.msRequestFullscreen();
 
-        // dynamic:true 起動
-        lightGallery(document.body, {
-          dynamic: true,
-          dynamicEl: items,
-          index: idx,
-          plugins: [lgZoom, lgThumbnail],
-          speed: 400,
-          thumbnail: true,
-          download: false,
-          zoom: true,
-          fullScreen: true,
-          actualSize: false,
-          slideShow: true,
-          autoplay: false,
-          mobileSettings: {
-            controls: true,
-            showCloseIcon: true,
-            download: false
-          }
-        });
+// LightGalleryインスタンス作成
+const gallery = lightGallery(document.body, {
+  dynamic: true,
+  dynamicEl: items,
+  index: idx,
+  plugins: [lgZoom, lgThumbnail],
+  speed: 400,
+  thumbnail: true,
+  download: false,
+  zoom: true,
+  fullScreen: true,
+  actualSize: false,
+  slideShow: true,
+  autoplay: false,
+  mobileSettings: {
+    controls: true,
+    showCloseIcon: true,
+    download: false
+  }
+});
 
-        // ===== 自動フルスク解除 =====
-galleryInstance = lightGallery(...);  // ← 既存のあなたの初期化部分
-
-galleryInstance.on('lgAfterSlide', (event) => {
-  const index = event.detail.index;
-  const total = event.detail.instance.galleryItems.length;
+// LightGalleryが閉じられたらフルスクリーン解除
+gallery.on('lgAfterClose', () => {
+  if (document.fullscreenElement) {
+    document.exitFullscreen().catch(() => {});
+  }
+});
       });
     });
   });
