@@ -136,15 +136,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 # ====== LightGallery タグ ======
 LIGHTGALLERY_TAGS = """
-<!-- LightGallery (CSS/JS) -->
 <link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
 <link rel="stylesheet" href="./lightgallery/lg-thumbnail.css">
-<script type="text/javascript" src="./lightgallery/lightgallery.min.js"></script>
-<script type="text/javascript" src="./lightgallery/lg-zoom.min.js"></script>
-<script type="text/javascript" src="./lightgallery/lg-thumbnail.min.js"></script>
+
+<script src="./lightgallery/lightgallery.min.js"></script>
+<script src="./lightgallery/lg-zoom.min.js"></script>
+<script src="./lightgallery/lg-thumbnail.min.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+
   document.querySelectorAll('.gallery').forEach(gallery => {
     const imgs = Array.from(gallery.querySelectorAll('img'));
     if (imgs.length === 0) return;
@@ -159,58 +160,44 @@ document.addEventListener("DOMContentLoaded", () => {
       img.style.cursor = 'zoom-in';
 
       img.addEventListener('click', () => {
+        // 新規タブを開く
+        const newWindow = window.open("", "_blank");
 
-        /* =========================
-            フルスクリーン突入
-        ========================== */
-        const el = document.documentElement;
-        if (el.requestFullscreen) el.requestFullscreen();
-        else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
-        else if (el.msRequestFullscreen) el.msRequestFullscreen();
+        if (!newWindow) return;
 
-        /* =========================
-            LightGallery 起動
-        ========================== */
-        const galleryInstance = lightGallery(document.body, {
-          dynamic: true,
-          dynamicEl: items,
-          index: idx,
-          plugins: [lgZoom, lgThumbnail],
-          speed: 400,
-          thumbnail: true,
-          download: false,
-          zoom: true,
-          fullScreen: true,
-          actualSize: false,
-          slideShow: true,
-          autoplay: false,
-          mobileSettings: {
-            controls: true,
-            showCloseIcon: true,
-            download: false
-          }
-        });
-
-        /* =========================
-            ギャラリーが閉じたら
-            フルスクリーン解除
-        ========================== */
-        galleryInstance.on('lgAfterClose', () => {
-          if (document.fullscreenElement) {
-            document.exitFullscreen().catch(()=>{});
-          }
-        });
-
-        /* =========================
-            ESC でフルスクリーン解除時
-            ギャラリーも閉じる
-        ========================== */
-        document.addEventListener('fullscreenchange', () => {
-          if (!document.fullscreenElement) {
-            try { galleryInstance.closeGallery(); } catch(e) {}
-          }
-        });
-
+        const galleryHtml = `
+          <html>
+          <head>
+            <link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
+            <link rel="stylesheet" href="./lightgallery/lg-thumbnail.css">
+            <script src="./lightgallery/lightgallery.min.js"></script>
+            <script src="./lightgallery/lg-zoom.min.js"></script>
+            <script src="./lightgallery/lg-thumbnail.min.js"></script>
+          </head>
+          <body>
+            <div id="lg-container"></div>
+            <script>
+              const lgContainer = document.getElementById('lg-container');
+              lightGallery(lgContainer, {
+                dynamic: true,
+                dynamicEl: ${JSON.stringify(items)},
+                index: ${idx},
+                plugins: [lgZoom, lgThumbnail],
+                speed: 400,
+                thumbnail: true,
+                download: false,
+                zoom: true,
+                fullScreen: true,
+                actualSize: false,
+                slideShow: true,
+                autoplay: false
+              });
+            </script>
+          </body>
+          </html>
+        `;
+        newWindow.document.write(galleryHtml);
+        newWindow.document.close();
       });
     });
   });
