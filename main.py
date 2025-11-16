@@ -319,7 +319,7 @@ def get_aiuo_group(name):
             return group
     return "その他"
 
-# ====== ギャラリー生成 ======
+# ====== ギャラリー生成（差し替え版） ======
 def generate_gallery(entries):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     grouped = {}
@@ -336,6 +336,7 @@ def generate_gallery(entries):
             name = "unnamed"
         return name
 
+    # ====== 各ギャラリーページ生成 ======
     for alt, imgs in grouped.items():
         html = f"<h2>{alt}</h2><div class='gallery'>"
         for src in imgs:
@@ -347,11 +348,67 @@ def generate_gallery(entries):
             <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
         """
-        html += STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS + LIGHTGALLERY_DEBUG
+        html += STYLE_TAG
+
+        # ====== 差し替え LightGallery スクリプト ======
+        html += """
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const gallery = document.querySelector(".gallery");
+  if (!gallery) return;
+
+  imagesLoaded(gallery, () => {
+    console.log("🧪 imagesLoaded 完了");
+
+    const imgs = Array.from(gallery.querySelectorAll("img"));
+    const items = imgs.map(img => {
+      const absUrl = img.src.startsWith("http") ? img.src : location.origin + "/" + img.src.replace(/^\\.\\/+/, "");
+      return {
+        src: absUrl,
+        thumb: absUrl,
+        subHtml: `<h4>${(img.alt||'').replace(/"/g,'&quot;')}</h4>`
+      };
+    });
+
+    console.log("LightGallery items:", items);
+
+    function initGallery() {
+      if (typeof lightGallery !== "function") {
+        console.warn("⚠️ lightGallery 未ロード。リトライ...");
+        setTimeout(initGallery, 300);
+        return;
+      }
+
+      lightGallery(gallery, {
+        dynamic: true,
+        dynamicEl: items,
+        plugins: [lgZoom, lgThumbnail],
+        thumbnail: true,
+        zoom: true,
+        download: false,
+        speed: 400,
+        fullScreen: true,
+        actualSize: false
+      });
+
+      console.log("✅ LightGallery 初期化完了");
+    }
+
+    initGallery();
+  });
+});
+</script>
+"""
+
+        # LightGallery CSS/JS は従来通り
+        html += LIGHTGALLERY_TAGS + LIGHTGALLERY_DEBUG
+
         safe = safe_filename(alt)
         with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
+    # ====== 五十音別ページ生成部分は従来通り ======
     aiuo_dict = {k: [] for k in AIUO_GROUPS.keys()}
     for alt in grouped.keys():
         g = get_aiuo_group(alt)
@@ -365,14 +422,14 @@ def generate_gallery(entries):
             html += f'<li><a href="{safe}.html">{n}</a></li>'
         html += "</ul>"
         html += group_links_html
-        html += STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS + LIGHTGALLERY_DEBUG
+        html += STYLE_TAG + LIGHTGALLERY_TAGS + LIGHTGALLERY_DEBUG
         with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
     index = "<h2>五十音別分類</h2><ul>"
     for g in AIUO_GROUPS.keys():
         index += f'<li><a href="{safe_filename(g)}.html">{g}</a></li>'
-    index += "</ul>" + STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS + LIGHTGALLERY_DEBUG
+    index += "</ul>" + STYLE_TAG + LIGHTGALLERY_TAGS + LIGHTGALLERY_DEBUG
     with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
         f.write(index)
 
