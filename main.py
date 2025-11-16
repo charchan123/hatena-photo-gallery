@@ -208,12 +208,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
           });
         }
-
       });
     });
-
   });
-
 });
 </script>
 """
