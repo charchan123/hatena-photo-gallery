@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>"""
 
-# ====== LightGallery タグ（改良版） ======
+# ====== LightGallery タグ（修正版） ======
 LIGHTGALLERY_TAGS = """
 <link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
 <link rel="stylesheet" href="./lightgallery/lg-thumbnail.css">
@@ -151,10 +151,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const imgs = Array.from(gallery.querySelectorAll('img'));
     if (imgs.length === 0) return;
 
-    // ダミーの LightGallery 専用DOM
-    const lgContainer = document.createElement("div");
-    lgContainer.id = "lg-container";
-    document.body.appendChild(lgContainer);
+    // ダミーの LightGallery 専用DOM（1つだけ作る）
+    let lgContainer = document.getElementById("lg-container");
+    if (!lgContainer) {
+      lgContainer = document.createElement("div");
+      lgContainer.id = "lg-container";
+      document.body.appendChild(lgContainer);
+    }
 
     const items = imgs.map(img => ({
       src: img.src,
@@ -173,8 +176,8 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
         else if (el.msRequestFullscreen) el.msRequestFullscreen();
 
-        /* --- LightGallery 起動（dynamicモード） --- */
-        const galleryInstance = lightGallery(lgContainer, {
+        /* --- LightGallery 起動（dynamic モード） --- */
+        lightGallery(lgContainer, {
           dynamic: true,
           dynamicEl: items,
           index: idx,
@@ -188,31 +191,14 @@ document.addEventListener("DOMContentLoaded", () => {
           slideShow: true,
           autoplay: false,
           addClass: 'lg-dynamic',
-          // ×ボタンで閉じた時にフルスクリーン解除
-          onAfterClose: () => {
-            console.log('✅ lgAfterClose 発火');
+          // ×ボタンやESCで閉じた後の処理
+          onCloseAfter: () => {
+            console.log('✅ gallery closed');
             if (document.fullscreenElement) {
               document.exitFullscreen().catch(()=>{});
             }
           }
         });
-
-        /* --- ESCでフルスクリーン解除されたらLGも閉じる --- */
-        if (!window.__lgFullscreenHandlerAdded) {
-          window.__lgFullscreenHandlerAdded = true;
-          document.addEventListener('fullscreenchange', () => {
-            if (!document.fullscreenElement) {
-              try {
-                if (lgContainer.classList.contains('lg-dynamic')) {
-                  galleryInstance.closeGallery();
-                  console.log('✅ ESCでGallery閉じた');
-                }
-              } catch(e) {
-                console.error(e);
-              }
-            }
-          });
-        }
       });
     });
   });
