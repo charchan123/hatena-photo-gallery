@@ -145,40 +145,32 @@ LIGHTGALLERY_TAGS = """
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const blogBase = "https://{{HATENA_BLOG_ID}}.hatena.blog/"; // ここは実際のブログIDに置き換え
-
   document.querySelectorAll('.gallery').forEach(gallery => {
     const imgs = Array.from(gallery.querySelectorAll('img'));
     if (imgs.length === 0) return;
 
-    const items = imgs.map(img => {
-      let src = img.getAttribute('src');
-      let thumb = src;
-
-      // 相対URLなら絶対URLに変換
-      if (!src.startsWith('http')) {
-        src = blogBase + src.replace(/^\/+/, '');
-        thumb = src;
-      }
-
-      return {
-        src: src,
-        thumb: thumb,
-        subHtml: `<h4>${(img.alt || '').replace(/"/g,'&quot;')}</h4>`
-      };
-    });
+    const items = imgs.map(img => ({
+      src: img.src,
+      thumb: img.src,
+      subHtml: `<h4>${(img.alt || '').replace(/"/g,'&quot;')}</h4>`
+    }));
 
     imgs.forEach((img, idx) => {
       img.style.cursor = 'zoom-in';
 
       img.addEventListener('click', () => {
-        // フルスクリーン
+
+        /* =========================
+            フルスクリーン突入
+        ========================== */
         const el = document.documentElement;
         if (el.requestFullscreen) el.requestFullscreen();
         else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
         else if (el.msRequestFullscreen) el.msRequestFullscreen();
 
-        // LightGallery 起動
+        /* =========================
+            LightGallery 起動
+        ========================== */
         const galleryInstance = lightGallery(document.body, {
           dynamic: true,
           dynamicEl: items,
@@ -192,20 +184,33 @@ document.addEventListener("DOMContentLoaded", () => {
           actualSize: false,
           slideShow: true,
           autoplay: false,
-          mobileSettings: { controls: true, showCloseIcon: true, download: false }
+          mobileSettings: {
+            controls: true,
+            showCloseIcon: true,
+            download: false
+          }
         });
 
-        // ギャラリー閉じたらフルスクリーン解除
+        /* =========================
+            ギャラリーが閉じたら
+            フルスクリーン解除
+        ========================== */
         galleryInstance.on('lgAfterClose', () => {
-          if (document.fullscreenElement) document.exitFullscreen().catch(()=>{});
+          if (document.fullscreenElement) {
+            document.exitFullscreen().catch(()=>{});
+          }
         });
 
-        // ESC でフルスクリーン解除時、ギャラリーも閉じる
+        /* =========================
+            ESC でフルスクリーン解除時
+            ギャラリーも閉じる
+        ========================== */
         document.addEventListener('fullscreenchange', () => {
           if (!document.fullscreenElement) {
             try { galleryInstance.closeGallery(); } catch(e) {}
           }
         });
+
       });
     });
   });
@@ -319,7 +324,7 @@ def get_aiuo_group(name):
             return group
     return "その他"
 
-# ====== ギャラリー生成（差し替え版） ======
+# ====== ギャラリー生成 ======
 def generate_gallery(entries):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     grouped = {}
@@ -336,7 +341,6 @@ def generate_gallery(entries):
             name = "unnamed"
         return name
 
-    # ====== 各ギャラリーページ生成 ======
     for alt, imgs in grouped.items():
         html = f"<h2>{alt}</h2><div class='gallery'>"
         for src in imgs:
@@ -348,67 +352,11 @@ def generate_gallery(entries):
             <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
         """
-        html += STYLE_TAG
-
-        # ====== 差し替え LightGallery スクリプト ======
-        html += """
-<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const gallery = document.querySelector(".gallery");
-  if (!gallery) return;
-
-  imagesLoaded(gallery, () => {
-    console.log("🧪 imagesLoaded 完了");
-
-    const imgs = Array.from(gallery.querySelectorAll("img"));
-    const items = imgs.map(img => {
-      const absUrl = img.src.startsWith("http") ? img.src : location.origin + "/" + img.src.replace(/^\\.\\/+/, "");
-      return {
-        src: absUrl,
-        thumb: absUrl,
-        subHtml: `<h4>${(img.alt||'').replace(/"/g,'&quot;')}</h4>`
-      };
-    });
-
-    console.log("LightGallery items:", items);
-
-    function initGallery() {
-      if (typeof lightGallery !== "function") {
-        console.warn("⚠️ lightGallery 未ロード。リトライ...");
-        setTimeout(initGallery, 300);
-        return;
-      }
-
-      lightGallery(gallery, {
-        dynamic: true,
-        dynamicEl: items,
-        plugins: [lgZoom, lgThumbnail],
-        thumbnail: true,
-        zoom: true,
-        download: false,
-        speed: 400,
-        fullScreen: true,
-        actualSize: false
-      });
-
-      console.log("✅ LightGallery 初期化完了");
-    }
-
-    initGallery();
-  });
-});
-</script>
-"""
-
-        # LightGallery CSS/JS は従来通り
-        html += LIGHTGALLERY_TAGS + LIGHTGALLERY_DEBUG
-
+        html += STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS + LIGHTGALLERY_DEBUG
         safe = safe_filename(alt)
         with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
-    # ====== 五十音別ページ生成部分は従来通り ======
     aiuo_dict = {k: [] for k in AIUO_GROUPS.keys()}
     for alt in grouped.keys():
         g = get_aiuo_group(alt)
@@ -422,14 +370,14 @@ document.addEventListener("DOMContentLoaded", () => {
             html += f'<li><a href="{safe}.html">{n}</a></li>'
         html += "</ul>"
         html += group_links_html
-        html += STYLE_TAG + LIGHTGALLERY_TAGS + LIGHTGALLERY_DEBUG
+        html += STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS + LIGHTGALLERY_DEBUG
         with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
     index = "<h2>五十音別分類</h2><ul>"
     for g in AIUO_GROUPS.keys():
         index += f'<li><a href="{safe_filename(g)}.html">{g}</a></li>'
-    index += "</ul>" + STYLE_TAG + LIGHTGALLERY_TAGS + LIGHTGALLERY_DEBUG
+    index += "</ul>" + STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS + LIGHTGALLERY_DEBUG
     with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
         f.write(index)
 
