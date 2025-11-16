@@ -103,32 +103,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+  const blogBase = "https://{{HATENA_BLOG_ID}}.hatena.blog/"; // ここは実際のブログIDに置き換え
+
   document.querySelectorAll('.gallery').forEach(gallery => {
     const imgs = Array.from(gallery.querySelectorAll('img'));
     if (imgs.length === 0) return;
 
-    const items = imgs.map(img => ({
-      src: img.src,
-      thumb: img.src,
-      subHtml: `<h4>${(img.alt || '').replace(/"/g,'&quot;')}</h4>`
-    }));
+    const items = imgs.map(img => {
+      let src = img.getAttribute('src');
+      let thumb = src;
+
+      // 相対URLなら絶対URLに変換
+      if (!src.startsWith('http')) {
+        src = blogBase + src.replace(/^\/+/, '');
+        thumb = src;
+      }
+
+      return {
+        src: src,
+        thumb: thumb,
+        subHtml: `<h4>${(img.alt || '').replace(/"/g,'&quot;')}</h4>`
+      };
+    });
 
     imgs.forEach((img, idx) => {
       img.style.cursor = 'zoom-in';
 
       img.addEventListener('click', () => {
-
-        /* =========================
-            フルスクリーン突入
-        ========================== */
+        // フルスクリーン
         const el = document.documentElement;
         if (el.requestFullscreen) el.requestFullscreen();
         else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
         else if (el.msRequestFullscreen) el.msRequestFullscreen();
 
-        /* =========================
-            LightGallery 起動
-        ========================== */
+        // LightGallery 起動
         const galleryInstance = lightGallery(document.body, {
           dynamic: true,
           dynamicEl: items,
@@ -142,33 +150,20 @@ document.addEventListener("DOMContentLoaded", () => {
           actualSize: false,
           slideShow: true,
           autoplay: false,
-          mobileSettings: {
-            controls: true,
-            showCloseIcon: true,
-            download: false
-          }
+          mobileSettings: { controls: true, showCloseIcon: true, download: false }
         });
 
-        /* =========================
-            ギャラリーが閉じたら
-            フルスクリーン解除
-        ========================== */
+        // ギャラリー閉じたらフルスクリーン解除
         galleryInstance.on('lgAfterClose', () => {
-          if (document.fullscreenElement) {
-            document.exitFullscreen().catch(()=>{});
-          }
+          if (document.fullscreenElement) document.exitFullscreen().catch(()=>{});
         });
 
-        /* =========================
-            ESC でフルスクリーン解除時
-            ギャラリーも閉じる
-        ========================== */
+        // ESC でフルスクリーン解除時、ギャラリーも閉じる
         document.addEventListener('fullscreenchange', () => {
           if (!document.fullscreenElement) {
             try { galleryInstance.closeGallery(); } catch(e) {}
           }
         });
-
       });
     });
   });
