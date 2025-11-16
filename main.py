@@ -136,58 +136,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 # ====== LightGallery タグ ======
 LIGHTGALLERY_TAGS = """
+<!-- LightGallery (CSS/JS) -->
 <link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
 <link rel="stylesheet" href="./lightgallery/lg-thumbnail.css">
-
-<style>
-/* iframe 内での LightGallery 全体を高さ100%に */
-#lg-container {
-  height: 100vh;
-  width: 100%;
-  background: transparent; /* 黒ではなく透明 */
-}
-
-/* メイン画像部分を flex で中央配置 */
-.lg-outer {
-  display: flex !important;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100% !important;
-  background: transparent;
-}
-
-/* サムネイル部分を下に固定 */
-.lg-thumb-outer {
-  position: relative !important;
-  bottom: 0;
-  margin-top: auto;
-}
-
-/* ×ボタンと左右矢印は常に表示 */
-.lg-close, .lg-prev, .lg-next {
-  z-index: 1000 !important;
-}
-</style>
-
-<script src="./lightgallery/lightgallery.min.js"></script>
-<script src="./lightgallery/lg-zoom.min.js"></script>
-<script src="./lightgallery/lg-thumbnail.min.js"></script>
+<script type="text/javascript" src="./lightgallery/lightgallery.min.js"></script>
+<script type="text/javascript" src="./lightgallery/lg-zoom.min.js"></script>
+<script type="text/javascript" src="./lightgallery/lg-thumbnail.min.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('.gallery').forEach(gallery => {
-
     const imgs = Array.from(gallery.querySelectorAll('img'));
     if (imgs.length === 0) return;
-
-    // LightGallery 専用DOM（1つだけ作る）
-    let lgContainer = document.getElementById("lg-container");
-    if (!lgContainer) {
-      lgContainer = document.createElement("div");
-      lgContainer.id = "lg-container";
-      document.body.appendChild(lgContainer);
-    }
 
     const items = imgs.map(img => ({
       src: img.src,
@@ -197,16 +157,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     imgs.forEach((img, idx) => {
       img.style.cursor = 'zoom-in';
+
       img.addEventListener('click', () => {
 
-        /* --- フルスクリーン突入（iframe内では可能な場合のみ） --- */
+        /* =========================
+            フルスクリーン突入
+        ========================== */
         const el = document.documentElement;
-        if (el.requestFullscreen) el.requestFullscreen?.();
-        else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen?.();
-        else if (el.msRequestFullscreen) el.msRequestFullscreen?.();
+        if (el.requestFullscreen) el.requestFullscreen();
+        else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+        else if (el.msRequestFullscreen) el.msRequestFullscreen();
 
-        /* --- LightGallery 起動 --- */
-        const galleryInstance = lightGallery(lgContainer, {
+        /* =========================
+            LightGallery 起動
+        ========================== */
+        const galleryInstance = lightGallery(document.body, {
           dynamic: true,
           dynamicEl: items,
           index: idx,
@@ -215,27 +180,37 @@ document.addEventListener("DOMContentLoaded", () => {
           thumbnail: true,
           download: false,
           zoom: true,
-          fullScreen: false,
+          fullScreen: true,
           actualSize: false,
           slideShow: true,
           autoplay: false,
-          addClass: 'lg-dynamic',
-          // 閉じたときフルスクリーン解除
-          onCloseAfter: () => {
-            if (document.fullscreenElement) {
-              document.exitFullscreen().catch(()=>{});
-            }
+          mobileSettings: {
+            controls: true,
+            showCloseIcon: true,
+            download: false
           }
         });
 
-        /* ESCキーでも閉じる */
-        const escHandler = e => {
-          if (e.key === "Escape") {
-            try { galleryInstance.closeGallery(); } catch(e) {}
-            document.removeEventListener("keydown", escHandler);
+        /* =========================
+            ギャラリーが閉じたら
+            フルスクリーン解除
+        ========================== */
+        galleryInstance.on('lgAfterClose', () => {
+          if (document.fullscreenElement) {
+            document.exitFullscreen().catch(()=>{});
           }
-        };
-        document.addEventListener("keydown", escHandler);
+        });
+
+        /* =========================
+            ESC でフルスクリーン解除時
+            ギャラリーも閉じる
+        ========================== */
+        document.addEventListener('fullscreenchange', () => {
+          if (!document.fullscreenElement) {
+            try { galleryInstance.closeGallery(); } catch(e) {}
+          }
+        });
+
       });
     });
   });
