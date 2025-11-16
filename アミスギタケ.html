@@ -37,63 +37,55 @@ body {
 @media (max-width: 480px) {
   .gallery { column-count: 1; }
 }
-</style><script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+</style>
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  function sendHeight() {
-    const height = document.documentElement.scrollHeight;
-    window.parent.postMessage({ type:"setHeight", height:height }, "*");
-  }
-
   const gallery = document.querySelector(".gallery");
-  if (gallery) {
-    const fadeObs = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){ e.target.classList.add("visible"); fadeObs.unobserve(e.target); }
-      });
-    }, {threshold:0.1});
-    gallery.querySelectorAll("img").forEach(img=>fadeObs.observe(img));
+  if (!gallery) return;
 
-    // imagesLoaded コールバック開始
-    imagesLoaded(gallery, () => {
-      gallery.style.visibility="visible";
-      sendHeight();
+  imagesLoaded(gallery, () => {
+    console.log("🧪 imagesLoaded 完了");
 
-      // ===== LightGallery 初期化 =====
-      if (typeof lightGallery === 'function') {
-        console.log('🎬 LightGallery 初期化開始 (imagesLoaded後)');
-        lightGallery(gallery, {
-          plugins: [lgZoom, lgThumbnail],
-          speed: 500,
-          licenseKey: '0000-0000-000-0000',
-          download: false,
-          thumbnail: true,
-          zoom: true,
-        });
-      } else {
-        console.warn('⚠️ LightGallery 初期化失敗: 関数が見つかりません');
+    const imgs = Array.from(gallery.querySelectorAll("img"));
+    const items = imgs.map(img => {
+      const absUrl = img.src.startsWith("http") ? img.src : location.origin + "/" + img.src.replace(/^\.\/+/, "");
+      return {
+        src: absUrl,
+        thumb: absUrl,
+        subHtml: `<h4>${(img.alt||'').replace(/"/g,'&quot;')}</h4>`
+      };
+    });
+
+    console.log("LightGallery items:", items);
+
+    function initGallery() {
+      if (typeof lightGallery !== "function") {
+        console.warn("⚠️ lightGallery 未ロード。リトライ...");
+        setTimeout(initGallery, 300);
+        return;
       }
 
-    }); // imagesLoaded コールバック終了
-  }
+      lightGallery(gallery, {
+        dynamic: true,
+        dynamicEl: items,
+        plugins: [lgZoom, lgThumbnail],
+        thumbnail: true,
+        zoom: true,
+        download: false,
+        speed: 400,
+        fullScreen: true,
+        actualSize: false
+      });
 
-  sendHeight();
-  window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); setTimeout(sendHeight,4000); });
-  window.addEventListener("message", e=>{ if(e.data?.type==="requestHeight") sendHeight(); });
-  window.addEventListener("resize", sendHeight);
-  new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true});
-
-  document.addEventListener("click", e=>{
-    const a = e.target.closest("a");
-    if(!a) return;
-    const href = a.getAttribute("href")||"";
-    if(href.startsWith("javascript:history.back") || href.endsWith(".html") || href.includes("index")){
-      console.log("🖱 クリックリンク送信:", href);
-      window.parent.postMessage({type:"scrollToTitle", offset:100}, "*");
+      console.log("✅ LightGallery 初期化完了");
     }
+
+    initGallery();
   });
 });
 </script>
+
 <!-- LightGallery (CSS/JS) -->
 <link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
 <link rel="stylesheet" href="./lightgallery/lg-thumbnail.css">
