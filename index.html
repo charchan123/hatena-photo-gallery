@@ -90,13 +90,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
-<!-- LightGallery (CSS/JS) -->
 <link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
 <link rel="stylesheet" href="./lightgallery/lg-thumbnail.css">
 
-<script type="text/javascript" src="./lightgallery/lightgallery.min.js"></script>
-<script type="text/javascript" src="./lightgallery/lg-zoom.min.js"></script>
-<script type="text/javascript" src="./lightgallery/lg-thumbnail.min.js"></script>
+<script src="./lightgallery/lightgallery.min.js"></script>
+<script src="./lightgallery/lg-zoom.min.js"></script>
+<script src="./lightgallery/lg-thumbnail.min.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -105,6 +104,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const imgs = Array.from(gallery.querySelectorAll('img'));
     if (imgs.length === 0) return;
+
+    // ダミーの LightGallery 専用DOM
+    const lgContainer = document.createElement("div");
+    lgContainer.id = "lg-container";
+    document.body.appendChild(lgContainer);
 
     const items = imgs.map(img => ({
       src: img.src,
@@ -117,18 +121,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       img.addEventListener('click', () => {
 
-        /* =========================
-            フルスクリーン開始
-        ========================== */
+        /* --- フルスクリーン突入 --- */
         const el = document.documentElement;
         if (el.requestFullscreen) el.requestFullscreen();
         else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
         else if (el.msRequestFullscreen) el.msRequestFullscreen();
 
-        /* =========================
-            LightGallery 起動
-        ========================== */
-        const galleryInstance = lightGallery(document.body, {
+        /* --- LightGallery 起動（ document.body → lgContainer に変更!! ） --- */
+        const galleryInstance = lightGallery(lgContainer, {
           dynamic: true,
           dynamicEl: items,
           index: idx,
@@ -137,58 +137,37 @@ document.addEventListener("DOMContentLoaded", () => {
           thumbnail: true,
           download: false,
           zoom: true,
-          fullScreen: true,
+          fullScreen: false,   // iframe内では使わせない
           actualSize: false,
           slideShow: true,
-          autoplay: false,
-          mobileSettings: {
-            controls: true,
-            showCloseIcon: true,
-            download: false
-          }
+          autoplay: false
         });
 
-        /* =========================
-            ギャラリー閉じたら
-            フルスクリーン解除
-        ========================== */
+        /* --- ×ボタンで閉じた時、フルスクリーン解除 --- */
         galleryInstance.on('lgAfterClose', () => {
-
           if (document.fullscreenElement) {
             document.exitFullscreen().catch(()=>{});
           }
-
-          // 念のため LightGallery DOM 完全削除
-          const lgEls = document.querySelectorAll('.lg-backdrop, .lg-outer');
-          lgEls.forEach(el => el.remove());
         });
 
-        /* =========================
-            fullscreenchange は
-            一度だけ登録
-        ========================== */
+        /* --- ESC でフルスクリーン解除されたら、LGも閉じる --- */
         if (!window.__lgFullscreenHandlerAdded) {
           window.__lgFullscreenHandlerAdded = true;
 
           document.addEventListener('fullscreenchange', () => {
-
-            // フルスクリーンが解除された → ギャラリーが残ってたら閉じる
             if (!document.fullscreenElement) {
               try {
-                const openLG = document.querySelector('.lg-outer');
-                if (openLG) {
-                  const id = openLG.getAttribute('lg-uid');
-                  const inst = window.lgData[id];
-                  if (inst) inst.closeGallery();
-                  openLG.remove();
-                }
-              } catch(e) {}
+                galleryInstance.closeGallery();
+              } catch (e) {}
             }
           });
         }
+
       });
     });
+
   });
+
 });
 </script>
 
