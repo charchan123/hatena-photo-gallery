@@ -191,3 +191,34 @@ fetch('./lightgallery/lightgallery.min.js')
   })
   .catch(e => console.error("❌ 読み込みエラー:", e));
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('.gallery img').forEach(img => {
+    img.addEventListener('click', () => {
+
+      const lgContainer = document.createElement("div");
+      lgContainer.id = "lg-container";
+      document.body.appendChild(lgContainer);
+
+      const galleryInstance = lightGallery(lgContainer, {
+        dynamic: true,
+        dynamicEl: [{ src: img.src, thumb: img.src }],
+        index: 0,
+      });
+
+      // ×ボタンで閉じたとき
+      galleryInstance.on('lgAfterClose', () => {
+        console.log('✅ lgAfterClose 発火');
+        if (document.fullscreenElement) document.exitFullscreen();
+      });
+
+      // ESCでフルスクリーン解除時
+      document.addEventListener('fullscreenchange', () => {
+        console.log('✅ fullscreenchange 発火');
+        try { galleryInstance.closeGallery(); } catch(e) { console.error(e); }
+      });
+    });
+  });
+});
+</script>
