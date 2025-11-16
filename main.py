@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>"""
 
-# ====== LightGallery タグ ======
+# ====== LightGallery タグ（改良版） ======
 LIGHTGALLERY_TAGS = """
 <link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
 <link rel="stylesheet" href="./lightgallery/lg-thumbnail.css">
@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
         else if (el.msRequestFullscreen) el.msRequestFullscreen();
 
-        /* --- LightGallery 起動（ document.body → lgContainer に変更!! ） --- */
+        /* --- LightGallery 起動（dynamicモード） --- */
         const galleryInstance = lightGallery(lgContainer, {
           dynamic: true,
           dynamicEl: items,
@@ -183,28 +183,33 @@ document.addEventListener("DOMContentLoaded", () => {
           thumbnail: true,
           download: false,
           zoom: true,
-          fullScreen: false,   // iframe内では使わせない
+          fullScreen: false,
           actualSize: false,
           slideShow: true,
-          autoplay: false
-        });
-
-        /* --- ×ボタンで閉じた時、フルスクリーン解除 --- */
-        galleryInstance.on('lgAfterClose', () => {
-          if (document.fullscreenElement) {
-            document.exitFullscreen().catch(()=>{});
+          autoplay: false,
+          addClass: 'lg-dynamic',
+          // ×ボタンで閉じた時にフルスクリーン解除
+          onAfterClose: () => {
+            console.log('✅ lgAfterClose 発火');
+            if (document.fullscreenElement) {
+              document.exitFullscreen().catch(()=>{});
+            }
           }
         });
 
-        /* --- ESC でフルスクリーン解除されたら、LGも閉じる --- */
+        /* --- ESCでフルスクリーン解除されたらLGも閉じる --- */
         if (!window.__lgFullscreenHandlerAdded) {
           window.__lgFullscreenHandlerAdded = true;
-
           document.addEventListener('fullscreenchange', () => {
             if (!document.fullscreenElement) {
               try {
-                galleryInstance.closeGallery();
-              } catch (e) {}
+                if (lgContainer.classList.contains('lg-dynamic')) {
+                  galleryInstance.closeGallery();
+                  console.log('✅ ESCでGallery閉じた');
+                }
+              } catch(e) {
+                console.error(e);
+              }
             }
           });
         }
