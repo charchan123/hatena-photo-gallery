@@ -94,28 +94,18 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+<!-- LightGallery (CSS/JS) -->
 <link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
 <link rel="stylesheet" href="./lightgallery/lg-thumbnail.css">
-
-<script src="./lightgallery/lightgallery.min.js"></script>
-<script src="./lightgallery/lg-zoom.min.js"></script>
-<script src="./lightgallery/lg-thumbnail.min.js"></script>
+<script type="text/javascript" src="./lightgallery/lightgallery.min.js"></script>
+<script type="text/javascript" src="./lightgallery/lg-zoom.min.js"></script>
+<script type="text/javascript" src="./lightgallery/lg-thumbnail.min.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-
   document.querySelectorAll('.gallery').forEach(gallery => {
-
     const imgs = Array.from(gallery.querySelectorAll('img'));
     if (imgs.length === 0) return;
-
-    // ダミーの LightGallery 専用DOM（1つだけ作る）
-    let lgContainer = document.getElementById("lg-container");
-    if (!lgContainer) {
-      lgContainer = document.createElement("div");
-      lgContainer.id = "lg-container";
-      document.body.appendChild(lgContainer);
-    }
 
     const items = imgs.map(img => ({
       src: img.src,
@@ -128,14 +118,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
       img.addEventListener('click', () => {
 
-        /* --- フルスクリーン突入 --- */
+        /* =========================
+            フルスクリーン突入
+        ========================== */
         const el = document.documentElement;
         if (el.requestFullscreen) el.requestFullscreen();
         else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
         else if (el.msRequestFullscreen) el.msRequestFullscreen();
 
-        /* --- LightGallery 起動（dynamic モード） --- */
-        lightGallery(lgContainer, {
+        /* =========================
+            LightGallery 起動
+        ========================== */
+        const galleryInstance = lightGallery(document.body, {
           dynamic: true,
           dynamicEl: items,
           index: idx,
@@ -144,19 +138,37 @@ document.addEventListener("DOMContentLoaded", () => {
           thumbnail: true,
           download: false,
           zoom: true,
-          fullScreen: false,
+          fullScreen: true,
           actualSize: false,
           slideShow: true,
           autoplay: false,
-          addClass: 'lg-dynamic',
-          // ×ボタンやESCで閉じた後の処理
-          onCloseAfter: () => {
-            console.log('✅ gallery closed');
-            if (document.fullscreenElement) {
-              document.exitFullscreen().catch(()=>{});
-            }
+          mobileSettings: {
+            controls: true,
+            showCloseIcon: true,
+            download: false
           }
         });
+
+        /* =========================
+            ギャラリーが閉じたら
+            フルスクリーン解除
+        ========================== */
+        galleryInstance.on('lgAfterClose', () => {
+          if (document.fullscreenElement) {
+            document.exitFullscreen().catch(()=>{});
+          }
+        });
+
+        /* =========================
+            ESC でフルスクリーン解除時
+            ギャラリーも閉じる
+        ========================== */
+        document.addEventListener('fullscreenchange', () => {
+          if (!document.fullscreenElement) {
+            try { galleryInstance.closeGallery(); } catch(e) {}
+          }
+        });
+
       });
     });
   });
@@ -178,35 +190,4 @@ fetch('./lightgallery/lightgallery.min.js')
     console.log("✅ eval後 typeof lightGallery =", typeof lightGallery);
   })
   .catch(e => console.error("❌ 読み込みエラー:", e));
-</script>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll('.gallery img').forEach(img => {
-    img.addEventListener('click', () => {
-
-      const lgContainer = document.createElement("div");
-      lgContainer.id = "lg-container";
-      document.body.appendChild(lgContainer);
-
-      const galleryInstance = lightGallery(lgContainer, {
-        dynamic: true,
-        dynamicEl: [{ src: img.src, thumb: img.src }],
-        index: 0,
-      });
-
-      // ×ボタンで閉じたとき
-      galleryInstance.on('lgAfterClose', () => {
-        console.log('✅ lgAfterClose 発火');
-        if (document.fullscreenElement) document.exitFullscreen();
-      });
-
-      // ESCでフルスクリーン解除時
-      document.addEventListener('fullscreenchange', () => {
-        console.log('✅ fullscreenchange 発火');
-        try { galleryInstance.closeGallery(); } catch(e) { console.error(e); }
-      });
-    });
-  });
-});
 </script>
