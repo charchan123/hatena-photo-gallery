@@ -171,10 +171,20 @@ imgs.forEach((img, idx) => {
     else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
     else if (el.msRequestFullscreen) el.msRequestFullscreen();
 
-    /* =========================
-        LightGallery 起動
-    ========================== */
-    const galleryInstance = lightGallery(document.body, {
+/* =========================
+    LightGallery 用コンテナ準備
+========================== */
+let lgContainer = document.getElementById('lg-container');
+if (!lgContainer) {
+    lgContainer = document.createElement('div');
+    lgContainer.id = 'lg-container';
+    document.body.appendChild(lgContainer);
+}
+
+/* =========================
+    LightGallery 起動
+========================== */
+const galleryInstance = lightGallery(lgContainer, {
       dynamic: true,
       dynamicEl: items,
       index: idx,
