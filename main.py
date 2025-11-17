@@ -178,6 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
           plugins: [lgZoom, lgThumbnail],
           speed: 400,
           thumbnail: true,
+          exThumbImage: 'data-exthumbimage',
           download: false,
           zoom: true,
           fullScreen: true,
@@ -345,7 +346,7 @@ def generate_gallery(entries):
         html = f"<h2>{alt}</h2><div class='gallery'>"
         for src in imgs:
             article_url = f"https://{HATENA_BLOG_ID}.hatena.blog/"
-            html += f'<img src="{src}" alt="{alt}" loading="lazy" data-url="{article_url}">'
+            html += f'<img src="{src}" alt="{alt}" loading="lazy" data-url="{article_url}" data-exthumbimage="{src}">'
         html += "</div>"
         html += """
         <div style='margin-top:40px; text-align:center;'>
