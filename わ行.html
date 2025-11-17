@@ -103,11 +103,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const imgs = Array.from(gallery.querySelectorAll('img'));
     if (imgs.length === 0) return;
 
-    const items = imgs.map(img => ({
-      src: img.src,
-      thumb: img.src,
-      subHtml: `<h4>${(img.alt || '').replace(/"/g,'&quot;')}</h4>`
-    }));
+const items = imgs.map(img => {
+  const thumb = img.src + "?width=300";   // ★サムネイル生成
+  return {
+    src: img.src,
+    thumb: thumb,
+    subHtml: `<h4>${(img.alt || '').replace(/"/g,'&quot;')}</h4>`
+  };
+});
 
     imgs.forEach((img, idx) => {
       img.style.cursor = 'zoom-in';
