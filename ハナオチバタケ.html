@@ -59,7 +59,15 @@ document.addEventListener("DOMContentLoaded", () => {
       gallery.style.visibility="visible";
       sendHeight();
 
-
+// ===== LightGallery 初期化 =====
+lightGallery(gallery, {
+  plugins: [lgZoom, lgThumbnail],
+  speed: 500,
+  licenseKey: '0000-0000-000-0000',
+  download: false,
+  thumbnail: false,
+  zoom: false,
+});
 
     }); // imagesLoaded コールバック終了
   }
