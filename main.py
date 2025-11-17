@@ -158,64 +158,80 @@ const items = imgs.map(img => {
   };
 });
 
-    imgs.forEach((img, idx) => {
-      img.style.cursor = 'zoom-in';
+// デバッグ用にグローバルに置いておく
+window.__lgDebugItems = items;
 
-      img.addEventListener('click', () => {
+imgs.forEach((img, idx) => {
+  img.style.cursor = 'zoom-in';
 
-        /* =========================
-            フルスクリーン突入
-        ========================== */
-        const el = document.documentElement;
-        if (el.requestFullscreen) el.requestFullscreen();
-        else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
-        else if (el.msRequestFullscreen) el.msRequestFullscreen();
+  img.addEventListener('click', () => {
 
-        /* =========================
-            LightGallery 起動
-        ========================== */
-        const galleryInstance = lightGallery(document.body, {
-          dynamic: true,
-          dynamicEl: items,
-          index: idx,
-          plugins: [lgZoom, lgThumbnail],
-          speed: 400,
-          thumbnail: true,
-          download: false,
-          zoom: true,
-          fullScreen: true,
-          actualSize: false,
-          slideShow: true,
-          autoplay: false,
-          mobileSettings: {
-            controls: true,
-            showCloseIcon: true,
-            download: false
-          }
-        });
+    console.log("🧩 LG dynamic items =", items);
 
-        /* =========================
-            ギャラリーが閉じたら
-            フルスクリーン解除
-        ========================== */
-        galleryInstance.on('lgAfterClose', () => {
-          if (document.fullscreenElement) {
-            document.exitFullscreen().catch(()=>{});
-          }
-        });
+    /* =========================
+        フルスクリーン突入
+    ========================== */
+    const el = document.documentElement;
+    if (el.requestFullscreen) el.requestFullscreen();
+    else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+    else if (el.msRequestFullscreen) el.msRequestFullscreen();
 
-        /* =========================
-            ESC でフルスクリーン解除時
-            ギャラリーも閉じる
-        ========================== */
-        document.addEventListener('fullscreenchange', () => {
-          if (!document.fullscreenElement) {
-            try { galleryInstance.closeGallery(); } catch(e) {}
-          }
-        });
-
-      });
+    /* =========================
+        LightGallery 起動
+    ========================== */
+    const galleryInstance = lightGallery(document.body, {
+      dynamic: true,
+      dynamicEl: items,
+      index: idx,
+      plugins: [lgZoom, lgThumbnail],
+      speed: 400,
+      thumbnail: true,
+      download: false,
+      zoom: true,
+      fullScreen: true,
+      actualSize: false,
+      slideShow: true,
+      autoplay: false,
+      mobileSettings: {
+        controls: true,
+        showCloseIcon: true,
+        download: false
+      }
     });
+
+    // ★ 0.8秒後に、実際に作られたサムネイル<img>の src を全部ログ
+    setTimeout(() => {
+      const thumbImgs = Array.from(
+        document.querySelectorAll(".lg-thumb-item img")
+      );
+      console.log(
+        "🖼 実際のサムネイル <img> src 一覧 =",
+        thumbImgs.map(img => img.getAttribute("src"))
+      );
+    }, 800);
+
+    /* =========================
+        ギャラリーが閉じたら
+        フルスクリーン解除
+    ========================== */
+    galleryInstance.on('lgAfterClose', () => {
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(()=>{});
+      }
+    });
+
+    /* =========================
+        ESC でフルスクリーン解除時
+        ギャラリーも閉じる
+    ========================== */
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement) {
+        try { galleryInstance.closeGallery(); } catch(e) {}
+      }
+    });
+
+  });
+});
   });
 });
 </script>
