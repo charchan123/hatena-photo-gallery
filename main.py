@@ -321,7 +321,10 @@ def fetch_images():
                 a.decompose()
 
         import re
-imgs = [    img for img in body_div.find_all("img")    if img.get("src") and re.search(r'/fotolife/', img.get("src"))]
+        imgs = [
+            img for img in body_div.find_all("img")
+            if img.get("src") and re.search(r'/fotolife/', img.get("src"))
+        ]
 
         for img in imgs:
             alt = img.get("alt", "").strip()
