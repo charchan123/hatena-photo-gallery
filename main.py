@@ -315,24 +315,25 @@ def fetch_images():
             if any(re.search(p, title) for p in exclude_patterns):
                 iframe.decompose()
 
-        for a in body_div.find_all("a"):
-            text = a.get_text(strip=True)
-            if any(re.search(p, text) for p in exclude_patterns):
-                a.decompose()
+for a in body_div.find_all("a"):
+    text = a.get_text(strip=True)
+    if any(re.search(p, text) for p in exclude_patterns):
+        a.decompose()
 
+# === 必要なフィルタリング ===
 imgs = [
     img for img in body_div.find_all("img")
     if img.get("src") and re.search(r'/fotolife/', img.get("src"))
 ]
 
-        for img in imgs:
-            alt = img.get("alt", "").strip()
-            src = img.get("src")
-            if not alt or not src:
-                continue
-            if any(re.search(p, alt) for p in exclude_patterns):
-                continue
-            entries.append({"alt": alt, "src": src})
+for img in imgs:
+    alt = img.get("alt", "").strip()
+    src = img.get("src")
+    if not alt or not src:
+        continue
+    if any(re.search(p, alt) for p in exclude_patterns):
+        continue
+    entries.append({"alt": alt, "src": src})
 
     print(f"🧩 画像検出数: {len(entries)} 枚")
     return entries
