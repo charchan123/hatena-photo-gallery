@@ -93,12 +93,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }, {threshold:0.1});
     gallery.querySelectorAll("img").forEach(img=>fadeObs.observe(img));
 
-    // imagesLoaded コールバック開始
     imagesLoaded(gallery, () => {
       gallery.style.visibility="visible";
       sendHeight();
 
-      // ===== LightGallery 初期化 =====
       if (typeof lightGallery === 'function') {
         console.log('🎬 LightGallery 初期化開始 (imagesLoaded後)');
         lightGallery(gallery, {
@@ -112,13 +110,21 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         console.warn('⚠️ LightGallery 初期化失敗: 関数が見つかりません');
       }
-
-    }); // imagesLoaded コールバック終了
+    });
   }
 
   sendHeight();
-  window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); setTimeout(sendHeight,4000); });
-  window.addEventListener("message", e=>{ if(e.data?.type==="requestHeight") sendHeight(); });
+  window.addEventListener("load", ()=>{ 
+    sendHeight(); 
+    setTimeout(sendHeight,800); 
+    setTimeout(sendHeight,2000); 
+    setTimeout(sendHeight,4000); 
+  });
+
+  window.addEventListener("message", e=>{
+    if(e.data?.type==="requestHeight") sendHeight();
+  });
+
   window.addEventListener("resize", sendHeight);
   new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true});
 
@@ -149,89 +155,73 @@ document.addEventListener("DOMContentLoaded", () => {
     const imgs = Array.from(gallery.querySelectorAll('img'));
     if (imgs.length === 0) return;
 
-const items = imgs.map(img => {
-  const thumb = img.src + "?width=300";   // ★サムネイル生成
-  return {
-    src: img.src,
-    thumb: thumb,
-    subHtml: `<h4>${(img.alt || '').replace(/"/g,'&quot;')}</h4>`
-  };
-});
-
-// デバッグ用にグローバルに置いておく
-window.__lgDebugItems = items;
-
-imgs.forEach((img, idx) => {
-  img.style.cursor = 'zoom-in';
-
-  img.addEventListener('click', () => {
-
-    console.log("🧩 LG dynamic items =", items);
-
-    /* =========================
-        フルスクリーン突入
-    ========================== */
-    const el = document.documentElement;
-    if (el.requestFullscreen) el.requestFullscreen();
-    else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
-    else if (el.msRequestFullscreen) el.msRequestFullscreen();
-
-    /* =========================
-        LightGallery 起動
-    ========================== */
-    const galleryInstance = lightGallery(document.body, {
-      dynamic: true,
-      dynamicEl: items,
-      index: idx,
-      plugins: [lgZoom, lgThumbnail],
-      speed: 400,
-      thumbnail: true,
-      download: false,
-      zoom: true,
-      fullScreen: true,
-      actualSize: false,
-      slideShow: true,
-      autoplay: false,
-      mobileSettings: {
-        controls: true,
-        showCloseIcon: true,
-        download: false
-      }
+    const items = imgs.map(img => {
+      const thumb = img.src + "?width=300";
+      return {
+        src: img.src,
+        thumb: thumb,
+        subHtml: `<h4>${(img.alt || '').replace(/"/g,'&quot;')}</h4>`
+      };
     });
 
-    // ★ 0.8秒後に、実際に作られたサムネイル<img>の src を全部ログ
-    setTimeout(() => {
-      const thumbImgs = Array.from(
-        document.querySelectorAll(".lg-thumb-item img")
-      );
-      console.log(
-        "🖼 実際のサムネイル <img> src 一覧 =",
-        thumbImgs.map(img => img.getAttribute("src"))
-      );
-    }, 800);
+    window.__lgDebugItems = items;
 
-    /* =========================
-        ギャラリーが閉じたら
-        フルスクリーン解除
-    ========================== */
-    galleryInstance.on('lgAfterClose', () => {
-      if (document.fullscreenElement) {
-        document.exitFullscreen().catch(()=>{});
-      }
+    imgs.forEach((img, idx) => {
+      img.style.cursor = 'zoom-in';
+
+      img.addEventListener('click', () => {
+
+        console.log("🧩 LG dynamic items =", items);
+
+        const el = document.documentElement;
+        if (el.requestFullscreen) el.requestFullscreen();
+        else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+        else if (el.msRequestFullscreen) el.msRequestFullscreen();
+
+        const galleryInstance = lightGallery(document.body, {
+          dynamic: true,
+          dynamicEl: items,
+          index: idx,
+          plugins: [lgZoom, lgThumbnail],
+          speed: 400,
+          thumbnail: true,
+          download: false,
+          zoom: true,
+          fullScreen: true,
+          actualSize: false,
+          slideShow: true,
+          autoplay: false,
+          mobileSettings: {
+            controls: true,
+            showCloseIcon: true,
+            download: false
+          }
+        });
+
+        setTimeout(() => {
+          const thumbImgs = Array.from(
+            document.querySelectorAll(".lg-thumb-item img")
+          );
+          console.log(
+            "🖼 サムネイルsrc一覧 =",
+            thumbImgs.map(img => img.getAttribute("src"))
+          );
+        }, 800);
+
+        galleryInstance.on('lgAfterClose', () => {
+          if (document.fullscreenElement) {
+            document.exitFullscreen().catch(()=>{});
+          }
+        });
+
+        document.addEventListener('fullscreenchange', () => {
+          if (!document.fullscreenElement) {
+            try { galleryInstance.closeGallery(); } catch(e) {}
+          }
+        });
+
+      });
     });
-
-    /* =========================
-        ESC でフルスクリーン解除時
-        ギャラリーも閉じる
-    ========================== */
-    document.addEventListener('fullscreenchange', () => {
-      if (!document.fullscreenElement) {
-        try { galleryInstance.closeGallery(); } catch(e) {}
-      }
-    });
-
-  });
-});
   });
 });
 </script>
@@ -315,25 +305,27 @@ def fetch_images():
             if any(re.search(p, title) for p in exclude_patterns):
                 iframe.decompose()
 
-for a in body_div.find_all("a"):
-    text = a.get_text(strip=True)
-    if any(re.search(p, text) for p in exclude_patterns):
-        a.decompose()
+        for a in body_div.find_all("a"):
+            text = a.get_text(strip=True)
+            if any(re.search(p, text) for p in exclude_patterns):
+                a.decompose()
 
-# === 必要なフィルタリング ===
-imgs = [
-    img for img in body_div.find_all("img")
-    if img.get("src") and re.search(r'/fotolife/', img.get("src"))
-]
+        # ★ fotolife 画像のみ抽出
+        imgs = [
+            img for img in body_div.find_all("img")
+            if img.get("src") and re.search(r'/fotolife/', img.get("src"))
+        ]
 
-for img in imgs:
-    alt = img.get("alt", "").strip()
-    src = img.get("src")
-    if not alt or not src:
-        continue
-    if any(re.search(p, alt) for p in exclude_patterns):
-        continue
-    entries.append({"alt": alt, "src": src})
+        for img in imgs:
+            alt = img.get("alt", "").strip()
+            src = img.get("src")
+
+            if not alt or not src:
+                continue
+            if any(re.search(p, alt) for p in exclude_patterns):
+                continue
+
+            entries.append({"alt": alt, "src": src})
 
     print(f"🧩 画像検出数: {len(entries)} 枚")
     return entries
