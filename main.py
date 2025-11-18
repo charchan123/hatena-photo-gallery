@@ -320,8 +320,6 @@ def fetch_images():
             if any(re.search(p, text) for p in exclude_patterns):
                 a.decompose()
 
-import re
-
 imgs = [
     img for img in body_div.find_all("img")
     if img.get("src") and re.search(r'/fotolife/', img.get("src"))
