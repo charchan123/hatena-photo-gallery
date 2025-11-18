@@ -322,7 +322,7 @@ def fetch_images():
 
 imgs = [
     img for img in body_div.find_all("img")
-    if img.get("src") and re.search(r'/fotolife/', img.get("src"))
+    if img.get("src") and img.get("src").strip() != "" and img.get("alt")
 ]
 
         for img in imgs:
