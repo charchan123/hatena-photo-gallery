@@ -1,8 +1,4 @@
-<h2>タマゴタケ</h2><div class='gallery'><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005201700.jpg" alt="タマゴタケ" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/" data-exthumbimage="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005201700.jpg"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005214538.jpg" alt="タマゴタケ" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/" data-exthumbimage="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005214538.jpg"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005214712.jpg" alt="タマゴタケ" loading="lazy" data-url="https://exsudoporus-ruber.hatenablog.jp.hatena.blog/" data-exthumbimage="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005214712.jpg"></div>
-        <div style='margin-top:40px; text-align:center;'>
-            <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
-        </div>
-        <style>
+<h2>タマゴタケ</h2><div class='gallery'><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005201700.jpg" alt="タマゴタケ" loading="lazy"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005214538.jpg" alt="タマゴタケ" loading="lazy"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005214712.jpg" alt="タマゴタケ" loading="lazy"></div><style>
 html, body {
   margin: 0;
   padding: 0;
@@ -59,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
       sendHeight();
 
       if (typeof lightGallery === 'function') {
-        console.log('🎬 LightGallery 初期化開始 (imagesLoaded後)');
         lightGallery(gallery, {
           plugins: [lgZoom, lgThumbnail],
           speed: 500,
@@ -68,8 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
           thumbnail: true,
           zoom: true,
         });
-      } else {
-        console.warn('⚠️ LightGallery 初期化失敗: 関数が見つかりません');
       }
     });
   }
@@ -88,39 +81,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("resize", sendHeight);
   new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true});
-
-  document.addEventListener("click", e=>{
-    const a = e.target.closest("a");
-    if(!a) return;
-    const href = a.getAttribute("href")||"";
-    if(href.startsWith("javascript:history.back") || href.endsWith(".html") || href.includes("index")){
-      console.log("🖱 クリックリンク送信:", href);
-      window.parent.postMessage({type:"scrollToTitle", offset:100}, "*");
-    }
-  });
 });
 </script>
-<!-- LightGallery (CSS/JS) -->
 <link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
 <link rel="stylesheet" href="./lightgallery/lg-thumbnail.css">
-<script type="text/javascript" src="./lightgallery/lightgallery.min.js"></script>
-<script type="text/javascript" src="./lightgallery/lg-zoom.min.js"></script>
-<script type="text/javascript" src="./lightgallery/lg-thumbnail.min.js"></script>
+<script src="./lightgallery/lightgallery.min.js"></script>
+<script src="./lightgallery/lg-zoom.min.js"></script>
+<script src="./lightgallery/lg-thumbnail.min.js"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('.gallery').forEach(gallery => {
+
     const imgs = Array.from(gallery.querySelectorAll('img'));
     if (imgs.length === 0) return;
 
-    const items = imgs.map(img => {
-      const thumb = img.src + "?width=300";
-      return {
+    /* ① 空画像を絶対入れない items 配列 */
+    const items = imgs
+      .filter(img => img.src)
+      .map(img => ({
         src: img.src,
-        thumb: thumb,
-        subHtml: `<h4>${(img.alt || '').replace(/"/g,'&quot;')}</h4>`
-      };
-    });
+        thumb: img.src + "?width=300",
+        subHtml: "<h4>" + (img.alt || "").replace(/"/g,'&quot;') + "</h4>"
+      }));
 
     window.__lgDebugItems = items;
 
@@ -128,8 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
       img.style.cursor = 'zoom-in';
 
       img.addEventListener('click', () => {
-
-        console.log("🧩 LG dynamic items =", items);
 
         const el = document.documentElement;
         if (el.requestFullscreen) el.requestFullscreen();
@@ -144,39 +125,22 @@ document.addEventListener("DOMContentLoaded", () => {
           speed: 400,
           thumbnail: true,
           download: false,
-          zoom: true,
-          fullScreen: true,
-          actualSize: false,
-          slideShow: true,
-          autoplay: false,
-          mobileSettings: {
-            controls: true,
-            showCloseIcon: true,
-            download: false
-          }
+          zoom: true
         });
 
+        /* ② LightGallery が作った空のサムネイル要素を消す */
         setTimeout(() => {
-          const thumbImgs = Array.from(
-            document.querySelectorAll(".lg-thumb-item img")
-          );
-          console.log(
-            "🖼 サムネイルsrc一覧 =",
-            thumbImgs.map(img => img.getAttribute("src"))
-          );
+          document.querySelectorAll(".lg-thumb-item").forEach(item => {
+            const img = item.querySelector("img");
+            if (!img || !img.getAttribute("src")) {
+              item.remove();
+            }
+          });
+
+          const thumbImgs = Array.from(document.querySelectorAll(".lg-thumb-item img"));
+          console.log("🖼 サムネイルsrc一覧 =", thumbImgs.map(v=>v.src));
+
         }, 800);
-
-        galleryInstance.on('lgAfterClose', () => {
-          if (document.fullscreenElement) {
-            document.exitFullscreen().catch(()=>{});
-          }
-        });
-
-        document.addEventListener('fullscreenchange', () => {
-          if (!document.fullscreenElement) {
-            try { galleryInstance.closeGallery(); } catch(e) {}
-          }
-        });
 
       });
     });
@@ -185,18 +149,5 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 <script>
-console.log("🧪 LightGalleryテスト開始");
-console.log("window.lightGallery =", window.lightGallery);
-console.log("typeof lightGallery =", typeof lightGallery);
-</script>
-
-<script>
-fetch('./lightgallery/lightgallery.min.js')
-  .then(r => r.text())
-  .then(code => {
-    console.log("📦 LightGallery 手動ロード開始");
-    eval(code);
-    console.log("✅ eval後 typeof lightGallery =", typeof lightGallery);
-  })
-  .catch(e => console.error("❌ 読み込みエラー:", e));
+console.log("🧪 LGテスト開始", typeof lightGallery);
 </script>
