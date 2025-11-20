@@ -158,15 +158,17 @@ imgs.forEach((img, idx) => {
     });
 
     // ★ 0.8秒後に、実際に作られたサムネイル<img>の src を全部ログ
-    setTimeout(() => {
-      const thumbImgs = Array.from(
-        document.querySelectorAll(".lg-thumb-item img")
-      );
-      console.log(
-        "🖼 実際のサムネイル <img> src 一覧 =",
-        thumbImgs.map(img => img.getAttribute("src"))
-      );
-    }, 800);
+setTimeout(() => {
+  const thumbImgs = Array.from(
+    document.querySelectorAll(".lg-thumb-item img")
+  );
+
+  const validThumbs = thumbImgs
+    .map(img => img.getAttribute("src"))
+    .filter(src => src && src.trim() !== "");
+
+  console.log("🖼 有効なサムネイル一覧 =", validThumbs);
+}, 800);
 
     /* =========================
         ギャラリーが閉じたら
