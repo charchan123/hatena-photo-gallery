@@ -1,50 +1,55 @@
-name: Generate Photo Gallery
+name: Build & Deploy Photo Gallery
 
 on:
-  schedule:
-    - cron: '0 15 * * *'
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
 
-      - name: Setup Python
+    steps:
+      - name: 📥 リポジトリ取得
+        uses: actions/checkout@v4
+
+      - name: 🐍 Python セットアップ
         uses: actions/setup-python@v4
         with:
-          python-version: 3.11
+          python-version: '3.11'
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+      - name: 📦 依存パッケージをインストール
+        run: |
+          pip install beautifulsoup4 requests lxml
 
-      - name: Run main.py
+      - name: 🔑 はてなAPIキー設定
         env:
           HATENA_USER: ${{ secrets.HATENA_USER }}
           HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
           HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
-        run: python main.py
-
-      - name: Prepare gh-pages branch
         run: |
-          git fetch origin gh-pages
-          mkdir gh-pages
-          cd gh-pages
-          git init
-          git remote add origin https://github.com/${{ github.repository }}.git
-          git fetch origin gh-pages
-          git checkout gh-pages || git checkout --orphan gh-pages
-          cd ..
+          echo "環境変数チェック中..."
+          if [ -z "$HATENA_USER" ]; then echo 'HATENA_USER missing'; exit 1; fi
+          if [ -z "$HATENA_BLOG_ID" ]; then echo 'HATENA_BLOG_ID missing'; exit 1; fi
+          if [ -z "$HATENA_API_KEY" ]; then echo 'HATENA_API_KEY missing'; exit 1; fi
 
-      - name: Copy static assets to output
+      - name: 🏗 main.py 実行（HTML生成）
+        env:
+          HATENA_USER: ${{ secrets.HATENA_USER }}
+          HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
+          HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
         run: |
-          cp -r gh-pages/fonts output/fonts || true
-          cp -r gh-pages/images output/images || true
-          cp -r gh-pages/lightgallery output/lightgallery || true
+          python main.py
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: 📁 LightGallery フォルダを output にコピー
+        run: |
+          mkdir -p output/lightgallery
+          cp -r lightgallery/* output/lightgallery/
+
+      - name: 📤 GitHub Pages にデプロイ
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./output
+          folder: output
+          branch: gh-pages
+          clean: true
