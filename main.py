@@ -38,6 +38,8 @@ AIUO_GROUPS = {
 }
 
 # ====== 共通スタイル ======
+# 変更点：
+# - LGのサムネがはてな側img CSSに潰されないよう、overlay内だけ固定
 STYLE_TAG = """<style>
 html, body {
   margin: 0;
@@ -73,13 +75,33 @@ body {
 @media (max-width: 480px) {
   .gallery { column-count: 1; }
 }
+
+/* ===== LightGallery overlay内のimgをはてなCSSから守る ===== */
+.lg-outer .lg-thumb-item img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+}
+.lg-outer .lg-thumb-item{
+  overflow:hidden !important;
+}
 </style>"""
 
 # ====== 共通スクリプト ======
+# 変更点：
+# - SCRIPT_TAG側のLightGallery初期化を削除（＝二重起動を防止）
+# - LGオープン中は sendHeight を止めるフラグを追加
 SCRIPT_TAG = """<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+
+  // LGが開いている間は true になる
+  window.__lgOpen = false;
+
   function sendHeight() {
+    // ★ LGオープン中は親iframeに高さ通知しない（LG DOM破壊防止）
+    if (window.__lgOpen) return;
+
     const height = document.documentElement.scrollHeight;
     window.parent.postMessage({ type:"setHeight", height:height }, "*");
   }
@@ -93,32 +115,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }, {threshold:0.1});
     gallery.querySelectorAll("img").forEach(img=>fadeObs.observe(img));
 
-    // imagesLoaded コールバック開始
     imagesLoaded(gallery, () => {
       gallery.style.visibility="visible";
       sendHeight();
-
-      // ===== LightGallery 初期化 =====
-      if (typeof lightGallery === 'function') {
-        console.log('🎬 LightGallery 初期化開始 (imagesLoaded後)');
-        lightGallery(gallery, {
-          plugins: [lgZoom, lgThumbnail],
-          speed: 500,
-          licenseKey: '0000-0000-000-0000',
-          download: false,
-          thumbnail: true,
-          zoom: true,
-        });
-      } else {
-        console.warn('⚠️ LightGallery 初期化失敗: 関数が見つかりません');
-      }
-
-    }); // imagesLoaded コールバック終了
+      // ★ LightGallery初期化は LIGHTGALLERY_TAGS 側で一度だけ行う
+    });
   }
 
   sendHeight();
-  window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); setTimeout(sendHeight,4000); });
-  window.addEventListener("message", e=>{ if(e.data?.type==="requestHeight") sendHeight(); });
+  window.addEventListener("load", ()=>{ 
+    sendHeight(); 
+    setTimeout(sendHeight,800); 
+    setTimeout(sendHeight,2000); 
+    setTimeout(sendHeight,4000); 
+  });
+
+  window.addEventListener("message", e=>{
+    if(e.data?.type==="requestHeight") sendHeight();
+  });
+
   window.addEventListener("resize", sendHeight);
   new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true});
 
@@ -127,7 +142,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if(!a) return;
     const href = a.getAttribute("href")||"";
     if(href.startsWith("javascript:history.back") || href.endsWith(".html") || href.includes("index")){
-      console.log("🖱 クリックリンク送信:", href);
       window.parent.postMessage({type:"scrollToTitle", offset:100}, "*");
     }
   });
@@ -135,6 +149,11 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>"""
 
 # ====== LightGallery タグ ======
+# 変更点：
+# - ここで「1回だけ」初期化
+# - dynamic起動・手動クリックはやめて、公式推奨の selector方式に統一
+# - thumbは data-thumb を使う（?width=300を確実に反映）
+# - open/closeイベントで __lgOpen フラグ切替
 LIGHTGALLERY_TAGS = """
 <!-- LightGallery (CSS/JS) -->
 <link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
@@ -146,116 +165,57 @@ LIGHTGALLERY_TAGS = """
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('.gallery').forEach(gallery => {
-    const imgs = Array.from(gallery.querySelectorAll('img'));
+    const imgsRaw = Array.from(gallery.querySelectorAll('img'));
+
+    // ★ srcが空のimgを除外（ここが一番安全）
+    const imgs = imgsRaw.filter(img => {
+      const s = img.getAttribute("src") || "";
+      return s.trim() !== "";
+    });
     if (imgs.length === 0) return;
 
-const items = imgs.map(img => {
-  const thumb = img.src + "?width=300";   // ★サムネイル生成
-  return {
-    src: img.src,
-    thumb: thumb,
-    subHtml: `<h4>${(img.alt || '').replace(/"/g,'&quot;')}</h4>`
-  };
-});
+    // ★ 各 img に thumb を明示（LGがこれを読んでサムネ生成）
+    imgs.forEach(img => {
+      const src = img.getAttribute("src");
+      img.setAttribute("data-src", src);
+      img.setAttribute("data-thumb", src + "?width=300");
+      img.setAttribute("data-sub-html", ""); // タイトル非表示指定
+    });
 
-// デバッグ用にグローバルに置いておく
-window.__lgDebugItems = items;
-
-imgs.forEach((img, idx) => {
-  img.style.cursor = 'zoom-in';
-
-  img.addEventListener('click', () => {
-
-    console.log("🧩 LG dynamic items =", items);
-
-    /* =========================
-        フルスクリーン突入
-    ========================== */
-    const el = document.documentElement;
-    if (el.requestFullscreen) el.requestFullscreen();
-    else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
-    else if (el.msRequestFullscreen) el.msRequestFullscreen();
-
-    /* =========================
-        LightGallery 起動
-    ========================== */
-    const galleryInstance = lightGallery(document.body, {
-      dynamic: true,
-      dynamicEl: items,
-      index: idx,
+    // ===== LightGallery 初期化（1回のみ）=====
+    const instance = lightGallery(gallery, {
+      selector: "img",          // gallery内のimgを全部対象に
       plugins: [lgZoom, lgThumbnail],
       speed: 400,
       thumbnail: true,
+      animateThumb: true,
+      showThumbByDefault: true,
       download: false,
       zoom: true,
-      fullScreen: true,
       actualSize: false,
-      slideShow: true,
-      autoplay: false,
-      mobileSettings: {
-        controls: true,
-        showCloseIcon: true,
-        download: false
-      }
+      getCaptionFromTitleOrAlt: false
     });
 
-    // ★ 0.8秒後に、実際に作られたサムネイル<img>の src を全部ログ
-    setTimeout(() => {
-      const thumbImgs = Array.from(
-        document.querySelectorAll(".lg-thumb-item img")
-      );
-      console.log(
-        "🖼 実際のサムネイル <img> src 一覧 =",
-        thumbImgs.map(img => img.getAttribute("src"))
-      );
-    }, 800);
-
-    /* =========================
-        ギャラリーが閉じたら
-        フルスクリーン解除
-    ========================== */
-    galleryInstance.on('lgAfterClose', () => {
-      if (document.fullscreenElement) {
-        document.exitFullscreen().catch(()=>{});
-      }
+    // ★ LGオープン/クローズで iframe高さ通知を止めたり戻したり
+    instance.on("lgAfterOpen", () => {
+      window.__lgOpen = true;
     });
-
-    /* =========================
-        ESC でフルスクリーン解除時
-        ギャラリーも閉じる
-    ========================== */
-    document.addEventListener('fullscreenchange', () => {
-      if (!document.fullscreenElement) {
-        try { galleryInstance.closeGallery(); } catch(e) {}
-      }
+    instance.on("lgAfterClose", () => {
+      window.__lgOpen = false;
+      // 閉じた直後に高さを再送
+      try{
+        const height = document.documentElement.scrollHeight;
+        window.parent.postMessage({ type:"setHeight", height:height }, "*");
+      }catch(e){}
     });
-
-  });
-});
   });
 });
 </script>
 """
 
 # ====== LightGallery デバッグ ======
-LIGHTGALLERY_DEBUG = """
-<script>
-console.log("🧪 LightGalleryテスト開始");
-console.log("window.lightGallery =", window.lightGallery);
-console.log("typeof lightGallery =", typeof lightGallery);
-</script>
-
-<script>
-fetch('./lightgallery/lightgallery.min.js')
-  .then(r => r.text())
-  .then(code => {
-    console.log("📦 LightGallery 手動ロード開始");
-    eval(code);
-    console.log("✅ eval後 typeof lightGallery =", typeof lightGallery);
-  })
-  .catch(e => console.error("❌ 読み込みエラー:", e));
-</script>
-"""
+# ※本番運用では不要。残すと読み込み競合の原因になるので空にする
+LIGHTGALLERY_DEBUG = ""
 
 # ====== APIから全記事を取得 ======
 def fetch_hatena_articles_api():
@@ -360,11 +320,16 @@ def generate_gallery(entries):
             name = "unnamed"
         return name
 
+    # --- 個別キノコページ ---
     for alt, imgs in grouped.items():
         html = f"<h2>{alt}</h2><div class='gallery'>"
         for src in imgs:
             article_url = f"https://{HATENA_BLOG_ID}.hatena.blog/"
-            html += f'<img src="{src}" alt="{alt}" loading="lazy" data-url="{article_url}" data-exthumbimage="{src}">'
+            # ★ data-thumb を使うために data-exthumbimage も併用
+            html += (
+                f'<img src="{src}" alt="{alt}" loading="lazy" '
+                f'data-url="{article_url}" data-exthumbimage="{src}?width=300">'
+            )
         html += "</div>"
         html += """
         <div style='margin-top:40px; text-align:center;'>
@@ -376,6 +341,7 @@ def generate_gallery(entries):
         with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
+    # --- 五十音カテゴリページ ---
     aiuo_dict = {k: [] for k in AIUO_GROUPS.keys()}
     for alt in grouped.keys():
         g = get_aiuo_group(alt)
@@ -393,6 +359,7 @@ def generate_gallery(entries):
         with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
+    # --- index ---
     index = "<h2>五十音別分類</h2><ul>"
     for g in AIUO_GROUPS.keys():
         index += f'<li><a href="{safe_filename(g)}.html">{g}</a></li>'
