@@ -99,12 +99,13 @@ document.addEventListener("DOMContentLoaded", () => {
           subHtmlSelectorRelative: false
         });
 
-        // ★ 起動と同時にフルスクリーン
-        lg.on('lgAfterOpen', () => {
-          if (document.documentElement.requestFullscreen) {
-            document.documentElement.requestFullscreen();
-          }
-        });
+// ★ ギャラリー初期化直後に全画面表示
+lg.on('lgInit', () => {
+  const el = document.documentElement;
+  if (el.requestFullscreen) {
+    setTimeout(() => el.requestFullscreen(), 100);
+  }
+});
 
         // ★ × / ESC → LightGallery 終了 ＋ フルスクリーン解除
         lg.on('lgBeforeClose', () => {
