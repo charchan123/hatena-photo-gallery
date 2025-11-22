@@ -36,7 +36,7 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== 共通スタイル ======
+# ====== 共通スタイル（Masonry＋軽量フェード） ======
 STYLE_TAG = """<style>
 html, body {
   margin: 0;
@@ -51,7 +51,6 @@ body {
   box-sizing:border-box;
 }
 
-/* Masonry風 */
 .gallery {
   column-count: 2;
   column-gap: 10px;
@@ -59,7 +58,6 @@ body {
   margin: 0 auto;
   visibility: hidden;
 }
-
 .gallery a.gallery-item{
   display: block;
   break-inside: avoid;
@@ -67,7 +65,6 @@ body {
   border-radius: 8px;
   overflow: hidden;
 }
-
 .gallery img {
   width: 100%;
   height: auto;
@@ -87,19 +84,19 @@ body {
 }
 </style>"""
 
-# ====== LightGallery 読み込みタグ（あなたのフォルダ構成に完全一致） ======
+# ====== LightGallery 読み込みタグ（正しいパスに修正済み） ======
 LIGHTGALLERY_TAGS = """
 <!-- LightGallery CSS -->
-<link rel="stylesheet" href="./lightgallery-bundle.min.css">
-<link rel="stylesheet" href="./lg-thumbnail.css">
+<link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
+<link rel="stylesheet" href="./lightgallery/lg-thumbnail.css">
 
 <!-- LightGallery JS -->
-<script src="./lightgallery.min.js"></script>
-<script src="./lg-zoom.min.js"></script>
-<script src="./lg-thumbnail.min.js"></script>
+<script src="./lightgallery/lightgallery.min.js"></script>
+<script src="./lightgallery/lg-zoom.min.js"></script>
+<script src="./lightgallery/lg-thumbnail.min.js"></script>
 """
 
-# ====== LightGallery 初期化＋フルスクリーン対応 ======
+# ====== スクリプト（フルスクリーン＋戻る制御を含む完全版） ======
 SCRIPT_TAG = """<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -111,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const gallery = document.querySelector(".gallery");
   if (gallery) {
 
-    // フェードイン
+    // ---- Fade in ----
     const fadeObs = new IntersectionObserver(entries=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
@@ -120,14 +117,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     }, {threshold:0.1});
-
     gallery.querySelectorAll("img").forEach(img=>fadeObs.observe(img));
 
+    // ---- LightGallery Init ----
     imagesLoaded(gallery, () => {
       gallery.style.visibility="visible";
       sendHeight();
 
-      // LightGallery 初期化
       if (typeof lightGallery === 'function') {
         const lg = lightGallery(gallery, {
           selector: 'a.gallery-item',
@@ -136,6 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
           licenseKey: '0000-0000-000-0000',
           download: false,
           zoom: true,
+
           thumbnail: true,
           animateThumb: true,
           showThumbByDefault: true,
@@ -143,17 +140,18 @@ document.addEventListener("DOMContentLoaded", () => {
           thumbHeight: 70,
           thumbMargin: 6,
           currentPagerPosition: 'middle',
+
           subHtmlSelectorRelative: false
         });
 
-        // ★ 起動と同時に全画面表示
+        // ★ 起動と同時にフルスクリーン
         lg.on('lgAfterOpen', () => {
           if (document.documentElement.requestFullscreen) {
             document.documentElement.requestFullscreen();
           }
         });
 
-        // ★ ×/ESC → LightGallery終了＋フルスクリーン解除
+        // ★ × / ESC → LightGallery 終了 ＋ フルスクリーン解除
         lg.on('lgBeforeClose', () => {
           if (document.fullscreenElement) {
             document.exitFullscreen();
@@ -161,22 +159,23 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
       } else {
-        console.warn('⚠️ LightGallery init failed: not found');
+        console.warn('⚠️ LightGallery がロードされていません');
       }
     });
   }
 
+  // ---- iframe 高さ制御 ----
   sendHeight();
-  window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); setTimeout(sendHeight,4000); });
+  window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); });
 
   window.addEventListener("message", e=>{
-    const t = e.data?.type;
-    if(t==="requestHeight" || t==="resizeRequest") sendHeight();
+    if(e.data?.type==="requestHeight" || e.data?.type==="resizeRequest") sendHeight();
   });
 
   window.addEventListener("resize", sendHeight);
   new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true});
 
+  // ---- 親ページ（索引）へのスクロール戻し ----
   document.addEventListener("click", e=>{
     const a = e.target.closest("a");
     if(!a) return;
@@ -185,6 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
       window.parent.postMessage({type:"scrollToTitle", offset:100}, "*");
     }
   });
+
 });
 </script>"""
 
@@ -290,7 +290,7 @@ def generate_gallery(entries):
             name = "unnamed"
         return name
 
-    # ---- 各キノコの画像ページ ----
+    # ---- 各キノコのページ ----
     for alt, imgs in grouped.items():
         html = f"<h2>{alt}</h2><div class='gallery'>"
         for src in imgs:
