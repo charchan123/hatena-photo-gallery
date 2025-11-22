@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const gallery = document.querySelector(".gallery");
   if (gallery) {
 
-    // ---- Fade in ----
+    // フェードイン
     const fadeObs = new IntersectionObserver(entries=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
@@ -78,72 +78,66 @@ document.addEventListener("DOMContentLoaded", () => {
     }, {threshold:0.1});
     gallery.querySelectorAll("img").forEach(img=>fadeObs.observe(img));
 
-    // ---- LightGallery Init ----
     imagesLoaded(gallery, () => {
       gallery.style.visibility="visible";
       sendHeight();
 
-      if (typeof lightGallery === 'function') {
-        const lg = lightGallery(gallery, {
-          selector: 'a.gallery-item',
-          plugins: [lgZoom, lgThumbnail],
-          speed: 400,
-          licenseKey: '0000-0000-000-0000',
-          download: false,
-          zoom: true,
+      /* ==================================
+         LightGallery 初期化
+      =================================== */
+      const lg = lightGallery(gallery, {
+        selector: 'a.gallery-item',
+        plugins: [lgZoom, lgThumbnail],
+        speed: 400,
+        download: false,
+        zoom: true,
+        thumbnail: true,
+        animateThumb: true,
+        showThumbByDefault: true,
+        subHtmlSelectorRelative: false
+      });
 
-          thumbnail: true,
-          animateThumb: true,
-          showThumbByDefault: true,
-          thumbWidth: 90,
-          thumbHeight: 70,
-          thumbMargin: 6,
-          currentPagerPosition: 'middle',
+      /* ==================================
+         ① サムネイルクリックをフックして
+            強制フルスクリーンを発動させる
+      ================================== */
+      gallery.querySelectorAll("a.gallery-item").forEach((a) => {
+        a.addEventListener("click", () => {
+          const el = document.documentElement;
 
-          subHtmlSelectorRelative: false
+          if (el.requestFullscreen) el.requestFullscreen();
+          else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+          else if (el.msRequestFullscreen) el.msRequestFullscreen();
         });
+      });
 
-// ★ ギャラリー初期化直後に全画面表示
-lg.on('lgInit', () => {
-  const el = document.documentElement;
-  if (el.requestFullscreen) {
-    setTimeout(() => el.requestFullscreen(), 100);
-  }
-});
+      /* ==================================
+         ② LG が閉じられたら
+            フルスクリーン解除
+      ================================== */
+      lg.on("lgBeforeClose", () => {
+        if (document.fullscreenElement) {
+          document.exitFullscreen().catch(()=>{});
+        }
+      });
 
-        // ★ × / ESC → LightGallery 終了 ＋ フルスクリーン解除
-        lg.on('lgBeforeClose', () => {
-          if (document.fullscreenElement) {
-            document.exitFullscreen();
-          }
-        });
+      /* ==================================
+         ③ ESC押されたら
+            LightGallery を閉じる
+      ================================== */
+      document.addEventListener("fullscreenchange", () => {
+        if (!document.fullscreenElement) {
+          try { lg.closeGallery(); } catch(e) {}
+        }
+      });
 
-      } else {
-        console.warn('⚠️ LightGallery がロードされていません');
-      }
     });
   }
 
-  // ---- iframe 高さ制御 ----
   sendHeight();
   window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); });
-
-  window.addEventListener("message", e=>{
-    if(e.data?.type==="requestHeight" || e.data?.type==="resizeRequest") sendHeight();
-  });
-
+  window.addEventListener("message", e=>{ if(e.data?.type==="requestHeight") sendHeight(); });
   window.addEventListener("resize", sendHeight);
   new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true});
-
-  // ---- 親ページ（索引）へのスクロール戻し ----
-  document.addEventListener("click", e=>{
-    const a = e.target.closest("a");
-    if(!a) return;
-    const href = a.getAttribute("href")||"";
-    if(href.startsWith("javascript:history.back") || href.endsWith(".html") || href.includes("index")){
-      window.parent.postMessage({type:"scrollToTitle", offset:100}, "*");
-    }
-  });
-
 });
 </script>
