@@ -1,6 +1,5 @@
 import os
 import glob
-import time
 import requests
 from bs4 import BeautifulSoup
 import xml.etree.ElementTree as ET
@@ -38,8 +37,8 @@ AIUO_GROUPS = {
 }
 
 # ====== 共通スタイル ======
-# 変更点：
-# - LGのサムネがはてな側img CSSに潰されないよう、overlay内だけ固定
+# ・タイトルはスライドショー内に出さない方針なので subHtml を使わない
+# ・thumbnailsデモ風に見えるよう anchor で包む前提のCSS
 STYLE_TAG = """<style>
 html, body {
   margin: 0;
@@ -53,16 +52,28 @@ body {
   padding:16px;
   box-sizing:border-box;
 }
+
+/* Masonry風 */
 .gallery {
   column-count: 2;
   column-gap: 10px;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
+  visibility: hidden; /* imagesLoaded 後に visible */
 }
+
+.gallery a.gallery-item{
+  display: block;
+  break-inside: avoid;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
 .gallery img {
   width: 100%;
-  margin-bottom: 10px;
-  border-radius: 6px;
+  height: auto;
+  display: block;
   cursor: zoom-in;
   transition: opacity 0.6s ease, transform 0.6s ease;
   opacity: 0;
@@ -72,56 +83,73 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
 @media (max-width: 480px) {
   .gallery { column-count: 1; }
-}
-
-/* ===== LightGallery overlay内のimgをはてなCSSから守る ===== */
-.lg-outer .lg-thumb-item img{
-  width:100% !important;
-  height:100% !important;
-  object-fit:cover !important;
-}
-.lg-outer .lg-thumb-item{
-  overflow:hidden !important;
 }
 </style>"""
 
 # ====== 共通スクリプト ======
-# 変更点：
-# - SCRIPT_TAG側のLightGallery初期化を削除（＝二重起動を防止）
-# - LGオープン中は sendHeight を止めるフラグを追加
+# ✅ LightGalleryは「ここで1回だけ初期化」する（dynamicクリック起動は廃止）
 SCRIPT_TAG = """<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-
-  // LGが開いている間は true になる
-  window.__lgOpen = false;
-
   function sendHeight() {
-    // ★ LGオープン中は親iframeに高さ通知しない（LG DOM破壊防止）
-    if (window.__lgOpen) return;
-
     const height = document.documentElement.scrollHeight;
-    window.parent.postMessage({ type:"setHeight", height:height }, "*");
+    window.parent.postMessage({ type:"setHeight", height }, "*");
   }
 
   const gallery = document.querySelector(".gallery");
   if (gallery) {
+
+    // フェードイン
     const fadeObs = new IntersectionObserver(entries=>{
       entries.forEach(e=>{
-        if(e.isIntersecting){ e.target.classList.add("visible"); fadeObs.unobserve(e.target); }
+        if(e.isIntersecting){ 
+          e.target.classList.add("visible"); 
+          fadeObs.unobserve(e.target); 
+        }
       });
     }, {threshold:0.1});
+
     gallery.querySelectorAll("img").forEach(img=>fadeObs.observe(img));
 
     imagesLoaded(gallery, () => {
       gallery.style.visibility="visible";
       sendHeight();
-      // ★ LightGallery初期化は LIGHTGALLERY_TAGS 側で一度だけ行う
+
+      // ===== LightGallery 初期化（1回だけ）=====
+      if (typeof lightGallery === 'function') {
+        console.log('🎬 LightGallery init (single)');
+
+        lightGallery(gallery, {
+          selector: 'a.gallery-item',
+          plugins: [lgZoom, lgThumbnail],
+          speed: 400,
+          licenseKey: '0000-0000-000-0000',
+          download: false,
+          zoom: true,
+
+          // ✅ thumbnailsデモ相当
+          thumbnail: true,
+          animateThumb: true,
+          showThumbByDefault: true,
+          thumbWidth: 90,
+          thumbHeight: 70,
+          thumbMargin: 6,
+          currentPagerPosition: 'middle',
+
+          // ✅ タイトル非表示（subHtmlを使わない）
+          subHtmlSelectorRelative: false,
+        });
+
+      } else {
+        console.warn('⚠️ LightGallery init failed: lightGallery not found');
+      }
     });
   }
 
+  // 高さ送信（初期/保険）
   sendHeight();
   window.addEventListener("load", ()=>{ 
     sendHeight(); 
@@ -130,13 +158,16 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(sendHeight,4000); 
   });
 
+  // ✅ 親が requestHeight / resizeRequest どっち投げても反応
   window.addEventListener("message", e=>{
-    if(e.data?.type==="requestHeight") sendHeight();
+    const t = e.data?.type;
+    if(t==="requestHeight" || t==="resizeRequest") sendHeight();
   });
 
   window.addEventListener("resize", sendHeight);
   new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true});
 
+  // 親ページへのスクロール同期（戻る/索引クリックなど）
   document.addEventListener("click", e=>{
     const a = e.target.closest("a");
     if(!a) return;
@@ -149,78 +180,20 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>"""
 
 # ====== LightGallery タグ ======
-# 変更点：
-# - ここで「1回だけ」初期化
-# - dynamic起動・手動クリックはやめて、公式推奨の selector方式に統一
-# - thumbは data-thumb を使う（?width=300を確実に反映）
-# - open/closeイベントで __lgOpen フラグ切替
+# ✅ ここは「読み込みだけ」。initはSCRIPT_TAG側で一回だけやる。
 LIGHTGALLERY_TAGS = """
 <!-- LightGallery (CSS/JS) -->
 <link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
 <link rel="stylesheet" href="./lightgallery/lg-thumbnail.css">
-<script type="text/javascript" src="./lightgallery/lightgallery.min.js"></script>
-<script type="text/javascript" src="./lightgallery/lg-zoom.min.js"></script>
-<script type="text/javascript" src="./lightgallery/lg-thumbnail.min.js"></script>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll('.gallery').forEach(gallery => {
-    const imgsRaw = Array.from(gallery.querySelectorAll('img'));
-
-    // ★ srcが空のimgを除外（ここが一番安全）
-    const imgs = imgsRaw.filter(img => {
-      const s = img.getAttribute("src") || "";
-      return s.trim() !== "";
-    });
-    if (imgs.length === 0) return;
-
-    // ★ 各 img に thumb を明示（LGがこれを読んでサムネ生成）
-    imgs.forEach(img => {
-      const src = img.getAttribute("src");
-      img.setAttribute("data-src", src);
-      img.setAttribute("data-thumb", src + "?width=300");
-      img.setAttribute("data-sub-html", ""); // タイトル非表示指定
-    });
-
-    // ===== LightGallery 初期化（1回のみ）=====
-    const instance = lightGallery(gallery, {
-      selector: "img",          // gallery内のimgを全部対象に
-      plugins: [lgZoom, lgThumbnail],
-      speed: 400,
-      thumbnail: true,
-      animateThumb: true,
-      showThumbByDefault: true,
-      download: false,
-      zoom: true,
-      actualSize: false,
-      getCaptionFromTitleOrAlt: false
-    });
-
-    // ★ LGオープン/クローズで iframe高さ通知を止めたり戻したり
-    instance.on("lgAfterOpen", () => {
-      window.__lgOpen = true;
-    });
-    instance.on("lgAfterClose", () => {
-      window.__lgOpen = false;
-      // 閉じた直後に高さを再送
-      try{
-        const height = document.documentElement.scrollHeight;
-        window.parent.postMessage({ type:"setHeight", height:height }, "*");
-      }catch(e){}
-    });
-  });
-});
-</script>
+<script src="./lightgallery/lightgallery.min.js"></script>
+<script src="./lightgallery/lg-zoom.min.js"></script>
+<script src="./lightgallery/lg-thumbnail.min.js"></script>
 """
-
-# ====== LightGallery デバッグ ======
-# ※本番運用では不要。残すと読み込み競合の原因になるので空にする
-LIGHTGALLERY_DEBUG = ""
 
 # ====== APIから全記事を取得 ======
 def fetch_hatena_articles_api():
     os.makedirs(ARTICLES_DIR, exist_ok=True)
-    print(f"📡 はてなブログAPIから全記事取得中…")
+    print("📡 はてなブログAPIから全記事取得中…")
     url = ATOM_ENDPOINT
     count = 0
     while url:
@@ -266,9 +239,7 @@ def fetch_images():
         with open(html_file, encoding="utf-8") as f:
             soup = BeautifulSoup(f, "html.parser")
 
-        body_div = soup.find(class_="entry-body")
-        if not body_div:
-            body_div = soup
+        body_div = soup.find(class_="entry-body") or soup
 
         for iframe in body_div.find_all("iframe"):
             title = iframe.get("title", "")
@@ -282,12 +253,13 @@ def fetch_images():
 
         imgs = body_div.find_all("img")
         for img in imgs:
-            alt = img.get("alt", "").strip()
+            alt = (img.get("alt") or "").strip()
             src = img.get("src")
             if not alt or not src:
                 continue
             if any(re.search(p, alt) for p in exclude_patterns):
                 continue
+
             entries.append({"alt": alt, "src": src})
 
     print(f"🧩 画像検出数: {len(entries)} 枚")
@@ -320,15 +292,16 @@ def generate_gallery(entries):
             name = "unnamed"
         return name
 
-    # --- 個別キノコページ ---
+    # ---- 各キノコの画像ページ ----
     for alt, imgs in grouped.items():
         html = f"<h2>{alt}</h2><div class='gallery'>"
         for src in imgs:
-            article_url = f"https://{HATENA_BLOG_ID}.hatena.blog/"
-            # ★ data-thumb を使うために data-exthumbimage も併用
+            thumb = src + "?width=300"
+            # ✅ LightGallery標準方式：aで包んで data-exthumbimage を持たせる
             html += (
-                f'<img src="{src}" alt="{alt}" loading="lazy" '
-                f'data-url="{article_url}" data-exthumbimage="{src}?width=300">'
+                f'<a class="gallery-item" href="{src}" data-exthumbimage="{thumb}">'
+                f'<img src="{src}" alt="{alt}" loading="lazy">'
+                f'</a>'
             )
         html += "</div>"
         html += """
@@ -336,12 +309,13 @@ def generate_gallery(entries):
             <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
         """
-        html += STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS + LIGHTGALLERY_DEBUG
+        html += STYLE_TAG + LIGHTGALLERY_TAGS + SCRIPT_TAG
+
         safe = safe_filename(alt)
         with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
-    # --- 五十音カテゴリページ ---
+    # ---- 五十音グループページ ----
     aiuo_dict = {k: [] for k in AIUO_GROUPS.keys()}
     for alt in grouped.keys():
         g = get_aiuo_group(alt)
@@ -355,15 +329,18 @@ def generate_gallery(entries):
             html += f'<li><a href="{safe}.html">{n}</a></li>'
         html += "</ul>"
         html += group_links_html
-        html += STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS + LIGHTGALLERY_DEBUG
+        html += STYLE_TAG + LIGHTGALLERY_TAGS + SCRIPT_TAG
+
         with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
             f.write(html)
 
-    # --- index ---
+    # ---- index ----
     index = "<h2>五十音別分類</h2><ul>"
     for g in AIUO_GROUPS.keys():
         index += f'<li><a href="{safe_filename(g)}.html">{g}</a></li>'
-    index += "</ul>" + STYLE_TAG + SCRIPT_TAG + LIGHTGALLERY_TAGS + LIGHTGALLERY_DEBUG
+    index += "</ul>"
+    index += STYLE_TAG + LIGHTGALLERY_TAGS + SCRIPT_TAG
+
     with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
         f.write(index)
 
