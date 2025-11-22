@@ -37,8 +37,6 @@ AIUO_GROUPS = {
 }
 
 # ====== 共通スタイル ======
-# ・タイトルはスライドショー内に出さない方針なので subHtml を使わない
-# ・thumbnailsデモ風に見えるよう anchor で包む前提のCSS
 STYLE_TAG = """<style>
 html, body {
   margin: 0;
@@ -59,7 +57,7 @@ body {
   column-gap: 10px;
   max-width: 900px;
   margin: 0 auto;
-  visibility: hidden; /* imagesLoaded 後に visible */
+  visibility: hidden;
 }
 
 .gallery a.gallery-item{
@@ -89,8 +87,19 @@ body {
 }
 </style>"""
 
-# ====== 共通スクリプト ======
-# ✅ LightGalleryは「ここで1回だけ初期化」する（dynamicクリック起動は廃止）
+# ====== LightGallery 読み込みタグ（あなたのフォルダ構成に完全一致） ======
+LIGHTGALLERY_TAGS = """
+<!-- LightGallery CSS -->
+<link rel="stylesheet" href="./lightgallery-bundle.min.css">
+<link rel="stylesheet" href="./lg-thumbnail.css">
+
+<!-- LightGallery JS -->
+<script src="./lightgallery.min.js"></script>
+<script src="./lg-zoom.min.js"></script>
+<script src="./lg-thumbnail.min.js"></script>
+"""
+
+# ====== LightGallery 初期化＋フルスクリーン対応 ======
 SCRIPT_TAG = """<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -105,9 +114,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // フェードイン
     const fadeObs = new IntersectionObserver(entries=>{
       entries.forEach(e=>{
-        if(e.isIntersecting){ 
-          e.target.classList.add("visible"); 
-          fadeObs.unobserve(e.target); 
+        if(e.isIntersecting){
+          e.target.classList.add("visible");
+          fadeObs.unobserve(e.target);
         }
       });
     }, {threshold:0.1});
@@ -118,19 +127,15 @@ document.addEventListener("DOMContentLoaded", () => {
       gallery.style.visibility="visible";
       sendHeight();
 
-      // ===== LightGallery 初期化（1回だけ）=====
+      // LightGallery 初期化
       if (typeof lightGallery === 'function') {
-        console.log('🎬 LightGallery init (single)');
-
-        lightGallery(gallery, {
+        const lg = lightGallery(gallery, {
           selector: 'a.gallery-item',
           plugins: [lgZoom, lgThumbnail],
           speed: 400,
           licenseKey: '0000-0000-000-0000',
           download: false,
           zoom: true,
-
-          // ✅ thumbnailsデモ相当
           thumbnail: true,
           animateThumb: true,
           showThumbByDefault: true,
@@ -138,27 +143,32 @@ document.addEventListener("DOMContentLoaded", () => {
           thumbHeight: 70,
           thumbMargin: 6,
           currentPagerPosition: 'middle',
+          subHtmlSelectorRelative: false
+        });
 
-          // ✅ タイトル非表示（subHtmlを使わない）
-          subHtmlSelectorRelative: false,
+        // ★ 起動と同時に全画面表示
+        lg.on('lgAfterOpen', () => {
+          if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen();
+          }
+        });
+
+        // ★ ×/ESC → LightGallery終了＋フルスクリーン解除
+        lg.on('lgBeforeClose', () => {
+          if (document.fullscreenElement) {
+            document.exitFullscreen();
+          }
         });
 
       } else {
-        console.warn('⚠️ LightGallery init failed: lightGallery not found');
+        console.warn('⚠️ LightGallery init failed: not found');
       }
     });
   }
 
-  // 高さ送信（初期/保険）
   sendHeight();
-  window.addEventListener("load", ()=>{ 
-    sendHeight(); 
-    setTimeout(sendHeight,800); 
-    setTimeout(sendHeight,2000); 
-    setTimeout(sendHeight,4000); 
-  });
+  window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); setTimeout(sendHeight,4000); });
 
-  // ✅ 親が requestHeight / resizeRequest どっち投げても反応
   window.addEventListener("message", e=>{
     const t = e.data?.type;
     if(t==="requestHeight" || t==="resizeRequest") sendHeight();
@@ -167,7 +177,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", sendHeight);
   new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true});
 
-  // 親ページへのスクロール同期（戻る/索引クリックなど）
   document.addEventListener("click", e=>{
     const a = e.target.closest("a");
     if(!a) return;
@@ -178,17 +187,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>"""
-
-# ====== LightGallery タグ ======
-# ✅ ここは「読み込みだけ」。initはSCRIPT_TAG側で一回だけやる。
-LIGHTGALLERY_TAGS = """
-<!-- LightGallery (CSS/JS) -->
-<link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
-<link rel="stylesheet" href="./lightgallery/lg-thumbnail.css">
-<script src="./lightgallery/lightgallery.min.js"></script>
-<script src="./lightgallery/lg-zoom.min.js"></script>
-<script src="./lightgallery/lg-thumbnail.min.js"></script>
-"""
 
 # ====== APIから全記事を取得 ======
 def fetch_hatena_articles_api():
@@ -297,7 +295,6 @@ def generate_gallery(entries):
         html = f"<h2>{alt}</h2><div class='gallery'>"
         for src in imgs:
             thumb = src + "?width=300"
-            # ✅ LightGallery標準方式：aで包んで data-exthumbimage を持たせる
             html += (
                 f'<a class="gallery-item" href="{src}" data-exthumbimage="{thumb}">'
                 f'<img src="{src}" alt="{alt}" loading="lazy">'
