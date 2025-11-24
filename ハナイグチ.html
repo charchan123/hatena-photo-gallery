@@ -82,20 +82,17 @@ document.addEventListener("DOMContentLoaded", () => {
       gallery.style.visibility="visible";
       sendHeight();
 
-      /* ==================================
-         LightGallery 初期化
-      =================================== */
-      const lg = lightGallery(gallery, {
-        selector: 'a.gallery-item',
-        plugins: [lgZoom, lgThumbnail],
-        speed: 400,
-        download: false,
-        zoom: true,
-        thumbnail: true,
-        animateThumb: true,
-        showThumbByDefault: true,
-        subHtmlSelectorRelative: false
-      });
+/* ==================================
+   LightGallery 初期化（v2 正式版）
+=================================== */
+const lg = lightGallery(gallery, {
+  selector: 'a.gallery-item',
+  plugins: [lgZoom, lgThumbnail],
+  speed: 400,
+  download: false,
+  zoom: true,
+  thumbnail: true
+});
 
       /* ==================================
          ① サムネイルクリック時に
@@ -111,13 +108,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
 
-      /* ==================================
-         ② LG が閉じられたら
-            フルスクリーン解除 + 親へ通知
-      ================================== */
-lg.on("lgBeforeClose", () => {
-  console.log("📤 子：lgBeforeClose発火 → 親に lgClosed を送信");
-
+/* ==================================
+   v2 のイベント書き方
+=================================== */
+gallery.addEventListener("lgBeforeClose", () => {
+  console.log("📤 子：LG before close 発火");
   if (document.fullscreenElement) {
     document.exitFullscreen().catch(()=>{});
   }
