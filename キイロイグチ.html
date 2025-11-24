@@ -98,8 +98,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       /* ==================================
-         ① サムネイルクリックをフックして
-            強制フルスクリーンを発動させる
+         ① サムネイルクリック時に
+            強制フルスクリーン発動
       ================================== */
       gallery.querySelectorAll("a.gallery-item").forEach((a) => {
         a.addEventListener("click", () => {
@@ -113,21 +113,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
       /* ==================================
          ② LG が閉じられたら
-            フルスクリーン解除
+            フルスクリーン解除 + 親へ通知
       ================================== */
       lg.on("lgBeforeClose", () => {
         if (document.fullscreenElement) {
           document.exitFullscreen().catch(()=>{});
         }
+
+        // ★ 親に通知
+        window.parent.postMessage({ type: "lgClosed" }, "*");
       });
 
       /* ==================================
-         ③ ESC押されたら
-            LightGallery を閉じる
+         ③ ESC でフルスクリーン解除したら
+            LightGalleryを閉じる + 親へ通知
       ================================== */
       document.addEventListener("fullscreenchange", () => {
         if (!document.fullscreenElement) {
-          try { lg.closeGallery(); } catch(e) {}
+          try {
+            lg.closeGallery();
+            window.parent.postMessage({ type: "lgClosed" }, "*"); // ★追加
+          } catch(e) {}
         }
       });
 
