@@ -218,19 +218,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <script>
 // ===============================
-// LightGallery：EXIF を説明欄に追加
+// LightGallery：EXIF を説明欄に追加（v2対応）
 // ===============================
 document.addEventListener("DOMContentLoaded", () => {
 
-  // LightGallery 発火後に説明欄へ EXIF を挿入
-  document.addEventListener("lgAfterOpen", (event) => {
+  document.addEventListener("lgAfterSlide", (event) => {
     const instance = event.detail.instance;
-    const index = instance.index;       // 現在のスライド番号
+    const index = event.detail.index;
     const slide = instance.galleryItems[index];
 
     const imgSrc = slide.src;
 
-    // 画像を取得して EXIF 抽出
+    // 画像から EXIF を読む
     const img = new Image();
     img.crossOrigin = "Anonymous";
     img.src = imgSrc;
@@ -247,9 +246,12 @@ document.addEventListener("DOMContentLoaded", () => {
           date: EXIF.getTag(this, "DateTimeOriginal") || ""
         };
 
-        // 説明欄HTMLを生成
-        const exifHtml =
-          `<div class="exif-box">
+        // LightGallery のキャプション欄
+        const captionEl = document.querySelector(".lg-sub-html");
+
+        if (captionEl) {
+          const exifHtml = `
+            <div class="exif-box">
               <strong>撮影情報</strong><br>
               カメラ：${data.model}<br>
               レンズ：${data.lens}<br>
@@ -258,11 +260,8 @@ document.addEventListener("DOMContentLoaded", () => {
               シャッター速度：${data.exposure}<br>
               焦点距離：${data.focal}<br>
               撮影日：${data.date}
-           </div>`;
-
-        const captionEl = document.querySelector(".lg-sub-html");
-
-        if (captionEl) {
+            </div>
+          `;
           captionEl.innerHTML = exifHtml + captionEl.innerHTML;
         }
       });
