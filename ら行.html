@@ -173,55 +173,72 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <script>
 // ===============================
-// LightGallery：EXIF を説明欄に追加（v2対応）
+// LightGallery v2：EXIF を説明欄に追加
 // ===============================
 document.addEventListener("DOMContentLoaded", () => {
 
-  document.addEventListener("lgAfterSlide", (event) => {
-    const instance = event.detail.instance;
-    const index = event.detail.index;
-    const slide = instance.galleryItems[index];
+  // LightGallery の初期化が終わったらイベントを登録する
+  const gallery = document.querySelector(".gallery");
+  if (!gallery) return;
 
-    const imgSrc = slide.src;
+  gallery.addEventListener("lgInit", (e) => {
+    const lg = e.detail.instance;
 
-    // 画像から EXIF を読む
-    const img = new Image();
-    img.crossOrigin = "Anonymous";
-    img.src = imgSrc;
+    // スライド移動後（v2 正式イベント）
+    lg.on("lgAfterSlide", (detail) => {
+      const index = detail.index;
+      const item = lg.galleryItems[index];
+      const imgSrc = item.src;
 
-    img.onload = function() {
-      EXIF.getData(img, function() {
-        const data = {
-          model: EXIF.getTag(this, "Model") || "",
-          lens: EXIF.getTag(this, "LensModel") || "",
-          iso: EXIF.getTag(this, "ISO") || "",
-          f: EXIF.getTag(this, "FNumber") ? "f/" + EXIF.getTag(this, "FNumber") : "",
-          exposure: EXIF.getTag(this, "ExposureTime") || "",
-          focal: EXIF.getTag(this, "FocalLength") ? EXIF.getTag(this, "FocalLength") + "mm" : "",
-          date: EXIF.getTag(this, "DateTimeOriginal") || ""
-        };
+      // 説明欄の DOM
+      const captionEl = document.querySelector(".lg-sub-html");
+      if (!captionEl) return;
 
-        // LightGallery のキャプション欄
-        const captionEl = document.querySelector(".lg-sub-html");
+      // ローディング表示（あとで消す）
+      captionEl.innerHTML = "<div>EXIF 読み込み中…</div>";
 
-        if (captionEl) {
+      // EXIF 抽出
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.src = imgSrc;
+
+      img.onload = function() {
+        EXIF.getData(img, function() {
+
+          const data = {
+            model: EXIF.getTag(this, "Model") || "",
+            lens: EXIF.getTag(this, "LensModel") || "",
+            iso: EXIF.getTag(this, "ISO") || "",
+            f: EXIF.getTag(this, "FNumber") ? "f/" + EXIF.getTag(this, "FNumber") : "",
+            exposure: EXIF.getTag(this, "ExposureTime") || "",
+            focal: EXIF.getTag(this, "FocalLength") ? EXIF.getTag(this, "FocalLength") + "mm" : "",
+            date: EXIF.getTag(this, "DateTimeOriginal") || ""
+          };
+
+          // 空の値で行を出さないようにする
+          const row = (label, value) =>
+            value ? `${label}：${value}<br>` : "";
+
           const exifHtml = `
             <div class="exif-box">
               <strong>撮影情報</strong><br>
-              カメラ：${data.model}<br>
-              レンズ：${data.lens}<br>
-              ISO：${data.iso}<br>
-              絞り：${data.f}<br>
-              シャッター速度：${data.exposure}<br>
-              焦点距離：${data.focal}<br>
-              撮影日：${data.date}
+              ${row("カメラ", data.model)}
+              ${row("レンズ", data.lens)}
+              ${row("ISO", data.iso)}
+              ${row("絞り", data.f)}
+              ${row("シャッター速度", data.exposure)}
+              ${row("焦点距離", data.focal)}
+              ${row("撮影日", data.date)}
             </div>
           `;
-          captionEl.innerHTML = exifHtml + captionEl.innerHTML;
-        }
-      });
-    };
-  });
 
+          // ALT のキノコ名を元の caption から取得
+          const mushroomName = item.subHtml || "";
+
+          captionEl.innerHTML = exifHtml + mushroomName;
+        });
+      };
+    });
+  });
 });
 </script>
