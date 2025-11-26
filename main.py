@@ -88,9 +88,12 @@ body {
 LIGHTGALLERY_TAGS = """
 <!-- LightGallery CSS -->
 <link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
+<link rel="stylesheet" href="./lightgallery/lg-thumbnail.css">
 
-<!-- LightGallery JS (bundle版 → v2互換保証) -->
-<script src="./lightgallery/lightgallery-bundle.min.js"></script>
+<!-- LightGallery JS -->
+<script src="./lightgallery/lightgallery.min.js"></script>
+<script src="./lightgallery/lg-zoom.min.js"></script>
+<script src="./lightgallery/lg-thumbnail.min.js"></script>
 """
 
 # ====== スクリプト（フルスクリーン＋戻る制御を含む完全版） ======
