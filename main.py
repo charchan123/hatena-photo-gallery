@@ -4,6 +4,8 @@ import requests
 from bs4 import BeautifulSoup
 import xml.etree.ElementTree as ET
 import re
+from io import BytesIO
+from PIL import Image, ExifTags
 
 # ====== 設定 ======
 HATENA_USER = os.getenv("HATENA_USER")
@@ -36,7 +38,7 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== 共通スタイル（Masonry＋軽量フェード） ======
+# ====== 共通スタイル（Masonry＋EXIFボックス） ======
 STYLE_TAG = """<style>
 html, body {
   margin: 0;
@@ -82,233 +84,224 @@ body {
 @media (max-width: 480px) {
   .gallery { column-count: 1; }
 }
+
+/* LightGallery のキャプション＆EXIF用 */
+.lg-caption-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.exif-box {
+  margin-top: 6px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(0,0,0,0.55);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.exif-box strong {
+  font-size: 13px;
+}
 </style>"""
 
-# ====== LightGallery 読み込みタグ（正しいパスに修正済み） ======
+# ====== LightGallery 読み込みタグ（bundle版 v2） ======
 LIGHTGALLERY_TAGS = """
 <!-- LightGallery CSS -->
 <link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
-<link rel="stylesheet" href="./lightgallery/lg-thumbnail.css">
 
-<!-- LightGallery JS -->
-<script src="./lightgallery/lightgallery.min.js"></script>
-<script src="./lightgallery/lg-zoom.min.js"></script>
-<script src="./lightgallery/lg-thumbnail.min.js"></script>
+<!-- LightGallery JS (bundle版 → v2) -->
+<script src="./lightgallery/lightgallery-bundle.min.js"></script>
 """
 
-# ====== スクリプト（フルスクリーン＋戻る制御を含む完全版） ======
+# ====== スクリプト（フルスクリーン＋親との連携のみ） ======
 SCRIPT_TAG = """<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  // ========== 親へ高さ通知 ==========
   function sendHeight() {
     const height = document.documentElement.scrollHeight;
-    window.parent.postMessage({ type: "setHeight", height }, "*");
+    window.parent.postMessage({ type:"setHeight", height }, "*");
   }
 
   const gallery = document.querySelector(".gallery");
-  if (!gallery) {
-    console.warn("⚠ .gallery が見つかりません");
-    sendHeight();
-    return;
+  if (gallery) {
+
+    // フェードイン
+    const fadeObs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add("visible");
+          fadeObs.unobserve(e.target);
+        }
+      });
+    }, {threshold:0.1});
+    gallery.querySelectorAll("img").forEach(img=>fadeObs.observe(img));
+
+    imagesLoaded(gallery, () => {
+      console.log("✅ imagesLoaded 完了");
+      gallery.style.visibility="visible";
+      sendHeight();
+
+      // ===== LightGallery v2 初期化 =====
+      const lg = lightGallery(gallery, {
+        selector: 'a.gallery-item',
+        plugins: [lgZoom, lgThumbnail],
+        speed: 400,
+        download: false,
+        zoom: true,
+        thumbnail: true,
+      });
+      console.log("✅ lg インスタンス:", lg);
+
+      // ① サムネイルクリック時に強制フルスクリーン
+      gallery.querySelectorAll("a.gallery-item").forEach((a) => {
+        a.addEventListener("click", () => {
+          const el = document.documentElement;
+          if (el.requestFullscreen) el.requestFullscreen();
+          else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+          else if (el.msRequestFullscreen) el.msRequestFullscreen();
+        });
+      });
+
+      // ② ギャラリーを閉じる前にフルスクリーン解除 + 親に通知
+      gallery.addEventListener("lgBeforeClose", () => {
+        console.log("📤 子：LG before close 発火");
+        if (document.fullscreenElement) {
+          document.exitFullscreen().catch(()=>{});
+        }
+        window.parent.postMessage({ type: "lgClosed" }, "*");
+      });
+
+      // ③ ESC でフルスクリーン解除されたらギャラリー閉じて親へ通知
+      document.addEventListener("fullscreenchange", () => {
+        if (!document.fullscreenElement) {
+          console.log("📤 子：fullscreenchange発火 → 親に lgClosed を送信");
+          try {
+            lg.closeGallery();
+            window.parent.postMessage({ type: "lgClosed" }, "*");
+          } catch(e) {}
+        }
+      });
+
+      // ④ 五十音リンク/戻るリンクのクリック → 親にスクロール依頼
+      document.addEventListener("click", (e) => {
+        const a = e.target.closest("a");
+        if (!a) return;
+        const txt = a.textContent || "";
+
+        if (/あ行|か行|さ行|た行|な行|は行|ま行|や行|ら行|わ行/.test(txt)) {
+          window.parent.postMessage({ type: "scrollToIframeTop" }, "*");
+          return;
+        }
+        if (a.href && a.href.endsWith(".html")) {
+          window.parent.postMessage({ type: "scrollToIframeTop" }, "*");
+          return;
+        }
+        if (/戻る/.test(txt)) {
+          window.parent.postMessage({ type: "scrollToIframeTop" }, "*");
+          return;
+        }
+      });
+
+    }); // imagesLoaded end
   }
 
-  // ========== フェードイン ==========
-  const fadeObs = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        e.target.classList.add("visible");
-        fadeObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  gallery.querySelectorAll("img").forEach((img) => fadeObs.observe(img));
-
-  imagesLoaded(gallery, () => {
-    console.log("✅ imagesLoaded 完了");
-    gallery.style.visibility = "visible";
-    sendHeight();
-
-    // ========== LightGallery 初期化(v2) ==========
-    const lg = lightGallery(gallery, {
-      selector: "a.gallery-item",
-      plugins: [lgZoom, lgThumbnail],
-      speed: 400,
-      download: false,
-      zoom: true,
-      thumbnail: true,
-    });
-
-    console.log("✅ lg インスタンス:", lg, "typeof lg.on =", typeof lg.on);
-
-    // ---------- サムネイルクリックでフルスクリーン ----------
-    gallery.querySelectorAll("a.gallery-item").forEach((a) => {
-      a.addEventListener("click", () => {
-        const el = document.documentElement;
-        if (el.requestFullscreen) el.requestFullscreen();
-        else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
-        else if (el.msRequestFullscreen) el.msRequestFullscreen();
-      });
-    });
-
-    // ---------- 閉じる直前（フルスクリーン解除＋親へ通知） ----------
-    gallery.addEventListener("lgBeforeClose", () => {
-      console.log("📤 子：LG before close 発火");
-      if (document.fullscreenElement) {
-        document.exitFullscreen().catch(() => {});
-      }
-      window.parent.postMessage({ type: "lgClosed" }, "*");
-    });
-
-    // ---------- ESC でフルスクリーン解除されたら LG を閉じて親に通知 ----------
-    document.addEventListener("fullscreenchange", () => {
-      if (!document.fullscreenElement) {
-        console.log("📤 子：fullscreenchange発火 → 親に lgClosed を送信");
-        try {
-          lg.closeGallery();
-          window.parent.postMessage({ type: "lgClosed" }, "*");
-        } catch (e) {
-          console.error("lg.closeGallery() でエラー:", e);
-        }
-      }
-    });
-
-    // ========== ★ ここが EXIF 周りの本体 ★ ==========
-    if (typeof lg.on !== "function") {
-      console.error("❌ lg.on が関数ではありません。LightGallery v2 インスタンスでない可能性があります。");
-    } else {
-      lg.on("lgAfterSlide", (event) => {
-        console.log("📸 lgAfterSlide 発火:", event);
-
-        const detail = event.detail || {};
-        const index = detail.index;
-        const instance = detail.instance || lg;
-
-        if (index == null || !instance || !instance.galleryItems) {
-          console.warn("⚠ lgAfterSlide: index または galleryItems が不正", detail);
-          return;
-        }
-
-        const item = instance.galleryItems[index];
-        if (!item) {
-          console.warn("⚠ lgAfterSlide: galleryItems[" + index + "] が見つかりません");
-          return;
-        }
-
-        const imgSrc = item.src;
-        console.log("🔗 対象画像 src:", imgSrc);
-
-        const captionEl = document.querySelector(".lg-sub-html");
-        if (!captionEl) {
-          console.warn("⚠ .lg-sub-html が見つかりません");
-          return;
-        }
-
-        // 既存のキャプション（キノコ名など）
-        const baseCaption = item.subHtml || captionEl.innerHTML || "";
-
-        captionEl.innerHTML = "EXIF 読み込み中…<br>" + baseCaption;
-
-        // 画像を別オブジェクトとしてロードして EXIF 読み取り
-        const img = new Image();
-        img.crossOrigin = "Anonymous";
-        img.src = imgSrc;
-
-        img.onload = function () {
-          console.log("🖼 画像ロード完了。EXIF 取得開始");
-          try {
-            EXIF.getData(img, function () {
-              console.log("📥 EXIF 生データ:", this.exifdata);
-
-              const model = EXIF.getTag(this, "Model") || "";
-              const lens = EXIF.getTag(this, "LensModel") || "";
-              const iso = EXIF.getTag(this, "ISO") || "";
-              const fnum = EXIF.getTag(this, "FNumber");
-              const f = fnum ? "f/" + fnum : "";
-              const exposure = EXIF.getTag(this, "ExposureTime") || "";
-              const focalLen = EXIF.getTag(this, "FocalLength");
-              const focal = focalLen ? focalLen + "mm" : "";
-              const date = EXIF.getTag(this, "DateTimeOriginal") || "";
-
-              const exifHTML = `
-                <div class="exif-box">
-                  <strong>撮影情報</strong><br>
-                  ${model ? `カメラ：${model}<br>` : ""}
-                  ${lens ? `レンズ：${lens}<br>` : ""}
-                  ${iso ? `ISO：${iso}<br>` : ""}
-                  ${f ? `絞り：${f}<br>` : ""}
-                  ${exposure ? `シャッター速度：${exposure}<br>` : ""}
-                  ${focal ? `焦点距離：${focal}<br>` : ""}
-                  ${date ? `撮影日：${date}<br>` : ""}
-                </div>
-              `;
-
-              console.log("✅ EXIF 整形後:", { model, lens, iso, f, exposure, focal, date });
-
-              captionEl.innerHTML = exifHTML + baseCaption;
-            });
-          } catch (err) {
-            console.error("❌ EXIF 読み取り中にエラー:", err);
-            captionEl.innerHTML = "EXIF の取得に失敗しました<br>" + baseCaption;
-          }
-        };
-
-        img.onerror = function () {
-          console.error("❌ EXIF 用画像のロードに失敗:", imgSrc);
-          captionEl.innerHTML = "EXIF 画像の読み込み失敗<br>" + baseCaption;
-        };
-      });
-    }
-
-    // ========== iframe 親に「スクロールして」と伝える ==========
-    document.addEventListener("click", (e) => {
-      const a = e.target.closest("a");
-      if (!a) return;
-
-      const txt = a.textContent || "";
-
-      // 五十音リンク（あ行〜わ行）
-      if (/あ行|か行|さ行|た行|な行|は行|ま行|や行|ら行|わ行/.test(txt)) {
-        window.parent.postMessage({ type: "scrollToIframeTop" }, "*");
-        return;
-      }
-
-      // きのこ個別リンク（〜.html）
-      if (a.href && a.href.endsWith(".html")) {
-        window.parent.postMessage({ type: "scrollToIframeTop" }, "*");
-        return;
-      }
-
-      // 戻るリンク
-      if (/戻る/.test(txt)) {
-        window.parent.postMessage({ type: "scrollToIframeTop" }, "*");
-        return;
-      }
-    });
-
-  }); // imagesLoaded end
-
-  // 初期高さ通知
   sendHeight();
-  window.addEventListener("load", () => {
-    sendHeight();
-    setTimeout(sendHeight, 800);
-    setTimeout(sendHeight, 2000);
-  });
-  window.addEventListener("message", (e) => {
-    if (e.data && e.data.type === "requestHeight") sendHeight();
-  });
+  window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); });
+  window.addEventListener("message", e=>{ if(e.data?.type==="requestHeight") sendHeight(); });
   window.addEventListener("resize", sendHeight);
-  new MutationObserver(sendHeight).observe(document.body, { childList: true, subtree: true });
+  new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true});
 });
 </script>
-
-<!-- EXIF 読み取りライブラリ -->
-<script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
 """
 
-# ====== APIから全記事を取得 ======
+# ==========================
+#  EXIF 抽出（Python側）
+# ==========================
+def extract_exif_from_url(url: str) -> dict:
+    """画像URLから EXIF を読み、表示用文字列を返す"""
+    try:
+        print(f"🔍 EXIF取得: {url}")
+        resp = requests.get(url, timeout=15)
+        resp.raise_for_status()
+
+        img = Image.open(BytesIO(resp.content))
+        exif_raw = img._getexif()
+        if not exif_raw:
+            print("  ↪ EXIFなし")
+            return {}
+
+        exif = {}
+        for tag, value in exif_raw.items():
+            tag_name = ExifTags.TAGS.get(tag, tag)
+            exif[tag_name] = value
+
+        # カメラ
+        model = exif.get("Model", "")
+
+        # レンズ
+        lens = exif.get("LensModel", "") or exif.get("LensMake", "")
+
+        # ISO
+        iso = exif.get("ISOSpeedRatings") or exif.get("PhotographicSensitivity")
+        if isinstance(iso, (list, tuple)):
+            iso = iso[0] if iso else None
+
+        # F値
+        fnumber = exif.get("FNumber")
+        if isinstance(fnumber, tuple) and len(fnumber) == 2 and fnumber[1] != 0:
+            f_val = fnumber[0] / fnumber[1]
+            f_str = f"f/{f_val:.1f}"
+        else:
+            f_str = ""
+
+        # シャッタースピード
+        exposure = exif.get("ExposureTime")
+        if isinstance(exposure, tuple) and len(exposure) == 2 and exposure[1] != 0:
+            # 1/200 みたいな表示
+            if exposure[0] == 1:
+                exposure_str = f"1/{exposure[1]}"
+            else:
+                exposure_str = f"{exposure[0]}/{exposure[1]}"
+        else:
+            exposure_str = str(exposure) if exposure else ""
+
+        # 焦点距離
+        focal = exif.get("FocalLength")
+        if isinstance(focal, tuple) and len(focal) == 2 and focal[1] != 0:
+            focal_val = focal[0] / focal[1]
+            focal_str = f"{focal_val:.0f}mm"
+        else:
+            focal_str = ""
+
+        # 撮影日（YYYY/MM/DD）
+        dt = exif.get("DateTimeOriginal") or exif.get("DateTime")
+        date_str = ""
+        if isinstance(dt, str) and len(dt) >= 10:
+            # 形式: 'YYYY:MM:DD HH:MM:SS'
+            parts = dt.split(" ")[0].split(":")
+            if len(parts) == 3:
+                y, m, d = parts
+                date_str = f"{y}/{m}/{d}"
+
+        result = {
+            "model": model or "",
+            "lens": lens or "",
+            "iso": str(iso) if iso else "",
+            "f": f_str,
+            "exposure": exposure_str,
+            "focal": focal_str,
+            "date": date_str,
+        }
+        print(f"  ↪ EXIF取得OK: {result}")
+        return result
+
+    except Exception as e:
+        print(f"⚠️ EXIF取得失敗: {url} ({e})")
+        return {}
+
+# ==========================
+#  APIから全記事を取得
+# ==========================
 def fetch_hatena_articles_api():
     os.makedirs(ARTICLES_DIR, exist_ok=True)
     print("📡 はてなブログAPIから全記事取得中…")
@@ -340,7 +333,9 @@ def fetch_hatena_articles_api():
 
     print(f"📦 合計 {count} 件の記事を保存しました。")
 
-# ====== HTMLから画像とaltを抽出 ======
+# ==========================
+#  HTMLから画像とalt+EXIFを抽出
+# ==========================
 def fetch_images():
     print("📂 HTMLから画像抽出中…")
     entries = []
@@ -378,12 +373,20 @@ def fetch_images():
             if any(re.search(p, alt) for p in exclude_patterns):
                 continue
 
-            entries.append({"alt": alt, "src": src})
+            exif = extract_exif_from_url(src)
+
+            entries.append({
+                "alt": alt,
+                "src": src,
+                "exif": exif,
+            })
 
     print(f"🧩 画像検出数: {len(entries)} 枚")
     return entries
 
-# ====== 五十音分類 ======
+# ==========================
+#  五十音分類
+# ==========================
 def get_aiuo_group(name):
     if not name:
         return "その他"
@@ -393,33 +396,77 @@ def get_aiuo_group(name):
             return group
     return "その他"
 
-# ====== ギャラリー生成 ======
+# ==========================
+#  data-sub-html 用 HTML生成
+# ==========================
+def build_sub_html(alt: str, exif: dict) -> str:
+    parts = []
+    parts.append("<div class='lg-caption'>")
+    parts.append(f"<div class='lg-caption-title'>{alt}</div>")
+
+    if exif:
+        parts.append("<div class='exif-box'><strong>撮影情報</strong><br>")
+        if exif.get("model"):
+            parts.append(f"カメラ：{exif['model']}<br>")
+        if exif.get("lens"):
+            parts.append(f"レンズ：{exif['lens']}<br>")
+        if exif.get("iso"):
+            parts.append(f"ISO：{exif['iso']}<br>")
+        if exif.get("f"):
+            parts.append(f"絞り：{exif['f']}<br>")
+        if exif.get("exposure"):
+            parts.append(f"シャッター速度：{exif['exposure']}<br>")
+        if exif.get("focal"):
+            parts.append(f"焦点距離：{exif['focal']}<br>")
+        if exif.get("date"):
+            parts.append(f"撮影日：{exif['date']}<br>")
+        parts.append("</div>")  # .exif-box
+
+    parts.append("</div>")  # .lg-caption
+
+    html = "".join(parts)
+    # data-sub-html 用にシングルクォートをエスケープ
+    return html.replace("'", "&#39;")
+
+# ==========================
+#  ギャラリー生成
+# ==========================
 def generate_gallery(entries):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+    # alt ごとにグループ化（同じキノコ名で複数枚対応）
     grouped = {}
     for e in entries:
-        grouped.setdefault(e["alt"], []).append(e["src"])
+        grouped.setdefault(e["alt"], []).append(e)
 
     group_links = " | ".join([f'<a href="{g}.html">{g}</a>' for g in AIUO_GROUPS.keys()])
     group_links_html = f"<div style='margin-top:40px; text-align:center;'>{group_links}</div>"
 
     def safe_filename(name):
-        name = re.sub(r'[:<>\"|*?\\/\r\n]', '_', name)
+        name = re.sub(r'[:<>"|*?\\\\/\\r\\n]', '_', name)
         name = name.strip()
         if not name:
             name = "unnamed"
         return name
 
     # ---- 各キノコのページ ----
-    for alt, imgs in grouped.items():
+    for alt, items in grouped.items():
         html = f"<h2>{alt}</h2><div class='gallery'>"
-        for src in imgs:
+        for item in items:
+            src = item["src"]
+            exif = item.get("exif") or {}
             thumb = src + "?width=300"
+
+            sub_html = build_sub_html(alt, exif)
+
             html += (
-                f'<a class="gallery-item" href="{src}" data-exthumbimage="{thumb}">'
-                f'<img src="{src}" alt="{alt}" loading="lazy">'
-                f'</a>'
+                f"<a class='gallery-item' href='{src}' "
+                f"data-exthumbimage='{thumb}' "
+                f"data-sub-html='{sub_html}'>"
+                f"<img src='{src}' alt='{alt}' loading='lazy'>"
+                f"</a>"
             )
+
         html += "</div>"
         html += """
         <div style='margin-top:40px; text-align:center;'>
@@ -443,7 +490,7 @@ def generate_gallery(entries):
         html = f"<h2>{g}のキノコ</h2><ul>"
         for n in sorted(names):
             safe = safe_filename(n)
-            html += f'<li><a href="{safe}.html">{n}</a></li>'
+            html += f"<li><a href='{safe}.html'>{n}</a></li>"
         html += "</ul>"
         html += group_links_html
         html += STYLE_TAG + LIGHTGALLERY_TAGS + SCRIPT_TAG
@@ -454,7 +501,7 @@ def generate_gallery(entries):
     # ---- index ----
     index = "<h2>五十音別分類</h2><ul>"
     for g in AIUO_GROUPS.keys():
-        index += f'<li><a href="{safe_filename(g)}.html">{g}</a></li>'
+        index += f"<li><a href='{safe_filename(g)}.html'>{g}</a></li>"
     index += "</ul>"
     index += STYLE_TAG + LIGHTGALLERY_TAGS + SCRIPT_TAG
 
@@ -463,7 +510,9 @@ def generate_gallery(entries):
 
     print("✅ ギャラリーページ生成完了")
 
-# ====== メイン ======
+# ==========================
+#  メイン
+# ==========================
 if __name__ == "__main__":
     fetch_hatena_articles_api()
     entries = fetch_images()
