@@ -218,73 +218,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <script>
 // ===============================
-// LightGallery v2：EXIF を説明欄に追加
+//  LightGallery v2：EXIF 読み取り
 // ===============================
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("lgAfterSlide", function (event) {
+    const detail = event.detail;
+    if (!detail || !detail.instance) return;
 
-  // LightGallery の初期化が終わったらイベントを登録する
-  const gallery = document.querySelector(".gallery");
-  if (!gallery) return;
+    const instance = detail.instance;
+    const index = detail.index;
 
-  gallery.addEventListener("lgInit", (e) => {
-    const lg = e.detail.instance;
+    const item = instance.galleryItems[index];
+    if (!item) return;
 
-    // スライド移動後（v2 正式イベント）
-    lg.on("lgAfterSlide", (detail) => {
-      const index = detail.index;
-      const item = lg.galleryItems[index];
-      const imgSrc = item.src;
+    const imgSrc = item.src;
+    const captionEl = document.querySelector(".lg-sub-html");
+    if (captionEl) captionEl.innerHTML = "EXIF読込中…";
 
-      // 説明欄の DOM
-      const captionEl = document.querySelector(".lg-sub-html");
-      if (!captionEl) return;
+    // ---- EXIF 読み取り ----
+    const img = new Image();
+    img.crossOrigin = "Anonymous";
+    img.src = imgSrc;
 
-      // ローディング表示（あとで消す）
-      captionEl.innerHTML = "<div>EXIF 読み込み中…</div>";
+    img.onload = function () {
+        EXIF.getData(img, function () {
+            const data = {
+                model: EXIF.getTag(this, "Model") || "",
+                lens: EXIF.getTag(this, "LensModel") || "",
+                iso: EXIF.getTag(this, "ISO") || "",
+                f: EXIF.getTag(this, "FNumber") ? "f/" + EXIF.getTag(this, "FNumber") : "",
+                exposure: EXIF.getTag(this, "ExposureTime") || "",
+                focal: EXIF.getTag(this, "FocalLength") ? EXIF.getTag(this, "FocalLength") + "mm" : "",
+                date: EXIF.getTag(this, "DateTimeOriginal") || ""
+            };
 
-      // EXIF 抽出
-      const img = new Image();
-      img.crossOrigin = "anonymous";
-      img.src = imgSrc;
+            const exifHTML = `
+                <div class="exif-box">
+                    <strong>撮影情報</strong><br>
+                    ${data.model ? `カメラ：${data.model}<br>` : ""}
+                    ${data.lens ? `レンズ：${data.lens}<br>` : ""}
+                    ${data.iso ? `ISO：${data.iso}<br>` : ""}
+                    ${data.f ? `絞り：${data.f}<br>` : ""}
+                    ${data.exposure ? `シャッター速度：${data.exposure}<br>` : ""}
+                    ${data.focal ? `焦点距離：${data.focal}<br>` : ""}
+                    ${data.date ? `撮影日：${data.date}<br>` : ""}
+                </div>
+            `;
 
-      img.onload = function() {
-        EXIF.getData(img, function() {
-
-          const data = {
-            model: EXIF.getTag(this, "Model") || "",
-            lens: EXIF.getTag(this, "LensModel") || "",
-            iso: EXIF.getTag(this, "ISO") || "",
-            f: EXIF.getTag(this, "FNumber") ? "f/" + EXIF.getTag(this, "FNumber") : "",
-            exposure: EXIF.getTag(this, "ExposureTime") || "",
-            focal: EXIF.getTag(this, "FocalLength") ? EXIF.getTag(this, "FocalLength") + "mm" : "",
-            date: EXIF.getTag(this, "DateTimeOriginal") || ""
-          };
-
-          // 空の値で行を出さないようにする
-          const row = (label, value) =>
-            value ? `${label}：${value}<br>` : "";
-
-          const exifHtml = `
-            <div class="exif-box">
-              <strong>撮影情報</strong><br>
-              ${row("カメラ", data.model)}
-              ${row("レンズ", data.lens)}
-              ${row("ISO", data.iso)}
-              ${row("絞り", data.f)}
-              ${row("シャッター速度", data.exposure)}
-              ${row("焦点距離", data.focal)}
-              ${row("撮影日", data.date)}
-            </div>
-          `;
-
-          // ALT のキノコ名を元の caption から取得
-          const mushroomName = item.subHtml || "";
-
-          captionEl.innerHTML = exifHtml + mushroomName;
+            captionEl.innerHTML = exifHTML + (item.subHtml || "");
         });
-      };
-    });
-  });
+    };
 });
 </script>
 """
