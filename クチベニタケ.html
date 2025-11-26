@@ -1,4 +1,4 @@
-<h2>クチベニタケ</h2><div class='gallery'><a class="gallery-item" href="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018230755.jpg" data-exthumbimage="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018230755.jpg?width=300"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018230755.jpg" alt="クチベニタケ" loading="lazy"></a><a class="gallery-item" href="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250907/20250907120629.jpg" data-exthumbimage="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250907/20250907120629.jpg?width=300"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250907/20250907120629.jpg" alt="クチベニタケ" loading="lazy"></a></div>
+<h2>クチベニタケ</h2><div class='gallery'><a class='gallery-item' href='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018230755.jpg' data-exthumbimage='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018230755.jpg?width=300' data-sub-html='<div class=&#39;lg-caption&#39;><div class=&#39;lg-caption-title&#39;>クチベニタケ</div><div class=&#39;exif-box&#39;><strong>撮影情報</strong><br>カメラ：DC-G9M2<br>レンズ：OLYMPUS M.12-40mm F2.8<br>ISO：100<br>シャッター速度：5.0<br>撮影日：2025/10/18<br></div></div>'><img src='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018230755.jpg' alt='クチベニタケ' loading='lazy'></a><a class='gallery-item' href='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250907/20250907120629.jpg' data-exthumbimage='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250907/20250907120629.jpg?width=300' data-sub-html='<div class=&#39;lg-caption&#39;><div class=&#39;lg-caption-title&#39;>クチベニタケ</div><div class=&#39;exif-box&#39;><strong>撮影情報</strong><br>カメラ：DC-G9M2<br>レンズ：OLYMPUS M.12-40mm F2.8<br>ISO：3200<br>シャッター速度：1.0<br>撮影日：2025/09/06<br></div></div>'><img src='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250907/20250907120629.jpg' alt='クチベニタケ' loading='lazy'></a></div>
         <div style='margin-top:40px; text-align:center;'>
             <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
@@ -47,221 +47,125 @@ body {
 @media (max-width: 480px) {
   .gallery { column-count: 1; }
 }
+
+/* LightGallery のキャプション＆EXIF用 */
+.lg-caption-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.exif-box {
+  margin-top: 6px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(0,0,0,0.55);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.exif-box strong {
+  font-size: 13px;
+}
 </style>
 <!-- LightGallery CSS -->
 <link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
-<link rel="stylesheet" href="./lightgallery/lg-thumbnail.css">
 
-<!-- LightGallery JS -->
-<script src="./lightgallery/lightgallery.min.js"></script>
-<script src="./lightgallery/lg-zoom.min.js"></script>
-<script src="./lightgallery/lg-thumbnail.min.js"></script>
+<!-- LightGallery JS (bundle版 → v2) -->
+<script src="./lightgallery/lightgallery-bundle.min.js"></script>
 <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  // ========== 親へ高さ通知 ==========
   function sendHeight() {
     const height = document.documentElement.scrollHeight;
-    window.parent.postMessage({ type: "setHeight", height }, "*");
+    window.parent.postMessage({ type:"setHeight", height }, "*");
   }
 
   const gallery = document.querySelector(".gallery");
-  if (!gallery) {
-    console.warn("⚠ .gallery が見つかりません");
-    sendHeight();
-    return;
+  if (gallery) {
+
+    // フェードイン
+    const fadeObs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add("visible");
+          fadeObs.unobserve(e.target);
+        }
+      });
+    }, {threshold:0.1});
+    gallery.querySelectorAll("img").forEach(img=>fadeObs.observe(img));
+
+    imagesLoaded(gallery, () => {
+      console.log("✅ imagesLoaded 完了");
+      gallery.style.visibility="visible";
+      sendHeight();
+
+      // ===== LightGallery v2 初期化 =====
+      const lg = lightGallery(gallery, {
+        selector: 'a.gallery-item',
+        plugins: [lgZoom, lgThumbnail],
+        speed: 400,
+        download: false,
+        zoom: true,
+        thumbnail: true,
+      });
+      console.log("✅ lg インスタンス:", lg);
+
+      // ① サムネイルクリック時に強制フルスクリーン
+      gallery.querySelectorAll("a.gallery-item").forEach((a) => {
+        a.addEventListener("click", () => {
+          const el = document.documentElement;
+          if (el.requestFullscreen) el.requestFullscreen();
+          else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+          else if (el.msRequestFullscreen) el.msRequestFullscreen();
+        });
+      });
+
+      // ② ギャラリーを閉じる前にフルスクリーン解除 + 親に通知
+      gallery.addEventListener("lgBeforeClose", () => {
+        console.log("📤 子：LG before close 発火");
+        if (document.fullscreenElement) {
+          document.exitFullscreen().catch(()=>{});
+        }
+        window.parent.postMessage({ type: "lgClosed" }, "*");
+      });
+
+      // ③ ESC でフルスクリーン解除されたらギャラリー閉じて親へ通知
+      document.addEventListener("fullscreenchange", () => {
+        if (!document.fullscreenElement) {
+          console.log("📤 子：fullscreenchange発火 → 親に lgClosed を送信");
+          try {
+            lg.closeGallery();
+            window.parent.postMessage({ type: "lgClosed" }, "*");
+          } catch(e) {}
+        }
+      });
+
+      // ④ 五十音リンク/戻るリンクのクリック → 親にスクロール依頼
+      document.addEventListener("click", (e) => {
+        const a = e.target.closest("a");
+        if (!a) return;
+        const txt = a.textContent || "";
+
+        if (/あ行|か行|さ行|た行|な行|は行|ま行|や行|ら行|わ行/.test(txt)) {
+          window.parent.postMessage({ type: "scrollToIframeTop" }, "*");
+          return;
+        }
+        if (a.href && a.href.endsWith(".html")) {
+          window.parent.postMessage({ type: "scrollToIframeTop" }, "*");
+          return;
+        }
+        if (/戻る/.test(txt)) {
+          window.parent.postMessage({ type: "scrollToIframeTop" }, "*");
+          return;
+        }
+      });
+
+    }); // imagesLoaded end
   }
 
-  // ========== フェードイン ==========
-  const fadeObs = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        e.target.classList.add("visible");
-        fadeObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  gallery.querySelectorAll("img").forEach((img) => fadeObs.observe(img));
-
-  imagesLoaded(gallery, () => {
-    console.log("✅ imagesLoaded 完了");
-    gallery.style.visibility = "visible";
-    sendHeight();
-
-    // ========== LightGallery 初期化(v2) ==========
-    const lg = lightGallery(gallery, {
-      selector: "a.gallery-item",
-      plugins: [lgZoom, lgThumbnail],
-      speed: 400,
-      download: false,
-      zoom: true,
-      thumbnail: true,
-    });
-
-    console.log("✅ lg インスタンス:", lg, "typeof lg.on =", typeof lg.on);
-
-    // ---------- サムネイルクリックでフルスクリーン ----------
-    gallery.querySelectorAll("a.gallery-item").forEach((a) => {
-      a.addEventListener("click", () => {
-        const el = document.documentElement;
-        if (el.requestFullscreen) el.requestFullscreen();
-        else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
-        else if (el.msRequestFullscreen) el.msRequestFullscreen();
-      });
-    });
-
-    // ---------- 閉じる直前（フルスクリーン解除＋親へ通知） ----------
-    gallery.addEventListener("lgBeforeClose", () => {
-      console.log("📤 子：LG before close 発火");
-      if (document.fullscreenElement) {
-        document.exitFullscreen().catch(() => {});
-      }
-      window.parent.postMessage({ type: "lgClosed" }, "*");
-    });
-
-    // ---------- ESC でフルスクリーン解除されたら LG を閉じて親に通知 ----------
-    document.addEventListener("fullscreenchange", () => {
-      if (!document.fullscreenElement) {
-        console.log("📤 子：fullscreenchange発火 → 親に lgClosed を送信");
-        try {
-          lg.closeGallery();
-          window.parent.postMessage({ type: "lgClosed" }, "*");
-        } catch (e) {
-          console.error("lg.closeGallery() でエラー:", e);
-        }
-      }
-    });
-
-    // ========== ★ ここが EXIF 周りの本体 ★ ==========
-    if (typeof lg.on !== "function") {
-      console.error("❌ lg.on が関数ではありません。LightGallery v2 インスタンスでない可能性があります。");
-    } else {
-      lg.on("lgAfterSlide", (event) => {
-        console.log("📸 lgAfterSlide 発火:", event);
-
-        const detail = event.detail || {};
-        const index = detail.index;
-        const instance = detail.instance || lg;
-
-        if (index == null || !instance || !instance.galleryItems) {
-          console.warn("⚠ lgAfterSlide: index または galleryItems が不正", detail);
-          return;
-        }
-
-        const item = instance.galleryItems[index];
-        if (!item) {
-          console.warn("⚠ lgAfterSlide: galleryItems[" + index + "] が見つかりません");
-          return;
-        }
-
-        const imgSrc = item.src;
-        console.log("🔗 対象画像 src:", imgSrc);
-
-        const captionEl = document.querySelector(".lg-sub-html");
-        if (!captionEl) {
-          console.warn("⚠ .lg-sub-html が見つかりません");
-          return;
-        }
-
-        // 既存のキャプション（キノコ名など）
-        const baseCaption = item.subHtml || captionEl.innerHTML || "";
-
-        captionEl.innerHTML = "EXIF 読み込み中…<br>" + baseCaption;
-
-        // 画像を別オブジェクトとしてロードして EXIF 読み取り
-        const img = new Image();
-        img.crossOrigin = "Anonymous";
-        img.src = imgSrc;
-
-        img.onload = function () {
-          console.log("🖼 画像ロード完了。EXIF 取得開始");
-          try {
-            EXIF.getData(img, function () {
-              console.log("📥 EXIF 生データ:", this.exifdata);
-
-              const model = EXIF.getTag(this, "Model") || "";
-              const lens = EXIF.getTag(this, "LensModel") || "";
-              const iso = EXIF.getTag(this, "ISO") || "";
-              const fnum = EXIF.getTag(this, "FNumber");
-              const f = fnum ? "f/" + fnum : "";
-              const exposure = EXIF.getTag(this, "ExposureTime") || "";
-              const focalLen = EXIF.getTag(this, "FocalLength");
-              const focal = focalLen ? focalLen + "mm" : "";
-              const date = EXIF.getTag(this, "DateTimeOriginal") || "";
-
-              const exifHTML = `
-                <div class="exif-box">
-                  <strong>撮影情報</strong><br>
-                  ${model ? `カメラ：${model}<br>` : ""}
-                  ${lens ? `レンズ：${lens}<br>` : ""}
-                  ${iso ? `ISO：${iso}<br>` : ""}
-                  ${f ? `絞り：${f}<br>` : ""}
-                  ${exposure ? `シャッター速度：${exposure}<br>` : ""}
-                  ${focal ? `焦点距離：${focal}<br>` : ""}
-                  ${date ? `撮影日：${date}<br>` : ""}
-                </div>
-              `;
-
-              console.log("✅ EXIF 整形後:", { model, lens, iso, f, exposure, focal, date });
-
-              captionEl.innerHTML = exifHTML + baseCaption;
-            });
-          } catch (err) {
-            console.error("❌ EXIF 読み取り中にエラー:", err);
-            captionEl.innerHTML = "EXIF の取得に失敗しました<br>" + baseCaption;
-          }
-        };
-
-        img.onerror = function () {
-          console.error("❌ EXIF 用画像のロードに失敗:", imgSrc);
-          captionEl.innerHTML = "EXIF 画像の読み込み失敗<br>" + baseCaption;
-        };
-      });
-    }
-
-    // ========== iframe 親に「スクロールして」と伝える ==========
-    document.addEventListener("click", (e) => {
-      const a = e.target.closest("a");
-      if (!a) return;
-
-      const txt = a.textContent || "";
-
-      // 五十音リンク（あ行〜わ行）
-      if (/あ行|か行|さ行|た行|な行|は行|ま行|や行|ら行|わ行/.test(txt)) {
-        window.parent.postMessage({ type: "scrollToIframeTop" }, "*");
-        return;
-      }
-
-      // きのこ個別リンク（〜.html）
-      if (a.href && a.href.endsWith(".html")) {
-        window.parent.postMessage({ type: "scrollToIframeTop" }, "*");
-        return;
-      }
-
-      // 戻るリンク
-      if (/戻る/.test(txt)) {
-        window.parent.postMessage({ type: "scrollToIframeTop" }, "*");
-        return;
-      }
-    });
-
-  }); // imagesLoaded end
-
-  // 初期高さ通知
   sendHeight();
-  window.addEventListener("load", () => {
-    sendHeight();
-    setTimeout(sendHeight, 800);
-    setTimeout(sendHeight, 2000);
-  });
-  window.addEventListener("message", (e) => {
-    if (e.data && e.data.type === "requestHeight") sendHeight();
-  });
+  window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); });
+  window.addEventListener("message", e=>{ if(e.data?.type==="requestHeight") sendHeight(); });
   window.addEventListener("resize", sendHeight);
-  new MutationObserver(sendHeight).observe(document.body, { childList: true, subtree: true });
+  new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true});
 });
 </script>
-
-<!-- EXIF 読み取りライブラリ -->
-<script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
