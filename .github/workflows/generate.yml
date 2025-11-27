@@ -19,9 +19,10 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: 📦 依存パッケージをインストール
+      - name: 📦 依存パッケージをインストール（requirements.txt）
         run: |
-          pip install beautifulsoup4 requests lxml Pillow
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: 🔑 はてなAPIキー設定
         env:
