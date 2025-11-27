@@ -1,4 +1,4 @@
-<h2>セイタカイグチ</h2><div class='gallery'><a class='gallery-item' href='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929221449.jpg' data-exthumbimage='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929221449.jpg?width=300' data-sub-html='<div class=&#39;lg-caption&#39;><div class=&#39;lg-caption-title&#39;>セイタカイグチ</div><div class=&#39;exif-box&#39;><strong>撮影情報</strong><br>カメラ：DC-G9M2<br>レンズ：OLYMPUS M.12-40mm F2.8<br>ISO：320<br>シャッター速度：0.16666666666666666<br>撮影日：2025/09/28<br></div></div>'><img src='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929221449.jpg' alt='セイタカイグチ' loading='lazy'></a></div>
+<h2>セイタカイグチ</h2><div class='gallery'><a class="gallery-item" href="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929221449.jpg" data-exthumbimage="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929221449.jpg?width=300" data-sub-html="セイタカイグチ&lt;br&gt;カメラ：DC-G9M2&lt;br&gt;レンズ：OLYMPUS M.12-40mm F2.8&lt;br&gt;ISO：320&lt;br&gt;絞り：f/8.0&lt;br&gt;シャッター速度：1/6&lt;br&gt;焦点距離：21mm&lt;br&gt;撮影日：2025/09/28"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929221449.jpg" alt="セイタカイグチ" loading="lazy"></a></div>
         <div style='margin-top:40px; text-align:center;'>
             <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
@@ -47,30 +47,15 @@ body {
 @media (max-width: 480px) {
   .gallery { column-count: 1; }
 }
-
-/* LightGallery のキャプション＆EXIF用 */
-.lg-caption-title {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-.exif-box {
-  margin-top: 6px;
-  padding: 6px 8px;
-  border-radius: 6px;
-  background: rgba(0,0,0,0.55);
-  font-size: 13px;
-  line-height: 1.6;
-}
-.exif-box strong {
-  font-size: 13px;
-}
 </style>
 <!-- LightGallery CSS -->
 <link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
+<link rel="stylesheet" href="./lightgallery/lg-thumbnail.css">
 
-<!-- LightGallery JS (bundle版 → v2) -->
-<script src="./lightgallery/lightgallery-bundle.min.js"></script>
+<!-- LightGallery JS (bundle版 → v2互換保証) -->
+<script src="./lightgallery/lightgallery.min.js"></script>
+<script src="./lightgallery/lg-zoom.min.js"></script>
+<script src="./lightgallery/lg-thumbnail.min.js"></script>
 <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -98,28 +83,35 @@ document.addEventListener("DOMContentLoaded", () => {
       gallery.style.visibility="visible";
       sendHeight();
 
-      // ===== LightGallery v2 初期化 =====
+      /* ==================================
+         LightGallery 初期化（v2）
+      =================================== */
       const lg = lightGallery(gallery, {
         selector: 'a.gallery-item',
         plugins: [lgZoom, lgThumbnail],
         speed: 400,
         download: false,
         zoom: true,
-        thumbnail: true,
+        thumbnail: true
       });
-      console.log("✅ lg インスタンス:", lg);
 
-      // ① サムネイルクリック時に強制フルスクリーン
+      /* ==================================
+         ① サムネイルクリック時に
+            強制フルスクリーン発動
+      =================================== */
       gallery.querySelectorAll("a.gallery-item").forEach((a) => {
         a.addEventListener("click", () => {
           const el = document.documentElement;
+
           if (el.requestFullscreen) el.requestFullscreen();
           else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
           else if (el.msRequestFullscreen) el.msRequestFullscreen();
         });
       });
 
-      // ② ギャラリーを閉じる前にフルスクリーン解除 + 親に通知
+      /* ==================================
+         ② v2イベント（閉じる前）
+      =================================== */
       gallery.addEventListener("lgBeforeClose", () => {
         console.log("📤 子：LG before close 発火");
         if (document.fullscreenElement) {
@@ -128,7 +120,9 @@ document.addEventListener("DOMContentLoaded", () => {
         window.parent.postMessage({ type: "lgClosed" }, "*");
       });
 
-      // ③ ESC でフルスクリーン解除されたらギャラリー閉じて親へ通知
+      /* ==================================
+         ③ ESC → フルスクリーン解除 → 親へ通知
+      =================================== */
       document.addEventListener("fullscreenchange", () => {
         if (!document.fullscreenElement) {
           console.log("📤 子：fullscreenchange発火 → 親に lgClosed を送信");
@@ -139,20 +133,29 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-      // ④ 五十音リンク/戻るリンクのクリック → 親にスクロール依頼
+      /* ==============================================
+         🔥 NEW：iframe 親に「スクロールして」と通知する
+         五十音リンク / htmlリンク / 戻るリンク対応
+      =============================================== */
       document.addEventListener("click", (e) => {
         const a = e.target.closest("a");
         if (!a) return;
+
         const txt = a.textContent || "";
 
+        // --- 五十音リンク（あ行〜わ行）
         if (/あ行|か行|さ行|た行|な行|は行|ま行|や行|ら行|わ行/.test(txt)) {
           window.parent.postMessage({ type: "scrollToIframeTop" }, "*");
           return;
         }
+
+        // --- きのこ個別リンク（〜.html）
         if (a.href && a.href.endsWith(".html")) {
           window.parent.postMessage({ type: "scrollToIframeTop" }, "*");
           return;
         }
+
+        // --- 戻るリンク
         if (/戻る/.test(txt)) {
           window.parent.postMessage({ type: "scrollToIframeTop" }, "*");
           return;
