@@ -1,11 +1,12 @@
 import os
 import glob
+import json
 import requests
 from bs4 import BeautifulSoup
 import xml.etree.ElementTree as ET
 import re
-from io import BytesIO
-from PIL import Image, ExifTags
+import html
+import piexif
 
 # ====== 設定 ======
 HATENA_USER = os.getenv("HATENA_USER")
@@ -19,6 +20,10 @@ if not all([HATENA_USER, HATENA_BLOG_ID, HATENA_API_KEY]):
 
 ARTICLES_DIR = "articles"
 OUTPUT_DIR = "output"
+
+# ====== EXIF キャッシュ設定 ======
+CACHE_DIR = "cache"
+CACHE_FILE = os.path.join(CACHE_DIR, "exif-cache.json")
 
 # ====== API エンドポイント ======
 ATOM_ENDPOINT = f"https://blog.hatena.ne.jp/{HATENA_USER}/{HATENA_BLOG_ID}/atom/entry"
@@ -38,7 +43,7 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== 共通スタイル（Masonry＋EXIFボックス） ======
+# ====== 共通スタイル（Masonry＋軽量フェード） ======
 STYLE_TAG = """<style>
 html, body {
   margin: 0;
@@ -84,36 +89,21 @@ body {
 @media (max-width: 480px) {
   .gallery { column-count: 1; }
 }
-
-/* LightGallery のキャプション＆EXIF用 */
-.lg-caption-title {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-.exif-box {
-  margin-top: 6px;
-  padding: 6px 8px;
-  border-radius: 6px;
-  background: rgba(0,0,0,0.55);
-  font-size: 13px;
-  line-height: 1.6;
-}
-.exif-box strong {
-  font-size: 13px;
-}
 </style>"""
 
-# ====== LightGallery 読み込みタグ（bundle版 v2） ======
+# ====== LightGallery 読み込みタグ（bundle 版 / v2） ======
 LIGHTGALLERY_TAGS = """
 <!-- LightGallery CSS -->
 <link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
+<link rel="stylesheet" href="./lightgallery/lg-thumbnail.css">
 
-<!-- LightGallery JS (bundle版 → v2) -->
-<script src="./lightgallery/lightgallery-bundle.min.js"></script>
+<!-- LightGallery JS (bundle版 → v2互換保証) -->
+<script src="./lightgallery/lightgallery.min.js"></script>
+<script src="./lightgallery/lg-zoom.min.js"></script>
+<script src="./lightgallery/lg-thumbnail.min.js"></script>
 """
 
-# ====== スクリプト（フルスクリーン＋親との連携のみ） ======
+# ====== スクリプト（高さ通知＋フルスクリーン制御＋親スクロール通知） ======
 SCRIPT_TAG = """<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -141,28 +131,35 @@ document.addEventListener("DOMContentLoaded", () => {
       gallery.style.visibility="visible";
       sendHeight();
 
-      // ===== LightGallery v2 初期化 =====
+      /* ==================================
+         LightGallery 初期化（v2）
+      =================================== */
       const lg = lightGallery(gallery, {
         selector: 'a.gallery-item',
         plugins: [lgZoom, lgThumbnail],
         speed: 400,
         download: false,
         zoom: true,
-        thumbnail: true,
+        thumbnail: true
       });
-      console.log("✅ lg インスタンス:", lg);
 
-      // ① サムネイルクリック時に強制フルスクリーン
+      /* ==================================
+         ① サムネイルクリック時に
+            強制フルスクリーン発動
+      =================================== */
       gallery.querySelectorAll("a.gallery-item").forEach((a) => {
         a.addEventListener("click", () => {
           const el = document.documentElement;
+
           if (el.requestFullscreen) el.requestFullscreen();
           else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
           else if (el.msRequestFullscreen) el.msRequestFullscreen();
         });
       });
 
-      // ② ギャラリーを閉じる前にフルスクリーン解除 + 親に通知
+      /* ==================================
+         ② v2イベント（閉じる前）
+      =================================== */
       gallery.addEventListener("lgBeforeClose", () => {
         console.log("📤 子：LG before close 発火");
         if (document.fullscreenElement) {
@@ -171,7 +168,9 @@ document.addEventListener("DOMContentLoaded", () => {
         window.parent.postMessage({ type: "lgClosed" }, "*");
       });
 
-      // ③ ESC でフルスクリーン解除されたらギャラリー閉じて親へ通知
+      /* ==================================
+         ③ ESC → フルスクリーン解除 → 親へ通知
+      =================================== */
       document.addEventListener("fullscreenchange", () => {
         if (!document.fullscreenElement) {
           console.log("📤 子：fullscreenchange発火 → 親に lgClosed を送信");
@@ -182,20 +181,29 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-      // ④ 五十音リンク/戻るリンクのクリック → 親にスクロール依頼
+      /* ==============================================
+         🔥 NEW：iframe 親に「スクロールして」と通知する
+         五十音リンク / htmlリンク / 戻るリンク対応
+      =============================================== */
       document.addEventListener("click", (e) => {
         const a = e.target.closest("a");
         if (!a) return;
+
         const txt = a.textContent || "";
 
+        // --- 五十音リンク（あ行〜わ行）
         if (/あ行|か行|さ行|た行|な行|は行|ま行|や行|ら行|わ行/.test(txt)) {
           window.parent.postMessage({ type: "scrollToIframeTop" }, "*");
           return;
         }
+
+        // --- きのこ個別リンク（〜.html）
         if (a.href && a.href.endsWith(".html")) {
           window.parent.postMessage({ type: "scrollToIframeTop" }, "*");
           return;
         }
+
+        // --- 戻るリンク
         if (/戻る/.test(txt)) {
           window.parent.postMessage({ type: "scrollToIframeTop" }, "*");
           return;
@@ -214,94 +222,149 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 """
 
-# ==========================
-#  EXIF 抽出（Python側）
-# ==========================
-def extract_exif_from_url(url: str) -> dict:
-    """画像URLから EXIF を読み、表示用文字列を返す"""
+# ===============================
+# EXIF キャッシュまわり
+# ===============================
+def load_exif_cache():
+    if not os.path.exists(CACHE_FILE):
+        return {}
     try:
-        print(f"🔍 EXIF取得: {url}")
-        resp = requests.get(url, timeout=15)
-        resp.raise_for_status()
+        with open(CACHE_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            if isinstance(data, dict):
+                return data
+    except Exception:
+        pass
+    return {}
 
-        img = Image.open(BytesIO(resp.content))
-        exif_raw = img._getexif()
-        if not exif_raw:
-            print("  ↪ EXIFなし")
-            return {}
 
-        exif = {}
-        for tag, value in exif_raw.items():
-            tag_name = ExifTags.TAGS.get(tag, tag)
-            exif[tag_name] = value
+def save_exif_cache(cache: dict):
+    os.makedirs(CACHE_DIR, exist_ok=True)
+    with open(CACHE_FILE, "w", encoding="utf-8") as f:
+        json.dump(cache, f, ensure_ascii=False, indent=2)
 
-        # カメラ
-        model = exif.get("Model", "")
 
-        # レンズ
-        lens = exif.get("LensModel", "") or exif.get("LensMake", "")
+def _rational_to_float(val):
+    """piexif の Rational / (num,den) を float に変換"""
+    try:
+        if isinstance(val, tuple) and len(val) == 2 and val[1]:
+            return val[0] / val[1]
+    except Exception:
+        pass
+    try:
+        return float(val)
+    except Exception:
+        return None
 
-        # ISO
-        iso = exif.get("ISOSpeedRatings") or exif.get("PhotographicSensitivity")
-        if isinstance(iso, (list, tuple)):
-            iso = iso[0] if iso else None
 
-        # F値
-        fnumber = exif.get("FNumber")
-        if isinstance(fnumber, tuple) and len(fnumber) == 2 and fnumber[1] != 0:
-            f_val = fnumber[0] / fnumber[1]
-            f_str = f"f/{f_val:.1f}"
-        else:
-            f_str = ""
+def _exposure_to_str(val):
+    # (1, 200) なら "1/200" として出す
+    if isinstance(val, tuple) and len(val) == 2 and val[1]:
+        num, den = val
+        return f"{num}/{den}"
+    try:
+        return str(val)
+    except Exception:
+        return ""
 
-        # シャッタースピード
-        exposure = exif.get("ExposureTime")
-        if isinstance(exposure, tuple) and len(exposure) == 2 and exposure[1] != 0:
-            # 1/200 みたいな表示
-            if exposure[0] == 1:
-                exposure_str = f"1/{exposure[1]}"
-            else:
-                exposure_str = f"{exposure[0]}/{exposure[1]}"
-        else:
-            exposure_str = str(exposure) if exposure else ""
 
-        # 焦点距離
-        focal = exif.get("FocalLength")
-        if isinstance(focal, tuple) and len(focal) == 2 and focal[1] != 0:
-            focal_val = focal[0] / focal[1]
-            focal_str = f"{focal_val:.0f}mm"
-        else:
-            focal_str = ""
-
-        # 撮影日（YYYY/MM/DD）
-        dt = exif.get("DateTimeOriginal") or exif.get("DateTime")
-        date_str = ""
-        if isinstance(dt, str) and len(dt) >= 10:
-            # 形式: 'YYYY:MM:DD HH:MM:SS'
-            parts = dt.split(" ")[0].split(":")
-            if len(parts) == 3:
-                y, m, d = parts
-                date_str = f"{y}/{m}/{d}"
-
-        result = {
-            "model": model or "",
-            "lens": lens or "",
-            "iso": str(iso) if iso else "",
-            "f": f_str,
-            "exposure": exposure_str,
-            "focal": focal_str,
-            "date": date_str,
-        }
-        print(f"  ↪ EXIF取得OK: {result}")
-        return result
-
-    except Exception as e:
-        print(f"⚠️ EXIF取得失敗: {url} ({e})")
+def extract_exif_from_bytes(jpeg_bytes: bytes):
+    """JPEGバイト列から必要な EXIF を抜き出して dict で返す"""
+    try:
+        exif_dict = piexif.load(jpeg_bytes)
+    except Exception:
         return {}
 
-# ==========================
-#  APIから全記事を取得
-# ==========================
+    zero = exif_dict.get("0th", {})
+    exif = exif_dict.get("Exif", {})
+
+    model = zero.get(piexif.ImageIFD.Model, b"")
+    if isinstance(model, bytes):
+        model = model.decode(errors="ignore")
+
+    lens = exif.get(piexif.ExifIFD.LensModel, b"")
+    if isinstance(lens, bytes):
+        lens = lens.decode(errors="ignore")
+
+    iso = exif.get(piexif.ExifIFD.ISOSpeedRatings) or exif.get(piexif.ExifIFD.ISO)
+    if isinstance(iso, (list, tuple)):
+        iso = iso[0]
+    iso_str = str(iso) if iso is not None else ""
+
+    fnum = exif.get(piexif.ExifIFD.FNumber)
+    f_str = ""
+    fv = _rational_to_float(fnum)
+    if fv:
+        f_str = f"f/{fv:.1f}"
+
+    exposure = exif.get(piexif.ExifIFD.ExposureTime)
+    exposure_str = _exposure_to_str(exposure)
+
+    focal = exif.get(piexif.ExifIFD.FocalLength)
+    focal_str = ""
+    fv2 = _rational_to_float(focal)
+    if fv2:
+        if abs(fv2 - round(fv2)) < 0.1:
+            focal_str = f"{int(round(fv2))}mm"
+        else:
+            focal_str = f"{fv2:.1f}mm"
+
+    dt = exif.get(piexif.ExifIFD.DateTimeOriginal, b"")
+    if isinstance(dt, bytes):
+        dt = dt.decode(errors="ignore")
+    date_str = ""
+    if dt:
+        # 2025:04:19 10:23:45 → 2025/04/19
+        parts = dt.split(" ")
+        if parts:
+            date_part = parts[0].replace(":", "/")
+            date_str = date_part
+
+    return {
+        "model": model or "",
+        "lens": lens or "",
+        "iso": iso_str or "",
+        "f": f_str or "",
+        "exposure": exposure_str or "",
+        "focal": focal_str or "",
+        "date": date_str or "",
+    }
+
+
+def build_exif_cache(entries, cache: dict):
+    """
+    entries: [{alt, src}, ...]
+    cache: 既存キャッシュ dict
+    まだキャッシュに無い URL だけダウンロードして EXIF 取得
+    """
+    os.makedirs(CACHE_DIR, exist_ok=True)
+
+    # ユニークな画像 URL
+    all_srcs = sorted({e["src"] for e in entries})
+
+    for src in all_srcs:
+        if src in cache:
+            continue  # 既に取得済み
+
+        print(f"🔍 EXIF取得: {src}")
+        exif_data = {}
+        try:
+            r = requests.get(src, timeout=10)
+            if r.status_code == 200:
+                exif_data = extract_exif_from_bytes(r.content) or {}
+                print(f"  ↪ EXIF取得OK: {exif_data}")
+            else:
+                print(f"  ↪ HTTP {r.status_code} で失敗、空データとして保存")
+        except Exception as e:
+            print(f"  ↪ 取得エラー: {e} → 空データとして保存")
+
+        # 取得できなくても「空 dict」を保存しておくことで次回以降は再取得しない
+        cache[src] = exif_data
+
+    return cache
+
+
+# ====== APIから全記事を取得 ======
 def fetch_hatena_articles_api():
     os.makedirs(ARTICLES_DIR, exist_ok=True)
     print("📡 はてなブログAPIから全記事取得中…")
@@ -333,9 +396,8 @@ def fetch_hatena_articles_api():
 
     print(f"📦 合計 {count} 件の記事を保存しました。")
 
-# ==========================
-#  HTMLから画像とalt+EXIFを抽出
-# ==========================
+
+# ====== HTMLから画像とaltを抽出 ======
 def fetch_images():
     print("📂 HTMLから画像抽出中…")
     entries = []
@@ -373,20 +435,13 @@ def fetch_images():
             if any(re.search(p, alt) for p in exclude_patterns):
                 continue
 
-            exif = extract_exif_from_url(src)
-
-            entries.append({
-                "alt": alt,
-                "src": src,
-                "exif": exif,
-            })
+            entries.append({"alt": alt, "src": src})
 
     print(f"🧩 画像検出数: {len(entries)} 枚")
     return entries
 
-# ==========================
-#  五十音分類
-# ==========================
+
+# ====== 五十音分類 ======
 def get_aiuo_group(name):
     if not name:
         return "その他"
@@ -396,88 +451,100 @@ def get_aiuo_group(name):
             return group
     return "その他"
 
-# ==========================
-#  data-sub-html 用 HTML生成
-# ==========================
-def build_sub_html(alt: str, exif: dict) -> str:
-    parts = []
-    parts.append("<div class='lg-caption'>")
-    parts.append(f"<div class='lg-caption-title'>{alt}</div>")
 
-    if exif:
-        parts.append("<div class='exif-box'><strong>撮影情報</strong><br>")
-        if exif.get("model"):
-            parts.append(f"カメラ：{exif['model']}<br>")
-        if exif.get("lens"):
-            parts.append(f"レンズ：{exif['lens']}<br>")
-        if exif.get("iso"):
-            parts.append(f"ISO：{exif['iso']}<br>")
-        if exif.get("f"):
-            parts.append(f"絞り：{exif['f']}<br>")
-        if exif.get("exposure"):
-            parts.append(f"シャッター速度：{exif['exposure']}<br>")
-        if exif.get("focal"):
-            parts.append(f"焦点距離：{exif['focal']}<br>")
-        if exif.get("date"):
-            parts.append(f"撮影日：{exif['date']}<br>")
-        parts.append("</div>")  # .exif-box
+# ====== EXIF文字列 → caption HTML 生成 ======
+def build_caption_html(alt, exif: dict):
+    """
+    alt: キノコ名
+    exif: {model,lens,iso,f,exposure,focal,date}
+    → LightGallery の data-sub-html に渡す HTML文字列
+    """
+    safe_alt = html.escape(alt)
+    lines = []
 
-    parts.append("</div>")  # .lg-caption
+    model = exif.get("model") or ""
+    lens = exif.get("lens") or ""
+    iso = exif.get("iso") or ""
+    f = exif.get("f") or ""
+    exposure = exif.get("exposure") or ""
+    focal = exif.get("focal") or ""
+    date = exif.get("date") or ""
 
-    html = "".join(parts)
-    # data-sub-html 用にシングルクォートをエスケープ
-    return html.replace("'", "&#39;")
+    lines.append(safe_alt)  # 1行目：キノコ名
 
-# ==========================
-#  ギャラリー生成
-# ==========================
-def generate_gallery(entries):
+    # 以下、空欄は飛ばして良い（ユーザー希望）
+    if model:
+        lines.append(f"カメラ：{html.escape(model)}")
+    if lens:
+        lines.append(f"レンズ：{html.escape(lens)}")
+    if iso:
+        lines.append(f"ISO：{html.escape(iso)}")
+    if f:
+        lines.append(f"絞り：{html.escape(f)}")
+    if exposure:
+        lines.append(f"シャッター速度：{html.escape(exposure)}")
+    if focal:
+        lines.append(f"焦点距離：{html.escape(focal)}")
+    if date:
+        lines.append(f"撮影日：{html.escape(date)}")
+
+    # <br> でつなぐ
+    html_str = "<br>".join(lines)
+    # attribute 用に再エスケープ（クォート含め）
+    return html.escape(html_str, quote=True)
+
+
+# ====== ギャラリー生成 ======
+def generate_gallery(entries, exif_cache):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-
-    # alt ごとにグループ化（同じキノコ名で複数枚対応）
     grouped = {}
     for e in entries:
-        grouped.setdefault(e["alt"], []).append(e)
+        grouped.setdefault(e["alt"], []).append(e["src"])
 
     group_links = " | ".join([f'<a href="{g}.html">{g}</a>' for g in AIUO_GROUPS.keys()])
     group_links_html = f"<div style='margin-top:40px; text-align:center;'>{group_links}</div>"
 
     def safe_filename(name):
-        name = re.sub(r'[:<>"|*?\\\\/\\r\\n]', '_', name)
+        name = re.sub(r'[:<>\"|*?\\\\/\\r\\n]', '_', name)
         name = name.strip()
         if not name:
             name = "unnamed"
         return name
 
     # ---- 各キノコのページ ----
-    for alt, items in grouped.items():
-        html = f"<h2>{alt}</h2><div class='gallery'>"
-        for item in items:
-            src = item["src"]
-            exif = item.get("exif") or {}
+    for alt, imgs in grouped.items():
+        html_parts = []
+        html_parts.append(f"<h2>{html.escape(alt)}</h2>")
+        html_parts.append("<div class='gallery'>")
+
+        for src in imgs:
             thumb = src + "?width=300"
+            exif = exif_cache.get(src, {}) or {}
+            caption_attr = build_caption_html(alt, exif)
 
-            sub_html = build_sub_html(alt, exif)
-
-            html += (
-                f"<a class='gallery-item' href='{src}' "
-                f"data-exthumbimage='{thumb}' "
-                f"data-sub-html='{sub_html}'>"
-                f"<img src='{src}' alt='{alt}' loading='lazy'>"
-                f"</a>"
+            html_parts.append(
+                f'<a class="gallery-item" href="{src}" '
+                f'data-exthumbimage="{thumb}" '
+                f'data-sub-html="{caption_attr}">'
+                f'<img src="{src}" alt="{html.escape(alt)}" loading="lazy">'
+                f'</a>'
             )
 
-        html += "</div>"
-        html += """
+        html_parts.append("</div>")
+        html_parts.append("""
         <div style='margin-top:40px; text-align:center;'>
             <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
-        """
-        html += STYLE_TAG + LIGHTGALLERY_TAGS + SCRIPT_TAG
+        """)
+        html_parts.append(STYLE_TAG)
+        html_parts.append(LIGHTGALLERY_TAGS)
+        html_parts.append(SCRIPT_TAG)
+
+        page_html = "".join(html_parts)
 
         safe = safe_filename(alt)
         with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
-            f.write(html)
+            f.write(page_html)
 
     # ---- 五十音グループページ ----
     aiuo_dict = {k: [] for k in AIUO_GROUPS.keys()}
@@ -487,36 +554,52 @@ def generate_gallery(entries):
             aiuo_dict[g].append(alt)
 
     for g, names in aiuo_dict.items():
-        html = f"<h2>{g}のキノコ</h2><ul>"
+        html_parts = []
+        html_parts.append(f"<h2>{g}のキノコ</h2><ul>")
         for n in sorted(names):
             safe = safe_filename(n)
-            html += f"<li><a href='{safe}.html'>{n}</a></li>"
-        html += "</ul>"
-        html += group_links_html
-        html += STYLE_TAG + LIGHTGALLERY_TAGS + SCRIPT_TAG
+            html_parts.append(f'<li><a href="{safe}.html">{html.escape(n)}</a></li>')
+        html_parts.append("</ul>")
+        html_parts.append(group_links_html)
+        html_parts.append(STYLE_TAG)
+        html_parts.append(LIGHTGALLERY_TAGS)
+        html_parts.append(SCRIPT_TAG)
+
+        page_html = "".join(html_parts)
 
         with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
-            f.write(html)
+            f.write(page_html)
 
     # ---- index ----
-    index = "<h2>五十音別分類</h2><ul>"
+    index_parts = []
+    index_parts.append("<h2>五十音別分類</h2><ul>")
     for g in AIUO_GROUPS.keys():
-        index += f"<li><a href='{safe_filename(g)}.html'>{g}</a></li>"
-    index += "</ul>"
-    index += STYLE_TAG + LIGHTGALLERY_TAGS + SCRIPT_TAG
+        index_parts.append(f'<li><a href="{safe_filename(g)}.html">{g}</a></li>')
+    index_parts.append("</ul>")
+    index_parts.append(STYLE_TAG)
+    index_parts.append(LIGHTGALLERY_TAGS)
+    index_parts.append(SCRIPT_TAG)
+
+    index_html = "".join(index_parts)
 
     with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
-        f.write(index)
+        f.write(index_html)
 
     print("✅ ギャラリーページ生成完了")
 
-# ==========================
-#  メイン
-# ==========================
+
+# ====== メイン ======
 if __name__ == "__main__":
     fetch_hatena_articles_api()
     entries = fetch_images()
     if entries:
-        generate_gallery(entries)
+        # 1) 既存キャッシュ読み込み
+        exif_cache = load_exif_cache()
+        # 2) 足りない分だけ取得＆キャッシュ更新
+        exif_cache = build_exif_cache(entries, exif_cache)
+        # 3) exif-cache.json に保存
+        save_exif_cache(exif_cache)
+        # 4) ギャラリー生成（EXIF 付き）
+        generate_gallery(entries, exif_cache)
     else:
         print("⚠️ 画像が見つかりませんでした。")
