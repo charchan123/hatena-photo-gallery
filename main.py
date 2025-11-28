@@ -19,6 +19,21 @@ def clean_exif_str(s):
     s = s.strip()
     return s
 
+# ===========================
+# 追加：AI説明文（仮の説明文）
+# ※あとで OpenAI API 呼び出しに差し替えるだけでOK
+# ===========================
+def generate_ai_description(name: str):
+    """
+    今はプレースホルダー固定文。
+    後で OpenAI API を組み込むだけで自動化される。
+    """
+    return (
+        f"{name} は日本の森で見られるきのこの一種です。"
+        "特徴的な見た目や色合いから写真映えし、観察が楽しい種として知られています。"
+        "湿度や環境により色の変化が見られることもあり、季節感を楽しめるキノコです。"
+    )
+
 # ====== 設定 ======
 HATENA_USER = os.getenv("HATENA_USER")
 HATENA_BLOG_ID = os.getenv("HATENA_BLOG_ID")
@@ -54,7 +69,7 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== 共通スタイル ======
+# ====== 共通スタイル（＋説明カードCSS追加） ======
 STYLE_TAG = """<style>
 html, body {
   margin: 0;
@@ -99,6 +114,31 @@ body {
 
 @media (max-width: 480px) {
   .gallery { column-count: 1; }
+}
+
+/* ====== 追加：説明カード ====== */
+.info-card {
+  background: linear-gradient(135deg, #fffdf8, #ffffff);
+  border: 1px solid #e2dfd9;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  max-width: 750px;
+  margin: 0 auto 40px auto;
+  line-height: 1.7;
+  font-size: 0.95em;
+  color: #444;
+}
+.info-card h3 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 14px;
+  font-size: 1.4em;
+  font-weight: 600;
+  color: #222;
+}
+.info-card p {
+  margin: 0 0 10px 0;
 }
 </style>"""
 
@@ -254,42 +294,41 @@ def extract_exif_from_bytes(jpeg_bytes: bytes):
     zero = exif_dict.get("0th", {})
     exif = exif_dict.get("Exif", {})
 
-    # ---- Model ----
+    # Model
     model = zero.get(piexif.ImageIFD.Model, b"")
     if isinstance(model, bytes):
         model = clean_exif_str(model.decode(errors="ignore"))
     else:
         model = clean_exif_str(str(model))
 
-    # ---- LensModel ----
+    # LensModel
     lens = exif.get(piexif.ExifIFD.LensModel, b"")
     if isinstance(lens, bytes):
         lens = clean_exif_str(lens.decode(errors="ignore"))
     else:
         lens = clean_exif_str(str(lens))
 
-    # Canon の「IS����」対策
     if "IS" in lens:
         lens = lens.split("IS")[0] + "IS"
 
-    # ---- ISO ----
+    # ISO
     iso = exif.get(piexif.ExifIFD.ISOSpeedRatings) or exif.get(piexif.ExifIFD.ISO)
     if isinstance(iso, (list, tuple)):
         iso = iso[0]
     iso_str = str(iso) if iso is not None else ""
 
-    # ---- F値 ----
+    # F値
     fnum = exif.get(piexif.ExifIFD.FNumber)
     f_str = ""
     fv = _rational_to_float(fnum)
     if fv:
         f_str = f"f/{fv:.1f}"
 
-    # ---- シャッター速度 ----
+    # シャッタースピード
     exposure = exif.get(piexif.ExifIFD.ExposureTime)
     exposure_str = _exposure_to_str(exposure)
 
-    # ---- 焦点距離 ----
+    # 焦点距離
     focal = exif.get(piexif.ExifIFD.FocalLength)
     focal_str = ""
     fv2 = _rational_to_float(focal)
@@ -299,7 +338,7 @@ def extract_exif_from_bytes(jpeg_bytes: bytes):
         else:
             focal_str = f"{fv2:.1f}mm"
 
-    # ---- 日付 ----
+    # 日付
     dt = exif.get(piexif.ExifIFD.DateTimeOriginal, b"")
     if isinstance(dt, bytes):
         dt = dt.decode(errors="ignore")
@@ -439,7 +478,7 @@ def get_aiuo_group(name):
     return "その他"
 
 # ===========================
-# EXIF → caption HTML（2行で中央揃え）
+# EXIF → caption HTML
 # ===========================
 def build_caption_html(alt, exif: dict):
     title = html.escape(alt)
@@ -501,7 +540,18 @@ def generate_gallery(entries, exif_cache):
     # ---- 各キノコページ ----
     for alt, imgs in grouped.items():
         html_parts = []
-        html_parts.append(f"<h2>{html.escape(alt)}</h2>")
+
+        # ====== ★ AI説明文カードを追加 ======
+        ai_text = generate_ai_description(alt)
+        card_html = f"""
+        <div class="info-card">
+            <h3>{html.escape(alt)}</h3>
+            <p>{ai_text.replace("\\n", "</p><p>")}</p>
+        </div>
+        """
+        html_parts.append(card_html)
+
+        # ====== ギャラリー ======
         html_parts.append("<div class='gallery'>")
 
         for src in imgs:
@@ -518,11 +568,13 @@ def generate_gallery(entries, exif_cache):
             )
 
         html_parts.append("</div>")
+
         html_parts.append("""
         <div style='margin-top:40px; text-align:center;'>
             <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
         """)
+
         html_parts.append(STYLE_TAG)
         html_parts.append(LIGHTGALLERY_TAGS)
         html_parts.append(SCRIPT_TAG)
