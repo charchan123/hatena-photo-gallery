@@ -541,21 +541,20 @@ def generate_gallery(entries, exif_cache):
     for alt, imgs in grouped.items():
         html_parts = []
 
-# ====== ★ AI説明文カードを追加 ======
-ai_text = generate_ai_description(alt)
-ai_html = ai_text.replace("\n", "</p><p>")
+        # ====== ★ AI説明文カードを追加（Indentation 正常版） ======
+        ai_text = generate_ai_description(alt)
+        ai_html = ai_text.replace("\n", "</p><p>")
 
-card_html = f"""
-        <div class="info-card">
-            <h3>{html.escape(alt)}</h3>
-            <p>{ai_html}</p>
-        </div>
-        """
-html_parts.append(card_html)
+        card_html = (
+            "<div class='info-card'>"
+            f"<h3>{html.escape(alt)}</h3>"
+            f"<p>{ai_html}</p>"
+            "</div>"
+        )
+        html_parts.append(card_html)
 
         # ====== ギャラリー ======
         html_parts.append("<div class='gallery'>")
-
         for src in imgs:
             thumb = src + "?width=300"
             exif = exif_cache.get(src, {}) or {}
