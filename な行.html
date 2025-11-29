@@ -1,4 +1,4 @@
-<h2>な行のキノコ</h2><ul><li><a href="ナラタケ.html">ナラタケ</a></li><li><a href="ナラタケ(広義).html">ナラタケ(広義)</a></li><li><a href="ニオイコベニタケ.html">ニオイコベニタケ</a></li><li><a href="ニオイコベニタケ似のベニタケ.html">ニオイコベニタケ似のベニタケ</a></li><li><a href="ニカワハリタケ.html">ニカワハリタケ</a></li><li><a href="ニカワホウキタケ.html">ニカワホウキタケ</a></li><li><a href="ニガイグチモドキ.html">ニガイグチモドキ</a></li><li><a href="ニガクリタケ.html">ニガクリタケ</a></li><li><a href="ニシキタケ.html">ニシキタケ</a></li><li><a href="ニセアシベニイグチ？.html">ニセアシベニイグチ？</a></li><li><a href="ニセショウロ.html">ニセショウロ</a></li><li><a href="ニセショウロ？.html">ニセショウロ？</a></li><li><a href="ニワタケ.html">ニワタケ</a></li><li><a href="ヌメリササタケ.html">ヌメリササタケ</a></li><li><a href="ヌメリスギタケ.html">ヌメリスギタケ</a></li><li><a href="ヌメリスギタケモドキ.html">ヌメリスギタケモドキ</a></li><li><a href="ヌメリツバイグチ o_ ヌメリイグチ.html">ヌメリツバイグチ or ヌメリイグチ</a></li><li><a href="ノイバラハルシメジ.html">ノイバラハルシメジ</a></li><li><a href="ノウタケ.html">ノウタケ</a></li></ul><div style='margin-top:40px; text-align:center;'><a href="あ行.html">あ行</a> | <a href="か行.html">か行</a> | <a href="さ行.html">さ行</a> | <a href="た行.html">た行</a> | <a href="な行.html">な行</a> | <a href="は行.html">は行</a> | <a href="ま行.html">ま行</a> | <a href="や行.html">や行</a> | <a href="ら行.html">ら行</a> | <a href="わ行.html">わ行</a></div><style>
+<h2>な行のキノコ</h2><ul><li><a href="ナラタケ.html">ナラタケ</a></li><li><a href="ナラタケ(広義).html">ナラタケ(広義)</a></li><li><a href="ニオイコベニタケ.html">ニオイコベニタケ</a></li><li><a href="ニオイコベニタケ似のベニタケ.html">ニオイコベニタケ似のベニタケ</a></li><li><a href="ニカワハリタケ.html">ニカワハリタケ</a></li><li><a href="ニカワホウキタケ.html">ニカワホウキタケ</a></li><li><a href="ニガイグチモドキ.html">ニガイグチモドキ</a></li><li><a href="ニガクリタケ.html">ニガクリタケ</a></li><li><a href="ニシキタケ.html">ニシキタケ</a></li><li><a href="ニセアシベニイグチ？.html">ニセアシベニイグチ？</a></li><li><a href="ニセショウロ.html">ニセショウロ</a></li><li><a href="ニセショウロ？.html">ニセショウロ？</a></li><li><a href="ニワタケ.html">ニワタケ</a></li><li><a href="ヌメリササタケ.html">ヌメリササタケ</a></li><li><a href="ヌメリスギタケ.html">ヌメリスギタケ</a></li><li><a href="ヌメリスギタケモドキ.html">ヌメリスギタケモドキ</a></li><li><a href="ヌメリツバイグチ or ヌメリイグチ.html">ヌメリツバイグチ or ヌメリイグチ</a></li><li><a href="ノイバラハルシメジ.html">ノイバラハルシメジ</a></li><li><a href="ノウタケ.html">ノウタケ</a></li></ul><div style='margin-top:40px; text-align:center;'><a href="あ行.html">あ行</a> | <a href="か行.html">か行</a> | <a href="さ行.html">さ行</a> | <a href="た行.html">た行</a> | <a href="な行.html">な行</a> | <a href="は行.html">は行</a> | <a href="ま行.html">ま行</a> | <a href="や行.html">や行</a> | <a href="ら行.html">ら行</a> | <a href="わ行.html">わ行</a></div><style>
 html, body {
   margin: 0;
   padding: 0;
@@ -12,6 +12,7 @@ body {
   box-sizing:border-box;
 }
 
+/* Masonry ギャラリー */
 .gallery {
   column-count: 2;
   column-gap: 10px;
@@ -44,25 +45,35 @@ body {
   .gallery { column-count: 1; }
 }
 
-/* ====== 追加：説明カード ====== */
+/* 図鑑風 説明カード */
 .info-card {
-  background: linear-gradient(135deg, #fffdf8, #ffffff);
+  background: radial-gradient(circle at top left, #fff7e6 0, #ffffff 45%, #ffffff 100%);
   border: 1px solid #e2dfd9;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  max-width: 750px;
+  padding: 20px 22px;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  max-width: 780px;
   margin: 0 auto 40px auto;
   line-height: 1.7;
-  font-size: 0.95em;
+  font-size: 0.96em;
   color: #444;
+  position: relative;
+}
+.info-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.8);
+  pointer-events: none;
 }
 .info-card h3 {
   text-align: center;
   margin-top: 0;
   margin-bottom: 14px;
-  font-size: 1.4em;
-  font-weight: 600;
+  font-size: 1.5em;
+  font-weight: 650;
+  letter-spacing: 0.05em;
   color: #222;
 }
 .info-card p {
