@@ -301,6 +301,23 @@ def generate_description_via_gpt(name: str) -> str:
     return f"{name} の説明文は準備中です。"
 
 # ===========================
+# ⭐ 説明文キャッシュ → GPT（安定処理）
+# ===========================
+def get_ai_description(name: str, desc_cache: dict) -> str:
+    """
+    ・すでにキャッシュにあれば即返す（API無料）
+    ・なければ GPT 生成 → キャッシュ保存
+    """
+    key = name.strip()
+    if key in desc_cache:
+        return desc_cache[key]
+
+    text = generate_description_via_gpt(key)
+    desc_cache[key] = text
+    save_description_cache(desc_cache)
+    return text
+
+# ===========================
 # はてなブログ API → 全記事取得
 # ===========================
 def fetch_hatena_articles_api():
