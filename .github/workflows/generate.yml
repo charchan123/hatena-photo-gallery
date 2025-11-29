@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 90  # 長時間でも安全
+    timeout-minutes: 90
     strategy:
       fail-fast: false
 
@@ -44,10 +44,16 @@ jobs:
           echo "✅ All required env vars are present"
 
       # ====== MAIN PYTHON TASK ======
-      - name: 🧪 Python main.py 実行（記事取得→EXIF→AI説明文→HTML生成）
+      - name: 🧪 main.py 実行（記事→EXIF→AI説明文→HTML）
         run: |
           echo "🚀 Running main.py"
           python main.py
+
+      # ====== 🛠 AI説明文キャッシュ復元（一時的に使用） ======
+      - name: 🛠 説明文キャッシュ復元（HTML → description-cache.json）
+        run: |
+          echo "🔧 Running rebuild_description_cache.py"
+          python rebuild_description_cache.py
 
       # ====== 生成物確認 ======
       - name: 📂 出力フォルダ確認
@@ -55,7 +61,7 @@ jobs:
           echo "=== OUTPUT DIR CONTENTS ==="
           ls -R output || echo "⚠️ output ディレクトリが存在しません"
 
-      # ====== Netlify / GitHub Pages 配置向け ======
+      # ====== Artifacts ======
       - name: 📤 GitHub Pages 用 artifact アップロード
         uses: actions/upload-artifact@v4
         with:
@@ -63,7 +69,7 @@ jobs:
           path: output
 
   # ================================
-  #  GitHub Pages へデプロイ（任意）
+  #  GitHub Pages へデプロイ
   # ================================
   deploy:
     needs: build
