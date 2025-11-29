@@ -9,7 +9,7 @@
   css.href = "https://charchan123.github.io/hatena-photo-gallery/gallery.css";
   document.head.appendChild(css);
 
-  // ギャラリーHTML読み込み
+  // HTML読み込み
   try {
     const res = await fetch("https://charchan123.github.io/hatena-photo-gallery/index.html");
     if (!res.ok) throw new Error("HTML取得失敗");
@@ -39,7 +39,6 @@
       }
     });
   }, { threshold: 0.1 });
-
   const imgs = gallery.querySelectorAll("img");
   imgs.forEach(img => fadeObs.observe(img));
 
@@ -76,5 +75,5 @@
   lb.addEventListener("click", e => {
     if (e.target === lb) lb.classList.remove("show");
   });
-})();
 
+})();
