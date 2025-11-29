@@ -431,85 +431,24 @@ def save_description_cache(cache: dict):
     with open(DESC_CACHE_FILE, "w", encoding="utf-8") as f:
         json.dump(cache, f, ensure_ascii=False, indent=2)
 
-
-def generate_description_via_gpt(name: str) -> str:
-    """
-    GPT 説明文生成（最大3回リトライ + 各10秒タイムアウト）
-    """
-    max_retry = 3
-    timeout_sec = 10
-
-    prompt = (
-        "あなたは「キノコ専門フィールド図鑑の編集ライター」です。\n"
-        "以下のキノコ名について、写真観察を前提にしたフィールド図鑑向けの説明文を作成してください。\n\n"
-        "【トーン・文体】\n"
-        "・専門的すぎず、一般向け図鑑として読みやすい文体にする\n"
-        "・断定を避け、「〜ことが多い」「〜可能性がある」など観察ベースの表現を使う\n"
-        "・名称に「?」「or」「仲間」「広義」などが含まれる場合は、同定が難しい種類として安全に説明する\n\n"
-        "【内容に必ず含める要素】\n"
-        "1. 形態の特徴（傘・柄・ひだ/管孔・?面の質感・色の変化など）\n"
-        "2. 発生環境（どのような森・樹種・地面の状態などに出ることが多いか）\n"
-        "3. 発生時期（おおまかな季節）\n"
-        "4. 同定の注意点や、似たキノコとのざっくりした違い\n"
-        "5. 写真映え・観察のポイント（どんなところを見ると楽しいか）\n"
-        "6. 食毒に関して：外見からの判断は危険であるため、決して口にしないようにという安全な一文を入れる\n\n"
-        "【曖昧名ルール】\n"
-        "キノコ名に「?」「or」「仲間」「広義」が含まれる場合、\n"
-        "最初に必ず「この名称は観察名として用いられるもので、外見だけでは確定同定が難しい種類です。」という一文を入れてください。\n\n"
-        "【文字数】\n"
-        "・全体でだいたい 300〜500文字程度に収める\n"
-        "・2〜3段落に自然に分ける\n\n"
-        "【禁止事項】\n"
-        "・学名を勝手に決めない\n"
-        "・食べられる／毒がある と断言しない\n"
-        "・「写真を見て」など、実際には見ていないのに見たと書かない\n\n"
-        f"キノコ名: {name}\n\n"
-        "上記条件をすべて守って、日本語で説明文のみを出力してください。"
-    )
-
-    def call_openai():
-        client = OpenAI()  # OPENAI_API_KEYは環境変数から自動
-        return client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[{"role": "user", "content": prompt}],
-        )
-
-    for attempt in range(1, max_retry + 1):
-        try:
-            print(f"🧠 説明文生成中（試行 {attempt}/{max_retry}）: {name}")
-
-            with ThreadPoolExecutor(max_workers=1) as executor:
-                future = executor.submit(call_openai)
-                res = future.result(timeout=timeout_sec)
-
-            text = (res.choices[0].message.content or "").strip()
-            if text:
-                return text
-
-        except FutureTimeout:
-            print(f"⚠️ GPTタイムアウト: {name} → リトライ")
-        except Exception as e:
-            print(f"⚠️ GPT生成エラー: {name} → {e}")
-
-        time.sleep(1)
-
-    print(f"⚠️ GPT失敗: {name} → プレースホルダを返す")
-    return f"{name} の説明文は準備中です。"
-
+# ===========================
+# ⭐ GPT 完全オフ：キャッシュのみ利用版
+# ===========================
 def get_ai_description(name: str, desc_cache: dict) -> str:
     """
-    説明文キャッシュ → GPT の順で取得。
-    1種につき 1回だけ GPT を叩き、結果は JSON に保存。
+    GPT は一切呼ばない安全モード。
+    キャッシュがあればそれを返す。
+    なければ『準備中』だけ返す。
     """
+
     key = name.strip()
+
+    # キャッシュに存在すれば返す
     if key in desc_cache:
         return desc_cache[key]
 
-    text = generate_description_via_gpt(key)
-    desc_cache[key] = text
-    save_description_cache(desc_cache)
-    return text
-
+    # キャッシュにない → GPTは呼ばず placeholder のみ
+    return f"{name} の説明文は準備中です。"
 
 # ===========================
 # はてな API から全記事取得
