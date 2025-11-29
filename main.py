@@ -261,21 +261,32 @@ def generate_description_via_gpt(name: str) -> str:
 """.strip()
 
     def call_openai():
+        # 最新API（Responses）を使用
         return client.responses.create(
             model="gpt-4o-mini",
             input=prompt,
         )
 
+    # ★ Responses API のテキストを安全に抽出する関数
+    def extract_text(res):
+        try:
+            return res.output[0].content[0].text
+        except:
+            try:
+                return res.output_text
+            except:
+                return ""
+
     for attempt in range(1, max_retry + 1):
         try:
             print(f"🧠 説明文生成中（試行 {attempt}/{max_retry}）: {name}")
 
+            # タイムアウトガード
             with ThreadPoolExecutor(max_workers=1) as executor:
                 future = executor.submit(call_openai)
                 res = future.result(timeout=timeout_sec)
 
-            # text extraction updated for Responses API
-            text = (res.output_text or "").strip()
+            text = extract_text(res).strip()
             if text:
                 return text
 
