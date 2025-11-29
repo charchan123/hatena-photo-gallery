@@ -3,4 +3,3 @@ beautifulsoup4
 lxml
 piexif
 Pillow
-openai
