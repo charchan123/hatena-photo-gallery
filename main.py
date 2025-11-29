@@ -7,32 +7,19 @@ import xml.etree.ElementTree as ET
 import re
 import html
 import piexif
+from openai import OpenAI  # ★ GPT用
 
 # ===========================
-# 追加：EXIF文字クリーン関数
+# EXIF 文字クリーン関数
 # ===========================
-def clean_exif_str(s):
+def clean_exif_str(s: str) -> str:
     if not s:
         return ""
-    s = s.replace("\x00", "")              # NULL文字除去
-    s = re.sub(r"[�]+", "", s)             # 文字化け除去
-    s = s.strip()
-    return s
+    # NULL文字・文字化けっぽい文字を除去
+    s = s.replace("\x00", "")
+    s = re.sub(r"[�]+", "", s)
+    return s.strip()
 
-# ===========================
-# 追加：AI説明文（仮の説明文）
-# ※あとで OpenAI API 呼び出しに差し替えるだけでOK
-# ===========================
-def generate_ai_description(name: str):
-    """
-    今はプレースホルダー固定文。
-    後で OpenAI API を組み込むだけで自動化される。
-    """
-    return (
-        f"{name} は日本の森で見られるきのこの一種です。"
-        "特徴的な見た目や色合いから写真映えし、観察が楽しい種として知られています。"
-        "湿度や環境により色の変化が見られることもあり、季節感を楽しめるキノコです。"
-    )
 
 # ====== 設定 ======
 HATENA_USER = os.getenv("HATENA_USER")
@@ -51,7 +38,10 @@ OUTPUT_DIR = "output"
 CACHE_DIR = "cache"
 CACHE_FILE = os.path.join(CACHE_DIR, "exif-cache.json")
 
-# ====== API エンドポイント ======
+# ====== AI説明文キャッシュ設定 ======
+DESC_CACHE_FILE = os.path.join(CACHE_DIR, "description-cache.json")
+
+# ====== はてな API エンドポイント ======
 ATOM_ENDPOINT = f"https://blog.hatena.ne.jp/{HATENA_USER}/{HATENA_BLOG_ID}/atom/entry"
 AUTH = (HATENA_USER, HATENA_API_KEY)
 HEADERS = {}
@@ -69,7 +59,7 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== 共通スタイル（＋説明カードCSS追加） ======
+# ====== 共通スタイル（図鑑カード + Masonry） ======
 STYLE_TAG = """<style>
 html, body {
   margin: 0;
@@ -84,6 +74,7 @@ body {
   box-sizing:border-box;
 }
 
+/* Masonry ギャラリー */
 .gallery {
   column-count: 2;
   column-gap: 10px;
@@ -116,25 +107,35 @@ body {
   .gallery { column-count: 1; }
 }
 
-/* ====== 追加：説明カード ====== */
+/* 図鑑風 説明カード */
 .info-card {
-  background: linear-gradient(135deg, #fffdf8, #ffffff);
+  background: radial-gradient(circle at top left, #fff7e6 0, #ffffff 45%, #ffffff 100%);
   border: 1px solid #e2dfd9;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  max-width: 750px;
+  padding: 20px 22px;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  max-width: 780px;
   margin: 0 auto 40px auto;
   line-height: 1.7;
-  font-size: 0.95em;
+  font-size: 0.96em;
   color: #444;
+  position: relative;
+}
+.info-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.8);
+  pointer-events: none;
 }
 .info-card h3 {
   text-align: center;
   margin-top: 0;
   margin-bottom: 14px;
-  font-size: 1.4em;
-  font-weight: 600;
+  font-size: 1.5em;
+  font-weight: 650;
+  letter-spacing: 0.05em;
   color: #222;
 }
 .info-card p {
@@ -242,6 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 """
 
+
 # ===========================
 # EXIF キャッシュ
 # ===========================
@@ -257,10 +259,12 @@ def load_exif_cache():
         pass
     return {}
 
+
 def save_exif_cache(cache: dict):
     os.makedirs(CACHE_DIR, exist_ok=True)
     with open(CACHE_FILE, "w", encoding="utf-8") as f:
         json.dump(cache, f, ensure_ascii=False, indent=2)
+
 
 def _rational_to_float(val):
     try:
@@ -273,6 +277,7 @@ def _rational_to_float(val):
     except Exception:
         return None
 
+
 def _exposure_to_str(val):
     if isinstance(val, tuple) and len(val) == 2 and val[1]:
         num, den = val
@@ -281,6 +286,7 @@ def _exposure_to_str(val):
         return str(val)
     except Exception:
         return ""
+
 
 # ===========================
 # EXIF 抽出
@@ -294,41 +300,42 @@ def extract_exif_from_bytes(jpeg_bytes: bytes):
     zero = exif_dict.get("0th", {})
     exif = exif_dict.get("Exif", {})
 
-    # Model
+    # ---- Model ----
     model = zero.get(piexif.ImageIFD.Model, b"")
     if isinstance(model, bytes):
         model = clean_exif_str(model.decode(errors="ignore"))
     else:
         model = clean_exif_str(str(model))
 
-    # LensModel
+    # ---- LensModel ----
     lens = exif.get(piexif.ExifIFD.LensModel, b"")
     if isinstance(lens, bytes):
         lens = clean_exif_str(lens.decode(errors="ignore"))
     else:
         lens = clean_exif_str(str(lens))
 
+    # Canon の「IS����」対策（変な尻尾をカット）
     if "IS" in lens:
         lens = lens.split("IS")[0] + "IS"
 
-    # ISO
+    # ---- ISO ----
     iso = exif.get(piexif.ExifIFD.ISOSpeedRatings) or exif.get(piexif.ExifIFD.ISO)
     if isinstance(iso, (list, tuple)):
         iso = iso[0]
     iso_str = str(iso) if iso is not None else ""
 
-    # F値
+    # ---- F値 ----
     fnum = exif.get(piexif.ExifIFD.FNumber)
     f_str = ""
     fv = _rational_to_float(fnum)
     if fv:
         f_str = f"f/{fv:.1f}"
 
-    # シャッタースピード
+    # ---- シャッター速度 ----
     exposure = exif.get(piexif.ExifIFD.ExposureTime)
     exposure_str = _exposure_to_str(exposure)
 
-    # 焦点距離
+    # ---- 焦点距離 ----
     focal = exif.get(piexif.ExifIFD.FocalLength)
     focal_str = ""
     fv2 = _rational_to_float(focal)
@@ -338,7 +345,7 @@ def extract_exif_from_bytes(jpeg_bytes: bytes):
         else:
             focal_str = f"{fv2:.1f}mm"
 
-    # 日付
+    # ---- 日付 ----
     dt = exif.get(piexif.ExifIFD.DateTimeOriginal, b"")
     if isinstance(dt, bytes):
         dt = dt.decode(errors="ignore")
@@ -357,6 +364,7 @@ def extract_exif_from_bytes(jpeg_bytes: bytes):
         "focal": focal_str or "",
         "date": date_str or "",
     }
+
 
 # ===========================
 # EXIF キャッシュ構築
@@ -386,8 +394,98 @@ def build_exif_cache(entries, cache: dict):
 
     return cache
 
+
 # ===========================
-# はてなAPI 全記事取得
+# AI 説明文キャッシュ
+# ===========================
+def load_description_cache():
+    if not os.path.exists(DESC_CACHE_FILE):
+        return {}
+    try:
+        with open(DESC_CACHE_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            if isinstance(data, dict):
+                return data
+    except Exception:
+        pass
+    return {}
+
+
+def save_description_cache(cache: dict):
+    os.makedirs(CACHE_DIR, exist_ok=True)
+    with open(DESC_CACHE_FILE, "w", encoding="utf-8") as f:
+        json.dump(cache, f, ensure_ascii=False, indent=2)
+
+
+def generate_description_via_gpt(name: str) -> str:
+    """
+    GPT に「Dスタイル」の図鑑説明文を生成させる。
+    alt が曖昧でも安全寄りの文章になるようにプロンプトを組んでいる。
+    """
+    try:
+        client = OpenAI()  # OPENAI_API_KEY は環境変数から自動取得
+
+        prompt = (
+            "あなたは「キノコ専門フィールド図鑑の編集ライター」です。\n"
+            "以下のキノコ名について、写真観察を前提にしたフィールド図鑑向けの説明文を作成してください。\n\n"
+            "【トーン・文体】\n"
+            "・専門的すぎず、一般向け図鑑として読みやすい文体にする\n"
+            "・断定を避け、「〜ことが多い」「〜可能性がある」など観察ベースの表現を使う\n"
+            "・名称に「?」「or」「仲間」「広義」などが含まれる場合は、同定が難しい種類として安全に説明する\n\n"
+            "【内容に必ず含める要素】\n"
+            "1. 形態の特徴（傘・柄・ひだ/管孔・表面の質感・色の変化など）\n"
+            "2. 発生環境（どのような森・樹種・地面の状態などに出ることが多いか）\n"
+            "3. 発生時期（おおまかな季節）\n"
+            "4. 同定の注意点や、似たキノコとのざっくりした違い\n"
+            "5. 写真映え・観察のポイント（どんなところを見ると楽しいか）\n"
+            "6. 食毒に関して：外見からの判断は危険であるため、決して口にしないようにという安全な一文を入れる\n\n"
+            "【曖昧名ルール】\n"
+            "キノコ名に「?」「or」「仲間」「広義」が含まれる場合、\n"
+            "最初に必ず「この名称は観察名として用いられるもので、外見だけでは確定同定が難しい種類です。」という一文を入れてください。\n\n"
+            "【文字数】\n"
+            "・全体でだいたい 300〜500文字程度に収める\n"
+            "・2〜3段落に自然に分ける\n\n"
+            "【禁止事項】\n"
+            "・学名を勝手に決めない\n"
+            "・食べられる／毒がある と断言しない\n"
+            "・「写真を見て」など、実際には見ていないのに見たと書かない\n\n"
+            "キノコ名: " + name + "\n\n"
+            "上記条件をすべて守って、日本語で説明文のみを出力してください。"
+        )
+
+        res = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "user", "content": prompt}
+            ],
+        )
+        text = (res.choices[0].message.content or "").strip()
+        if not text:
+            return f"{name} の説明文は準備中です。"
+        return text
+
+    except Exception as e:
+        print(f"⚠️ 説明文生成エラー: {e}")
+        return f"{name} の説明文は準備中です。"
+
+
+def get_ai_description(name: str, desc_cache: dict) -> str:
+    """
+    説明文キャッシュ → GPT の順で取得。
+    1種につき 1回だけ GPT を叩き、結果は JSON に保存。
+    """
+    key = name.strip()
+    if key in desc_cache:
+        return desc_cache[key]
+
+    text = generate_description_via_gpt(key)
+    desc_cache[key] = text
+    save_description_cache(desc_cache)
+    return text
+
+
+# ===========================
+# はてな API から全記事取得
 # ===========================
 def fetch_hatena_articles_api():
     os.makedirs(ARTICLES_DIR, exist_ok=True)
@@ -420,8 +518,9 @@ def fetch_hatena_articles_api():
 
     print(f"📦 合計 {count} 件の記事を保存しました。")
 
+
 # ===========================
-# HTML から画像抽出
+# HTML から画像と alt 抽出
 # ===========================
 def fetch_images():
     print("📂 HTMLから画像抽出中…")
@@ -465,6 +564,7 @@ def fetch_images():
     print(f"🧩 画像検出数: {len(entries)} 枚")
     return entries
 
+
 # ===========================
 # 五十音分類
 # ===========================
@@ -477,8 +577,9 @@ def get_aiuo_group(name):
             return group
     return "その他"
 
+
 # ===========================
-# EXIF → caption HTML
+# EXIF → caption HTML（2行で中央揃え）
 # ===========================
 def build_caption_html(alt, exif: dict):
     title = html.escape(alt)
@@ -509,19 +610,20 @@ def build_caption_html(alt, exif: dict):
 
     exif_line = " | ".join(parts)
 
-    html_block = f"""
-    <div style='text-align:center;'>
-        <div style='font-weight:bold; font-size:1.2em; margin-bottom:6px;'>{title}</div>
-        <div style='font-size:0.9em; line-height:1.4;'>{exif_line}</div>
-    </div>
-    """
+    html_block = (
+        "<div style='text-align:center;'>"
+        f"<div style='font-weight:bold; font-size:1.2em; margin-bottom:6px;'>{title}</div>"
+        f"<div style='font-size:0.9em; line-height:1.4;'>{exif_line}</div>"
+        "</div>"
+    )
 
     return html.escape(html_block, quote=True)
+
 
 # ===========================
 # ギャラリー生成
 # ===========================
-def generate_gallery(entries, exif_cache):
+def generate_gallery(entries, exif_cache, desc_cache):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     grouped = {}
     for e in entries:
@@ -531,7 +633,7 @@ def generate_gallery(entries, exif_cache):
     group_links_html = f"<div style='margin-top:40px; text-align:center;'>{group_links}</div>"
 
     def safe_filename(name):
-        name = re.sub(r'[:<>\"|*?\\\\/\\r\\n]', '_', name)
+        name = re.sub(r'[:<>"|*?/\\\r\n]', '_', name)
         name = name.strip()
         if not name:
             name = "unnamed"
@@ -541,19 +643,23 @@ def generate_gallery(entries, exif_cache):
     for alt, imgs in grouped.items():
         html_parts = []
 
-        # ====== ★ AI説明文カードを追加（Indentation 正常版） ======
-        ai_text = generate_ai_description(alt)
-        ai_html = ai_text.replace("\n", "</p><p>")
+        # ★ 図鑑スタイル説明カード（GPT＋キャッシュ）
+        ai_text = get_ai_description(alt, desc_cache)
+        paragraphs = [p.strip() for p in ai_text.split("\n") if p.strip()]
+
+        body_html = ""
+        for p in paragraphs:
+            body_html += f"<p>{html.escape(p)}</p>"
 
         card_html = (
-            "<div class='info-card'>"
+            "<div class=\"info-card\">"
             f"<h3>{html.escape(alt)}</h3>"
-            f"<p>{ai_html}</p>"
+            f"{body_html}"
             "</div>"
         )
         html_parts.append(card_html)
 
-        # ====== ギャラリー ======
+        # ギャラリー本体
         html_parts.append("<div class='gallery'>")
         for src in imgs:
             thumb = src + "?width=300"
@@ -567,15 +673,16 @@ def generate_gallery(entries, exif_cache):
                 f'<img src="{src}" alt="{html.escape(alt)}" loading="lazy">'
                 f'</a>'
             )
-
         html_parts.append("</div>")
 
+        # 戻るリンク
         html_parts.append("""
         <div style='margin-top:40px; text-align:center;'>
             <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
         """)
 
+        # 共通タグ
         html_parts.append(STYLE_TAG)
         html_parts.append(LIGHTGALLERY_TAGS)
         html_parts.append(SCRIPT_TAG)
@@ -586,7 +693,7 @@ def generate_gallery(entries, exif_cache):
         with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
             f.write(page_html)
 
-    # ---- 五十音ページ ----
+    # ---- 五十音グループページ ----
     aiuo_dict = {k: [] for k in AIUO_GROUPS.keys()}
     for alt in grouped.keys():
         g = get_aiuo_group(alt)
@@ -606,7 +713,6 @@ def generate_gallery(entries, exif_cache):
         html_parts.append(SCRIPT_TAG)
 
         page_html = "".join(html_parts)
-
         with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
             f.write(page_html)
 
@@ -621,11 +727,11 @@ def generate_gallery(entries, exif_cache):
     index_parts.append(SCRIPT_TAG)
 
     index_html = "".join(index_parts)
-
     with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
         f.write(index_html)
 
     print("✅ ギャラリーページ生成完了")
+
 
 # ===========================
 # メイン
@@ -634,9 +740,15 @@ if __name__ == "__main__":
     fetch_hatena_articles_api()
     entries = fetch_images()
     if entries:
+        # EXIF
         exif_cache = load_exif_cache()
         exif_cache = build_exif_cache(entries, exif_cache)
         save_exif_cache(exif_cache)
-        generate_gallery(entries, exif_cache)
+
+        # 説明文キャッシュ
+        desc_cache = load_description_cache()
+
+        # ギャラリー生成
+        generate_gallery(entries, exif_cache, desc_cache)
     else:
         print("⚠️ 画像が見つかりませんでした。")
