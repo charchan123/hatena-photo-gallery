@@ -24,7 +24,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: 🔑 はてなAPIキー設定
+      - name: 🔑 はてなAPIキー設定（OpenAIキーはここでは不要）
         env:
           HATENA_USER: ${{ secrets.HATENA_USER }}
           HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
@@ -35,11 +35,12 @@ jobs:
           if [ -z "$HATENA_BLOG_ID" ]; then echo 'HATENA_BLOG_ID missing'; exit 1; fi
           if [ -z "$HATENA_API_KEY" ]; then echo 'HATENA_API_KEY missing'; exit 1; fi
 
-      - name: 🏗 main.py 実行（HTML生成）
+      - name: 🏗 main.py 実行（HTML生成 + GPT説明文生成）
         env:
           HATENA_USER: ${{ secrets.HATENA_USER }}
           HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
           HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}   # ← ★ ここが最重要！
         run: |
           python main.py
 
