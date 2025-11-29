@@ -37,10 +37,16 @@ jobs:
         run: |
           echo "HATENA_USER=$HATENA_USER"
           echo "HATENA_BLOG_ID=$HATENA_BLOG_ID"
-          echo "OPENAI_API_KEY exists? $( [ -n "$OPENAI_API_KEY" ] && echo OK || echo MISSING )"
+          echo "OPENAI_API_KEY exists? $( [ -n \"$OPENAI_API_KEY\" ] && echo OK || echo MISSING )"
 
-      # ★★ 説明文キャッシュ復元（HTML → JSON）★★
-      - name: 🧩 説明文キャッシュ復元（HTML → JSON）
+      # ★ 一時的：「ベニタケ.html の raw 内容」を確認するステップ
+      - name: 🧪 ベニタケHTML確認
+        run: |
+          echo "=== ベニタケ HTML RAW ==="
+          sed -n '1,200p' output/ベニタケ.html || echo "⚠️ ベニタケ.html が出力されていません"
+
+      # ★★ 説明文キャッシュ復元 (HTML → JSON)
+      - name: 🧩 説明文キャッシュ復元
         run: |
           python rebuild_description_cache.py
           echo "=== description-cache.json 内容 ==="
