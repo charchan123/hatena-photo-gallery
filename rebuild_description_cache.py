@@ -37,4 +37,4 @@ for fname in os.listdir(OUTPUT_DIR):
 with open(DESC_CACHE_FILE, "w", encoding="utf-8") as f:
     json.dump(cache, f, ensure_ascii=False, indent=2)
 
-print(f"✔️ 説明文キャッシュ復元完了 ({len(cache)} entries)")
+print(f"✔️ 記述復元完了: {len(cache)} entries")
