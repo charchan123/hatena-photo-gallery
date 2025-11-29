@@ -10,6 +10,12 @@ import piexif
 from openai import OpenAI  # ★ GPT用
 
 # ===========================
+# OpenAI クライアント（15秒タイムアウト）
+# ===========================
+# OPENAI_API_KEY は環境変数から自動取得（GitHub Actions の env で渡す）
+client = OpenAI(timeout=15)
+
+# ===========================
 # EXIF 文字クリーン関数
 # ===========================
 def clean_exif_str(s: str) -> str:
@@ -423,7 +429,7 @@ def generate_description_via_gpt(name: str) -> str:
     alt が曖昧でも安全寄りの文章になるようにプロンプトを組んでいる。
     """
     try:
-        client = OpenAI()  # OPENAI_API_KEY は環境変数から自動取得
+        print(f"🧠 説明文生成中: {name}")
 
         prompt = (
             "あなたは「キノコ専門フィールド図鑑の編集ライター」です。\n"
