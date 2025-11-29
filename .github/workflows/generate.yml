@@ -8,9 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 60     # ← 長時間実行でも安全
-
-    # 並列タスクが失敗しても落とさない
+    timeout-minutes: 90  # 長時間でも安全
     strategy:
       fail-fast: false
 
@@ -27,15 +25,59 @@ jobs:
       - name: 🐍 Python セットアップ
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-          cache: 'pip'
+          python-version: "3.11"
+          cache: "pip"
 
       - name: 📦 依存パッケージをインストール
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # ====== ENV CHECK ======
       - name: 🔑 環境変数チェック
         run: |
           echo "=== ENV CHECK ==="
-          if [ -z "$HATENA_USER" ]; then echo '❌ HATENA_USER mi]()
+          if [ -z "$HATENA_USER" ]; then echo "❌ HATENA_USER missing"; exit 1; fi
+          if [ -z "$HATENA_BLOG_ID" ]; then echo "❌ HATENA_BLOG_ID missing"; exit 1; fi
+          if [ -z "$HATENA_API_KEY" ]; then echo "❌ HATENA_API_KEY missing"; exit 1; fi
+          if [ -z "$OPENAI_API_KEY" ]; then echo "❌ OPENAI_API_KEY missing"; exit 1; fi
+          echo "✅ All required env vars are present"
+
+      # ====== MAIN PYTHON TASK ======
+      - name: 🧪 Python main.py 実行（記事取得→EXIF→AI説明文→HTML生成）
+        run: |
+          echo "🚀 Running main.py"
+          python main.py
+
+      # ====== 生成物確認 ======
+      - name: 📂 出力フォルダ確認
+        run: |
+          echo "=== OUTPUT DIR CONTENTS ==="
+          ls -R output || echo "⚠️ output ディレクトリが存在しません"
+
+      # ====== Netlify / GitHub Pages 配置向け ======
+      - name: 📤 GitHub Pages 用 artifact アップロード
+        uses: actions/upload-artifact@v4
+        with:
+          name: gallery-output
+          path: output
+
+  # ================================
+  #  GitHub Pages へデプロイ（任意）
+  # ================================
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 artifact ダウンロード
+        uses: actions/download-artifact@v4
+        with:
+          name: gallery-output
+          path: output
+
+      - name: 🌐 GitHub Pages デプロイ
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: output
