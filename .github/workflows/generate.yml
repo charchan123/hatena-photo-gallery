@@ -39,11 +39,13 @@ jobs:
           echo "HATENA_BLOG_ID=$HATENA_BLOG_ID"
           echo "OPENAI_API_KEY exists? $( [ -n "$OPENAI_API_KEY" ] && echo OK || echo MISSING )"
 
-      # ★★ここを追加★★
+      # ★★ 説明文キャッシュ復元（HTML → JSON）★★
       - name: 🧩 説明文キャッシュ復元（HTML → JSON）
         run: |
           python rebuild_description_cache.py
-      # ★★ここまで★★
+          echo "=== description-cache.json 内容 ==="
+          ls -R cache
+          cat cache/description-cache.json || echo "⚠️ description-cache.json がありません"
 
       - name: 🚀 main.py 実行
         run: python main.py
