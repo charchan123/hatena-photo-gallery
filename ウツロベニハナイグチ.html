@@ -143,24 +143,36 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-      document.addEventListener("click", (e) => {
-        const a = e.target.closest("a");
-        if (!a) return;
-        const txt = a.textContent || "";
-if (/あ行|か行|さ行|た行|な行|は行|ま行|や行|ら行|わ行/.test(txt)) {
-  window.parent.postMessage({ type: "scrollToGallery" }, "*");
-  return;
-}
-if (a.href && a.href.endsWith(".html")) {
-  window.parent.postMessage({ type: "scrollToGallery" }, "*");
-  return;
-}
-if (/戻る/.test(txt)) {
-  window.parent.postMessage({ type: "scrollToGallery" }, "*");
-  return;
-}
-      });
+document.addEventListener("click", (e) => {
+  const a = e.target.closest("a");
+  if (!a) return;
 
+  const txt = a.textContent || "";
+
+  // デバッグログ
+  console.log("[iframe] click anchor:", { text: txt, href: a.href });
+
+  // 「あ行〜わ行」のリンク
+  if (/あ行|か行|さ行|た行|な行|は行|ま行|や行|ら行|わ行/.test(txt)) {
+    console.log("[iframe] send scrollToGalleryTitle (aiuo link)");
+    window.parent.postMessage({ type: "scrollToGalleryTitle" }, "*");
+    return;
+  }
+
+  // 個別キノコページへのリンク（〜.html）
+  if (a.href && a.href.endsWith(".html")) {
+    console.log("[iframe] send scrollToGalleryTitle (mushroom page link)");
+    window.parent.postMessage({ type: "scrollToGalleryTitle" }, "*");
+    return;
+  }
+
+  // ← 戻る
+  if (/戻る/.test(txt)) {
+    console.log("[iframe] send scrollToGalleryTitle (back link)");
+    window.parent.postMessage({ type: "scrollToGalleryTitle" }, "*");
+    return;
+  }
+});
     });
   }
 
