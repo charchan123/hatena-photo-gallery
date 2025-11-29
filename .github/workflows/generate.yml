@@ -28,62 +28,31 @@ jobs:
           python-version: "3.11"
           cache: "pip"
 
-      - name: 📦 依存パッケージをインストール
+      - name: 📦 パッケージインストール
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # ====== ENV CHECK ======
-      - name: 🔑 環境変数チェック
+      - name: 🔑 ENV CHECK
         run: |
-          echo "=== ENV CHECK ==="
-          if [ -z "$HATENA_USER" ]; then echo "❌ HATENA_USER missing"; exit 1; fi
-          if [ -z "$HATENA_BLOG_ID" ]; then echo "❌ HATENA_BLOG_ID missing"; exit 1; fi
-          if [ -z "$HATENA_API_KEY" ]; then echo "❌ HATENA_API_KEY missing"; exit 1; fi
-          if [ -z "$OPENAI_API_KEY" ]; then echo "❌ OPENAI_API_KEY missing"; exit 1; fi
-          echo "✅ All required env vars are present"
+          echo "HATENA_USER=$HATENA_USER"
+          echo "HATENA_BLOG_ID=$HATENA_BLOG_ID"
+          echo "OPENAI_API_KEY exists? $( [ -n "$OPENAI_API_KEY" ] && echo OK || echo MISSING )"
 
-      # ====== MAIN PYTHON TASK ======
-      - name: 🧪 main.py 実行（記事→EXIF→AI説明文→HTML）
+      # ★★ここを追加★★
+      - name: 🧩 説明文キャッシュ復元（HTML → JSON）
         run: |
-          echo "🚀 Running main.py"
-          python main.py
-
-      # ====== 🛠 AI説明文キャッシュ復元（一時的に使用） ======
-      - name: 🛠 説明文キャッシュ復元（HTML → description-cache.json）
-        run: |
-          echo "🔧 Running rebuild_description_cache.py"
           python rebuild_description_cache.py
+      # ★★ここまで★★
 
-      # ====== 生成物確認 ======
-      - name: 📂 出力フォルダ確認
-        run: |
-          echo "=== OUTPUT DIR CONTENTS ==="
-          ls -R output || echo "⚠️ output ディレクトリが存在しません"
+      - name: 🚀 main.py 実行
+        run: python main.py
 
-      # ====== Artifacts ======
-      - name: 📤 GitHub Pages 用 artifact アップロード
+      - name: 📂 出力確認
+        run: ls -R output
+
+      - name: 📤 アップロード (Pages)
         uses: actions/upload-artifact@v4
         with:
           name: gallery-output
           path: output
-
-  # ================================
-  #  GitHub Pages へデプロイ
-  # ================================
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: 📥 artifact ダウンロード
-        uses: actions/download-artifact@v4
-        with:
-          name: gallery-output
-          path: output
-
-      - name: 🌐 GitHub Pages デプロイ
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: output
