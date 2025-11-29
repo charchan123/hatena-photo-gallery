@@ -303,74 +303,69 @@ def extract_exif_from_bytes(jpeg_bytes: bytes):
     except Exception:
         return {}
 
-    zero = exif_dict.get("0th", {})
-    exif = exif_dict.get("Exif", {})
+    try:
+        zero = exif_dict.get("0th", {})
+        exif = exif_dict.get("Exif", {})
 
-    # ---- Model ----
-    model = zero.get(piexif.ImageIFD.Model, b"")
-    if isinstance(model, bytes):
-        model = clean_exif_str(model.decode(errors="ignore"))
-    else:
-        model = clean_exif_str(str(model))
-
-    # ---- LensModel ----
-    lens = exif.get(piexif.ExifIFD.LensModel, b"")
-    if isinstance(lens, bytes):
-        lens = clean_exif_str(lens.decode(errors="ignore"))
-    else:
-        lens = clean_exif_str(str(lens))
-
-    # Canon の「IS����」対策（変な尻尾をカット）
-    if "IS" in lens:
-        lens = lens.split("IS")[0] + "IS"
-
-    # ---- ISO ----
-    iso = exif.get(piexif.ExifIFD.ISOSpeedRatings) or exif.get(piexif.ExifIFD.ISO)
-    if isinstance(iso, (list, tuple)):
-        iso = iso[0]
-    iso_str = str(iso) if iso is not None else ""
-
-    # ---- F値 ----
-    fnum = exif.get(piexif.ExifIFD.FNumber)
-    f_str = ""
-    fv = _rational_to_float(fnum)
-    if fv:
-        f_str = f"f/{fv:.1f}"
-
-    # ---- シャッター速度 ----
-    exposure = exif.get(piexif.ExifIFD.ExposureTime)
-    exposure_str = _exposure_to_str(exposure)
-
-    # ---- 焦点距離 ----
-    focal = exif.get(piexif.ExifIFD.FocalLength)
-    focal_str = ""
-    fv2 = _rational_to_float(focal)
-    if fv2:
-        if abs(fv2 - round(fv2)) < 0.1:
-            focal_str = f"{int(round(fv2))}mm"
+        model = zero.get(piexif.ImageIFD.Model, b"")
+        if isinstance(model, bytes):
+            model = clean_exif_str(model.decode(errors="ignore"))
         else:
-            focal_str = f"{fv2:.1f}mm"
+            model = clean_exif_str(str(model))
 
-    # ---- 日付 ----
-    dt = exif.get(piexif.ExifIFD.DateTimeOriginal, b"")
-    if isinstance(dt, bytes):
-        dt = dt.decode(errors="ignore")
-    date_str = ""
-    if dt:
-        parts = dt.split(" ")
-        if parts:
-            date_str = parts[0].replace(":", "/")
+        lens = exif.get(piexif.ExifIFD.LensModel, b"")
+        if isinstance(lens, bytes):
+            lens = clean_exif_str(lens.decode(errors="ignore"))
+        else:
+            lens = clean_exif_str(str(lens))
 
-    return {
-        "model": model or "",
-        "lens": lens or "",
-        "iso": iso_str or "",
-        "f": f_str or "",
-        "exposure": exposure_str or "",
-        "focal": focal_str or "",
-        "date": date_str or "",
-    }
+        if "IS" in lens:
+            lens = lens.split("IS")[0] + "IS"
 
+        iso = exif.get(piexif.ExifIFD.ISOSpeedRatings) or exif.get(piexif.ExifIFD.ISO)
+        if isinstance(iso, (list, tuple)):
+            iso = iso[0]
+        iso_str = str(iso) if iso is not None else ""
+
+        fnum = exif.get(piexif.ExifIFD.FNumber)
+        f_str = ""
+        fv = _rational_to_float(fnum)
+        if fv:
+            f_str = f"f/{fv:.1f}"
+
+        exposure = exif.get(piexif.ExifIFD.ExposureTime)
+        exposure_str = _exposure_to_str(exposure)
+
+        focal = exif.get(piexif.ExifIFD.FocalLength)
+        focal_str = ""
+        fv2 = _rational_to_float(focal)
+        if fv2:
+            if abs(fv2 - round(fv2)) < 0.1:
+                focal_str = f"{int(round(fv2))}mm"
+            else:
+                focal_str = f"{fv2:.1f}mm"
+
+        dt = exif.get(piexif.ExifIFD.DateTimeOriginal, b"")
+        if isinstance(dt, bytes):
+            dt = dt.decode(errors="ignore")
+        date_str = ""
+        if dt:
+            parts = dt.split(" ")
+            if parts:
+                date_str = parts[0].replace(":", "/")
+
+        return {
+            "model": model or "",
+            "lens": lens or "",
+            "iso": iso_str or "",
+            "f": f_str or "",
+            "exposure": exposure_str or "",
+            "focal": focal_str or "",
+            "date": date_str or "",
+        }
+
+    except Exception:
+        return {}
 
 # ===========================
 # EXIF キャッシュ構築
@@ -381,25 +376,37 @@ def build_exif_cache(entries, cache: dict):
     all_srcs = sorted({e["src"] for e in entries})
 
     for src in all_srcs:
+
+        # --- すでにキャッシュ済みならスキップ ---
         if src in cache:
             continue
 
         print(f"🔍 EXIF取得: {src}")
-        exif_data = {}
-        try:
-            r = requests.get(src, timeout=10)
-            if r.status_code == 200:
-                exif_data = extract_exif_from_bytes(r.content) or {}
-                print(f"  ↪ EXIF取得OK: {exif_data}")
-            else:
-                print(f"  ↪ HTTP {r.status_code} → 空データとして保存")
-        except Exception as e:
-            print(f"  ↪ 取得エラー: {e} → 空データとして保存")
 
-        cache[src] = exif_data
+        try:
+            # ★ 3秒タイムアウトに短縮
+            r = requests.get(src, timeout=3)
+            if r.status_code != 200:
+                print(f"  ↪ HTTP {r.status_code} → 空データで続行")
+                cache[src] = {}
+                continue
+
+            jpeg_bytes = r.content
+
+            # ★ piexif.load が固まるケースに強制バリア
+            try:
+                exif_data = extract_exif_from_bytes(jpeg_bytes) or {}
+                print(f"  ↪ EXIF取得OK: {exif_data}")
+                cache[src] = exif_data
+            except Exception as e:
+                print(f"  ↪ EXIF読み取りエラー: {e} → 空データで続行")
+                cache[src] = {}
+
+        except Exception as e:
+            print(f"  ↪ 取得エラー: {e} → 空データで続行")
+            cache[src] = {}
 
     return cache
-
 
 # ===========================
 # AI 説明文キャッシュ
