@@ -9,6 +9,7 @@ import html
 import piexif
 from openai import OpenAI
 import time
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeout
 
 # ======================================================
 # 🧠 OpenAI クライアント（安定版 / timeout=20秒）
