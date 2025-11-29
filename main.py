@@ -19,21 +19,6 @@ def clean_exif_str(s):
     s = s.strip()
     return s
 
-# ===========================
-# 追加：AI説明文（仮の説明文）
-# ※あとで OpenAI API 呼び出しに差し替えるだけでOK
-# ===========================
-def generate_ai_description(name: str):
-    """
-    今はプレースホルダー固定文。
-    後で OpenAI API を組み込むだけで自動化される。
-    """
-    return (
-        f"{name} は日本の森で見られるきのこの一種です。"
-        "特徴的な見た目や色合いから写真映えし、観察が楽しい種として知られています。"
-        "湿度や環境により色の変化が見られることもあり、季節感を楽しめるキノコです。"
-    )
-
 # ====== 設定 ======
 HATENA_USER = os.getenv("HATENA_USER")
 HATENA_BLOG_ID = os.getenv("HATENA_BLOG_ID")
@@ -114,31 +99,6 @@ body {
 
 @media (max-width: 480px) {
   .gallery { column-count: 1; }
-}
-
-/* ====== 追加：説明カード ====== */
-.info-card {
-  background: linear-gradient(135deg, #fffdf8, #ffffff);
-  border: 1px solid #e2dfd9;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  max-width: 750px;
-  margin: 0 auto 40px auto;
-  line-height: 1.7;
-  font-size: 0.95em;
-  color: #444;
-}
-.info-card h3 {
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 14px;
-  font-size: 1.4em;
-  font-weight: 600;
-  color: #222;
-}
-.info-card p {
-  margin: 0 0 10px 0;
 }
 </style>"""
 
