@@ -243,54 +243,51 @@ def save_description_cache(cache: dict):
 # ⭐ GPT 説明文生成（安定版）
 # ===========================
 def generate_description_via_gpt(name: str) -> str:
-    """
-    超安定版：gpt-4o-mini-tts → 安く速く、タイムアウトほぼなし
-    """
-    prompt = (
-        "あなたは「キノコ専門フィールド図鑑の編集ライター」です。\n"
-        "以下のキノコ名について、写真観察を前提にしたフィールド図鑑向けの説明文を作成してください。\n\n"
-        "【トーン・文体】\n"
-        "・読みやすい一般向けの図鑑調\n"
-        "・断定を避ける（〜ことが多い、〜可能性、など）\n"
-        "・名称に「?」「or」「仲間」「広義」などが含まれる場合は、安全側の注意文を入れる\n\n"
-        "【説明文に含める要素】\n"
-        "1. 形態の特徴（傘・柄・ひだ/管孔・質感・色など）\n"
-        "2. 発生環境\n"
-        "3. 発生時期\n"
-        "4. 似た種類との区別点\n"
-        "5. 観察のポイント\n"
-        "6. 食毒は外見では判断できないため食べないよう注意\n\n"
-        "【曖昧名ルール】\n"
-        "・不確定名には「観察名として使われるもので、外見だけでは確定同定が難しい種類です。」を冒頭に含める\n\n"
-        "【文字数】\n"
-        "・300〜500字／自然に2〜3段落\n\n"
-        "キノコ名: " + name
-    )
+    max_retry = 3
+    timeout_sec = 15
 
-    try:
-        res = client.chat.completions.create(
-            model="gpt-4o-mini-tts",
-            messages=[{"role": "user", "content": prompt}],
+    prompt = f"""
+あなたは「キノコ専門フィールド図鑑の編集ライター」です。
+以下のキノコ名について、一般向け図鑑として安全で読みやすい説明を作成してください。
+
+キノコ名: {name}
+
+【条件】
+・外見から断定しない表現（〜ことが多い等）
+・発生環境・季節・観察ポイント・似た種の注意
+・食毒は絶対断言しない。安全注意を入れる
+・300〜500文字
+・2〜3段落に分ける
+""".strip()
+
+    def call_openai():
+        return client.responses.create(
+            model="gpt-4o-mini",
+            input=prompt,
         )
 
-        text = (res.choices[0].message.content or "").strip()
-        return text if text else f"{name} の説明文は準備中です。"
+    for attempt in range(1, max_retry + 1):
+        try:
+            print(f"🧠 説明文生成中（試行 {attempt}/{max_retry}）: {name}")
 
-    except Exception as e:
-        print(f"⚠️ GPTエラー: {name}: {e}")
-        return f"{name} の説明文は準備中です。"
+            with ThreadPoolExecutor(max_workers=1) as executor:
+                future = executor.submit(call_openai)
+                res = future.result(timeout=timeout_sec)
 
+            # text extraction updated for Responses API
+            text = (res.output_text or "").strip()
+            if text:
+                return text
 
-def get_ai_description(name: str, desc_cache: dict) -> str:
-    key = name.strip()
-    if key in desc_cache:
-        return desc_cache[key]
+        except FutureTimeout:
+            print(f"⚠️ GPTタイムアウト: {name} → 再試行")
+        except Exception as e:
+            print(f"⚠️ GPTエラー: {name}: {e}")
 
-    text = generate_description_via_gpt(key)
-    desc_cache[key] = text
-    save_description_cache(desc_cache)
-    return text
+        time.sleep(1)
 
+    print(f"⚠️ GPT失敗: {name} → プレースホルダ返却")
+    return f"{name} の説明文は準備中です。"
 
 # ===========================
 # はてなブログ API → 全記事取得
