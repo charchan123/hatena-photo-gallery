@@ -1,5 +1,5 @@
 import os
-import re
+import glob
 import json
 from bs4 import BeautifulSoup
 
@@ -7,43 +7,71 @@ OUTPUT_DIR = "output"
 CACHE_DIR = "cache"
 DESC_CACHE_FILE = os.path.join(CACHE_DIR, "description-cache.json")
 
-os.makedirs(CACHE_DIR, exist_ok=True)
+def extract_description_from_html(filepath):
+    """
+    output/*.html の info-card から説明文を抽出する。
+    戻り値: (name, text) または None
+    """
+    try:
+        with open(filepath, "r", encoding="utf-8") as f:
+            soup = BeautifulSoup(f.read(), "html.parser")
+    except Exception as e:
+        print(f"❌ 読み込み失敗: {filepath}: {e}")
+        return None
 
-desc_cache = {}
+    card = soup.find("div", class_="info-card")
+    if not card:
+        print(f"⚠️ info-card が見つかりません: {filepath}")
+        return None
 
-# info-card を抜き出す正規表現（圧縮 HTML に対応）
-CARD_PATTERN = re.compile(
-    r'<div class="info-card"><h3>(.*?)</h3>(.*?)</div><div class=[\'"]gallery',
-    re.DOTALL
-)
+    # ---- タイトル抽出 ----
+    h3 = card.find("h3")
+    if not h3:
+        print(f"⚠️ h3 キノコ名が見つかりません: {filepath}")
+        return None
+    name = h3.get_text(strip=True)
 
-for html_file in os.listdir(OUTPUT_DIR):
-    if not html_file.endswith(".html"):
-        continue
+    # ---- 段落抽出 ----
+    paragraphs = []
+    for p in card.find_all("p"):
+        text = p.get_text(strip=True)
+        if text:
+            paragraphs.append(text)
 
-    path = os.path.join(OUTPUT_DIR, html_file)
-    with open(path, encoding="utf-8") as f:
-        content = f.read()
+    if not paragraphs:
+        print(f"⚠️ 説明文段落がゼロ: {filepath}")
+        return None
 
-    # 正規表現で info-card ブロックをマッチ
-    match = CARD_PATTERN.search(content)
-    if not match:
-        continue
+    # 段落を結合 → 改行区切り
+    full_text = "\n\n".join(paragraphs)
 
-    name = match.group(1).strip()
-    raw_html = match.group(2)
+    return name, full_text
 
-    # BeautifulSoup で <p>からテキストを抽出
-    soup = BeautifulSoup(raw_html, "html.parser")
-    ps = [p.get_text(strip=True) for p in soup.find_all("p")]
 
-    text = "\n".join(ps).strip()
-    if text:
+def rebuild_description_cache():
+    os.makedirs(CACHE_DIR, exist_ok=True)
+
+    desc_cache = {}
+
+    html_files = sorted(glob.glob(f"{OUTPUT_DIR}/*.html"))
+    print(f"🔍 HTMLファイル検出: {len(html_files)} 件")
+
+    for fpath in html_files:
+        print(f"📄 処理中: {fpath}")
+        result = extract_description_from_html(fpath)
+        if not result:
+            continue
+
+        name, text = result
         desc_cache[name] = text
-        print(f"✔ {html_file} → {name} 説明文抽出 OK")
+        print(f"  → 抽出成功: {name}（{len(text)}文字）")
 
-# 保存
-with open(DESC_CACHE_FILE, "w", encoding="utf-8") as f:
-    json.dump(desc_cache, f, ensure_ascii=False, indent=2)
+    # 保存
+    with open(DESC_CACHE_FILE, "w", encoding="utf-8") as f:
+        json.dump(desc_cache, f, ensure_ascii=False, indent=2)
 
-print(f"\n=== 完了: {DESC_CACHE_FILE} に {len(desc_cache)} 件保存 ===")
+    print(f"\n🎉 完了: {DESC_CACHE_FILE} に {len(desc_cache)} 件保存しました。")
+
+
+if __name__ == "__main__":
+    rebuild_description_cache()
