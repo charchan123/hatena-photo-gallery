@@ -187,3 +187,55 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 </script>
+
+<!-- ▼▼▼ 追加スクリプト：EXIF ON/OFF 切替 ▼▼▼ -->
+<script>
+(function() {
+  // LightGallery が読み込まれるまで監視
+  const waitLG = setInterval(() => {
+    const lg = document.querySelector(".lg-toolbar");
+    if (!lg) return;
+
+    clearInterval(waitLG);
+
+    // --- ボタン生成 ---
+    const btn = document.createElement("button");
+    btn.innerHTML = "📷";
+    btn.style.cssText = `
+      font-size:20px;
+      margin-right:10px;
+      background:none;
+      border:none;
+      cursor:pointer;
+      color:white;
+    `;
+    btn.title = "EXIF表示切替";
+
+    lg.prepend(btn); // 先頭に追加
+
+    // --- 前回の状態を復元 ---
+    let visible = localStorage.getItem("mushroom_exif_visible") !== "0";
+
+    function apply() {
+      const sub = document.querySelectorAll(".lg-sub-html");
+      sub.forEach(el => {
+        el.style.display = visible ? "block" : "none";
+      });
+      localStorage.setItem("mushroom_exif_visible", visible ? "1" : "0");
+    }
+
+    apply();
+
+    // --- ボタンクリックで切替 ---
+    btn.addEventListener("click", () => {
+      visible = !visible;
+      apply();
+    });
+
+    // スライド切替ごとに反映
+    document.addEventListener("lgAfterSlide", apply);
+
+  }, 300);
+})();
+</script>
+<!-- ▲▲▲ 追加スクリプトここまで ▲▲▲ -->
