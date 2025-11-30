@@ -200,6 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const gallery = document.querySelector(".gallery");
   let lgInstance = null;
+  let lgReady = false;  // ← LightGallery 完全準備フラグ
 
   if (gallery) {
 
@@ -207,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
       gallery.style.visibility = "visible";
       sendHeight();
 
-      // --- LightGallery 初期化 ---
+      // --- LightGallery 初期化（ここで初めて準備完了） ---
       lgInstance = lightGallery(gallery, {
         selector: 'a.gallery-item',
         plugins: [lgZoom, lgThumbnail],
@@ -217,14 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
         thumbnail: true
       });
 
-      // --- クリック時に “親ページで” フルスクリーン発動 ---
-      gallery.querySelectorAll("a.gallery-item").forEach((a) => {
-        a.addEventListener("click", (ev) => {
-          ev.preventDefault();
-          window.parent.postMessage({ type:"requestFullscreen" }, "*");
-          lgInstance.openGallery(Array.from(gallery.querySelectorAll("a.gallery-item")).indexOf(a));
-        });
-      });
+      lgReady = true; // ← ここで true になる
 
       // --- ギャラリーを閉じたら親に通知 ---
       gallery.addEventListener("lgBeforeClose", () => {
@@ -232,9 +226,31 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
     });
+
+    // --- ここで click を乗っ取る（LG準備完了後のみ） ---
+    gallery.addEventListener("click", (ev) => {
+      const a = ev.target.closest("a.gallery-item");
+      if (!a) return; // サムネ以外は無視
+
+      // LightGallery がまだ準備できていない → 何もしない（画像が普通に開く）
+      if (!lgReady) return;
+
+      // LG 準備完了 → 親ページでフルスクリーンしつつスライドショー起動
+      ev.preventDefault();
+      const index = Array.from(gallery.querySelectorAll("a.gallery-item")).indexOf(a);
+
+      // 親にフルスクリーン要求
+      window.parent.postMessage({ type:"requestFullscreen" }, "*");
+
+      // LightGallery を手動で開く
+      if (lgInstance && typeof lgInstance.openGallery === "function") {
+        lgInstance.openGallery(index);
+      }
+    });
+
   }
 
-  // --- タイトル位置へのスクロール（既存処理） ---
+  // --- スクロール処理（そのまま） ---
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (!a) return;
@@ -242,26 +258,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const txt = a.textContent || "";
     const href = a.getAttribute("href") || "";
 
-    // htmlページ
     if (href.endsWith(".html")) {
       window.parent.postMessage({ type:"scrollToTitle" }, "*");
       return;
     }
-
-    // あ行〜わ行
     if (/^(あ行|か行|さ行|た行|な行|は行|ま行|や行|ら行|わ行)$/.test(txt)) {
       window.parent.postMessage({ type:"scrollToTitle" }, "*");
       return;
     }
-
-    // ← 戻る
     if (/戻る/.test(txt)) {
       window.parent.postMessage({ type:"scrollToTitle" }, "*");
       return;
     }
   });
 
-  // 高さ同期
+  // --- 高さ同期 ---
   sendHeight();
   window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); });
   window.addEventListener("message", e=>{ if(e.data?.type==="requestHeight") sendHeight(); });
