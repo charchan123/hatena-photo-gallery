@@ -149,17 +149,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const gallery = document.querySelector(".gallery");
-  let lgInstance = null;
-  let lgReady = false;  // ← LightGallery 完全準備フラグ
-
   if (gallery) {
+    const fadeObs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add("visible");
+          fadeObs.unobserve(e.target);
+        }
+      });
+    }, {threshold:0.1});
+    gallery.querySelectorAll("img").forEach(img=>fadeObs.observe(img));
 
     imagesLoaded(gallery, () => {
-      gallery.style.visibility = "visible";
+      gallery.style.visibility="visible";
       sendHeight();
 
-      // --- LightGallery 初期化（ここで初めて準備完了） ---
-      lgInstance = lightGallery(gallery, {
+      const lg = lightGallery(gallery, {
         selector: 'a.gallery-item',
         plugins: [lgZoom, lgThumbnail],
         speed: 400,
@@ -168,39 +173,50 @@ document.addEventListener("DOMContentLoaded", () => {
         thumbnail: true
       });
 
-      lgReady = true; // ← ここで true になる
+      /* ==================================
+         ① サムネイルクリック時に
+            強制フルスクリーン発動
+      =================================== */
+      gallery.querySelectorAll("a.gallery-item").forEach((a) => {
+        a.addEventListener("click", () => {
+          const el = document.documentElement;
 
-      // --- ギャラリーを閉じたら親に通知 ---
+          if (el.requestFullscreen) el.requestFullscreen();
+          else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+          else if (el.msRequestFullscreen) el.msRequestFullscreen();
+        });
+      });
+
+      /* ==================================
+         ② v2イベント（閉じる前）
+      =================================== */
       gallery.addEventListener("lgBeforeClose", () => {
+        console.log("📤 子：LG before close 発火");
+        if (document.fullscreenElement) {
+          document.exitFullscreen().catch(()=>{});
+        }
         window.parent.postMessage({ type: "lgClosed" }, "*");
       });
 
+      /* ==================================
+         ③ ESC → フルスクリーン解除 → 親へ通知
+      =================================== */
+      document.addEventListener("fullscreenchange", () => {
+        if (!document.fullscreenElement) {
+          console.log("📤 子：fullscreenchange発火 → 親に lgClosed を送信");
+          try {
+            lg.closeGallery();
+            window.parent.postMessage({ type: "lgClosed" }, "*");
+          } catch(e) {}
+        }
+      });
     });
-
-    // --- ここで click を乗っ取る（LG準備完了後のみ） ---
-    gallery.addEventListener("click", (ev) => {
-      const a = ev.target.closest("a.gallery-item");
-      if (!a) return; // サムネ以外は無視
-
-      // LightGallery がまだ準備できていない → 何もしない（画像が普通に開く）
-      if (!lgReady) return;
-
-      // LG 準備完了 → 親ページでフルスクリーンしつつスライドショー起動
-      ev.preventDefault();
-      const index = Array.from(gallery.querySelectorAll("a.gallery-item")).indexOf(a);
-
-      // 親にフルスクリーン要求
-      window.parent.postMessage({ type:"requestFullscreen" }, "*");
-
-      // LightGallery を手動で開く
-      if (lgInstance && typeof lgInstance.openGallery === "function") {
-        lgInstance.openGallery(index);
-      }
-    });
-
   }
 
-  // --- スクロール処理（そのまま） ---
+  /* ===========================================
+       ★ クリック判定は gallery の外へ移動
+       → 全ページで scrollToTitle を送信できる
+  ============================================ */
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (!a) return;
@@ -208,21 +224,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const txt = a.textContent || "";
     const href = a.getAttribute("href") || "";
 
+    console.log("[iframe] click anchor:", { text: txt, href });
+
+    // 1) キノコ名ページ (xxx.html)
     if (href.endsWith(".html")) {
-      window.parent.postMessage({ type:"scrollToTitle" }, "*");
+      console.log("[iframe] send scrollToTitle (html link)");
+      window.parent.postMessage({ type: "scrollToTitle" }, "*");
       return;
     }
+
+    // 2) あ行〜わ行
     if (/^(あ行|か行|さ行|た行|な行|は行|ま行|や行|ら行|わ行)$/.test(txt)) {
-      window.parent.postMessage({ type:"scrollToTitle" }, "*");
+      console.log("[iframe] send scrollToTitle (aiuo link)");
+      window.parent.postMessage({ type: "scrollToTitle" }, "*");
       return;
     }
+
+    // 3) ← 戻る
     if (/戻る/.test(txt)) {
-      window.parent.postMessage({ type:"scrollToTitle" }, "*");
+      console.log("[iframe] send scrollToTitle (back)");
+      window.parent.postMessage({ type: "scrollToTitle" }, "*");
       return;
     }
   });
 
-  // --- 高さ同期 ---
   sendHeight();
   window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); });
   window.addEventListener("message", e=>{ if(e.data?.type==="requestHeight") sendHeight(); });
@@ -230,4 +255,5 @@ document.addEventListener("DOMContentLoaded", () => {
   new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true});
 
 });
+
 </script>
