@@ -135,21 +135,21 @@ document.addEventListener("click", (e) => {
   // ★ きのこ名ページ (xxx.html)
   if (href.endsWith(".html")) {
     console.log("[iframe] send scrollToGalleryTitle (html link)");
-    window.parent.postMessage({ type: "scrollToGalleryTitle" }, "*");
+    window.parent.postMessage({ type: "scrollToTitle" }, "*");
     return;
   }
 
   // ★ あ行／か行／…（リンクテキストで判定）
   if (/あ行|か行|さ行|た行|な行|は行|ま行|や行|ら行|わ行/.test(txt)) {
     console.log("[iframe] send scrollToGalleryTitle (aiuo link)");
-    window.parent.postMessage({ type: "scrollToGalleryTitle" }, "*");
+    window.parent.postMessage({ type: "scrollToTitle" }, "*");
     return;
   }
 
   // ★ ← 戻る
   if (/戻る/.test(txt)) {
     console.log("[iframe] send scrollToGalleryTitle (back)");
-    window.parent.postMessage({ type: "scrollToGalleryTitle" }, "*");
+    window.parent.postMessage({ type: "scrollToTitle" }, "*");
     return;
   }
 });
