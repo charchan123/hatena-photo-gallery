@@ -173,15 +173,37 @@ document.addEventListener("DOMContentLoaded", () => {
         thumbnail: true
       });
 
+      /* ==================================
+         ① サムネイルクリック時に
+            強制フルスクリーン発動
+      =================================== */
+      gallery.querySelectorAll("a.gallery-item").forEach((a) => {
+        a.addEventListener("click", () => {
+          const el = document.documentElement;
+
+          if (el.requestFullscreen) el.requestFullscreen();
+          else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+          else if (el.msRequestFullscreen) el.msRequestFullscreen();
+        });
+      });
+
+      /* ==================================
+         ② v2イベント（閉じる前）
+      =================================== */
       gallery.addEventListener("lgBeforeClose", () => {
+        console.log("📤 子：LG before close 発火");
         if (document.fullscreenElement) {
           document.exitFullscreen().catch(()=>{});
         }
         window.parent.postMessage({ type: "lgClosed" }, "*");
       });
 
+      /* ==================================
+         ③ ESC → フルスクリーン解除 → 親へ通知
+      =================================== */
       document.addEventListener("fullscreenchange", () => {
         if (!document.fullscreenElement) {
+          console.log("📤 子：fullscreenchange発火 → 親に lgClosed を送信");
           try {
             lg.closeGallery();
             window.parent.postMessage({ type: "lgClosed" }, "*");
