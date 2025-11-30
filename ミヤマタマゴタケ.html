@@ -83,6 +83,21 @@ body {
   .gallery { column-count: 1; }
 }
 </style>
+
+<style>
+/* LightGallery と同じスタイルのカメラアイコン */
+.lg-exif-toggle.lg-icon::after {
+  content: "";
+  width: 22px;
+  height: 22px;
+  display: block;
+
+  /* Camera の SVG（LightGallery と同じ白い線）*/
+  mask: url("data:image/svg+xml,%3Csvg width='24' height='24' stroke='white' fill='none' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3l2-3h8l2 3h3a2 2 0 0 1 2 2z'/%3E%3Ccircle cx='12' cy='13' r='4'/%3E%3C/svg%3E") no-repeat center;
+  background-color: white;
+}
+</style>
+
 <link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
 <link rel="stylesheet" href="./lightgallery/lg-thumbnail.css">
 
@@ -211,51 +226,67 @@ document.addEventListener("DOMContentLoaded", () => {
 <!-- ▼▼▼ 追加スクリプト：EXIF ON/OFF 切替 ▼▼▼ -->
 <script>
 (function() {
-  // LightGallery が読み込まれるまで監視
-  const waitLG = setInterval(() => {
-    const lg = document.querySelector(".lg-toolbar");
-    if (!lg) return;
 
-    clearInterval(waitLG);
+  // LightGallery の DOM が準備できるまで待つ
+  const ready = setInterval(() => {
+    const toolbar = document.querySelector(".lg-toolbar");
+    const subHtml = document.querySelector(".lg-sub-html");
+    if (!toolbar || !subHtml) return;
 
-    // --- ボタン生成 ---
+    clearInterval(ready);
+
+    // =============== ① カメラアイコン追加（正しくツールバーに並べる） ===================
     const btn = document.createElement("button");
-    btn.innerHTML = "📷";
+    btn.className = "lg-icon lg-exif-toggle";
+    btn.innerHTML = "📷";  // ← アイコン
     btn.style.cssText = `
-      font-size:20px;
-      margin-right:10px;
-      background:none;
-      border:none;
-      cursor:pointer;
-      color:white;
+      font-size: 22px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-left: 8px;
     `;
-    btn.title = "EXIF表示切替";
+    toolbar.append(btn);
 
-    lg.prepend(btn); // 先頭に追加
-
-    // --- 前回の状態を復元 ---
+    // =============== ② EXIF の初期状態（LocalStorage） ===================
     let visible = localStorage.getItem("mushroom_exif_visible") !== "0";
 
-    function apply() {
-      const sub = document.querySelectorAll(".lg-sub-html");
-      sub.forEach(el => {
-        el.style.display = visible ? "block" : "none";
+    function applyExif(show) {
+      const htmls = document.querySelectorAll(".lg-sub-html");
+      htmls.forEach(el => {
+        el.style.display = show ? "block" : "none";
       });
-      localStorage.setItem("mushroom_exif_visible", visible ? "1" : "0");
+
+      // 重要！ LightGallery にレイアウト再計算を要求
+      const evt = new Event("resize");
+      window.dispatchEvent(evt);
+
+      localStorage.setItem("mushroom_exif_visible", show ? "1" : "0");
     }
 
-    apply();
+    applyExif(visible);
 
-    // --- ボタンクリックで切替 ---
+    // =============== ③ カメラアイコンクリックで EXIF 切替 ===================
     btn.addEventListener("click", () => {
       visible = !visible;
-      apply();
+      applyExif(visible);
     });
 
-    // スライド切替ごとに反映
-    document.addEventListener("lgAfterSlide", apply);
+    // スライド変更時にも適用
+    document.addEventListener("lgAfterSlide", () => {
+      applyExif(visible);
+    });
+
+    // =============== ④ フルスクリーン解除後の再レイアウト対策 ===================
+    document.addEventListener("fullscreenchange", () => {
+      setTimeout(() => {
+        const evt2 = new Event("resize");
+        window.dispatchEvent(evt2);
+      }, 300);
+    });
 
   }, 300);
+
 })();
 </script>
 <!-- ▲▲▲ 追加スクリプトここまで ▲▲▲ -->
