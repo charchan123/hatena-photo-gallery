@@ -192,47 +192,36 @@ document.addEventListener("DOMContentLoaded", () => {
        ★ クリック判定は gallery の外へ移動
        → 全ページで scrollToTitle を送信できる
   ============================================ */
-document.addEventListener("click", (e) => {
-  const a = e.target.closest("a");
-  if (!a) return;
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (!a) return;
 
-  const txt = (a.textContent || "").trim();
-  const href = (a.getAttribute("href") || "").trim();
+    const txt = a.textContent || "";
+    const href = a.getAttribute("href") || "";
 
-  // ---------- 戻る ----------
-  if (txt === "← 戻る") {
-    console.log("[iframe] Back link clicked");
+    console.log("[iframe] click anchor:", { text: txt, href });
 
-    // 遷移を優先 → 少し遅れてスクロール
-    setTimeout(() => {
+    // 1) キノコ名ページ (xxx.html)
+    if (href.endsWith(".html")) {
+      console.log("[iframe] send scrollToTitle (html link)");
       window.parent.postMessage({ type: "scrollToTitle" }, "*");
-    }, 150);
+      return;
+    }
 
-    return; // ← 重要。これがないと誤爆する
-  }
-
-  // ---------- あ行〜わ行 ----------
-  if (/^(あ行|か行|さ行|た行|な行|は行|ま行|や行|ら行|わ行)$/.test(txt)) {
-    console.log("[iframe] a-i-u-o index clicked");
-
-    setTimeout(() => {
+    // 2) あ行〜わ行
+    if (/^(あ行|か行|さ行|た行|な行|は行|ま行|や行|ら行|わ行)$/.test(txt)) {
+      console.log("[iframe] send scrollToTitle (aiuo link)");
       window.parent.postMessage({ type: "scrollToTitle" }, "*");
-    }, 150);
+      return;
+    }
 
-    return;
-  }
-
-  // ---------- xxx.html（キノコ名ページ） ----------
-  if (href.endsWith(".html")) {
-    console.log("[iframe] mushroom page click");
-
-    setTimeout(() => {
+    // 3) ← 戻る
+    if (/戻る/.test(txt)) {
+      console.log("[iframe] send scrollToTitle (back)");
       window.parent.postMessage({ type: "scrollToTitle" }, "*");
-    }, 150);
-
-    return;
-  }
-});
+      return;
+    }
+  });
 
   sendHeight();
   window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); });
