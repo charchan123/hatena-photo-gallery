@@ -192,23 +192,23 @@ document.addEventListener("click", (e) => {
 
   console.log("[iframe] click anchor:", { text: txt, href });
 
-  // ★ きのこ名ページ (xxx.html)
+  // ★ 1) キノコ名ページ (xxx.html) へのリンク
   if (href.endsWith(".html")) {
-    console.log("[iframe] send scrollToGalleryTitle (html link)");
+    console.log("[iframe] send scrollToTitle (html link)");
     window.parent.postMessage({ type: "scrollToTitle" }, "*");
     return;
   }
 
-  // ★ あ行／か行／…（リンクテキストで判定）
-  if (/あ行|か行|さ行|た行|な行|は行|ま行|や行|ら行|わ行/.test(txt)) {
-    console.log("[iframe] send scrollToGalleryTitle (aiuo link)");
+  // ★ 2) あ行〜わ行のリンク
+  if (/^(あ行|か行|さ行|た行|な行|は行|ま行|や行|ら行|わ行)$/.test(txt)) {
+    console.log("[iframe] send scrollToTitle (aiuo link)");
     window.parent.postMessage({ type: "scrollToTitle" }, "*");
     return;
   }
 
-  // ★ ← 戻る
+  // ★ 3) ← 戻る
   if (/戻る/.test(txt)) {
-    console.log("[iframe] send scrollToGalleryTitle (back)");
+    console.log("[iframe] send scrollToTitle (back)");
     window.parent.postMessage({ type: "scrollToTitle" }, "*");
     return;
   }
