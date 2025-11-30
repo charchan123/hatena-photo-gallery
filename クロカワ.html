@@ -137,6 +137,7 @@ body {
 <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+
   function sendHeight() {
     const height = document.documentElement.scrollHeight;
     window.parent.postMessage({ type:"setHeight", height }, "*");
@@ -144,7 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const gallery = document.querySelector(".gallery");
   if (gallery) {
-
     const fadeObs = new IntersectionObserver(entries=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
@@ -168,15 +168,6 @@ document.addEventListener("DOMContentLoaded", () => {
         thumbnail: true
       });
 
-      gallery.querySelectorAll("a.gallery-item").forEach((a) => {
-        a.addEventListener("click", () => {
-          const el = document.documentElement;
-          if (el.requestFullscreen) el.requestFullscreen();
-          else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
-          else if (el.msRequestFullscreen) el.msRequestFullscreen();
-        });
-      });
-
       gallery.addEventListener("lgBeforeClose", () => {
         if (document.fullscreenElement) {
           document.exitFullscreen().catch(()=>{});
@@ -192,44 +183,50 @@ document.addEventListener("DOMContentLoaded", () => {
           } catch(e) {}
         }
       });
-
-document.addEventListener("click", (e) => {
-  const a = e.target.closest("a");
-  if (!a) return;
-
-  const txt = a.textContent || "";
-  const href = a.getAttribute("href") || "";
-
-  console.log("[iframe] click anchor:", { text: txt, href });
-
-  // ★ 1) キノコ名ページ (xxx.html) へのリンク
-  if (href.endsWith(".html")) {
-    console.log("[iframe] send scrollToTitle (html link)");
-    window.parent.postMessage({ type: "scrollToTitle" }, "*");
-    return;
-  }
-
-  // ★ 2) あ行〜わ行のリンク
-  if (/^(あ行|か行|さ行|た行|な行|は行|ま行|や行|ら行|わ行)$/.test(txt)) {
-    console.log("[iframe] send scrollToTitle (aiuo link)");
-    window.parent.postMessage({ type: "scrollToTitle" }, "*");
-    return;
-  }
-
-  // ★ 3) ← 戻る
-  if (/戻る/.test(txt)) {
-    console.log("[iframe] send scrollToTitle (back)");
-    window.parent.postMessage({ type: "scrollToTitle" }, "*");
-    return;
-  }
-});
     });
   }
+
+  /* ===========================================
+       ★ クリック判定は gallery の外へ移動
+       → 全ページで scrollToTitle を送信できる
+  ============================================ */
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (!a) return;
+
+    const txt = a.textContent || "";
+    const href = a.getAttribute("href") || "";
+
+    console.log("[iframe] click anchor:", { text: txt, href });
+
+    // 1) キノコ名ページ (xxx.html)
+    if (href.endsWith(".html")) {
+      console.log("[iframe] send scrollToTitle (html link)");
+      window.parent.postMessage({ type: "scrollToTitle" }, "*");
+      return;
+    }
+
+    // 2) あ行〜わ行
+    if (/^(あ行|か行|さ行|た行|な行|は行|ま行|や行|ら行|わ行)$/.test(txt)) {
+      console.log("[iframe] send scrollToTitle (aiuo link)");
+      window.parent.postMessage({ type: "scrollToTitle" }, "*");
+      return;
+    }
+
+    // 3) ← 戻る
+    if (/戻る/.test(txt)) {
+      console.log("[iframe] send scrollToTitle (back)");
+      window.parent.postMessage({ type: "scrollToTitle" }, "*");
+      return;
+    }
+  });
 
   sendHeight();
   window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); });
   window.addEventListener("message", e=>{ if(e.data?.type==="requestHeight") sendHeight(); });
   window.addEventListener("resize", sendHeight);
   new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true});
+
 });
+
 </script>
