@@ -128,7 +128,161 @@ document.addEventListener("DOMContentLoaded", () => {
     window.parent.postMessage({ type:"setHeight", height }, "*");
   }
 
+  // ===== Custom CSS for comment panel & favorites overlay =====
+  (function(){
+    const style = document.createElement("style");
+    style.textContent = `
+    .lg-custom-btn {
+      font-size: 20px;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+    #lg-comment-panel {
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 280px;
+      max-width: 80%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      color: #fff;
+      z-index: 10000;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      padding: 12px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    #lg-comment-panel.open {
+      transform: translateX(0);
+    }
+    #lg-comment-panel textarea {
+      width: 100%;
+      height: calc(100% - 40px);
+      resize: none;
+      background: rgba(0,0,0,0.3);
+      color: #fff;
+      border: 1px solid #666;
+      padding: 6px;
+      box-sizing: border-box;
+    }
+    #lg-comment-panel .lg-comment-header {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    #lg-comment-panel .lg-comment-close {
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    #lg-favorites-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    #lg-favorites-overlay .lg-fav-inner {
+      background: #111;
+      padding: 12px;
+      max-width: 90vw;
+      max-height: 80vh;
+      overflow: auto;
+      border-radius: 8px;
+    }
+    #lg-favorites-overlay h3 {
+      margin: 0 0 8px;
+      color: #fff;
+      font-size: 16px;
+    }
+    #lg-favorites-overlay .lg-fav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: 8px;
+    }
+    #lg-favorites-overlay .lg-fav-item {
+      cursor: pointer;
+    }
+    #lg-favorites-overlay .lg-fav-item img {
+      width: 100%;
+      display: block;
+      border-radius: 4px;
+    }
+    #lg-favorites-overlay .lg-fav-empty {
+      color: #ccc;
+      font-size: 14px;
+    }
+    `;
+    document.head.appendChild(style);
+  })();
+
+  // ===== LocalStorage helpers =====
+  const LS_FAV = "mushroomFavorites";
+  const LS_COM = "mushroomComments";
+  const LS_EXIF = "mushroomExifVisible";
+
+  function loadJson(key, def) {
+    try {
+      const v = localStorage.getItem(key);
+      if (!v) return def;
+      return JSON.parse(v);
+    } catch(e) {
+      return def;
+    }
+  }
+  function saveJson(key, val) {
+    try {
+      localStorage.setItem(key, JSON.stringify(val));
+    } catch(e) {}
+  }
+
+  let favorites = loadJson(LS_FAV, {});          // { href: true }
+  let commentsMap = loadJson(LS_COM, {});        // { href: "..." }
+  let exifVisible = loadJson(LS_EXIF, true);     // bool
+
+  // ===== Comment panel DOM =====
+  const commentPanel = document.createElement("div");
+  commentPanel.id = "lg-comment-panel";
+  commentPanel.innerHTML = `
+    <div class="lg-comment-header">この写真のメモ</div>
+    <div class="lg-comment-close">×</div>
+    <textarea placeholder="このキノコの特徴や場所などのメモを書けます"></textarea>
+  `;
+  document.body.appendChild(commentPanel);
+  const commentTextarea = commentPanel.querySelector("textarea");
+  const commentClose = commentPanel.querySelector(".lg-comment-close");
+  commentClose.addEventListener("click", () => {
+    commentPanel.classList.remove("open");
+  });
+
+  // ===== Favorites overlay DOM =====
+  const favOverlay = document.createElement("div");
+  favOverlay.id = "lg-favorites-overlay";
+  favOverlay.innerHTML = `
+    <div class="lg-fav-inner">
+      <h3>お気に入り一覧</h3>
+      <div class="lg-fav-grid"></div>
+      <div class="lg-fav-empty" style="display:none;">まだお気に入りが登録されていません。</div>
+    </div>
+  `;
+  document.body.appendChild(favOverlay);
+  const favGrid = favOverlay.querySelector(".lg-fav-grid");
+  const favEmpty = favOverlay.querySelector(".lg-fav-empty");
+  favOverlay.addEventListener("click", (e) => {
+    if (e.target === favOverlay) {
+      favOverlay.style.display = "none";
+    }
+  });
+
   const gallery = document.querySelector(".gallery");
+  let lgInstance = null;
+  let galleryItems = [];
+  let hrefToIndex = {};
+
   if (gallery) {
     const fadeObs = new IntersectionObserver(entries=>{
       entries.forEach(e=>{
@@ -144,7 +298,15 @@ document.addEventListener("DOMContentLoaded", () => {
       gallery.style.visibility="visible";
       sendHeight();
 
-      const lg = lightGallery(gallery, {
+      galleryItems = Array.from(gallery.querySelectorAll("a.gallery-item"));
+      hrefToIndex = {};
+      galleryItems.forEach((a, idx) => {
+        const href = a.getAttribute("href");
+        if (href) hrefToIndex[href] = idx;
+      });
+
+      // ===== LightGallery init =====
+      lgInstance = lightGallery(gallery, {
         selector: 'a.gallery-item',
         plugins: [lgZoom, lgThumbnail],
         speed: 400,
@@ -153,23 +315,261 @@ document.addEventListener("DOMContentLoaded", () => {
         thumbnail: true
       });
 
-      /* ==================================
-         ① サムネイルクリック時に
-            強制フルスクリーン発動
-      =================================== */
+      // ===== Get current href helper =====
+      function getCurrentHref() {
+        if (!lgInstance || !galleryItems.length) return null;
+        const idx = lgInstance.index || 0;
+        const a = galleryItems[idx];
+        if (!a) return null;
+        return a.getAttribute("href");
+      }
+
+      // ===== UI sync helpers =====
+      function syncHeartButton(btn) {
+        const href = getCurrentHref();
+        if (!btn || !href) return;
+        if (favorites[href]) {
+          btn.textContent = "❤";
+          btn.style.color = "#ff4d6a";
+        } else {
+          btn.textContent = "♡";
+          btn.style.color = "";
+        }
+      }
+
+      function syncCommentPanel() {
+        const href = getCurrentHref();
+        if (!href) return;
+        const txt = commentsMap[href] || "";
+        commentTextarea.value = txt;
+      }
+
+      function saveCurrentComment() {
+        const href = getCurrentHref();
+        if (!href) return;
+        const val = commentTextarea.value || "";
+        if (val.trim()) {
+          commentsMap[href] = val;
+        } else {
+          delete commentsMap[href];
+        }
+        saveJson(LS_COM, commentsMap);
+      }
+
+      function syncExifVisibility() {
+        const caption = document.querySelector(".lg-sub-html");
+        if (!caption) return;
+        caption.style.display = exifVisible ? "" : "none";
+      }
+
+      function renderFavoritesOverlay() {
+        favGrid.innerHTML = "";
+        const favHrefs = Object.keys(favorites).filter(h => favorites[h]);
+        if (!favHrefs.length) {
+          favEmpty.style.display = "block";
+          return;
+        }
+        favEmpty.style.display = "none";
+        favHrefs.forEach(href => {
+          const idx = hrefToIndex[href];
+          if (idx === undefined) return;
+          const a = galleryItems[idx];
+          if (!a) return;
+          const img = a.querySelector("img");
+          const thumbSrc = img ? img.getAttribute("src") : href;
+          const item = document.createElement("div");
+          item.className = "lg-fav-item";
+          item.dataset.href = href;
+          item.innerHTML = `<img src="${thumbSrc}" alt="">`;
+          favGrid.appendChild(item);
+        });
+      }
+
+      favGrid.addEventListener("click", (e) => {
+        const item = e.target.closest(".lg-fav-item");
+        if (!item) return;
+        const href = item.dataset.href;
+        favOverlay.style.display = "none";
+        if (href && hrefToIndex[href] != null && lgInstance) {
+          const idx = hrefToIndex[href];
+          try {
+            lgInstance.slide(idx);
+          } catch(e) {}
+        }
+      });
+
+      // ===== Add custom toolbar buttons after open =====
+      lgInstance.on("lgAfterOpen", () => {
+        const toolbar = document.querySelector(".lg-toolbar");
+        if (!toolbar) return;
+
+        // Avoid duplicate buttons
+        if (!toolbar.querySelector(".lg-custom-heart")) {
+          const heartBtn = document.createElement("button");
+          heartBtn.className = "lg-icon lg-custom-btn lg-custom-heart";
+          heartBtn.title = "お気に入り";
+          toolbar.appendChild(heartBtn);
+          heartBtn.addEventListener("click", () => {
+            const href = getCurrentHref();
+            if (!href) return;
+            if (favorites[href]) {
+              delete favorites[href];
+            } else {
+              favorites[href] = true;
+            }
+            saveJson(LS_FAV, favorites);
+            syncHeartButton(heartBtn);
+          });
+        }
+
+        if (!toolbar.querySelector(".lg-custom-comment")) {
+          const commentBtn = document.createElement("button");
+          commentBtn.className = "lg-icon lg-custom-btn lg-custom-comment";
+          commentBtn.textContent = "📝";
+          commentBtn.title = "メモを書く";
+          toolbar.appendChild(commentBtn);
+          commentBtn.addEventListener("click", () => {
+            syncCommentPanel();
+            commentPanel.classList.add("open");
+            commentTextarea.focus();
+          });
+          commentTextarea.addEventListener("input", () => {
+            saveCurrentComment();
+          });
+        }
+
+        if (!toolbar.querySelector(".lg-custom-exif")) {
+          const exifBtn = document.createElement("button");
+          exifBtn.className = "lg-icon lg-custom-btn lg-custom-exif";
+          exifBtn.textContent = "📷";
+          exifBtn.title = "EXIF表示切替";
+          toolbar.appendChild(exifBtn);
+          exifBtn.addEventListener("click", () => {
+            exifVisible = !exifVisible;
+            saveJson(LS_EXIF, exifVisible);
+            syncExifVisibility();
+          });
+        }
+
+        if (!toolbar.querySelector(".lg-custom-share")) {
+          const shareBtn = document.createElement("button");
+          shareBtn.className = "lg-icon lg-custom-btn lg-custom-share";
+          shareBtn.textContent = "🔗";
+          shareBtn.title = "共有";
+          toolbar.appendChild(shareBtn);
+          shareBtn.addEventListener("click", () => {
+            const href = getCurrentHref() || window.location.href;
+            const shareUrl = href;
+            if (navigator.share) {
+              navigator.share({
+                title: document.title || "フォトギャラリー",
+                url: shareUrl
+              }).catch(()=>{});
+            } else {
+              // 簡易メニュー：X / LINE / コピー
+              const msg = "共有方法を選んでください：\n1: Xに投稿\n2: LINEで共有\n3: URLをコピー";
+              const choice = window.prompt(msg, "3");
+              if (choice === "1") {
+                const url = "https://twitter.com/intent/tweet?url=" + encodeURIComponent(shareUrl);
+                window.open(url, "_blank");
+              } else if (choice === "2") {
+                const url = "https://line.me/R/msg/text/?" + encodeURIComponent(shareUrl);
+                window.open(url, "_blank");
+              } else {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                  navigator.clipboard.writeText(shareUrl).then(()=>{
+                    alert("URLをコピーしました");
+                  }).catch(()=>{
+                    alert("URL: " + shareUrl);
+                  });
+                } else {
+                  alert("URL: " + shareUrl);
+                }
+              }
+            }
+          });
+        }
+
+        if (!toolbar.querySelector(".lg-custom-slideshow")) {
+          let playing = false;
+          let timer = null;
+          const slideBtn = document.createElement("button");
+          slideBtn.className = "lg-icon lg-custom-btn lg-custom-slideshow";
+          slideBtn.textContent = "▶";
+          slideBtn.title = "スライドショー";
+          toolbar.appendChild(slideBtn);
+
+          slideBtn.addEventListener("click", () => {
+            playing = !playing;
+            if (playing) {
+              slideBtn.textContent = "⏸";
+              slideBtn.title = "停止";
+              timer = setInterval(() => {
+                if (lgInstance) {
+                  lgInstance.slideNext();
+                }
+              }, 3000);
+            } else {
+              slideBtn.textContent = "▶";
+              slideBtn.title = "スライドショー";
+              if (timer) {
+                clearInterval(timer);
+                timer = null;
+              }
+            }
+          });
+
+          // galleryを閉じたらスライドショーも停止
+          lgInstance.on("lgBeforeClose", () => {
+            playing = false;
+            if (timer) {
+              clearInterval(timer);
+              timer = null;
+            }
+            slideBtn.textContent = "▶";
+            slideBtn.title = "スライドショー";
+          });
+        }
+
+        if (!toolbar.querySelector(".lg-custom-favlist")) {
+          const favListBtn = document.createElement("button");
+          favListBtn.className = "lg-icon lg-custom-btn lg-custom-favlist";
+          favListBtn.textContent = "⭐";
+          favListBtn.title = "お気に入り一覧";
+          toolbar.appendChild(favListBtn);
+          favListBtn.addEventListener("click", () => {
+            renderFavoritesOverlay();
+            favOverlay.style.display = "flex";
+          });
+        }
+
+        // 初回オープン時に状態を同期
+        const heartBtn = toolbar.querySelector(".lg-custom-heart");
+        syncHeartButton(heartBtn);
+        syncCommentPanel();
+        syncExifVisibility();
+      });
+
+      // スライドが変わるたびに状態更新
+      lgInstance.on("lgAfterSlide", () => {
+        const toolbar = document.querySelector(".lg-toolbar");
+        if (!toolbar) return;
+        const heartBtn = toolbar.querySelector(".lg-custom-heart");
+        syncHeartButton(heartBtn);
+        syncCommentPanel();
+        syncExifVisibility();
+      });
+
+      // === fullscreen & 親通知（既存機能を維持） ===
       gallery.querySelectorAll("a.gallery-item").forEach((a) => {
         a.addEventListener("click", () => {
           const el = document.documentElement;
-
           if (el.requestFullscreen) el.requestFullscreen();
           else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
           else if (el.msRequestFullscreen) el.msRequestFullscreen();
         });
       });
 
-      /* ==================================
-         ② v2イベント（閉じる前）
-      =================================== */
       gallery.addEventListener("lgBeforeClose", () => {
         console.log("📤 子：LG before close 発火");
         if (document.fullscreenElement) {
@@ -178,25 +578,20 @@ document.addEventListener("DOMContentLoaded", () => {
         window.parent.postMessage({ type: "lgClosed" }, "*");
       });
 
-      /* ==================================
-         ③ ESC → フルスクリーン解除 → 親へ通知
-      =================================== */
       document.addEventListener("fullscreenchange", () => {
         if (!document.fullscreenElement) {
           console.log("📤 子：fullscreenchange発火 → 親に lgClosed を送信");
           try {
-            lg.closeGallery();
+            if (lgInstance) lgInstance.closeGallery();
             window.parent.postMessage({ type: "lgClosed" }, "*");
           } catch(e) {}
         }
       });
-    });
-  }
 
-  /* ===========================================
-       ★ クリック判定は gallery の外へ移動
-       → 全ページで scrollToTitle を送信できる
-  ============================================ */
+    }); // imagesLoaded
+  } // if(gallery)
+
+  // === クリック判定（scrollToTitle 用：既存維持） ===
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (!a) return;
@@ -235,5 +630,4 @@ document.addEventListener("DOMContentLoaded", () => {
   new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true});
 
 });
-
 </script>
