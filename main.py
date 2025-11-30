@@ -231,7 +231,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 </script>
-"""
 
 <!-- ▼▼▼ 追加スクリプト：EXIF ON/OFF 切替 ▼▼▼ -->
 <script>
@@ -284,6 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 </script>
 <!-- ▲▲▲ 追加スクリプトここまで ▲▲▲ -->
+"""
 
 # ===========================
 # EXIF キャッシュ
