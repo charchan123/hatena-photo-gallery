@@ -84,6 +84,150 @@ document.addEventListener("DOMContentLoaded", () => {
         thumbnail: true
       });
 
+            /* ==================================
+         ★ カスタムアイコン追加（自動再生 + シェア）
+      =================================== */
+
+      lg.on("lgAfterOpen", () => {
+        const toolbar = document.querySelector(".lg-toolbar");
+        if (!toolbar) return;
+
+        // 二重追加防止
+        if (toolbar.dataset.customAdded === "1") return;
+        toolbar.dataset.customAdded = "1";
+
+        /* ---------- 共通CSS ---------- */
+        const css = document.createElement("style");
+        css.textContent = `
+          .lg-custom-btn {
+            width:20px;
+            height:20px;
+            background:#ddd;
+            border-radius:4px;
+            font-size:0 !important;
+            margin-left:8px;
+            cursor:pointer;
+            border:none;
+            padding:0;
+          }
+          .lg-custom-btn::before {
+            display:block;
+            width:100%;
+            height:100%;
+            text-align:center;
+            font-size:15px;
+            line-height:20px;
+          }
+
+          #lg-btn-autoplay::before { content:"▶"; }
+          #lg-btn-autoplay.playing::before { content:"⏸"; }
+
+          #lg-btn-share::before { content:"⇪"; }
+
+          /* シェアメニュー */
+          #share-menu {
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,0.4);
+            display:none;
+            align-items:center;
+            justify-content:center;
+            z-index:99998;
+          }
+          #share-menu.open { display:flex; }
+
+          #share-menu .inner {
+            background:#fff;
+            padding:12px;
+            border-radius:8px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.3);
+            display:flex;
+            flex-direction:column;
+            gap:8px;
+            min-width:180px;
+          }
+          #share-menu button {
+            padding:6px 8px;
+          }
+        `;
+        document.head.appendChild(css);
+
+        /* ---------- シェアポップアップ ---------- */
+        const shareMenuHTML = `
+          <div id="share-menu">
+            <div class="inner">
+              <button id="share-x">X に投稿</button>
+              <button id="share-line">LINEで送る</button>
+              <button id="share-copy">URLコピー</button>
+              <button id="share-close">閉じる</button>
+            </div>
+          </div>
+        `;
+        document.body.insertAdjacentHTML("beforeend", shareMenuHTML);
+
+        /* ---------- ボタン生成 ---------- */
+        function addBtn(id, title) {
+          const b = document.createElement("button");
+          b.id = id;
+          b.className = "lg-custom-btn";
+          b.title = title;
+          toolbar.appendChild(b);
+          return b;
+        }
+
+        const btnAuto = addBtn("lg-btn-autoplay", "スライドショー再生/停止");
+        const btnShare = addBtn("lg-btn-share", "シェア");
+
+        /* ---------- 自動再生ロジック ---------- */
+        let timer = null;
+        let playing = false;
+
+        function startAuto() {
+          playing = true;
+          btnAuto.classList.add("playing");
+          timer = setInterval(() => {
+            try { lg.slideNext(); } catch(e){}
+          }, 3000);
+        }
+
+        function stopAuto() {
+          playing = false;
+          btnAuto.classList.remove("playing");
+          if (timer) clearInterval(timer);
+          timer = null;
+        }
+
+        btnAuto.addEventListener("click", () => {
+          if (!playing) startAuto();
+          else stopAuto();
+        });
+
+        /* ---------- シェアボタンクリック ---------- */
+        btnShare.addEventListener("click", () => {
+          const menu = document.getElementById("share-menu");
+          if (menu) menu.classList.add("open");
+        });
+
+        document.addEventListener("click", (e) => {
+          if (e.target.id === "share-close") {
+            document.getElementById("share-menu").classList.remove("open");
+          }
+          if (e.target.id === "share-x") {
+            const url = encodeURIComponent(window.location.href);
+            window.open("https://twitter.com/intent/tweet?url=" + url, "_blank");
+          }
+          if (e.target.id === "share-line") {
+            const url = encodeURIComponent(window.location.href);
+            window.open("https://social-plugins.line.me/lineit/share?url=" + url, "_blank");
+          }
+          if (e.target.id === "share-copy") {
+            navigator.clipboard.writeText(window.location.href)
+              .then(() => alert("URLをコピーしました"));
+          }
+        });
+
+      });
+
       /* ==================================
          ① サムネイルクリック時に
             強制フルスクリーン発動
