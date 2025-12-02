@@ -98,10 +98,10 @@ document.addEventListener("DOMContentLoaded", () => {
         thumbnail: true
       });
 
-            /* ==================================
-         ★ カスタムアイコン追加（自動再生 + シェア）
+      /* ==================================
+         ★ カスタムボタンを追加
+            （自動再生 / シェア（URLコピー））
       =================================== */
-
       lg.on("lgAfterOpen", () => {
         const toolbar = document.querySelector(".lg-toolbar");
         if (!toolbar) return;
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (toolbar.dataset.customAdded === "1") return;
         toolbar.dataset.customAdded = "1";
 
-        /* ---------- 共通CSS ---------- */
+        // 共通CSS
         const css = document.createElement("style");
         css.textContent = `
           .lg-custom-btn {
@@ -128,58 +128,19 @@ document.addEventListener("DOMContentLoaded", () => {
             display:block;
             width:100%;
             height:100%;
+            line-height:20px;
             text-align:center;
             font-size:15px;
-            line-height:20px;
           }
 
           #lg-btn-autoplay::before { content:"▶"; }
           #lg-btn-autoplay.playing::before { content:"⏸"; }
 
           #lg-btn-share::before { content:"⇪"; }
-
-          /* シェアメニュー */
-          #share-menu {
-            position:fixed;
-            inset:0;
-            background:rgba(0,0,0,0.4);
-            display:none;
-            align-items:center;
-            justify-content:center;
-            z-index:99998;
-          }
-          #share-menu.open { display:flex; }
-
-          #share-menu .inner {
-            background:#fff;
-            padding:12px;
-            border-radius:8px;
-            box-shadow:0 2px 10px rgba(0,0,0,0.3);
-            display:flex;
-            flex-direction:column;
-            gap:8px;
-            min-width:180px;
-          }
-          #share-menu button {
-            padding:6px 8px;
-          }
         `;
         document.head.appendChild(css);
 
-        /* ---------- シェアポップアップ ---------- */
-        const shareMenuHTML = `
-          <div id="share-menu">
-            <div class="inner">
-              <button id="share-x">X に投稿</button>
-              <button id="share-line">LINEで送る</button>
-              <button id="share-copy">URLコピー</button>
-              <button id="share-close">閉じる</button>
-            </div>
-          </div>
-        `;
-        document.body.insertAdjacentHTML("beforeend", shareMenuHTML);
-
-        /* ---------- ボタン生成 ---------- */
+        // ボタン追加
         function addBtn(id, title) {
           const b = document.createElement("button");
           b.id = id;
@@ -189,26 +150,28 @@ document.addEventListener("DOMContentLoaded", () => {
           return b;
         }
 
-        const btnAuto = addBtn("lg-btn-autoplay", "スライドショー再生/停止");
-        const btnShare = addBtn("lg-btn-share", "シェア");
+        const btnAuto = addBtn("lg-btn-autoplay", "スライドショー再生 / 停止");
+        const btnShare = addBtn("lg-btn-share", "URLコピー");
 
-        /* ---------- 自動再生ロジック ---------- */
+        /* ------------------------
+           ⏯ 自動スライドショー
+        ------------------------ */
         let timer = null;
         let playing = false;
 
         function startAuto() {
-          playing = true;
-          btnAuto.classList.add("playing");
           timer = setInterval(() => {
             try { lg.slideNext(); } catch(e){}
           }, 3000);
+          playing = true;
+          btnAuto.classList.add("playing");
         }
 
         function stopAuto() {
+          clearInterval(timer);
+          timer = null;
           playing = false;
           btnAuto.classList.remove("playing");
-          if (timer) clearInterval(timer);
-          timer = null;
         }
 
         btnAuto.addEventListener("click", () => {
@@ -216,30 +179,14 @@ document.addEventListener("DOMContentLoaded", () => {
           else stopAuto();
         });
 
-        /* ---------- シェアボタンクリック ---------- */
+        /* ------------------------
+           🔗 URLコピーのみ
+        ------------------------ */
         btnShare.addEventListener("click", () => {
-          const menu = document.getElementById("share-menu");
-          if (menu) menu.classList.add("open");
+          navigator.clipboard.writeText(window.location.href)
+            .then(() => alert("URLをコピーしました！"))
+            .catch(() => alert("コピーできませんでした"));
         });
-
-        document.addEventListener("click", (e) => {
-          if (e.target.id === "share-close") {
-            document.getElementById("share-menu").classList.remove("open");
-          }
-          if (e.target.id === "share-x") {
-            const url = encodeURIComponent(window.location.href);
-            window.open("https://twitter.com/intent/tweet?url=" + url, "_blank");
-          }
-          if (e.target.id === "share-line") {
-            const url = encodeURIComponent(window.location.href);
-            window.open("https://social-plugins.line.me/lineit/share?url=" + url, "_blank");
-          }
-          if (e.target.id === "share-copy") {
-            navigator.clipboard.writeText(window.location.href)
-              .then(() => alert("URLをコピーしました"));
-          }
-        });
-
       });
 
       /* ==================================
