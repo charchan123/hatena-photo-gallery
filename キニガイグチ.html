@@ -119,6 +119,113 @@ document.addEventListener("DOMContentLoaded", () => {
         thumbnail: true
       });
 
+      /* ============================================
+    ▶ / ⏸ 自動スライドショー & 🔗 シェア
+================================================= */
+lg.on("lgAfterOpen", () => {
+    const toolbar = document.querySelector(".lg-toolbar");
+    if (!toolbar) return;
+
+    /* 既存と同じデザインに合わせる共通CSS */
+    const baseStyle = `
+        background:#ddd;
+        width:20px;
+        height:20px;
+        font-size:0;
+        border-radius:4px;
+        margin-left:8px;
+        cursor:pointer;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+    `;
+
+    /* ======================
+        ▶ / ⏸ 自動再生
+    ======================= */
+    let autoplay = false;
+    let autoplayTimer = null;
+
+    const playBtn = document.createElement("div");
+    playBtn.className = "lg-icon lg-autoplay-btn";
+    playBtn.setAttribute("style", baseStyle);
+    playBtn.innerHTML = "▶"; // font-size:0 だから見えないが一応
+
+    playBtn.addEventListener("click", () => {
+        autoplay = !autoplay;
+        playBtn.style.background = autoplay ? "#bbb" : "#ddd";
+
+        if (autoplay) {
+            autoplayTimer = setInterval(() => {
+                lg.goToNextSlide();
+            }, 2500);
+        } else {
+            clearInterval(autoplayTimer);
+        }
+    });
+
+    toolbar.appendChild(playBtn);
+
+    /* スライド切り替え時は高さ同期 */
+    lg.on("lgAfterSlide", () => {
+        window.parent.postMessage({ type: "setHeight", height: document.documentElement.scrollHeight }, "*");
+    });
+
+
+    /* ======================
+        🔗 シェアメニュー
+    ======================= */
+    const shareBtn = document.createElement("div");
+    shareBtn.className = "lg-icon lg-share-btn";
+    shareBtn.setAttribute("style", baseStyle);
+    shareBtn.innerHTML = "🔗";
+
+    shareBtn.addEventListener("click", () => {
+        const idx = lg.index;
+        const slide = lg.galleryItems[idx];
+        const url = slide?.src || location.href;
+
+        const menu = document.createElement("div");
+        menu.style.cssText = `
+            position:fixed;
+            top:60px;
+            right:20px;
+            background:white;
+            padding:10px;
+            border-radius:8px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.15);
+            z-index:999999;
+            font-size:14px;
+        `;
+
+        menu.innerHTML = `
+            <div style="margin-bottom:8px; cursor:pointer;" data-type="x">Xでシェア</div>
+            <div style="margin-bottom:8px; cursor:pointer;" data-type="line">LINEでシェア</div>
+            <div style="cursor:pointer;" data-type="copy">URLコピー</div>
+        `;
+
+        menu.addEventListener("click", (e) => {
+            const type = e.target.getAttribute("data-type");
+            if (!type) return;
+
+            if (type === "x") {
+                window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`, "_blank");
+            } else if (type === "line") {
+                window.open(`https://line.me/R/msg/text/?${encodeURIComponent(url)}`, "_blank");
+            } else if (type === "copy") {
+                navigator.clipboard.writeText(url);
+                alert("URLをコピーしました！");
+            }
+
+            menu.remove();
+        });
+
+        document.body.appendChild(menu);
+    });
+
+    toolbar.appendChild(shareBtn);
+});
+
       /* ==================================
          ① サムネイルクリック時に
             強制フルスクリーン発動
