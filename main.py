@@ -255,6 +255,7 @@ lg.on("lgAfterOpen", () => {
     toolbar.appendChild(shareBtn);
 });
 
+/* FULLSCREEN OFF START
       /* ==================================
          ① サムネイルクリック時に
             強制フルスクリーン発動
@@ -292,6 +293,7 @@ lg.on("lgAfterOpen", () => {
           } catch(e) {}
         }
       });
+      FULLSCREEN OFF END */
     });
   }
 
