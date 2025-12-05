@@ -210,12 +210,12 @@ lg.on("lgAfterOpen", () => {
 
     toolbar.appendChild(shareBtn);
 });
-
-/* FULLSCREEN OFF START
+      
       /* ==================================
          ① サムネイルクリック時に
             強制フルスクリーン発動
       =================================== */
+      /* FULLSCREEN OFF START
       gallery.querySelectorAll("a.gallery-item").forEach((a) => {
         a.addEventListener("click", () => {
           const el = document.documentElement;
@@ -225,10 +225,12 @@ lg.on("lgAfterOpen", () => {
           else if (el.msRequestFullscreen) el.msRequestFullscreen();
         });
       });
+      FULLSCREEN OFF END */
 
       /* ==================================
          ② v2イベント（閉じる前）
       =================================== */
+      /* FULLSCREEN OFF START
       gallery.addEventListener("lgBeforeClose", () => {
         console.log("📤 子：LG before close 発火");
         if (document.fullscreenElement) {
@@ -236,10 +238,12 @@ lg.on("lgAfterOpen", () => {
         }
         window.parent.postMessage({ type: "lgClosed" }, "*");
       });
+      FULLSCREEN OFF END */
 
       /* ==================================
          ③ ESC → フルスクリーン解除 → 親へ通知
       =================================== */
+      /* FULLSCREEN OFF START
       document.addEventListener("fullscreenchange", () => {
         if (!document.fullscreenElement) {
           console.log("📤 子：fullscreenchange発火 → 親に lgClosed を送信");
