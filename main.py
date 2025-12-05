@@ -109,6 +109,7 @@ LIGHTGALLERY_TAGS = """
 
 <script src="https://charchan123.github.io/hatena-photo-gallery/lightgallery/lightgallery.min.js"></script>
 <script src="https://charchan123.github.io/hatena-photo-gallery/lightgallery/lg-zoom.min.js"></script>
+<script src="https://charchan123.github.io/hatena-photo-gallery/lightgallery/lightgallery.min.js"></script>
 <script src="https://charchan123.github.io/hatena-photo-gallery/lightgallery/lg-thumbnail.min.js"></script>
 """
 
