@@ -142,6 +142,134 @@ document.addEventListener("DOMContentLoaded", () => {
         thumbnail: true
       });
 
+            /* ==================================
+         ★ カスタムツールバーアイコン4つ追加
+         ▶ / ⏸（自動再生）
+         🔗 シェア（X / LINE / URLコピー）
+      =================================== */
+
+      lg.on("lgAfterOpen", () => {
+
+        // toolbar を取得
+        const toolbar = document.querySelector(".lg-toolbar");
+        if (!toolbar) return;
+
+        /* ----------------------------
+           ▶/⏸ 自動スライドショー
+        ----------------------------- */
+        let autoplayTimer = null;
+        let isPlaying = false;
+
+        const playBtn = document.createElement("button");
+        playBtn.className = "lg-custom-play";
+        playBtn.style.cssText = `
+          font-size:0;
+          width:20px;
+          height:20px;
+          background:#ddd;
+          border-radius:4px;
+          margin-right:10px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+        `;
+        playBtn.innerHTML = "▶";
+
+        playBtn.addEventListener("click", () => {
+          if (!isPlaying) {
+            // 再生開始
+            isPlaying = true;
+            playBtn.innerHTML = "⏸";
+
+            autoplayTimer = setInterval(() => {
+              lg.goToNextSlide();
+            }, 2500);
+
+          } else {
+            // 一時停止
+            isPlaying = false;
+            playBtn.innerHTML = "▶";
+            clearInterval(autoplayTimer);
+            autoplayTimer = null;
+          }
+        });
+
+        toolbar.prepend(playBtn);
+
+        /* ----------------------------
+           🔗 SHARE ボタン
+        ----------------------------- */
+        const shareBtn = document.createElement("button");
+        shareBtn.className = "lg-custom-share";
+        shareBtn.style.cssText = `
+          font-size:0;
+          width:20px;
+          height:20px;
+          background:#ddd;
+          border-radius:4px;
+          margin-right:10px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          position:relative;
+        `;
+        shareBtn.innerHTML = "🔗";
+
+        // ミニメニュー作成
+        const menu = document.createElement("div");
+        menu.style.cssText = `
+          position:absolute;
+          bottom:-90px;
+          right:0;
+          background:white;
+          border:1px solid #ccc;
+          border-radius:6px;
+          padding:8px;
+          display:none;
+          z-index:9999;
+          width:120px;
+          box-shadow:0 3px 10px rgba(0,0,0,0.2);
+        `;
+
+        // メニューの中身
+        menu.innerHTML = `
+          <div style="padding:4px 0; cursor:pointer;" data-share="x">X/Twitter</div>
+          <div style="padding:4px 0; cursor:pointer;" data-share="line">LINE</div>
+          <div style="padding:4px 0; cursor:pointer;" data-share="copy">URLコピー</div>
+        `;
+
+        shareBtn.appendChild(menu);
+
+        shareBtn.addEventListener("click", () => {
+          menu.style.display = (menu.style.display === "none") ? "block" : "none";
+        });
+
+        // メニュークリック処理
+        menu.addEventListener("click", (e) => {
+          const type = e.target.dataset.share;
+          menu.style.display = "none";
+
+          const currentIndex = lg.index;
+          const currentSlide = lg.galleryItems[currentIndex];
+          const url = currentSlide.src;
+
+          if (type === "x") {
+            window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`, "_blank");
+          }
+          else if (type === "line") {
+            window.open(`https://line.me/R/msg/text/?${encodeURIComponent(url)}`, "_blank");
+          }
+          else if (type === "copy") {
+            navigator.clipboard.writeText(url).then(() => {
+              alert("URLをコピーしました！");
+            });
+          }
+        });
+
+        toolbar.prepend(shareBtn);
+
+      });
+
       /* ==================================
          ① サムネイルクリック時に
             強制フルスクリーン発動
