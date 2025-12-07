@@ -141,6 +141,7 @@ body {
   box-sizing:border-box;
 }
 
+/* 画像ギャラリー本体 */
 .gallery {
   column-count: 2;
   column-gap: 10px;
@@ -171,6 +172,89 @@ body {
 
 @media (max-width: 480px) {
   .gallery { column-count: 1; }
+}
+
+/* ===== ここから五十音カードUI用スタイル ===== */
+
+/* 五十音タイル */
+.kana-grid {
+  max-width: 900px;
+  margin: 0 auto 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+.kana-btn {
+  min-width: 32px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 1;
+}
+.kana-btn.active {
+  background: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+/* 検索バー */
+.search-wrap {
+  max-width: 900px;
+  margin: 0 auto 16px;
+}
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* カード一覧 */
+.mushroom-list {
+  max-width: 900px;
+  margin: 0 auto 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+.mushroom-card {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.mushroom-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+.mushroom-card-thumb {
+  position: relative;
+  padding-top: 65%;
+  overflow: hidden;
+  background: #eee;
+}
+.mushroom-card-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mushroom-card-name {
+  padding: 8px 10px 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
 }
 </style>
 <link rel="stylesheet" 
@@ -207,15 +291,15 @@ document.addEventListener("DOMContentLoaded", () => {
       gallery.style.visibility="visible";
       sendHeight();
 
-const lg = lightGallery(gallery, {
-  selector: 'a.gallery-item',
-  plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
-  speed: 400,
-  download: false,
-  zoom: true,
-  thumbnail: true,
-  autoplay: false     // ← 初期はOFF（ボタンから再生できる）
-});
+      const lg = lightGallery(gallery, {
+        selector: 'a.gallery-item',
+        plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
+        speed: 400,
+        download: false,
+        zoom: true,
+        thumbnail: true,
+        autoplay: false     // ← 初期はOFF（ボタンから再生）
+      });
 
       /* ==================================
          ① サムネイルクリック時に
@@ -292,6 +376,49 @@ const lg = lightGallery(gallery, {
     }
   });
 
+  /* ===========================================
+       ★ 五十音カード用：検索＋かなフィルタ
+  ============================================ */
+  const searchInput = document.querySelector(".search-input");
+  const kanaButtons = document.querySelectorAll(".kana-btn");
+  const cards = document.querySelectorAll(".mushroom-card");
+
+  if (searchInput && cards.length) {
+    let currentKana = "all";
+
+    function applyFilter() {
+      const q = searchInput.value.trim();
+      const keyword = q
+        ? q.normalize("NFKC").toLowerCase()
+        : "";
+
+      cards.forEach((card) => {
+        const name = (card.getAttribute("data-name") || "")
+          .normalize("NFKC")
+          .toLowerCase();
+        const kana = card.getAttribute("data-kana") || "";
+        const matchText = !keyword || name.includes(keyword);
+        const matchKana = (currentKana === "all") || (kana === currentKana);
+        const show = matchText && matchKana;
+        card.style.display = show ? "" : "none";
+      });
+
+      // 高さ再計算（iframe用）
+      sendHeight();
+    }
+
+    searchInput.addEventListener("input", applyFilter);
+
+    kanaButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        kanaButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        currentKana = btn.getAttribute("data-kana") || "all";
+        applyFilter();
+      });
+    });
+  }
+
   sendHeight();
   window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); });
   window.addEventListener("message", e=>{ if(e.data?.type==="requestHeight") sendHeight(); });
@@ -299,5 +426,4 @@ const lg = lightGallery(gallery, {
   new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true});
 
 });
-
 </script>
