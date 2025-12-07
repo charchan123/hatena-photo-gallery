@@ -104,12 +104,10 @@ body {
 
 # ====== LightGallery 読み込みタグ ======
 LIGHTGALLERY_TAGS = """
-<link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
-<link rel="stylesheet" href="./lightgallery/lg-thumbnail.css">
-
-<script src="./lightgallery/lightgallery.min.js"></script>
-<script src="./lightgallery/lg-zoom.min.js"></script>
-<script src="./lightgallery/lg-thumbnail.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/lightgallery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/plugins/zoom/lg-zoom.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/plugins/thumbnail/lg-thumbnail.min.js"></script>
 """
 
 # ====== LightGallery スクリプト ======
