@@ -112,47 +112,6 @@ body {
 @media (max-width: 480px) {
   .gallery { column-count: 1; }
 }
-
-/* ================================
-   LightGallery カスタム Autoplay ボタン
-   （見た目は他のアイコンと同化）
-================================ */
-.lg-custom-autoplay {
-  position: relative;
-}
-
-/* ▶ アイコン（停止中） */
-.lg-custom-autoplay::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-style: solid;
-  border-width: 6px 0 6px 10px;
-  border-color: transparent transparent transparent #ffffff;
-}
-
-/* Ⅱ アイコン（再生中） */
-.lg-custom-autoplay.lg-autoplay-playing::before,
-.lg-custom-autoplay.lg-autoplay-playing::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  width: 2px;
-  height: 10px;
-  background: #ffffff;
-}
-
-.lg-custom-autoplay.lg-autoplay-playing::before {
-  left: 45%;
-  transform: translate(-50%, -50%);
-}
-
-.lg-custom-autoplay.lg-autoplay-playing::after {
-  left: 55%;
-  transform: translate(-50%, -50%);
-}
 </style>
 <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
@@ -188,81 +147,15 @@ document.addEventListener("DOMContentLoaded", () => {
       gallery.style.visibility="visible";
       sendHeight();
 
-      // ==========================
-      // LightGallery 初期化
-      // ==========================
-      const lg = lightGallery(gallery, {
-        selector: 'a.gallery-item',
-        plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
-        speed: 400,
-        download: false,
-        zoom: true,
-        thumbnail: true,
-        autoplay: false   // 最初は停止状態（ボタンでON/OFF）
-      });
-
-      // ==========================
-      // Autoplay 制御用の変数
-      // ==========================
-      let autoplay = false;
-      let autoplayTimer = null;
-      let autoplayBtn = null;
-
-      function stopAutoplay() {
-        autoplay = false;
-        if (autoplayTimer) {
-          clearInterval(autoplayTimer);
-          autoplayTimer = null;
-        }
-        if (autoplayBtn) {
-          autoplayBtn.classList.remove("lg-autoplay-playing");
-        }
-      }
-
-      // ==========================
-      // Autoplay ボタン生成
-      // ==========================
-      function setupAutoplayButton() {
-        const toolbar = document.querySelector(".lg-toolbar");
-        if (!toolbar) return;
-
-        // すでに作ってあれば何もしない
-        if (toolbar.querySelector(".lg-custom-autoplay")) {
-          autoplayBtn = toolbar.querySelector(".lg-custom-autoplay");
-          return;
-        }
-
-        autoplayBtn = document.createElement("button");
-        autoplayBtn.type = "button";
-        autoplayBtn.className = "lg-icon lg-custom-autoplay";
-        autoplayBtn.setAttribute("aria-label", "スライドショー再生/一時停止");
-
-        autoplayBtn.addEventListener("click", () => {
-          autoplay = !autoplay;
-
-          if (autoplay) {
-            // ▶ → Ⅱ に切り替え
-            autoplayBtn.classList.add("lg-autoplay-playing");
-
-            // 5秒ごとに次のスライドへ
-            autoplayTimer = setInterval(() => {
-              try {
-                lg.goToNextSlide();
-              } catch (e) {}
-            }, 5000);
-          } else {
-            stopAutoplay();
-          }
-        });
-
-        // 先頭に挿入 → [Autoplay][Zoom][Share][Close] の並びに近づける
-        toolbar.insertBefore(autoplayBtn, toolbar.firstChild);
-      }
-
-      // ギャラリーが開いたタイミングでツールバーが確実に存在する
-      lg.on("lgAfterOpen", () => {
-        setupAutoplayButton();
-      });
+const lg = lightGallery(gallery, {
+  selector: 'a.gallery-item',
+  plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
+  speed: 400,
+  download: false,
+  zoom: true,
+  thumbnail: true,
+  autoplay: false     // ← 初期はOFF（ボタンから再生できる）
+});
 
       /* ==================================
          ① サムネイルクリック時に
@@ -283,10 +176,6 @@ document.addEventListener("DOMContentLoaded", () => {
       =================================== */
       gallery.addEventListener("lgBeforeClose", () => {
         console.log("📤 子：LG before close 発火");
-
-        // ★ ギャラリーを閉じる前に自動再生も止める
-        stopAutoplay();
-
         if (document.fullscreenElement) {
           document.exitFullscreen().catch(()=>{});
         }
@@ -300,8 +189,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!document.fullscreenElement) {
           console.log("📤 子：fullscreenchange発火 → 親に lgClosed を送信");
           try {
-            // ★ ESC でフルスクリーン解除されたときも自動再生を止める
-            stopAutoplay();
             lg.closeGallery();
             window.parent.postMessage({ type: "lgClosed" }, "*");
           } catch(e) {}
@@ -352,4 +239,5 @@ document.addEventListener("DOMContentLoaded", () => {
   new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true});
 
 });
+
 </script>
