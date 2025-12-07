@@ -104,12 +104,12 @@ body {
 
 # ====== LightGallery 読み込みタグ ======
 LIGHTGALLERY_TAGS = """
-<link rel="stylesheet" href="https://charchan123.github.io/hatena-photo-gallery/lightgallery/lightgallery-bundle.min.css">
-<link rel="stylesheet" href="https://charchan123.github.io/hatena-photo-gallery/lightgallery/lg-thumbnail.css">
+<link rel="stylesheet" href="./lightgallery/lightgallery-bundle.min.css">
+<link rel="stylesheet" href="./lightgallery/lg-thumbnail.css">
 
-<script src="https://charchan123.github.io/hatena-photo-gallery/lightgallery/lightgallery.min.js"></script>
-<script src="https://charchan123.github.io/hatena-photo-gallery/lightgallery/lg-zoom.min.js"></script>
-<script src="https://charchan123.github.io/hatena-photo-gallery/lightgallery/lg-thumbnail.min.js"></script>
+<script src="./lightgallery/lightgallery.min.js"></script>
+<script src="./lightgallery/lg-zoom.min.js"></script>
+<script src="./lightgallery/lg-thumbnail.min.js"></script>
 """
 
 # ====== LightGallery スクリプト ======
