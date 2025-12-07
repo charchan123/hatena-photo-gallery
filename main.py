@@ -103,15 +103,16 @@ body {
 </style>"""
 
 # ====== LightGallery 読み込みタグ ======
-LIGHTGALLERY_TAGS = """
 <link rel="stylesheet" href="https://charchan123.github.io/hatena-photo-gallery/lightgallery/lightgallery-bundle.min.css">
 <link rel="stylesheet" href="https://charchan123.github.io/hatena-photo-gallery/lightgallery/lg-thumbnail.css">
 
 <script src="https://charchan123.github.io/hatena-photo-gallery/lightgallery/lightgallery.min.js"></script>
 <script src="https://charchan123.github.io/hatena-photo-gallery/lightgallery/lg-zoom.min.js"></script>
-<script src="https://charchan123.github.io/hatena-photo-gallery/lightgallery/lightgallery.min.js"></script>
 <script src="https://charchan123.github.io/hatena-photo-gallery/lightgallery/lg-thumbnail.min.js"></script>
-"""
+
+<!-- ★ 追加（B方式：autoplay + share のみ） -->
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/plugins/autoplay/lg-autoplay.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/plugins/share/lg-share.min.js"></script>
 
 # ====== LightGallery スクリプト ======
 SCRIPT_TAG = """<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
@@ -139,14 +140,15 @@ document.addEventListener("DOMContentLoaded", () => {
       gallery.style.visibility="visible";
       sendHeight();
 
-      const lg = lightGallery(gallery, {
-        selector: 'a.gallery-item',
-        plugins: [lgZoom, lgThumbnail],
-        speed: 400,
-        download: false,
-        zoom: true,
-        thumbnail: true
-      });
+const lg = lightGallery(gallery, {
+  selector: 'a.gallery-item',
+  plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
+  speed: 400,
+  download: false,
+  zoom: true,
+  thumbnail: true,
+  autoplay: false     // ← 初期はOFF（ボタンから再生できる）
+});
 
       /* ==================================
          ① サムネイルクリック時に
