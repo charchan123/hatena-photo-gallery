@@ -69,6 +69,7 @@ body {
   box-sizing:border-box;
 }
 
+/* 画像ギャラリー本体 */
 .gallery {
   column-count: 2;
   column-gap: 10px;
@@ -99,6 +100,89 @@ body {
 
 @media (max-width: 480px) {
   .gallery { column-count: 1; }
+}
+
+/* ===== ここから五十音カードUI用スタイル ===== */
+
+/* 五十音タイル */
+.kana-grid {
+  max-width: 900px;
+  margin: 0 auto 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+.kana-btn {
+  min-width: 32px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 1;
+}
+.kana-btn.active {
+  background: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+/* 検索バー */
+.search-wrap {
+  max-width: 900px;
+  margin: 0 auto 16px;
+}
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* カード一覧 */
+.mushroom-list {
+  max-width: 900px;
+  margin: 0 auto 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+.mushroom-card {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.mushroom-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+.mushroom-card-thumb {
+  position: relative;
+  padding-top: 65%;
+  overflow: hidden;
+  background: #eee;
+}
+.mushroom-card-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mushroom-card-name {
+  padding: 8px 10px 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
 }
 </style>"""
 
@@ -141,15 +225,15 @@ document.addEventListener("DOMContentLoaded", () => {
       gallery.style.visibility="visible";
       sendHeight();
 
-const lg = lightGallery(gallery, {
-  selector: 'a.gallery-item',
-  plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
-  speed: 400,
-  download: false,
-  zoom: true,
-  thumbnail: true,
-  autoplay: false     // ← 初期はOFF（ボタンから再生できる）
-});
+      const lg = lightGallery(gallery, {
+        selector: 'a.gallery-item',
+        plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
+        speed: 400,
+        download: false,
+        zoom: true,
+        thumbnail: true,
+        autoplay: false     // ← 初期はOFF（ボタンから再生）
+      });
 
       /* ==================================
          ① サムネイルクリック時に
@@ -226,6 +310,49 @@ const lg = lightGallery(gallery, {
     }
   });
 
+  /* ===========================================
+       ★ 五十音カード用：検索＋かなフィルタ
+  ============================================ */
+  const searchInput = document.querySelector(".search-input");
+  const kanaButtons = document.querySelectorAll(".kana-btn");
+  const cards = document.querySelectorAll(".mushroom-card");
+
+  if (searchInput && cards.length) {
+    let currentKana = "all";
+
+    function applyFilter() {
+      const q = searchInput.value.trim();
+      const keyword = q
+        ? q.normalize("NFKC").toLowerCase()
+        : "";
+
+      cards.forEach((card) => {
+        const name = (card.getAttribute("data-name") || "")
+          .normalize("NFKC")
+          .toLowerCase();
+        const kana = card.getAttribute("data-kana") || "";
+        const matchText = !keyword || name.includes(keyword);
+        const matchKana = (currentKana === "all") || (kana === currentKana);
+        const show = matchText && matchKana;
+        card.style.display = show ? "" : "none";
+      });
+
+      // 高さ再計算（iframe用）
+      sendHeight();
+    }
+
+    searchInput.addEventListener("input", applyFilter);
+
+    kanaButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        kanaButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        currentKana = btn.getAttribute("data-kana") || "all";
+        applyFilter();
+      });
+    });
+  }
+
   sendHeight();
   window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); });
   window.addEventListener("message", e=>{ if(e.data?.type==="requestHeight") sendHeight(); });
@@ -233,9 +360,8 @@ const lg = lightGallery(gallery, {
   new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true});
 
 });
-
 </script>
-"""
+"""    
 
 # ===========================
 # EXIF キャッシュ
@@ -578,12 +704,65 @@ def generate_gallery(entries, exif_cache):
 
     for g, names in aiuo_dict.items():
         html_parts = []
-        html_parts.append(f"<h2>{g}のキノコ</h2><ul>")
+
+        # 見出し
+        html_parts.append(f"<h2>{g}のキノコ</h2>")
+
+        # この行に含まれる「頭文字」一覧（あ・い・う…など）
+        initials = sorted({ n[0] for n in names if n })
+
+        # 五十音タイル
+        html_parts.append("<div class='kana-grid'>")
+        html_parts.append("<button class='kana-btn active' data-kana='all'>すべて</button>")
+        for ch in initials:
+            esc_ch = html.escape(ch)
+            html_parts.append(
+                f"<button class='kana-btn' data-kana='{esc_ch}'>{esc_ch}</button>"
+            )
+        html_parts.append("</div>")
+
+        # 検索バー
+        html_parts.append("""
+        <div class="search-wrap">
+          <input type="text" class="search-input" placeholder="キノコ名で絞り込み">
+        </div>
+        """)
+
+        # カード一覧
+        html_parts.append("<div class='mushroom-list'>")
         for n in sorted(names):
             safe = safe_filename(n)
-            html_parts.append(f'<li><a href="{safe}.html">{html.escape(n)}</a></li>')
-        html_parts.append("</ul>")
+            first_char = n[0] if n else ""
+            imgs_for_name = grouped.get(n, [])
+            thumb_src = imgs_for_name[0] if imgs_for_name else ""
+
+            esc_name = html.escape(n)
+            esc_kana = html.escape(first_char)
+
+            if thumb_src:
+                img_tag = (
+                    f"<img src='{thumb_src}?width=400' "
+                    f"alt='{esc_name}' loading='lazy'>"
+                )
+            else:
+                img_tag = ""
+
+            html_parts.append(f"""
+<a href="{safe}.html"
+   class="mushroom-card"
+   data-name="{esc_name}"
+   data-kana="{esc_kana}">
+  <div class="mushroom-card-thumb">{img_tag}</div>
+  <div class="mushroom-card-name">{esc_name}</div>
+</a>
+""")
+
+        html_parts.append("</div>")  # .mushroom-list
+
+        # 行（あ行〜わ行）間のリンク
         html_parts.append(group_links_html)
+
+        # 共通スタイル＋LGスクリプト
         html_parts.append(STYLE_TAG)
         html_parts.append(LIGHTGALLERY_TAGS)
         html_parts.append(SCRIPT_TAG)
