@@ -184,6 +184,64 @@ body {
   font-weight: 600;
   text-align: center;
 }
+
+/* ===== index.html 専用：全キノコ横断検索 ===== */
+
+.index-search-box {
+  max-width: 900px;
+  margin: 0 auto 24px;
+  padding: 18px 20px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.index-search-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.index-search-input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 2px solid #007acc;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.index-search-results {
+  max-width: 900px;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+/* ページネーション */
+.index-pagination {
+  max-width: 900px;
+  margin: 16px auto;
+  text-align: center;
+}
+
+.index-page-btn {
+  display: inline-block;
+  margin: 0 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: #333;
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.index-page-btn.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
 </style>"""
 
 # ====== LightGallery 読み込みタグ ======
@@ -352,6 +410,73 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  /* ===========================================
+   ★ index.html 専用：全キノコ横断検索
+=========================================== */
+const indexSearchInput = document.querySelector(".index-search-input");
+const indexResults = document.querySelector(".index-search-results");
+
+if (indexSearchInput && indexResults) {
+  // 全キノコのカードデータ（Python側で埋め込む）
+  const ALL_MUSHROOMS = window.ALL_MUSHROOMS || [];
+
+  let page = 1;
+  const PER_PAGE = 30;
+
+  function renderResults(list) {
+    indexResults.innerHTML = list.map(item => `
+      <a href="${item.href}"
+         class="mushroom-card"
+         data-name="${item.name}">
+        <div class="mushroom-card-thumb">
+          <img src="${item.thumb}" alt="${item.name}">
+        </div>
+        <div class="mushroom-card-name">${item.name}</div>
+      </a>
+    `).join("");
+  }
+
+  function renderPagination(totalPages) {
+    const wrap = document.querySelector(".index-pagination");
+    if (!wrap) return;
+
+    wrap.innerHTML = `
+      <span class="index-page-btn ${page<=1?'disabled':''}" data-move="-1">前へ</span>
+      <span style="margin:0 10px;">${page} / ${totalPages}</span>
+      <span class="index-page-btn ${page>=totalPages?'disabled':''}" data-move="1">次へ</span>
+    `;
+
+    wrap.querySelectorAll(".index-page-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const move = Number(btn.dataset.move);
+        page += move;
+        doSearch();
+      });
+    });
+  }
+
+  function doSearch() {
+    const q = indexSearchInput.value.trim().normalize("NFKC").toLowerCase();
+    const filtered = q
+      ? ALL_MUSHROOMS.filter(m => m.name_norm.includes(q))
+      : [];
+
+    const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+    if (page > totalPages) page = totalPages;
+
+    const start = (page - 1) * PER_PAGE;
+    renderResults(filtered.slice(start, start+PER_PAGE));
+
+    renderPagination(totalPages);
+    sendHeight();
+  }
+
+  indexSearchInput.addEventListener("input", () => {
+    page = 1;
+    doSearch();
+  });
+}
 
   sendHeight();
   window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); });
@@ -772,20 +897,53 @@ def generate_gallery(entries, exif_cache):
         with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
             f.write(page_html)
 
-    # ---- index ----
-    index_parts = []
-    index_parts.append("<h2>五十音別分類</h2><ul>")
-    for g in AIUO_GROUPS.keys():
-        index_parts.append(f'<li><a href="{safe_filename(g)}.html">{g}</a></li>')
-    index_parts.append("</ul>")
-    index_parts.append(STYLE_TAG)
-    index_parts.append(LIGHTGALLERY_TAGS)
-    index_parts.append(SCRIPT_TAG)
+# ---- index ----
+index_parts = []
 
-    index_html = "".join(index_parts)
+# 五十音リンク（既存）
+index_parts.append("<h2>五十音別分類</h2><ul>")
+for g in AIUO_GROUPS.keys():
+    index_parts.append(f'<li><a href="{safe_filename(g)}.html">{g}</a></li>')
+index_parts.append("</ul>")
 
-    with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
-        f.write(index_html)
+# 🔍 全キノコ横断検索エリア
+index_parts.append("""
+<div class="index-search-box">
+  <div class="index-search-title">🔍 全キノコ横断検索</div>
+  <input type="text" class="index-search-input" placeholder="キノコ名で検索（例：ベニタケ）">
+</div>
+
+<div class="index-search-results"></div>
+<div class="index-pagination"></div>
+""")
+
+# JS 用に全キノコの一覧を埋め込む
+all_mushrooms_js = []
+for alt, srcs in grouped.items():
+    name_norm = alt.lower()
+    thumb = srcs[0] if srcs else ""
+    all_mushrooms_js.append({
+        "name": alt,
+        "name_norm": name_norm,
+        "href": f"{safe_filename(alt)}.html",
+        "thumb": thumb + "?width=300"
+    })
+
+index_parts.append(f"""
+<script>
+window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
+</script>
+""")
+
+# CSS, LG
+index_parts.append(STYLE_TAG)
+index_parts.append(LIGHTGALLERY_TAGS)
+index_parts.append(SCRIPT_TAG)
+
+index_html = "".join(index_parts)
+
+with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
+    f.write(index_html)
 
     print("✅ ギャラリーページ生成完了")
 
