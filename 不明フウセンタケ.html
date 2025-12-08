@@ -136,6 +136,7 @@ body {
 .mushroom-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  filter: brightness(1.08);
 }
 .mushroom-card-thumb {
   position: relative;
@@ -213,6 +214,80 @@ body {
 .index-page-btn.disabled {
   opacity: 0.4;
   pointer-events: none;
+}
+
+/* ==== おすすめ3キノコカード ==== */
+.recommend-grid {
+  max-width: 900px;
+  margin: 0 auto 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.recommend-card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.recommend-card h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.rec-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rec-item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  transition: transform .2s ease;
+}
+
+.rec-item:hover {
+  transform: translateY(-3px);
+}
+
+.rec-item img {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* index.html 五十音リンクタイル */
+.aiuo-links {
+  max-width: 900px;
+  margin: 0 auto 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.aiuo-link {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.aiuo-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  background: #f5f5f5;
 }
 </style>
 <link rel="stylesheet" 
@@ -379,70 +454,73 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ===========================================
    ★ index.html 専用：全キノコ横断検索
-=========================================== */
-const indexSearchInput = document.querySelector(".index-search-input");
-const indexResults = document.querySelector(".index-search-results");
+  ============================================ */
+  const indexSearchInput = document.querySelector(".index-search-input");
+  const indexResults = document.querySelector(".index-search-results");
 
-if (indexSearchInput && indexResults) {
-  // 全キノコのカードデータ（Python側で埋め込む）
-  const ALL_MUSHROOMS = window.ALL_MUSHROOMS || [];
+  if (indexSearchInput && indexResults) {
+    // 全キノコのカードデータ（Python側で埋め込む）
+    const ALL_MUSHROOMS = window.ALL_MUSHROOMS || [];
 
-  let page = 1;
-  const PER_PAGE = 30;
+    let page = 1;
+    const PER_PAGE = 30;
 
-  function renderResults(list) {
-    indexResults.innerHTML = list.map(item => `
-      <a href="${item.href}"
-         class="mushroom-card"
-         data-name="${item.name}">
-        <div class="mushroom-card-thumb">
-          <img src="${item.thumb}" alt="${item.name}">
-        </div>
-        <div class="mushroom-card-name">${item.name}</div>
-      </a>
-    `).join("");
-  }
+    function renderResults(list) {
+      indexResults.innerHTML = list.map(item => `
+        <a href="${item.href}"
+           class="mushroom-card"
+           data-name="${item.name}">
+          <div class="mushroom-card-thumb">
+            <img src="${item.thumb}" alt="${item.name}">
+          </div>
+          <div class="mushroom-card-name">${item.name}</div>
+        </a>
+      `).join("");
+    }
 
-  function renderPagination(totalPages) {
-    const wrap = document.querySelector(".index-pagination");
-    if (!wrap) return;
+    function renderPagination(totalPages) {
+      const wrap = document.querySelector(".index-pagination");
+      if (!wrap) return;
 
-    wrap.innerHTML = `
-      <span class="index-page-btn ${page<=1?'disabled':''}" data-move="-1">前へ</span>
-      <span style="margin:0 10px;">${page} / ${totalPages}</span>
-      <span class="index-page-btn ${page>=totalPages?'disabled':''}" data-move="1">次へ</span>
-    `;
+      wrap.innerHTML = `
+        <span class="index-page-btn ${page<=1?'disabled':''}" data-move="-1">前へ</span>
+        <span style="margin:0 10px;">${page} / ${totalPages}</span>
+        <span class="index-page-btn ${page>=totalPages?'disabled':''}" data-move="1">次へ</span>
+      `;
 
-    wrap.querySelectorAll(".index-page-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const move = Number(btn.dataset.move);
-        page += move;
-        doSearch();
+      wrap.querySelectorAll(".index-page-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const move = Number(btn.dataset.move);
+          page += move;
+          doSearch();
+
+          // ★ ページ移動 → iframe スクロール
+          window.parent.postMessage({ type:"scrollToTitle" }, "*");
+        });
       });
+    }
+
+    function doSearch() {
+      const q = indexSearchInput.value.trim().normalize("NFKC").toLowerCase();
+      const filtered = q
+        ? ALL_MUSHROOMS.filter(m => m.name_norm.includes(q))
+        : [];
+
+      const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+      if (page > totalPages) page = totalPages;
+
+      const start = (page - 1) * PER_PAGE;
+      renderResults(filtered.slice(start, start+PER_PAGE));
+
+      renderPagination(totalPages);
+      sendHeight();
+    }
+
+    indexSearchInput.addEventListener("input", () => {
+      page = 1;
+      doSearch();
     });
   }
-
-  function doSearch() {
-    const q = indexSearchInput.value.trim().normalize("NFKC").toLowerCase();
-    const filtered = q
-      ? ALL_MUSHROOMS.filter(m => m.name_norm.includes(q))
-      : [];
-
-    const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
-    if (page > totalPages) page = totalPages;
-
-    const start = (page - 1) * PER_PAGE;
-    renderResults(filtered.slice(start, start+PER_PAGE));
-
-    renderPagination(totalPages);
-    sendHeight();
-  }
-
-  indexSearchInput.addEventListener("input", () => {
-    page = 1;
-    doSearch();
-  });
-}
 
   sendHeight();
   window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); });

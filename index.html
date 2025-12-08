@@ -1,4 +1,52 @@
-<h2>五十音別分類</h2><ul><li><a href="あ行.html">あ行</a></li><li><a href="か行.html">か行</a></li><li><a href="さ行.html">さ行</a></li><li><a href="た行.html">た行</a></li><li><a href="な行.html">な行</a></li><li><a href="は行.html">は行</a></li><li><a href="ま行.html">ま行</a></li><li><a href="や行.html">や行</a></li><li><a href="ら行.html">ら行</a></li><li><a href="わ行.html">わ行</a></li></ul>
+
+<h2 style="text-align:center; margin:30px 0 10px;">おすすめキノコ</h2>
+<div class="recommend-grid">
+<div class='recommend-card'><h3>新着キノコ</h3><div class='rec-items'>
+        <a class="rec-item" href="ヒラタケ.html">
+          <img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406164245.jpg?width=400" alt="ヒラタケ">
+          <div>ヒラタケ</div>
+        </a>
+        
+        <a class="rec-item" href="アカハツ.html">
+          <img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929215952.jpg?width=400" alt="アカハツ">
+          <div>アカハツ</div>
+        </a>
+        
+        <a class="rec-item" href="ウスヒラタケ.html">
+          <img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929221523.jpg?width=400" alt="ウスヒラタケ">
+          <div>ウスヒラタケ</div>
+        </a>
+        </div></div><div class='recommend-card'><h3>珍しいキノコ</h3><div class='rec-items'>
+        <a class="rec-item" href="ベニテングタケ.html">
+          <img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012222205.jpg?width=400" alt="ベニテングタケ">
+          <div>ベニテングタケ</div>
+        </a>
+        
+        <a class="rec-item" href="タマゴタケ.html">
+          <img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005201700.jpg?width=400" alt="タマゴタケ">
+          <div>タマゴタケ</div>
+        </a>
+        
+        <a class="rec-item" href="カバイロツルタケ.html">
+          <img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018234443.jpg?width=400" alt="カバイロツルタケ">
+          <div>カバイロツルタケ</div>
+        </a>
+        </div></div><div class='recommend-card'><h3>人気キノコTOP3</h3><div class='rec-items'>
+        <a class="rec-item" href="ベニタケ.html">
+          <img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250614/20250614193321.jpg?width=400" alt="ベニタケ">
+          <div>ベニタケ</div>
+        </a>
+        
+        <a class="rec-item" href="アミガサタケ.html">
+          <img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250419/20250419222848.jpg?width=400" alt="アミガサタケ">
+          <div>アミガサタケ</div>
+        </a>
+        
+        <a class="rec-item" href="シイタケ.html">
+          <img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250404/20250404231844.jpg?width=400" alt="シイタケ">
+          <div>シイタケ</div>
+        </a>
+        </div></div></div><hr style='margin:30px 0;'><h2 style='text-align:center;'>五十音別分類</h2><div class='aiuo-links'><a class="aiuo-link" href="あ行.html">あ行</a><a class="aiuo-link" href="か行.html">か行</a><a class="aiuo-link" href="さ行.html">さ行</a><a class="aiuo-link" href="た行.html">た行</a><a class="aiuo-link" href="な行.html">な行</a><a class="aiuo-link" href="は行.html">は行</a><a class="aiuo-link" href="ま行.html">ま行</a><a class="aiuo-link" href="や行.html">や行</a><a class="aiuo-link" href="ら行.html">ら行</a><a class="aiuo-link" href="わ行.html">わ行</a></div>
 <div class="index-search-box">
   <div class="index-search-title">🔍 全キノコ横断検索</div>
   <input type="text" class="index-search-input" placeholder="キノコ名で検索（例：ベニタケ）">
@@ -119,6 +167,7 @@ body {
 .mushroom-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  filter: brightness(1.08);
 }
 .mushroom-card-thumb {
   position: relative;
@@ -196,6 +245,80 @@ body {
 .index-page-btn.disabled {
   opacity: 0.4;
   pointer-events: none;
+}
+
+/* ==== おすすめ3キノコカード ==== */
+.recommend-grid {
+  max-width: 900px;
+  margin: 0 auto 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.recommend-card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.recommend-card h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.rec-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rec-item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  transition: transform .2s ease;
+}
+
+.rec-item:hover {
+  transform: translateY(-3px);
+}
+
+.rec-item img {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* index.html 五十音リンクタイル */
+.aiuo-links {
+  max-width: 900px;
+  margin: 0 auto 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.aiuo-link {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.aiuo-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  background: #f5f5f5;
 }
 </style>
 <link rel="stylesheet" 
@@ -362,70 +485,73 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ===========================================
    ★ index.html 専用：全キノコ横断検索
-=========================================== */
-const indexSearchInput = document.querySelector(".index-search-input");
-const indexResults = document.querySelector(".index-search-results");
+  ============================================ */
+  const indexSearchInput = document.querySelector(".index-search-input");
+  const indexResults = document.querySelector(".index-search-results");
 
-if (indexSearchInput && indexResults) {
-  // 全キノコのカードデータ（Python側で埋め込む）
-  const ALL_MUSHROOMS = window.ALL_MUSHROOMS || [];
+  if (indexSearchInput && indexResults) {
+    // 全キノコのカードデータ（Python側で埋め込む）
+    const ALL_MUSHROOMS = window.ALL_MUSHROOMS || [];
 
-  let page = 1;
-  const PER_PAGE = 30;
+    let page = 1;
+    const PER_PAGE = 30;
 
-  function renderResults(list) {
-    indexResults.innerHTML = list.map(item => `
-      <a href="${item.href}"
-         class="mushroom-card"
-         data-name="${item.name}">
-        <div class="mushroom-card-thumb">
-          <img src="${item.thumb}" alt="${item.name}">
-        </div>
-        <div class="mushroom-card-name">${item.name}</div>
-      </a>
-    `).join("");
-  }
+    function renderResults(list) {
+      indexResults.innerHTML = list.map(item => `
+        <a href="${item.href}"
+           class="mushroom-card"
+           data-name="${item.name}">
+          <div class="mushroom-card-thumb">
+            <img src="${item.thumb}" alt="${item.name}">
+          </div>
+          <div class="mushroom-card-name">${item.name}</div>
+        </a>
+      `).join("");
+    }
 
-  function renderPagination(totalPages) {
-    const wrap = document.querySelector(".index-pagination");
-    if (!wrap) return;
+    function renderPagination(totalPages) {
+      const wrap = document.querySelector(".index-pagination");
+      if (!wrap) return;
 
-    wrap.innerHTML = `
-      <span class="index-page-btn ${page<=1?'disabled':''}" data-move="-1">前へ</span>
-      <span style="margin:0 10px;">${page} / ${totalPages}</span>
-      <span class="index-page-btn ${page>=totalPages?'disabled':''}" data-move="1">次へ</span>
-    `;
+      wrap.innerHTML = `
+        <span class="index-page-btn ${page<=1?'disabled':''}" data-move="-1">前へ</span>
+        <span style="margin:0 10px;">${page} / ${totalPages}</span>
+        <span class="index-page-btn ${page>=totalPages?'disabled':''}" data-move="1">次へ</span>
+      `;
 
-    wrap.querySelectorAll(".index-page-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const move = Number(btn.dataset.move);
-        page += move;
-        doSearch();
+      wrap.querySelectorAll(".index-page-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const move = Number(btn.dataset.move);
+          page += move;
+          doSearch();
+
+          // ★ ページ移動 → iframe スクロール
+          window.parent.postMessage({ type:"scrollToTitle" }, "*");
+        });
       });
+    }
+
+    function doSearch() {
+      const q = indexSearchInput.value.trim().normalize("NFKC").toLowerCase();
+      const filtered = q
+        ? ALL_MUSHROOMS.filter(m => m.name_norm.includes(q))
+        : [];
+
+      const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+      if (page > totalPages) page = totalPages;
+
+      const start = (page - 1) * PER_PAGE;
+      renderResults(filtered.slice(start, start+PER_PAGE));
+
+      renderPagination(totalPages);
+      sendHeight();
+    }
+
+    indexSearchInput.addEventListener("input", () => {
+      page = 1;
+      doSearch();
     });
   }
-
-  function doSearch() {
-    const q = indexSearchInput.value.trim().normalize("NFKC").toLowerCase();
-    const filtered = q
-      ? ALL_MUSHROOMS.filter(m => m.name_norm.includes(q))
-      : [];
-
-    const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
-    if (page > totalPages) page = totalPages;
-
-    const start = (page - 1) * PER_PAGE;
-    renderResults(filtered.slice(start, start+PER_PAGE));
-
-    renderPagination(totalPages);
-    sendHeight();
-  }
-
-  indexSearchInput.addEventListener("input", () => {
-    page = 1;
-    doSearch();
-  });
-}
 
   sendHeight();
   window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); });
