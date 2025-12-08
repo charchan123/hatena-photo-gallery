@@ -11,12 +11,12 @@ import piexif
 # ===========================
 # safe_filename（全体から参照できる位置）
 # ===========================
-    def safe_filename(name):
-        name = re.sub(r'[:<>\"|*?\\\\/\\r\\n]', '_', name)
-        name = name.strip()
-        if not name:
-            name = "unnamed"
-        return name
+def safe_filename(name):
+    name = re.sub(r'[:<>\"|*?\\/\r\n]', '_', name)
+    name = name.strip()
+    if not name:
+        name = "unnamed"
+    return name
 
 # ===========================
 # 追加：EXIF文字クリーン関数
