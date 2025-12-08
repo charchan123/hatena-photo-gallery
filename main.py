@@ -900,17 +900,19 @@ def generate_gallery(entries, exif_cache):
         with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
             f.write(page_html)
 
-# ---- index ----
-index_parts = []
+        # ===========================
+    # index.html を生成
+    # ===========================
+    index_parts = []
 
-# 五十音リンク（既存）
-index_parts.append("<h2>五十音別分類</h2><ul>")
-for g in AIUO_GROUPS.keys():
-    index_parts.append(f'<li><a href="{safe_filename(g)}.html">{g}</a></li>')
-index_parts.append("</ul>")
+    # 五十音リンク
+    index_parts.append("<h2>五十音別分類</h2><ul>")
+    for g in AIUO_GROUPS.keys():
+        index_parts.append(f'<li><a href="{safe_filename(g)}.html">{g}</a></li>')
+    index_parts.append("</ul>")
 
-# 🔍 全キノコ横断検索エリア
-index_parts.append("""
+    # 🔍 全キノコ横断検索エリア
+    index_parts.append("""
 <div class="index-search-box">
   <div class="index-search-title">🔍 全キノコ横断検索</div>
   <input type="text" class="index-search-input" placeholder="キノコ名で検索（例：ベニタケ）">
@@ -920,35 +922,35 @@ index_parts.append("""
 <div class="index-pagination"></div>
 """)
 
-# JS 用に全キノコの一覧を埋め込む
-all_mushrooms_js = []
-for alt, srcs in grouped.items():
-    name_norm = alt.lower()
-    thumb = srcs[0] if srcs else ""
-    all_mushrooms_js.append({
-        "name": alt,
-        "name_norm": name_norm,
-        "href": f"{safe_filename(alt)}.html",
-        "thumb": thumb + "?width=300"
-    })
+    # JS 用に全キノコ一覧を埋め込む
+    all_mushrooms_js = []
+    for alt, srcs in grouped.items():
+        name_norm = alt.lower()
+        thumb = srcs[0] if srcs else ""
+        all_mushrooms_js.append({
+            "name": alt,
+            "name_norm": name_norm,
+            "href": f"{safe_filename(alt)}.html",
+            "thumb": thumb + "?width=300"
+        })
 
-index_parts.append(f"""
+    index_parts.append(f"""
 <script>
 window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 </script>
 """)
 
-# CSS, LG
-index_parts.append(STYLE_TAG)
-index_parts.append(LIGHTGALLERY_TAGS)
-index_parts.append(SCRIPT_TAG)
+    # CSS と LG
+    index_parts.append(STYLE_TAG)
+    index_parts.append(LIGHTGALLERY_TAGS)
+    index_parts.append(SCRIPT_TAG)
 
-index_html = "".join(index_parts)
+    index_html = "".join(index_parts)
 
-with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
-    f.write(index_html)
+    with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
+        f.write(index_html)
 
-    print("✅ ギャラリーページ生成完了")
+    print("✅ index.html 生成完了")
 
 # ===========================
 # メイン
