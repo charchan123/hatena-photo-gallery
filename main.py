@@ -9,6 +9,27 @@ import html
 import piexif
 
 # ===========================
+# 珍しい / 人気キノコリスト（手動）
+# ===========================
+RARITY_LIST = [
+    "ベニテングタケ",
+    "タマゴタケ",
+    "カバイロツルタケ",
+    "アカヤマドリ",
+    "ムラサキヤマドリタケ",
+    # ← 好きに追加してOK
+]
+
+POPULAR_LIST = [
+    "ベニタケ",
+    "ベニハナイグチ",
+    "アミガサタケ",
+    "シイタケ",
+    "マツタケ",
+    # ← “人気っぽい” を自由に書く
+]
+
+# ===========================
 # safe_filename（全体から参照できる位置）
 # ===========================
 def safe_filename(name):
@@ -17,6 +38,11 @@ def safe_filename(name):
     if not name:
         name = "unnamed"
     return name
+
+# ===========================
+# 記事の日付辞書（新着判定に使う）
+# ===========================
+ARTICLE_DATE = {}
 
 # ===========================
 # 追加：EXIF文字クリーン関数
@@ -174,6 +200,7 @@ body {
 .mushroom-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  filter: brightness(1.08);
 }
 .mushroom-card-thumb {
   position: relative;
@@ -251,6 +278,54 @@ body {
 .index-page-btn.disabled {
   opacity: 0.4;
   pointer-events: none;
+}
+
+/* ==== おすすめ3キノコカード ==== */
+.recommend-grid {
+  max-width: 900px;
+  margin: 0 auto 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.recommend-card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.recommend-card h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.rec-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rec-item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  transition: transform .2s ease;
+}
+
+.rec-item:hover {
+  transform: translateY(-3px);
+}
+
+.rec-item img {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  object-fit: cover;
 }
 </style>"""
 
@@ -462,6 +537,9 @@ if (indexSearchInput && indexResults) {
         const move = Number(btn.dataset.move);
         page += move;
         doSearch();
+
+            // ★ ページ移動 → iframe スクロール
+    window.parent.postMessage({ type:"scrollToTitle" }, "*");
       });
     });
   }
@@ -669,6 +747,17 @@ def fetch_hatena_articles_api():
             with open(filename, "w", encoding="utf-8") as f:
                 f.write(html_content)
             print(f"✅ 保存完了: {filename}")
+
+            # ====== 投稿日時の抽出 ======
+    title_elem = entry.find("atom:title", ns)
+    title = title_elem.text if title_elem is not None else ""
+
+    updated_elem = entry.find("atom:updated", ns)
+    updated = updated_elem.text if updated_elem is not None else ""
+
+    if title:
+        ARTICLE_DATE[title] = updated
+
 
         count += len(entries)
         next_link = root.find("atom:link[@rel='next']", ns)
@@ -904,6 +993,52 @@ def generate_gallery(entries, exif_cache):
     # index.html を生成
     # ===========================
     index_parts = []
+
+    # ===========================
+# ★ おすすめ 3 カード
+# ===========================
+
+def pick_mushrooms(name_list, grouped):
+    items = []
+    for name in name_list:
+        if name in grouped:
+            img = grouped[name][0] if grouped[name] else ""
+            items.append({
+                "name": name,
+                "thumb": img + "?width=400",
+                "href": f"{safe_filename(name)}.html"
+            })
+    return items[:3]
+
+# 新着キノコ（記事更新日時でソート）
+sorted_new = sorted(ARTICLE_DATE.items(), key=lambda x: x[1], reverse=True)
+new_names = [name for name, _ in sorted_new if name in grouped][:3]
+
+recommend_new = pick_mushrooms(new_names, grouped)
+recommend_rarity = pick_mushrooms(RARITY_LIST, grouped)
+recommend_popular = pick_mushrooms(POPULAR_LIST, grouped)
+
+index_parts.append("""
+<h2 style="text-align:center; margin:30px 0 10px;">おすすめキノコ</h2>
+<div class="recommend-grid">
+""")
+
+def append_cards(title, items):
+    index_parts.append(f"<div class='recommend-card'><h3>{title}</h3><div class='rec-items'>")
+    for it in items:
+        index_parts.append(f"""
+        <a class="rec-item" href="{it['href']}">
+          <img src="{it['thumb']}" alt="{it['name']}">
+          <div>{it['name']}</div>
+        </a>
+        """)
+    index_parts.append("</div></div>")
+
+append_cards("新着キノコ", recommend_new)
+append_cards("珍しいキノコ", recommend_rarity)
+append_cards("人気キノコTOP3", recommend_popular)
+
+index_parts.append("</div><hr style='margin:30px 0;'>")
 
     # 五十音リンク
     index_parts.append("<h2>五十音別分類</h2><ul>")
