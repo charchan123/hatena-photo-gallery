@@ -259,6 +259,64 @@ body {
   font-weight: 600;
   text-align: center;
 }
+
+/* ===== index.html 専用：全キノコ横断検索 ===== */
+
+.index-search-box {
+  max-width: 900px;
+  margin: 0 auto 24px;
+  padding: 18px 20px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.index-search-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.index-search-input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 2px solid #007acc;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.index-search-results {
+  max-width: 900px;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+/* ページネーション */
+.index-pagination {
+  max-width: 900px;
+  margin: 16px auto;
+  text-align: center;
+}
+
+.index-page-btn {
+  display: inline-block;
+  margin: 0 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: #333;
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.index-page-btn.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
 </style>
 <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
@@ -421,6 +479,73 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  /* ===========================================
+   ★ index.html 専用：全キノコ横断検索
+=========================================== */
+const indexSearchInput = document.querySelector(".index-search-input");
+const indexResults = document.querySelector(".index-search-results");
+
+if (indexSearchInput && indexResults) {
+  // 全キノコのカードデータ（Python側で埋め込む）
+  const ALL_MUSHROOMS = window.ALL_MUSHROOMS || [];
+
+  let page = 1;
+  const PER_PAGE = 30;
+
+  function renderResults(list) {
+    indexResults.innerHTML = list.map(item => `
+      <a href="${item.href}"
+         class="mushroom-card"
+         data-name="${item.name}">
+        <div class="mushroom-card-thumb">
+          <img src="${item.thumb}" alt="${item.name}">
+        </div>
+        <div class="mushroom-card-name">${item.name}</div>
+      </a>
+    `).join("");
+  }
+
+  function renderPagination(totalPages) {
+    const wrap = document.querySelector(".index-pagination");
+    if (!wrap) return;
+
+    wrap.innerHTML = `
+      <span class="index-page-btn ${page<=1?'disabled':''}" data-move="-1">前へ</span>
+      <span style="margin:0 10px;">${page} / ${totalPages}</span>
+      <span class="index-page-btn ${page>=totalPages?'disabled':''}" data-move="1">次へ</span>
+    `;
+
+    wrap.querySelectorAll(".index-page-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const move = Number(btn.dataset.move);
+        page += move;
+        doSearch();
+      });
+    });
+  }
+
+  function doSearch() {
+    const q = indexSearchInput.value.trim().normalize("NFKC").toLowerCase();
+    const filtered = q
+      ? ALL_MUSHROOMS.filter(m => m.name_norm.includes(q))
+      : [];
+
+    const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+    if (page > totalPages) page = totalPages;
+
+    const start = (page - 1) * PER_PAGE;
+    renderResults(filtered.slice(start, start+PER_PAGE));
+
+    renderPagination(totalPages);
+    sendHeight();
+  }
+
+  indexSearchInput.addEventListener("input", () => {
+    page = 1;
+    doSearch();
+  });
+}
 
   sendHeight();
   window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); });

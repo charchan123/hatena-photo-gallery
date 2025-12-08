@@ -1,9 +1,9 @@
-<div class='gallery'><a class="gallery-item" href="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250902/20250902233255.jpg" data-exthumbimage="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250902/20250902233255.jpg?width=300" data-sub-html="
+<div class='gallery'><a class="gallery-item" href="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250622/20250622130529.jpg" data-exthumbimage="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250622/20250622130529.jpg?width=300" data-sub-html="
     &lt;div style=&#x27;text-align:center;&#x27;&gt;
-        &lt;div style=&#x27;font-weight:bold; font-size:1.2em; margin-bottom:6px;&#x27;&gt;Lanmaoa angustispora&lt;/div&gt;
-        &lt;div style=&#x27;font-size:0.9em; line-height:1.4;&#x27;&gt;カメラ：Canon EOS Kiss X5 | レンズ：EF-S18-55mm f/3.5-5.6 IS | ISO：800 | 絞り：f/13.0 | シャッター速度：1/30 | 焦点距離：34mm | 撮影日：2025/09/02&lt;/div&gt;
+        &lt;div style=&#x27;font-weight:bold; font-size:1.2em; margin-bottom:6px;&#x27;&gt;ヤブニワタケorニワタケ&lt;/div&gt;
+        &lt;div style=&#x27;font-size:0.9em; line-height:1.4;&#x27;&gt;カメラ：Canon EOS Kiss X5 | レンズ：EF-S18-55mm f/3.5-5.6 IS | ISO：400 | 絞り：f/7.1 | シャッター速度：13/10 | 焦点距離：25mm | 撮影日：2025/06/21&lt;/div&gt;
     &lt;/div&gt;
-    "><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250902/20250902233255.jpg" alt="Lanmaoa angustispora" loading="lazy"></a></div>
+    "><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250622/20250622130529.jpg" alt="ヤブニワタケorニワタケ" loading="lazy"></a></div>
         <div style='margin-top:40px; text-align:center;'>
             <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
@@ -135,6 +135,64 @@ body {
   font-size: 14px;
   font-weight: 600;
   text-align: center;
+}
+
+/* ===== index.html 専用：全キノコ横断検索 ===== */
+
+.index-search-box {
+  max-width: 900px;
+  margin: 0 auto 24px;
+  padding: 18px 20px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.index-search-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.index-search-input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 2px solid #007acc;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.index-search-results {
+  max-width: 900px;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+/* ページネーション */
+.index-pagination {
+  max-width: 900px;
+  margin: 16px auto;
+  text-align: center;
+}
+
+.index-page-btn {
+  display: inline-block;
+  margin: 0 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: #333;
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.index-page-btn.disabled {
+  opacity: 0.4;
+  pointer-events: none;
 }
 </style>
 <link rel="stylesheet" 
@@ -298,6 +356,73 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  /* ===========================================
+   ★ index.html 専用：全キノコ横断検索
+=========================================== */
+const indexSearchInput = document.querySelector(".index-search-input");
+const indexResults = document.querySelector(".index-search-results");
+
+if (indexSearchInput && indexResults) {
+  // 全キノコのカードデータ（Python側で埋め込む）
+  const ALL_MUSHROOMS = window.ALL_MUSHROOMS || [];
+
+  let page = 1;
+  const PER_PAGE = 30;
+
+  function renderResults(list) {
+    indexResults.innerHTML = list.map(item => `
+      <a href="${item.href}"
+         class="mushroom-card"
+         data-name="${item.name}">
+        <div class="mushroom-card-thumb">
+          <img src="${item.thumb}" alt="${item.name}">
+        </div>
+        <div class="mushroom-card-name">${item.name}</div>
+      </a>
+    `).join("");
+  }
+
+  function renderPagination(totalPages) {
+    const wrap = document.querySelector(".index-pagination");
+    if (!wrap) return;
+
+    wrap.innerHTML = `
+      <span class="index-page-btn ${page<=1?'disabled':''}" data-move="-1">前へ</span>
+      <span style="margin:0 10px;">${page} / ${totalPages}</span>
+      <span class="index-page-btn ${page>=totalPages?'disabled':''}" data-move="1">次へ</span>
+    `;
+
+    wrap.querySelectorAll(".index-page-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const move = Number(btn.dataset.move);
+        page += move;
+        doSearch();
+      });
+    });
+  }
+
+  function doSearch() {
+    const q = indexSearchInput.value.trim().normalize("NFKC").toLowerCase();
+    const filtered = q
+      ? ALL_MUSHROOMS.filter(m => m.name_norm.includes(q))
+      : [];
+
+    const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+    if (page > totalPages) page = totalPages;
+
+    const start = (page - 1) * PER_PAGE;
+    renderResults(filtered.slice(start, start+PER_PAGE));
+
+    renderPagination(totalPages);
+    sendHeight();
+  }
+
+  indexSearchInput.addEventListener("input", () => {
+    page = 1;
+    doSearch();
+  });
+}
 
   sendHeight();
   window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); });
