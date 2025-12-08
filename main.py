@@ -767,6 +767,13 @@ def build_caption_html(alt, exif: dict):
 # ===========================
 # ギャラリー生成
 # ===========================
+    def safe_filename(name):
+        name = re.sub(r'[:<>\"|*?\\\\/\\r\\n]', '_', name)
+        name = name.strip()
+        if not name:
+            name = "unnamed"
+        return name
+
 def generate_gallery(entries, exif_cache):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     grouped = {}
@@ -775,13 +782,6 @@ def generate_gallery(entries, exif_cache):
 
     group_links = " | ".join([f'<a href="{g}.html">{g}</a>' for g in AIUO_GROUPS.keys()])
     group_links_html = f"<div style='margin-top:40px; text-align:center;'>{group_links}</div>"
-
-    def safe_filename(name):
-        name = re.sub(r'[:<>\"|*?\\\\/\\r\\n]', '_', name)
-        name = name.strip()
-        if not name:
-            name = "unnamed"
-        return name
 
     # ---- 各キノコページ ----
     for alt, imgs in grouped.items():
