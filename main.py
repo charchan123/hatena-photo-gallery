@@ -9,6 +9,16 @@ import html
 import piexif
 
 # ===========================
+# safe_filename（全体から参照できる位置）
+# ===========================
+    def safe_filename(name):
+        name = re.sub(r'[:<>\"|*?\\\\/\\r\\n]', '_', name)
+        name = name.strip()
+        if not name:
+            name = "unnamed"
+        return name
+
+# ===========================
 # 追加：EXIF文字クリーン関数
 # ===========================
 def clean_exif_str(s):
@@ -767,13 +777,6 @@ def build_caption_html(alt, exif: dict):
 # ===========================
 # ギャラリー生成
 # ===========================
-    def safe_filename(name):
-        name = re.sub(r'[:<>\"|*?\\\\/\\r\\n]', '_', name)
-        name = name.strip()
-        if not name:
-            name = "unnamed"
-        return name
-
 def generate_gallery(entries, exif_cache):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     grouped = {}
