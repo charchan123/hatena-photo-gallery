@@ -984,20 +984,22 @@ def generate_gallery(entries, exif_cache):
         html_parts.append(LIGHTGALLERY_TAGS)
         html_parts.append(SCRIPT_TAG)
 
-        page_html = "".join(html_parts)
+page_html = "".join(html_parts)
 
         with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
             f.write(page_html)
 
-        # ===========================
-    # index.html を生成
-    # ===========================
-    index_parts = []
+    # ←←← ここで generate_gallery() の for g in ... が終わる
+    # （インデントを戻す！）
 
-    # ===========================
+# ===========================
+# index.html を生成
+# ===========================
+index_parts = []
+
+# ===========================
 # ★ おすすめ 3 カード
 # ===========================
-
 def pick_mushrooms(name_list, grouped):
     items = []
     for name in name_list:
@@ -1040,14 +1042,14 @@ append_cards("人気キノコTOP3", recommend_popular)
 
 index_parts.append("</div><hr style='margin:30px 0;'>")
 
-    # 五十音リンク
-    index_parts.append("<h2>五十音別分類</h2><ul>")
-    for g in AIUO_GROUPS.keys():
-        index_parts.append(f'<li><a href="{safe_filename(g)}.html">{g}</a></li>')
-    index_parts.append("</ul>")
+# 五十音リンク
+index_parts.append("<h2>五十音別分類</h2><ul>")
+for g in AIUO_GROUPS.keys():
+    index_parts.append(f'<li><a href="{safe_filename(g)}.html">{g}</a></li>')
+index_parts.append("</ul>")
 
-    # 🔍 全キノコ横断検索エリア
-    index_parts.append("""
+# 🔍 全キノコ横断検索エリア
+index_parts.append("""
 <div class="index-search-box">
   <div class="index-search-title">🔍 全キノコ横断検索</div>
   <input type="text" class="index-search-input" placeholder="キノコ名で検索（例：ベニタケ）">
