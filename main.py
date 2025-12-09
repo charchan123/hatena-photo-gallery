@@ -560,7 +560,7 @@ document.addEventListener("DOMContentLoaded", () => {
           doSearch();
 
           // ★ ページ移動 → iframe スクロール
-          window.parent.postMessage({ type:"scrollToTitle" }, "*");
+          window.parent.postMessage({ type:"scrollToSearch" }, "*");
         });
       });
     }
@@ -882,9 +882,13 @@ def generate_gallery(entries, exif_cache):
     for e in entries:
         grouped.setdefault(e["alt"], []).append(e["src"])
 
-    # 五十音ページ間のリンク
-    group_links = " | ".join([f'<a href="{safe_filename(g)}.html">{g}</a>' for g in AIUO_GROUPS.keys()])
-    group_links_html = f"<div style='margin-top:40px; text-align:center;'>{group_links}</div>"
+# 五十音タイル（index と同じデザイン）
+group_links_html = """
+<div class="aiuo-links" style="margin-top:40px;">
+"""
+for g in AIUO_GROUPS.keys():
+    group_links_html += f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>'
+group_links_html += "</div>"
 
     # ---- 各キノコページ ----
     for alt, imgs in grouped.items():
@@ -1077,6 +1081,7 @@ def generate_index(grouped, exif_cache):
     index_parts.append("</div>")
 
     # 🔍 全キノコ横断検索エリア
+    index_parts.append('<div id="gallery-search-anchor"></div>')
     index_parts.append("""
 <div class="index-search-box">
   <div class="index-search-title">🔍 全キノコ横断検索</div>
