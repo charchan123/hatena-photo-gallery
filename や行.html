@@ -82,9 +82,7 @@
   <div class="mushroom-card-thumb"><img src='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018230856.jpg?width=400' alt='ユキラッパタケ' loading='lazy'></div>
   <div class="mushroom-card-name">ユキラッパタケ</div>
 </a>
-</div>
-<div class="aiuo-links" style="margin-top:40px;">
-<a class="aiuo-link" href="あ行.html">あ行</a><a class="aiuo-link" href="か行.html">か行</a><a class="aiuo-link" href="さ行.html">さ行</a><a class="aiuo-link" href="た行.html">た行</a><a class="aiuo-link" href="な行.html">な行</a><a class="aiuo-link" href="は行.html">は行</a><a class="aiuo-link" href="ま行.html">ま行</a><a class="aiuo-link" href="や行.html">や行</a><a class="aiuo-link" href="ら行.html">ら行</a><a class="aiuo-link" href="わ行.html">わ行</a></div><style>
+</div><div style='margin-top:40px; text-align:center;'><a href="あ行.html">あ行</a> | <a href="か行.html">か行</a> | <a href="さ行.html">さ行</a> | <a href="た行.html">た行</a> | <a href="な行.html">な行</a> | <a href="は行.html">は行</a> | <a href="ま行.html">ま行</a> | <a href="や行.html">や行</a> | <a href="ら行.html">ら行</a> | <a href="わ行.html">わ行</a></div><style>
 html, body {
   margin: 0;
   padding: 0;
@@ -552,7 +550,7 @@ document.addEventListener("DOMContentLoaded", () => {
           doSearch();
 
           // ★ ページ移動 → iframe スクロール
-          window.parent.postMessage({ type:"scrollToSearch" }, "*");
+          window.parent.postMessage({ type:"scrollToTitle" }, "*");
         });
       });
     }

@@ -22,9 +22,7 @@
         <div style='margin-top:40px; text-align:center;'>
             <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
-        
-<div class="aiuo-links" style="margin-top:40px;">
-<a class="aiuo-link" href="あ行.html">あ行</a><a class="aiuo-link" href="か行.html">か行</a><a class="aiuo-link" href="さ行.html">さ行</a><a class="aiuo-link" href="た行.html">た行</a><a class="aiuo-link" href="な行.html">な行</a><a class="aiuo-link" href="は行.html">は行</a><a class="aiuo-link" href="ま行.html">ま行</a><a class="aiuo-link" href="や行.html">や行</a><a class="aiuo-link" href="ら行.html">ら行</a><a class="aiuo-link" href="わ行.html">わ行</a></div><style>
+        <style>
 html, body {
   margin: 0;
   padding: 0;
@@ -492,7 +490,7 @@ document.addEventListener("DOMContentLoaded", () => {
           doSearch();
 
           // ★ ページ移動 → iframe スクロール
-          window.parent.postMessage({ type:"scrollToSearch" }, "*");
+          window.parent.postMessage({ type:"scrollToTitle" }, "*");
         });
       });
     }
