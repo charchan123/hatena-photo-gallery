@@ -872,18 +872,25 @@ def build_caption_html(alt, exif: dict):
 # ===========================
 def generate_gallery(entries, exif_cache):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+    # alt → [画像URL1, 画像URL2…]
     grouped = {}
     for e in entries:
         grouped.setdefault(e["alt"], []).append(e["src"])
 
-    # 五十音ページ間のリンク
-group_links = " | "
+    # ===== 五十音タイル（キノコページの下に表示）=====
+    group_links_html = "<div class='aiuo-links' style='margin-top:40px;'>"
+    for g in AIUO_GROUPS.keys():
+        group_links_html += f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>'
+    group_links_html += "</div>"
 
-    # ---- 各キノコページ ----
+    # ------------------------------
+    # ① 各キノコページ（ベニタケ.html など）
+    # ------------------------------
     for alt, imgs in grouped.items():
         html_parts = []
 
-        # ====== ギャラリー ======
+        # ギャラリー本体
         html_parts.append("<div class='gallery'>")
         for src in imgs:
             thumb = src + "?width=300"
@@ -897,15 +904,16 @@ group_links = " | "
                 f'<img src="{src}" alt="{html.escape(alt)}" loading="lazy">'
                 f'</a>'
             )
-
         html_parts.append("</div>")
 
+        # 戻る
         html_parts.append("""
         <div style='margin-top:40px; text-align:center;'>
             <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
         """)
 
+        # スタイル・LG・JS
         html_parts.append(STYLE_TAG)
         html_parts.append(LIGHTGALLERY_TAGS)
         html_parts.append(SCRIPT_TAG)
@@ -916,7 +924,9 @@ group_links = " | "
         with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
             f.write(page_html)
 
-    # ---- 五十音ページ ----
+    # ------------------------------
+    # ② 五十音ページ（あ行.html など）
+    # ------------------------------
     aiuo_dict = {k: [] for k in AIUO_GROUPS.keys()}
     for alt in grouped.keys():
         g = get_aiuo_group(alt)
@@ -926,11 +936,10 @@ group_links = " | "
     for g, names in aiuo_dict.items():
         html_parts = []
 
-        # 見出し
         html_parts.append(f"<h2>{g}のキノコ</h2>")
 
-        # この行に含まれる「頭文字」一覧（あ・い・う…など）
-        initials = sorted({n[0] for n in names if n})
+        # 頭文字（あ・い・う…）
+        initials = sorted({ n[0] for n in names if n })
 
         # 五十音タイル
         html_parts.append("<div class='kana-grid'>")
@@ -949,7 +958,7 @@ group_links = " | "
         </div>
         """)
 
-        # カード一覧
+        # キノコカード一覧
         html_parts.append("<div class='mushroom-list'>")
         for n in sorted(names):
             safe = safe_filename(n)
@@ -960,13 +969,12 @@ group_links = " | "
             esc_name = html.escape(n)
             esc_kana = html.escape(first_char)
 
+            img_tag = ""
             if thumb_src:
                 img_tag = (
                     f"<img src='{thumb_src}?width=400' "
                     f"alt='{esc_name}' loading='lazy'>"
                 )
-            else:
-                img_tag = ""
 
             html_parts.append(f"""
 <a href="{safe}.html"
@@ -977,13 +985,12 @@ group_links = " | "
   <div class="mushroom-card-name">{esc_name}</div>
 </a>
 """)
-
         html_parts.append("</div>")  # .mushroom-list
 
-        # 行（あ行〜わ行）間のリンク
+        # 五十音ページ間リンク（タイル）
         html_parts.append(group_links_html)
 
-        # 共通スタイル＋LGスクリプト
+        # 共通スタイル
         html_parts.append(STYLE_TAG)
         html_parts.append(LIGHTGALLERY_TAGS)
         html_parts.append(SCRIPT_TAG)
@@ -993,7 +1000,7 @@ group_links = " | "
         with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
             f.write(page_html)
 
-    # grouped を index.html 生成用に返す
+    # index.html を生成するために grouped を返却
     return grouped
 
 # ===========================
