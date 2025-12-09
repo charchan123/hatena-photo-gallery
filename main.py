@@ -12,7 +12,11 @@ import piexif
 # 珍しい / 人気キノコリスト（手動）
 # ===========================
 RARITY_LIST = [
-    "センニンタケ",
+    "ベニテングタケ",
+    "タマゴタケ",
+    "カバイロツルタケ",
+    "アカヤマドリ",
+    "ムラサキヤマドリタケ",
     # ← 好きに追加してOK
 ]
 
@@ -878,13 +882,9 @@ def generate_gallery(entries, exif_cache):
     for e in entries:
         grouped.setdefault(e["alt"], []).append(e["src"])
 
-# 五十音タイル（index と同じデザイン）
-group_links_html = """
-<div class="aiuo-links" style="margin-top:40px;">
-"""
-for g in AIUO_GROUPS.keys():
-    group_links_html += f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>'
-group_links_html += "</div>"
+    # 五十音ページ間のリンク
+    group_links = " | ".join([f'<a href="{safe_filename(g)}.html">{g}</a>' for g in AIUO_GROUPS.keys()])
+    group_links_html = f"<div style='margin-top:40px; text-align:center;'>{group_links}</div>"
 
     # ---- 各キノコページ ----
     for alt, imgs in grouped.items():
