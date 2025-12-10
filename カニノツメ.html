@@ -1,9 +1,24 @@
 <div class='gallery'><a class="gallery-item" href="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018232056.jpg" data-exthumbimage="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018232056.jpg?width=300" data-sub-html="
-    &lt;div style=&#x27;text-align:center;&#x27;&gt;
-        &lt;div style=&#x27;font-weight:bold; font-size:1.2em; margin-bottom:6px;&#x27;&gt;カニノツメ&lt;/div&gt;
-        &lt;div style=&#x27;font-size:0.9em; line-height:1.4;&#x27;&gt;カメラ：DC-G9M2 | レンズ：OLYMPUS M.12-40mm F2.8 | ISO：100 | 絞り：f/18.0 | シャッター速度：16/10 | 焦点距離：25mm | 撮影日：2025/10/18&lt;/div&gt;
-    &lt;/div&gt;
-    "><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018232056.jpg" alt="カニノツメ" loading="lazy"></a></div>
+&lt;div style=&#x27;text-align:center;&#x27;&gt;
+  &lt;div style=&#x27;font-weight:bold; font-size:1.2em; margin-bottom:6px;&#x27;&gt;カニノツメ&lt;/div&gt;
+  &lt;div style=&#x27;font-size:0.9em; line-height:1.4;&#x27;&gt;
+    &lt;img src=&#x27;lightgallery/icons/camera.svg&#x27; class=\&quot;exif-icon\&quot;&gt; カメラ：DC-G9M2&lt;br&gt;&lt;img src=&#x27;lightgallery/icons/calendar.svg&#x27; class=\&quot;exif-icon\&quot;&gt; 撮影日：2025/10/18&lt;br&gt;
+    
+&lt;div class=&#x27;exif-toggle&#x27; onclick=&quot;
+  var d = this.nextElementSibling;
+  if (d.classList.contains(&#x27;open&#x27;)) {
+    d.classList.remove(&#x27;open&#x27;);
+  } else {
+    d.classList.add(&#x27;open&#x27;);
+  }
+&quot;&gt;
+  ▼ 詳細EXIF（タップで展開）
+&lt;/div&gt;
+
+    &lt;div class=&#x27;exif-details&#x27;&gt;ISO：100&lt;br&gt;絞り：f/18.0&lt;br&gt;シャッター速度：16/10&lt;br&gt;焦点距離：25mm&lt;br&gt;レンズ：OLYMPUS M.12-40mm F2.8&lt;br&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018232056.jpg" alt="カニノツメ" loading="lazy"></a></div>
         <div style='margin-top:40px; text-align:center;'>
             <a href='javascript:history.back()' class='back-btn'>← 戻る</a>
         </div>
@@ -317,6 +332,43 @@ body {
 .back-btn:active {
   transform: translateY(1px);
   background: #e5e5e5;
+}
+
+/* ===== EXIFアイコン（SVG用） ===== */
+.exif-icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: -3px;
+  margin-right: 4px;
+  filter: invert(1) brightness(2); /* 黒背景用に白っぽく反転 */
+}
+
+/* ===== EXIF アコーディオン ===== */
+.exif-toggle {
+  margin-top: 6px;
+  font-size: 0.9em;
+  color: #ccc;
+  cursor: pointer;
+  user-select: none;
+  transition: color .2s;
+}
+.exif-toggle:hover {
+  color: #fff;
+}
+
+.exif-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .35s ease;
+  font-size: 0.9em;
+  line-height: 1.4;
+  margin-top: 6px;
+  color: #ddd;
+}
+
+/* 展開時に付くクラス */
+.exif-details.open {
+  max-height: 300px;  /* EXIFの量に合わせて十分そうな値 */
 }
 </style>
 <link rel="stylesheet" 
