@@ -10,7 +10,7 @@
     &lt;/div&gt;
     "><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521210126.jpg" alt="アミスギタケ" loading="lazy"></a></div>
         <div style='margin-top:40px; text-align:center;'>
-            <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
+            <a href='javascript:history.back()' class='back-btn'>← 戻る</a>
         </div>
         <div class='aiuo-links' style='margin-top:40px;'><a class="aiuo-link" href="あ行.html">あ行</a><a class="aiuo-link" href="か行.html">か行</a><a class="aiuo-link" href="さ行.html">さ行</a><a class="aiuo-link" href="た行.html">た行</a><a class="aiuo-link" href="な行.html">な行</a><a class="aiuo-link" href="は行.html">は行</a><a class="aiuo-link" href="ま行.html">ま行</a><a class="aiuo-link" href="や行.html">や行</a><a class="aiuo-link" href="ら行.html">ら行</a><a class="aiuo-link" href="わ行.html">わ行</a></div><style>
 html, body {
@@ -294,6 +294,34 @@ body {
   box-shadow: 0 4px 10px rgba(0,0,0,0.14);
   background: #e8f2ff;       /* hover のときだけパステル */
   border-color: #c5dafe;
+}
+
+/* ===== 戻るボタン（楕円ボタン） ===== */
+.back-btn {
+  display: inline-block;
+  padding: 10px 22px;
+  background: #ffffffc9;
+  border: 2px solid #ddd;
+  border-radius: 999px;
+  font-size: 15px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: #f0f0f0;
+  border-color: #bbb;
+  transform: translateY(-1px);
+}
+
+.back-btn:active {
+  transform: translateY(1px);
+  background: #e5e5e5;
 }
 </style>
 <link rel="stylesheet" 
