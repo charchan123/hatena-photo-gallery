@@ -62,7 +62,7 @@
         <div style='margin-top:40px; text-align:center;'>
             <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
         </div>
-        <style>
+        <div class='aiuo-links' style='margin-top:40px;'><a class="aiuo-link" href="あ行.html">あ行</a><a class="aiuo-link" href="か行.html">か行</a><a class="aiuo-link" href="さ行.html">さ行</a><a class="aiuo-link" href="た行.html">た行</a><a class="aiuo-link" href="な行.html">な行</a><a class="aiuo-link" href="は行.html">は行</a><a class="aiuo-link" href="ま行.html">ま行</a><a class="aiuo-link" href="や行.html">や行</a><a class="aiuo-link" href="ら行.html">ら行</a><a class="aiuo-link" href="わ行.html">わ行</a></div><style>
 html, body {
   margin: 0;
   padding: 0;
@@ -74,6 +74,8 @@ body {
   color:#333;
   padding:16px;
   box-sizing:border-box;
+  opacity: 0;
+  transition: opacity .25s ease;
 }
 
 /* 画像ギャラリー本体 */
@@ -88,7 +90,7 @@ body {
   display: block;
   break-inside: avoid;
   margin-bottom: 10px;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
 }
 .gallery img {
@@ -111,7 +113,7 @@ body {
 
 /* ===== ここから五十音カードUI用スタイル ===== */
 
-/* 五十音タイル */
+/* 五十音タイル（五十音ページ用） */
 .kana-grid {
   max-width: 900px;
   margin: 0 auto 16px;
@@ -122,18 +124,24 @@ body {
 }
 .kana-btn {
   min-width: 32px;
-  padding: 6px 10px;
+  padding: 6px 12px;
   border-radius: 999px;
-  border: 1px solid #ccc;
+  border: 1px solid #d0d0d0;
   background: #fff;
   font-size: 14px;
   cursor: pointer;
   line-height: 1;
+  transition: background .15s ease, box-shadow .15s ease, transform .15s ease, border-color .15s ease;
+}
+.kana-btn:hover {
+  background: #f5f5f7;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  transform: translateY(-1px);
 }
 .kana-btn.active {
-  background: #333;
+  background: #0f62fe;
   color: #fff;
-  border-color: #333;
+  border-color: #0f62fe;
 }
 
 /* 検索バー */
@@ -143,11 +151,12 @@ body {
 }
 .search-input {
   width: 100%;
-  padding: 8px 12px;
+  padding: 8px 14px;
   border-radius: 999px;
   border: 1px solid #ccc;
   font-size: 14px;
   box-sizing: border-box;
+  background: #fff;
 }
 
 /* カード一覧 */
@@ -162,16 +171,16 @@ body {
   display: block;
   text-decoration: none;
   color: #333;
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
   background: #fff;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
 .mushroom-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-  filter: brightness(1.08);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.16);
+  filter: brightness(1.05);
 }
 .mushroom-card-thumb {
   position: relative;
@@ -200,7 +209,7 @@ body {
   margin: 0 auto 24px;
   padding: 18px 20px;
   background: #fff;
-  border-radius: 16px;
+  border-radius: 20px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
 
@@ -213,13 +222,15 @@ body {
 
 .index-search-input {
   width: 100%;
-  padding: 10px 14px;
+  padding: 10px 16px;
   border-radius: 999px;
   border: 2px solid #007acc;
   font-size: 15px;
   box-sizing: border-box;
+  background: #fdfefe;
 }
 
+/* index 検索結果カードは .mushroom-card を流用 */
 .index-search-results {
   max-width: 900px;
   margin: 20px auto;
@@ -238,13 +249,19 @@ body {
 .index-page-btn {
   display: inline-block;
   margin: 0 6px;
-  padding: 6px 14px;
+  padding: 6px 16px;
   border-radius: 999px;
   background: #333;
   color: #fff;
   font-size: 14px;
   text-decoration: none;
   cursor: pointer;
+  transition: background .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+.index-page-btn:hover:not(.disabled) {
+  background: #555;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.16);
 }
 .index-page-btn.disabled {
   opacity: 0.4;
@@ -263,7 +280,7 @@ body {
 .recommend-card {
   background: #fff;
   padding: 16px;
-  border-radius: 16px;
+  border-radius: 20px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
 
@@ -285,13 +302,15 @@ body {
   align-items: center;
   text-decoration: none;
   color: #333;
-  transition: transform .2s ease;
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+  border-radius: 14px;
+  padding: 4px 6px;
 }
-
 .rec-item:hover {
   transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.16);
+  filter: brightness(1.04);
 }
-
 .rec-item img {
   width: 70px;
   height: 70px;
@@ -299,7 +318,7 @@ body {
   object-fit: cover;
 }
 
-/* index.html 五十音リンクタイル */
+/* index.html & キノコページ共通：五十音リンクタイル */
 .aiuo-links {
   max-width: 900px;
   margin: 0 auto 16px;
@@ -313,16 +332,18 @@ body {
   padding: 8px 14px;
   border-radius: 999px;
   background: #fff;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
   text-decoration: none;
   color: #333;
   font-size: 14px;
-  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
 }
 .aiuo-link:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-  background: #f5f5f5;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.14);
+  background: #e8f2ff;       /* hover のときだけパステル */
+  border-color: #c5dafe;
 }
 </style>
 <link rel="stylesheet" 
@@ -337,6 +358,11 @@ body {
 <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+
+  // ページ全体フェードイン
+  requestAnimationFrame(() => {
+    document.body.style.opacity = "1";
+  });
 
   function sendHeight() {
     const height = document.documentElement.scrollHeight;
@@ -366,13 +392,10 @@ document.addEventListener("DOMContentLoaded", () => {
         download: false,
         zoom: true,
         thumbnail: true,
-        autoplay: false     // ← 初期はOFF（ボタンから再生）
+        autoplay: false
       });
 
-      /* ==================================
-         ① サムネイルクリック時に
-            強制フルスクリーン発動
-      =================================== */
+      // ① サムネイルクリック時に強制フルスクリーン
       gallery.querySelectorAll("a.gallery-item").forEach((a) => {
         a.addEventListener("click", () => {
           const el = document.documentElement;
@@ -383,23 +406,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
 
-      /* ==================================
-         ② v2イベント（閉じる前）
-      =================================== */
+      // ② v2イベント（閉じる前）
       gallery.addEventListener("lgBeforeClose", () => {
-        console.log("📤 子：LG before close 発火");
         if (document.fullscreenElement) {
           document.exitFullscreen().catch(()=>{});
         }
         window.parent.postMessage({ type: "lgClosed" }, "*");
       });
 
-      /* ==================================
-         ③ ESC → フルスクリーン解除 → 親へ通知
-      =================================== */
+      // ③ ESC → フルスクリーン解除 → 親へ通知
       document.addEventListener("fullscreenchange", () => {
         if (!document.fullscreenElement) {
-          console.log("📤 子：fullscreenchange発火 → 親に lgClosed を送信");
           try {
             lg.closeGallery();
             window.parent.postMessage({ type: "lgClosed" }, "*");
@@ -409,10 +426,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ===========================================
-       ★ クリック判定は gallery の外へ移動
-       → 全ページで scrollToTitle を送信できる
-  ============================================ */
+  // ===========================================
+  // ★ クリック判定（scrollToTitle 用）
+  // ===========================================
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (!a) return;
@@ -420,33 +436,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const txt = a.textContent || "";
     const href = a.getAttribute("href") || "";
 
-    console.log("[iframe] click anchor:", { text: txt, href });
-
     // 1) キノコ名ページ (xxx.html)
     if (href.endsWith(".html")) {
-      console.log("[iframe] send scrollToTitle (html link)");
       window.parent.postMessage({ type: "scrollToTitle" }, "*");
       return;
     }
 
     // 2) あ行〜わ行
     if (/^(あ行|か行|さ行|た行|な行|は行|ま行|や行|ら行|わ行)$/.test(txt)) {
-      console.log("[iframe] send scrollToTitle (aiuo link)");
       window.parent.postMessage({ type: "scrollToTitle" }, "*");
       return;
     }
 
     // 3) ← 戻る
     if (/戻る/.test(txt)) {
-      console.log("[iframe] send scrollToTitle (back)");
       window.parent.postMessage({ type: "scrollToTitle" }, "*");
       return;
     }
   });
 
-  /* ===========================================
-       ★ 五十音カード用：検索＋かなフィルタ
-  ============================================ */
+  // ===========================================
+  // ★ 五十音カード用：検索＋かなフィルタ
+  // ===========================================
   const searchInput = document.querySelector(".search-input");
   const kanaButtons = document.querySelectorAll(".kana-btn");
   const cards = document.querySelectorAll(".mushroom-card");
@@ -471,7 +482,6 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.display = show ? "" : "none";
       });
 
-      // 高さ再計算（iframe用）
       sendHeight();
     }
 
@@ -487,14 +497,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ===========================================
-   ★ index.html 専用：全キノコ横断検索
-  ============================================ */
+  // ===========================================
+  // ★ index.html 専用：全キノコ横断検索
+  // ===========================================
   const indexSearchInput = document.querySelector(".index-search-input");
   const indexResults = document.querySelector(".index-search-results");
 
   if (indexSearchInput && indexResults) {
-    // 全キノコのカードデータ（Python側で埋め込む）
     const ALL_MUSHROOMS = window.ALL_MUSHROOMS || [];
 
     let page = 1;
@@ -529,7 +538,7 @@ document.addEventListener("DOMContentLoaded", () => {
           page += move;
           doSearch();
 
-          // ★ ページ移動 → iframe スクロール
+          // ★ ページ移動 → iframe 親へ通知（検索欄位置にスクロール）
           window.parent.postMessage({ type:"scrollToTitle" }, "*");
         });
       });
