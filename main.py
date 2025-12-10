@@ -391,6 +391,43 @@ body {
   transform: translateY(1px);
   background: #e5e5e5;
 }
+
+/* ===== EXIFアイコン（SVG用） ===== */
+.exif-icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: -3px;
+  margin-right: 4px;
+  filter: invert(1) brightness(2); /* 黒背景用に白っぽく反転 */
+}
+
+/* ===== EXIF アコーディオン ===== */
+.exif-toggle {
+  margin-top: 6px;
+  font-size: 0.9em;
+  color: #ccc;
+  cursor: pointer;
+  user-select: none;
+  transition: color .2s;
+}
+.exif-toggle:hover {
+  color: #fff;
+}
+
+.exif-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .35s ease;
+  font-size: 0.9em;
+  line-height: 1.4;
+  margin-top: 6px;
+  color: #ddd;
+}
+
+/* 展開時に付くクラス */
+.exif-details.open {
+  max-height: 300px;  /* EXIFの量に合わせて十分そうな値 */
+}
 </style>"""
 
 # ====== LightGallery 読み込みタグ ======
@@ -864,45 +901,100 @@ def get_aiuo_group(name):
     return "その他"
 
 # ===========================
+# カメラ名 正規化
+# ===========================
+def normalize_camera_name(model: str) -> str:
+    if not model:
+        return ""
+
+    m = model.strip()
+
+    # Canon 系
+    m = re.sub(r"Canon\\s*", "", m, flags=re.IGNORECASE)
+    m = re.sub(r"EOS\\s*", "EOS ", m, flags=re.IGNORECASE)
+
+    # Nikon
+    m = re.sub(r"NIKON\\s*", "", m, flags=re.IGNORECASE)
+
+    # Sony
+    m = re.sub(r"SONY\\s*", "", m, flags=re.IGNORECASE)
+    m = re.sub(r"ILCE-", "α", m, flags=re.IGNORECASE)  # ILCE-6400 → α6400
+
+    # ダブルスペース整形
+    m = re.sub(r"\\s{2,}", " ", m)
+
+    return m.strip()
+
+# ===========================
 # EXIF → caption HTML
 # ===========================
 def build_caption_html(alt, exif: dict):
     title = html.escape(alt)
 
-    model = exif.get("model") or ""
-    lens = exif.get("lens") or ""
+    # --- メインで表示する項目（Aプラン：カメラ＋撮影日） ---
+    model_raw = exif.get("model") or ""
+    model = normalize_camera_name(model_raw)
+    date = exif.get("date") or ""
+
+    # --- 折りたたみ側に回す項目 ---
     iso = exif.get("iso") or ""
     f = exif.get("f") or ""
     exposure = exif.get("exposure") or ""
     focal = exif.get("focal") or ""
-    date = exif.get("date") or ""
+    lens = exif.get("lens") or ""
 
-    parts = []
+    # SVGアイコン（LightGallery用パス）
+    cam_icon = "<img src='lightgallery/icons/camera.svg' class=\\\"exif-icon\\\">"
+    cal_icon = "<img src='lightgallery/icons/calendar.svg' class=\\\"exif-icon\\\">"
+
+    # メイン情報（縦2行）
+    main_info = ""
     if model:
-        parts.append(f"カメラ：{html.escape(model)}")
-    if lens:
-        parts.append(f"レンズ：{html.escape(lens)}")
-    if iso:
-        parts.append(f"ISO：{html.escape(iso)}")
-    if f:
-        parts.append(f"絞り：{html.escape(f)}")
-    if exposure:
-        parts.append(f"シャッター速度：{html.escape(exposure)}")
-    if focal:
-        parts.append(f"焦点距離：{html.escape(focal)}")
+        main_info += f"{cam_icon} カメラ：{html.escape(model)}<br>"
     if date:
-        parts.append(f"撮影日：{html.escape(date)}")
+        main_info += f"{cal_icon} 撮影日：{html.escape(date)}<br>"
 
-    exif_line = " | ".join(parts)
+    # 折りたたみ詳細（ISO など）はアコーディオン内に収納
+    details_html = "<div class='exif-details'>"
+    if iso:
+        details_html += f"ISO：{html.escape(iso)}<br>"
+    if f:
+        details_html += f"絞り：{html.escape(f)}<br>"
+    if exposure:
+        details_html += f"シャッター速度：{html.escape(exposure)}<br>"
+    if focal:
+        details_html += f"焦点距離：{html.escape(focal)}<br>"
+    if lens:
+        details_html += f"レンズ：{html.escape(lens)}<br>"
+    details_html += "</div>"
 
-    html_block = f"""
-    <div style='text-align:center;'>
-        <div style='font-weight:bold; font-size:1.2em; margin-bottom:6px;'>{title}</div>
-        <div style='font-size:0.9em; line-height:1.4;'>{exif_line}</div>
-    </div>
-    """
+    # アコーディオンのトグル（次の兄弟要素 .exif-details を開閉）
+    toggle_html = """
+<div class='exif-toggle' onclick=\"
+  var d = this.nextElementSibling;
+  if (d.classList.contains('open')) {
+    d.classList.remove('open');
+  } else {
+    d.classList.add('open');
+  }
+\">
+  ▼ 詳細EXIF（タップで展開）
+</div>
+"""
 
-    return html.escape(html_block, quote=True)
+    final_html = f"""
+<div style='text-align:center;'>
+  <div style='font-weight:bold; font-size:1.2em; margin-bottom:6px;'>{title}</div>
+  <div style='font-size:0.9em; line-height:1.4;'>
+    {main_info}
+    {toggle_html}
+    {details_html}
+  </div>
+</div>
+"""
+
+    # data-sub-html 用にエスケープして返す
+    return html.escape(final_html, quote=True)
 
 # ===========================
 # ギャラリー生成（キノコページ & 五十音ページ）
