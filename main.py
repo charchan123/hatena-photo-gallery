@@ -44,6 +44,18 @@ def clean_exif_str(s):
     s = s.strip()
     return s
 
+# ===========================
+# カメラ名正規化
+# 例: "Canon EOS Kiss X5" → "EOS Kiss X5"
+# ===========================
+def normalize_model(model: str) -> str:
+    if not model:
+        return ""
+    m = model.strip()
+    if m.startswith("Canon "):
+        m = m[len("Canon "):]
+    return m
+
 # ====== 設定 ======
 HATENA_USER = os.getenv("HATENA_USER")
 HATENA_BLOG_ID = os.getenv("HATENA_BLOG_ID")
@@ -98,7 +110,7 @@ body {
 
 /* 画像ギャラリー本体 */
 .gallery {
-  column-count: 2;
+  column-count: 4;         /* PC では 4 列 */
   column-gap: 10px;
   max-width: 900px;
   margin: 0 auto;
@@ -125,8 +137,9 @@ body {
   transform: translateY(0);
 }
 
-@media (max-width: 480px) {
-  .gallery { column-count: 1; }
+/* スマホ〜タブレットは 3 列 */
+@media (max-width: 768px) {
+  .gallery { column-count: 3; }
 }
 
 /* ===== ここから五十音カードUI用スタイル ===== */
@@ -392,41 +405,80 @@ body {
   background: #e5e5e5;
 }
 
-/* ===== EXIFアイコン（SVG用） ===== */
-.exif-icon {
-  width: 18px;
-  height: 18px;
-  vertical-align: -3px;
-  margin-right: 4px;
-  filter: invert(1) brightness(2); /* 黒背景用に白っぽく反転 */
+/* ===== LightGallery EXIF カスタム ===== */
+.exif-wrap {
+  width: 90%;
+  max-width: 480px;       /* ← 中央ボックス幅（広すぎ防止） */
+  margin: 0 auto;         /* ← 画面中央配置 */
+  text-align: left;       /* ← 中央BOX内で左揃え */
+  padding: 10px 0 0;
+  color: #fff;
+  line-height: 1.45;
 }
 
-/* ===== EXIF アコーディオン ===== */
-.exif-toggle {
-  margin-top: 6px;
-  font-size: 0.9em;
-  color: #ccc;
-  cursor: pointer;
-  user-select: none;
-  transition: color .2s;
-}
-.exif-toggle:hover {
+.exif-title {
+  font-weight: 600;
+  font-size: 1.1em;
+  margin-bottom: 4px;
   color: #fff;
 }
 
-.exif-details {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height .35s ease;
+.exif-line {
   font-size: 0.9em;
-  line-height: 1.4;
+  line-height: 1.35;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.exif-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #fff;
+}
+
+/* SVG / PNG アイコンを白く＆サイズ固定 */
+.exif-icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin-right: 2px;
+  filter: invert(1) brightness(2);  /* 黒 → 白 */
+}
+
+/* 詳細EXIF アコーディオン */
+.exif-detail {
   margin-top: 6px;
+  font-size: 0.85em;
   color: #ddd;
 }
 
-/* 展開時に付くクラス */
-.exif-details.open {
-  max-height: 300px;  /* EXIFの量に合わせて十分そうな値 */
+.exif-detail summary {
+  cursor: pointer;
+  list-style: none;
+  outline: none;
+}
+
+.exif-detail summary::-webkit-details-marker {
+  display: none;
+}
+
+.exif-detail[open] summary {
+  color: #fff;
+}
+
+.exif-detail-content {
+  margin-top: 4px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height .25s ease, opacity .25s ease;
+}
+
+.exif-detail[open] .exif-detail-content {
+  max-height: 300px;
+  opacity: 1;
 }
 </style>"""
 
@@ -901,100 +953,77 @@ def get_aiuo_group(name):
     return "その他"
 
 # ===========================
-# カメラ名 正規化
-# ===========================
-def normalize_camera_name(model: str) -> str:
-    if not model:
-        return ""
-
-    m = model.strip()
-
-    # Canon 系
-    m = re.sub(r"Canon\\s*", "", m, flags=re.IGNORECASE)
-    m = re.sub(r"EOS\\s*", "EOS ", m, flags=re.IGNORECASE)
-
-    # Nikon
-    m = re.sub(r"NIKON\\s*", "", m, flags=re.IGNORECASE)
-
-    # Sony
-    m = re.sub(r"SONY\\s*", "", m, flags=re.IGNORECASE)
-    m = re.sub(r"ILCE-", "α", m, flags=re.IGNORECASE)  # ILCE-6400 → α6400
-
-    # ダブルスペース整形
-    m = re.sub(r"\\s{2,}", " ", m)
-
-    return m.strip()
-
-# ===========================
 # EXIF → caption HTML
 # ===========================
 def build_caption_html(alt, exif: dict):
     title = html.escape(alt)
 
-    # --- メインで表示する項目（Aプラン：カメラ＋撮影日） ---
-    model_raw = exif.get("model") or ""
-    model = normalize_camera_name(model_raw)
-    date = exif.get("date") or ""
+    raw_model = exif.get("model") or ""
+    model = normalize_model(raw_model)
 
-    # --- 折りたたみ側に回す項目 ---
+    lens = exif.get("lens") or ""
     iso = exif.get("iso") or ""
     f = exif.get("f") or ""
     exposure = exif.get("exposure") or ""
     focal = exif.get("focal") or ""
-    lens = exif.get("lens") or ""
+    date = exif.get("date") or ""
 
-    # SVGアイコン（LightGallery用パス）
-    cam_icon = "<img src='lightgallery/icons/camera.svg' class=\\\"exif-icon\\\">"
-    cal_icon = "<img src='lightgallery/icons/calendar.svg' class=\\\"exif-icon\\\">"
+    parts = []
 
-    # メイン情報（縦2行）
-    main_info = ""
+    # カメラ（アイコン＋機種名）
     if model:
-        main_info += f"{cam_icon} カメラ：{html.escape(model)}<br>"
+        parts.append(
+            "<div class='exif-row'>"
+            "<img src='lightgallery/icons/camera.svg' class='exif-icon' alt='camera'>"
+            f"{html.escape(model)}"
+            "</div>"
+        )
+
+    # 撮影日（アイコン＋日付）
     if date:
-        main_info += f"{cal_icon} 撮影日：{html.escape(date)}<br>"
+        parts.append(
+            "<div class='exif-row'>"
+            "<img src='lightgallery/icons/calendar.svg' class='exif-icon' alt='date'>"
+            f"{html.escape(date)}"
+            "</div>"
+        )
 
-    # 折りたたみ詳細（ISO など）はアコーディオン内に収納
-    details_html = "<div class='exif-details'>"
-    if iso:
-        details_html += f"ISO：{html.escape(iso)}<br>"
-    if f:
-        details_html += f"絞り：{html.escape(f)}<br>"
-    if exposure:
-        details_html += f"シャッター速度：{html.escape(exposure)}<br>"
-    if focal:
-        details_html += f"焦点距離：{html.escape(focal)}<br>"
+    # 詳細EXIF（アコーディオン内）
+    detail_parts = []
     if lens:
-        details_html += f"レンズ：{html.escape(lens)}<br>"
-    details_html += "</div>"
+        detail_parts.append(f"レンズ：{html.escape(lens)}")
+    if iso:
+        detail_parts.append(f"ISO：{html.escape(iso)}")
+    if f:
+        detail_parts.append(f"絞り：{html.escape(f)}")
+    if exposure:
+        detail_parts.append(f"シャッター速度：{html.escape(exposure)}")
+    if focal:
+        detail_parts.append(f"焦点距離：{html.escape(focal)}")
 
-    # アコーディオンのトグル（次の兄弟要素 .exif-details を開閉）
-    toggle_html = """
-<div class='exif-toggle' onclick=\"
-  var d = this.nextElementSibling;
-  if (d.classList.contains('open')) {
-    d.classList.remove('open');
-  } else {
-    d.classList.add('open');
-  }
-\">
-  ▼ 詳細EXIF（タップで展開）
-</div>
-"""
+    if detail_parts:
+        details_html = (
+            "<details class='exif-detail'>"
+            "<summary>▼ 詳細EXIF（タップで展開）</summary>"
+            "<div class='exif-detail-content'>"
+            + "<br>".join(detail_parts) +
+            "</div></details>"
+        )
+        parts.append(details_html)
 
-    final_html = f"""
-<div style='text-align:center;'>
-  <div style='font-weight:bold; font-size:1.2em; margin-bottom:6px;'>{title}</div>
-  <div style='font-size:0.9em; line-height:1.4;'>
-    {main_info}
-    {toggle_html}
-    {details_html}
+    exif_line = "".join(parts)
+
+    html_block = f"""
+<div class='exif-wrap'>
+  <div class='exif-title'>{title}</div>
+  <div class='exif-line'>
+    {exif_line}
   </div>
 </div>
 """
 
-    # data-sub-html 用にエスケープして返す
-    return html.escape(final_html, quote=True)
+    # data-sub-html 属性用に HTML をエスケープ
+    return html.escape(html_block, quote=True)
 
 # ===========================
 # ギャラリー生成（キノコページ & 五十音ページ）
