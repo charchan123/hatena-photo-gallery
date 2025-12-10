@@ -363,6 +363,34 @@ body {
   background: #e8f2ff;       /* hover のときだけパステル */
   border-color: #c5dafe;
 }
+
+/* ===== 戻るボタン（楕円ボタン） ===== */
+.back-btn {
+  display: inline-block;
+  padding: 10px 22px;
+  background: #ffffffc9;
+  border: 2px solid #ddd;
+  border-radius: 999px;
+  font-size: 15px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: #f0f0f0;
+  border-color: #bbb;
+  transform: translateY(-1px);
+}
+
+.back-btn:active {
+  transform: translateY(1px);
+  background: #e5e5e5;
+}
 </style>"""
 
 # ====== LightGallery 読み込みタグ ======
@@ -915,10 +943,10 @@ def generate_gallery(entries, exif_cache):
             )
         html_parts.append("</div>")
 
-        # 戻るリンク
+        # 戻るボタン（楕円ボタン）
         html_parts.append("""
         <div style='margin-top:40px; text-align:center;'>
-            <a href='javascript:history.back()' style='text-decoration:none;color:#007acc;'>← 戻る</a>
+            <a href='javascript:history.back()' class='back-btn'>← 戻る</a>
         </div>
         """)
 
