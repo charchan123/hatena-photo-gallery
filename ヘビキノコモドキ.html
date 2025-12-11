@@ -392,9 +392,7 @@ body {
 
 /* タイトル（キノコ名） */
 .exif-title {
-  font-weight: 600;
-  font-size: 17px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .exif-line {
@@ -405,13 +403,15 @@ body {
   font-size: 0.9em;
 }
 
-/* カメラ＋日付を横並びで中央に */
+/* --- カメラ＆日付の見た目を LightGallery に近づける --- */
 .exif-top {
   display: inline-flex;
-  justify-content: center;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 6px;
+  justify-content: center;
+  gap: 14px;
+  font-size: 14px;
+  opacity: .95;
+  margin-bottom: 4px;
 }
 
 .exif-row {
@@ -429,20 +429,26 @@ body {
   filter: invert(1) brightness(2);
 }
 
-/* ▼詳細EXIF （summary は中央揃え） */
+/* --- ▼詳細EXIF の表示位置を完全に中央にする --- */
 .exif-detail {
-  margin-top: 8px;
-  font-size: 14px;
-  text-align: center;        /* ← ここで中央揃えに */
+  margin-top: 6px;
+  text-align: center;       /* summary を中央寄せ */
+  display: flex;
+  justify-content: center;  /* フレックスで中央固定 */
 }
 
+/* summary 自体を中央固定 */
 .exif-detail summary {
   cursor: pointer;
   list-style: none;
   user-select: none;
-  opacity: 0.9;
+  font-size: 14px;
+  opacity: .9;
+  margin: 0 auto;          /* 中央に吸着 */
+  text-align: center;      /* summary のテキストも中央 */
 }
 
+/* summary のデフォルト三角削除 */
 .exif-detail summary::-webkit-details-marker {
   display: none;
 }
@@ -451,22 +457,25 @@ body {
   color: #fff;
 }
 
-/* 開いたときの内部（左揃えで整列） */
+/* --- 開いた中身（詳細EXIF）は summary の中心軸から左に揃える --- */
 .exif-detail-content {
   margin-top: 8px;
   max-height: 0;
   overflow: hidden;
   opacity: 0;
   transition: max-height .25s ease, opacity .25s ease;
+
+  /* ここが重要：summary の中央基準で左揃えにする */
+  display: inline-block;
   text-align: left;
-  margin-left: auto;
-  margin-right: auto;
-  width: fit-content;       /* ← summary の中央に揃った位置から左揃え */
-  line-height: 1.6;
+
+  line-height: 1.55;
+  font-size: 14px;
+  opacity: 0.95;
 }
 
 .exif-detail[open] .exif-detail-content {
-  max-height: 300px;
+  max-height: 400px;
   opacity: 1;
 }
 </style>
