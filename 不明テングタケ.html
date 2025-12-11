@@ -2,7 +2,7 @@
 &lt;div class=&#x27;exif-wrap&#x27;&gt;
   &lt;div class=&#x27;exif-title&#x27;&gt;不明テングタケ&lt;/div&gt;
   &lt;div class=&#x27;exif-line&#x27;&gt;
-    &lt;div class=&#x27;exif-row&#x27;&gt;&lt;img src=&#x27;lightgallery/icons/camera.svg&#x27; class=&#x27;exif-icon&#x27; alt=&#x27;camera&#x27;&gt;EOS Kiss X5&lt;/div&gt;&lt;div class=&#x27;exif-row&#x27;&gt;&lt;img src=&#x27;lightgallery/icons/calendar.svg&#x27; class=&#x27;exif-icon&#x27; alt=&#x27;date&#x27;&gt;2011/01/01&lt;/div&gt;&lt;details class=&#x27;exif-detail&#x27;&gt;&lt;summary&gt;▼ 詳細EXIF（タップで展開）&lt;/summary&gt;&lt;div class=&#x27;exif-detail-content&#x27;&gt;レンズ：EF-S18-55mm f/3.5-5.6 IS&lt;br&gt;ISO：3200&lt;br&gt;絞り：f/14.0&lt;br&gt;シャッター速度：1/80&lt;br&gt;焦点距離：50mm&lt;/div&gt;&lt;/details&gt;
+    &lt;div class=&#x27;exif-top&#x27;&gt;&lt;div class=&#x27;exif-row&#x27;&gt;&lt;img src=&quot;lightgallery/icons/camera.svg&quot; class=&#x27;exif-icon&#x27; alt=&#x27;camera&#x27;&gt;EOS Kiss X5&lt;/div&gt;&lt;div class=&#x27;exif-row&#x27;&gt;&lt;img src=&quot;lightgallery/icons/calendar.svg&quot; class=&#x27;exif-icon&#x27; alt=&#x27;date&#x27;&gt;2011/01/01&lt;/div&gt;&lt;/div&gt;&lt;details class=&#x27;exif-detail&#x27;&gt;&lt;summary&gt;▼ 詳細EXIF（タップで展開）&lt;/summary&gt;&lt;div class=&#x27;exif-detail-content&#x27;&gt;レンズ：EF-S18-55mm f/3.5-5.6 IS&lt;br&gt;ISO：3200&lt;br&gt;絞り：f/14.0&lt;br&gt;シャッター速度：1/80&lt;br&gt;焦点距離：50mm&lt;/div&gt;&lt;/details&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 "><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250803/20250803231518.jpg" alt="不明テングタケ" loading="lazy"></a></div>
@@ -290,7 +290,7 @@ body {
 .aiuo-link:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0,0,0,0.14);
-  background: #e8f2ff;       /* hover のときだけパステル */
+  background: #e8f2ff;
   border-color: #c5dafe;
 }
 
@@ -325,31 +325,40 @@ body {
 /* ===== LightGallery EXIF カスタム ===== */
 .exif-wrap {
   width: 90%;
-  max-width: 480px;       /* ← 中央ボックス幅（広すぎ防止） */
-  margin: 0 auto;         /* ← 画面中央配置 */
-  text-align: left;       /* ← 中央BOX内で左揃え */
+  max-width: 480px;
+  margin: 0 auto;
   padding: 10px 0 0;
   color: #fff;
   line-height: 1.45;
+  text-align: center;   /* 中央ボックス内で中央揃え */
 }
 
 .exif-title {
   font-weight: 600;
   font-size: 1.1em;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   color: #fff;
+  text-align: center;
 }
 
 .exif-line {
-  font-size: 0.9em;
-  line-height: 1.35;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9em;
+}
+
+/* 上段：カメラ + 日付を横並びに */
+.exif-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
 }
 
 .exif-row {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
   color: #fff;
@@ -357,18 +366,18 @@ body {
 
 /* SVG / PNG アイコンを白く＆サイズ固定 */
 .exif-icon {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   vertical-align: middle;
-  margin-right: 2px;
   filter: invert(1) brightness(2);  /* 黒 → 白 */
 }
 
 /* 詳細EXIF アコーディオン */
 .exif-detail {
-  margin-top: 6px;
-  font-size: 0.85em;
-  color: #ddd;
+  margin-top: 4px;
+  font-size: 0.9em;   /* カメラ/日付と同じサイズ */
+  width: 100%;
+  text-align: left;   /* 詳細は左揃え */
 }
 
 .exif-detail summary {
@@ -391,6 +400,7 @@ body {
   overflow: hidden;
   opacity: 0;
   transition: max-height .25s ease, opacity .25s ease;
+  padding-left: 1.2em;   /* ▼ の位置より少し右にずらす */
 }
 
 .exif-detail[open] .exif-detail-content {
