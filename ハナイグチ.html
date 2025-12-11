@@ -416,20 +416,20 @@ body {
 /* ===== LightGallery EXIF カスタム ===== */
 .exif-wrap {
   width: 90%;
-  max-width: 480px;
+  max-width: 520px;
   margin: 0 auto;
-  padding: 10px 0 0;
+  padding: 12px 0 0;
   color: #fff;
-  line-height: 1.45;
-  text-align: center;   /* 中央ボックス内で中央揃え */
+  line-height: 1.5;
+  text-align: center;         /* まずは中央揃え */
+  font-size: 15px;
 }
 
+/* タイトル（キノコ名） */
 .exif-title {
   font-weight: 600;
-  font-size: 1.1em;
-  margin-bottom: 6px;
-  color: #fff;
-  text-align: center;
+  font-size: 17px;
+  margin-bottom: 8px;
 }
 
 .exif-line {
@@ -440,41 +440,42 @@ body {
   font-size: 0.9em;
 }
 
-/* 上段：カメラ + 日付を横並びに */
+/* カメラ＋日付を横並びで中央に */
 .exif-top {
-  display: flex;
-  flex-wrap: wrap;
+  display: inline-flex;
   justify-content: center;
-  gap: 12px;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 6px;
 }
 
 .exif-row {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #fff;
+  font-size: 14px;
+  opacity: 0.9;
 }
 
-/* SVG / PNG アイコンを白く＆サイズ固定 */
+/* アイコン（白） */
 .exif-icon {
-  width: 16px;
-  height: 16px;
-  vertical-align: middle;
-  filter: invert(1) brightness(2);  /* 黒 → 白 */
+  width: 17px;
+  height: 17px;
+  filter: invert(1) brightness(2);
 }
 
-/* 詳細EXIF アコーディオン */
+/* ▼詳細EXIF （summary は中央揃え） */
 .exif-detail {
-  margin-top: 4px;
-  font-size: 0.9em;   /* カメラ/日付と同じサイズ */
-  width: 100%;
-  text-align: left;   /* 詳細は左揃え */
+  margin-top: 8px;
+  font-size: 14px;
+  text-align: center;        /* ← ここで中央揃えに */
 }
 
 .exif-detail summary {
   cursor: pointer;
   list-style: none;
-  outline: none;
+  user-select: none;
+  opacity: 0.9;
 }
 
 .exif-detail summary::-webkit-details-marker {
@@ -485,13 +486,18 @@ body {
   color: #fff;
 }
 
+/* 開いたときの内部（左揃えで整列） */
 .exif-detail-content {
-  margin-top: 4px;
+  margin-top: 8px;
   max-height: 0;
   overflow: hidden;
   opacity: 0;
   transition: max-height .25s ease, opacity .25s ease;
-  padding-left: 1.2em;   /* ▼ の位置より少し右にずらす */
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;       /* ← summary の中央に揃った位置から左揃え */
+  line-height: 1.6;
 }
 
 .exif-detail[open] .exif-detail-content {
