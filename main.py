@@ -91,7 +91,7 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== 共通スタイル（＋説明カードCSS追加） ======
+# ====== 共通スタイル（＋説明カードCSS追加＆LightGallery EXIFレイアウト） ======
 STYLE_TAG = """<style>
 html, body {
   margin: 0;
@@ -373,7 +373,7 @@ body {
 .aiuo-link:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0,0,0,0.14);
-  background: #e8f2ff;       /* hover のときだけパステル */
+  background: #e8f2ff;
   border-color: #c5dafe;
 }
 
@@ -408,31 +408,40 @@ body {
 /* ===== LightGallery EXIF カスタム ===== */
 .exif-wrap {
   width: 90%;
-  max-width: 480px;       /* ← 中央ボックス幅（広すぎ防止） */
-  margin: 0 auto;         /* ← 画面中央配置 */
-  text-align: left;       /* ← 中央BOX内で左揃え */
+  max-width: 480px;
+  margin: 0 auto;
   padding: 10px 0 0;
   color: #fff;
   line-height: 1.45;
+  text-align: center;   /* 中央ボックス内で中央揃え */
 }
 
 .exif-title {
   font-weight: 600;
   font-size: 1.1em;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   color: #fff;
+  text-align: center;
 }
 
 .exif-line {
-  font-size: 0.9em;
-  line-height: 1.35;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9em;
+}
+
+/* 上段：カメラ + 日付を横並びに */
+.exif-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
 }
 
 .exif-row {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
   color: #fff;
@@ -440,18 +449,18 @@ body {
 
 /* SVG / PNG アイコンを白く＆サイズ固定 */
 .exif-icon {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   vertical-align: middle;
-  margin-right: 2px;
   filter: invert(1) brightness(2);  /* 黒 → 白 */
 }
 
 /* 詳細EXIF アコーディオン */
 .exif-detail {
-  margin-top: 6px;
-  font-size: 0.85em;
-  color: #ddd;
+  margin-top: 4px;
+  font-size: 0.9em;   /* カメラ/日付と同じサイズ */
+  width: 100%;
+  text-align: left;   /* 詳細は左揃え */
 }
 
 .exif-detail summary {
@@ -474,6 +483,7 @@ body {
   overflow: hidden;
   opacity: 0;
   transition: max-height .25s ease, opacity .25s ease;
+  padding-left: 1.2em;   /* ▼ の位置より少し右にずらす */
 }
 
 .exif-detail[open] .exif-detail-content {
@@ -775,6 +785,7 @@ def extract_exif_from_bytes(jpeg_bytes: bytes):
         model = clean_exif_str(model.decode(errors="ignore"))
     else:
         model = clean_exif_str(str(model))
+    model = normalize_model(model)
 
     # LensModel
     lens = exif.get(piexif.ExifIFD.LensModel, b"")
@@ -782,9 +793,6 @@ def extract_exif_from_bytes(jpeg_bytes: bytes):
         lens = clean_exif_str(lens.decode(errors="ignore"))
     else:
         lens = clean_exif_str(str(lens))
-
-    if "IS" in lens:
-        lens = lens.split("IS")[0] + "IS"
 
     # ISO
     iso = exif.get(piexif.ExifIFD.ISOSpeedRatings) or exif.get(piexif.ExifIFD.ISO)
@@ -860,6 +868,76 @@ def build_exif_cache(entries, cache: dict):
         cache[src] = exif_data
 
     return cache
+
+# ===========================
+# EXIF → caption HTML
+# ===========================
+def build_caption_html(alt, exif: dict):
+    title = html.escape(alt)
+
+    model = exif.get("model") or ""
+    lens = exif.get("lens") or ""
+    iso = exif.get("iso") or ""
+    f = exif.get("f") or ""
+    exposure = exif.get("exposure") or ""
+    focal = exif.get("focal") or ""
+    date = exif.get("date") or ""
+
+    # 上段：カメラ + 撮影日（横並び）
+    top_inner = ""
+    if model:
+        top_inner += (
+            "<div class='exif-row'>"
+            "<img src=\"lightgallery/icons/camera.svg\" class='exif-icon' alt='camera'>"
+            f"{html.escape(model)}"
+            "</div>"
+        )
+    if date:
+        top_inner += (
+            "<div class='exif-row'>"
+            "<img src=\"lightgallery/icons/calendar.svg\" class='exif-icon' alt='date'>"
+            f"{html.escape(date)}"
+            "</div>"
+        )
+
+    top_html = f"<div class='exif-top'>{top_inner}</div>" if top_inner else ""
+
+    # 詳細EXIF（アコーディオン内）
+    detail_parts = []
+    if lens:
+        detail_parts.append(f"レンズ：{html.escape(lens)}")
+    if iso:
+        detail_parts.append(f"ISO：{html.escape(iso)}")
+    if f:
+        detail_parts.append(f"絞り：{html.escape(f)}")
+    if exposure:
+        detail_parts.append(f"シャッター速度：{html.escape(exposure)}")
+    if focal:
+        detail_parts.append(f"焦点距離：{html.escape(focal)}")
+
+    detail_html = ""
+    if detail_parts:
+        detail_html = (
+            "<details class='exif-detail'>"
+            "<summary>▼ 詳細EXIF（タップで展開）</summary>"
+            "<div class='exif-detail-content'>"
+            + "<br>".join(detail_parts) +
+            "</div></details>"
+        )
+
+    exif_line = top_html + detail_html
+
+    html_block = f"""
+<div class='exif-wrap'>
+  <div class='exif-title'>{title}</div>
+  <div class='exif-line'>
+    {exif_line}
+  </div>
+</div>
+"""
+
+    # data-sub-html 用にエスケープ
+    return html.escape(html_block, quote=True)
 
 # ===========================
 # はてなAPI 全記事取得
@@ -951,79 +1029,6 @@ def get_aiuo_group(name):
         if first in chars:
             return group
     return "その他"
-
-# ===========================
-# EXIF → caption HTML
-# ===========================
-def build_caption_html(alt, exif: dict):
-    title = html.escape(alt)
-
-    raw_model = exif.get("model") or ""
-    model = normalize_model(raw_model)
-
-    lens = exif.get("lens") or ""
-    iso = exif.get("iso") or ""
-    f = exif.get("f") or ""
-    exposure = exif.get("exposure") or ""
-    focal = exif.get("focal") or ""
-    date = exif.get("date") or ""
-
-    parts = []
-
-    # カメラ（アイコン＋機種名）
-    if model:
-        parts.append(
-            "<div class='exif-row'>"
-            "<img src='lightgallery/icons/camera.svg' class='exif-icon' alt='camera'>"
-            f"{html.escape(model)}"
-            "</div>"
-        )
-
-    # 撮影日（アイコン＋日付）
-    if date:
-        parts.append(
-            "<div class='exif-row'>"
-            "<img src='lightgallery/icons/calendar.svg' class='exif-icon' alt='date'>"
-            f"{html.escape(date)}"
-            "</div>"
-        )
-
-    # 詳細EXIF（アコーディオン内）
-    detail_parts = []
-    if lens:
-        detail_parts.append(f"レンズ：{html.escape(lens)}")
-    if iso:
-        detail_parts.append(f"ISO：{html.escape(iso)}")
-    if f:
-        detail_parts.append(f"絞り：{html.escape(f)}")
-    if exposure:
-        detail_parts.append(f"シャッター速度：{html.escape(exposure)}")
-    if focal:
-        detail_parts.append(f"焦点距離：{html.escape(focal)}")
-
-    if detail_parts:
-        details_html = (
-            "<details class='exif-detail'>"
-            "<summary>▼ 詳細EXIF（タップで展開）</summary>"
-            "<div class='exif-detail-content'>"
-            + "<br>".join(detail_parts) +
-            "</div></details>"
-        )
-        parts.append(details_html)
-
-    exif_line = "".join(parts)
-
-    html_block = f"""
-<div class='exif-wrap'>
-  <div class='exif-title'>{title}</div>
-  <div class='exif-line'>
-    {exif_line}
-  </div>
-</div>
-"""
-
-    # data-sub-html 属性用に HTML をエスケープ
-    return html.escape(html_block, quote=True)
 
 # ===========================
 # ギャラリー生成（キノコページ & 五十音ページ）
