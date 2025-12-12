@@ -1006,7 +1006,14 @@ def generate_gallery(entries, exif_cache):
     for alt, imgs in grouped.items():
         html_parts = []
 
-        html_parts.append(f"<h2>{html.escape(alt)}（{len(imgs)} photos）</h2>")
+    html_parts.append(
+        f"<h2 style='font-size:24px; font-weight:600; text-align:center; margin-top:20px;'>"
+        f"{html.escape(alt)}"
+        f"<span style='font-size:15px; font-weight:400; color:#666; margin-left:6px;'>"
+        f"— {len(imgs)} photos"
+        f"</span>"
+        f"</h2>"
+    )
 
         # ギャラリー本体
         html_parts.append("<div class='gallery'>")
