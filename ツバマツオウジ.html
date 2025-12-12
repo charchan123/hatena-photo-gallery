@@ -1,9 +1,9 @@
 <div class='gallery'><a class="gallery-item" href="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250816/20250816144559.jpg" data-exthumbimage="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250816/20250816144559.jpg?width=300" data-sub-html="
 &lt;div class=&#x27;exif-wrap&#x27;&gt;
   &lt;div class=&#x27;exif-title&#x27;&gt;ツバマツオウジ&lt;/div&gt;
-  &lt;div class=&#x27;exif-line&#x27;&gt;
-    &lt;div class=&#x27;exif-top&#x27;&gt;&lt;div class=&#x27;exif-row&#x27;&gt;&lt;img src=&quot;lightgallery/icons/camera.svg&quot; class=&#x27;exif-icon&#x27; alt=&#x27;camera&#x27;&gt;EOS Kiss X5&lt;/div&gt;&lt;div class=&#x27;exif-row&#x27;&gt;&lt;img src=&quot;lightgallery/icons/calendar.svg&quot; class=&#x27;exif-icon&#x27; alt=&#x27;date&#x27;&gt;2025/08/15&lt;/div&gt;&lt;/div&gt;&lt;details class=&#x27;exif-detail&#x27;&gt;&lt;summary&gt;▼ 詳細EXIF（タップで展開）&lt;/summary&gt;&lt;div class=&#x27;exif-detail-content&#x27;&gt;レンズ：EF-S18-55mm f/3.5-5.6 IS&lt;br&gt;ISO：3200&lt;br&gt;絞り：f/18.0&lt;br&gt;シャッター速度：1/200&lt;br&gt;焦点距離：43mm&lt;/div&gt;&lt;/details&gt;
-  &lt;/div&gt;
+  &lt;div class=&#x27;exif-middle&#x27;&gt;EOS Kiss X5 / EF-S18-55mm f/3.5-5.6 IS&lt;/div&gt;
+  &lt;div class=&#x27;exif-bottom&#x27;&gt;43mm f/18.0 1/200s ISO3200&lt;/div&gt;
+  &lt;div class=&#x27;exif-date-fixed&#x27;&gt;2025/08/15 撮影&lt;/div&gt;
 &lt;/div&gt;
 "><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250816/20250816144559.jpg" alt="ツバマツオウジ" loading="lazy"></a></div>
         <div style='margin-top:40px; text-align:center;'>
@@ -322,105 +322,59 @@ body {
   background: #e5e5e5;
 }
 
-/* ===== LightGallery EXIF カスタム ===== */
+/* ===== LightGallery EXIF カスタム（デモ完全再現） ===== */
+
+/* 写真の下に出るキャプション全体 */
 .exif-wrap {
-  width: 90%;
-  max-width: 520px;
+  width: 95%;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 12px 0 0;
+  padding-top: 10px;
   color: #fff;
-  line-height: 1.5;
-  text-align: center;         /* まずは中央揃え */
-  font-size: 15px;
+  text-align: center;
 }
 
-/* タイトル（キノコ名） */
+/* 1行目：タイトル（キノコ名） */
 .exif-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+/* 2行目：カメラ名 / レンズ名 */
+.exif-middle {
+  font-size: 15px;
+  font-weight: 400;
+  color: #fff;
+  opacity: 0.9;
   margin-bottom: 6px;
 }
 
-.exif-line {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.9em;
-}
-
-/* --- カメラ＆日付の見た目を LightGallery に近づける --- */
-.exif-top {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
+/* 3行目：焦点距離・F値・SS・ISO */
+.exif-bottom {
   font-size: 14px;
-  opacity: .95;
+  font-weight: 300;
+  opacity: 0.8;
+  color: #ddd;
   margin-bottom: 4px;
 }
 
-.exif-row {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 14px;
-  opacity: 0.9;
-}
-
-/* アイコン（白） */
-.exif-icon {
-  width: 17px;
-  height: 17px;
-  filter: invert(1) brightness(2);
-}
-
-/* --- ▼詳細EXIF の表示位置を完全に中央にする --- */
-.exif-detail {
-  margin-top: 6px;
-  text-align: center;       /* summary を中央寄せ */
-  display: flex;
-  justify-content: center;  /* フレックスで中央固定 */
-}
-
-/* summary 自体を中央固定 */
-.exif-detail summary {
-  cursor: pointer;
-  list-style: none;
-  user-select: none;
-  font-size: 14px;
-  opacity: .9;
-  margin: 0 auto;          /* 中央に吸着 */
-  text-align: center;      /* summary のテキストも中央 */
-}
-
-/* summary のデフォルト三角削除 */
-.exif-detail summary::-webkit-details-marker {
-  display: none;
-}
-
-.exif-detail[open] summary {
+/* 撮影日を画像外の黒背景右下に表示 */
+.exif-date-fixed {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  font-size: 15px;
+  font-weight: 400;
   color: #fff;
+  opacity: 0.9;
+  pointer-events: none;
 }
 
-/* --- 開いた中身（詳細EXIF）は summary の中心軸から左に揃える --- */
-.exif-detail-content {
-  margin-top: 8px;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height .25s ease, opacity .25s ease;
-
-  /* ここが重要：summary の中央基準で左揃えにする */
-  display: inline-block;
-  text-align: left;
-
-  line-height: 1.55;
-  font-size: 14px;
-  opacity: 0.95;
-}
-
-.exif-detail[open] .exif-detail-content {
-  max-height: 400px;
-  opacity: 1;
+/* LightGallery 側のキャプションコンテナを基準にする */
+.lg-sub-html {
+  position: relative;
 }
 </style>
 <link rel="stylesheet" 
