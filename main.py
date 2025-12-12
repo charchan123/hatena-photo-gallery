@@ -1006,6 +1006,8 @@ def generate_gallery(entries, exif_cache):
     for alt, imgs in grouped.items():
         html_parts = []
 
+        html_parts.append(f"<h2>{html.escape(alt)}</h2>")
+
         # ギャラリー本体
         html_parts.append("<div class='gallery'>")
         for src in imgs:
