@@ -873,7 +873,7 @@ def build_caption_html(alt, exif: dict):
     if iso:
         bottom_parts.append(f"ISO{iso}")
 
-    bottom_text = " ".join(bottom_parts)
+    bottom_text = "  ".join(bottom_parts)
 
     # 撮影日右下表示
     date_html = ""
