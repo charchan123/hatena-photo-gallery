@@ -405,105 +405,59 @@ body {
   background: #e5e5e5;
 }
 
-/* ===== LightGallery EXIF カスタム ===== */
+/* ===== LightGallery EXIF カスタム（デモ完全再現） ===== */
+
+/* 写真の下に出るキャプション全体 */
 .exif-wrap {
-  width: 90%;
-  max-width: 520px;
+  width: 95%;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 12px 0 0;
+  padding-top: 10px;
   color: #fff;
-  line-height: 1.5;
-  text-align: center;         /* まずは中央揃え */
-  font-size: 15px;
+  text-align: center;
 }
 
-/* タイトル（キノコ名） */
+/* 1行目：タイトル（キノコ名） */
 .exif-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+/* 2行目：カメラ名 / レンズ名 */
+.exif-middle {
+  font-size: 15px;
+  font-weight: 400;
+  color: #fff;
+  opacity: 0.9;
   margin-bottom: 6px;
 }
 
-.exif-line {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.9em;
-}
-
-/* --- カメラ＆日付の見た目を LightGallery に近づける --- */
-.exif-top {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
+/* 3行目：焦点距離・F値・SS・ISO */
+.exif-bottom {
   font-size: 14px;
-  opacity: .95;
+  font-weight: 300;
+  opacity: 0.8;
+  color: #ddd;
   margin-bottom: 4px;
 }
 
-.exif-row {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 14px;
-  opacity: 0.9;
-}
-
-/* アイコン（白） */
-.exif-icon {
-  width: 17px;
-  height: 17px;
-  filter: invert(1) brightness(2);
-}
-
-/* --- ▼詳細EXIF の表示位置を完全に中央にする --- */
-.exif-detail {
-  margin-top: 6px;
-  text-align: center;       /* summary を中央寄せ */
-  display: flex;
-  justify-content: center;  /* フレックスで中央固定 */
-}
-
-/* summary 自体を中央固定 */
-.exif-detail summary {
-  cursor: pointer;
-  list-style: none;
-  user-select: none;
-  font-size: 14px;
-  opacity: .9;
-  margin: 0 auto;          /* 中央に吸着 */
-  text-align: center;      /* summary のテキストも中央 */
-}
-
-/* summary のデフォルト三角削除 */
-.exif-detail summary::-webkit-details-marker {
-  display: none;
-}
-
-.exif-detail[open] summary {
+/* 撮影日を画像外の黒背景右下に表示 */
+.exif-date-fixed {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  font-size: 15px;
+  font-weight: 400;
   color: #fff;
+  opacity: 0.9;
+  pointer-events: none;
 }
 
-/* --- 開いた中身（詳細EXIF）は summary の中心軸から左に揃える --- */
-.exif-detail-content {
-  margin-top: 8px;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height .25s ease, opacity .25s ease;
-
-  /* ここが重要：summary の中央基準で左揃えにする */
-  display: inline-block;
-  text-align: left;
-
-  line-height: 1.55;
-  font-size: 14px;
-  opacity: 0.95;
-}
-
-.exif-detail[open] .exif-detail-content {
-  max-height: 400px;
-  opacity: 1;
+/* LightGallery 側のキャプションコンテナを基準にする */
+.lg-sub-html {
+  position: relative;
 }
 </style>"""
 
@@ -885,7 +839,7 @@ def build_exif_cache(entries, cache: dict):
     return cache
 
 # ===========================
-# EXIF → caption HTML
+# EXIF → caption HTML（LightGallery デモ風）
 # ===========================
 def build_caption_html(alt, exif: dict):
     title = html.escape(alt)
@@ -898,56 +852,40 @@ def build_caption_html(alt, exif: dict):
     focal = exif.get("focal") or ""
     date = exif.get("date") or ""
 
-    # 上段：カメラ + 撮影日（横並び）
-    top_inner = ""
+    # 2行目：カメラ名 / レンズ名
+    middle_parts = []
     if model:
-        top_inner += (
-            "<div class='exif-row'>"
-            "<img src=\"lightgallery/icons/camera.svg\" class='exif-icon' alt='camera'>"
-            f"{html.escape(model)}"
-            "</div>"
-        )
-    if date:
-        top_inner += (
-            "<div class='exif-row'>"
-            "<img src=\"lightgallery/icons/calendar.svg\" class='exif-icon' alt='date'>"
-            f"{html.escape(date)}"
-            "</div>"
-        )
-
-    top_html = f"<div class='exif-top'>{top_inner}</div>" if top_inner else ""
-
-    # 詳細EXIF（アコーディオン内）
-    detail_parts = []
+        middle_parts.append(model)
     if lens:
-        detail_parts.append(f"レンズ：{html.escape(lens)}")
-    if iso:
-        detail_parts.append(f"ISO：{html.escape(iso)}")
-    if f:
-        detail_parts.append(f"絞り：{html.escape(f)}")
-    if exposure:
-        detail_parts.append(f"シャッター速度：{html.escape(exposure)}")
+        middle_parts.append(lens)
+    middle_text = " / ".join(middle_parts)
+
+    # 3行目：焦点距離・F値・SS・ISO
+    bottom_parts = []
     if focal:
-        detail_parts.append(f"焦点距離：{html.escape(focal)}")
+        bottom_parts.append(focal)
+    if f:
+        bottom_parts.append(f)
+    if exposure:
+        # "1/250" → "1/250s" のように s を付ける（すでに s があればそのまま）
+        exp_str = exposure if exposure.endswith("s") else f"{exposure}s"
+        bottom_parts.append(exp_str)
+    if iso:
+        bottom_parts.append(f"ISO{iso}")
 
-    detail_html = ""
-    if detail_parts:
-        detail_html = (
-            "<details class='exif-detail'>"
-            "<summary>▼ 詳細EXIF（タップで展開）</summary>"
-            "<div class='exif-detail-content'>"
-            + "<br>".join(detail_parts) +
-            "</div></details>"
-        )
+    bottom_text = " ".join(bottom_parts)
 
-    exif_line = top_html + detail_html
+    # 撮影日右下表示
+    date_html = ""
+    if date:
+        date_html = f"<div class='exif-date-fixed'>{html.escape(date)} 撮影</div>"
 
     html_block = f"""
 <div class='exif-wrap'>
   <div class='exif-title'>{title}</div>
-  <div class='exif-line'>
-    {exif_line}
-  </div>
+  {f"<div class='exif-middle'>{html.escape(middle_text)}</div>" if middle_text else ""}
+  {f"<div class='exif-bottom'>{html.escape(bottom_text)}</div>" if bottom_text else ""}
+  {date_html}
 </div>
 """
 
