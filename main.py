@@ -13,18 +13,16 @@ import piexif
 # ===========================
 RARITY_LIST = [
     "センニンタケ",
-    # ← 好きに追加してOK
 ]
 
 POPULAR_LIST = [
     "ベニテングタケ",
     "タマゴタケ",
     "シイタケ",
-    # ← “人気っぽい” を自由に書く
 ]
 
 # ===========================
-# safe_filename（全体から参照できる位置）
+# safe_filename
 # ===========================
 def safe_filename(name):
     name = re.sub(r'[:<>\"|*?\\/\r\n]', '_', name)
@@ -34,19 +32,17 @@ def safe_filename(name):
     return name
 
 # ===========================
-# 追加：EXIF文字クリーン関数
+# EXIF文字クリーン
 # ===========================
 def clean_exif_str(s):
     if not s:
         return ""
-    s = s.replace("\x00", "")              # NULL文字除去
-    s = re.sub(r"[�]+", "", s)             # 文字化け除去
-    s = s.strip()
-    return s
+    s = s.replace("\x00", "")
+    s = re.sub(r"[�]+", "", s)
+    return s.strip()
 
 # ===========================
 # カメラ名正規化
-# 例: "Canon EOS Kiss X5" → "EOS Kiss X5"
 # ===========================
 def normalize_model(model: str) -> str:
     if not model:
@@ -62,9 +58,7 @@ HATENA_BLOG_ID = os.getenv("HATENA_BLOG_ID")
 HATENA_API_KEY = os.getenv("HATENA_API_KEY")
 
 if not all([HATENA_USER, HATENA_BLOG_ID, HATENA_API_KEY]):
-    raise EnvironmentError(
-        "環境変数が未設定です。HATENA_USER, HATENA_BLOG_ID, HATENA_API_KEY を確認してください。"
-    )
+    raise EnvironmentError("環境変数 HATENA_USER / HATENA_BLOG_ID / HATENA_API_KEY が未設定です。")
 
 ARTICLES_DIR = "articles"
 OUTPUT_DIR = "output"
@@ -73,7 +67,7 @@ OUTPUT_DIR = "output"
 CACHE_DIR = "cache"
 CACHE_FILE = os.path.join(CACHE_DIR, "exif-cache.json")
 
-# ====== API エンドポイント ======
+# ====== API ======
 ATOM_ENDPOINT = f"https://blog.hatena.ne.jp/{HATENA_USER}/{HATENA_BLOG_ID}/atom/entry"
 AUTH = (HATENA_USER, HATENA_API_KEY)
 HEADERS = {}
@@ -91,7 +85,7 @@ AIUO_GROUPS = {
     "わ行": list("わをんワヲン"),
 }
 
-# ====== 共通スタイル（＋説明カードCSS追加＆LightGallery EXIFレイアウト） ======
+# ====== 共通スタイル（EXIF gap レイアウト採用版） ======
 STYLE_TAG = """<style>
 html, body {
   margin: 0;
@@ -108,9 +102,9 @@ body {
   transition: opacity .25s ease;
 }
 
-/* 画像ギャラリー本体 */
+/* ======== ギャラリー本体（PC4列・スマホ3列） ======== */
 .gallery {
-  column-count: 4;         /* PC では 4 列 */
+  column-count: 4;
   column-gap: 10px;
   max-width: 900px;
   margin: 0 auto;
@@ -142,9 +136,7 @@ body {
   .gallery { column-count: 3; }
 }
 
-/* ===== ここから五十音カードUI用スタイル ===== */
-
-/* 五十音タイル（五十音ページ用） */
+/* ===== 五十音タイル・カードUI ===== */
 .kana-grid {
   max-width: 900px;
   margin: 0 auto 16px;
@@ -234,7 +226,6 @@ body {
 }
 
 /* ===== index.html 専用：全キノコ横断検索 ===== */
-
 .index-search-box {
   max-width: 900px;
   margin: 0 auto 24px;
@@ -243,14 +234,12 @@ body {
   border-radius: 20px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
-
 .index-search-title {
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 10px;
   text-align: center;
 }
-
 .index-search-input {
   width: 100%;
   padding: 10px 16px;
@@ -260,8 +249,6 @@ body {
   box-sizing: border-box;
   background: #fdfefe;
 }
-
-/* index 検索結果カードは .mushroom-card を流用 */
 .index-search-results {
   max-width: 900px;
   margin: 20px auto;
@@ -269,14 +256,11 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 12px;
 }
-
-/* ページネーション */
 .index-pagination {
   max-width: 900px;
   margin: 16px auto;
   text-align: center;
 }
-
 .index-page-btn {
   display: inline-block;
   margin: 0 6px;
@@ -307,26 +291,22 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
 }
-
 .recommend-card {
   background: #fff;
   padding: 16px;
   border-radius: 20px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
-
 .recommend-card h3 {
   font-size: 18px;
   margin-bottom: 12px;
   text-align: center;
 }
-
 .rec-items {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-
 .rec-item {
   display: flex;
   gap: 8px;
@@ -393,31 +373,29 @@ body {
   backdrop-filter: blur(4px);
   cursor: pointer;
 }
-
 .back-btn:hover {
   background: #f0f0f0;
   border-color: #bbb;
   transform: translateY(-1px);
 }
-
 .back-btn:active {
   transform: translateY(1px);
   background: #e5e5e5;
 }
 
-/* ===== LightGallery EXIF カスタム（デモ完全再現） ===== */
+/* ===== LightGallery EXIF（gap レイアウト） ===== */
 
-/* 写真の下に出るキャプション全体 */
+/* 全体キャプション領域 */
 .exif-wrap {
   width: 95%;
   max-width: 720px;
   margin: 0 auto;
   padding-top: 10px;
-  color: #fff;
   text-align: center;
+  color: #fff;
 }
 
-/* 1行目：タイトル（キノコ名） */
+/* 1行目：キノコ名 */
 .exif-title {
   font-size: 20px;
   font-weight: 600;
@@ -429,33 +407,31 @@ body {
 .exif-middle {
   font-size: 15px;
   font-weight: 400;
-  color: #fff;
   opacity: 0.9;
+  color: #fff;
   margin-bottom: 6px;
 }
 
-/* 3行目：焦点距離・F値・SS・ISO */
-.exif-bottom {
+/* 3行目：焦点距離 / F値 / SS / ISO / 日付（gap方式） */
+.exif-bottom-row {
+  display: inline-flex;
+  gap: 8px;                   /* 半角スペース2個分くらいの距離 */
+  justify-content: center;
+  align-items: center;
   font-size: 14px;
   font-weight: 300;
-  opacity: 0.8;
   color: #ddd;
+  opacity: 0.8;
   margin-bottom: 4px;
+  flex-wrap: wrap;            /* スマホで自然に折り返す */
+}
+.exif-bottom-row span {
+  white-space: nowrap;        /* 個々の項目は分割しない */
 }
 
-/* 撮影日を画像外の黒背景右下に表示 */
-.exif-date-fixed {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-  font-size: 15px;
-  font-weight: 400;
-  color: #fff;
-  opacity: 0.9;
-  pointer-events: none;
-}
+/* 右下固定の撮影日表示は廃止（スマホで重なるため） */
+/* .exif-date-fixed { ... } は使わない */
 
-/* LightGallery 側のキャプションコンテナを基準にする */
 .lg-sub-html {
   position: relative;
 }
@@ -467,7 +443,6 @@ LIGHTGALLERY_TAGS = """
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/lightgallery.min.js"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/plugins/zoom/lg-zoom.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/plugins/thumbnail/lg-thumbnail.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/plugins/autoplay/lg-autoplay.min.js"></script>
@@ -515,18 +490,17 @@ document.addEventListener("DOMContentLoaded", () => {
         autoplay: false
       });
 
-      // ① サムネイルクリック時に強制フルスクリーン
+      // サムネイルクリックで強制フルスクリーン
       gallery.querySelectorAll("a.gallery-item").forEach((a) => {
         a.addEventListener("click", () => {
           const el = document.documentElement;
-
           if (el.requestFullscreen) el.requestFullscreen();
           else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
           else if (el.msRequestFullscreen) el.msRequestFullscreen();
         });
       });
 
-      // ② v2イベント（閉じる前）
+      // 閉じる前
       gallery.addEventListener("lgBeforeClose", () => {
         if (document.fullscreenElement) {
           document.exitFullscreen().catch(()=>{});
@@ -534,7 +508,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.parent.postMessage({ type: "lgClosed" }, "*");
       });
 
-      // ③ ESC → フルスクリーン解除 → 親へ通知
+      // ESC などでフルスクリーン解除されたとき
       document.addEventListener("fullscreenchange", () => {
         if (!document.fullscreenElement) {
           try {
@@ -546,9 +520,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ===========================================
-  // ★ クリック判定（scrollToTitle 用）
-  // ===========================================
+  // クリック判定（scrollToTitle 用）
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (!a) return;
@@ -575,9 +547,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // ===========================================
-  // ★ 五十音カード用：検索＋かなフィルタ
-  // ===========================================
+  // 五十音カード用：検索＋かなフィルタ
   const searchInput = document.querySelector(".search-input");
   const kanaButtons = document.querySelectorAll(".kana-btn");
   const cards = document.querySelectorAll(".mushroom-card");
@@ -617,9 +587,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ===========================================
-  // ★ index.html 専用：全キノコ横断検索
-  // ===========================================
+  // index.html 専用：全キノコ横断検索
   const indexSearchInput = document.querySelector(".index-search-input");
   const indexResults = document.querySelector(".index-search-results");
 
@@ -657,8 +625,6 @@ document.addEventListener("DOMContentLoaded", () => {
           const move = Number(btn.dataset.move);
           page += move;
           doSearch();
-
-          // ★ ページ移動 → iframe 親へ通知（検索欄位置にスクロール）
           window.parent.postMessage({ type:"scrollToTitle" }, "*");
         });
       });
@@ -776,7 +742,7 @@ def extract_exif_from_bytes(jpeg_bytes: bytes):
     if fv:
         f_str = f"f/{fv:.1f}"
 
-    # シャッタースピード
+    # シャッター速度
     exposure = exif.get(piexif.ExifIFD.ExposureTime)
     exposure_str = _exposure_to_str(exposure)
 
@@ -839,7 +805,7 @@ def build_exif_cache(entries, cache: dict):
     return cache
 
 # ===========================
-# EXIF → caption HTML（LightGallery デモ風）
+# EXIF → caption HTML（gap方式・日付統合）
 # ===========================
 def build_caption_html(alt, exif: dict):
     title = html.escape(alt)
@@ -858,38 +824,38 @@ def build_caption_html(alt, exif: dict):
         middle_parts.append(model)
     if lens:
         middle_parts.append(lens)
-    middle_text = " / ".join(middle_parts)
+    middle_html = " / ".join(middle_parts)
 
-    # 3行目：焦点距離・F値・SS・ISO
-    bottom_parts = []
+    # 3行目：焦点距離 / F値 / SS / ISO / 日付（gap方式）
+    bottom_spans = []
+
     if focal:
-        bottom_parts.append(focal)
+        bottom_spans.append(f"<span>{html.escape(focal)}</span>")
     if f:
-        bottom_parts.append(f)
+        bottom_spans.append(f"<span>{html.escape(f)}</span>")
     if exposure:
-        # "1/250" → "1/250s" のように s を付ける（すでに s があればそのまま）
         exp_str = exposure if exposure.endswith("s") else f"{exposure}s"
-        bottom_parts.append(exp_str)
+        bottom_spans.append(f"<span>{html.escape(exp_str)}</span>")
     if iso:
-        bottom_parts.append(f"ISO{iso}")
-
-    bottom_text = "  ".join(bottom_parts)
-
-    # 撮影日右下表示
-    date_html = ""
+        bottom_spans.append(f"<span>ISO{html.escape(iso)}</span>")
     if date:
-        date_html = f"<div class='exif-date-fixed'>{html.escape(date)} 撮影</div>"
+        bottom_spans.append(f"<span>{html.escape(date)}</span>")
 
-    html_block = f"""
-<div class='exif-wrap'>
-  <div class='exif-title'>{title}</div>
-  {f"<div class='exif-middle'>{html.escape(middle_text)}</div>" if middle_text else ""}
-  {f"<div class='exif-bottom'>{html.escape(bottom_text)}</div>" if bottom_text else ""}
-  {date_html}
-</div>
-"""
+    bottom_html = ""
+    if bottom_spans:
+        bottom_html = f"<div class='exif-bottom-row'>{''.join(bottom_spans)}</div>"
 
-    # data-sub-html 用にエスケープ
+    html_block = "<div class='exif-wrap'>"
+    html_block += f"<div class='exif-title'>{title}</div>"
+
+    if middle_html:
+        html_block += f"<div class='exif-middle'>{html.escape(middle_html)}</div>"
+
+    if bottom_html:
+        html_block += bottom_html
+
+    html_block += "</div>"
+
     return html.escape(html_block, quote=True)
 
 # ===========================
@@ -994,15 +960,13 @@ def generate_gallery(entries, exif_cache):
     for e in entries:
         grouped.setdefault(e["alt"], []).append(e["src"])
 
-    # ===== index & 各ページ共通：五十音タイル HTML =====
+    # index & 各ページ共通：五十音タイル HTML
     group_links_html = "<div class='aiuo-links' style='margin-top:40px;'>"
     for g in AIUO_GROUPS.keys():
         group_links_html += f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>'
     group_links_html += "</div>"
 
-    # ------------------------------
-    # ① 各キノコページ（ベニタケ.html など）
-    # ------------------------------
+    # ① 各キノコページ
     for alt, imgs in grouped.items():
         html_parts = []
 
@@ -1032,14 +996,14 @@ def generate_gallery(entries, exif_cache):
             )
         html_parts.append("</div>")
 
-        # 戻るボタン（楕円ボタン）
+        # 戻るボタン
         html_parts.append("""
         <div style='margin-top:40px; text-align:center;'>
             <a href='javascript:history.back()' class='back-btn'>← 戻る</a>
         </div>
         """)
 
-        # 五十音タイルリンクをキノコページ下にも追加
+        # 五十音タイル
         html_parts.append(group_links_html)
 
         # スタイル・LG・JS
@@ -1053,9 +1017,7 @@ def generate_gallery(entries, exif_cache):
         with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
             f.write(page_html)
 
-    # ------------------------------
-    # ② 五十音ページ（あ行.html など）
-    # ------------------------------
+    # ② 五十音ページ
     aiuo_dict = {k: [] for k in AIUO_GROUPS.keys()}
     for alt in grouped.keys():
         g = get_aiuo_group(alt)
@@ -1067,10 +1029,8 @@ def generate_gallery(entries, exif_cache):
 
         html_parts.append(f"<h2>{g}のキノコ</h2>")
 
-        # 頭文字（あ・い・う…）
         initials = sorted({ n[0] for n in names if n })
 
-        # 五十音タイル（その行の中でさらに「あ い う …」）
         html_parts.append("<div class='kana-grid'>")
         html_parts.append("<button class='kana-btn active' data-kana='all'>すべて</button>")
         for ch in initials:
@@ -1080,14 +1040,12 @@ def generate_gallery(entries, exif_cache):
             )
         html_parts.append("</div>")
 
-        # 検索バー
         html_parts.append("""
         <div class="search-wrap">
           <input type="text" class="search-input" placeholder="キノコ名で絞り込み">
         </div>
         """)
 
-        # キノコカード一覧
         html_parts.append("<div class='mushroom-list'>")
         for n in sorted(names):
             safe = safe_filename(n)
@@ -1116,10 +1074,7 @@ def generate_gallery(entries, exif_cache):
 """)
         html_parts.append("</div>")  # .mushroom-list
 
-        # 五十音ページ間リンク（タイル）
         html_parts.append(group_links_html)
-
-        # 共通スタイル & LG & JS
         html_parts.append(STYLE_TAG)
         html_parts.append(LIGHTGALLERY_TAGS)
         html_parts.append(SCRIPT_TAG)
@@ -1129,7 +1084,6 @@ def generate_gallery(entries, exif_cache):
         with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
             f.write(page_html)
 
-    # index.html を生成するために grouped を返却
     return grouped
 
 # ===========================
@@ -1138,7 +1092,7 @@ def generate_gallery(entries, exif_cache):
 def generate_index(grouped, exif_cache):
     index_parts = []
 
-    # ★ altごとに「最新撮影日」を算出（新着キノコ用）
+    # altごとに最新撮影日
     alt_latest = {}
     for alt, srcs in grouped.items():
         best_key = ""
@@ -1147,15 +1101,12 @@ def generate_index(grouped, exif_cache):
             d = exif.get("date") or ""
             if not d:
                 continue
-            key = d.replace("/", "")  # YYYY/MM/DD → YYYYMMDD
+            key = d.replace("/", "")
             if len(key) == 8 and (best_key == "" or key > best_key):
                 best_key = key
         if best_key:
             alt_latest[alt] = best_key
 
-    # ===========================
-    # ★ おすすめ 3 カード
-    # ===========================
     def pick_mushrooms(name_list):
         items = []
         for name in name_list:
@@ -1168,7 +1119,6 @@ def generate_index(grouped, exif_cache):
                 })
         return items[:3]
 
-    # 新着キノコ（撮影日ベースでソート）
     sorted_new = sorted(alt_latest.items(), key=lambda x: x[1], reverse=True)
     new_names = [name for name, _ in sorted_new][:3]
 
@@ -1198,14 +1148,12 @@ def generate_index(grouped, exif_cache):
 
     index_parts.append("</div><hr style='margin:30px 0;'>")
 
-    # 五十音リンク（タイル風）
     index_parts.append("<h2 style='text-align:center;'>五十音別分類</h2>")
     index_parts.append("<div class='aiuo-links'>")
     for g in AIUO_GROUPS.keys():
         index_parts.append(f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>')
     index_parts.append("</div>")
 
-    # 🔍 全キノコ横断検索エリア
     index_parts.append("""
 <div class="index-search-box">
   <div class="index-search-title">🔍 全キノコ横断検索</div>
@@ -1216,7 +1164,6 @@ def generate_index(grouped, exif_cache):
 <div class="index-pagination"></div>
 """)
 
-    # JS 用に全キノコ一覧を埋め込む
     all_mushrooms_js = []
     for alt, srcs in grouped.items():
         name_norm = alt.lower()
@@ -1234,7 +1181,6 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 </script>
 """)
 
-    # CSS と LG と共通スクリプト
     index_parts.append(STYLE_TAG)
     index_parts.append(LIGHTGALLERY_TAGS)
     index_parts.append(SCRIPT_TAG)
