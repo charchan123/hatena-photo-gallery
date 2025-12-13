@@ -289,6 +289,14 @@ body {
   pointer-events: none;
 }
 
+/* ==== 五十音別カード ==== */
+.section-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 18px 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
 /* ==== おすすめ3キノコカード ==== */
 .recommend-grid {
   max-width: 900px;
