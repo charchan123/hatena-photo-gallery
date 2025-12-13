@@ -293,8 +293,8 @@ body {
 .section-card {
   background: #fff;
   border-radius: 16px;
-  padding: 20px 20px;
-  margin-bottom: 24px;   /* ← カードの下余白（ここで統一） */
+  padding: 20px;
+  margin-bottom: 16px;   /* ← カードの下余白（ここで統一） */
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
   transition: box-shadow 0.25s ease;
 }
