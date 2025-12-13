@@ -692,36 +692,47 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })();
 
-  // =========================
-// ★ パンくずリスト（詳細ページ用・簡易）
 // =========================
-  (function () {
-    const params = new URLSearchParams(location.search);
-    const from = params.get("from");
-    const kana = params.get("kana");
+// ★ パンくずリスト（五十音 → 詳細ページ）
+// =========================
+(function () {
+  const params = new URLSearchParams(location.search);
+  const from = params.get("from");
+  const kana = params.get("kana");
 
-    // 五十音経由でない場合は出さない
-    if (from !== "aiuo" || !kana) return;
+  if (from !== "aiuo" || !kana) return;
 
-    const title = document.querySelector("h2");
-    if (!title) return;
+  const title = document.querySelector("h2");
+  if (!title) return;
 
-    const crumb = document.createElement("div");
-    crumb.style.fontSize = "13px";
-    crumb.style.color = "#666";
-    crumb.style.textAlign = "center";
-    crumb.style.margin = "12px 0 6px";
+  const crumb = document.createElement("nav");
+  crumb.style.textAlign = "center";
+  crumb.style.fontSize = "13px";
+  crumb.style.margin = "8px 0 16px";
+  crumb.style.color = "#666";
 
-    crumb.innerHTML = `
-      <a href="index.html">トップ</a>
-      &nbsp;›&nbsp;
-      <a href="${kana}.html">${kana}</a>
-      &nbsp;›&nbsp;
-      <span>${title.textContent}</span>
-    `;
+  crumb.innerHTML = `
+    <a href="index.html" style="color:#555; text-decoration:none;">
+      トップ
+    </a>
+    <span style="margin:0 4px;">›</span>
+    <a href="${kana}.html" style="color:#555; text-decoration:none;">
+      ${kana}
+    </a>
+    <span style="margin:0 4px;">›</span>
+    <span style="color:#999;">
+      ${title.textContent}
+    </span>
+  `;
 
-    title.before(crumb);
-  })();
+  // h2（キノコ名タイトル）の直前に差し込む
+  title.before(crumb);
+
+  // iframe 高さ再計算
+  if (typeof sendHeight === "function") {
+    sendHeight();
+  }
+})();
 
   // =========================
 // ★ 前 / 次のキノコ（同じ行内）
