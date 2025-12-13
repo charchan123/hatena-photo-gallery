@@ -1,166 +1,39 @@
-# ============================================================
-# main.py  [Mushroom Photo Gallery]
-# 完成版：UI①〜⑦ + 検索UX進化（C）
-# ============================================================
-
 import os
+import glob
 import json
+import requests
+from bs4 import BeautifulSoup
+import xml.etree.ElementTree as ET
 import re
 import html
-import requests
 import piexif
-from collections import defaultdict
 
-# ---------------------------
-# 設定
-# ---------------------------
-OUTPUT_DIR = "output"
-CACHE_DIR = "cache"
-EXIF_CACHE_FILE = os.path.join(CACHE_DIR, "exif-cache.json")
+# ===========================
+# 珍しい / 人気キノコリスト（手動）
+# ===========================
+RARITY_LIST = [
+    "センニンタケ",
+]
 
-os.makedirs(OUTPUT_DIR, exist_ok=True)
-os.makedirs(CACHE_DIR, exist_ok=True)
+POPULAR_LIST = [
+    "ベニテングタケ",
+    "タマゴタケ",
+    "シイタケ",
+]
 
-# ---------------------------
-# 表示用リスト
-# ---------------------------
-RARITY_LIST = ["センニンタケ"]
-POPULAR_LIST = ["ベニテングタケ", "タマゴタケ", "シイタケ"]
+# ===========================
+# safe_filename
+# ===========================
+def safe_filename(name):
+    name = re.sub(r'[:<>\"|*?\\/\r\n]', '_', name)
+    name = name.strip()
+    if not name:
+        name = "unnamed"
+    return name
 
-AIUO_GROUPS = {
-    "あ行": list("あいうえおアイウエオ"),
-    "か行": list("かきくけこカキクケコがぎぐげご"),
-    "さ行": list("さしすせそサシスセソざじずぜぞ"),
-    "た行": list("たちつてとタチツテトだぢづでど"),
-    "な行": list("なにぬねの"),
-    "は行": list("はひふへほばびぶべぼぱぴぷぺぽ"),
-    "ま行": list("まみむめも"),
-    "や行": list("やゆよ"),
-    "ら行": list("らりるれろ"),
-    "わ行": list("わをん"),
-}
-
-# ---------------------------
-# util
-# ---------------------------
-def safe_filename(name: str) -> str:
-    name = re.sub(r'[\\/:*?"<>|]', "_", name)
-    return name.strip() or "unnamed"
-
-def load_exif_cache():
-    if os.path.exists(EXIF_CACHE_FILE):
-        with open(EXIF_CACHE_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
-    return {}
-
-def save_exif_cache(cache):
-    with open(EXIF_CACHE_FILE, "w", encoding="utf-8") as f:
-        json.dump(cache, f, ensure_ascii=False, indent=2)
-
-# ============================================================
-# STYLE_TAG（UI①〜⑦統一）
-# ============================================================
-STYLE_TAG = """
-<style>
-/* ---------- Base ---------- */
-body {
-  margin:0;
-  padding:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans",sans-serif;
-  background:#fafafa;
-  color:#333;
-}
-a { text-decoration:none; color:inherit; }
-
-/* ---------- Section ---------- */
-.section {
-  max-width:1100px;
-  margin:40px auto;
-  padding:0 16px;
-}
-.section-title {
-  font-size:22px;
-  font-weight:700;
-  text-align:center;
-  margin-bottom:20px;
-}
-
-/* ---------- Search UX (C) ---------- */
-.search-box {
-  max-width:520px;
-  margin:0 auto 16px;
-  position:relative;
-}
-.search-input {
-  width:100%;
-  padding:12px 14px;
-  font-size:16px;
-  border-radius:10px;
-  border:1px solid #ccc;
-}
-.search-results {
-  position:absolute;
-  top:100%;
-  left:0;
-  right:0;
-  background:#fff;
-  border-radius:10px;
-  box-shadow:0 6px 20px rgba(0,0,0,.15);
-  overflow:hidden;
-  z-index:10;
-}
-.search-item {
-  display:flex;
-  gap:10px;
-  padding:10px;
-  align-items:center;
-  cursor:pointer;
-}
-.search-item:hover { background:#f3f3f3; }
-.search-item img {
-  width:48px;
-  height:48px;
-  object-fit:cover;
-  border-radius:6px;
-}
-.search-name b { color:#e53935; }
-
-/* ---------- Grid ---------- */
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-  gap:16px;
-}
-.card {
-  background:#fff;
-  border-radius:12px;
-  box-shadow:0 2px 10px rgba(0,0,0,.1);
-  overflow:hidden;
-  text-align:center;
-}
-.card img {
-  width:100%;
-  aspect-ratio:1/1;
-  object-fit:cover;
-}
-.card-name {
-  padding:10px;
-  font-weight:600;
-}
-
-/* ---------- Footer ---------- */
-.footer {
-  text-align:center;
-  font-size:13px;
-  color:#888;
-  margin:40px 0;
-}
-</style>
-"""
-
-# ============================================================
-# EXIF：文字整形
-# ============================================================
+# ===========================
+# EXIF文字クリーン
+# ===========================
 def clean_exif_str(s):
     if not s:
         return ""
@@ -168,6 +41,9 @@ def clean_exif_str(s):
     s = re.sub(r"[�]+", "", s)
     return s.strip()
 
+# ===========================
+# カメラ名正規化
+# ===========================
 def normalize_model(model: str) -> str:
     if not model:
         return ""
@@ -175,6 +51,665 @@ def normalize_model(model: str) -> str:
     if m.startswith("Canon "):
         m = m[len("Canon "):]
     return m
+
+# ====== 設定 ======
+HATENA_USER = os.getenv("HATENA_USER")
+HATENA_BLOG_ID = os.getenv("HATENA_BLOG_ID")
+HATENA_API_KEY = os.getenv("HATENA_API_KEY")
+
+if not all([HATENA_USER, HATENA_BLOG_ID, HATENA_API_KEY]):
+    raise EnvironmentError("環境変数 HATENA_USER / HATENA_BLOG_ID / HATENA_API_KEY が未設定です。")
+
+ARTICLES_DIR = "articles"
+OUTPUT_DIR = "output"
+
+# ====== EXIF キャッシュ設定 ======
+CACHE_DIR = "cache"
+CACHE_FILE = os.path.join(CACHE_DIR, "exif-cache.json")
+
+# ====== API ======
+ATOM_ENDPOINT = f"https://blog.hatena.ne.jp/{HATENA_USER}/{HATENA_BLOG_ID}/atom/entry"
+AUTH = (HATENA_USER, HATENA_API_KEY)
+HEADERS = {}
+
+AIUO_GROUPS = {
+    "あ行": list("あいうえおアイウエオ"),
+    "か行": list("かきくけこカキクケコがぎぐげごガギグゲゴ"),
+    "さ行": list("さしすせそサシスセソざじずぜぞザジズゼゾ"),
+    "た行": list("たちつてとタチツテトだぢづでどダヂヅデド"),
+    "な行": list("なにぬねのナニヌネノ"),
+    "は行": list("はひふへほハヒフヘホばびぶべぼバビブベボぱぴぷぺぽパピプペポ"),
+    "ま行": list("まみむめもマミムメモ"),
+    "や行": list("やゆよヤユヨ"),
+    "ら行": list("らりるれろラリルレロ"),
+    "わ行": list("わをんワヲン"),
+}
+
+# ====== 共通スタイル（EXIF gap レイアウト採用版） ======
+STYLE_TAG = """<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background:#fafafa;
+  color:#333;
+  padding:16px;
+  box-sizing:border-box;
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+
+/* ======== ギャラリー本体（PC4列・スマホ3列） ======== */
+.gallery {
+  column-count: 4;
+  column-gap: 10px;
+  max-width: 900px;
+  margin: 0 auto;
+  visibility: hidden;
+}
+.gallery a.gallery-item{
+  display: block;
+  break-inside: avoid;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  cursor: zoom-in;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  opacity: 0;
+  transform: translateY(10px);
+}
+.gallery img.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* スマホ〜タブレットは 3 列 */
+@media (max-width: 768px) {
+  .gallery { column-count: 3; }
+}
+
+/* ===== 五十音タイル・カードUI ===== */
+.kana-grid {
+  max-width: 900px;
+  margin: 0 auto 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+.kana-btn {
+  min-width: 32px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #d0d0d0;
+  background: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 1;
+  transition: background .15s ease, box-shadow .15s ease, transform .15s ease, border-color .15s ease;
+}
+.kana-btn:hover {
+  background: #f5f5f7;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  transform: translateY(-1px);
+}
+.kana-btn.active {
+  background: #0f62fe;
+  color: #fff;
+  border-color: #0f62fe;
+}
+
+/* 検索バー */
+.search-wrap {
+  max-width: 900px;
+  margin: 0 auto 16px;
+}
+.search-input {
+  width: 100%;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+/* カード一覧 */
+.mushroom-list {
+  max-width: 900px;
+  margin: 0 auto 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+.mushroom-card {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+.mushroom-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.16);
+  filter: brightness(1.05);
+}
+.mushroom-card-thumb {
+  position: relative;
+  padding-top: 65%;
+  overflow: hidden;
+  background: #eee;
+}
+.mushroom-card-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mushroom-card-name {
+  padding: 8px 10px 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ===== index.html 専用：全キノコ横断検索 ===== */
+.index-search-box {
+  max-width: 900px;
+  margin: 0 auto 24px;
+  padding: 18px 20px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.index-search-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.index-search-input {
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 2px solid #007acc;
+  font-size: 15px;
+  box-sizing: border-box;
+  background: #fdfefe;
+}
+.index-search-results {
+  max-width: 900px;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+.index-pagination {
+  max-width: 900px;
+  margin: 16px auto;
+  text-align: center;
+}
+.index-page-btn {
+  display: inline-block;
+  margin: 0 6px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: #333;
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+.index-page-btn:hover:not(.disabled) {
+  background: #555;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.16);
+}
+.index-page-btn.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ==== おすすめ3キノコカード ==== */
+.recommend-grid {
+  max-width: 900px;
+  margin: 0 auto 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.recommend-card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.recommend-card h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+.rec-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.rec-item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+  border-radius: 14px;
+  padding: 4px 6px;
+}
+.rec-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.16);
+  filter: brightness(1.04);
+}
+.rec-item img {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* index.html & キノコページ共通：五十音リンクタイル */
+.aiuo-links {
+  max-width: 900px;
+  margin: 0 auto 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.aiuo-link {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+}
+.aiuo-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.14);
+  background: #e8f2ff;
+  border-color: #c5dafe;
+}
+
+/* ===== 戻るボタン（楕円ボタン） ===== */
+.back-btn {
+  display: inline-block;
+  padding: 10px 22px;
+  background: #ffffffc9;
+  border: 2px solid #ddd;
+  border-radius: 999px;
+  font-size: 15px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+.back-btn:hover {
+  background: #f0f0f0;
+  border-color: #bbb;
+  transform: translateY(-1px);
+}
+.back-btn:active {
+  transform: translateY(1px);
+  background: #e5e5e5;
+}
+
+/* ===== LightGallery EXIF（gap レイアウト） ===== */
+
+/* 全体キャプション領域 */
+.exif-wrap {
+  width: 95%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding-top: 10px;
+  text-align: center;
+  color: #fff;
+}
+
+/* 1行目：キノコ名 */
+.exif-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+/* 2行目：カメラ名 / レンズ名 */
+.exif-middle {
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0.9;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+/* 3行目：焦点距離 / F値 / SS / ISO / 日付（gap方式） */
+.exif-bottom-row {
+  display: inline-flex;
+  gap: 8px;                   /* 半角スペース2個分くらいの距離 */
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 300;
+  color: #ddd;
+  opacity: 0.8;
+  margin-bottom: 4px;
+  flex-wrap: wrap;            /* スマホで自然に折り返す */
+}
+.exif-bottom-row span {
+  white-space: nowrap;        /* 個々の項目は分割しない */
+}
+
+/* 右下固定の撮影日表示は廃止（スマホで重なるため） */
+/* .exif-date-fixed { ... } は使わない */
+
+.lg-sub-html {
+  position: relative;
+}
+</style>"""
+
+# ====== LightGallery 読み込みタグ ======
+LIGHTGALLERY_TAGS = """
+<link rel="stylesheet" 
+      href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/lightgallery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/plugins/zoom/lg-zoom.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/plugins/thumbnail/lg-thumbnail.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/plugins/autoplay/lg-autoplay.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/plugins/share/lg-share.min.js"></script>
+"""
+
+# ====== LightGallery スクリプト ======
+SCRIPT_TAG = """<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  // ページ全体フェードイン
+  requestAnimationFrame(() => {
+    document.body.style.opacity = "1";
+  });
+
+function sendHeight() {
+  const height = Math.max(
+    document.body.scrollHeight,
+    document.body.offsetHeight,
+    document.documentElement.scrollHeight,
+    document.documentElement.offsetHeight
+  );
+
+  window.parent.postMessage(
+    { type: "setHeight", height },
+    "*"
+  );
+}
+
+  const gallery = document.querySelector(".gallery");
+  if (gallery) {
+    const fadeObs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add("visible");
+          fadeObs.unobserve(e.target);
+        }
+      });
+    }, {threshold:0.1});
+    gallery.querySelectorAll("img").forEach(img=>fadeObs.observe(img));
+
+    imagesLoaded(gallery, () => {
+      gallery.style.visibility="visible";
+      sendHeight();
+
+      const lg = lightGallery(gallery, {
+        selector: 'a.gallery-item',
+        plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
+        speed: 400,
+        download: false,
+        zoom: true,
+        thumbnail: true,
+        autoplay: false
+      });
+
+      // サムネイルクリックで強制フルスクリーン
+      gallery.querySelectorAll("a.gallery-item").forEach((a) => {
+        a.addEventListener("click", () => {
+          const el = document.documentElement;
+          if (el.requestFullscreen) el.requestFullscreen();
+          else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+          else if (el.msRequestFullscreen) el.msRequestFullscreen();
+        });
+      });
+
+      // 閉じる前
+      gallery.addEventListener("lgBeforeClose", () => {
+        if (document.fullscreenElement) {
+          document.exitFullscreen().catch(()=>{});
+        }
+        window.parent.postMessage({ type: "lgClosed" }, "*");
+      });
+
+      // ESC などでフルスクリーン解除されたとき
+      document.addEventListener("fullscreenchange", () => {
+        if (!document.fullscreenElement) {
+          try {
+            lg.closeGallery();
+            window.parent.postMessage({ type: "lgClosed" }, "*");
+          } catch(e) {}
+        }
+      });
+    });
+  }
+
+  // クリック判定（scrollToTitle 用）
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (!a) return;
+
+    const txt = a.textContent || "";
+    const href = a.getAttribute("href") || "";
+
+    // 1) キノコ名ページ (xxx.html)
+    if (href.endsWith(".html")) {
+      window.parent.postMessage({ type: "scrollToTitle" }, "*");
+      return;
+    }
+
+    // 2) あ行〜わ行
+    if (/^(あ行|か行|さ行|た行|な行|は行|ま行|や行|ら行|わ行)$/.test(txt)) {
+      window.parent.postMessage({ type: "scrollToTitle" }, "*");
+      return;
+    }
+
+    // 3) ← 戻る
+    if (/戻る/.test(txt)) {
+      window.parent.postMessage({ type: "scrollToTitle" }, "*");
+      return;
+    }
+  });
+
+  // 五十音カード用：検索＋かなフィルタ
+  const searchInput = document.querySelector(".search-input");
+  const kanaButtons = document.querySelectorAll(".kana-btn");
+  const cards = document.querySelectorAll(".mushroom-card");
+
+  if (searchInput && cards.length) {
+    let currentKana = "all";
+
+    function applyFilter() {
+      const q = searchInput.value.trim();
+      const keyword = q
+        ? q.normalize("NFKC").toLowerCase()
+        : "";
+
+      cards.forEach((card) => {
+        const name = (card.getAttribute("data-name") || "")
+          .normalize("NFKC")
+          .toLowerCase();
+        const kana = card.getAttribute("data-kana") || "";
+        const matchText = !keyword || name.includes(keyword);
+        const matchKana = (currentKana === "all") || (kana === currentKana);
+        const show = matchText && matchKana;
+        card.style.display = show ? "" : "none";
+      });
+
+      sendHeight();
+    }
+
+    searchInput.addEventListener("input", applyFilter);
+
+    kanaButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        kanaButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        currentKana = btn.getAttribute("data-kana") || "all";
+        applyFilter();
+      });
+    });
+  }
+
+  // index.html 専用：全キノコ横断検索
+  const indexSearchInput = document.querySelector(".index-search-input");
+  const indexResults = document.querySelector(".index-search-results");
+
+  if (indexSearchInput && indexResults) {
+    const ALL_MUSHROOMS = window.ALL_MUSHROOMS || [];
+
+    let page = 1;
+    const PER_PAGE = 30;
+
+    function renderResults(list) {
+      indexResults.innerHTML = list.map(item => `
+        <a href="${item.href}"
+           class="mushroom-card"
+           data-name="${item.name}">
+          <div class="mushroom-card-thumb">
+            <img src="${item.thumb}" alt="${item.name}">
+          </div>
+          <div class="mushroom-card-name">${item.name}</div>
+        </a>
+      `).join("");
+    }
+
+    function renderPagination(totalPages) {
+      const wrap = document.querySelector(".index-pagination");
+      if (!wrap) return;
+
+      wrap.innerHTML = `
+        <span class="index-page-btn ${page<=1?'disabled':''}" data-move="-1">前へ</span>
+        <span style="margin:0 10px;">${page} / ${totalPages}</span>
+        <span class="index-page-btn ${page>=totalPages?'disabled':''}" data-move="1">次へ</span>
+      `;
+
+      wrap.querySelectorAll(".index-page-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const move = Number(btn.dataset.move);
+          page += move;
+          doSearch();
+          window.parent.postMessage({ type:"scrollToTitle" }, "*");
+        });
+      });
+    }
+
+    function doSearch() {
+      const q = indexSearchInput.value.trim().normalize("NFKC").toLowerCase();
+      const filtered = q
+        ? ALL_MUSHROOMS.filter(m => m.name_norm.includes(q))
+        : [];
+
+      const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+      if (page > totalPages) page = totalPages;
+
+      const start = (page - 1) * PER_PAGE;
+      renderResults(filtered.slice(start, start+PER_PAGE));
+
+      renderPagination(totalPages);
+      sendHeight();
+    }
+
+    indexSearchInput.addEventListener("input", () => {
+      page = 1;
+      doSearch();
+    });
+  }
+
+  sendHeight();
+  window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); });
+  window.addEventListener("message", e=>{ if(e.data?.type==="requestHeight") sendHeight(); });
+  window.addEventListener("resize", sendHeight);
+  new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true});
+
+  // ★ 高さ監視ポーリング（縮む対策）
+let lastHeight = 0;
+
+setInterval(() => {
+  const height = Math.max(
+    document.body.scrollHeight,
+    document.body.offsetHeight,
+    document.documentElement.scrollHeight,
+    document.documentElement.offsetHeight
+  );
+
+  if (height !== lastHeight) {
+    lastHeight = height;
+    window.parent.postMessage(
+      { type: "setHeight", height },
+      "*"
+    );
+  }
+}, 300);
+
+});
+</script>
+"""
+
+# ===========================
+# EXIF キャッシュ
+# ===========================
+def load_exif_cache():
+    if not os.path.exists(CACHE_FILE):
+        return {}
+    try:
+        with open(CACHE_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            if isinstance(data, dict):
+                return data
+    except Exception:
+        pass
+    return {}
+
+def save_exif_cache(cache: dict):
+    os.makedirs(CACHE_DIR, exist_ok=True)
+    with open(CACHE_FILE, "w", encoding="utf-8") as f:
+        json.dump(cache, f, ensure_ascii=False, indent=2)
 
 def _rational_to_float(val):
     try:
@@ -196,9 +731,9 @@ def _exposure_to_str(val):
     except Exception:
         return ""
 
-# ============================================================
-# EXIF 抽出（URL画像の bytes -> dict）
-# ============================================================
+# ===========================
+# EXIF 抽出
+# ===========================
 def extract_exif_from_bytes(jpeg_bytes: bytes):
     try:
         exif_dict = piexif.load(jpeg_bytes)
@@ -270,11 +805,14 @@ def extract_exif_from_bytes(jpeg_bytes: bytes):
         "date": date_str or "",
     }
 
-# ============================================================
-# EXIFキャッシュ構築（entries: [{alt,src}]）
-# ============================================================
+# ===========================
+# EXIF キャッシュ構築
+# ===========================
 def build_exif_cache(entries, cache: dict):
+    os.makedirs(CACHE_DIR, exist_ok=True)
+
     all_srcs = sorted({e["src"] for e in entries})
+
     for src in all_srcs:
         if src in cache:
             continue
@@ -282,83 +820,22 @@ def build_exif_cache(entries, cache: dict):
         print(f"🔍 EXIF取得: {src}")
         exif_data = {}
         try:
-            r = requests.get(src, timeout=15)
+            r = requests.get(src, timeout=10)
             if r.status_code == 200:
                 exif_data = extract_exif_from_bytes(r.content) or {}
-                print(f"  ↪ OK: {exif_data}")
+                print(f"  ↪ EXIF取得OK: {exif_data}")
             else:
-                print(f"  ↪ HTTP {r.status_code} → 空保存")
+                print(f"  ↪ HTTP {r.status_code} → 空データとして保存")
         except Exception as e:
-            print(f"  ↪ 取得エラー: {e} → 空保存")
+            print(f"  ↪ 取得エラー: {e} → 空データとして保存")
 
         cache[src] = exif_data
 
     return cache
 
-# ============================================================
-# LightGallery 読み込みタグ
-# ============================================================
-LIGHTGALLERY_TAGS = """
-<link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/lightgallery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/plugins/zoom/lg-zoom.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/plugins/thumbnail/lg-thumbnail.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/plugins/autoplay/lg-autoplay.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/plugins/share/lg-share.min.js"></script>
-"""
-
-# ============================================================
-# SCRIPT_TAG
-# ============================================================
-SCRIPT_TAG = """
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-  /* ============================
-     index.html 検索UX（進化C）
-  ============================ */
-  const input = document.querySelector(".index-search-input");
-  const suggest = document.querySelector(".search-suggest");
-  const ALL = window.ALL_MUSHROOMS || [];
-
-  if (input && suggest) {
-    function highlight(name, q) {
-      const i = name.toLowerCase().indexOf(q);
-      if (i === -1) return name;
-      return name.slice(0, i) +
-        "<mark>" + name.slice(i, i + q.length) + "</mark>" +
-        name.slice(i + q.length);
-    }
-
-    input.addEventListener("input", () => {
-      const q = input.value.trim().toLowerCase();
-      if (!q) {
-        suggest.innerHTML = "";
-        return;
-      }
-
-      const hits = ALL
-        .filter(m => m.name_norm.includes(q))
-        .slice(0, 7);
-
-      suggest.innerHTML = hits.map(m => `
-        <a href="${m.href}" class="suggest-item">
-          <img src="${m.thumb}">
-          <span>${highlight(m.name, q)}</span>
-        </a>
-      `).join("");
-    });
-  }
-
-});
-</script>
-"""
-
-# ============================================================
-# caption（EXIF行は「溶け込む」& 重ならない前提）
-# ※ ここでは exif-bottom-row を使う
-# ============================================================
+# ===========================
+# EXIF → caption HTML（gap方式・日付統合）
+# ===========================
 def build_caption_html(alt, exif: dict):
     title = html.escape(alt)
 
@@ -370,47 +847,129 @@ def build_caption_html(alt, exif: dict):
     focal = exif.get("focal") or ""
     date = exif.get("date") or ""
 
-    # 2行目
+    # 2行目：カメラ名 / レンズ名
     middle_parts = []
     if model:
         middle_parts.append(model)
     if lens:
         middle_parts.append(lens)
-    middle_text = " / ".join(middle_parts)
+    middle_html = " / ".join(middle_parts)
 
-    # 3行目：gap方式（dateもここに溶け込ませる）
-    spans = []
+    # 3行目：焦点距離 / F値 / SS / ISO / 日付（gap方式）
+    bottom_spans = []
+
     if focal:
-        spans.append(f"<span>{html.escape(focal)}</span>")
+        bottom_spans.append(f"<span>{html.escape(focal)}</span>")
     if f:
-        spans.append(f"<span>{html.escape(f)}</span>")
+        bottom_spans.append(f"<span>{html.escape(f)}</span>")
     if exposure:
         exp_str = exposure if exposure.endswith("s") else f"{exposure}s"
-        spans.append(f"<span>{html.escape(exp_str)}</span>")
+        bottom_spans.append(f"<span>{html.escape(exp_str)}</span>")
     if iso:
-        spans.append(f"<span>ISO{html.escape(iso)}</span>")
+        bottom_spans.append(f"<span>ISO{html.escape(iso)}</span>")
     if date:
-        spans.append(f"<span>{html.escape(date)}</span>")
+        bottom_spans.append(f"<span>{html.escape(date)}</span>")
 
     bottom_html = ""
-    if spans:
-        # indexページ/個別ページのSTYLE_TAGに exif-bottom-row が無い場合でも崩れないように
-        bottom_html = f"<div class='exif-bottom-row'>{''.join(spans)}</div>"
+    if bottom_spans:
+        bottom_html = f"<div class='exif-bottom-row'>{''.join(bottom_spans)}</div>"
 
     html_block = "<div class='exif-wrap'>"
     html_block += f"<div class='exif-title'>{title}</div>"
-    if middle_text:
-        html_block += f"<div class='exif-middle'>{html.escape(middle_text)}</div>"
+
+    if middle_html:
+        html_block += f"<div class='exif-middle'>{html.escape(middle_html)}</div>"
+
     if bottom_html:
         html_block += bottom_html
+
     html_block += "</div>"
 
     return html.escape(html_block, quote=True)
 
-# ============================================================
+# ===========================
+# はてなAPI 全記事取得
+# ===========================
+def fetch_hatena_articles_api():
+    os.makedirs(ARTICLES_DIR, exist_ok=True)
+    print("📡 はてなブログAPIから全記事取得中…")
+    url = ATOM_ENDPOINT
+    count = 0
+    while url:
+        print(f"🔗 Fetching: {url}")
+        r = requests.get(url, auth=AUTH, headers=HEADERS)
+        if r.status_code != 200:
+            raise RuntimeError(f"❌ API取得失敗: {r.status_code} {r.text}")
+
+        root = ET.fromstring(r.text)
+        ns = {"atom": "http://www.w3.org/2005/Atom"}
+        entries = root.findall("atom:entry", ns)
+
+        for i, entry in enumerate(entries, 1):
+            content = entry.find("atom:content", ns)
+            if content is None:
+                continue
+            html_content = content.text or ""
+            filename = f"{ARTICLES_DIR}/article_{count+i}.html"
+            with open(filename, "w", encoding="utf-8") as f:
+                f.write(html_content)
+            print(f"✅ 保存完了: {filename}")
+
+        count += len(entries)
+        next_link = root.find("atom:link[@rel='next']", ns)
+        url = next_link.attrib["href"] if next_link is not None else None
+
+    print(f"📦 合計 {count} 件の記事を保存しました。")
+
+# ===========================
+# HTML から画像抽出
+# ===========================
+def fetch_images():
+    print("📂 HTMLから画像抽出中…")
+    entries = []
+
+    exclude_patterns = [
+        r'はてなブックマーク',
+        r'^\d{4}年',
+        r'^この記事をはてなブックマークに追加$',
+        r'^ワ行$',
+        r'キノコと田舎遊び',
+    ]
+
+    for html_file in glob.glob(f"{ARTICLES_DIR}/*.html"):
+        with open(html_file, encoding="utf-8") as f:
+            soup = BeautifulSoup(f, "html.parser")
+
+        body_div = soup.find(class_="entry-body") or soup
+
+        for iframe in body_div.find_all("iframe"):
+            title = iframe.get("title", "")
+            if any(re.search(p, title) for p in exclude_patterns):
+                iframe.decompose()
+
+        for a in body_div.find_all("a"):
+            text = a.get_text(strip=True)
+            if any(re.search(p, text) for p in exclude_patterns):
+                a.decompose()
+
+        imgs = body_div.find_all("img")
+        for img in imgs:
+            alt = (img.get("alt") or "").strip()
+            src = img.get("src")
+            if not alt or not src:
+                continue
+            if any(re.search(p, alt) for p in exclude_patterns):
+                continue
+
+            entries.append({"alt": alt, "src": src})
+
+    print(f"🧩 画像検出数: {len(entries)} 枚")
+    return entries
+
+# ===========================
 # 五十音分類
-# ============================================================
-def get_aiuo_group(name: str) -> str:
+# ===========================
+def get_aiuo_group(name):
     if not name:
         return "その他"
     first = name[0]
@@ -419,176 +978,260 @@ def get_aiuo_group(name: str) -> str:
             return group
     return "その他"
 
-# ============================================================
-# キノコ個別ページ生成
-# entries: [{alt, src}]
-# grouped: alt -> [src...]
-# ============================================================
-def generate_mushroom_pages(grouped, exif_cache, SCRIPT_TAG):
+# ===========================
+# ギャラリー生成（キノコページ & 五十音ページ）
+# ===========================
+def generate_gallery(entries, exif_cache):
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+    # alt → [画像URL1, 画像URL2…]
+    grouped = {}
+    for e in entries:
+        grouped.setdefault(e["alt"], []).append(e["src"])
+
+    # index & 各ページ共通：五十音タイル HTML
+    group_links_html = "<div class='aiuo-links' style='margin-top:40px;'>"
+    for g in AIUO_GROUPS.keys():
+        group_links_html += f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>'
+    group_links_html += "</div>"
+
+    # ① 各キノコページ
     for alt, imgs in grouped.items():
-        parts = []
+        html_parts = []
 
         # タイトル（キノコ名 + 枚数）
-        parts.append(
-            f"<div class='section'>"
-            f"<div class='section-title'>{html.escape(alt)} "
-            f"<span style='font-size:14px;font-weight:400;color:#666;'>— {len(imgs)} photos</span>"
-            f"</div>"
-            f"</div>"
+        html_parts.append(
+            f"<h2 style='font-size:24px; font-weight:600; text-align:center; margin-top:20px;'>"
+            f"{html.escape(alt)}"
+            f"<span style='font-size:15px; font-weight:400; color:#666; margin-left:6px;'>"
+            f"— {len(imgs)} photos"
+            f"</span>"
+            f"</h2>"
         )
 
-        # ギャラリー（カードではなく LightGallery 用リンク）
-        parts.append("<div class='section'>")
-        parts.append("<div class='grid gallery'>")
+        # ギャラリー本体
+        html_parts.append("<div class='gallery'>")
         for src in imgs:
-            thumb = src + "?width=400"
+            thumb = src + "?width=300"
             exif = exif_cache.get(src, {}) or {}
             caption_attr = build_caption_html(alt, exif)
 
-            parts.append(
-                f'<a class="gallery-item card" href="{src}" '
+            html_parts.append(
+                f'<a class="gallery-item" href="{src}" '
                 f'data-exthumbimage="{thumb}" '
                 f'data-sub-html="{caption_attr}">'
-                f'<img src="{thumb}" alt="{html.escape(alt)}" loading="lazy">'
-                f'<div class="card-name">{html.escape(alt)}</div>'
+                f'<img src="{src}" alt="{html.escape(alt)}" loading="lazy">'
                 f'</a>'
             )
-        parts.append("</div></div>")
+        html_parts.append("</div>")
 
-        # 戻る
-        parts.append("<div class='footer'><a href='javascript:history.back()'>← 戻る</a></div>")
+        # 戻るボタン
+        html_parts.append("""
+        <div style='margin-top:40px; text-align:center;'>
+            <a href='javascript:history.back()' class='back-btn'>← 戻る</a>
+        </div>
+        """)
 
-        # CSS / LG / JS
-        parts.append(STYLE_TAG)
-        parts.append(LIGHTGALLERY_TAGS)
-        parts.append(SCRIPT_TAG)
+        # 五十音タイル
+        html_parts.append(group_links_html)
 
-        out = "".join(parts)
-        with open(os.path.join(OUTPUT_DIR, f"{safe_filename(alt)}.html"), "w", encoding="utf-8") as f:
-            f.write(out)
+        # スタイル・LG・JS
+        html_parts.append(STYLE_TAG)
+        html_parts.append(LIGHTGALLERY_TAGS)
+        html_parts.append(SCRIPT_TAG)
 
-        print(f"✅ 個別ページ生成: {alt}")
+        page_html = "".join(html_parts)
 
-# ============================================================
-# index.html 生成（UI統一 + 検索UX進化 C）
-# ============================================================
-def generate_index(grouped, exif_cache, SCRIPT_TAG):
-    index = []
+        safe = safe_filename(alt)
+        with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
+            f.write(page_html)
 
-    # ----------------------------
-    # セクション①：全キノコ横断検索
-    # ----------------------------
-    index.append("""
-<div class="section">
-  <div class="section-title">🔍 全キノコ横断検索</div>
-  <div class="search-wrap">
-    <input type="text"
-           class="index-search-input"
-           placeholder="キノコ名で検索（例：ベニテングタケ）">
-    <div class="search-suggest"></div>
-  </div>
+    # ② 五十音ページ
+    aiuo_dict = {k: [] for k in AIUO_GROUPS.keys()}
+    for alt in grouped.keys():
+        g = get_aiuo_group(alt)
+        if g in aiuo_dict:
+            aiuo_dict[g].append(alt)
+
+    for g, names in aiuo_dict.items():
+        html_parts = []
+
+        html_parts.append(f"<h2>{g}のキノコ</h2>")
+
+        initials = sorted({ n[0] for n in names if n })
+
+        html_parts.append("<div class='kana-grid'>")
+        html_parts.append("<button class='kana-btn active' data-kana='all'>すべて</button>")
+        for ch in initials:
+            esc_ch = html.escape(ch)
+            html_parts.append(
+                f"<button class='kana-btn' data-kana='{esc_ch}'>{esc_ch}</button>"
+            )
+        html_parts.append("</div>")
+
+        html_parts.append("""
+        <div class="search-wrap">
+          <input type="text" class="search-input" placeholder="キノコ名で絞り込み">
+        </div>
+        """)
+
+        html_parts.append("<div class='mushroom-list'>")
+        for n in sorted(names):
+            safe = safe_filename(n)
+            first_char = n[0] if n else ""
+            imgs_for_name = grouped.get(n, [])
+            thumb_src = imgs_for_name[0] if imgs_for_name else ""
+
+            esc_name = html.escape(n)
+            esc_kana = html.escape(first_char)
+
+            img_tag = ""
+            if thumb_src:
+                img_tag = (
+                    f"<img src='{thumb_src}?width=400' "
+                    f"alt='{esc_name}' loading='lazy'>"
+                )
+
+            html_parts.append(f"""
+<a href="{safe}.html"
+   class="mushroom-card"
+   data-name="{esc_name}"
+   data-kana="{esc_kana}">
+  <div class="mushroom-card-thumb">{img_tag}</div>
+  <div class="mushroom-card-name">{esc_name}</div>
+</a>
+""")
+        html_parts.append("</div>")  # .mushroom-list
+
+        html_parts.append(group_links_html)
+        html_parts.append(STYLE_TAG)
+        html_parts.append(LIGHTGALLERY_TAGS)
+        html_parts.append(SCRIPT_TAG)
+
+        page_html = "".join(html_parts)
+
+        with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
+            f.write(page_html)
+
+    return grouped
+
+# ===========================
+# index.html を生成
+# ===========================
+def generate_index(grouped, exif_cache):
+    index_parts = []
+
+    # altごとに最新撮影日
+    alt_latest = {}
+    for alt, srcs in grouped.items():
+        best_key = ""
+        for src in srcs:
+            exif = exif_cache.get(src, {}) or {}
+            d = exif.get("date") or ""
+            if not d:
+                continue
+            key = d.replace("/", "")
+            if len(key) == 8 and (best_key == "" or key > best_key):
+                best_key = key
+        if best_key:
+            alt_latest[alt] = best_key
+
+    def pick_mushrooms(name_list):
+        items = []
+        for name in name_list:
+            if name in grouped:
+                img = grouped[name][0] if grouped[name] else ""
+                items.append({
+                    "name": name,
+                    "thumb": img + "?width=400",
+                    "href": f"{safe_filename(name)}.html"
+                })
+        return items[:3]
+
+    sorted_new = sorted(alt_latest.items(), key=lambda x: x[1], reverse=True)
+    new_names = [name for name, _ in sorted_new][:3]
+
+    recommend_new = pick_mushrooms(new_names)
+    recommend_rarity = pick_mushrooms(RARITY_LIST)
+    recommend_popular = pick_mushrooms(POPULAR_LIST)
+
+    index_parts.append("""
+<div class="index-search-box">
+  <div class="index-search-title">🔍 全キノコ横断検索</div>
+  <input type="text" class="index-search-input" placeholder="キノコ名で検索（例：ベニタケ）">
 </div>
+
+<div class="index-search-results"></div>
+<div class="index-pagination"></div>
 """)
 
-    # JS 用データ
-    all_items = []
+    all_mushrooms_js = []
     for alt, srcs in grouped.items():
-        if not srcs:
-            continue
-        all_items.append({
+        name_norm = alt.lower()
+        thumb = srcs[0] if srcs else ""
+        all_mushrooms_js.append({
             "name": alt,
-            "name_norm": alt.lower(),
+            "name_norm": name_norm,
             "href": f"{safe_filename(alt)}.html",
-            "thumb": srcs[0] + "?width=300"
+            "thumb": thumb + "?width=300"
         })
 
-    index.append(f"""
+    index_parts.append(f"""
 <script>
-window.ALL_MUSHROOMS = {json.dumps(all_items, ensure_ascii=False)};
+window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 </script>
 """)
 
-    # ----------------------------
-    # セクション②：五十音別分類
-    # ----------------------------
-    index.append("""
-<div class="section">
-  <div class="section-title">五十音別分類</div>
-  <div class="aiuo-links">
-""")
-
+    index_parts.append("<h2 style='text-align:center;'>五十音別分類</h2>")
+    index_parts.append("<div class='aiuo-links'>")
     for g in AIUO_GROUPS.keys():
-        index.append(
-            f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>'
-        )
+        index_parts.append(f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>')
+    index_parts.append("</div>")
 
-    index.append("""
-  </div>
-</div>
+    index_parts.append("""
+<h2 style="text-align:center; margin:30px 0 10px;">おすすめキノコ</h2>
+<div class="recommend-grid">
 """)
 
-    # ----------------------------
-    # セクション③：おすすめキノコ
-    # ----------------------------
-    def pick(names):
-        cards = []
-        for n in names:
-            if n in grouped and grouped[n]:
-                cards.append({
-                    "name": n,
-                    "thumb": grouped[n][0] + "?width=400",
-                    "href": f"{safe_filename(n)}.html"
-                })
-        return cards[:3]
-
-    # 最新順（撮影日）
-    latest = {}
-    for alt, srcs in grouped.items():
-        best = ""
-        for s in srcs:
-            d = (exif_cache.get(s, {}) or {}).get("date") or ""
-            k = d.replace("/", "")
-            if len(k) == 8 and k > best:
-                best = k
-        if best:
-            latest[alt] = best
-
-    new_names = [k for k, _ in sorted(latest.items(), key=lambda x: x[1], reverse=True)]
-    rec_new = pick(new_names)
-    rec_rare = pick(RARITY_LIST)
-    rec_pop = pick(POPULAR_LIST)
-
-    index.append("""
-<div class="section">
-  <div class="section-title">おすすめキノコ</div>
-  <div class="recommend-grid">
-""")
-
-    def render_block(title, items):
-        index.append(f"<div class='recommend-block'><h3>{title}</h3>")
+    def append_cards(title, items):
+        index_parts.append(f"<div class='recommend-card'><h3>{title}</h3><div class='rec-items'>")
         for it in items:
-            index.append(f"""
-<a class="card" href="{it['href']}">
-  <img src="{it['thumb']}" alt="{it['name']}">
-  <div class="card-name">{it['name']}</div>
-</a>
-""")
-        index.append("</div>")
+            index_parts.append(f"""
+        <a class="rec-item" href="{it['href']}">
+          <img src="{it['thumb']}" alt="{it['name']}">
+          <div>{it['name']}</div>
+        </a>
+        """)
+        index_parts.append("</div></div>")
 
-    render_block("新着キノコ", rec_new)
-    render_block("珍しいキノコ", rec_rare)
-    render_block("人気キノコ", rec_pop)
+    append_cards("新着キノコ", recommend_new)
+    append_cards("珍しいキノコ", recommend_rarity)
+    append_cards("人気キノコTOP3", recommend_popular)
 
-    index.append("</div></div>")
+    index_parts.append("</div><hr style='margin:30px 0;'>")
 
-    # ----------------------------
-    # CSS / LightGallery / JS
-    # ----------------------------
-    index.append(STYLE_TAG)
-    index.append(LIGHTGALLERY_TAGS)
-    index.append(SCRIPT_TAG)
+    index_parts.append(STYLE_TAG)
+    index_parts.append(LIGHTGALLERY_TAGS)
+    index_parts.append(SCRIPT_TAG)
 
-    with open(os.path.join(OUTPUT_DIR, "index.html"), "w", encoding="utf-8") as f:
-        f.write("".join(index))
+    index_html = "".join(index_parts)
+
+    with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
+        f.write(index_html)
 
     print("✅ index.html 生成完了")
+
+# ===========================
+# メイン
+# ===========================
+if __name__ == "__main__":
+    fetch_hatena_articles_api()
+    entries = fetch_images()
+    if entries:
+        exif_cache = load_exif_cache()
+        exif_cache = build_exif_cache(entries, exif_cache)
+        save_exif_cache(exif_cache)
+        grouped = generate_gallery(entries, exif_cache)
+        generate_index(grouped, exif_cache)
+    else:
+        print("⚠️ 画像が見つかりませんでした。")
