@@ -933,7 +933,7 @@ function sendHeight() {
   // 五十音カード用：検索＋かなフィルタ
   const searchInput = document.querySelector(".search-input");
   const kanaButtons = document.querySelectorAll(".kana-btn");
-  const cards = document.querySelectorAll(".mushroom-card");
+  const cards = document.querySelectorAll(".mushroom-card[data-kana]");
 
   if (searchInput && cards.length) {
     let currentKana = "all";
