@@ -1314,7 +1314,13 @@ def generate_gallery(entries, exif_cache):
             """)
         html_parts.append("</div>")  # .mushroom-list
 
-        html_parts.append(group_links_html)
+        html_parts.append("""
+        <div style="text-align:center; margin:40px 0 20px;">
+          <a href="index.html" class="back-btn">
+            ◀ トップに戻る
+          </a>
+        </div>
+        """)
         html_parts.append(STYLE_TAG)
         html_parts.append(LIGHTGALLERY_TAGS)
         html_parts.append(SCRIPT_TAG)
