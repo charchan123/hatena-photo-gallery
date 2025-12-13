@@ -631,7 +631,7 @@ function sendHeight() {
   // 五十音カード用：検索＋かなフィルタ
   const searchInput = document.querySelector(".search-input");
   const kanaButtons = document.querySelectorAll(".kana-btn");
-  const cards = document.querySelectorAll(".");
+  const cards = document.querySelectorAll(".mushroom-card");
 
   if (searchInput && cards.length) {
     let currentKana = "all";
@@ -683,6 +683,7 @@ function sendHeight() {
   // index.html 専用：全キノコ横断検索
   const indexSearchInput = document.querySelector(".index-search-input");
   const indexResults = document.querySelector(".index-search-results");
+  const emptyEl = document.querySelector(".search-empty");
 
   if (indexSearchInput && indexResults) {
     const ALL_MUSHROOMS = window.ALL_MUSHROOMS || [];
