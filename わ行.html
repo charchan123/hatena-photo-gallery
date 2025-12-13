@@ -457,8 +457,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.opacity = "1";
   });
 
-function escapeRegExp(str) {
-  return str.replace(/[-\/\^$*+?.()|[\]{}]/g, "\$&");
+  function escapeRegExp(str) {
+    return str.replace(/[-\/\^$*+?.()|[\]{}]/g, "\$&");
+  }
 
   // ===== 文脈リンク：五十音 → 詳細ページ =====
   const params = new URLSearchParams(location.search);
@@ -474,13 +475,14 @@ function escapeRegExp(str) {
       <a href="${kana}.html" class="back-btn">
         ◀ ${kana}の一覧に戻る
       </a>
-    `;
+      `;
 
-    // 最初の h2（キノコ名タイトル）の直下に入れる
+    // 最初の h2（キノコ名タイトル）の直下
     const title = document.querySelector("h2");
     if (title) {
       title.after(nav);
     }
+
     const more = document.createElement("div");
     more.style.textAlign = "center";
     more.style.marginTop = "8px";
@@ -489,6 +491,7 @@ function escapeRegExp(str) {
         ${kana}の他のキノコを見る →
       </a>
     `;
+
     document.querySelector(".back-btn")?.after(more);
   }
 }
