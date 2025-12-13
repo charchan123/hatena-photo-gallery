@@ -166,7 +166,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -376,11 +376,13 @@ body {
 }
 
 /* PC */
-//@media (min-width: 768px) {
-//  .section-card {
-//    padding: 18px 16px;
-//  }
-//}
+/*
+@media (min-width: 768px) {
+  .section-card {
+    padding: 18px 16px;
+  }
+}
+*/
 
 /* ==== おすすめ3キノコカード ==== */
 .recommend-grid {
@@ -805,7 +807,8 @@ function sendHeight() {
   // index.html 専用：全キノコ横断検索
   const indexSearchInput = document.querySelector(".index-search-input");
   const indexResults = document.querySelector(".index-search-results");
-  const emptyEl = document.querySelector(".search-empty");
+  const emptyEl = document
+  .querySelector(".section .search-empty");
 
   if (indexSearchInput && indexResults) {
     const ALL_MUSHROOMS = window.ALL_MUSHROOMS || [];
