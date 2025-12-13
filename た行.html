@@ -561,10 +561,19 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.opacity = "1";
   });
 
-  function sendHeight() {
-    const height = document.documentElement.scrollHeight;
-    window.parent.postMessage({ type:"setHeight", height }, "*");
-  }
+function sendHeight() {
+  const height = Math.max(
+    document.body.scrollHeight,
+    document.body.offsetHeight,
+    document.documentElement.scrollHeight,
+    document.documentElement.offsetHeight
+  );
+
+  window.parent.postMessage(
+    { type: "setHeight", height },
+    "*"
+  );
+}
 
   const gallery = document.querySelector(".gallery");
   if (gallery) {
