@@ -154,6 +154,7 @@ body {
   max-width: 900px;
   margin: 0 auto 40px;
   padding: 0 8px;
+  margin-bottom: 56px; /* ← 全セクション共通の呼吸 */
 }
 .section-title {
   text-align: center;
@@ -162,7 +163,7 @@ body {
   margin-bottom: 18px;
   letter-spacing: 0.04em;
 }
-/* 検索ボックスをフラット化 */
+/* 検索ボックスはフラットに */
 .index-search-box {
   background: transparent;
   box-shadow: none;
@@ -216,15 +217,18 @@ body {
 ========================= */
 .section-card {
   background: #fff;
-  border-radius: 14px;
-  padding: 18px 16px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  padding: 22px 20px;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.06);
+  
+  transition: box-shadow 0.25s ease;
 }
 
 /* PC */
 @media (min-width: 768px) {
   .section-card {
-    padding: 22px 24px;
+    padding: 18px 16px;
   }
 }
 
