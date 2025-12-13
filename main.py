@@ -236,7 +236,7 @@ body {
   text-align: center;
   font-size: 20px;
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 0px;
   letter-spacing: 0.04em;
 }
 /* 検索ボックスはフラットに */
@@ -294,8 +294,8 @@ body {
 .section-card {
   background: #fff;
   border-radius: 16px;
-  padding: 20px 24px;
-  margin-bottom: 24px;
+  padding: 20px 20px;
+  margin-bottom: 0px;
   box-shadow:
     0 8px 24px rgba(0, 0, 0, 0.06);
   
