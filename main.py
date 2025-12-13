@@ -1127,7 +1127,9 @@ def generate_gallery(entries, exif_cache):
 def generate_index(grouped, exif_cache):
     index_parts = []
 
-    # altごとに最新撮影日
+    # --------------------------
+    # altごとに最新撮影日を取得
+    # --------------------------
     alt_latest = {}
     for alt, srcs in grouped.items():
         best_key = ""
@@ -1142,6 +1144,9 @@ def generate_index(grouped, exif_cache):
         if best_key:
             alt_latest[alt] = best_key
 
+    # --------------------------
+    # おすすめ用ピック関数
+    # --------------------------
     def pick_mushrooms(name_list):
         items = []
         for name in name_list:
@@ -1161,7 +1166,10 @@ def generate_index(grouped, exif_cache):
     recommend_rarity = pick_mushrooms(RARITY_LIST)
     recommend_popular = pick_mushrooms(POPULAR_LIST)
 
-index_parts.append("""
+    # ==========================================================
+    # 🔍 全キノコ横断検索
+    # ==========================================================
+    index_parts.append("""
 <div class="section">
   <h2 class="section-title">🔍 全キノコ横断検索</h2>
 
@@ -1176,6 +1184,7 @@ index_parts.append("""
 </div>
 """)
 
+    # 検索用 JS データ
     all_mushrooms_js = []
     for alt, srcs in grouped.items():
         name_norm = alt.lower()
@@ -1193,47 +1202,45 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 </script>
 """)
 
-index_parts.append("""
+    # ==========================================================
+    # 五十音別分類
+    # ==========================================================
+    index_parts.append("""
 <div class="section">
   <h2 class="section-title">五十音別分類</h2>
   <div class="aiuo-links">
 """)
 
-for g in AIUO_GROUPS.keys():
-    index_parts.append(
-        f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>'
-    )
+    for g in AIUO_GROUPS.keys():
+        index_parts.append(
+            f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>'
+        )
 
-index_parts.append("""
+    index_parts.append("""
   </div>
 </div>
 """)
 
-index_parts.append("""
+    # ==========================================================
+    # おすすめキノコ
+    # ==========================================================
+    index_parts.append("""
 <div class="section">
-  <h2 class="section-title">五十音別分類</h2>
-  <div class="aiuo-links">
-""")
-
-for g in AIUO_GROUPS.keys():
-    index_parts.append(
-        f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>'
-    )
-
-index_parts.append("""
-  </div>
-</div>
+  <h2 class="section-title">おすすめキノコ</h2>
+  <div class="recommend-grid">
 """)
 
     def append_cards(title, items):
-        index_parts.append(f"<div class='recommend-card'><h3>{title}</h3><div class='rec-items'>")
+        index_parts.append(
+            f"<div class='recommend-card'><h3>{title}</h3><div class='rec-items'>"
+        )
         for it in items:
             index_parts.append(f"""
-        <a class="rec-item" href="{it['href']}">
-          <img src="{it['thumb']}" alt="{it['name']}">
-          <div>{it['name']}</div>
-        </a>
-        """)
+<a class="rec-item" href="{it['href']}">
+  <img src="{it['thumb']}" alt="{it['name']}">
+  <div>{it['name']}</div>
+</a>
+""")
         index_parts.append("</div></div>")
 
     append_cards("新着キノコ", recommend_new)
@@ -1245,14 +1252,15 @@ index_parts.append("""
 </div>
 """)
 
-    index_parts.append("</div><hr style='margin:30px 0;'>")
-
+    # ==========================================================
+    # 共通リソース
+    # ==========================================================
     index_parts.append(STYLE_TAG)
     index_parts.append(LIGHTGALLERY_TAGS)
     index_parts.append(SCRIPT_TAG)
 
+    # 書き出し
     index_html = "".join(index_parts)
-
     with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
         f.write(index_html)
 
