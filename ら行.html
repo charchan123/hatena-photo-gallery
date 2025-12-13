@@ -3,14 +3,14 @@
           <input type="text" class="search-input" placeholder="キノコ名で絞り込み">
         </div>
         <div class='mushroom-list'>
-        <a href="ルリハツタケ.html?from=aiuo&kana=ら行&i=0"
-           class="mushroom-card"
-           data-name="ルリハツタケ"
-           data-kana="ル">
-          <div class="mushroom-card-thumb"><img src='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018231834.jpg?width=400' alt='ルリハツタケ' loading='lazy'></div>
-          <div class="mushroom-card-name">ルリハツタケ</div>
-        </a>
-        </div>
+            <a href="ルリハツタケ.html?from=aiuo&kana=ら行"
+               class="mushroom-card"
+               data-name="ルリハツタケ"
+               data-kana="ル">
+              <div class="mushroom-card-thumb"><img src='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018231834.jpg?width=400' alt='ルリハツタケ' loading='lazy'></div>
+              <div class="mushroom-card-name">ルリハツタケ</div>
+            </a>
+            </div>
         <div style="text-align:center; margin:40px 0 20px;">
           <a href="index.html" class="back-btn">
             ◀ トップに戻る
@@ -581,35 +581,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (typeof sendHeight === "function") sendHeight();
 })();
-
-  // =========================
-// ★ 前 / 次のキノコ（同じ行内）
-// =========================
-  (function () {
-    const params = new URLSearchParams(location.search);
-    const from = params.get("from");
-    const kana = params.get("kana");
-    const index = Number(params.get("i"));
-
-    if (from !== "aiuo" || !kana || isNaN(index)) return;
-
-    // 五十音ページに戻る前提リンク
-    const nav = document.createElement("div");
-    nav.style.display = "flex";
-    nav.style.justifyContent = "space-between";
-    nav.style.margin = "24px auto 0";
-    nav.style.maxWidth = "900px";
-
-    nav.innerHTML = `
-      <a href="${kana}.html" class="back-btn">◀ 一覧</a>
-      <a href="${kana}.html" class="back-btn">次へ ▶</a>
-    `;
-
-    const gallery = document.querySelector(".gallery");
-    if (gallery) {
-      gallery.after(nav);
-    }
-  })();
 
   function highlight(text, q) {
     if (!q) return text;

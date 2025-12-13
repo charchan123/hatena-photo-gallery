@@ -644,35 +644,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (typeof sendHeight === "function") sendHeight();
 })();
 
-  // =========================
-// ★ 前 / 次のキノコ（同じ行内）
-// =========================
-  (function () {
-    const params = new URLSearchParams(location.search);
-    const from = params.get("from");
-    const kana = params.get("kana");
-    const index = Number(params.get("i"));
-
-    if (from !== "aiuo" || !kana || isNaN(index)) return;
-
-    // 五十音ページに戻る前提リンク
-    const nav = document.createElement("div");
-    nav.style.display = "flex";
-    nav.style.justifyContent = "space-between";
-    nav.style.margin = "24px auto 0";
-    nav.style.maxWidth = "900px";
-
-    nav.innerHTML = `
-      <a href="${kana}.html" class="back-btn">◀ 一覧</a>
-      <a href="${kana}.html" class="back-btn">次へ ▶</a>
-    `;
-
-    const gallery = document.querySelector(".gallery");
-    if (gallery) {
-      gallery.after(nav);
-    }
-  })();
-
   function highlight(text, q) {
     if (!q) return text;
     const escaped = escapeRegExp(q);
