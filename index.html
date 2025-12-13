@@ -10,6 +10,13 @@
     </div>
 
     <div class="index-search-results"></div>
+
+    <!-- 🔍 検索結果が0件のときだけ表示 -->
+    <div class="search-empty" style="display:none;">
+      🔍 該当するキノコが見つかりませんでした<br>
+      <small>ひらがな・カタカナを変えて試してみてください</small>
+    </div>
+    
     <div class="index-pagination"></div>
   </div>
 </div>
@@ -450,6 +457,48 @@ body {
   margin: 0;
   padding: 0;
 }
+
+/* ===== 検索結果アニメーション ===== */
+.search-result-item {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fadeUp 0.35s ease forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== 検索0件表示 ===== */
+.search-empty {
+  text-align: center;
+  color: #777;
+  font-size: 14px;
+  padding: 16px 0;
+  line-height: 1.6;
+}
+.search-empty small {
+  font-size: 12px;
+  color: #999;
+}
+
+/* 押した瞬間 */
+.aiuo-link:active {
+  transform: scale(0.94);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+  background: #e0ebff;
+}
+
+/* 選択中（今見ている行） */
+.aiuo-link.current {
+  background: #0f62fe;
+  color: #fff;
+  border-color: #0f62fe;
+  box-shadow: 0 4px 12px rgba(15,98,254,0.35);
+}
 </style>
 <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
@@ -597,9 +646,21 @@ function sendHeight() {
 
     kanaButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
+
+        // ===== kana-btn（検索用）の active =====
         kanaButtons.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
-        currentKana = btn.getAttribute("data-kana") || "all";
+
+        // ===== aiuo-link（見た目用）の current =====
+        document.querySelectorAll(".aiuo-link")
+          .forEach(l => l.classList.remove("current"));
+
+        const kana = btn.getAttribute("data-kana") || "all";
+        const link = document.querySelector(`.aiuo-link[data-kana="${kana}"]`);
+        if (link) link.classList.add("current");
+
+        // ===== フィルタ処理 =====
+        currentKana = kana;
         applyFilter();
       });
     });
@@ -616,9 +677,19 @@ function sendHeight() {
     const PER_PAGE = 30;
 
     function renderResults(list) {
+      // 🔍 0件の場合
+      if (list.length === 0) {
+        indexResults.innerHTML = "";
+        if (emptyEl) emptyEl.style.display = "block";
+        return;
+      }
+
+      // 🔍 結果ありの場合
+      if (emptyEl) emptyEl.style.display = "none";
+
       indexResults.innerHTML = list.map(item => `
         <a href="${item.href}"
-           class="mushroom-card"
+           class="mushroom-card search-result-item"
            data-name="${item.name}">
           <div class="mushroom-card-thumb">
             <img src="${item.thumb}" alt="${item.name}">
