@@ -213,12 +213,21 @@ body {
   pointer-events: none;
 }
 
-/* ==== 五十音別カード ==== */
+/* =========================
+   セクション共通カード
+========================= */
 .section-card {
   background: #fff;
-  border-radius: 20px;
-  padding: 18px 20px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  border-radius: 14px;
+  padding: 18px 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+/* PC */
+@media (min-width: 768px) {
+  .section-card {
+    padding: 22px 24px;
+  }
 }
 
 /* ==== おすすめ3キノコカード ==== */
