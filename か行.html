@@ -1117,75 +1117,7 @@ document.addEventListener("DOMContentLoaded", () => {
   })();
 
 // =========================
-// ★ パンくずリスト（五十音 → 詳細ページ）
-// =========================
-(function () {
-  const params = new URLSearchParams(location.search);
-  const from = params.get("from");
-  const kana = params.get("kana");
-
-  if (from !== "aiuo" || !kana) return;
-
-  const title = document.querySelector("h2");
-  if (!title) return;
-
-  const crumb = document.createElement("nav");
-  crumb.style.textAlign = "center";
-  crumb.style.fontSize = "13px";
-  crumb.style.margin = "8px 0 16px";
-  crumb.style.color = "#666";
-
-  crumb.innerHTML = `
-    <a href="index.html" style="color:#555; text-decoration:none;">
-      トップ
-    </a>
-    <span style="margin:0 4px;">›</span>
-    <a href="${kana}.html" style="color:#555; text-decoration:none;">
-      ${kana}
-    </a>
-    <span style="margin:0 4px;">›</span>
-    <span style="color:#999;">
-      ${title.textContent}
-    </span>
-  `;
-
-  // h2（キノコ名タイトル）の直前に差し込む
-  title.before(crumb);
-
-  // iframe 高さ再計算
-  if (typeof sendHeight === "function") {
-    sendHeight();
-  }
-})();
-
-(function () {
-  const path = location.pathname;
-  const match = path.match(/\/([^\/]+行)\.html$/);
-  if (!match) return;
-
-  const kana = match[1];
-  const h2 = document.querySelector("h2");
-  if (!h2) return;
-
-  const crumb = document.createElement("nav");
-  crumb.style.textAlign = "center";
-  crumb.style.fontSize = "13px";
-  crumb.style.margin = "8px 0 16px";
-  crumb.style.color = "#666";
-
-  crumb.innerHTML = `
-    <a href="index.html" style="color:#555;">トップ</a>
-    <span> › </span>
-    <span style="color:#999;">${kana}</span>
-  `;
-
-  h2.before(crumb);
-
-  if (typeof sendHeight === "function") sendHeight();
-})();
-
-// =========================
-// ★ パンくずリスト（入口別）
+// ★ パンくずリスト（完全統合・1系統）
 // =========================
 (function () {
   const params = new URLSearchParams(location.search);
@@ -1195,33 +1127,65 @@ document.addEventListener("DOMContentLoaded", () => {
   const title = document.querySelector("h2");
   if (!title) return;
 
-  let middle = "";
+  let crumbHTML = "";
 
-  if (from === "aiuo" && kana) {
-    middle = `<a href="${kana}.html">五十音 › ${kana}</a>`;
-  } else if (from === "index") {
-    middle = `<a href="index.html">全キノコ検索</a>`;
-  } else if (from === "recommend") {
-    middle = `<a href="index.html#recommend">おすすめキノコ</a>`;
-  } else {
-    return; // 直アクセスは出さない（うるさくしない）
+  // =========================
+  // ① 〇行のキノコページ（あ行.html など）
+  // =========================
+  const pathMatch = location.pathname.match(/\/([^\/]+行)\.html$/);
+  if (pathMatch && !from) {
+    const k = pathMatch[1];
+    crumbHTML = `
+      <a href="index.html">トップ</a>
+      <span> › </span>
+      <span>五十音</span>
+      <span> › </span>
+      <span style="color:#999;">${k}</span>
+    `;
   }
 
-  const crumb = document.createElement("nav");
-  crumb.style.textAlign = "center";
-  crumb.style.fontSize = "13px";
-  crumb.style.margin = "8px 0 16px";
-  crumb.style.color = "#666";
+  // =========================
+  // ② キノコ詳細ページ
+  // =========================
+  else if (from === "aiuo" && kana) {
+    crumbHTML = `
+      <a href="index.html">トップ</a>
+      <span> › </span>
+      <a href="${kana}.html">五十音 › ${kana}</a>
+      <span> › </span>
+      <span style="color:#999;">${title.textContent}</span>
+    `;
+  }
+  else if (from === "index") {
+    crumbHTML = `
+      <a href="index.html">トップ</a>
+      <span> › </span>
+      <a href="index.html">全キノコ検索</a>
+      <span> › </span>
+      <span style="color:#999;">${title.textContent}</span>
+    `;
+  }
+  else if (from === "recommend") {
+    crumbHTML = `
+      <a href="index.html">トップ</a>
+      <span> › </span>
+      <a href="index.html#recommend">おすすめキノコ</a>
+      <span> › </span>
+      <span style="color:#999;">${title.textContent}</span>
+    `;
+  }
+  else {
+    return; // 直アクセスは出さない
+  }
 
-  crumb.innerHTML = `
-    <a href="index.html">トップ</a>
-    <span> › </span>
-    ${middle}
-    <span> › </span>
-    <span style="color:#999;">${title.textContent}</span>
-  `;
+  const nav = document.createElement("nav");
+  nav.style.textAlign = "center";
+  nav.style.fontSize = "13px";
+  nav.style.margin = "8px 0 16px";
+  nav.style.color = "#666";
+  nav.innerHTML = crumbHTML;
 
-  title.before(crumb);
+  title.before(nav);
 
   if (typeof sendHeight === "function") sendHeight();
 })();
