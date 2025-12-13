@@ -1194,7 +1194,9 @@ def generate_index(grouped, exif_cache):
 
   <div class="section-card">
     <div class="index-search-box">
-      <input …>
+      <input type="text"
+             class="index-search-input"
+             placeholder="キノコ名で検索（例：ベニタケ）">
     </div>
 
     <div class="index-search-results"></div>
