@@ -3,14 +3,14 @@
           <input type="text" class="search-input" placeholder="キノコ名で絞り込み">
         </div>
         <div class='mushroom-list'>
-<a href="ワタカラカサタケ.html"
-   class="mushroom-card"
-   data-name="ワタカラカサタケ"
-   data-kana="ワ">
-  <div class="mushroom-card-thumb"><img src='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005201456.jpg?width=400' alt='ワタカラカサタケ' loading='lazy'></div>
-  <div class="mushroom-card-name">ワタカラカサタケ</div>
-</a>
-</div><div class='aiuo-links' style='margin-top:40px;'><a class="aiuo-link" href="あ行.html">あ行</a><a class="aiuo-link" href="か行.html">か行</a><a class="aiuo-link" href="さ行.html">さ行</a><a class="aiuo-link" href="た行.html">た行</a><a class="aiuo-link" href="な行.html">な行</a><a class="aiuo-link" href="は行.html">は行</a><a class="aiuo-link" href="ま行.html">ま行</a><a class="aiuo-link" href="や行.html">や行</a><a class="aiuo-link" href="ら行.html">ら行</a><a class="aiuo-link" href="わ行.html">わ行</a></div><style>
+            <a href="ワタカラカサタケ.html?from=aiuo&kana=わ行"
+               class="mushroom-card"
+               data-name="ワタカラカサタケ"
+               data-kana="ワ">
+              <div class="mushroom-card-thumb"><img src='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005201456.jpg?width=400' alt='ワタカラカサタケ' loading='lazy'></div>
+              <div class="mushroom-card-name">ワタカラカサタケ</div>
+            </a>
+            </div><div class='aiuo-links' style='margin-top:40px;'><a class="aiuo-link" href="あ行.html">あ行</a><a class="aiuo-link" href="か行.html">か行</a><a class="aiuo-link" href="さ行.html">さ行</a><a class="aiuo-link" href="た行.html">た行</a><a class="aiuo-link" href="な行.html">な行</a><a class="aiuo-link" href="は行.html">は行</a><a class="aiuo-link" href="ま行.html">ま行</a><a class="aiuo-link" href="や行.html">や行</a><a class="aiuo-link" href="ら行.html">ら行</a><a class="aiuo-link" href="わ行.html">わ行</a></div><style>
 html, body {
   margin: 0;
   padding: 0;
@@ -459,6 +459,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function escapeRegExp(str) {
   return str.replace(/[-\/\^$*+?.()|[\]{}]/g, "\$&");
+
+  // ===== 文脈リンク：五十音 → 詳細ページ =====
+  const params = new URLSearchParams(location.search);
+  const from = params.get("from");
+  const kana = params.get("kana");
+
+  if (from === "aiuo" && kana) {
+    const nav = document.createElement("div");
+    nav.style.textAlign = "center";
+    nav.style.margin = "24px 0 12px";
+
+    nav.innerHTML = `
+      <a href="${kana}.html" class="back-btn">
+        ◀ ${kana}の一覧に戻る
+      </a>
+    `;
+
+    // 最初の h2（キノコ名タイトル）の直下に入れる
+    const title = document.querySelector("h2");
+    if (title) {
+      title.after(nav);
+    }
+    const more = document.createElement("div");
+    more.style.textAlign = "center";
+    more.style.marginTop = "8px";
+    more.innerHTML = `
+      <a href="${kana}.html" style="font-size:13px; color:#555;">
+        ${kana}の他のキノコを見る →
+      </a>
+    `;
+    document.querySelector(".back-btn")?.after(more);
+  }
 }
 
 function highlight(text, q) {
