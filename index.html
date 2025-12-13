@@ -677,15 +677,12 @@ function sendHeight() {
     let page = 1;
     const PER_PAGE = 30;
 
-    function renderResults(list) {
-      // 🔍 0件の場合
+    function renderResults(list, q="") {
       if (list.length === 0) {
         indexResults.innerHTML = "";
         if (emptyEl) emptyEl.style.display = "block";
         return;
       }
-
-      // 🔍 結果ありの場合
       if (emptyEl) emptyEl.style.display = "none";
 
       indexResults.innerHTML = list.map(item => `
@@ -698,6 +695,20 @@ function sendHeight() {
           <div class="mushroom-card-name">${item.name}</div>
         </a>
       `).join("");
+    }
+
+    function updateURL(q, page) {
+      const params = new URLSearchParams();
+      if (q) params.set("q", q);
+      if (page > 1) params.set("page", page);
+      history.replaceState(null, "", "?" + params.toString());
+    }
+
+    function loadFromURL() {
+      const params = new URLSearchParams(location.search);
+      const q = params.get("q") || "";
+      const p = Number(params.get("page") || 1);
+      return { q, p };
     }
 
     function renderPagination(totalPages) {
@@ -721,8 +732,10 @@ function sendHeight() {
     }
 
     function doSearch() {
-      const q = indexSearchInput.value.trim().normalize("NFKC").toLowerCase();
-      const filtered = q
+      const rawQ = indexSearchInput.value.trim().normalize("NFKC");
+      const q = rawQ.toLowerCase();
+
+      const filtered = rawQ
         ? ALL_MUSHROOMS.filter(m => m.name_norm.includes(q))
         : [];
 
@@ -730,11 +743,17 @@ function sendHeight() {
       if (page > totalPages) page = totalPages;
 
       const start = (page - 1) * PER_PAGE;
-      renderResults(filtered.slice(start, start+PER_PAGE));
+      renderResults(filtered.slice(start, start+PER_PAGE), rawQ);
 
       renderPagination(totalPages);
+      updateURL(rawQ, page);
       sendHeight();
     }
+
+    const { q, p } = loadFromURL();
+    indexSearchInput.value = q;
+    page = p;
+    doSearch();
 
     indexSearchInput.addEventListener("input", () => {
       page = 1;
