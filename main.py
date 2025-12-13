@@ -458,6 +458,13 @@ body {
 .lg-sub-html {
   position: relative;
 }
+
+/* ===== 検索結果が空のときの余白除去 ===== */
+.index-search-results:empty,
+.index-pagination:empty {
+  margin: 0;
+  padding: 0;
+}
 </style>"""
 
 # ====== LightGallery 読み込みタグ ======
