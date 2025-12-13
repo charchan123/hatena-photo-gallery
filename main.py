@@ -289,12 +289,21 @@ body {
   pointer-events: none;
 }
 
-/* ==== 五十音別カード ==== */
+/* =========================
+   セクション共通カード
+========================= */
 .section-card {
   background: #fff;
-  border-radius: 20px;
-  padding: 18px 20px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  border-radius: 14px;
+  padding: 18px 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+/* PC */
+@media (min-width: 768px) {
+  .section-card {
+    padding: 22px 24px;
+  }
 }
 
 /* ==== おすすめ3キノコカード ==== */
@@ -1181,14 +1190,16 @@ def generate_index(grouped, exif_cache):
 <div class="section">
   <h2 class="section-title">🔍 全キノコ横断検索</h2>
 
-  <div class="index-search-box">
-    <input type="text"
-           class="index-search-input"
-           placeholder="キノコ名で検索（例：ベニタケ）">
-  </div>
+  <div class="section-card">
+    <div class="index-search-box">
+      <input type="text"
+             class="index-search-input"
+             placeholder="キノコ名で検索（例：ベニタケ）">
+    </div>
 
-  <div class="index-search-results"></div>
-  <div class="index-pagination"></div>
+    <div class="index-search-results"></div>
+    <div class="index-pagination"></div>
+  </div>
 </div>
 """)
 
@@ -1238,7 +1249,9 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     index_parts.append("""
 <div class="section">
   <h2 class="section-title">おすすめキノコ</h2>
-  <div class="recommend-grid">
+
+  <div class="section-card">
+    <div class="recommend-grid">
 """)
 
     def append_cards(title, items):
@@ -1259,6 +1272,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     append_cards("人気キノコTOP3", recommend_popular)
 
     index_parts.append("""
+    </div>
   </div>
 </div>
 """)
