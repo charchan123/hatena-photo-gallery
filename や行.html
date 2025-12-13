@@ -706,7 +706,8 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateEmptyState() {
       const hasQuery = searchInput.value.trim() !== "" || currentKana !== "all";
       if (!hasQuery) {
-        document.querySelector(".search-empty")?.style.display = "none";
+        const empty = document.querySelector(".search-empty");
+        if (empty) empty.style.display = "none";
         return;
       }
 
