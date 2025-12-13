@@ -1202,10 +1202,10 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 </script>
 """)
 
-    # ==========================================================
-    # 五十音別分類
-    # ==========================================================
-index_parts.append("""
+# ==========================================================
+# 五十音別分類
+# ==========================================================
+    index_parts.append("""
 <div class="section">
   <h2 class="section-title">五十音別分類</h2>
 
@@ -1213,12 +1213,12 @@ index_parts.append("""
     <div class="aiuo-links">
 """)
 
-for g in AIUO_GROUPS.keys():
-    index_parts.append(
-        f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>'
-    )
+    for g in AIUO_GROUPS.keys():
+        index_parts.append(
+            f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>'
+        )
 
-index_parts.append("""
+    index_parts.append("""
     </div>
   </div>
 </div>
@@ -1227,30 +1227,30 @@ index_parts.append("""
     # ==========================================================
     # おすすめキノコ
     # ==========================================================
-index_parts.append("""
+    index_parts.append("""
 <div class="section">
   <h2 class="section-title">おすすめキノコ</h2>
   <div class="recommend-grid">
 """)
 
-def append_cards(title, items):
-    index_parts.append(
-        f"<div class='recommend-card'><h3>{title}</h3><div class='rec-items'>"
-    )
-    for it in items:
-        index_parts.append(f"""
+    def append_cards(title, items):
+        index_parts.append(
+            f"<div class='recommend-card'><h3>{title}</h3><div class='rec-items'>"
+        )
+        for it in items:
+            index_parts.append(f"""
 <a class="rec-item" href="{it['href']}">
   <img src="{it['thumb']}" alt="{it['name']}">
   <div>{it['name']}</div>
 </a>
-""")
-    index_parts.append("</div></div>")
+    """)
+        index_parts.append("</div></div>")
 
-append_cards("新着キノコ", recommend_new)
-append_cards("珍しいキノコ", recommend_rarity)
-append_cards("人気キノコTOP3", recommend_popular)
+    append_cards("新着キノコ", recommend_new)
+    append_cards("珍しいキノコ", recommend_rarity)
+    append_cards("人気キノコTOP3", recommend_popular)
 
-index_parts.append("""
+    index_parts.append("""
   </div>
 </div>
 """)
