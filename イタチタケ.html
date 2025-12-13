@@ -16,6 +16,7 @@ body {
   box-sizing:border-box;
   opacity: 0;
   transition: opacity .25s ease;
+  opacity: 1; /* ← 透明化を解除 */
 }
 
 /* ======== ギャラリー本体（PC4列・スマホ3列） ======== */
@@ -449,11 +450,15 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.opacity = "1";
   });
 
+function escapeRegExp(str) {
+  return str.replace(/[-\/\^$*+?.()|[\]{}]/g, "\$&");
+}
+
 function highlight(text, q) {
   if (!q) return text;
-  const escaped = q.replace(/[.*+?^${}()|[\]\]/g, "\$&");
+  const escaped = escapeRegExp(q);
   return text.replace(
-    new RegExp(`(${escaped})`, "ig"),
+    new RegExp("(" + escaped + ")", "ig"),
     "<mark>$1</mark>"
   );
 }
