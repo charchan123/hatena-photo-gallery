@@ -1213,12 +1213,12 @@ index_parts.append("""
     <div class="aiuo-links">
 """)
 
-    for g in AIUO_GROUPS.keys():
-        index_parts.append(
-            f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>'
-        )
+for g in AIUO_GROUPS.keys():
+    index_parts.append(
+        f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>'
+    )
 
-    index_parts.append("""
+index_parts.append("""
   </div>
 </div>
 """)
