@@ -1,8 +1,4 @@
-<h2 style='font-size:24px; font-weight:600; text-align:center; margin-top:20px;'>ニシキタケ<span style='font-size:15px; font-weight:400; color:#666; margin-left:6px;'>— 1 photos</span></h2><div class='gallery'><a class="gallery-item" href="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914214927.jpg" data-exthumbimage="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914214927.jpg?width=300" data-sub-html="&lt;div class=&#x27;exif-wrap&#x27;&gt;&lt;div class=&#x27;exif-title&#x27;&gt;ニシキタケ&lt;/div&gt;&lt;div class=&#x27;exif-middle&#x27;&gt;DC-G9M2 / OLYMPUS M.12-40mm F2.8&lt;/div&gt;&lt;div class=&#x27;exif-bottom-row&#x27;&gt;&lt;span&gt;21mm&lt;/span&gt;&lt;span&gt;f/11.0&lt;/span&gt;&lt;span&gt;2/1s&lt;/span&gt;&lt;span&gt;ISO200&lt;/span&gt;&lt;span&gt;2025/09/13&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914214927.jpg" alt="ニシキタケ" loading="lazy"></a></div>
-        <div style='margin-top:40px; text-align:center;'>
-            <a href='javascript:history.back()' class='back-btn'>← 戻る</a>
-        </div>
-        <div class='aiuo-links' style='margin-top:40px;'><a class="aiuo-link" href="あ行.html">あ行</a><a class="aiuo-link" href="か行.html">か行</a><a class="aiuo-link" href="さ行.html">さ行</a><a class="aiuo-link" href="た行.html">た行</a><a class="aiuo-link" href="な行.html">な行</a><a class="aiuo-link" href="は行.html">は行</a><a class="aiuo-link" href="ま行.html">ま行</a><a class="aiuo-link" href="や行.html">や行</a><a class="aiuo-link" href="ら行.html">ら行</a><a class="aiuo-link" href="わ行.html">わ行</a></div><style>
+<h2 style='font-size:24px; font-weight:600; text-align:center; margin-top:20px;'>ニシキタケ<span style='font-size:15px; font-weight:400; color:#666; margin-left:6px;'>— 1 photos</span></h2><div class='gallery'><a class="gallery-item" href="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914214927.jpg" data-exthumbimage="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914214927.jpg?width=300" data-sub-html="&lt;div class=&#x27;exif-wrap&#x27;&gt;&lt;div class=&#x27;exif-title&#x27;&gt;ニシキタケ&lt;/div&gt;&lt;div class=&#x27;exif-middle&#x27;&gt;DC-G9M2 / OLYMPUS M.12-40mm F2.8&lt;/div&gt;&lt;div class=&#x27;exif-bottom-row&#x27;&gt;&lt;span&gt;21mm&lt;/span&gt;&lt;span&gt;f/11.0&lt;/span&gt;&lt;span&gt;2/1s&lt;/span&gt;&lt;span&gt;ISO200&lt;/span&gt;&lt;span&gt;2025/09/13&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914214927.jpg" alt="ニシキタケ" loading="lazy"></a></div><div class='aiuo-links' style='margin-top:40px;'><a class="aiuo-link" href="あ行.html">あ行</a><a class="aiuo-link" href="か行.html">か行</a><a class="aiuo-link" href="さ行.html">さ行</a><a class="aiuo-link" href="た行.html">た行</a><a class="aiuo-link" href="な行.html">な行</a><a class="aiuo-link" href="は行.html">は行</a><a class="aiuo-link" href="ま行.html">ま行</a><a class="aiuo-link" href="や行.html">や行</a><a class="aiuo-link" href="ら行.html">ら行</a><a class="aiuo-link" href="わ行.html">わ行</a></div><style>
 html, body {
   margin: 0;
   padding: 0;
@@ -453,9 +449,9 @@ document.addEventListener("DOMContentLoaded", () => {
     return str.replace(/[-\/\^$*+?.()|[\]{}]/g, "\\$&");
   }
 
-  // =========================
-  // ★ 文脈リンク：五十音 → 詳細ページ（安全追加）
-  // =========================
+// =========================
+// ★ 文脈リンク：五十音 → 詳細ページ（安全追加・最終形）
+// =========================
   (function () {
     const params = new URLSearchParams(location.search);
     const from = params.get("from");
@@ -463,12 +459,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (from !== "aiuo" || !kana) return;
 
-    const title = document.querySelector("h2");
-    if (!title) return;
+    // 既存の「← 戻る」ボタンがあれば削除（保険）
+    document.querySelectorAll(".back-btn").forEach(b => b.remove());
 
     const nav = document.createElement("div");
     nav.style.textAlign = "center";
-    nav.style.margin = "24px 0 12px";
+    nav.style.marginTop = "40px";
 
     nav.innerHTML = `
       <a href="${kana}.html" class="back-btn">
@@ -476,9 +472,19 @@ document.addEventListener("DOMContentLoaded", () => {
       </a>
     `;
 
-    title.after(nav);
+    /**
+     * 差し込み位置は「ギャラリー直後」
+     * → UX的にも、scrollToTitle 的にも一番安全
+     */
+    const gallery = document.querySelector(".gallery");
+    if (gallery) {
+      gallery.after(nav);
+    } else {
+      // フォールバック（ほぼ起きない）
+      document.body.appendChild(nav);
+    }
 
-    // 既存の高さ制御を壊さない
+    // iframe 高さを即再計算（既存ロジックを壊さない）
     if (typeof sendHeight === "function") {
       sendHeight();
     }

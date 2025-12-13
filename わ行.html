@@ -461,9 +461,9 @@ document.addEventListener("DOMContentLoaded", () => {
     return str.replace(/[-\/\^$*+?.()|[\]{}]/g, "\\$&");
   }
 
-  // =========================
-  // ★ 文脈リンク：五十音 → 詳細ページ（安全追加）
-  // =========================
+// =========================
+// ★ 文脈リンク：五十音 → 詳細ページ（安全追加・最終形）
+// =========================
   (function () {
     const params = new URLSearchParams(location.search);
     const from = params.get("from");
@@ -471,12 +471,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (from !== "aiuo" || !kana) return;
 
-    const title = document.querySelector("h2");
-    if (!title) return;
+    // 既存の「← 戻る」ボタンがあれば削除（保険）
+    document.querySelectorAll(".back-btn").forEach(b => b.remove());
 
     const nav = document.createElement("div");
     nav.style.textAlign = "center";
-    nav.style.margin = "24px 0 12px";
+    nav.style.marginTop = "40px";
 
     nav.innerHTML = `
       <a href="${kana}.html" class="back-btn">
@@ -484,9 +484,19 @@ document.addEventListener("DOMContentLoaded", () => {
       </a>
     `;
 
-    title.after(nav);
+    /**
+     * 差し込み位置は「ギャラリー直後」
+     * → UX的にも、scrollToTitle 的にも一番安全
+     */
+    const gallery = document.querySelector(".gallery");
+    if (gallery) {
+      gallery.after(nav);
+    } else {
+      // フォールバック（ほぼ起きない）
+      document.body.appendChild(nav);
+    }
 
-    // 既存の高さ制御を壊さない
+    // iframe 高さを即再計算（既存ロジックを壊さない）
     if (typeof sendHeight === "function") {
       sendHeight();
     }
