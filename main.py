@@ -541,6 +541,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function escapeRegExp(str) {
   return str.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
+
+  // ===== 文脈リンク：五十音 → 詳細ページ =====
+  const params = new URLSearchParams(location.search);
+  const from = params.get("from");
+  const kana = params.get("kana");
+
+  if (from === "aiuo" && kana) {
+    const nav = document.createElement("div");
+    nav.style.textAlign = "center";
+    nav.style.margin = "24px 0 12px";
+
+    nav.innerHTML = `
+      <a href="${kana}.html" class="back-btn">
+        ◀ ${kana}の一覧に戻る
+      </a>
+    `;
+
+    // 最初の h2（キノコ名タイトル）の直下に入れる
+    const title = document.querySelector("h2");
+    if (title) {
+      title.after(nav);
+    }
+    const more = document.createElement("div");
+    more.style.textAlign = "center";
+    more.style.marginTop = "8px";
+    more.innerHTML = `
+      <a href="${kana}.html" style="font-size:13px; color:#555;">
+        ${kana}の他のキノコを見る →
+      </a>
+    `;
+    document.querySelector(".back-btn")?.after(more);
+  }
 }
 
 function highlight(text, q) {
@@ -1286,14 +1318,14 @@ def generate_gallery(entries, exif_cache):
                 )
 
             html_parts.append(f"""
-<a href="{safe}.html"
-   class="mushroom-card"
-   data-name="{esc_name}"
-   data-kana="{esc_kana}">
-  <div class="mushroom-card-thumb">{img_tag}</div>
-  <div class="mushroom-card-name">{esc_name}</div>
-</a>
-""")
+            <a href="{safe}.html?from=aiuo&kana={html.escape(g)}"
+               class="mushroom-card"
+               data-name="{esc_name}"
+               data-kana="{esc_kana}">
+              <div class="mushroom-card-thumb">{img_tag}</div>
+              <div class="mushroom-card-name">{esc_name}</div>
+            </a>
+            """)
         html_parts.append("</div>")  # .mushroom-list
 
         html_parts.append(group_links_html)
