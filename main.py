@@ -1126,7 +1126,7 @@ def generate_index(grouped, exif_cache):
     recommend_rarity = pick_mushrooms(RARITY_LIST)
     recommend_popular = pick_mushrooms(POPULAR_LIST)
 
-        index_parts.append("""
+    index_parts.append("""
 <div class="index-search-box">
   <div class="index-search-title">🔍 全キノコ横断検索</div>
   <input type="text" class="index-search-input" placeholder="キノコ名で検索（例：ベニタケ）">
