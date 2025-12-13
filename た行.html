@@ -771,8 +771,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const txt = a.textContent || "";
     const href = a.getAttribute("href") || "";
-
-    if (href.endsWith(".html")) {
+    
+    if (/\.html(\?|$)/.test(href)) {
       window.parent.postMessage({ type: "scrollToTitle" }, "*");
       return;
     }
