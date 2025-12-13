@@ -615,6 +615,12 @@ body {
   border-color: #0f62fe;
   box-shadow: 0 4px 12px rgba(15,98,254,0.35);
 }
+
+mark {
+  background: #ffe58f;
+  padding: 0 2px;
+  border-radius: 4px;
+}
 </style>
 <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
@@ -632,6 +638,15 @@ document.addEventListener("DOMContentLoaded", () => {
   requestAnimationFrame(() => {
     document.body.style.opacity = "1";
   });
+
+function highlight(text, q) {
+  if (!q) return text;
+  const escaped = q.replace(/[.*+?^${}()|[\]\]/g, "\$&");
+  return text.replace(
+    new RegExp(`(${escaped})`, "ig"),
+    "<mark>$1</mark>"
+  );
+}
 
 function sendHeight() {
   const height = Math.max(
@@ -744,17 +759,25 @@ function sendHeight() {
         ? q.normalize("NFKC").toLowerCase()
         : "";
 
-      cards.forEach((card) => {
-        const name = (card.getAttribute("data-name") || "")
-          .normalize("NFKC")
-          .toLowerCase();
-        const kana = card.getAttribute("data-kana") || "";
-        const matchText = !keyword || name.includes(keyword);
-        const matchKana = (currentKana === "all") || (kana === currentKana);
-        const show = matchText && matchKana;
-        card.style.display = show ? "" : "none";
-      });
-      
+        cards.forEach((card) => {
+          const rawName = card.getAttribute("data-name") || "";
+          const name = rawName.normalize("NFKC").toLowerCase();
+          const kana = card.getAttribute("data-kana") || "";
+        
+          const matchText = !keyword || name.includes(keyword);
+          const matchKana = (currentKana === "all") || (kana === currentKana);
+          const show = matchText && matchKana;
+        
+          card.style.display = show ? "" : "none";
+        
+          // 🔍 ハイライト（表示用）
+          const nameEl = card.querySelector(".mushroom-card-name");
+          if (nameEl) {
+            nameEl.innerHTML = keyword
+              ? highlight(rawName, searchInput.value.trim())
+              : rawName;
+          }
+        });    
       updateEmptyState();
       sendHeight();
     }
@@ -824,31 +847,32 @@ function sendHeight() {
 
     function renderResults(list, q = "") {
     
-      // 🔹 何も入力されていない状態（初期表示）
+      // 初期表示
       if (!q) {
         indexResults.innerHTML = "";
         if (emptyEl) emptyEl.style.display = "none";
         return;
       }
     
-      // 🔹 検索したけど0件
+      // 0件
       if (list.length === 0) {
         indexResults.innerHTML = "";
         if (emptyEl) emptyEl.style.display = "block";
         return;
       }
     
-      // 🔹 検索結果あり
       if (emptyEl) emptyEl.style.display = "none";
     
       indexResults.innerHTML = list.map(item => `
-        <a href="${item.href}"
+        <a href="${item.href}?from=index&q=${encodeURIComponent(q)}"
            class="mushroom-card search-result-item"
            data-name="${item.name}">
           <div class="mushroom-card-thumb">
             <img src="${item.thumb}" alt="${item.name}">
           </div>
-          <div class="mushroom-card-name">${item.name}</div>
+          <div class="mushroom-card-name">
+            ${highlight(item.name, q)}
+          </div>
         </a>
       `).join("");
     }
