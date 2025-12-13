@@ -530,15 +530,22 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function escapeRegExp(str) {
-    return str.replace(/[-\/\^$*+?.()|[\]{}]/g, "\$&");
+    return str.replace(/[-\/\^$*+?.()|[\]{}]/g, "\\$&");
   }
 
-  // ===== 文脈リンク：五十音 → 詳細ページ =====
-  const params = new URLSearchParams(location.search);
-  const from = params.get("from");
-  const kana = params.get("kana");
+  // =========================
+  // ★ 文脈リンク：五十音 → 詳細ページ（安全追加）
+  // =========================
+  (function () {
+    const params = new URLSearchParams(location.search);
+    const from = params.get("from");
+    const kana = params.get("kana");
 
-  if (from === "aiuo" && kana) {
+    if (from !== "aiuo" || !kana) return;
+
+    const title = document.querySelector("h2");
+    if (!title) return;
+
     const nav = document.createElement("div");
     nav.style.textAlign = "center";
     nav.style.margin = "24px 0 12px";
@@ -547,68 +554,57 @@ document.addEventListener("DOMContentLoaded", () => {
       <a href="${kana}.html" class="back-btn">
         ◀ ${kana}の一覧に戻る
       </a>
-      `;
-
-    // 最初の h2（キノコ名タイトル）の直下
-    const title = document.querySelector("h2");
-    if (title) {
-      title.after(nav);
-    }
-
-    const more = document.createElement("div");
-    more.style.textAlign = "center";
-    more.style.marginTop = "8px";
-    more.innerHTML = `
-      <a href="${kana}.html" style="font-size:13px; color:#555;">
-        ${kana}の他のキノコを見る →
-      </a>
     `;
 
-    document.querySelector(".back-btn")?.after(more);
+    title.after(nav);
+
+    // 既存の高さ制御を壊さない
+    if (typeof sendHeight === "function") {
+      sendHeight();
+    }
+  })();
+
+  function highlight(text, q) {
+    if (!q) return text;
+    const escaped = escapeRegExp(q);
+    return text.replace(
+      new RegExp("(" + escaped + ")", "ig"),
+      "<mark>$1</mark>"
+    );
   }
-}
 
-function highlight(text, q) {
-  if (!q) return text;
-  const escaped = escapeRegExp(q);
-  return text.replace(
-    new RegExp("(" + escaped + ")", "ig"),
-    "<mark>$1</mark>"
-  );
-}
+  function sendHeight() {
+    const height = Math.max(
+      document.body.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight
+    );
+    window.parent.postMessage({ type: "setHeight", height }, "*");
+  }
 
-function sendHeight() {
-  const height = Math.max(
-    document.body.scrollHeight,
-    document.body.offsetHeight,
-    document.documentElement.scrollHeight,
-    document.documentElement.offsetHeight
-  );
-
-  window.parent.postMessage(
-    { type: "setHeight", height },
-    "*"
-  );
-}
-
+  // =========================
+  // ギャラリー処理（既存）
+  // =========================
   const gallery = document.querySelector(".gallery");
   if (gallery) {
-    const fadeObs = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
+    const fadeObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
           e.target.classList.add("visible");
           fadeObs.unobserve(e.target);
         }
       });
-    }, {threshold:0.1});
-    gallery.querySelectorAll("img").forEach(img=>fadeObs.observe(img));
+    }, { threshold: 0.1 });
+
+    gallery.querySelectorAll("img").forEach(img => fadeObs.observe(img));
 
     imagesLoaded(gallery, () => {
-      gallery.style.visibility="visible";
+      gallery.style.visibility = "visible";
       sendHeight();
 
       const lg = lightGallery(gallery, {
-        selector: 'a.gallery-item',
+        selector: "a.gallery-item",
         plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
         speed: 400,
         download: false,
@@ -617,8 +613,7 @@ function sendHeight() {
         autoplay: false
       });
 
-      // サムネイルクリックで強制フルスクリーン
-      gallery.querySelectorAll("a.gallery-item").forEach((a) => {
+      gallery.querySelectorAll("a.gallery-item").forEach(a => {
         a.addEventListener("click", () => {
           const el = document.documentElement;
           if (el.requestFullscreen) el.requestFullscreen();
@@ -627,27 +622,27 @@ function sendHeight() {
         });
       });
 
-      // 閉じる前
       gallery.addEventListener("lgBeforeClose", () => {
         if (document.fullscreenElement) {
-          document.exitFullscreen().catch(()=>{});
+          document.exitFullscreen().catch(() => {});
         }
         window.parent.postMessage({ type: "lgClosed" }, "*");
       });
 
-      // ESC などでフルスクリーン解除されたとき
       document.addEventListener("fullscreenchange", () => {
         if (!document.fullscreenElement) {
           try {
             lg.closeGallery();
             window.parent.postMessage({ type: "lgClosed" }, "*");
-          } catch(e) {}
+          } catch (e) {}
         }
       });
     });
   }
 
-  // クリック判定（scrollToTitle 用）
+  // =========================
+  // scrollToTitle 判定（既存）
+  // =========================
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
     if (!a) return;
@@ -655,26 +650,25 @@ function sendHeight() {
     const txt = a.textContent || "";
     const href = a.getAttribute("href") || "";
 
-    // 1) キノコ名ページ (xxx.html)
     if (href.endsWith(".html")) {
       window.parent.postMessage({ type: "scrollToTitle" }, "*");
       return;
     }
 
-    // 2) あ行〜わ行
     if (/^(あ行|か行|さ行|た行|な行|は行|ま行|や行|ら行|わ行)$/.test(txt)) {
       window.parent.postMessage({ type: "scrollToTitle" }, "*");
       return;
     }
 
-    // 3) ← 戻る
     if (/戻る/.test(txt)) {
       window.parent.postMessage({ type: "scrollToTitle" }, "*");
       return;
     }
   });
 
-  // 五十音カード用：検索＋かなフィルタ
+  // =========================
+  // 五十音ページ 検索＋かなフィルタ（既存）
+  // =========================
   const searchInput = document.querySelector(".search-input");
   const kanaButtons = document.querySelectorAll(".kana-btn");
   const cards = document.querySelectorAll(".mushroom-card");
@@ -684,47 +678,40 @@ function sendHeight() {
 
     function applyFilter() {
       const q = searchInput.value.trim();
-      const keyword = q
-        ? q.normalize("NFKC").toLowerCase()
-        : "";
+      const keyword = q ? q.normalize("NFKC").toLowerCase() : "";
 
-        cards.forEach((card) => {
-          const rawName = card.getAttribute("data-name") || "";
-          const name = rawName.normalize("NFKC").toLowerCase();
-          const kana = card.getAttribute("data-kana") || "";
-        
-          const matchText = !keyword || name.includes(keyword);
-          const matchKana = (currentKana === "all") || (kana === currentKana);
-          const show = matchText && matchKana;
-        
-          card.style.display = show ? "" : "none";
-        
-          // 🔍 ハイライト（表示用）
-          const nameEl = card.querySelector(".mushroom-card-name");
-          if (nameEl) {
-            nameEl.innerHTML = keyword
-              ? highlight(rawName, searchInput.value.trim())
-              : rawName;
-          }
-        });    
+      cards.forEach(card => {
+        const rawName = card.getAttribute("data-name") || "";
+        const name = rawName.normalize("NFKC").toLowerCase();
+        const kana = card.getAttribute("data-kana") || "";
+
+        const matchText = !keyword || name.includes(keyword);
+        const matchKana = currentKana === "all" || kana === currentKana;
+        const show = matchText && matchKana;
+
+        card.style.display = show ? "" : "none";
+
+        const nameEl = card.querySelector(".mushroom-card-name");
+        if (nameEl) {
+          nameEl.innerHTML = keyword
+            ? highlight(rawName, searchInput.value.trim())
+            : rawName;
+        }
+      });
+
       updateEmptyState();
       sendHeight();
     }
-    
+
     function updateEmptyState() {
-      const hasQuery =
-        searchInput.value.trim() !== "" || currentKana !== "all";
-    
+      const hasQuery = searchInput.value.trim() !== "" || currentKana !== "all";
       if (!hasQuery) {
-        const empty = document.querySelector(".search-empty");
-        if (empty) empty.style.display = "none";
+        document.querySelector(".search-empty")?.style.display = "none";
         return;
       }
-    
-      const visible = Array.from(cards).some(
-        c => c.style.display !== "none"
-      );
-    
+
+      const visible = Array.from(cards).some(c => c.style.display !== "none");
+
       let empty = document.querySelector(".search-empty");
       if (!empty) {
         empty = document.createElement("div");
@@ -740,63 +727,54 @@ function sendHeight() {
 
     searchInput.addEventListener("input", applyFilter);
 
-    kanaButtons.forEach((btn) => {
+    kanaButtons.forEach(btn => {
       btn.addEventListener("click", () => {
-
-        // ===== kana-btn（検索用）の active =====
         kanaButtons.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
 
-        // ===== aiuo-link（見た目用）の current =====
         document.querySelectorAll(".aiuo-link")
           .forEach(l => l.classList.remove("current"));
 
         const kana = btn.getAttribute("data-kana") || "all";
-        const link = document.querySelector(`.aiuo-link[data-kana="${kana}"]`);
-        if (link) link.classList.add("current");
+        document.querySelector(`.aiuo-link[data-kana="${kana}"]`)
+          ?.classList.add("current");
 
-        // ===== フィルタ処理 =====
         currentKana = kana;
         applyFilter();
-        updateEmptyState();
       });
     });
   }
 
-  // index.html 専用：全キノコ横断検索
+  // =========================
+  // index 横断検索（既存：ページネーション含む）
+  // =========================
   const indexSearchInput = document.querySelector(".index-search-input");
   const indexResults = document.querySelector(".index-search-results");
-  const emptyEl = document
-  .querySelector(".section .search-empty");
+  const emptyEl = document.querySelector(".section .search-empty");
 
   if (indexSearchInput && indexResults) {
     const ALL_MUSHROOMS = window.ALL_MUSHROOMS || [];
-
     let page = 1;
     const PER_PAGE = 30;
 
     function renderResults(list, q = "") {
-    
-      // 初期表示
       if (!q) {
         indexResults.innerHTML = "";
-        if (emptyEl) emptyEl.style.display = "none";
+        emptyEl && (emptyEl.style.display = "none");
         return;
       }
-    
-      // 0件
+
       if (list.length === 0) {
         indexResults.innerHTML = "";
-        if (emptyEl) emptyEl.style.display = "block";
+        emptyEl && (emptyEl.style.display = "block");
         return;
       }
-    
-      if (emptyEl) emptyEl.style.display = "none";
-    
+
+      emptyEl && (emptyEl.style.display = "none");
+
       indexResults.innerHTML = list.map(item => `
         <a href="${item.href}?from=index&q=${encodeURIComponent(q)}"
-           class="mushroom-card search-result-item"
-           data-name="${item.name}">
+           class="mushroom-card search-result-item">
           <div class="mushroom-card-thumb">
             <img src="${item.thumb}" alt="${item.name}">
           </div>
@@ -816,33 +794,32 @@ function sendHeight() {
 
     function loadFromURL() {
       const params = new URLSearchParams(location.search);
-      const q = params.get("q") || "";
-      const p = Number(params.get("page") || 1);
-      return { q, p };
+      return {
+        q: params.get("q") || "",
+        p: Number(params.get("page") || 1)
+      };
     }
-    
+
     function renderPagination(totalPages) {
       const wrap = document.querySelector(".index-pagination");
       if (!wrap) return;
-    
-      // 🔹 検索していない or 1ページだけ
+
       if (totalPages <= 1) {
         wrap.innerHTML = "";
         return;
       }
-    
+
       wrap.innerHTML = `
-        <span class="index-page-btn ${page<=1?'disabled':''}" data-move="-1">前へ</span>
+        <span class="index-page-btn ${page <= 1 ? "disabled" : ""}" data-move="-1">前へ</span>
         <span style="margin:0 10px;">${page} / ${totalPages}</span>
-        <span class="index-page-btn ${page>=totalPages?'disabled':''}" data-move="1">次へ</span>
+        <span class="index-page-btn ${page >= totalPages ? "disabled" : ""}" data-move="1">次へ</span>
       `;
-    
+
       wrap.querySelectorAll(".index-page-btn").forEach(btn => {
         btn.addEventListener("click", () => {
-          const move = Number(btn.dataset.move);
-          page += move;
+          page += Number(btn.dataset.move);
           doSearch();
-          window.parent.postMessage({ type:"scrollToTitle" }, "*");
+          window.parent.postMessage({ type: "scrollToTitle" }, "*");
         });
       });
     }
@@ -850,20 +827,18 @@ function sendHeight() {
     function doSearch() {
       const rawQ = indexSearchInput.value.trim().normalize("NFKC");
       const q = rawQ.toLowerCase();
-    
+
       const filtered = rawQ
         ? ALL_MUSHROOMS.filter(m => m.name_norm.includes(q))
         : [];
-    
-      page = Math.max(1, page);
-    
+
       const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
-      if (page > totalPages) page = totalPages;
-    
+      page = Math.min(Math.max(1, page), totalPages);
+
       const start = (page - 1) * PER_PAGE;
       renderResults(filtered.slice(start, start + PER_PAGE), rawQ);
-    
-      renderPagination(rawQ ? totalPages : 0); // ← 後述
+
+      renderPagination(rawQ ? totalPages : 0);
       updateURL(rawQ, page);
       sendHeight();
     }
@@ -879,31 +854,35 @@ function sendHeight() {
     });
   }
 
+  // =========================
+  // 高さ監視（既存）
+  // =========================
   sendHeight();
-  window.addEventListener("load", ()=>{ sendHeight(); setTimeout(sendHeight,800); setTimeout(sendHeight,2000); });
-  window.addEventListener("message", e=>{ if(e.data?.type==="requestHeight") sendHeight(); });
+  window.addEventListener("load", () => {
+    sendHeight();
+    setTimeout(sendHeight, 800);
+    setTimeout(sendHeight, 2000);
+  });
+  window.addEventListener("message", e => {
+    if (e.data?.type === "requestHeight") sendHeight();
+  });
   window.addEventListener("resize", sendHeight);
-  new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true});
+  new MutationObserver(sendHeight)
+    .observe(document.body, { childList: true, subtree: true });
 
-  // ★ 高さ監視ポーリング（縮む対策）
-let lastHeight = 0;
-
-setInterval(() => {
-  const height = Math.max(
-    document.body.scrollHeight,
-    document.body.offsetHeight,
-    document.documentElement.scrollHeight,
-    document.documentElement.offsetHeight
-  );
-
-  if (height !== lastHeight) {
-    lastHeight = height;
-    window.parent.postMessage(
-      { type: "setHeight", height },
-      "*"
+  let lastHeight = 0;
+  setInterval(() => {
+    const height = Math.max(
+      document.body.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight
     );
-  }
-}, 300);
+    if (height !== lastHeight) {
+      lastHeight = height;
+      window.parent.postMessage({ type: "setHeight", height }, "*");
+    }
+  }, 300);
 
 });
 </script>
