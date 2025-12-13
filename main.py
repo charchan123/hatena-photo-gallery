@@ -1219,6 +1219,7 @@ for g in AIUO_GROUPS.keys():
     )
 
 index_parts.append("""
+    </div>
   </div>
 </div>
 """)
