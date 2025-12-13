@@ -1255,19 +1255,19 @@ index_parts.append("""
 </div>
 """)
 
-    # ==========================================================
-    # 共通リソース
-    # ==========================================================
-    index_parts.append(STYLE_TAG)
-    index_parts.append(LIGHTGALLERY_TAGS)
-    index_parts.append(SCRIPT_TAG)
+# ==========================================================
+# 共通リソース
+# ==========================================================
+index_parts.append(STYLE_TAG)
+index_parts.append(LIGHTGALLERY_TAGS)
+index_parts.append(SCRIPT_TAG)
 
-    # 書き出し
-    index_html = "".join(index_parts)
-    with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
-        f.write(index_html)
+# 書き出し
+index_html = "".join(index_parts)
+with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
+    f.write(index_html)
 
-    print("✅ index.html 生成完了")
+print("✅ index.html 生成完了")
 
 # ===========================
 # メイン
