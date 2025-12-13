@@ -954,8 +954,36 @@ function sendHeight() {
         const show = matchText && matchKana;
         card.style.display = show ? "" : "none";
       });
-
+      
+      updateEmptyState();
       sendHeight();
+    }
+    
+    function updateEmptyState() {
+      const hasQuery =
+        searchInput.value.trim() !== "" || currentKana !== "all";
+    
+      if (!hasQuery) {
+        const empty = document.querySelector(".search-empty");
+        if (empty) empty.style.display = "none";
+        return;
+      }
+    
+      const visible = Array.from(cards).some(
+        c => c.style.display !== "none"
+      );
+    
+      let empty = document.querySelector(".search-empty");
+      if (!empty) {
+        empty = document.createElement("div");
+        empty.className = "search-empty";
+        empty.innerHTML = `
+          🔍 該当するキノコが見つかりませんでした<br>
+          <small>別の文字で試してみてください</small>
+        `;
+        document.querySelector(".mushroom-list")?.after(empty);
+      }
+      empty.style.display = visible ? "none" : "block";
     }
 
     searchInput.addEventListener("input", applyFilter);
@@ -978,6 +1006,7 @@ function sendHeight() {
         // ===== フィルタ処理 =====
         currentKana = kana;
         applyFilter();
+        updateEmptyState();
       });
     });
   }
@@ -993,14 +1022,25 @@ function sendHeight() {
     let page = 1;
     const PER_PAGE = 30;
 
-    function renderResults(list, q="") {
+    function renderResults(list, q = "") {
+    
+      // 🔹 何も入力されていない状態（初期表示）
+      if (!q) {
+        indexResults.innerHTML = "";
+        if (emptyEl) emptyEl.style.display = "none";
+        return;
+      }
+    
+      // 🔹 検索したけど0件
       if (list.length === 0) {
         indexResults.innerHTML = "";
         if (emptyEl) emptyEl.style.display = "block";
         return;
       }
+    
+      // 🔹 検索結果あり
       if (emptyEl) emptyEl.style.display = "none";
-
+    
       indexResults.innerHTML = list.map(item => `
         <a href="${item.href}"
            class="mushroom-card search-result-item"
@@ -1026,17 +1066,23 @@ function sendHeight() {
       const p = Number(params.get("page") || 1);
       return { q, p };
     }
-
+    
     function renderPagination(totalPages) {
       const wrap = document.querySelector(".index-pagination");
       if (!wrap) return;
-
+    
+      // 🔹 検索していない or 1ページだけ
+      if (totalPages <= 1) {
+        wrap.innerHTML = "";
+        return;
+      }
+    
       wrap.innerHTML = `
         <span class="index-page-btn ${page<=1?'disabled':''}" data-move="-1">前へ</span>
         <span style="margin:0 10px;">${page} / ${totalPages}</span>
         <span class="index-page-btn ${page>=totalPages?'disabled':''}" data-move="1">次へ</span>
       `;
-
+    
       wrap.querySelectorAll(".index-page-btn").forEach(btn => {
         btn.addEventListener("click", () => {
           const move = Number(btn.dataset.move);
@@ -1050,18 +1096,20 @@ function sendHeight() {
     function doSearch() {
       const rawQ = indexSearchInput.value.trim().normalize("NFKC");
       const q = rawQ.toLowerCase();
-
+    
       const filtered = rawQ
         ? ALL_MUSHROOMS.filter(m => m.name_norm.includes(q))
         : [];
-
+    
+      page = Math.max(1, page);
+    
       const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
       if (page > totalPages) page = totalPages;
-
+    
       const start = (page - 1) * PER_PAGE;
-      renderResults(filtered.slice(start, start+PER_PAGE), rawQ);
-
-      renderPagination(totalPages);
+      renderResults(filtered.slice(start, start + PER_PAGE), rawQ);
+    
+      renderPagination(rawQ ? totalPages : 0); // ← 後述
       updateURL(rawQ, page);
       sendHeight();
     }
