@@ -30,8 +30,7 @@ window.ALL_MUSHROOMS = [{"name": "ベニタケ", "name_norm": "ベニタケ", "h
 
 <div class="section">
   <h2 class="section-title">おすすめキノコ</h2>
-
-  <div class="section-card">
+  
     <div class="recommend-grid">
 <div class='recommend-card'><h3>新着キノコ</h3><div class='rec-items'>
 <a class="rec-item" href="ヒラタケ.html">
@@ -224,13 +223,11 @@ body {
   margin-bottom: 18px;
   letter-spacing: 0.04em;
 }
+/* 検索ボックスをフラット化 */
 .index-search-box {
-  max-width: 900px;
-  margin: 0 auto 24px;
-  padding: 18px 20px;
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
 }
 .index-search-input {
   width: 100%;
