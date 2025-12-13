@@ -228,9 +228,8 @@ body {
 /* ===== index.html 専用：全キノコ横断検索 ===== */
 .section {
   max-width: 900px;
-  margin: 0 auto 40px;
+  margin: 0 auto;
   padding: 0 8px;
-  margin-bottom: 56px; /* ← 全セクション共通の呼吸 */
 }
 .section-title {
   text-align: center;
