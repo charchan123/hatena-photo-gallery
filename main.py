@@ -1205,10 +1205,12 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     # ==========================================================
     # 五十音別分類
     # ==========================================================
-    index_parts.append("""
+index_parts.append("""
 <div class="section">
   <h2 class="section-title">五十音別分類</h2>
-  <div class="aiuo-links">
+
+  <div class="section-card">
+    <div class="aiuo-links">
 """)
 
     for g in AIUO_GROUPS.keys():
