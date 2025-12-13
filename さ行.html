@@ -670,6 +670,74 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 })();
 
+(function () {
+  const path = location.pathname;
+  const match = path.match(/\/([^\/]+行)\.html$/);
+  if (!match) return;
+
+  const kana = match[1];
+  const h2 = document.querySelector("h2");
+  if (!h2) return;
+
+  const crumb = document.createElement("nav");
+  crumb.style.textAlign = "center";
+  crumb.style.fontSize = "13px";
+  crumb.style.margin = "8px 0 16px";
+  crumb.style.color = "#666";
+
+  crumb.innerHTML = `
+    <a href="index.html" style="color:#555;">トップ</a>
+    <span> › </span>
+    <span style="color:#999;">${kana}</span>
+  `;
+
+  h2.before(crumb);
+
+  if (typeof sendHeight === "function") sendHeight();
+})();
+
+// =========================
+// ★ パンくずリスト（入口別）
+// =========================
+(function () {
+  const params = new URLSearchParams(location.search);
+  const from = params.get("from");
+  const kana = params.get("kana");
+
+  const title = document.querySelector("h2");
+  if (!title) return;
+
+  let middle = "";
+
+  if (from === "aiuo" && kana) {
+    middle = `<a href="${kana}.html">五十音 › ${kana}</a>`;
+  } else if (from === "index") {
+    middle = `<a href="index.html">全キノコ検索</a>`;
+  } else if (from === "recommend") {
+    middle = `<a href="index.html#recommend">おすすめキノコ</a>`;
+  } else {
+    return; // 直アクセスは出さない（うるさくしない）
+  }
+
+  const crumb = document.createElement("nav");
+  crumb.style.textAlign = "center";
+  crumb.style.fontSize = "13px";
+  crumb.style.margin = "8px 0 16px";
+  crumb.style.color = "#666";
+
+  crumb.innerHTML = `
+    <a href="index.html">トップ</a>
+    <span> › </span>
+    ${middle}
+    <span> › </span>
+    <span style="color:#999;">${title.textContent}</span>
+  `;
+
+  title.before(crumb);
+
+  if (typeof sendHeight === "function") sendHeight();
+})();
+
   // =========================
 // ★ 前 / 次のキノコ（同じ行内）
 // =========================
