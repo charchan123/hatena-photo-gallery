@@ -1126,35 +1126,7 @@ def generate_index(grouped, exif_cache):
     recommend_rarity = pick_mushrooms(RARITY_LIST)
     recommend_popular = pick_mushrooms(POPULAR_LIST)
 
-    index_parts.append("""
-<h2 style="text-align:center; margin:30px 0 10px;">おすすめキノコ</h2>
-<div class="recommend-grid">
-""")
-
-    def append_cards(title, items):
-        index_parts.append(f"<div class='recommend-card'><h3>{title}</h3><div class='rec-items'>")
-        for it in items:
-            index_parts.append(f"""
-        <a class="rec-item" href="{it['href']}">
-          <img src="{it['thumb']}" alt="{it['name']}">
-          <div>{it['name']}</div>
-        </a>
-        """)
-        index_parts.append("</div></div>")
-
-    append_cards("新着キノコ", recommend_new)
-    append_cards("珍しいキノコ", recommend_rarity)
-    append_cards("人気キノコTOP3", recommend_popular)
-
-    index_parts.append("</div><hr style='margin:30px 0;'>")
-
-    index_parts.append("<h2 style='text-align:center;'>五十音別分類</h2>")
-    index_parts.append("<div class='aiuo-links'>")
-    for g in AIUO_GROUPS.keys():
-        index_parts.append(f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>')
-    index_parts.append("</div>")
-
-    index_parts.append("""
+        index_parts.append("""
 <div class="index-search-box">
   <div class="index-search-title">🔍 全キノコ横断検索</div>
   <input type="text" class="index-search-input" placeholder="キノコ名で検索（例：ベニタケ）">
@@ -1180,6 +1152,34 @@ def generate_index(grouped, exif_cache):
 window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 </script>
 """)
+
+    index_parts.append("<h2 style='text-align:center;'>五十音別分類</h2>")
+    index_parts.append("<div class='aiuo-links'>")
+    for g in AIUO_GROUPS.keys():
+        index_parts.append(f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>')
+    index_parts.append("</div>")
+
+    index_parts.append("""
+<h2 style="text-align:center; margin:30px 0 10px;">おすすめキノコ</h2>
+<div class="recommend-grid">
+""")
+
+    def append_cards(title, items):
+        index_parts.append(f"<div class='recommend-card'><h3>{title}</h3><div class='rec-items'>")
+        for it in items:
+            index_parts.append(f"""
+        <a class="rec-item" href="{it['href']}">
+          <img src="{it['thumb']}" alt="{it['name']}">
+          <div>{it['name']}</div>
+        </a>
+        """)
+        index_parts.append("</div></div>")
+
+    append_cards("新着キノコ", recommend_new)
+    append_cards("珍しいキノコ", recommend_rarity)
+    append_cards("人気キノコTOP3", recommend_popular)
+
+    index_parts.append("</div><hr style='margin:30px 0;'>")
 
     index_parts.append(STYLE_TAG)
     index_parts.append(LIGHTGALLERY_TAGS)
