@@ -584,6 +584,66 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })();
 
+  // =========================
+// ★ パンくずリスト（詳細ページ用・簡易）
+// =========================
+  (function () {
+    const params = new URLSearchParams(location.search);
+    const from = params.get("from");
+    const kana = params.get("kana");
+
+    // 五十音経由でない場合は出さない
+    if (from !== "aiuo" || !kana) return;
+
+    const title = document.querySelector("h2");
+    if (!title) return;
+
+    const crumb = document.createElement("div");
+    crumb.style.fontSize = "13px";
+    crumb.style.color = "#666";
+    crumb.style.textAlign = "center";
+    crumb.style.margin = "12px 0 6px";
+
+    crumb.innerHTML = `
+      <a href="index.html">トップ</a>
+      &nbsp;›&nbsp;
+      <a href="${kana}.html">${kana}</a>
+      &nbsp;›&nbsp;
+      <span>${title.textContent}</span>
+    `;
+
+    title.before(crumb);
+  })();
+
+  // =========================
+// ★ 前 / 次のキノコ（同じ行内）
+// =========================
+  (function () {
+    const params = new URLSearchParams(location.search);
+    const from = params.get("from");
+    const kana = params.get("kana");
+    const index = Number(params.get("i"));
+
+    if (from !== "aiuo" || !kana || isNaN(index)) return;
+
+    // 五十音ページに戻る前提リンク
+    const nav = document.createElement("div");
+    nav.style.display = "flex";
+    nav.style.justifyContent = "space-between";
+    nav.style.margin = "24px auto 0";
+    nav.style.maxWidth = "900px";
+
+    nav.innerHTML = `
+      <a href="${kana}.html" class="back-btn">◀ 一覧</a>
+      <a href="${kana}.html" class="back-btn">次へ ▶</a>
+    `;
+
+    const gallery = document.querySelector(".gallery");
+    if (gallery) {
+      gallery.after(nav);
+    }
+  })();
+
   function highlight(text, q) {
     if (!q) return text;
     const escaped = escapeRegExp(q);
@@ -1287,14 +1347,16 @@ def generate_gallery(entries, exif_cache):
         """)
 
         html_parts.append("<div class='mushroom-list'>")
-        for n in sorted(names):
+        for i, n in enumerate(sorted(names)):
             safe = safe_filename(n)
             first_char = n[0] if n else ""
-            imgs_for_name = grouped.get(n, [])
-            thumb_src = imgs_for_name[0] if imgs_for_name else ""
 
             esc_name = html.escape(n)
             esc_kana = html.escape(first_char)
+            esc_group = html.escape(g)
+
+            imgs_for_name = grouped.get(n, [])
+            thumb_src = imgs_for_name[0] if imgs_for_name else ""
 
             img_tag = ""
             if thumb_src:
@@ -1304,14 +1366,14 @@ def generate_gallery(entries, exif_cache):
                 )
 
             html_parts.append(f"""
-            <a href="{safe}.html?from=aiuo&kana={html.escape(g)}"
-               class="mushroom-card"
-               data-name="{esc_name}"
-               data-kana="{esc_kana}">
-              <div class="mushroom-card-thumb">{img_tag}</div>
-              <div class="mushroom-card-name">{esc_name}</div>
-            </a>
-            """)
+        <a href="{safe}.html?from=aiuo&kana={esc_group}&i={i}"
+           class="mushroom-card"
+           data-name="{esc_name}"
+           data-kana="{esc_kana}">
+          <div class="mushroom-card-thumb">{img_tag}</div>
+          <div class="mushroom-card-name">{esc_name}</div>
+        </a>
+        """)
         html_parts.append("</div>")  # .mushroom-list
 
         html_parts.append("""
