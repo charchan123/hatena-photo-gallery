@@ -921,5 +921,25 @@ function sendHeight() {
   window.addEventListener("resize", sendHeight);
   new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true});
 
+  // ★ 高さ監視ポーリング（縮む対策）
+let lastHeight = 0;
+
+setInterval(() => {
+  const height = Math.max(
+    document.body.scrollHeight,
+    document.body.offsetHeight,
+    document.documentElement.scrollHeight,
+    document.documentElement.offsetHeight
+  );
+
+  if (height !== lastHeight) {
+    lastHeight = height;
+    window.parent.postMessage(
+      { type: "setHeight", height },
+      "*"
+    );
+  }
+}, 300);
+
 });
 </script>
