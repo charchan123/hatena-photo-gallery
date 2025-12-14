@@ -23,7 +23,7 @@
                class="mushroom-card"
                data-name="ミドリニガイグチ"
                data-kana="ミ">
-              <div class="mushroom-card-thumb"><img src='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929221254.jpg?width=400' alt='ミドリニガイグチ' loading='lazy'></div>
+              <div class="mushroom-card-thumb"><img src='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706222109.jpg?width=400' alt='ミドリニガイグチ' loading='lazy'></div>
               <div class="mushroom-card-name">ミドリニガイグチ</div>
             </a>
             
@@ -47,7 +47,7 @@
                class="mushroom-card"
                data-name="ミヤマタマゴタケ"
                data-kana="ミ">
-              <div class="mushroom-card-thumb"><img src='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012222710.jpg?width=400' alt='ミヤマタマゴタケ' loading='lazy'></div>
+              <div class="mushroom-card-thumb"><img src='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005195121.jpg?width=400' alt='ミヤマタマゴタケ' loading='lazy'></div>
               <div class="mushroom-card-name">ミヤマタマゴタケ</div>
             </a>
             
@@ -103,7 +103,7 @@
                class="mushroom-card"
                data-name="ムラサキアブラシメジモドキ"
                data-kana="ム">
-              <div class="mushroom-card-thumb"><img src='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018231134.jpg?width=400' alt='ムラサキアブラシメジモドキ' loading='lazy'></div>
+              <div class="mushroom-card-thumb"><img src='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103233837.jpg?width=400' alt='ムラサキアブラシメジモドキ' loading='lazy'></div>
               <div class="mushroom-card-name">ムラサキアブラシメジモドキ</div>
             </a>
             
@@ -166,6 +166,7 @@ body {
   margin-bottom: 4px;
   border-radius: 0px;
   overflow: hidden;
+  position: relative;  
 }
 .gallery img {
   width: 100%;
@@ -179,6 +180,64 @@ body {
 .gallery img.visible {
   opacity: 1;
   transform: translateY(0);
+}
+.gallery a.gallery-item img {
+  transition:
+    transform 0.5s cubic-bezier(.2,.8,.2,1),
+    filter 0.4s ease;
+  will-change: transform;
+}
+
+.gallery a.gallery-item:hover img {
+  transform: scale(1.06);
+  filter: brightness(1.08);
+}
+
+.gallery a.gallery-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.08);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.gallery a.gallery-item:hover::after {
+  opacity: 1;
+}
+
+/* ===== タップ時 波紋エフェクト（スマホ向け） ===== */
+.gallery a.gallery-item::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120%;
+  padding-top: 120%;       /* 正円 */
+  background: rgba(255,255,255,0.35);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gallery a.gallery-item:active::before {
+  animation: rippleTap 0.45s ease-out;
+}
+
+@keyframes rippleTap {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.5;
+  }
+  70% {
+    opacity: 0.25;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
 }
 
 /* スマホ〜タブレットは 4 列 */

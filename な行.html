@@ -127,7 +127,7 @@
                class="mushroom-card"
                data-name="ヌメリスギタケ"
                data-kana="ヌ">
-              <div class="mushroom-card-thumb"><img src='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250419/20250419221649.jpg?width=400' alt='ヌメリスギタケ' loading='lazy'></div>
+              <div class="mushroom-card-thumb"><img src='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103235358.jpg?width=400' alt='ヌメリスギタケ' loading='lazy'></div>
               <div class="mushroom-card-name">ヌメリスギタケ</div>
             </a>
             
@@ -159,7 +159,7 @@
                class="mushroom-card"
                data-name="ノウタケ"
                data-kana="ノ">
-              <div class="mushroom-card-thumb"><img src='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316155102.jpg?width=400' alt='ノウタケ' loading='lazy'></div>
+              <div class="mushroom-card-thumb"><img src='https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250922/20250922201029.jpg?width=400' alt='ノウタケ' loading='lazy'></div>
               <div class="mushroom-card-name">ノウタケ</div>
             </a>
             </div>
@@ -198,6 +198,7 @@ body {
   margin-bottom: 4px;
   border-radius: 0px;
   overflow: hidden;
+  position: relative;  
 }
 .gallery img {
   width: 100%;
@@ -211,6 +212,64 @@ body {
 .gallery img.visible {
   opacity: 1;
   transform: translateY(0);
+}
+.gallery a.gallery-item img {
+  transition:
+    transform 0.5s cubic-bezier(.2,.8,.2,1),
+    filter 0.4s ease;
+  will-change: transform;
+}
+
+.gallery a.gallery-item:hover img {
+  transform: scale(1.06);
+  filter: brightness(1.08);
+}
+
+.gallery a.gallery-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.08);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.gallery a.gallery-item:hover::after {
+  opacity: 1;
+}
+
+/* ===== タップ時 波紋エフェクト（スマホ向け） ===== */
+.gallery a.gallery-item::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120%;
+  padding-top: 120%;       /* 正円 */
+  background: rgba(255,255,255,0.35);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gallery a.gallery-item:active::before {
+  animation: rippleTap 0.45s ease-out;
+}
+
+@keyframes rippleTap {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.5;
+  }
+  70% {
+    opacity: 0.25;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
 }
 
 /* スマホ〜タブレットは 4 列 */
