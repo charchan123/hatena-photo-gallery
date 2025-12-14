@@ -793,11 +793,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     gallery.querySelectorAll("img").forEach(img => fadeObs.observe(img));
 
-    imagesLoaded(document.querySelector(".gallery"), () => {
-      applyGallerySizes();
-      applyMasonryRows();
-      document.querySelector(".gallery").style.visibility = "visible";
-    });
+    const gallery = document.querySelector(".gallery");
+    if (gallery) {
+    
+      imagesLoaded(gallery, () => {
+        applyGallerySizes();
+        applyMasonryRows();
+        gallery.style.visibility = "visible";
+      });
+    
+      // ★ フォールバック（必須）
+      setTimeout(() => {
+        if (gallery.style.visibility !== "visible") {
+          gallery.style.visibility = "visible";
+        }
+      }, 3000);
 
       const lg = lightGallery(gallery, {
         selector: "a.gallery-item",
