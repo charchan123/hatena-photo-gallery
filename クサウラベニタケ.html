@@ -615,6 +615,61 @@ document.addEventListener("DOMContentLoaded", () => {
         progressBar: true,
       });
 
+      // =========================
+// ★ 安全なお気に入り＆コメント（EXIF下）
+// =========================
+    lg.on("lgAfterOpen", () => {
+      const container = document.querySelector(".lg-sub-html");
+      if (!container) return;
+    
+      // 二重生成防止
+      if (container.querySelector(".photo-meta-wrap")) return;
+    
+      const wrap = document.createElement("div");
+      wrap.className = "photo-meta-wrap";
+      wrap.style.marginTop = "12px";
+      wrap.style.textAlign = "center";
+    
+      wrap.innerHTML = `
+        <button class="meta-fav-btn">☆ お気に入り</button>
+        <button class="meta-comment-btn">💬 コメント</button>
+      `;
+    
+      container.appendChild(wrap);
+    
+      const favBtn = wrap.querySelector(".meta-fav-btn");
+      const commentBtn = wrap.querySelector(".meta-comment-btn");
+    
+      function refresh() {
+        const src = lg.getCurrentSlide()?.getAttribute("href");
+        if (!src) return;
+        const meta = getPhotoMeta(src);
+        favBtn.textContent = meta.favorite ? "★ お気に入り済み" : "☆ お気に入り";
+      }
+    
+      favBtn.onclick = () => {
+        const src = lg.getCurrentSlide()?.getAttribute("href");
+        if (!src) return;
+        const meta = getPhotoMeta(src);
+        updatePhotoMeta(src, { favorite: !meta.favorite });
+        refresh();
+      };
+    
+      commentBtn.onclick = () => {
+        const src = lg.getCurrentSlide()?.getAttribute("href");
+        if (!src) return;
+        const text = prompt(
+          "この写真のコメント（自分用）",
+          getPhotoMeta(src).comment || ""
+        );
+        if (text !== null) {
+          updatePhotoMeta(src, { comment: text });
+        }
+      };
+    
+      refresh();
+    });
+
       gallery.querySelectorAll("a.gallery-item").forEach(a => {
         a.addEventListener("click", () => {
           const el = document.documentElement;
