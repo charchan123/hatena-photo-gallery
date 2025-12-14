@@ -701,9 +701,9 @@ document.addEventListener("DOMContentLoaded", () => {
     window.parent.postMessage({ type: "setHeight", height }, "*");
   }
 
-    // =========================
-    // ギャラリー処理（既存）
-    // =========================
+// =========================
+// ギャラリー処理（完成・確定）
+// =========================
     const gallery = document.querySelector(".gallery");
     
     if (gallery) {
@@ -737,8 +737,8 @@ document.addEventListener("DOMContentLoaded", () => {
         pause: 3000,
         progressBar: true,
       });
-    }
     
+      // フルスクリーン制御
       gallery.querySelectorAll("a.gallery-item").forEach(a => {
         a.addEventListener("click", () => {
           const el = document.documentElement;
