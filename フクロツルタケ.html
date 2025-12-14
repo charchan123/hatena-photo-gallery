@@ -427,19 +427,6 @@ mark {
   padding: 0 2px;
   border-radius: 4px;
 }
-
-.lg-meta-wrap button {
-  background: transparent;
-  border: none;
-  color: #fff;
-  font-size: 18px;
-  cursor: pointer;
-  opacity: 0.85;
-}
-.lg-meta-wrap button:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
 </style>
 <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
@@ -597,93 +584,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================
-// ★ 写真メタ情報（⭐お気に入り + 💬コメント）共通ロジック
-// =========================
-    const PHOTO_META_KEY = "mushroomPhotoMeta";
-    
-    function loadPhotoMeta() {
-      try {
-        return JSON.parse(localStorage.getItem(PHOTO_META_KEY) || "{}");
-      } catch {
-        return {};
-      }
-    }
-    
-    function savePhotoMeta(data) {
-      localStorage.setItem(PHOTO_META_KEY, JSON.stringify(data));
-    }
-    
-    function getPhotoMeta(src) {
-      return loadPhotoMeta()[src] || {};
-    }
-    
-    function updatePhotoMeta(src, patch) {
-      const data = loadPhotoMeta();
-      data[src] = {
-        ...(data[src] || {}),
-        ...patch,
-        updatedAt: Date.now()
-      };
-      savePhotoMeta(data);
-    }
-    
-    function openCommentDialog(src) {
-      const meta = getPhotoMeta(src);
-      const text = prompt("この写真のメモ（自分用）", meta.comment || "");
-      if (text === null) return;
-      updatePhotoMeta(src, { comment: text });
-    }
-
-  function injectMetaButtons(lgInstance) {
-  const toolbar = document.querySelector(".lg-toolbar");
-  if (!toolbar) return;
-
-  // 二重追加防止
-  if (toolbar.querySelector(".lg-meta-wrap")) return;
-
-  const wrap = document.createElement("div");
-  wrap.className = "lg-meta-wrap";
-  wrap.style.display = "flex";
-  wrap.style.alignItems = "center";
-  wrap.style.gap = "10px";
-  wrap.style.marginLeft = "8px";
-
-  wrap.innerHTML = `
-    <button class="lg-meta-fav" title="お気に入り">☆</button>
-    <button class="lg-meta-comment" title="コメント">💬</button>
-  `;
-
-  toolbar.appendChild(wrap);
-
-  const favBtn = wrap.querySelector(".lg-meta-fav");
-  const commentBtn = wrap.querySelector(".lg-meta-comment");
-
-  function refresh() {
-    const slide = lgInstance.getCurrentSlide();
-    if (!slide) return;
-    const src = slide.getAttribute("href");
-    const meta = getPhotoMeta(src);
-    favBtn.textContent = meta.favorite ? "★" : "☆";
-  }
-
-  favBtn.onclick = () => {
-    const src = lgInstance.getCurrentSlide()?.getAttribute("href");
-    if (!src) return;
-    const meta = getPhotoMeta(src);
-    updatePhotoMeta(src, { favorite: !meta.favorite });
-    refresh();
-  };
-
-  commentBtn.onclick = () => {
-    const src = lgInstance.getCurrentSlide()?.getAttribute("href");
-    if (!src) return;
-    openCommentDialog(src);
-  };
-
-  refresh();
-}
-
-  // =========================
   // ギャラリー処理（既存）
   // =========================
   const gallery = document.querySelector(".gallery");
@@ -715,13 +615,60 @@ document.addEventListener("DOMContentLoaded", () => {
         progressBar: true,
       });
 
-      lg.on("lgAfterOpen", () => {
-        injectMetaButtons(lg);
-      });
+      // =========================
+// ★ 安全なお気に入り＆コメント（EXIF下）
+// =========================
+    lg.on("lgAfterOpen", () => {
+      const container = document.querySelector(".lg-sub-html");
+      if (!container) return;
     
-      lg.on("lgAfterSlide", () => {
-        injectMetaButtons(lg);
-      });
+      // 二重生成防止
+      if (container.querySelector(".photo-meta-wrap")) return;
+    
+      const wrap = document.createElement("div");
+      wrap.className = "photo-meta-wrap";
+      wrap.style.marginTop = "12px";
+      wrap.style.textAlign = "center";
+    
+      wrap.innerHTML = `
+        <button class="meta-fav-btn">☆ お気に入り</button>
+        <button class="meta-comment-btn">💬 コメント</button>
+      `;
+    
+      container.appendChild(wrap);
+    
+      const favBtn = wrap.querySelector(".meta-fav-btn");
+      const commentBtn = wrap.querySelector(".meta-comment-btn");
+    
+      function refresh() {
+        const src = lg.getCurrentSlide()?.getAttribute("href");
+        if (!src) return;
+        const meta = getPhotoMeta(src);
+        favBtn.textContent = meta.favorite ? "★ お気に入り済み" : "☆ お気に入り";
+      }
+    
+      favBtn.onclick = () => {
+        const src = lg.getCurrentSlide()?.getAttribute("href");
+        if (!src) return;
+        const meta = getPhotoMeta(src);
+        updatePhotoMeta(src, { favorite: !meta.favorite });
+        refresh();
+      };
+    
+      commentBtn.onclick = () => {
+        const src = lg.getCurrentSlide()?.getAttribute("href");
+        if (!src) return;
+        const text = prompt(
+          "この写真のコメント（自分用）",
+          getPhotoMeta(src).comment || ""
+        );
+        if (text !== null) {
+          updatePhotoMeta(src, { comment: text });
+        }
+      };
+    
+      refresh();
+    });
 
       gallery.querySelectorAll("a.gallery-item").forEach(a => {
         a.addEventListener("click", () => {
