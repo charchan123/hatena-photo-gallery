@@ -629,6 +629,26 @@ mark {
   padding: 0 2px;
   border-radius: 4px;
 }
+
+.photo-meta-wrap button {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.photo-meta-wrap button:hover {
+  background: #f5f5f5;
+}
+
+.photo-meta-wrap textarea {
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 6px 8px;
+}
 </style>
 <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
@@ -816,6 +836,77 @@ document.addEventListener("DOMContentLoaded", () => {
         pause: 3000,
         progressBar: true,
       });
+
+      // =========================
+// ★ LightGallery：⭐お気に入り + 💬コメントUI
+// =========================
+        function injectMetaUI(lgInstance) {
+          const container = document.querySelector(".lg-sub-html");
+          if (!container) return;
+        
+          let metaWrap = document.querySelector(".photo-meta-wrap");
+          if (!metaWrap) {
+            metaWrap = document.createElement("div");
+            metaWrap.className = "photo-meta-wrap";
+            metaWrap.style.marginTop = "12px";
+            metaWrap.style.textAlign = "center";
+        
+            metaWrap.innerHTML = `
+              <div style="margin-bottom:8px;">
+                <button class="meta-fav-btn">☆ お気に入り</button>
+              </div>
+              <textarea class="meta-comment"
+                placeholder="この写真のメモ（自分用）"
+                style="width:90%;max-width:600px;height:60px;"></textarea>
+              <div style="margin-top:6px;">
+                <button class="meta-save-btn">保存</button>
+              </div>
+            `;
+            container.appendChild(metaWrap);
+          }
+        
+          const favBtn = metaWrap.querySelector(".meta-fav-btn");
+          const textarea = metaWrap.querySelector(".meta-comment");
+          const saveBtn = metaWrap.querySelector(".meta-save-btn");
+        
+          function refresh() {
+            const src = lgInstance.getCurrentSlide()?.getAttribute("href");
+            if (!src) return;
+        
+            const meta = getPhotoMeta(src);
+        
+            favBtn.textContent = meta.favorite ? "★ お気に入り済み" : "☆ お気に入り";
+            textarea.value = meta.comment || "";
+          }
+        
+          favBtn.onclick = () => {
+            const src = lgInstance.getCurrentSlide()?.getAttribute("href");
+            if (!src) return;
+        
+            const meta = getPhotoMeta(src);
+            updatePhotoMeta(src, {
+              favorite: !meta.favorite
+            });
+            refresh();
+          };
+        
+          saveBtn.onclick = () => {
+            const src = lgInstance.getCurrentSlide()?.getAttribute("href");
+            if (!src) return;
+        
+            updatePhotoMeta(src, {
+              comment: textarea.value
+            });
+          };
+        
+          refresh();
+        }
+        
+        injectMetaUI(lg);
+        
+        lg.on("lgAfterSlide", () => {
+          injectMetaUI(lg);
+        });
 
       gallery.querySelectorAll("a.gallery-item").forEach(a => {
         a.addEventListener("click", () => {
@@ -1057,6 +1148,38 @@ document.addEventListener("DOMContentLoaded", () => {
       page = 1;
       doSearch();
     });
+  }
+
+  // =========================
+// ★ 写真メタ情報（⭐お気に入り + 💬コメント）
+// =========================
+  const PHOTO_META_KEY = "mushroomPhotoMeta";
+
+  function loadPhotoMeta() {
+    try {
+      return JSON.parse(localStorage.getItem(PHOTO_META_KEY) || "{}");
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function savePhotoMeta(data) {
+    localStorage.setItem(PHOTO_META_KEY, JSON.stringify(data));
+  }
+
+  function getPhotoMeta(src) {
+    const data = loadPhotoMeta();
+    return data[src] || {};
+  }
+
+  function updatePhotoMeta(src, patch) {
+    const data = loadPhotoMeta();
+    data[src] = {
+      ...(data[src] || {}),
+      ...patch,
+      updatedAt: Date.now()
+    };
+    savePhotoMeta(data);
   }
 
   // =========================
