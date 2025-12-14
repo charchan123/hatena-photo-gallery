@@ -834,7 +834,19 @@ document.addEventListener("DOMContentLoaded", () => {
         pause: 3000,
         progressBar: true,
       });
-    
+
+      lg.on("lgAfterSlide", () => {
+          updateMetaIconState();
+        });
+        
+        lg.on("lgAfterOpen", () => {
+          updateMetaIconState();
+        });
+        
+        lg.on("lgBeforeSlide", () => {
+          document.querySelectorAll(".lg-comment-box").forEach(el => el.remove());
+        });
+   
       gallery.querySelectorAll("a.gallery-item").forEach(a => {
         a.addEventListener("click", (e) => {
     
@@ -1143,6 +1155,33 @@ function refreshFavoriteState(btn, src) {
 function refreshCommentState(btn, src) {
   const meta = getPhotoMeta(src);
   btn.classList.toggle("lg-meta-active", !!meta.comment);
+}
+
+// =========================
+// 状態更新専用関数
+// =========================
+function updateMetaIconState() {
+  const slide = document.querySelector(".lg-current .lg-object");
+  if (!slide) return;
+
+  const src = slide.getAttribute("src");
+
+  const favBtn = document.querySelector(".lg-meta-fav");
+  const cmtBtn = document.querySelector(".lg-meta-comment");
+
+  // 一旦リセット（←これが超重要）
+  favBtn?.classList.remove("active");
+  cmtBtn?.classList.remove("active");
+
+  // ⭐
+  if (isFavorite(src)) {
+    favBtn?.classList.add("active");
+  }
+
+  // 💬
+  if (getPhotoComment(src)) {
+    cmtBtn?.classList.add("active");
+  }
 }
 
 // =========================
