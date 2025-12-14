@@ -1057,7 +1057,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // キノコギャラリーGrid表示
   // =========================
-
     function applyGallerySizes() {
       const items = document.querySelectorAll(".gallery a.gallery-item");
       const COLS = window.innerWidth <= 580 ? 4 : 5;
@@ -1094,7 +1093,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function applyMasonryRows() {
       const items = document.querySelectorAll(".gallery a.gallery-item");
-      const gap = 4; // CSSのgapと同じ
+      const gap = 4;
     
       items.forEach(item => {
         const height = item.getBoundingClientRect().height;
