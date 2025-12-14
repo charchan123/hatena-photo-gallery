@@ -108,7 +108,7 @@ body {
   column-gap: 10px;
   max-width: 900px;
   margin: 0 auto;
-  visibility: hidden;
+  grid-auto-rows: 1px;
 }
 .gallery a.gallery-item{
   display: block;
@@ -693,10 +693,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     gallery.querySelectorAll("img").forEach(img => fadeObs.observe(img));
 
-    imagesLoaded(gallery, () => {
-      gallery.style.visibility = "visible";
-      sendHeight();
-
       const lg = lightGallery(gallery, {
         selector: "a.gallery-item",
         plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
@@ -956,6 +952,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   sendHeight();
   window.addEventListener("load", () => {
+    applyMasonryRows();
     sendHeight();
     setTimeout(sendHeight, 800);
     setTimeout(sendHeight, 2000);
@@ -1407,6 +1404,25 @@ def generate_gallery(entries, exif_cache):
             f.write(page_html)
 
     return grouped
+
+# ===========================
+# masonry計算
+# ===========================
+    function applyMasonryRows() {
+      const gallery = document.querySelector(".gallery");
+      if (!gallery) return;
+    
+      const gap = parseFloat(
+        getComputedStyle(gallery).gap || 0
+      );
+    
+      gallery.querySelectorAll("a.gallery-item").forEach(item => {
+        // 既存レイアウトが決まった後の高さを使う
+        const h = item.getBoundingClientRect().height;
+        const span = Math.ceil((h + gap) / 1);
+        item.style.gridRowEnd = `span ${span}`;
+      });
+    }
 
 # ===========================
 # index.html を生成
