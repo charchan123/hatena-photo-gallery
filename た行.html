@@ -835,46 +835,26 @@ document.addEventListener("DOMContentLoaded", () => {
         progressBar: true,
       });
 
-      lg.on("lgAfterSlide", () => {
-          updateMetaIconState();
-        });
-        
         lg.on("lgAfterOpen", () => {
           updateMetaIconState();
-        });
-        
-        lg.on("lgBeforeSlide", () => {
-          document.querySelectorAll(".lg-comment-box").forEach(el => el.remove());
-        });
-   
-      gallery.querySelectorAll("a.gallery-item").forEach(a => {
-        a.addEventListener("click", (e) => {
-    
-          // ★ ここが命：最初に即フルスクリーン
+            
           const el = document.documentElement;
           if (!document.fullscreenElement) {
-            if (el.requestFullscreen) el.requestFullscreen();
-            else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
-            else if (el.msRequestFullscreen) el.msRequestFullscreen();
+            el.requestFullscreen?.().catch(() => {});
           }
-    
-        }, { capture: true }); // ← これが必須
-      });
-
+        });
+        
+        lg.on("lgBeforeClose", () => {
+          if (document.fullscreenElement) {
+            document.exitFullscreen().catch(() => {});
+          }
+        });
+        
       gallery.addEventListener("lgBeforeClose", () => {
         if (document.fullscreenElement) {
           document.exitFullscreen().catch(() => {});
         }
         window.parent.postMessage({ type: "lgClosed" }, "*");
-      });
-
-      document.addEventListener("fullscreenchange", () => {
-        if (!document.fullscreenElement) {
-          try {
-            lg.closeGallery();
-            window.parent.postMessage({ type: "lgClosed" }, "*");
-          } catch (e) {}
-        }
       });
     });
   }
@@ -1165,22 +1145,18 @@ function updateMetaIconState() {
   if (!slide) return;
 
   const src = slide.getAttribute("src");
+  const meta = getPhotoMeta(src);
 
   const favBtn = document.querySelector(".lg-meta-fav");
   const cmtBtn = document.querySelector(".lg-meta-comment");
 
-  // 一旦リセット（←これが超重要）
-  favBtn?.classList.remove("active");
-  cmtBtn?.classList.remove("active");
-
-  // ⭐
-  if (isFavorite(src)) {
-    favBtn?.classList.add("active");
+  if (favBtn) {
+    favBtn.classList.toggle("lg-meta-active", !!meta.favorite);
+    favBtn.innerHTML = meta.favorite ? "★" : "☆";
   }
 
-  // 💬
-  if (getPhotoComment(src)) {
-    cmtBtn?.classList.add("active");
+  if (cmtBtn) {
+    cmtBtn.classList.toggle("lg-meta-active", !!meta.comment);
   }
 }
 
@@ -1225,6 +1201,7 @@ function updateMetaIconState() {
     commentBtn.innerHTML = "💬";
 
     commentBtn.onclick = () => {
+      toggleCommentUI(); // ← 次段階で実装
       const slide = document.querySelector(".lg-current .lg-object");
       if (!slide) return;
 
