@@ -42,9 +42,8 @@ body {
 
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-auto-rows: 1fr;
   grid-auto-flow: dense;
-  gap: 3px;
+  gap: 4px;
 
   width: 100%;
   background: #fff;
@@ -53,25 +52,28 @@ body {
 }
 
 /* ===== サイズ定義 ===== */
+/* 1：正方形 */
 .gallery-item.size-1 {
   grid-column: span 1;
-  grid-row: span 1;
   aspect-ratio: 1 / 1;
 }
 
+/* 2：横長（2:1） */
 .gallery-item.size-2-h {
   grid-column: span 2;
-  grid-row: span 1;
+  aspect-ratio: 2 / 1;
 }
 
+/* 2：縦長（1:2） ← ★ここが直る */
 .gallery-item.size-2-v {
   grid-column: span 1;
-  grid-row: span 2;
+  aspect-ratio: 1 / 2;
 }
 
+/* 4：正方形（2×2） */
 .gallery-item.size-4 {
   grid-column: span 2;
-  grid-row: span 2;
+  aspect-ratio: 1 / 1;
 }
 
 /* ===== タイル本体 ===== */
@@ -119,8 +121,8 @@ body {
   }
 
   .gallery-item.size-2-v {
-    grid-row: span 1;
     grid-column: span 2;
+    aspect-ratio: 2 / 1;
   }
 }
 
