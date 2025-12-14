@@ -193,9 +193,9 @@ body {
   padding: 8px;
 
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   grid-auto-rows: 200px;
-  gap: 10px;
+  gap: 5px;
 
   background: #fff;
   visibility: hidden;
@@ -205,7 +205,7 @@ body {
   position: relative;
   display: block;
   overflow: hidden;
-  border-radius: 6px;
+  border-radius: 0px;
   background: #000;
   cursor: zoom-in;
 }
@@ -222,7 +222,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.15);
+  background: rgba(0,0,0,0.1);
   opacity: 0;
   transition: opacity .3s ease;
 }
@@ -232,13 +232,14 @@ body {
 }
 
 .gallery a.gallery-item:hover img {
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
 
 @media (max-width: 768px) {
   .gallery {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 160px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 140px;
+    gap: 4px;
   }
 }
 
