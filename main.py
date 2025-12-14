@@ -677,22 +677,22 @@ document.addEventListener("DOMContentLoaded", () => {
     window.parent.postMessage({ type: "setHeight", height }, "*");
   }
 
-  // =========================
-  // ギャラリー処理（既存）
-  // =========================
-  const gallery = document.querySelector(".gallery");
-  if (gallery) {
-    const fadeObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add("visible");
-          fadeObs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    gallery.querySelectorAll("img").forEach(img => fadeObs.observe(img));
-
+    // =========================
+    // ギャラリー処理（既存）
+    // =========================
+    const gallery = document.querySelector(".gallery");
+    if (gallery) {
+      const fadeObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add("visible");
+            fadeObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
+    
+      gallery.querySelectorAll("img").forEach(img => fadeObs.observe(img));
+    
       const lg = lightGallery(gallery, {
         selector: "a.gallery-item",
         plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
@@ -704,7 +704,7 @@ document.addEventListener("DOMContentLoaded", () => {
         pause: 3000,
         progressBar: true,
       });
-
+    
       gallery.querySelectorAll("a.gallery-item").forEach(a => {
         a.addEventListener("click", () => {
           const el = document.documentElement;
@@ -713,14 +713,14 @@ document.addEventListener("DOMContentLoaded", () => {
           else if (el.msRequestFullscreen) el.msRequestFullscreen();
         });
       });
-
+    
       gallery.addEventListener("lgBeforeClose", () => {
         if (document.fullscreenElement) {
           document.exitFullscreen().catch(() => {});
         }
         window.parent.postMessage({ type: "lgClosed" }, "*");
       });
-
+    
       document.addEventListener("fullscreenchange", () => {
         if (!document.fullscreenElement) {
           try {
@@ -729,8 +729,7 @@ document.addEventListener("DOMContentLoaded", () => {
           } catch (e) {}
         }
       });
-    });
-  }
+    }
 
   // =========================
   // scrollToTitle 判定（既存）
