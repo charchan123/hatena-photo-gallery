@@ -23,10 +23,10 @@ POPULAR_LIST = [
 
 # ===========================
 # safe_filename
-# ===========================
-def safe_filename(name):
+# =========================== 
+def safe_filename(name):                
     name = re.sub(r'[:<>\"|*?\\/\r\n]', '_', name)
-    name = name.strip()
+    name = name.strip()    
     if not name:
         name = "unnamed"
     return name
@@ -105,7 +105,7 @@ body {
 .gallery {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-auto-rows: 1fr;
+  grid-auto-rows: 1px;
   grid-auto-flow: dense;
   gap: 4px;
 
@@ -114,40 +114,26 @@ body {
   visibility: hidden;
 }
 
-/* ===== タイルサイズ ===== */
-.gallery-item.size-1 {
-  grid-column: span 1;
-  aspect-ratio: 1 / 1;
-}
-
-.gallery-item.size-2-h {
-  grid-column: span 2;
-  aspect-ratio: 2 / 1;
-}
-
-.gallery-item.size-4 {
-  grid-column: span 2;
-  aspect-ratio: 1 / 1;
-}
+/* サイズ指定は column だけ */
+.gallery-item.size-1 { grid-column: span 1; }
+.gallery-item.size-2-h { grid-column: span 2; }
+.gallery-item.size-4 { grid-column: span 2; }
 
 /* タイル本体 */
 .gallery a.gallery-item {
   position: relative;
   display: block;
-  border-radius: 0;
   overflow: hidden;
+  border-radius: 0;
+  background: #000;
 }
 
 /* 画像 */
 .gallery img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
-  cursor: zoom-in;
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  opacity: 0;
-  transform: translateY(10px);
+  object-fit: cover;
 }
 
 .gallery img.visible {
@@ -721,8 +707,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       imagesLoaded(document.querySelector(".gallery"), () => {
         applyGallerySizes();
+        applyMasonry();
         document.querySelector(".gallery").style.visibility = "visible";
       });
+
+      window.addEventListener("resize", applyMasonry);
   
       const lg = lightGallery(gallery, {
         selector: "a.gallery-item",
@@ -772,12 +761,27 @@ document.addEventListener("DOMContentLoaded", () => {
         item.classList.remove("size-1", "size-2-h", "size-4");
     
         if (i % 12 === 0) {
-          item.classList.add("size-4");      // 2×2
+          item.classList.add("size-4");
         } else if (i % 5 === 0) {
-          item.classList.add("size-2-h");    // 横長
+          item.classList.add("size-2-h");
         } else {
-          item.classList.add("size-1");      // 正方形
+          item.classList.add("size-1");
         }
+      });
+    }
+    
+    function applyMasonry() {
+      const gallery = document.querySelector(".gallery");
+      if (!gallery) return;
+    
+      gallery.querySelectorAll(".gallery-item").forEach(item => {
+        const img = item.querySelector("img");
+        if (!img || !img.complete) return;
+    
+        const rowSpan = Math.ceil(
+          (img.getBoundingClientRect().height + 4) / 1
+        );
+        item.style.gridRowEnd = `span ${rowSpan}`;
       });
     }
 
