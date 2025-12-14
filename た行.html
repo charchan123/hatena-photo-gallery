@@ -909,32 +909,44 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // キノコギャラリーGrid表示
   // =========================
-  function applyGallerySizes() {
-  const items = document.querySelectorAll(".gallery a.gallery-item");
-
-  items.forEach((item, i) => {
-    item.classList.remove(
-      "size-1",
-      "size-2-h",
-      "size-2-v",
-      "size-4"
-    );
-
-    if (i % 11 === 0) {
-      // 4（2×2 正方形）
-      item.classList.add("size-4");
-    } else if (i % 7 === 0) {
-      // 2（縦長）
-      item.classList.add("size-2-v");
-    } else if (i % 5 === 0) {
-      // 2（横長）
-      item.classList.add("size-2-h");
-    } else {
-      // 1（正方形）
-      item.classList.add("size-1");
+    function applyGallerySizes() {
+      const items = document.querySelectorAll(".gallery a.gallery-item");
+      const COLS = window.innerWidth <= 580 ? 4 : 5;
+    
+      let colCursor = 0; // 今の行の埋まり具合
+    
+      items.forEach((item, i) => {
+        item.classList.remove(
+          "size-1",
+          "size-2-h",
+          "size-2-v",
+          "size-4"
+        );
+    
+        let span = 1;
+        let cls = "size-1";
+    
+        // ---- サイズ候補判定 ----
+        if (i % 11 === 0 && colCursor <= COLS - 2) {
+          cls = "size-4";
+          span = 2;
+        } else if (i % 5 === 0 && colCursor <= COLS - 2) {
+          cls = "size-2-h";
+          span = 2;
+        } else if (i % 7 === 0) {
+          cls = "size-2-v";
+          span = 1;
+        }
+    
+        item.classList.add(cls);
+    
+        // ---- 行管理 ----
+        colCursor += span;
+        if (colCursor >= COLS) {
+          colCursor = 0;
+        }
+      });
     }
-  });
-}
 
   // =========================
   // scrollToTitle 判定（既存）
