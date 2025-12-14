@@ -629,6 +629,24 @@ mark {
   padding: 0 2px;
   border-radius: 4px;
 }
+
+/* ★ LightGallery メタアイコン状態制御 */
+.lg-meta-fav,
+.lg-meta-comment {
+  color: #aaa !important;       /* 初期グレー */
+  opacity: 0.8;
+}
+
+.lg-meta-active {
+  color: #fff !important;       /* アクティブは白 */
+  opacity: 1;
+}
+
+/* hover / active で色が戻るのを防ぐ */
+.lg-toolbar .lg-icon:hover,
+.lg-toolbar .lg-icon:active {
+  opacity: 1;
+}
 </style>
 <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
@@ -1134,14 +1152,18 @@ function updatePhotoMeta(src, patch) {
     favBtn.onclick = () => {
       const slide = document.querySelector(".lg-current .lg-object");
       if (!slide) return;
-
+    
       const src = slide.getAttribute("src");
       if (!src) return;
-
+    
       const meta = getPhotoMeta(src);
+    
+      // 保存（← 既存の関数を使うだけ）
       updatePhotoMeta(src, { favorite: !meta.favorite });
-
-      favBtn.innerHTML = meta.favorite ? "☆" : "★";
+    
+      // 表示切り替え
+      favBtn.classList.toggle("lg-meta-active", !meta.favorite);
+      favBtn.innerHTML = !meta.favorite ? "★" : "☆";
     };
 
     // --- 💬 コメント ---
