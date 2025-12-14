@@ -989,6 +989,23 @@ document.addEventListener("DOMContentLoaded", () => {
         progressBar: true,
       });
 
+      lg.on("lgAfterOpen", () => {
+      const el = document.documentElement;
+    
+      // iframe 内でも通る実装
+      if (!document.fullscreenElement) {
+        try {
+          if (el.requestFullscreen) {
+            el.requestFullscreen();
+          } else if (el.webkitRequestFullscreen) {
+            el.webkitRequestFullscreen();
+          }
+        } catch (e) {
+          console.warn("fullscreen blocked", e);
+        }
+      }
+    });
+
       // =========================
 // ★ LightGallery：⭐お気に入り + 💬コメントUI
 // =========================
@@ -1059,15 +1076,6 @@ document.addEventListener("DOMContentLoaded", () => {
         lg.on("lgAfterSlide", () => {
           injectMetaUI(lg);
         });
-
-      gallery.querySelectorAll("a.gallery-item").forEach(a => {
-        a.addEventListener("click", () => {
-          const el = document.documentElement;
-          if (el.requestFullscreen) el.requestFullscreen();
-          else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
-          else if (el.msRequestFullscreen) el.msRequestFullscreen();
-        });
-      });
 
       gallery.addEventListener("lgBeforeClose", () => {
         if (document.fullscreenElement) {
