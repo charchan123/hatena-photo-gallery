@@ -1005,17 +1005,22 @@ document.addEventListener("DOMContentLoaded", () => {
       gallery.style.visibility = "visible";
       sendHeight();
 
-      const lg = lightGallery(gallery, {
-        selector: "a.gallery-item",
-        plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
-        speed: 400,
-        download: false,
-        zoom: true,
-        thumbnail: true,
-        autoplay: true,
-        pause: 3000,
-        progressBar: true,
-      });
+    const lg = lightGallery(gallery, {
+      selector: "a.gallery-item",
+      plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
+      speed: 400,
+      download: false,
+    
+      // ★ Animated thumbnails 有効化
+      thumbnail: true,
+      animateThumb: true,
+      showThumbByDefault: false,
+    
+      zoom: true,
+      autoplay: true,
+      pause: 3000,
+      progressBar: true,
+    });
 
       gallery.querySelectorAll("a.gallery-item").forEach(a => {
         a.addEventListener("click", () => {
