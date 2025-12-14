@@ -640,10 +640,10 @@ body {
   transition: opacity .25s ease;
 }
 
-/* ======== ギャラリー本体（PC4列・スマホ3列） ======== */
+/* ======== ギャラリー本体（PC5列・スマホ4列） ======== */
 .gallery {
-  column-count: 4;
-  column-gap: 10px;
+  column-count: 5;
+  column-gap: 4px;
   max-width: 900px;
   margin: 0 auto;
   visibility: hidden;
@@ -651,8 +651,8 @@ body {
 .gallery a.gallery-item{
   display: block;
   break-inside: avoid;
-  margin-bottom: 10px;
-  border-radius: 12px;
+  margin-bottom: 4px;
+  border-radius: 0px;
   overflow: hidden;
 }
 .gallery img {
@@ -669,9 +669,15 @@ body {
   transform: translateY(0);
 }
 
-/* スマホ〜タブレットは 3 列 */
-@media (max-width: 768px) {
-  .gallery { column-count: 3; }
+/* スマホ〜タブレットは 4 列 */
+@media (max-width: 580px) {
+  .gallery {
+    column-count: 4;
+    column-gap: 3px;
+  }
+  .gallery a.gallery-item{
+    margin-bottom: 3px;
+  }
 }
 
 /* ===== 五十音タイル・カードUI ===== */
@@ -1228,18 +1234,21 @@ document.addEventListener("DOMContentLoaded", () => {
     imagesLoaded(gallery, () => {
       gallery.style.visibility = "visible";
       sendHeight();
-
+      
     const lg = lightGallery(gallery, {
       selector: "a.gallery-item",
       plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
+    
       speed: 400,
-      download: false,
     
-      // ★ Animated thumbnails 有効化
       thumbnail: true,
-      animateThumb: true,
-      showThumbByDefault: false,
+      showThumbByDefault: true,   // ← これが超重要
+      toggleThumb: true,          // ← これも重要
     
+      thumbWidth: 80,
+      thumbMargin: 6,
+    
+      download: false,
       zoom: true,
       autoplay: true,
       pause: 3000,
