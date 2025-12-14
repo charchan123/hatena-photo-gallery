@@ -925,5 +925,73 @@ function updatePhotoMeta(src, patch) {
   const next = { ...meta, ...patch };
   localStorage.setItem("photoMeta:" + src, JSON.stringify(next));
 }
+
+// =========================
+// ★ LightGallery toolbar に ⭐ 💬 を後付け（安全）
+// =========================
+(function attachMetaButtonsSafely() {
+
+  // すでに監視中なら二重起動しない
+  if (window.__lgMetaObserver) return;
+
+  const observer = new MutationObserver(() => {
+    const toolbar = document.querySelector(".lg-toolbar");
+    if (!toolbar) return;
+
+    // ⭐ がすでにあれば何もしない
+    if (toolbar.querySelector(".lg-meta-fav")) return;
+
+    // --- ⭐ お気に入り ---
+    const favBtn = document.createElement("button");
+    favBtn.className = "lg-icon lg-meta-fav";
+    favBtn.title = "お気に入り";
+    favBtn.innerHTML = "☆";
+
+    favBtn.onclick = () => {
+      const slide = document.querySelector(".lg-current .lg-object");
+      if (!slide) return;
+
+      const src = slide.getAttribute("src");
+      if (!src) return;
+
+      const meta = getPhotoMeta(src);
+      updatePhotoMeta(src, { favorite: !meta.favorite });
+
+      favBtn.innerHTML = meta.favorite ? "☆" : "★";
+    };
+
+    // --- 💬 コメント ---
+    const commentBtn = document.createElement("button");
+    commentBtn.className = "lg-icon lg-meta-comment";
+    commentBtn.title = "コメント";
+    commentBtn.innerHTML = "💬";
+
+    commentBtn.onclick = () => {
+      const slide = document.querySelector(".lg-current .lg-object");
+      if (!slide) return;
+
+      const src = slide.getAttribute("src");
+      if (!src) return;
+
+      const meta = getPhotoMeta(src);
+      const text = prompt("この写真のメモ（自分用）", meta.comment || "");
+      if (text !== null) {
+        updatePhotoMeta(src, { comment: text });
+      }
+    };
+
+    // ツールバーの左側に追加（順番は後で調整できる）
+    toolbar.prepend(commentBtn);
+    toolbar.prepend(favBtn);
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+
+  window.__lgMetaObserver = observer;
+})();
+
 });
 </script>
