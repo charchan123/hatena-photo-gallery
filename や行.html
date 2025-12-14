@@ -105,7 +105,7 @@ body {
 }
 
 /* =========================================================
-   ★ ギャラリー本体（Animated / Justified 寄り）
+   ★ ギャラリー本体（Animated / Justified + Masonry）
 ========================================================= */
 .gallery {
   max-width: 1200px;
@@ -114,6 +114,7 @@ body {
 
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 1px;          /* ★ 핵심：masonry */
   grid-auto-flow: dense;
   gap: 4px;
 
@@ -124,25 +125,21 @@ body {
 }
 
 /* ===== サイズ定義 ===== */
-/* 1：正方形 */
 .gallery-item.size-1 {
   grid-column: span 1;
   aspect-ratio: 1 / 1;
 }
 
-/* 2：横長（2:1） */
 .gallery-item.size-2-h {
   grid-column: span 2;
   aspect-ratio: 2 / 1;
 }
 
-/* 2：縦長（1:2） ← ★ここが直る */
 .gallery-item.size-2-v {
   grid-column: span 1;
   aspect-ratio: 1 / 2;
 }
 
-/* 4：正方形（2×2） */
 .gallery-item.size-4 {
   grid-column: span 2;
   aspect-ratio: 1 / 1;
@@ -158,7 +155,6 @@ body {
   cursor: zoom-in;
 }
 
-/* ★ ここが壊れていた */
 .gallery a.gallery-item img {
   width: 100%;
   height: 100%;
@@ -749,11 +745,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     gallery.querySelectorAll("img").forEach(img => fadeObs.observe(img));
 
-    imagesLoaded(gallery, () => {
-      gallery.style.visibility = "visible";
-      sendHeight();
-
+    imagesLoaded(document.querySelector(".gallery"), () => {
       applyGallerySizes();
+      applyMasonryRows();
+      document.querySelector(".gallery").style.visibility = "visible";
+    });
 
       const lg = lightGallery(gallery, {
         selector: "a.gallery-item",
@@ -797,24 +793,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // キノコギャラリーGrid表示
   // =========================
+
     function applyGallerySizes() {
       const items = document.querySelectorAll(".gallery a.gallery-item");
       const COLS = window.innerWidth <= 580 ? 4 : 5;
     
-      let colCursor = 0; // 今の行の埋まり具合
+      let colCursor = 0;
     
       items.forEach((item, i) => {
-        item.classList.remove(
-          "size-1",
-          "size-2-h",
-          "size-2-v",
-          "size-4"
-        );
+        item.classList.remove("size-1","size-2-h","size-2-v","size-4");
     
         let span = 1;
         let cls = "size-1";
     
-        // ---- サイズ候補判定 ----
         if (i % 11 === 0 && colCursor <= COLS - 2) {
           cls = "size-4";
           span = 2;
@@ -828,11 +819,23 @@ document.addEventListener("DOMContentLoaded", () => {
     
         item.classList.add(cls);
     
-        // ---- 行管理 ----
         colCursor += span;
-        if (colCursor >= COLS) {
-          colCursor = 0;
-        }
+        if (colCursor >= COLS) colCursor = 0;
+      });
+    }
+
+  // =========================
+  // キノコギャラリー歯抜け防止
+  // =========================
+
+    function applyMasonryRows() {
+      const items = document.querySelectorAll(".gallery a.gallery-item");
+      const gap = 4; // CSSのgapと同じ
+    
+      items.forEach(item => {
+        const height = item.getBoundingClientRect().height;
+        const rowSpan = Math.ceil((height + gap) / 1);
+        item.style.gridRowEnd = `span ${rowSpan}`;
       });
     }
 
