@@ -678,23 +678,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================
-// ★ 写真メタ保存ロジック（UIなし・安全）
-// =========================
-function getPhotoMeta(src) {
-  try {
-    return JSON.parse(localStorage.getItem("photoMeta:" + src)) || {};
-  } catch {
-    return {};
-  }
-}
-
-function updatePhotoMeta(src, patch) {
-  const meta = getPhotoMeta(src);
-  const next = { ...meta, ...patch };
-  localStorage.setItem("photoMeta:" + src, JSON.stringify(next));
-}
-
-  // =========================
   // ギャラリー処理（既存）
   // =========================
   const gallery = document.querySelector(".gallery");
@@ -1002,7 +985,22 @@ function updatePhotoMeta(src, patch) {
       window.parent.postMessage({ type: "setHeight", height }, "*");
     }
   }, 300);
+// =========================
+// ★ 写真メタ保存ロジック（UIなし・安全）
+// =========================
+function getPhotoMeta(src) {
+  try {
+    return JSON.parse(localStorage.getItem("photoMeta:" + src)) || {};
+  } catch {
+    return {};
+  }
+}
 
+function updatePhotoMeta(src, patch) {
+  const meta = getPhotoMeta(src);
+  const next = { ...meta, ...patch };
+  localStorage.setItem("photoMeta:" + src, JSON.stringify(next));
+}
 });
 </script>
 """
