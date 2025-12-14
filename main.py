@@ -101,11 +101,12 @@ body {
   opacity: 0;
   transition: opacity .25s ease;
 }
-/* ======== ギャラリー本体（PC5列・スマホ4列） ======== */
+
+/* ===== ギャラリー本体 ===== */
 .gallery {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-auto-rows: 1px;
+  grid-auto-rows: 1px;            /* ★ masonryの核 */
   grid-auto-flow: dense;
   gap: 4px;
 
@@ -114,26 +115,37 @@ body {
   visibility: hidden;
 }
 
-/* サイズ指定は column だけ */
-.gallery-item.size-1 { grid-column: span 1; }
-.gallery-item.size-2-h { grid-column: span 2; }
-.gallery-item.size-4 { grid-column: span 2; }
+/* ===== タイルサイズ ===== */
+.gallery-item.size-1 {
+  grid-column: span 1;
+}
 
-/* タイル本体 */
+.gallery-item.size-2-h {
+  grid-column: span 2;
+}
+
+.gallery-item.size-4 {
+  grid-column: span 2;
+}
+
+/* ===== タイル本体 ===== */
 .gallery a.gallery-item {
   position: relative;
   display: block;
-  overflow: hidden;
   border-radius: 0;
+  overflow: hidden;
   background: #000;
 }
 
-/* 画像 */
+/* ===== 画像 ===== */
 .gallery img {
   width: 100%;
-  height: auto;
+  height: auto;                  /* ★ aspect-ratio禁止 */
   display: block;
   object-fit: cover;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .6s ease, transform .6s ease;
 }
 
 .gallery img.visible {
@@ -141,7 +153,7 @@ body {
   transform: translateY(0);
 }
 
-/* スマホ */
+/* ===== スマホ ===== */
 @media (max-width: 580px) {
   .gallery {
     grid-template-columns: repeat(4, 1fr);
@@ -693,6 +705,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ギャラリー処理（既存）
     // =========================
     const gallery = document.querySelector(".gallery");
+    
     if (gallery) {
       const fadeObs = new IntersectionObserver(entries => {
         entries.forEach(e => {
@@ -704,15 +717,15 @@ document.addEventListener("DOMContentLoaded", () => {
       }, { threshold: 0.1 });
     
       gallery.querySelectorAll("img").forEach(img => fadeObs.observe(img));
-
-      imagesLoaded(document.querySelector(".gallery"), () => {
+    
+      imagesLoaded(gallery, () => {
         applyGallerySizes();
         applyMasonry();
-        document.querySelector(".gallery").style.visibility = "visible";
+        gallery.style.visibility = "visible";
       });
-
+    
       window.addEventListener("resize", applyMasonry);
-  
+    
       const lg = lightGallery(gallery, {
         selector: "a.gallery-item",
         plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
@@ -724,6 +737,7 @@ document.addEventListener("DOMContentLoaded", () => {
         pause: 3000,
         progressBar: true,
       });
+    }
     
       gallery.querySelectorAll("a.gallery-item").forEach(a => {
         a.addEventListener("click", () => {
@@ -761,27 +775,24 @@ document.addEventListener("DOMContentLoaded", () => {
         item.classList.remove("size-1", "size-2-h", "size-4");
     
         if (i % 12 === 0) {
-          item.classList.add("size-4");
+          item.classList.add("size-4");     // 2×2
         } else if (i % 5 === 0) {
-          item.classList.add("size-2-h");
+          item.classList.add("size-2-h");   // 横長
         } else {
-          item.classList.add("size-1");
+          item.classList.add("size-1");     // 正方形相当
         }
       });
     }
-    
+
+  // =========================
+  // masonry計算JS（歯抜け防止）
+  // =========================    
     function applyMasonry() {
-      const gallery = document.querySelector(".gallery");
-      if (!gallery) return;
+      const gap = 4;
     
-      gallery.querySelectorAll(".gallery-item").forEach(item => {
-        const img = item.querySelector("img");
-        if (!img || !img.complete) return;
-    
-        const rowSpan = Math.ceil(
-          (img.getBoundingClientRect().height + 4) / 1
-        );
-        item.style.gridRowEnd = `span ${rowSpan}`;
+      document.querySelectorAll(".gallery a.gallery-item").forEach(item => {
+        const h = item.getBoundingClientRect().height;
+        item.style.gridRowEnd = `span ${Math.ceil((h + gap) / 1)}`;
       });
     }
 
