@@ -151,39 +151,43 @@ body {
   opacity: 0;
   transition: opacity .25s ease;
 }
-
-/* ======== ギャラリー本体（PC4列・スマホ3列） ======== */
+/* ======== ギャラリー本体（PC5列・スマホ4列） ======== */
 .gallery {
-  column-count: 4;
-  column-gap: 10px;
-  max-width: 900px;
-  margin: 0 auto;
-  grid-auto-rows: 1px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-flow: dense;   /* 歯抜け防止の本体 */
+  gap: 4px;
 }
-.gallery a.gallery-item{
+
+/* タイル本体 */
+.gallery a.gallery-item {
   display: block;
-  break-inside: avoid;
-  margin-bottom: 10px;
-  border-radius: 12px;
+  border-radius: 0;
   overflow: hidden;
 }
+
+/* 画像 */
 .gallery img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
   cursor: zoom-in;
   transition: opacity 0.6s ease, transform 0.6s ease;
   opacity: 0;
   transform: translateY(10px);
 }
+
 .gallery img.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* スマホ〜タブレットは 3 列 */
-@media (max-width: 768px) {
-  .gallery { column-count: 3; }
+/* スマホ */
+@media (max-width: 580px) {
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 /* ===== 五十音タイル・カードUI ===== */
@@ -990,33 +994,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ===========================
-// masonry計算
-// ===========================
-    function applyMasonryRows() {
-      const gallery = document.querySelector(".gallery");
-      if (!gallery) return;
-    
-      const gap = parseFloat(
-        getComputedStyle(gallery).gap || 0
-      );
-    
-      gallery.querySelectorAll("a.gallery-item").forEach(item => {
-        // 既存レイアウトが決まった後の高さを使う
-        const h = item.getBoundingClientRect().height;
-        const span = Math.ceil((h + gap) / 1);
-        item.style.gridRowEnd = `span ${span}`;
-      });
-    }
-
   // =========================
   // 高さ監視（既存）
   // =========================
   sendHeight();
   window.addEventListener("load", () => {
     sendHeight();
-
-    applyMasonryRows();
     
     setTimeout(sendHeight, 800);
     setTimeout(sendHeight, 2000);
