@@ -952,8 +952,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   sendHeight();
   window.addEventListener("load", () => {
-    applyMasonryRows();
     sendHeight();
+
+    applyMasonryRows();
+    
     setTimeout(sendHeight, 800);
     setTimeout(sendHeight, 2000);
   });
