@@ -517,24 +517,6 @@ mark {
   padding: 0 2px;
   border-radius: 4px;
 }
-
-/* ★ LightGallery メタアイコン状態制御 */
-.lg-meta-fav,
-.lg-meta-comment {
-  color: #aaa !important;       /* 初期グレー */
-  opacity: 0.8;
-}
-
-.lg-meta-active {
-  color: #fff !important;       /* アクティブは白 */
-  opacity: 1;
-}
-
-/* hover / active で色が戻るのを防ぐ */
-.lg-toolbar .lg-icon:hover,
-.lg-toolbar .lg-icon:active {
-  opacity: 1;
-}
 </style>
 <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
@@ -723,26 +705,29 @@ document.addEventListener("DOMContentLoaded", () => {
         progressBar: true,
       });
 
-        lg.on("lgAfterOpen", () => {
-          updateMetaIconState();
-            
+      gallery.querySelectorAll("a.gallery-item").forEach(a => {
+        a.addEventListener("click", () => {
           const el = document.documentElement;
-          if (!document.fullscreenElement) {
-            el.requestFullscreen?.().catch(() => {});
-          }
+          if (el.requestFullscreen) el.requestFullscreen();
+          else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+          else if (el.msRequestFullscreen) el.msRequestFullscreen();
         });
-        
-        lg.on("lgBeforeClose", () => {
-          if (document.fullscreenElement) {
-            document.exitFullscreen().catch(() => {});
-          }
-        });
-        
+      });
+
       gallery.addEventListener("lgBeforeClose", () => {
         if (document.fullscreenElement) {
           document.exitFullscreen().catch(() => {});
         }
         window.parent.postMessage({ type: "lgClosed" }, "*");
+      });
+
+      document.addEventListener("fullscreenchange", () => {
+        if (!document.fullscreenElement) {
+          try {
+            lg.closeGallery();
+            window.parent.postMessage({ type: "lgClosed" }, "*");
+          } catch (e) {}
+        }
       });
     });
   }
@@ -991,145 +976,6 @@ document.addEventListener("DOMContentLoaded", () => {
       window.parent.postMessage({ type: "setHeight", height }, "*");
     }
   }, 300);
-// =========================
-// ★ 写真メタ保存ロジック（UIなし・安全）
-// =========================
-function getPhotoMeta(src) {
-  try {
-    return JSON.parse(localStorage.getItem("photoMeta:" + src)) || {};
-  } catch {
-    return {};
-  }
-}
-
-function updatePhotoMeta(src, patch) {
-  const meta = getPhotoMeta(src);
-  const next = { ...meta, ...patch };
-  localStorage.setItem("photoMeta:" + src, JSON.stringify(next));
-}
-
-// =========================
-// ⭐ お気に入り状態の見た目制御
-// =========================
-function refreshFavoriteState(btn, src) {
-  const meta = getPhotoMeta(src);
-  btn.classList.toggle("lg-meta-active", !!meta.favorite);
-  btn.innerHTML = meta.favorite ? "★" : "☆";
-}
-
-// =========================
-// 💬 コメント状態の見た目制御
-// =========================
-function refreshCommentState(btn, src) {
-  const meta = getPhotoMeta(src);
-  btn.classList.toggle("lg-meta-active", !!meta.comment);
-}
-
-// =========================
-// 状態更新専用関数
-// =========================
-function updateMetaIconState() {
-  const slide = document.querySelector(".lg-current .lg-object");
-  if (!slide) return;
-
-  const src = slide.getAttribute("src");
-  const meta = getPhotoMeta(src);
-
-  const favBtn = document.querySelector(".lg-meta-fav");
-  const cmtBtn = document.querySelector(".lg-meta-comment");
-
-  if (favBtn) {
-    favBtn.classList.toggle("lg-meta-active", !!meta.favorite);
-    favBtn.innerHTML = meta.favorite ? "★" : "☆";
-  }
-
-  if (cmtBtn) {
-    cmtBtn.classList.toggle("lg-meta-active", !!meta.comment);
-  }
-}
-
-// =========================
-// ★ LightGallery toolbar に ⭐ 💬 を後付け（安全）
-// =========================
-(function attachMetaButtonsSafely() {
-
-  // すでに監視中なら二重起動しない
-  if (window.__lgMetaObserver) return;
-
-  const observer = new MutationObserver(() => {
-    const toolbar = document.querySelector(".lg-toolbar");
-    if (!toolbar) return;
-
-    // ⭐ がすでにあれば何もしない
-    if (toolbar.querySelector(".lg-meta-fav")) return;
-
-    // --- ⭐ お気に入り ---
-    const favBtn = document.createElement("button");
-    favBtn.className = "lg-icon lg-meta-fav";
-    favBtn.title = "お気に入り";
-    favBtn.innerHTML = "☆";
-
-    favBtn.onclick = () => {
-      const slide = document.querySelector(".lg-current .lg-object");
-      if (!slide) return;
-    
-      const src = slide.getAttribute("src");
-      if (!src) return;
-    
-      const meta = getPhotoMeta(src);
-      updatePhotoMeta(src, { favorite: !meta.favorite });
-    
-      refreshFavoriteState(favBtn, src);
-    };
-
-    // --- 💬 コメント ---
-    const commentBtn = document.createElement("button");
-    commentBtn.className = "lg-icon lg-meta-comment";
-    commentBtn.title = "コメント";
-    commentBtn.innerHTML = "💬";
-
-    commentBtn.onclick = () => {
-      toggleCommentUI(); // ← 次段階で実装
-      const slide = document.querySelector(".lg-current .lg-object");
-      if (!slide) return;
-
-      const src = slide.getAttribute("src");
-      if (!src) return;
-
-      const meta = getPhotoMeta(src);
-      const text = prompt("この写真のメモ（自分用）", meta.comment || "");
-      if (text !== null) {
-        updatePhotoMeta(src, { comment: text });
-      }
-      if (text !== null) {
-      updatePhotoMeta(src, { comment: text });
-      refreshCommentState(commentBtn, src);
-      }
-    };
-
-    // ツールバーの左側に追加（順番は後で調整できる）
-    toolbar.prepend(commentBtn);
-    toolbar.prepend(favBtn);
-
-    // ===== 初期表示の色を反映 =====
-const slide = document.querySelector(".lg-current .lg-object");
-if (slide) {
-  const src = slide.getAttribute("src");
-  if (src) {
-    refreshFavoriteState(favBtn, src);
-    refreshCommentState(commentBtn, src);
-  }
-}
-
-  });
-
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
-  });
-
-  window.__lgMetaObserver = observer;
-})();
 
 });
 </script>
