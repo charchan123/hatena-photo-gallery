@@ -1553,6 +1553,23 @@ function updatePhotoMeta(src, patch) {
 }
 
 // =========================
+// ⭐ お気に入り状態の見た目制御
+// =========================
+function refreshFavoriteState(btn, src) {
+  const meta = getPhotoMeta(src);
+  btn.classList.toggle("lg-meta-active", !!meta.favorite);
+  btn.innerHTML = meta.favorite ? "★" : "☆";
+}
+
+// =========================
+// 💬 コメント状態の見た目制御
+// =========================
+function refreshCommentState(btn, src) {
+  const meta = getPhotoMeta(src);
+  btn.classList.toggle("lg-meta-active", !!meta.comment);
+}
+
+// =========================
 // ★ LightGallery toolbar に ⭐ 💬 を後付け（安全）
 // =========================
 (function attachMetaButtonsSafely() {
@@ -1581,13 +1598,9 @@ function updatePhotoMeta(src, patch) {
       if (!src) return;
     
       const meta = getPhotoMeta(src);
-    
-      // 保存（← 既存の関数を使うだけ）
       updatePhotoMeta(src, { favorite: !meta.favorite });
     
-      // 表示切り替え
-      favBtn.classList.toggle("lg-meta-active", !meta.favorite);
-      favBtn.innerHTML = !meta.favorite ? "★" : "☆";
+      refreshFavoriteState(favBtn, src);
     };
 
     // --- 💬 コメント ---
@@ -1608,11 +1621,26 @@ function updatePhotoMeta(src, patch) {
       if (text !== null) {
         updatePhotoMeta(src, { comment: text });
       }
+      if (text !== null) {
+      updatePhotoMeta(src, { comment: text });
+      refreshCommentState(commentBtn, src);
+      }
     };
 
     // ツールバーの左側に追加（順番は後で調整できる）
     toolbar.prepend(commentBtn);
     toolbar.prepend(favBtn);
+
+    // ===== 初期表示の色を反映 =====
+const slide = document.querySelector(".lg-current .lg-object");
+if (slide) {
+  const src = slide.getAttribute("src");
+  if (src) {
+    refreshFavoriteState(favBtn, src);
+    refreshCommentState(commentBtn, src);
+  }
+}
+
   });
 
   observer.observe(document.body, {
