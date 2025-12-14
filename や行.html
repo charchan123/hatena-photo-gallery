@@ -704,14 +704,19 @@ document.addEventListener("DOMContentLoaded", () => {
         pause: 3000,
         progressBar: true,
       });
-
+    
       gallery.querySelectorAll("a.gallery-item").forEach(a => {
-        a.addEventListener("click", () => {
+        a.addEventListener("click", (e) => {
+    
+          // ★ ここが命：最初に即フルスクリーン
           const el = document.documentElement;
-          if (el.requestFullscreen) el.requestFullscreen();
-          else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
-          else if (el.msRequestFullscreen) el.msRequestFullscreen();
-        });
+          if (!document.fullscreenElement) {
+            if (el.requestFullscreen) el.requestFullscreen();
+            else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+            else if (el.msRequestFullscreen) el.msRequestFullscreen();
+          }
+    
+        }, { capture: true }); // ← これが必須
       });
 
       gallery.addEventListener("lgBeforeClose", () => {
