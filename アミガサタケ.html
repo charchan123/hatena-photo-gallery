@@ -27,45 +27,47 @@ body {
   grid-auto-rows: 1fr;
   grid-auto-flow: dense;
   gap: 3px;
+
   width: 100%;
   background: #fff;
   visibility: hidden;
-  box-sizing: border-box;  
+  box-sizing: border-box;
 }
 
-/* 1：正方形 */
+/* ===== サイズ定義 ===== */
 .gallery-item.size-1 {
   grid-column: span 1;
   grid-row: span 1;
+  aspect-ratio: 1 / 1;
 }
 
-/* 2：長方形 */
 .gallery-item.size-2-h {
   grid-column: span 2;
   grid-row: span 1;
 }
+
 .gallery-item.size-2-v {
   grid-column: span 1;
   grid-row: span 2;
 }
 
-/* 4：正方形（2×2） */
 .gallery-item.size-4 {
   grid-column: span 2;
   grid-row: span 2;
 }
 
+/* ===== タイル本体 ===== */
 .gallery a.gallery-item {
   position: relative;
   display: block;
   overflow: hidden;
-  border-radius: 0px;
+  border-radius: 0;
   background: #000;
   cursor: zoom-in;
-  aspect-ratio: 1 / 1;
 }
 
-gallery-item img {
+/* ★ ここが壊れていた */
+.gallery a.gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -73,6 +75,7 @@ gallery-item img {
   transition: transform .6s ease, opacity .4s ease;
 }
 
+/* hover */
 .gallery a.gallery-item::after {
   content: "";
   position: absolute;
@@ -90,13 +93,13 @@ gallery-item img {
   transform: scale(1.05);
 }
 
+/* スマホ */
 @media (max-width: 580px) {
   .gallery {
     grid-template-columns: repeat(4, 1fr);
     gap: 3px;
   }
 
-  /* スマホでは縦長を禁止 */
   .gallery-item.size-2-v {
     grid-row: span 1;
     grid-column: span 2;
