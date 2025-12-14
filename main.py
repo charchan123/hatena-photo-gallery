@@ -704,7 +704,9 @@ document.addEventListener("DOMContentLoaded", () => {
         download: false,
         zoom: true,
         thumbnail: true,
-        autoplay: false
+        autoplay: true,
+        pause: 3000,
+        progressBar: true,
       });
 
       gallery.querySelectorAll("a.gallery-item").forEach(a => {
