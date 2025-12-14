@@ -966,26 +966,14 @@ document.addEventListener("DOMContentLoaded", () => {
       progressBar: true,
     });
 
-    gallery.querySelectorAll("a.gallery-item").forEach(a => {
-      a.addEventListener("click", e => {
-        e.preventDefault(); // ← 即LightGallery起動を止める
-    
-        // 波紋・胞子を見せるためのワンテンポ
-        setTimeout(() => {
-          const items = [...gallery.querySelectorAll("a.gallery-item")];
-          const index = items.indexOf(a);
-    
-          // フルスクリーン要求（※ユーザー操作内なのでOK）
+      gallery.querySelectorAll("a.gallery-item").forEach(a => {
+        a.addEventListener("click", () => {
           const el = document.documentElement;
           if (el.requestFullscreen) el.requestFullscreen();
           else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
           else if (el.msRequestFullscreen) el.msRequestFullscreen();
-    
-          // LightGallery 起動
-          lg.openGallery(index);
-        }, 180); // ← 150〜220msがベスト
+        });
       });
-    });
 
       gallery.addEventListener("lgBeforeClose", () => {
         if (document.fullscreenElement) {
