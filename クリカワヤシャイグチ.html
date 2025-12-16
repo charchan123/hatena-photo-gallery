@@ -584,28 +584,29 @@ mark {
   z-index: 3;
 }
 
-/* 共通：アイコン */
-.gallery .fav-btn::before {
-  font-size: 18px;
-  line-height: 1;
-  transition: color 0.15s ease;
-}
-
-/* ☆ 未お気に入り → グレー固定 */
+/* 共通 */
 .gallery .fav-btn::before {
   content: "☆";
-  color: #b5b5b5;   /* ← 必ずグレー */
+  font-size: 18px;
+  line-height: 1;
+  color: #b5b5b5;   /* ← 未お気に入りは常にグレー */
+  transition: none; /* ← 色のブレ防止 */
 }
 
-/* ★ お気に入り → ホワイト固定 */
+/* お気に入り状態：常にホワイト（hoverより強い） */
 .gallery .fav-btn.is-fav::before {
   content: "★";
-  color: #ffffff;   /* ← 必ず白 */
+  color: #ffffff;
 }
 
-/* hover時は背景だけ変える（色は変えない） */
+/* hoverでは「色を触らない」 */
 .gallery .fav-btn:hover {
   background: rgba(0,0,0,0.65);
+}
+
+/* 念押し：hover + is-fav でも白を維持 */
+.gallery .fav-btn.is-fav:hover::before {
+  color: #ffffff;
 }
 </style>
 <link rel="stylesheet" 
