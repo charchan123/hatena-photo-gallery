@@ -648,6 +648,18 @@ mark {
   padding: 0 2px;
   border-radius: 4px;
 }
+
+/* お気に入りボタン（LightGallery toolbar） */
+.lg-fav-btn {
+  font-size: 22px;
+  line-height: 1;
+  color: #ffd54f;
+  cursor: pointer;
+}
+
+.lg-fav-btn:hover {
+  transform: scale(1.15);
+}
 </style>
 <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
@@ -661,6 +673,11 @@ mark {
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
+  // =========================
+// ⭐ お気に入り保存キー
+// =========================
+  const LG_FAVORITES_KEY = "lg_favorites";
+
   // ページ全体フェードイン
   requestAnimationFrame(() => {
     document.body.style.opacity = "1";
@@ -669,6 +686,71 @@ document.addEventListener("DOMContentLoaded", () => {
   function escapeRegExp(str) {
     return str.replace(/[-\/\^$*+?.()|[\]{}]/g, "\\$&");
   }
+
+// =========================
+// ★ お気に入り機能
+// =========================
+
+  function getCurrentSlideSrc() {
+  const img = document.querySelector(".lg-current .lg-object");
+  return img ? img.getAttribute("src") : null;
+}
+
+function loadFavorites() {
+  try {
+    return JSON.parse(localStorage.getItem(LG_FAVORITES_KEY)) || {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function saveFavorites(data) {
+  localStorage.setItem(LG_FAVORITES_KEY, JSON.stringify(data));
+}
+
+// =========================
+// ★ お気に入りボタンを toolbar に後付け
+// =========================
+
+function attachFavoriteButton() {
+  const toolbar = document.querySelector(".lg-toolbar");
+  if (!toolbar) return;
+
+  // 二重追加防止
+  if (toolbar.querySelector(".lg-fav-btn")) return;
+
+  const btn = document.createElement("button");
+  btn.className = "lg-icon lg-fav-btn";
+  btn.title = "お気に入り";
+  btn.textContent = "☆";
+
+  btn.addEventListener("click", () => {
+    const src = getCurrentSlideSrc();
+    if (!src) return;
+
+    const favs = loadFavorites();
+    favs[src] = !favs[src];
+    saveFavorites(favs);
+
+    updateFavoriteIcon();
+  });
+
+  toolbar.appendChild(btn);
+}
+
+// =========================
+// ★ お気に入り状態更新（スライドごと）
+// =========================
+
+function updateFavoriteIcon() {
+  const btn = document.querySelector(".lg-fav-btn");
+  if (!btn) return;
+
+  const src = getCurrentSlideSrc();
+  const favs = loadFavorites();
+
+  btn.textContent = favs[src] ? "★" : "☆";
+}
 
 // =========================
 // ★ 文脈リンク：五十音 → 詳細ページ（安全追加・最終形）
@@ -842,6 +924,19 @@ document.addEventListener("DOMContentLoaded", () => {
       autoplay: true,
       pause: 3000,
       progressBar: true,
+    });
+
+  // =========================
+  // お気に入り機能をLightGalleryイベントに接続
+  // =========================
+
+    gallery.addEventListener("lgAfterOpen", () => {
+      attachFavoriteButton();
+      updateFavoriteIcon();
+    });
+    
+    gallery.addEventListener("lgAfterSlide", () => {
+      updateFavoriteIcon();
     });
 
       gallery.querySelectorAll("a.gallery-item").forEach(a => {
