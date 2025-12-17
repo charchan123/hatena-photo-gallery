@@ -1177,6 +1177,7 @@ document.addEventListener("click", e => {
   if (!star) return;
 
   e.preventDefault();
+  e.stopImmediatePropagation(); // ← ★これを追加
   e.stopPropagation(); // ← LG起動を止める
 
   const item = star.closest(".gallery-item");
@@ -1383,6 +1384,7 @@ document.addEventListener("click", e => {
     
     gallery.addEventListener("lgAfterSlide", () => {
       updateFavoriteIcon();
+      updateThumbnailFavorites(); // ← 追加
     });
 
       gallery.querySelectorAll("a.gallery-item").forEach(a => {
