@@ -1676,6 +1676,36 @@ function normalizeSrc(src) {
   }
 
   // =========================
+// ⭐ お気に入り専用ページ描画
+// =========================
+    function renderFavoritePage() {
+      const favs = loadFavorites();
+      let count = 0;
+    
+      document.querySelectorAll(".favorite-list .mushroom-card").forEach(card => {
+        const img = card.querySelector("img");
+        const star = card.querySelector(".card-fav");
+        if (!img || !star) return;
+    
+        const src = normalizeSrc(img.getAttribute("src"));
+    
+        if (favs[src]) {
+          card.style.display = "";
+          star.textContent = "★";
+          star.classList.add("is-fav");
+          count++;
+        } else {
+          card.style.display = "none";
+        }
+      });
+    
+      const empty = document.querySelector(".favorite-empty");
+      if (empty) {
+        empty.style.display = count === 0 ? "block" : "none";
+      }
+    }
+
+  // =========================
   // index 横断検索（既存：ページネーション含む）
   // =========================
   const indexSearchInput = document.querySelector(".index-search-input");
@@ -1791,6 +1821,13 @@ function normalizeSrc(src) {
 // =========================
     updateCardFavorites();
 
+  // =========================
+// お気に入り専用ページ描画
+// =========================
+    if (document.querySelector(".favorite-list")) {
+      renderFavoritePage();
+      sendHeight();
+    }
   // =========================
   // 高さ監視（既存）
   // =========================
