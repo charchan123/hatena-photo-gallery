@@ -603,11 +603,6 @@ mark {
    ★ お気に入り：白固定（最重要）
 ========================= */
 
-/* ★ 状態は常に白 */
-.lg-fav-btn {
-  color: #ffffff;
-}
-
 /* ☆ 状態だけグレー */
 .lg-fav-btn:not(.is-fav) {
   color: #b5b5b5;
@@ -617,7 +612,24 @@ mark {
 .lg-fav-btn.is-fav:hover {
   color: #ffffff !important;
 }
-    </style>
+
+/* =========================
+   ★ お気に入り：白固定（最終確定版）
+========================= */
+
+/* 未お気に入り（☆） */
+.lg-toolbar .lg-fav-btn:not(.is-fav) {
+  color: #b5b5b5 !important;
+}
+
+/* お気に入り（★）は常に白 */
+.lg-toolbar .lg-fav-btn.is-fav,
+.lg-toolbar .lg-fav-btn.is-fav:hover,
+.lg-toolbar .lg-fav-btn.is-fav:focus,
+.lg-toolbar .lg-fav-btn.is-fav:active {
+  color: #ffffff !important;
+}
+</style>
 <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
 
@@ -895,6 +907,10 @@ function updateFavoriteIcon() {
     gallery.addEventListener("lgAfterOpen", () => {
       attachFavoriteButton();
       updateFavoriteIcon();
+      document.querySelector(".lg-fav-btn")?.classList.toggle(
+        "is-fav",
+        !!loadFavorites()[getCurrentSlideSrc()]
+      );
     });
     
     gallery.addEventListener("lgAfterSlide", () => {
