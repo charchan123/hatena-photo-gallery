@@ -1396,26 +1396,29 @@ function updateThumbnailFavorites() {
 // =========================
 // ★ お気に入りクリック処理時ギャラリー起動キャンセル（サムネ）
 // =========================
-document.addEventListener("click", e => {
-  const star = e.target.closest(".thumb-fav");
-  if (!star) return;
+function bindThumbnailStarEvents() {
+  document.querySelectorAll(".thumb-fav").forEach(star => {
+    if (star.__favBound) return; // 二重バインド防止
+    star.__favBound = true;
 
-  e.preventDefault();
-  e.stopImmediatePropagation(); // ← ★これを追加
-  e.stopPropagation(); // ← LG起動を止める
+    star.addEventListener("click", e => {
+      e.preventDefault();
+      e.stopPropagation();
 
-  const item = star.closest(".gallery-item");
-  const img = item?.querySelector("img");
-  if (!img) return;
+      const item = star.closest(".gallery-item");
+      const img = item?.querySelector("img");
+      if (!img) return;
 
-  const src = img.getAttribute("src");
-  const favs = loadFavorites();
+      const src = img.getAttribute("src");
+      const favs = loadFavorites();
 
-  favs[src] = !favs[src];
-  saveFavorites(favs);
+      favs[src] = !favs[src];
+      saveFavorites(favs);
 
-  updateThumbnailFavorites();
-});
+      updateThumbnailFavorites();
+    });
+  });
+}
 
 // =========================
 // ★ 文脈リンク：五十音 → 詳細ページ（安全追加・最終形）
@@ -1570,6 +1573,7 @@ document.addEventListener("click", e => {
     imagesLoaded(gallery, () => {
       gallery.style.visibility = "visible";
       updateThumbnailFavorites(); // ← 追加
+      bindThumbnailStarEvents(); // ← 追加
       sendHeight();
       
     const lg = lightGallery(gallery, {
@@ -1620,12 +1624,17 @@ document.addEventListener("click", e => {
         });
       });
 
-      gallery.addEventListener("lgBeforeClose", () => {
-        if (document.fullscreenElement) {
-          document.exitFullscreen().catch(() => {});
-        }
-        window.parent.postMessage({ type: "lgClosed" }, "*");
-      });
+    gallery.addEventListener("lgBeforeClose", () => {
+    + updateThumbnailFavorites(); // ← 即同期
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {});
+      }
+      window.parent.postMessage({ type: "lgClosed" }, "*");
+    });
+
+    gallery.addEventListener("lgAfterClose", () => {
+      updateThumbnailFavorites();
+    });
 
       document.addEventListener("fullscreenchange", () => {
         if (!document.fullscreenElement) {
