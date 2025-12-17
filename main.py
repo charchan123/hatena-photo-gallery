@@ -1287,6 +1287,36 @@ function normalizeSrc(src) {
   }
 
   // =========================
+// ⭐ お気に入り専用ページ描画
+// =========================
+    function renderFavoritePage() {
+      const favs = loadFavorites();
+      let count = 0;
+    
+      document.querySelectorAll(".favorite-list .mushroom-card").forEach(card => {
+        const img = card.querySelector("img");
+        const star = card.querySelector(".card-fav");
+        if (!img || !star) return;
+    
+        const src = normalizeSrc(img.getAttribute("src"));
+    
+        if (favs[src]) {
+          card.style.display = "";
+          star.textContent = "★";
+          star.classList.add("is-fav");
+          count++;
+        } else {
+          card.style.display = "none";
+        }
+      });
+    
+      const empty = document.querySelector(".favorite-empty");
+      if (empty) {
+        empty.style.display = count === 0 ? "block" : "none";
+      }
+    }
+
+  // =========================
   // index 横断検索（既存：ページネーション含む）
   // =========================
   const indexSearchInput = document.querySelector(".index-search-input");
@@ -1402,6 +1432,13 @@ function normalizeSrc(src) {
 // =========================
     updateCardFavorites();
 
+  // =========================
+// お気に入り専用ページ描画
+// =========================
+    if (document.querySelector(".favorite-list")) {
+      renderFavoritePage();
+      sendHeight();
+    }
   // =========================
   // 高さ監視（既存）
   // =========================
@@ -2010,6 +2047,68 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 </div>
 """)
 
+# ===========================
+# ⭐ お気に入り専用ページ生成
+# ===========================
+def generate_favorite_page(grouped):
+    parts = []
+
+    parts.append("""
+<h2 class="section-title">⭐ お気に入りキノコ</h2>
+
+<div class="section-card">
+  <div class="favorite-empty" style="display:none; text-align:center; color:#666; line-height:1.8;">
+    まだお気に入りはありません<br>
+    <small>★を押して、自分だけの図鑑を作ってみてください</small>
+  </div>
+
+  <div class="mushroom-list favorite-list">
+""")
+
+    # 全キノコ分カード（最初は全部 hidden）
+    for name, srcs in grouped.items():
+        if not srcs:
+            continue
+
+        thumb = srcs[0]
+        esc_name = html.escape(name)
+        safe = safe_filename(name)
+
+        parts.append(f"""
+<a href="{safe}.html?from=favorite"
+   class="mushroom-card"
+   style="display:none;">
+  <div class="mushroom-card-thumb">
+    <span class="card-fav">☆</span>
+    <img src="{thumb}?width=400" alt="{esc_name}">
+  </div>
+  <div class="mushroom-card-name">{esc_name}</div>
+</a>
+""")
+
+    parts.append("""
+  </div>
+
+  <div style="text-align:center; margin-top:30px;">
+    <a href="index.html" class="back-btn">
+      ◀ トップに戻る
+    </a>
+  </div>
+</div>
+""")
+
+    # 共通リソース
+    parts.append(STYLE_TAG)
+    parts.append(LIGHTGALLERY_TAGS)
+    parts.append(SCRIPT_TAG)
+
+    html_out = "".join(parts)
+
+    with open(f"{OUTPUT_DIR}/favorite.html", "w", encoding="utf-8") as f:
+        f.write(html_out)
+
+    print("⭐ favorite.html 生成完了")
+
 # ==========================================================
 # 共通リソース
 # ==========================================================
@@ -2036,5 +2135,6 @@ if __name__ == "__main__":
         save_exif_cache(exif_cache)
         grouped = generate_gallery(entries, exif_cache)
         generate_index(grouped, exif_cache)
+        generate_favorite_page(grouped)
     else:
         print("⚠️ 画像が見つかりませんでした。")
