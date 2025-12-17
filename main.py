@@ -1903,49 +1903,44 @@ def generate_gallery(entries, exif_cache):
     return grouped
 
 # ===========================
-# index.html を生成
+# index.html を生成（最終確定版）
 # ===========================
 def generate_index(grouped, exif_cache):
     index_parts = []
 
+    # ===========================
+    # HTML 骨格（head）
+    # ===========================
+    index_parts.append(f"""<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>キノコ図鑑</title>
+{STYLE_TAG}
+{LIGHTGALLERY_TAGS}
+""")
+
     # --------------------------
-    # altごとに最新撮影日を取得
+    # 検索用 JS データ（headに置く）
     # --------------------------
-    alt_latest = {}
+    all_mushrooms_js = []
     for alt, srcs in grouped.items():
-        best_key = ""
-        for src in srcs:
-            exif = exif_cache.get(src, {}) or {}
-            d = exif.get("date") or ""
-            if not d:
-                continue
-            key = d.replace("/", "")
-            if len(key) == 8 and (best_key == "" or key > best_key):
-                best_key = key
-        if best_key:
-            alt_latest[alt] = best_key
+        thumb = srcs[0] if srcs else ""
+        all_mushrooms_js.append({
+            "name": alt,
+            "name_norm": alt.normalize("NFKC").lower(),
+            "href": f"{safe_filename(alt)}.html",
+            "thumb": thumb + "?width=300"
+        })
 
-    # --------------------------
-    # おすすめ用ピック関数
-    # --------------------------
-    def pick_mushrooms(name_list):
-        items = []
-        for name in name_list:
-            if name in grouped:
-                img = grouped[name][0] if grouped[name] else ""
-                items.append({
-                    "name": name,
-                    "thumb": img + "?width=400",
-                    "href": f"{safe_filename(name)}.html"
-                })
-        return items[:3]
-
-    sorted_new = sorted(alt_latest.items(), key=lambda x: x[1], reverse=True)
-    new_names = [name for name, _ in sorted_new][:3]
-
-    recommend_new = pick_mushrooms(new_names)
-    recommend_rarity = pick_mushrooms(RARITY_LIST)
-    recommend_popular = pick_mushrooms(POPULAR_LIST)
+    index_parts.append(f"""
+<script>
+window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
+</script>
+</head>
+<body>
+""")
 
     # ==========================================================
     # 🔍 全キノコ横断検索
@@ -1963,38 +1958,19 @@ def generate_index(grouped, exif_cache):
 
     <div class="index-search-results"></div>
 
-    <!-- 🔍 検索結果が0件のときだけ表示 -->
     <div class="search-empty" style="display:none;">
       🔍 該当するキノコが見つかりませんでした<br>
       <small>ひらがな・カタカナを変えて試してみてください</small>
     </div>
-    
+
     <div class="index-pagination"></div>
   </div>
 </div>
 """)
 
-    # 検索用 JS データ
-    all_mushrooms_js = []
-    for alt, srcs in grouped.items():
-        name_norm = alt.lower()
-        thumb = srcs[0] if srcs else ""
-        all_mushrooms_js.append({
-            "name": alt,
-            "name_norm": name_norm,
-            "href": f"{safe_filename(alt)}.html",
-            "thumb": thumb + "?width=300"
-        })
-
-    index_parts.append(f"""
-<script>
-window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
-</script>
-""")
-
-# ==========================================================
-# 五十音別分類
-# ==========================================================
+    # ==========================================================
+    # 五十音別分類 + ⭐お気に入り導線
+    # ==========================================================
     index_parts.append("""
 <div class="section">
   <h2 class="section-title">五十音別分類</h2>
@@ -2008,7 +1984,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
             f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>'
         )
 
-    # ⭐ お気に入り導線
+    # ⭐ お気に入り導線（1行追加）
     index_parts.append(
         '<a class="aiuo-link" href="favorite.html">⭐ お気に入りを見る</a>'
     )
@@ -2022,10 +1998,41 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     # ==========================================================
     # おすすめキノコ
     # ==========================================================
+    # altごとに最新撮影日
+    alt_latest = {}
+    for alt, srcs in grouped.items():
+        best = ""
+        for src in srcs:
+            d = (exif_cache.get(src) or {}).get("date") or ""
+            key = d.replace("/", "")
+            if len(key) == 8 and key > best:
+                best = key
+        if best:
+            alt_latest[alt] = best
+
+    sorted_new = sorted(alt_latest.items(), key=lambda x: x[1], reverse=True)
+    new_names = [n for n, _ in sorted_new][:3]
+
+    def pick(names):
+        out = []
+        for n in names:
+            if n in grouped and grouped[n]:
+                out.append({
+                    "name": n,
+                    "thumb": grouped[n][0] + "?width=400",
+                    "href": f"{safe_filename(n)}.html"
+                })
+        return out
+
+    recommend_new = pick(new_names)
+    recommend_rarity = pick(RARITY_LIST)
+    recommend_popular = pick(POPULAR_LIST)
+
     index_parts.append("""
 <div class="section">
   <h2 class="section-title">おすすめキノコ</h2>
-  
+
+  <div class="section-card">
     <div class="recommend-grid">
 """)
 
@@ -2039,7 +2046,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
   <img src="{it['thumb']}" alt="{it['name']}">
   <div>{it['name']}</div>
 </a>
-    """)
+""")
         index_parts.append("</div></div>")
 
     append_cards("新着キノコ", recommend_new)
@@ -2052,30 +2059,22 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 </div>
 """)
 
-# ===========================
-# index.html を生成
-# ===========================
-def generate_index(grouped, exif_cache):
-    index_parts = []
-
-    # ===== ここに今ある index.html 構築処理をすべてそのまま残す =====
-    # （全キノコ横断検索、五十音別分類、おすすめキノコ など）
-    # ================================================================
+    # ===========================
+    # footer（JS）
+    # ===========================
+    index_parts.append(f"""
+{SCRIPT_TAG}
+</body>
+</html>
+""")
 
     # ===========================
-    # index.html 書き出し（★必須）
+    # 書き出し
     # ===========================
-    index_parts.append(STYLE_TAG)
-    index_parts.append(LIGHTGALLERY_TAGS)
-    index_parts.append(SCRIPT_TAG)
-
-    index_html = "".join(index_parts)
-
     with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
-        f.write(index_html)
+        f.write("".join(index_parts))
 
     print("✅ index.html 生成完了")
-
 
 # ===========================
 # ⭐ お気に入り専用ページ生成
