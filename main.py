@@ -2008,6 +2008,11 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
             f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>'
         )
 
+    # ⭐ お気に入り導線
+    index_parts.append(
+        '<a class="aiuo-link" href="favorite.html">⭐ お気に入りを見る</a>'
+    )
+
     index_parts.append("""
     </div>
   </div>
@@ -2048,18 +2053,29 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 """)
 
 # ===========================
-# index.html 書き出し（★必須）
+# index.html を生成
 # ===========================
-index_parts.append(STYLE_TAG)
-index_parts.append(LIGHTGALLERY_TAGS)
-index_parts.append(SCRIPT_TAG)
+def generate_index(grouped, exif_cache):
+    index_parts = []
 
-index_html = "".join(index_parts)
+    # ===== ここに今ある index.html 構築処理をすべてそのまま残す =====
+    # （全キノコ横断検索、五十音別分類、おすすめキノコ など）
+    # ================================================================
 
-with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
-    f.write(index_html)
+    # ===========================
+    # index.html 書き出し（★必須）
+    # ===========================
+    index_parts.append(STYLE_TAG)
+    index_parts.append(LIGHTGALLERY_TAGS)
+    index_parts.append(SCRIPT_TAG)
 
-print("✅ index.html 生成完了")
+    index_html = "".join(index_parts)
+
+    with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
+        f.write(index_html)
+
+    print("✅ index.html 生成完了")
+
 
 # ===========================
 # ⭐ お気に入り専用ページ生成
@@ -2123,16 +2139,19 @@ def generate_favorite_page(grouped):
 
     print("⭐ favorite.html 生成完了")
 
+
 # ===========================
 # メイン
 # ===========================
 if __name__ == "__main__":
     fetch_hatena_articles_api()
     entries = fetch_images()
+
     if entries:
         exif_cache = load_exif_cache()
         exif_cache = build_exif_cache(entries, exif_cache)
         save_exif_cache(exif_cache)
+
         grouped = generate_gallery(entries, exif_cache)
         generate_index(grouped, exif_cache)
         generate_favorite_page(grouped)
