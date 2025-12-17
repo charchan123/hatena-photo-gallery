@@ -1929,7 +1929,7 @@ def generate_index(grouped, exif_cache):
         thumb = srcs[0] if srcs else ""
         all_mushrooms_js.append({
             "name": alt,
-            "name_norm": alt.normalize("NFKC").lower(),
+            "name_norm": alt.lower(),
             "href": f"{safe_filename(alt)}.html",
             "thumb": thumb + "?width=300"
         })
