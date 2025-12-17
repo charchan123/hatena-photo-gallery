@@ -2048,6 +2048,20 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 """)
 
 # ===========================
+# index.html 書き出し（★必須）
+# ===========================
+index_parts.append(STYLE_TAG)
+index_parts.append(LIGHTGALLERY_TAGS)
+index_parts.append(SCRIPT_TAG)
+
+index_html = "".join(index_parts)
+
+with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
+    f.write(index_html)
+
+print("✅ index.html 生成完了")
+
+# ===========================
 # ⭐ お気に入り専用ページ生成
 # ===========================
 def generate_favorite_page(grouped):
