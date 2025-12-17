@@ -736,6 +736,40 @@ mark {
 .thumb-fav:hover {
   transform: scale(1.1);
 }
+
+/* =========================
+   カード用 ★（五十音 / index）
+========================= */
+.mushroom-card-thumb {
+  position: relative;
+}
+
+.card-fav {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 3;
+
+  font-size: 16px;
+  line-height: 1;
+  color: #b5b5b5;
+
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(4px);
+  border-radius: 999px;
+  padding: 4px 6px;
+
+  user-select: none;
+  cursor: default;
+}
+
+.card-fav.is-fav {
+  color: #ffffff;
+}
+
+.card-fav:hover {
+  transform: scale(1.1);
+}
 </style>"""
 
 # ====== LightGallery 読み込みタグ ======
@@ -775,7 +809,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function getCurrentSlideSrc() {
   const img = document.querySelector(".lg-current .lg-object");
-  return img ? img.getAttribute("src") : null;
+  return img ? normalizeSrc(img.getAttribute("src")) : null;
 }
 
 function loadFavorites() {
@@ -850,7 +884,7 @@ function updateThumbnailFavorites() {
     const star = a.querySelector(".thumb-fav");
     if (!img || !star) return;
 
-    const src = img.getAttribute("src");
+    const src = normalizeSrc(img.getAttribute("src"));
     if (favs[src]) {
       star.textContent = "★";
       star.classList.add("is-fav");
@@ -877,7 +911,7 @@ function bindThumbnailStarEvents() {
       const img = item?.querySelector("img");
       if (!img) return;
 
-      const src = img.getAttribute("src");
+      const src = normalizeSrc(img.getAttribute("src"));
       const favs = loadFavorites();
 
       favs[src] = !favs[src];
@@ -886,6 +920,35 @@ function bindThumbnailStarEvents() {
       updateThumbnailFavorites();
     });
   });
+}
+
+// =========================
+// ★ indexカードお気に入り更新関数
+// =========================
+function updateCardFavorites() {
+  const favs = loadFavorites();
+
+  document.querySelectorAll(".mushroom-card").forEach(card => {
+    const img = card.querySelector("img");
+    const star = card.querySelector(".card-fav");
+    if (!img || !star) return;
+
+    const src = normalizeSrc(img.getAttribute("src"));
+    if (favs[src]) {
+      star.textContent = "★";
+      star.classList.add("is-fav");
+    } else {
+      star.textContent = "☆";
+      star.classList.remove("is-fav");
+    }
+  });
+}
+
+// =========================
+// src 正規化関数
+// =========================
+function normalizeSrc(src) {
+  return src ? src.replace(/\?.*$/, "") : "";
 }
 
 // =========================
@@ -1041,6 +1104,7 @@ function bindThumbnailStarEvents() {
     imagesLoaded(gallery, () => {
       gallery.style.visibility = "visible";
       updateThumbnailFavorites(); // ← 追加
+      updateCardFavorites();
       bindThumbnailStarEvents(); // ← 追加
       sendHeight();
       
@@ -1093,7 +1157,8 @@ function bindThumbnailStarEvents() {
       });
 
     gallery.addEventListener("lgBeforeClose", () => {
-    + updateThumbnailFavorites(); // ← 即同期
+      updateThumbnailFavorites(); // ← 即同期
+      updateCardFavorites();
       if (document.fullscreenElement) {
         document.exitFullscreen().catch(() => {});
       }
@@ -1252,6 +1317,7 @@ function bindThumbnailStarEvents() {
         <a href="${item.href}?from=index&q=${encodeURIComponent(q)}"
            class="mushroom-card search-result-item">
           <div class="mushroom-card-thumb">
+            <span class="card-fav">☆</span>
             <img src="${item.thumb}" alt="${item.name}">
           </div>
           <div class="mushroom-card-name">
@@ -1259,6 +1325,7 @@ function bindThumbnailStarEvents() {
           </div>
         </a>
       `).join("");
+      updateCardFavorites();
     }
 
     function updateURL(q, page) {
@@ -1331,6 +1398,11 @@ function bindThumbnailStarEvents() {
   }
 
   // =========================
+// カード★ 初期同期（index / 五十音ページ用）
+// =========================
+    updateCardFavorites();
+
+  // =========================
   // 高さ監視（既存）
   // =========================
   sendHeight();
@@ -1359,7 +1431,6 @@ function bindThumbnailStarEvents() {
       window.parent.postMessage({ type: "setHeight", height }, "*");
     }
   }, 300);
-
 });
 </script>
 """
@@ -1744,31 +1815,36 @@ def generate_gallery(entries, exif_cache):
         """)
 
         html_parts.append("<div class='mushroom-list'>")
+
         for n in sorted(names):
             safe = safe_filename(n)
             first_char = n[0] if n else ""
             imgs_for_name = grouped.get(n, [])
             thumb_src = imgs_for_name[0] if imgs_for_name else ""
-
+        
             esc_name = html.escape(n)
             esc_kana = html.escape(first_char)
-
+        
             img_tag = ""
             if thumb_src:
                 img_tag = (
                     f"<img src='{thumb_src}?width=400' "
                     f"alt='{esc_name}' loading='lazy'>"
                 )
-
+        
             html_parts.append(f"""
             <a href="{safe}.html?from=aiuo&kana={html.escape(g)}"
                class="mushroom-card"
                data-name="{esc_name}"
                data-kana="{esc_kana}">
-              <div class="mushroom-card-thumb">{img_tag}</div>
+              <div class="mushroom-card-thumb">
+                <span class="card-fav">☆</span>
+                {img_tag}
+              </div>
               <div class="mushroom-card-name">{esc_name}</div>
             </a>
             """)
+        
         html_parts.append("</div>")  # .mushroom-list
 
         html_parts.append("""
