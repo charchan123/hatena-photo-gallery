@@ -869,6 +869,7 @@ document.addEventListener("click", e => {
   if (!star) return;
 
   e.preventDefault();
+  e.stopImmediatePropagation(); // ← ★これを追加
   e.stopPropagation(); // ← LG起動を止める
 
   const item = star.closest(".gallery-item");
@@ -1075,6 +1076,7 @@ document.addEventListener("click", e => {
     
     gallery.addEventListener("lgAfterSlide", () => {
       updateFavoriteIcon();
+      updateThumbnailFavorites(); // ← 追加
     });
 
       gallery.querySelectorAll("a.gallery-item").forEach(a => {
@@ -1678,15 +1680,15 @@ def generate_gallery(entries, exif_cache):
             exif = exif_cache.get(src, {}) or {}
             caption_attr = build_caption_html(alt, exif)
 
-        html_parts.append(
-            f'<a class="gallery-item" href="{src}" '
-            f'data-exthumbimage="{thumb}" '
-            f'data-sub-html="{caption_attr}">'
-            f'<span class="thumb-fav">☆</span>'   # ← ★これだけ追加
-            f'<span class="spores"></span>'
-            f'<img src="{src}" alt="{html.escape(alt)}" loading="lazy">'
-            f'</a>'
-        )
+            html_parts.append(
+                f'<a class="gallery-item" href="{src}" '
+                f'data-exthumbimage="{thumb}" '
+                f'data-sub-html="{caption_attr}">'
+                f'<span class="thumb-fav">☆</span>'   # ← ★これだけ追加
+                f'<span class="spores"></span>'
+                f'<img src="{src}" alt="{html.escape(alt)}" loading="lazy">'
+                f'</a>'
+            )
         html_parts.append("</div>")
 
         # 五十音タイル
