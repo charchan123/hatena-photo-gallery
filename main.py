@@ -668,7 +668,26 @@ mark {
 .lg-fav-btn:hover {
   transform: scale(1.15);
 }
-</style>"""
+
+/* =========================
+   ★ お気に入り：白固定（最重要）
+========================= */
+
+/* ★ 状態は常に白 */
+.lg-fav-btn {
+  color: #ffffff;
+}
+
+/* ☆ 状態だけグレー */
+.lg-fav-btn:not(.is-fav) {
+  color: #b5b5b5;
+}
+
+/* hoverしても★は白を維持 */
+.lg-fav-btn.is-fav:hover {
+  color: #ffffff !important;
+}
+    </style>"""
 
 # ====== LightGallery 読み込みタグ ======
 LIGHTGALLERY_TAGS = """
@@ -755,7 +774,6 @@ function attachFavoriteButton() {
 // =========================
 // ★ お気に入り状態更新（スライドごと）
 // =========================
-
 function updateFavoriteIcon() {
   const btn = document.querySelector(".lg-fav-btn");
   if (!btn) return;
@@ -763,7 +781,13 @@ function updateFavoriteIcon() {
   const src = getCurrentSlideSrc();
   const favs = loadFavorites();
 
-  btn.textContent = favs[src] ? "★" : "☆";
+  if (favs[src]) {
+    btn.textContent = "★";
+    btn.classList.add("is-fav");
+  } else {
+    btn.textContent = "☆";
+    btn.classList.remove("is-fav");
+  }
 }
 
 // =========================
