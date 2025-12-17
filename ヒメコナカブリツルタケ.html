@@ -1,4 +1,4 @@
-<h2 style='font-size:24px; font-weight:600; text-align:center; margin-top:20px;'>ヒメコナカブリツルタケ<span style='font-size:15px; font-weight:400; color:#666; margin-left:6px;'>— 1 photos</span></h2><div class='gallery'><a class="gallery-item" href="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250816/20250816142825.jpg" data-exthumbimage="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250816/20250816142825.jpg?width=300" data-sub-html="&lt;div class=&#x27;exif-wrap&#x27;&gt;&lt;div class=&#x27;exif-title&#x27;&gt;ヒメコナカブリツルタケ&lt;/div&gt;&lt;div class=&#x27;exif-middle&#x27;&gt;EOS Kiss X5 / EF-S18-55mm f/3.5-5.6 IS&lt;/div&gt;&lt;div class=&#x27;exif-bottom-row&#x27;&gt;&lt;span&gt;49mm&lt;/span&gt;&lt;span&gt;f/20.0&lt;/span&gt;&lt;span&gt;1/8s&lt;/span&gt;&lt;span&gt;ISO3200&lt;/span&gt;&lt;span&gt;2025/08/15&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;"><span class="spores"></span><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250816/20250816142825.jpg" alt="ヒメコナカブリツルタケ" loading="lazy"></a></div><div class='aiuo-links' style='margin-top:40px;'><a class="aiuo-link" href="あ行.html">あ行</a><a class="aiuo-link" href="か行.html">か行</a><a class="aiuo-link" href="さ行.html">さ行</a><a class="aiuo-link" href="た行.html">た行</a><a class="aiuo-link" href="な行.html">な行</a><a class="aiuo-link" href="は行.html">は行</a><a class="aiuo-link" href="ま行.html">ま行</a><a class="aiuo-link" href="や行.html">や行</a><a class="aiuo-link" href="ら行.html">ら行</a><a class="aiuo-link" href="わ行.html">わ行</a></div><style>
+<h2 style='font-size:24px; font-weight:600; text-align:center; margin-top:20px;'>ヒメコナカブリツルタケ<span style='font-size:15px; font-weight:400; color:#666; margin-left:6px;'>— 1 photos</span></h2><div class='gallery'><a class="gallery-item" href="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250816/20250816142825.jpg" data-exthumbimage="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250816/20250816142825.jpg?width=300" data-sub-html="&lt;div class=&#x27;exif-wrap&#x27;&gt;&lt;div class=&#x27;exif-title&#x27;&gt;ヒメコナカブリツルタケ&lt;/div&gt;&lt;div class=&#x27;exif-middle&#x27;&gt;EOS Kiss X5 / EF-S18-55mm f/3.5-5.6 IS&lt;/div&gt;&lt;div class=&#x27;exif-bottom-row&#x27;&gt;&lt;span&gt;49mm&lt;/span&gt;&lt;span&gt;f/20.0&lt;/span&gt;&lt;span&gt;1/8s&lt;/span&gt;&lt;span&gt;ISO3200&lt;/span&gt;&lt;span&gt;2025/08/15&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;"><span class="thumb-fav">☆</span><span class="spores"></span><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250816/20250816142825.jpg" alt="ヒメコナカブリツルタケ" loading="lazy"></a></div><div class='aiuo-links' style='margin-top:40px;'><a class="aiuo-link" href="あ行.html">あ行</a><a class="aiuo-link" href="か行.html">か行</a><a class="aiuo-link" href="さ行.html">さ行</a><a class="aiuo-link" href="た行.html">た行</a><a class="aiuo-link" href="な行.html">な行</a><a class="aiuo-link" href="は行.html">は行</a><a class="aiuo-link" href="ま行.html">ま行</a><a class="aiuo-link" href="や行.html">や行</a><a class="aiuo-link" href="ら行.html">ら行</a><a class="aiuo-link" href="わ行.html">わ行</a></div><style>
 html, body {
   margin: 0;
   padding: 0;
@@ -611,6 +611,43 @@ mark {
 .lg-toolbar .lg-fav-btn.is-fav:active {
   color: #ffffff !important;
 }
+
+/* =========================
+   サムネイル用 ★ オーバーレイ
+========================= */
+.gallery-item {
+  position: relative;
+}
+
+/* ★ 本体 */
+.thumb-fav {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 3;
+
+  font-size: 18px;
+  line-height: 1;
+  color: #b5b5b5;
+
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(4px);
+  border-radius: 999px;
+  padding: 4px 6px;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+/* お気に入り状態 */
+.thumb-fav.is-fav {
+  color: #ffffff;
+}
+
+/* hover演出（軽め） */
+.thumb-fav:hover {
+  transform: scale(1.1);
+}
 </style>
 <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
@@ -707,6 +744,51 @@ function updateFavoriteIcon() {
     btn.classList.remove("is-fav");
   }
 }
+
+// =========================
+// ★ お気に入り状態反映関数（サムネ）
+// =========================
+function updateThumbnailFavorites() {
+  const favs = loadFavorites();
+
+  document.querySelectorAll(".gallery-item").forEach(a => {
+    const img = a.querySelector("img");
+    const star = a.querySelector(".thumb-fav");
+    if (!img || !star) return;
+
+    const src = img.getAttribute("src");
+    if (favs[src]) {
+      star.textContent = "★";
+      star.classList.add("is-fav");
+    } else {
+      star.textContent = "☆";
+      star.classList.remove("is-fav");
+    }
+  });
+}
+
+// =========================
+// ★ お気に入りクリック処理時ギャラリー起動キャンセル（サムネ）
+// =========================
+document.addEventListener("click", e => {
+  const star = e.target.closest(".thumb-fav");
+  if (!star) return;
+
+  e.preventDefault();
+  e.stopPropagation(); // ← LG起動を止める
+
+  const item = star.closest(".gallery-item");
+  const img = item?.querySelector("img");
+  if (!img) return;
+
+  const src = img.getAttribute("src");
+  const favs = loadFavorites();
+
+  favs[src] = !favs[src];
+  saveFavorites(favs);
+
+  updateThumbnailFavorites();
+});
 
 // =========================
 // ★ 文脈リンク：五十音 → 詳細ページ（安全追加・最終形）
@@ -860,6 +942,7 @@ function updateFavoriteIcon() {
 
     imagesLoaded(gallery, () => {
       gallery.style.visibility = "visible";
+      updateThumbnailFavorites(); // ← 追加
       sendHeight();
       
     const lg = lightGallery(gallery, {
@@ -889,6 +972,7 @@ function updateFavoriteIcon() {
     gallery.addEventListener("lgAfterOpen", () => {
       attachFavoriteButton();
       updateFavoriteIcon();
+      updateThumbnailFavorites(); // ← 追加
       document.querySelector(".lg-fav-btn")?.classList.toggle(
         "is-fav",
         !!loadFavorites()[getCurrentSlideSrc()]

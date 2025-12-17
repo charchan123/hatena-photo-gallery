@@ -965,6 +965,43 @@ mark {
 .lg-toolbar .lg-fav-btn.is-fav:active {
   color: #ffffff !important;
 }
+
+/* =========================
+   サムネイル用 ★ オーバーレイ
+========================= */
+.gallery-item {
+  position: relative;
+}
+
+/* ★ 本体 */
+.thumb-fav {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 3;
+
+  font-size: 18px;
+  line-height: 1;
+  color: #b5b5b5;
+
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(4px);
+  border-radius: 999px;
+  padding: 4px 6px;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+/* お気に入り状態 */
+.thumb-fav.is-fav {
+  color: #ffffff;
+}
+
+/* hover演出（軽め） */
+.thumb-fav:hover {
+  transform: scale(1.1);
+}
 </style>
 <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
@@ -1061,6 +1098,51 @@ function updateFavoriteIcon() {
     btn.classList.remove("is-fav");
   }
 }
+
+// =========================
+// ★ お気に入り状態反映関数（サムネ）
+// =========================
+function updateThumbnailFavorites() {
+  const favs = loadFavorites();
+
+  document.querySelectorAll(".gallery-item").forEach(a => {
+    const img = a.querySelector("img");
+    const star = a.querySelector(".thumb-fav");
+    if (!img || !star) return;
+
+    const src = img.getAttribute("src");
+    if (favs[src]) {
+      star.textContent = "★";
+      star.classList.add("is-fav");
+    } else {
+      star.textContent = "☆";
+      star.classList.remove("is-fav");
+    }
+  });
+}
+
+// =========================
+// ★ お気に入りクリック処理時ギャラリー起動キャンセル（サムネ）
+// =========================
+document.addEventListener("click", e => {
+  const star = e.target.closest(".thumb-fav");
+  if (!star) return;
+
+  e.preventDefault();
+  e.stopPropagation(); // ← LG起動を止める
+
+  const item = star.closest(".gallery-item");
+  const img = item?.querySelector("img");
+  if (!img) return;
+
+  const src = img.getAttribute("src");
+  const favs = loadFavorites();
+
+  favs[src] = !favs[src];
+  saveFavorites(favs);
+
+  updateThumbnailFavorites();
+});
 
 // =========================
 // ★ 文脈リンク：五十音 → 詳細ページ（安全追加・最終形）
@@ -1214,6 +1296,7 @@ function updateFavoriteIcon() {
 
     imagesLoaded(gallery, () => {
       gallery.style.visibility = "visible";
+      updateThumbnailFavorites(); // ← 追加
       sendHeight();
       
     const lg = lightGallery(gallery, {
@@ -1243,6 +1326,7 @@ function updateFavoriteIcon() {
     gallery.addEventListener("lgAfterOpen", () => {
       attachFavoriteButton();
       updateFavoriteIcon();
+      updateThumbnailFavorites(); // ← 追加
       document.querySelector(".lg-fav-btn")?.classList.toggle(
         "is-fav",
         !!loadFavorites()[getCurrentSlideSrc()]
