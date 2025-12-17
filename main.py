@@ -657,44 +657,16 @@ mark {
   border-radius: 4px;
 }
 
-/* ===== お気に入りボタン ===== */
-.gallery .fav-btn {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.45);
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  z-index: 3;
-}
-
-/* 共通 */
-.gallery .fav-btn::before {
-  content: "☆";
-  font-size: 18px;
+/* お気に入りボタン（LightGallery toolbar） */
+.lg-fav-btn {
+  font-size: 22px;
   line-height: 1;
-  color: #b5b5b5;   /* ← 未お気に入りは常にグレー */
-  transition: none; /* ← 色のブレ防止 */
+  color: #ffd54f;
+  cursor: pointer;
 }
 
-/* お気に入り状態：常にホワイト（hoverより強い） */
-.gallery .fav-btn.is-fav::before {
-  content: "★";
-  color: #ffffff;
-}
-
-/* hoverでは「色を触らない」 */
-.gallery .fav-btn:hover {
-  background: rgba(0,0,0,0.65);
-}
-
-/* 念押し：hover + is-fav でも白を維持 */
-.gallery .fav-btn.is-fav:hover::before {
-  color: #ffffff;
+.lg-fav-btn:hover {
+  transform: scale(1.15);
 }
 </style>"""
 
