@@ -1307,7 +1307,6 @@ function saveFavorites(data) {
 // =========================
 // ★ お気に入りボタンを toolbar に後付け
 // =========================
-
 function attachFavoriteButton() {
   const toolbar = document.querySelector(".lg-toolbar");
   if (!toolbar) return;
@@ -1327,14 +1326,15 @@ function attachFavoriteButton() {
     const favs = loadFavorites();
     favs[src] = !favs[src];
     saveFavorites(favs);
-    
+
     updateFavoriteIcon();
-    
+
     showFavToast(
       favs[src]
         ? "📓 観察ノートに追加しました"
         : "📓 観察ノートから外しました"
     );
+  });
 
   toolbar.appendChild(btn);
 }
@@ -1385,7 +1385,7 @@ function updateThumbnailFavorites() {
 // =========================
 function bindThumbnailStarEvents() {
   document.querySelectorAll(".thumb-fav").forEach(star => {
-    if (star.__favBound) return; // 二重バインド防止
+    if (star.__favBound) return;
     star.__favBound = true;
 
     star.addEventListener("click", e => {
@@ -1409,6 +1409,7 @@ function bindThumbnailStarEvents() {
           ? "📓 観察ノートに追加しました"
           : "📓 観察ノートから外しました"
       );
+    });
   });
 }
 
