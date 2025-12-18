@@ -802,6 +802,31 @@ mark {
 .card-fav:hover {
   transform: scale(1.1);
 }
+
+/* =========================
+   観察ノート通知（トースト）
+========================= */
+.fav-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  background: rgba(30,30,30,0.9);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 9999;
+}
+
+.fav-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-6px);
+}
 </style>
 <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
@@ -875,6 +900,11 @@ function attachFavoriteButton() {
     saveFavorites(favs);
 
     updateFavoriteIcon();
+
+    showFavToast(
+      favs[src]
+        ? "📓 観察ノートに追加しました"
+        : "📓 観察ノートから外しました"
   });
 
   toolbar.appendChild(btn);
@@ -944,6 +974,11 @@ function bindThumbnailStarEvents() {
       saveFavorites(favs);
 
       updateThumbnailFavorites();
+
+      showFavToast(
+        favs[src]
+          ? "📓 観察ノートに追加しました"
+          : "📓 観察ノートから外しました"
     });
   });
 }
@@ -968,6 +1003,26 @@ function updateCardFavorites() {
       star.classList.remove("is-fav");
     }
   });
+}
+
+// =========================
+// 「観察ノートに追加しました」メッセージ表示
+// =========================
+function showFavToast(message) {
+  let toast = document.querySelector(".fav-toast");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.className = "fav-toast";
+    document.body.appendChild(toast);
+  }
+
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  clearTimeout(toast.__timer);
+  toast.__timer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 1500);
 }
 
 // =========================
@@ -1458,10 +1513,10 @@ function normalizeSrc(src) {
 // =========================
     updateCardFavorites();
 
-  // =========================
-// お気に入り専用ページ描画
 // =========================
-    if (document.querySelector(".favorite-list")) {
+// ⭐ お気に入り専用ページ描画（正）
+// =========================
+    if (document.querySelector(".favorite-gallery")) {
       renderFavoritePage();
       sendHeight();
     }
