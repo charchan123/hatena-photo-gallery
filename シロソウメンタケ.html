@@ -900,6 +900,9 @@ function showFavToast(message) {
   toast.textContent = message;
   toast.classList.add("show");
 
+  // ★ ここを追加
+  toast.scrollIntoView({ block: "center", behavior: "smooth" });
+
   clearTimeout(toast.__timer);
   toast.__timer = setTimeout(() => {
     toast.classList.remove("show");
@@ -1051,7 +1054,7 @@ function normalizeSrc(src) {
   // ギャラリー処理（既存）
   // =========================
   const gallery = document.querySelector(".gallery");
-  if (gallery) {
+  if (gallery && !gallery.classList.contains("favorite-gallery")) {
     const fadeObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
