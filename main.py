@@ -2164,16 +2164,16 @@ def generate_favorite_page(grouped):
         for src in srcs:
             thumb = src + "?width=300"
 
-            parts.append(f"""
-<div class="gallery-item">
-   data-alt="{esc_alt}"
-   data-exthumbimage="{thumb}"
-   style="display:none;">
-  <span class="thumb-fav">☆</span>
-  <span class="spores"></span>
-  <img src="{src}" alt="{esc_alt}" loading="lazy">
-</div>
-""")
+    parts.append(f"""
+    <div class="gallery-item"
+         data-alt="{esc_alt}"
+         data-exthumbimage="{thumb}"
+         style="display:none;">
+      <span class="thumb-fav">☆</span>
+      <span class="spores"></span>
+      <img src="{src}" alt="{esc_alt}" loading="lazy">
+    </div>
+    """)
 
     parts.append("""
   </div>
