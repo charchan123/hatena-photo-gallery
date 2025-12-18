@@ -872,14 +872,14 @@ function attachFavoriteButton() {
     const favs = loadFavorites();
     favs[src] = !favs[src];
     saveFavorites(favs);
-
+    
     updateFavoriteIcon();
-
+    
     showFavToast(
       favs[src]
         ? "📓 観察ノートに追加しました"
         : "📓 観察ノートから外しました"
-  });
+    );
 
   toolbar.appendChild(btn);
 }
@@ -953,7 +953,7 @@ function bindThumbnailStarEvents() {
         favs[src]
           ? "📓 観察ノートに追加しました"
           : "📓 観察ノートから外しました"
-    });
+      );
   });
 }
 
@@ -2041,7 +2041,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 
     # ⭐ お気に入り導線（1行追加）
     index_parts.append(
-        '<a class="aiuo-link" href="favorite.html">⭐ お気に入りを見る</a>'
+        '<a class="aiuo-link" href="favorite.html">⭐ 観察ノートを見る</a>'
     )
 
     index_parts.append("""
