@@ -994,6 +994,9 @@ function showFavToast(message) {
   toast.textContent = message;
   toast.classList.add("show");
 
+  // ★ ここを追加
+  toast.scrollIntoView({ block: "center", behavior: "smooth" });
+
   clearTimeout(toast.__timer);
   toast.__timer = setTimeout(() => {
     toast.classList.remove("show");
@@ -1145,7 +1148,7 @@ function normalizeSrc(src) {
   // ギャラリー処理（既存）
   // =========================
   const gallery = document.querySelector(".gallery");
-  if (gallery) {
+  if (gallery && !gallery.classList.contains("favorite-gallery")) {
     const fadeObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -2162,15 +2165,14 @@ def generate_favorite_page(grouped):
             thumb = src + "?width=300"
 
             parts.append(f"""
-<a class="gallery-item"
-   href="{src}"
+<div class="gallery-item">
    data-alt="{esc_alt}"
    data-exthumbimage="{thumb}"
    style="display:none;">
   <span class="thumb-fav">☆</span>
   <span class="spores"></span>
   <img src="{src}" alt="{esc_alt}" loading="lazy">
-</a>
+</div>
 """)
 
     parts.append("""
