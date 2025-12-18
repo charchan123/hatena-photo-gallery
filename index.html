@@ -757,7 +757,7 @@ window.ALL_MUSHROOMS = [{"name": "イボテングタケ", "name_norm": "イボ�
 
   <div class="section-card">
     <div class="aiuo-links">
-<a class="aiuo-link" href="あ行.html">あ行</a><a class="aiuo-link" href="か行.html">か行</a><a class="aiuo-link" href="さ行.html">さ行</a><a class="aiuo-link" href="た行.html">た行</a><a class="aiuo-link" href="な行.html">な行</a><a class="aiuo-link" href="は行.html">は行</a><a class="aiuo-link" href="ま行.html">ま行</a><a class="aiuo-link" href="や行.html">や行</a><a class="aiuo-link" href="ら行.html">ら行</a><a class="aiuo-link" href="わ行.html">わ行</a><a class="aiuo-link" href="favorite.html">⭐ お気に入りを見る</a>
+<a class="aiuo-link" href="あ行.html">あ行</a><a class="aiuo-link" href="か行.html">か行</a><a class="aiuo-link" href="さ行.html">さ行</a><a class="aiuo-link" href="た行.html">た行</a><a class="aiuo-link" href="な行.html">な行</a><a class="aiuo-link" href="は行.html">は行</a><a class="aiuo-link" href="ま行.html">ま行</a><a class="aiuo-link" href="や行.html">や行</a><a class="aiuo-link" href="ら行.html">ら行</a><a class="aiuo-link" href="わ行.html">わ行</a><a class="aiuo-link" href="favorite.html">⭐ 観察ノートを見る</a>
     </div>
   </div>
 </div>
@@ -869,14 +869,14 @@ function attachFavoriteButton() {
     const favs = loadFavorites();
     favs[src] = !favs[src];
     saveFavorites(favs);
-
+    
     updateFavoriteIcon();
-
+    
     showFavToast(
       favs[src]
         ? "📓 観察ノートに追加しました"
         : "📓 観察ノートから外しました"
-  });
+    );
 
   toolbar.appendChild(btn);
 }
@@ -950,7 +950,7 @@ function bindThumbnailStarEvents() {
         favs[src]
           ? "📓 観察ノートに追加しました"
           : "📓 観察ノートから外しました"
-    });
+      );
   });
 }
 

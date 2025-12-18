@@ -1327,14 +1327,14 @@ function attachFavoriteButton() {
     const favs = loadFavorites();
     favs[src] = !favs[src];
     saveFavorites(favs);
-
+    
     updateFavoriteIcon();
-
+    
     showFavToast(
       favs[src]
         ? "📓 観察ノートに追加しました"
         : "📓 観察ノートから外しました"
-  });
+    );
 
   toolbar.appendChild(btn);
 }
@@ -1408,7 +1408,7 @@ function bindThumbnailStarEvents() {
         favs[src]
           ? "📓 観察ノートに追加しました"
           : "📓 観察ノートから外しました"
-    });
+      );
   });
 }
 
