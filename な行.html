@@ -1429,20 +1429,20 @@ function normalizeSrc(src) {
       const favs = loadFavorites();
       let count = 0;
     
-      document.querySelectorAll(".favorite-list .mushroom-card").forEach(card => {
-        const img = card.querySelector("img");
-        const star = card.querySelector(".card-fav");
+      document.querySelectorAll(".favorite-gallery .gallery-item").forEach(item => {
+        const img = item.querySelector("img");
+        const star = item.querySelector(".thumb-fav");
         if (!img || !star) return;
     
         const src = normalizeSrc(img.getAttribute("src"));
     
         if (favs[src]) {
-          card.style.display = "";
+          item.style.display = "";
           star.textContent = "★";
           star.classList.add("is-fav");
           count++;
         } else {
-          card.style.display = "none";
+          item.style.display = "none";
         }
       });
     
