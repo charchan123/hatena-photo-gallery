@@ -2146,7 +2146,7 @@ def generate_favorite_page(grouped):
 
 <div class="section-card">
     <p style="text-align:center; color:#666; margin-bottom:16px; line-height:1.6;">
-      この図鑑を見て、気になったキノコの写真を集められるページです。<br>
+      このギャラリーを見て、気になったキノコの写真を集められるページです。<br>
       写真を見比べながら、姿や形の違いを観察してみてください。
     </p>
 
