@@ -1293,20 +1293,20 @@ function normalizeSrc(src) {
       const favs = loadFavorites();
       let count = 0;
     
-      document.querySelectorAll(".favorite-list .mushroom-card").forEach(card => {
-        const img = card.querySelector("img");
-        const star = card.querySelector(".card-fav");
+      document.querySelectorAll(".favorite-gallery .gallery-item").forEach(item => {
+        const img = item.querySelector("img");
+        const star = item.querySelector(".thumb-fav");
         if (!img || !star) return;
     
         const src = normalizeSrc(img.getAttribute("src"));
     
         if (favs[src]) {
-          card.style.display = "";
+          item.style.display = "";
           star.textContent = "★";
           star.classList.add("is-fav");
           count++;
         } else {
-          card.style.display = "none";
+          item.style.display = "none";
         }
       });
     
@@ -2077,41 +2077,43 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     print("✅ index.html 生成完了")
 
 # ===========================
-# ⭐ お気に入り専用ページ生成
+# ⭐ お気に入り専用ページ生成（写真単位）
 # ===========================
 def generate_favorite_page(grouped):
     parts = []
 
     parts.append("""
-<h2 class="section-title">⭐ お気に入りキノコ</h2>
+<h2 class="section-title">⭐ 観察ノート（お気に入り）</h2>
 
 <div class="section-card">
-  <div class="favorite-empty" style="display:none; text-align:center; color:#666; line-height:1.8;">
+  <p style="text-align:center; color:#666; margin-bottom:16px; line-height:1.6;">
+    ★を付けた写真だけがここに残ります。<br>
+    自分だけの観察記録を振り返ってみましょう。
+  </p>
+
+  <div class="favorite-empty" style="display:none; text-align:center; color:#777; line-height:1.8;">
     まだお気に入りはありません<br>
-    <small>★を押して、自分だけの図鑑を作ってみてください</small>
+    <small>写真の★を押して、観察ノートを作ってみてください</small>
   </div>
 
-  <div class="mushroom-list favorite-list">
+  <div class="gallery favorite-gallery">
 """)
 
-    # 全キノコ分カード（最初は全部 hidden）
-    for name, srcs in grouped.items():
-        if not srcs:
-            continue
+    # ★ 写真単位ですべて出力（表示制御はJS）
+    for alt, srcs in grouped.items():
+        esc_alt = html.escape(alt)
+        for src in srcs:
+            thumb = src + "?width=300"
 
-        thumb = srcs[0]
-        esc_name = html.escape(name)
-        safe = safe_filename(name)
-
-        parts.append(f"""
-<a href="{safe}.html?from=favorite"
-   class="mushroom-card"
+            parts.append(f"""
+<a class="gallery-item"
+   href="{src}"
+   data-alt="{esc_alt}"
+   data-exthumbimage="{thumb}"
    style="display:none;">
-  <div class="mushroom-card-thumb">
-    <span class="card-fav">☆</span>
-    <img src="{thumb}?width=400" alt="{esc_name}">
-  </div>
-  <div class="mushroom-card-name">{esc_name}</div>
+  <span class="thumb-fav">☆</span>
+  <span class="spores"></span>
+  <img src="{src}" alt="{esc_alt}" loading="lazy">
 </a>
 """)
 
@@ -2126,18 +2128,14 @@ def generate_favorite_page(grouped):
 </div>
 """)
 
-    # 共通リソース
     parts.append(STYLE_TAG)
     parts.append(LIGHTGALLERY_TAGS)
     parts.append(SCRIPT_TAG)
 
-    html_out = "".join(parts)
-
     with open(f"{OUTPUT_DIR}/favorite.html", "w", encoding="utf-8") as f:
-        f.write(html_out)
+        f.write("".join(parts))
 
-    print("⭐ favorite.html 生成完了")
-
+    print("⭐ favorite.html（写真単位）生成完了")
 
 # ===========================
 # メイン
