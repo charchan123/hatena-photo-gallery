@@ -2145,10 +2145,10 @@ def generate_favorite_page(grouped):
 <h2 class="section-title">⭐ 観察ノート</h2>
 
 <div class="section-card">
-    <p style="text-align:center; color:#666; margin-bottom:16px; line-height:1.6;">
-      このギャラリーを見て、気になったキノコの写真を集められるページです。<br>
-      写真を見比べながら、姿や形の違いを観察してみてください。
-    </p>
+  <p style="text-align:center; color:#666; margin-bottom:16px; line-height:1.6;">
+    このギャラリーを見て、気になったキノコの写真を集められるページです。<br>
+    写真を見比べながら、姿や形の違いを観察してみてください。
+  </p>
 
   <div class="favorite-empty" style="display:none; text-align:center; color:#777; line-height:1.8;">
     まだ観察ノートはありません<br>
@@ -2163,17 +2163,17 @@ def generate_favorite_page(grouped):
         esc_alt = html.escape(alt)
         for src in srcs:
             thumb = src + "?width=300"
-
-    parts.append(f"""
-    <div class="gallery-item"
-         data-alt="{esc_alt}"
-         data-exthumbimage="{thumb}"
-         style="display:none;">
+            parts.append(f"""
+    <a class="gallery-item"
+       href="{src}"
+       data-alt="{esc_alt}"
+       data-exthumbimage="{thumb}"
+       style="display:none;">
       <span class="thumb-fav">☆</span>
       <span class="spores"></span>
       <img src="{src}" alt="{esc_alt}" loading="lazy">
-    </div>
-    """)
+    </a>
+            """)
 
     parts.append("""
   </div>
