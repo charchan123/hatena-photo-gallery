@@ -742,8 +742,8 @@ mark {
 document.addEventListener("DOMContentLoaded", () => {
 
   // =========================
-// ⭐ お気に入り保存キー
-// =========================
+  // ⭐ お気に入り保存キー
+  // =========================
   const LG_FAVORITES_KEY = "lg_favorites";
 
   // ページ全体フェードイン
@@ -751,130 +751,201 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.opacity = "1";
   });
 
+  // =========================
+  // utility
+  // =========================
   function escapeRegExp(str) {
     return str.replace(/[-\/\^$*+?.()|[\]{}]/g, "\\$&");
   }
 
-// =========================
-// ★ お気に入り機能
-// =========================
+  function normalizeSrc(src) {
+    return src ? src.replace(/\?.*$/, "") : "";
+  }
+
+  function highlight(text, q) {
+    if (!q) return text;
+    const escaped = escapeRegExp(q);
+    return text.replace(
+      new RegExp("(" + escaped + ")", "ig"),
+      "<mark>$1</mark>"
+    );
+  }
+
+  // =========================
+  // iframe 高さ同期
+  // =========================
+  function sendHeight() {
+    const height = Math.max(
+      document.body.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight
+    );
+    window.parent.postMessage({ type: "setHeight", height }, "*");
+  }
+
+  // =========================
+  // ★ お気に入り機能（localStorage）
+  // =========================
+  function loadFavorites() {
+    try {
+      return JSON.parse(localStorage.getItem(LG_FAVORITES_KEY)) || {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function saveFavorites(data) {
+    localStorage.setItem(LG_FAVORITES_KEY, JSON.stringify(data));
+  }
 
   function getCurrentSlideSrc() {
-  const img = document.querySelector(".lg-current .lg-object");
-  return img ? normalizeSrc(img.getAttribute("src")) : null;
-}
-
-function loadFavorites() {
-  try {
-    return JSON.parse(localStorage.getItem(LG_FAVORITES_KEY)) || {};
-  } catch (e) {
-    return {};
+    const img = document.querySelector(".lg-current .lg-object");
+    return img ? normalizeSrc(img.getAttribute("src")) : null;
   }
-}
 
-function saveFavorites(data) {
-  localStorage.setItem(LG_FAVORITES_KEY, JSON.stringify(data));
-}
-
-// =========================
-// ★ お気に入りボタンを toolbar に後付け
-// =========================
-function attachFavoriteButton() {
-  const toolbar = document.querySelector(".lg-toolbar");
-  if (!toolbar) return;
-
-  // 二重追加防止
-  if (toolbar.querySelector(".lg-fav-btn")) return;
-
-  const btn = document.createElement("button");
-  btn.className = "lg-icon lg-fav-btn";
-  btn.title = "お気に入り";
-  btn.textContent = "☆";
-
-  btn.addEventListener("click", () => {
-    const src = getCurrentSlideSrc();
-    if (!src) return;
-
-    const favs = loadFavorites();
-    favs[src] = !favs[src];
-    saveFavorites(favs);
-
-    updateFavoriteIcon();
-
-    showFavToast(
-      favs[src]
-        ? "📓 観察ノートに追加しました"
-        : "📓 観察ノートから外しました"
-    );
-  });
-
-  toolbar.appendChild(btn);
-}
-
-// =========================
-// ★ お気に入り状態更新（スライドごと）
-// =========================
-function updateFavoriteIcon() {
-  const btn = document.querySelector(".lg-fav-btn");
-  if (!btn) return;
-
-  const src = getCurrentSlideSrc();
-  const favs = loadFavorites();
-
-  if (favs[src]) {
-    btn.textContent = "★";
-    btn.classList.add("is-fav");
-  } else {
-    btn.textContent = "☆";
-    btn.classList.remove("is-fav");
-  }
-}
-
-// =========================
-// ★ お気に入り状態反映関数（サムネ）
-// =========================
-function updateThumbnailFavorites() {
-  const favs = loadFavorites();
-
-  document.querySelectorAll(".gallery-item").forEach(a => {
-    const img = a.querySelector("img");
-    const star = a.querySelector(".thumb-fav");
-    if (!img || !star) return;
-
-    const src = normalizeSrc(img.getAttribute("src"));
-    if (favs[src]) {
-      star.textContent = "★";
-      star.classList.add("is-fav");
-    } else {
-      star.textContent = "☆";
-      star.classList.remove("is-fav");
+  // =========================
+  // Toast
+  // =========================
+  function showFavToast(message) {
+    let toast = document.querySelector(".fav-toast");
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.className = "fav-toast";
+      document.body.appendChild(toast);
     }
-  });
-}
 
-// =========================
-// ★ お気に入りクリック処理時ギャラリー起動キャンセル（サムネ）
-// =========================
-function bindThumbnailStarEvents() {
-  document.querySelectorAll(".thumb-fav").forEach(star => {
-    if (star.__favBound) return;
-    star.__favBound = true;
+    toast.textContent = message;
+    toast.classList.add("show");
 
-    star.addEventListener("click", e => {
-      e.preventDefault();
-      e.stopPropagation();
+    // 視界に入るように（埋め込みでも迷子にならない）
+    try {
+      toast.scrollIntoView({ block: "center", behavior: "smooth" });
+    } catch (e) {}
 
-      const item = star.closest(".gallery-item");
-      const img = item?.querySelector("img");
-      if (!img) return;
+    clearTimeout(toast.__timer);
+    toast.__timer = setTimeout(() => {
+      toast.classList.remove("show");
+    }, 1500);
+  }
+
+  // =========================
+  // ★ サムネ（ギャラリー）お気に入り同期
+  // =========================
+  function updateThumbnailFavorites() {
+    const favs = loadFavorites();
+
+    document.querySelectorAll(".gallery-item").forEach(a => {
+      const img = a.querySelector("img");
+      const star = a.querySelector(".thumb-fav");
+      if (!img || !star) return;
 
       const src = normalizeSrc(img.getAttribute("src"));
-      const favs = loadFavorites();
+      if (favs[src]) {
+        star.textContent = "★";
+        star.classList.add("is-fav");
+      } else {
+        star.textContent = "☆";
+        star.classList.remove("is-fav");
+      }
+    });
+  }
 
+  // ★ サムネの★を押したらギャラリー起動を止める & お気に入り切替
+  function bindThumbnailStarEvents() {
+    document.querySelectorAll(".thumb-fav").forEach(star => {
+      if (star.__favBound) return;
+      star.__favBound = true;
+
+      star.addEventListener("click", e => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const item = star.closest(".gallery-item");
+        const img = item?.querySelector("img");
+        if (!img) return;
+
+        const src = normalizeSrc(img.getAttribute("src"));
+        const favs = loadFavorites();
+
+        favs[src] = !favs[src];
+        saveFavorites(favs);
+
+        updateThumbnailFavorites();
+        updateCardFavorites();
+
+        showFavToast(
+          favs[src]
+            ? "📓 観察ノートに追加しました"
+            : "📓 観察ノートから外しました"
+        );
+      });
+    });
+  }
+
+  // =========================
+  // ★ index/五十音カードのお気に入り同期
+  // =========================
+  function updateCardFavorites() {
+    const favs = loadFavorites();
+
+    document.querySelectorAll(".mushroom-card").forEach(card => {
+      const img = card.querySelector("img");
+      const star = card.querySelector(".card-fav");
+      if (!img || !star) return;
+
+      const src = normalizeSrc(img.getAttribute("src"));
+      if (favs[src]) {
+        star.textContent = "★";
+        star.classList.add("is-fav");
+      } else {
+        star.textContent = "☆";
+        star.classList.remove("is-fav");
+      }
+    });
+  }
+
+  // =========================
+  // ★ LightGallery toolbar にお気に入りボタンを後付け
+  // =========================
+  function updateFavoriteIcon() {
+    const btn = document.querySelector(".lg-fav-btn");
+    if (!btn) return;
+
+    const src = getCurrentSlideSrc();
+    const favs = loadFavorites();
+
+    if (src && favs[src]) {
+      btn.textContent = "★";
+      btn.classList.add("is-fav");
+    } else {
+      btn.textContent = "☆";
+      btn.classList.remove("is-fav");
+    }
+  }
+
+  function attachFavoriteButton() {
+    const toolbar = document.querySelector(".lg-toolbar");
+    if (!toolbar) return false;
+
+    if (toolbar.querySelector(".lg-fav-btn")) return true;
+
+    const btn = document.createElement("button");
+    btn.className = "lg-icon lg-fav-btn";
+    btn.title = "お気に入り";
+    btn.textContent = "☆";
+
+    btn.addEventListener("click", () => {
+      const src = getCurrentSlideSrc();
+      if (!src) return;
+
+      const favs = loadFavorites();
       favs[src] = !favs[src];
       saveFavorites(favs);
 
+      updateFavoriteIcon();
       updateThumbnailFavorites();
+      updateCardFavorites();
 
       showFavToast(
         favs[src]
@@ -882,64 +953,27 @@ function bindThumbnailStarEvents() {
           : "📓 観察ノートから外しました"
       );
     });
-  });
-}
 
-// =========================
-// ★ indexカードお気に入り更新関数
-// =========================
-function updateCardFavorites() {
-  const favs = loadFavorites();
-
-  document.querySelectorAll(".mushroom-card").forEach(card => {
-    const img = card.querySelector("img");
-    const star = card.querySelector(".card-fav");
-    if (!img || !star) return;
-
-    const src = normalizeSrc(img.getAttribute("src"));
-    if (favs[src]) {
-      star.textContent = "★";
-      star.classList.add("is-fav");
-    } else {
-      star.textContent = "☆";
-      star.classList.remove("is-fav");
-    }
-  });
-}
-
-// =========================
-// 「観察ノートに追加しました」メッセージ表示
-// =========================
-function showFavToast(message) {
-  let toast = document.querySelector(".fav-toast");
-  if (!toast) {
-    toast = document.createElement("div");
-    toast.className = "fav-toast";
-    document.body.appendChild(toast);
+    toolbar.appendChild(btn);
+    return true;
   }
 
-  toast.textContent = message;
-  toast.classList.add("show");
+  // toolbar がまだ無いタイミング対策（lgAfterOpen直後に遅延生成されることがある）
+  function attachFavoriteButtonWithRetry() {
+    let tries = 0;
+    const timer = setInterval(() => {
+      tries++;
+      const ok = attachFavoriteButton();
+      if (ok || tries > 30) {
+        clearInterval(timer);
+        updateFavoriteIcon();
+      }
+    }, 50);
+  }
 
-  // ★ ここを追加
-  toast.scrollIntoView({ block: "center", behavior: "smooth" });
-
-  clearTimeout(toast.__timer);
-  toast.__timer = setTimeout(() => {
-    toast.classList.remove("show");
-  }, 1500);
-}
-
-// =========================
-// src 正規化関数
-// =========================
-function normalizeSrc(src) {
-  return src ? src.replace(/\?.*$/, "") : "";
-}
-
-// =========================
-// ★ 文脈リンク：五十音 → 詳細ページ（安全追加・最終形）
-// =========================
+  // =========================
+  // ★ 文脈リンク：五十音 → 詳細ページ（戻るボタン）
+  // =========================
   (function () {
     const params = new URLSearchParams(location.search);
     const from = params.get("from");
@@ -960,122 +994,92 @@ function normalizeSrc(src) {
       </a>
     `;
 
-    /**
-     * 差し込み位置は「ギャラリー直後」
-     * → UX的にも、scrollToTitle 的にも一番安全
-     */
     const gallery = document.querySelector(".gallery");
     if (gallery) {
       gallery.after(nav);
     } else {
-      // フォールバック（ほぼ起きない）
       document.body.appendChild(nav);
     }
 
-    // iframe 高さを即再計算（既存ロジックを壊さない）
     if (typeof sendHeight === "function") {
       sendHeight();
     }
   })();
 
-// =========================
-// ★ パンくずリスト（完全統合・1系統）
-// =========================
-(function () {
-  const params = new URLSearchParams(location.search);
-  const from = params.get("from");
-  const kana = params.get("kana");
+  // =========================
+  // ★ パンくずリスト（完全統合・1系統）
+  // =========================
+  (function () {
+    const params = new URLSearchParams(location.search);
+    const from = params.get("from");
+    const kana = params.get("kana");
 
-  const title = document.querySelector("h2");
-  if (!title) return;
+    const title = document.querySelector("h2");
+    if (!title) return;
 
-  let crumbHTML = "";
+    let crumbHTML = "";
+
+    // ① 〇行のキノコページ（あ行.html など）
+    const pathMatch = location.pathname.match(/\/([^\/]+行)\.html$/);
+    if (pathMatch && !from) {
+      const k = pathMatch[1];
+      crumbHTML = `
+        <a href="index.html">トップ</a>
+        <span> › </span>
+        <span>五十音</span>
+        <span> › </span>
+        <span style="color:#999;">${k}</span>
+      `;
+    }
+    // ② キノコ詳細ページ
+    else if (from === "aiuo" && kana) {
+      crumbHTML = `
+        <a href="index.html">トップ</a>
+        <span> › </span>
+        <a href="${kana}.html">五十音 › ${kana}</a>
+        <span> › </span>
+        <span style="color:#999;">${title.textContent}</span>
+      `;
+    }
+    else if (from === "index") {
+      crumbHTML = `
+        <a href="index.html">トップ</a>
+        <span> › </span>
+        <a href="index.html">全キノコ検索</a>
+        <span> › </span>
+        <span style="color:#999;">${title.textContent}</span>
+      `;
+    }
+    else if (from === "recommend") {
+      crumbHTML = `
+        <a href="index.html">トップ</a>
+        <span> › </span>
+        <a href="index.html#recommend">おすすめキノコ</a>
+        <span> › </span>
+        <span style="color:#999;">${title.textContent}</span>
+      `;
+    } else {
+      return; // 直アクセスは出さない
+    }
+
+    const nav = document.createElement("nav");
+    nav.style.textAlign = "center";
+    nav.style.fontSize = "13px";
+    nav.style.margin = "8px 0 16px";
+    nav.style.color = "#666";
+    nav.innerHTML = crumbHTML;
+
+    title.before(nav);
+
+    if (typeof sendHeight === "function") sendHeight();
+  })();
 
   // =========================
-  // ① 〇行のキノコページ（あ行.html など）
-  // =========================
-  const pathMatch = location.pathname.match(/\/([^\/]+行)\.html$/);
-  if (pathMatch && !from) {
-    const k = pathMatch[1];
-    crumbHTML = `
-      <a href="index.html">トップ</a>
-      <span> › </span>
-      <span>五十音</span>
-      <span> › </span>
-      <span style="color:#999;">${k}</span>
-    `;
-  }
-
-  // =========================
-  // ② キノコ詳細ページ
-  // =========================
-  else if (from === "aiuo" && kana) {
-    crumbHTML = `
-      <a href="index.html">トップ</a>
-      <span> › </span>
-      <a href="${kana}.html">五十音 › ${kana}</a>
-      <span> › </span>
-      <span style="color:#999;">${title.textContent}</span>
-    `;
-  }
-  else if (from === "index") {
-    crumbHTML = `
-      <a href="index.html">トップ</a>
-      <span> › </span>
-      <a href="index.html">全キノコ検索</a>
-      <span> › </span>
-      <span style="color:#999;">${title.textContent}</span>
-    `;
-  }
-  else if (from === "recommend") {
-    crumbHTML = `
-      <a href="index.html">トップ</a>
-      <span> › </span>
-      <a href="index.html#recommend">おすすめキノコ</a>
-      <span> › </span>
-      <span style="color:#999;">${title.textContent}</span>
-    `;
-  }
-  else {
-    return; // 直アクセスは出さない
-  }
-
-  const nav = document.createElement("nav");
-  nav.style.textAlign = "center";
-  nav.style.fontSize = "13px";
-  nav.style.margin = "8px 0 16px";
-  nav.style.color = "#666";
-  nav.innerHTML = crumbHTML;
-
-  title.before(nav);
-
-  if (typeof sendHeight === "function") sendHeight();
-})();
-
-  function highlight(text, q) {
-    if (!q) return text;
-    const escaped = escapeRegExp(q);
-    return text.replace(
-      new RegExp("(" + escaped + ")", "ig"),
-      "<mark>$1</mark>"
-    );
-  }
-
-  function sendHeight() {
-    const height = Math.max(
-      document.body.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.scrollHeight,
-      document.documentElement.offsetHeight
-    );
-    window.parent.postMessage({ type: "setHeight", height }, "*");
-  }
-
-  // =========================
-  // ギャラリー処理（既存）
+  // ギャラリー処理（LightGallery）
   // =========================
   const gallery = document.querySelector(".gallery");
-  if (gallery && !gallery.classList.contains("favorite-gallery")) {
+  if (gallery) {
+    // 画像フェードイン
     const fadeObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -1089,50 +1093,52 @@ function normalizeSrc(src) {
 
     imagesLoaded(gallery, () => {
       gallery.style.visibility = "visible";
-      updateThumbnailFavorites(); // ← 追加
+
+      // 初期同期
+      updateThumbnailFavorites();
       updateCardFavorites();
-      bindThumbnailStarEvents(); // ← 追加
+      bindThumbnailStarEvents();
       sendHeight();
-      
-    const lg = lightGallery(gallery, {
-      selector: "a.gallery-item",
-      plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
-    
-      speed: 400,
-    
-      thumbnail: true,
-      showThumbByDefault: true,   // ← これが超重要
-      toggleThumb: true,          // ← これも重要
-    
-      thumbWidth: 80,
-      thumbMargin: 6,
-    
-      download: false,
-      zoom: true,
-      autoplay: true,
-      pause: 3000,
-      progressBar: true,
-    });
 
-  // =========================
-  // お気に入り機能をLightGalleryイベントに接続
-  // =========================
+      // favorite-gallery でも LightGallery を起動する（ここ重要）
+      const lg = lightGallery(gallery, {
+        selector: "a.gallery-item",
+        plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
+        speed: 400,
+        thumbnail: true,
+        showThumbByDefault: true,
+        toggleThumb: true,
+        thumbWidth: 80,
+        thumbMargin: 6,
+        download: false,
+        zoom: true,
+        autoplay: true,
+        pause: 3000,
+        progressBar: true,
+      });
 
-    gallery.addEventListener("lgAfterOpen", () => {
-      attachFavoriteButton();
-      updateFavoriteIcon();
-      updateThumbnailFavorites(); // ← 追加
-      document.querySelector(".lg-fav-btn")?.classList.toggle(
-        "is-fav",
-        !!loadFavorites()[getCurrentSlideSrc()]
-      );
-    });
-    
-    gallery.addEventListener("lgAfterSlide", () => {
-      updateFavoriteIcon();
-      updateThumbnailFavorites(); // ← 追加
-    });
+      // =========================
+      // LightGalleryイベント：お気に入り連携
+      // =========================
+      gallery.addEventListener("lgAfterOpen", () => {
+        attachFavoriteButtonWithRetry();
+        updateFavoriteIcon();
+        updateThumbnailFavorites();
+        updateCardFavorites();
 
+        const btn = document.querySelector(".lg-fav-btn");
+        if (btn) {
+          btn.classList.toggle("is-fav", !!loadFavorites()[getCurrentSlideSrc()]);
+        }
+      });
+
+      gallery.addEventListener("lgAfterSlide", () => {
+        updateFavoriteIcon();
+        updateThumbnailFavorites();
+        updateCardFavorites();
+      });
+
+      // クリックでフルスクリーン（ギャラリーのみ）
       gallery.querySelectorAll("a.gallery-item").forEach(a => {
         a.addEventListener("click", () => {
           const el = document.documentElement;
@@ -1142,18 +1148,19 @@ function normalizeSrc(src) {
         });
       });
 
-    gallery.addEventListener("lgBeforeClose", () => {
-      updateThumbnailFavorites(); // ← 即同期
-      updateCardFavorites();
-      if (document.fullscreenElement) {
-        document.exitFullscreen().catch(() => {});
-      }
-      window.parent.postMessage({ type: "lgClosed" }, "*");
-    });
+      gallery.addEventListener("lgBeforeClose", () => {
+        updateThumbnailFavorites();
+        updateCardFavorites();
+        if (document.fullscreenElement) {
+          document.exitFullscreen().catch(() => {});
+        }
+        window.parent.postMessage({ type: "lgClosed" }, "*");
+      });
 
-    gallery.addEventListener("lgAfterClose", () => {
-      updateThumbnailFavorites();
-    });
+      gallery.addEventListener("lgAfterClose", () => {
+        updateThumbnailFavorites();
+        updateCardFavorites();
+      });
 
       document.addEventListener("fullscreenchange", () => {
         if (!document.fullscreenElement) {
@@ -1175,7 +1182,7 @@ function normalizeSrc(src) {
 
     const txt = a.textContent || "";
     const href = a.getAttribute("href") || "";
-    
+
     if (/\.html(\?|$)/.test(href)) {
       window.parent.postMessage({ type: "scrollToTitle" }, "*");
       return;
@@ -1193,7 +1200,7 @@ function normalizeSrc(src) {
   });
 
   // =========================
-  // 五十音ページ 検索＋かなフィルタ（既存）
+  // 五十音ページ 検索＋かなフィルタ
   // =========================
   const searchInput = document.querySelector(".search-input");
   const kanaButtons = document.querySelectorAll(".kana-btn");
@@ -1226,6 +1233,7 @@ function normalizeSrc(src) {
       });
 
       updateEmptyState();
+      updateCardFavorites();
       sendHeight();
     }
 
@@ -1273,37 +1281,50 @@ function normalizeSrc(src) {
   }
 
   // =========================
-// ⭐ お気に入り専用ページ描画
-// =========================
-    function renderFavoritePage() {
-      const favs = loadFavorites();
-      let count = 0;
-    
-      document.querySelectorAll(".favorite-gallery .gallery-item").forEach(item => {
-        const img = item.querySelector("img");
-        const star = item.querySelector(".thumb-fav");
-        if (!img || !star) return;
-    
-        const src = normalizeSrc(img.getAttribute("src"));
-    
-        if (favs[src]) {
-          item.style.display = "";
-          star.textContent = "★";
-          star.classList.add("is-fav");
-          count++;
-        } else {
-          item.style.display = "none";
-        }
-      });
-    
-      const empty = document.querySelector(".favorite-empty");
-      if (empty) {
-        empty.style.display = count === 0 ? "block" : "none";
+  // ⭐ お気に入り専用ページ描画（favorite.html）
+  // =========================
+  function renderFavoritePage() {
+    const favs = loadFavorites();
+    let count = 0;
+
+    document.querySelectorAll(".favorite-gallery .gallery-item").forEach(item => {
+      const img = item.querySelector("img");
+      const star = item.querySelector(".thumb-fav");
+      if (!img || !star) return;
+
+      const src = normalizeSrc(img.getAttribute("src"));
+
+      if (favs[src]) {
+        item.style.display = "";
+        star.textContent = "★";
+        star.classList.add("is-fav");
+        count++;
+      } else {
+        item.style.display = "none";
       }
+    });
+
+    const empty = document.querySelector(".favorite-empty");
+    if (empty) {
+      empty.style.display = count === 0 ? "block" : "none";
     }
 
+    // 表示後も★操作できるように
+    bindThumbnailStarEvents();
+    sendHeight();
+  }
+
+  if (document.querySelector(".favorite-gallery")) {
+    renderFavoritePage();
+
+    // お気に入りページでも localStorage 変更に追随（別タブ更新など）
+    window.addEventListener("storage", (e) => {
+      if (e.key === LG_FAVORITES_KEY) renderFavoritePage();
+    });
+  }
+
   // =========================
-  // index 横断検索（既存：ページネーション含む）
+  // index 横断検索（ページネーション含む）
   // =========================
   const indexSearchInput = document.querySelector(".index-search-input");
   const indexResults = document.querySelector(".index-search-results");
@@ -1341,6 +1362,7 @@ function normalizeSrc(src) {
           </div>
         </a>
       `).join("");
+
       updateCardFavorites();
     }
 
@@ -1388,7 +1410,7 @@ function normalizeSrc(src) {
       const q = rawQ.toLowerCase();
 
       const filtered = rawQ
-        ? ALL_MUSHROOMS.filter(m => m.name_norm.includes(q))
+        ? ALL_MUSHROOMS.filter(m => (m.name_norm || "").includes(q))
         : [];
 
       const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
@@ -1414,32 +1436,30 @@ function normalizeSrc(src) {
   }
 
   // =========================
-// カード★ 初期同期（index / 五十音ページ用）
-// =========================
-    updateCardFavorites();
+  // カード★ 初期同期（index / 五十音ページ用）
+  // =========================
+  updateCardFavorites();
 
-// =========================
-// ⭐ お気に入り専用ページ描画（正）
-// =========================
-    if (document.querySelector(".favorite-gallery")) {
-      renderFavoritePage();
-      sendHeight();
-    }
   // =========================
   // 高さ監視（既存）
   // =========================
   sendHeight();
+
   window.addEventListener("load", () => {
     sendHeight();
     setTimeout(sendHeight, 800);
     setTimeout(sendHeight, 2000);
   });
+
   window.addEventListener("message", e => {
     if (e.data?.type === "requestHeight") sendHeight();
   });
+
   window.addEventListener("resize", sendHeight);
-  new MutationObserver(sendHeight)
-    .observe(document.body, { childList: true, subtree: true });
+
+  new MutationObserver(() => {
+    sendHeight();
+  }).observe(document.body, { childList: true, subtree: true });
 
   let lastHeight = 0;
   setInterval(() => {
@@ -1454,5 +1474,6 @@ function normalizeSrc(src) {
       window.parent.postMessage({ type: "setHeight", height }, "*");
     }
   }, 300);
+
 });
 </script>
