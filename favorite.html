@@ -8943,15 +8943,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     
       toast.textContent = message;
-    
-      // ===== ここが最重要 =====
-      const viewportCenter =
-        window.scrollY + window.innerHeight / 2;
-    
-      toast.style.top = viewportCenter + "px";
-      toast.style.left = "50%";
-      // ========================
-    
       toast.classList.add("show");
     
       clearTimeout(toast.__timer);
