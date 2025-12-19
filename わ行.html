@@ -710,6 +710,7 @@ mark {
 .fav-toast {
   position: fixed;
   left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
   z-index: 99999;
 
@@ -726,8 +727,10 @@ mark {
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
+/* 表示時も transform を維持 */
 .fav-toast.show {
   opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
 }
 </style>
 <link rel="stylesheet" 
@@ -818,16 +821,13 @@ document.addEventListener("DOMContentLoaded", () => {
     
       toast.textContent = message;
     
-      // ===== ここが核心 =====
-      const vh = window.innerHeight;
-      const vw = window.innerWidth;
+      // ===== ここが最重要 =====
+      const viewportCenter =
+        window.scrollY + window.innerHeight / 2;
     
-      toast.style.top = `${vh / 2}px`;
-      toast.style.left = `${vw / 2}px`;
-    
-      // 強制リフロー
-      toast.classList.remove("show");
-      void toast.offsetWidth;
+      toast.style.top = viewportCenter + "px";
+      toast.style.left = "50%";
+      // ========================
     
       toast.classList.add("show");
     
