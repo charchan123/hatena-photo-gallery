@@ -777,7 +777,6 @@ mark {
 .fav-toast {
   position: fixed;
   left: 50%;
-  top: 50%;
   transform: translate(-50%, -50%);
   z-index: 99999;
 
@@ -796,7 +795,6 @@ mark {
 
 .fav-toast.show {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
 }
 </style>"""
 
@@ -893,7 +891,14 @@ document.addEventListener("DOMContentLoaded", () => {
     
       toast.textContent = message;
     
-      // 強制リフロー（連続表示対策）
+      // ===== ここが核心 =====
+      const vh = window.innerHeight;
+      const vw = window.innerWidth;
+    
+      toast.style.top = `${vh / 2}px`;
+      toast.style.left = `${vw / 2}px`;
+    
+      // 強制リフロー
       toast.classList.remove("show");
       void toast.offsetWidth;
     
