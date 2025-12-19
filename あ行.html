@@ -1348,6 +1348,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     
       toast.textContent = message;
+    
+      // 再表示時のリセット
+      toast.classList.remove("show");
+      void toast.offsetWidth;
+    
       toast.classList.add("show");
     
       clearTimeout(toast.__timer);
