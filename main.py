@@ -777,23 +777,26 @@ mark {
 .fav-toast {
   position: fixed;
   left: 50%;
-  bottom: 30px;
-  transform: translateX(-50%);
-  background: rgba(30,30,30,0.9);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+
+  background: rgba(0, 0, 0, 0.75);
   color: #fff;
-  padding: 10px 18px;
+  padding: 12px 20px;
   border-radius: 999px;
   font-size: 14px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  line-height: 1.4;
+  text-align: center;
+
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  z-index: 9999;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .fav-toast.show {
   opacity: 1;
-  transform: translateX(-50%) translateY(-6px);
+  transform: translate(-50%, -50%) scale(1);
 }
 </style>"""
 
@@ -880,27 +883,27 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // Toast
   // =========================
-  function showFavToast(message) {
-    let toast = document.querySelector(".fav-toast");
-    if (!toast) {
-      toast = document.createElement("div");
-      toast.className = "fav-toast";
-      document.body.appendChild(toast);
-    }
-
-    toast.textContent = message;
-    toast.classList.add("show");
-
-    // 視界に入るように（埋め込みでも迷子にならない）
-    try {
-      toast.scrollIntoView({ block: "center", behavior: "smooth" });
-    } catch (e) {}
-
-    clearTimeout(toast.__timer);
-    toast.__timer = setTimeout(() => {
+    function showFavToast(message) {
+      let toast = document.querySelector(".fav-toast");
+      if (!toast) {
+        toast = document.createElement("div");
+        toast.className = "fav-toast";
+        document.body.appendChild(toast);
+      }
+    
+      toast.textContent = message;
+    
+      // 強制リフロー（連続表示対策）
       toast.classList.remove("show");
-    }, 1500);
-  }
+      void toast.offsetWidth;
+    
+      toast.classList.add("show");
+    
+      clearTimeout(toast.__timer);
+      toast.__timer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 1500);
+    }
 
   // =========================
   // ★ サムネ（ギャラリー）お気に入り同期
