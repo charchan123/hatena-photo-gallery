@@ -1561,6 +1561,11 @@ document.addEventListener("DOMContentLoaded", () => {
   updateCardFavorites();
 
   // =========================
+  // favorite.html では 高さ監視を簡略化
+  // =========================
+  const isFavoritePage = !!document.querySelector(".favorite-gallery");
+
+  // =========================
   // 高さ監視（既存）
   // =========================
   sendHeight();
@@ -1577,23 +1582,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("resize", sendHeight);
 
-  new MutationObserver(() => {
-    sendHeight();
-  }).observe(document.body, { childList: true, subtree: true });
-
-  let lastHeight = 0;
-  setInterval(() => {
-    const height = Math.max(
-      document.body.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.scrollHeight,
-      document.documentElement.offsetHeight
-    );
-    if (height !== lastHeight) {
-      lastHeight = height;
-      window.parent.postMessage({ type: "setHeight", height }, "*");
+    if (!isFavoritePage) {
+      new MutationObserver(() => {
+        sendHeight();
+      }).observe(document.body, { childList: true, subtree: true });
+    
+      setInterval(() => {
+        const height = Math.max(
+          document.body.scrollHeight,
+          document.body.offsetHeight,
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight
+        );
+        if (height !== lastHeight) {
+          lastHeight = height;
+          window.parent.postMessage({ type: "setHeight", height }, "*");
+        }
+      }, 300);
     }
-  }, 300);
 
 });
 </script>
