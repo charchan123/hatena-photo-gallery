@@ -799,6 +799,22 @@ mark {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
+
+.gallery-item.loading {
+  background: linear-gradient(
+    100deg,
+    #eee 40%,
+    #f5f5f5 50%,
+    #eee 60%
+  );
+  background-size: 200% 100%;
+  animation: skeleton 1.2s infinite;
+}
+
+@keyframes skeleton {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
 </style>"""
 
 # ====== LightGallery 読み込みタグ ======
@@ -1574,16 +1590,20 @@ document.addEventListener("DOMContentLoaded", () => {
           img.dataset.loaded = "1";
           img.src = img.dataset.full;
     
-          img.onload = () => {
-            img.style.opacity = "1";
-            loaded++;
-            counter.textContent = `📓 読み込み中 ${loaded} / ${total}`;
-            if (loaded >= total) {
-              setTimeout(() => counter.remove(), 600);
-            }
-            sendHeight();
-          };
-    
+            img.onload = () => {
+              img.closest(".gallery-item")?.classList.remove("loading");
+            
+              img.style.opacity = "1";
+              loaded++;
+              counter.textContent = `📓 読み込み中 ${loaded} / ${total}`;
+            
+              if (loaded >= total) {
+                setTimeout(() => counter.remove(), 600);
+              }
+            
+              sendHeight();
+            };
+            
           obs.unobserve(img);
         });
       }, { rootMargin: "300px" });
@@ -2268,15 +2288,15 @@ def generate_favorite_page(grouped):
         for src in srcs:
             thumb = src + "?width=300"
             parts.append(f"""
-    <a class="gallery-item"
-       href="{src}"
-       data-alt="{esc_alt}"
-       data-exthumbimage="{thumb}"
-       style="display:none;">
-      <span class="thumb-fav">☆</span>
-      <span class="spores"></span>
-      <img src="{src}" alt="{esc_alt}" loading="lazy">
-    </a>
+                <a class="gallery-item loading"
+                   href="{src}"
+                   data-alt="{esc_alt}"
+                   data-exthumbimage="{thumb}"
+                   style="display:none;">
+                  <span class="thumb-fav">☆</span>
+                  <span class="spores"></span>
+                  <img src="{src}" alt="{esc_alt}" loading="lazy">
+                </a>
             """)
 
     parts.append("""
