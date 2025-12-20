@@ -1743,6 +1743,26 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================
+  // 季節判定ロジック
+  // =========================
+  function getSeason(month){
+      if ([12,1,2].includes(month)) return "冬";
+      if ([3,4,5].includes(month))  return "春";
+      if ([6,7,8].includes(month))  return "夏";
+      return "秋";
+    }
+
+  // =========================
+  // 見出しHTMLを作る関数
+  // =========================
+    function createSeasonHeader(year, season){
+      const h = document.createElement("div");
+      h.className = "season-header";
+      h.innerHTML = `<span>${year}年 ${season}</span>`;
+      return h;
+    }
+
+  // =========================
   // ★キャッシュ方式
   // =========================
   function isFavorite(src) {
