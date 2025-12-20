@@ -1057,6 +1057,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const timer = setTimeout(() => {
         finalizeRemove(src);
         item.remove();
+        finalizeRemove(src)
         pendingRemove = null;
         sendHeight();
       }, 3000);
@@ -1530,6 +1531,30 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================
+// ⭐ お気に入り専用 LightGallery 管理
+// =========================
+    let favoriteLG = null;
+    
+    function initFavoriteLightGallery() {
+      const gallery = document.querySelector(".favorite-gallery");
+      if (!gallery) return;
+    
+      // 既存があれば破棄
+      if (favoriteLG) {
+        favoriteLG.destroy(true);
+        favoriteLG = null;
+      }
+    
+      favoriteLG = lightGallery(gallery, {
+        selector: "a.gallery-item",
+        plugins: [lgZoom, lgThumbnail],
+        speed: 400,
+        thumbnail: true,
+        download: false,
+      });
+    }
+
+  // =========================
   // ⭐ お気に入り専用ページ描画（favorite.html）
   // =========================
     function renderFavoritePage() {
@@ -1566,6 +1591,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     gallery.style.visibility = "visible";
     bindThumbnailStarEvents();
+    initFavoriteLightGallery();
     sendHeight();
 
     }
