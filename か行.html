@@ -1875,6 +1875,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // scheduleRemoveFromFavorite（UNDO付き）
   // =========================   
     function scheduleRemoveFromFavorite(item, src, star) {
+
+      // ★ ここでフェードアウトさせる
+      item.style.transition = "opacity 0.25s ease";
+      item.style.opacity = "0";
+    
       // 既存の pending があれば確定
       if (pendingRemove?.timer) {
         clearTimeout(pendingRemove.timer);
