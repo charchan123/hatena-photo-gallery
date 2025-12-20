@@ -1099,7 +1099,14 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
     
       const btn = toast.querySelector(".undo-btn");
+    
+      // 既存タイマーがあればクリア（重要）
+      if (toast._hideTimer) {
+        clearTimeout(toast._hideTimer);
+      }
+    
       btn.onclick = () => {
+        clearTimeout(toast._hideTimer);
         toast.classList.remove("show");
         onUndo();
       };
@@ -1111,7 +1118,6 @@ document.addEventListener("DOMContentLoaded", () => {
       let left = rect.left + rect.width / 2 - toastRect.width / 2;
       const top = rect.bottom + 8 + window.scrollY;
     
-      // 左右ガード
       const margin = 8;
       left = Math.max(margin, Math.min(left, window.innerWidth - toastRect.width - margin));
     
@@ -1120,6 +1126,11 @@ document.addEventListener("DOMContentLoaded", () => {
       toast.style.top = `${top}px`;
     
       toast.classList.add("show");
+    
+      // ★ 自動で消す（これが無かった）
+      toast._hideTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3000);
     }
 
   // =========================
