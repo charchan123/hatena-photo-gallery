@@ -2054,19 +2054,19 @@ def generate_index(grouped, exif_cache):
 {LIGHTGALLERY_TAGS}
 """)
 
-# --------------------------
-# 検索用 JS データ（headに置く）
-# --------------------------
-all_mushrooms_js = []
+    # --------------------------
+    # 検索用 JS データ（headに置く）
+    # --------------------------
+    all_mushrooms_js = []
 
-for alt, srcs in grouped.items():
-    thumb = srcs[0] if srcs else ""
-    all_mushrooms_js.append({
-        "name": alt,
-        "name_norm": alt.lower(),
-        "href": f"{safe_filename(alt)}.html",
-        "thumb": thumb + "?width=300"
-    })
+    for alt, srcs in grouped.items():
+        thumb = srcs[0] if srcs else ""
+        all_mushrooms_js.append({
+            "name": alt,
+            "name_norm": alt.lower(),
+            "href": f"{safe_filename(alt)}.html",
+            "thumb": thumb + "?width=300"
+        })
 
     index_parts.append(f"""
 <script>
