@@ -1780,33 +1780,37 @@ document.addEventListener("DOMContentLoaded", () => {
   // ⭐ お気に入り専用ページ描画（favorite.html）
   // =========================
     function renderFavoritePage() {
-      let count = 0;
+      const gallery = document.querySelector(".favorite-gallery");
+      if (!gallery) return;
     
-      document.querySelectorAll(".favorite-gallery .gallery-item").forEach(item => {
-        const img = item.querySelector("img");
-        const star = item.querySelector(".thumb-fav");
-        if (!img || !star) return;
+      // ★ キャッシュは一度だけ読む
+      const favs = loadFavorites();
+      const srcs = Object.keys(favs).filter(src => favs[src]);
     
-        const src = normalizeSrc(img.getAttribute("src"));
-    
-        if (isFavorite(src)) {
-          item.style.display = "";
-          star.textContent = "★";
-          star.classList.add("is-fav");
-          count++;
-        } else {
-          item.style.display = "none";
-          star.textContent = "☆";
-          star.classList.remove("is-fav");
-        }
-      });
+      gallery.innerHTML = "";
     
       const empty = document.querySelector(".favorite-empty");
-      if (empty) {
-        empty.style.display = count === 0 ? "block" : "none";
+    
+      if (srcs.length === 0) {
+        empty && (empty.style.display = "block");
+        sendHeight();
+        return;
       }
     
-      // ★操作を有効に（DOM生成はしない）
+      empty && (empty.style.display = "none");
+    
+      srcs.forEach(src => {
+        const a = document.createElement("a");
+        a.className = "gallery-item";
+        a.href = src;
+        a.innerHTML = `
+          <span class="thumb-fav is-fav">★</span>
+          <span class="spores"></span>
+          <img src="${src}" loading="lazy">
+        `;
+        gallery.appendChild(a);
+      });
+    
       bindThumbnailStarEvents();
       sendHeight();
     }
@@ -1946,6 +1950,11 @@ document.addEventListener("DOMContentLoaded", () => {
   updateCardFavorites();
 
   // =========================
+  // favorite.html では 高さ監視を簡略化
+  // =========================
+  const isFavoritePage = !!document.querySelector(".favorite-gallery");
+
+  // =========================
   // 高さ監視（既存）
   // =========================
   sendHeight();
@@ -1962,23 +1971,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("resize", sendHeight);
 
-  new MutationObserver(() => {
-    sendHeight();
-  }).observe(document.body, { childList: true, subtree: true });
-
-  let lastHeight = 0;
-  setInterval(() => {
-    const height = Math.max(
-      document.body.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.scrollHeight,
-      document.documentElement.offsetHeight
-    );
-    if (height !== lastHeight) {
-      lastHeight = height;
-      window.parent.postMessage({ type: "setHeight", height }, "*");
+    if (!isFavoritePage) {
+      new MutationObserver(() => {
+        sendHeight();
+      }).observe(document.body, { childList: true, subtree: true });
+    
+      setInterval(() => {
+        const height = Math.max(
+          document.body.scrollHeight,
+          document.body.offsetHeight,
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight
+        );
+        if (height !== lastHeight) {
+          lastHeight = height;
+          window.parent.postMessage({ type: "setHeight", height }, "*");
+        }
+      }, 300);
     }
-  }, 300);
 
 });
 </script>
