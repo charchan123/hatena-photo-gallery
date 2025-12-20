@@ -2350,7 +2350,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     # ==========================================================
     index_parts.append("""
 <div class="section">
-  <h2 class="section-title">五十音別分類</h2>
+  <h2 class="section-title">📂 五十音別分類</h2>
 
   <div class="section-card">
     <div class="aiuo-links">
@@ -2417,7 +2417,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 
     index_parts.append("""
 <div class="section">
-  <h2 class="section-title">おすすめキノコ</h2>
+  <h2 class="section-title">🍄 おすすめキノコ</h2>
 
   <div class="section-card">
     <div class="recommend-grid">
