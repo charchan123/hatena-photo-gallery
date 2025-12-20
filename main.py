@@ -852,8 +852,23 @@ LIGHTGALLERY_TAGS = """
 # ====== LightGallery スクリプト ======
 SCRIPT_TAG = """<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
 
+let lastHeight = 0;
+
+setInterval(() => {
+  try {
+    const h = document.body.scrollHeight;
+    if (h !== lastHeight) {
+      sendHeight();
+      lastHeight = h;
+    }
+  } catch (e) {
+    // 何もしない（暴走防止）
+  }
+}, 300);
+
+document.addEventListener("DOMContentLoaded", () => {
+      
   // favorite.html 専用「遅延削除」
   let pendingRemove = null;
 
