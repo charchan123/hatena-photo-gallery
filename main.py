@@ -2048,7 +2048,7 @@ def generate_index(grouped, exif_cache):
     # 検索用 JS データ（headに置く）
     # --------------------------
     all_mushrooms_js = []
-    for alt, srcs in grouped.items():
+    
         thumb = srcs[0] if srcs else ""
         all_mushrooms_js.append({
             "name": alt,
@@ -2219,28 +2219,7 @@ def generate_favorite_page(grouped):
     <small>写真の★を押して、観察ノートを作ってみてください</small>
   </div>
 
-  <div class="gallery favorite-gallery">
-""")
-
-    # ★ 写真単位ですべて出力（表示制御はJS）
-    for alt, srcs in grouped.items():
-        esc_alt = html.escape(alt)
-        for src in srcs:
-            thumb = src + "?width=300"
-            parts.append(f"""
-    <a class="gallery-item"
-       href="{src}"
-       data-alt="{esc_alt}"
-       data-exthumbimage="{thumb}"
-       style="display:none;">
-      <span class="thumb-fav">☆</span>
-      <span class="spores"></span>
-      <img src="{src}" alt="{esc_alt}" loading="lazy">
-    </a>
-            """)
-
-    parts.append("""
-  </div>
+  <div class="gallery favorite-gallery"></div>
 
   <div style="text-align:center; margin-top:30px;">
     <a href="index.html" class="back-btn">
