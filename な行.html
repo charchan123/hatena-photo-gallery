@@ -914,28 +914,29 @@ mark {
 }
 
 /* =========================
-   観察ノート通知（トースト）
+   観察ノート通知（サムネ直下トースト）
 ========================= */
 .fav-toast {
-  position: fixed;
-  left: 50%;
-  bottom: 30px;
-  transform: translateX(-50%);
+  position: absolute;
   background: rgba(30,30,30,0.9);
   color: #fff;
-  padding: 10px 18px;
+  padding: 8px 14px;
   border-radius: 999px;
-  font-size: 14px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  font-size: 13px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  white-space: nowrap;
+
   opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(-6px);
+  transition: opacity .25s ease, transform .25s ease;
+
   z-index: 9999;
+  pointer-events: none;
 }
 
 .fav-toast.show {
   opacity: 1;
-  transform: translateX(-50%) translateY(-6px);
+  transform: translateY(0);
 }
 </style>
 <link rel="stylesheet" 
@@ -1016,27 +1017,61 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // Toast
   // =========================
-  function showFavToast(message) {
-    let toast = document.querySelector(".fav-toast");
-    if (!toast) {
-      toast = document.createElement("div");
-      toast.className = "fav-toast";
-      document.body.appendChild(toast);
+    function showFavToast(message, anchorEl) {
+      if (!anchorEl) return;
+    
+      let toast = document.querySelector(".fav-toast");
+      if (!toast) {
+        toast = document.createElement("div");
+        toast.className = "fav-toast";
+        document.body.appendChild(toast);
+      }
+    
+      toast.textContent = message;
+    
+      // --- 位置計算 ---
+      const rect = anchorEl.getBoundingClientRect();
+      const scrollX = window.scrollX || window.pageXOffset;
+      const scrollY = window.scrollY || window.pageYOffset;
+    
+      // いったん表示して幅を取得
+      toast.style.left = "0px";
+      toast.style.top = "0px";
+      toast.classList.add("show");
+    
+      const toastRect = toast.getBoundingClientRect();
+    
+      // 基本位置：サムネの真下中央
+      let left =
+        scrollX +
+        rect.left +
+        rect.width / 2 -
+        toastRect.width / 2;
+    
+      let top =
+        scrollY +
+        rect.bottom +
+        8; // サムネ下 8px
+    
+      // =========================
+      // ★ 画面端ガード（超重要）
+      // =========================
+      const margin = 8;
+      const viewportLeft = scrollX + margin;
+      const viewportRight =
+        scrollX + document.documentElement.clientWidth - toastRect.width - margin;
+    
+      if (left < viewportLeft) left = viewportLeft;
+      if (left > viewportRight) left = viewportRight;
+    
+      toast.style.left = left + "px";
+      toast.style.top = top + "px";
+    
+      clearTimeout(toast.__timer);
+      toast.__timer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 1400);
     }
-
-    toast.textContent = message;
-    toast.classList.add("show");
-
-    // 視界に入るように（埋め込みでも迷子にならない）
-    try {
-      toast.scrollIntoView({ block: "center", behavior: "smooth" });
-    } catch (e) {}
-
-    clearTimeout(toast.__timer);
-    toast.__timer = setTimeout(() => {
-      toast.classList.remove("show");
-    }, 1500);
-  }
 
   // =========================
   // ★ サムネ（ギャラリー）お気に入り同期
@@ -1082,11 +1117,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         updateThumbnailFavorites();
         updateCardFavorites();
-
+        
         showFavToast(
           favs[src]
             ? "📓 観察ノートに追加しました"
-            : "📓 観察ノートから外しました"
+            : "📓 観察ノートから外しました",
+          star
         );
       });
     });
