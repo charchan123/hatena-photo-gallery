@@ -777,58 +777,23 @@ mark {
 .fav-toast {
   position: fixed;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 99999;
-
-  background: rgba(0, 0, 0, 0.75);
+  bottom: 30px;
+  transform: translateX(-50%);
+  background: rgba(30,30,30,0.9);
   color: #fff;
-  padding: 12px 20px;
+  padding: 10px 18px;
   border-radius: 999px;
   font-size: 14px;
-  line-height: 1.4;
-  text-align: center;
-
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 9999;
 }
 
-/* 表示時も transform を維持 */
 .fav-toast.show {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.gallery-item.loading {
-  background: linear-gradient(
-    100deg,
-    #eee 40%,
-    #f5f5f5 50%,
-    #eee 60%
-  );
-  background-size: 200% 100%;
-  animation: skeleton 1.2s infinite;
-}
-
-@keyframes skeleton {
-  from { background-position: 200% 0; }
-  to   { background-position: -200% 0; }
-}
-
-.favorite-gallery {
-  visibility: visible !important;
-}
-
-/* favorite.html 専用：★の位置安定化 */
-.favorite-gallery .gallery-item {
-  position: relative;
-  overflow: hidden; /* はみ出し防止 */
-}
-
-.favorite-gallery .thumb-fav {
-  top: 8px;
-  right: 8px;
+  transform: translateX(-50%) translateY(-6px);
 }
 </style>"""
 
@@ -895,56 +860,47 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // ★ お気に入り機能（localStorage）
   // =========================
-    function showFavToast(message, anchorEl = null) {
-      let toast = document.querySelector(".fav-toast");
-      if (!toast) {
-        toast = document.createElement("div");
-        toast.className = "fav-toast";
-        document.body.appendChild(toast);
-      }
-    
-      toast.textContent = message;
-    
-      toast.style.left = "";
-      toast.style.top = "";
-      toast.style.transform = "";
-      toast.style.position = "";
-    
-      if (anchorEl) {
-        const rect = anchorEl.getBoundingClientRect();
-
-        
-        const toastWidth = 260; // 想定最大幅
-        const margin = 12;
-    
-        let centerX = rect.left + rect.width / 2;
-        let left = centerX - toastWidth / 2;
-    
-        // 画面左ガード
-        left = Math.max(margin, left);
-        // 画面右ガード
-        left = Math.min(window.innerWidth - toastWidth - margin, left);
-    
-        toast.style.position = "absolute";
-        toast.style.left = window.scrollX + left + "px";
-        toast.style.top = window.scrollY + rect.bottom + 14 + "px";
-        toast.style.transform = "none";
-      } else {
-        toast.style.position = "fixed";
-        toast.style.left = "50%";
-        toast.style.top = "50%";
-        toast.style.transform = "translate(-50%, -50%)";
-      }
-    
-      toast.classList.remove("show");
-      void toast.offsetWidth;
-      toast.classList.add("show");
-    
-      clearTimeout(toast.__timer);
-      toast.__timer = setTimeout(() => {
-        toast.classList.remove("show");
-      }, 1500);
+  function loadFavorites() {
+    try {
+      return JSON.parse(localStorage.getItem(LG_FAVORITES_KEY)) || {};
+    } catch (e) {
+      return {};
     }
+  }
+
+  function saveFavorites(data) {
+    localStorage.setItem(LG_FAVORITES_KEY, JSON.stringify(data));
+  }
+
+  function getCurrentSlideSrc() {
+    const img = document.querySelector(".lg-current .lg-object");
+    return img ? normalizeSrc(img.getAttribute("src")) : null;
+  }
+
+  // =========================
+  // Toast
+  // =========================
+  function showFavToast(message) {
+    let toast = document.querySelector(".fav-toast");
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.className = "fav-toast";
+      document.body.appendChild(toast);
+    }
+
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    // 視界に入るように（埋め込みでも迷子にならない）
+    try {
+      toast.scrollIntoView({ block: "center", behavior: "smooth" });
+    } catch (e) {}
+
+    clearTimeout(toast.__timer);
+    toast.__timer = setTimeout(() => {
+      toast.classList.remove("show");
+    }, 1500);
+  }
 
   // =========================
   // ★ サムネ（ギャラリー）お気に入り同期
@@ -988,40 +944,14 @@ document.addEventListener("DOMContentLoaded", () => {
         favs[src] = !favs[src];
         saveFavorites(favs);
 
-        const items = loadFavoriteItems();
-        
-        if (favs[src]) {
-          // ★ ON
-          items[src] = {
-            src,
-            thumb: src + "?width=300",
-            alt: img.getAttribute("alt") || "",
-            addedAt: Date.now()
-          };
-        } else {
-          // ☆ OFF
-          delete items[src];
-        
-          // 観察ノートを開いていたら即反映
-          document
-            .querySelector(`.favorite-gallery a[href="${src}"]`)
-            ?.remove();
-        }
-        
-        // ★ON / OFF 共通処理
-        saveFavoriteItems(items);
-        
         updateThumbnailFavorites();
         updateCardFavorites();
-        
+
         showFavToast(
           favs[src]
             ? "📓 観察ノートに追加しました"
-            : "📓 観察ノートから外しました",
-          star.closest(".gallery-item")
+            : "📓 観察ノートから外しました"
         );
-        
-        sendHeight();
       });
     });
   }
@@ -1066,67 +996,40 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.classList.remove("is-fav");
     }
   }
-    
-    function attachFavoriteButton() {
-      const toolbar = document.querySelector(".lg-toolbar");
-      if (!toolbar) return false;
-    
-      if (toolbar.querySelector(".lg-fav-btn")) return true;
-    
-      const btn = document.createElement("button");
-      btn.className = "lg-icon lg-fav-btn";
-      btn.title = "お気に入り";
-      btn.textContent = "☆";
-    
-      btn.addEventListener("click", () => {
-        const src = getCurrentSlideSrc();
-        if (!src) return;
-    
-        // ★ 状態トグル（正）
-        const favs = loadFavorites();
-        favs[src] = !favs[src];
-        saveFavorites(favs);
-    
-        // 観察ノート用キャッシュ
-        const items = loadFavoriteItems();
-    
-        if (favs[src]) {
-          // ★ ON
-          items[src] = {
-            src,
-            thumb: src + "?width=300",
-            alt: document.querySelector(".lg-current img")?.getAttribute("alt") || "",
-            addedAt: Date.now()
-          };
-        } else {
-          // ☆ OFF
-          delete items[src];
-    
-          // 観察ノートを開いていたら即反映
-          document
-            .querySelector(`.favorite-gallery a[href="${src}"]`)
-            ?.remove();
-        }
-    
-        // ★ ON / OFF 共通処理
-        saveFavoriteItems(items);
-    
-        updateFavoriteIcon();
-        updateThumbnailFavorites();
-        updateCardFavorites();
-    
-        showFavToast(
-          favs[src]
-            ? "📓 観察ノートに追加しました"
-            : "📓 観察ノートから外しました"
-        );
-    
-        sendHeight();
-      });
-    
-      toolbar.appendChild(btn);
-      return true;
-    }
+
+  function attachFavoriteButton() {
+    const toolbar = document.querySelector(".lg-toolbar");
+    if (!toolbar) return false;
+
+    if (toolbar.querySelector(".lg-fav-btn")) return true;
+
+    const btn = document.createElement("button");
+    btn.className = "lg-icon lg-fav-btn";
+    btn.title = "お気に入り";
+    btn.textContent = "☆";
+
+    btn.addEventListener("click", () => {
+      const src = getCurrentSlideSrc();
+      if (!src) return;
+
+      const favs = loadFavorites();
+      favs[src] = !favs[src];
+      saveFavorites(favs);
+
+      updateFavoriteIcon();
+      updateThumbnailFavorites();
+      updateCardFavorites();
+
+      showFavToast(
+        favs[src]
+          ? "📓 観察ノートに追加しました"
+          : "📓 観察ノートから外しました"
+      );
+    });
+
+    toolbar.appendChild(btn);
+    return true;
+  }
 
   // toolbar がまだ無いタイミング対策（lgAfterOpen直後に遅延生成されることがある）
   function attachFavoriteButtonWithRetry() {
@@ -1261,13 +1164,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     gallery.querySelectorAll("img").forEach(img => fadeObs.observe(img));
 
-    // ===== 観察ノートでは imagesLoaded を使わない =====
-    const isFavoritePage = !!document.querySelector(".favorite-gallery");
-
-    if (!isFavoritePage) {
     imagesLoaded(gallery, () => {
       gallery.style.visibility = "visible";
-      sendHeight();
 
       // 初期同期
       updateThumbnailFavorites();
@@ -1346,7 +1244,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     });
-    }
   }
 
   // =========================
@@ -1453,6 +1350,49 @@ document.addEventListener("DOMContentLoaded", () => {
         currentKana = kana;
         applyFilter();
       });
+    });
+  }
+
+  // =========================
+  // ⭐ お気に入り専用ページ描画（favorite.html）
+  // =========================
+  function renderFavoritePage() {
+    const favs = loadFavorites();
+    let count = 0;
+
+    document.querySelectorAll(".favorite-gallery .gallery-item").forEach(item => {
+      const img = item.querySelector("img");
+      const star = item.querySelector(".thumb-fav");
+      if (!img || !star) return;
+
+      const src = normalizeSrc(img.getAttribute("src"));
+
+      if (favs[src]) {
+        item.style.display = "";
+        star.textContent = "★";
+        star.classList.add("is-fav");
+        count++;
+      } else {
+        item.style.display = "none";
+      }
+    });
+
+    const empty = document.querySelector(".favorite-empty");
+    if (empty) {
+      empty.style.display = count === 0 ? "block" : "none";
+    }
+
+    // 表示後も★操作できるように
+    bindThumbnailStarEvents();
+    sendHeight();
+  }
+
+  if (document.querySelector(".favorite-gallery")) {
+    renderFavoritePage();
+
+    // お気に入りページでも localStorage 変更に追随（別タブ更新など）
+    window.addEventListener("storage", (e) => {
+      if (e.key === LG_FAVORITES_KEY) renderFavoritePage();
     });
   }
 
@@ -1569,153 +1509,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================
-// ⭐ 観察ノート 高速化ロジック（完全独立）
-// =========================
-    function initFavoriteGalleryOptimized() {
-      const gallery = document.querySelector(".favorite-gallery");
-      if (!gallery) return;
-    
-      gallery.style.visibility = "visible";
-    
-      const imgs = gallery.querySelectorAll("img");
-      const total = imgs.length;
-      let loaded = 0;
-    
-      // 進捗表示
-      const counter = document.createElement("div");
-      counter.className = "fav-loading";
-      counter.textContent = `📓 読み込み中 0 / ${total}`;
-      document.body.appendChild(counter);
-    
-      imgs.forEach(img => {
-        const full = img.getAttribute("src");
-        img.dataset.full = full;
-        img.src = full + "?width=300";
-        img.style.opacity = "0";
-      });
-    
-      const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (!e.isIntersecting) return;
-          const img = e.target;
-          if (img.dataset.loaded) return;
-    
-          img.dataset.loaded = "1";
-          img.src = img.dataset.full;
-    
-            img.onload = () => {
-              img.closest(".gallery-item")?.classList.remove("loading");
-            
-              img.style.opacity = "1";
-              loaded++;
-              counter.textContent = `📓 読み込み中 ${loaded} / ${total}`;
-            
-              if (loaded >= total) {
-                setTimeout(() => counter.remove(), 600);
-              }
-            
-              sendHeight();
-            };
-            
-          obs.unobserve(img);
-        });
-      }, { rootMargin: "300px" });
-    
-      imgs.forEach(img => obs.observe(img));
-    }
-
-  // =========================
-  // ★キャッシュ描画関数
-  // =========================
-    function renderFavoriteGalleryFromCache() {
-      const gallery = document.querySelector(".favorite-gallery");
-      const empty = document.querySelector(".favorite-empty");
-      if (!gallery) return;
-    
-      const items = Object.values(loadFavoriteItems())
-        .sort((a, b) => b.addedAt - a.addedAt);
-    
-      gallery.innerHTML = "";
-    
-      if (items.length === 0) {
-        empty && (empty.style.display = "block");
-        sendHeight();
-        return;
-      }
-    
-      empty && (empty.style.display = "none");
-    
-      items.forEach(item => {
-        const a = document.createElement("a");
-        a.className = "gallery-item loading";
-        a.href = item.src;
-        a.dataset.exthumbimage = item.thumb;
-    
-        a.innerHTML = `
-          <span class="thumb-fav is-fav">★</span>
-          <span class="spores"></span>
-          <img src="${item.thumb}"
-               data-full="${item.src}"
-               alt="${item.alt}">
-        `;
-    
-        gallery.appendChild(a);
-      });
-    
-      initFavoriteGalleryOptimized(); // IntersectionObserver + skeleton
-      bindThumbnailStarEvents();      // 既存★イベントを再利用
-
-      const lg = lightGallery(gallery, {
-          selector: "a.gallery-item",
-          plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
-          speed: 400,
-          thumbnail: true,
-          showThumbByDefault: true,
-          toggleThumb: true,
-          thumbWidth: 80,
-          thumbMargin: 6,
-          download: false,
-          zoom: true,
-          autoplay: true,
-          pause: 3000,
-          progressBar: true,
-      });
-
-        gallery.querySelectorAll("a.gallery-item").forEach(a => {
-          a.addEventListener("click", () => {
-            const el = document.documentElement;
-            if (el.requestFullscreen) el.requestFullscreen();
-          });
-        });
-
-      sendHeight();
-    }
-
-  // =========================
   // カード★ 初期同期（index / 五十音ページ用）
   // =========================
   updateCardFavorites();
-
-  // =========================
-  // ★を押した瞬間：キャッシュを“正”として保存
-  // =========================
-  const FAVORITE_ITEMS_KEY = "lg_favorite_items";
-
-    function loadFavoriteItems() {
-      try {
-        return JSON.parse(localStorage.getItem(FAVORITE_ITEMS_KEY)) || {};
-      } catch {
-        return {};
-      }
-    }
-    
-    function saveFavoriteItems(items) {
-      localStorage.setItem(FAVORITE_ITEMS_KEY, JSON.stringify(items));
-    }
-
-    if (document.querySelector(".favorite-gallery")) {
-      renderFavoriteGalleryFromCache();
-    }
 
   // =========================
   // 高さ監視（既存）
@@ -1751,6 +1547,7 @@ document.addEventListener("DOMContentLoaded", () => {
       window.parent.postMessage({ type: "setHeight", height }, "*");
     }
   }, 300);
+
 });
 </script>
 """
@@ -2360,9 +2157,9 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     print("✅ index.html 生成完了")
 
 # ===========================
-# ⭐ お気に入り専用ページ生成（最終版・キャッシュ描画）
+# ⭐ お気に入り専用ページ生成（写真単位）
 # ===========================
-def generate_favorite_page():
+def generate_favorite_page(grouped):
     parts = []
 
     parts.append("""
@@ -2379,8 +2176,28 @@ def generate_favorite_page():
     <small>写真の★を押して、観察ノートを作ってみてください</small>
   </div>
 
-  <!-- JSがキャッシュから描画する空コンテナ -->
-  <div class="gallery favorite-gallery"></div>
+  <div class="gallery favorite-gallery">
+""")
+
+    # ★ 写真単位ですべて出力（表示制御はJS）
+    for alt, srcs in grouped.items():
+        esc_alt = html.escape(alt)
+        for src in srcs:
+            thumb = src + "?width=300"
+            parts.append(f"""
+    <a class="gallery-item"
+       href="{src}"
+       data-alt="{esc_alt}"
+       data-exthumbimage="{thumb}"
+       style="display:none;">
+      <span class="thumb-fav">☆</span>
+      <span class="spores"></span>
+      <img src="{src}" alt="{esc_alt}" loading="lazy">
+    </a>
+            """)
+
+    parts.append("""
+  </div>
 
   <div style="text-align:center; margin-top:30px;">
     <a href="index.html" class="back-btn">
@@ -2397,11 +2214,11 @@ def generate_favorite_page():
     with open(f"{OUTPUT_DIR}/favorite.html", "w", encoding="utf-8") as f:
         f.write("".join(parts))
 
-    print("⭐ favorite.html（キャッシュ描画専用）生成完了")
-    
-    # ===========================
-    # メイン
-    # ===========================
+    print("⭐ favorite.html（写真単位）生成完了")
+
+# ===========================
+# メイン
+# ===========================
 if __name__ == "__main__":
     fetch_hatena_articles_api()
     entries = fetch_images()
@@ -2413,6 +2230,6 @@ if __name__ == "__main__":
 
         grouped = generate_gallery(entries, exif_cache)
         generate_index(grouped, exif_cache)
-        generate_favorite_page()
+        generate_favorite_page(grouped)
     else:
         print("⚠️ 画像が見つかりませんでした。")
