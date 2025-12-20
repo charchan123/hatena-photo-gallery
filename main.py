@@ -2365,17 +2365,17 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     # ==========================================================
     # 観察ノート専用セクション
     # ==========================================================
-index_parts.append("""
-<div class="section">
-  <h2 class="section-title">📓 観察ノート</h2>
-
-  <div class="section-card">
-    <a class="aiuo-link note-link" href="favorite.html">
-      ⭐ 観察中の写真 <span id="favorite-count"></span>
-    </a>
-  </div>
-</div>
-""")
+    index_parts.append("""
+    <div class="section">
+      <h2 class="section-title">📓 観察ノート</h2>
+    
+      <div class="section-card">
+        <a class="aiuo-link note-link" href="favorite.html">
+          ⭐ 観察中の写真 <span id="favorite-count"></span>
+        </a>
+      </div>
+    </div>
+    """)
 
     # ==========================================================
     # おすすめキノコ
