@@ -1584,6 +1584,10 @@ mark {
   from { background-position: 200% 0; }
   to   { background-position: -200% 0; }
 }
+
+.favorite-gallery {
+  visibility: visible !important;
+}
 </style>
 <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
@@ -2413,6 +2417,8 @@ document.addEventListener("DOMContentLoaded", () => {
       window.parent.postMessage({ type: "setHeight", height }, "*");
     }
   }, 300);
-  initFavoriteGalleryOptimized();
+  if (document.querySelector(".favorite-gallery")) {
+    initFavoriteGalleryOptimized();
+  }
 });
 </script>
