@@ -753,6 +753,15 @@ mark {
   font-weight: 600;
   cursor: pointer;
 }
+
+
+/* =========================
+   観察ノートギャラリー表示
+========================= */
+.favorite-gallery .gallery-item {
+  opacity: 0;
+  transform: translateY(6px);
+}
 </style>
 
 <link rel="stylesheet" 
@@ -797,11 +806,21 @@ window.ALL_MUSHROOMS = [{"name": "イボテングタケ", "name_norm": "イボ�
 
   <div class="section-card">
     <div class="aiuo-links">
-<a class="aiuo-link" href="あ行.html">あ行</a><a class="aiuo-link" href="か行.html">か行</a><a class="aiuo-link" href="さ行.html">さ行</a><a class="aiuo-link" href="た行.html">た行</a><a class="aiuo-link" href="な行.html">な行</a><a class="aiuo-link" href="は行.html">は行</a><a class="aiuo-link" href="ま行.html">ま行</a><a class="aiuo-link" href="や行.html">や行</a><a class="aiuo-link" href="ら行.html">ら行</a><a class="aiuo-link" href="わ行.html">わ行</a><a class="aiuo-link note-link" href="favorite.html">⭐ 観察中の写真 <span id="favorite-count"></span></a>
+<a class="aiuo-link" href="あ行.html">あ行</a><a class="aiuo-link" href="か行.html">か行</a><a class="aiuo-link" href="さ行.html">さ行</a><a class="aiuo-link" href="た行.html">た行</a><a class="aiuo-link" href="な行.html">な行</a><a class="aiuo-link" href="は行.html">は行</a><a class="aiuo-link" href="ま行.html">ま行</a><a class="aiuo-link" href="や行.html">や行</a><a class="aiuo-link" href="ら行.html">ら行</a><a class="aiuo-link" href="わ行.html">わ行</a>
     </div>
   </div>
 </div>
 
+    <div class="section">
+      <h2 class="section-title">📓 観察ノート</h2>
+    
+      <div class="section-card">
+        <a class="aiuo-link note-link" href="favorite.html">
+          ⭐ 観察中の写真 <span id="favorite-count"></span>
+        </a>
+      </div>
+    </div>
+    
 <div class="section">
   <h2 class="section-title">おすすめキノコ</h2>
 
@@ -1623,6 +1642,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     gallery.style.visibility = "visible";
     bindThumbnailStarEvents();
+    animateFavoriteGallery();
     sendHeight();
 
     }
@@ -1634,6 +1654,25 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("storage", (e) => {
       if (e.key === LG_FAVORITES_KEY) renderFavoritePage();
     });
+  }
+
+  // =========================
+  // 観察ノートギャラリー表示時にクラスを付与
+  // =========================
+  function animateFavoriteGallery() {
+      const items = document.querySelectorAll(
+        ".favorite-gallery .gallery-item"
+      );
+    
+      items.forEach((item, i) => {
+        item.style.transition = "opacity 0.35s ease, transform 0.35s ease";
+        item.style.transitionDelay = `${i * 40}ms`;
+    
+        requestAnimationFrame(() => {
+          item.style.opacity = "1";
+          item.style.transform = "translateY(0)";
+        });
+      });
   }
 
   // =========================
