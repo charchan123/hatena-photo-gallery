@@ -989,10 +989,71 @@ mark {
 /* =========================
    フォトギャラリートップページタイトル説明文
 ========================= */
-.section-desc {
-  margin: 4px 0 12px;
-  font-size: 0.9em;
-  color: #666;
+.section-desc{
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.7;
+  opacity: 0.7;
+  margin: 6px 0 18px;
+}
+    
+/* =========================
+   観察ノート：固定イントロ
+   ========================= */
+.note-intro{
+  max-width: 980px;
+  margin: 14px auto 18px;
+  padding: 0 16px;
+}
+
+.note-intro__lead{
+  margin: 0 0 8px;
+  font-size: 14px;      /* “説明”に見えないサイズ */
+  line-height: 1.75;    /* 詰めない＝余裕＝空気 */
+  opacity: 0.78;        /* 薄くして主役を写真に */
+}
+
+.note-intro__hint{
+  margin: 0;
+  font-size: 13px;      /* さらに一段引く */
+  line-height: 1.7;
+  opacity: 0.62;
+}
+
+/* スマホは少しだけ読みやすく */
+@media (max-width: 520px){
+  .note-intro{ padding: 0 12px; }
+  .note-intro__lead{ font-size: 14px; opacity: 0.82; }
+  .note-intro__hint{ font-size: 13px; opacity: 0.68; }
+}
+
+/* =========================
+   観察ノート：区切り線
+   ========================= */
+.note-divider{
+  border: none;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08); /* 薄さ命 */
+  max-width: 920px;
+  margin: 18px auto 22px;         /* 上下に呼吸 */
+}
+
+/* =========================
+   ★empty表示
+   ========================= */
+.favorite-empty{
+  color: #777;
+  font-size: 14px;
+  line-height: 1.9;
+  margin: 32px 0;
+  opacity: 0.85;
+}
+
+.favorite-empty small{
+  display: block;
+  margin-top: 6px;
+  font-size: 12.5px;
+  opacity: 0.75;
 }
 </style>
 <link rel="stylesheet" 

@@ -1,16 +1,20 @@
 
 <h2 class="section-title">⭐ 観察ノート</h2>
-
-<div class="section-card">
-  <p style="text-align:center; color:#666; margin-bottom:16px; line-height:1.6;">
-    このギャラリーを見て、気になったキノコの写真を集められるページです。<br>
-    写真を見比べながら、姿や形の違いを観察してみてください。
+<section class="note-intro" aria-label="観察ノートの説明">
+  <p class="note-intro__lead">
+    気になったキノコを、写真で残してきました。<br>
+    あとから見返したくなったものだけが、ここに集まっています。
   </p>
-
-  <div class="favorite-empty" style="display:none; text-align:center; color:#777; line-height:1.8;">
-    まだ観察ノートはありません<br>
-    <small>写真の★を押して、観察ノートを作ってみてください</small>
-  </div>
+  <p class="note-intro__hint">
+    ★をつけた写真は、あとでもう一度見たいと思ったものとして残ります。
+  </p>
+</section>
+<hr class="note-divider">
+<div class="section-card">
+    <div class="favorite-empty" style="display:none; text-align:center; line-height:1.9;">
+      まだ、ここは静かです。<br>
+      <small>気になった写真に ★ をつけると、少しずつ並びはじめます。</small>
+    </div>
 
   <!-- ★ JSが描画するので空 -->
   <div class="gallery favorite-gallery"></div>
@@ -782,10 +786,71 @@ mark {
 /* =========================
    フォトギャラリートップページタイトル説明文
 ========================= */
-.section-desc {
-  margin: 4px 0 12px;
-  font-size: 0.9em;
-  color: #666;
+.section-desc{
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.7;
+  opacity: 0.7;
+  margin: 6px 0 18px;
+}
+    
+/* =========================
+   観察ノート：固定イントロ
+   ========================= */
+.note-intro{
+  max-width: 980px;
+  margin: 14px auto 18px;
+  padding: 0 16px;
+}
+
+.note-intro__lead{
+  margin: 0 0 8px;
+  font-size: 14px;      /* “説明”に見えないサイズ */
+  line-height: 1.75;    /* 詰めない＝余裕＝空気 */
+  opacity: 0.78;        /* 薄くして主役を写真に */
+}
+
+.note-intro__hint{
+  margin: 0;
+  font-size: 13px;      /* さらに一段引く */
+  line-height: 1.7;
+  opacity: 0.62;
+}
+
+/* スマホは少しだけ読みやすく */
+@media (max-width: 520px){
+  .note-intro{ padding: 0 12px; }
+  .note-intro__lead{ font-size: 14px; opacity: 0.82; }
+  .note-intro__hint{ font-size: 13px; opacity: 0.68; }
+}
+
+/* =========================
+   観察ノート：区切り線
+   ========================= */
+.note-divider{
+  border: none;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08); /* 薄さ命 */
+  max-width: 920px;
+  margin: 18px auto 22px;         /* 上下に呼吸 */
+}
+
+/* =========================
+   ★empty表示
+   ========================= */
+.favorite-empty{
+  color: #777;
+  font-size: 14px;
+  line-height: 1.9;
+  margin: 32px 0;
+  opacity: 0.85;
+}
+
+.favorite-empty small{
+  display: block;
+  margin-top: 6px;
+  font-size: 12.5px;
+  opacity: 0.75;
 }
 </style>
 <link rel="stylesheet" 
