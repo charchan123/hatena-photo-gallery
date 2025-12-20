@@ -988,6 +988,32 @@ document.addEventListener("DOMContentLoaded", () => {
         favs[src] = !favs[src];
         saveFavorites(favs);
 
+        const items = loadFavoriteItems();
+        
+        if (favs[src]) {
+          // ★ ON
+          items[src] = {
+            src,
+            thumb: src + "?width=300",
+            alt: img.getAttribute("alt") || "",
+            addedAt: Date.now()
+          };
+        } else {
+          // ☆ OFF（← ここが今回の質問の答え）
+          delete items[src];
+          saveFavoriteItems(items);
+        
+          // 観察ノートを開いていたら即反映
+          document
+            .querySelector(`.favorite-gallery a[href="${src}"]`)
+            ?.remove();
+        
+          sendHeight();
+          return; // ★ON側と処理を混ぜないため
+        }
+        
+        saveFavoriteItems(items);
+
         updateThumbnailFavorites();
         updateCardFavorites();
 
@@ -1060,6 +1086,29 @@ document.addEventListener("DOMContentLoaded", () => {
       const favs = loadFavorites();
       favs[src] = !favs[src];
       saveFavorites(favs);
+
+        const items = loadFavoriteItems();
+        
+        if (favs[src]) {
+          items[src] = {
+            src,
+            thumb: src + "?width=300",
+            alt: document.querySelector(".lg-current img")?.getAttribute("alt") || "",
+            addedAt: Date.now()
+          };
+        } else {
+          delete items[src];
+          saveFavoriteItems(items);
+        
+          document
+            .querySelector(`.favorite-gallery a[href="${src}"]`)
+            ?.remove();
+        
+          sendHeight();
+          return;
+        }
+        
+        saveFavoriteItems(items);
 
       updateFavoriteIcon();
       updateThumbnailFavorites();
@@ -1439,7 +1488,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (document.querySelector(".favorite-gallery")) {
-    renderFavoritePage();
+    renderFavoriteGalleryFromCache();
 
     // お気に入りページでも localStorage 変更に追随（別タブ更新など）
     window.addEventListener("storage", (e) => {
@@ -1616,9 +1665,69 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
   // =========================
+  // ★キャッシュ描画関数
+  // =========================
+    function renderFavoriteGalleryFromCache() {
+      const gallery = document.querySelector(".favorite-gallery");
+      const empty = document.querySelector(".favorite-empty");
+      if (!gallery) return;
+    
+      const items = Object.values(loadFavoriteItems())
+        .sort((a, b) => b.addedAt - a.addedAt);
+    
+      gallery.innerHTML = "";
+    
+      if (items.length === 0) {
+        empty && (empty.style.display = "block");
+        sendHeight();
+        return;
+      }
+    
+      empty && (empty.style.display = "none");
+    
+      items.forEach(item => {
+        const a = document.createElement("a");
+        a.className = "gallery-item loading";
+        a.href = item.src;
+        a.dataset.exthumbimage = item.thumb;
+    
+        a.innerHTML = `
+          <span class="thumb-fav is-fav">★</span>
+          <span class="spores"></span>
+          <img src="${item.thumb}"
+               data-full="${item.src}"
+               alt="${item.alt}">
+        `;
+    
+        gallery.appendChild(a);
+      });
+    
+      initFavoriteGalleryOptimized(); // IntersectionObserver + skeleton
+      bindThumbnailStarEvents();      // 既存★イベントを再利用
+      sendHeight();
+    }
+
+  // =========================
   // カード★ 初期同期（index / 五十音ページ用）
   // =========================
   updateCardFavorites();
+
+  // =========================
+  // ★を押した瞬間：キャッシュを“正”として保存
+  // =========================
+  const FAVORITE_ITEMS_KEY = "lg_favorite_items";
+
+    function loadFavoriteItems() {
+      try {
+        return JSON.parse(localStorage.getItem(FAVORITE_ITEMS_KEY)) || {};
+      } catch {
+        return {};
+      }
+    }
+    
+    function saveFavoriteItems(items) {
+      localStorage.setItem(FAVORITE_ITEMS_KEY, JSON.stringify(items));
+    }
 
   // =========================
   // 高さ監視（既存）
@@ -2266,78 +2375,59 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     print("✅ index.html 生成完了")
 
 # ===========================
-# ⭐ お気に入り専用ページ生成（写真単位）
+# ⭐ お気に入り専用ページ生成（最終版・キャッシュ描画）
 # ===========================
-def generate_favorite_page(grouped):
-    parts = []
-
-    parts.append("""
-<h2 class="section-title">⭐ 観察ノート</h2>
-
-<div class="section-card">
-  <p style="text-align:center; color:#666; margin-bottom:16px; line-height:1.6;">
-    このギャラリーを見て、気になったキノコの写真を集められるページです。<br>
-    写真を見比べながら、姿や形の違いを観察してみてください。
-  </p>
-
-  <div class="favorite-empty" style="display:none; text-align:center; color:#777; line-height:1.8;">
-    まだ観察ノートはありません<br>
-    <small>写真の★を押して、観察ノートを作ってみてください</small>
-  </div>
-
-  <div class="gallery favorite-gallery">
-""")
-
-    # ★ 写真単位ですべて出力（表示制御はJS）
-    for alt, srcs in grouped.items():
-        esc_alt = html.escape(alt)
-        for src in srcs:
-            thumb = src + "?width=300"
-            parts.append(f"""
-                <a class="gallery-item loading"
-                   href="{src}"
-                   data-alt="{esc_alt}"
-                   data-exthumbimage="{thumb}">
-                  <span class="thumb-fav">☆</span>
-                  <span class="spores"></span>
-                  <img src="{src}" alt="{esc_alt}" loading="lazy">
-                </a>
-            """)
-
-    parts.append("""
-  </div>
-
-  <div style="text-align:center; margin-top:30px;">
-    <a href="index.html" class="back-btn">
-      ◀ トップに戻る
-    </a>
-  </div>
-</div>
-""")
-
-    parts.append(STYLE_TAG)
-    parts.append(LIGHTGALLERY_TAGS)
-    parts.append(SCRIPT_TAG)
-
-    with open(f"{OUTPUT_DIR}/favorite.html", "w", encoding="utf-8") as f:
-        f.write("".join(parts))
-
-    print("⭐ favorite.html（写真単位）生成完了")
-
-# ===========================
-# メイン
-# ===========================
-if __name__ == "__main__":
-    fetch_hatena_articles_api()
-    entries = fetch_images()
-
-    if entries:
-        exif_cache = load_exif_cache()
-        exif_cache = build_exif_cache(entries, exif_cache)
-        save_exif_cache(exif_cache)
-
-        grouped = generate_gallery(entries, exif_cache)
-        generate_index(grouped, exif_cache)
-        generate_favorite_page(grouped)
-    else:
-        print("⚠️ 画像が見つかりませんでした。")
+    def generate_favorite_page():
+        parts = []
+    
+        parts.append("""
+    <h2 class="section-title">⭐ 観察ノート</h2>
+    
+    <div class="section-card">
+      <p style="text-align:center; color:#666; margin-bottom:16px; line-height:1.6;">
+        このギャラリーを見て、気になったキノコの写真を集められるページです。<br>
+        写真を見比べながら、姿や形の違いを観察してみてください。
+      </p>
+    
+      <div class="favorite-empty" style="display:none; text-align:center; color:#777; line-height:1.8;">
+        まだ観察ノートはありません<br>
+        <small>写真の★を押して、観察ノートを作ってみてください</small>
+      </div>
+    
+      <!-- JSがキャッシュから描画する空コンテナ -->
+      <div class="gallery favorite-gallery"></div>
+    
+      <div style="text-align:center; margin-top:30px;">
+        <a href="index.html" class="back-btn">
+          ◀ トップに戻る
+        </a>
+      </div>
+    </div>
+    """)
+    
+        parts.append(STYLE_TAG)
+        parts.append(LIGHTGALLERY_TAGS)
+        parts.append(SCRIPT_TAG)
+    
+        with open(f"{OUTPUT_DIR}/favorite.html", "w", encoding="utf-8") as f:
+            f.write("".join(parts))
+    
+        print("⭐ favorite.html（キャッシュ描画専用）生成完了")
+    
+    # ===========================
+    # メイン
+    # ===========================
+    if __name__ == "__main__":
+        fetch_hatena_articles_api()
+        entries = fetch_images()
+    
+        if entries:
+            exif_cache = load_exif_cache()
+            exif_cache = build_exif_cache(entries, exif_cache)
+            save_exif_cache(exif_cache)
+    
+            grouped = generate_gallery(entries, exif_cache)
+            generate_index(grouped, exif_cache)
+            generate_favorite_page()
+        else:
+            print("⚠️ 画像が見つかりませんでした。")
