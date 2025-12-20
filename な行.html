@@ -1135,30 +1135,29 @@ document.addEventListener("DOMContentLoaded", () => {
             addedAt: Date.now()
           };
         } else {
-          // ☆ OFF（← ここが今回の質問の答え）
+          // ☆ OFF
           delete items[src];
-          saveFavoriteItems(items);
         
           // 観察ノートを開いていたら即反映
           document
             .querySelector(`.favorite-gallery a[href="${src}"]`)
             ?.remove();
-        
-          sendHeight();
-          return; // ★ON側と処理を混ぜないため
         }
         
+        // ★ON / OFF 共通処理
         saveFavoriteItems(items);
-
+        
         updateThumbnailFavorites();
         updateCardFavorites();
-
+        
         showFavToast(
           favs[src]
             ? "📓 観察ノートに追加しました"
             : "📓 観察ノートから外しました",
           star.closest(".gallery-item")
         );
+        
+        sendHeight();
       });
     });
   }
@@ -1203,29 +1202,32 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.classList.remove("is-fav");
     }
   }
-
-  function attachFavoriteButton() {
-    const toolbar = document.querySelector(".lg-toolbar");
-    if (!toolbar) return false;
-
-    if (toolbar.querySelector(".lg-fav-btn")) return true;
-
-    const btn = document.createElement("button");
-    btn.className = "lg-icon lg-fav-btn";
-    btn.title = "お気に入り";
-    btn.textContent = "☆";
-
-    btn.addEventListener("click", () => {
-      const src = getCurrentSlideSrc();
-      if (!src) return;
-
-      const favs = loadFavorites();
-      favs[src] = !favs[src];
-      saveFavorites(favs);
-
+    
+    function attachFavoriteButton() {
+      const toolbar = document.querySelector(".lg-toolbar");
+      if (!toolbar) return false;
+    
+      if (toolbar.querySelector(".lg-fav-btn")) return true;
+    
+      const btn = document.createElement("button");
+      btn.className = "lg-icon lg-fav-btn";
+      btn.title = "お気に入り";
+      btn.textContent = "☆";
+    
+      btn.addEventListener("click", () => {
+        const src = getCurrentSlideSrc();
+        if (!src) return;
+    
+        // ★ 状態トグル（正）
+        const favs = loadFavorites();
+        favs[src] = !favs[src];
+        saveFavorites(favs);
+    
+        // 観察ノート用キャッシュ
         const items = loadFavoriteItems();
-        
+    
         if (favs[src]) {
+          // ★ ON
           items[src] = {
             src,
             thumb: src + "?width=300",
@@ -1233,33 +1235,34 @@ document.addEventListener("DOMContentLoaded", () => {
             addedAt: Date.now()
           };
         } else {
+          // ☆ OFF
           delete items[src];
-          saveFavoriteItems(items);
-        
+    
+          // 観察ノートを開いていたら即反映
           document
             .querySelector(`.favorite-gallery a[href="${src}"]`)
             ?.remove();
-        
-          sendHeight();
-          return;
         }
-        
+    
+        // ★ ON / OFF 共通処理
         saveFavoriteItems(items);
-
-      updateFavoriteIcon();
-      updateThumbnailFavorites();
-      updateCardFavorites();
-
-      showFavToast(
-        favs[src]
-          ? "📓 観察ノートに追加しました"
-          : "📓 観察ノートから外しました"
-      );
-    });
-
-    toolbar.appendChild(btn);
-    return true;
-  }
+    
+        updateFavoriteIcon();
+        updateThumbnailFavorites();
+        updateCardFavorites();
+    
+        showFavToast(
+          favs[src]
+            ? "📓 観察ノートに追加しました"
+            : "📓 観察ノートから外しました"
+        );
+    
+        sendHeight();
+      });
+    
+      toolbar.appendChild(btn);
+      return true;
+    }
 
   // toolbar がまだ無いタイミング対策（lgAfterOpen直後に遅延生成されることがある）
   function attachFavoriteButtonWithRetry() {
@@ -1797,6 +1800,23 @@ document.addEventListener("DOMContentLoaded", () => {
     
       initFavoriteGalleryOptimized(); // IntersectionObserver + skeleton
       bindThumbnailStarEvents();      // 既存★イベントを再利用
+
+      const lg = lightGallery(gallery, {
+          selector: "a.gallery-item",
+          plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
+          speed: 400,
+          thumbnail: true,
+          showThumbByDefault: true,
+          toggleThumb: true,
+          thumbWidth: 80,
+          thumbMargin: 6,
+          download: false,
+          zoom: true,
+          autoplay: true,
+          pause: 3000,
+          progressBar: true,
+      });
+
       sendHeight();
     }
 
@@ -1820,6 +1840,10 @@ document.addEventListener("DOMContentLoaded", () => {
     
     function saveFavoriteItems(items) {
       localStorage.setItem(FAVORITE_ITEMS_KEY, JSON.stringify(items));
+    }
+
+    if (document.querySelector(".favorite-gallery")) {
+      renderFavoriteGalleryFromCache();
     }
 
   // =========================
@@ -1856,8 +1880,5 @@ document.addEventListener("DOMContentLoaded", () => {
       window.parent.postMessage({ type: "setHeight", height }, "*");
     }
   }, 300);
-  if (document.querySelector(".favorite-gallery")) {
-    initFavoriteGalleryOptimized();
-  }
 });
 </script>
