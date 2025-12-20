@@ -729,6 +729,48 @@ mark {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* =========================
+   観察ノート：削除アニメーション
+========================= */
+.gallery-item.removing {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* =========================
+   UNDOトースト（再利用・下固定）
+========================= */
+.fav-undo-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  background: rgba(30,30,30,0.95);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  opacity: 0;
+  transition: opacity .25s ease;
+  z-index: 10000;
+}
+
+.fav-undo-toast.show {
+  opacity: 1;
+}
+
+.undo-btn {
+  background: none;
+  border: none;
+  color: #ffd54f;
+  font-weight: 600;
+  cursor: pointer;
+}
 </style>
 <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
@@ -741,6 +783,9 @@ mark {
 <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+
+  // favorite.html 専用「遅延削除」
+  let pendingRemove = null;
 
   // =========================
   // ⭐ お気に入り保存キー
@@ -886,37 +931,113 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
   // ★ サムネの★を押したらギャラリー起動を止める & お気に入り切替
-  function bindThumbnailStarEvents() {
-    document.querySelectorAll(".thumb-fav").forEach(star => {
-      if (star.__favBound) return;
-      star.__favBound = true;
-
-      star.addEventListener("click", e => {
-        e.preventDefault();
-        e.stopPropagation();
-
-        const item = star.closest(".gallery-item");
-        const img = item?.querySelector("img");
-        if (!img) return;
-
-        const src = normalizeSrc(img.getAttribute("src"));
-        const favs = loadFavorites();
-
-        favs[src] = !favs[src];
-        saveFavorites(favs);
-
-        updateThumbnailFavorites();
-        updateCardFavorites();
-        
-        showFavToast(
-          favs[src]
-            ? "📓 観察ノートに追加しました"
-            : "📓 観察ノートから外しました",
-          star
-        );
+    function bindThumbnailStarEvents() {
+      document.querySelectorAll(".thumb-fav").forEach(star => {
+        if (star.__favBound) return;
+        star.__favBound = true;
+    
+        star.addEventListener("click", e => {
+          e.preventDefault();
+          e.stopPropagation();
+    
+          const item = star.closest(".gallery-item");
+          const img = item?.querySelector("img");
+          if (!img) return;
+    
+          const src = normalizeSrc(img.getAttribute("src"));
+    
+          // ⭐ 観察ノートページの場合：遅延削除
+          if (document.querySelector(".favorite-gallery")) {
+            scheduleRemoveFromFavorite(item, src, star);
+            return;
+          }
+    
+          // ---- 通常ページ（今まで通り） ----
+          const favs = loadFavorites();
+          favs[src] = !favs[src];
+          saveFavorites(favs);
+    
+          updateThumbnailFavorites();
+          updateCardFavorites();
+    
+          showFavToast(
+            favs[src]
+              ? "📓 観察ノートに追加しました"
+              : "📓 観察ノートから外しました",
+            star
+          );
+        });
       });
-    });
-  }
+    }
+
+   // =========================
+  // scheduleRemoveFromFavorite（UNDO付き）
+  // =========================   
+    function scheduleRemoveFromFavorite(item, src, star) {
+      // すでに保留中があれば確定
+      if (pendingRemove?.timer) {
+        clearTimeout(pendingRemove.timer);
+        finalizeRemove(pendingRemove.src);
+      }
+    
+      item.classList.add("removing");
+    
+      // UNDOトースト
+      showUndoToast("観察ノートから外しました", () => {
+        // UNDO
+        item.classList.remove("removing");
+        pendingRemove = null;
+      });
+    
+      const timer = setTimeout(() => {
+        finalizeRemove(src);
+        item.remove(); // DOMから完全削除
+        pendingRemove = null;
+        sendHeight();
+      }, 3000);
+    
+      pendingRemove = { src, item, timer };
+    }
+
+  // =========================
+  // 実削除（localStorage確定）
+  // =========================
+    function finalizeRemove(src) {
+      const favs = loadFavorites();
+      delete favs[src];
+      saveFavorites(favs);
+    
+      updateCardFavorites();
+    }
+
+  // =========================
+  // UNDOトースト（再利用・下固定）
+  // =========================
+    function showUndoToast(message, onUndo) {
+      let toast = document.querySelector(".fav-undo-toast");
+      if (!toast) {
+        toast = document.createElement("div");
+        toast.className = "fav-undo-toast";
+        document.body.appendChild(toast);
+      }
+    
+      toast.innerHTML = `
+        ${message}
+        <button class="undo-btn">元に戻す</button>
+      `;
+    
+      const btn = toast.querySelector(".undo-btn");
+      btn.onclick = () => {
+        toast.classList.remove("show");
+        onUndo();
+      };
+    
+      toast.classList.add("show");
+    
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3000);
+    }
 
   // =========================
   // ★ index/五十音カードのお気に入り同期
