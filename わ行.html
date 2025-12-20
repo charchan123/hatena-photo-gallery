@@ -811,27 +811,47 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // Toast
   // =========================
-    function showFavToast(message) {
-      let toast = document.querySelector(".fav-toast");
-      if (!toast) {
-        toast = document.createElement("div");
-        toast.className = "fav-toast";
-        document.body.appendChild(toast);
-      }
-    
-      toast.textContent = message;
-    
-      // 再表示時のリセット
-      toast.classList.remove("show");
-      void toast.offsetWidth;
-    
-      toast.classList.add("show");
-    
-      clearTimeout(toast.__timer);
-      toast.__timer = setTimeout(() => {
-        toast.classList.remove("show");
-      }, 1500);
-    }
+function showFavToast(message, anchorEl = null) {
+  let toast = document.querySelector(".fav-toast");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.className = "fav-toast";
+    document.body.appendChild(toast);
+  }
+
+  toast.textContent = message;
+
+  // 表示位置リセット
+  toast.style.left = "";
+  toast.style.top = "";
+  toast.style.transform = "";
+  toast.style.position = "";
+
+  if (anchorEl) {
+    // 📌 通常ギャラリー用（写真の近く）
+    const rect = anchorEl.getBoundingClientRect();
+
+    toast.style.position = "absolute";
+    toast.style.left = window.scrollX + rect.left + rect.width / 2 + "px";
+    toast.style.top = window.scrollY + rect.bottom + 30 + "px";
+    toast.style.transform = "translateX(-50%)";
+  } else {
+    // 📌 LightGallery用（画面中央）
+    toast.style.position = "fixed";
+    toast.style.left = "50%";
+    toast.style.top = "50%";
+    toast.style.transform = "translate(-50%, -50%)";
+  }
+
+  toast.classList.remove("show");
+  void toast.offsetWidth;
+  toast.classList.add("show");
+
+  clearTimeout(toast.__timer);
+  toast.__timer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 1500);
+}
 
   // =========================
   // ★ サムネ（ギャラリー）お気に入り同期
@@ -882,6 +902,7 @@ document.addEventListener("DOMContentLoaded", () => {
           favs[src]
             ? "📓 観察ノートに追加しました"
             : "📓 観察ノートから外しました"
+          star.closest(".gallery-item")
         );
       });
     });
