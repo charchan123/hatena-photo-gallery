@@ -1391,33 +1391,37 @@ document.addEventListener("DOMContentLoaded", () => {
   // ⭐ お気に入り専用ページ描画（favorite.html）
   // =========================
     function renderFavoritePage() {
-      let count = 0;
+      const gallery = document.querySelector(".favorite-gallery");
+      if (!gallery) return;
     
-      document.querySelectorAll(".favorite-gallery .gallery-item").forEach(item => {
-        const img = item.querySelector("img");
-        const star = item.querySelector(".thumb-fav");
-        if (!img || !star) return;
+      // ★ キャッシュは一度だけ読む
+      const favs = loadFavorites();
+      const srcs = Object.keys(favs).filter(src => favs[src]);
     
-        const src = normalizeSrc(img.getAttribute("src"));
-    
-        if (isFavorite(src)) {
-          item.style.display = "";
-          star.textContent = "★";
-          star.classList.add("is-fav");
-          count++;
-        } else {
-          item.style.display = "none";
-          star.textContent = "☆";
-          star.classList.remove("is-fav");
-        }
-      });
+      gallery.innerHTML = "";
     
       const empty = document.querySelector(".favorite-empty");
-      if (empty) {
-        empty.style.display = count === 0 ? "block" : "none";
+    
+      if (srcs.length === 0) {
+        empty && (empty.style.display = "block");
+        sendHeight();
+        return;
       }
     
-      // ★操作を有効に（DOM生成はしない）
+      empty && (empty.style.display = "none");
+    
+      srcs.forEach(src => {
+        const a = document.createElement("a");
+        a.className = "gallery-item";
+        a.href = src;
+        a.innerHTML = `
+          <span class="thumb-fav is-fav">★</span>
+          <span class="spores"></span>
+          <img src="${src}" loading="lazy">
+        `;
+        gallery.appendChild(a);
+      });
+    
       bindThumbnailStarEvents();
       sendHeight();
     }
