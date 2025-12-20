@@ -1436,20 +1436,22 @@ document.addEventListener("DOMContentLoaded", () => {
     
       empty && (empty.style.display = "none");
     
-      srcs.forEach(src => {
-        const a = document.createElement("a");
-        a.className = "gallery-item";
-        a.href = src;
-        a.innerHTML = `
-          <span class="thumb-fav is-fav">★</span>
-          <span class="spores"></span>
-          <img src="${src}" loading="lazy">
-        `;
-        gallery.appendChild(a);
-      });
+    srcs.forEach(src => {
+      const a = document.createElement("a");
+      a.className = "gallery-item";
+      a.href = src;
+      a.innerHTML = `
+        <span class="thumb-fav is-fav">★</span>
+        <span class="spores"></span>
+        <img src="${src}" loading="lazy" class="visible">
+      `;
+      gallery.appendChild(a);
+    });
     
-      bindThumbnailStarEvents();
-      sendHeight();
+    gallery.style.visibility = "visible";
+    bindThumbnailStarEvents();
+    sendHeight();
+
     }
 
   if (document.querySelector(".favorite-gallery")) {
