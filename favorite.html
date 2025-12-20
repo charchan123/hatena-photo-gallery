@@ -9239,8 +9239,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     gallery.querySelectorAll("img").forEach(img => fadeObs.observe(img));
 
+    // ===== 観察ノートでは imagesLoaded を使わない =====
+    const isFavoritePage = !!document.querySelector(".favorite-gallery");
+
+    if (!isFavoritePage) {
     imagesLoaded(gallery, () => {
       gallery.style.visibility = "visible";
+      sendHeight();
 
       // 初期同期
       updateThumbnailFavorites();
@@ -9319,6 +9324,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     });
+    }
   }
 
   // =========================
@@ -9584,6 +9590,58 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================
+// ⭐ 観察ノート 高速化ロジック（完全独立）
+// =========================
+    function initFavoriteGalleryOptimized() {
+      const gallery = document.querySelector(".favorite-gallery");
+      if (!gallery) return;
+    
+      gallery.style.visibility = "visible";
+    
+      const imgs = gallery.querySelectorAll("img");
+      const total = imgs.length;
+      let loaded = 0;
+    
+      // 進捗表示
+      const counter = document.createElement("div");
+      counter.className = "fav-loading";
+      counter.textContent = `📓 読み込み中 0 / ${total}`;
+      document.body.appendChild(counter);
+    
+      imgs.forEach(img => {
+        const full = img.getAttribute("src");
+        img.dataset.full = full;
+        img.src = full + "?width=300";
+        img.style.opacity = "0";
+      });
+    
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const img = e.target;
+          if (img.dataset.loaded) return;
+    
+          img.dataset.loaded = "1";
+          img.src = img.dataset.full;
+    
+          img.onload = () => {
+            img.style.opacity = "1";
+            loaded++;
+            counter.textContent = `📓 読み込み中 ${loaded} / ${total}`;
+            if (loaded >= total) {
+              setTimeout(() => counter.remove(), 600);
+            }
+            sendHeight();
+          };
+    
+          obs.unobserve(img);
+        });
+      }, { rootMargin: "300px" });
+    
+      imgs.forEach(img => obs.observe(img));
+    }
+
+  // =========================
   // カード★ 初期同期（index / 五十音ページ用）
   // =========================
   updateCardFavorites();
@@ -9622,6 +9680,6 @@ document.addEventListener("DOMContentLoaded", () => {
       window.parent.postMessage({ type: "setHeight", height }, "*");
     }
   }, 300);
-
+  initFavoriteGalleryOptimized();
 });
 </script>
