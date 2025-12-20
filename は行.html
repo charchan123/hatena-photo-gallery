@@ -1310,7 +1310,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const count = getFavoriteCount();
     
       // 将来UI用（今は使わない）
-      document.documentElement.dataset.favoriteCount = count;
+    document.documentElement.dataset.favoriteCount = count;
+    
+    const el = document.getElementById("favorite-count");
+    if (el) el.textContent = count > 0 ? `（${count}）` : "";
     
       // デバッグ確認用
       // console.log("⭐ 観察ノート件数:", count);
