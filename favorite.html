@@ -8990,24 +8990,23 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // ★ サムネ（ギャラリー）お気に入り同期
   // =========================
-  function updateThumbnailFavorites() {
-    const favs = loadFavorites();
-
-    document.querySelectorAll(".gallery-item").forEach(a => {
-      const img = a.querySelector("img");
-      const star = a.querySelector(".thumb-fav");
-      if (!img || !star) return;
-
-      const src = normalizeSrc(img.getAttribute("src"));
-      if (favs[src]) {
-        star.textContent = "★";
-        star.classList.add("is-fav");
-      } else {
-        star.textContent = "☆";
-        star.classList.remove("is-fav");
-      }
-    });
-  }
+    function updateThumbnailFavorites() {
+      document.querySelectorAll(".gallery-item").forEach(a => {
+        const img = a.querySelector("img");
+        const star = a.querySelector(".thumb-fav");
+        if (!img || !star) return;
+    
+        const src = normalizeSrc(img.getAttribute("src"));
+    
+        if (isFavorite(src)) {
+          star.textContent = "★";
+          star.classList.add("is-fav");
+        } else {
+          star.textContent = "☆";
+          star.classList.remove("is-fav");
+        }
+      });
+    }
 
   // ★ サムネの★を押したらギャラリー起動を止める & お気に入り切替
   function bindThumbnailStarEvents() {
@@ -9045,24 +9044,23 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // ★ index/五十音カードのお気に入り同期
   // =========================
-  function updateCardFavorites() {
-    const favs = loadFavorites();
-
-    document.querySelectorAll(".mushroom-card").forEach(card => {
-      const img = card.querySelector("img");
-      const star = card.querySelector(".card-fav");
-      if (!img || !star) return;
-
-      const src = normalizeSrc(img.getAttribute("src"));
-      if (favs[src]) {
-        star.textContent = "★";
-        star.classList.add("is-fav");
-      } else {
-        star.textContent = "☆";
-        star.classList.remove("is-fav");
-      }
-    });
-  }
+    function updateCardFavorites() {
+      document.querySelectorAll(".mushroom-card").forEach(card => {
+        const img = card.querySelector("img");
+        const star = card.querySelector(".card-fav");
+        if (!img || !star) return;
+    
+        const src = normalizeSrc(img.getAttribute("src"));
+    
+        if (isFavorite(src)) {
+          star.textContent = "★";
+          star.classList.add("is-fav");
+        } else {
+          star.textContent = "☆";
+          star.classList.remove("is-fav");
+        }
+      });
+    }
 
   // =========================
   // ★ LightGallery toolbar にお気に入りボタンを後付け
@@ -9481,6 +9479,14 @@ document.addEventListener("DOMContentLoaded", () => {
       if (e.key === LG_FAVORITES_KEY) renderFavoritePage();
     });
   }
+
+  // =========================
+  // ★キャッシュ方式
+  // =========================
+  function isFavorite(src) {
+      const favs = loadFavorites();
+      return !!favs[src];
+    }
 
   // =========================
   // index 横断検索（ページネーション含む）
