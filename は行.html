@@ -1404,21 +1404,20 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // ★ LightGallery toolbar にお気に入りボタンを後付け
   // =========================
-  function updateFavoriteIcon() {
-    const btn = document.querySelector(".lg-fav-btn");
-    if (!btn) return;
-
-    const src = getCurrentSlideSrc();
-    const favs = loadFavorites();
-
-    if (src && favs[src]) {
-      btn.textContent = "★";
-      btn.classList.add("is-fav");
-    } else {
-      btn.textContent = "☆";
-      btn.classList.remove("is-fav");
+    function updateFavoriteIcon() {
+      const btn = document.querySelector(".lg-fav-btn");
+      if (!btn) return;
+    
+      const src = getCurrentSlideSrc();
+    
+      if (src && isFavorite(src)) {
+        btn.textContent = "★";
+        btn.classList.add("is-fav");
+      } else {
+        btn.textContent = "☆";
+        btn.classList.remove("is-fav");
+      }
     }
-  }
 
   function attachFavoriteButton() {
     const toolbar = document.querySelector(".lg-toolbar");
@@ -1434,19 +1433,20 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => {
       const src = getCurrentSlideSrc();
       if (!src) return;
-
+    
       const favs = loadFavorites();
       favs[src] = !favs[src];
       saveFavorites(favs);
-
+    
       updateFavoriteIcon();
       updateThumbnailFavorites();
       updateCardFavorites();
-
+    
       showFavToast(
-        favs[src]
+        isFavorite(src)
           ? "📓 観察ノートに追加しました"
-          : "📓 観察ノートから外しました"
+          : "📓 観察ノートから外しました",
+        btn
       );
     });
 
