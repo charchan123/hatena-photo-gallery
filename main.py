@@ -1454,49 +1454,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================
-  // ⭐ お気に入り専用ページ描画（favorite.html）
-  // =========================
-  function renderFavoritePage() {
-    const favs = loadFavorites();
-    let count = 0;
-
-    document.querySelectorAll(".favorite-gallery .gallery-item").forEach(item => {
-      const img = item.querySelector("img");
-      const star = item.querySelector(".thumb-fav");
-      if (!img || !star) return;
-
-      const src = normalizeSrc(img.getAttribute("src"));
-
-      if (favs[src]) {
-        item.style.display = "";
-        star.textContent = "★";
-        star.classList.add("is-fav");
-        count++;
-      } else {
-        item.style.display = "none";
-      }
-    });
-
-    const empty = document.querySelector(".favorite-empty");
-    if (empty) {
-      empty.style.display = count === 0 ? "block" : "none";
-    }
-
-    // 表示後も★操作できるように
-    bindThumbnailStarEvents();
-    sendHeight();
-  }
-
-  if (document.querySelector(".favorite-gallery")) {
-    renderFavoriteGalleryFromCache();
-
-    // お気に入りページでも localStorage 変更に追随（別タブ更新など）
-    window.addEventListener("storage", (e) => {
-      if (e.key === LG_FAVORITES_KEY) renderFavoritePage();
-    });
-  }
-
-  // =========================
   // index 横断検索（ページネーション含む）
   // =========================
   const indexSearchInput = document.querySelector(".index-search-input");
@@ -2377,57 +2334,57 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 # ===========================
 # ⭐ お気に入り専用ページ生成（最終版・キャッシュ描画）
 # ===========================
-    def generate_favorite_page():
-        parts = []
-    
-        parts.append("""
-    <h2 class="section-title">⭐ 観察ノート</h2>
-    
-    <div class="section-card">
-      <p style="text-align:center; color:#666; margin-bottom:16px; line-height:1.6;">
-        このギャラリーを見て、気になったキノコの写真を集められるページです。<br>
-        写真を見比べながら、姿や形の違いを観察してみてください。
-      </p>
-    
-      <div class="favorite-empty" style="display:none; text-align:center; color:#777; line-height:1.8;">
-        まだ観察ノートはありません<br>
-        <small>写真の★を押して、観察ノートを作ってみてください</small>
-      </div>
-    
-      <!-- JSがキャッシュから描画する空コンテナ -->
-      <div class="gallery favorite-gallery"></div>
-    
-      <div style="text-align:center; margin-top:30px;">
-        <a href="index.html" class="back-btn">
-          ◀ トップに戻る
-        </a>
-      </div>
-    </div>
-    """)
-    
-        parts.append(STYLE_TAG)
-        parts.append(LIGHTGALLERY_TAGS)
-        parts.append(SCRIPT_TAG)
-    
-        with open(f"{OUTPUT_DIR}/favorite.html", "w", encoding="utf-8") as f:
-            f.write("".join(parts))
-    
-        print("⭐ favorite.html（キャッシュ描画専用）生成完了")
+def generate_favorite_page():
+    parts = []
+
+    parts.append("""
+<h2 class="section-title">⭐ 観察ノート</h2>
+
+<div class="section-card">
+  <p style="text-align:center; color:#666; margin-bottom:16px; line-height:1.6;">
+    このギャラリーを見て、気になったキノコの写真を集められるページです。<br>
+    写真を見比べながら、姿や形の違いを観察してみてください。
+  </p>
+
+  <div class="favorite-empty" style="display:none; text-align:center; color:#777; line-height:1.8;">
+    まだ観察ノートはありません<br>
+    <small>写真の★を押して、観察ノートを作ってみてください</small>
+  </div>
+
+  <!-- JSがキャッシュから描画する空コンテナ -->
+  <div class="gallery favorite-gallery"></div>
+
+  <div style="text-align:center; margin-top:30px;">
+    <a href="index.html" class="back-btn">
+      ◀ トップに戻る
+    </a>
+  </div>
+</div>
+""")
+
+    parts.append(STYLE_TAG)
+    parts.append(LIGHTGALLERY_TAGS)
+    parts.append(SCRIPT_TAG)
+
+    with open(f"{OUTPUT_DIR}/favorite.html", "w", encoding="utf-8") as f:
+        f.write("".join(parts))
+
+    print("⭐ favorite.html（キャッシュ描画専用）生成完了")
     
     # ===========================
     # メイン
     # ===========================
-    if __name__ == "__main__":
-        fetch_hatena_articles_api()
-        entries = fetch_images()
-    
-        if entries:
-            exif_cache = load_exif_cache()
-            exif_cache = build_exif_cache(entries, exif_cache)
-            save_exif_cache(exif_cache)
-    
-            grouped = generate_gallery(entries, exif_cache)
-            generate_index(grouped, exif_cache)
-            generate_favorite_page()
-        else:
-            print("⚠️ 画像が見つかりませんでした。")
+if __name__ == "__main__":
+    fetch_hatena_articles_api()
+    entries = fetch_images()
+
+    if entries:
+        exif_cache = load_exif_cache()
+        exif_cache = build_exif_cache(entries, exif_cache)
+        save_exif_cache(exif_cache)
+
+        grouped = generate_gallery(entries, exif_cache)
+        generate_index(grouped, exif_cache)
+        generate_favorite_page()
+    else:
+        print("⚠️ 画像が見つかりませんでした。")
