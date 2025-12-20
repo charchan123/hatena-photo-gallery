@@ -2383,7 +2383,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     index_parts.append("""
     <div class="section">
       <h2 class="section-title">📓 観察ノート</h2>
-      <p class="section-desc">気になったキノコの写真に⭐をつけて集められるページです</p>
+      <p class="section-desc">⭐を付けた写真をまとめて確認できます</p>
     
       <div class="section-card">
         <a class="aiuo-link note-link" href="favorite.html">
