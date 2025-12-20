@@ -917,6 +917,17 @@ mark {
 .favorite-gallery {
   visibility: visible !important;
 }
+
+/* favorite.html 専用：★の位置安定化 */
+.favorite-gallery .gallery-item {
+  position: relative;
+  overflow: hidden; /* はみ出し防止 */
+}
+
+.favorite-gallery .thumb-fav {
+  top: 8px;
+  right: 8px;
+}
 </style>
 <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
@@ -976,26 +987,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // ★ お気に入り機能（localStorage）
   // =========================
-  function loadFavorites() {
-    try {
-      return JSON.parse(localStorage.getItem(LG_FAVORITES_KEY)) || {};
-    } catch (e) {
-      return {};
-    }
-  }
-
-  function saveFavorites(data) {
-    localStorage.setItem(LG_FAVORITES_KEY, JSON.stringify(data));
-  }
-
-  function getCurrentSlideSrc() {
-    const img = document.querySelector(".lg-current .lg-object");
-    return img ? normalizeSrc(img.getAttribute("src")) : null;
-  }
-
-  // =========================
-  // Toast
-  // =========================
     function showFavToast(message, anchorEl = null) {
       let toast = document.querySelector(".fav-toast");
       if (!toast) {
@@ -1006,22 +997,31 @@ document.addEventListener("DOMContentLoaded", () => {
     
       toast.textContent = message;
     
-      // 表示位置リセット
       toast.style.left = "";
       toast.style.top = "";
       toast.style.transform = "";
       toast.style.position = "";
     
       if (anchorEl) {
-        // 📌 通常ギャラリー用（写真の近く）
         const rect = anchorEl.getBoundingClientRect();
+
+        
+        const toastWidth = 260; // 想定最大幅
+        const margin = 12;
+    
+        let centerX = rect.left + rect.width / 2;
+        let left = centerX - toastWidth / 2;
+    
+        // 画面左ガード
+        left = Math.max(margin, left);
+        // 画面右ガード
+        left = Math.min(window.innerWidth - toastWidth - margin, left);
     
         toast.style.position = "absolute";
-        toast.style.left = window.scrollX + rect.left + rect.width / 2 + "px";
-        toast.style.top = window.scrollY + rect.bottom + 30 + "px";
-        toast.style.transform = "translateX(-50%)";
+        toast.style.left = window.scrollX + left + "px";
+        toast.style.top = window.scrollY + rect.bottom + 14 + "px";
+        toast.style.transform = "none";
       } else {
-        // 📌 LightGallery用（画面中央）
         toast.style.position = "fixed";
         toast.style.left = "50%";
         toast.style.top = "50%";
@@ -1772,6 +1772,13 @@ document.addEventListener("DOMContentLoaded", () => {
           pause: 3000,
           progressBar: true,
       });
+
+        gallery.querySelectorAll("a.gallery-item").forEach(a => {
+          a.addEventListener("click", () => {
+            const el = document.documentElement;
+            if (el.requestFullscreen) el.requestFullscreen();
+          });
+        });
 
       sendHeight();
     }
