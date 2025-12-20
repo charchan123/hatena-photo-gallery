@@ -921,7 +921,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const count = getFavoriteCount();
     
       // 将来UI用（今は使わない）
-      document.documentElement.dataset.favoriteCount = count;
+    document.documentElement.dataset.favoriteCount = count;
+    
+    const el = document.getElementById("favorite-count");
+    if (el) el.textContent = count > 0 ? `（${count}）` : "";
     
       // デバッグ確認用
       // console.log("⭐ 観察ノート件数:", count);
@@ -2311,7 +2314,9 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 
     # ⭐ お気に入り導線（1行追加）
     index_parts.append(
-        '<a class="aiuo-link" href="favorite.html">⭐ 観察ノートを見る</a>'
+        '<a class="aiuo-link note-link" href="favorite.html">'
+        '⭐ 観察中の写真 <span id="favorite-count"></span>'
+        '</a>'
     )
 
     index_parts.append("""
