@@ -1579,10 +1579,7 @@ mark {
    UNDOトースト（再利用・下固定）
 ========================= */
 .fav-undo-toast {
-  position: fixed;
-  left: 50%;
-  bottom: 24px;
-  transform: translateX(-50%);
+  position: absolute;   /* fixed → absolute */
   background: rgba(30,30,30,0.95);
   color: #fff;
   padding: 10px 16px;
@@ -1810,29 +1807,31 @@ document.addEventListener("DOMContentLoaded", () => {
   // scheduleRemoveFromFavorite（UNDO付き）
   // =========================   
     function scheduleRemoveFromFavorite(item, src, star) {
-      // すでに保留中があれば確定
+      // 既存の pending があれば確定
       if (pendingRemove?.timer) {
         clearTimeout(pendingRemove.timer);
         finalizeRemove(pendingRemove.src);
+        pendingRemove.item?.remove();
+        pendingRemove = null;
       }
     
       item.classList.add("removing");
     
-      // UNDOトースト
-      showUndoToast("観察ノートから外しました", () => {
-        // UNDO
-        item.classList.remove("removing");
-        pendingRemove = null;
-      });
-    
       const timer = setTimeout(() => {
         finalizeRemove(src);
-        item.remove(); // DOMから完全削除
+        item.remove();
         pendingRemove = null;
         sendHeight();
       }, 3000);
     
       pendingRemove = { src, item, timer };
+    
+      showUndoToastNear(star, "観察ノートから外しました", () => {
+        // ★ UNDO 処理（超重要）
+        clearTimeout(timer);                 // ← これが抜けてた
+        item.classList.remove("removing");
+        pendingRemove = null;
+      });
     }
 
   // =========================
@@ -1849,7 +1848,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // UNDOトースト（再利用・下固定）
   // =========================
-    function showUndoToast(message, onUndo) {
+    function showUndoToastNear(targetEl, message, onUndo) {
       let toast = document.querySelector(".fav-undo-toast");
       if (!toast) {
         toast = document.createElement("div");
@@ -1858,7 +1857,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     
       toast.innerHTML = `
-        ${message}
+        <span>${message}</span>
         <button class="undo-btn">元に戻す</button>
       `;
     
@@ -1868,11 +1867,22 @@ document.addEventListener("DOMContentLoaded", () => {
         onUndo();
       };
     
-      toast.classList.add("show");
+      // ---- 位置計算 ----
+      const rect = targetEl.getBoundingClientRect();
+      const toastRect = toast.getBoundingClientRect();
     
-      setTimeout(() => {
-        toast.classList.remove("show");
-      }, 3000);
+      let left = rect.left + rect.width / 2 - toastRect.width / 2;
+      const top = rect.bottom + 8 + window.scrollY;
+    
+      // 左右ガード
+      const margin = 8;
+      left = Math.max(margin, Math.min(left, window.innerWidth - toastRect.width - margin));
+    
+      toast.style.position = "absolute";
+      toast.style.left = `${left + window.scrollX}px`;
+      toast.style.top = `${top}px`;
+    
+      toast.classList.add("show");
     }
 
   // =========================
