@@ -815,6 +815,10 @@ mark {
   from { background-position: 200% 0; }
   to   { background-position: -200% 0; }
 }
+
+.favorite-gallery {
+  visibility: visible !important;
+}
 </style>"""
 
 # ====== LightGallery 読み込みタグ ======
@@ -1650,7 +1654,9 @@ document.addEventListener("DOMContentLoaded", () => {
       window.parent.postMessage({ type: "setHeight", height }, "*");
     }
   }, 300);
-  initFavoriteGalleryOptimized();
+  if (document.querySelector(".favorite-gallery")) {
+    initFavoriteGalleryOptimized();
+  }
 });
 </script>
 """
@@ -2291,8 +2297,7 @@ def generate_favorite_page(grouped):
                 <a class="gallery-item loading"
                    href="{src}"
                    data-alt="{esc_alt}"
-                   data-exthumbimage="{thumb}"
-                   style="display:none;">
+                   data-exthumbimage="{thumb}">
                   <span class="thumb-fav">☆</span>
                   <span class="spores"></span>
                   <img src="{src}" alt="{esc_alt}" loading="lazy">
