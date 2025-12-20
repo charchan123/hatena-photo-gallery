@@ -2325,6 +2325,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     index_parts.append("""
 <div class="section">
   <h2 class="section-title">🔍 全キノコ横断検索</h2>
+  <p class="section-desc">ブログ内にある全キノコを検索できます</p>
 
   <div class="section-card">
     <div class="index-search-box">
@@ -2351,6 +2352,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     index_parts.append("""
 <div class="section">
   <h2 class="section-title">📂 五十音別分類</h2>
+  <p class="section-desc">五十音順でキノコを探せます</p>
 
   <div class="section-card">
     <div class="aiuo-links">
@@ -2373,6 +2375,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     index_parts.append("""
     <div class="section">
       <h2 class="section-title">📓 観察ノート</h2>
+      <p class="section-desc">気になったキノコの写真に⭐をつけて集められるページです</p>
     
       <div class="section-card">
         <a class="aiuo-link note-link" href="favorite.html">
@@ -2418,6 +2421,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     index_parts.append("""
 <div class="section">
   <h2 class="section-title">🍄 おすすめキノコ</h2>
+  <p class="section-desc">見た目や特徴が分かりやすいキノコをピックアップ</p>
 
   <div class="section-card">
     <div class="recommend-grid">
