@@ -895,6 +895,24 @@ mark {
   max-width: 920px;
   margin: 18px auto 22px;         /* 上下に呼吸 */
 }
+
+/* =========================
+   ★empty表示
+   ========================= */
+.favorite-empty{
+  color: #777;
+  font-size: 14px;
+  line-height: 1.9;
+  margin: 32px 0;
+  opacity: 0.85;
+}
+
+.favorite-empty small{
+  display: block;
+  margin-top: 6px;
+  font-size: 12.5px;
+  opacity: 0.75;
+}
 </style>"""
 
 # ====== LightGallery 読み込みタグ ======
@@ -2537,10 +2555,10 @@ def generate_favorite_page(grouped):
 </section>
 <hr class="note-divider">
 <div class="section-card">
-  <div class="favorite-empty" style="display:none; text-align:center; color:#777; line-height:1.8;">
-    まだ観察ノートはありません<br>
-    <small>写真の★を押して、観察ノートを作ってみてください</small>
-  </div>
+    <div class="favorite-empty" style="display:none; text-align:center; line-height:1.9;">
+      まだ、ここは静かです。<br>
+      <small>気になった写真に ★ をつけると、少しずつ並びはじめます。</small>
+    </div>
 
   <!-- ★ JSが描画するので空 -->
   <div class="gallery favorite-gallery"></div>
