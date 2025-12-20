@@ -1277,6 +1277,46 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================
+  // 件数を返す「純ロジック関数」
+  // =========================
+  function getFavoriteCount() {
+  // 新構造（lg_items）があれば優先
+  const itemsRaw = localStorage.getItem("lg_items");
+  if (itemsRaw) {
+    try {
+      const items = JSON.parse(itemsRaw);
+      return Object.values(items).filter(
+        item => item && item.favorite
+      ).length;
+    } catch (e) {}
+  }
+
+  // 旧構造（lg_favorites）
+  const favsRaw = localStorage.getItem(LG_FAVORITES_KEY);
+  if (favsRaw) {
+    try {
+      const favs = JSON.parse(favsRaw);
+      return Object.values(favs).filter(Boolean).length;
+    } catch (e) {}
+  }
+
+  return 0;
+}
+
+  // =========================
+  // 件数を「外に出す」ためのフック（UI未実装）
+  // =========================
+    function updateFavoriteCountHook() {
+      const count = getFavoriteCount();
+    
+      // 将来UI用（今は使わない）
+      document.documentElement.dataset.favoriteCount = count;
+    
+      // デバッグ確認用
+      // console.log("⭐ 観察ノート件数:", count);
+    }
+
+  // =========================
   // iframe 高さ同期
   // =========================
   function sendHeight() {
@@ -1302,6 +1342,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function saveFavorites(data) {
     localStorage.setItem(LG_FAVORITES_KEY, JSON.stringify(data));
+    updateFavoriteCountHook();
   }
 
   function getCurrentSlideSrc() {
@@ -1445,6 +1486,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
       const timer = setTimeout(() => {
         finalizeRemove(src);
+        updateFavoriteCountHook();
         item.remove();
         pendingRemove = null;
         sendHeight();
@@ -2097,6 +2139,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // favorite.html では 高さ監視を簡略化
   // =========================
   const isFavoritePage = !!document.querySelector(".favorite-gallery");
+
+  // =========================
+  // 更新タイミングにだけフックする（ページ初期表示時）
+  // =========================
+  updateFavoriteCountHook();
 
   // =========================
   // 高さ監視（既存）
