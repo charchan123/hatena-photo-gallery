@@ -1570,36 +1570,37 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // ⭐ お気に入り専用ページ描画（favorite.html）
   // =========================
-  function renderFavoritePage() {
-    const favs = loadFavorites();
-    let count = 0;
-
-    document.querySelectorAll(".favorite-gallery .gallery-item").forEach(item => {
-      const img = item.querySelector("img");
-      const star = item.querySelector(".thumb-fav");
-      if (!img || !star) return;
-
-      const src = normalizeSrc(img.getAttribute("src"));
-
-      if (favs[src]) {
-        item.style.display = "";
-        star.textContent = "★";
-        star.classList.add("is-fav");
-        count++;
-      } else {
-        item.style.display = "none";
+    function renderFavoritePage() {
+      let count = 0;
+    
+      document.querySelectorAll(".favorite-gallery .gallery-item").forEach(item => {
+        const img = item.querySelector("img");
+        const star = item.querySelector(".thumb-fav");
+        if (!img || !star) return;
+    
+        const src = normalizeSrc(img.getAttribute("src"));
+    
+        if (isFavorite(src)) {
+          item.style.display = "";
+          star.textContent = "★";
+          star.classList.add("is-fav");
+          count++;
+        } else {
+          item.style.display = "none";
+          star.textContent = "☆";
+          star.classList.remove("is-fav");
+        }
+      });
+    
+      const empty = document.querySelector(".favorite-empty");
+      if (empty) {
+        empty.style.display = count === 0 ? "block" : "none";
       }
-    });
-
-    const empty = document.querySelector(".favorite-empty");
-    if (empty) {
-      empty.style.display = count === 0 ? "block" : "none";
+    
+      // ★操作を有効に（DOM生成はしない）
+      bindThumbnailStarEvents();
+      sendHeight();
     }
-
-    // 表示後も★操作できるように
-    bindThumbnailStarEvents();
-    sendHeight();
-  }
 
   if (document.querySelector(".favorite-gallery")) {
     renderFavoritePage();
