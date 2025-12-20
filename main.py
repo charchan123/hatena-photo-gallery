@@ -835,6 +835,15 @@ mark {
   font-weight: 600;
   cursor: pointer;
 }
+
+
+/* =========================
+   観察ノートギャラリー表示
+========================= */
+.favorite-gallery .gallery-item {
+  opacity: 0;
+  transform: translateY(6px);
+}
 </style>"""
 
 # ====== LightGallery 読み込みタグ ======
@@ -1626,6 +1635,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     gallery.style.visibility = "visible";
     bindThumbnailStarEvents();
+    animateFavoriteGallery();
     sendHeight();
 
     }
@@ -1637,6 +1647,25 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("storage", (e) => {
       if (e.key === LG_FAVORITES_KEY) renderFavoritePage();
     });
+  }
+
+  // =========================
+  // 観察ノートギャラリー表示時にクラスを付与
+  // =========================
+  function animateFavoriteGallery() {
+      const items = document.querySelectorAll(
+        ".favorite-gallery .gallery-item"
+      );
+    
+      items.forEach((item, i) => {
+        item.style.transition = "opacity 0.35s ease, transform 0.35s ease";
+        item.style.transitionDelay = `${i * 40}ms`;
+    
+        requestAnimationFrame(() => {
+          item.style.opacity = "1";
+          item.style.transform = "translateY(0)";
+        });
+      });
   }
 
   // =========================
@@ -2312,7 +2341,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 """)
 
     # ==========================================================
-    # 五十音別分類 + ⭐お気に入り導線
+    # 五十音別分類
     # ==========================================================
     index_parts.append("""
 <div class="section">
@@ -2327,15 +2356,23 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
             f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>'
         )
 
-    # ⭐ お気に入り導線（1行追加）
-    index_parts.append(
-        '<a class="aiuo-link note-link" href="favorite.html">'
-        '⭐ 観察中の写真 <span id="favorite-count"></span>'
-        '</a>'
-    )
-
     index_parts.append("""
     </div>
+  </div>
+</div>
+""")
+
+    # ==========================================================
+    # 観察ノート専用セクション
+    # ==========================================================
+index_parts.append("""
+<div class="section">
+  <h2 class="section-title">📓 観察ノート</h2>
+
+  <div class="section-card">
+    <a class="aiuo-link note-link" href="favorite.html">
+      ⭐ 観察中の写真 <span id="favorite-count"></span>
+    </a>
   </div>
 </div>
 """)
