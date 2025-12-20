@@ -2213,42 +2213,42 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 # ===========================
 # ⭐ お気に入り専用ページ生成（写真単位）
 # ===========================
-    def generate_favorite_page(grouped):
-        parts = []
-    
-        parts.append("""
-    <h2 class="section-title">⭐ 観察ノート</h2>
-    
-    <div class="section-card">
-      <p style="text-align:center; color:#666; margin-bottom:16px; line-height:1.6;">
-        このギャラリーを見て、気になったキノコの写真を集められるページです。<br>
-        写真を見比べながら、姿や形の違いを観察してみてください。
-      </p>
-    
-      <div class="favorite-empty" style="display:none; text-align:center; color:#777; line-height:1.8;">
-        まだ観察ノートはありません<br>
-        <small>写真の★を押して、観察ノートを作ってみてください</small>
-      </div>
-    
-      <!-- ★ JSが描画するので空 -->
-      <div class="gallery favorite-gallery"></div>
-    
-      <div style="text-align:center; margin-top:30px;">
-        <a href="index.html" class="back-btn">
-          ◀ トップに戻る
-        </a>
-      </div>
-    </div>
-    """)
-    
-        parts.append(STYLE_TAG)
-        parts.append(LIGHTGALLERY_TAGS)
-        parts.append(SCRIPT_TAG)
-    
-        with open(f"{OUTPUT_DIR}/favorite.html", "w", encoding="utf-8") as f:
-            f.write("".join(parts))
-    
-        print("⭐ favorite.html（JS描画方式）生成完了")
+def generate_favorite_page(grouped):
+    parts = []
+
+    parts.append("""
+<h2 class="section-title">⭐ 観察ノート</h2>
+
+<div class="section-card">
+  <p style="text-align:center; color:#666; margin-bottom:16px; line-height:1.6;">
+    このギャラリーを見て、気になったキノコの写真を集められるページです。<br>
+    写真を見比べながら、姿や形の違いを観察してみてください。
+  </p>
+
+  <div class="favorite-empty" style="display:none; text-align:center; color:#777; line-height:1.8;">
+    まだ観察ノートはありません<br>
+    <small>写真の★を押して、観察ノートを作ってみてください</small>
+  </div>
+
+  <!-- ★ JSが描画するので空 -->
+  <div class="gallery favorite-gallery"></div>
+
+  <div style="text-align:center; margin-top:30px;">
+    <a href="index.html" class="back-btn">
+      ◀ トップに戻る
+    </a>
+  </div>
+</div>
+""")
+
+    parts.append(STYLE_TAG)
+    parts.append(LIGHTGALLERY_TAGS)
+    parts.append(SCRIPT_TAG)
+
+    with open(f"{OUTPUT_DIR}/favorite.html", "w", encoding="utf-8") as f:
+        f.write("".join(parts))
+
+    print("⭐ favorite.html（JS描画方式）生成完了")
 
 # ===========================
 # メイン
