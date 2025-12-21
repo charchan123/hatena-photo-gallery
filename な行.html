@@ -1981,14 +1981,17 @@ galleries.forEach(gallery => {
         grid.className = "season-grid";
     
         group.items.forEach(src => {
-          const a = document.createElement("a");
-          a.className = "gallery-item";
-          a.href = src;
-          a.innerHTML = `
-            <span class="thumb-fav is-fav">★</span>
-            <span class="spores"></span>
-            <img src="${src}" loading="lazy">
-          `;
+            const caption = buildNoteCaption(src, "キノコ名"); // ← alt を渡す
+            
+            const a = document.createElement("a");
+            a.className = "gallery-item";
+            a.href = src;
+            a.setAttribute("data-sub-html", caption);
+            a.innerHTML = `
+              <span class="thumb-fav is-fav">★</span>
+              <span class="spores"></span>
+              <img src="${src}" loading="lazy">
+            `;
           grid.appendChild(a);
         });
     
@@ -2022,6 +2025,23 @@ galleries.forEach(gallery => {
           item.style.transform = "translateY(0)";
         });
       });
+  }
+
+  // =========================
+  // 観察ノート専用のキャプション関数
+  // =========================
+  function buildNoteCaption(src, alt){
+    const meta = window.EXIF_CACHE?.[src];
+    if (!meta) return "";
+
+    const date = meta.date || "";
+
+    return `
+      <div class="exif-wrap">
+        <div class="exif-title">${alt}</div>
+        ${date ? `<div class="exif-middle">${date}</div>` : ""}
+      </div>
+    `;
   }
 
   // =========================
