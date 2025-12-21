@@ -1152,6 +1152,33 @@ mark {
   height: auto;
   display: block;
 }
+
+/* 観察ノート：写真グリッド（正方形・4px） */
+.season-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+/* 正方形を作る */
+.season-grid .gallery-item {
+  aspect-ratio: 1 / 1;        /* ← これが肝 */
+  overflow: hidden;
+}
+
+/* 中の画像はトリミング */
+.season-grid .gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* 縦横比を崩さず中央トリミング */
+  display: block;
+}
+
+@media (max-width: 520px){
+  .season-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 </style>
 <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
@@ -1699,12 +1726,21 @@ document.addEventListener("DOMContentLoaded", () => {
     if (typeof sendHeight === "function") sendHeight();
   })();
 
+// =========================
+// ギャラリー処理（LightGallery）
+// .gallery / .favorite-gallery 両対応
+// =========================
+const galleries = document.querySelectorAll(
+  ".gallery, .favorite-gallery"
+);
+
+galleries.forEach(gallery => {
+
   // =========================
-  // ギャラリー処理（LightGallery）
+  // 通常ギャラリーのみ：画像フェードイン
+  // （観察ノートでは使わない）
   // =========================
-  const gallery = document.querySelector(".gallery");
-  if (gallery) {
-    // 画像フェードイン
+  if (gallery.classList.contains("gallery")) {
     const fadeObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -1715,88 +1751,96 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { threshold: 0.1 });
 
     gallery.querySelectorAll("img").forEach(img => fadeObs.observe(img));
+  }
 
-    imagesLoaded(gallery, () => {
-      gallery.style.visibility = "visible";
+  imagesLoaded(gallery, () => {
+    gallery.style.visibility = "visible";
 
-      // 初期同期
+    // 初期同期
+    updateThumbnailFavorites();
+    updateCardFavorites();
+    bindThumbnailStarEvents();
+    sendHeight();
+
+    // =========================
+    // LightGallery 起動
+    // =========================
+    const lg = lightGallery(gallery, {
+      selector: "a.gallery-item",
+      plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
+      speed: 400,
+      thumbnail: true,
+      showThumbByDefault: true,
+      toggleThumb: true,
+      thumbWidth: 80,
+      thumbMargin: 6,
+      download: false,
+      zoom: true,
+      autoplay: true,
+      pause: 3000,
+      progressBar: true,
+    });
+
+    // =========================
+    // LightGalleryイベント：お気に入り連携
+    // =========================
+    gallery.addEventListener("lgAfterOpen", () => {
+      attachFavoriteButtonWithRetry();
+      updateFavoriteIcon();
       updateThumbnailFavorites();
       updateCardFavorites();
-      bindThumbnailStarEvents();
-      sendHeight();
 
-      // favorite-gallery でも LightGallery を起動する（ここ重要）
-      const lg = lightGallery(gallery, {
-        selector: "a.gallery-item",
-        plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
-        speed: 400,
-        thumbnail: true,
-        showThumbByDefault: true,
-        toggleThumb: true,
-        thumbWidth: 80,
-        thumbMargin: 6,
-        download: false,
-        zoom: true,
-        autoplay: true,
-        pause: 3000,
-        progressBar: true,
-      });
+      const btn = document.querySelector(".lg-fav-btn");
+      if (btn) {
+        btn.classList.toggle(
+          "is-fav",
+          !!loadFavorites()[getCurrentSlideSrc()]
+        );
+      }
+    });
 
-      // =========================
-      // LightGalleryイベント：お気に入り連携
-      // =========================
-      gallery.addEventListener("lgAfterOpen", () => {
-        attachFavoriteButtonWithRetry();
-        updateFavoriteIcon();
-        updateThumbnailFavorites();
-        updateCardFavorites();
+    gallery.addEventListener("lgAfterSlide", () => {
+      updateFavoriteIcon();
+      updateThumbnailFavorites();
+      updateCardFavorites();
+    });
 
-        const btn = document.querySelector(".lg-fav-btn");
-        if (btn) {
-          btn.classList.toggle("is-fav", !!loadFavorites()[getCurrentSlideSrc()]);
-        }
-      });
-
-      gallery.addEventListener("lgAfterSlide", () => {
-        updateFavoriteIcon();
-        updateThumbnailFavorites();
-        updateCardFavorites();
-      });
-
-      // クリックでフルスクリーン（ギャラリーのみ）
-      gallery.querySelectorAll("a.gallery-item").forEach(a => {
-        a.addEventListener("click", () => {
-          const el = document.documentElement;
-          if (el.requestFullscreen) el.requestFullscreen();
-          else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
-          else if (el.msRequestFullscreen) el.msRequestFullscreen();
-        });
-      });
-
-      gallery.addEventListener("lgBeforeClose", () => {
-        updateThumbnailFavorites();
-        updateCardFavorites();
-        if (document.fullscreenElement) {
-          document.exitFullscreen().catch(() => {});
-        }
-        window.parent.postMessage({ type: "lgClosed" }, "*");
-      });
-
-      gallery.addEventListener("lgAfterClose", () => {
-        updateThumbnailFavorites();
-        updateCardFavorites();
-      });
-
-      document.addEventListener("fullscreenchange", () => {
-        if (!document.fullscreenElement) {
-          try {
-            lg.closeGallery();
-            window.parent.postMessage({ type: "lgClosed" }, "*");
-          } catch (e) {}
-        }
+    // =========================
+    // クリックでフルスクリーン
+    // =========================
+    gallery.querySelectorAll("a.gallery-item").forEach(a => {
+      a.addEventListener("click", () => {
+        const el = document.documentElement;
+        if (el.requestFullscreen) el.requestFullscreen();
+        else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+        else if (el.msRequestFullscreen) el.msRequestFullscreen();
       });
     });
-  }
+
+    gallery.addEventListener("lgBeforeClose", () => {
+      updateThumbnailFavorites();
+      updateCardFavorites();
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {});
+      }
+      window.parent.postMessage({ type: "lgClosed" }, "*");
+    });
+
+    gallery.addEventListener("lgAfterClose", () => {
+      updateThumbnailFavorites();
+      updateCardFavorites();
+    });
+
+    document.addEventListener("fullscreenchange", () => {
+      if (!document.fullscreenElement) {
+        try {
+          lg.closeGallery();
+          window.parent.postMessage({ type: "lgClosed" }, "*");
+        } catch (e) {}
+      }
+    });
+  });
+});
 
   // =========================
   // scrollToTitle 判定（既存）
