@@ -1999,6 +1999,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   const isFavoritePage = !!document.querySelector(".favorite-gallery");
 
+  renderFavoritePage();
+
   // =========================
   // 更新タイミングにだけフックする（ページ初期表示時）
   // =========================
