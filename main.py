@@ -842,6 +842,7 @@ mark {
 .favorite-gallery .gallery-item {
   opacity: 0;
   transform: translateY(6px);
+  break-inside: auto;
 }
 
 /* =========================
@@ -950,8 +951,10 @@ mark {
   }
 }
 
-/* 観察ノートでは gallery を最初から表示 */
+/* 観察ノートでは Masonry(column) を使わない */
 .favorite-gallery {
+  column-count: unset !important;
+  column-gap: unset !important;
   visibility: visible;
 }
 </style>"""
