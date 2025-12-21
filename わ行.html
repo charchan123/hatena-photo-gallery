@@ -1866,13 +1866,18 @@ galleries.forEach(gallery => {
     function buildNoteCaption(src){
       const name = window.SRC_TO_ALT?.[src] || "";
       const meta = window.EXIF_CACHE?.[src];
-    
       const date = meta?.date || "";
     
+      if (!name && !date) return "";
+    
       return `
-        <div class="note-caption">
-          ${name ? `<div class="note-caption__title">${name}</div>` : ""}
-          ${date ? `<div class="note-caption__date">📷 ${date}</div>` : ""}
+        <div class="exif-wrap">
+          ${name ? `<div class="exif-title">${name}</div>` : ""}
+          ${date ? `
+            <div class="exif-bottom-row">
+              <span>📷 ${date}</span>
+            </div>
+          ` : ""}
         </div>
       `;
     }
