@@ -911,6 +911,50 @@ mark {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* 観察ノート：LightGallery キャプション */
+.note-exif {
+  padding: 10px 0 4px;
+  text-align: center;
+  font-family: system-ui, -apple-system, "Hiragino Sans", sans-serif;
+}
+
+.note-exif-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #222;
+  letter-spacing: 0.04em;
+}
+
+.note-exif-date {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #999;
+  letter-spacing: 0.03em;
+}
+
+.lg-sub-html .note-exif {
+  animation: noteFadeUp 0.35s ease both;
+}
+
+@keyframes noteFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.note-exif-name {
+  max-width: 90%;
+  margin: 0 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 </style>
 
 <link rel="stylesheet" 
@@ -1856,17 +1900,15 @@ galleries.forEach(gallery => {
         grid.className = "season-grid";
     
         group.items.forEach(src => {
-            const caption = buildNoteCaption(src, "キノコ名"); // ← alt を渡す
-            
-            const a = document.createElement("a");
-            a.className = "gallery-item";
-            a.href = src;
-            a.setAttribute("data-sub-html", caption);
-            a.innerHTML = `
-              <span class="thumb-fav is-fav">★</span>
-              <span class="spores"></span>
-              <img src="${src}" loading="lazy">
-            `;
+          const a = document.createElement("a");
+          a.className = "gallery-item";
+          a.href = src;
+          a.setAttribute("data-sub-html", buildNoteCaption(src));
+          a.innerHTML = `
+            <span class="thumb-fav is-fav">★</span>
+            <span class="spores"></span>
+            <img src="${src}" loading="lazy">
+          `;
           grid.appendChild(a);
         });
     
@@ -1905,19 +1947,19 @@ galleries.forEach(gallery => {
   // =========================
   // 観察ノート専用のキャプション関数
   // =========================
-  function buildNoteCaption(src, alt){
-    const meta = window.EXIF_CACHE?.[src];
-    if (!meta) return "";
-
-    const date = meta.date || "";
-
-    return `
-      <div class="exif-wrap">
-        <div class="exif-title">${alt}</div>
-        ${date ? `<div class="exif-middle">${date}</div>` : ""}
-      </div>
-    `;
-  }
+    function buildNoteCaption(src){
+      const name = window.SRC_TO_ALT?.[src] || "";
+      const meta = window.EXIF_CACHE?.[src];
+    
+      const date = meta?.date || "";
+    
+      return `
+        <div class="note-caption">
+          ${name ? `<div class="note-caption__title">${name}</div>` : ""}
+          ${date ? `<div class="note-caption__date">📷 ${date}</div>` : ""}
+        </div>
+      `;
+    }
 
   // =========================
   // EXIF から年・月を取り出す関数
