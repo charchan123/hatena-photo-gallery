@@ -1754,9 +1754,29 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================
+  // EXIF から年・月を取り出す関数
+  // =========================
+    function getDateFromExif(src){
+      const cache = window.EXIF_CACHE;
+      if (!cache) return null;
+    
+      const meta = cache[src];
+      if (!meta || !meta.date) return null;
+    
+      // "YYYY/MM/DD" → Date
+      const d = new Date(meta.date.replace(/\//g, "-"));
+      if (isNaN(d)) return null;
+    
+      return {
+        year: d.getFullYear(),
+        month: d.getMonth() + 1
+      };
+    }
+
+  // =========================
   // 季節判定ロジック
   // =========================
-  function getSeason(month){
+    function getSeason(month){
       if ([12,1,2].includes(month)) return "冬";
       if ([3,4,5].includes(month))  return "春";
       if ([6,7,8].includes(month))  return "夏";
