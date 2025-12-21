@@ -1639,22 +1639,32 @@ document.addEventListener("DOMContentLoaded", () => {
       // =========================
       const groups = {};
     
-      srcs.forEach(src => {
-        const info = getDateFromExif(src);
-        if (!info) return;
+    srcs.forEach(src => {
+      const info = getDateFromExif(src);
     
-        const season = getSeason(info.month);
-        const key = `${info.year}-${season}`;
+      let key, year, season;
     
-        if (!groups[key]) {
-          groups[key] = {
-            year: info.year,
-            season,
-            items: []
-          };
-        }
-        groups[key].items.push(src);
-      });
+      if (info) {
+        season = getSeason(info.month);
+        year = info.year;
+        key = `${year}-${season}`;
+      } else {
+        // ★ EXIFが無い写真の逃げ道
+        year = "";
+        season = "日付不明";
+        key = "unknown";
+      }
+    
+      if (!groups[key]) {
+        groups[key] = {
+          year,
+          season,
+          items: []
+        };
+      }
+    
+      groups[key].items.push(src);
+    });
     
       // =========================
       // 年月順に並び替え（古 → 新）
@@ -1759,7 +1769,9 @@ document.addEventListener("DOMContentLoaded", () => {
     function createSeasonHeader(year, season){
       const h = document.createElement("div");
       h.className = "season-header";
-      h.innerHTML = `<span>${year}年 ${season}</span>`;
+      h.innerHTML = year
+        ? `<span>${year}年 ${season}</span>`
+        : `<span>${season}</span>`;
       return h;
     }
 
