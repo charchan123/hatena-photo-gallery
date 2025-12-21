@@ -1055,6 +1055,42 @@ mark {
   font-size: 12.5px;
   opacity: 0.75;
 }
+
+/* =========================
+   観察ノート：季節ブロック
+   ========================= */
+.season-block{
+  margin: 48px 0 56px;
+}
+
+/* 季節見出し */
+.season-header{
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: rgba(0,0,0,0.55);
+}
+
+.season-header span{
+  padding: 6px 18px;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+
+/* 写真グリッド */
+.season-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px;
+}
+
+/* スマホ微調整 */
+@media (max-width: 520px){
+  .season-grid{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
 </style>
 <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
@@ -1815,68 +1851,88 @@ document.addEventListener("DOMContentLoaded", () => {
       const gallery = document.querySelector(".favorite-gallery");
       if (!gallery) return;
     
-      // ★ キャッシュは一度だけ読む
       const favs = loadFavorites();
       const srcs = Object.keys(favs).filter(src => favs[src]);
     
       gallery.innerHTML = "";
     
       const empty = document.querySelector(".favorite-empty");
-    
       if (srcs.length === 0) {
         empty && (empty.style.display = "block");
         sendHeight();
         return;
       }
-    
       empty && (empty.style.display = "none");
     
-    let lastSeasonKey = "";
+      // =========================
+      // 季節ごとにグループ化
+      // =========================
+      const groups = {};
     
-    srcs.forEach(src => {
+      srcs.forEach(src => {
+        const info = getDateFromExif(src);
+        if (!info) return;
     
-      // --- EXIFから年・月を取得 ---
-      const info = getDateFromExif(src);
-      if (info) {
         const season = getSeason(info.month);
-        const seasonKey = `${info.year}-${season}`;
+        const key = `${info.year}-${season}`;
     
-        // --- 季節が切り替わったら見出しを挿入 ---
-        if (seasonKey !== lastSeasonKey) {
-          gallery.appendChild(
-            createSeasonHeader(info.year, season)
-          );
-          lastSeasonKey = seasonKey;
+        if (!groups[key]) {
+          groups[key] = {
+            year: info.year,
+            season,
+            items: []
+          };
         }
-      }
+        groups[key].items.push(src);
+      });
     
-      // --- 通常のギャラリーアイテム ---
-      const a = document.createElement("a");
-      a.className = "gallery-item";
-      a.href = src;
-      a.innerHTML = `
-        <span class="thumb-fav is-fav">★</span>
-        <span class="spores"></span>
-        <img src="${src}" loading="lazy" class="visible">
-      `;
-      gallery.appendChild(a);
-    });
+      // =========================
+      // 年月順に並び替え（古 → 新）
+      // =========================
+      const sortedGroups = Object.values(groups).sort((a, b) => {
+        const am = a.year * 12 + seasonOrder(a.season);
+        const bm = b.year * 12 + seasonOrder(b.season);
+        return am - bm;
+      });
     
-    gallery.style.visibility = "visible";
-    bindThumbnailStarEvents();
-    animateFavoriteGallery();
-    sendHeight();
-
+      // =========================
+      // 描画
+      // =========================
+      sortedGroups.forEach(group => {
+        const block = document.createElement("section");
+        block.className = "season-block";
+    
+        block.appendChild(
+          createSeasonHeader(group.year, group.season)
+        );
+    
+        const grid = document.createElement("div");
+        grid.className = "season-grid";
+    
+        group.items.forEach(src => {
+          const a = document.createElement("a");
+          a.className = "gallery-item";
+          a.href = src;
+          a.innerHTML = `
+            <span class="thumb-fav is-fav">★</span>
+            <span class="spores"></span>
+            <img src="${src}" loading="lazy">
+          `;
+          grid.appendChild(a);
+        });
+    
+        block.appendChild(grid);
+        gallery.appendChild(block);
+      });
+    
+      bindThumbnailStarEvents();
+      sendHeight();
     }
-
-  if (document.querySelector(".favorite-gallery")) {
-    renderFavoritePage();
-
-    // お気に入りページでも localStorage 変更に追随（別タブ更新など）
-    window.addEventListener("storage", (e) => {
-      if (e.key === LG_FAVORITES_KEY) renderFavoritePage();
-    });
-  }
+    
+    // 季節の並び順（春→夏→秋→冬）
+    function seasonOrder(season){
+      return { 春:1, 夏:2, 秋:3, 冬:4 }[season] || 9;
+    }
 
   // =========================
   // 観察ノートギャラリー表示時にクラスを付与
