@@ -949,6 +949,11 @@ mark {
     gap: 10px;
   }
 }
+
+/* 観察ノートでは gallery を最初から表示 */
+.favorite-gallery {
+  visibility: visible;
+}
 </style>"""
 
 # ====== LightGallery 読み込みタグ ======
