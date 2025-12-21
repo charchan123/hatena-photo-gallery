@@ -2591,6 +2591,14 @@ def generate_favorite_page(grouped):
 </div>
 """)
 
+    exif_cache = load_exif_cache()
+
+    index_parts.append(f"""
+    <script>
+    window.EXIF_CACHE = {json.dumps(exif_cache, ensure_ascii=False)};
+    </script>
+    """)
+
     parts.append(STYLE_TAG)
     parts.append(LIGHTGALLERY_TAGS)
     parts.append(SCRIPT_TAG)
