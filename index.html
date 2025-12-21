@@ -1706,7 +1706,26 @@ document.addEventListener("DOMContentLoaded", () => {
     
       empty && (empty.style.display = "none");
     
+    let lastSeasonKey = "";
+    
     srcs.forEach(src => {
+    
+      // --- EXIFから年・月を取得 ---
+      const info = getDateFromExif(src);
+      if (info) {
+        const season = getSeason(info.month);
+        const seasonKey = `${info.year}-${season}`;
+    
+        // --- 季節が切り替わったら見出しを挿入 ---
+        if (seasonKey !== lastSeasonKey) {
+          gallery.appendChild(
+            createSeasonHeader(info.year, season)
+          );
+          lastSeasonKey = seasonKey;
+        }
+      }
+    
+      // --- 通常のギャラリーアイテム ---
       const a = document.createElement("a");
       a.className = "gallery-item";
       a.href = src;
