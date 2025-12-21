@@ -957,6 +957,12 @@ mark {
   column-gap: unset !important;
   visibility: visible;
 }
+
+.favorite-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 </style>"""
 
 # ====== LightGallery 読み込みタグ ======
