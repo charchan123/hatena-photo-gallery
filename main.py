@@ -836,13 +836,13 @@ mark {
   cursor: pointer;
 }
 
-/* =========================
-   観察ノートギャラリー表示
-========================= */
+/* 観察ノート用 gallery-item（最初は“普通に表示”） */
 .favorite-gallery .gallery-item {
-  opacity: 0;
-  transform: translateY(6px);
   break-inside: auto;
+  display: block;
+  position: relative;
+  opacity: 1;                 /* ★ 重要 */
+  transform: none;            /* ★ 重要 */
 }
 
 /* =========================
@@ -956,8 +956,11 @@ mark {
   column-count: unset !important;
   column-gap: unset !important;
   visibility: visible;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
+/* 念のため */
 .favorite-gallery img {
   width: 100%;
   height: auto;
@@ -2704,7 +2707,7 @@ def generate_favorite_page(grouped):
     </div>
 
   <!-- ★ JSが描画するので空 -->
-  <div class="gallery favorite-gallery"></div>
+  <div class="favorite-gallery"></div>
 
   <div style="text-align:center; margin-top:30px;">
     <a href="index.html" class="back-btn">
