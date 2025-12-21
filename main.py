@@ -2592,8 +2592,8 @@ def generate_favorite_page(grouped):
 """)
 
     exif_cache = load_exif_cache()
-
-    index_parts.append(f"""
+    
+    parts.append(f"""
     <script>
     window.EXIF_CACHE = {json.dumps(exif_cache, ensure_ascii=False)};
     </script>
