@@ -641,22 +641,22 @@ body {
 .aiuo-links {
   max-width: 900px;
   margin: 0 auto 16px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
 }
 .aiuo-link {
-  display: inline-block;
-  padding: 8px 14px;
+  min-width: 32px;
+  padding: 6px 12px;
   border-radius: 999px;
+  border: 1px solid #d0d0d0;
   background: #fff;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-  text-decoration: none;
-  color: #333;
   font-size: 14px;
-  transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+  cursor: pointer;
+  line-height: 1;
+  text-align: center;
+  transition: background .15s ease, box-shadow .15s ease, transform .15s ease, border-color .15s ease;
 }
 .aiuo-link:hover {
   transform: translateY(-2px);
@@ -1217,9 +1217,14 @@ mark {
   margin: 0;
 }
 
+/* 観察ノートだけ中央寄せ */
+.section.feature-card .note-link {
+  display: inline-block;
+  margin: 0 auto;
+}
+
 /* 世界観を守るヒーロー化 */
 .hero-world {
-  text-align: center;
   margin: 12px 0 8px;
 }
 
