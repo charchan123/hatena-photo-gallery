@@ -1146,6 +1146,48 @@ mark {
 .search-wrap--page {
   margin-bottom: 24px;
 }
+
+/* ===== LightGallery：スマホでは×を常時見せる ===== */
+@media (max-width: 768px) {
+  .lg-toolbar {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .lg-toolbar.lg-hide {
+    opacity: 1 !important;
+  }
+
+  /* ×ボタンを少しだけ大きく */
+  .lg-close {
+    transform: scale(1.15);
+  }
+}
+
+/* ===== LightGallery 初回ヒント ===== */
+.lg-hint {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  line-height: 1.5;
+  z-index: 100000;
+  opacity: 0;
+  animation: hintFade 3.5s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes hintFade {
+  0%   { opacity: 0; transform: translate(-50%, 8px); }
+  10%  { opacity: 1; transform: translate(-50%, 0); }
+  80%  { opacity: 1; }
+  100% { opacity: 0; }
+}
 </style>"""
 
 # ====== LightGallery 読み込みタグ ======
@@ -1772,11 +1814,7 @@ galleries.forEach(gallery => {
       updateThumbnailFavorites();
       updateCardFavorites();
       
-        // ★ 初回だけヒント表示（スマホ想定）
-      if (!localStorage.getItem("lg_hint_shown")) {
-        showHint("×で戻ると、観察ノートから見返せます");
-        localStorage.setItem("lg_hint_shown", "1");
-      }
+      showLGHintOnce(); // ← ★ ここだけ追加
 
       const btn = document.querySelector(".lg-fav-btn");
       if (btn) {
@@ -2119,6 +2157,25 @@ galleries.forEach(gallery => {
         ? `<span>${year}年 ${season}</span>`
         : `<span>${season}</span>`;
       return h;
+    }
+
+  // =========================
+  // フルスクリーン起動時のヒント表示（初回のみ）
+  // =========================
+    function showLGHintOnce() {
+      if (localStorage.getItem("lg_hint_shown")) return;
+    
+      const hint = document.createElement("div");
+      hint.className = "lg-hint";
+      hint.innerHTML = "👆 スワイプで写真を見る<br>✕ で戻ると、観察ノートから見返せます";
+    
+      document.body.appendChild(hint);
+    
+      localStorage.setItem("lg_hint_shown", "1");
+    
+      setTimeout(() => {
+        hint.remove();
+      }, 3600);
     }
 
   // =========================
@@ -2827,7 +2884,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     index_parts.append("""
 <div class="section feature-card">
   <h2 class="section-title">🔍 全キノコ横断検索</h2>
-  <p class="section-desc">ブログ内にある全キノコを検索できます</p>
+  <p class="section-desc">キノコ名からブログ内のキノコを検索できます</p>
 
   <div class="section feature-card note-section">
     <div class="index-search-box">
