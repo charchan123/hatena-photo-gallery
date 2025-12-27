@@ -278,14 +278,6 @@ body {
 }
 
 /* ===== 五十音タイル・カードUI ===== */
-.kana-grid {
-  max-width: 900px;
-  margin: 0 auto 16px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  justify-content: center;
-}
 .kana-btn {
   min-width: 32px;
   padding: 6px 12px;
@@ -454,14 +446,19 @@ body {
   max-width: 900px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
 }
 .recommend-card {
   background: #fff;
   padding: 16px;
   border-radius: 20px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+@media (max-width: 520px){
+  .recommend-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 .recommend-card h3 {
   font-size: 18px;
@@ -500,9 +497,14 @@ body {
   max-width: 900px;
   margin: 0 auto 16px;
   display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 10px;
-  grid-template-columns: repeat(5, 1fr);
   justify-items: center;
+}
+@media (max-width: 520px){
+  .aiuo-links {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 .aiuo-link {
   min-width: 32px;
@@ -1068,19 +1070,15 @@ mark {
   margin-bottom: 18px;
 }
 
-.section.feature-card .section-card {
-  background: none;
-  box-shadow: none;
-  padding: 0;
-  margin: 0;
+/* 観察ノート専用：中央寄せ */
+.section.feature-card.note-section .section-card {
   display: flex;
   justify-content: center;
 }
 
 /* 観察ノートだけ中央寄せ */
-.section.feature-card .note-link {
+.note-section .note-link {
   display: inline-block;
-  margin: 0 auto;
 }
 
 /* 観察ノートだけ中央寄せ */
@@ -1099,14 +1097,6 @@ mark {
   font-weight: 600;
   color: #444;
   letter-spacing: 0.04em;
-}
-
-/* かなボタンの均等配置 */
-.kana-buttons {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-  justify-items: center;
 }
 
 /* 観察ノートのリンクを中央寄せ */
@@ -2766,7 +2756,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
   <h2 class="section-title">🔍 全キノコ横断検索</h2>
   <p class="section-desc">ブログ内にある全キノコを検索できます</p>
 
-  <div class="section-card">
+  <div class="section feature-card note-section">
     <div class="index-search-box">
       <input type="text"
              class="index-search-input"
