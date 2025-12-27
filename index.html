@@ -1049,6 +1049,29 @@ mark {
   50%  { transform: scale(1.25); }
   100% { transform: scale(1); }
 }
+
+/* =========================
+   ○行ページ専用レイアウト
+========================= */
+
+.aiuo-page {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.aiuo-title {
+  text-align: center;
+  font-size: 22px;
+  margin: 24px 0 18px;
+}
+
+.aiuo-filter {
+  margin: 14px 0 20px;
+}
+
+.search-wrap--page {
+  margin-bottom: 24px;
+}
 </style>
 
 <link rel="stylesheet" 
@@ -1100,11 +1123,11 @@ window.ALL_MUSHROOMS = [{"name": "イボテングタケ", "name_norm": "イボ�
   </div>
 </div>
 
-    <div class="section feature-card">
+    <div class="section feature-card note-section">
       <h2 class="section-title">📓 観察ノート</h2>
       <p class="section-desc">★を付けた写真をまとめて確認できます</p>
     
-      <div class="section-card note-center">
+      <div class="section-card">
         <a class="aiuo-link note-link" href="favorite.html">
           ⭐ 観察中の写真 <span id="favorite-count"></span>
         </a>
@@ -1400,7 +1423,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
           showFavToast(
             favs[src]
-              ? `📓 観察ノートに追加（${count}件）`
+              ? `📓 観察ノートに追加しました（${count}件）`
               : "📓 観察ノートから外しました",
             star
           );
@@ -1578,7 +1601,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
       showFavToast(
         isFavorite(src)
-          ? `📓 観察ノートに追加（${count}件）`
+          ? `📓 観察ノートに追加しました（${count}件）`
           : "📓 観察ノートから外しました",
         btn
       );

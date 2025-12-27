@@ -1069,6 +1069,29 @@ mark {
   50%  { transform: scale(1.25); }
   100% { transform: scale(1); }
 }
+
+/* =========================
+   ○行ページ専用レイアウト
+========================= */
+
+.aiuo-page {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.aiuo-title {
+  text-align: center;
+  font-size: 22px;
+  margin: 24px 0 18px;
+}
+
+.aiuo-filter {
+  margin: 14px 0 20px;
+}
+
+.search-wrap--page {
+  margin-bottom: 24px;
+}
 </style>
 <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
@@ -1321,7 +1344,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
           showFavToast(
             favs[src]
-              ? `📓 観察ノートに追加（${count}件）`
+              ? `📓 観察ノートに追加しました（${count}件）`
               : "📓 観察ノートから外しました",
             star
           );
@@ -1499,7 +1522,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
       showFavToast(
         isFavorite(src)
-          ? `📓 観察ノートに追加（${count}件）`
+          ? `📓 観察ノートに追加しました（${count}件）`
           : "📓 観察ノートから外しました",
         btn
       );

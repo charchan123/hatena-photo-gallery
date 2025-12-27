@@ -1,7 +1,18 @@
-<h2>は行のキノコ</h2><div class='kana-grid'><button class='kana-btn active' data-kana='all'>すべて</button><button class='kana-btn' data-kana='ハ'>ハ</button><button class='kana-btn' data-kana='ヒ'>ヒ</button><button class='kana-btn' data-kana='フ'>フ</button><button class='kana-btn' data-kana='ブ'>ブ</button><button class='kana-btn' data-kana='ヘ'>ヘ</button><button class='kana-btn' data-kana='ベ'>ベ</button><button class='kana-btn' data-kana='ホ'>ホ</button></div>
-        <div class="search-wrap">
-          <input type="text" class="search-input" placeholder="キノコ名で絞り込み">
-        </div>
+
+        <div class="aiuo-page">
+    
+          <h2 class="aiuo-title">は行のキノコ</h2>
+    
+          <div class="aiuo-filter">
+            <div class="kana-grid">
+              <button class="kana-btn active" data-kana="all">すべて</button>
+        <button class="kana-btn" data-kana="ハ">ハ</button><button class="kana-btn" data-kana="ヒ">ヒ</button><button class="kana-btn" data-kana="フ">フ</button><button class="kana-btn" data-kana="ブ">ブ</button><button class="kana-btn" data-kana="ヘ">ヘ</button><button class="kana-btn" data-kana="ベ">ベ</button><button class="kana-btn" data-kana="ホ">ホ</button>
+            </div>
+          </div>
+    
+          <div class="search-wrap search-wrap--page">
+            <input type="text" class="search-input" placeholder="キノコ名で絞り込み">
+          </div>
         <div class='mushroom-list'>
             <a href="ハイムラサキフウセンタケ.html?from=aiuo&kana=は行"
                class="mushroom-card"
@@ -476,10 +487,11 @@
               <div class="mushroom-card-name">ホテイシメジ</div>
             </a>
             </div>
-        <div style="text-align:center; margin:40px 0 20px;">
-          <a href="index.html" class="back-btn">
-            ◀ トップに戻る
-          </a>
+          <div style="text-align:center; margin:40px 0 20px;">
+            <a href="index.html" class="back-btn">
+              ◀ トップに戻る
+            </a>
+          </div>
         </div>
         <style>
 html, body {
@@ -1517,6 +1529,29 @@ mark {
   50%  { transform: scale(1.25); }
   100% { transform: scale(1); }
 }
+
+/* =========================
+   ○行ページ専用レイアウト
+========================= */
+
+.aiuo-page {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.aiuo-title {
+  text-align: center;
+  font-size: 22px;
+  margin: 24px 0 18px;
+}
+
+.aiuo-filter {
+  margin: 14px 0 20px;
+}
+
+.search-wrap--page {
+  margin-bottom: 24px;
+}
 </style>
 <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
@@ -1769,7 +1804,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
           showFavToast(
             favs[src]
-              ? `📓 観察ノートに追加（${count}件）`
+              ? `📓 観察ノートに追加しました（${count}件）`
               : "📓 観察ノートから外しました",
             star
           );
@@ -1947,7 +1982,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
       showFavToast(
         isFavorite(src)
-          ? `📓 観察ノートに追加（${count}件）`
+          ? `📓 観察ノートに追加しました（${count}件）`
           : "📓 観察ノートから外しました",
         btn
       );
