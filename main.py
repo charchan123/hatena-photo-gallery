@@ -1746,7 +1746,6 @@ galleries.forEach(gallery => {
         showHint("×で戻ると、観察ノートから見返せます");
         localStorage.setItem("lg_hint_shown", "1");
       }
-    });
 
       const btn = document.querySelector(".lg-fav-btn");
       if (btn) {
