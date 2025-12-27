@@ -1074,6 +1074,33 @@ mark {
   padding: 0;
   margin: 0;
 }
+
+/* 世界観を守るヒーロー化 */
+.hero-world {
+  text-align: center;
+  margin: 12px 0 8px;
+}
+
+.hero-world-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: #444;
+  letter-spacing: 0.04em;
+}
+
+/* かなボタンの均等配置 */
+.kana-buttons {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  justify-items: center;
+}
+
+/* 観察ノートのリンクを中央寄せ */
+.section.feature-card .note-link {
+  display: inline-block;
+  margin: 0 auto;
+}
 </style>"""
 
 # ====== LightGallery 読み込みタグ ======
@@ -2656,6 +2683,11 @@ def generate_index(grouped, exif_cache):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>キノコ図鑑</title>
+<div class="hero-world">
+  <p class="hero-world-text">
+    写真でたどる、身近なキノコの観察記録
+  </p>
+</div>
 <p class="gallery-guide">
   📷 写真をクリックするとフルスクリーンでじっくり観察できます<br>
   ⭐ 気になった写真は★で保存して、あとで「観察ノート」で見返せます
