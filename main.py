@@ -1037,6 +1037,14 @@ mark {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* 最初に何ができるページなのか説明 */
+.gallery-guide {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #666;
+  margin: 8px 0 16px;
+}
 </style>"""
 
 # ====== LightGallery 読み込みタグ ======
