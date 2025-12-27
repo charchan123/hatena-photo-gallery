@@ -1045,6 +1045,35 @@ mark {
   color: #666;
   margin: 8px 0 16px;
 }
+
+/* 機能カード（外枠） */
+.section.feature-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 22px 18px;
+  margin: 28px 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+
+/* タイトル・説明 */
+.section.feature-card .section-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.section.feature-card .section-desc {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 18px;
+}
+
+.section.feature-card .section-card {
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
 </style>"""
 
 # ====== LightGallery 読み込みタグ ======
@@ -2661,7 +2690,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     # 🔍 全キノコ横断検索
     # ==========================================================
     index_parts.append("""
-<div class="section">
+<div class="section feature-card">
   <h2 class="section-title">🔍 全キノコ横断検索</h2>
   <p class="section-desc">ブログ内にある全キノコを検索できます</p>
 
