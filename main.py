@@ -1122,6 +1122,29 @@ mark {
   50%  { transform: scale(1.25); }
   100% { transform: scale(1); }
 }
+
+/* =========================
+   ○行ページ専用レイアウト
+========================= */
+
+.aiuo-page {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.aiuo-title {
+  text-align: center;
+  font-size: 22px;
+  margin: 24px 0 18px;
+}
+
+.aiuo-filter {
+  margin: 14px 0 20px;
+}
+
+.search-wrap--page {
+  margin-bottom: 24px;
+}
 </style>"""
 
 # ====== LightGallery 読み込みタグ ======
@@ -1380,7 +1403,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
           showFavToast(
             favs[src]
-              ? `📓 観察ノートに追加（${count}件）`
+              ? `📓 観察ノートに追加しました（${count}件）`
               : "📓 観察ノートから外しました",
             star
           );
@@ -1558,7 +1581,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
       showFavToast(
         isFavorite(src)
-          ? `📓 観察ノートに追加（${count}件）`
+          ? `📓 観察ノートに追加しました（${count}件）`
           : "📓 観察ノートから外しました",
         btn
       );
@@ -2634,23 +2657,29 @@ def generate_gallery(entries, exif_cache):
     for g, names in aiuo_dict.items():
         html_parts = []
 
-        html_parts.append(f"<h2>{g}のキノコ</h2>")
-
-        initials = sorted({ n[0] for n in names if n })
-
-        html_parts.append("<div class='kana-grid'>")
-        html_parts.append("<button class='kana-btn active' data-kana='all'>すべて</button>")
+        html_parts.append(f"""
+        <div class="aiuo-page">
+        
+          <h2 class="aiuo-title">{g}のキノコ</h2>
+        
+          <div class="aiuo-filter">
+            <div class="kana-grid">
+              <button class="kana-btn active" data-kana="all">すべて</button>
+        """)
+        
         for ch in initials:
             esc_ch = html.escape(ch)
             html_parts.append(
-                f"<button class='kana-btn' data-kana='{esc_ch}'>{esc_ch}</button>"
+                f'<button class="kana-btn" data-kana="{esc_ch}">{esc_ch}</button>'
             )
-        html_parts.append("</div>")
-
+        
         html_parts.append("""
-        <div class="search-wrap">
-          <input type="text" class="search-input" placeholder="キノコ名で絞り込み">
-        </div>
+            </div>
+          </div>
+        
+          <div class="search-wrap search-wrap--page">
+            <input type="text" class="search-input" placeholder="キノコ名で絞り込み">
+          </div>
         """)
 
         html_parts.append("<div class='mushroom-list'>")
