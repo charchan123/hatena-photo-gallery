@@ -367,9 +367,10 @@ body {
   border-radius: 20px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
-@media (max-width: 520px){
+/* ===== スマホ：おすすめキノコは1列 ===== */
+@media (max-width: 600px) {
   .recommend-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 }
 .recommend-card h3 {
@@ -1059,20 +1060,22 @@ mark {
   margin-bottom: 24px;
 }
 
-/* ===== LightGallery：スマホでは×を常時見せる ===== */
+/* ===== LightGallery：スマホでは×を常時表示 ===== */
 @media (max-width: 768px) {
   .lg-toolbar {
     opacity: 1 !important;
     pointer-events: auto !important;
+    transform: none !important;
   }
 
   .lg-toolbar.lg-hide {
     opacity: 1 !important;
   }
 
-  /* ×ボタンを少しだけ大きく */
   .lg-close {
-    transform: scale(1.15);
+    display: block !important;
+    opacity: 1 !important;
+    transform: scale(1.2);
   }
 }
 
@@ -2071,17 +2074,20 @@ galleries.forEach(gallery => {
     function showLGHintOnce() {
       if (localStorage.getItem("lg_hint_shown")) return;
     
-      const hint = document.createElement("div");
-      hint.className = "lg-hint";
-      hint.innerHTML = "👆 スワイプで写真を見る<br>✕ で戻ると、観察ノートから見返せます";
-    
-      document.body.appendChild(hint);
-    
       localStorage.setItem("lg_hint_shown", "1");
     
+      // ★ 標準フルスクリーンヒントが消えるのを待つ
       setTimeout(() => {
-        hint.remove();
-      }, 3600);
+        const hint = document.createElement("div");
+        hint.className = "lg-hint";
+        hint.innerHTML = "👆 スワイプで写真を見る<br>✕ で戻ると、観察ノートから見返せます";
+    
+        document.body.appendChild(hint);
+    
+        setTimeout(() => {
+          hint.remove();
+        }, 3600);
+      }, 1200); // ← ここが重要
     }
 
   // =========================
