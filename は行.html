@@ -1468,6 +1468,14 @@ mark {
   box-shadow: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* 観察ノートだけ中央寄せ */
+.section.feature-card .note-link {
+  display: inline-block;
+  margin: 0 auto;
 }
 
 /* 観察ノートだけ中央寄せ */
@@ -1500,6 +1508,18 @@ mark {
 .section.feature-card .note-link {
   display: inline-block;
   margin: 0 auto;
+}
+
+/* ★がONになった瞬間の軽い強調 */
+.lg-fav-btn.is-fav,
+.thumb-fav.is-fav {
+  animation: fav-pop 0.35s ease;
+}
+
+@keyframes fav-pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.25); }
+  100% { transform: scale(1); }
 }
 </style>
 <link rel="stylesheet" 
@@ -1748,10 +1768,12 @@ document.addEventListener("DOMContentLoaded", () => {
     
           updateThumbnailFavorites();
           updateCardFavorites();
+
+          const count = getFavoriteCount();
     
           showFavToast(
             favs[src]
-              ? "📓 観察ノートに追加しました"
+              ? `📓 観察ノートに追加（${count}件）`
               : "📓 観察ノートから外しました",
             star
           );
@@ -1890,7 +1912,12 @@ document.addEventListener("DOMContentLoaded", () => {
     
       if (src && isFavorite(src)) {
         btn.textContent = "★";
+    
+        // ★ アニメーションを毎回確実に発火させる
+        btn.classList.remove("is-fav");
+        void btn.offsetWidth; // 再描画トリガ
         btn.classList.add("is-fav");
+    
       } else {
         btn.textContent = "☆";
         btn.classList.remove("is-fav");
@@ -1919,10 +1946,12 @@ document.addEventListener("DOMContentLoaded", () => {
       updateFavoriteIcon();
       updateThumbnailFavorites();
       updateCardFavorites();
+
+      const count = getFavoriteCount();
     
       showFavToast(
         isFavorite(src)
-          ? "📓 観察ノートに追加しました"
+          ? `📓 観察ノートに追加（${count}件）`
           : "📓 観察ノートから外しました",
         btn
       );
@@ -2111,6 +2140,12 @@ galleries.forEach(gallery => {
       updateFavoriteIcon();
       updateThumbnailFavorites();
       updateCardFavorites();
+      
+        // ★ 初回だけヒント表示（スマホ想定）
+      if (!localStorage.getItem("lg_hint_shown")) {
+        showHint("×で戻ると、観察ノートから見返せます");
+        localStorage.setItem("lg_hint_shown", "1");
+      }
 
       const btn = document.querySelector(".lg-fav-btn");
       if (btn) {
