@@ -2717,7 +2717,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     # 五十音別分類
     # ==========================================================
     index_parts.append("""
-<div class="section">
+<div class="section feature-card">
   <h2 class="section-title">📂 五十音別分類</h2>
   <p class="section-desc">五十音順でキノコを探せます</p>
 
@@ -2740,7 +2740,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     # 観察ノート専用セクション
     # ==========================================================
     index_parts.append("""
-    <div class="section">
+    <div class="section feature-card">
       <h2 class="section-title">📓 観察ノート</h2>
       <p class="section-desc">★を付けた写真をまとめて確認できます</p>
     
@@ -2786,7 +2786,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     recommend_popular = pick(POPULAR_LIST)
 
     index_parts.append("""
-<div class="section">
+<div class="section feature-card">
   <h2 class="section-title">🍄 おすすめキノコ</h2>
   <p class="section-desc">見た目や特徴が分かりやすいキノコをピックアップ</p>
 
