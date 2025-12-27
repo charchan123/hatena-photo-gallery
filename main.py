@@ -2619,6 +2619,10 @@ def generate_index(grouped, exif_cache):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>キノコ図鑑</title>
+<p class="gallery-guide">
+  📷 写真をクリックするとフルスクリーンでじっくり観察できます<br>
+  ⭐ 気になった写真は★で保存して、あとで「観察ノート」で見返せます
+</p>
 {STYLE_TAG}
 {LIGHTGALLERY_TAGS}
 """)
