@@ -2647,91 +2647,128 @@ def generate_gallery(entries, exif_cache):
         with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
             f.write(page_html)
 
-    # ② 五十音ページ
-    aiuo_dict = {k: [] for k in AIUO_GROUPS.keys()}
-    for alt in grouped.keys():
-        g = get_aiuo_group(alt)
-        if g in aiuo_dict:
-            aiuo_dict[g].append(alt)
+# ===========================
+# ② 五十音ページ（完全修正版）
+# ===========================
 
-    for g, names in aiuo_dict.items():
-        html_parts = []
+# 五十音 → キノコ名一覧
+aiuo_dict = {k: [] for k in AIUO_GROUPS.keys()}
+
+for alt in grouped.keys():
+    if not isinstance(alt, str) or not alt:
+        continue
+    g = get_aiuo_group(alt)
+    if g in aiuo_dict:
+        aiuo_dict[g].append(alt)
+
+for g, names in aiuo_dict.items():
+    # ★ 何も無い行はページを作らない
+    if not names:
+        continue
+
+    html_parts = []
+
+    # -------------------------
+    # ページタイトル & フィルター枠
+    # -------------------------
+    html_parts.append(f"""
+    <div class="aiuo-page">
+
+      <h2 class="aiuo-title">{html.escape(g)}のキノコ</h2>
+
+      <div class="aiuo-filter">
+        <div class="kana-grid">
+          <button class="kana-btn active" data-kana="all">すべて</button>
+    """)
+
+    # -------------------------
+    # ★ ここで initials を正しく生成
+    # -------------------------
+    initials = sorted({
+        n[0]
+        for n in names
+        if isinstance(n, str) and len(n) > 0
+    })
+
+    for ch in initials:
+        esc_ch = html.escape(ch)
+        html_parts.append(
+            f'<button class="kana-btn" data-kana="{esc_ch}">{esc_ch}</button>'
+        )
+
+    html_parts.append("""
+        </div>
+      </div>
+
+      <div class="search-wrap search-wrap--page">
+        <input type="text" class="search-input" placeholder="キノコ名で絞り込み">
+      </div>
+    """)
+
+    # -------------------------
+    # カード一覧
+    # -------------------------
+    html_parts.append("<div class='mushroom-list'>")
+
+    for n in sorted(names):
+        if not isinstance(n, str) or not n:
+            continue
+
+        safe = safe_filename(n)
+        first_char = n[0]
+        imgs_for_name = grouped.get(n, [])
+        thumb_src = imgs_for_name[0] if imgs_for_name else ""
+
+        esc_name = html.escape(n)
+        esc_kana = html.escape(first_char)
+
+        img_tag = ""
+        if thumb_src:
+            img_tag = (
+                f"<img src='{thumb_src}?width=400' "
+                f"alt='{esc_name}' loading='lazy'>"
+            )
 
         html_parts.append(f"""
-        <div class="aiuo-page">
-        
-          <h2 class="aiuo-title">{g}のキノコ</h2>
-        
-          <div class="aiuo-filter">
-            <div class="kana-grid">
-              <button class="kana-btn active" data-kana="all">すべて</button>
-        """)
-        
-        for ch in initials:
-            esc_ch = html.escape(ch)
-            html_parts.append(
-                f'<button class="kana-btn" data-kana="{esc_ch}">{esc_ch}</button>'
-            )
-        
-        html_parts.append("""
-            </div>
+        <a href="{safe}.html?from=aiuo&kana={html.escape(g)}"
+           class="mushroom-card"
+           data-name="{esc_name}"
+           data-kana="{esc_kana}">
+          <div class="mushroom-card-thumb">
+            <span class="card-fav">☆</span>
+            {img_tag}
           </div>
-        
-          <div class="search-wrap search-wrap--page">
-            <input type="text" class="search-input" placeholder="キノコ名で絞り込み">
-          </div>
+          <div class="mushroom-card-name">{esc_name}</div>
+        </a>
         """)
 
-        html_parts.append("<div class='mushroom-list'>")
+    html_parts.append("</div>")  # .mushroom-list
 
-        for n in sorted(names):
-            safe = safe_filename(n)
-            first_char = n[0] if n else ""
-            imgs_for_name = grouped.get(n, [])
-            thumb_src = imgs_for_name[0] if imgs_for_name else ""
-        
-            esc_name = html.escape(n)
-            esc_kana = html.escape(first_char)
-        
-            img_tag = ""
-            if thumb_src:
-                img_tag = (
-                    f"<img src='{thumb_src}?width=400' "
-                    f"alt='{esc_name}' loading='lazy'>"
-                )
-        
-            html_parts.append(f"""
-            <a href="{safe}.html?from=aiuo&kana={html.escape(g)}"
-               class="mushroom-card"
-               data-name="{esc_name}"
-               data-kana="{esc_kana}">
-              <div class="mushroom-card-thumb">
-                <span class="card-fav">☆</span>
-                {img_tag}
-              </div>
-              <div class="mushroom-card-name">{esc_name}</div>
-            </a>
-            """)
-        
-        html_parts.append("</div>")  # .mushroom-list
+    # -------------------------
+    # 戻るボタン
+    # -------------------------
+    html_parts.append("""
+      <div style="text-align:center; margin:40px 0 20px;">
+        <a href="index.html" class="back-btn">
+          ◀ トップに戻る
+        </a>
+      </div>
+    </div>
+    """)
 
-        html_parts.append("""
-        <div style="text-align:center; margin:40px 0 20px;">
-          <a href="index.html" class="back-btn">
-            ◀ トップに戻る
-          </a>
-        </div>
-        """)
-        html_parts.append(STYLE_TAG)
-        html_parts.append(LIGHTGALLERY_TAGS)
-        html_parts.append(SCRIPT_TAG)
+    # -------------------------
+    # 共通タグ
+    # -------------------------
+    html_parts.append(STYLE_TAG)
+    html_parts.append(LIGHTGALLERY_TAGS)
+    html_parts.append(SCRIPT_TAG)
 
-        page_html = "".join(html_parts)
+    page_html = "".join(html_parts)
 
-        with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
-            f.write(page_html)
+    with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
+        f.write(page_html)
 
-    return grouped
+return grouped
 
 # ===========================
 # index.html を生成（最終確定版）
@@ -2837,11 +2874,11 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     # 観察ノート専用セクション
     # ==========================================================
     index_parts.append("""
-    <div class="section feature-card">
+    <div class="section feature-card note-section">
       <h2 class="section-title">📓 観察ノート</h2>
       <p class="section-desc">★を付けた写真をまとめて確認できます</p>
     
-      <div class="section-card note-center">
+      <div class="section-card">
         <a class="aiuo-link note-link" href="favorite.html">
           ⭐ 観察中の写真 <span id="favorite-count"></span>
         </a>
