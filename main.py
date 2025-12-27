@@ -1816,8 +1816,16 @@ galleries.forEach(gallery => {
       updateFavoriteIcon();
       updateThumbnailFavorites();
       updateCardFavorites();
-      
-      showLGHintOnce(); // ← ★ ここだけ追加
+    
+      // ★ スマホ用：×ボタンを強制表示
+      const closeBtn = document.querySelector(".lg-close");
+      if (closeBtn) {
+        closeBtn.style.display = "block";
+        closeBtn.style.opacity = "1";
+        closeBtn.style.pointerEvents = "auto";
+      }
+    
+      showLGHintOnce();
 
       const btn = document.querySelector(".lg-fav-btn");
       if (btn) {
@@ -2181,7 +2189,7 @@ galleries.forEach(gallery => {
         setTimeout(() => {
           hint.remove();
         }, 3600);
-      }, 1200); // ← ここが重要
+      }, 3000); // ← ここが重要
     }
 
   // =========================
@@ -2888,40 +2896,37 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     # 🔍 全キノコ横断検索
     # ==========================================================
     index_parts.append("""
-<div class="section feature-card">
-  <h2 class="section-title">🔍 全キノコ横断検索</h2>
-  <p class="section-desc">キノコ名からブログ内のキノコを検索できます</p>
-
-  <div class="section feature-card note-section">
-    <div class="index-search-box">
-      <input type="text"
-             class="index-search-input"
-             placeholder="キノコ名で検索（例：ベニタケ）">
+    <div class="section">
+      <h2 class="section-title">🔍 全キノコ横断検索</h2>
+      <p class="section-desc">キノコ名からブログ内のキノコを検索できます</p>
+    
+      <div class="index-search-box">
+        <input type="text"
+               class="index-search-input"
+               placeholder="キノコ名で検索（例：ベニタケ）">
+      </div>
+    
+      <div class="index-search-results"></div>
+    
+      <div class="search-empty" style="display:none;">
+        🔍 該当するキノコが見つかりませんでした<br>
+        <small>ひらがな・カタカナを変えて試してみてください</small>
+      </div>
+    
+      <div class="index-pagination"></div>
     </div>
-
-    <div class="index-search-results"></div>
-
-    <div class="search-empty" style="display:none;">
-      🔍 該当するキノコが見つかりませんでした<br>
-      <small>ひらがな・カタカナを変えて試してみてください</small>
-    </div>
-
-    <div class="index-pagination"></div>
-  </div>
-</div>
-""")
+    """)
 
     # ==========================================================
     # 五十音別分類
     # ==========================================================
     index_parts.append("""
-<div class="section feature-card">
-  <h2 class="section-title">📂 五十音別分類</h2>
-  <p class="section-desc">五十音順でキノコを探せます</p>
-
-  <div class="section-card">
-    <div class="aiuo-links">
-""")
+    <div class="section">
+      <h2 class="section-title">📂 五十音別分類</h2>
+      <p class="section-desc">五十音順でキノコを探せます</p>
+    
+      <div class="aiuo-links">
+    """)
 
     for g in AIUO_GROUPS.keys():
         index_parts.append(
@@ -2929,7 +2934,6 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
         )
 
     index_parts.append("""
-    </div>
   </div>
 </div>
 """)
@@ -2938,15 +2942,13 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     # 観察ノート専用セクション
     # ==========================================================
     index_parts.append("""
-    <div class="section feature-card note-section">
+    <div class="section">
       <h2 class="section-title">📓 観察ノート</h2>
       <p class="section-desc">★を付けた写真をまとめて確認できます</p>
     
-      <div class="section-card">
-        <a class="aiuo-link note-link" href="favorite.html">
-          ⭐ 観察中の写真 <span id="favorite-count"></span>
-        </a>
-      </div>
+      <a class="aiuo-link note-link" href="favorite.html">
+        ⭐ 観察中の写真 <span id="favorite-count"></span>
+      </a>
     </div>
     """)
 
@@ -2984,13 +2986,12 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     recommend_popular = pick(POPULAR_LIST)
 
     index_parts.append("""
-<div class="section feature-card">
-  <h2 class="section-title">🍄 おすすめキノコ</h2>
-  <p class="section-desc">見た目や特徴が分かりやすいキノコをピックアップ</p>
-
-  <div class="section-card">
-    <div class="recommend-grid">
-""")
+    <div class="section">
+      <h2 class="section-title">🍄 おすすめキノコ</h2>
+      <p class="section-desc">見た目や特徴が分かりやすいキノコをピックアップ</p>
+    
+      <div class="recommend-grid">
+    """)
 
     def append_cards(title, items):
         index_parts.append(
@@ -3010,7 +3011,6 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     append_cards("人気キノコTOP3", recommend_popular)
 
     index_parts.append("""
-    </div>
   </div>
 </div>
 """)
