@@ -1964,8 +1964,16 @@ galleries.forEach(gallery => {
       updateFavoriteIcon();
       updateThumbnailFavorites();
       updateCardFavorites();
-      
-      showLGHintOnce(); // ← ★ ここだけ追加
+    
+      // ★ スマホ用：×ボタンを強制表示
+      const closeBtn = document.querySelector(".lg-close");
+      if (closeBtn) {
+        closeBtn.style.display = "block";
+        closeBtn.style.opacity = "1";
+        closeBtn.style.pointerEvents = "auto";
+      }
+    
+      showLGHintOnce();
 
       const btn = document.querySelector(".lg-fav-btn");
       if (btn) {
@@ -2329,7 +2337,7 @@ galleries.forEach(gallery => {
         setTimeout(() => {
           hint.remove();
         }, 3600);
-      }, 1200); // ← ここが重要
+      }, 3000); // ← ここが重要
     }
 
   // =========================

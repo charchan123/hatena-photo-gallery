@@ -1136,57 +1136,50 @@ window.ALL_MUSHROOMS = [{"name": "イボテングタケ", "name_norm": "イボ�
 </head>
 <body>
 
-<div class="section feature-card">
-  <h2 class="section-title">🔍 全キノコ横断検索</h2>
-  <p class="section-desc">キノコ名からブログ内のキノコを検索できます</p>
-
-  <div class="section feature-card note-section">
-    <div class="index-search-box">
-      <input type="text"
-             class="index-search-input"
-             placeholder="キノコ名で検索（例：ベニタケ）">
+    <div class="section">
+      <h2 class="section-title">🔍 全キノコ横断検索</h2>
+      <p class="section-desc">キノコ名からブログ内のキノコを検索できます</p>
+    
+      <div class="index-search-box">
+        <input type="text"
+               class="index-search-input"
+               placeholder="キノコ名で検索（例：ベニタケ）">
+      </div>
+    
+      <div class="index-search-results"></div>
+    
+      <div class="search-empty" style="display:none;">
+        🔍 該当するキノコが見つかりませんでした<br>
+        <small>ひらがな・カタカナを変えて試してみてください</small>
+      </div>
+    
+      <div class="index-pagination"></div>
     </div>
-
-    <div class="index-search-results"></div>
-
-    <div class="search-empty" style="display:none;">
-      🔍 該当するキノコが見つかりませんでした<br>
-      <small>ひらがな・カタカナを変えて試してみてください</small>
-    </div>
-
-    <div class="index-pagination"></div>
+    
+    <div class="section">
+      <h2 class="section-title">📂 五十音別分類</h2>
+      <p class="section-desc">五十音順でキノコを探せます</p>
+    
+      <div class="aiuo-links">
+    <a class="aiuo-link" href="あ行.html">あ行</a><a class="aiuo-link" href="か行.html">か行</a><a class="aiuo-link" href="さ行.html">さ行</a><a class="aiuo-link" href="た行.html">た行</a><a class="aiuo-link" href="な行.html">な行</a><a class="aiuo-link" href="は行.html">は行</a><a class="aiuo-link" href="ま行.html">ま行</a><a class="aiuo-link" href="や行.html">や行</a><a class="aiuo-link" href="ら行.html">ら行</a><a class="aiuo-link" href="わ行.html">わ行</a>
   </div>
 </div>
 
-<div class="section feature-card">
-  <h2 class="section-title">📂 五十音別分類</h2>
-  <p class="section-desc">五十音順でキノコを探せます</p>
-
-  <div class="section-card">
-    <div class="aiuo-links">
-<a class="aiuo-link" href="あ行.html">あ行</a><a class="aiuo-link" href="か行.html">か行</a><a class="aiuo-link" href="さ行.html">さ行</a><a class="aiuo-link" href="た行.html">た行</a><a class="aiuo-link" href="な行.html">な行</a><a class="aiuo-link" href="は行.html">は行</a><a class="aiuo-link" href="ま行.html">ま行</a><a class="aiuo-link" href="や行.html">や行</a><a class="aiuo-link" href="ら行.html">ら行</a><a class="aiuo-link" href="わ行.html">わ行</a>
-    </div>
-  </div>
-</div>
-
-    <div class="section feature-card note-section">
+    <div class="section">
       <h2 class="section-title">📓 観察ノート</h2>
       <p class="section-desc">★を付けた写真をまとめて確認できます</p>
     
-      <div class="section-card">
-        <a class="aiuo-link note-link" href="favorite.html">
-          ⭐ 観察中の写真 <span id="favorite-count"></span>
-        </a>
-      </div>
+      <a class="aiuo-link note-link" href="favorite.html">
+        ⭐ 観察中の写真 <span id="favorite-count"></span>
+      </a>
     </div>
     
-<div class="section feature-card">
-  <h2 class="section-title">🍄 おすすめキノコ</h2>
-  <p class="section-desc">見た目や特徴が分かりやすいキノコをピックアップ</p>
-
-  <div class="section-card">
-    <div class="recommend-grid">
-<div class='recommend-card'><h3>新着キノコ</h3><div class='rec-items'>
+    <div class="section">
+      <h2 class="section-title">🍄 おすすめキノコ</h2>
+      <p class="section-desc">見た目や特徴が分かりやすいキノコをピックアップ</p>
+    
+      <div class="recommend-grid">
+    <div class='recommend-card'><h3>新着キノコ</h3><div class='rec-items'>
 <a class="rec-item" href="ヒラタケ.html">
   <img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406164245.jpg?width=400" alt="ヒラタケ">
   <div>ヒラタケ</div>
@@ -1222,7 +1215,6 @@ window.ALL_MUSHROOMS = [{"name": "イボテングタケ", "name_norm": "イボ�
   <div>シイタケ</div>
 </a>
 </div></div>
-    </div>
   </div>
 </div>
 
@@ -1836,8 +1828,16 @@ galleries.forEach(gallery => {
       updateFavoriteIcon();
       updateThumbnailFavorites();
       updateCardFavorites();
-      
-      showLGHintOnce(); // ← ★ ここだけ追加
+    
+      // ★ スマホ用：×ボタンを強制表示
+      const closeBtn = document.querySelector(".lg-close");
+      if (closeBtn) {
+        closeBtn.style.display = "block";
+        closeBtn.style.opacity = "1";
+        closeBtn.style.pointerEvents = "auto";
+      }
+    
+      showLGHintOnce();
 
       const btn = document.querySelector(".lg-fav-btn");
       if (btn) {
@@ -2201,7 +2201,7 @@ galleries.forEach(gallery => {
         setTimeout(() => {
           hint.remove();
         }, 3600);
-      }, 1200); // ← ここが重要
+      }, 3000); // ← ここが重要
     }
 
   // =========================
