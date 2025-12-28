@@ -1191,6 +1191,26 @@ mark {
   80%  { opacity: 1; }
   100% { opacity: 0; }
 }
+
+/* =========================
+   機能ブロック（区切り用）
+========================= */
+.feature-block {
+  background: #fff;
+  border-radius: 18px;
+  padding: 22px 18px;
+  margin: 26px 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+/* 中のタイトルと説明の呼吸 */
+.feature-block .section-title {
+  margin-top: 0;
+}
+
+.feature-block .section-desc {
+  margin-bottom: 18px;
+}
 </style>"""
 
 # ====== LightGallery 読み込みタグ ======
@@ -2897,6 +2917,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     # ==========================================================
     index_parts.append("""
     <div class="section">
+      <div class="feature-block">
       <h2 class="section-title">🔍 全キノコ横断検索</h2>
       <p class="section-desc">キノコ名からブログ内のキノコを検索できます</p>
     
@@ -2914,6 +2935,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
       </div>
     
       <div class="index-pagination"></div>
+      </div>
     </div>
     """)
 
@@ -2922,6 +2944,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     # ==========================================================
     index_parts.append("""
     <div class="section">
+    <div class="feature-block">
       <h2 class="section-title">📂 五十音別分類</h2>
       <p class="section-desc">五十音順でキノコを探せます</p>
     
@@ -2935,6 +2958,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 
     index_parts.append("""
   </div>
+  </div>
 </div>
 """)
 
@@ -2943,12 +2967,14 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     # ==========================================================
     index_parts.append("""
     <div class="section">
+    <div class="feature-block">
       <h2 class="section-title">📓 観察ノート</h2>
       <p class="section-desc">★を付けた写真をまとめて確認できます</p>
     
       <a class="aiuo-link note-link" href="favorite.html">
         ⭐ 観察中の写真 <span id="favorite-count"></span>
       </a>
+      </div>
     </div>
     """)
 
@@ -2987,6 +3013,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 
     index_parts.append("""
     <div class="section">
+    <div class="feature-block">
       <h2 class="section-title">🍄 おすすめキノコ</h2>
       <p class="section-desc">見た目や特徴が分かりやすいキノコをピックアップ</p>
     
@@ -3011,6 +3038,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     append_cards("人気キノコTOP3", recommend_popular)
 
     index_parts.append("""
+  </div>
   </div>
 </div>
 """)
