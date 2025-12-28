@@ -1469,7 +1469,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
           showFavToast(
             favs[src]
-              ? `📓 観察ノートに追加しました（いま ${count}件）`
+              ? `📓 観察ノートに追加（いま ${count}件）`
               : "📓 観察ノートから外しました",
             star
           );
@@ -1647,7 +1647,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
       showFavToast(
         isFavorite(src)
-          ? `📓 観察ノートに追加しました（いま ${count}件）`
+          ? `📓 観察ノートに追加（いま ${count}件）`
           : "📓 観察ノートから外しました",
         btn
       );
