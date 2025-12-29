@@ -720,18 +720,6 @@ mark {
 
   z-index: 9999;
   pointer-events: none;
-  white-space: pre-line;
-  text-align: center;
-}
-
-.fav-count {
-  display: inline-block;
-  transition: transform .25s ease, opacity .25s ease;
-}
-
-.fav-count.count-up {
-  transform: translateY(-2px);
-  opacity: 1;
 }
 
 .fav-toast.show {
@@ -1204,7 +1192,7 @@ window.ALL_MUSHROOMS = [{"name": "イボテングタケ", "name_norm": "イボ�
     <div class="section">
     <div class="feature-block">
       <h2 class="section-title">📓 観察ノート</h2>
-      <p class="section-desc">★を付けた写真をまとめて確認できます</p>
+      <p class="section-desc">出会ったキノコを、時間順に並べた標本棚</p>
     
       <a class="aiuo-link note-link" href="favorite.html">
         ⭐ 観察中の写真 <span id="favorite-count"></span>
@@ -1400,16 +1388,16 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.appendChild(toast);
       }
     
-      toast.innerHTML = message;
+      toast.textContent = message;
     
+      // --- 位置計算 ---
       const rect = anchorEl.getBoundingClientRect();
       const scrollX = window.scrollX || window.pageXOffset;
       const scrollY = window.scrollY || window.pageYOffset;
     
-      toast.style.left = scrollX + rect.left + rect.width / 2 + "px";
-      toast.style.top = scrollY + rect.top - 32 + "px";
-      toast.style.transform = "translateX(-50%)";
-    
+      // いったん表示して幅を取得
+      toast.style.left = "0px";
+      toast.style.top = "0px";
       toast.classList.add("show");
     
       const toastRect = toast.getBoundingClientRect();
@@ -1440,10 +1428,10 @@ document.addEventListener("DOMContentLoaded", () => {
       toast.style.left = left + "px";
       toast.style.top = top + "px";
     
-      clearTimeout(toast._hideTimer);
-      toast._hideTimer = setTimeout(() => {
+      clearTimeout(toast.__timer);
+      toast.__timer = setTimeout(() => {
         toast.classList.remove("show");
-      }, 1800);
+      }, 1400);
     }
 
   // =========================
@@ -1497,31 +1485,14 @@ document.addEventListener("DOMContentLoaded", () => {
           updateThumbnailFavorites();
           updateCardFavorites();
 
-            const count = getFavoriteCount();
-            
-            if (favs[src]) {
-              showFavToast(
-                `📓 観察ノートに追加<br>
-                 <span class="fav-count" data-count="${count - 1}">
-                   （いま ${count - 1}件）
-                 </span>`,
-                star
-              );
-            
-              requestAnimationFrame(() => {
-                const el = document.querySelector(".fav-toast .fav-count");
-                if (!el) return;
-            
-                el.textContent = `（いま ${count}件）`;
-                el.classList.add("count-up");
-              });
-            
-            } else {
-              showFavToast(
-                "📓 観察ノートから外しました",
-                star
-              );
-            }
+          const count = getFavoriteCount();
+    
+          showFavToast(
+            favs[src]
+              ? `📓 観察ノートに追加（いま ${count}件）`
+              : "📓 観察ノートから外しました",
+            star
+          );
         });
       });
     }
@@ -1692,31 +1663,14 @@ document.addEventListener("DOMContentLoaded", () => {
       updateThumbnailFavorites();
       updateCardFavorites();
 
-        const count = getFavoriteCount();
-        
-        if (isFavorite(src)) {
-          showFavToast(
-            `📓 観察ノートに追加<br>
-             <span class="fav-count" data-count="${count - 1}">
-               （いま ${count - 1}件）
-             </span>`,
-            btn
-          );
-        
-          requestAnimationFrame(() => {
-            const el = document.querySelector(".fav-toast .fav-count");
-            if (!el) return;
-        
-            el.textContent = `（いま ${count}件）`;
-            el.classList.add("count-up");
-          });
-        
-        } else {
-          showFavToast(
-            "📓 観察ノートから外しました",
-            btn
-          );
-        }
+      const count = getFavoriteCount();
+    
+      showFavToast(
+        isFavorite(src)
+          ? `📓 観察ノートに追加（いま ${count}件）`
+          : "📓 観察ノートから外しました",
+        btn
+      );
     });
 
     toolbar.appendChild(btn);
