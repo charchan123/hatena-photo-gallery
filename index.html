@@ -1077,20 +1077,24 @@ mark {
 
 /* ===== LightGallery：スマホでは×を常時表示 ===== */
 @media (max-width: 768px) {
-  .lg-toolbar {
+  .lg-outer.lg-hide-items { opacity: 1 !important; } /* 保険 */
+
+  .lg-toolbar,
+  .lg-toolbar.lg-hide {
     opacity: 1 !important;
     pointer-events: auto !important;
     transform: none !important;
   }
 
-  .lg-toolbar.lg-hide {
+  .lg-toolbar .lg-close {
+    display: inline-flex !important;
     opacity: 1 !important;
-  }
-
-  .lg-close {
-    display: block !important;
-    opacity: 1 !important;
-    transform: scale(1.2);
+    pointer-events: auto !important;
+    position: relative !important;
+    top: 0 !important;
+    right: 0 !important;
+    color: #b5b5b5 !important; /* グレー */
+    line-height: 1 !important;
   }
 }
 
@@ -1137,41 +1141,6 @@ mark {
 
 .feature-block .section-desc {
   margin-bottom: 18px;
-}
-
-/* ===== LightGallery：スマホの×をツールバー内で整列＆グレー化 ===== */
-@media (max-width: 768px) {
-  /* ツールバーを常時表示（あなたの既存方針を維持） */
-  .lg-toolbar {
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    transform: none !important;
-  }
-  .lg-toolbar.lg-hide { opacity: 1 !important; }
-
-  /* ×ボタンを“他アイコンと同列”に整列 */
-  .lg-toolbar .lg-close {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-
-    /* 位置ズレの元を潰す */
-    position: relative !important;
-    top: 0 !important;
-    right: 0 !important;
-
-    /* 色を他のアイコン寄せ（灰色） */
-    color: #b5b5b5 !important;
-  }
-
-  /* タップしやすさ（必要なら） */
-  .lg-toolbar .lg-close::after {
-    content: "";
-    position: absolute;
-    inset: -10px;
-  }
 }
 </style>
 
@@ -1360,6 +1329,58 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         window.parent.postMessage({ type: "lgClosed" }, "*");
       } catch (e) {}
+    }
+
+    // =========================
+    // “見つかるまで探す” 強制表示関数を追加
+    // =========================
+    function forceMobileBuiltinClose(lg) {
+      const isMobile = window.matchMedia("(max-width: 768px)").matches;
+      if (!isMobile) return;
+    
+      let tries = 0;
+      const timer = setInterval(() => {
+        tries++;
+    
+        const outer = document.querySelector(".lg-outer");
+        const toolbar = document.querySelector(".lg-toolbar");
+        const closeBtn = document.querySelector(".lg-toolbar .lg-close");
+    
+        // ツールバーを隠すクラスが付いてる端末対策
+        if (outer) outer.classList.remove("lg-hide-items");
+    
+        if (toolbar) {
+          toolbar.style.opacity = "1";
+          toolbar.style.pointerEvents = "auto";
+          toolbar.classList.remove("lg-hide");
+        }
+    
+        if (closeBtn) {
+          // 表示を強制
+          closeBtn.style.display = "inline-flex";
+          closeBtn.style.opacity = "1";
+          closeBtn.style.pointerEvents = "auto";
+    
+          // クリックを “LG閉じる + フルスクリーン解除” に統合
+          if (!closeBtn.__fsBound) {
+            closeBtn.__fsBound = true;
+            closeBtn.addEventListener(
+              "click",
+              (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                closeLGAndExitFullscreen(lg);
+              },
+              true
+            );
+          }
+    
+          clearInterval(timer);
+        }
+    
+        // 2秒くらい探して無ければ諦める（暴走防止）
+        if (tries > 40) clearInterval(timer);
+      }, 50);
     }
 
   // =========================
@@ -1922,6 +1943,8 @@ galleries.forEach(gallery => {
       updateCardFavorites();
     
       showLGHintOnce();
+
+      forceMobileBuiltinClose(lg);
     
       const btn = document.querySelector(".lg-fav-btn");
       if (btn) {
