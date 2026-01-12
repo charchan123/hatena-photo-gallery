@@ -1684,6 +1684,41 @@ mark {
 .feature-block .section-desc {
   margin-bottom: 18px;
 }
+
+/* ===== LightGallery：スマホの×をツールバー内で整列＆グレー化 ===== */
+@media (max-width: 768px) {
+  /* ツールバーを常時表示（あなたの既存方針を維持） */
+  .lg-toolbar {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: none !important;
+  }
+  .lg-toolbar.lg-hide { opacity: 1 !important; }
+
+  /* ×ボタンを“他アイコンと同列”に整列 */
+  .lg-toolbar .lg-close {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+
+    /* 位置ズレの元を潰す */
+    position: relative !important;
+    top: 0 !important;
+    right: 0 !important;
+
+    /* 色を他のアイコン寄せ（灰色） */
+    color: #b5b5b5 !important;
+  }
+
+  /* タップしやすさ（必要なら） */
+  .lg-toolbar .lg-close::after {
+    content: "";
+    position: absolute;
+    inset: -10px;
+  }
+}
 </style>
 <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
@@ -1772,51 +1807,6 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         window.parent.postMessage({ type: "lgClosed" }, "*");
       } catch (e) {}
-    }
-
-// =========================
-// ★ スマホ用：×ボタンを“確実に”表示＋統合クローズ
-// =========================
-    function ensureMobileCloseButton(lgInstance) {
-      // LightGalleryのコンテナ
-      const container = document.querySelector(".lg-container");
-      if (!container) return;
-    
-      // すでに作ってあれば二重作成しない
-      if (container.querySelector(".lg-close-force")) return;
-    
-      const btn = document.createElement("button");
-      btn.className = "lg-close-force";
-      btn.type = "button";
-      btn.setAttribute("aria-label", "閉じる");
-      btn.textContent = "×";
-    
-      // 見た目（必要ならCSSへ移してOK）
-      Object.assign(btn.style, {
-        position: "fixed",
-        top: "12px",
-        right: "12px",
-        zIndex: "100000",
-        width: "44px",
-        height: "44px",
-        borderRadius: "999px",
-        border: "none",
-        background: "rgba(0,0,0,0.55)",
-        color: "#fff",
-        fontSize: "28px",
-        lineHeight: "44px",
-        textAlign: "center",
-        cursor: "pointer",
-        WebkitTapHighlightColor: "transparent",
-      });
-    
-      btn.addEventListener("click", async (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        await closeLGAndExitFullscreen(lgInstance);
-      });
-    
-      container.appendChild(btn);
     }
 
   // =========================
@@ -2378,15 +2368,30 @@ galleries.forEach(gallery => {
       updateThumbnailFavorites();
       updateCardFavorites();
     
-      // ★ 自前×ボタン（スマホで確実に出す）
-      ensureMobileCloseButton(lg);
+      showLGHintOnce();
     
-      // ★ 標準の .lg-close が押されても「LG閉じる＋フルスクリーン解除」に差し替え
-      const builtInClose = document.querySelector(".lg-close");
-      if (builtInClose && !builtInClose.__fsBound) {
+      const btn = document.querySelector(".lg-fav-btn");
+      if (btn) {
+        btn.classList.toggle("is-fav", !!loadFavorites()[getCurrentSlideSrc()]);
+      }
+    
+      // =========================
+      // ★ スマホだけ：標準×を強制表示 + 統合クローズ
+      // =========================
+      const isMobile = window.matchMedia("(max-width: 768px)").matches;
+      if (!isMobile) return;
+    
+      const builtInClose = document.querySelector(".lg-toolbar .lg-close");
+      if (!builtInClose) return;
+    
+      // 表示強制（スマホで隠れる端末対策）
+      builtInClose.style.display = "inline-flex";
+      builtInClose.style.opacity = "1";
+      builtInClose.style.pointerEvents = "auto";
+    
+      // クリックを「LG閉じる + フルスクリーン解除」に差し替え
+      if (!builtInClose.__fsBound) {
         builtInClose.__fsBound = true;
-    
-        // “標準の閉じる処理”を上書き（キャプチャで先に取る）
         builtInClose.addEventListener(
           "click",
           (e) => {
@@ -2396,18 +2401,6 @@ galleries.forEach(gallery => {
           },
           true
         );
-    
-        // 表示も強制（端末によって隠れるため）
-        builtInClose.style.display = "block";
-        builtInClose.style.opacity = "1";
-        builtInClose.style.pointerEvents = "auto";
-      }
-    
-      showLGHintOnce();
-    
-      const btn = document.querySelector(".lg-fav-btn");
-      if (btn) {
-        btn.classList.toggle("is-fav", !!loadFavorites()[getCurrentSlideSrc()]);
       }
     });
 
