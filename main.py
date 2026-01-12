@@ -1278,6 +1278,80 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
+    // =========================
+    // ★ 閉じる統合：LGを閉じてフルスクリーンも抜ける（端末差分吸収）
+    // =========================
+    async function closeLGAndExitFullscreen(lgInstance) {
+      // ① まず LightGallery を閉じる
+      try {
+        lgInstance?.closeGallery();
+      } catch (e) {}
+    
+      // ② フルスクリーン解除（Android Chromeで残りがち）
+      try {
+        if (document.fullscreenElement) {
+          await document.exitFullscreen();
+        } else if (document.webkitFullscreenElement) {
+          await document.webkitExitFullscreen();
+        }
+      } catch (e) {}
+    
+      // ③ 順序逆が効く端末対策：もう一度 close
+      try {
+        lgInstance?.closeGallery();
+      } catch (e) {}
+    
+      // ④ 親iframe側へ「閉じた」を通知（あなたの既存仕様と整合）
+      try {
+        window.parent.postMessage({ type: "lgClosed" }, "*");
+      } catch (e) {}
+    }
+
+// =========================
+// ★ スマホ用：×ボタンを“確実に”表示＋統合クローズ
+// =========================
+    function ensureMobileCloseButton(lgInstance) {
+      // LightGalleryのコンテナ
+      const container = document.querySelector(".lg-container");
+      if (!container) return;
+    
+      // すでに作ってあれば二重作成しない
+      if (container.querySelector(".lg-close-force")) return;
+    
+      const btn = document.createElement("button");
+      btn.className = "lg-close-force";
+      btn.type = "button";
+      btn.setAttribute("aria-label", "閉じる");
+      btn.textContent = "×";
+    
+      // 見た目（必要ならCSSへ移してOK）
+      Object.assign(btn.style, {
+        position: "fixed",
+        top: "12px",
+        right: "12px",
+        zIndex: "100000",
+        width: "44px",
+        height: "44px",
+        borderRadius: "999px",
+        border: "none",
+        background: "rgba(0,0,0,0.55)",
+        color: "#fff",
+        fontSize: "28px",
+        lineHeight: "44px",
+        textAlign: "center",
+        cursor: "pointer",
+        WebkitTapHighlightColor: "transparent",
+      });
+    
+      btn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        await closeLGAndExitFullscreen(lgInstance);
+      });
+    
+      container.appendChild(btn);
+    }
+
   // =========================
   // 件数を返す「純ロジック関数」
   // =========================
@@ -1837,22 +1911,36 @@ galleries.forEach(gallery => {
       updateThumbnailFavorites();
       updateCardFavorites();
     
-      // ★ スマホ用：×ボタンを強制表示
-      const closeBtn = document.querySelector(".lg-close");
-      if (closeBtn) {
-        closeBtn.style.display = "block";
-        closeBtn.style.opacity = "1";
-        closeBtn.style.pointerEvents = "auto";
+      // ★ 自前×ボタン（スマホで確実に出す）
+      ensureMobileCloseButton(lg);
+    
+      // ★ 標準の .lg-close が押されても「LG閉じる＋フルスクリーン解除」に差し替え
+      const builtInClose = document.querySelector(".lg-close");
+      if (builtInClose && !builtInClose.__fsBound) {
+        builtInClose.__fsBound = true;
+    
+        // “標準の閉じる処理”を上書き（キャプチャで先に取る）
+        builtInClose.addEventListener(
+          "click",
+          (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closeLGAndExitFullscreen(lg);
+          },
+          true
+        );
+    
+        // 表示も強制（端末によって隠れるため）
+        builtInClose.style.display = "block";
+        builtInClose.style.opacity = "1";
+        builtInClose.style.pointerEvents = "auto";
       }
     
       showLGHintOnce();
-
+    
       const btn = document.querySelector(".lg-fav-btn");
       if (btn) {
-        btn.classList.toggle(
-          "is-fav",
-          !!loadFavorites()[getCurrentSlideSrc()]
-        );
+        btn.classList.toggle("is-fav", !!loadFavorites()[getCurrentSlideSrc()]);
       }
     });
 
@@ -1877,9 +1965,13 @@ galleries.forEach(gallery => {
     gallery.addEventListener("lgBeforeClose", () => {
       updateThumbnailFavorites();
       updateCardFavorites();
+    
+      // ★ ここでもフルスクリーン解除（保険）
       if (document.fullscreenElement) {
         document.exitFullscreen().catch(() => {});
       }
+    
+      // ★ 親へ通知（既存仕様）
       window.parent.postMessage({ type: "lgClosed" }, "*");
     });
 
@@ -1889,11 +1981,9 @@ galleries.forEach(gallery => {
     });
 
     document.addEventListener("fullscreenchange", () => {
+      // フルスクリーンが解除されたら、LGも閉じる（逆方向の整合）
       if (!document.fullscreenElement) {
-        try {
-          lg.closeGallery();
-          window.parent.postMessage({ type: "lgClosed" }, "*");
-        } catch (e) {}
+        closeLGAndExitFullscreen(lg);
       }
     });
   });
