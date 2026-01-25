@@ -3075,7 +3075,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     <div class="section">
     <div class="feature-block">
       <h2 class="section-title">📓 観察ノート</h2>
-      <p class="section-desc">出会ったキノコを、時間順に並べた標本棚</p>
+      <p class="section-desc">出会ったキノコを、時間の流れとともに記録として残せます。</p>
     
       <a class="aiuo-link note-link" href="favorite.html">
         ⭐ 観察中の写真 <span id="favorite-count"></span>
@@ -3121,7 +3121,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     <div class="section">
     <div class="feature-block">
       <h2 class="section-title">🍄 おすすめキノコ</h2>
-      <p class="section-desc">見た目や特徴が分かりやすいキノコをピックアップ</p>
+      <p class="section-desc">写真の中から、いくつかの切り口でピックアップしています。</p>
     
       <div class="recommend-grid">
     """)
@@ -3176,8 +3176,7 @@ def generate_favorite_page(grouped):
 <h2 class="section-title">⭐ 観察ノート</h2>
 <section class="note-intro" aria-label="観察ノートの説明">
   <p class="note-intro__lead">
-    気になったキノコを、写真で残してきました。<br>
-    あとから見返したくなるものだけが、ここに集まっています。
+    写真で出会ったキノコを、あとからゆっくり見返せる場所です。
   </p>
   <p class="note-intro__hint">
     ★をつけた写真は、あとでもう一度見たいと思ったものとして残ります。
