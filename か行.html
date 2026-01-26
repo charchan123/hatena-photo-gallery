@@ -2010,18 +2010,6 @@ mark {
 
 let lastHeight = 0;
 
-setInterval(() => {
-  try {
-    const h = document.body.scrollHeight;
-    if (h !== lastHeight) {
-      sendHeight();
-      lastHeight = h;
-    }
-  } catch (e) {
-    // 何もしない（暴走防止）
-  }
-}, 300);
-
 document.addEventListener("DOMContentLoaded", () => {
       
   // favorite.html 専用「遅延削除」
@@ -2181,18 +2169,37 @@ document.addEventListener("DOMContentLoaded", () => {
       // console.log("⭐ 観察ノート件数:", count);
     }
 
-  // =========================
-  // iframe 高さ同期
-  // =========================
-  function sendHeight() {
-    const height = Math.max(
-      document.body.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.scrollHeight,
-      document.documentElement.offsetHeight
-    );
-    window.parent.postMessage({ type: "setHeight", height }, "*");
-  }
+    // =========================
+    // iframe 高さ同期（最終・統合版）
+    // =========================
+    let __lastSentHeight = -1;
+    let __heightScheduled = false;
+    
+    function sendHeight(reason = "") {
+      if (__heightScheduled) return;
+      __heightScheduled = true;
+    
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          __heightScheduled = false;
+    
+          const h = Math.max(
+            document.body.scrollHeight,
+            document.body.offsetHeight,
+            document.documentElement.scrollHeight,
+            document.documentElement.offsetHeight
+          );
+    
+          if (h === __lastSentHeight) return;
+          __lastSentHeight = h;
+    
+          window.parent.postMessage(
+            { type: "setHeight", height: h, reason },
+            "*"
+          );
+        });
+      });
+    }
 
   // =========================
   // ★ お気に入り機能（localStorage）
@@ -2361,7 +2368,10 @@ document.addEventListener("DOMContentLoaded", () => {
         updateFavoriteCountHook();
         item.remove();
         pendingRemove = null;
-        sendHeight();
+        
+        requestAnimationFrame(() => {
+          sendHeight("remove-final");
+        })
       }, 3000);
     
       pendingRemove = { src, item, timer };
@@ -3248,22 +3258,13 @@ galleries.forEach(gallery => {
   window.addEventListener("resize", sendHeight);
 
     if (!isFavoritePage) {
-      new MutationObserver(() => {
-        sendHeight();
-      }).observe(document.body, { childList: true, subtree: true });
-    
-      setInterval(() => {
-        const height = Math.max(
-          document.body.scrollHeight,
-          document.body.offsetHeight,
-          document.documentElement.scrollHeight,
-          document.documentElement.offsetHeight
-        );
-        if (height !== lastHeight) {
-          lastHeight = height;
-          window.parent.postMessage({ type: "setHeight", height }, "*");
-        }
-      }, 300);
+        new MutationObserver(() => {
+          sendHeight("mutation");
+        }).observe(document.body, {
+          childList: true,
+          subtree: true,
+          attributes: true
+        });
     }
 
 });
