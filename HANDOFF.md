@@ -2,14 +2,27 @@
 
 ## 現在のブランチ
 
-`codex/phase1-complete`
+`codex/article`
 
-GitHub PR #1 の head `codex/article` を開始点とし、PR #2
-"Prevent empty gallery deployments — require non-empty articles/images and add tests"
-の fail-safe 修正だけを上乗せした統合ブランチ。新しい PR は `main` を base、
-`codex/phase1-complete` を head とし、PR #1 / PR #2 の両方を置き換える。
-作業用コピーでは PR #1 head が当初 `work` というローカル名で checkout
-され、remote ref は提供されていなかった。
+現在のGitHub上の関係は以下のとおり。
+
+- PR #1
+  - base: `main`
+  - head: `codex/article`
+  - 状態: Open
+- PR #2
+  - base: `main`
+  - head: `codex/add-fail-safe-for-empty-article-files`
+  - 状態: Open / 未Merge
+- PR #3
+  - base: `codex/article`
+  - head: `codex/integrate-pr-#2-changes-into-pr-#1`
+  - 状態: Merge済み
+
+PR #3を `codex/article` へMergeしたことで、PR #1のheadブランチには
+Phase 1の初期修正と空ギャラリー防止fail-safeの両方が統合された。
+
+今後はPR #1を最終レビューし、問題がなければ `main` へMergeする。
 
 ## ベース commit SHA
 
