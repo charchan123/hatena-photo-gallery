@@ -230,3 +230,74 @@ Validation covered Python compilation, the full pytest suite, JavaScript syntax,
 highlight and height regressions, and `git diff --check`. After merge, inspect the real
 Actions inventory, detection delta, mismatch delta, all subject-type totals, and audit
 examples. Tune only from that evidence; production cutover remains a separate phase.
+
+---
+
+# Phase 3B.1 handoff: evidence separation and weak-match audits
+
+## Baseline and reason for the change
+
+Phase 3B.1 starts from `7f6e35bdab5097d2433e8cc58418def5436c21fc`. The Phase
+3B real-data baseline was `total_images=948`, `detected=871`, `undetected=77`,
+`legacy_alt_match=768`, `legacy_alt_mismatch=103`, `unknown_mapped=109`,
+`subject_type_mushroom=807`, `subject_type_non_mushroom=0`,
+`subject_type_review=141`, `classification_high=807`, `classification_low=141`,
+`shadow_images_with_empty_alt=52`, `legacy_production_image_count=896`, and
+`uncategorized=21 articles`.
+
+The inventory contained `キノコ探索日記=82 articles`. Treating its `キノコ`
+substring as image taxonomy caused broad mushroom/high classification and helps explain
+the suspicious zero non-mushroom count. Real-data evidence includes a `ミツバアケ`
+subject category in an article also categorized `キノコ探索日記`, while an earlier Phase 3A
+audit found detected label `コブハクチョウ` with empty alt. Article context must not be
+treated as the taxonomy of every image.
+
+## Evidence, matching, and classification
+
+Category evidence is now split into explicitly maintained mushroom context, exact
+generic mushroom signals, and exact generic non-mushroom signals. `キノコ探索日記` is
+context only. Short strings such as `花`, `鳥`, and `茸` are no longer substring matches.
+Because categories remain article-wide, neither context nor a generic mushroom category
+alone promotes an image to mushroom/high. An unopposed explicit non-mushroom category is
+non_mushroom/high; opposing signals, context-only, generic mushroom-only, missing
+signals, and mere subject/category corroboration remain review/low. Reasons are
+`no_detected_label`, `mushroom_context_only`,
+`explicit_mushroom_category_review`, `explicit_non_mushroom_category`,
+`conflicting_category_signals`, `subject_category_match_review`, and
+`no_category_signal`.
+
+Each shadow record adds `matched_categories`, `category_match_type` (`exact`,
+`normalized`, or `none`), `has_mushroom_context`,
+`has_explicit_mushroom_signal`, and `has_explicit_non_mushroom_signal`. Matching is
+audit corroboration, not taxonomy. It preserves stored labels/categories and uses only
+NFKC, trim/whitespace normalization, removal of allowlisted `(仮称)` / `(広義)`
+annotations, and trailing `?` / `？` removal for comparison. Legacy alt is not an input.
+
+## Actions audits and validation after merge
+
+The existing bounded shadow audit is supplemented by a dedicated detected-plus-empty-alt
+audit (up to 50), mushroom-evidence A/B/C audit (up to 40), suspicious-label audit (up
+to 50), and distinct detected-label aggregation (all labels aggregated, up to 150
+printed). The summary adds mushroom-context, category-match exact/normalized/none,
+detected-empty-alt, unique-label, context-only-review, and conflict counts. Category
+inventory also reports total unique categories, categorized/uncategorized articles,
+context articles, explicit non-mushroom articles, and conflicting articles.
+
+After merge, check how mushroom=807 falls and review rises; the actual non-mushroom,
+`mushroom_context_only_review`, match/no-match and exact/normalized totals; unique labels;
+conflicts; whether the empty-alt audit shows `コブハクチョウ`; whether `ミツバアケ`
+stays out of mushroom/high; whether mismatch remains 103 (or understand its change);
+and whether production remains 896. Also confirm the unchanged EXIF baseline
+896/797/0/99.
+
+Production continues to pass the identical legacy `entries` list from `fetch_images()`
+to `generate_gallery()`; shadow failures are logged and isolated. `confidence` still
+means detected-label versus alt agreement, independently of `classification_confidence`.
+The Phase 3A DOM state machine, Phase 3A.5 iframe JS/CSS, UI, workflows, Hatena markup,
+and EXIF code/cache are unchanged.
+
+Future toxicity work remains separate: use the union of the planned mushroom sources
+only as a provisional population; distinguish `provisional_poisonous`,
+`confirmed_poisonous`, and `unknown`; confirm observed species against authoritative
+material; and never infer safe/edible from absence. No toxicity master or spore effect
+is implemented in Phase 3B.1.
