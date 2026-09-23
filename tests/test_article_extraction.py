@@ -90,6 +90,57 @@ def test_generated_page_types_use_copied_shared_assets(monkeypatch, tmp_path):
         ).read_bytes()
 
 
+@pytest.mark.parametrize(
+    ("name", "group", "initial"),
+    [
+        ("タマゴタケ", "た行", "タ"),
+        ("ダイダイタケ", "た行", "タ"),
+        ("ドクツルタケ", "た行", "ト"),
+        ("ガンタケ", "か行", "カ"),
+        ("ザラミノシメジ", "さ行", "サ"),
+        ("ベニテングタケ", "は行", "ヘ"),
+        ("ポルチーニ", "は行", "ホ"),
+        ("ゔぇーる", "あ行", "う"),
+    ],
+)
+def test_voiced_kana_initials_use_seion_filter(name, group, initial):
+    assert main.get_aiuo_group(name) == group
+    assert main.normalize_kana_initial(name) == initial
+
+
+def test_gojuon_pages_merge_voiced_initial_buttons(monkeypatch, tmp_path):
+    output = tmp_path / "output"
+    monkeypatch.setattr(main, "OUTPUT_DIR", str(output))
+    names = ["タマゴタケ", "ダイダイタケ", "ドクツルタケ"]
+    entries = [
+        {"alt": name, "src": f"https://example.invalid/{index}.jpg"}
+        for index, name in enumerate(names)
+    ]
+
+    main.generate_gallery(entries, {})
+    page = (output / "た行.html").read_text(encoding="utf-8")
+
+    assert page.count('class="kana-btn" data-kana="タ"') == 1
+    assert page.count('class="kana-btn" data-kana="ト"') == 1
+    assert 'class="kana-btn" data-kana="ダ"' not in page
+    assert 'class="kana-btn" data-kana="ド"' not in page
+    assert page.count('data-kana="タ"') == 3
+    assert page.count('data-kana="ト"') == 2
+
+
+@pytest.mark.parametrize(
+    ("left", "right", "expected"),
+    [
+        ("たまご", "タマゴ", "たまご"),
+        ("べにてんぐ", "ベニテング", "べにてんぐ"),
+        ("タマゴ", "ﾀﾏｺﾞ", "たまご"),
+    ],
+)
+def test_japanese_search_normalization(left, right, expected):
+    assert main.normalize_japanese_search(left) == expected
+    assert main.normalize_japanese_search(right) == expected
+
+
 def test_missing_secrets_only_block_api_access(monkeypatch):
     monkeypatch.setattr(main, "HATENA_USER", None)
     monkeypatch.setattr(main, "HATENA_BLOG_ID", None)
