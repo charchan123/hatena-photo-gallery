@@ -41,7 +41,7 @@ def test_shadow_metadata_uses_article_text_state_in_dom_order():
     assert metadata[1]["confidence"] == "medium"
     assert metadata[4]["confidence"] == "high"
     assert metadata[6]["detected_label"] == "クダアカゲシメジ？"
-    assert metadata[6]["gallery_name"] == "不明"
+    assert metadata[6]["gallery_name"] is None
     assert metadata[7]["detected_label"] == "クダアカゲシメジ？"
     assert metadata[7]["confidence"] == "high"
     assert metadata[8]["detected_label"] == "キハツダケ"
@@ -78,10 +78,9 @@ def test_subject_label_candidate_is_conservative(text, expected):
 
 
 def test_unknown_gallery_mapping_preserves_detected_label():
-    assert main.normalize_gallery_name("クダアカゲシメジ?") == "不明"
-    assert main.normalize_gallery_name("クダアカゲシメジ？") == "不明"
-    assert main.normalize_gallery_name("種類不明") == "不明"
-    assert main.normalize_gallery_name("ムキタケ") == "ムキタケ"
+    assert main.normalize_gallery_name("シイタケ?", "mushroom", "シイタケ") == "不明"
+    assert main.normalize_gallery_name("種類不明", "review") is None
+    assert main.normalize_gallery_name("シイタケ", "mushroom", "シイタケ") == "シイタケ"
 
 
 def test_phase3b_candidate_state_preserves_annotations_and_latin_name():
@@ -96,8 +95,8 @@ def test_phase3b_candidate_state_preserves_annotations_and_latin_name():
         "Lanmaoa angustispora？",
         "Lanmaoa angustispora？",
     ]
-    assert metadata[1]["gallery_name"] == "不明"
-    assert metadata[3]["gallery_name"] == "不明"
+    assert metadata[1]["gallery_name"] is None
+    assert metadata[3]["gallery_name"] is None
 
 
 def test_shadow_summary_counts_required_audit_states():
@@ -115,7 +114,7 @@ def test_shadow_summary_counts_required_audit_states():
         "undetected": 1,
         "legacy_alt_match": 2,
         "legacy_alt_mismatch": 6,
-        "unknown_mapped": 2,
+        "unknown_mapped": 0,
     }
     assert summary["subject_type_review"] == 9
     assert summary["classification_low"] == 9
@@ -131,7 +130,7 @@ def test_shadow_report_limits_audit_output(capsys):
     main.report_shadow_metadata(metadata, audit_limit=2)
     output = capsys.readouterr().out
 
-    assert "Phase 3B.1 metadata shadow summary:" in output
+    assert "Phase 3B.2 metadata shadow summary:" in output
     assert "total_images=9" in output
     assert "legacy_alt_mismatch=6" in output
     assert output.count("Phase 3B.1 shadow audit:") == 3  # two rows plus omitted count
@@ -355,19 +354,16 @@ def test_article_metadata_sidecar_failure_does_not_discard_articles(monkeypatch,
 
 
 @pytest.mark.parametrize(
-    ("label", "categories", "expected"),
+    ("label", "expected"),
     [
-        ("ムキタケ", ["キノコ"], ("review", "explicit_mushroom_category_review", "low")),
-        ("ムキタケ", ["キノコ探索日記"], ("review", "mushroom_context_only", "low")),
-        ("コブハクチョウ", ["キノコ探索日記"], ("review", "mushroom_context_only", "low")),
-        ("コブハクチョウ", ["野鳥"], ("non_mushroom", "explicit_non_mushroom_category", "high")),
-        ("コブハクチョウ", [], ("review", "no_category_signal", "low")),
-        ("ムキタケ", ["キノコ", "野鳥"], ("review", "conflicting_category_signals", "low")),
-        (None, ["キノコ"], ("review", "no_detected_label", "low")),
+        ("ムキタケ", ("review", "taxonomy_unmatched", "low")),
+        ("コブハクチョウ", ("non_mushroom", "taxonomy_non_mushroom", "high")),
+        ("シイタケ", ("mushroom", "taxonomy_mushroom", "high")),
+        (None, ("review", "no_detected_label", "low")),
     ],
 )
-def test_category_aware_classification(label, categories, expected):
-    assert main.classify_subject_type(label, categories) == expected
+def test_taxonomy_aware_classification(label, expected):
+    assert main.classify_subject_type(label, main.load_subject_taxonomy()) == expected
 
 
 def test_shadow_metadata_uses_metadata_for_classification_without_changing_confidence():
@@ -376,8 +372,8 @@ def test_shadow_metadata_uses_metadata_for_classification_without_changing_confi
         str(path): {"article_id": "entry-1", "title": "Birds", "categories": ["野鳥"]}
     }
     metadata = main.extract_shadow_metadata([path], article_metadata)
-    assert metadata[1]["subject_type"] == "non_mushroom"
-    assert metadata[1]["classification_confidence"] == "high"
+    assert metadata[1]["subject_type"] == "review"
+    assert metadata[1]["classification_confidence"] == "low"
     assert metadata[1]["confidence"] == "medium"
     assert metadata[1]["article_id"] == "entry-1"
     assert metadata[1]["article_title"] == "Birds"
@@ -488,7 +484,7 @@ def test_build_processes_non_empty_data_as_before(monkeypatch):
     monkeypatch.setattr(
         main,
         "extract_shadow_metadata",
-        lambda files: [{"shadow": True}] if files else [],
+        lambda files, **kwargs: [{"shadow": True}] if files else [],
     )
     monkeypatch.setattr(
         main, "report_shadow_metadata", lambda metadata, **kwargs: calls.append("shadow-report")
@@ -496,6 +492,7 @@ def test_build_processes_non_empty_data_as_before(monkeypatch):
     monkeypatch.setattr(
         main, "save_shadow_metadata", lambda metadata: calls.append("shadow-save")
     )
+    monkeypatch.setattr(main, "save_taxonomy_candidates", lambda metadata: None)
     monkeypatch.setattr(main, "load_exif_cache", lambda: {})
     monkeypatch.setattr(main, "build_exif_cache", lambda actual, cache: cache)
     monkeypatch.setattr(main, "save_exif_cache", lambda cache: calls.append("save"))
@@ -533,7 +530,7 @@ def test_shadow_failure_is_logged_without_blocking_production(monkeypatch, capsy
     monkeypatch.setattr(
         main,
         "extract_shadow_metadata",
-        lambda files: (_ for _ in ()).throw(ValueError("broken shadow")),
+        lambda files, **kwargs: (_ for _ in ()).throw(ValueError("broken shadow")),
     )
     monkeypatch.setattr(main, "load_exif_cache", lambda: {})
     monkeypatch.setattr(main, "build_exif_cache", lambda actual, cache: cache)
@@ -550,7 +547,7 @@ def test_shadow_failure_is_logged_without_blocking_production(monkeypatch, capsy
 
     assert generated == [entries]
     assert (
-        "Phase 3B.1 shadow audit failed: broken shadow"
+            "Phase 3B.2 shadow audit failed: broken shadow"
         in capsys.readouterr().out
     )
 
