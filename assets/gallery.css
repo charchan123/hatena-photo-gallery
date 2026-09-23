@@ -1,0 +1,1128 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background:#fafafa;
+  color:#333;
+  padding:16px;
+  box-sizing:border-box;
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+
+/* ======== ギャラリー本体（PC4列・スマホ3列） ======== */
+.gallery {
+  column-count: 4;
+  column-gap: 4px;
+  max-width: 900px;
+  margin: 0 auto;
+  visibility: hidden;
+}
+
+.gallery a.gallery-item{
+  display: block;
+  break-inside: avoid;
+  margin-bottom: 4px;
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ===== 画像基本 ===== */
+.gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  cursor: zoom-in;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.gallery img.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== hover：微ズーム ===== */
+.gallery a.gallery-item img {
+  transition:
+    transform 0.5s cubic-bezier(.2,.8,.2,1),
+    filter 0.4s ease;
+  will-change: transform;
+}
+
+.gallery a.gallery-item:hover img {
+  transform: scale(1.06);
+  filter: brightness(1.08);
+}
+
+/* ===== hover：暗幕 ===== */
+.gallery a.gallery-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.08);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.gallery a.gallery-item:hover::after {
+  opacity: 1;
+}
+
+/* =====================================================
+   ★ 胞子エフェクト（hover時にふわっ）
+===================================================== */
+.gallery a.gallery-item .spores {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.gallery a.gallery-item .spores::before,
+.gallery a.gallery-item .spores::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: rgba(255,255,255,0.8);
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(0.5px);
+}
+
+.gallery a.gallery-item:hover .spores::before {
+  left: 30%;
+  top: 70%;
+  animation: sporeFloat 1.6s ease-out forwards;
+}
+
+.gallery a.gallery-item:hover .spores::after {
+  left: 60%;
+  top: 80%;
+  animation: sporeFloat 1.9s ease-out forwards;
+}
+
+@keyframes sporeFloat {
+  0% {
+    transform: translateY(0) scale(0.6);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-40px) scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* =====================================================
+   ★ タップ時 波紋エフェクト（スマホ）
+===================================================== */
+.gallery a.gallery-item::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120%;
+  padding-top: 120%;
+  background: rgba(255,255,255,0.35);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gallery a.gallery-item:active::before {
+  animation: rippleTap 0.45s ease-out;
+}
+
+@keyframes rippleTap {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.5;
+  }
+  70% {
+    opacity: 0.25;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+/* =====================================================
+   ★ LightGallery：フルスクリーン時
+   フェード＋微ズーム
+===================================================== */
+.lg-current .lg-object {
+  animation: lgFadeZoom 0.45s ease;
+}
+
+@keyframes lgFadeZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ===== スマホ〜タブレット ===== */
+@media (max-width: 580px) {
+  .gallery {
+    column-count: 3;
+    column-gap: 3px;
+  }
+  .gallery a.gallery-item{
+    margin-bottom: 3px;
+  }
+}
+
+/* ===== 五十音タイル・カードUI ===== */
+.kana-btn {
+  min-width: 32px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #d0d0d0;
+  background: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 1;
+  transition: background .15s ease, box-shadow .15s ease, transform .15s ease, border-color .15s ease;
+}
+.kana-btn:hover {
+  background: #f5f5f7;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  transform: translateY(-1px);
+}
+.kana-btn.active {
+  background: #0f62fe;
+  color: #fff;
+  border-color: #0f62fe;
+}
+
+/* 検索バー */
+.search-wrap {
+  max-width: 900px;
+  margin: 0 auto 16px;
+}
+.search-input {
+  width: 100%;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+/* カード一覧 */
+.mushroom-list {
+  max-width: 900px;
+  margin: 0 auto 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+.mushroom-card {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+.mushroom-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.16);
+  filter: brightness(1.05);
+}
+.mushroom-card-thumb {
+  position: relative;
+  padding-top: 65%;
+  overflow: hidden;
+  background: #eee;
+}
+.mushroom-card-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mushroom-card-name {
+  padding: 8px 10px 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ===== index.html 専用：全キノコ横断検索 ===== */
+.section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 8px;
+}
+.section-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;   /* ← タイトルとカードの距離 */
+  letter-spacing: 0.04em;
+}
+/* 検索ボックスはフラットに */
+.index-search-box {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+.index-search-input {
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 2px solid #007acc;
+  font-size: 15px;
+  box-sizing: border-box;
+  background: #fdfefe;
+}
+.index-search-results {
+  max-width: 900px;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+.index-pagination {
+  max-width: 900px;
+  margin: 16px auto;
+  text-align: center;
+}
+.index-page-btn {
+  display: inline-block;
+  margin: 0 6px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: #333;
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+.index-page-btn:hover:not(.disabled) {
+  background: #555;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.16);
+}
+.index-page-btn.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* =========================
+   セクション共通カード
+========================= */
+.section-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;   /* ← カードの下余白（ここで統一） */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.25s ease;
+}
+
+/* PC */
+/*
+@media (min-width: 768px) {
+  .section-card {
+    padding: 18px 16px;
+  }
+}
+*/
+
+/* ==== おすすめ3キノコカード ==== */
+.recommend-grid {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.recommend-card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+/* ===== スマホ：おすすめキノコは1列 ===== */
+@media (max-width: 600px) {
+  .recommend-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.recommend-card h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+.rec-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.rec-item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+  border-radius: 14px;
+  padding: 4px 6px;
+}
+.rec-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.16);
+  filter: brightness(1.04);
+}
+.rec-item img {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* index.html & キノコページ共通：五十音リンクタイル */
+.aiuo-links {
+  max-width: 900px;
+  margin: 0 auto 16px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  justify-items: center;
+}
+@media (max-width: 520px){
+  .aiuo-links {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.aiuo-link {
+  min-width: 32px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #d0d0d0;
+  background: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 1;
+  text-align: center;
+  transition: background .15s ease, box-shadow .15s ease, transform .15s ease, border-color .15s ease;
+}
+.aiuo-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.14);
+  background: #e8f2ff;
+  border-color: #c5dafe;
+}
+
+/* ===== 戻るボタン（楕円ボタン） ===== */
+.back-btn {
+  display: inline-block;
+  padding: 10px 22px;
+  background: #ffffffc9;
+  border: 2px solid #ddd;
+  border-radius: 999px;
+  font-size: 15px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+.back-btn:hover {
+  background: #f0f0f0;
+  border-color: #bbb;
+  transform: translateY(-1px);
+}
+.back-btn:active {
+  transform: translateY(1px);
+  background: #e5e5e5;
+}
+
+/* ===== LightGallery EXIF（gap レイアウト） ===== */
+
+/* 全体キャプション領域 */
+.exif-wrap {
+  width: 95%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding-top: 10px;
+  text-align: center;
+  color: #fff;
+}
+
+/* 1行目：キノコ名 */
+.exif-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+/* 2行目：カメラ名 / レンズ名 */
+.exif-middle {
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0.9;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+/* 3行目：焦点距離 / F値 / SS / ISO / 日付（gap方式） */
+.exif-bottom-row {
+  display: inline-flex;
+  gap: 8px;                   /* 半角スペース2個分くらいの距離 */
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 300;
+  color: #ddd;
+  opacity: 0.8;
+  margin-bottom: 4px;
+  flex-wrap: wrap;            /* スマホで自然に折り返す */
+}
+.exif-bottom-row span {
+  white-space: nowrap;        /* 個々の項目は分割しない */
+}
+
+/* 右下固定の撮影日表示は廃止（スマホで重なるため） */
+/* .exif-date-fixed { ... } は使わない */
+
+.lg-sub-html {
+  position: relative;
+}
+
+/* ===== 検索結果が空のときの余白除去 ===== */
+.index-search-results:empty,
+.index-pagination:empty {
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== 検索結果アニメーション ===== */
+.search-result-item {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fadeUp 0.35s ease forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== 検索0件表示 ===== */
+.search-empty {
+  text-align: center;
+  color: #777;
+  font-size: 14px;
+  padding: 16px 0;
+  line-height: 1.6;
+}
+.search-empty small {
+  font-size: 12px;
+  color: #999;
+}
+
+/* 押した瞬間 */
+.aiuo-link:active {
+  transform: scale(0.94);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+  background: #e0ebff;
+}
+
+/* 選択中（今見ている行） */
+.aiuo-link.current {
+  background: #0f62fe;
+  color: #fff;
+  border-color: #0f62fe;
+  box-shadow: 0 4px 12px rgba(15,98,254,0.35);
+}
+
+mark {
+  background: #ffe58f;
+  padding: 0 2px;
+  border-radius: 4px;
+}
+
+/* お気に入りボタン（LightGallery toolbar） */
+.lg-fav-btn {
+  font-size: 22px;
+  line-height: 1;
+  color: #ffd54f;
+  cursor: pointer;
+}
+
+.lg-fav-btn:hover {
+  transform: scale(1.15);
+}
+
+/* =========================
+   ★ お気に入り：白固定（最重要）
+========================= */
+
+/* ☆ 状態だけグレー */
+.lg-fav-btn:not(.is-fav) {
+  color: #b5b5b5;
+}
+
+/* hoverしても★は白を維持 */
+.lg-fav-btn.is-fav:hover {
+  color: #ffffff !important;
+}
+
+/* =========================
+   ★ お気に入り：白固定（最終確定版）
+========================= */
+
+/* 未お気に入り（☆） */
+.lg-toolbar .lg-fav-btn:not(.is-fav) {
+  color: #b5b5b5 !important;
+}
+
+/* お気に入り（★）は常に白 */
+.lg-toolbar .lg-fav-btn.is-fav,
+.lg-toolbar .lg-fav-btn.is-fav:hover,
+.lg-toolbar .lg-fav-btn.is-fav:focus,
+.lg-toolbar .lg-fav-btn.is-fav:active {
+  color: #ffffff !important;
+}
+
+/* =========================
+   サムネイル用 ★ オーバーレイ
+========================= */
+.gallery-item {
+  position: relative;
+}
+
+/* ★ 本体 */
+.thumb-fav {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 3;
+
+  font-size: 18px;
+  line-height: 1;
+  color: #b5b5b5;
+
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(4px);
+  border-radius: 999px;
+  padding: 4px 6px;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+/* お気に入り状態 */
+.thumb-fav.is-fav {
+  color: #ffffff;
+}
+
+/* hover演出（軽め） */
+.thumb-fav:hover {
+  transform: scale(1.1);
+}
+
+/* =========================
+   カード用 ★（五十音 / index）
+========================= */
+.mushroom-card-thumb {
+  position: relative;
+}
+
+.card-fav {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 3;
+
+  font-size: 16px;
+  line-height: 1;
+  color: #b5b5b5;
+
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(4px);
+  border-radius: 999px;
+  padding: 4px 6px;
+
+  user-select: none;
+  cursor: default;
+}
+
+.card-fav.is-fav {
+  color: #ffffff;
+}
+
+.card-fav:hover {
+  transform: scale(1.1);
+}
+
+/* =========================
+   観察ノート通知（サムネ直下トースト）
+========================= */
+.fav-toast {
+  position: absolute;
+  background: rgba(30,30,30,0.9);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  white-space: nowrap;
+
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity .25s ease, transform .25s ease;
+
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.fav-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   観察ノート：削除アニメーション
+========================= */
+.gallery-item.removing {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* =========================
+   UNDOトースト（再利用・下固定）
+========================= */
+.fav-undo-toast {
+  position: absolute;   /* fixed → absolute */
+  background: rgba(30,30,30,0.95);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  opacity: 0;
+  transition: opacity .25s ease;
+  z-index: 10000;
+}
+
+.fav-undo-toast.show {
+  opacity: 1;
+}
+
+.undo-btn {
+  background: none;
+  border: none;
+  color: #ffd54f;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* 観察ノート用 gallery-item（最初は“普通に表示”） */
+.favorite-gallery .gallery-item {
+  break-inside: auto;
+  display: block;
+  position: relative;
+  opacity: 1;                 /* ★ 重要 */
+  transform: none;            /* ★ 重要 */
+}
+
+/* =========================
+   フォトギャラリートップページタイトル説明文
+========================= */
+.section-desc{
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.7;
+  opacity: 0.7;
+  margin: 6px 0 18px;
+}
+
+/* =========================
+   観察ノート：固定イントロ
+   ========================= */
+.note-intro{
+  max-width: 980px;
+  margin: 14px auto 18px;
+  padding: 0 16px;
+}
+
+.note-intro__lead{
+  margin: 0 0 8px;
+  font-size: 14px;      /* “説明”に見えないサイズ */
+  line-height: 1.75;    /* 詰めない＝余裕＝空気 */
+  opacity: 0.78;        /* 薄くして主役を写真に */
+}
+
+.note-intro__hint{
+  margin: 0;
+  font-size: 13px;      /* さらに一段引く */
+  line-height: 1.7;
+  opacity: 0.62;
+}
+
+/* スマホは少しだけ読みやすく */
+@media (max-width: 520px){
+  .note-intro{ padding: 0 12px; }
+  .note-intro__lead{ font-size: 14px; opacity: 0.82; }
+  .note-intro__hint{ font-size: 13px; opacity: 0.68; }
+}
+
+/* =========================
+   観察ノート：区切り線
+   ========================= */
+.note-divider{
+  border: none;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08); /* 薄さ命 */
+  max-width: 920px;
+  margin: 18px auto 22px;         /* 上下に呼吸 */
+}
+
+/* =========================
+   ★empty表示
+   ========================= */
+.favorite-empty{
+  color: #777;
+  font-size: 14px;
+  line-height: 1.9;
+  margin: 32px 0;
+  opacity: 0.85;
+}
+
+.favorite-empty small{
+  display: block;
+  margin-top: 6px;
+  font-size: 12.5px;
+  opacity: 0.75;
+}
+
+/* =========================
+   観察ノート：季節ブロック
+   ========================= */
+.season-block{
+  margin: 48px 0 56px;
+}
+
+/* 季節見出し */
+.season-header{
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: rgba(0,0,0,0.55);
+}
+
+.season-header span{
+  padding: 6px 18px;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+
+/* 写真グリッド */
+.season-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px;
+}
+
+/* スマホ微調整 */
+@media (max-width: 520px){
+  .season-grid{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
+
+/* 観察ノートでは Masonry(column) を使わない */
+.favorite-gallery {
+  column-count: unset !important;
+  column-gap: unset !important;
+  visibility: visible;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* 念のため */
+.favorite-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 観察ノート：写真グリッド（正方形・4px） */
+.season-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+/* 正方形を作る */
+.season-grid .gallery-item {
+  aspect-ratio: 1 / 1;        /* ← これが肝 */
+  overflow: hidden;
+}
+
+/* 中の画像はトリミング */
+.season-grid .gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* 縦横比を崩さず中央トリミング */
+  display: block;
+}
+
+@media (max-width: 520px){
+  .season-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 観察ノート：LightGallery キャプション */
+.note-exif {
+  padding: 10px 0 4px;
+  text-align: center;
+  font-family: system-ui, -apple-system, "Hiragino Sans", sans-serif;
+}
+
+.note-exif-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #222;
+  letter-spacing: 0.04em;
+}
+
+.note-exif-date {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #999;
+  letter-spacing: 0.03em;
+}
+
+.lg-sub-html .note-exif {
+  animation: noteFadeUp 0.35s ease both;
+}
+
+@keyframes noteFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.note-exif-name {
+  max-width: 90%;
+  margin: 0 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 最初に何ができるページなのか説明 */
+.gallery-guide {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #666;
+  margin: 8px 0 16px;
+}
+
+/* 機能カード（外枠） */
+.section.feature-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 22px 18px;
+  margin: 28px 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+
+/* タイトル・説明 */
+.section.feature-card .section-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.section.feature-card .section-desc {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 18px;
+}
+
+/* 観察ノート専用：中央寄せ */
+.section.feature-card.note-section .section-card {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+/* 観察ノートのボタンだけ確実に中央寄せ */
+.note-section .section-card {
+  display: flex;
+  justify-content: center;
+}
+
+/* 観察ノートだけ中央寄せ */
+.note-section .note-link {
+  display: inline-block;
+}
+
+/* 観察ノートだけ中央寄せ */
+.section.feature-card .note-link {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* 世界観を守るヒーロー化 */
+.hero-world {
+  margin: 12px 0 8px;
+}
+
+.hero-world-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: #444;
+  letter-spacing: 0.04em;
+}
+
+/* 観察ノートのリンクを中央寄せ */
+.section.feature-card .note-link {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* ★がONになった瞬間の軽い強調 */
+.lg-fav-btn.is-fav,
+.thumb-fav.is-fav {
+  animation: fav-pop 0.35s ease;
+}
+
+@keyframes fav-pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+/* =========================
+   ○行ページ専用レイアウト
+========================= */
+
+.aiuo-page {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.aiuo-title {
+  text-align: center;
+  font-size: 22px;
+  margin: 24px 0 18px;
+}
+
+.aiuo-filter {
+  margin: 14px 0 20px;
+}
+
+.search-wrap--page {
+  margin-bottom: 24px;
+}
+
+/* ===== LightGallery：スマホでは×を常時表示 ===== */
+@media (max-width: 768px) {
+  .lg-outer.lg-hide-items { opacity: 1 !important; } /* 保険 */
+
+  .lg-toolbar,
+  .lg-toolbar.lg-hide {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: none !important;
+  }
+
+  .lg-toolbar .lg-close {
+    display: inline-flex !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    position: relative !important;
+    top: 0 !important;
+    right: 0 !important;
+    color: #b5b5b5 !important; /* グレー */
+    line-height: 1 !important;
+  }
+}
+
+/* ===== LightGallery 初回ヒント ===== */
+.lg-hint {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  line-height: 1.5;
+  z-index: 100000;
+  opacity: 0;
+  animation: hintFade 3.5s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes hintFade {
+  0%   { opacity: 0; transform: translate(-50%, 8px); }
+  10%  { opacity: 1; transform: translate(-50%, 0); }
+  80%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* =========================
+   機能ブロック（区切り用）
+========================= */
+.feature-block {
+  background: #fff;
+  border-radius: 18px;
+  padding: 22px 18px;
+  margin: 26px 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+/* 中のタイトルと説明の呼吸 */
+.feature-block .section-title {
+  margin-top: 0;
+}
+
+.feature-block .section-desc {
+  margin-bottom: 18px;
+}
