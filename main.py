@@ -1,5 +1,4 @@
 import os
-import glob
 import json
 import requests
 from bs4 import BeautifulSoup
@@ -2700,6 +2699,7 @@ def fetch_hatena_articles_api():
     print("📡 はてなブログAPIから全記事取得中…")
     url = ATOM_ENDPOINT
     count = 0
+    article_files = []
     while url:
         print(f"🔗 Fetching: {url}")
         r = requests.get(url, auth=AUTH, headers=HEADERS)
@@ -2718,6 +2718,7 @@ def fetch_hatena_articles_api():
             filename = f"{ARTICLES_DIR}/article_{count+i}.html"
             with open(filename, "w", encoding="utf-8") as f:
                 f.write(html_content)
+            article_files.append(filename)
             print(f"✅ 保存完了: {filename}")
 
         count += len(entries)
@@ -2725,11 +2726,12 @@ def fetch_hatena_articles_api():
         url = next_link.attrib["href"] if next_link is not None else None
 
     print(f"📦 合計 {count} 件の記事を保存しました。")
+    return article_files
 
 # ===========================
 # HTML から画像抽出
 # ===========================
-def fetch_images():
+def fetch_images(article_files):
     print("📂 HTMLから画像抽出中…")
     entries = []
 
@@ -2741,7 +2743,7 @@ def fetch_images():
         r'キノコと田舎遊び',
     ]
 
-    for html_file in glob.glob(f"{ARTICLES_DIR}/*.html"):
+    for html_file in article_files:
         with open(html_file, encoding="utf-8") as f:
             soup = BeautifulSoup(f, "html.parser")
 
@@ -3233,17 +3235,27 @@ def generate_favorite_page(grouped):
 # ===========================
 # メイン
 # ===========================
+def require_nonempty(items, error_message):
+    """本番出力を空データで上書きしないための最小限の fail-safe。"""
+    if not items:
+        raise RuntimeError(error_message)
+    return items
+
+
 if __name__ == "__main__":
-    fetch_hatena_articles_api()
-    entries = fetch_images()
+    article_files = require_nonempty(
+        fetch_hatena_articles_api(),
+        "Hatena API から取得できた記事が 0 件のため、ビルドを中止します。",
+    )
+    entries = require_nonempty(
+        fetch_images(article_files),
+        "記事から抽出できた画像が 0 件のため、ビルドを中止します。",
+    )
 
-    if entries:
-        exif_cache = load_exif_cache()
-        exif_cache = build_exif_cache(entries, exif_cache)
-        save_exif_cache(exif_cache)
+    exif_cache = load_exif_cache()
+    exif_cache = build_exif_cache(entries, exif_cache)
+    save_exif_cache(exif_cache)
 
-        grouped = generate_gallery(entries, exif_cache)
-        generate_index(grouped, exif_cache)
-        generate_favorite_page(grouped)
-    else:
-        print("⚠️ 画像が見つかりませんでした。")
+    grouped = generate_gallery(entries, exif_cache)
+    generate_index(grouped, exif_cache)
+    generate_favorite_page(grouped)
