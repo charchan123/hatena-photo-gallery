@@ -31,15 +31,25 @@ def entry_without(field):
     return value
 
 
-def test_repository_master_has_exactly_the_eight_approved_seeds():
+def test_repository_master_has_eight_preserved_seeds_and_ten_verified_entries():
     taxonomy = main.load_subject_taxonomy()
     actual = {(row["canonical_name"], row["subject_type"]) for row in taxonomy["entries"]}
-    assert actual == {
+    seeds = {
         ("ヤマドリタケモドキ", "mushroom"), ("シイタケ", "mushroom"),
         ("ベニテングタケ", "mushroom"), ("ドクヤマドリ", "mushroom"),
         ("カエンタケ", "mushroom"), ("コブハクチョウ", "non_mushroom"),
         ("ヨシガモ", "non_mushroom"), ("ミツバアケビ", "non_mushroom"),
     }
+    verified = {
+        (name, "mushroom") for name in (
+            "ドクツルタケ", "チチアワタケ", "ヒラタケ", "ヤナギマツタケ",
+            "チャアミガサタケ", "オオシロカラカサタケ", "アイタケ",
+            "マツオウジ", "ウスヒラタケ", "キイロスッポンタケ",
+        )
+    }
+    assert actual == seeds | verified
+    assert sum(row["verification_status"] == "project_seed" for row in taxonomy["entries"]) == 8
+    assert sum(row["verification_status"] == "externally_verified" for row in taxonomy["entries"]) == 10
 
 
 @pytest.mark.parametrize("bad_entry", [
@@ -104,6 +114,16 @@ def test_match_priority_and_conservative_normalization(tmp_path):
     ("ベニテングタケ", "mushroom", "taxonomy_mushroom"),
     ("ドクヤマドリ", "mushroom", "taxonomy_mushroom"),
     ("カエンタケ", "mushroom", "taxonomy_mushroom"),
+    ("ドクツルタケ", "mushroom", "taxonomy_mushroom"),
+    ("チチアワタケ", "mushroom", "taxonomy_mushroom"),
+    ("ヒラタケ", "mushroom", "taxonomy_mushroom"),
+    ("ヤナギマツタケ", "mushroom", "taxonomy_mushroom"),
+    ("チャアミガサタケ", "mushroom", "taxonomy_mushroom"),
+    ("オオシロカラカサタケ", "mushroom", "taxonomy_mushroom"),
+    ("アイタケ", "mushroom", "taxonomy_mushroom"),
+    ("マツオウジ", "mushroom", "taxonomy_mushroom"),
+    ("ウスヒラタケ", "mushroom", "taxonomy_mushroom"),
+    ("キイロスッポンタケ", "mushroom", "taxonomy_mushroom"),
     ("コブハクチョウ", "non_mushroom", "taxonomy_non_mushroom"),
     ("ヨシガモ", "non_mushroom", "taxonomy_non_mushroom"),
     ("ミツバアケビ", "non_mushroom", "taxonomy_non_mushroom"),

@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "source_id": "mhlw-dokutsurutake",
+      "organization": "厚生労働省",
+      "title": "自然毒のリスクプロファイル：ドクツルタケ（Amanita virosa）テングタケ科テングタケ属",
+      "source_type": "government_health",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000142727.html",
+      "record_id": null,
+      "accessed_at": "2026-09-23",
+      "notes": null
+    },
+    {
+      "source_id": "mhlw-kaentake",
+      "organization": "厚生労働省",
+      "title": "自然毒のリスクプロファイル：カエンタケ（Podostroma cornu-damae）ニクザキン科ツノタケ属",
+      "source_type": "government_health",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000143427.html",
+      "record_id": null,
+      "accessed_at": "2026-09-23",
+      "notes": null
+    },
+    {
+      "source_id": "nmns-tnsf-19379",
+      "organization": "国立科学博物館",
+      "title": "標本・資料統合データベース 菌類 TNS-F-19379",
+      "source_type": "national_museum_specimen",
+      "url": "https://db.kahaku.go.jp/webmuseum/col_b2_01/19379",
+      "record_id": "TNS-F-19379",
+      "accessed_at": "2026-09-23",
+      "notes": null
+    },
+    {
+      "source_id": "nmns-tnsf-32604",
+      "organization": "国立科学博物館",
+      "title": "標本・資料統合データベース 菌類 TNS-F-32604",
+      "source_type": "national_museum_specimen",
+      "url": "https://db.kahaku.go.jp/webmuseum/col_b2_01/32604",
+      "record_id": "TNS-F-32604",
+      "accessed_at": "2026-09-23",
+      "notes": null
+    },
+    {
+      "source_id": "tottori-tufc-31903",
+      "organization": "鳥取大学農学部附属菌類きのこ遺伝資源研究センター",
+      "title": "TUFC Culture Online Catalogue TUFC 31903",
+      "source_type": "university_culture_collection",
+      "url": "https://fungusdb.muses.tottori-u.ac.jp/catalog/info?id=31903",
+      "record_id": "TUFC 31903",
+      "accessed_at": "2026-09-23",
+      "notes": null
+    },
+    {
+      "source_id": "tottori-tufc-100534",
+      "organization": "鳥取大学農学部附属菌類きのこ遺伝資源研究センター",
+      "title": "TUFC Culture Online Catalogue TUFC 100534",
+      "source_type": "university_culture_collection",
+      "url": "https://fungusdb.muses.tottori-u.ac.jp/catalog/info?id=100534",
+      "record_id": "TUFC 100534",
+      "accessed_at": "2026-09-23",
+      "notes": null
+    },
+    {
+      "source_id": "tottori-tufc-30149",
+      "organization": "鳥取大学農学部附属菌類きのこ遺伝資源研究センター",
+      "title": "TUFC Culture Online Catalogue TUFC 30149",
+      "source_type": "university_culture_collection",
+      "url": "https://fungusdb.muses.tottori-u.ac.jp/catalog/info?id=30149",
+      "record_id": "TUFC 30149",
+      "accessed_at": "2026-09-23",
+      "notes": null
+    },
+    {
+      "source_id": "rinya-tohoku-fungi-guide",
+      "organization": "林野庁 東北森林管理局",
+      "title": "菌類（きのこ・地衣類）",
+      "source_type": "government_fungi_guide",
+      "url": "https://www.rinya.maff.go.jp/tohoku/koho/tohoku/3_zukan/0_kinrui/1_kinoko.html",
+      "record_id": null,
+      "accessed_at": "2026-09-23",
+      "notes": null
+    }
+  ]
+}

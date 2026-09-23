@@ -1,0 +1,853 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "mushroom_id": "kaentake",
+      "canonical_name_ja": "カエンタケ",
+      "name_ja_sources": [
+        "mhlw-kaentake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Podostroma cornu-damae",
+        "name_status": "source_reported",
+        "source_ids": [
+          "mhlw-kaentake"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "ニクザキン科",
+          "source_ids": [
+            "mhlw-kaentake"
+          ]
+        },
+        "genus": {
+          "value": "ツノタケ属",
+          "source_ids": [
+            "mhlw-kaentake"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "poisonous_confirmed",
+        "source_ids": [
+          "mhlw-kaentake"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "赤色からオレンジ色の細長い棒状または円柱状で、地上から指状に発生する。",
+        "source_ids": [
+          "mhlw-kaentake"
+        ]
+      },
+      "season": {
+        "summary": "夏〜秋",
+        "source_ids": [
+          "mhlw-kaentake"
+        ]
+      },
+      "habitat": {
+        "summary": "ブナ、コナラなどの広葉樹林の地上。",
+        "source_ids": [
+          "mhlw-kaentake"
+        ]
+      },
+      "verification": {
+        "record_status": "verified_core",
+        "checked_at": "2026-09-23",
+        "notes": "指定された資料で確認できた項目のみを収録。"
+      }
+    },
+    {
+      "mushroom_id": "dokutsurutake",
+      "canonical_name_ja": "ドクツルタケ",
+      "name_ja_sources": [
+        "mhlw-dokutsurutake",
+        "rinya-tohoku-fungi-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Amanita virosa",
+        "name_status": "source_reported",
+        "source_ids": [
+          "mhlw-dokutsurutake"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "テングタケ科",
+          "source_ids": [
+            "mhlw-dokutsurutake"
+          ]
+        },
+        "genus": {
+          "value": "テングタケ属",
+          "source_ids": [
+            "mhlw-dokutsurutake"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "poisonous_confirmed",
+        "source_ids": [
+          "mhlw-dokutsurutake"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。"
+      },
+      "toxins": [
+        {
+          "name": "アマトキシン類",
+          "source_ids": [
+            "mhlw-dokutsurutake"
+          ]
+        },
+        {
+          "name": "ファロトキシン類",
+          "source_ids": [
+            "mhlw-dokutsurutake"
+          ]
+        }
+      ],
+      "features": {
+        "summary": "白色で、傘は卵形から円錐形を経て開く。柄の上部につば、基部につぼがある。",
+        "source_ids": [
+          "mhlw-dokutsurutake"
+        ]
+      },
+      "season": {
+        "summary": "初夏〜秋",
+        "source_ids": [
+          "mhlw-dokutsurutake"
+        ]
+      },
+      "habitat": {
+        "summary": "針葉樹林・広葉樹林の地上。",
+        "source_ids": [
+          "mhlw-dokutsurutake"
+        ]
+      },
+      "verification": {
+        "record_status": "verified_core",
+        "checked_at": "2026-09-23",
+        "notes": "指定された資料で確認できた項目のみを収録。"
+      }
+    },
+    {
+      "mushroom_id": "chichiawatake",
+      "canonical_name_ja": "チチアワタケ",
+      "name_ja_sources": [
+        "tottori-tufc-31903"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Suillus granulatus (L.) O. Kuntze",
+        "name_status": "source_reported",
+        "source_ids": [
+          "tottori-tufc-31903"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "tottori-tufc-31903"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "tottori-tufc-31903"
+          ]
+        },
+        "subclass": {
+          "value": "Agaricomycetidae",
+          "source_ids": [
+            "tottori-tufc-31903"
+          ]
+        },
+        "order": {
+          "value": "Boletales",
+          "source_ids": [
+            "tottori-tufc-31903"
+          ]
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": null,
+        "source_ids": []
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "habitat": {
+        "summary": null,
+        "source_ids": []
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-09-23",
+        "notes": "指定された資料で確認できた項目のみを収録。"
+      }
+    },
+    {
+      "mushroom_id": "hiratake",
+      "canonical_name_ja": "ヒラタケ",
+      "name_ja_sources": [
+        "tottori-tufc-100534"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Pleurotus ostreatus (Jacq.) P. Kumm.",
+        "name_status": "source_reported",
+        "source_ids": [
+          "tottori-tufc-100534"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "tottori-tufc-100534"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "tottori-tufc-100534"
+          ]
+        },
+        "subclass": {
+          "value": "Agaricomycetidae",
+          "source_ids": [
+            "tottori-tufc-100534"
+          ]
+        },
+        "order": {
+          "value": "Agaricales",
+          "source_ids": [
+            "tottori-tufc-100534"
+          ]
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": null,
+        "source_ids": []
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "habitat": {
+        "summary": "広葉樹の枯木上。",
+        "source_ids": [
+          "tottori-tufc-100534"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-09-23",
+        "notes": "指定された資料で確認できた項目のみを収録。"
+      }
+    },
+    {
+      "mushroom_id": "yanagimatsutake",
+      "canonical_name_ja": "ヤナギマツタケ",
+      "name_ja_sources": [
+        "tottori-tufc-30149"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Cyclocybe cylindracea (DC.) Vizzini & Angelini",
+        "name_status": "source_reported",
+        "source_ids": [
+          "tottori-tufc-30149"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "tottori-tufc-30149"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "tottori-tufc-30149"
+          ]
+        },
+        "subclass": {
+          "value": "Agaricomycetidae",
+          "source_ids": [
+            "tottori-tufc-30149"
+          ]
+        },
+        "order": {
+          "value": "Agaricales",
+          "source_ids": [
+            "tottori-tufc-30149"
+          ]
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": null,
+        "source_ids": []
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "habitat": {
+        "summary": null,
+        "source_ids": []
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-09-23",
+        "notes": "指定された資料で確認できた項目のみを収録。"
+      }
+    },
+    {
+      "mushroom_id": "chaamigasatake",
+      "canonical_name_ja": "チャアミガサタケ",
+      "name_ja_sources": [
+        "nmns-tnsf-19379"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Morchella esculenta var. umbrina",
+        "name_status": "source_reported",
+        "source_ids": [
+          "nmns-tnsf-19379"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "nmns-tnsf-19379"
+          ]
+        },
+        "phylum": {
+          "value": "Ascomycota",
+          "source_ids": [
+            "nmns-tnsf-19379"
+          ]
+        },
+        "class": {
+          "value": "Ascomycetes",
+          "source_ids": [
+            "nmns-tnsf-19379"
+          ]
+        },
+        "subclass": {
+          "value": "Pezizomycetidae",
+          "source_ids": [
+            "nmns-tnsf-19379"
+          ]
+        },
+        "order": {
+          "value": "Pezizales",
+          "source_ids": [
+            "nmns-tnsf-19379"
+          ]
+        },
+        "family": {
+          "value": "Morchellaceae",
+          "source_ids": [
+            "nmns-tnsf-19379"
+          ]
+        },
+        "genus": {
+          "value": "Morchella",
+          "source_ids": [
+            "nmns-tnsf-19379"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": null,
+        "source_ids": []
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "habitat": {
+        "summary": null,
+        "source_ids": []
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-09-23",
+        "notes": "指定された資料で確認できた項目のみを収録。"
+      }
+    },
+    {
+      "mushroom_id": "ooshirokarakasatake",
+      "canonical_name_ja": "オオシロカラカサタケ",
+      "name_ja_sources": [
+        "nmns-tnsf-32604"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Chlorophyllum molybdites",
+        "name_status": "source_reported",
+        "source_ids": [
+          "nmns-tnsf-32604"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "nmns-tnsf-32604"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "nmns-tnsf-32604"
+          ]
+        },
+        "class": {
+          "value": "Basidiomycetes",
+          "source_ids": [
+            "nmns-tnsf-32604"
+          ]
+        },
+        "subclass": {
+          "value": "Agaricomycetidae",
+          "source_ids": [
+            "nmns-tnsf-32604"
+          ]
+        },
+        "order": {
+          "value": "Agaricales",
+          "source_ids": [
+            "nmns-tnsf-32604"
+          ]
+        },
+        "family": {
+          "value": "Agaricaceae",
+          "source_ids": [
+            "nmns-tnsf-32604"
+          ]
+        },
+        "genus": {
+          "value": "Chlorophyllum",
+          "source_ids": [
+            "nmns-tnsf-32604"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": null,
+        "source_ids": []
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "habitat": {
+        "summary": null,
+        "source_ids": []
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-09-23",
+        "notes": "指定された資料で確認できた項目のみを収録。"
+      }
+    },
+    {
+      "mushroom_id": "aitake",
+      "canonical_name_ja": "アイタケ",
+      "name_ja_sources": [
+        "rinya-tohoku-fungi-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Russula virescens",
+        "name_status": "source_reported",
+        "source_ids": [
+          "rinya-tohoku-fungi-guide"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "ベニタケ科",
+          "source_ids": [
+            "rinya-tohoku-fungi-guide"
+          ]
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": null,
+        "source_ids": []
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "habitat": {
+        "summary": null,
+        "source_ids": []
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-09-23",
+        "notes": "指定された資料で確認できた項目のみを収録。"
+      }
+    },
+    {
+      "mushroom_id": "matsuouji",
+      "canonical_name_ja": "マツオウジ",
+      "name_ja_sources": [
+        "rinya-tohoku-fungi-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Neolentinus lepideus",
+        "name_status": "source_reported",
+        "source_ids": [
+          "rinya-tohoku-fungi-guide"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "ヒラタケ科",
+          "source_ids": [
+            "rinya-tohoku-fungi-guide"
+          ]
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": null,
+        "source_ids": []
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "habitat": {
+        "summary": null,
+        "source_ids": []
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-09-23",
+        "notes": "指定された資料で確認できた項目のみを収録。"
+      }
+    },
+    {
+      "mushroom_id": "usuhiratake",
+      "canonical_name_ja": "ウスヒラタケ",
+      "name_ja_sources": [
+        "rinya-tohoku-fungi-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Pleurotus pulmonarius",
+        "name_status": "source_reported",
+        "source_ids": [
+          "rinya-tohoku-fungi-guide"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "ヒラタケ科",
+          "source_ids": [
+            "rinya-tohoku-fungi-guide"
+          ]
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": null,
+        "source_ids": []
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "habitat": {
+        "summary": null,
+        "source_ids": []
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-09-23",
+        "notes": "指定された資料で確認できた項目のみを収録。"
+      }
+    },
+    {
+      "mushroom_id": "kiirosuppontake",
+      "canonical_name_ja": "キイロスッポンタケ",
+      "name_ja_sources": [
+        "rinya-tohoku-fungi-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Phallus costatus",
+        "name_status": "source_reported",
+        "source_ids": [
+          "rinya-tohoku-fungi-guide"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "スッポンタケ科",
+          "source_ids": [
+            "rinya-tohoku-fungi-guide"
+          ]
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": null,
+        "source_ids": []
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "habitat": {
+        "summary": null,
+        "source_ids": []
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-09-23",
+        "notes": "指定された資料で確認できた項目のみを収録。"
+      }
+    }
+  ]
+}
