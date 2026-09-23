@@ -19,10 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // utility
   // =========================
-  function escapeRegExp(str) {
-    return str.replace(/[-\/\^$*+?.()|[\]{}]/g, "\\$&");
-  }
-
   function normalizeSrc(src) {
     return src ? src.replace(/\?.*$/, "") : "";
   }
@@ -36,13 +32,57 @@ document.addEventListener("DOMContentLoaded", () => {
       );
   }
 
+  function normalizeJapaneseSearchWithMap(value) {
+    const source = value || "";
+    let normalized = "";
+    const sourceRanges = [];
+
+    for (let start = 0; start < source.length;) {
+      const first = source.codePointAt(start);
+      let end = start + (first > 0xFFFF ? 2 : 1);
+
+      // Keep combining and half-width voicing marks with the character they modify.
+      while (end < source.length && /[\u3099\u309A\uFF9E\uFF9F]/.test(source[end])) {
+        end++;
+      }
+
+      const part = normalizeJapaneseSearch(source.slice(start, end));
+      normalized += part;
+      for (let i = 0; i < part.length; i++) {
+        sourceRanges.push({ start, end });
+      }
+      start = end;
+    }
+
+    return { normalized, sourceRanges };
+  }
+
   function highlight(text, q) {
-    if (!q) return text;
-    const escaped = escapeRegExp(q);
-    return text.replace(
-      new RegExp("(" + escaped + ")", "ig"),
-      "<mark>$1</mark>"
-    );
+    const keyword = normalizeJapaneseSearch(q);
+    if (!keyword) return text;
+
+    const { normalized, sourceRanges } = normalizeJapaneseSearchWithMap(text);
+    const ranges = [];
+    let searchFrom = 0;
+    let matchAt;
+
+    while ((matchAt = normalized.indexOf(keyword, searchFrom)) !== -1) {
+      const first = sourceRanges[matchAt];
+      const last = sourceRanges[matchAt + keyword.length - 1];
+      if (first && last) ranges.push({ start: first.start, end: last.end });
+      searchFrom = matchAt + keyword.length;
+    }
+
+    if (!ranges.length) return text;
+
+    let result = "";
+    let sourceFrom = 0;
+    ranges.forEach(range => {
+      result += text.slice(sourceFrom, range.start);
+      result += `<mark>${text.slice(range.start, range.end)}</mark>`;
+      sourceFrom = range.end;
+    });
+    return result + text.slice(sourceFrom);
   }
 
     // =========================
