@@ -79,9 +79,9 @@ SHADOW_EXCLUDE_PATTERNS = [
 SUBJECT_BLOCK_TAGS = ("p", "h1", "h2", "h3", "h4", "h5", "h6")
 SUBJECT_LABEL_STOPWORDS = {"幼菌", "傘の裏"}
 SUBJECT_ALLOWED_ANNOTATIONS = ("仮称", "広義")
-MUSHROOM_CATEGORY_KEYWORDS = ("キノコ", "きのこ", "菌類", "茸")
-NON_MUSHROOM_CATEGORY_KEYWORDS = ("野鳥", "鳥類", "昆虫", "植物", "花", "風景")
-NON_MUSHROOM_EXACT_CATEGORIES = {"鳥"}
+MUSHROOM_CONTEXT_CATEGORIES = {"キノコ探索日記"}
+EXPLICIT_MUSHROOM_CATEGORIES = {"キノコ", "きのこ", "菌類", "茸"}
+EXPLICIT_NON_MUSHROOM_CATEGORIES = {"野鳥", "鳥類", "鳥", "昆虫", "植物", "花", "風景"}
 
 # ====== API ======
 ATOM_ENDPOINT = f"https://blog.hatena.ne.jp/{HATENA_USER}/{HATENA_BLOG_ID}/atom/entry"
@@ -561,34 +561,79 @@ def is_latin_scientific_label(text):
 
 
 def normalize_category_term(term):
-    return unicodedata.normalize("NFKC", term or "").strip().casefold()
+    return unicodedata.normalize("NFKC", normalize_subject_text(term)).casefold()
+
+
+def get_category_evidence(categories):
+    """Separate article context from exact, explicit category signals.
+
+    Short category words are deliberately never substring-matched. Categories describe
+    an article, so even explicit mushroom categories are not image-level proof.
+    """
+    normalized = {normalize_category_term(term) for term in categories}
+    contexts = {normalize_category_term(value) for value in MUSHROOM_CONTEXT_CATEGORIES}
+    mushrooms = {normalize_category_term(value) for value in EXPLICIT_MUSHROOM_CATEGORIES}
+    non_mushrooms = {
+        normalize_category_term(value) for value in EXPLICIT_NON_MUSHROOM_CATEGORIES
+    }
+    return {
+        "has_mushroom_context": bool(normalized & contexts),
+        "has_explicit_mushroom_signal": bool(normalized & mushrooms),
+        "has_explicit_non_mushroom_signal": bool(normalized & non_mushrooms),
+    }
 
 
 def get_category_signals(categories):
-    normalized = [normalize_category_term(term) for term in categories]
-    mushroom = any(
-        normalize_category_term(keyword) in term
-        for term in normalized
-        for keyword in MUSHROOM_CATEGORY_KEYWORDS
+    """Compatibility helper returning explicit mushroom/non-mushroom directions."""
+    evidence = get_category_evidence(categories)
+    return (
+        evidence["has_explicit_mushroom_signal"],
+        evidence["has_explicit_non_mushroom_signal"],
     )
-    non_mushroom = any(
-        term in {normalize_category_term(value) for value in NON_MUSHROOM_EXACT_CATEGORIES}
-        or any(normalize_category_term(keyword) in term for keyword in NON_MUSHROOM_CATEGORY_KEYWORDS)
-        for term in normalized
-    )
-    return mushroom, non_mushroom
+
+
+def normalize_category_match_text(text):
+    """Normalize only the allowlisted variations used for corroboration audits."""
+    value = normalize_category_term(text)
+    for annotation in SUBJECT_ALLOWED_ANNOTATIONS:
+        value = re.sub(fr"\s*\({annotation}\)\s*", "", value)
+    return re.sub(r"[?？]+$", "", value).strip()
+
+
+def match_label_to_categories(detected_label, categories):
+    if detected_label is None:
+        return [], "none"
+    label_exact = normalize_subject_text(detected_label)
+    exact = [term for term in categories if normalize_subject_text(term) == label_exact]
+    if exact:
+        return exact, "exact"
+    label_normalized = normalize_category_match_text(detected_label)
+    normalized = [
+        term for term in categories
+        if normalize_category_match_text(term) == label_normalized
+    ]
+    return (normalized, "normalized") if normalized else ([], "none")
 
 
 def classify_subject_type(detected_label, categories):
-    mushroom, non_mushroom = get_category_signals(categories)
+    evidence = get_category_evidence(categories)
+    mushroom = evidence["has_explicit_mushroom_signal"]
+    non_mushroom = evidence["has_explicit_non_mushroom_signal"]
     if detected_label is None:
         return "review", "no_detected_label", "low"
-    if mushroom and non_mushroom:
+    if (mushroom or evidence["has_mushroom_context"]) and non_mushroom:
         return "review", "conflicting_category_signals", "low"
-    if mushroom:
-        return "mushroom", "mushroom_category", "high"
     if non_mushroom:
-        return "non_mushroom", "non_mushroom_category", "high"
+        return "non_mushroom", "explicit_non_mushroom_category", "high"
+    matched, _ = match_label_to_categories(detected_label, categories)
+    if evidence["has_mushroom_context"] and matched:
+        return "review", "subject_category_match_review", "low"
+    if evidence["has_mushroom_context"]:
+        return "review", "mushroom_context_only", "low"
+    if mushroom:
+        return "review", "explicit_mushroom_category_review", "low"
+    if matched:
+        return "review", "subject_category_match_review", "low"
     return "review", "no_category_signal", "low"
 
 
@@ -656,6 +701,10 @@ def extract_shadow_metadata(article_files, article_metadata=None):
             subject_type, reason, classification_confidence = classify_subject_type(
                 current_subject, categories
             )
+            category_evidence = get_category_evidence(categories)
+            matched_categories, category_match_type = match_label_to_categories(
+                current_subject, categories
+            )
             metadata.append(
                 {
                     "src": src,
@@ -671,6 +720,9 @@ def extract_shadow_metadata(article_files, article_metadata=None):
                     "article_id": article.get("article_id"),
                     "classification_reason": reason,
                     "classification_confidence": classification_confidence,
+                    "matched_categories": matched_categories,
+                    "category_match_type": category_match_type,
+                    **category_evidence,
                 }
             )
     return metadata
@@ -696,16 +748,68 @@ def summarize_shadow_metadata(metadata, legacy_production_image_count=None):
         "classification_high": sum(item["classification_confidence"] == "high" for item in metadata),
         "classification_low": sum(item["classification_confidence"] == "low" for item in metadata),
         "shadow_images_with_empty_alt": sum(not item["legacy_alt"] for item in metadata),
+        "images_with_mushroom_context": sum(item["has_mushroom_context"] for item in metadata),
+        "images_with_category_match": sum(item["category_match_type"] != "none" for item in metadata),
+        "images_without_category_match": sum(item["category_match_type"] == "none" for item in metadata),
+        "images_with_exact_category_match": sum(item["category_match_type"] == "exact" for item in metadata),
+        "images_with_normalized_category_match": sum(item["category_match_type"] == "normalized" for item in metadata),
+        "detected_empty_alt": sum(item["detected_label"] is not None and not item["legacy_alt"] for item in metadata),
+        "unique_detected_labels": len({item["detected_label"] for item in detected}),
+        "mushroom_context_only_review": sum(item["classification_reason"] == "mushroom_context_only" for item in metadata),
+        "category_conflicts": sum(item["classification_reason"] == "conflicting_category_signals" for item in metadata),
     }
     if legacy_production_image_count is not None:
         summary["legacy_production_image_count"] = legacy_production_image_count
     return summary
 
 
+def summarize_detected_labels(metadata):
+    """Aggregate every detected label; callers may bound only its log rendering."""
+    labels = {}
+    for item in metadata:
+        label = item["detected_label"]
+        if label is None:
+            continue
+        row = labels.setdefault(label, {
+            "detected_label": label, "image_count": 0, "article_paths": set(),
+            "categories": set(), "category_match_count": 0, "empty_alt_count": 0,
+            "subject_type_counts": {},
+        })
+        row["image_count"] += 1
+        row["article_paths"].add(item["article_path"])
+        row["categories"].update(item["article_categories"])
+        row["category_match_count"] += item["category_match_type"] != "none"
+        row["empty_alt_count"] += not item["legacy_alt"]
+        subject_type = item["subject_type"]
+        row["subject_type_counts"][subject_type] = row["subject_type_counts"].get(subject_type, 0) + 1
+    result = []
+    for row in labels.values():
+        result.append({
+            "detected_label": row["detected_label"],
+            "image_count": row["image_count"],
+            "article_count": len(row["article_paths"]),
+            "categories": sorted(row["categories"]),
+            "category_match_count": row["category_match_count"],
+            "empty_alt_count": row["empty_alt_count"],
+            "subject_type_counts": row["subject_type_counts"],
+        })
+    return result
+
+
+def _audit_row(prefix, item):
+    print(
+        f"{prefix}: {item['article_path']} | title={item['article_title']} | "
+        f"categories={item['article_categories']} | detected={item['detected_label']} | "
+        f"matched_categories={item['matched_categories']} | match={item['category_match_type']} | "
+        f"subject_type={item['subject_type']} | reason={item['classification_reason']} | "
+        f"src={item['src']}"
+    )
+
+
 def report_shadow_metadata(metadata, audit_limit=30, legacy_production_image_count=None):
     """集計と要確認レコードを Actions で読める量に制限して表示する。"""
     summary = summarize_shadow_metadata(metadata, legacy_production_image_count)
-    print("Phase 3B metadata shadow summary:")
+    print("Phase 3B.1 metadata shadow summary:")
     for key, value in summary.items():
         print(f"{key}={value}")
 
@@ -719,21 +823,48 @@ def report_shadow_metadata(metadata, audit_limit=30, legacy_production_image_cou
     )
     audit_entries = sorted(metadata, key=priority)
     for item in audit_entries[:audit_limit]:
-        print(
-            "Phase 3B shadow audit: "
-            f"{item['article_path']} | title={item['article_title']} | "
-            f"categories={item['article_categories']} | detected={item['detected_label']} | "
-            f"alt={item['legacy_alt']} | subject_type={item['subject_type']} | "
-            f"reason={item['classification_reason']} | src={item['src']}"
-        )
+        _audit_row("Phase 3B.1 shadow audit", item)
     if len(audit_entries) > audit_limit:
-        print(f"Phase 3B shadow audit: {len(audit_entries) - audit_limit} more omitted")
+        print(f"Phase 3B.1 shadow audit: {len(audit_entries) - audit_limit} more omitted")
     for item in [x for x in metadata if x["subject_type"] == "non_mushroom"][:20]:
         print(
             "Phase 3B non-mushroom audit: "
             f"{item['article_path']} | categories={item['article_categories']} | "
             f"detected={item['detected_label']} | src={item['src']}"
         )
+
+    empty_alt = [item for item in metadata if item["detected_label"] is not None and not item["legacy_alt"]]
+    for item in empty_alt[:50]:
+        _audit_row("Phase 3B.1 empty-alt detected audit", item)
+
+    mushroom_evidence = [item for item in metadata if item["detected_label"] is not None and (
+        item["has_mushroom_context"] or item["has_explicit_mushroom_signal"]
+    )]
+    for item in mushroom_evidence[:40]:
+        evidence_class = "A" if item["matched_categories"] else (
+            "B" if item["has_mushroom_context"] else "C"
+        )
+        print(f"Phase 3B.1 mushroom-evidence audit: class={evidence_class}", end=" | ")
+        _audit_row("record", item)
+
+    distinct_labels = sorted(
+        summarize_detected_labels(metadata),
+        key=lambda row: (-row["image_count"], row["detected_label"]),
+    )
+    for row in distinct_labels[:150]:
+        print(f"Phase 3B.1 distinct-label audit: {row}")
+
+    suspicious = [item for item in metadata if item["detected_label"] is not None and (
+        not item["legacy_alt"]
+        or (item["has_mushroom_context"] and not item["matched_categories"])
+        or (item["matched_categories"] and item["subject_type"] == "review")
+        or item["classification_reason"] == "conflicting_category_signals"
+        or item["subject_type"] == "non_mushroom"
+        or is_latin_scientific_label(item["detected_label"])
+        or any(mark in item["detected_label"] for mark in ("?", "？", "不明", "(仮称)", "（仮称）", "(広義)", "（広義）"))
+    )]
+    for item in suspicious[:50]:
+        _audit_row("Phase 3B.1 suspicious-label audit", item)
     return summary
 
 
@@ -742,17 +873,27 @@ def report_category_inventory(article_files, article_metadata=None, limit=50):
         article_metadata = load_article_metadata()
     counts = {}
     without_categories = 0
+    context_articles = non_mushroom_articles = conflict_articles = 0
     for article_file in article_files:
         categories = article_metadata.get(os.path.normpath(os.fspath(article_file)), {}).get("categories") or []
         if not categories:
             without_categories += 1
+        evidence = get_category_evidence(categories)
+        context_articles += evidence["has_mushroom_context"]
+        non_mushroom_articles += evidence["has_explicit_non_mushroom_signal"]
+        conflict_articles += (evidence["has_mushroom_context"] or evidence["has_explicit_mushroom_signal"]) and evidence["has_explicit_non_mushroom_signal"]
         for category in set(categories):
             counts[category] = counts.get(category, 0) + 1
     print("Phase 3B category inventory:")
     for category, count in sorted(counts.items(), key=lambda item: (-item[1], item[0]))[:limit]:
         print(f"{category}={count} articles")
     print(f"uncategorized={without_categories} articles")
-    return {"categories": counts, "articles_with_categories": len(article_files) - without_categories, "articles_without_categories": without_categories}
+    result = {"categories": counts, "total_unique_categories": len(counts), "articles_with_categories": len(article_files) - without_categories, "articles_without_categories": without_categories, "articles_with_mushroom_context": context_articles, "articles_with_explicit_non_mushroom_signal": non_mushroom_articles, "articles_with_conflicting_signals": conflict_articles}
+    print("Phase 3B.1 category inventory summary:")
+    for key, value in result.items():
+        if key != "categories":
+            print(f"{key}={value}")
+    return result
 
 
 def save_shadow_metadata(metadata):
@@ -1242,7 +1383,7 @@ def build_gallery():
             "空のギャラリーで上書きしないよう生成を中止します。"
         )
 
-    # Phase 3B is audit-only. Failure is visible, but must not replace or block
+    # Phase 3B.1 is audit-only. Failure is visible, but must not replace or block
     # the legacy alt-based production entries below.
     try:
         shadow_metadata = extract_shadow_metadata(article_files)
@@ -1250,7 +1391,7 @@ def build_gallery():
         report_shadow_metadata(shadow_metadata, legacy_production_image_count=len(entries))
         save_shadow_metadata(shadow_metadata)
     except Exception as error:
-        print(f"Phase 3B shadow metadata extraction failed: {error}")
+        print(f"Phase 3B.1 shadow audit failed: {error}")
 
     exif_cache = load_exif_cache()
     exif_cache = build_exif_cache(entries, exif_cache)

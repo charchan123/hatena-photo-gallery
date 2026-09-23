@@ -119,6 +119,8 @@ def test_shadow_summary_counts_required_audit_states():
     }
     assert summary["subject_type_review"] == 9
     assert summary["classification_low"] == 9
+    assert summary["images_without_category_match"] == 9
+    assert summary["images_with_category_match"] == 0
 
 
 def test_shadow_report_limits_audit_output(capsys):
@@ -129,10 +131,10 @@ def test_shadow_report_limits_audit_output(capsys):
     main.report_shadow_metadata(metadata, audit_limit=2)
     output = capsys.readouterr().out
 
-    assert "Phase 3B metadata shadow summary:" in output
+    assert "Phase 3B.1 metadata shadow summary:" in output
     assert "total_images=9" in output
     assert "legacy_alt_mismatch=6" in output
-    assert output.count("Phase 3B shadow audit:") == 3  # two rows plus omitted count
+    assert output.count("Phase 3B.1 shadow audit:") == 3  # two rows plus omitted count
     assert "7 more omitted" in output
 
 
@@ -355,8 +357,10 @@ def test_article_metadata_sidecar_failure_does_not_discard_articles(monkeypatch,
 @pytest.mark.parametrize(
     ("label", "categories", "expected"),
     [
-        ("ムキタケ", ["キノコ"], ("mushroom", "mushroom_category", "high")),
-        ("コブハクチョウ", ["野鳥"], ("non_mushroom", "non_mushroom_category", "high")),
+        ("ムキタケ", ["キノコ"], ("review", "explicit_mushroom_category_review", "low")),
+        ("ムキタケ", ["キノコ探索日記"], ("review", "mushroom_context_only", "low")),
+        ("コブハクチョウ", ["キノコ探索日記"], ("review", "mushroom_context_only", "low")),
+        ("コブハクチョウ", ["野鳥"], ("non_mushroom", "explicit_non_mushroom_category", "high")),
         ("コブハクチョウ", [], ("review", "no_category_signal", "low")),
         ("ムキタケ", ["キノコ", "野鳥"], ("review", "conflicting_category_signals", "low")),
         (None, ["キノコ"], ("review", "no_detected_label", "low")),
@@ -379,6 +383,58 @@ def test_shadow_metadata_uses_metadata_for_classification_without_changing_confi
     assert metadata[1]["article_title"] == "Birds"
 
 
+def test_category_corroboration_is_audit_evidence_not_mushroom_taxonomy(tmp_path):
+    article = tmp_path / "article.html"
+    article.write_text('<p>ミツバアケ</p><img src="x.jpg" alt="">', encoding="utf-8")
+    records = main.extract_shadow_metadata([article], {
+        str(article): {"categories": ["ミツバアケ", "キノコ探索日記"]}
+    })
+    assert records[0]["matched_categories"] == ["ミツバアケ"]
+    assert records[0]["category_match_type"] == "exact"
+    assert records[0]["subject_type"] == "review"
+    assert records[0]["classification_confidence"] == "low"
+
+
+def test_category_match_normalization_and_no_match():
+    assert main.match_label_to_categories("キアシヤマドリタケ(仮称)？", ["キアシヤマドリタケ(仮称)"]) == (["キアシヤマドリタケ(仮称)"], "normalized")
+    assert main.match_label_to_categories("ムキタケ", ["観察記録"]) == ([], "none")
+
+
+def test_category_evidence_uses_exact_terms_and_separates_context():
+    assert main.get_category_evidence(["キノコ探索日記"]) == {
+        "has_mushroom_context": True,
+        "has_explicit_mushroom_signal": False,
+        "has_explicit_non_mushroom_signal": False,
+    }
+    assert not main.get_category_evidence(["野鳥観察日記"])[
+        "has_explicit_non_mushroom_signal"
+    ]
+
+
+def test_legacy_alt_does_not_change_classification_or_category_match(tmp_path):
+    article = tmp_path / "article.html"
+    metadata = {str(article): {"categories": ["ミツバアケ", "キノコ探索日記"]}}
+    results = []
+    for alt in ("", "completely different"):
+        article.write_text(f'<p>ミツバアケ</p><img src="x.jpg" alt="{alt}">', encoding="utf-8")
+        results.append(main.extract_shadow_metadata([article], metadata)[0])
+    assert {(row["subject_type"], row["category_match_type"]) for row in results} == {("review", "exact")}
+
+
+def test_empty_alt_audit_and_distinct_label_summary(tmp_path, capsys):
+    article = tmp_path / "article.html"
+    article.write_text('<p>コブハクチョウ</p><img src="1.jpg" alt=""><img src="2.jpg" alt="">', encoding="utf-8")
+    records = main.extract_shadow_metadata([article], {str(article): {"title": "Bird", "categories": ["キノコ探索日記"]}})
+    main.report_shadow_metadata(records)
+    output = capsys.readouterr().out
+    assert "Phase 3B.1 empty-alt detected audit" in output
+    assert "detected=コブハクチョウ" in output
+    assert main.summarize_detected_labels(records)[0]["image_count"] == 2
+    summary = main.summarize_shadow_metadata(records)
+    assert summary["detected_empty_alt"] == 2
+    assert summary["unique_detected_labels"] == 1
+
+
 def test_category_inventory_counts_articles_once_per_category(capsys):
     files = ["a.html", "b.html", "c.html"]
     result = main.report_category_inventory(files, {
@@ -388,8 +444,12 @@ def test_category_inventory_counts_articles_once_per_category(capsys):
     })
     assert result == {
         "categories": {"キノコ": 2, "観察記録": 1},
+        "total_unique_categories": 2,
         "articles_with_categories": 2,
         "articles_without_categories": 1,
+        "articles_with_mushroom_context": 0,
+        "articles_with_explicit_non_mushroom_signal": 0,
+        "articles_with_conflicting_signals": 0,
     }
     assert "キノコ=2 articles" in capsys.readouterr().out
 
@@ -490,7 +550,7 @@ def test_shadow_failure_is_logged_without_blocking_production(monkeypatch, capsy
 
     assert generated == [entries]
     assert (
-        "Phase 3B shadow metadata extraction failed: broken shadow"
+        "Phase 3B.1 shadow audit failed: broken shadow"
         in capsys.readouterr().out
     )
 
