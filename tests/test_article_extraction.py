@@ -61,6 +61,35 @@ def test_known_false_pages_are_not_generated(monkeypatch, tmp_path):
     )
 
 
+def test_generated_page_types_use_copied_shared_assets(monkeypatch, tmp_path):
+    output = tmp_path / "output"
+    monkeypatch.setattr(main, "OUTPUT_DIR", str(output))
+    monkeypatch.setattr(main, "load_exif_cache", lambda: {})
+    entries = main.fetch_images([FIXTURES / "article_body.html"])
+
+    grouped = main.generate_gallery(entries, {})
+    main.generate_index(grouped, {})
+    main.generate_favorite_page(grouped)
+
+    page_paths = {
+        "index": output / "index.html",
+        "favorite": output / "favorite.html",
+        "detail": output / "ムキタケ.html",
+        "aiuo": output / "ま行.html",
+    }
+    for page_type, page_path in page_paths.items():
+        generated_html = page_path.read_text(encoding="utf-8")
+        assert 'href="assets/gallery.css"' in generated_html, page_type
+        assert 'src="assets/gallery.js"' in generated_html, page_type
+        assert "<style>" not in generated_html, page_type
+        assert "let lastHeight = 0" not in generated_html, page_type
+
+    for filename in ("gallery.css", "gallery.js"):
+        assert (output / "assets" / filename).read_bytes() == (
+            Path(main.ASSETS_DIR) / filename
+        ).read_bytes()
+
+
 def test_missing_secrets_only_block_api_access(monkeypatch):
     monkeypatch.setattr(main, "HATENA_USER", None)
     monkeypatch.setattr(main, "HATENA_BLOG_ID", None)
