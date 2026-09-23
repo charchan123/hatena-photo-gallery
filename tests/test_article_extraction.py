@@ -60,6 +60,12 @@ def test_shadow_metadata_uses_article_text_state_in_dom_order():
         ("べにてんぐたけ", True),
         ("クダアカゲシメジ？", True),
         ("種類不明", True),
+        ("コツブノオオワライタケ(仮称)", True),
+        ("キアシヤマドリタケ（仮称）？", True),
+        ("アンズタケ(広義)", True),
+        ("Lanmaoa angustispora？", True),
+        ("This is a mushroom", False),
+        ("この日は林道沿いで見つけました。", False),
         ("幼菌", False),
         ("傘の裏", False),
         ("傘の裏側には細かい特徴があります。", False),
@@ -78,12 +84,32 @@ def test_unknown_gallery_mapping_preserves_detected_label():
     assert main.normalize_gallery_name("ムキタケ") == "ムキタケ"
 
 
+def test_phase3b_candidate_state_preserves_annotations_and_latin_name():
+    metadata = main.extract_shadow_metadata(
+        [FIXTURES / "article_metadata_phase3b.html"], article_metadata={}
+    )
+    labels = [item["detected_label"] for item in metadata]
+    assert labels == [
+        "コツブノオオワライタケ(仮称)",
+        "キアシヤマドリタケ（仮称）？",
+        "アンズタケ(広義)",
+        "Lanmaoa angustispora？",
+        "Lanmaoa angustispora？",
+    ]
+    assert metadata[1]["gallery_name"] == "不明"
+    assert metadata[3]["gallery_name"] == "不明"
+
+
 def test_shadow_summary_counts_required_audit_states():
     metadata = main.extract_shadow_metadata(
         [FIXTURES / "article_metadata_state.html"]
     )
 
-    assert main.summarize_shadow_metadata(metadata) == {
+    summary = main.summarize_shadow_metadata(metadata)
+    assert {key: summary[key] for key in (
+        "total_images", "detected", "undetected", "legacy_alt_match",
+        "legacy_alt_mismatch", "unknown_mapped"
+    )} == {
         "total_images": 9,
         "detected": 8,
         "undetected": 1,
@@ -91,6 +117,8 @@ def test_shadow_summary_counts_required_audit_states():
         "legacy_alt_mismatch": 6,
         "unknown_mapped": 2,
     }
+    assert summary["subject_type_review"] == 9
+    assert summary["classification_low"] == 9
 
 
 def test_shadow_report_limits_audit_output(capsys):
@@ -101,11 +129,11 @@ def test_shadow_report_limits_audit_output(capsys):
     main.report_shadow_metadata(metadata, audit_limit=2)
     output = capsys.readouterr().out
 
-    assert "Phase 3A metadata shadow summary:" in output
+    assert "Phase 3B metadata shadow summary:" in output
     assert "total_images=9" in output
     assert "legacy_alt_mismatch=6" in output
-    assert output.count("Phase 3A shadow audit:") == 3  # two rows plus omitted count
-    assert "5 more omitted" in output
+    assert output.count("Phase 3B shadow audit:") == 3  # two rows plus omitted count
+    assert "7 more omitted" in output
 
 
 def test_shadow_metadata_json_is_written_under_cache(monkeypatch, tmp_path):
@@ -265,7 +293,9 @@ def test_missing_secrets_only_block_api_access(monkeypatch):
 def test_fetch_hatena_articles_api_returns_saved_article_files(monkeypatch, tmp_path):
     atom_response = """\
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <entry><content type="text/html">&lt;p&gt;first&lt;/p&gt;</content></entry>
+  <entry><id>tag:example,1</id><title>First title</title>
+    <category term="キノコ"/><category term="観察記録"/>
+    <content type="text/html">&lt;p&gt;first&lt;/p&gt;</content></entry>
   <entry><content type="text/html">&lt;p&gt;second&lt;/p&gt;</content></entry>
 </feed>
 """
@@ -278,6 +308,9 @@ def test_fetch_hatena_articles_api_returns_saved_article_files(monkeypatch, tmp_
     monkeypatch.setattr(main, "HATENA_BLOG_ID", "test-blog")
     monkeypatch.setattr(main, "HATENA_API_KEY", "test-key")
     monkeypatch.setattr(main, "ARTICLES_DIR", str(tmp_path / "articles"))
+    sidecar = tmp_path / "cache" / "phase3-article-metadata.json"
+    monkeypatch.setattr(main, "CACHE_DIR", str(tmp_path / "cache"))
+    monkeypatch.setattr(main, "ARTICLE_METADATA_FILE", str(sidecar))
     monkeypatch.setattr(main.requests, "get", lambda *args, **kwargs: FakeResponse())
 
     article_files = main.fetch_hatena_articles_api()
@@ -290,6 +323,75 @@ def test_fetch_hatena_articles_api_returns_saved_article_files(monkeypatch, tmp_
         "<p>first</p>",
         "<p>second</p>",
     ]
+    captured = __import__("json").loads(sidecar.read_text(encoding="utf-8"))
+    assert captured[article_files[0]]["article_id"] == "tag:example,1"
+    assert captured[article_files[0]]["title"] == "First title"
+    assert captured[article_files[0]]["categories"] == ["キノコ", "観察記録"]
+
+
+def test_article_metadata_sidecar_failure_does_not_discard_articles(monkeypatch, tmp_path, capsys):
+    atom_response = '<feed xmlns="http://www.w3.org/2005/Atom"><entry><content>x</content></entry></feed>'
+    response = type("Response", (), {"status_code": 200, "text": atom_response})()
+    monkeypatch.setattr(main, "HATENA_USER", "user")
+    monkeypatch.setattr(main, "HATENA_BLOG_ID", "blog")
+    monkeypatch.setattr(main, "HATENA_API_KEY", "key")
+    monkeypatch.setattr(main, "ARTICLES_DIR", str(tmp_path / "articles"))
+    monkeypatch.setattr(main.requests, "get", lambda *args, **kwargs: response)
+    monkeypatch.setattr(
+        main,
+        "save_article_metadata",
+        lambda data: (_ for _ in ()).throw(OSError("read-only")),
+    )
+
+    assert main.fetch_hatena_articles_api() == [
+        str(tmp_path / "articles" / "article_1.html")
+    ]
+    assert (
+        "Phase 3B article metadata capture failed: read-only"
+        in capsys.readouterr().out
+    )
+
+
+@pytest.mark.parametrize(
+    ("label", "categories", "expected"),
+    [
+        ("ムキタケ", ["キノコ"], ("mushroom", "mushroom_category", "high")),
+        ("コブハクチョウ", ["野鳥"], ("non_mushroom", "non_mushroom_category", "high")),
+        ("コブハクチョウ", [], ("review", "no_category_signal", "low")),
+        ("ムキタケ", ["キノコ", "野鳥"], ("review", "conflicting_category_signals", "low")),
+        (None, ["キノコ"], ("review", "no_detected_label", "low")),
+    ],
+)
+def test_category_aware_classification(label, categories, expected):
+    assert main.classify_subject_type(label, categories) == expected
+
+
+def test_shadow_metadata_uses_metadata_for_classification_without_changing_confidence():
+    path = FIXTURES / "article_metadata_state.html"
+    article_metadata = {
+        str(path): {"article_id": "entry-1", "title": "Birds", "categories": ["野鳥"]}
+    }
+    metadata = main.extract_shadow_metadata([path], article_metadata)
+    assert metadata[1]["subject_type"] == "non_mushroom"
+    assert metadata[1]["classification_confidence"] == "high"
+    assert metadata[1]["confidence"] == "medium"
+    assert metadata[1]["article_id"] == "entry-1"
+    assert metadata[1]["article_title"] == "Birds"
+
+
+def test_category_inventory_counts_articles_once_per_category(capsys):
+    files = ["a.html", "b.html", "c.html"]
+    result = main.report_category_inventory(files, {
+        "a.html": {"categories": ["キノコ", "観察記録"]},
+        "b.html": {"categories": ["キノコ"]},
+        "c.html": {"categories": []},
+    })
+    assert result == {
+        "categories": {"キノコ": 2, "観察記録": 1},
+        "articles_with_categories": 2,
+        "articles_without_categories": 1,
+    }
+    assert "キノコ=2 articles" in capsys.readouterr().out
 
 
 def test_build_stops_when_api_returns_no_article_files(monkeypatch):
@@ -329,7 +431,7 @@ def test_build_processes_non_empty_data_as_before(monkeypatch):
         lambda files: [{"shadow": True}] if files else [],
     )
     monkeypatch.setattr(
-        main, "report_shadow_metadata", lambda metadata: calls.append("shadow-report")
+        main, "report_shadow_metadata", lambda metadata, **kwargs: calls.append("shadow-report")
     )
     monkeypatch.setattr(
         main, "save_shadow_metadata", lambda metadata: calls.append("shadow-save")
@@ -388,7 +490,7 @@ def test_shadow_failure_is_logged_without_blocking_production(monkeypatch, capsy
 
     assert generated == [entries]
     assert (
-        "Phase 3A shadow metadata extraction failed: broken shadow"
+        "Phase 3B shadow metadata extraction failed: broken shadow"
         in capsys.readouterr().out
     )
 

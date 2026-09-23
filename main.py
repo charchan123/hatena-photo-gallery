@@ -66,6 +66,7 @@ ASSETS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets")
 CACHE_DIR = "cache"
 CACHE_FILE = os.path.join(CACHE_DIR, "exif-cache.json")
 SHADOW_METADATA_FILE = os.path.join(CACHE_DIR, "phase3-shadow-metadata.json")
+ARTICLE_METADATA_FILE = os.path.join(CACHE_DIR, "phase3-article-metadata.json")
 
 SHADOW_EXCLUDE_PATTERNS = [
     r'はてなブックマーク',
@@ -77,6 +78,10 @@ SHADOW_EXCLUDE_PATTERNS = [
 
 SUBJECT_BLOCK_TAGS = ("p", "h1", "h2", "h3", "h4", "h5", "h6")
 SUBJECT_LABEL_STOPWORDS = {"幼菌", "傘の裏"}
+SUBJECT_ALLOWED_ANNOTATIONS = ("仮称", "広義")
+MUSHROOM_CATEGORY_KEYWORDS = ("キノコ", "きのこ", "菌類", "茸")
+NON_MUSHROOM_CATEGORY_KEYWORDS = ("野鳥", "鳥類", "昆虫", "植物", "花", "風景")
+NON_MUSHROOM_EXACT_CATEGORIES = {"鳥"}
 
 # ====== API ======
 ATOM_ENDPOINT = f"https://blog.hatena.ne.jp/{HATENA_USER}/{HATENA_BLOG_ID}/atom/entry"
@@ -371,6 +376,7 @@ def fetch_hatena_articles_api():
     url = ATOM_ENDPOINT
     count = 0
     article_files = []
+    article_metadata = {}
     while url:
         print(f"🔗 Fetching: {url}")
         r = requests.get(url, auth=AUTH, headers=HEADERS)
@@ -390,14 +396,56 @@ def fetch_hatena_articles_api():
             with open(filename, "w", encoding="utf-8") as f:
                 f.write(html_content)
             article_files.append(filename)
+            article_metadata[os.path.normpath(filename)] = {
+                "article_id": _atom_text(entry, "atom:id", ns),
+                "title": _atom_text(entry, "atom:title", ns),
+                "categories": [
+                    node.attrib["term"]
+                    for node in entry.findall("atom:category", ns)
+                    if node.attrib.get("term") is not None
+                ],
+                "url": _atom_entry_url(entry, ns),
+                "published": _atom_text(entry, "atom:published", ns),
+                "updated": _atom_text(entry, "atom:updated", ns),
+            }
             print(f"✅ 保存完了: {filename}")
 
         count += len(entries)
         next_link = root.find("atom:link[@rel='next']", ns)
         url = next_link.attrib["href"] if next_link is not None else None
 
+    try:
+        save_article_metadata(article_metadata)
+    except Exception as error:
+        print(f"Phase 3B article metadata capture failed: {error}")
     print(f"📦 合計 {count} 件の記事を保存しました。")
     return article_files
+
+
+def _atom_text(entry, selector, namespace):
+    node = entry.find(selector, namespace)
+    return node.text if node is not None else None
+
+
+def _atom_entry_url(entry, namespace):
+    link = entry.find("atom:link[@rel='alternate']", namespace)
+    return link.attrib.get("href") if link is not None else None
+
+
+def save_article_metadata(article_metadata):
+    """Atom metadata を shadow 専用 sidecar に保存する。"""
+    os.makedirs(CACHE_DIR, exist_ok=True)
+    with open(ARTICLE_METADATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(article_metadata, f, ensure_ascii=False, indent=2)
+
+
+def load_article_metadata():
+    try:
+        with open(ARTICLE_METADATA_FILE, encoding="utf-8") as f:
+            value = json.load(f)
+        return value if isinstance(value, dict) else {}
+    except FileNotFoundError:
+        return {}
 
 # ===========================
 # HTML から画像抽出
@@ -451,7 +499,7 @@ def fetch_images(article_files):
 
 
 # ===========================
-# Phase 3A 本文 metadata（shadow mode）
+# Phase 3B 本文 metadata（shadow mode）
 # ===========================
 def normalize_subject_text(text):
     """本文ラベル候補の空白だけを安全に整える（表記自体は維持する）。"""
@@ -479,15 +527,69 @@ def is_subject_label_candidate(text):
     if any(re.search(pattern, candidate) for pattern in SHADOW_EXCLUDE_PATTERNS):
         return False
 
+    if is_latin_scientific_label(candidate):
+        return True
+
+    validation_text = strip_subject_annotation_for_validation(candidate)
+    if validation_text is None:
+        return False
+
     # Unknown labels are explicitly useful even though they contain kanji.
     if "不明" in candidate:
         return True
 
     allowed = r"ァ-ヶぁ-ゖー・?？()（）「」『』【】\[\]"
-    if not re.fullmatch(fr"[{allowed}]+", candidate):
+    if not re.fullmatch(fr"[{allowed}]+", validation_text):
         return False
-    kana_count = len(re.findall(r"[ァ-ヶぁ-ゖ]", candidate))
+    kana_count = len(re.findall(r"[ァ-ヶぁ-ゖ]", validation_text))
     return kana_count >= 3
+
+
+def strip_subject_annotation_for_validation(text):
+    """許可済み注記だけを検証時に除き、未知の括弧注記は拒否する。"""
+    result = text
+    for annotation in SUBJECT_ALLOWED_ANNOTATIONS:
+        result = re.sub(fr"(?:\({annotation}\)|（{annotation}）)", "", result)
+    if re.search(r"[()（）]", result):
+        return None
+    return result
+
+
+def is_latin_scientific_label(text):
+    """一般英文を避けた、保守的な二名法風 Latin label 判定。"""
+    return bool(re.fullmatch(r"[A-Z][a-z]{2,} [a-z][a-z-]{2,}[?？]?", text))
+
+
+def normalize_category_term(term):
+    return unicodedata.normalize("NFKC", term or "").strip().casefold()
+
+
+def get_category_signals(categories):
+    normalized = [normalize_category_term(term) for term in categories]
+    mushroom = any(
+        normalize_category_term(keyword) in term
+        for term in normalized
+        for keyword in MUSHROOM_CATEGORY_KEYWORDS
+    )
+    non_mushroom = any(
+        term in {normalize_category_term(value) for value in NON_MUSHROOM_EXACT_CATEGORIES}
+        or any(normalize_category_term(keyword) in term for keyword in NON_MUSHROOM_CATEGORY_KEYWORDS)
+        for term in normalized
+    )
+    return mushroom, non_mushroom
+
+
+def classify_subject_type(detected_label, categories):
+    mushroom, non_mushroom = get_category_signals(categories)
+    if detected_label is None:
+        return "review", "no_detected_label", "low"
+    if mushroom and non_mushroom:
+        return "review", "conflicting_category_signals", "low"
+    if mushroom:
+        return "mushroom", "mushroom_category", "high"
+    if non_mushroom:
+        return "non_mushroom", "non_mushroom_category", "high"
+    return "review", "no_category_signal", "low"
 
 
 def normalize_gallery_name(detected_label):
@@ -509,10 +611,15 @@ def _shadow_confidence(detected_label, legacy_alt):
     return "medium"
 
 
-def extract_shadow_metadata(article_files):
-    """記事本文を DOM 順に走査し、画像単位の Phase 3A metadata を返す。"""
+def extract_shadow_metadata(article_files, article_metadata=None):
+    """記事本文を DOM 順に走査し、画像単位の Phase 3B metadata を返す。"""
+    if article_metadata is None:
+        article_metadata = load_article_metadata()
     metadata = []
     for html_file in article_files:
+        path = os.path.normpath(os.fspath(html_file))
+        article = article_metadata.get(path, {})
+        categories = article.get("categories") or []
         with open(html_file, encoding="utf-8") as f:
             soup = BeautifulSoup(f, "html.parser")
 
@@ -546,26 +653,34 @@ def extract_shadow_metadata(article_files):
                 re.search(pattern, legacy_alt) for pattern in SHADOW_EXCLUDE_PATTERNS
             ):
                 continue
+            subject_type, reason, classification_confidence = classify_subject_type(
+                current_subject, categories
+            )
             metadata.append(
                 {
                     "src": src,
                     "detected_label": current_subject,
                     "gallery_name": normalize_gallery_name(current_subject),
                     "legacy_alt": legacy_alt,
-                    "subject_type": "review",
+                    "subject_type": subject_type,
                     "source": "standalone_text_state",
                     "confidence": _shadow_confidence(current_subject, legacy_alt),
                     "article_path": os.fspath(html_file),
+                    "article_title": article.get("title"),
+                    "article_categories": categories,
+                    "article_id": article.get("article_id"),
+                    "classification_reason": reason,
+                    "classification_confidence": classification_confidence,
                 }
             )
     return metadata
 
 
-def summarize_shadow_metadata(metadata):
+def summarize_shadow_metadata(metadata, legacy_production_image_count=None):
     """Shadow metadata の監査用カウントを返す。"""
     detected = [item for item in metadata if item["detected_label"] is not None]
     matches = [item for item in detected if item["confidence"] == "high"]
-    return {
+    summary = {
         "total_images": len(metadata),
         "detected": len(detected),
         "undetected": len(metadata) - len(detected),
@@ -575,30 +690,69 @@ def summarize_shadow_metadata(metadata):
             item["detected_label"] is not None and item["gallery_name"] == "不明"
             for item in metadata
         ),
+        "subject_type_mushroom": sum(item["subject_type"] == "mushroom" for item in metadata),
+        "subject_type_non_mushroom": sum(item["subject_type"] == "non_mushroom" for item in metadata),
+        "subject_type_review": sum(item["subject_type"] == "review" for item in metadata),
+        "classification_high": sum(item["classification_confidence"] == "high" for item in metadata),
+        "classification_low": sum(item["classification_confidence"] == "low" for item in metadata),
+        "shadow_images_with_empty_alt": sum(not item["legacy_alt"] for item in metadata),
     }
+    if legacy_production_image_count is not None:
+        summary["legacy_production_image_count"] = legacy_production_image_count
+    return summary
 
 
-def report_shadow_metadata(metadata, audit_limit=25):
+def report_shadow_metadata(metadata, audit_limit=30, legacy_production_image_count=None):
     """集計と要確認レコードを Actions で読める量に制限して表示する。"""
-    summary = summarize_shadow_metadata(metadata)
-    print("Phase 3A metadata shadow summary:")
+    summary = summarize_shadow_metadata(metadata, legacy_production_image_count)
+    print("Phase 3B metadata shadow summary:")
     for key, value in summary.items():
         print(f"{key}={value}")
 
-    audit_entries = [
-        item
-        for item in metadata
-        if item["detected_label"] is None or item["confidence"] == "medium"
-    ]
+    priority = lambda item: (
+        item["detected_label"] is not None,
+        item["confidence"] != "medium",
+        item["subject_type"] != "review",
+        item["classification_reason"] != "conflicting_category_signals",
+        item["subject_type"] != "non_mushroom",
+        not (item["detected_label"] and not item["legacy_alt"]),
+    )
+    audit_entries = sorted(metadata, key=priority)
     for item in audit_entries[:audit_limit]:
         print(
-            "Phase 3A shadow audit: "
-            f"{item['article_path']} | detected={item['detected_label']} | "
-            f"alt={item['legacy_alt']} | src={item['src']}"
+            "Phase 3B shadow audit: "
+            f"{item['article_path']} | title={item['article_title']} | "
+            f"categories={item['article_categories']} | detected={item['detected_label']} | "
+            f"alt={item['legacy_alt']} | subject_type={item['subject_type']} | "
+            f"reason={item['classification_reason']} | src={item['src']}"
         )
     if len(audit_entries) > audit_limit:
-        print(f"Phase 3A shadow audit: {len(audit_entries) - audit_limit} more omitted")
+        print(f"Phase 3B shadow audit: {len(audit_entries) - audit_limit} more omitted")
+    for item in [x for x in metadata if x["subject_type"] == "non_mushroom"][:20]:
+        print(
+            "Phase 3B non-mushroom audit: "
+            f"{item['article_path']} | categories={item['article_categories']} | "
+            f"detected={item['detected_label']} | src={item['src']}"
+        )
     return summary
+
+
+def report_category_inventory(article_files, article_metadata=None, limit=50):
+    if article_metadata is None:
+        article_metadata = load_article_metadata()
+    counts = {}
+    without_categories = 0
+    for article_file in article_files:
+        categories = article_metadata.get(os.path.normpath(os.fspath(article_file)), {}).get("categories") or []
+        if not categories:
+            without_categories += 1
+        for category in set(categories):
+            counts[category] = counts.get(category, 0) + 1
+    print("Phase 3B category inventory:")
+    for category, count in sorted(counts.items(), key=lambda item: (-item[1], item[0]))[:limit]:
+        print(f"{category}={count} articles")
+    print(f"uncategorized={without_categories} articles")
+    return {"categories": counts, "articles_with_categories": len(article_files) - without_categories, "articles_without_categories": without_categories}
 
 
 def save_shadow_metadata(metadata):
@@ -1088,14 +1242,15 @@ def build_gallery():
             "空のギャラリーで上書きしないよう生成を中止します。"
         )
 
-    # Phase 3A is audit-only. Failure is visible, but must not replace or block
+    # Phase 3B is audit-only. Failure is visible, but must not replace or block
     # the legacy alt-based production entries below.
     try:
         shadow_metadata = extract_shadow_metadata(article_files)
-        report_shadow_metadata(shadow_metadata)
+        report_category_inventory(article_files)
+        report_shadow_metadata(shadow_metadata, legacy_production_image_count=len(entries))
         save_shadow_metadata(shadow_metadata)
     except Exception as error:
-        print(f"Phase 3A shadow metadata extraction failed: {error}")
+        print(f"Phase 3B shadow metadata extraction failed: {error}")
 
     exif_cache = load_exif_cache()
     exif_cache = build_exif_cache(entries, exif_cache)

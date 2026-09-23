@@ -159,3 +159,74 @@ should add Hatena category and other corroborating signals to classify records a
 results, and only then separately decide whether to replace the alt-based production
 classification. UI, workflows, Hatena integration, and production output were not
 changed in Phase 3A.
+
+---
+
+# Phase 3B handoff: category-aware shadow classification
+
+## Baseline and boundary
+
+Phase 3B started at `26aa47d6dc90cf120b64589c60b00778b1b74319` and remains
+strictly shadow mode. Production still passes the exact `fetch_images(article_files)`
+list to `generate_gallery(entries, exif_cache)`, so legacy alt remains its classification
+source. No cutover occurred. Phase 3A.5 iframe height code, `assets/gallery.js`, and
+`assets/gallery.css` were not changed.
+
+The Phase 3A full-data comparison baseline remains `total_images=948`, `detected=865`,
+`undetected=83`, `legacy_alt_match=740`, `legacy_alt_mismatch=125`, and
+`unknown_mapped=111`; legacy production had 896 images. Compare the next Actions run
+against these values without treating alt as truth.
+
+## Article metadata capture and sidecar
+
+Each Atom entry contributes id, title, category terms, alternate URL, published, and
+updated metadata while `fetch_hatena_articles_api()` retains its `list[str]` contract.
+Metadata is keyed by normalized article path in
+`cache/phase3-article-metadata.json`. A sidecar write error is explicitly logged but
+cannot stop successfully fetched article content or production. The existing `cache/`
+ignore keeps this and `cache/phase3-shadow-metadata.json` out of Git and Pages.
+
+## Detection and schema
+
+The Phase 3A state machine remains intact: each article starts at `None`; valid
+standalone body labels update state; images, prose, and alt never update it. Candidate
+validation temporarily strips only allowlisted `仮称` and `広義` parenthetical
+annotations, preserving the complete detected label. A conservative two-word Latin
+binomial pattern accepts `Lanmaoa angustispora？` but rejects ordinary English. Unknown
+mapping for `?`, `？`, and `不明` is unchanged.
+
+Each shadow record now has `src`, `detected_label`, `gallery_name`, `legacy_alt`,
+`subject_type`, `source`, `confidence`, `article_path`, `article_title`,
+`article_categories`, `article_id`, `classification_reason`, and
+`classification_confidence`. Missing sidecar data safely yields no title/id, no
+categories, and review classification.
+
+## Category and classification rules
+
+Comparison applies trim plus Unicode NFKC/casefold while preserving original terms.
+Initial mushroom signals are `キノコ`, `きのこ`, `菌類`, and `茸`. Initial
+non-mushroom signals are `野鳥`, `鳥類`, exact `鳥`, `昆虫`, `植物`, `花`, and `風景`.
+These small constants should only grow based on inventory evidence.
+
+No detected label gives `review` / `no_detected_label` / low. A detected label with one
+unopposed category direction gives `mushroom` / `mushroom_category` or
+`non_mushroom` / `non_mushroom_category`, with high classification confidence.
+Conflicting directions give `review` / `conflicting_category_signals` / low, and no
+signal gives `review` / `no_category_signal` / low. Alt is never a classifier input.
+
+The existing `confidence` remains body-label versus alt agreement (`high`, `medium`,
+`low`). The separate `classification_confidence` measures certainty in subject type.
+
+## Inventory, summary, audit, and isolation
+
+Logs include a top-50 category inventory and uncategorized count; Phase 3A counters;
+three subject-type totals; high/low classification totals; empty-alt count; and legacy
+production count. A bounded 30-row audit prioritizes undetected, mismatch, review,
+conflict, non-mushroom, and detected empty-alt cases, with a separate maximum-20
+non-mushroom audit. Any shadow extraction/report/write error is visible and production
+continues with its already-created legacy entries.
+
+Validation covered Python compilation, the full pytest suite, JavaScript syntax,
+highlight and height regressions, and `git diff --check`. After merge, inspect the real
+Actions inventory, detection delta, mismatch delta, all subject-type totals, and audit
+examples. Tune only from that evidence; production cutover remains a separate phase.
