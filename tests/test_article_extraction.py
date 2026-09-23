@@ -41,7 +41,7 @@ def test_shadow_metadata_uses_article_text_state_in_dom_order():
     assert metadata[1]["confidence"] == "medium"
     assert metadata[4]["confidence"] == "high"
     assert metadata[6]["detected_label"] == "クダアカゲシメジ？"
-    assert metadata[6]["gallery_name"] == "不明"
+    assert metadata[6]["gallery_name"] is None
     assert metadata[7]["detected_label"] == "クダアカゲシメジ？"
     assert metadata[7]["confidence"] == "high"
     assert metadata[8]["detected_label"] == "キハツダケ"
@@ -77,11 +77,15 @@ def test_subject_label_candidate_is_conservative(text, expected):
     assert main.is_subject_label_candidate(text) is expected
 
 
-def test_unknown_gallery_mapping_preserves_detected_label():
-    assert main.normalize_gallery_name("クダアカゲシメジ?") == "不明"
-    assert main.normalize_gallery_name("クダアカゲシメジ？") == "不明"
-    assert main.normalize_gallery_name("種類不明") == "不明"
-    assert main.normalize_gallery_name("ムキタケ") == "ムキタケ"
+def test_unknown_gallery_mapping_is_classification_aware():
+    assert main.normalize_gallery_name("シイタケ?", "mushroom", "シイタケ") == "不明"
+    assert main.normalize_gallery_name("種類不明", "review") is None
+    assert main.normalize_gallery_name("コブハクチョウ？", "non_mushroom") is None
+    assert main.normalize_gallery_name("シイタケ", "mushroom", "シイタケ") == "シイタケ"
+    assert main.classify_subject_type("何か？", main.load_subject_taxonomy()) == (
+        "review", "taxonomy_unmatched", "low"
+    )
+    assert main.normalize_gallery_name("何か？", "review") is None
 
 
 def test_phase3b_candidate_state_preserves_annotations_and_latin_name():
@@ -96,8 +100,8 @@ def test_phase3b_candidate_state_preserves_annotations_and_latin_name():
         "Lanmaoa angustispora？",
         "Lanmaoa angustispora？",
     ]
-    assert metadata[1]["gallery_name"] == "不明"
-    assert metadata[3]["gallery_name"] == "不明"
+    assert metadata[1]["gallery_name"] is None
+    assert metadata[3]["gallery_name"] is None
 
 
 def test_shadow_summary_counts_required_audit_states():
@@ -115,7 +119,7 @@ def test_shadow_summary_counts_required_audit_states():
         "undetected": 1,
         "legacy_alt_match": 2,
         "legacy_alt_mismatch": 6,
-        "unknown_mapped": 2,
+        "unknown_mapped": 0,
     }
     assert summary["subject_type_review"] == 9
     assert summary["classification_low"] == 9
@@ -131,7 +135,7 @@ def test_shadow_report_limits_audit_output(capsys):
     main.report_shadow_metadata(metadata, audit_limit=2)
     output = capsys.readouterr().out
 
-    assert "Phase 3B.1 metadata shadow summary:" in output
+    assert "Phase 3B.2 metadata shadow summary:" in output
     assert "total_images=9" in output
     assert "legacy_alt_mismatch=6" in output
     assert output.count("Phase 3B.1 shadow audit:") == 3  # two rows plus omitted count
@@ -355,19 +359,22 @@ def test_article_metadata_sidecar_failure_does_not_discard_articles(monkeypatch,
 
 
 @pytest.mark.parametrize(
-    ("label", "categories", "expected"),
+    ("label", "expected"),
     [
-        ("ムキタケ", ["キノコ"], ("review", "explicit_mushroom_category_review", "low")),
-        ("ムキタケ", ["キノコ探索日記"], ("review", "mushroom_context_only", "low")),
-        ("コブハクチョウ", ["キノコ探索日記"], ("review", "mushroom_context_only", "low")),
-        ("コブハクチョウ", ["野鳥"], ("non_mushroom", "explicit_non_mushroom_category", "high")),
-        ("コブハクチョウ", [], ("review", "no_category_signal", "low")),
-        ("ムキタケ", ["キノコ", "野鳥"], ("review", "conflicting_category_signals", "low")),
-        (None, ["キノコ"], ("review", "no_detected_label", "low")),
+        ("ヤマドリタケモドキ", ("mushroom", "taxonomy_mushroom", "high")),
+        ("シイタケ", ("mushroom", "taxonomy_mushroom", "high")),
+        ("ベニテングタケ", ("mushroom", "taxonomy_mushroom", "high")),
+        ("ドクヤマドリ", ("mushroom", "taxonomy_mushroom", "high")),
+        ("カエンタケ", ("mushroom", "taxonomy_mushroom", "high")),
+        ("コブハクチョウ", ("non_mushroom", "taxonomy_non_mushroom", "high")),
+        ("ヨシガモ", ("non_mushroom", "taxonomy_non_mushroom", "high")),
+        ("ミツバアケビ", ("non_mushroom", "taxonomy_non_mushroom", "high")),
+        ("ムキタケ", ("review", "taxonomy_unmatched", "low")),
+        (None, ("review", "no_detected_label", "low")),
     ],
 )
-def test_category_aware_classification(label, categories, expected):
-    assert main.classify_subject_type(label, categories) == expected
+def test_taxonomy_classification(label, expected):
+    assert main.classify_subject_type(label, main.load_subject_taxonomy()) == expected
 
 
 def test_shadow_metadata_uses_metadata_for_classification_without_changing_confidence():
@@ -376,8 +383,8 @@ def test_shadow_metadata_uses_metadata_for_classification_without_changing_confi
         str(path): {"article_id": "entry-1", "title": "Birds", "categories": ["野鳥"]}
     }
     metadata = main.extract_shadow_metadata([path], article_metadata)
-    assert metadata[1]["subject_type"] == "non_mushroom"
-    assert metadata[1]["classification_confidence"] == "high"
+    assert metadata[1]["subject_type"] == "review"
+    assert metadata[1]["classification_confidence"] == "low"
     assert metadata[1]["confidence"] == "medium"
     assert metadata[1]["article_id"] == "entry-1"
     assert metadata[1]["article_title"] == "Birds"
@@ -433,6 +440,122 @@ def test_empty_alt_audit_and_distinct_label_summary(tmp_path, capsys):
     summary = main.summarize_shadow_metadata(records)
     assert summary["detected_empty_alt"] == 2
     assert summary["unique_detected_labels"] == 1
+
+
+def _write_taxonomy(path, entries):
+    import json
+    path.write_text(json.dumps({"version": 1, "entries": entries}, ensure_ascii=False), encoding="utf-8")
+    return path
+
+
+def _taxonomy_entry(name, subject_type="mushroom", aliases=None):
+    return {
+        "canonical_name": name,
+        "subject_type": subject_type,
+        "aliases": aliases or [],
+        "verification_status": "project_seed",
+        "sources": [],
+        "notes": "test fixture",
+    }
+
+
+def test_repository_subject_taxonomy_has_only_eight_requested_seeds():
+    taxonomy = main.load_subject_taxonomy()
+    assert len(taxonomy["entries"]) == 8
+    assert sum(row["subject_type"] == "mushroom" for row in taxonomy["entries"]) == 5
+    assert sum(row["subject_type"] == "non_mushroom" for row in taxonomy["entries"]) == 3
+
+
+@pytest.mark.parametrize(
+    "entries",
+    [
+        [_taxonomy_entry("シイタケ"), _taxonomy_entry(" シイタケ ")],
+        [_taxonomy_entry("シイタケ", aliases=["椎茸"]), _taxonomy_entry("椎茸")],
+        [_taxonomy_entry("シイタケ"), _taxonomy_entry("シイタケ？", "non_mushroom")],
+        [_taxonomy_entry("invalid", "review")],
+    ],
+)
+def test_taxonomy_validation_rejects_collisions_and_invalid_type(tmp_path, entries):
+    path = _write_taxonomy(tmp_path / "taxonomy.json", entries)
+    with pytest.raises(main.SubjectTaxonomyError):
+        main.load_subject_taxonomy(path)
+
+
+def test_taxonomy_alias_and_normalized_match_priority(tmp_path):
+    path = _write_taxonomy(tmp_path / "taxonomy.json", [
+        _taxonomy_entry("キアシヤマドリタケ", aliases=["試験別名"])
+    ])
+    taxonomy = main.load_subject_taxonomy(path)
+    assert main.match_subject_taxonomy("キアシヤマドリタケ", taxonomy)[1] == "canonical_exact"
+    assert main.match_subject_taxonomy("試験別名", taxonomy)[1] == "alias_exact"
+    entry, match_type = main.match_subject_taxonomy("キアシヤマドリタケ(仮称)？", taxonomy)
+    assert entry["canonical_name"] == "キアシヤマドリタケ"
+    assert match_type == "normalized"
+
+
+@pytest.mark.parametrize(
+    ("label", "subject_type", "gallery_name", "match_type"),
+    [
+        ("シイタケ", "mushroom", "シイタケ", "canonical_exact"),
+        ("シイタケ？", "mushroom", "不明", "normalized"),
+        ("コブハクチョウ", "non_mushroom", None, "canonical_exact"),
+        ("コブハクチョウ？", "non_mushroom", None, "normalized"),
+        ("種類不明", "review", None, "none"),
+    ],
+)
+def test_shadow_gallery_name_and_original_label(label, subject_type, gallery_name, match_type, tmp_path):
+    article = tmp_path / "article.html"
+    article.write_text(f'<p>{label}</p><img src="x.jpg" alt="changed alt">', encoding="utf-8")
+    record = main.extract_shadow_metadata([article], article_metadata={})[0]
+    assert record["detected_label"] == label
+    assert record["subject_type"] == subject_type
+    assert record["gallery_name"] == gallery_name
+    assert record["taxonomy_match_type"] == match_type
+
+
+def test_taxonomy_summary_and_candidate_export(tmp_path, monkeypatch):
+    article = tmp_path / "article.html"
+    article.write_text('<p>シイタケ</p><img src="1"><p>ナゾキノコ</p><img src="2">', encoding="utf-8")
+    records = main.extract_shadow_metadata([article], article_metadata={})
+    summary = main.summarize_shadow_metadata(records)
+    assert summary["taxonomy_master_entries"] == 8
+    assert summary["taxonomy_master_mushroom_entries"] == 5
+    assert summary["taxonomy_master_non_mushroom_entries"] == 3
+    assert summary["taxonomy_matched_images"] == 1
+    assert summary["taxonomy_unmatched_images"] == 1
+    candidate_path = tmp_path / "cache" / "candidates.json"
+    monkeypatch.setattr(main, "SUBJECT_TAXONOMY_CANDIDATES_FILE", str(candidate_path))
+    monkeypatch.setattr(main, "CACHE_DIR", str(candidate_path.parent))
+    main.save_subject_taxonomy_candidates(records)
+    assert '"detected_label": "ナゾキノコ"' in candidate_path.read_text(encoding="utf-8")
+
+
+@pytest.mark.parametrize("master_contents", [None, "{malformed"])
+def test_missing_or_malformed_taxonomy_keeps_legacy_production(
+    tmp_path, monkeypatch, capsys, master_contents
+):
+    taxonomy_path = tmp_path / "taxonomy.json"
+    if master_contents is not None:
+        taxonomy_path.write_text(master_contents, encoding="utf-8")
+    entries = [{"alt": "legacy", "src": "https://example.invalid/image.jpg"}]
+    generated = []
+    monkeypatch.setattr(main, "SUBJECT_TAXONOMY_FILE", str(taxonomy_path))
+    monkeypatch.setattr(main, "fetch_hatena_articles_api", lambda: [str(FIXTURES / "article_body.html")])
+    monkeypatch.setattr(main, "fetch_images", lambda files: entries)
+    monkeypatch.setattr(main, "report_category_inventory", lambda files: None)
+    monkeypatch.setattr(main, "report_shadow_metadata", lambda *args, **kwargs: None)
+    monkeypatch.setattr(main, "save_shadow_metadata", lambda data: None)
+    monkeypatch.setattr(main, "save_subject_taxonomy_candidates", lambda data: None)
+    monkeypatch.setattr(main, "load_exif_cache", lambda: {})
+    monkeypatch.setattr(main, "build_exif_cache", lambda actual, cache: cache)
+    monkeypatch.setattr(main, "save_exif_cache", lambda cache: None)
+    monkeypatch.setattr(main, "generate_gallery", lambda actual, cache: generated.append(actual) or {})
+    monkeypatch.setattr(main, "generate_index", lambda grouped, cache: None)
+    monkeypatch.setattr(main, "generate_favorite_page", lambda grouped: None)
+    main.build_gallery()
+    assert generated == [entries]
+    assert generated[0] is entries
+    assert "Phase 3B.2 taxonomy unavailable:" in capsys.readouterr().out
 
 
 def test_category_inventory_counts_articles_once_per_category(capsys):
@@ -550,7 +673,7 @@ def test_shadow_failure_is_logged_without_blocking_production(monkeypatch, capsy
 
     assert generated == [entries]
     assert (
-        "Phase 3B.1 shadow audit failed: broken shadow"
+        "Phase 3B.2 shadow audit failed: broken shadow"
         in capsys.readouterr().out
     )
 

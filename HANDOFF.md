@@ -301,3 +301,77 @@ only as a provisional population; distinguish `provisional_poisonous`,
 `confirmed_poisonous`, and `unknown`; confirm observed species against authoritative
 material; and never infer safe/edible from absence. No toxicity master or spore effect
 is implemented in Phase 3B.1.
+
+---
+
+# Phase 3B.2 handoff: static subject taxonomy master foundation
+
+## Baseline, scope, and real-data reference
+
+Phase 3B.2 started from `74579938d60d72eb3469311cd18eae3fa21d5ee4`. The
+Phase 3B.1 Actions baseline is `total_images=948`, `detected=871`, `undetected=77`,
+`legacy_alt_match=768`, `legacy_alt_mismatch=103`, `unknown_mapped=109`,
+`subject_type_review=948`, `unique_detected_labels=280`, category matches 779
+(exact 742 and normalized 37), and `legacy_production_image_count=896`. The old
+`unknown_mapped=109` is not comparable to Phase 3B.2 because its meaning changed.
+Observed exact category corroboration included `コブハクチョウ`, `ヨシガモ`, and
+`ミツバアケビ`; category corroboration alone remains deliberately non-taxonomic.
+
+## Static taxonomy and classification boundary
+
+`data/subject-taxonomy.json` is the version-controlled source of truth. It is loaded
+locally and build-time taxonomy lookup performs no Wikipedia, search, external API, or
+other Web access. Version 1 contains only the requested project seeds: five mushroom
+subjects (`ヤマドリタケモドキ`, `シイタケ`, `ベニテングタケ`, `ドクヤマドリ`,
+`カエンタケ`) and three non-mushroom subjects (`コブハクチョウ`, `ヨシガモ`,
+`ミツバアケビ`). No other detected label was inferred from spelling or general
+knowledge. `subject_type=mushroom` means in scope for this project's mushroom gallery;
+it makes no claim about safety, edibility, or toxicity.
+
+Lookup priority is canonical exact, alias exact, normalized canonical/alias, then none.
+Comparison normalization is NFKC, whitespace trim/collapse, casefold, allowlisted
+`(仮称)` / `(広義)` removal, and trailing question-mark removal. Stored detected labels
+are unchanged. Validation rejects a non-object root, missing version, non-list entries,
+empty canonical names, invalid subject types, invalid aliases, duplicate normalized
+canonical keys, alias collisions, and cross-type normalized-key conflicts. A missing,
+malformed, or invalid master is logged as `Phase 3B.2 taxonomy unavailable` and all
+shadow subjects safely fall back to review/low; production continues.
+
+A taxonomy mushroom/non-mushroom hit produces high classification confidence and reason
+`taxonomy_mushroom` / `taxonomy_non_mushroom`. An unmatched detected label produces
+review/low with `taxonomy_unmatched`; a missing detected label uses
+`no_detected_label`; an unavailable master uses `taxonomy_unavailable`. Category fields
+(`matched_categories`, `category_match_type`, mushroom context, and explicit category
+signals) remain separate corroboration/anomaly evidence and never promote taxonomy.
+
+## Gallery name, audits, and candidate handoff
+
+Future-only `gallery_name` is now classification-aware: only confirmed mushrooms get a
+name; their uncertainty markers map to `不明`, otherwise the taxonomy canonical name is
+preferred. Non-mushroom and review records always get `None`, including question-mark
+labels. Therefore `unknown_mapped` now counts only confirmed shadow mushrooms mapped to
+future-gallery `不明`, not every uncertain detected label.
+
+Shadow records add `taxonomy_subject_type`, `taxonomy_canonical_name`,
+`taxonomy_match_type`, `taxonomy_verification_status`, and `taxonomy_sources`. The
+summary retains Phase 3B.1 fields and adds master counts, matched/unmatched image and
+unique-label counts, mushroom/non-mushroom image counts, and canonical/alias/normalized
+match counts. A maximum-50 matched audit shows taxonomy and article evidence. Every
+unmatched distinct label is aggregated (up to 300 logged) with image/article/category,
+category-match, empty-alt, and mushroom-context counts plus uncertainty/Latin flags.
+The same unmatched candidates are written to ignored
+`cache/phase3-subject-taxonomy-candidates.json`; export failure is logged and isolated.
+
+## Unchanged production and next phase
+
+Production still sends the identical legacy list returned by `fetch_images()` to
+`generate_gallery()` and still groups by legacy alt. Taxonomy metadata and
+`gallery_name` do not feed production. Phase 3A detection/state-machine behavior,
+Phase 3A.5 iframe shrink assets, UI, workflow, Hatena markup, and EXIF behavior/cache
+were not changed. The expected EXIF reference remains 896/797/0/99.
+
+Toxicity remains a separate future concern. Mushroom classification must never imply
+safe, edible, poisonous, or non-poisonous; no toxicity field or master was added. In the
+next phase, review the complete unmatched candidate export against external sources and
+expand the static master through reviewable version-controlled changes rather than
+runtime lookup or heuristic suffix classification.

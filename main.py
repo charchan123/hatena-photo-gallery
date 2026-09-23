@@ -67,6 +67,12 @@ CACHE_DIR = "cache"
 CACHE_FILE = os.path.join(CACHE_DIR, "exif-cache.json")
 SHADOW_METADATA_FILE = os.path.join(CACHE_DIR, "phase3-shadow-metadata.json")
 ARTICLE_METADATA_FILE = os.path.join(CACHE_DIR, "phase3-article-metadata.json")
+SUBJECT_TAXONOMY_FILE = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "data", "subject-taxonomy.json"
+)
+SUBJECT_TAXONOMY_CANDIDATES_FILE = os.path.join(
+    CACHE_DIR, "phase3-subject-taxonomy-candidates.json"
+)
 
 SHADOW_EXCLUDE_PATTERNS = [
     r'はてなブックマーク',
@@ -82,6 +88,7 @@ SUBJECT_ALLOWED_ANNOTATIONS = ("仮称", "広義")
 MUSHROOM_CONTEXT_CATEGORIES = {"キノコ探索日記"}
 EXPLICIT_MUSHROOM_CATEGORIES = {"キノコ", "きのこ", "菌類", "茸"}
 EXPLICIT_NON_MUSHROOM_CATEGORIES = {"野鳥", "鳥類", "鳥", "昆虫", "植物", "花", "風景"}
+TAXONOMY_SUBJECT_TYPES = {"mushroom", "non_mushroom"}
 
 # ====== API ======
 ATOM_ENDPOINT = f"https://blog.hatena.ne.jp/{HATENA_USER}/{HATENA_BLOG_ID}/atom/entry"
@@ -560,6 +567,101 @@ def is_latin_scientific_label(text):
     return bool(re.fullmatch(r"[A-Z][a-z]{2,} [a-z][a-z-]{2,}[?？]?", text))
 
 
+class SubjectTaxonomyError(ValueError):
+    """The static subject taxonomy cannot be used safely."""
+
+
+def normalize_taxonomy_label(text):
+    """Return a conservative lookup key without changing the stored label."""
+    value = unicodedata.normalize("NFKC", text or "")
+    value = re.sub(r"\s+", " ", value).strip().casefold()
+    for annotation in SUBJECT_ALLOWED_ANNOTATIONS:
+        value = re.sub(fr"\s*\({annotation}\)\s*", "", value)
+    return re.sub(r"[?？]+$", "", value).strip()
+
+
+def load_subject_taxonomy(path=None):
+    """Load and validate the version-controlled taxonomy master.
+
+    Every canonical name and alias owns one normalized key. Rejecting all collisions
+    keeps lookup deterministic rather than silently choosing the first entry.
+    """
+    if path is None:
+        path = SUBJECT_TAXONOMY_FILE
+    try:
+        with open(path, encoding="utf-8") as file:
+            document = json.load(file)
+    except (OSError, json.JSONDecodeError) as error:
+        raise SubjectTaxonomyError(str(error)) from error
+    if not isinstance(document, dict):
+        raise SubjectTaxonomyError("taxonomy root must be a JSON object")
+    if "version" not in document:
+        raise SubjectTaxonomyError("taxonomy version is required")
+    entries = document.get("entries")
+    if not isinstance(entries, list):
+        raise SubjectTaxonomyError("taxonomy entries must be a list")
+
+    normalized = {}
+    canonical_exact = {}
+    alias_exact = {}
+    for index, raw_entry in enumerate(entries):
+        if not isinstance(raw_entry, dict):
+            raise SubjectTaxonomyError(f"entry {index} must be an object")
+        canonical = raw_entry.get("canonical_name")
+        subject_type = raw_entry.get("subject_type")
+        aliases = raw_entry.get("aliases")
+        if not isinstance(canonical, str) or not canonical.strip():
+            raise SubjectTaxonomyError(f"entry {index} canonical_name is required")
+        if subject_type not in TAXONOMY_SUBJECT_TYPES:
+            raise SubjectTaxonomyError(
+                f"entry {index} has invalid subject_type: {subject_type!r}"
+            )
+        if not isinstance(aliases, list) or not all(
+            isinstance(alias, str) and alias.strip() for alias in aliases
+        ):
+            raise SubjectTaxonomyError(f"entry {index} aliases must be non-empty strings")
+        if not isinstance(raw_entry.get("sources", []), list):
+            raise SubjectTaxonomyError(f"entry {index} sources must be a list")
+
+        entry = dict(raw_entry)
+        key_items = [(canonical, "canonical")]
+        key_items.extend((alias, "alias") for alias in aliases)
+        for label, kind in key_items:
+            key = normalize_taxonomy_label(label)
+            if not key:
+                raise SubjectTaxonomyError(f"entry {index} has an empty normalized key")
+            if key in normalized:
+                previous = normalized[key]
+                raise SubjectTaxonomyError(
+                    f"taxonomy normalized key collision {key!r}: "
+                    f"{previous['canonical_name']!r} and {canonical!r}"
+                )
+            normalized[key] = entry
+            (canonical_exact if kind == "canonical" else alias_exact)[label] = entry
+
+    return {
+        "version": document["version"],
+        "entries": entries,
+        "canonical_exact": canonical_exact,
+        "alias_exact": alias_exact,
+        "normalized": normalized,
+    }
+
+
+def match_subject_taxonomy(detected_label, taxonomy):
+    """Match canonical exact, alias exact, then normalized canonical/alias."""
+    if detected_label is None or taxonomy is None:
+        return None, "none"
+    entry = taxonomy["canonical_exact"].get(detected_label)
+    if entry is not None:
+        return entry, "canonical_exact"
+    entry = taxonomy["alias_exact"].get(detected_label)
+    if entry is not None:
+        return entry, "alias_exact"
+    entry = taxonomy["normalized"].get(normalize_taxonomy_label(detected_label))
+    return (entry, "normalized") if entry is not None else (None, "none")
+
+
 def normalize_category_term(term):
     return unicodedata.normalize("NFKC", normalize_subject_text(term)).casefold()
 
@@ -615,35 +717,26 @@ def match_label_to_categories(detected_label, categories):
     return (normalized, "normalized") if normalized else ([], "none")
 
 
-def classify_subject_type(detected_label, categories):
-    evidence = get_category_evidence(categories)
-    mushroom = evidence["has_explicit_mushroom_signal"]
-    non_mushroom = evidence["has_explicit_non_mushroom_signal"]
+def classify_subject_type(detected_label, taxonomy):
+    """Classify only from the curated taxonomy; categories are audit evidence."""
     if detected_label is None:
         return "review", "no_detected_label", "low"
-    if (mushroom or evidence["has_mushroom_context"]) and non_mushroom:
-        return "review", "conflicting_category_signals", "low"
-    if non_mushroom:
-        return "non_mushroom", "explicit_non_mushroom_category", "high"
-    matched, _ = match_label_to_categories(detected_label, categories)
-    if evidence["has_mushroom_context"] and matched:
-        return "review", "subject_category_match_review", "low"
-    if evidence["has_mushroom_context"]:
-        return "review", "mushroom_context_only", "low"
-    if mushroom:
-        return "review", "explicit_mushroom_category_review", "low"
-    if matched:
-        return "review", "subject_category_match_review", "low"
-    return "review", "no_category_signal", "low"
+    if taxonomy is None:
+        return "review", "taxonomy_unavailable", "low"
+    entry, _ = match_subject_taxonomy(detected_label, taxonomy)
+    if entry is None:
+        return "review", "taxonomy_unmatched", "low"
+    subject_type = entry["subject_type"]
+    return subject_type, f"taxonomy_{subject_type}", "high"
 
 
-def normalize_gallery_name(detected_label):
+def normalize_gallery_name(detected_label, subject_type="review", canonical_name=None):
     """将来用の gallery 名を作る。Phase 3A の production では未使用。"""
-    if detected_label is None:
+    if detected_label is None or subject_type != "mushroom":
         return None
     if "?" in detected_label or "？" in detected_label or "不明" in detected_label:
         return "不明"
-    return detected_label
+    return canonical_name or detected_label
 
 
 def _shadow_confidence(detected_label, legacy_alt):
@@ -656,10 +749,15 @@ def _shadow_confidence(detected_label, legacy_alt):
     return "medium"
 
 
-def extract_shadow_metadata(article_files, article_metadata=None):
+def extract_shadow_metadata(article_files, article_metadata=None, taxonomy=None):
     """記事本文を DOM 順に走査し、画像単位の Phase 3B metadata を返す。"""
     if article_metadata is None:
         article_metadata = load_article_metadata()
+    if taxonomy is None:
+        try:
+            taxonomy = load_subject_taxonomy()
+        except SubjectTaxonomyError as error:
+            print(f"Phase 3B.2 taxonomy unavailable: {error}")
     metadata = []
     for html_file in article_files:
         path = os.path.normpath(os.fspath(html_file))
@@ -698,8 +796,11 @@ def extract_shadow_metadata(article_files, article_metadata=None):
                 re.search(pattern, legacy_alt) for pattern in SHADOW_EXCLUDE_PATTERNS
             ):
                 continue
+            taxonomy_entry, taxonomy_match_type = match_subject_taxonomy(
+                current_subject, taxonomy
+            )
             subject_type, reason, classification_confidence = classify_subject_type(
-                current_subject, categories
+                current_subject, taxonomy
             )
             category_evidence = get_category_evidence(categories)
             matched_categories, category_match_type = match_label_to_categories(
@@ -709,7 +810,11 @@ def extract_shadow_metadata(article_files, article_metadata=None):
                 {
                     "src": src,
                     "detected_label": current_subject,
-                    "gallery_name": normalize_gallery_name(current_subject),
+                    "gallery_name": normalize_gallery_name(
+                        current_subject,
+                        subject_type,
+                        taxonomy_entry and taxonomy_entry["canonical_name"],
+                    ),
                     "legacy_alt": legacy_alt,
                     "subject_type": subject_type,
                     "source": "standalone_text_state",
@@ -722,16 +827,29 @@ def extract_shadow_metadata(article_files, article_metadata=None):
                     "classification_confidence": classification_confidence,
                     "matched_categories": matched_categories,
                     "category_match_type": category_match_type,
+                    "taxonomy_subject_type": taxonomy_entry and taxonomy_entry["subject_type"],
+                    "taxonomy_canonical_name": taxonomy_entry and taxonomy_entry["canonical_name"],
+                    "taxonomy_match_type": taxonomy_match_type,
+                    "taxonomy_verification_status": taxonomy_entry and taxonomy_entry.get("verification_status"),
+                    "taxonomy_sources": (taxonomy_entry and taxonomy_entry.get("sources", [])) or [],
                     **category_evidence,
                 }
             )
     return metadata
 
 
-def summarize_shadow_metadata(metadata, legacy_production_image_count=None):
+def summarize_shadow_metadata(metadata, legacy_production_image_count=None, taxonomy=None):
     """Shadow metadata の監査用カウントを返す。"""
     detected = [item for item in metadata if item["detected_label"] is not None]
     matches = [item for item in detected if item["confidence"] == "high"]
+    if taxonomy is None:
+        try:
+            taxonomy = load_subject_taxonomy()
+        except SubjectTaxonomyError:
+            taxonomy = {"entries": []}
+    taxonomy_matched = [item for item in detected if item["taxonomy_match_type"] != "none"]
+    taxonomy_unmatched = [item for item in detected if item["taxonomy_match_type"] == "none"]
+    master_entries = taxonomy.get("entries", [])
     summary = {
         "total_images": len(metadata),
         "detected": len(detected),
@@ -757,6 +875,18 @@ def summarize_shadow_metadata(metadata, legacy_production_image_count=None):
         "unique_detected_labels": len({item["detected_label"] for item in detected}),
         "mushroom_context_only_review": sum(item["classification_reason"] == "mushroom_context_only" for item in metadata),
         "category_conflicts": sum(item["classification_reason"] == "conflicting_category_signals" for item in metadata),
+        "taxonomy_master_entries": len(master_entries),
+        "taxonomy_master_mushroom_entries": sum(item["subject_type"] == "mushroom" for item in master_entries),
+        "taxonomy_master_non_mushroom_entries": sum(item["subject_type"] == "non_mushroom" for item in master_entries),
+        "taxonomy_matched_images": len(taxonomy_matched),
+        "taxonomy_unmatched_images": len(taxonomy_unmatched),
+        "taxonomy_matched_unique_labels": len({item["detected_label"] for item in taxonomy_matched}),
+        "taxonomy_unmatched_unique_labels": len({item["detected_label"] for item in taxonomy_unmatched}),
+        "taxonomy_mushroom_images": sum(item["taxonomy_subject_type"] == "mushroom" for item in detected),
+        "taxonomy_non_mushroom_images": sum(item["taxonomy_subject_type"] == "non_mushroom" for item in detected),
+        "taxonomy_canonical_exact_images": sum(item["taxonomy_match_type"] == "canonical_exact" for item in detected),
+        "taxonomy_alias_exact_images": sum(item["taxonomy_match_type"] == "alias_exact" for item in detected),
+        "taxonomy_normalized_images": sum(item["taxonomy_match_type"] == "normalized" for item in detected),
     }
     if legacy_production_image_count is not None:
         summary["legacy_production_image_count"] = legacy_production_image_count
@@ -774,12 +904,14 @@ def summarize_detected_labels(metadata):
             "detected_label": label, "image_count": 0, "article_paths": set(),
             "categories": set(), "category_match_count": 0, "empty_alt_count": 0,
             "subject_type_counts": {},
+            "mushroom_context_count": 0,
         })
         row["image_count"] += 1
         row["article_paths"].add(item["article_path"])
         row["categories"].update(item["article_categories"])
         row["category_match_count"] += item["category_match_type"] != "none"
         row["empty_alt_count"] += not item["legacy_alt"]
+        row["mushroom_context_count"] += item["has_mushroom_context"]
         subject_type = item["subject_type"]
         row["subject_type_counts"][subject_type] = row["subject_type_counts"].get(subject_type, 0) + 1
     result = []
@@ -792,6 +924,15 @@ def summarize_detected_labels(metadata):
             "category_match_count": row["category_match_count"],
             "empty_alt_count": row["empty_alt_count"],
             "subject_type_counts": row["subject_type_counts"],
+            "mushroom_context_count": row["mushroom_context_count"],
+            "current_taxonomy_match": next(
+                item["taxonomy_match_type"] for item in metadata
+                if item["detected_label"] == row["detected_label"]
+            ),
+            "current_subject_type": next(
+                item["subject_type"] for item in metadata
+                if item["detected_label"] == row["detected_label"]
+            ),
         })
     return result
 
@@ -809,7 +950,7 @@ def _audit_row(prefix, item):
 def report_shadow_metadata(metadata, audit_limit=30, legacy_production_image_count=None):
     """集計と要確認レコードを Actions で読める量に制限して表示する。"""
     summary = summarize_shadow_metadata(metadata, legacy_production_image_count)
-    print("Phase 3B.1 metadata shadow summary:")
+    print("Phase 3B.2 metadata shadow summary:")
     for key, value in summary.items():
         print(f"{key}={value}")
 
@@ -853,6 +994,32 @@ def report_shadow_metadata(metadata, audit_limit=30, legacy_production_image_cou
     )
     for row in distinct_labels[:150]:
         print(f"Phase 3B.1 distinct-label audit: {row}")
+
+    matched = [item for item in metadata if item["taxonomy_match_type"] != "none"]
+    for item in matched[:50]:
+        print(
+            "Phase 3B.2 taxonomy-matched audit: "
+            f"detected_label={item['detected_label']} | "
+            f"canonical={item['taxonomy_canonical_name']} | "
+            f"subject_type={item['taxonomy_subject_type']} | "
+            f"match={item['taxonomy_match_type']} | "
+            f"verification={item['taxonomy_verification_status']} | "
+            f"category_match={item['category_match_type']} | "
+            f"article_path={item['article_path']} | src={item['src']}"
+        )
+    unmatched_labels = [
+        row for row in distinct_labels if row["current_taxonomy_match"] == "none"
+    ]
+    for row in unmatched_labels[:300]:
+        label = row["detected_label"]
+        row["flags"] = {
+            "question": any(mark in label for mark in ("?", "？")),
+            "unknown": "不明" in label,
+            "provisional": any(mark in label for mark in ("(仮称)", "（仮称）")),
+            "broad_sense": any(mark in label for mark in ("(広義)", "（広義）")),
+            "latin": is_latin_scientific_label(label),
+        }
+        print(f"Phase 3B.2 taxonomy-unmatched distinct-label audit: {row}")
 
     suspicious = [item for item in metadata if item["detected_label"] is not None and (
         not item["legacy_alt"]
@@ -901,6 +1068,21 @@ def save_shadow_metadata(metadata):
     os.makedirs(CACHE_DIR, exist_ok=True)
     with open(SHADOW_METADATA_FILE, "w", encoding="utf-8") as f:
         json.dump(metadata, f, ensure_ascii=False, indent=2)
+
+
+def save_subject_taxonomy_candidates(metadata):
+    """Write every distinct unmatched label to ignored cache for later curation."""
+    try:
+        candidates = [
+            row for row in summarize_detected_labels(metadata)
+            if row["current_taxonomy_match"] == "none"
+        ]
+        candidates.sort(key=lambda row: (-row["image_count"], row["detected_label"]))
+        os.makedirs(CACHE_DIR, exist_ok=True)
+        with open(SUBJECT_TAXONOMY_CANDIDATES_FILE, "w", encoding="utf-8") as file:
+            json.dump(candidates, file, ensure_ascii=False, indent=2)
+    except Exception as error:
+        print(f"Phase 3B.2 taxonomy candidate export failed: {error}")
 
 # ===========================
 # 五十音分類
@@ -1383,15 +1565,16 @@ def build_gallery():
             "空のギャラリーで上書きしないよう生成を中止します。"
         )
 
-    # Phase 3B.1 is audit-only. Failure is visible, but must not replace or block
+    # Phase 3B.2 is audit-only. Failure is visible, but must not replace or block
     # the legacy alt-based production entries below.
     try:
         shadow_metadata = extract_shadow_metadata(article_files)
         report_category_inventory(article_files)
         report_shadow_metadata(shadow_metadata, legacy_production_image_count=len(entries))
         save_shadow_metadata(shadow_metadata)
+        save_subject_taxonomy_candidates(shadow_metadata)
     except Exception as error:
-        print(f"Phase 3B.1 shadow audit failed: {error}")
+        print(f"Phase 3B.2 shadow audit failed: {error}")
 
     exif_cache = load_exif_cache()
     exif_cache = build_exif_cache(entries, exif_cache)
