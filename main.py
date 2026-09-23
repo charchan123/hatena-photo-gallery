@@ -65,6 +65,18 @@ ASSETS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets")
 # ====== EXIF キャッシュ設定 ======
 CACHE_DIR = "cache"
 CACHE_FILE = os.path.join(CACHE_DIR, "exif-cache.json")
+SHADOW_METADATA_FILE = os.path.join(CACHE_DIR, "phase3-shadow-metadata.json")
+
+SHADOW_EXCLUDE_PATTERNS = [
+    r'はてなブックマーク',
+    r'^\d{4}年',
+    r'^この記事をはてなブックマークに追加$',
+    r'^ワ行$',
+    r'キノコと田舎遊び',
+]
+
+SUBJECT_BLOCK_TAGS = ("p", "h1", "h2", "h3", "h4", "h5", "h6")
+SUBJECT_LABEL_STOPWORDS = {"幼菌", "傘の裏"}
 
 # ====== API ======
 ATOM_ENDPOINT = f"https://blog.hatena.ne.jp/{HATENA_USER}/{HATENA_BLOG_ID}/atom/entry"
@@ -436,6 +448,164 @@ def fetch_images(article_files):
 
     print(f"🧩 画像検出数: {len(entries)} 枚")
     return entries
+
+
+# ===========================
+# Phase 3A 本文 metadata（shadow mode）
+# ===========================
+def normalize_subject_text(text):
+    """本文ラベル候補の空白だけを安全に整える（表記自体は維持する）。"""
+    return re.sub(r"\s+", " ", text or "").strip()
+
+
+def normalize_subject_comparison(text):
+    """本文ラベルと legacy alt の一致監査用に NFKC と空白を整える。"""
+    return unicodedata.normalize("NFKC", normalize_subject_text(text))
+
+
+def is_subject_label_candidate(text):
+    """短い単独テキストが保守的な本文 subject 候補かを返す。"""
+    candidate = normalize_subject_text(text)
+    if not candidate or len(candidate) > 24:
+        return False
+    if candidate in SUBJECT_LABEL_STOPWORDS:
+        return False
+    if any(mark in candidate for mark in ("。", "！", "!")):
+        return False
+    if re.search(r"(?:https?://|www\.)", candidate, re.IGNORECASE):
+        return False
+    if re.search(r"\d{4}\s*[/年.-]\s*\d{1,2}", candidate):
+        return False
+    if any(re.search(pattern, candidate) for pattern in SHADOW_EXCLUDE_PATTERNS):
+        return False
+
+    # Unknown labels are explicitly useful even though they contain kanji.
+    if "不明" in candidate:
+        return True
+
+    allowed = r"ァ-ヶぁ-ゖー・?？()（）「」『』【】\[\]"
+    if not re.fullmatch(fr"[{allowed}]+", candidate):
+        return False
+    kana_count = len(re.findall(r"[ァ-ヶぁ-ゖ]", candidate))
+    return kana_count >= 3
+
+
+def normalize_gallery_name(detected_label):
+    """将来用の gallery 名を作る。Phase 3A の production では未使用。"""
+    if detected_label is None:
+        return None
+    if "?" in detected_label or "？" in detected_label or "不明" in detected_label:
+        return "不明"
+    return detected_label
+
+
+def _shadow_confidence(detected_label, legacy_alt):
+    if detected_label is None:
+        return "low"
+    if normalize_subject_comparison(detected_label) == normalize_subject_comparison(
+        legacy_alt
+    ):
+        return "high"
+    return "medium"
+
+
+def extract_shadow_metadata(article_files):
+    """記事本文を DOM 順に走査し、画像単位の Phase 3A metadata を返す。"""
+    metadata = []
+    for html_file in article_files:
+        with open(html_file, encoding="utf-8") as f:
+            soup = BeautifulSoup(f, "html.parser")
+
+        body = soup.find(class_="entry-body") or soup
+        for iframe in body.find_all("iframe"):
+            title = iframe.get("title", "")
+            if any(re.search(pattern, title) for pattern in SHADOW_EXCLUDE_PATTERNS):
+                iframe.decompose()
+        for link in body.find_all("a"):
+            link_text = link.get_text(strip=True)
+            if any(
+                re.search(pattern, link_text) for pattern in SHADOW_EXCLUDE_PATTERNS
+            ):
+                link.decompose()
+
+        current_subject = None
+        for element in body.find_all((*SUBJECT_BLOCK_TAGS, "img")):
+            if element.name in SUBJECT_BLOCK_TAGS:
+                if element.find("img") is not None:
+                    continue
+                candidate = normalize_subject_text(element.get_text(" ", strip=True))
+                if is_subject_label_candidate(candidate):
+                    current_subject = candidate
+                continue
+
+            src = element.get("src")
+            if not src:
+                continue
+            legacy_alt = (element.get("alt") or "").strip()
+            if any(
+                re.search(pattern, legacy_alt) for pattern in SHADOW_EXCLUDE_PATTERNS
+            ):
+                continue
+            metadata.append(
+                {
+                    "src": src,
+                    "detected_label": current_subject,
+                    "gallery_name": normalize_gallery_name(current_subject),
+                    "legacy_alt": legacy_alt,
+                    "subject_type": "review",
+                    "source": "standalone_text_state",
+                    "confidence": _shadow_confidence(current_subject, legacy_alt),
+                    "article_path": os.fspath(html_file),
+                }
+            )
+    return metadata
+
+
+def summarize_shadow_metadata(metadata):
+    """Shadow metadata の監査用カウントを返す。"""
+    detected = [item for item in metadata if item["detected_label"] is not None]
+    matches = [item for item in detected if item["confidence"] == "high"]
+    return {
+        "total_images": len(metadata),
+        "detected": len(detected),
+        "undetected": len(metadata) - len(detected),
+        "legacy_alt_match": len(matches),
+        "legacy_alt_mismatch": len(detected) - len(matches),
+        "unknown_mapped": sum(
+            item["detected_label"] is not None and item["gallery_name"] == "不明"
+            for item in metadata
+        ),
+    }
+
+
+def report_shadow_metadata(metadata, audit_limit=25):
+    """集計と要確認レコードを Actions で読める量に制限して表示する。"""
+    summary = summarize_shadow_metadata(metadata)
+    print("Phase 3A metadata shadow summary:")
+    for key, value in summary.items():
+        print(f"{key}={value}")
+
+    audit_entries = [
+        item
+        for item in metadata
+        if item["detected_label"] is None or item["confidence"] == "medium"
+    ]
+    for item in audit_entries[:audit_limit]:
+        print(
+            "Phase 3A shadow audit: "
+            f"{item['article_path']} | detected={item['detected_label']} | "
+            f"alt={item['legacy_alt']} | src={item['src']}"
+        )
+    if len(audit_entries) > audit_limit:
+        print(f"Phase 3A shadow audit: {len(audit_entries) - audit_limit} more omitted")
+    return summary
+
+
+def save_shadow_metadata(metadata):
+    """ローカル監査用 JSON を cache 配下へ保存する。"""
+    os.makedirs(CACHE_DIR, exist_ok=True)
+    with open(SHADOW_METADATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(metadata, f, ensure_ascii=False, indent=2)
 
 # ===========================
 # 五十音分類
@@ -917,6 +1087,15 @@ def build_gallery():
             "記事から画像を1件も抽出できなかったため、"
             "空のギャラリーで上書きしないよう生成を中止します。"
         )
+
+    # Phase 3A is audit-only. Failure is visible, but must not replace or block
+    # the legacy alt-based production entries below.
+    try:
+        shadow_metadata = extract_shadow_metadata(article_files)
+        report_shadow_metadata(shadow_metadata)
+        save_shadow_metadata(shadow_metadata)
+    except Exception as error:
+        print(f"Phase 3A shadow metadata extraction failed: {error}")
 
     exif_cache = load_exif_cache()
     exif_cache = build_exif_cache(entries, exif_cache)
