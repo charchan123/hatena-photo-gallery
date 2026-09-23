@@ -17,6 +17,112 @@ def test_extracts_normal_article_and_consecutive_images():
     ]
 
 
+def test_shadow_metadata_uses_article_text_state_in_dom_order():
+    metadata = main.extract_shadow_metadata(
+        [FIXTURES / "article_metadata_state.html"]
+    )
+
+    assert [item["src"].rsplit("/", 1)[-1] for item in metadata] == [
+        "0.jpg",
+        "1.jpg",
+        "2.jpg",
+        "3.jpg",
+        "juvenile.jpg",
+        "underside.jpg",
+        "4.jpg",
+        "description.jpg",
+        "5.jpg",
+    ]
+    assert metadata[0]["detected_label"] is None
+    assert metadata[0]["gallery_name"] is None
+    assert metadata[0]["confidence"] == "low"
+    assert [item["detected_label"] for item in metadata[1:6]] == ["ムキタケ"] * 5
+    assert metadata[1]["legacy_alt"] == "legacy-one"
+    assert metadata[1]["confidence"] == "medium"
+    assert metadata[4]["confidence"] == "high"
+    assert metadata[6]["detected_label"] == "クダアカゲシメジ？"
+    assert metadata[6]["gallery_name"] == "不明"
+    assert metadata[7]["detected_label"] == "クダアカゲシメジ？"
+    assert metadata[7]["confidence"] == "high"
+    assert metadata[8]["detected_label"] == "キハツダケ"
+    assert all(item["subject_type"] == "review" for item in metadata)
+    assert all(item["source"] == "standalone_text_state" for item in metadata)
+    assert all(
+        item["article_path"].endswith("article_metadata_state.html")
+        for item in metadata
+    )
+
+
+@pytest.mark.parametrize(
+    ("text", "expected"),
+    [
+        ("ムキタケ", True),
+        ("べにてんぐたけ", True),
+        ("クダアカゲシメジ？", True),
+        ("種類不明", True),
+        ("幼菌", False),
+        ("傘の裏", False),
+        ("傘の裏側には細かい特徴があります。", False),
+        ("https://example.invalid/name", False),
+        ("2026年9月23日", False),
+    ],
+)
+def test_subject_label_candidate_is_conservative(text, expected):
+    assert main.is_subject_label_candidate(text) is expected
+
+
+def test_unknown_gallery_mapping_preserves_detected_label():
+    assert main.normalize_gallery_name("クダアカゲシメジ?") == "不明"
+    assert main.normalize_gallery_name("クダアカゲシメジ？") == "不明"
+    assert main.normalize_gallery_name("種類不明") == "不明"
+    assert main.normalize_gallery_name("ムキタケ") == "ムキタケ"
+
+
+def test_shadow_summary_counts_required_audit_states():
+    metadata = main.extract_shadow_metadata(
+        [FIXTURES / "article_metadata_state.html"]
+    )
+
+    assert main.summarize_shadow_metadata(metadata) == {
+        "total_images": 9,
+        "detected": 8,
+        "undetected": 1,
+        "legacy_alt_match": 2,
+        "legacy_alt_mismatch": 6,
+        "unknown_mapped": 2,
+    }
+
+
+def test_shadow_report_limits_audit_output(capsys):
+    metadata = main.extract_shadow_metadata(
+        [FIXTURES / "article_metadata_state.html"]
+    )
+
+    main.report_shadow_metadata(metadata, audit_limit=2)
+    output = capsys.readouterr().out
+
+    assert "Phase 3A metadata shadow summary:" in output
+    assert "total_images=9" in output
+    assert "legacy_alt_mismatch=6" in output
+    assert output.count("Phase 3A shadow audit:") == 3  # two rows plus omitted count
+    assert "5 more omitted" in output
+
+
+def test_shadow_metadata_json_is_written_under_cache(monkeypatch, tmp_path):
+    cache_dir = tmp_path / "cache"
+    shadow_file = cache_dir / "phase3-shadow-metadata.json"
+    monkeypatch.setattr(main, "CACHE_DIR", str(cache_dir))
+    monkeypatch.setattr(main, "SHADOW_METADATA_FILE", str(shadow_file))
+    metadata = main.extract_shadow_metadata(
+        [FIXTURES / "article_metadata_state.html"]
+    )
+
+    main.save_shadow_metadata(metadata)
+
+    assert shadow_file.exists()
+    assert shadow_file.read_text(encoding="utf-8").startswith("[\n  {")
+
+
 def test_normal_build_only_uses_files_returned_by_api(monkeypatch, tmp_path):
     articles = tmp_path / "articles"
     articles.mkdir()
@@ -217,12 +323,28 @@ def test_build_processes_non_empty_data_as_before(monkeypatch):
 
     monkeypatch.setattr(main, "fetch_hatena_articles_api", lambda: ["article.html"])
     monkeypatch.setattr(main, "fetch_images", lambda files: entries if files else [])
+    monkeypatch.setattr(
+        main,
+        "extract_shadow_metadata",
+        lambda files: [{"shadow": True}] if files else [],
+    )
+    monkeypatch.setattr(
+        main, "report_shadow_metadata", lambda metadata: calls.append("shadow-report")
+    )
+    monkeypatch.setattr(
+        main, "save_shadow_metadata", lambda metadata: calls.append("shadow-save")
+    )
     monkeypatch.setattr(main, "load_exif_cache", lambda: {})
     monkeypatch.setattr(main, "build_exif_cache", lambda actual, cache: cache)
     monkeypatch.setattr(main, "save_exif_cache", lambda cache: calls.append("save"))
-    monkeypatch.setattr(
-        main, "generate_gallery", lambda actual, cache: {"ムキタケ": [actual[0]["src"]]}
-    )
+    def generate_gallery(actual, cache):
+        assert actual is entries
+        assert actual == [
+            {"alt": "ムキタケ", "src": "https://example.invalid/mukitake.jpg"}
+        ]
+        return {"ムキタケ": [actual[0]["src"]]}
+
+    monkeypatch.setattr(main, "generate_gallery", generate_gallery)
     monkeypatch.setattr(
         main, "generate_index", lambda grouped, cache: calls.append("index")
     )
@@ -232,7 +354,43 @@ def test_build_processes_non_empty_data_as_before(monkeypatch):
 
     main.build_gallery()
 
-    assert calls == ["save", "index", "favorite"]
+    assert calls == [
+        "shadow-report",
+        "shadow-save",
+        "save",
+        "index",
+        "favorite",
+    ]
+
+
+def test_shadow_failure_is_logged_without_blocking_production(monkeypatch, capsys):
+    entries = [{"alt": "ムキタケ", "src": "https://example.invalid/image.jpg"}]
+    generated = []
+    monkeypatch.setattr(main, "fetch_hatena_articles_api", lambda: ["article.html"])
+    monkeypatch.setattr(main, "fetch_images", lambda files: entries)
+    monkeypatch.setattr(
+        main,
+        "extract_shadow_metadata",
+        lambda files: (_ for _ in ()).throw(ValueError("broken shadow")),
+    )
+    monkeypatch.setattr(main, "load_exif_cache", lambda: {})
+    monkeypatch.setattr(main, "build_exif_cache", lambda actual, cache: cache)
+    monkeypatch.setattr(main, "save_exif_cache", lambda cache: None)
+    monkeypatch.setattr(
+        main,
+        "generate_gallery",
+        lambda actual, cache: generated.append(actual) or {"ムキタケ": []},
+    )
+    monkeypatch.setattr(main, "generate_index", lambda grouped, cache: None)
+    monkeypatch.setattr(main, "generate_favorite_page", lambda grouped: None)
+
+    main.build_gallery()
+
+    assert generated == [entries]
+    assert (
+        "Phase 3A shadow metadata extraction failed: broken shadow"
+        in capsys.readouterr().out
+    )
 
 
 def test_exif_cache_hit_does_not_download(monkeypatch, tmp_path, capsys):
