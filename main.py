@@ -2613,24 +2613,35 @@ def build_exif_cache(entries, cache: dict):
     os.makedirs(CACHE_DIR, exist_ok=True)
 
     all_srcs = sorted({e["src"] for e in entries})
+    hits = 0
+    fetched = 0
+    failed = 0
 
     for src in all_srcs:
         if src in cache:
+            hits += 1
             continue
 
         print(f"🔍 EXIF取得: {src}")
-        exif_data = {}
         try:
             r = requests.get(src, timeout=10)
             if r.status_code == 200:
                 exif_data = extract_exif_from_bytes(r.content) or {}
+                cache[src] = exif_data
+                fetched += 1
                 print(f"  ↪ EXIF取得OK: {exif_data}")
             else:
-                print(f"  ↪ HTTP {r.status_code} → 空データとして保存")
+                failed += 1
+                print(f"  ↪ HTTP {r.status_code} → キャッシュせず次回再試行")
         except Exception as e:
-            print(f"  ↪ 取得エラー: {e} → 空データとして保存")
+            failed += 1
+            print(f"  ↪ 取得エラー: {e} → キャッシュせず次回再試行")
 
-        cache[src] = exif_data
+    print("EXIF cache summary:")
+    print(f"total={len(all_srcs)}")
+    print(f"hits={hits}")
+    print(f"fetched={fetched}")
+    print(f"failed={failed}")
 
     return cache
 

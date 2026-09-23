@@ -153,3 +153,99 @@ def test_build_processes_non_empty_data_as_before(monkeypatch):
     main.build_gallery()
 
     assert calls == ["save", "index", "favorite"]
+
+
+def test_exif_cache_hit_does_not_download(monkeypatch, tmp_path, capsys):
+    src = "https://example.invalid/cached.jpg"
+    cache = {src: {"model": "cached camera"}}
+    monkeypatch.setattr(main, "CACHE_DIR", str(tmp_path / "cache"))
+    monkeypatch.setattr(
+        main.requests,
+        "get",
+        lambda *args, **kwargs: pytest.fail("cached URL must not be downloaded"),
+    )
+
+    result = main.build_exif_cache([{"src": src}, {"src": src}], cache)
+
+    assert result is cache
+    assert result[src] == {"model": "cached camera"}
+    assert "total=1\nhits=1\nfetched=0\nfailed=0" in capsys.readouterr().out
+
+
+def test_http_200_with_exif_is_cached(monkeypatch, tmp_path):
+    src = "https://example.invalid/with-exif.jpg"
+    response = type("Response", (), {"status_code": 200, "content": b"jpeg"})()
+    monkeypatch.setattr(main, "CACHE_DIR", str(tmp_path / "cache"))
+    monkeypatch.setattr(main.requests, "get", lambda *args, **kwargs: response)
+    monkeypatch.setattr(
+        main, "extract_exif_from_bytes", lambda content: {"model": "test camera"}
+    )
+
+    result = main.build_exif_cache([{"src": src}], {})
+
+    assert result[src] == {"model": "test camera"}
+
+
+def test_http_200_without_exif_is_cached_and_not_downloaded_again(
+    monkeypatch, tmp_path
+):
+    src = "https://example.invalid/no-exif.jpg"
+    response = type("Response", (), {"status_code": 200, "content": b"jpeg"})()
+    calls = []
+    monkeypatch.setattr(main, "CACHE_DIR", str(tmp_path / "cache"))
+    monkeypatch.setattr(
+        main.requests, "get", lambda *args, **kwargs: calls.append(src) or response
+    )
+    monkeypatch.setattr(main, "extract_exif_from_bytes", lambda content: {})
+
+    cache = main.build_exif_cache([{"src": src}], {})
+    main.build_exif_cache([{"src": src}], cache)
+
+    assert cache[src] == {}
+    assert calls == [src]
+
+
+@pytest.mark.parametrize("status_code", [404, 500])
+def test_http_error_is_not_cached(monkeypatch, tmp_path, status_code):
+    src = f"https://example.invalid/{status_code}.jpg"
+    response = type("Response", (), {"status_code": status_code, "content": b""})()
+    monkeypatch.setattr(main, "CACHE_DIR", str(tmp_path / "cache"))
+    monkeypatch.setattr(main.requests, "get", lambda *args, **kwargs: response)
+
+    result = main.build_exif_cache([{"src": src}], {})
+
+    assert src not in result
+
+
+def test_request_exception_is_not_cached(monkeypatch, tmp_path):
+    src = "https://example.invalid/network-error.jpg"
+    monkeypatch.setattr(main, "CACHE_DIR", str(tmp_path / "cache"))
+
+    def raise_network_error(*args, **kwargs):
+        raise main.requests.RequestException("temporary failure")
+
+    monkeypatch.setattr(main.requests, "get", raise_network_error)
+
+    result = main.build_exif_cache([{"src": src}], {})
+
+    assert src not in result
+
+
+def test_exif_cache_summary_counts_unique_urls(monkeypatch, tmp_path, capsys):
+    cached = "https://example.invalid/cached.jpg"
+    fetched = "https://example.invalid/fetched.jpg"
+    failed = "https://example.invalid/failed.jpg"
+    monkeypatch.setattr(main, "CACHE_DIR", str(tmp_path / "cache"))
+
+    def get(url, timeout):
+        if url == fetched:
+            return type("Response", (), {"status_code": 200, "content": b"jpeg"})()
+        return type("Response", (), {"status_code": 503, "content": b""})()
+
+    monkeypatch.setattr(main.requests, "get", get)
+    monkeypatch.setattr(main, "extract_exif_from_bytes", lambda content: {})
+    entries = [{"src": cached}, {"src": fetched}, {"src": failed}, {"src": cached}]
+
+    main.build_exif_cache(entries, {cached: {}})
+
+    assert "total=3\nhits=1\nfetched=1\nfailed=1" in capsys.readouterr().out

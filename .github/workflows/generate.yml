@@ -35,6 +35,15 @@ jobs:
           if [ -z "$HATENA_BLOG_ID" ]; then echo 'HATENA_BLOG_ID missing'; exit 1; fi
           if [ -z "$HATENA_API_KEY" ]; then echo 'HATENA_API_KEY missing'; exit 1; fi
 
+      - name: 📥 EXIFキャッシュを復元
+        id: exif-cache-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: cache/exif-cache.json
+          key: exif-cache-v1-${{ runner.os }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            exif-cache-v1-${{ runner.os }}-
+
       - name: 🏗 main.py 実行（HTML生成）
         env:
           HATENA_USER: ${{ secrets.HATENA_USER }}
@@ -42,6 +51,12 @@ jobs:
           HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
         run: |
           python main.py
+
+      - name: 📤 EXIFキャッシュを保存
+        uses: actions/cache/save@v4
+        with:
+          path: cache/exif-cache.json
+          key: ${{ steps.exif-cache-restore.outputs.cache-primary-key }}
 
       - name: 📁 LightGallery フォルダを output にコピー
         run: |
