@@ -3242,17 +3242,30 @@ def generate_favorite_page(grouped):
 # ===========================
 # メイン
 # ===========================
-if __name__ == "__main__":
+def build_gallery():
+    """APIの最新取得結果からギャラリー一式を生成する。"""
     article_files = fetch_hatena_articles_api()
+    if not article_files:
+        raise RuntimeError(
+            "Hatena APIから記事ファイルを1件も取得できなかったため、"
+            "空のギャラリーで上書きしないよう生成を中止します。"
+        )
+
     entries = fetch_images(article_files)
+    if not entries:
+        raise RuntimeError(
+            "記事から画像を1件も抽出できなかったため、"
+            "空のギャラリーで上書きしないよう生成を中止します。"
+        )
 
-    if entries:
-        exif_cache = load_exif_cache()
-        exif_cache = build_exif_cache(entries, exif_cache)
-        save_exif_cache(exif_cache)
+    exif_cache = load_exif_cache()
+    exif_cache = build_exif_cache(entries, exif_cache)
+    save_exif_cache(exif_cache)
 
-        grouped = generate_gallery(entries, exif_cache)
-        generate_index(grouped, exif_cache)
-        generate_favorite_page(grouped)
-    else:
-        print("⚠️ 画像が見つかりませんでした。")
+    grouped = generate_gallery(entries, exif_cache)
+    generate_index(grouped, exif_cache)
+    generate_favorite_page(grouped)
+
+
+if __name__ == "__main__":
+    build_gallery()

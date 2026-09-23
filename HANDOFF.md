@@ -2,7 +2,14 @@
 
 ## 現在のブランチ
 
-`refactor/safe-foundation-phase1`
+`codex/phase1-complete`
+
+GitHub PR #1 の head `codex/article` を開始点とし、PR #2
+"Prevent empty gallery deployments — require non-empty articles/images and add tests"
+の fail-safe 修正だけを上乗せした統合ブランチ。新しい PR は `main` を base、
+`codex/phase1-complete` を head とし、PR #1 / PR #2 の両方を置き換える。
+作業用コピーでは PR #1 head が当初 `work` というローカル名で checkout
+され、remote ref は提供されていなかった。
 
 ## ベース commit SHA
 
@@ -31,11 +38,15 @@
 - API credential なしで module import / fixture test を可能にし、API アクセス時は引き続き明示エラーとするように変更。
 - 正常本文、同名連続画像、旧 full-page 併存、正常キノコ維持、既知誤ページ6名の非生成を自動テスト。
 - アーキテクチャ、EXIF、旧 CSS/JS、iframe、fullscreen、Actions/deploy の監査と次 Phase 提案を文書化。
+- API が記事ファイルを1件も返さない場合、または記事から画像エントリを1件も
+  抽出できない場合は `RuntimeError` で生成を停止し、空の output を deploy しない。
+- Hatena API の mock による保存ファイル一覧、2つの空データ停止、非空データの従来処理を
+  自動テストで確認。
 
 ## テスト結果
 
 - `python -m py_compile main.py tests/test_article_extraction.py`: 成功。既存の JS regex を含む Python 文字列に `SyntaxWarning: invalid escape sequence '\/'` あり。
-- `python -m pytest -q`: 4 passed。
+- `python -m pytest -q`: 8 passed。
 - `git diff --check`: 成功。
 
 Secrets を捏造せず、Hatena API 実接続とフルビルドは実施していない。
