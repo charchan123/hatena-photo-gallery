@@ -25,6 +25,12 @@ def entry(name="キアシヤマドリタケ", kind="mushroom", aliases=None, **u
     return value
 
 
+def entry_without(field):
+    value = entry()
+    value.pop(field)
+    return value
+
+
 def test_repository_master_has_exactly_the_eight_approved_seeds():
     taxonomy = main.load_subject_taxonomy()
     actual = {(row["canonical_name"], row["subject_type"]) for row in taxonomy["entries"]}
@@ -40,7 +46,9 @@ def test_repository_master_has_exactly_the_eight_approved_seeds():
     entry(subject_type="plant"),
     entry(subject_type=[]), entry(subject_type={}), entry(subject_type=123),
     entry(canonical_name=[]), entry(aliases={}), entry(aliases=[123]),
-    entry(sources={}), entry(verification_status=[]), entry(notes={}),
+    entry(sources={}), entry(verification_status=[]), entry(verification_status=None),
+    entry(notes={}), entry(notes=None),
+    entry_without("verification_status"), entry_without("notes"),
 ])
 def test_malformed_entry_types_raise_subject_taxonomy_error(tmp_path, bad_entry):
     with pytest.raises(main.SubjectTaxonomyError):
@@ -65,7 +73,14 @@ def test_missing_malformed_and_invalid_roots_raise_domain_error(tmp_path):
     malformed.write_text("{", encoding="utf-8")
     with pytest.raises(main.SubjectTaxonomyError):
         main.load_subject_taxonomy(malformed)
-    for value in ([], {"version": 1, "entries": {}}):
+    for value in (
+        [],
+        {"entries": []},
+        {"version": 1, "entries": {}},
+        {"version": "1", "entries": []},
+        {"version": True, "entries": []},
+        {"version": 2, "entries": []},
+    ):
         path = tmp_path / "invalid.json"
         path.write_text(json.dumps(value), encoding="utf-8")
         with pytest.raises(main.SubjectTaxonomyError):

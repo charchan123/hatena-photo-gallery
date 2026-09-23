@@ -647,6 +647,9 @@ def load_subject_taxonomy(path=None):
         raise SubjectTaxonomyError("taxonomy root must be an object")
     if "version" not in raw:
         raise SubjectTaxonomyError("taxonomy version is required")
+    version = raw["version"]
+    if type(version) is not int or version != 1:
+        raise SubjectTaxonomyError("taxonomy version must be integer 1")
     entries = raw.get("entries")
     if not isinstance(entries, list):
         raise SubjectTaxonomyError("taxonomy entries must be a list")
@@ -664,6 +667,10 @@ def load_subject_taxonomy(path=None):
         sources = original.get("sources")
         verification = original.get("verification_status")
         notes = original.get("notes")
+        if "verification_status" not in original:
+            raise SubjectTaxonomyError(f"entry {index} verification_status is required")
+        if "notes" not in original:
+            raise SubjectTaxonomyError(f"entry {index} notes is required")
         if not isinstance(canonical, str) or not canonical.strip():
             raise SubjectTaxonomyError(f"entry {index} canonical_name must be a non-empty string")
         if not isinstance(subject_type, str):
@@ -678,9 +685,9 @@ def load_subject_taxonomy(path=None):
             raise SubjectTaxonomyError(f"entry {index} sources must be a list")
         if any(not isinstance(source, str) or not source.strip() for source in sources):
             raise SubjectTaxonomyError(f"entry {index} sources must contain non-empty strings")
-        if verification is not None and not isinstance(verification, str):
-            raise SubjectTaxonomyError(f"entry {index} verification_status must be a string")
-        if notes is not None and not isinstance(notes, str):
+        if not isinstance(verification, str) or not verification.strip():
+            raise SubjectTaxonomyError(f"entry {index} verification_status must be a non-empty string")
+        if not isinstance(notes, str):
             raise SubjectTaxonomyError(f"entry {index} notes must be a string")
         entry = dict(original)
         keys = [(canonical, "canonical")] + [(alias, "alias") for alias in aliases]
@@ -699,7 +706,7 @@ def load_subject_taxonomy(path=None):
             target[value] = entry
         validated.append(entry)
     return {
-        "version": raw["version"], "entries": validated,
+        "version": version, "entries": validated,
         "exact_canonical": exact_canonical, "exact_alias": exact_alias,
         "normalized": normalized,
     }
