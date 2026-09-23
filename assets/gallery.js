@@ -27,6 +27,15 @@ document.addEventListener("DOMContentLoaded", () => {
     return src ? src.replace(/\?.*$/, "") : "";
   }
 
+  function normalizeJapaneseSearch(value) {
+    return (value || "")
+      .normalize("NFKC")
+      .toLowerCase()
+      .replace(/[ァ-ヶ]/g, char =>
+        String.fromCodePoint(char.codePointAt(0) - 0x60)
+      );
+  }
+
   function highlight(text, q) {
     if (!q) return text;
     const escaped = escapeRegExp(q);
@@ -368,10 +377,16 @@ document.addEventListener("DOMContentLoaded", () => {
       pendingRemove = { src, item, timer };
 
       showUndoToastNear(star, "観察ノートから外しました", () => {
-        // ★ UNDO 処理（超重要）
-        clearTimeout(timer);                 // ← これが抜けてた
+        clearTimeout(timer);
         item.classList.remove("removing");
+        item.style.opacity = "1";
         pendingRemove = null;
+
+        requestAnimationFrame(() => sendHeight("remove-undo"));
+        item.addEventListener("transitionend", () => {
+          item.style.removeProperty("opacity");
+          item.style.removeProperty("transition");
+        }, { once: true });
       });
     }
 
@@ -689,10 +704,20 @@ galleries.forEach(gallery => {
       progressBar: true,
     });
 
+    // Wrapped captions can settle after LightGallery's initial measurement.
+    // Re-reserve the measured caption and thumbnail height for the image area.
+    function reserveCaptionSpace() {
+      requestAnimationFrame(() => {
+        const position = lg.getMediaContainerPosition();
+        lg.setMediaContainerPosition(position.top, position.bottom);
+      });
+    }
+
     // =========================
     // LightGalleryイベント：お気に入り連携
     // =========================
     gallery.addEventListener("lgAfterOpen", () => {
+      reserveCaptionSpace();
       attachFavoriteButtonWithRetry();
       updateFavoriteIcon();
       updateThumbnailFavorites();
@@ -737,6 +762,7 @@ galleries.forEach(gallery => {
     });
 
     gallery.addEventListener("lgAfterSlide", () => {
+      reserveCaptionSpace();
       updateFavoriteIcon();
       updateThumbnailFavorites();
       updateCardFavorites();
@@ -819,11 +845,11 @@ galleries.forEach(gallery => {
 
     function applyFilter() {
       const q = searchInput.value.trim();
-      const keyword = q ? q.normalize("NFKC").toLowerCase() : "";
+      const keyword = normalizeJapaneseSearch(q);
 
       cards.forEach(card => {
         const rawName = card.getAttribute("data-name") || "";
-        const name = rawName.normalize("NFKC").toLowerCase();
+        const name = normalizeJapaneseSearch(rawName);
         const kana = card.getAttribute("data-kana") || "";
 
         const matchText = !keyword || name.includes(keyword);
@@ -1186,10 +1212,12 @@ galleries.forEach(gallery => {
 
     function doSearch() {
       const rawQ = indexSearchInput.value.trim().normalize("NFKC");
-      const q = rawQ.toLowerCase();
+      const q = normalizeJapaneseSearch(rawQ);
 
       const filtered = rawQ
-        ? ALL_MUSHROOMS.filter(m => (m.name_norm || "").includes(q))
+        ? ALL_MUSHROOMS.filter(m =>
+            normalizeJapaneseSearch(m.name_norm || m.name).includes(q)
+          )
         : [];
 
       const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));

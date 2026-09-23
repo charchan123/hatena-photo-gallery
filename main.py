@@ -7,6 +7,7 @@ import re
 import html
 import piexif
 import shutil
+import unicodedata
 
 # ===========================
 # 珍しい / 人気キノコリスト（手動）
@@ -71,7 +72,7 @@ AUTH = (HATENA_USER, HATENA_API_KEY)
 HEADERS = {}
 
 AIUO_GROUPS = {
-    "あ行": list("あいうえおアイウエオ"),
+    "あ行": list("あいうえおアイウエオゔヴ"),
     "か行": list("かきくけこカキクケコがぎぐげごガギグゲゴ"),
     "さ行": list("さしすせそサシスセソざじずぜぞザジズゼゾ"),
     "た行": list("たちつてとタチツテトだぢづでどダヂヅデド"),
@@ -82,6 +83,29 @@ AIUO_GROUPS = {
     "ら行": list("らりるれろラリルレロ"),
     "わ行": list("わをんワヲン"),
 }
+
+VOICED_KANA_TO_SEION = str.maketrans(
+    "がぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽゔ"
+    "ガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポヴ",
+    "かきくけこさしすせそたちつてとはひふへほはひふへほう"
+    "カキクケコサシスセソタチツテトハヒフヘホハヒフヘホウ",
+)
+
+
+def normalize_kana_initial(name):
+    """Return the first kana normalized to its unvoiced gojuon equivalent."""
+    if not isinstance(name, str) or not name:
+        return ""
+    return unicodedata.normalize("NFKC", name)[0].translate(VOICED_KANA_TO_SEION)
+
+
+def normalize_japanese_search(value):
+    """Build the same hiragana search key used by the browser UI."""
+    normalized = unicodedata.normalize("NFKC", value or "").lower()
+    return "".join(
+        chr(ord(char) - 0x60) if "ァ" <= char <= "ヶ" else char
+        for char in normalized
+    )
 
 # ====== 共通スタイル（EXIF gap レイアウト採用版） ======
 STYLE_TAG = '<link rel="stylesheet" href="assets/gallery.css">'
@@ -527,7 +551,7 @@ def generate_gallery(entries, exif_cache):
         # ★ ここで initials を正しく生成
         # -------------------------
         initials = sorted({
-            n[0]
+            normalize_kana_initial(n)
             for n in names
             if isinstance(n, str) and len(n) > 0
         })
@@ -557,7 +581,7 @@ def generate_gallery(entries, exif_cache):
                 continue
     
             safe = safe_filename(n)
-            first_char = n[0]
+            first_char = normalize_kana_initial(n)
             imgs_for_name = grouped.get(n, [])
             thumb_src = imgs_for_name[0] if imgs_for_name else ""
     
@@ -650,7 +674,7 @@ def generate_index(grouped, exif_cache):
         thumb = srcs[0] if srcs else ""
         all_mushrooms_js.append({
             "name": alt,
-            "name_norm": alt.lower(),
+            "name_norm": normalize_japanese_search(alt),
             "href": f"{safe_filename(alt)}.html",
             "thumb": thumb + "?width=300"
         })
