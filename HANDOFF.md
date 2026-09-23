@@ -301,3 +301,37 @@ only as a provisional population; distinguish `provisional_poisonous`,
 `confirmed_poisonous`, and `unknown`; confirm observed species against authoritative
 material; and never infer safe/edible from absence. No toxicity master or spore effect
 is implemented in Phase 3B.1.
+
+---
+
+# Phase 3B.2 handoff: static subject taxonomy master foundation
+
+## Baseline and boundary
+
+This clean reimplementation started at `74579938d60d72eb3469311cd18eae3fa21d5ee4` (the Phase 3B.1 merge commit). The local checkout did not contain a `main` ref, but the checked-out commit exactly matched the required main SHA; work proceeded on the new `phase3b2-taxonomy-rebuild` branch without resetting or using the old PR #12 branch. The baseline was **65 passed / 65 collected**.
+
+Phase 3B.1's production Actions baseline remains the comparison point: 948 shadow images, `detected=871`, `undetected=77`, 280 unique detected labels, 779 category matches (`exact=742`, `normalized=37`), and 896 legacy production images. In particular, exact category matches for `コブハクチョウ`, `ヨシガモ`, and `ミツバアケビ` must not imply mushroom classification.
+
+## Taxonomy design and classification
+
+`data/subject-taxonomy.json` is the version-controlled, static source of truth. Builds perform no Wikipedia, search, external taxonomy API, or LLM lookup and use no name/suffix heuristic. Its only eight seeds are five mushroom subjects (`ヤマドリタケモドキ`, `シイタケ`, `ベニテングタケ`, `ドクヤマドリ`, `カエンタケ`) and three non-mushroom subjects (`コブハクチョウ`, `ヨシガモ`, `ミツバアケビ`). Everything else remains `review`.
+
+The loader validates the root, version, entry list, required names/types, allowed subject types, aliases, sources, optional verification status/notes, and all normalized canonical/alias collisions. Expected malformed JSON types—including unhashable lists and dictionaries—are explicitly converted to `SubjectTaxonomyError`, rather than leaking `TypeError`. Normalization is comparison-only: NFKC, trim, whitespace collapse, casefold, allowlisted `(仮称)` / `（仮称）` / `(広義)` / `（広義）` removal, and trailing question-mark removal. It does not remove `の仲間`, `科`, `属`, `sp.`, `cf.`, or unknown annotations. Lookup priority is canonical exact, alias exact, normalized canonical/alias, then none.
+
+Only the taxonomy can produce `mushroom/high/taxonomy_mushroom` or `non_mushroom/high/taxonomy_non_mushroom`. Unmatched labels are `review/low/taxonomy_unmatched`; missing labels are `review/low/no_detected_label`; unavailable taxonomy is `review/low/taxonomy_unavailable`. A missing, malformed, or invalid master retains detected labels and allows the legacy production build to continue.
+
+Each shadow record now has `taxonomy_subject_type`, `taxonomy_canonical_name`, `taxonomy_match_type`, `taxonomy_verification_status`, and `taxonomy_sources`. `gallery_name` is classification-aware: it is always null unless subject type is mushroom; a confirmed mushroom with `?`, `？`, or `不明` maps to `不明`; otherwise its canonical taxonomy name is preferred. Consequently, `unknown_mapped` now counts only taxonomy-confirmed mushroom records mapped to the future gallery's `不明`, and must not be compared with Phase 3B.1's value of 109.
+
+## Independent category audits
+
+Article categories remain corroboration/audit evidence only. Exact/normalized matching, matched categories, mushroom context, and explicit mushroom/non-mushroom signals remain available but never drive taxonomy classification. Category anomaly metrics no longer depend on taxonomy-oriented `classification_reason`.
+
+A category conflict is defined solely as `has_explicit_non_mushroom_signal` AND (`has_mushroom_context` OR `has_explicit_mushroom_signal`). `mushroom_context_only_review` means taxonomy-unmatched `review`, mushroom context true, and both explicit signals false; category exact matching is not required. The shared conflict helper is used by summary and suspicious auditing.
+
+The summary adds master counts, matched/unmatched image and unique-label counts, mushroom/non-mushroom taxonomy image counts, and canonical-exact/alias-exact/normalized match counts. A bounded 50-row matched audit and up-to-300-row unmatched distinct-label audit are emitted. All unmatched distinct labels are also exported to ignored `cache/phase3-subject-taxonomy-candidates.json`; export failure is visible but non-fatal.
+
+## Production and future work
+
+Production remains the legacy-alt path: the exact list object returned by `fetch_images()` is passed to `generate_gallery()`. Taxonomy does not filter or reconstruct it, and `gallery_name` is not used for production grouping. Phase 3A's DOM state machine and Phase 3A.5 iframe shrink implementation are unchanged. Assets, workflow, Hatena header/footer/design/iframe/fixed pages, and EXIF behavior/cache are unchanged.
+
+Taxonomy is not toxicity. No edible/safe/poisonous inference or spore effect was added. Next, humans should verify unmatched candidates against external sources and extend the static master. The intended sequence remains taxonomy completion, Phase 3C production metadata cutover, gallery-top redesign, a separate toxicity master, and only then poison spore effects. Possible later gallery redesign work includes a wider mobile layout, large photo hero/search, compact gojuon navigation, best-shot history with 1–3 monthly photos, today's/random mushroom, quiz, recent finds, and frequently appearing mushrooms; none is implemented here.

@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "canonical_name": "ヤマドリタケモドキ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "project_seed",
+      "sources": ["Phase 3B.2 project seed"],
+      "notes": "Gallery subject taxonomy only; not a toxicity or edibility claim."
+    },
+    {
+      "canonical_name": "シイタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "project_seed",
+      "sources": ["Phase 3B.2 project seed"],
+      "notes": "Gallery subject taxonomy only; not a toxicity or edibility claim."
+    },
+    {
+      "canonical_name": "ベニテングタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "project_seed",
+      "sources": ["Phase 3B.2 project seed"],
+      "notes": "Gallery subject taxonomy only; not a toxicity or edibility claim."
+    },
+    {
+      "canonical_name": "ドクヤマドリ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "project_seed",
+      "sources": ["Phase 3B.2 project seed"],
+      "notes": "Gallery subject taxonomy only; not a toxicity or edibility claim."
+    },
+    {
+      "canonical_name": "カエンタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "project_seed",
+      "sources": ["Phase 3B.2 project seed"],
+      "notes": "Gallery subject taxonomy only; not a toxicity or edibility claim."
+    },
+    {
+      "canonical_name": "コブハクチョウ",
+      "subject_type": "non_mushroom",
+      "aliases": [],
+      "verification_status": "project_seed",
+      "sources": ["Phase 3B.2 project seed"],
+      "notes": "Excluded from the mushroom gallery subject taxonomy."
+    },
+    {
+      "canonical_name": "ヨシガモ",
+      "subject_type": "non_mushroom",
+      "aliases": [],
+      "verification_status": "project_seed",
+      "sources": ["Phase 3B.2 project seed"],
+      "notes": "Excluded from the mushroom gallery subject taxonomy."
+    },
+    {
+      "canonical_name": "ミツバアケビ",
+      "subject_type": "non_mushroom",
+      "aliases": [],
+      "verification_status": "project_seed",
+      "sources": ["Phase 3B.2 project seed"],
+      "notes": "Excluded from the mushroom gallery subject taxonomy."
+    }
+  ]
+}
