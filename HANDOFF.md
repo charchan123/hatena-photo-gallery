@@ -14,7 +14,7 @@ The GitHub PR #4 relationship is:
 
 - base: `main`
 - head: `codex/github-actionsexif`
-- current GitHub commit: `39be8f585b7e8d5d57d6d051b9861cecb332799b`
+- implementation commit: `39be8f585b7e8d5d57d6d051b9861cecb332799b`
 
 The local checkout exactly matched that supplied baseline.
 A fetch of GitHub `main` was attempted before work, but this environment's outbound
