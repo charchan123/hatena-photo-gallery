@@ -1,4 +1,77 @@
-# Phase 3A handoff: shadow article-text metadata extraction
+# Phase 3A.5 handoff: iframe height shrinking
+
+## Baseline, purpose, and boundary
+
+Phase 3A.5 started from required baseline
+`2f9968f69f328c9e1b19c7a242fb8179bef047c2`. It is a focused fix performed before
+Phase 3B so that the embedded gallery iframe can shrink as well as grow when normal
+page content changes.
+
+The bug was caused by measuring the maximum body/document-element scroll and offset
+heights. Those values can retain the current iframe viewport height after the Hatena
+parent enlarges it, instead of representing the smaller intrinsic content height.
+
+## Measurement and observation design
+
+At the beginning of `DOMContentLoaded`, `assets/gallery.js` creates
+`#gallery-content-root` if it does not already exist and moves the existing body nodes
+into it. Moving nodes does not clone or reload scripts. UI appended to body later—such
+as LightGallery overlays and favorite/undo toasts—remains outside the measurement root
+and therefore cannot inflate the normal iframe height. Minimal `display: flow-root` and
+`width: 100%` styling makes the root contain the normal layout without a visual redesign.
+
+Height is calculated from `gallery-content-root.getBoundingClientRect().height`, plus
+the computed body's top and bottom padding, and rounded upward to an integer pixel.
+It no longer uses body or document-element viewport-dependent scroll/offset heights.
+Only an exactly repeated integer height is suppressed; a smaller value is posted just
+like a larger value.
+
+`ResizeObserver` watches the measurement root as the primary path for image loading,
+search/filter changes, pagination, favorite removal/undo, responsive reflow, and other
+size changes. Browsers without it use a `MutationObserver` scoped to the root rather
+than body. The existing initial, load (including delayed retries), window resize, and
+`requestHeight` message paths remain available.
+
+The message contract remains `{ type: "setHeight", height: number, reason: string }`
+and the existing `"*"` target origin is unchanged. No Hatena parent/footer code,
+LightGallery behavior, favorite/localStorage/undo behavior, search or Japanese
+normalization behavior, or Phase 3A metadata code was changed.
+
+## Validation
+
+- `python -m py_compile main.py tests/test_article_extraction.py`: passed.
+- `python -m pytest -q`: passed (`43 passed`).
+- `node --check assets/gallery.js`: passed.
+- `node tests/test_gallery_highlight.js`: passed (`4` cases).
+- `node tests/test_gallery_height.js`: passed.
+- `git diff --check`: passed.
+
+The lightweight height regression test exercises integer rounding and both a larger
+and smaller result, and statically guards the root target, body-padding inclusion,
+root `ResizeObserver`, unchanged message type, and removal of viewport-based sources.
+
+## Required production smoke test
+
+Browser E2E was not available in the Codex environment. After deployment:
+
+1. Show many results in top-page search and confirm the iframe grows.
+2. Change the search to zero results and confirm the iframe shrinks.
+3. Restore the search and confirm the iframe grows again.
+4. Reduce results with search/filter on a 五十音 page and confirm it shrinks.
+5. Remove a photo from 観察ノート; after the three-second final removal, confirm it shrinks.
+6. Undo a removal and confirm the photo and required height return.
+7. Open LightGallery and confirm its overlay does not make normal iframe height huge.
+8. Close LightGallery and confirm height remains normal.
+9. Repeat on PC and Android/iPhone-sized narrow viewports.
+
+Production validation is the remaining risk because parent-frame behavior and browser
+layout cannot be fully reproduced by the lightweight Node regression test. If the
+deployed iframe still does not shrink, inspect the Hatena parent message handler in a
+separate follow-up rather than mixing that change into Phase 3A.5.
+
+---
+
+# Phase 3A handoff: shadow article-text metadata extraction (preserved)
 
 ## Baseline and boundary
 
