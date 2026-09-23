@@ -4,8 +4,14 @@
 
 Phase 2B externalizes the current shared gallery CSS and JavaScript from every generated
 HTML file. The goal is to reduce repeated output while preserving the existing rendering
-and behavior. Work started on `phase-2b-externalize-gallery-assets` at
-`642b10dce8d1bc5c253dd964a6d74391b3ba4931`. The supplied checkout had no local `main`
+and behavior. Work started from the Phase 2A merged baseline
+`642b10dce8d1bc5c253dd964a6d74391b3ba4931`.
+
+The GitHub PR #5 relationship is:
+
+- base: `main`
+- head: `codex/css/js`
+- implementation commit: `ab96d799eaf11d4ebdde358f175dd9afe26853aa`. The supplied checkout had no local `main`
 branch or configured remote, so that SHA (the tip of the supplied `work` branch) is the
 only locally verifiable baseline.
 
