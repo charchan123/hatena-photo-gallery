@@ -6,7 +6,9 @@
       "subject_type": "mushroom",
       "aliases": [],
       "verification_status": "project_seed",
-      "sources": ["Phase 3B.2 project seed"],
+      "sources": [
+        "Phase 3B.2 project seed"
+      ],
       "notes": "Gallery subject taxonomy only; not a toxicity or edibility claim."
     },
     {
@@ -14,7 +16,9 @@
       "subject_type": "mushroom",
       "aliases": [],
       "verification_status": "project_seed",
-      "sources": ["Phase 3B.2 project seed"],
+      "sources": [
+        "Phase 3B.2 project seed"
+      ],
       "notes": "Gallery subject taxonomy only; not a toxicity or edibility claim."
     },
     {
@@ -22,7 +26,9 @@
       "subject_type": "mushroom",
       "aliases": [],
       "verification_status": "project_seed",
-      "sources": ["Phase 3B.2 project seed"],
+      "sources": [
+        "Phase 3B.2 project seed"
+      ],
       "notes": "Gallery subject taxonomy only; not a toxicity or edibility claim."
     },
     {
@@ -30,7 +36,9 @@
       "subject_type": "mushroom",
       "aliases": [],
       "verification_status": "project_seed",
-      "sources": ["Phase 3B.2 project seed"],
+      "sources": [
+        "Phase 3B.2 project seed"
+      ],
       "notes": "Gallery subject taxonomy only; not a toxicity or edibility claim."
     },
     {
@@ -38,15 +46,20 @@
       "subject_type": "mushroom",
       "aliases": [],
       "verification_status": "project_seed",
-      "sources": ["Phase 3B.2 project seed"],
-      "notes": "Gallery subject taxonomy only; not a toxicity or edibility claim."
+      "sources": [
+        "Phase 3B.2 project seed"
+      ],
+      "notes": "Gallery subject taxonomy only; not a toxicity or edibility claim.",
+      "mushroom_master_id": "kaentake"
     },
     {
       "canonical_name": "コブハクチョウ",
       "subject_type": "non_mushroom",
       "aliases": [],
       "verification_status": "project_seed",
-      "sources": ["Phase 3B.2 project seed"],
+      "sources": [
+        "Phase 3B.2 project seed"
+      ],
       "notes": "Excluded from the mushroom gallery subject taxonomy."
     },
     {
@@ -54,7 +67,9 @@
       "subject_type": "non_mushroom",
       "aliases": [],
       "verification_status": "project_seed",
-      "sources": ["Phase 3B.2 project seed"],
+      "sources": [
+        "Phase 3B.2 project seed"
+      ],
       "notes": "Excluded from the mushroom gallery subject taxonomy."
     },
     {
@@ -62,8 +77,121 @@
       "subject_type": "non_mushroom",
       "aliases": [],
       "verification_status": "project_seed",
-      "sources": ["Phase 3B.2 project seed"],
+      "sources": [
+        "Phase 3B.2 project seed"
+      ],
       "notes": "Excluded from the mushroom gallery subject taxonomy."
+    },
+    {
+      "canonical_name": "ドクツルタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "mhlw-dokutsurutake",
+        "rinya-tohoku-fungi-guide"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "dokutsurutake"
+    },
+    {
+      "canonical_name": "チチアワタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "tottori-tufc-31903"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "chichiawatake"
+    },
+    {
+      "canonical_name": "ヒラタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "tottori-tufc-100534"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "hiratake"
+    },
+    {
+      "canonical_name": "ヤナギマツタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "tottori-tufc-30149"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "yanagimatsutake"
+    },
+    {
+      "canonical_name": "チャアミガサタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "nmns-tnsf-19379"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "chaamigasatake"
+    },
+    {
+      "canonical_name": "オオシロカラカサタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "nmns-tnsf-32604"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "ooshirokarakasatake"
+    },
+    {
+      "canonical_name": "アイタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "rinya-tohoku-fungi-guide"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "aitake"
+    },
+    {
+      "canonical_name": "マツオウジ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "rinya-tohoku-fungi-guide"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "matsuouji"
+    },
+    {
+      "canonical_name": "ウスヒラタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "rinya-tohoku-fungi-guide"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "usuhiratake"
+    },
+    {
+      "canonical_name": "キイロスッポンタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "rinya-tohoku-fungi-guide"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "kiirosuppontake"
     }
   ]
 }

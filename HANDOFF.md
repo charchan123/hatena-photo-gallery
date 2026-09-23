@@ -335,3 +335,15 @@ The summary adds master counts, matched/unmatched image and unique-label counts,
 Production remains the legacy-alt path: the exact list object returned by `fetch_images()` is passed to `generate_gallery()`. Taxonomy does not filter or reconstruct it, and `gallery_name` is not used for production grouping. Phase 3A's DOM state machine and Phase 3A.5 iframe shrink implementation are unchanged. Assets, workflow, Hatena header/footer/design/iframe/fixed pages, and EXIF behavior/cache are unchanged.
 
 Taxonomy is not toxicity. No edible/safe/poisonous inference or spore effect was added. Next, humans should verify unmatched candidates against external sources and extend the static master. The intended sequence remains taxonomy completion, Phase 3C production metadata cutover, gallery-top redesign, a separate toxicity master, and only then poison spore effects. Possible later gallery redesign work includes a wider mobile layout, large photo hero/search, compact gojuon navigation, best-shot history with 1–3 monthly photos, today's/random mushroom, quiz, recent finds, and frequently appearing mushrooms; none is implemented here.
+
+---
+
+# Phase 3B.3 Batch 1 handoff: evidence-backed mushroom knowledge master
+
+This batch started at `3b2a8ff217fbe2450b1cb6cde14c1c2bd2d61fee` and introduces an evidence-backed knowledge layer without a production cutover. `data/sources.json` is the eight-record source registry, `data/mushroom-master.json` contains 11 mushroom records, and `mushroom_knowledge.py` validates both masters plus their optional subject-taxonomy links. Facts carry field-level source provenance.
+
+The subject taxonomy now has 18 entries: 15 mushroom and 3 non-mushroom. Its original eight `project_seed` entries are preserved, while ten mushroom labels are newly `externally_verified`. The existing カエンタケ seed and all ten new labels link to their knowledge records. Scientific names in this batch are `source_reported`, never `accepted_verified`, because no accepted-name database check was performed.
+
+Food safety defaults to `unknown`; absence of a poisonous record never means edible or safe. Only ドクツルタケ and カエンタケ are `poisonous_confirmed`, based on the registered Ministry of Health, Labour and Welfare sources. This knowledge is not an eating-safety system.
+
+There is no Phase 3C production cutover and no toxicity UI, color, or spore effect. `main.py`, gallery assets, workflow, Hatena presentation, and EXIF behavior remain unchanged. Later batches should continue evidence-backed expansion, retaining explicit unknown/null values wherever the cited material does not establish a fact.
