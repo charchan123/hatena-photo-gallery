@@ -8,8 +8,15 @@ It deliberately does not change gallery rendering, embedded CSS/JavaScript, imag
 classification, incremental HTML generation, workflow triggers, or deployment behavior.
 
 Work started from Phase 1's merged `main` baseline
-`d02dec9a73314b93b386a1bb4a204b7cb8efdd2b` on the new branch
-`codex/phase2a-exif-cache`. The local checkout exactly matched that supplied baseline.
+`d02dec9a73314b93b386a1bb4a204b7cb8efdd2b`.
+
+The GitHub PR #4 relationship is:
+
+- base: `main`
+- head: `codex/github-actionsexif`
+- current GitHub commit: `39be8f585b7e8d5d57d6d051b9861cecb332799b`
+
+The local checkout exactly matched that supplied baseline.
 A fetch of GitHub `main` was attempted before work, but this environment's outbound
 GitHub connection was rejected by its proxy (HTTP 403), so no newer remote ref could be
 independently fetched. The baseline commit itself is the Phase 1 merge commit.
