@@ -13,6 +13,11 @@ body {
   transition: opacity .25s ease;
 }
 
+#gallery-content-root {
+  display: flow-root;
+  width: 100%;
+}
+
 /* ======== ギャラリー本体（PC4列・スマホ3列） ======== */
 .gallery {
   column-count: 4;

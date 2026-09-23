@@ -1,7 +1,22 @@
 
 let lastHeight = 0;
 
+function calculateIframeContentHeight(rootHeight, paddingTop, paddingBottom) {
+  return Math.ceil(rootHeight + paddingTop + paddingBottom);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+
+  // Measure normal page content independently from the iframe viewport. Nodes
+  // appended to body later (LightGallery and toast UI) intentionally stay out.
+  let contentRoot = document.getElementById("gallery-content-root");
+  if (!contentRoot) {
+    contentRoot = document.createElement("div");
+    contentRoot.id = "gallery-content-root";
+    const existingContent = Array.from(document.body.childNodes);
+    document.body.appendChild(contentRoot);
+    existingContent.forEach(node => contentRoot.appendChild(node));
+  }
 
   // favorite.html 専用「遅延削除」
   let pendingRemove = null;
@@ -223,11 +238,13 @@ document.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(() => {
           __heightScheduled = false;
 
-          const h = Math.max(
-            document.body.scrollHeight,
-            document.body.offsetHeight,
-            document.documentElement.scrollHeight,
-            document.documentElement.offsetHeight
+          const bodyStyle = window.getComputedStyle(document.body);
+          const paddingTop = parseFloat(bodyStyle.paddingTop) || 0;
+          const paddingBottom = parseFloat(bodyStyle.paddingBottom) || 0;
+          const h = calculateIframeContentHeight(
+            contentRoot.getBoundingClientRect().height,
+            paddingTop,
+            paddingBottom
           );
 
           if (h === __lastSentHeight) return;
@@ -1288,11 +1305,6 @@ galleries.forEach(gallery => {
   // =========================
   updateCardFavorites();
 
-  // =========================
-  // favorite.html では 高さ監視を簡略化
-  // =========================
-  const isFavoritePage = !!document.querySelector(".favorite-gallery");
-
   renderFavoritePage();
 
   // =========================
@@ -1301,7 +1313,7 @@ galleries.forEach(gallery => {
   updateFavoriteCountHook();
 
   // =========================
-  // 高さ監視（既存）
+  // 高さ監視。ResizeObserver は増加・減少の両方を検知する主系統。
   // =========================
   sendHeight();
 
@@ -1317,14 +1329,21 @@ galleries.forEach(gallery => {
 
   window.addEventListener("resize", sendHeight);
 
-    if (!isFavoritePage) {
-        new MutationObserver(() => {
-          sendHeight("mutation");
-        }).observe(document.body, {
-          childList: true,
-          subtree: true,
-          attributes: true
-        });
+    if ("ResizeObserver" in window) {
+      const contentResizeObserver = new ResizeObserver(() => {
+        sendHeight("resize-observer");
+      });
+      contentResizeObserver.observe(contentRoot);
+    } else {
+      // 古いブラウザでは通常コンテンツだけを監視し、overlay/toastを除外する。
+      new MutationObserver(() => {
+        sendHeight("mutation-fallback");
+      }).observe(contentRoot, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        characterData: true
+      });
     }
 
 });
