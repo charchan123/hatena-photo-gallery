@@ -1,5 +1,4 @@
 import os
-import glob
 import json
 import requests
 from bs4 import BeautifulSoup
@@ -56,9 +55,6 @@ def normalize_model(model: str) -> str:
 HATENA_USER = os.getenv("HATENA_USER")
 HATENA_BLOG_ID = os.getenv("HATENA_BLOG_ID")
 HATENA_API_KEY = os.getenv("HATENA_API_KEY")
-
-if not all([HATENA_USER, HATENA_BLOG_ID, HATENA_API_KEY]):
-    raise EnvironmentError("環境変数 HATENA_USER / HATENA_BLOG_ID / HATENA_API_KEY が未設定です。")
 
 ARTICLES_DIR = "articles"
 OUTPUT_DIR = "output"
@@ -2696,10 +2692,16 @@ def build_caption_html(alt, exif: dict):
 # はてなAPI 全記事取得
 # ===========================
 def fetch_hatena_articles_api():
+    if not all([HATENA_USER, HATENA_BLOG_ID, HATENA_API_KEY]):
+        raise EnvironmentError(
+            "環境変数 HATENA_USER / HATENA_BLOG_ID / HATENA_API_KEY が未設定です。"
+        )
+
     os.makedirs(ARTICLES_DIR, exist_ok=True)
     print("📡 はてなブログAPIから全記事取得中…")
     url = ATOM_ENDPOINT
     count = 0
+    article_files = []
     while url:
         print(f"🔗 Fetching: {url}")
         r = requests.get(url, auth=AUTH, headers=HEADERS)
@@ -2718,6 +2720,7 @@ def fetch_hatena_articles_api():
             filename = f"{ARTICLES_DIR}/article_{count+i}.html"
             with open(filename, "w", encoding="utf-8") as f:
                 f.write(html_content)
+            article_files.append(filename)
             print(f"✅ 保存完了: {filename}")
 
         count += len(entries)
@@ -2725,11 +2728,17 @@ def fetch_hatena_articles_api():
         url = next_link.attrib["href"] if next_link is not None else None
 
     print(f"📦 合計 {count} 件の記事を保存しました。")
+    return article_files
 
 # ===========================
 # HTML から画像抽出
 # ===========================
-def fetch_images():
+def fetch_images(article_files):
+    """明示的に指定されたAPI記事本文だけから画像を抽出する。
+
+    articles ディレクトリを自動走査しないことで、旧 full-page HTML や
+    過去のAPI取得ファイルが通常ビルドに混入するのを防ぐ。
+    """
     print("📂 HTMLから画像抽出中…")
     entries = []
 
@@ -2741,7 +2750,7 @@ def fetch_images():
         r'キノコと田舎遊び',
     ]
 
-    for html_file in glob.glob(f"{ARTICLES_DIR}/*.html"):
+    for html_file in article_files:
         with open(html_file, encoding="utf-8") as f:
             soup = BeautifulSoup(f, "html.parser")
 
@@ -3233,17 +3242,30 @@ def generate_favorite_page(grouped):
 # ===========================
 # メイン
 # ===========================
+def build_gallery():
+    """APIの最新取得結果からギャラリー一式を生成する。"""
+    article_files = fetch_hatena_articles_api()
+    if not article_files:
+        raise RuntimeError(
+            "Hatena APIから記事ファイルを1件も取得できなかったため、"
+            "空のギャラリーで上書きしないよう生成を中止します。"
+        )
+
+    entries = fetch_images(article_files)
+    if not entries:
+        raise RuntimeError(
+            "記事から画像を1件も抽出できなかったため、"
+            "空のギャラリーで上書きしないよう生成を中止します。"
+        )
+
+    exif_cache = load_exif_cache()
+    exif_cache = build_exif_cache(entries, exif_cache)
+    save_exif_cache(exif_cache)
+
+    grouped = generate_gallery(entries, exif_cache)
+    generate_index(grouped, exif_cache)
+    generate_favorite_page(grouped)
+
+
 if __name__ == "__main__":
-    fetch_hatena_articles_api()
-    entries = fetch_images()
-
-    if entries:
-        exif_cache = load_exif_cache()
-        exif_cache = build_exif_cache(entries, exif_cache)
-        save_exif_cache(exif_cache)
-
-        grouped = generate_gallery(entries, exif_cache)
-        generate_index(grouped, exif_cache)
-        generate_favorite_page(grouped)
-    else:
-        print("⚠️ 画像が見つかりませんでした。")
+    build_gallery()
