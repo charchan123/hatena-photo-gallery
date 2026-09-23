@@ -514,6 +514,29 @@ body {
 
 .lg-sub-html {
   position: relative;
+  background: #000;
+  padding: 8px 16px 10px;
+  max-height: min(32vh, 220px);
+  overflow-y: auto;
+}
+
+/* This measured component is subtracted from .lg-content together with the
+   thumbnail strip, keeping the image and caption in separate regions. */
+.lg-components .lg-sub-html {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+@media (max-width: 520px), (max-height: 600px) {
+  .lg-sub-html {
+    padding: 6px 10px 8px;
+    max-height: min(38vh, 180px);
+  }
+
+  .exif-wrap { padding-top: 4px; }
+  .exif-title { font-size: 17px; margin-bottom: 3px; }
+  .exif-middle,
+  .exif-bottom-row { font-size: 12px; margin-bottom: 3px; }
 }
 
 /* ===== 検索結果が空のときの余白除去 ===== */
