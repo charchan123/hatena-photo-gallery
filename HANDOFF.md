@@ -1,90 +1,103 @@
-# Phase 1 handoff
+# Phase 2A handoff: EXIF cache persistence
 
-## 現在のブランチ
+## Purpose and scope
 
-`codex/article`
+Phase 2A persists `cache/exif-cache.json` between GitHub Actions clean runners, avoids
+persisting transient download failures, and exposes cache-use metrics in the build log.
+It deliberately does not change gallery rendering, embedded CSS/JavaScript, image
+classification, incremental HTML generation, workflow triggers, or deployment behavior.
 
-現在のGitHub上の関係は以下のとおり。
+Work started from Phase 1's merged `main` baseline
+`d02dec9a73314b93b386a1bb4a204b7cb8efdd2b`.
 
-- PR #1
-  - base: `main`
-  - head: `codex/article`
-  - 状態: Open
-- PR #2
-  - base: `main`
-  - head: `codex/add-fail-safe-for-empty-article-files`
-  - 状態: Open / 未Merge
-- PR #3
-  - base: `codex/article`
-  - head: `codex/integrate-pr-#2-changes-into-pr-#1`
-  - 状態: Merge済み
+The GitHub PR #4 relationship is:
 
-PR #3を `codex/article` へMergeしたことで、PR #1のheadブランチには
-Phase 1の初期修正と空ギャラリー防止fail-safeの両方が統合された。
+- base: `main`
+- head: `codex/github-actionsexif`
+- implementation commit: `39be8f585b7e8d5d57d6d051b9861cecb332799b`
 
-今後はPR #1を最終レビューし、問題がなければ `main` へMergeする。
+The local checkout exactly matched that supplied baseline.
+A fetch of GitHub `main` was attempted before work, but this environment's outbound
+GitHub connection was rejected by its proxy (HTTP 403), so no newer remote ref could be
+independently fetched. The baseline commit itself is the Phase 1 merge commit.
 
-## ベース commit SHA
+## Actions cache design
 
-`efb2e0935760d15b0258c14c85811dd36e283c5b`
+The workflow uses the split `actions/cache/restore@v4` and `actions/cache/save@v4`
+actions for `cache/exif-cache.json`.
 
-開始時のリポジトリコピーには `main` および `origin/main` ref がなかったため、開始時 HEAD（`work`）をベースとした。
+- Primary key: `exif-cache-v1-${{ runner.os }}-${{ github.run_id }}-${{ github.run_attempt }}`
+- Restore prefix: `exif-cache-v1-${{ runner.os }}-`
+- `exif-cache-v1` is an explicit format/version namespace that can be incremented if
+  the JSON format or cache policy changes.
+- Run ID and run attempt make each successful build's primary key immutable and unique;
+  the broad version/OS restore prefix lets a later run select the most recently created
+  compatible cache rather than becoming stuck on one fixed key.
+- Restore occurs after checkout, Python setup, dependency installation, and the existing
+  Secrets presence check, but before `python main.py`.
+- Save occurs immediately after `python main.py`. Normal GitHub Actions step semantics
+  mean it is not reached when that command fails. The save action uses the restore
+  step's `cache-primary-key`, keeping restore and save keys identical.
+- Deployment remains `JamesIves/github-pages-deploy-action@v4`, targets `gh-pages`, and
+  retains `clean: true`. Push-to-`main` and `workflow_dispatch` remain the only triggers;
+  no schedule or deploy-skip logic was added.
 
-## Phase 1 で変更したファイル
+## Transient failure policy and metrics
 
-- `.gitignore`
-- `main.py`
-- `requirements-dev.txt`
-- `tests/test_article_extraction.py`
-- `tests/fixtures/article_body.html`
-- `tests/fixtures/legacy_full_page.html`
-- `AUDIT_PHASE1.md`
-- `HATENA_CHANGES.md`
-- `HANDOFF.md`
+For each unique image URL, an existing dictionary entry (including `{}`) remains a cache
+hit and is not downloaded. A successful HTTP 200 response is parsed and stored: actual
+EXIF fields are stored when present, while `{}` is intentionally stored for a valid image
+with no EXIF so it is not fetched on every run. Non-200 responses and request/parsing-path
+exceptions are not added to the cache, allowing the next build to retry them. Existing
+cache entries are not migrated or deleted.
 
-`articles/article1.html` / `articles/article2.html`、workflow、output、現行 CSS/JS/LightGallery 資産は変更していない。
+Each build prints an `EXIF cache summary` with:
 
-## 完了事項
+- `total`: unique image URLs in the current input;
+- `hits`: URLs already present in the cache;
+- `fetched`: successful HTTP 200 image downloads cached during this build;
+- `failed`: non-200 responses or exceptions left uncached for retry.
 
-- API が今回保存した article パスを返し、通常ビルドはそのパスだけを抽出対象にするよう変更。
-- `fetch_images(article_files)` を fixture から独立して呼び出せるように変更。
-- API credential なしで module import / fixture test を可能にし、API アクセス時は引き続き明示エラーとするように変更。
-- 正常本文、同名連続画像、旧 full-page 併存、正常キノコ維持、既知誤ページ6名の非生成を自動テスト。
-- アーキテクチャ、EXIF、旧 CSS/JS、iframe、fullscreen、Actions/deploy の監査と次 Phase 提案を文書化。
-- API が記事ファイルを1件も返さない場合、または記事から画像エントリを1件も
-  抽出できない場合は `RuntimeError` で生成を停止し、空の output を deploy しない。
-- Hatena API の mock による保存ファイル一覧、2つの空データ停止、非空データの従来処理を
-  自動テストで確認。
+Thus `total = hits + fetched + failed` for the current build.
 
-## テスト結果
+## Changed files
 
-- `python -m py_compile main.py tests/test_article_extraction.py`: 成功。既存の JS regex を含む Python 文字列に `SyntaxWarning: invalid escape sequence '\/'` あり。
-- `python -m pytest -q`: 8 passed。
-- `git diff --check`: 成功。
+- `.github/workflows/generate.yml`: restore/save the versioned EXIF Actions cache.
+- `.gitignore`: ignore the local `cache/` directory.
+- `main.py`: retain only successful downloads and emit cache metrics.
+- `tests/test_article_extraction.py`: cover hits, EXIF/no-EXIF HTTP 200 responses,
+  HTTP 404/500, exceptions, unique URL handling, and summary counts with mocks.
+- `HANDOFF.md`: record the Phase 2A design, validation, and rollout plan.
 
-Secrets を捏造せず、Hatena API 実接続とフルビルドは実施していない。
+`HATENA_CHANGES.md` is unchanged because Phase 2A requires no Hatena-side changes.
 
-## 未完了事項（意図的に Phase 1 範囲外）
+## Validation results
 
-- EXIF cache の Actions 間永続化。
-- CSS/JS 外部化と旧 `gallery.css` / `gallery.js` 整理。
-- iframe 実コンテンツ高さ監視、親側 origin/source 検証。
-- LightGallery/fullscreen/親通知の重複経路整理。
-- 画像メタデータ/manifest、差分解析と差分生成。
-- JST 0:00 schedule と変更なし時の deploy skip。
+- `python -m py_compile main.py tests/test_article_extraction.py`: passed (the pre-existing
+  embedded JavaScript regex still emits Python `SyntaxWarning` messages).
+- `python -m pytest -q`: passed, including all eight Phase 1 tests and the Phase 2A tests.
+- `git diff --check`: passed.
+- Workflow YAML was parsed with Ruby/Psych and its trigger/step ordering, cache keys,
+  deploy action, and `clean: true` were programmatically asserted.
 
-## 既知の問題
+No test used the real image network or Hatena API; EXIF HTTP behavior was mocked.
 
-- `cache/exif-cache.json` は tracked でなく Actions cache もないため、clean runner ごとに再取得になる。
-- 共通 CSS/JS がページごとに大量埋め込みされる。ルート/output の `gallery.*` は現行機能と一致しない。
-- iframe 高さ計測は親 iframe 高さと循環し、縮まない可能性がある。
-- close/fullscreen/`lgClosed` に複数経路がある。
-- `SCRIPT_TAG` 内の重複 `highlight` 宣言に見える箇所と Python SyntaxWarning は、現行挙動を不用意に変えないため未修正。
+## Production status
 
-## 本番反映
+This work has not been merged to `main`, has not changed or pushed `gh-pages`, has not
+run a production deployment, and has not changed the Hatena administration screen.
 
-**未反映**。`main` の変更、`gh-pages` の変更、GitHub Actions 実行、GitHub Pages deploy はいずれも行っていない。Hatena 管理画面も変更していない。
+## Performance verification after a future merge
 
-## Phase 2 で最初に行うこと
+1. Run the merged workflow once. With no compatible persisted Actions cache yet, this may
+   be a cold build. Record total job/build duration and the four EXIF summary values.
+2. Run `workflow_dispatch` again against the same `main`. It should restore the preceding
+   compatible cache and act as a warm build. Compare duration and summary values, with a
+   particular focus on increased `hits` and reduced `fetched` counts.
+3. Compare both measurements with Phase 1's approximately 18-minute production run.
+   Do not assume a fixed target duration: the improvement must be measured because it
+   also depends on runner, API, network, and image population conditions.
 
-現行生成 HTML のスナップショットとブラウザテストを先に固定し、その後 `actions/cache` による EXIF cache 永続化を staging/手動ビルドで検証する。デプロイはしない。次に CSS/JS を挙動不変で外部化する。
+The next step is review and merge of the Phase 2A PR into `main`, followed by those cold
+and warm workflow measurements. Production deployment must only occur through the normal
+review/merge process.
