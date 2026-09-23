@@ -709,6 +709,7 @@ galleries.forEach(gallery => {
     function reserveCaptionSpace() {
       requestAnimationFrame(() => {
         const position = lg.getMediaContainerPosition();
+        lg.mediaContainerPosition = position;
         lg.setMediaContainerPosition(position.top, position.bottom);
       });
     }
