@@ -54,6 +54,90 @@ def test_shadow_metadata_uses_article_text_state_in_dom_order():
     )
 
 
+def test_image_containing_subject_block_updates_state_for_nested_and_later_images(tmp_path):
+    article = tmp_path / "image-subject.html"
+    article.write_text(
+        '<p>ヒラタケ<img src="a.jpg"><img src="b.jpg"></p>'
+        '<p>説明です。</p><p><img src="c.jpg"></p>',
+        encoding="utf-8",
+    )
+
+    metadata = main.extract_shadow_metadata([article], article_metadata={})
+
+    assert [row["detected_label"] for row in metadata] == ["ヒラタケ"] * 3
+    assert all(row["subject_type"] == "mushroom" for row in metadata)
+    assert all(row["classification_confidence"] == "high" for row in metadata)
+
+
+def test_image_containing_sentence_alt_and_category_do_not_create_subject(tmp_path):
+    article = tmp_path / "no-fallback.html"
+    article.write_text(
+        '<p>今日は山へ行きました。<img src="x.jpg" alt="ヒラタケ"></p>',
+        encoding="utf-8",
+    )
+    info = {str(article): {"categories": ["ヒラタケ"]}}
+
+    [row] = main.extract_shadow_metadata([article], article_metadata=info)
+
+    assert row["detected_label"] is None
+    assert row["subject_type"] == "review"
+    assert row["classification_confidence"] == "low"
+
+
+def test_image_containing_unmatched_candidate_remains_review(tmp_path):
+    article = tmp_path / "review.html"
+    article.write_text('<p>フキノトウ<img src="x.jpg"></p>', encoding="utf-8")
+
+    [row] = main.extract_shadow_metadata([article], article_metadata={})
+
+    assert row["detected_label"] == "フキノトウ"
+    assert row["subject_type"] == "review"
+    assert row["classification_reason"] == "taxonomy_unmatched"
+    assert row["classification_confidence"] == "low"
+    assert row["gallery_name"] is None
+
+
+@pytest.mark.parametrize(
+    ("raw", "expected"),
+    [
+        ("コテングタケモドキ(編集中)", "コテングタケモドキ"),
+        ("コテングタケモドキ（編集中）", "コテングタケモドキ"),
+        ("オオワライタケ(20日撮影)", "オオワライタケ"),
+        ("オオワライタケ（20日撮影）", "オオワライタケ"),
+        ("オオワライタケ(25日)", "オオワライタケ"),
+        ("キサケツバタケ？(26日撮影)", "キサケツバタケ？"),
+        ("オオワライタケ(1日)", "オオワライタケ"),
+        ("オオワライタケ(31日)", "オオワライタケ"),
+        ("オオワライタケ(1日撮影)", "オオワライタケ"),
+        ("オオワライタケ（31日撮影）", "オオワライタケ"),
+        ("アラゲキクラゲ(アルビノ)？", "アラゲキクラゲ(アルビノ)？"),
+        ("アラゲキクラゲ（アルビノ）？", "アラゲキクラゲ（アルビノ）？"),
+        ("キアシヤマドリタケ(仮称)", "キアシヤマドリタケ(仮称)"),
+        ("アンズタケ(広義)", "アンズタケ(広義)"),
+        ("Lanmaoa angustispora(和名無し)？", "Lanmaoa angustispora？"),
+        ("Lanmaoa angustispora（和名無し）", "Lanmaoa angustispora"),
+    ],
+)
+def test_extract_subject_candidate_label_narrow_transformations(raw, expected):
+    assert main.extract_subject_candidate_label(raw) == expected
+
+
+@pytest.mark.parametrize(
+    "raw",
+    [
+        "オオワライタケ(0日)", "オオワライタケ(32日)",
+        "オオワライタケ(2025年10月20日)", "オオワライタケ(去年撮影)",
+        "オオワライタケ(朝撮影)", "オオワライタケ(再撮影)",
+        "オオワライタケ(確認中)", "アラゲキクラゲ(白色型)？",
+        "This is a mushroom", "Butyriboletus roseogriseus？の事について",
+        "ミネシメジの仲間", "Lanmaoa angustisporaの残骸",
+        "オオワライタケの定点観察のため、また近所の緑地へと行ってきた。",
+    ],
+)
+def test_extract_subject_candidate_label_rejects_unsupported_broadening(raw):
+    assert main.extract_subject_candidate_label(raw) is None
+
+
 @pytest.mark.parametrize(
     ("text", "expected"),
     [
@@ -100,7 +184,7 @@ def test_candidate_diagnostic_matches_unchanged_predicate(text, reason):
 def test_residual_gap_audit_preserves_occurrences_and_context(tmp_path):
     article = tmp_path / "article.html"
     article.write_text(
-        '<div class="entry-body"><p>説明です。</p><p>アカヤマドリ<img src="same.jpg" alt="キノコ"></p>'
+        '<div class="entry-body"><p>説明です。</p><p>今日は山へ行きました。<img src="same.jpg" alt="キノコ"></p>'
         '<p>追加説明です。</p><img src="same.jpg" alt=""><p>シイタケ</p><img src="after.jpg" alt="legacy"></div>',
         encoding="utf-8",
     )
@@ -114,14 +198,31 @@ def test_residual_gap_audit_preserves_occurrences_and_context(tmp_path):
     assert [row["article_image_index"] for row in audit["undetected_images"]] == [0, 1]
     first = audit["undetected_images"][0]
     assert first["position_relative_to_first_subject"] == "before_first_valid_subject"
-    assert first["containing_block"]["text"] == "アカヤマドリ"
-    assert first["containing_block"]["candidate"] is True
+    assert first["containing_block"]["text"] == "今日は山へ行きました。"
+    assert first["containing_block"]["candidate"] is False
+    assert first["containing_block"]["effective_candidate"] is False
     assert first["next_valid_subject"] == {"text": "シイタケ", "tag": "p", "blocks_ahead": 2, "images_ahead": 1}
     assert first["legacy_alt_category_match"]["match_type"] == "exact"
     assert baseline[0]["subject_type"] == "review"  # alt remains audit-only
     assert len(first["next_blocks"]) <= 3
     assert audit["undetected_articles"][0]["undetected_image_count"] == 2
     assert set(audit) == {"version", "summary", "undetected_images", "undetected_articles", "taxonomy_unmatched_labels"}
+
+
+def test_residual_gap_audit_uses_effective_subject_rule(tmp_path):
+    article = tmp_path / "effective.html"
+    article.write_text(
+        '<img src="before.jpg"><p>オオワライタケ(20日撮影)</p><img src="after.jpg">',
+        encoding="utf-8",
+    )
+    metadata = main.extract_shadow_metadata([article], article_metadata={}, taxonomy=None)
+    audit = main.build_residual_gap_audit([article], metadata, {})
+
+    assert [row["detected_label"] for row in metadata] == [None, "オオワライタケ"]
+    [gap] = audit["undetected_images"]
+    assert gap["position_relative_to_first_subject"] == "before_first_valid_subject"
+    assert gap["next_valid_subject"]["text"] == "オオワライタケ"
+    assert audit["undetected_articles"][0]["first_valid_subject_label"] == "オオワライタケ"
 
 
 def test_residual_gap_audit_handles_article_without_subject(tmp_path):

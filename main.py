@@ -544,6 +544,28 @@ def normalize_subject_comparison(text):
     return unicodedata.normalize("NFKC", normalize_subject_text(text))
 
 
+def strip_subject_operational_suffix(text):
+    """Remove only the allowlisted, trailing blog-operation annotation."""
+    return re.sub(
+        r"(?:\((?:編集中|(?:[1-9]|[12]\d|3[01])日(?:撮影)?)\)|"
+        r"（(?:編集中|(?:[1-9]|[12]\d|3[01])日(?:撮影)?)）)$",
+        "",
+        normalize_subject_text(text),
+    ).strip()
+
+
+def extract_subject_candidate_label(text):
+    """Return the narrowly cleaned effective subject label, or ``None``."""
+    candidate = strip_subject_operational_suffix(text)
+    latin_without_japanese_name = re.fullmatch(
+        r"([A-Z][a-z]{2,} [a-z][a-z-]{2,})(?:\(和名無し\)|（和名無し）)([?？]?)",
+        candidate,
+    )
+    if latin_without_japanese_name:
+        candidate = "".join(latin_without_japanese_name.groups())
+    return candidate if is_subject_label_candidate(candidate) else None
+
+
 def is_subject_label_candidate(text):
     """短い単独テキストが保守的な本文 subject 候補かを返す。"""
     candidate = normalize_subject_text(text)
@@ -583,6 +605,8 @@ def strip_subject_annotation_for_validation(text):
     result = text
     for annotation in SUBJECT_ALLOWED_ANNOTATIONS:
         result = re.sub(fr"(?:\({annotation}\)|（{annotation}）)", "", result)
+    # Descriptive, not operational: preserve it in the returned detected label.
+    result = re.sub(r"(?:\(アルビノ\)|（アルビノ）)", "", result)
     if re.search(r"[()（）]", result):
         return None
     return result
@@ -850,10 +874,10 @@ def extract_shadow_metadata(article_files, article_metadata=None, taxonomy="load
         current_subject = None
         for element in body.find_all((*SUBJECT_BLOCK_TAGS, "img")):
             if element.name in SUBJECT_BLOCK_TAGS:
-                if element.find("img") is not None:
-                    continue
-                candidate = normalize_subject_text(element.get_text(" ", strip=True))
-                if is_subject_label_candidate(candidate):
+                candidate = extract_subject_candidate_label(
+                    element.get_text(" ", strip=True)
+                )
+                if candidate is not None:
                     current_subject = candidate
                 continue
 
@@ -1164,11 +1188,14 @@ def _residual_label_flags(label):
 
 def _audit_block(block):
     text = normalize_subject_text(block.get_text(" ", strip=True))
+    effective_label = extract_subject_candidate_label(text)
     return {
         "tag": block.name,
         "text": text,
         "contains_image": block.find("img") is not None,
         **diagnose_subject_label_candidate(text),
+        "effective_candidate": effective_label is not None,
+        "effective_label": effective_label,
     }
 
 
@@ -1209,8 +1236,7 @@ def build_residual_gap_audit(article_files, metadata, article_metadata=None):
                 f"metadata={len(rows)} parsed={len(images)}"
             )
         valid_blocks = [element for element in elements if element.name in SUBJECT_BLOCK_TAGS
-                        and element.find("img") is None
-                        and is_subject_label_candidate(normalize_subject_text(element.get_text(" ", strip=True)))]
+                        and extract_subject_candidate_label(element.get_text(" ", strip=True)) is not None]
         first_subject = valid_blocks[0] if valid_blocks else None
         article_rows = []
         for image_index, (image, row) in enumerate(zip(images, rows)):
@@ -1227,8 +1253,8 @@ def build_residual_gap_audit(article_files, metadata, article_metadata=None):
                 position = "before_first_valid_subject"
             else:
                 position = "after_first_valid_subject"
-            next_subject = next((block for block in after if block.find("img") is None
-                                 and is_subject_label_candidate(normalize_subject_text(block.get_text(" ", strip=True)))), None)
+            next_subject = next((block for block in after
+                                 if extract_subject_candidate_label(block.get_text(" ", strip=True)) is not None), None)
             containing = image.find_parent(SUBJECT_BLOCK_TAGS)
             matched, match_type = match_label_to_categories(row["legacy_alt"], row["article_categories"])
             record = {
@@ -1246,7 +1272,7 @@ def build_residual_gap_audit(article_files, metadata, article_metadata=None):
             if next_subject is not None:
                 next_index = elements.index(next_subject)
                 record["next_valid_subject"] = {
-                    "text": normalize_subject_text(next_subject.get_text(" ", strip=True)),
+                    "text": extract_subject_candidate_label(next_subject.get_text(" ", strip=True)),
                     "tag": next_subject.name,
                     "blocks_ahead": sum(e.name in SUBJECT_BLOCK_TAGS for e in elements[element_index + 1:next_index + 1]),
                     "images_ahead": sum(e.name == "img" for e in elements[element_index + 1:next_index]),
@@ -1262,7 +1288,7 @@ def build_residual_gap_audit(article_files, metadata, article_metadata=None):
                 "legacy_alt_empty_count": sum(not row["legacy_alt"] for row in article_rows),
                 "legacy_alt_nonempty_count": sum(bool(row["legacy_alt"]) for row in article_rows),
                 "legacy_alt_category_match_count": sum(row["legacy_alt_category_match"]["match_type"] != "none" for row in article_rows),
-                "first_valid_subject_label": normalize_subject_text(first_subject.get_text(" ", strip=True)) if first_subject else None,
+                "first_valid_subject_label": extract_subject_candidate_label(first_subject.get_text(" ", strip=True)) if first_subject else None,
                 "position_bucket_counts": {value: sum(row["position_relative_to_first_subject"] == value for row in article_rows)
                     for value in ("before_first_valid_subject", "after_first_valid_subject", "article_has_no_valid_subject")},
             })

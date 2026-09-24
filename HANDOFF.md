@@ -406,3 +406,33 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
   predicate.
 - Decide the ordering and scope of a detection fix, taxonomy Batch 3, and the
   Phase 3C cutover only after reviewing the measured residual audit.
+
+---
+
+# Phase 3B.5 conservative residual subject-detection fixes
+
+- Starting SHA: `122d332ff45387e5356360ca3d8516d067fae7b7`.
+- The Phase 3B.4 production measurement was 974 total shadow images, 897
+  detected, and 77 undetected: 30 before the first valid subject, 47 in
+  articles with no valid subject, and 0 after the first valid subject.
+- Three narrowly scoped detector gaps were fixed: an image-containing subject
+  block can establish state from its own text (never from image alt), the
+  allowlisted trailing operational suffixes `編集中`, days 1–31, and days 1–31
+  followed by `撮影` are removed, and Latin binomials followed by `和名無し`
+  are validated after that annotation is removed. Operational annotations and
+  `和名無し` do not remain in `detected_label`.
+- `アルビノ` is a validation-only descriptive annotation and remains in
+  `detected_label`. Existing `仮称` and `広義` behavior is preserved. Unknown
+  annotations remain rejected.
+- `の仲間`, `の残骸`, and `の事について` are not stripped or accepted by a
+  new fallback. Legacy alt and category remain audit/corroboration evidence and
+  never create a subject.
+- The residual audit now uses the same effective candidate helper for its
+  first/next-valid-subject calculations while retaining the existing raw
+  diagnostics and adding effective candidate fields. Generation, reporting,
+  and export failures remain isolated from production.
+- Taxonomy, mushroom master, sources, production legacy-alt grouping, EXIF,
+  UI/assets, and workflow are unchanged. Phase 3C has not been performed.
+- Next: re-audit remaining undetected images in post-merge Actions, apply only
+  another justified small correction if needed, then proceed to Batch 3
+  taxonomy work and finally Phase 3C.
