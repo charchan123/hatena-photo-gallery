@@ -206,6 +206,27 @@ def _exposure_to_str(val):
     except Exception:
         return ""
 
+def _extract_iso(exif: dict):
+    """Return the first usable ISO value from piexif's supported ISO tags."""
+    for tag_name in (
+        "ISOSpeedRatings",
+        "ISOSpeed",
+        "StandardOutputSensitivity",
+        "RecommendedExposureIndex",
+    ):
+        tag = getattr(piexif.ExifIFD, tag_name, None)
+        if tag is None:
+            continue
+
+        value = exif.get(tag)
+        if isinstance(value, (list, tuple)):
+            if not value:
+                continue
+            value = value[0]
+        if value is not None:
+            return value
+    return ""
+
 # ===========================
 # EXIF 抽出
 # ===========================
@@ -234,10 +255,8 @@ def extract_exif_from_bytes(jpeg_bytes: bytes):
         lens = clean_exif_str(str(lens))
 
     # ISO
-    iso = exif.get(piexif.ExifIFD.ISOSpeedRatings) or exif.get(piexif.ExifIFD.ISO)
-    if isinstance(iso, (list, tuple)):
-        iso = iso[0]
-    iso_str = str(iso) if iso is not None else ""
+    iso = _extract_iso(exif)
+    iso_str = str(iso) if iso != "" else ""
 
     # F値
     fnum = exif.get(piexif.ExifIFD.FNumber)

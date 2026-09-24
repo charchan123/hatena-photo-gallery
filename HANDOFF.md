@@ -347,3 +347,19 @@ The subject taxonomy now has 18 entries: 15 mushroom and 3 non-mushroom. Its ori
 Food safety defaults to `unknown`; absence of a poisonous record never means edible or safe. Only ドクツルタケ and カエンタケ are `poisonous_confirmed`, based on the registered Ministry of Health, Labour and Welfare sources. This knowledge is not an eating-safety system.
 
 There is no Phase 3C production cutover and no toxicity UI, color, or spore effect. `main.py`, gallery assets, workflow, Hatena presentation, and EXIF behavior remain unchanged. Later batches should continue evidence-backed expansion, retaining explicit unknown/null values wherever the cited material does not establish a fact.
+
+---
+
+# EXIF ISO regression fix handoff
+
+ISO extraction now checks piexif's supported tags in this order:
+`ISOSpeedRatings`, `ISOSpeed`, `StandardOutputSensitivity`, then
+`RecommendedExposureIndex`. Tag constants are resolved with `getattr`, and empty
+list or tuple values are skipped safely. A photo with no usable ISO value returns
+`iso=""` while retaining its other EXIF fields.
+
+The EXIF cache key and format are unchanged. Existing cache hits remain valid, and
+the 99 production URLs that previously failed before being cached will therefore be
+retried by the next Actions build. Regression coverage exercises every fallback,
+missing tag constants, empty sequences, and preservation of the camera, lens,
+aperture, exposure, focal length, and date fields when ISO is absent.
