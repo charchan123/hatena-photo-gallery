@@ -375,3 +375,34 @@ The evidence hierarchy used is peer-reviewed original description, government re
 For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 102132 records 広義アミガサタケ as *Morchella* sp.; the broad name is not an alias and the project does not assert one project-wide accepted identity. For キクラゲ, the Ishikawa and TUFC sources use differing scientific-name treatments, so the master records that nuance and does not assert every blog photo is *Auricularia heimuer*.
 
 `edibility_reported` only records what a source calls edible and never means safe, safe to eat, or medically recommended. ヘビキノコモドキ is `poisonous_confirmed` from the cited government guide, without inferring an unreported toxin. There is no Phase 3C cutover: production remains unchanged on the legacy-alt path. EXIF code and cache behavior are also unchanged.
+# Phase 3B.4 residual gap audit
+
+- Starting SHA: `201b29854f77caba7a2bd76216c6063b01817e5f`.
+- Phase 3B.3 Batch 2 Actions baseline: 960 shadow images, 883 detected, 77
+  undetected, 315 taxonomy matched, 568 taxonomy unmatched, 255 unmatched
+  unique labels, and 896 legacy production images. These are observations, not
+  fixed assertions; use the post-merge Actions result as the new measurement.
+- This phase is audit-only. Subject detection rules and the `current_subject`
+  state machine, taxonomy data, legacy production grouping, EXIF behavior, and
+  UI/assets/workflow are unchanged. Production still passes the exact object
+  returned by `fetch_images(article_files)` to `generate_gallery(entries,
+  exif_cache)`.
+- `cache/phase3b4-residual-gap-audit.json` is schema version 1 with `summary`,
+  complete `undetected_images`, article-level `undetected_articles`, and all
+  distinct `taxonomy_unmatched_labels`. Image indexes are zero-based shadow
+  occurrences, so repeated URLs are retained. Surrounding blocks are stored in
+  DOM order: previous blocks are the last three before the image (oldest to
+  nearest), and next blocks are the first three after it.
+- Every undetected occurrence is also emitted as one JSON line prefixed
+  `Phase 3B.4 undetected-image audit:`. Diagnostics include containing and
+  surrounding blocks, relative position, next valid subject, and legacy-alt
+  category corroboration. Legacy alt is audit evidence only and never a
+  classification driver.
+- Candidate diagnostic reason codes are `accepted_kana_label`,
+  `accepted_latin_label`, `accepted_unknown_label`, `empty`, `too_long`,
+  `stopword`, `sentence_punctuation`, `url`, `date_like`, `excluded_pattern`,
+  `unsupported_annotation`, `unsupported_characters`, and `too_few_kana`.
+  The diagnostic result is checked against the unchanged production/shadow
+  predicate.
+- Decide the ordering and scope of a detection fix, taxonomy Batch 3, and the
+  Phase 3C cutover only after reviewing the measured residual audit.

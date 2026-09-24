@@ -73,6 +73,9 @@ SUBJECT_TAXONOMY_FILE = os.path.join(
 SUBJECT_TAXONOMY_CANDIDATES_FILE = os.path.join(
     CACHE_DIR, "phase3-subject-taxonomy-candidates.json"
 )
+RESIDUAL_GAP_AUDIT_FILE = os.path.join(
+    CACHE_DIR, "phase3b4-residual-gap-audit.json"
+)
 TAXONOMY_SUBJECT_TYPES = {"mushroom", "non_mushroom"}
 
 SHADOW_EXCLUDE_PATTERNS = [
@@ -590,6 +593,41 @@ def is_latin_scientific_label(text):
     return bool(re.fullmatch(r"[A-Z][a-z]{2,} [a-z][a-z-]{2,}[?？]?", text))
 
 
+def diagnose_subject_label_candidate(text):
+    """Explain the unchanged subject predicate for Phase 3B.4 audits only."""
+    candidate = normalize_subject_text(text)
+    accepted = is_subject_label_candidate(text)
+    if not candidate:
+        reason = "empty"
+    elif len(candidate) > 24:
+        reason = "too_long"
+    elif candidate in SUBJECT_LABEL_STOPWORDS:
+        reason = "stopword"
+    elif any(mark in candidate for mark in ("。", "！", "!")):
+        reason = "sentence_punctuation"
+    elif re.search(r"(?:https?://|www\.)", candidate, re.IGNORECASE):
+        reason = "url"
+    elif re.search(r"\d{4}\s*[/年.-]\s*\d{1,2}", candidate):
+        reason = "date_like"
+    elif any(re.search(pattern, candidate) for pattern in SHADOW_EXCLUDE_PATTERNS):
+        reason = "excluded_pattern"
+    elif is_latin_scientific_label(candidate):
+        reason = "accepted_latin_label"
+    else:
+        validation_text = strip_subject_annotation_for_validation(candidate)
+        if validation_text is None:
+            reason = "unsupported_annotation"
+        elif "不明" in candidate:
+            reason = "accepted_unknown_label"
+        elif not re.fullmatch(r"[ァ-ヶぁ-ゖー・?？()（）「」『』【】\[\]]+", validation_text):
+            reason = "unsupported_characters"
+        elif len(re.findall(r"[ァ-ヶぁ-ゖ]", validation_text)) < 3:
+            reason = "too_few_kana"
+        else:
+            reason = "accepted_kana_label"
+    return {"candidate": accepted, "candidate_reason": reason}
+
+
 def normalize_category_term(term):
     return unicodedata.normalize("NFKC", normalize_subject_text(term)).casefold()
 
@@ -938,11 +976,14 @@ def summarize_detected_labels(metadata):
             "categories": set(), "category_match_count": 0, "empty_alt_count": 0,
             "subject_type_counts": {},
             "mushroom_context_count": 0,
+            "category_exact_count": 0, "category_normalized_count": 0,
         })
         row["image_count"] += 1
         row["article_paths"].add(item["article_path"])
         row["categories"].update(item["article_categories"])
         row["category_match_count"] += item["category_match_type"] != "none"
+        row["category_exact_count"] += item["category_match_type"] == "exact"
+        row["category_normalized_count"] += item["category_match_type"] == "normalized"
         row["empty_alt_count"] += not item["legacy_alt"]
         row["mushroom_context_count"] += item["has_mushroom_context"]
         subject_type = item["subject_type"]
@@ -955,6 +996,8 @@ def summarize_detected_labels(metadata):
             "article_count": len(row["article_paths"]),
             "categories": sorted(row["categories"]),
             "category_match_count": row["category_match_count"],
+            "category_exact_count": row["category_exact_count"],
+            "category_normalized_count": row["category_normalized_count"],
             "empty_alt_count": row["empty_alt_count"],
             "subject_type_counts": row["subject_type_counts"],
             "mushroom_context_count": row["mushroom_context_count"],
@@ -1107,6 +1150,164 @@ def save_shadow_metadata(metadata):
     os.makedirs(CACHE_DIR, exist_ok=True)
     with open(SHADOW_METADATA_FILE, "w", encoding="utf-8") as f:
         json.dump(metadata, f, ensure_ascii=False, indent=2)
+
+
+def _residual_label_flags(label):
+    return {
+        "question": any(mark in label for mark in ("?", "？")),
+        "unknown": "不明" in label,
+        "provisional": any(mark in label for mark in ("(仮称)", "（仮称）")),
+        "broad_sense": any(mark in label for mark in ("(広義)", "（広義）")),
+        "latin": is_latin_scientific_label(label),
+    }
+
+
+def _audit_block(block):
+    text = normalize_subject_text(block.get_text(" ", strip=True))
+    return {
+        "tag": block.name,
+        "text": text,
+        "contains_image": block.find("img") is not None,
+        **diagnose_subject_label_candidate(text),
+    }
+
+
+def _prepare_gap_article(html_file):
+    with open(html_file, encoding="utf-8") as stream:
+        soup = BeautifulSoup(stream, "html.parser")
+    body = soup.find(class_="entry-body") or soup
+    for iframe in body.find_all("iframe"):
+        if any(re.search(pattern, iframe.get("title", "")) for pattern in SHADOW_EXCLUDE_PATTERNS):
+            iframe.decompose()
+    for link in body.find_all("a"):
+        if any(re.search(pattern, link.get_text(strip=True)) for pattern in SHADOW_EXCLUDE_PATTERNS):
+            link.decompose()
+    elements = body.find_all((*SUBJECT_BLOCK_TAGS, "img"))
+    images = [element for element in elements if element.name == "img" and element.get("src") and not any(
+        re.search(pattern, (element.get("alt") or "").strip())
+        for pattern in SHADOW_EXCLUDE_PATTERNS
+    )]
+    return elements, images
+
+
+def build_residual_gap_audit(article_files, metadata, article_metadata=None):
+    """Build a complete, occurrence-preserving Phase 3B.4 audit."""
+    if article_metadata is None:
+        article_metadata = load_article_metadata()
+    by_path = {}
+    for item in metadata:
+        by_path.setdefault(os.path.normpath(item["article_path"]), []).append(item)
+    undetected = []
+    articles = []
+    for html_file in article_files:
+        path = os.path.normpath(os.fspath(html_file))
+        rows = by_path.get(path, [])
+        elements, images = _prepare_gap_article(html_file)
+        if len(rows) != len(images):
+            raise ValueError(
+                f"shadow occurrence mismatch for {html_file}: "
+                f"metadata={len(rows)} parsed={len(images)}"
+            )
+        valid_blocks = [element for element in elements if element.name in SUBJECT_BLOCK_TAGS
+                        and element.find("img") is None
+                        and is_subject_label_candidate(normalize_subject_text(element.get_text(" ", strip=True)))]
+        first_subject = valid_blocks[0] if valid_blocks else None
+        article_rows = []
+        for image_index, (image, row) in enumerate(zip(images, rows)):
+            if row["detected_label"] is not None:
+                continue
+            element_index = elements.index(image)
+            before = [element for element in elements[:element_index] if element.name in SUBJECT_BLOCK_TAGS
+                      and normalize_subject_text(element.get_text(" ", strip=True))]
+            after = [element for element in elements[element_index + 1:] if element.name in SUBJECT_BLOCK_TAGS
+                     and normalize_subject_text(element.get_text(" ", strip=True))]
+            if first_subject is None:
+                position = "article_has_no_valid_subject"
+            elif elements.index(first_subject) > element_index:
+                position = "before_first_valid_subject"
+            else:
+                position = "after_first_valid_subject"
+            next_subject = next((block for block in after if block.find("img") is None
+                                 and is_subject_label_candidate(normalize_subject_text(block.get_text(" ", strip=True)))), None)
+            containing = image.find_parent(SUBJECT_BLOCK_TAGS)
+            matched, match_type = match_label_to_categories(row["legacy_alt"], row["article_categories"])
+            record = {
+                "src": row["src"], "legacy_alt": row["legacy_alt"],
+                "article_path": row["article_path"], "article_title": row["article_title"],
+                "article_id": row["article_id"], "article_categories": row["article_categories"],
+                "article_image_index": image_index, "article_shadow_image_count": len(rows),
+                "position_relative_to_first_subject": position,
+                "containing_block": _audit_block(containing) if containing else None,
+                "previous_blocks": [_audit_block(block) for block in before[-3:]],
+                "next_blocks": [_audit_block(block) for block in after[:3]],
+                "next_valid_subject": None,
+                "legacy_alt_category_match": {"matched_categories": matched, "match_type": match_type},
+            }
+            if next_subject is not None:
+                next_index = elements.index(next_subject)
+                record["next_valid_subject"] = {
+                    "text": normalize_subject_text(next_subject.get_text(" ", strip=True)),
+                    "tag": next_subject.name,
+                    "blocks_ahead": sum(e.name in SUBJECT_BLOCK_TAGS for e in elements[element_index + 1:next_index + 1]),
+                    "images_ahead": sum(e.name == "img" for e in elements[element_index + 1:next_index]),
+                }
+            undetected.append(record)
+            article_rows.append(record)
+        if article_rows:
+            info = article_metadata.get(path, {})
+            articles.append({
+                "article_path": os.fspath(html_file), "article_title": info.get("title"),
+                "article_id": info.get("article_id"), "article_categories": info.get("categories") or [],
+                "total_shadow_images": len(rows), "undetected_image_count": len(article_rows),
+                "legacy_alt_empty_count": sum(not row["legacy_alt"] for row in article_rows),
+                "legacy_alt_nonempty_count": sum(bool(row["legacy_alt"]) for row in article_rows),
+                "legacy_alt_category_match_count": sum(row["legacy_alt_category_match"]["match_type"] != "none" for row in article_rows),
+                "first_valid_subject_label": normalize_subject_text(first_subject.get_text(" ", strip=True)) if first_subject else None,
+                "position_bucket_counts": {value: sum(row["position_relative_to_first_subject"] == value for row in article_rows)
+                    for value in ("before_first_valid_subject", "after_first_valid_subject", "article_has_no_valid_subject")},
+            })
+    unmatched = []
+    for row in summarize_detected_labels(metadata):
+        if row["current_taxonomy_match"] == "none":
+            item = dict(row)
+            item["flags"] = _residual_label_flags(row["detected_label"])
+            item["normalized_taxonomy_key"] = normalize_taxonomy_key(row["detected_label"])
+            unmatched.append(item)
+    unmatched.sort(key=lambda row: (-row["image_count"], row["detected_label"]))
+    summary = {
+        "total_shadow_images": len(metadata), "detected_images": len(metadata) - len(undetected),
+        "undetected_images": len(undetected), "undetected_articles": len(articles),
+        **{f"undetected_{value}": sum(row["position_relative_to_first_subject"] == value for row in undetected)
+           for value in ("before_first_valid_subject", "after_first_valid_subject", "article_has_no_valid_subject")},
+        "undetected_legacy_alt_empty": sum(not row["legacy_alt"] for row in undetected),
+        "undetected_legacy_alt_nonempty": sum(bool(row["legacy_alt"]) for row in undetected),
+        **{f"undetected_legacy_alt_category_{kind}": sum(row["legacy_alt_category_match"]["match_type"] == kind for row in undetected)
+           for kind in ("exact", "normalized", "none")},
+        "undetected_containing_block_present": sum(row["containing_block"] is not None for row in undetected),
+        "undetected_containing_block_candidate": sum(bool(row["containing_block"] and row["containing_block"]["candidate"]) for row in undetected),
+        "taxonomy_unmatched_images": sum(row["image_count"] for row in unmatched),
+        "taxonomy_unmatched_unique_labels": len(unmatched),
+    }
+    for flag in ("question", "unknown", "provisional", "broad_sense", "latin"):
+        summary[f"taxonomy_unmatched_{flag}_labels"] = sum(row["flags"][flag] for row in unmatched)
+    return {"version": 1, "summary": summary, "undetected_images": undetected,
+            "undetected_articles": articles, "taxonomy_unmatched_labels": unmatched}
+
+
+def report_residual_gap_audit(audit):
+    print("Phase 3B.4 residual gap summary:")
+    for key, value in audit["summary"].items():
+        print(f"{key}={value}")
+    if audit["summary"]["undetected_after_first_valid_subject"]:
+        print("Phase 3B.4 audit anomaly: undetected images occur after first valid subject")
+    for row in audit["undetected_images"]:
+        print("Phase 3B.4 undetected-image audit: " + json.dumps(row, ensure_ascii=False))
+
+
+def save_residual_gap_audit(audit):
+    os.makedirs(CACHE_DIR, exist_ok=True)
+    with open(RESIDUAL_GAP_AUDIT_FILE, "w", encoding="utf-8") as stream:
+        json.dump(audit, stream, ensure_ascii=False, indent=2)
 
 # ===========================
 # 五十音分類
@@ -1611,6 +1812,19 @@ def build_gallery():
             except (OSError, TypeError, ValueError) as error:
                 print(f"Phase 3B.2 taxonomy candidate export failed: {error}")
         save_shadow_metadata(shadow_metadata)
+        try:
+            residual_audit = build_residual_gap_audit(article_files, shadow_metadata)
+        except Exception as error:
+            print(f"Phase 3B.4 residual gap audit failed: {error}")
+        else:
+            try:
+                report_residual_gap_audit(residual_audit)
+            except Exception as error:
+                print(f"Phase 3B.4 residual gap audit failed: {error}")
+            try:
+                save_residual_gap_audit(residual_audit)
+            except (OSError, TypeError, ValueError) as error:
+                print(f"Phase 3B.4 residual gap audit export failed: {error}")
     except Exception as error:
         print(f"Phase 3B.2 shadow audit failed: {error}")
 

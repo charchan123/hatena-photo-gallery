@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 import main
@@ -75,6 +76,79 @@ def test_shadow_metadata_uses_article_text_state_in_dom_order():
 )
 def test_subject_label_candidate_is_conservative(text, expected):
     assert main.is_subject_label_candidate(text) is expected
+
+
+@pytest.mark.parametrize(
+    ("text", "reason"),
+    [
+        ("", "empty"), ("ア" * 25, "too_long"), ("幼菌", "stopword"),
+        ("説明です。", "sentence_punctuation"),
+        ("https://example.invalid", "url"), ("2026年9月", "date_like"),
+        ("キアシヤマドリタケ(要確認)", "unsupported_annotation"),
+        ("英字ABC", "unsupported_characters"), ("キノ", "too_few_kana"),
+        ("不明", "accepted_unknown_label"),
+        ("Lanmaoa angustispora？", "accepted_latin_label"),
+        ("キアシヤマドリタケ(仮称)", "accepted_kana_label"),
+    ],
+)
+def test_candidate_diagnostic_matches_unchanged_predicate(text, reason):
+    diagnostic = main.diagnose_subject_label_candidate(text)
+    assert diagnostic["candidate"] is main.is_subject_label_candidate(text)
+    assert diagnostic["candidate_reason"] == reason
+
+
+def test_residual_gap_audit_preserves_occurrences_and_context(tmp_path):
+    article = tmp_path / "article.html"
+    article.write_text(
+        '<div class="entry-body"><p>説明です。</p><p>アカヤマドリ<img src="same.jpg" alt="キノコ"></p>'
+        '<p>追加説明です。</p><img src="same.jpg" alt=""><p>シイタケ</p><img src="after.jpg" alt="legacy"></div>',
+        encoding="utf-8",
+    )
+    path = str(article)
+    info = {path: {"title": "audit", "article_id": "id", "categories": ["キノコ"]}}
+    baseline = main.extract_shadow_metadata([article], article_metadata=info, taxonomy=None)
+    audit = main.build_residual_gap_audit([article], baseline, info)
+
+    assert [row["detected_label"] for row in baseline] == [None, None, "シイタケ"]
+    assert [row["src"] for row in audit["undetected_images"]] == ["same.jpg", "same.jpg"]
+    assert [row["article_image_index"] for row in audit["undetected_images"]] == [0, 1]
+    first = audit["undetected_images"][0]
+    assert first["position_relative_to_first_subject"] == "before_first_valid_subject"
+    assert first["containing_block"]["text"] == "アカヤマドリ"
+    assert first["containing_block"]["candidate"] is True
+    assert first["next_valid_subject"] == {"text": "シイタケ", "tag": "p", "blocks_ahead": 2, "images_ahead": 1}
+    assert first["legacy_alt_category_match"]["match_type"] == "exact"
+    assert baseline[0]["subject_type"] == "review"  # alt remains audit-only
+    assert len(first["next_blocks"]) <= 3
+    assert audit["undetected_articles"][0]["undetected_image_count"] == 2
+    assert set(audit) == {"version", "summary", "undetected_images", "undetected_articles", "taxonomy_unmatched_labels"}
+
+
+def test_residual_gap_audit_handles_article_without_subject(tmp_path):
+    article = tmp_path / "no-subject.html"
+    article.write_text('<p>説明です。</p><img src="x.jpg">', encoding="utf-8")
+    metadata = main.extract_shadow_metadata([article], article_metadata={}, taxonomy=None)
+    audit = main.build_residual_gap_audit([article], metadata, {})
+    assert audit["undetected_images"][0]["position_relative_to_first_subject"] == "article_has_no_valid_subject"
+    assert audit["undetected_articles"][0]["first_valid_subject_label"] is None
+
+
+def test_residual_taxonomy_aggregation_sort_flags_and_export(tmp_path, monkeypatch):
+    article = tmp_path / "labels.html"
+    article.write_text('<p>不明</p><img src="1"><img src="2"><p>Lanmaoa angustispora？</p><img src="3"><p>キノコ(仮称)</p><img src="4"><p>キノコ(広義)</p><img src="5">', encoding="utf-8")
+    metadata = main.extract_shadow_metadata([article], article_metadata={}, taxonomy=None)
+    audit = main.build_residual_gap_audit([article], metadata, {})
+    rows = audit["taxonomy_unmatched_labels"]
+    assert [row["image_count"] for row in rows] == [2, 1, 1, 1]
+    assert rows[0]["flags"]["unknown"] is True
+    assert any(row["flags"]["latin"] and row["flags"]["question"] for row in rows)
+    assert any(row["flags"]["provisional"] for row in rows)
+    assert any(row["flags"]["broad_sense"] for row in rows)
+    assert all("category_exact_count" in row and "normalized_taxonomy_key" in row for row in rows)
+    output = tmp_path / "audit.json"
+    monkeypatch.setattr(main, "RESIDUAL_GAP_AUDIT_FILE", str(output))
+    main.save_residual_gap_audit(audit)
+    assert json.loads(output.read_text(encoding="utf-8"))["version"] == 1
 
 
 def test_unknown_gallery_mapping_preserves_detected_label():
@@ -492,6 +566,9 @@ def test_build_processes_non_empty_data_as_before(monkeypatch):
     monkeypatch.setattr(
         main, "save_shadow_metadata", lambda metadata: calls.append("shadow-save")
     )
+    monkeypatch.setattr(main, "build_residual_gap_audit", lambda files, metadata: {"summary": {}, "undetected_images": []})
+    monkeypatch.setattr(main, "report_residual_gap_audit", lambda audit: calls.append("residual-report"))
+    monkeypatch.setattr(main, "save_residual_gap_audit", lambda audit: calls.append("residual-save"))
     monkeypatch.setattr(main, "save_taxonomy_candidates", lambda metadata: None)
     monkeypatch.setattr(main, "load_exif_cache", lambda: {})
     monkeypatch.setattr(main, "build_exif_cache", lambda actual, cache: cache)
@@ -516,10 +593,41 @@ def test_build_processes_non_empty_data_as_before(monkeypatch):
     assert calls == [
         "shadow-report",
         "shadow-save",
+        "residual-report",
+        "residual-save",
         "save",
         "index",
         "favorite",
     ]
+
+
+@pytest.mark.parametrize("failing_step", ["report", "export"])
+def test_residual_audit_failures_preserve_production_entries(monkeypatch, failing_step, capsys):
+    entries = [{"alt": "legacy", "src": "x.jpg"}]
+    generated = []
+    monkeypatch.setattr(main, "fetch_hatena_articles_api", lambda: ["article.html"])
+    monkeypatch.setattr(main, "fetch_images", lambda files: entries)
+    monkeypatch.setattr(main, "extract_shadow_metadata", lambda files, **kwargs: [])
+    monkeypatch.setattr(main, "report_category_inventory", lambda files: None)
+    monkeypatch.setattr(main, "report_shadow_metadata", lambda *args, **kwargs: None)
+    monkeypatch.setattr(main, "save_taxonomy_candidates", lambda data: None)
+    monkeypatch.setattr(main, "save_shadow_metadata", lambda data: None)
+    monkeypatch.setattr(main, "build_residual_gap_audit", lambda files, data: {"summary": {}, "undetected_images": []})
+    monkeypatch.setattr(main, "report_residual_gap_audit", lambda audit: (_ for _ in ()).throw(RuntimeError("report")) if failing_step == "report" else None)
+    monkeypatch.setattr(main, "save_residual_gap_audit", lambda audit: (_ for _ in ()).throw(OSError("export")) if failing_step == "export" else None)
+    monkeypatch.setattr(main, "load_exif_cache", lambda: {})
+    monkeypatch.setattr(main, "build_exif_cache", lambda actual, cache: cache)
+    monkeypatch.setattr(main, "save_exif_cache", lambda cache: None)
+    monkeypatch.setattr(main, "generate_gallery", lambda actual, cache: generated.append(actual) or {})
+    monkeypatch.setattr(main, "generate_index", lambda grouped, cache: None)
+    monkeypatch.setattr(main, "generate_favorite_page", lambda grouped: None)
+
+    main.build_gallery()
+
+    assert generated == [entries]
+    assert generated[0] is entries
+    expected = "audit failed: report" if failing_step == "report" else "audit export failed: export"
+    assert expected in capsys.readouterr().out
 
 
 def test_shadow_failure_is_logged_without_blocking_production(monkeypatch, capsys):
