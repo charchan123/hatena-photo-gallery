@@ -192,6 +192,122 @@
       ],
       "notes": "Externally verified mushroom subject.",
       "mushroom_master_id": "kiirosuppontake"
+    },
+    {
+      "canonical_name": "アカヤマドリ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-akayamadori"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "akayamadori"
+    },
+    {
+      "canonical_name": "ヒロメノトガリアミガサタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "mycoscience-myc590",
+        "tochigi-rdb-2023-fungi"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "hiromenotogariamigasatake"
+    },
+    {
+      "canonical_name": "アミガサタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "tottori-tufc-100721"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "amigasatake"
+    },
+    {
+      "canonical_name": "キクラゲ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-kikurage",
+        "tottori-tufc-100803"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "kikurage"
+    },
+    {
+      "canonical_name": "ヘビキノコモドキ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-hebikinokomodoki",
+        "ffpri-hebikinokomodoki"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "hebikinokomodoki"
+    },
+    {
+      "canonical_name": "ハナイグチ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "tottori-tufc-100699",
+        "ishikawa-hanaiguchi"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "hanaiguchi"
+    },
+    {
+      "canonical_name": "カラカサタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-karakasatake",
+        "gbif-macrolepiota-procera"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "karakasatake"
+    },
+    {
+      "canonical_name": "ヤマイグチ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-yamaiguchi"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "yamaiguchi"
+    },
+    {
+      "canonical_name": "キクバナイグチ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-kikubanaiguchi",
+        "ffpri-kikubanaiguchi"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "kikubanaiguchi"
+    },
+    {
+      "canonical_name": "クロカワ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "biodic-fujihoku-fungi"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "kurokawa"
     }
   ]
 }

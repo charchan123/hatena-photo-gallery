@@ -363,3 +363,15 @@ the 99 production URLs that previously failed before being cached will therefore
 retried by the next Actions build. Regression coverage exercises every fallback,
 missing tag constants, empty sequences, and preservation of the camera, lens,
 aperture, exposure, focal length, and date fields when ISO is absent.
+
+---
+
+# Phase 3B.3 Batch 2 handoff: 10 high-impact mushroom subjects
+
+This batch started at `f937a3b38909992bf449ac925b23e505aaf5a5b7` and adds 10 evidence-backed mushroom subjects while preserving the three-layer Phase 3B.3 structure. The source registry grows from 8 to 25 records, the mushroom master from 11 to 21 records, and subject taxonomy from 18 to 28 records. Mushroom taxonomy entries grow from 15 to 25; all 3 non-mushroom entries and all existing records remain unchanged.
+
+The evidence hierarchy used is peer-reviewed original description, government records and guides, university culture collection records, national research institute guidance, and supplementary GBIF/Catalogue of Life data. All 10 scientific names remain `source_reported`; none is promoted to `accepted_verified`.
+
+For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 102132 records 広義アミガサタケ as *Morchella* sp.; the broad name is not an alias and the project does not assert one project-wide accepted identity. For キクラゲ, the Ishikawa and TUFC sources use differing scientific-name treatments, so the master records that nuance and does not assert every blog photo is *Auricularia heimuer*.
+
+`edibility_reported` only records what a source calls edible and never means safe, safe to eat, or medically recommended. ヘビキノコモドキ is `poisonous_confirmed` from the cited government guide, without inferring an unreported toxin. There is no Phase 3C cutover: production remains unchanged on the legacy-alt path. EXIF code and cache behavior are also unchanged.
