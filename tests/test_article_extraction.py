@@ -552,6 +552,95 @@ def test_shadow_failure_is_logged_without_blocking_production(monkeypatch, capsy
     )
 
 
+@pytest.mark.parametrize(
+    ("iso_values", "expected"),
+    [
+        (
+            {
+                "ISOSpeedRatings": 100,
+                "ISOSpeed": 200,
+                "StandardOutputSensitivity": 400,
+                "RecommendedExposureIndex": 800,
+            },
+            "100",
+        ),
+        ({"ISOSpeed": 200}, "200"),
+        ({"StandardOutputSensitivity": 400}, "400"),
+        ({"RecommendedExposureIndex": 800}, "800"),
+    ],
+)
+def test_extract_exif_uses_supported_iso_tags_in_priority_order(
+    monkeypatch, iso_values, expected
+):
+    exif = {
+        getattr(main.piexif.ExifIFD, name): value
+        for name, value in iso_values.items()
+    }
+    monkeypatch.setattr(
+        main.piexif, "load", lambda content: {"0th": {}, "Exif": exif}
+    )
+
+    assert main.extract_exif_from_bytes(b"jpeg")["iso"] == expected
+
+
+def test_extract_exif_without_iso_preserves_other_fields(monkeypatch):
+    monkeypatch.setattr(
+        main.piexif,
+        "load",
+        lambda content: {
+            "0th": {main.piexif.ImageIFD.Model: b"Test Camera"},
+            "Exif": {
+                main.piexif.ExifIFD.LensModel: b"Test Lens",
+                main.piexif.ExifIFD.FNumber: (28, 10),
+                main.piexif.ExifIFD.ExposureTime: (1, 125),
+                main.piexif.ExifIFD.FocalLength: (50, 1),
+                main.piexif.ExifIFD.DateTimeOriginal: b"2026:09:23 12:34:56",
+            },
+        },
+    )
+
+    assert main.extract_exif_from_bytes(b"jpeg") == {
+        "model": "Test Camera",
+        "lens": "Test Lens",
+        "iso": "",
+        "f": "f/2.8",
+        "exposure": "1/125",
+        "focal": "50mm",
+        "date": "2026/09/23",
+    }
+
+
+@pytest.mark.parametrize("empty_value", [[], ()])
+def test_extract_exif_skips_empty_iso_sequences(monkeypatch, empty_value):
+    monkeypatch.setattr(
+        main.piexif,
+        "load",
+        lambda content: {
+            "0th": {},
+            "Exif": {
+                main.piexif.ExifIFD.ISOSpeedRatings: empty_value,
+                main.piexif.ExifIFD.ISOSpeed: (640,),
+            },
+        },
+    )
+
+    assert main.extract_exif_from_bytes(b"jpeg")["iso"] == "640"
+
+
+def test_extract_exif_skips_iso_tag_constants_missing_from_piexif(monkeypatch):
+    monkeypatch.delattr(main.piexif.ExifIFD, "ISOSpeedRatings")
+    monkeypatch.setattr(
+        main.piexif,
+        "load",
+        lambda content: {
+            "0th": {},
+            "Exif": {main.piexif.ExifIFD.ISOSpeed: 320},
+        },
+    )
+
+    assert main.extract_exif_from_bytes(b"jpeg")["iso"] == "320"
+
+
 def test_exif_cache_hit_does_not_download(monkeypatch, tmp_path, capsys):
     src = "https://example.invalid/cached.jpg"
     cache = {src: {"model": "cached camera"}}
