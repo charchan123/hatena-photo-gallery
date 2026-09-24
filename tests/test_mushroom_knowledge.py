@@ -7,10 +7,16 @@ import main
 import mushroom_knowledge as knowledge
 
 
-NEW_LABELS = (
+BATCH_1_LABELS = (
     "ドクツルタケ", "チチアワタケ", "ヒラタケ", "ヤナギマツタケ",
     "チャアミガサタケ", "オオシロカラカサタケ", "アイタケ",
     "マツオウジ", "ウスヒラタケ", "キイロスッポンタケ",
+)
+
+BATCH_2_LABELS = (
+    "アカヤマドリ", "ヒロメノトガリアミガサタケ", "アミガサタケ", "キクラゲ",
+    "ヘビキノコモドキ", "ハナイグチ", "カラカサタケ", "ヤマイグチ",
+    "キクバナイグチ", "クロカワ",
 )
 
 
@@ -29,28 +35,36 @@ def repository_data():
 
 def test_repository_counts_policies_and_links():
     sources, master, taxonomy = repository_data()
-    assert len(sources["sources"]) == 8
-    assert len(master["entries"]) == 11
-    assert len(taxonomy["entries"]) == 18
-    assert sum(row["subject_type"] == "mushroom" for row in taxonomy["entries"]) == 15
+    assert len(sources["sources"]) == 25
+    assert len(master["entries"]) == 21
+    assert len(taxonomy["entries"]) == 28
+    assert sum(row["subject_type"] == "mushroom" for row in taxonomy["entries"]) == 25
     assert sum(row["subject_type"] == "non_mushroom" for row in taxonomy["entries"]) == 3
-    assert {row["canonical_name"] for row in taxonomy["entries"] if row["verification_status"] == "externally_verified"} == set(NEW_LABELS)
+    assert {row["canonical_name"] for row in taxonomy["entries"] if row["verification_status"] == "externally_verified"} == set(BATCH_1_LABELS + BATCH_2_LABELS)
     assert all(row["scientific_name"]["name_status"] == "source_reported" for row in master["entries"])
-    assert {row["canonical_name_ja"] for row in master["entries"] if row["food_safety"]["status"] == "poisonous_confirmed"} == {"カエンタケ", "ドクツルタケ"}
+    assert {row["canonical_name_ja"] for row in master["entries"] if row["food_safety"]["status"] == "poisonous_confirmed"} == {"カエンタケ", "ドクツルタケ", "ヘビキノコモドキ"}
+    by_name = {row["canonical_name_ja"]: row for row in master["entries"]}
+    assert all(by_name[name]["scientific_name"]["name_status"] == "source_reported" for name in BATCH_2_LABELS)
+    assert all(by_name[name]["food_safety"]["status"] == "edibility_reported" for name in ("アカヤマドリ", "キクラゲ", "ハナイグチ", "カラカサタケ", "ヤマイグチ", "キクバナイグチ"))
+    assert by_name["ヘビキノコモドキ"]["food_safety"]["status"] == "poisonous_confirmed"
+    assert all(by_name[name]["food_safety"]["status"] == "unknown" for name in ("ヒロメノトガリアミガサタケ", "アミガサタケ", "クロカワ"))
+    assert "広義アミガサタケ" not in by_name["アミガサタケ"]["aliases_ja"]
+    assert "キクラゲ（広義）" not in by_name["キクラゲ"]["aliases_ja"]
+    assert not any(row["food_safety"]["status"] in {"safe", "safe_to_eat", "edible_safe", "non_poisonous"} for row in master["entries"])
     assert knowledge.validate_subject_taxonomy_links()
 
 
 def test_classification_regression_and_uncertain_gallery_name(tmp_path):
     taxonomy = main.load_subject_taxonomy()
-    for label in NEW_LABELS:
+    for label in BATCH_1_LABELS + BATCH_2_LABELS:
         assert main.classify_subject_type(label, taxonomy) == ("mushroom", "taxonomy_mushroom", "high")
     for label in ("不明", "おまけ", "カルガモ", "カワラバト", "ソメイヨシノ", "ヒガンバナ"):
         assert main.classify_subject_type(label, taxonomy) == ("review", "taxonomy_unmatched", "low")
     article = tmp_path / "article.html"
-    article.write_text('<p>チャアミガサタケ？</p><img src="x.jpg" alt="legacy">', encoding="utf-8")
+    article.write_text('<p>アミガサタケ？</p><img src="x.jpg" alt="legacy">', encoding="utf-8")
     row = main.extract_shadow_metadata([article], taxonomy=taxonomy)[0]
     assert (row["subject_type"], row["classification_confidence"]) == ("mushroom", "high")
-    assert (row["gallery_name"], row["detected_label"]) == ("不明", "チャアミガサタケ？")
+    assert (row["gallery_name"], row["detected_label"]) == ("不明", "アミガサタケ？")
 
 
 def test_duplicate_source_id_is_rejected(tmp_path):
