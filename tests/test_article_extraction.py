@@ -181,6 +181,50 @@ def test_candidate_diagnostic_matches_unchanged_predicate(text, reason):
     assert diagnostic["candidate_reason"] == reason
 
 
+@pytest.mark.parametrize("boundary", [
+    "ベニタケの仲間", "ベニタケの仲間(2)", "ホウキタケの仲間",
+    "ヤマイグチの仲間？", "Lanmaoa angustisporaの残骸",
+    "Butyriboletus roseogriseus？の事について",
+    "ウラベニガサ＆タマキクラゲ", "エノキタケ&アラゲキクラゲ",
+    "サザナミイグチorフリルイグチ(仮称)？",
+    "不明ベニタケ(カワリハツ？)",
+    "ヤマドリタケモドキ(ヨゴレキアミアシイグチの可能性有り)",
+])
+def test_rejected_subject_boundary_ends_previous_subject(boundary, tmp_path):
+    article = tmp_path / "boundary.html"
+    article.write_text(
+        f'<p>ヤナギマツタケ</p><img src="before.jpg">'
+        f'<p>{boundary}</p><img src="blocked.jpg">', encoding="utf-8",
+    )
+
+    rows = main.extract_shadow_metadata([article], article_metadata={})
+
+    assert rows[0]["detected_label"] == "ヤナギマツタケ"
+    assert rows[0]["subject_state_status"] == "accepted_subject"
+    assert rows[1]["detected_label"] is None
+    assert rows[1]["subject_state_status"] == "reset_by_rejected_boundary"
+    assert rows[1]["last_rejected_boundary_text"] == boundary
+    assert rows[1]["last_rejected_boundary_reason"]
+
+
+def test_ordinary_text_does_not_reset_and_accepted_subject_replaces_state(tmp_path):
+    article = tmp_path / "state.html"
+    article.write_text(
+        '<p>ノウタケ</p><img src="1.jpg"><p>普通の説明文です。</p>'
+        '<img src="2.jpg"><p>ホウキタケの仲間</p><img src="3.jpg">'
+        '<p>シイタケ</p><img src="4.jpg"><img src="5.jpg">',
+        encoding="utf-8",
+    )
+
+    rows = main.extract_shadow_metadata([article], article_metadata={})
+
+    assert [row["detected_label"] for row in rows] == [
+        "ノウタケ", "ノウタケ", None, "シイタケ", "シイタケ",
+    ]
+    assert rows[2]["subject_state_status"] == "reset_by_rejected_boundary"
+    assert rows[3]["subject_source_block_text"] == "シイタケ"
+
+
 def test_residual_gap_audit_preserves_occurrences_and_context(tmp_path):
     article = tmp_path / "article.html"
     article.write_text(
@@ -783,6 +827,8 @@ def _readiness_row(src, label, subject_type, gallery_name, *, alt="legacy", reas
         "classification_reason": reason or f"taxonomy_{subject_type}",
         "taxonomy_match_type": "canonical_exact" if subject_type != "review" else "none",
         "article_title": "Article", "article_path": path,
+        "subject_state_status": "accepted_subject" if label is not None else "no_subject",
+        "subject_source_block_text": label,
     }
 
 
@@ -799,13 +845,13 @@ def test_phase3c_hybrid_preview_policy_occurrences_groups_and_metadata():
     ]
     shadow = [
         _readiness_row("same.jpg", "Same", "mushroom", "Same"),
-        _readiness_row("rename.jpg", "New", "mushroom", "New"),
+        _readiness_row("rename.jpg", "Old", "mushroom", "New"),
         _readiness_row("review.jpg", "Unknown", "review", None,
                        reason="taxonomy_unmatched"),
         _readiness_row("none.jpg", None, "review", None,
                        reason="no_detected_label"),
         _readiness_row("remove.jpg", "Bird", "non_mushroom", None),
-        _readiness_row("duplicate.jpg", "Duplicate new", "mushroom", "Duplicate new"),
+        _readiness_row("duplicate.jpg", "First legacy", "mushroom", "Duplicate new"),
         _readiness_row("duplicate.jpg", "Insect", "non_mushroom", None),
         _readiness_row("new.jpg", "Added", "mushroom", "Added"),
         _readiness_row("new-review.jpg", "Maybe", "review", None),
@@ -866,6 +912,12 @@ def test_phase3c_hybrid_preview_policy_occurrences_groups_and_metadata():
         "new_non_mushroom_excluded_count": 1,
         "hybrid_unique_names": 7, "rename_group_count": 2,
         "added_gallery_name_count": 1,
+        "compatible_rename_count": 2,
+        "rename_conflict_count": 0,
+        "rename_conflict_group_count": 0,
+        "rejected_subject_boundary_count": 0,
+        "images_blocked_by_rejected_boundary_count": 0,
+        "new_boundary_blocked_excluded_count": 0,
     }
 
 
@@ -878,9 +930,9 @@ def test_phase3c_hybrid_preview_schema_and_group_sort(tmp_path, monkeypatch):
         {"src": "c.jpg", "alt": "Other"},
     ]
     shadow = [
-        _readiness_row("a.jpg", "New", "mushroom", "New"),
-        _readiness_row("b.jpg", "New", "mushroom", "New"),
-        _readiness_row("c.jpg", "Third", "mushroom", "Third"),
+        _readiness_row("a.jpg", "Old", "mushroom", "New"),
+        _readiness_row("b.jpg", "Old", "mushroom", "New"),
+        _readiness_row("c.jpg", "Other", "mushroom", "Third"),
     ]
     _, report = main.build_phase3c_hybrid_preview(legacy, shadow)
     main.save_phase3c_hybrid_preview(report)
@@ -891,9 +943,54 @@ def test_phase3c_hybrid_preview_schema_and_group_sort(tmp_path, monkeypatch):
         "legacy_fallback_review", "legacy_fallback_undetected",
         "legacy_fallback_shadow_missing", "new_review_excluded",
         "new_undetected_excluded", "new_non_mushroom_excluded",
+        "new_boundary_blocked_excluded", "rename_conflicts",
+        "rename_conflict_groups", "rejected_subject_boundaries",
         "readiness_notes",
     }
     assert [row["image_count"] for row in saved["rename_groups"]] == [2, 1]
+
+
+def test_phase3c_hybrid_rename_guard_and_new_boundary_safety():
+    legacy = [
+        {"src": "unknown.jpg", "alt": "チャアミガサタケ？"},
+        {"src": "broad.jpg", "alt": "ヤマドリタケモドキ(広義)"},
+        {"src": "conflict.jpg", "alt": "アシボソアミガサタケ？"},
+    ]
+    shadow = [
+        _readiness_row("unknown.jpg", "チャアミガサタケ？", "mushroom", "不明"),
+        _readiness_row("broad.jpg", "ヤマドリタケモドキ(広義)", "mushroom",
+                       "ヤマドリタケモドキ"),
+        _readiness_row("conflict.jpg", "トガリアミガサタケ", "mushroom",
+                       "トガリアミガサタケ"),
+        _readiness_row("new.jpg", "シイタケ", "mushroom", "シイタケ", alt=""),
+        _readiness_row("blocked.jpg", None, "review", None, alt=""),
+        _readiness_row("resumed.jpg", "ムキタケ", "mushroom", "ムキタケ", alt=""),
+    ]
+    shadow[2]["taxonomy_canonical_name"] = "トガリアミガサタケ"
+    shadow[2]["dom_context"] = {"containing_block": None, "previous_blocks": [],
+                                 "next_blocks": []}
+    shadow[4].update({
+        "subject_state_status": "reset_by_rejected_boundary",
+        "last_rejected_boundary_text": "ベニタケの仲間",
+        "last_rejected_boundary_reason": "family_or_group_heading",
+    })
+
+    hybrid, report = main.build_phase3c_hybrid_preview(legacy, shadow)
+
+    assert hybrid == [
+        {"src": "unknown.jpg", "alt": "不明"},
+        {"src": "broad.jpg", "alt": "ヤマドリタケモドキ"},
+        {"src": "conflict.jpg", "alt": "アシボソアミガサタケ？"},
+        {"src": "new.jpg", "alt": "シイタケ"},
+        {"src": "resumed.jpg", "alt": "ムキタケ"},
+    ]
+    assert report["summary"]["compatible_rename_count"] == 2
+    assert report["summary"]["rename_conflict_count"] == 1
+    assert report["rename_conflicts"][0]["decision"] == "rename_conflict_manual_review"
+    assert report["rename_conflicts"][0]["proposed_hybrid_alt"] == "トガリアミガサタケ"
+    assert [row["src"] for row in report["new_boundary_blocked_excluded"]] == [
+        "blocked.jpg"
+    ]
 
 
 def test_phase3c_readiness_candidate_multisets_and_classifications():
@@ -1042,7 +1139,7 @@ def test_phase3c_hybrid_failure_preserves_exact_production_entries(
 
     assert generated == [entries]
     assert generated[0] is entries
-    assert f"Phase 3C.1 hybrid preview failed: {failing_step}" in capsys.readouterr().out
+    assert f"Phase 3C.2 guarded hybrid preview failed: {failing_step}" in capsys.readouterr().out
 
 
 @pytest.mark.parametrize(
