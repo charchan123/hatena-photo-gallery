@@ -582,3 +582,17 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - Portal build, data-save, and status-save failures are isolated and cannot prevent gallery, index, or favorite output generation. A best-effort failure status is emitted where possible.
 - UI, CSS, gallery appearance, Hatena iframe behavior, browser favorites, Phase 3 reports, validators, and hybrid selection semantics are unchanged.
 - Next: after merge, audit deployed portal data measurements and decide the first Phase 4A.1 portal UI.
+
+# Phase 4A.1 — EXIF撮影月による「季節から探す」
+
+- Starting SHA: `3a90cfbd8b7567877c6f5c7c673237f46cc81ee6`。開始時に `HEAD` との完全一致を確認し、baseline は **266 passed / 266 collected** だった。
+- 目的は Phase 4A.0 の `portal-data.json` を初めて UI から利用し、トップページに入口を1つ追加して、春（3–5月）・夏（6–8月）・秋（9–11月）・冬（12・1・2月）から既存 gallery subject を探せるようにすること。
+- `season.html` は portal schema v1 の `subjects[].capture_month_counts` だけを source of truth とする。カードには `cover_src`、`gallery_name`、該当撮影月、その季節の観察写真枚数、既存の `safe_filename()` と同じ命名規則による gallery リンクを表示する。
+- EXIF月がない subject はどの季節にも配置しない。同じ subject に複数季節の実績があれば各季節へ表示する。不明、`?` / `？` 付き、仮称、広義などの名称も変更・除外しない。記事日時、一般知識、mushroom master の season、location、taxonomy 推測は使わない。
+- UI本文には「実際に撮影した写真のEXIF撮影月」であることと、「一般的なキノコの発生時期」ではないことを明記した。白基調、mobile 12px余白、広い写真、余白中心の専用 `season.css` と、操作しやすい4季節タブ用 `season.js` に分離し、既存 gallery CSS/JS、favorites、LightGalleryを変更していない。
+- Failure isolation: season UI は、その run の portal export status が `build_ok == true` の場合だけ、直前に正常保存された portal file を読み生成する。portal build/save failure時は stale data を読まず、season load/render/write failureも捕捉して、後続の `generate_gallery`、`generate_index`、`generate_favorite_page` を止めない。
+- Changed files: `main.py`, `season_ui.py`, `assets/season.css`, `assets/season.js`, `tests/test_season_ui.py`, `HANDOFF.md`。
+- Tests: season境界、日付なし非配置、複数季節、uncertain/provisional name保持、既存galleryリンク、説明文、portal failure時のstale非利用、season failure isolation、portal schema v1とfuture schema拒否、production-selection境界の回帰を追加した。最終件数は **276 passed / 276 collected**。
+- Production safety: Phase 3C hybrid候補構築・validator・選択部分の後、既存の単一 `production_entries` を portal exportへ渡す構造は維持し、season生成は production selection 完了後の補助出力に限定した。Phase 4A.0 portal schema/versionと `portal_data.py` は変更していない。
+- Known issue: `generate_index()` の `hero-world` と `gallery-guide` が `<head>` 内にある既知の invalid HTML は、scope外として維持した。
+- Phase 4A.2候補: productionで季節別実測値とmobile操作を監査後、同じ portal contract の範囲内で観察年・撮影月など別の観察導線を小さく追加する。一般発生時期やknowledge seasonを統合する場合は、EXIF観察季節と明確に分離した別設計にする。
