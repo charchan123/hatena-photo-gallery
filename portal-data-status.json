@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "build_ok": true,
+  "error": null,
+  "production_mode": "phase3c_hybrid",
+  "production_image_count": 923,
+  "portal_observation_count": 923,
+  "portal_subject_count": 302,
+  "shadow_missing_observation_count": 0,
+  "master_linked_subject_count": 41
+}
