@@ -1,12 +1,23 @@
 {
   "version": 1,
-  "production_mode": "legacy_fallback",
-  "cutover_active": false,
-  "fallback_reason": "hybrid build/validation failed: added occurrence is not a mushroom",
+  "production_mode": "phase3c_hybrid",
+  "cutover_active": true,
+  "fallback_reason": null,
   "legacy_image_count": 896,
-  "production_image_count": 896,
+  "production_image_count": 923,
   "hybrid_candidate_image_count": 923,
-  "net_image_delta_vs_legacy": 0,
-  "validation": null,
+  "net_image_delta_vs_legacy": 27,
+  "validation": {
+    "valid": true,
+    "checks": {
+      "report_version": true,
+      "entry_schema": true,
+      "count_accounting": true,
+      "src_multiset_accounting": true,
+      "rename_compatibility": true,
+      "rename_conflict_preservation": true,
+      "new_image_safety": true
+    }
+  },
   "hybrid_report_version": 2
 }
