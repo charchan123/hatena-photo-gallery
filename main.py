@@ -14,6 +14,7 @@ from mushroom_knowledge import load_mushroom_master, load_sources
 from portal_data import (
     build_portal_data, failure_status, save_json, success_status,
 )
+from season_ui import generate_season_page, load_fresh_portal_data
 
 # ===========================
 # 珍しい / 人気キノコリスト（手動）
@@ -2319,6 +2320,19 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 """)
 
     # ==========================================================
+    # EXIF撮影月による季節ポータル
+    # ==========================================================
+    index_parts.append("""
+    <div class="section">
+    <div class="feature-block">
+      <h2 class="section-title">季節から探す</h2>
+      <p class="section-desc">このブログで実際に撮影した写真のEXIF撮影月から探せます</p>
+      <a class="aiuo-link" href="season.html">春・夏・秋・冬から見る</a>
+    </div>
+    </div>
+    """)
+
+    # ==========================================================
     # 観察ノート専用セクション
     # ==========================================================
     index_parts.append("""
@@ -2615,17 +2629,31 @@ def build_gallery():
     exif_cache = build_exif_cache(production_entries, exif_cache)
     save_exif_cache(exif_cache)
 
-    export_portal_data(
+    portal_status = export_portal_data(
         production_entries=production_entries,
         shadow_metadata=shadow_metadata or [],
         exif_cache=exif_cache,
         taxonomy=taxonomy,
         production_mode=production_mode,
     )
+    generate_season_page_if_fresh(portal_status)
 
     grouped = generate_gallery(production_entries, exif_cache)
     generate_index(grouped, exif_cache)
     generate_favorite_page(grouped)
+
+
+def generate_season_page_if_fresh(portal_status):
+    """Best-effort UI output, gated on this run's successful portal export."""
+    if not isinstance(portal_status, dict) or portal_status.get("build_ok") is not True:
+        return False
+    try:
+        portal = load_fresh_portal_data(PORTAL_DATA_FILE)
+        generate_season_page(portal, OUTPUT_DIR, ASSETS_DIR, safe_filename)
+    except Exception as error:
+        print(f"Phase 4A.1 season page generation failed: {error}")
+        return False
+    return True
 
 
 def export_portal_data(*, production_entries, shadow_metadata, article_metadata=None,
