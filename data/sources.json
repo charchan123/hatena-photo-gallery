@@ -370,6 +370,106 @@
       "record_id": null,
       "accessed_at": "2026-09-24",
       "notes": null
+    },
+    {
+      "source_id": "ishikawa-aragekikurage",
+      "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「アラゲキクラゲ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/aragekikurage.html",
+      "record_id": null,
+      "accessed_at": "2026-09-25",
+      "notes": null
+    },
+    {
+      "source_id": "ishikawa-uraguronigaiguchi",
+      "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「ウラグロニガイグチ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/uraguronigaiguti.html",
+      "record_id": null,
+      "accessed_at": "2026-09-25",
+      "notes": null
+    },
+    {
+      "source_id": "ishikawa-ookitunetake",
+      "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「オオキツネタケ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/ookitunetake.html",
+      "record_id": null,
+      "accessed_at": "2026-09-25",
+      "notes": null
+    },
+    {
+      "source_id": "ishikawa-seitakaiguchi",
+      "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「セイタカイグチ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/seitakaiguti.html",
+      "record_id": null,
+      "accessed_at": "2026-09-25",
+      "notes": null
+    },
+    {
+      "source_id": "ishikawa-tamachoreitake",
+      "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「タマチョレイタケ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/tamachoreitake.html",
+      "record_id": null,
+      "accessed_at": "2026-09-25",
+      "notes": null
+    },
+    {
+      "source_id": "ishikawa-hakusan-sizen35",
+      "organization": "石川県 白山自然保護センター",
+      "title": "白山の自然誌35 白山高山帯・亜高山帯のきのこ",
+      "source_type": "government_nature_report",
+      "url": "https://www.pref.ishikawa.lg.jp/hakusan/publish/sizen/documents/sizen35.pdf",
+      "record_id": null,
+      "accessed_at": "2026-09-25",
+      "notes": null
+    },
+    {
+      "source_id": "kyoto-fungi-2015",
+      "organization": "京都府",
+      "title": "京都府自然環境目録2015 菌類",
+      "source_type": "government_biodiversity_inventory",
+      "url": "https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fungi.html",
+      "record_id": null,
+      "accessed_at": "2026-09-25",
+      "notes": null
+    },
+    {
+      "source_id": "jataff-hoteishimeji",
+      "organization": "公益社団法人 農林水産・食品産業技術振興協会",
+      "title": "野生きのこの世界「ホテイシメジ」",
+      "source_type": "specialist_mushroom_guide",
+      "url": "https://www.jataff.or.jp/kinoko/0608/14.htm",
+      "record_id": null,
+      "accessed_at": "2026-09-25",
+      "notes": null
+    },
+    {
+      "source_id": "kyoto-rdb-miyamatamagotake",
+      "organization": "京都府",
+      "title": "京都府レッドデータブック2015「ミヤマタマゴタケ」",
+      "source_type": "government_red_data_book",
+      "url": "https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fun0058.html",
+      "record_id": null,
+      "accessed_at": "2026-09-25",
+      "notes": null
+    },
+    {
+      "source_id": "jataff-miyamatamagotake",
+      "organization": "公益社団法人 農林水産・食品産業技術振興協会",
+      "title": "野生きのこの世界「ミヤマタマゴタケ」",
+      "source_type": "specialist_mushroom_guide",
+      "url": "https://www.jataff.or.jp/kinoko/0609/14.htm",
+      "record_id": null,
+      "accessed_at": "2026-09-25",
+      "notes": null
     }
   ]
 }

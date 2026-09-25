@@ -31,7 +31,7 @@ def entry_without(field):
     return value
 
 
-def test_repository_master_has_eight_preserved_seeds_and_thirty_verified_entries():
+def test_repository_master_has_eight_preserved_seeds_and_forty_verified_entries():
     taxonomy = main.load_subject_taxonomy()
     actual = {(row["canonical_name"], row["subject_type"]) for row in taxonomy["entries"]}
     seeds = {
@@ -50,11 +50,13 @@ def test_repository_master_has_eight_preserved_seeds_and_thirty_verified_entries
             "キクバナイグチ", "クロカワ",
             "オオワライタケ", "アオロウジ", "ウラベニガサ", "トガリアミガサタケ", "ノウタケ",
             "ウコンハツ", "エノキタケ", "キニガイグチ", "コテングタケモドキ", "タマゴタケ",
+            "アラゲキクラゲ", "ウラグロニガイグチ", "オオキツネタケ", "キアミアシイグチ", "セイタカイグチ",
+            "タマチョレイタケ", "ツバアブラシメジ", "ホテイシメジ", "ミドリニガイグチ", "ミヤマタマゴタケ",
         )
     }
     assert actual == seeds | verified
     assert sum(row["verification_status"] == "project_seed" for row in taxonomy["entries"]) == 8
-    assert sum(row["verification_status"] == "externally_verified" for row in taxonomy["entries"]) == 30
+    assert sum(row["verification_status"] == "externally_verified" for row in taxonomy["entries"]) == 40
 
 
 @pytest.mark.parametrize("bad_entry", [
@@ -149,6 +151,16 @@ def test_match_priority_and_conservative_normalization(tmp_path):
     ("キニガイグチ", "mushroom", "taxonomy_mushroom"),
     ("コテングタケモドキ", "mushroom", "taxonomy_mushroom"),
     ("タマゴタケ", "mushroom", "taxonomy_mushroom"),
+    ("アラゲキクラゲ", "mushroom", "taxonomy_mushroom"),
+    ("ウラグロニガイグチ", "mushroom", "taxonomy_mushroom"),
+    ("オオキツネタケ", "mushroom", "taxonomy_mushroom"),
+    ("キアミアシイグチ", "mushroom", "taxonomy_mushroom"),
+    ("セイタカイグチ", "mushroom", "taxonomy_mushroom"),
+    ("タマチョレイタケ", "mushroom", "taxonomy_mushroom"),
+    ("ツバアブラシメジ", "mushroom", "taxonomy_mushroom"),
+    ("ホテイシメジ", "mushroom", "taxonomy_mushroom"),
+    ("ミドリニガイグチ", "mushroom", "taxonomy_mushroom"),
+    ("ミヤマタマゴタケ", "mushroom", "taxonomy_mushroom"),
     ("コブハクチョウ", "non_mushroom", "taxonomy_non_mushroom"),
     ("ヨシガモ", "non_mushroom", "taxonomy_non_mushroom"),
     ("ミツバアケビ", "non_mushroom", "taxonomy_non_mushroom"),

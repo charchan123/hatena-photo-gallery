@@ -420,6 +420,118 @@
       ],
       "notes": "Externally verified mushroom subject.",
       "mushroom_master_id": "tamagotake"
+    },
+    {
+      "canonical_name": "アラゲキクラゲ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-aragekikurage"
+      ],
+      "notes": "Evidence-backed gallery taxonomy entry; food safety is defined only in the linked master record.",
+      "mushroom_master_id": "aragekikurage"
+    },
+    {
+      "canonical_name": "ウラグロニガイグチ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-uraguronigaiguchi"
+      ],
+      "notes": "Evidence-backed gallery taxonomy entry; food safety is defined only in the linked master record.",
+      "mushroom_master_id": "uraguronigaiguchi"
+    },
+    {
+      "canonical_name": "オオキツネタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-ookitunetake"
+      ],
+      "notes": "Evidence-backed gallery taxonomy entry; food safety is defined only in the linked master record.",
+      "mushroom_master_id": "ookitunetake"
+    },
+    {
+      "canonical_name": "キアミアシイグチ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-h23-chikurinkinoko"
+      ],
+      "notes": "Evidence-backed gallery taxonomy entry; food safety is defined only in the linked master record.",
+      "mushroom_master_id": "kiamiashiiguchi"
+    },
+    {
+      "canonical_name": "セイタカイグチ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-seitakaiguchi"
+      ],
+      "notes": "Evidence-backed gallery taxonomy entry; food safety is defined only in the linked master record.",
+      "mushroom_master_id": "seitakaiguchi"
+    },
+    {
+      "canonical_name": "タマチョレイタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-tamachoreitake"
+      ],
+      "notes": "Evidence-backed gallery taxonomy entry; food safety is defined only in the linked master record.",
+      "mushroom_master_id": "tamachoreitake"
+    },
+    {
+      "canonical_name": "ツバアブラシメジ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-hakusan-sizen35"
+      ],
+      "notes": "Evidence-backed gallery taxonomy entry; food safety is defined only in the linked master record.",
+      "mushroom_master_id": "tsubaaburashimeji"
+    },
+    {
+      "canonical_name": "ホテイシメジ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "kyoto-fungi-2015",
+        "jataff-hoteishimeji"
+      ],
+      "notes": "Evidence-backed gallery taxonomy entry; food safety is defined only in the linked master record.",
+      "mushroom_master_id": "hoteishimeji"
+    },
+    {
+      "canonical_name": "ミドリニガイグチ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-h23-chikurinkinoko"
+      ],
+      "notes": "Evidence-backed gallery taxonomy entry; food safety is defined only in the linked master record.",
+      "mushroom_master_id": "midorinigaiguchi"
+    },
+    {
+      "canonical_name": "ミヤマタマゴタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "kyoto-rdb-miyamatamagotake",
+        "jataff-miyamatamagotake"
+      ],
+      "notes": "Evidence-backed gallery taxonomy entry; food safety is defined only in the linked master record.",
+      "mushroom_master_id": "miyamatamagotake"
     }
   ]
 }
