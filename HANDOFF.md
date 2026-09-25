@@ -487,3 +487,38 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - The complete schema-version-1 audit is generated at `output/phase3c-hybrid-preview.json`, including all renames, additions, removals, fallback/exclusion rows, grouped audits, observed article metadata, and summary metrics.
 - Production is still the exact legacy list returned by `fetch_images(article_files)`. The preview entries are never passed to `generate_gallery`, including when preview build/report/save fails.
 - Next: inspect the post-merge runtime preview and every article-linked rename, then separately decide whether production cutover is acceptable. Do not cut over merely because the preview exists.
+
+# Phase 3C.2 — subject-boundary safety and guarded hybrid preview
+
+- Starting SHA: `a545cda14e477600441b091a6fdff7d71b81770f`.
+- Baseline: `223 passed`; `223 collected`. Final validation: `236 passed`;
+  `236 collected`, Python compilation passed, both Node regression scripts
+  passed, JavaScript syntax passed, and the protected diff remained empty.
+- Phase 3C.1 runtime observation was 925 hybrid images (`+29` versus 896 legacy
+  images). Its 33 renames were audited as 15 compatible and 18 conflicting.
+  These figures are observations, not test constants.
+- Root cause: an accepted subject updated `current_subject`, but a rejected,
+  subject-like heading did nothing, allowing a stale subject to leak into later
+  images.
+- Phase 3C.2 distinguishes accepted subjects, rejected subject boundaries, and
+  ordinary prose. A rejected boundary clears `current_subject`; it is not a
+  mushroom classification, taxonomy lookup, category inference, alt inference,
+  or label transformation.
+- The narrow rejected-boundary rules cover short group/remains/about headings,
+  multiple-subject separators, unsupported unknown headings, and parenthetical
+  possibility/candidate annotations. Sentence prose, URLs, dates, exclusions,
+  and stopwords remain ordinary text.
+- Shadow rows now retain subject-state/source provenance, last rejected-boundary
+  provenance, and surrounding DOM blocks for audit.
+- Existing-image renames require the legacy alt and detected label to match under
+  `normalize_taxonomy_key()`. Incompatible proposals retain the exact legacy
+  occurrence and are emitted as `rename_conflict_manual_review` with DOM context.
+- New confirmed mushroom images are added only from an explicitly accepted
+  subject state. Images after a rejected boundary and before the next accepted
+  subject are excluded and audited separately.
+- `phase3c-hybrid-preview.json` is schema version 2. Phase 3C.0 readiness remains
+  schema version 1.
+- Production remains on the exact legacy `entries` list passed to
+  `generate_gallery(entries, exif_cache)`. Phase 3C cutover was not performed.
+- Next: inspect the merged report's runtime measurements, then decide separately
+  whether a production cutover is safe.

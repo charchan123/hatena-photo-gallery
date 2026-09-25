@@ -657,6 +657,55 @@ def diagnose_subject_label_candidate(text):
     return {"candidate": accepted, "candidate_reason": reason}
 
 
+def classify_subject_block(text):
+    """Classify a text block without treating rejected boundaries as subjects."""
+    raw_text = normalize_subject_text(text)
+    candidate = extract_subject_candidate_label(raw_text)
+    diagnostic = diagnose_subject_label_candidate(raw_text)
+    if candidate is not None:
+        return {
+            "status": "accepted_subject", "label": candidate,
+            "candidate_reason": diagnostic["candidate_reason"],
+            "boundary_reason": None,
+        }
+
+    # These exclusions deliberately precede the subject-like patterns.  A boundary
+    # is a short heading-shaped safety signal, never an additional classifier.
+    if (not raw_text or len(raw_text) > 80
+            or raw_text in SUBJECT_LABEL_STOPWORDS
+            or any(mark in raw_text for mark in ("。", "！", "!"))
+            or re.search(r"(?:https?://|www\.)", raw_text, re.IGNORECASE)
+            or re.search(r"\d{4}\s*[/年.-]\s*\d{1,2}", raw_text)
+            or any(re.search(pattern, raw_text) for pattern in SHADOW_EXCLUDE_PATTERNS)):
+        return {
+            "status": "ordinary_non_subject_text", "label": None,
+            "candidate_reason": diagnostic["candidate_reason"],
+            "boundary_reason": None,
+        }
+
+    reason = None
+    if "の仲間" in raw_text:
+        reason = "family_or_group_heading"
+    elif "の残骸" in raw_text:
+        reason = "remains_heading"
+    elif "の事について" in raw_text:
+        reason = "about_subject_heading"
+    elif "＆" in raw_text or "&" in raw_text:
+        reason = "multiple_subject_separator"
+    elif re.search(r"\S(?:or|OR)\S", raw_text):
+        reason = "multiple_subject_separator"
+    elif "不明" in raw_text:
+        reason = "unsupported_unknown_heading"
+    elif (re.search(r"[（(][^）)]*(?:可能性|候補)[^）)]*[）)]", raw_text)
+          and re.search(r"[ァ-ヶぁ-ゖ]", raw_text)):
+        reason = "unsupported_candidate_annotation"
+    return {
+        "status": "rejected_subject_boundary" if reason else "ordinary_non_subject_text",
+        "label": None, "candidate_reason": diagnostic["candidate_reason"],
+        "boundary_reason": reason,
+    }
+
+
 def normalize_category_term(term):
     return unicodedata.normalize("NFKC", normalize_subject_text(term)).casefold()
 
@@ -877,13 +926,44 @@ def extract_shadow_metadata(article_files, article_metadata=None, taxonomy="load
                 link.decompose()
 
         current_subject = None
-        for element in body.find_all((*SUBJECT_BLOCK_TAGS, "img")):
+        subject_source_block_text = None
+        subject_source_candidate_reason = None
+        subject_state_status = "no_subject"
+        last_rejected_boundary_text = None
+        last_rejected_boundary_reason = None
+        rejected_boundaries = []
+        article_rows = []
+        elements = body.find_all((*SUBJECT_BLOCK_TAGS, "img"))
+        blocks = [element for element in elements if element.name in SUBJECT_BLOCK_TAGS]
+        block_positions = {id(element): index for index, element in enumerate(elements)}
+        for element_index, element in enumerate(elements):
             if element.name in SUBJECT_BLOCK_TAGS:
-                candidate = extract_subject_candidate_label(
-                    element.get_text(" ", strip=True)
-                )
-                if candidate is not None:
-                    current_subject = candidate
+                raw_text = normalize_subject_text(element.get_text(" ", strip=True))
+                classification = classify_subject_block(raw_text)
+                if classification["status"] == "accepted_subject":
+                    current_subject = classification["label"]
+                    subject_source_block_text = raw_text
+                    subject_source_candidate_reason = classification["candidate_reason"]
+                    subject_state_status = "accepted_subject"
+                    last_rejected_boundary_text = None
+                    last_rejected_boundary_reason = None
+                elif classification["status"] == "rejected_subject_boundary":
+                    current_subject = None
+                    subject_source_block_text = None
+                    subject_source_candidate_reason = None
+                    subject_state_status = "reset_by_rejected_boundary"
+                    last_rejected_boundary_text = raw_text
+                    last_rejected_boundary_reason = classification["boundary_reason"]
+                    rejected_boundaries.append({
+                        "boundary_index": len(rejected_boundaries),
+                        "article_path": os.fspath(html_file),
+                        "article_title": article.get("title"),
+                        "article_url": article.get("url"),
+                        "raw_text": raw_text,
+                        "diagnostic_reason": classification["candidate_reason"],
+                        "boundary_reason": classification["boundary_reason"],
+                        "following_image_count_before_next_accepted_subject": 0,
+                    })
                 continue
 
             src = element.get("src")
@@ -904,8 +984,16 @@ def extract_shadow_metadata(article_files, article_metadata=None, taxonomy="load
             matched_categories, category_match_type = match_label_to_categories(
                 current_subject, categories
             )
-            metadata.append(
-                {
+            containing = element.find_parent(SUBJECT_BLOCK_TAGS)
+            previous = [
+                block for block in blocks if block_positions[id(block)] < element_index
+            ]
+            following = [
+                block for block in blocks if block_positions[id(block)] > element_index
+            ]
+            if subject_state_status == "reset_by_rejected_boundary" and rejected_boundaries:
+                rejected_boundaries[-1]["following_image_count_before_next_accepted_subject"] += 1
+            row = {
                     "src": src,
                     "detected_label": current_subject,
                     "gallery_name": normalize_gallery_name(
@@ -922,6 +1010,16 @@ def extract_shadow_metadata(article_files, article_metadata=None, taxonomy="load
                     "article_id": article.get("article_id"),
                     "classification_reason": reason,
                     "classification_confidence": classification_confidence,
+                    "subject_source_block_text": subject_source_block_text,
+                    "subject_source_candidate_reason": subject_source_candidate_reason,
+                    "subject_state_status": subject_state_status,
+                    "last_rejected_boundary_text": last_rejected_boundary_text,
+                    "last_rejected_boundary_reason": last_rejected_boundary_reason,
+                    "dom_context": {
+                        "containing_block": _audit_block(containing) if containing else None,
+                        "previous_blocks": [_audit_block(block) for block in previous[-3:]],
+                        "next_blocks": [_audit_block(block) for block in following[:3]],
+                    },
                     "taxonomy_subject_type": taxonomy_entry.get("subject_type") if taxonomy_entry else None,
                     "taxonomy_canonical_name": taxonomy_entry.get("canonical_name") if taxonomy_entry else None,
                     "taxonomy_match_type": taxonomy_match_type,
@@ -931,7 +1029,10 @@ def extract_shadow_metadata(article_files, article_metadata=None, taxonomy="load
                     "category_match_type": category_match_type,
                     **category_evidence,
                 }
-            )
+            metadata.append(row)
+            article_rows.append(row)
+        if article_rows:
+            article_rows[0]["article_rejected_subject_boundaries"] = rejected_boundaries
     return metadata
 
 
@@ -1527,6 +1628,12 @@ def _phase3c_shadow_audit_row(shadow, article_metadata, **extra):
         "taxonomy_match_type": shadow.get("taxonomy_match_type"),
         "taxonomy_canonical_name": shadow.get("taxonomy_canonical_name"),
         "classification_reason": shadow.get("classification_reason"),
+        "subject_source_block_text": shadow.get("subject_source_block_text"),
+        "subject_source_candidate_reason": shadow.get("subject_source_candidate_reason"),
+        "subject_state_status": shadow.get("subject_state_status"),
+        "last_rejected_boundary_text": shadow.get("last_rejected_boundary_text"),
+        "last_rejected_boundary_reason": shadow.get("last_rejected_boundary_reason"),
+        "dom_context": shadow.get("dom_context"),
         **_phase3c_article_fields(shadow, article_metadata),
     }
     row.update(extra)
@@ -1574,10 +1681,11 @@ def build_phase3c_hybrid_preview(
     consumed = set()
     hybrid = []
     audit = {key: [] for key in (
-        "renamed_occurrences", "added_occurrences", "removed_non_mushroom",
+        "renamed_occurrences", "rename_conflicts", "added_occurrences", "removed_non_mushroom",
         "legacy_fallback_review", "legacy_fallback_undetected",
         "legacy_fallback_shadow_missing", "new_review_excluded",
         "new_undetected_excluded", "new_non_mushroom_excluded",
+        "new_boundary_blocked_excluded",
     )}
     same_name = preserved_exact = 0
 
@@ -1612,14 +1720,25 @@ def build_phase3c_hybrid_preview(
             ))
         elif subject_type == "mushroom" and shadow.get("gallery_name") is not None:
             name = shadow["gallery_name"]
-            hybrid.append({"alt": name, "src": legacy["src"]})
             if name == legacy["alt"]:
+                hybrid.append({"alt": name, "src": legacy["src"]})
                 same_name += 1
                 preserved_exact += 1
-            else:
+            elif normalize_taxonomy_key(legacy["alt"]) == normalize_taxonomy_key(
+                    shadow["detected_label"]):
+                hybrid.append({"alt": name, "src": legacy["src"]})
                 audit["renamed_occurrences"].append(_phase3c_shadow_audit_row(
                     shadow, article_metadata, legacy_alt=legacy["alt"],
-                    hybrid_alt=name, decision="confirmed_mushroom_renamed",
+                    hybrid_alt=name, proposed_hybrid_alt=name,
+                    decision="compatible_rename",
+                ))
+            else:
+                hybrid.append({"alt": legacy["alt"], "src": legacy["src"]})
+                preserved_exact += 1
+                audit["rename_conflicts"].append(_phase3c_shadow_audit_row(
+                    shadow, article_metadata, legacy_alt=legacy["alt"],
+                    hybrid_alt=legacy["alt"], proposed_hybrid_alt=name,
+                    decision="rename_conflict_manual_review",
                 ))
         else:
             hybrid.append({"alt": legacy["alt"], "src": legacy["src"]})
@@ -1635,7 +1754,12 @@ def build_phase3c_hybrid_preview(
         common = _phase3c_shadow_audit_row(
             shadow, article_metadata, legacy_alt=None
         )
-        if (shadow.get("subject_type") == "mushroom"
+        if shadow.get("subject_state_status") == "reset_by_rejected_boundary":
+            audit["new_boundary_blocked_excluded"].append({
+                **common, "decision": "new_boundary_blocked_excluded",
+            })
+        elif (shadow.get("subject_type") == "mushroom"
+                and shadow.get("subject_state_status") == "accepted_subject"
                 and shadow.get("gallery_name") is not None):
             hybrid.append({"alt": shadow["gallery_name"], "src": shadow["src"]})
             audit["added_occurrences"].append({
@@ -1662,6 +1786,21 @@ def build_phase3c_hybrid_preview(
     added_groups = _phase3c_group(
         audit["added_occurrences"], ("gallery_name",), ("gallery_name",)
     )
+    rename_conflict_groups = _phase3c_group(
+        audit["rename_conflicts"], ("legacy_alt", "proposed_hybrid_alt"),
+        ("legacy_alt", "proposed_hybrid_alt"),
+    )
+    rejected_boundaries = []
+    boundary_keys = set()
+    for shadow in shadow_metadata:
+        for boundary in shadow.get("article_rejected_subject_boundaries", []):
+            key = (boundary.get("article_path"), boundary.get("boundary_index"))
+            if key not in boundary_keys:
+                boundary_keys.add(key)
+                rejected_boundaries.append(dict(boundary))
+    rejected_boundaries.sort(key=lambda row: (
+        str(row.get("article_path")), str(row.get("raw_text"))
+    ))
     summary = {
         "legacy_image_count": len(legacy_entries),
         "hybrid_image_count": len(hybrid),
@@ -1669,6 +1808,9 @@ def build_phase3c_hybrid_preview(
         "legacy_preserved_exact_count": preserved_exact,
         "confirmed_mushroom_same_name_count": same_name,
         "confirmed_mushroom_renamed_count": len(audit["renamed_occurrences"]),
+        "compatible_rename_count": len(audit["renamed_occurrences"]),
+        "rename_conflict_count": len(audit["rename_conflicts"]),
+        "rename_conflict_group_count": len(rename_conflict_groups),
         "review_legacy_fallback_count": len(audit["legacy_fallback_review"]),
         "undetected_legacy_fallback_count": len(audit["legacy_fallback_undetected"]),
         "shadow_missing_legacy_fallback_count": len(audit["legacy_fallback_shadow_missing"]),
@@ -1677,6 +1819,12 @@ def build_phase3c_hybrid_preview(
         "new_review_excluded_count": len(audit["new_review_excluded"]),
         "new_undetected_excluded_count": len(audit["new_undetected_excluded"]),
         "new_non_mushroom_excluded_count": len(audit["new_non_mushroom_excluded"]),
+        "new_boundary_blocked_excluded_count": len(audit["new_boundary_blocked_excluded"]),
+        "rejected_subject_boundary_count": len(rejected_boundaries),
+        "images_blocked_by_rejected_boundary_count": sum(
+            row.get("following_image_count_before_next_accepted_subject", 0)
+            for row in rejected_boundaries
+        ),
         "hybrid_unique_names": len({row["alt"] for row in hybrid}),
         "rename_group_count": len(rename_groups),
         "added_gallery_name_count": len(added_groups),
@@ -1687,20 +1835,27 @@ def build_phase3c_hybrid_preview(
         "New review, undetected, and non-mushroom occurrences are not added.",
     ]
     report = {
-        "version": 1, "summary": summary, "rename_groups": rename_groups,
-        "added_groups": added_groups, **audit, "readiness_notes": notes,
+        "version": 2, "summary": summary, "rename_groups": rename_groups,
+        "rename_conflict_groups": rename_conflict_groups,
+        "added_groups": added_groups, **audit,
+        "rejected_subject_boundaries": rejected_boundaries,
+        "readiness_notes": notes,
     }
     return hybrid, report
 
 
 def report_phase3c_hybrid_preview(report):
-    print("Phase 3C.1 hybrid preview summary:")
+    print("Phase 3C.2 guarded hybrid summary:")
     for key, value in report["summary"].items():
         print(f"{key}={value}")
     for row in report["rename_groups"]:
-        print("Phase 3C.1 rename group: " + json.dumps(row, ensure_ascii=False))
+        print("Phase 3C.2 rename group: " + json.dumps(row, ensure_ascii=False))
     for row in report["added_groups"]:
-        print("Phase 3C.1 added group: " + json.dumps(row, ensure_ascii=False))
+        print("Phase 3C.2 added group: " + json.dumps(row, ensure_ascii=False))
+    for row in report["rename_conflicts"]:
+        print("Phase 3C.2 rename conflict: " + json.dumps(row, ensure_ascii=False))
+    for row in report["rejected_subject_boundaries"]:
+        print("Phase 3C.2 rejected subject boundary: " + json.dumps(row, ensure_ascii=False))
 
 
 def save_phase3c_hybrid_preview(report):
@@ -2224,7 +2379,7 @@ def build_gallery():
             report_phase3c_hybrid_preview(hybrid_report)
             save_phase3c_hybrid_preview(hybrid_report)
         except Exception as error:
-            print(f"Phase 3C.1 hybrid preview failed: {error}")
+            print(f"Phase 3C.2 guarded hybrid preview failed: {error}")
         try:
             residual_audit = build_residual_gap_audit(article_files, shadow_metadata)
         except Exception as error:
