@@ -447,3 +447,17 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - Food-safety policy: オオワライタケ and コテングタケモドキ are `poisonous_confirmed`; the six source-reported edible records (アオロウジ, ウラベニガサ, トガリアミガサタケ, ノウタケ, エノキタケ, タマゴタケ) are `edibility_reported` only and are not project safety determinations; ウコンハツ and キニガイグチ remain `unknown`.
 - `Lanmaoa angustispora` and `Lanmaoa angustispora？` remain deliberately on hold pending scientific-only canonical taxonomy design.
 - Subject detection and residual-gap audit logic are unchanged. Legacy production, EXIF behavior/cache, UI/assets, and workflow are unchanged. Phase 3C has not been performed.
+
+# Phase 3B.7 / Batch 4 — evidence-backed taxonomy expansion (2026-09-25)
+
+- Starting SHA: `15f03bf62fc2f6e6ab2a0de102b975ea6770dea5`.
+- Baseline validation: **205 passed / 205 collected**. Final validation: **215 passed / 215 collected**.
+- Evidence inventory changed from 37 to 47 sources; mushroom master from 31 to 41; subject taxonomy from 38 to 48. Mushroom taxonomy grew from 35 to 45 and non-mushroom taxonomy remains 3.
+- Added 10 subjects: アラゲキクラゲ, ウラグロニガイグチ, オオキツネタケ, キアミアシイグチ, セイタカイグチ, タマチョレイタケ, ツバアブラシメジ, ホテイシメジ, ミドリニガイグチ, ミヤマタマゴタケ.
+- Expected exact-label candidate impact is 50 images if the current article dataset is unchanged. This observation is deliberately not a fixed test assertion.
+- All 10 scientific names are `source_reported`; this batch adds 0 `accepted_verified` names and does not infer modern accepted nomenclature from older source names.
+- Food-safety policy: five public-source records (アラゲキクラゲ, ウラグロニガイグチ, オオキツネタケ, セイタカイグチ, タマチョレイタケ) are `edibility_reported`, which records only the sources' wording and is not a project safety determination. キアミアシイグチ, ツバアブラシメジ, ホテイシメジ, ミドリニガイグチ, and ミヤマタマゴタケ remain `unknown`; no toxin name is inferred.
+- ホテイシメジ uses the Kyoto inventory's source-reported *Ampulloclitocybe clavipes*. JATAFF reports *Clitocybe clavipes*, so the project does not select an accepted nomenclature. JATAFF's alcohol-combination warning is preserved in notes, while the schema status remains `unknown` rather than oversimplifying a conditional risk.
+- ツバアブラシメジ remains `unknown` for food safety: the source reports regional food use but also says DNA analysis is needed to establish whether the alpine material and ordinary specimens are fully identical. The project does not generalize edibility across that identity uncertainty.
+- Deliberately held labels include 不明, `Lanmaoa angustispora`, `Lanmaoa angustispora？`, ベニタケ, both parenthesis forms of キイロオオフウセンタケ(仮称) and フリルイグチ(仮称), 不明アワタケ, `○○の仲間`, `○○の残骸`, and other provisional, unknown, or overly broad labels. None was added as an alias.
+- Protected scope is unchanged: subject detection, residual-gap auditing, `main.py`, knowledge validation code, production/shadow cutover, fetch/generation paths, EXIF and cache, UI/assets/iframe/Hatena markup, and workflow are untouched. Production is still the legacy path, and Phase 3C was not performed.
