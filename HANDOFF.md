@@ -461,3 +461,15 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - ツバアブラシメジ remains `unknown` for food safety: the source reports regional food use but also says DNA analysis is needed to establish whether the alpine material and ordinary specimens are fully identical. The project does not generalize edibility across that identity uncertainty.
 - Deliberately held labels include 不明, `Lanmaoa angustispora`, `Lanmaoa angustispora？`, ベニタケ, both parenthesis forms of キイロオオフウセンタケ(仮称) and フリルイグチ(仮称), 不明アワタケ, `○○の仲間`, `○○の残骸`, and other provisional, unknown, or overly broad labels. None was added as an alias.
 - Protected scope is unchanged: subject detection, residual-gap auditing, `main.py`, knowledge validation code, production/shadow cutover, fetch/generation paths, EXIF and cache, UI/assets/iframe/Hatena markup, and workflow are untouched. Production is still the legacy path, and Phase 3C was not performed.
+
+# Phase 3C.0 — production cutover readiness audit
+
+- Starting SHA: `92e283ea155bc937a0954f8e303a9515ee78bd2c`.
+- Baseline: `python -m pytest -q` passed (215 tests); `python -m pytest --collect-only -q` collected 215 tests.
+- This phase is audit-only. Phase 3C production cutover has **not** been performed, and production remains the unchanged legacy alt-based path.
+- The readiness report is written to `output/phase3c-readiness.json`. Because GitHub Pages deploys the complete `output/` directory, the report can be retrieved for analysis after merge.
+- The audit-only candidate consists exclusively of shadow occurrences with `subject_type == "mushroom"` and a non-null `gallery_name`; there is no taxonomy-unmatched promotion, category-driven classification, or legacy-alt fallback.
+- Exact `(src, name)` and src-only comparisons use multisets, preserving duplicate occurrences while separating additions/removals from same-src name changes.
+- Every distinct taxonomy-unmatched review label is emitted in `blocked_review_labels`, ordered by descending image count and then stable label order, without truncation.
+- Final validation commands and results are recorded in the Phase 3C.0 implementation handoff/final response.
+- Next: inspect the measured report, then decide separately on taxonomy additions, uncertain-name policy, and whether to perform a future production cutover.

@@ -8,6 +8,7 @@ import html
 import piexif
 import shutil
 import unicodedata
+from collections import Counter, defaultdict, deque
 
 # ===========================
 # 珍しい / 人気キノコリスト（手動）
@@ -76,6 +77,7 @@ SUBJECT_TAXONOMY_CANDIDATES_FILE = os.path.join(
 RESIDUAL_GAP_AUDIT_FILE = os.path.join(
     CACHE_DIR, "phase3b4-residual-gap-audit.json"
 )
+PHASE3C_READINESS_FILE = os.path.join(OUTPUT_DIR, "phase3c-readiness.json")
 TAXONOMY_SUBJECT_TYPES = {"mushroom", "non_mushroom"}
 
 SHADOW_EXCLUDE_PATTERNS = [
@@ -1335,6 +1337,171 @@ def save_residual_gap_audit(audit):
     with open(RESIDUAL_GAP_AUDIT_FILE, "w", encoding="utf-8") as stream:
         json.dump(audit, stream, ensure_ascii=False, indent=2)
 
+
+def _sample_unique(values, limit=3):
+    """Return the first distinct non-null values without losing stable order."""
+    return list(dict.fromkeys(value for value in values if value is not None))[:limit]
+
+
+def _aggregate_readiness_labels(rows):
+    groups = defaultdict(list)
+    for row in rows:
+        groups[row["detected_label"]].append(row)
+    result = []
+    for label, items in groups.items():
+        result.append({
+            "detected_label": label,
+            "image_count": len(items),
+            "article_count": len({item["article_path"] for item in items}),
+            "classification_reason": items[0]["classification_reason"],
+            "sample_srcs": _sample_unique(item["src"] for item in items),
+            "sample_articles": _sample_unique(item["article_path"] for item in items),
+        })
+    return sorted(result, key=lambda row: (-row["image_count"], row["detected_label"]))
+
+
+def build_phase3c_readiness(legacy_entries, shadow_metadata):
+    """Compare legacy production with the audit-only Phase 3C candidate."""
+    candidates = [
+        {"alt": row["gallery_name"], "src": row["src"], "shadow": row}
+        for row in shadow_metadata
+        if row["subject_type"] == "mushroom" and row["gallery_name"] is not None
+    ]
+    legacy_pairs = Counter((row["src"], row["alt"]) for row in legacy_entries)
+    candidate_pairs = Counter((row["src"], row["alt"]) for row in candidates)
+    exact_overlap = legacy_pairs & candidate_pairs
+    legacy_remaining = legacy_pairs - candidate_pairs
+    candidate_remaining = candidate_pairs - legacy_pairs
+
+    shadow_by_pair = defaultdict(deque)
+    shadow_by_src = defaultdict(list)
+    for row in shadow_metadata:
+        shadow_by_pair[(row["src"], row["legacy_alt"])].append(row)
+        shadow_by_src[row["src"]].append(row)
+
+    legacy_only = []
+    remaining = legacy_remaining.copy()
+    for entry in legacy_entries:
+        pair = (entry["src"], entry["alt"])
+        if not remaining[pair]:
+            continue
+        remaining[pair] -= 1
+        shadow = shadow_by_pair[pair].popleft() if shadow_by_pair[pair] else None
+        legacy_only.append({
+            "src": entry["src"], "legacy_alt": entry["alt"],
+            "detected_label": shadow.get("detected_label") if shadow else None,
+            "subject_type": shadow.get("subject_type") if shadow else None,
+            "gallery_name": shadow.get("gallery_name") if shadow else None,
+            "classification_reason": shadow.get("classification_reason") if shadow else "shadow_metadata_missing",
+            "taxonomy_match_type": shadow.get("taxonomy_match_type") if shadow else None,
+            "article_title": shadow.get("article_title") if shadow else None,
+            "article_path": shadow.get("article_path") if shadow else None,
+            "shadow_metadata_present": shadow is not None,
+        })
+
+    candidate_only = []
+    remaining = candidate_remaining.copy()
+    for candidate in candidates:
+        pair = (candidate["src"], candidate["alt"])
+        if not remaining[pair]:
+            continue
+        remaining[pair] -= 1
+        shadow = candidate["shadow"]
+        candidate_only.append({
+            "src": shadow["src"], "gallery_name": shadow["gallery_name"],
+            "detected_label": shadow["detected_label"], "subject_type": shadow["subject_type"],
+            "classification_reason": shadow["classification_reason"],
+            "article_title": shadow["article_title"], "article_path": shadow["article_path"],
+            "legacy_alt": shadow["legacy_alt"],
+        })
+
+    legacy_by_src = Counter(row["src"] for row in legacy_entries)
+    candidate_by_src = Counter(row["src"] for row in candidates)
+    shared_srcs = legacy_by_src.keys() & candidate_by_src.keys()
+    name_changes = []
+    for src in sorted(shared_srcs):
+        legacy_names = [row["alt"] for row in legacy_entries if row["src"] == src]
+        candidate_names = [row["alt"] for row in candidates if row["src"] == src]
+        if Counter(legacy_names) == Counter(candidate_names):
+            continue
+        shadow = shadow_by_src[src][0]
+        name_changes.append({
+            "src": src, "legacy_names": legacy_names, "candidate_names": candidate_names,
+            "detected_label": shadow["detected_label"], "gallery_name": shadow["gallery_name"],
+            "taxonomy_match_type": shadow["taxonomy_match_type"],
+            "article_title": shadow["article_title"],
+        })
+
+    blocked = _aggregate_readiness_labels([
+        row for row in shadow_metadata
+        if row["detected_label"] is not None
+        and row["subject_type"] == "review"
+        and row["classification_reason"] == "taxonomy_unmatched"
+    ])
+    non_mushroom = _aggregate_readiness_labels([
+        row for row in shadow_metadata if row["subject_type"] == "non_mushroom"
+    ])
+    undetected = [{
+        "src": row["src"], "legacy_alt": row["legacy_alt"],
+        "article_title": row["article_title"], "article_path": row["article_path"],
+        "classification_reason": row["classification_reason"],
+    } for row in shadow_metadata if row["detected_label"] is None]
+
+    legacy_count = len(legacy_entries)
+    shadow_count = len(shadow_metadata)
+    summary = {
+        "legacy_production_image_count": legacy_count,
+        "legacy_unique_names": len({row["alt"] for row in legacy_entries}),
+        "shadow_total_images": shadow_count,
+        "shadow_detected_images": sum(row["detected_label"] is not None for row in shadow_metadata),
+        "shadow_undetected_images": len(undetected),
+        "taxonomy_mushroom_images": sum(row["subject_type"] == "mushroom" for row in shadow_metadata),
+        "taxonomy_non_mushroom_images": sum(row["subject_type"] == "non_mushroom" for row in shadow_metadata),
+        "review_images": sum(row["subject_type"] == "review" for row in shadow_metadata),
+        "taxonomy_unmatched_review_images": sum(row["classification_reason"] == "taxonomy_unmatched" for row in shadow_metadata),
+        "no_detected_label_review_images": sum(row["classification_reason"] == "no_detected_label" for row in shadow_metadata),
+        "taxonomy_unavailable_review_images": sum(row["classification_reason"] == "taxonomy_unavailable" for row in shadow_metadata),
+        "candidate_production_image_count": len(candidates),
+        "candidate_unique_gallery_names": len({row["alt"] for row in candidates}),
+        "exact_occurrence_overlap_count": sum(exact_overlap.values()),
+        "legacy_only_occurrence_count": sum(legacy_remaining.values()),
+        "candidate_only_occurrence_count": sum(candidate_remaining.values()),
+        "legacy_src_only_count": sum((legacy_by_src - candidate_by_src).values()),
+        "candidate_src_only_count": sum((candidate_by_src - legacy_by_src).values()),
+        "same_src_name_change_count": len(name_changes),
+        "blocked_review_unique_labels": len(blocked),
+        "candidate_vs_legacy_ratio": len(candidates) / legacy_count if legacy_count else None,
+        "taxonomy_mushroom_share_of_shadow": sum(row["subject_type"] == "mushroom" for row in shadow_metadata) / shadow_count if shadow_count else None,
+    }
+    notes = []
+    observations = (
+        (summary["review_images"], "review images remain"),
+        (summary["shadow_undetected_images"], "undetected images remain"),
+        (len(candidates) < legacy_count, "candidate production would contain fewer images than legacy"),
+        (summary["candidate_only_occurrence_count"], "candidate introduces images absent from legacy"),
+        (name_changes, "name changes exist"),
+        (non_mushroom, "non-mushroom exclusions exist"),
+    )
+    notes.extend(message for condition, message in observations if condition)
+    return {"version": 1, "summary": summary, "blocked_review_labels": blocked,
+            "legacy_only": legacy_only, "candidate_only": candidate_only,
+            "name_changes": name_changes, "non_mushroom_exclusions": non_mushroom,
+            "undetected": undetected, "readiness_notes": notes}
+
+
+def report_phase3c_readiness(audit):
+    print("Phase 3C.0 readiness summary:")
+    for key, value in audit["summary"].items():
+        print(f"{key}={value}")
+    for row in audit["blocked_review_labels"]:
+        print("Phase 3C.0 blocked review label: " + json.dumps(row, ensure_ascii=False))
+
+
+def save_phase3c_readiness(audit):
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    with open(PHASE3C_READINESS_FILE, "w", encoding="utf-8") as stream:
+        json.dump(audit, stream, ensure_ascii=False, indent=2)
+
 # ===========================
 # 五十音分類
 # ===========================
@@ -1838,6 +2005,12 @@ def build_gallery():
             except (OSError, TypeError, ValueError) as error:
                 print(f"Phase 3B.2 taxonomy candidate export failed: {error}")
         save_shadow_metadata(shadow_metadata)
+        try:
+            readiness_audit = build_phase3c_readiness(entries, shadow_metadata)
+            report_phase3c_readiness(readiness_audit)
+            save_phase3c_readiness(readiness_audit)
+        except Exception as error:
+            print(f"Phase 3C.0 readiness audit failed: {error}")
         try:
             residual_audit = build_residual_gap_audit(article_files, shadow_metadata)
         except Exception as error:
