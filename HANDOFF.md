@@ -565,3 +565,20 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - Next: after merge, recheck `phase3c-production-status.json` and confirm
   `production_mode == phase3c_hybrid`, `cutover_active == true`, and
   `validation.valid == true`.
+
+# Phase 4A.0 — portal data contract and export
+
+- Starting SHA: `27df6cc2b6082c24f308b61f218afbcbda2df4a3`.
+- Baseline validation was 254 passed / 254 collected; final validation is recorded below after implementation.
+- Phase 3C production cutover remains complete: the observed hybrid baseline is 923 production occurrences (`phase3c_hybrid`, cutover active), with all Phase 3 safety semantics unchanged.
+- Portal data is a supplemental, read-only consumer of the already-selected production occurrences. It does not change production selection, EXIF cache content, gallery generation, index generation, or favorites generation.
+- Production builds export `output/portal-data.json` schema version 1 and `output/portal-data-status.json` schema version 1; Pages consequently exposes `/portal-data.json` and `/portal-data-status.json`.
+- The contract contains ordered one-to-one observations, deterministic name-grouped subjects, dynamic summaries, and faithful copies of subject taxonomy, mushroom master, and source reference data.
+- The no-inference policy is strict: no species, date, location, habitat, season, feature, food-safety, or favorite/ranking values are invented. Capture dates come only from valid `YYYY/MM/DD` EXIF cache dates; article publication timestamps are never substituted.
+- No location parsing is performed from article titles, bodies, categories, or other fields.
+- Knowledge links require an exact production gallery name to taxonomy `canonical_name`, a taxonomy `subject_type` of `mushroom`, and an explicit valid `mushroom_master_id`. Alias, normalized, punctuation-stripped, broad-sense, and unknown-label matching are prohibited.
+- Observation IDs are stable SHA-256 identifiers derived from source URL, source-backed article path, and occurrence ordinal. Duplicate sources are retained and matched through ordered per-source unused occurrence state.
+- Matching prefers exact shadow `gallery_name` or `legacy_alt`, never associates confirmed non-mushroom rows, records source-only fallback for audit, and emits shadow-missing observations rather than guessing.
+- Portal build, data-save, and status-save failures are isolated and cannot prevent gallery, index, or favorite output generation. A best-effort failure status is emitted where possible.
+- UI, CSS, gallery appearance, Hatena iframe behavior, browser favorites, Phase 3 reports, validators, and hybrid selection semantics are unchanged.
+- Next: after merge, audit deployed portal data measurements and decide the first Phase 4A.1 portal UI.

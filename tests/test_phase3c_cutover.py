@@ -110,7 +110,8 @@ def test_incompatible_renamed_occurrence_fails():
 
 
 def _stub_build(monkeypatch, legacy, hybrid, report, *, failure=None):
-    seen = {"exif": [], "gallery": [], "status": [], "report": [], "preview": []}
+    seen = {"exif": [], "gallery": [], "status": [], "report": [], "preview": [],
+            "portal": []}
     monkeypatch.setattr(main, "fetch_hatena_articles_api", lambda: ["article.html"])
     monkeypatch.setattr(main, "fetch_images", lambda files: legacy)
     monkeypatch.setattr(main, "load_subject_taxonomy", lambda: {"entries": []})
@@ -141,6 +142,10 @@ def _stub_build(monkeypatch, legacy, hybrid, report, *, failure=None):
     monkeypatch.setattr(main, "build_exif_cache",
                         lambda entries, cache: seen["exif"].append(entries) or cache)
     monkeypatch.setattr(main, "save_exif_cache", lambda cache: None)
+    monkeypatch.setattr(
+        main, "export_portal_data",
+        lambda **kwargs: seen["portal"].append(kwargs["production_entries"]),
+    )
     monkeypatch.setattr(main, "generate_gallery",
                         lambda entries, cache: seen["gallery"].append(entries) or {})
     monkeypatch.setattr(main, "generate_index", lambda *args: None)
@@ -154,6 +159,7 @@ def test_active_cutover_preserves_candidate_identity_and_new_image(monkeypatch):
     main.build_gallery()
     assert seen["exif"][0] is hybrid
     assert seen["gallery"][0] is hybrid
+    assert seen["portal"][0] is hybrid
     assert any(row["src"] == "new.jpg" for row in seen["gallery"][0])
     assert seen["gallery"][0][0]["alt"] == "旧名？"
     assert seen["status"][0]["production_mode"] == "phase3c_hybrid"

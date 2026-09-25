@@ -10,6 +10,11 @@ import shutil
 import unicodedata
 from collections import Counter, defaultdict, deque
 
+from mushroom_knowledge import load_mushroom_master, load_sources
+from portal_data import (
+    build_portal_data, failure_status, save_json, success_status,
+)
+
 # ===========================
 # 珍しい / 人気キノコリスト（手動）
 # ===========================
@@ -84,6 +89,8 @@ PHASE3C_HYBRID_PREVIEW_FILE = os.path.join(
 PHASE3C_PRODUCTION_STATUS_FILE = os.path.join(
     OUTPUT_DIR, "phase3c-production-status.json"
 )
+PORTAL_DATA_FILE = os.path.join(OUTPUT_DIR, "portal-data.json")
+PORTAL_DATA_STATUS_FILE = os.path.join(OUTPUT_DIR, "portal-data-status.json")
 TAXONOMY_SUBJECT_TYPES = {"mushroom", "non_mushroom"}
 
 SHADOW_EXCLUDE_PATTERNS = [
@@ -2608,9 +2615,48 @@ def build_gallery():
     exif_cache = build_exif_cache(production_entries, exif_cache)
     save_exif_cache(exif_cache)
 
+    export_portal_data(
+        production_entries=production_entries,
+        shadow_metadata=shadow_metadata or [],
+        exif_cache=exif_cache,
+        taxonomy=taxonomy,
+        production_mode=production_mode,
+    )
+
     grouped = generate_gallery(production_entries, exif_cache)
     generate_index(grouped, exif_cache)
     generate_favorite_page(grouped)
+
+
+def export_portal_data(*, production_entries, shadow_metadata, article_metadata=None,
+                       exif_cache, taxonomy, production_mode):
+    """Best-effort supplemental export; no error may stop gallery generation."""
+    try:
+        if taxonomy is None:
+            raise ValueError("subject taxonomy is unavailable")
+        if article_metadata is None:
+            article_metadata = load_article_metadata()
+        data = build_portal_data(
+            production_entries=production_entries,
+            shadow_metadata=shadow_metadata,
+            article_metadata=article_metadata,
+            exif_cache=exif_cache,
+            taxonomy=taxonomy,
+            mushroom_master=load_mushroom_master(),
+            sources=load_sources(),
+            production_mode=production_mode,
+            cutover_active=production_mode == "phase3c_hybrid",
+        )
+        save_json(PORTAL_DATA_FILE, data)
+        status = success_status(data)
+    except Exception as error:
+        print(f"Phase 4A.0 portal data export failed: {error}")
+        status = failure_status(error, production_mode, len(production_entries))
+    try:
+        save_json(PORTAL_DATA_STATUS_FILE, status)
+    except Exception as error:
+        print(f"Phase 4A.0 portal status save failed: {error}")
+    return status
 
 
 if __name__ == "__main__":
