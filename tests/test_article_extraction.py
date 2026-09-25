@@ -670,6 +670,13 @@ def test_build_processes_non_empty_data_as_before(monkeypatch):
     monkeypatch.setattr(main, "build_phase3c_readiness", lambda legacy, shadow: {"summary": {}, "blocked_review_labels": []})
     monkeypatch.setattr(main, "report_phase3c_readiness", lambda audit: calls.append("readiness-report"))
     monkeypatch.setattr(main, "save_phase3c_readiness", lambda audit: calls.append("readiness-save"))
+    monkeypatch.setattr(main, "load_article_metadata", lambda: {})
+    monkeypatch.setattr(main, "build_phase3c_hybrid_preview",
+                        lambda legacy, shadow, metadata: ([], {"summary": {}, "rename_groups": [], "added_groups": []}))
+    monkeypatch.setattr(main, "report_phase3c_hybrid_preview",
+                        lambda report: calls.append("hybrid-report"))
+    monkeypatch.setattr(main, "save_phase3c_hybrid_preview",
+                        lambda report: calls.append("hybrid-save"))
     monkeypatch.setattr(main, "build_residual_gap_audit", lambda files, metadata: {"summary": {}, "undetected_images": []})
     monkeypatch.setattr(main, "report_residual_gap_audit", lambda audit: calls.append("residual-report"))
     monkeypatch.setattr(main, "save_residual_gap_audit", lambda audit: calls.append("residual-save"))
@@ -699,6 +706,8 @@ def test_build_processes_non_empty_data_as_before(monkeypatch):
         "shadow-save",
         "readiness-report",
         "readiness-save",
+        "hybrid-report",
+        "hybrid-save",
         "residual-report",
         "residual-save",
         "save",
@@ -775,6 +784,116 @@ def _readiness_row(src, label, subject_type, gallery_name, *, alt="legacy", reas
         "taxonomy_match_type": "canonical_exact" if subject_type != "review" else "none",
         "article_title": "Article", "article_path": path,
     }
+
+
+def test_phase3c_hybrid_preview_policy_occurrences_groups_and_metadata():
+    legacy = [
+        {"src": "same.jpg", "alt": "Same"},
+        {"src": "rename.jpg", "alt": "Old"},
+        {"src": "review.jpg", "alt": "Review legacy"},
+        {"src": "none.jpg", "alt": "Undetected legacy"},
+        {"src": "missing.jpg", "alt": "Missing legacy"},
+        {"src": "remove.jpg", "alt": "Bird legacy"},
+        {"src": "duplicate.jpg", "alt": "First legacy"},
+        {"src": "duplicate.jpg", "alt": "Second legacy"},
+    ]
+    shadow = [
+        _readiness_row("same.jpg", "Same", "mushroom", "Same"),
+        _readiness_row("rename.jpg", "New", "mushroom", "New"),
+        _readiness_row("review.jpg", "Unknown", "review", None,
+                       reason="taxonomy_unmatched"),
+        _readiness_row("none.jpg", None, "review", None,
+                       reason="no_detected_label"),
+        _readiness_row("remove.jpg", "Bird", "non_mushroom", None),
+        _readiness_row("duplicate.jpg", "Duplicate new", "mushroom", "Duplicate new"),
+        _readiness_row("duplicate.jpg", "Insect", "non_mushroom", None),
+        _readiness_row("new.jpg", "Added", "mushroom", "Added"),
+        _readiness_row("new-review.jpg", "Maybe", "review", None),
+        _readiness_row("new-none.jpg", None, "review", None,
+                       reason="no_detected_label"),
+        _readiness_row("new-bird.jpg", "Bird", "non_mushroom", None),
+        _readiness_row("new2.jpg", "Added", "mushroom", "Added",
+                       path="articles/b.html"),
+    ]
+    shadow[1]["taxonomy_canonical_name"] = "New"
+    metadata = {
+        "articles/a.html": {"title": "Title", "url": "https://example/a",
+                            "article_id": "a", "published": "2026-01-01"},
+        "articles/b.html": {"title": "Other", "url": "https://example/b",
+                            "article_id": "b", "published": "2026-01-02"},
+    }
+
+    hybrid, report = main.build_phase3c_hybrid_preview(legacy, shadow, metadata)
+
+    assert hybrid == [
+        {"src": "same.jpg", "alt": "Same"},
+        {"src": "rename.jpg", "alt": "New"},
+        {"src": "review.jpg", "alt": "Review legacy"},
+        {"src": "none.jpg", "alt": "Undetected legacy"},
+        {"src": "missing.jpg", "alt": "Missing legacy"},
+        {"src": "duplicate.jpg", "alt": "Duplicate new"},
+        {"src": "new.jpg", "alt": "Added"},
+        {"src": "new2.jpg", "alt": "Added"},
+    ]
+    assert report["renamed_occurrences"][0]["article_url"] == "https://example/a"
+    assert report["renamed_occurrences"][0]["article_id"] == "a"
+    assert report["legacy_fallback_review"][0]["classification_reason"] == "taxonomy_unmatched"
+    assert report["legacy_fallback_shadow_missing"][0]["decision"] == "legacy_fallback_shadow_missing"
+    assert [row["src"] for row in report["removed_non_mushroom"]] == [
+        "remove.jpg", "duplicate.jpg"
+    ]
+    assert len(report["new_review_excluded"]) == 1
+    assert len(report["new_undetected_excluded"]) == 1
+    assert len(report["new_non_mushroom_excluded"]) == 1
+    assert report["rename_groups"][0]["image_count"] == 1
+    assert report["added_groups"] == [{
+        "gallery_name": "Added", "image_count": 2, "article_count": 2,
+        "sample_srcs": ["new.jpg", "new2.jpg"],
+        "sample_article_urls": ["https://example/a", "https://example/b"],
+    }]
+    assert report["summary"] == {
+        "legacy_image_count": 8, "hybrid_image_count": 8, "net_image_delta": 0,
+        "legacy_preserved_exact_count": 4,
+        "confirmed_mushroom_same_name_count": 1,
+        "confirmed_mushroom_renamed_count": 2,
+        "review_legacy_fallback_count": 1,
+        "undetected_legacy_fallback_count": 1,
+        "shadow_missing_legacy_fallback_count": 1,
+        "confirmed_non_mushroom_removed_count": 2,
+        "confirmed_new_mushroom_added_count": 2,
+        "new_review_excluded_count": 1,
+        "new_undetected_excluded_count": 1,
+        "new_non_mushroom_excluded_count": 1,
+        "hybrid_unique_names": 7, "rename_group_count": 2,
+        "added_gallery_name_count": 1,
+    }
+
+
+def test_phase3c_hybrid_preview_schema_and_group_sort(tmp_path, monkeypatch):
+    target = tmp_path / "output" / "phase3c-hybrid-preview.json"
+    monkeypatch.setattr(main, "PHASE3C_HYBRID_PREVIEW_FILE", str(target))
+    monkeypatch.setattr(main, "OUTPUT_DIR", str(target.parent))
+    legacy = [
+        {"src": "a.jpg", "alt": "Old"}, {"src": "b.jpg", "alt": "Old"},
+        {"src": "c.jpg", "alt": "Other"},
+    ]
+    shadow = [
+        _readiness_row("a.jpg", "New", "mushroom", "New"),
+        _readiness_row("b.jpg", "New", "mushroom", "New"),
+        _readiness_row("c.jpg", "Third", "mushroom", "Third"),
+    ]
+    _, report = main.build_phase3c_hybrid_preview(legacy, shadow)
+    main.save_phase3c_hybrid_preview(report)
+    saved = json.loads(target.read_text(encoding="utf-8"))
+    assert set(saved) == {
+        "version", "summary", "rename_groups", "renamed_occurrences",
+        "added_groups", "added_occurrences", "removed_non_mushroom",
+        "legacy_fallback_review", "legacy_fallback_undetected",
+        "legacy_fallback_shadow_missing", "new_review_excluded",
+        "new_undetected_excluded", "new_non_mushroom_excluded",
+        "readiness_notes",
+    }
+    assert [row["image_count"] for row in saved["rename_groups"]] == [2, 1]
 
 
 def test_phase3c_readiness_candidate_multisets_and_classifications():
@@ -871,6 +990,59 @@ def test_phase3c_audit_failure_preserves_exact_production_entries(monkeypatch, c
     assert generated == [entries]
     assert generated[0] is entries
     assert "Phase 3C.0 readiness audit failed: broken readiness" in capsys.readouterr().out
+
+
+@pytest.mark.parametrize("failing_step", ["build", "report", "save"])
+def test_phase3c_hybrid_failure_preserves_exact_production_entries(
+    monkeypatch, capsys, failing_step
+):
+    entries = [{"alt": "legacy", "src": "x.jpg"}]
+    generated = []
+    monkeypatch.setattr(main, "fetch_hatena_articles_api", lambda: ["article.html"])
+    monkeypatch.setattr(main, "fetch_images", lambda files: entries)
+    monkeypatch.setattr(main, "extract_shadow_metadata", lambda files, **kwargs: [])
+    monkeypatch.setattr(main, "report_category_inventory", lambda files: None)
+    monkeypatch.setattr(main, "report_shadow_metadata", lambda *args, **kwargs: None)
+    monkeypatch.setattr(main, "save_taxonomy_candidates", lambda data: None)
+    monkeypatch.setattr(main, "save_shadow_metadata", lambda data: None)
+    monkeypatch.setattr(main, "build_phase3c_readiness",
+                        lambda legacy, shadow: {"summary": {}, "blocked_review_labels": []})
+    monkeypatch.setattr(main, "report_phase3c_readiness", lambda audit: None)
+    monkeypatch.setattr(main, "save_phase3c_readiness", lambda audit: None)
+    monkeypatch.setattr(main, "load_article_metadata", lambda: {})
+    report = {"summary": {}, "rename_groups": [], "added_groups": []}
+    monkeypatch.setattr(
+        main, "build_phase3c_hybrid_preview",
+        lambda *args: (_ for _ in ()).throw(RuntimeError("build"))
+        if failing_step == "build" else ([], report),
+    )
+    monkeypatch.setattr(
+        main, "report_phase3c_hybrid_preview",
+        lambda audit: (_ for _ in ()).throw(RuntimeError("report"))
+        if failing_step == "report" else None,
+    )
+    monkeypatch.setattr(
+        main, "save_phase3c_hybrid_preview",
+        lambda audit: (_ for _ in ()).throw(RuntimeError("save"))
+        if failing_step == "save" else None,
+    )
+    monkeypatch.setattr(main, "build_residual_gap_audit",
+                        lambda files, data: {"summary": {}, "undetected_images": []})
+    monkeypatch.setattr(main, "report_residual_gap_audit", lambda audit: None)
+    monkeypatch.setattr(main, "save_residual_gap_audit", lambda audit: None)
+    monkeypatch.setattr(main, "load_exif_cache", lambda: {})
+    monkeypatch.setattr(main, "build_exif_cache", lambda actual, cache: cache)
+    monkeypatch.setattr(main, "save_exif_cache", lambda cache: None)
+    monkeypatch.setattr(main, "generate_gallery",
+                        lambda actual, cache: generated.append(actual) or {})
+    monkeypatch.setattr(main, "generate_index", lambda grouped, cache: None)
+    monkeypatch.setattr(main, "generate_favorite_page", lambda grouped: None)
+
+    main.build_gallery()
+
+    assert generated == [entries]
+    assert generated[0] is entries
+    assert f"Phase 3C.1 hybrid preview failed: {failing_step}" in capsys.readouterr().out
 
 
 @pytest.mark.parametrize(

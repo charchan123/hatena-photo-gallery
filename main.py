@@ -78,6 +78,9 @@ RESIDUAL_GAP_AUDIT_FILE = os.path.join(
     CACHE_DIR, "phase3b4-residual-gap-audit.json"
 )
 PHASE3C_READINESS_FILE = os.path.join(OUTPUT_DIR, "phase3c-readiness.json")
+PHASE3C_HYBRID_PREVIEW_FILE = os.path.join(
+    OUTPUT_DIR, "phase3c-hybrid-preview.json"
+)
 TAXONOMY_SUBJECT_TYPES = {"mushroom", "non_mushroom"}
 
 SHADOW_EXCLUDE_PATTERNS = [
@@ -1502,6 +1505,209 @@ def save_phase3c_readiness(audit):
     with open(PHASE3C_READINESS_FILE, "w", encoding="utf-8") as stream:
         json.dump(audit, stream, ensure_ascii=False, indent=2)
 
+
+def _phase3c_article_fields(shadow, article_metadata):
+    """Return only observed article metadata; never synthesize a URL."""
+    path = os.path.normpath(os.fspath(shadow.get("article_path", "")))
+    article = article_metadata.get(path, {})
+    return {
+        "article_title": article.get("title", shadow.get("article_title")),
+        "article_url": article.get("url"),
+        "article_id": article.get("article_id", shadow.get("article_id")),
+        "article_published": article.get("published"),
+        "article_path": shadow.get("article_path"),
+    }
+
+
+def _phase3c_shadow_audit_row(shadow, article_metadata, **extra):
+    row = {
+        "src": shadow.get("src"),
+        "detected_label": shadow.get("detected_label"),
+        "gallery_name": shadow.get("gallery_name"),
+        "taxonomy_match_type": shadow.get("taxonomy_match_type"),
+        "taxonomy_canonical_name": shadow.get("taxonomy_canonical_name"),
+        "classification_reason": shadow.get("classification_reason"),
+        **_phase3c_article_fields(shadow, article_metadata),
+    }
+    row.update(extra)
+    return row
+
+
+def _phase3c_group(rows, key_fields, name_fields):
+    grouped = defaultdict(list)
+    for row in rows:
+        grouped[tuple(row[key] for key in key_fields)].append(row)
+    result = []
+    for key, items in grouped.items():
+        group = dict(zip(name_fields, key))
+        group.update({
+            "image_count": len(items),
+            "article_count": len({item["article_path"] for item in items}),
+            "sample_srcs": _sample_unique(item["src"] for item in items),
+            "sample_article_urls": _sample_unique(
+                item["article_url"] for item in items
+            ),
+        })
+        result.append(group)
+    return sorted(result, key=lambda row: (
+        -row["image_count"], *(str(row[field]) for field in name_fields)
+    ))
+
+
+def build_phase3c_hybrid_preview(
+    legacy_entries, shadow_metadata, article_metadata=None
+):
+    """Build an audit-only hybrid candidate while preserving occurrences.
+
+    Legacy and shadow extraction are expected to use the same article-file order
+    and DOM order.  Per-src queues therefore match duplicate URLs one occurrence
+    at a time, and unmatched shadow rows are reconsidered in original order.
+    """
+    article_metadata = article_metadata or {}
+    article_metadata = {
+        os.path.normpath(os.fspath(path)): value
+        for path, value in article_metadata.items()
+    }
+    by_src = defaultdict(deque)
+    for index, shadow in enumerate(shadow_metadata):
+        by_src[shadow["src"]].append(index)
+    consumed = set()
+    hybrid = []
+    audit = {key: [] for key in (
+        "renamed_occurrences", "added_occurrences", "removed_non_mushroom",
+        "legacy_fallback_review", "legacy_fallback_undetected",
+        "legacy_fallback_shadow_missing", "new_review_excluded",
+        "new_undetected_excluded", "new_non_mushroom_excluded",
+    )}
+    same_name = preserved_exact = 0
+
+    for legacy in legacy_entries:
+        queue = by_src[legacy["src"]]
+        if not queue:
+            hybrid.append({"alt": legacy["alt"], "src": legacy["src"]})
+            preserved_exact += 1
+            audit["legacy_fallback_shadow_missing"].append({
+                "src": legacy["src"], "legacy_alt": legacy["alt"],
+                "decision": "legacy_fallback_shadow_missing",
+                "classification_reason": "shadow_metadata_missing",
+                "article_title": None, "article_url": None, "article_id": None,
+                "article_published": None, "article_path": None,
+            })
+            continue
+        index = queue.popleft()
+        consumed.add(index)
+        shadow = shadow_metadata[index]
+        subject_type = shadow.get("subject_type")
+        if subject_type == "non_mushroom":
+            audit["removed_non_mushroom"].append(_phase3c_shadow_audit_row(
+                shadow, article_metadata, legacy_alt=legacy["alt"],
+                decision="confirmed_non_mushroom_removed",
+            ))
+        elif shadow.get("detected_label") is None:
+            hybrid.append({"alt": legacy["alt"], "src": legacy["src"]})
+            preserved_exact += 1
+            audit["legacy_fallback_undetected"].append(_phase3c_shadow_audit_row(
+                shadow, article_metadata, legacy_alt=legacy["alt"],
+                decision="legacy_fallback_undetected",
+            ))
+        elif subject_type == "mushroom" and shadow.get("gallery_name") is not None:
+            name = shadow["gallery_name"]
+            hybrid.append({"alt": name, "src": legacy["src"]})
+            if name == legacy["alt"]:
+                same_name += 1
+                preserved_exact += 1
+            else:
+                audit["renamed_occurrences"].append(_phase3c_shadow_audit_row(
+                    shadow, article_metadata, legacy_alt=legacy["alt"],
+                    hybrid_alt=name, decision="confirmed_mushroom_renamed",
+                ))
+        else:
+            hybrid.append({"alt": legacy["alt"], "src": legacy["src"]})
+            preserved_exact += 1
+            audit["legacy_fallback_review"].append(_phase3c_shadow_audit_row(
+                shadow, article_metadata, legacy_alt=legacy["alt"],
+                decision="legacy_fallback_review",
+            ))
+
+    for index, shadow in enumerate(shadow_metadata):
+        if index in consumed:
+            continue
+        common = _phase3c_shadow_audit_row(
+            shadow, article_metadata, legacy_alt=None
+        )
+        if (shadow.get("subject_type") == "mushroom"
+                and shadow.get("gallery_name") is not None):
+            hybrid.append({"alt": shadow["gallery_name"], "src": shadow["src"]})
+            audit["added_occurrences"].append({
+                **common, "hybrid_alt": shadow["gallery_name"],
+                "decision": "confirmed_new_mushroom_added",
+            })
+        elif shadow.get("detected_label") is None:
+            audit["new_undetected_excluded"].append({
+                **common, "decision": "new_undetected_excluded",
+            })
+        elif shadow.get("subject_type") == "non_mushroom":
+            audit["new_non_mushroom_excluded"].append({
+                **common, "decision": "new_non_mushroom_excluded",
+            })
+        else:
+            audit["new_review_excluded"].append({
+                **common, "decision": "new_review_excluded",
+            })
+
+    rename_groups = _phase3c_group(
+        audit["renamed_occurrences"], ("legacy_alt", "hybrid_alt"),
+        ("legacy_alt", "hybrid_alt"),
+    )
+    added_groups = _phase3c_group(
+        audit["added_occurrences"], ("gallery_name",), ("gallery_name",)
+    )
+    summary = {
+        "legacy_image_count": len(legacy_entries),
+        "hybrid_image_count": len(hybrid),
+        "net_image_delta": len(hybrid) - len(legacy_entries),
+        "legacy_preserved_exact_count": preserved_exact,
+        "confirmed_mushroom_same_name_count": same_name,
+        "confirmed_mushroom_renamed_count": len(audit["renamed_occurrences"]),
+        "review_legacy_fallback_count": len(audit["legacy_fallback_review"]),
+        "undetected_legacy_fallback_count": len(audit["legacy_fallback_undetected"]),
+        "shadow_missing_legacy_fallback_count": len(audit["legacy_fallback_shadow_missing"]),
+        "confirmed_non_mushroom_removed_count": len(audit["removed_non_mushroom"]),
+        "confirmed_new_mushroom_added_count": len(audit["added_occurrences"]),
+        "new_review_excluded_count": len(audit["new_review_excluded"]),
+        "new_undetected_excluded_count": len(audit["new_undetected_excluded"]),
+        "new_non_mushroom_excluded_count": len(audit["new_non_mushroom_excluded"]),
+        "hybrid_unique_names": len({row["alt"] for row in hybrid}),
+        "rename_group_count": len(rename_groups),
+        "added_gallery_name_count": len(added_groups),
+    }
+    notes = [
+        "Preview only: production continues to use the exact legacy entries list.",
+        "Review fallbacks retain taxonomy review classification.",
+        "New review, undetected, and non-mushroom occurrences are not added.",
+    ]
+    report = {
+        "version": 1, "summary": summary, "rename_groups": rename_groups,
+        "added_groups": added_groups, **audit, "readiness_notes": notes,
+    }
+    return hybrid, report
+
+
+def report_phase3c_hybrid_preview(report):
+    print("Phase 3C.1 hybrid preview summary:")
+    for key, value in report["summary"].items():
+        print(f"{key}={value}")
+    for row in report["rename_groups"]:
+        print("Phase 3C.1 rename group: " + json.dumps(row, ensure_ascii=False))
+    for row in report["added_groups"]:
+        print("Phase 3C.1 added group: " + json.dumps(row, ensure_ascii=False))
+
+
+def save_phase3c_hybrid_preview(report):
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    with open(PHASE3C_HYBRID_PREVIEW_FILE, "w", encoding="utf-8") as stream:
+        json.dump(report, stream, ensure_ascii=False, indent=2)
+
 # ===========================
 # 五十音分類
 # ===========================
@@ -2011,6 +2217,14 @@ def build_gallery():
             save_phase3c_readiness(readiness_audit)
         except Exception as error:
             print(f"Phase 3C.0 readiness audit failed: {error}")
+        try:
+            _hybrid_entries, hybrid_report = build_phase3c_hybrid_preview(
+                entries, shadow_metadata, load_article_metadata()
+            )
+            report_phase3c_hybrid_preview(hybrid_report)
+            save_phase3c_hybrid_preview(hybrid_report)
+        except Exception as error:
+            print(f"Phase 3C.1 hybrid preview failed: {error}")
         try:
             residual_audit = build_residual_gap_audit(article_files, shadow_metadata)
         except Exception as error:
