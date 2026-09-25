@@ -308,6 +308,118 @@
       ],
       "notes": "Externally verified mushroom subject.",
       "mushroom_master_id": "kurokawa"
+    },
+    {
+      "canonical_name": "オオワライタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-oowaraitake"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "oowaraitake"
+    },
+    {
+      "canonical_name": "アオロウジ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-aorouji"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "aorouji"
+    },
+    {
+      "canonical_name": "ウラベニガサ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-urabenigasa"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "urabenigasa"
+    },
+    {
+      "canonical_name": "トガリアミガサタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-togariamigasatake"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "togariamigasatake"
+    },
+    {
+      "canonical_name": "ノウタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-noutake"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "noutake"
+    },
+    {
+      "canonical_name": "ウコンハツ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-ukonhatsu"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "ukonhatsu"
+    },
+    {
+      "canonical_name": "エノキタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "tottori-tufc-100533",
+        "ishikawa-enokitake"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "enokitake"
+    },
+    {
+      "canonical_name": "キニガイグチ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "kyushu-u-forest-fungi",
+        "ishikawa-h23-chikurinkinoko"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "kinigaiguchi"
+    },
+    {
+      "canonical_name": "コテングタケモドキ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-kotengutakemodoki"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "kotengutakemodoki"
+    },
+    {
+      "canonical_name": "タマゴタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "ishikawa-tamagotake"
+      ],
+      "notes": "Externally verified mushroom subject.",
+      "mushroom_master_id": "tamagotake"
     }
   ]
 }

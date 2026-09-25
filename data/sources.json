@@ -250,6 +250,126 @@
       "record_id": "大型菌類リスト No.33",
       "accessed_at": "2026-09-24",
       "notes": null
+    },
+    {
+      "source_id": "ishikawa-oowaraitake",
+      "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「オオワライタケ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/oowaraitake.html",
+      "record_id": null,
+      "accessed_at": "2026-09-24",
+      "notes": null
+    },
+    {
+      "source_id": "ishikawa-aorouji",
+      "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「アオロウジ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/aorouji.html",
+      "record_id": null,
+      "accessed_at": "2026-09-24",
+      "notes": null
+    },
+    {
+      "source_id": "ishikawa-urabenigasa",
+      "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「ウラベニガサ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/urabenigasa.html",
+      "record_id": null,
+      "accessed_at": "2026-09-24",
+      "notes": null
+    },
+    {
+      "source_id": "ishikawa-togariamigasatake",
+      "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「トガリアミガサタケ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/togariamigasatake.html",
+      "record_id": null,
+      "accessed_at": "2026-09-24",
+      "notes": null
+    },
+    {
+      "source_id": "ishikawa-noutake",
+      "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「ノウタケ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/noutake.html",
+      "record_id": null,
+      "accessed_at": "2026-09-24",
+      "notes": null
+    },
+    {
+      "source_id": "ishikawa-ukonhatsu",
+      "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「ウコンハツ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/ukonhatu.html",
+      "record_id": null,
+      "accessed_at": "2026-09-24",
+      "notes": null
+    },
+    {
+      "source_id": "ishikawa-enokitake",
+      "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「エノキタケ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/enokitake.html",
+      "record_id": null,
+      "accessed_at": "2026-09-24",
+      "notes": null
+    },
+    {
+      "source_id": "tottori-tufc-100533",
+      "organization": "鳥取大学農学部附属菌類きのこ遺伝資源研究センター",
+      "title": "TUFC Culture Online Catalogue TUFC 100533",
+      "source_type": "university_culture_collection",
+      "url": "https://fungusdb.muses.tottori-u.ac.jp/catalog/info?id=100533",
+      "record_id": "TUFC 100533",
+      "accessed_at": "2026-09-24",
+      "notes": null
+    },
+    {
+      "source_id": "kyushu-u-forest-fungi",
+      "organization": "九州大学農学部附属演習林",
+      "title": "福岡演習林 データベース「菌類」",
+      "source_type": "university_fungi_database",
+      "url": "https://www.forest.kyushu-u.ac.jp/%E3%83%9B%E3%83%BC%E3%83%A0%E3%83%9A%E3%83%BC%E3%82%B8/%E7%A6%8F%E5%B2%A1%E6%BC%94%E7%BF%92%E6%9E%97/%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9-2/%E8%8F%8C%E9%A1%9E",
+      "record_id": null,
+      "accessed_at": "2026-09-24",
+      "notes": null
+    },
+    {
+      "source_id": "ishikawa-h23-chikurinkinoko",
+      "organization": "石川県農林総合研究センター林業試験場",
+      "title": "竹林に発生するきのこ類調査資料",
+      "source_type": "government_research_report",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/publish/kenkyuuhoukoku/documents/h23-8_chikurinkinoko.pdf",
+      "record_id": null,
+      "accessed_at": "2026-09-24",
+      "notes": null
+    },
+    {
+      "source_id": "ishikawa-kotengutakemodoki",
+      "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「コテングタケモドキ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kotengutakemodoki.html",
+      "record_id": null,
+      "accessed_at": "2026-09-24",
+      "notes": null
+    },
+    {
+      "source_id": "ishikawa-tamagotake",
+      "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「タマゴタケ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/tamagotake.html",
+      "record_id": null,
+      "accessed_at": "2026-09-24",
+      "notes": null
     }
   ]
 }

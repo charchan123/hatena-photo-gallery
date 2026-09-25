@@ -1651,6 +1651,788 @@
         "checked_at": "2026-09-24",
         "notes": "環境省生物多様性センター調査資料の大型菌類リストで和名・学名を確認。今回食毒・形態・生育環境は確定しない。"
       }
+    },
+    {
+      "mushroom_id": "oowaraitake",
+      "canonical_name_ja": "オオワライタケ",
+      "name_ja_sources": [
+        "ishikawa-oowaraitake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Gymnopilus spectabilis",
+        "name_status": "source_reported",
+        "source_ids": [
+          "ishikawa-oowaraitake"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "フウセンタケ科",
+          "source_ids": [
+            "ishikawa-oowaraitake"
+          ]
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "poisonous_confirmed",
+        "source_ids": [
+          "ishikawa-oowaraitake"
+        ],
+        "notes": "石川県の公的図鑑が「毒」と明示している。毒成分名は今回sourceに無いため追加しない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘に細かな繊維紋があり、柄は中実でつばを持ち、株状になる。苦味がある。",
+        "source_ids": [
+          "ishikawa-oowaraitake"
+        ]
+      },
+      "season": {
+        "summary": "夏～秋",
+        "source_ids": [
+          "ishikawa-oowaraitake"
+        ]
+      },
+      "habitat": {
+        "summary": "広葉樹の切株・枯木",
+        "source_ids": [
+          "ishikawa-oowaraitake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-09-24",
+        "notes": "指定された石川県資料で確認したsource-reported record。分類・学名のaccepted statusは今回検証していない。"
+      }
+    },
+    {
+      "mushroom_id": "aorouji",
+      "canonical_name_ja": "アオロウジ",
+      "name_ja_sources": [
+        "ishikawa-aorouji"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Albatrellus caeruleoporus",
+        "name_status": "source_reported",
+        "source_ids": [
+          "ishikawa-aorouji"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "ニンギョウタケモドキ科",
+          "source_ids": [
+            "ishikawa-aorouji"
+          ]
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "edibility_reported",
+        "source_ids": [
+          "ishikawa-aorouji"
+        ],
+        "notes": "石川県の公的図鑑が「食」と記載。projectによる安全判定ではない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘は円形から不正形で波打ち、下面は管孔。柄は中実でやや側生する。",
+        "source_ids": [
+          "ishikawa-aorouji"
+        ]
+      },
+      "season": {
+        "summary": "秋～晩秋",
+        "source_ids": [
+          "ishikawa-aorouji"
+        ]
+      },
+      "habitat": {
+        "summary": "針葉樹林",
+        "source_ids": [
+          "ishikawa-aorouji"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-09-24",
+        "notes": "学名・科はsource_reported。分類学的な属変更等を今回推測しない。"
+      }
+    },
+    {
+      "mushroom_id": "urabenigasa",
+      "canonical_name_ja": "ウラベニガサ",
+      "name_ja_sources": [
+        "ishikawa-urabenigasa"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Pluteus atricapillus",
+        "name_status": "source_reported",
+        "source_ids": [
+          "ishikawa-urabenigasa"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "ウラベニガサ科",
+          "source_ids": [
+            "ishikawa-urabenigasa"
+          ]
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "edibility_reported",
+        "source_ids": [
+          "ishikawa-urabenigasa"
+        ],
+        "notes": "石川県の公的図鑑が「食」と記載。projectによる安全判定ではない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘は微細な鱗片で覆われ、ヒダは離生・密で白色から肉色となる。柄は中実。",
+        "source_ids": [
+          "ishikawa-urabenigasa"
+        ]
+      },
+      "season": {
+        "summary": "春～秋",
+        "source_ids": [
+          "ishikawa-urabenigasa"
+        ]
+      },
+      "habitat": {
+        "summary": "広葉樹の朽木",
+        "source_ids": [
+          "ishikawa-urabenigasa"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-09-24",
+        "notes": "指定された石川県資料で確認したsource-reported record。"
+      }
+    },
+    {
+      "mushroom_id": "togariamigasatake",
+      "canonical_name_ja": "トガリアミガサタケ",
+      "name_ja_sources": [
+        "ishikawa-togariamigasatake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Morchella conica",
+        "name_status": "source_reported",
+        "source_ids": [
+          "ishikawa-togariamigasatake"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "アミガサタケ科",
+          "source_ids": [
+            "ishikawa-togariamigasatake"
+          ]
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "edibility_reported",
+        "source_ids": [
+          "ishikawa-togariamigasatake"
+        ],
+        "notes": "石川県の公的図鑑が「食」と記載しているというsource report。安全保証ではない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "頭部は褐色で卵状円錐形をなし、狭い縦長の網目を持つ。柄は円筒形で淡黄土色。",
+        "source_ids": [
+          "ishikawa-togariamigasatake"
+        ]
+      },
+      "season": {
+        "summary": "春",
+        "source_ids": [
+          "ishikawa-togariamigasatake"
+        ]
+      },
+      "habitat": {
+        "summary": "林内",
+        "source_ids": [
+          "ishikawa-togariamigasatake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-09-24",
+        "notes": "Morchella conicaはこのsourceが使用するsource-reported name。現在accepted nameの検証は今回行っていない。"
+      }
+    },
+    {
+      "mushroom_id": "noutake",
+      "canonical_name_ja": "ノウタケ",
+      "name_ja_sources": [
+        "ishikawa-noutake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Calvatia craniiformis",
+        "name_status": "source_reported",
+        "source_ids": [
+          "ishikawa-noutake"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "ホコリタケ科",
+          "source_ids": [
+            "ishikawa-noutake"
+          ]
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "edibility_reported",
+        "source_ids": [
+          "ishikawa-noutake"
+        ],
+        "notes": "石川県資料の記載は「幼時食」。若い時期についてのsource reportであり、projectによる安全判定ではない。「食」一般へ意味を拡張しない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "頭部に微細な粒が密布し不規則なしわができ、内部は白色から黄褐色へ変化する。",
+        "source_ids": [
+          "ishikawa-noutake"
+        ]
+      },
+      "season": {
+        "summary": "梅雨～秋",
+        "source_ids": [
+          "ishikawa-noutake"
+        ]
+      },
+      "habitat": {
+        "summary": "林内",
+        "source_ids": [
+          "ishikawa-noutake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-09-24",
+        "notes": "指定された石川県資料で確認したsource-reported record。"
+      }
+    },
+    {
+      "mushroom_id": "ukonhatsu",
+      "canonical_name_ja": "ウコンハツ",
+      "name_ja_sources": [
+        "ishikawa-ukonhatsu"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Russula flavida",
+        "name_status": "source_reported",
+        "source_ids": [
+          "ishikawa-ukonhatsu"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "ベニタケ科",
+          "source_ids": [
+            "ishikawa-ukonhatsu"
+          ]
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": "sourceの食毒欄は「不明」。毒性情報がないことや不明であることは安全を意味しない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘はビロード状から粉状で、ヒダは離生から上生でやや密。柄は髄状で縦じわを持つ。",
+        "source_ids": [
+          "ishikawa-ukonhatsu"
+        ]
+      },
+      "season": {
+        "summary": "夏～秋",
+        "source_ids": [
+          "ishikawa-ukonhatsu"
+        ]
+      },
+      "habitat": {
+        "summary": "マツ・コナラ林",
+        "source_ids": [
+          "ishikawa-ukonhatsu"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-09-24",
+        "notes": "指定された石川県資料で確認したsource-reported record。"
+      }
+    },
+    {
+      "mushroom_id": "enokitake",
+      "canonical_name_ja": "エノキタケ",
+      "name_ja_sources": [
+        "tottori-tufc-100533",
+        "ishikawa-enokitake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Flammulina velutipes (Curtis) Singer",
+        "name_status": "source_reported",
+        "source_ids": [
+          "tottori-tufc-100533"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "tottori-tufc-100533"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "tottori-tufc-100533"
+          ]
+        },
+        "subclass": {
+          "value": "Agaricomycetidae",
+          "source_ids": [
+            "tottori-tufc-100533"
+          ]
+        },
+        "order": {
+          "value": "Agaricales",
+          "source_ids": [
+            "tottori-tufc-100533"
+          ]
+        },
+        "family": {
+          "value": "キシメジ科",
+          "source_ids": [
+            "ishikawa-enokitake"
+          ]
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "edibility_reported",
+        "source_ids": [
+          "ishikawa-enokitake"
+        ],
+        "notes": "石川県の公的図鑑が「食」と記載。projectによる安全判定ではない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘に強い粘性があり、ヒダは上生でやや疎。柄は中空でビロード状の短毛を密生する。",
+        "source_ids": [
+          "ishikawa-enokitake"
+        ]
+      },
+      "season": {
+        "summary": "晩秋～早春",
+        "source_ids": [
+          "ishikawa-enokitake"
+        ]
+      },
+      "habitat": {
+        "summary": "広葉樹の切株・枯木。TUFC標本情報でも広葉樹枯死材から採集。",
+        "source_ids": [
+          "ishikawa-enokitake",
+          "tottori-tufc-100533"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-09-24",
+        "notes": "scientific_nameはTUFC 100533を採用。石川県ページの学名表記はscientific_name根拠として使用しない。accepted_verifiedにはしない。"
+      }
+    },
+    {
+      "mushroom_id": "kinigaiguchi",
+      "canonical_name_ja": "キニガイグチ",
+      "name_ja_sources": [
+        "kyushu-u-forest-fungi",
+        "ishikawa-h23-chikurinkinoko"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Tylopilus ballouii (Peck) Sing.",
+        "name_status": "source_reported",
+        "source_ids": [
+          "kyushu-u-forest-fungi"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "イグチ科",
+          "source_ids": [
+            "kyushu-u-forest-fungi",
+            "ishikawa-h23-chikurinkinoko"
+          ]
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": "今回指定した一次・公的/大学sourceでは、food safetyをmasterへ登録するための情報を使用しない。安全を意味しない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": null,
+        "source_ids": []
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "habitat": {
+        "summary": null,
+        "source_ids": []
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-09-24",
+        "notes": "九州大学演習林および石川県研究資料で和名・学名対応を確認。分類学的な属変更・accepted nameは今回検証していない。"
+      }
+    },
+    {
+      "mushroom_id": "kotengutakemodoki",
+      "canonical_name_ja": "コテングタケモドキ",
+      "name_ja_sources": [
+        "ishikawa-kotengutakemodoki"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Amanita pseudoporphyria",
+        "name_status": "source_reported",
+        "source_ids": [
+          "ishikawa-kotengutakemodoki"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "テングタケ科",
+          "source_ids": [
+            "ishikawa-kotengutakemodoki"
+          ]
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "poisonous_confirmed",
+        "source_ids": [
+          "ishikawa-kotengutakemodoki"
+        ],
+        "notes": "石川県の公的図鑑が「毒」と明示。毒成分名は今回sourceにないため追加しない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘は弱い粘性と繊維紋を持ち、ヒダは離生・密。柄はささくれ状でつばがあり、つぼはさや状。",
+        "source_ids": [
+          "ishikawa-kotengutakemodoki"
+        ]
+      },
+      "season": {
+        "summary": "夏～秋",
+        "source_ids": [
+          "ishikawa-kotengutakemodoki"
+        ]
+      },
+      "habitat": {
+        "summary": "ブナ科樹木・マツ混生林",
+        "source_ids": [
+          "ishikawa-kotengutakemodoki"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-09-24",
+        "notes": "指定された石川県資料で確認したsource-reported record。"
+      }
+    },
+    {
+      "mushroom_id": "tamagotake",
+      "canonical_name_ja": "タマゴタケ",
+      "name_ja_sources": [
+        "ishikawa-tamagotake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Amanita hemibapha",
+        "name_status": "source_reported",
+        "source_ids": [
+          "ishikawa-tamagotake"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "テングタケ科",
+          "source_ids": [
+            "ishikawa-tamagotake"
+          ]
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "edibility_reported",
+        "source_ids": [
+          "ishikawa-tamagotake"
+        ],
+        "notes": "石川県の公的図鑑が「食」と記載。projectによる安全判定ではない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘に弱い粘性と条線があり、ヒダは離生・密。柄は中空でだんだら模様を持ち、つばと袋状のつぼがある。",
+        "source_ids": [
+          "ishikawa-tamagotake"
+        ]
+      },
+      "season": {
+        "summary": "夏～秋",
+        "source_ids": [
+          "ishikawa-tamagotake"
+        ]
+      },
+      "habitat": {
+        "summary": "針葉樹林・広葉樹林",
+        "source_ids": [
+          "ishikawa-tamagotake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-09-24",
+        "notes": "指定された石川県資料で確認したsource-reported record。"
+      }
     }
   ]
 }
