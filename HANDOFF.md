@@ -436,3 +436,14 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - Next: re-audit remaining undetected images in post-merge Actions, apply only
   another justified small correction if needed, then proceed to Batch 3
   taxonomy work and finally Phase 3C.
+
+## Phase 3B.6 / Batch 3 — evidence-backed taxonomy expansion (2026-09-24)
+
+- Starting SHA: `70effb8425a299499e5064af827d2e1777e501cc`.
+- Phase 3B.5 production baseline: 974 shadow images, 951 detected, 23 undetected, 332 taxonomy matched, 619 taxonomy unmatched, 268 unmatched unique labels, and 896 legacy production images.
+- Added 10 high-frequency mushroom subjects with an exact-current-impact candidate of 73 images: オオワライタケ, アオロウジ, ウラベニガサ, トガリアミガサタケ, ノウタケ, ウコンハツ, エノキタケ, キニガイグチ, コテングタケモドキ, タマゴタケ.
+- Evidence inventory changed from 25 to 37 sources; mushroom master from 21 to 31; subject taxonomy from 28 to 38; mushroom taxonomy from 25 to 35; non-mushroom taxonomy remains 3.
+- All 10 scientific names are `source_reported`; this batch adds 0 `accepted_verified` names.
+- Food-safety policy: オオワライタケ and コテングタケモドキ are `poisonous_confirmed`; the six source-reported edible records (アオロウジ, ウラベニガサ, トガリアミガサタケ, ノウタケ, エノキタケ, タマゴタケ) are `edibility_reported` only and are not project safety determinations; ウコンハツ and キニガイグチ remain `unknown`.
+- `Lanmaoa angustispora` and `Lanmaoa angustispora？` remain deliberately on hold pending scientific-only canonical taxonomy design.
+- Subject detection and residual-gap audit logic are unchanged. Legacy production, EXIF behavior/cache, UI/assets, and workflow are unchanged. Phase 3C has not been performed.

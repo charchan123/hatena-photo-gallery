@@ -31,7 +31,7 @@ def entry_without(field):
     return value
 
 
-def test_repository_master_has_eight_preserved_seeds_and_twenty_verified_entries():
+def test_repository_master_has_eight_preserved_seeds_and_thirty_verified_entries():
     taxonomy = main.load_subject_taxonomy()
     actual = {(row["canonical_name"], row["subject_type"]) for row in taxonomy["entries"]}
     seeds = {
@@ -48,11 +48,13 @@ def test_repository_master_has_eight_preserved_seeds_and_twenty_verified_entries
             "アカヤマドリ", "ヒロメノトガリアミガサタケ", "アミガサタケ", "キクラゲ",
             "ヘビキノコモドキ", "ハナイグチ", "カラカサタケ", "ヤマイグチ",
             "キクバナイグチ", "クロカワ",
+            "オオワライタケ", "アオロウジ", "ウラベニガサ", "トガリアミガサタケ", "ノウタケ",
+            "ウコンハツ", "エノキタケ", "キニガイグチ", "コテングタケモドキ", "タマゴタケ",
         )
     }
     assert actual == seeds | verified
     assert sum(row["verification_status"] == "project_seed" for row in taxonomy["entries"]) == 8
-    assert sum(row["verification_status"] == "externally_verified" for row in taxonomy["entries"]) == 20
+    assert sum(row["verification_status"] == "externally_verified" for row in taxonomy["entries"]) == 30
 
 
 @pytest.mark.parametrize("bad_entry", [
@@ -137,6 +139,16 @@ def test_match_priority_and_conservative_normalization(tmp_path):
     ("ヤマイグチ", "mushroom", "taxonomy_mushroom"),
     ("キクバナイグチ", "mushroom", "taxonomy_mushroom"),
     ("クロカワ", "mushroom", "taxonomy_mushroom"),
+    ("オオワライタケ", "mushroom", "taxonomy_mushroom"),
+    ("アオロウジ", "mushroom", "taxonomy_mushroom"),
+    ("ウラベニガサ", "mushroom", "taxonomy_mushroom"),
+    ("トガリアミガサタケ", "mushroom", "taxonomy_mushroom"),
+    ("ノウタケ", "mushroom", "taxonomy_mushroom"),
+    ("ウコンハツ", "mushroom", "taxonomy_mushroom"),
+    ("エノキタケ", "mushroom", "taxonomy_mushroom"),
+    ("キニガイグチ", "mushroom", "taxonomy_mushroom"),
+    ("コテングタケモドキ", "mushroom", "taxonomy_mushroom"),
+    ("タマゴタケ", "mushroom", "taxonomy_mushroom"),
     ("コブハクチョウ", "non_mushroom", "taxonomy_non_mushroom"),
     ("ヨシガモ", "non_mushroom", "taxonomy_non_mushroom"),
     ("ミツバアケビ", "non_mushroom", "taxonomy_non_mushroom"),
