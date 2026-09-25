@@ -716,7 +716,10 @@ def test_build_processes_non_empty_data_as_before(monkeypatch):
     monkeypatch.setattr(main, "save_phase3c_readiness", lambda audit: calls.append("readiness-save"))
     monkeypatch.setattr(main, "load_article_metadata", lambda: {})
     monkeypatch.setattr(main, "build_phase3c_hybrid_preview",
-                        lambda legacy, shadow, metadata: ([], {"summary": {}, "rename_groups": [], "added_groups": []}))
+                        lambda legacy, shadow, metadata: (entries, {"version": 2}))
+    monkeypatch.setattr(main, "validate_phase3c_hybrid_cutover",
+                        lambda legacy, hybrid, report: {"valid": True, "checks": {}})
+    monkeypatch.setattr(main, "save_phase3c_production_status", lambda status: None)
     monkeypatch.setattr(main, "report_phase3c_hybrid_preview",
                         lambda report: calls.append("hybrid-report"))
     monkeypatch.setattr(main, "save_phase3c_hybrid_preview",
@@ -771,6 +774,9 @@ def test_residual_audit_failures_preserve_production_entries(monkeypatch, failin
     monkeypatch.setattr(main, "report_shadow_metadata", lambda *args, **kwargs: None)
     monkeypatch.setattr(main, "save_taxonomy_candidates", lambda data: None)
     monkeypatch.setattr(main, "save_shadow_metadata", lambda data: None)
+    monkeypatch.setattr(main, "validate_phase3c_hybrid_cutover",
+                        lambda *args: (_ for _ in ()).throw(RuntimeError("validation")))
+    monkeypatch.setattr(main, "save_phase3c_production_status", lambda status: None)
     monkeypatch.setattr(main, "build_residual_gap_audit", lambda files, data: {"summary": {}, "undetected_images": []})
     monkeypatch.setattr(main, "report_residual_gap_audit", lambda audit: (_ for _ in ()).throw(RuntimeError("report")) if failing_step == "report" else None)
     monkeypatch.setattr(main, "save_residual_gap_audit", lambda audit: (_ for _ in ()).throw(OSError("export")) if failing_step == "export" else None)
@@ -1071,6 +1077,9 @@ def test_phase3c_audit_failure_preserves_exact_production_entries(monkeypatch, c
     monkeypatch.setattr(main, "save_shadow_metadata", lambda data: None)
     monkeypatch.setattr(main, "build_phase3c_readiness",
                         lambda legacy, shadow: (_ for _ in ()).throw(RuntimeError("broken readiness")))
+    monkeypatch.setattr(main, "validate_phase3c_hybrid_cutover",
+                        lambda *args: (_ for _ in ()).throw(RuntimeError("validation")))
+    monkeypatch.setattr(main, "save_phase3c_production_status", lambda status: None)
     monkeypatch.setattr(main, "build_residual_gap_audit",
                         lambda files, data: {"summary": {}, "undetected_images": []})
     monkeypatch.setattr(main, "report_residual_gap_audit", lambda audit: None)
@@ -1107,12 +1116,16 @@ def test_phase3c_hybrid_failure_preserves_exact_production_entries(
     monkeypatch.setattr(main, "report_phase3c_readiness", lambda audit: None)
     monkeypatch.setattr(main, "save_phase3c_readiness", lambda audit: None)
     monkeypatch.setattr(main, "load_article_metadata", lambda: {})
-    report = {"summary": {}, "rename_groups": [], "added_groups": []}
+    hybrid = [{"alt": "hybrid", "src": "x.jpg"}]
+    report = {"version": 2, "summary": {}, "rename_groups": [], "added_groups": []}
     monkeypatch.setattr(
         main, "build_phase3c_hybrid_preview",
         lambda *args: (_ for _ in ()).throw(RuntimeError("build"))
-        if failing_step == "build" else ([], report),
+        if failing_step == "build" else (hybrid, report),
     )
+    monkeypatch.setattr(main, "validate_phase3c_hybrid_cutover",
+                        lambda *args: {"valid": True, "checks": {}})
+    monkeypatch.setattr(main, "save_phase3c_production_status", lambda status: None)
     monkeypatch.setattr(
         main, "report_phase3c_hybrid_preview",
         lambda audit: (_ for _ in ()).throw(RuntimeError("report"))
@@ -1137,9 +1150,14 @@ def test_phase3c_hybrid_failure_preserves_exact_production_entries(
 
     main.build_gallery()
 
-    assert generated == [entries]
-    assert generated[0] is entries
-    assert f"Phase 3C.2 guarded hybrid preview failed: {failing_step}" in capsys.readouterr().out
+    expected = entries if failing_step == "build" else hybrid
+    assert generated == [expected]
+    assert generated[0] is expected
+    output = capsys.readouterr().out
+    if failing_step == "build":
+        assert "Phase 3C.2 guarded hybrid preview failed: build" in output
+    else:
+        assert f"Phase 3C.2 guarded hybrid preview {failing_step} failed: {failing_step}" in output
 
 
 @pytest.mark.parametrize(

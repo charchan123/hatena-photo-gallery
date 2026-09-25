@@ -81,6 +81,9 @@ PHASE3C_READINESS_FILE = os.path.join(OUTPUT_DIR, "phase3c-readiness.json")
 PHASE3C_HYBRID_PREVIEW_FILE = os.path.join(
     OUTPUT_DIR, "phase3c-hybrid-preview.json"
 )
+PHASE3C_PRODUCTION_STATUS_FILE = os.path.join(
+    OUTPUT_DIR, "phase3c-production-status.json"
+)
 TAXONOMY_SUBJECT_TYPES = {"mushroom", "non_mushroom"}
 
 SHADOW_EXCLUDE_PATTERNS = [
@@ -1863,6 +1866,149 @@ def save_phase3c_hybrid_preview(report):
     with open(PHASE3C_HYBRID_PREVIEW_FILE, "w", encoding="utf-8") as stream:
         json.dump(report, stream, ensure_ascii=False, indent=2)
 
+
+class Phase3CCutoverValidationError(ValueError):
+    """Raised when a Phase 3C candidate is unsafe for production."""
+
+
+def _require_cutover(condition, message):
+    if not condition:
+        raise Phase3CCutoverValidationError(message)
+
+
+def validate_phase3c_hybrid_cutover(legacy_entries, hybrid_entries, hybrid_report):
+    """Validate all occurrence accounting before selecting the hybrid list."""
+    _require_cutover(isinstance(legacy_entries, list), "legacy_entries must be a list")
+    _require_cutover(isinstance(hybrid_entries, list), "hybrid_entries must be a list")
+    _require_cutover(isinstance(hybrid_report, dict), "hybrid_report must be a dict")
+    _require_cutover(hybrid_report.get("version") == 2, "hybrid report version must be 2")
+    summary = hybrid_report.get("summary")
+    _require_cutover(isinstance(summary, dict), "hybrid report summary must be a dict")
+
+    for index, entry in enumerate(hybrid_entries):
+        _require_cutover(isinstance(entry, dict), f"hybrid entry {index} must be a dict")
+        for field in ("alt", "src"):
+            _require_cutover(
+                isinstance(entry.get(field), str) and bool(entry[field].strip()),
+                f"hybrid entry {index} has invalid {field}",
+            )
+
+    count_fields = (
+        "legacy_image_count", "hybrid_image_count",
+        "confirmed_non_mushroom_removed_count",
+        "confirmed_new_mushroom_added_count",
+        "confirmed_mushroom_renamed_count", "compatible_rename_count",
+    )
+    for field in count_fields:
+        _require_cutover(
+            isinstance(summary.get(field), int) and not isinstance(summary[field], bool)
+            and summary[field] >= 0,
+            f"summary {field} must be a non-negative integer",
+        )
+    _require_cutover(summary["legacy_image_count"] == len(legacy_entries),
+                     "legacy image count mismatch")
+    _require_cutover(summary["hybrid_image_count"] == len(hybrid_entries),
+                     "hybrid image count mismatch")
+    expected_count = (len(legacy_entries)
+                      - summary["confirmed_non_mushroom_removed_count"]
+                      + summary["confirmed_new_mushroom_added_count"])
+    _require_cutover(len(hybrid_entries) == expected_count,
+                     "hybrid count accounting mismatch")
+
+    removed = hybrid_report.get("removed_non_mushroom")
+    added = hybrid_report.get("added_occurrences")
+    renamed = hybrid_report.get("renamed_occurrences")
+    conflicts = hybrid_report.get("rename_conflicts")
+    for name, rows in (("removed_non_mushroom", removed), ("added_occurrences", added),
+                       ("renamed_occurrences", renamed), ("rename_conflicts", conflicts)):
+        _require_cutover(isinstance(rows, list), f"{name} must be a list")
+        _require_cutover(all(isinstance(row, dict) for row in rows),
+                         f"{name} rows must be dicts")
+    _require_cutover(len(removed) == summary["confirmed_non_mushroom_removed_count"],
+                     "removed occurrence count mismatch")
+    _require_cutover(len(added) == summary["confirmed_new_mushroom_added_count"],
+                     "added occurrence count mismatch")
+    expected_srcs = Counter(entry.get("src") for entry in legacy_entries)
+    removed_srcs = Counter(row.get("src") for row in removed)
+    _require_cutover(not (removed_srcs - expected_srcs),
+                     "removed src occurrences exceed legacy occurrences")
+    expected_srcs.subtract(removed_srcs)
+    expected_srcs += Counter(row.get("src") for row in added)
+    _require_cutover(expected_srcs == Counter(entry["src"] for entry in hybrid_entries),
+                     "hybrid src multiset accounting mismatch")
+
+    _require_cutover(summary["confirmed_mushroom_renamed_count"]
+                     == summary["compatible_rename_count"],
+                     "rename summary counts disagree")
+    _require_cutover(len(renamed) == summary["confirmed_mushroom_renamed_count"],
+                     "renamed occurrence count mismatch")
+    for row in renamed:
+        _require_cutover(row.get("decision") == "compatible_rename",
+                         "renamed occurrence has an incompatible decision")
+        _require_cutover(isinstance(row.get("legacy_alt"), str)
+                         and isinstance(row.get("detected_label"), str),
+                         "renamed occurrence has invalid names")
+        _require_cutover(normalize_taxonomy_key(row["legacy_alt"])
+                         == normalize_taxonomy_key(row.get("detected_label")),
+                         "renamed occurrence is taxonomy-incompatible")
+
+    conflict_pairs = Counter()
+    for row in conflicts:
+        _require_cutover(row.get("decision") == "rename_conflict_manual_review",
+                         "rename conflict has an unsafe decision")
+        _require_cutover(isinstance(row.get("legacy_alt"), str),
+                         "rename conflict has no legacy alt")
+        conflict_pairs[(row.get("src"), row["legacy_alt"])] += 1
+    hybrid_pairs = Counter((entry["src"], entry["alt"]) for entry in hybrid_entries)
+    _require_cutover(not (conflict_pairs - hybrid_pairs),
+                     "rename conflict did not preserve the legacy alt occurrence")
+
+    for row in added:
+        _require_cutover(row.get("subject_type") == "mushroom",
+                         "added occurrence is not a mushroom")
+        _require_cutover(isinstance(row.get("gallery_name"), str)
+                         and bool(row["gallery_name"].strip()),
+                         "added occurrence has no gallery name")
+        _require_cutover(row.get("subject_state_status") == "accepted_subject",
+                         "added occurrence is not from an accepted subject")
+        _require_cutover(row.get("decision") == "confirmed_new_mushroom_added",
+                         "added occurrence has an unsafe decision")
+
+    # Reconcile names as an occurrence multiset too.  This prevents one of two
+    # duplicate-src conflicts from being renamed while the other masks it.
+    expected_pairs = Counter((entry.get("src"), entry.get("alt"))
+                             for entry in legacy_entries)
+    for row in removed:
+        pair = (row.get("src"), row.get("legacy_alt"))
+        _require_cutover(expected_pairs[pair] > 0,
+                         "removed occurrence is not present in legacy entries")
+        expected_pairs.subtract({pair: 1})
+    for row in renamed:
+        old_pair = (row.get("src"), row.get("legacy_alt"))
+        new_pair = (row.get("src"), row.get("hybrid_alt"))
+        _require_cutover(expected_pairs[old_pair] > 0,
+                         "renamed occurrence is not present in legacy entries")
+        expected_pairs.subtract({old_pair: 1})
+        expected_pairs.update({new_pair: 1})
+    for row in added:
+        expected_pairs.update({(row.get("src"), row.get("gallery_name")): 1})
+    expected_pairs += Counter()
+    _require_cutover(expected_pairs == hybrid_pairs,
+                     "hybrid alt occurrence accounting mismatch")
+
+    return {"valid": True, "checks": {
+        "report_version": True, "entry_schema": True,
+        "count_accounting": True, "src_multiset_accounting": True,
+        "rename_compatibility": True, "rename_conflict_preservation": True,
+        "new_image_safety": True,
+    }}
+
+
+def save_phase3c_production_status(status):
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    with open(PHASE3C_PRODUCTION_STATUS_FILE, "w", encoding="utf-8") as stream:
+        json.dump(status, stream, ensure_ascii=False, indent=2)
+
 # ===========================
 # 五十音分類
 # ===========================
@@ -2337,29 +2483,39 @@ def build_gallery():
             "空のギャラリーで上書きしないよう生成を中止します。"
         )
 
-    entries = fetch_images(article_files)
-    if not entries:
+    legacy_entries = fetch_images(article_files)
+    if not legacy_entries:
         raise RuntimeError(
             "記事から画像を1件も抽出できなかったため、"
             "空のギャラリーで上書きしないよう生成を中止します。"
         )
 
-    # Phase 3B.2 is audit-only. Failure is visible, but must not replace or block
-    # the legacy alt-based production entries below.
+    production_entries = legacy_entries
+    production_mode = "legacy_fallback"
+    fallback_reason = None
+    hybrid_entries = None
+    hybrid_report = None
+    validation = None
+    taxonomy = None
+    shadow_metadata = None
+    cutover_eligible = True
     try:
         try:
             taxonomy = load_subject_taxonomy()
-        except SubjectTaxonomyError as error:
-            taxonomy = None
+        except Exception as error:
+            fallback_reason = f"taxonomy load failed: {error}"
+            cutover_eligible = False
             print(f"Phase 3B.2 taxonomy unavailable: {error}")
         shadow_metadata = extract_shadow_metadata(article_files, taxonomy=taxonomy)
         report_category_inventory(article_files)
         try:
             report_shadow_metadata(
-                shadow_metadata, legacy_production_image_count=len(entries), taxonomy=taxonomy
+                shadow_metadata, legacy_production_image_count=len(legacy_entries), taxonomy=taxonomy
             )
         except Exception as error:
             print(f"Phase 3B.2 taxonomy audit failed: {error}")
+            cutover_eligible = False
+            fallback_reason = f"shadow metadata audit failed: {error}"
         if taxonomy is not None:
             try:
                 save_taxonomy_candidates(shadow_metadata)
@@ -2367,19 +2523,35 @@ def build_gallery():
                 print(f"Phase 3B.2 taxonomy candidate export failed: {error}")
         save_shadow_metadata(shadow_metadata)
         try:
-            readiness_audit = build_phase3c_readiness(entries, shadow_metadata)
+            readiness_audit = build_phase3c_readiness(legacy_entries, shadow_metadata)
             report_phase3c_readiness(readiness_audit)
             save_phase3c_readiness(readiness_audit)
         except Exception as error:
             print(f"Phase 3C.0 readiness audit failed: {error}")
-        try:
-            _hybrid_entries, hybrid_report = build_phase3c_hybrid_preview(
-                entries, shadow_metadata, load_article_metadata()
-            )
-            report_phase3c_hybrid_preview(hybrid_report)
-            save_phase3c_hybrid_preview(hybrid_report)
-        except Exception as error:
-            print(f"Phase 3C.2 guarded hybrid preview failed: {error}")
+        if taxonomy is not None and cutover_eligible:
+            try:
+                hybrid_entries, hybrid_report = build_phase3c_hybrid_preview(
+                    legacy_entries, shadow_metadata, load_article_metadata()
+                )
+                validation = validate_phase3c_hybrid_cutover(
+                    legacy_entries, hybrid_entries, hybrid_report
+                )
+            except Exception as error:
+                fallback_reason = f"hybrid build/validation failed: {error}"
+                print(f"Phase 3C.2 guarded hybrid preview failed: {error}")
+                print(f"Phase 3C.3 production fallback: {fallback_reason}")
+            else:
+                production_entries = hybrid_entries
+                production_mode = "phase3c_hybrid"
+                fallback_reason = None
+                try:
+                    report_phase3c_hybrid_preview(hybrid_report)
+                except Exception as error:
+                    print(f"Phase 3C.2 guarded hybrid preview report failed: {error}")
+                try:
+                    save_phase3c_hybrid_preview(hybrid_report)
+                except Exception as error:
+                    print(f"Phase 3C.2 guarded hybrid preview save failed: {error}")
         try:
             residual_audit = build_residual_gap_audit(article_files, shadow_metadata)
         except Exception as error:
@@ -2395,12 +2567,41 @@ def build_gallery():
                 print(f"Phase 3B.4 residual gap audit export failed: {error}")
     except Exception as error:
         print(f"Phase 3B.2 shadow audit failed: {error}")
+        fallback_reason = f"shadow metadata extraction failed: {error}"
+        print(f"Phase 3C.3 production fallback: {fallback_reason}")
+
+    status = {
+        "version": 1, "production_mode": production_mode,
+        "cutover_active": production_mode == "phase3c_hybrid",
+        "fallback_reason": fallback_reason,
+        "legacy_image_count": len(legacy_entries),
+        "production_image_count": len(production_entries),
+        "hybrid_candidate_image_count": (
+            len(hybrid_entries) if hybrid_entries is not None else None
+        ),
+        "net_image_delta_vs_legacy": len(production_entries) - len(legacy_entries),
+        "validation": validation,
+        "hybrid_report_version": (
+            hybrid_report.get("version") if isinstance(hybrid_report, dict) else None
+        ),
+    }
+    print("Phase 3C.3 production mode:")
+    print(f"production_mode={production_mode}")
+    print(f"legacy_image_count={len(legacy_entries)}")
+    print(f"production_image_count={len(production_entries)}")
+    print(f"net_image_delta={len(production_entries) - len(legacy_entries)}")
+    if fallback_reason is not None:
+        print(f"fallback_reason={fallback_reason}")
+    try:
+        save_phase3c_production_status(status)
+    except Exception as error:
+        print(f"Phase 3C.3 production status save failed: {error}")
 
     exif_cache = load_exif_cache()
-    exif_cache = build_exif_cache(entries, exif_cache)
+    exif_cache = build_exif_cache(production_entries, exif_cache)
     save_exif_cache(exif_cache)
 
-    grouped = generate_gallery(entries, exif_cache)
+    grouped = generate_gallery(production_entries, exif_cache)
     generate_index(grouped, exif_cache)
     generate_favorite_page(grouped)
 
