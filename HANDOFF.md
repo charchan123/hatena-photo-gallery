@@ -473,3 +473,17 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - Every distinct taxonomy-unmatched review label is emitted in `blocked_review_labels`, ordered by descending image count and then stable label order, without truncation.
 - Final validation commands and results are recorded in the Phase 3C.0 implementation handoff/final response.
 - Next: inspect the measured report, then decide separately on taxonomy additions, uncertain-name policy, and whether to perform a future production cutover.
+
+# Phase 3C.1 — hybrid migration preview
+
+- Starting SHA: `7cdaff323f1fffffaaa13faeeb0ee9c127400efb`.
+- Baseline validation: `python -m pytest -q` passed **218 tests**; `python -m pytest --collect-only -q` collected **218 tests**. Final validation passed **223 tests**, and collect-only collected **223 tests**.
+- Phase 3C.0's 2026-09-25 production observation was 896 legacy images (307 names), 988 shadow images, 454 strict confirmed-mushroom candidates, 504 taxonomy-unmatched review images, 398 exact overlaps, 498 legacy-only occurrences, and 56 candidate-only occurrences. These runtime observations are not fixed test assertions.
+- A strict cutover is still inappropriate because it would retain only 454/896 legacy images while 249 distinct review labels remain blocked. This phase is preview/audit-only and performs no production cutover.
+- The hybrid policy adopts a confirmed mushroom's non-null `gallery_name`, removes confirmed non-mushrooms, and otherwise preserves an existing legacy occurrence. Only unmatched new confirmed mushrooms are added; new review, undetected, and non-mushroom occurrences are audit-listed but not candidate-published.
+- Matching preserves order and multiplicity: shadow indices are queued by `src`, each legacy occurrence consumes the earliest unused index, and remaining shadow occurrences are processed in original order. This relies on legacy and shadow extraction sharing the same `article_files` order and DOM order.
+- Review fallback does not promote or rewrite taxonomy: `subject_type == review` and its original `classification_reason` remain intact; only the hybrid production-shaped preview temporarily retains the legacy entry.
+- New unverified review/undetected images are not added to the candidate. This intentionally differs from preserving already-published legacy occurrences.
+- The complete schema-version-1 audit is generated at `output/phase3c-hybrid-preview.json`, including all renames, additions, removals, fallback/exclusion rows, grouped audits, observed article metadata, and summary metrics.
+- Production is still the exact legacy list returned by `fetch_images(article_files)`. The preview entries are never passed to `generate_gallery`, including when preview build/report/save fails.
+- Next: inspect the post-merge runtime preview and every article-linked rename, then separately decide whether production cutover is acceptable. Do not cut over merely because the preview exists.
