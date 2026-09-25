@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "production_mode": "legacy_fallback",
+  "cutover_active": false,
+  "fallback_reason": "hybrid build/validation failed: added occurrence is not a mushroom",
+  "legacy_image_count": 896,
+  "production_image_count": 896,
+  "hybrid_candidate_image_count": 923,
+  "net_image_delta_vs_legacy": 0,
+  "validation": null,
+  "hybrid_report_version": 2
+}
