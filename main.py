@@ -1626,6 +1626,7 @@ def _phase3c_article_fields(shadow, article_metadata):
 def _phase3c_shadow_audit_row(shadow, article_metadata, **extra):
     row = {
         "src": shadow.get("src"),
+        "subject_type": shadow.get("subject_type"),
         "detected_label": shadow.get("detected_label"),
         "gallery_name": shadow.get("gallery_name"),
         "taxonomy_match_type": shadow.get("taxonomy_match_type"),
@@ -1833,7 +1834,8 @@ def build_phase3c_hybrid_preview(
         "added_gallery_name_count": len(added_groups),
     }
     notes = [
-        "Preview only: production continues to use the exact legacy entries list.",
+        "This report describes the guarded hybrid candidate; actual production "
+        "selection is recorded in phase3c-production-status.json.",
         "Review fallbacks retain taxonomy review classification.",
         "New review, undetected, and non-mushroom occurrences are not added.",
     ]
@@ -2533,17 +2535,11 @@ def build_gallery():
                 hybrid_entries, hybrid_report = build_phase3c_hybrid_preview(
                     legacy_entries, shadow_metadata, load_article_metadata()
                 )
-                validation = validate_phase3c_hybrid_cutover(
-                    legacy_entries, hybrid_entries, hybrid_report
-                )
             except Exception as error:
-                fallback_reason = f"hybrid build/validation failed: {error}"
+                fallback_reason = f"hybrid build failed: {error}"
                 print(f"Phase 3C.2 guarded hybrid preview failed: {error}")
                 print(f"Phase 3C.3 production fallback: {fallback_reason}")
             else:
-                production_entries = hybrid_entries
-                production_mode = "phase3c_hybrid"
-                fallback_reason = None
                 try:
                     report_phase3c_hybrid_preview(hybrid_report)
                 except Exception as error:
@@ -2552,6 +2548,17 @@ def build_gallery():
                     save_phase3c_hybrid_preview(hybrid_report)
                 except Exception as error:
                     print(f"Phase 3C.2 guarded hybrid preview save failed: {error}")
+                try:
+                    validation = validate_phase3c_hybrid_cutover(
+                        legacy_entries, hybrid_entries, hybrid_report
+                    )
+                except Exception as error:
+                    fallback_reason = f"hybrid validation failed: {error}"
+                    print(f"Phase 3C.3 production fallback: {fallback_reason}")
+                else:
+                    production_entries = hybrid_entries
+                    production_mode = "phase3c_hybrid"
+                    fallback_reason = None
         try:
             residual_audit = build_residual_gap_audit(article_files, shadow_metadata)
         except Exception as error:
