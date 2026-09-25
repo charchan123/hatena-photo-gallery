@@ -522,3 +522,19 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
   `generate_gallery(entries, exif_cache)`. Phase 3C cutover was not performed.
 - Next: inspect the merged report's runtime measurements, then decide separately
   whether a production cutover is safe.
+
+# Phase 3C.3 — guarded hybrid production cutover
+
+- Starting SHA: `982e79feab213c6b10a771c8599c9ca6ec62004b`.
+- Baseline: `236 passed`; `236 collected`. Final: `252 passed`; `252 collected`.
+- Phase 3C.2 production-data observation: legacy 896 / guarded hybrid 923 / net +27.
+- All 896 legacy occurrences remain represented: 881 exact occurrences plus 15 compatible renames.
+- The seven rename-conflict occurrences remain on their legacy alts for manual review.
+- The candidate adds 27 newly confirmed mushroom occurrences.
+- Production now cuts over only to a successfully built and runtime-validated Phase 3C hybrid candidate.
+- The runtime validator checks schema, count accounting, rename/new-image safety, conflict preservation, and exact `src` occurrence accounting with `collections.Counter` (including duplicate sources).
+- Taxonomy load, shadow extraction/audit, hybrid build, or cutover validation failure selects the exact original legacy list as the production fallback.
+- EXIF collection and gallery generation both consume the single selected `production_entries` object.
+- `output/phase3c-production-status.json` (version 1) records the active mode, fallback reason, counts, report version, and validation result; failure to save it is isolated from gallery generation.
+- Existing `output/phase3c-readiness.json` (version 1) and `output/phase3c-hybrid-preview.json` (version 2) audits remain in place. Preview print/save failures after successful validation do not undo cutover.
+- Next: after merge, inspect the deployed production status and generated gallery; if both match the observed accounting and safety expectations, decide whether Phase 3C is complete.
