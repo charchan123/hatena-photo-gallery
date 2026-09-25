@@ -43,6 +43,39 @@ def test_valid_candidate_and_duplicate_src_accounting_pass():
     assert all(result["checks"].values())
 
 
+def _shadow(src, subject_type, *, name=None, status="accepted_subject"):
+    return {
+        "src": src,
+        "subject_type": subject_type,
+        "detected_label": name,
+        "gallery_name": name if subject_type == "mushroom" else None,
+        "subject_state_status": status,
+        "article_path": "article.html",
+    }
+
+
+def test_audit_row_preserves_subject_type_without_coercion():
+    for subject_type in ("mushroom", "non_mushroom", "review"):
+        row = main._phase3c_shadow_audit_row(
+            _shadow("image.jpg", subject_type, name="菌名"), {}
+        )
+        assert row["subject_type"] == subject_type
+
+
+def test_real_builder_report_validates_new_mushroom_schema_contract():
+    legacy = [{"alt": "既存菌", "src": "existing.jpg"}]
+    shadows = [
+        _shadow("existing.jpg", "mushroom", name="既存菌"),
+        _shadow("new.jpg", "mushroom", name="新菌"),
+    ]
+
+    hybrid, report = main.build_phase3c_hybrid_preview(legacy, shadows)
+    validation = main.validate_phase3c_hybrid_cutover(legacy, hybrid, report)
+
+    assert validation["valid"] is True
+    assert report["added_occurrences"][0]["subject_type"] == "mushroom"
+
+
 @pytest.mark.parametrize(
     ("mutation", "message"),
     [
@@ -77,7 +110,7 @@ def test_incompatible_renamed_occurrence_fails():
 
 
 def _stub_build(monkeypatch, legacy, hybrid, report, *, failure=None):
-    seen = {"exif": [], "gallery": [], "status": []}
+    seen = {"exif": [], "gallery": [], "status": [], "report": [], "preview": []}
     monkeypatch.setattr(main, "fetch_hatena_articles_api", lambda: ["article.html"])
     monkeypatch.setattr(main, "fetch_images", lambda files: legacy)
     monkeypatch.setattr(main, "load_subject_taxonomy", lambda: {"entries": []})
@@ -95,8 +128,10 @@ def _stub_build(monkeypatch, legacy, hybrid, report, *, failure=None):
     if failure == "validation":
         monkeypatch.setattr(main, "validate_phase3c_hybrid_cutover",
                             lambda *args: (_ for _ in ()).throw(RuntimeError("validation")))
-    monkeypatch.setattr(main, "report_phase3c_hybrid_preview", lambda *args: None)
-    monkeypatch.setattr(main, "save_phase3c_hybrid_preview", lambda *args: None)
+    monkeypatch.setattr(main, "report_phase3c_hybrid_preview",
+                        lambda value: seen["report"].append(value))
+    monkeypatch.setattr(main, "save_phase3c_hybrid_preview",
+                        lambda value: seen["preview"].append(value))
     monkeypatch.setattr(main, "build_residual_gap_audit", lambda *args: {})
     monkeypatch.setattr(main, "report_residual_gap_audit", lambda *args: None)
     monkeypatch.setattr(main, "save_residual_gap_audit", lambda *args: None)
@@ -132,6 +167,12 @@ def test_candidate_failure_uses_exact_legacy_object(monkeypatch, failure):
     assert seen["exif"][0] is legacy
     assert seen["gallery"][0] is legacy
     assert seen["status"][0]["production_mode"] == "legacy_fallback"
+    if failure == "validation":
+        assert seen["report"] == [report]
+        assert seen["preview"] == [report]
+    else:
+        assert seen["report"] == []
+        assert seen["preview"] == []
 
 
 def test_shadow_failure_uses_exact_legacy_object(monkeypatch):

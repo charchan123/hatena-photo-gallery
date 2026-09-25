@@ -538,3 +538,30 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - `output/phase3c-production-status.json` (version 1) records the active mode, fallback reason, counts, report version, and validation result; failure to save it is isolated from gallery generation.
 - Existing `output/phase3c-readiness.json` (version 1) and `output/phase3c-hybrid-preview.json` (version 2) audits remain in place. Preview print/save failures after successful validation do not undo cutover.
 - Next: after merge, inspect the deployed production status and generated gallery; if both match the observed accounting and safety expectations, decide whether Phase 3C is complete.
+
+# Phase 3C.3.1 — cutover schema integration hotfix
+
+- Starting SHA: `708976bbbc8a71be208dd9840acb25a4347d8d05`.
+- Baseline: `252 passed`; `252 collected`. Final validation: `254 passed`;
+  `254 collected`, Python compilation passed, both Node regression scripts
+  passed, JavaScript syntax passed, and the protected diff remained empty.
+- Post-Phase 3C.3 production observation was a safe `legacy_fallback`: 896
+  legacy images, 923 hybrid candidate images, and reason
+  `added occurrence is not a mushroom`. The published gallery therefore stayed
+  on all 896 legacy images and was not broken.
+- Root cause: `_phase3c_shadow_audit_row()` omitted `subject_type`, disconnecting
+  the Phase 3C.2 report producer schema from the Phase 3C.3 validator schema.
+- The validator remains strict and unchanged. The producer now preserves the
+  source `subject_type` in every audit row; it does not infer or coerce values.
+- A real `build_phase3c_hybrid_preview()` to
+  `validate_phase3c_hybrid_cutover()` integration test fixes the producer and
+  validator schema contract for newly confirmed mushrooms.
+- After a successful hybrid build, preview reporting and saving now occur before
+  validation. A validation failure therefore retains the candidate audit while
+  still selecting the exact legacy object; a build failure has no report to save.
+- The production status remains schema version 1, and the hybrid preview remains
+  version 2. The preview note now points to the production status report instead
+  of asserting that production always uses legacy entries.
+- Next: after merge, recheck `phase3c-production-status.json` and confirm
+  `production_mode == phase3c_hybrid`, `cutover_active == true`, and
+  `validation.valid == true`.
