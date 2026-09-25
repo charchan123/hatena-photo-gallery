@@ -667,6 +667,9 @@ def test_build_processes_non_empty_data_as_before(monkeypatch):
     monkeypatch.setattr(
         main, "save_shadow_metadata", lambda metadata: calls.append("shadow-save")
     )
+    monkeypatch.setattr(main, "build_phase3c_readiness", lambda legacy, shadow: {"summary": {}, "blocked_review_labels": []})
+    monkeypatch.setattr(main, "report_phase3c_readiness", lambda audit: calls.append("readiness-report"))
+    monkeypatch.setattr(main, "save_phase3c_readiness", lambda audit: calls.append("readiness-save"))
     monkeypatch.setattr(main, "build_residual_gap_audit", lambda files, metadata: {"summary": {}, "undetected_images": []})
     monkeypatch.setattr(main, "report_residual_gap_audit", lambda audit: calls.append("residual-report"))
     monkeypatch.setattr(main, "save_residual_gap_audit", lambda audit: calls.append("residual-save"))
@@ -694,6 +697,8 @@ def test_build_processes_non_empty_data_as_before(monkeypatch):
     assert calls == [
         "shadow-report",
         "shadow-save",
+        "readiness-report",
+        "readiness-save",
         "residual-report",
         "residual-save",
         "save",
@@ -759,6 +764,113 @@ def test_shadow_failure_is_logged_without_blocking_production(monkeypatch, capsy
             "Phase 3B.2 shadow audit failed: broken shadow"
         in capsys.readouterr().out
     )
+
+
+def _readiness_row(src, label, subject_type, gallery_name, *, alt="legacy", reason=None,
+                   path="articles/a.html"):
+    return {
+        "src": src, "detected_label": label, "subject_type": subject_type,
+        "gallery_name": gallery_name, "legacy_alt": alt,
+        "classification_reason": reason or f"taxonomy_{subject_type}",
+        "taxonomy_match_type": "canonical_exact" if subject_type != "review" else "none",
+        "article_title": "Article", "article_path": path,
+    }
+
+
+def test_phase3c_readiness_candidate_multisets_and_classifications():
+    legacy = [
+        {"src": "same.jpg", "alt": "疑問符名？"},
+        {"src": "duplicate.jpg", "alt": "旧名"},
+        {"src": "duplicate.jpg", "alt": "旧名"},
+        {"src": "legacy-only.jpg", "alt": "旧"},
+    ]
+    shadow = [
+        _readiness_row("same.jpg", "疑問符名？", "mushroom", "不明", alt="疑問符名？"),
+        _readiness_row("duplicate.jpg", "新名", "mushroom", "新名", alt="旧名"),
+        _readiness_row("duplicate.jpg", "新名", "mushroom", "新名", alt="旧名"),
+        _readiness_row("new.jpg", "ムキタケ", "mushroom", "ムキタケ", alt=""),
+        _readiness_row("bird.jpg", "鳥", "non_mushroom", None),
+        _readiness_row("review-z.jpg", "未登録Z", "review", None,
+                       reason="taxonomy_unmatched", path="articles/z.html"),
+        _readiness_row("review-a1.jpg", "未登録A", "review", None,
+                       reason="taxonomy_unmatched", path="articles/a.html"),
+        _readiness_row("review-a2.jpg", "未登録A", "review", None,
+                       reason="taxonomy_unmatched", path="articles/b.html"),
+        _readiness_row("none.jpg", None, "review", None,
+                       reason="no_detected_label"),
+    ]
+
+    audit = main.build_phase3c_readiness(legacy, shadow)
+
+    assert audit["version"] == 1
+    assert [(row["src"], row["gallery_name"]) for row in audit["candidate_only"]] == [
+        ("same.jpg", "不明"), ("duplicate.jpg", "新名"),
+        ("duplicate.jpg", "新名"), ("new.jpg", "ムキタケ"),
+    ]
+    assert not {"bird.jpg", "review-z.jpg", "none.jpg"} & {
+        row["src"] for row in audit["candidate_only"]
+    }
+    assert [row["detected_label"] for row in audit["blocked_review_labels"]] == [
+        "未登録A", "未登録Z"
+    ]
+    assert audit["blocked_review_labels"][0]["article_count"] == 2
+    assert len(audit["legacy_only"]) == 4
+    assert sum(row["src"] == "duplicate.jpg" for row in audit["legacy_only"]) == 2
+    assert {row["src"] for row in audit["name_changes"]} == {"same.jpg", "duplicate.jpg"}
+    assert audit["summary"]["legacy_src_only_count"] == 1
+    assert audit["summary"]["candidate_src_only_count"] == 1
+    assert audit["summary"]["same_src_name_change_count"] == 2
+    assert audit["non_mushroom_exclusions"][0]["detected_label"] == "鳥"
+    assert audit["undetected"] == [{
+        "src": "none.jpg", "legacy_alt": "legacy", "article_title": "Article",
+        "article_path": "articles/a.html", "classification_reason": "no_detected_label",
+    }]
+
+
+def test_phase3c_readiness_json_schema(tmp_path, monkeypatch):
+    target = tmp_path / "output" / "phase3c-readiness.json"
+    monkeypatch.setattr(main, "PHASE3C_READINESS_FILE", str(target))
+    monkeypatch.setattr(main, "OUTPUT_DIR", str(target.parent))
+    audit = main.build_phase3c_readiness([], [])
+
+    main.save_phase3c_readiness(audit)
+
+    saved = json.loads(target.read_text(encoding="utf-8"))
+    assert set(saved) == {"version", "summary", "blocked_review_labels", "legacy_only",
+                          "candidate_only", "name_changes", "non_mushroom_exclusions",
+                          "undetected", "readiness_notes"}
+    assert saved["summary"]["candidate_vs_legacy_ratio"] is None
+    assert saved["summary"]["taxonomy_mushroom_share_of_shadow"] is None
+
+
+def test_phase3c_audit_failure_preserves_exact_production_entries(monkeypatch, capsys):
+    entries = [{"alt": "legacy", "src": "x.jpg"}]
+    generated = []
+    monkeypatch.setattr(main, "fetch_hatena_articles_api", lambda: ["article.html"])
+    monkeypatch.setattr(main, "fetch_images", lambda files: entries)
+    monkeypatch.setattr(main, "extract_shadow_metadata", lambda files, **kwargs: [])
+    monkeypatch.setattr(main, "report_category_inventory", lambda files: None)
+    monkeypatch.setattr(main, "report_shadow_metadata", lambda *args, **kwargs: None)
+    monkeypatch.setattr(main, "save_taxonomy_candidates", lambda data: None)
+    monkeypatch.setattr(main, "save_shadow_metadata", lambda data: None)
+    monkeypatch.setattr(main, "build_phase3c_readiness",
+                        lambda legacy, shadow: (_ for _ in ()).throw(RuntimeError("broken readiness")))
+    monkeypatch.setattr(main, "build_residual_gap_audit",
+                        lambda files, data: {"summary": {}, "undetected_images": []})
+    monkeypatch.setattr(main, "report_residual_gap_audit", lambda audit: None)
+    monkeypatch.setattr(main, "save_residual_gap_audit", lambda audit: None)
+    monkeypatch.setattr(main, "load_exif_cache", lambda: {})
+    monkeypatch.setattr(main, "build_exif_cache", lambda actual, cache: cache)
+    monkeypatch.setattr(main, "save_exif_cache", lambda cache: None)
+    monkeypatch.setattr(main, "generate_gallery", lambda actual, cache: generated.append(actual) or {})
+    monkeypatch.setattr(main, "generate_index", lambda grouped, cache: None)
+    monkeypatch.setattr(main, "generate_favorite_page", lambda grouped: None)
+
+    main.build_gallery()
+
+    assert generated == [entries]
+    assert generated[0] is entries
+    assert "Phase 3C.0 readiness audit failed: broken readiness" in capsys.readouterr().out
 
 
 @pytest.mark.parametrize(
