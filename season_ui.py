@@ -40,16 +40,17 @@ def _subject_card(subject, safe_filename):
     months = "・".join(f"{month}月" for month in counts)
     photo_count = sum(counts.values())
     return f"""
-      <article class="season-card">
-        <a class="season-card__link" href="{href}">
-          <img class="season-card__image" src="{cover}?width=640" alt="{name}" loading="lazy">
-          <div class="season-card__body">
-            <h3>{name}</h3>
-            <p class="season-card__months">撮影月：{months}</p>
-            <p class="season-card__count">この季節の観察写真 {photo_count}枚</p>
-          </div>
-        </a>
-      </article>"""
+      <a class="mushroom-card" href="{href}" data-name="{name}">
+        <div class="mushroom-card-thumb">
+          <span class="card-fav">☆</span>
+          <img src="{cover}?width=400" alt="{name}" loading="lazy">
+        </div>
+        <div class="mushroom-card-name">{name}</div>
+        <div class="season-card-meta">
+          <span>撮影月：{months}</span>
+          <span>この季節の観察写真 {photo_count}枚</span>
+        </div>
+      </a>"""
 
 
 def render_season_page(portal_data, safe_filename):
@@ -78,7 +79,7 @@ def render_season_page(portal_data, safe_filename):
         <h2>{season['label']}の観察</h2>
         <p>{len(subjects)}種類・観察写真 {observation_count}枚</p>
       </header>
-      <div class="season-grid">{cards}</div>
+      <div class="mushroom-list">{cards}</div>
     </section>""")
     return f"""<!doctype html>
 <html lang="ja">
@@ -86,20 +87,21 @@ def render_season_page(portal_data, safe_filename):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>季節から探す｜キノコ図鑑</title>
+<link rel="stylesheet" href="assets/gallery.css">
 <link rel="stylesheet" href="assets/season.css">
+<script src="assets/gallery.js" defer></script>
 <script src="assets/season.js" defer></script>
 </head>
 <body>
-<main class="season-page">
-  <nav class="season-back" aria-label="パンくず"><a href="index.html">← キノコ図鑑トップ</a></nav>
-  <header class="season-hero">
-    <p class="season-hero__eyebrow">OBSERVATION ARCHIVE</p>
-    <h1>季節から探す</h1>
-    <p class="season-hero__lead">このブログで実際に撮影した写真のEXIF撮影月から探せます。</p>
-    <p class="season-hero__note">一般的なキノコの発生時期を示すものではありません。EXIF撮影月がない写真は季節に推測配置していません。</p>
+<main class="aiuo-page season-page">
+  <header class="season-header">
+    <h1 class="aiuo-title">季節から探す</h1>
+    <p class="season-lead">このブログで実際に撮影した写真の撮影月から探せます。</p>
+    <p class="season-note">撮影月は写真のEXIF情報を使用しています。一般的なキノコの発生時期を示すものではありません。EXIF撮影月がない写真は推測配置していません。</p>
   </header>
   <div class="season-tabs" role="tablist" aria-label="季節を選ぶ">{''.join(buttons)}</div>
   {''.join(sections)}
+  <div class="season-back"><a href="index.html" class="back-btn">◀ トップに戻る</a></div>
 </main>
 </body>
 </html>

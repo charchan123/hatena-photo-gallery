@@ -229,14 +229,22 @@ document.addEventListener("DOMContentLoaded", () => {
     // =========================
     let __lastSentHeight = -1;
     let __heightScheduled = false;
+    let __heightForceRequested = false;
+    let __heightReason = "";
 
-    function sendHeight(reason = "") {
+    function sendHeight(reason = "", force = false) {
+      __heightForceRequested = __heightForceRequested || force;
+      if (reason) __heightReason = reason;
       if (__heightScheduled) return;
       __heightScheduled = true;
 
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           __heightScheduled = false;
+          const forceSend = __heightForceRequested;
+          const messageReason = __heightReason;
+          __heightForceRequested = false;
+          __heightReason = "";
 
           const bodyStyle = window.getComputedStyle(document.body);
           const paddingTop = parseFloat(bodyStyle.paddingTop) || 0;
@@ -247,11 +255,11 @@ document.addEventListener("DOMContentLoaded", () => {
             paddingBottom
           );
 
-          if (h === __lastSentHeight) return;
+          if (!forceSend && h === __lastSentHeight) return;
           __lastSentHeight = h;
 
           window.parent.postMessage(
-            { type: "setHeight", height: h, reason },
+            { type: "setHeight", height: h, reason: messageReason },
             "*"
           );
         });
@@ -1318,13 +1326,24 @@ galleries.forEach(gallery => {
   sendHeight();
 
   window.addEventListener("load", () => {
-    sendHeight();
-    setTimeout(sendHeight, 800);
-    setTimeout(sendHeight, 2000);
+    sendHeight("load", true);
+    setTimeout(() => sendHeight("load-800ms", true), 800);
+    setTimeout(() => sendHeight("load-2000ms", true), 2000);
+  });
+
+  // A bfcache-restored document remembers its previous height, while the
+  // parent iframe may still have the page we navigated to. Re-send even when
+  // the measured value is unchanged; bounded retries cover restored images.
+  window.addEventListener("pageshow", event => {
+    const prefix = event.persisted ? "pageshow-bfcache" : "pageshow";
+    sendHeight(prefix, true);
+    setTimeout(() => sendHeight(`${prefix}-100ms`, true), 100);
+    setTimeout(() => sendHeight(`${prefix}-800ms`, true), 800);
+    setTimeout(() => sendHeight(`${prefix}-2000ms`, true), 2000);
   });
 
   window.addEventListener("message", e => {
-    if (e.data?.type === "requestHeight") sendHeight();
+    if (e.data?.type === "requestHeight") sendHeight("request-height", true);
   });
 
   window.addEventListener("resize", sendHeight);

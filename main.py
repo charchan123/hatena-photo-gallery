@@ -2325,8 +2325,8 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     index_parts.append("""
     <div class="section">
     <div class="feature-block">
-      <h2 class="section-title">季節から探す</h2>
-      <p class="section-desc">このブログで実際に撮影した写真のEXIF撮影月から探せます</p>
+      <h2 class="section-title">🗓️ 季節から探す</h2>
+      <p class="section-desc">写真の撮影月から探せます</p>
       <a class="aiuo-link" href="season.html">春・夏・秋・冬から見る</a>
     </div>
     </div>

@@ -26,6 +26,13 @@ assert.match(source, /contentRoot\.getBoundingClientRect\(\)\.height/);
 assert.match(source, /getComputedStyle\(document\.body\)/);
 assert.match(source, /contentResizeObserver\.observe\(contentRoot\)/);
 assert.match(source, /type: "setHeight", height: h, reason/);
+assert.match(source, /function sendHeight\(reason = "", force = false\)/);
+assert.match(source, /!forceSend && h === __lastSentHeight/);
+assert.match(source, /addEventListener\("pageshow"/);
+assert.match(source, /event\.persisted/);
+assert.match(source, /sendHeight\(prefix, true\)/);
+assert.match(source, /sendHeight\("request-height", true\)/);
+assert.match(source, /sendHeight\("resize-observer"\)/);
 assert.doesNotMatch(source, /document\.body\.(?:scrollHeight|offsetHeight)/);
 assert.doesNotMatch(source, /document\.documentElement\.(?:scrollHeight|offsetHeight)/);
 
