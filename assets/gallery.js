@@ -5,6 +5,13 @@ function calculateIframeContentHeight(rootHeight, paddingTop, paddingBottom) {
   return Math.ceil(rootHeight + paddingTop + paddingBottom);
 }
 
+function isHistoryTraversal(event) {
+  if (event.persisted) return true;
+
+  const navigation = performance.getEntriesByType?.("navigation")?.[0];
+  return navigation?.type === "back_forward";
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 
   // Measure normal page content independently from the iframe viewport. Nodes
@@ -1340,6 +1347,10 @@ galleries.forEach(gallery => {
     setTimeout(() => sendHeight(`${prefix}-100ms`, true), 100);
     setTimeout(() => sendHeight(`${prefix}-800ms`, true), 800);
     setTimeout(() => sendHeight(`${prefix}-2000ms`, true), 2000);
+
+    if (isHistoryTraversal(event)) {
+      window.parent.postMessage({ type: "scrollToTitle" }, "*");
+    }
   });
 
   window.addEventListener("message", e => {

@@ -442,6 +442,14 @@ body {
   border-color: #c5dafe;
 }
 
+/* feature block 内に単独で置く共通 action link */
+.feature-action-link {
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* ===== 戻るボタン（楕円ボタン） ===== */
 .back-btn {
   display: inline-block;

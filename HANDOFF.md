@@ -610,3 +610,13 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Production / portal safety:** Phase 3C candidate build、validator、hybrid/legacy selection、production status schema、`production_entries` identityには触れていない。`portal_data.py` とportal schema v1、observation/matching/taxonomy/EXIF policyも不変。season groupingは引き続き `subjects[].capture_month_counts` のみで、春3–5、夏6–8、秋9–11、冬12/1/2、月なし非配置を維持する。fresh portal成功時だけseason生成するfailure isolationも不変。
 - **Known issue:** scope外の `generate_index()` にある `hero-world` / `gallery-guide` のhead内invalid HTMLは変更していない。実ブラウザが利用できない環境では、PC/mobileのproduction iframe実機確認が引き続き必要。
 - **Next Phase 4A.2 candidate:** deployment後にPC/Androidでseason→detail→browser backの高さ、親スクロール、favorite星を再監査する。その後、portal schema v1の観察年・撮影月など次の小さな観察導線を検討し、一般的発生時期はEXIF観察季節と明確に分離する。
+
+# Phase 4A.1.2 — shared navigation / top action alignment polish
+
+- **Starting SHA / objective:** `b9242633906edcfbf964a53ad50ed83f5ce6591a` のclean tree、baseline **279 passed / 279 collected** から開始し、本番確認で見つかったbrowser back時の親スクロールとトップの単独action 2件の配置だけを局所修正した。
+- **Browser back / history detection:** 共通 `gallery.js` の `pageshow` で `event.persisted === true` をbfcache復帰として扱い、加えて標準の `PerformanceNavigationTiming.type === "back_forward"` を検査する。history traversalの場合だけ親へ `{ type: "scrollToTitle" }` を `"*"` originで送信し、通常の初回 `pageshow` では送らない。通常 `.html` link、back button、breadcrumbの既存click bridgeも維持した。
+- **Height resend coexistence:** Phase 4A.1.1の `sendHeight(reason, force)`、通常同値dedupe、load/pageshowの有限force resend、bfcache reason、requestHeight force応答、ResizeObserver、`setHeight` contractを変更せず、pageshowではheight再送とhistory traversal時のscrollを両方実行する。無限pollingは追加していない。
+- **Top action alignment:** `.aiuo-links` grid外にある季節リンクと観察ノートリンクだけが `justify-items: center` の対象外だったことが左寄せの原因。両方へ共通 `.feature-action-link` を付け、block + fit-content + auto横marginで中央配置した。通常の五十音 `.aiuo-link` には付与せず、グローバル `.aiuo-link` とgrid配置は不変。
+- **Changed files:** `assets/gallery.js`, `assets/gallery.css`, `main.py`, `tests/test_gallery_height.js`, `tests/test_season_ui.py`, `HANDOFF.md`。
+- **Tests / safety:** history traversal判定、通常pageshow非送信、pageshow height force、既存HTML/back navigation、`setHeight`、2つの共通action class、五十音class非付与を回帰確認した。Phase 3C candidate/validator/production selection/status schema、`portal_data.py`、portal schema v1、season grouping、taxonomy、master/source、EXIF、observation ID、Hatena API、favorites、LightGalleryは変更していない。
+- **Next Phase 4A.2:** deploymentでback/forward時の高さと親スクロール、およびPC/mobileの中央配置を確認後、別スコープとして次の観察導線を検討する。
