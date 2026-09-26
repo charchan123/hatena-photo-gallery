@@ -1,5 +1,6 @@
 import os
 import json
+import inspect
 import requests
 from bs4 import BeautifulSoup
 import xml.etree.ElementTree as ET
@@ -16,6 +17,7 @@ from portal_data import (
 )
 from season_ui import generate_season_page, load_fresh_portal_data
 from records_ui import generate_records_page, render_record_cards
+from detail_ui import build_detail_views, render_detail_sections
 
 # ===========================
 # 珍しい / 人気キノコリスト（手動）
@@ -180,7 +182,7 @@ def copy_shared_assets():
     output_assets_dir = os.path.join(OUTPUT_DIR, "assets")
     os.makedirs(output_assets_dir, exist_ok=True)
 
-    for filename in ("gallery.css", "gallery.js"):
+    for filename in ("gallery.css", "gallery.js", "detail.css"):
         shutil.copy2(
             os.path.join(ASSETS_DIR, filename),
             os.path.join(output_assets_dir, filename),
@@ -2035,9 +2037,10 @@ def get_aiuo_group(name):
 # ===========================
 # ギャラリー生成（キノコページ & 五十音ページ）
 # ===========================
-def generate_gallery(entries, exif_cache):
+def generate_gallery(entries, exif_cache, detail_views=None):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     copy_shared_assets()
+    detail_views = detail_views or {}
 
     # alt → [画像URL1, 画像URL2…]
     grouped = {}
@@ -2082,11 +2085,15 @@ def generate_gallery(entries, exif_cache):
             )
         html_parts.append("</div>")
 
+        # Evidence-backed knowledge and article links follow the primary photo gallery.
+        html_parts.append(render_detail_sections(detail_views.get(alt)))
+
         # 五十音タイル
         html_parts.append(group_links_html)
 
         # スタイル・LG・JS
         html_parts.append(STYLE_TAG)
+        html_parts.append('<link rel="stylesheet" href="assets/detail.css">')
         html_parts.append(LIGHTGALLERY_TAGS)
         html_parts.append(SCRIPT_TAG)
 
@@ -2653,8 +2660,13 @@ def build_gallery():
     )
     generate_season_page_if_fresh(portal_status)
     observation_records = generate_records_page_if_fresh(portal_status)
+    detail_views = build_detail_views_if_fresh(portal_status)
 
-    grouped = generate_gallery(production_entries, exif_cache)
+    # Keep test/extension callables with the historical two-argument signature usable.
+    if "detail_views" in inspect.signature(generate_gallery).parameters:
+        grouped = generate_gallery(production_entries, exif_cache, detail_views=detail_views)
+    else:
+        grouped = generate_gallery(production_entries, exif_cache)
     if observation_records:
         generate_index(grouped, exif_cache, observation_records=observation_records)
     else:
@@ -2685,6 +2697,17 @@ def generate_records_page_if_fresh(portal_status):
     except Exception as error:
         print(f"Phase 4A.2 records page generation failed: {error}")
         return []
+
+
+def build_detail_views_if_fresh(portal_status):
+    """Best-effort detail models, gated on this run's successful export."""
+    if not isinstance(portal_status, dict) or portal_status.get("build_ok") is not True:
+        return {}
+    try:
+        return build_detail_views(load_fresh_portal_data(PORTAL_DATA_FILE))
+    except Exception as error:
+        print(f"Phase 4A.3 detail view generation failed: {error}")
+        return {}
 
 
 def export_portal_data(*, production_entries, shadow_metadata, article_metadata=None,
