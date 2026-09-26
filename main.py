@@ -18,6 +18,7 @@ from portal_data import (
 from season_ui import generate_season_page, load_fresh_portal_data
 from records_ui import generate_records_page, render_record_cards
 from detail_ui import build_detail_views, render_detail_sections
+from feature_ui import load_feature_facets, validate_feature_facets, generate_feature_page
 
 # ===========================
 # 珍しい / 人気キノコリスト（手動）
@@ -95,6 +96,9 @@ PHASE3C_PRODUCTION_STATUS_FILE = os.path.join(
 )
 PORTAL_DATA_FILE = os.path.join(OUTPUT_DIR, "portal-data.json")
 PORTAL_DATA_STATUS_FILE = os.path.join(OUTPUT_DIR, "portal-data-status.json")
+FEATURE_FACETS_FILE = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "data", "feature-facets.json"
+)
 TAXONOMY_SUBJECT_TYPES = {"mushroom", "non_mushroom"}
 
 SHADOW_EXCLUDE_PATTERNS = [
@@ -2229,7 +2233,8 @@ def generate_gallery(entries, exif_cache, detail_views=None):
 # ===========================
 # index.html を生成（最終確定版）
 # ===========================
-def generate_index(grouped, exif_cache, observation_records=None):
+def generate_index(grouped, exif_cache, observation_records=None,
+                   feature_search_available=False):
     copy_shared_assets()
     index_parts = []
 
@@ -2341,6 +2346,17 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     </div>
     """)
 
+
+    if feature_search_available:
+        index_parts.append("""
+    <div class="section">
+    <div class="feature-block">
+      <h2 class="section-title">🔎 特徴から探す</h2>
+      <p class="section-desc">資料に記載された見た目の特徴を組み合わせて探せます</p>
+      <a class="aiuo-link feature-action-link" href="features.html">特徴を選んで探す</a>
+    </div>
+    </div>
+    """)
 
     if observation_records:
         index_parts.append(f"""
@@ -2661,16 +2677,20 @@ def build_gallery():
     generate_season_page_if_fresh(portal_status)
     observation_records = generate_records_page_if_fresh(portal_status)
     detail_views = build_detail_views_if_fresh(portal_status)
+    feature_search_available = generate_feature_page_if_fresh(portal_status)
 
     # Keep test/extension callables with the historical two-argument signature usable.
     if "detail_views" in inspect.signature(generate_gallery).parameters:
         grouped = generate_gallery(production_entries, exif_cache, detail_views=detail_views)
     else:
         grouped = generate_gallery(production_entries, exif_cache)
-    if observation_records:
-        generate_index(grouped, exif_cache, observation_records=observation_records)
-    else:
-        generate_index(grouped, exif_cache)
+    index_parameters = inspect.signature(generate_index).parameters
+    index_options = {}
+    if "observation_records" in index_parameters:
+        index_options["observation_records"] = observation_records or None
+    if "feature_search_available" in index_parameters:
+        index_options["feature_search_available"] = feature_search_available
+    generate_index(grouped, exif_cache, **index_options)
     generate_favorite_page(grouped)
 
 
@@ -2708,6 +2728,22 @@ def build_detail_views_if_fresh(portal_status):
     except Exception as error:
         print(f"Phase 4A.3 detail view generation failed: {error}")
         return {}
+
+
+def generate_feature_page_if_fresh(portal_status):
+    """Best-effort feature output, gated on this run's successful export."""
+    if not isinstance(portal_status, dict) or portal_status.get("build_ok") is not True:
+        return False
+    try:
+        portal = load_fresh_portal_data(PORTAL_DATA_FILE)
+        feature_data = load_feature_facets(FEATURE_FACETS_FILE)
+        master = (portal.get("reference_data") or {}).get("mushroom_master")
+        validate_feature_facets(feature_data, master)
+        generate_feature_page(portal, feature_data, OUTPUT_DIR, ASSETS_DIR, safe_filename)
+    except Exception as error:
+        print(f"Phase 4A.4 feature page generation failed: {error}")
+        return False
+    return True
 
 
 def export_portal_data(*, production_entries, shadow_metadata, article_metadata=None,

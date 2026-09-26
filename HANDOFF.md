@@ -666,3 +666,16 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Changed files:** `detail_ui.py`, `assets/detail.css`, `tests/test_detail_ui.py`, `HANDOFF.md`。`main.py`を含むその他の実装ファイルは変更していない。
 - **Tests / protected areas / production validation:** reader-facing変換、generic note省略と共通warning、意味のある限定、学名文言、公開日ラベル、0/1–5/6/10件、折りたたみ内link、明示pending各経路、punctuation非推論、source object非mutation、CSS responsive contractを回帰化した。Phase 4A.3のexplicit master link、provenance、article identity/chronologyと、Phase 3C selection、portal schema/version、observation/shadow/taxonomy、EXIF、season、records、Hatena API、favorite、LightGallery、Actionsは不変。protectedな `portal_data.py`、3 reference data files、`.github/workflows`のdiffは空であることをtransfer時に確認する。production基準は hybrid、896→923（+27）、portal 923/302/41/shadow missing 0、records 82、season 49/186・86/178・163/366・48/100のままで、値はコードにhardcodeしていない。
 - **Next Phase:** deployment後にアカヤマドリ、カエンタケ、アシボソアミガサタケ？のdesktop/mobile表示を確認し、その後の独立Phaseで根拠付きstructured feature facetsによる「特徴から探す」を設計する。free-text keyword推測は行わない。
+
+## Phase 4A.4 — Evidence-backed feature search
+
+- Starting SHA: `6b8af3b55a7413fa9e640b8ee9b29d18e68057c9`.
+- Added a versioned curated `feature-facets` schema because reader search facets must not be inferred at runtime from free-text summaries.
+- The controlled vocabulary has four ordered groups and 20 facets. Every assignment stores an exact evidence substring and the complete `features.source_ids` provenance set.
+- The pure validator enforces schema/version, uniqueness, references, complete summary-bearing-master coverage, exact evidence, source equality, and use of every facet. No regex, NLP, synonyms, names, or article text creates assignments.
+- Portal subjects join exclusively through schema-v1 `mushroom_master_id`; gallery names remain the display/detail identity. Multiple selected facets use AND semantics over exact facet IDs.
+- The page includes an explicit non-identification disclaimer, accessible toggle buttons, live result count, clear/empty states, responsive cards and stable portal order.
+- The top link appears only after successful generation from a fresh portal export. Portal, validation, model, or output failures are isolated and do not stop existing gallery, season, records, detail, favorite, or index output.
+- Changed areas: new curated data, `feature_ui.py`, feature CSS/JS, focused Python/Node tests, localized `main.py` integration, and this handoff entry. Protected portal/taxonomy/master/source/workflow data and Phase 3C contracts were not changed.
+- Production acceptance should confirm generated `features.html`, derived linked-subject coverage, one- and two-facet AND filtering, zero/clear behavior, responsive layout, local detail navigation, iframe resizing, and unchanged 923-image/41-link/82-record/season contracts.
+- Next phase candidates: evidence display on detail pages, accessibility/browser regression automation, or carefully reviewed expansion of the curated vocabulary/data version.
