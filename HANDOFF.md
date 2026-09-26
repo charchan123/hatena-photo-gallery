@@ -721,3 +721,10 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Scope / protected files:** changed only `research_ui.py`, `assets/research.css`, `tests/test_research_ui.py`, localized `main.py`, and this handoff. Protected `portal_data.py`, `detail_ui.py`, `feature_ui.py`, `season_ui.py`, `records_ui.py`, master/source/taxonomy/facet data, workflows, EXIF cache logic, Phase 3C selection, Hatena retrieval, favorites, and LightGallery core behavior remain unchanged.
 - **Final validation:** focused research tests, full pytest/collection, Python compilation, whitespace validation, and protected-diff checks are required at transfer. No research JavaScript was added.
 - **Phase 4A.5.1 candidate:** add an explicit research-history / resolved-case ledger before displaying `不明 → ○○`, candidate A → B → confirmed, `IDENTIFIED!`, resolution date, or evidence. Add structured environment and research-note fields rather than extracting them from article text.
+
+## Phase 4A.5.0.1 — Research page visibility / iframe hotfix
+
+- **Production symptom:** navigating from the gallery index to `research.html` inside the Hatena iframe showed a blank white page even after hard reloads, although the generated research HTML contained all 67 cases / 110 photos.
+- **Root cause:** `research.html` reused `gallery.css`, whose shared `body` starts at `opacity: 0` for the gallery fade-in contract, but the research page did not load `gallery.js`, which normally reveals the body and owns the existing `setHeight` iframe-resize protocol.
+- **Fix:** research CSS now fails open with `body { opacity: 1; padding: 0; }`, avoiding both invisible content and the inherited 16px body padding. The research page also loads the existing `assets/gallery.js` so the established iframe height synchronization runs after navigation and image/layout changes.
+- **Regression guard:** the research design-contract test now requires the gallery JS include plus explicit visible/zero-padding body overrides. Research eligibility, grouping, statuses, dates, article links, production counts, protected data, and Phase 3C logic are unchanged.

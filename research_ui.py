@@ -167,7 +167,8 @@ def render_research_page(model):
 <p>答えだけでなく、調べていく途中も観察記録の一部です。</p>
 <p class="research-warning">「？」付きの名前は候補であり、同定が確定していることを意味しません。</p>
 <div class="research-summary"><span>調査中 <strong>{model["case_count"]}</strong>件</span><span>写真 <strong>{model["photo_count"]}</strong>枚</span></div>
-</header><section class="research-cases" aria-label="調査中の観察">{''.join(cards)}</section></main></body></html>'''
+</header><section class="research-cases" aria-label="調査中の観察">{''.join(cards)}</section></main>
+<script src="assets/gallery.js"></script></body></html>'''
 
 
 def generate_research_page(portal_data, output_dir, assets_dir):

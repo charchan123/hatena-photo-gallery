@@ -120,8 +120,10 @@ def test_page_and_css_design_contract():
     css = (ROOT / "assets/research.css").read_text()
     assert "❓ 不明キノコ研究室" in page and "同定が確定していることを意味しません" in page
     assert 'assets/research.css' in page and 'class="research-photos"' in page
+    assert 'src="assets/gallery.js"' in page
     assert "@media (max-width: 600px)" in css and "padding: 18px 12px" in css
     assert "overflow-wrap: anywhere" in css and "background: #fff" in css
+    assert "padding: 0" in css and "opacity: 1" in css
     assert "outer-panel" not in page + css
 
 
