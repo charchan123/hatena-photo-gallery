@@ -72,6 +72,28 @@ def test_fields_safety_provenance_and_escaping():
     assert "注&lt;&amp;" in rendered and "None" not in rendered
 
 
+def test_name_only_source_is_not_rendered_as_provenance():
+    data = fixture_portal()
+    master = data["reference_data"]["mushroom_master"]["entries"][0]
+    master["canonical_name_ja"] = "表示しない和名"
+    master["name_ja_sources"] = ["s_name_only"]
+    data["reference_data"]["sources"]["sources"].append({
+        "source_id": "s_name_only",
+        "organization": "名前専用組織",
+        "title": "名前専用資料",
+        "url": "https://source.test/name-only?x=1&y=2",
+    })
+
+    view = build_detail_views(data)["リンク名？"]
+    assert all(row["label"] != "和名" for row in view["knowledge"]["rows"])
+    rendered = render_detail_sections(view)
+    assert "表示しない和名" not in rendered
+    assert "s_name_only" not in rendered and "名前専用資料" not in rendered
+    assert rendered.count("資料1") == 1 and rendered.count("資料2") == 1
+    assert "Fungus &lt;test&gt;" in rendered
+    assert 'target="_blank" rel="noopener noreferrer"' in rendered
+
+
 @pytest.mark.parametrize("status, wording", [
     ("poisonous_confirmed", "公的・専門資料に毒性の記載あり"),
     ("unknown", "食毒情報は未確認"),

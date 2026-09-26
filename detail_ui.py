@@ -114,7 +114,6 @@ def _knowledge(master, source_map):
         rows.append({"label": label, "value": value, "note": note})
         used_ids.extend(_source_ids(field))
 
-    used_ids.extend(value for value in master.get("name_ja_sources", []) if isinstance(value, str))
     scientific = master.get("scientific_name") or {}
     add("学名", scientific.get("value"), scientific,
         note="出典資料に記載された学名" if scientific.get("name_status") == "source_reported" else None)

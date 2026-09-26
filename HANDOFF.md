@@ -696,3 +696,15 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **CSS / mobile:** feature-only CSS adds a compact wrapping chip row and a selected state distinguished by outline, background, and font weight. It does not redefine `.feature-card`, grid columns, card border/shadow/hover/transform, images, or shared responsive columns; long labels wrap without a feature-specific grid.
 - **Safety / scope:** favorites remain exclusively owned by unchanged `gallery.js`; no localStorage or star event logic was added. Evidence validation/data, 20 facets, 26 subjects, 72 assignments, explicit master linkage, portal/season/records/detail behavior, and protected data/common gallery/workflow files are unchanged. Changed files are `feature_ui.py`, `assets/features.css`, `assets/features.js`, `tests/test_feature_ui.py`, `tests/test_features_filter.js`, and `HANDOFF.md`.
 - **Production acceptance:** verify 26 initial cards with all structured chips; 9 cards and `cap_sticky` highlights; 4 cards with both `ring` and `volva` highlighted; 0 cards plus empty state for `blue_stain + ring`; and 26 cards with no highlighted chips after clear, on desktop and mobile with shared stars, grid reflow, and iframe resizing intact.
+
+## Phase 4A.3.1.1 — Provenance hotfix
+
+- **Starting point:** clean SHA `b340a75a86493c5a32d28de5a92894b9d64b4340` with **321 passed / 321 collected**.
+- **Latent issue:** `detail_ui._knowledge()` unconditionally aggregated `name_ja_sources` even though canonical Japanese name is not rendered as a reader-facing knowledge field, so a future name-only source could leak into provenance.
+- **Fix / provenance contract:** removed only that unconditional aggregation. Provenance now comes only from master fields that actually render reader-facing values; reference data and the canonical Japanese name UI remain unchanged.
+- **Regression:** a dedicated `s_name_only` fixture is attached only to `name_ja_sources`; the test proves that its identifiable source is absent while rendered-field sources remain present once each, with escaping and safe external-link attributes preserved.
+- **Changed files:** `detail_ui.py`, `tests/test_detail_ui.py`, and `HANDOFF.md` only. Protected `portal_data.py`, `main.py`, reference data, feature data, workflows, EXIF, gallery, season, records, feature logic, Phase 3C selection, and Hatena API logic are unchanged.
+- **Validation:** focused detail tests **21 passed**; full suite **322 passed / 322 collected**; `py_compile`, `git diff --check`, and protected diff checks passed.
+- **EXIF Migration:** independent and already complete; externally verified production context is 923 images, EXIF dated 893 / undated 30, and all 65 images in the target 8 articles have capture date and camera data.
+- **Manual review:** remains intentionally human-gated at 2 subjects / 7 observations — `アミヒラタケ？` (2) and `アシボソアミガサタケ？` (5); no automatic rename was introduced.
+- **Status:** the Phase 4A.3.1 latent provenance issue is resolved before the next major feature phase.
