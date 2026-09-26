@@ -74,10 +74,15 @@ def test_render_has_accessible_and_filter_contract(data):
     assert '<span class="card-fav">☆</span>' in page
     assert 'src="x.jpg?width=400"' in page and 'alt="表示名"' in page
     assert 'class="mushroom-card-name">表示名</div>' in page
-    assert "feature-chip" not in page and "feature-chips" not in page
+    assert 'class="feature-chips"' in page
+    assert 'class="feature-chip"' in page
+    assert 'data-facet-chip="rod_cylindrical"' in page
+    assert "棒状・円柱状の形" in page
 
 def test_feature_css_leaves_card_layout_to_shared_gallery_styles():
     css = (ROOT / "assets/features.css").read_text()
     assert "grid-template-columns" not in css
     assert ".feature-card" not in css
-    assert ".feature-chip" not in css
+    assert ".feature-chips" in css
+    assert ".feature-chip" in css
+    assert ".feature-chip.is-selected" in css

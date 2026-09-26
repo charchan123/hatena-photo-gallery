@@ -135,11 +135,17 @@ def render_feature_page(model, safe_filename=None):
     cards = []
     for row in model["results"]:
         name = html.escape(row["gallery_name"]); cover = html.escape(str(row["cover_src"]), quote=True)
+        chips = "".join(
+            f'<span class="feature-chip" data-facet-chip="{html.escape(facet_id, quote=True)}">'
+            f'{html.escape(label)}</span>'
+            for facet_id, label in zip(row["facet_ids"], row["facet_labels"])
+        )
         cards.append(f'<a class="mushroom-card feature-card" href="{html.escape(row["href"], quote=True)}" '
                      f'data-name="{name}" data-facets="{html.escape(" ".join(row["facet_ids"]), quote=True)}">'
                      f'<div class="mushroom-card-thumb"><span class="card-fav">☆</span>'
                      f'<img src="{cover}?width=400" alt="{name}" loading="lazy"></div>'
-                     f'<div class="mushroom-card-name">{name}</div></a>')
+                     f'<div class="mushroom-card-name">{name}</div>'
+                     f'<div class="feature-chips">{chips}</div></a>')
     count = model["coverage_count"]
     return f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>特徴から探す｜キノコ図鑑</title><link rel="stylesheet" href="assets/gallery.css"><link rel="stylesheet" href="assets/features.css">
