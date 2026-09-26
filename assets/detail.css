@@ -1,0 +1,28 @@
+.knowledge-panel,
+.subject-records {
+  max-width: 920px;
+  margin: 38px auto 0;
+  padding: 0 16px;
+  color: #2c332d;
+}
+
+.knowledge-title,
+.subject-records h2 { font-size: 21px; margin: 0 0 16px; }
+.knowledge-facts { margin: 0; border-top: 1px solid #dfe5df; }
+.knowledge-row { display: grid; grid-template-columns: minmax(150px, 28%) 1fr; gap: 18px; padding: 14px 0; border-bottom: 1px solid #dfe5df; }
+.knowledge-label { font-weight: 600; color: #526057; }
+.knowledge-value { margin: 0; line-height: 1.75; }
+.knowledge-note { margin-top: 4px; color: #68736b; font-size: 13px; }
+.knowledge-warning { padding: 12px 14px; background: #f7f5ef; border-left: 3px solid #9b7b45; line-height: 1.7; font-size: 13px; }
+.knowledge-sources { margin-top: 16px; }
+.knowledge-sources summary { cursor: pointer; font-weight: 600; }
+.knowledge-sources ul { padding-left: 22px; line-height: 1.7; }
+.subject-record-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid #dfe5df; }
+.subject-record-item { padding: 12px 0; border-bottom: 1px solid #dfe5df; }
+.subject-record-date { display: block; color: #68736b; font-size: 13px; margin-bottom: 4px; }
+.subject-record-title { line-height: 1.55; }
+
+@media (max-width: 600px) {
+  .knowledge-panel, .subject-records { padding: 0 12px; }
+  .knowledge-row { grid-template-columns: 1fr; gap: 5px; }
+}
