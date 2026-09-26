@@ -1,8 +1,9 @@
 import copy
+import json
 
 import main
 import pytest
-from detail_ui import build_detail_views, render_detail_sections
+from detail_ui import build_detail_views, reader_facing_food_note, render_detail_sections
 
 
 def fixture_portal():
@@ -59,7 +60,8 @@ def test_fields_safety_provenance_and_escaping():
     rendered = render_detail_sections(build_detail_views(fixture_portal())["リンク名？"])
     for value in ("学名", "科", "属", "特徴", "生育環境", "資料に記載された発生時期", "資料に食用の記載あり", "成分A"):
         assert value in rendered
-    assert "Fungus &lt;test&gt;" in rendered and "資料記載名" in rendered
+    assert "Fungus &lt;test&gt;" in rendered and "出典資料に記載された学名" in rendered
+    assert "資料記載名" not in rendered
     assert ">安全<" not in rendered and "食べられる" not in rendered
     assert "採取・調理・飲食の判断には使用しないでください" in rendered
     assert "情報がないことは安全を意味しません" in rendered
@@ -90,6 +92,109 @@ def test_articles_exact_dedup_chronology_and_links():
     unlinked = render_detail_sections(build_detail_views(fixture_portal())["別名"])
     assert "knowledge-panel" not in unlinked and "subject-records" in unlinked
     assert 'target="_top"' not in unlinked
+    assert "記事公開日：2026年1月1日" in rendered
+    assert "記事公開日：不明" in rendered
+
+
+def test_reader_facing_food_notes_and_duplicate_suppression():
+    assert reader_facing_food_note(
+        "石川県の公的図鑑が「食」と記載しているというsource report。projectによる安全判定ではない。"
+    ) == ("石川県の公的図鑑では「食」と記載されています。"
+          "これは出典資料の記載を示すもので、本サイトが食用可否を判定したものではありません。")
+    assert reader_facing_food_note(
+        "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。"
+    ) is None
+    for note in ("幼時食というsource report。projectの判断ではない。",
+                 "高山帯個体との同一性にはDNA解析が必要。",
+                 "アルコール併用時の中毒症状。"):
+        rendered = reader_facing_food_note(note)
+        assert rendered
+        assert not any(term in rendered for term in
+                       ("source report", "project", "source", "food safety", "schema", "edibility status"))
+    assert "幼時食" in reader_facing_food_note("幼時食というsource report。")
+    assert "DNA解析" in reader_facing_food_note("同一性にはDNA解析が必要。")
+    assert "アルコール" in reader_facing_food_note("アルコール併用時の中毒症状。")
+
+    data = fixture_portal()
+    data["reference_data"]["mushroom_master"]["entries"][0]["food_safety"]["notes"] = (
+        "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。"
+    )
+    output = render_detail_sections(build_detail_views(data)["リンク名？"])
+    assert "食用可否の自己判断には使用しない" not in output
+    assert "採取・調理・飲食の判断には使用しないでください" in output
+
+
+def test_all_repository_food_notes_hide_internal_terms_and_preserve_limits():
+    master = json.loads(open("data/mushroom-master.json", encoding="utf-8").read())
+    rendered = {
+        row["canonical_name_ja"]: reader_facing_food_note((row.get("food_safety") or {}).get("notes"))
+        for row in master["entries"]
+    }
+    internal_terms = ("source report", "project", "source", "food safety", "schema", "edibility status")
+    assert all(not any(term in note for term in internal_terms)
+               for note in rendered.values() if note is not None)
+    assert "幼時食" in rendered["ノウタケ"]
+    assert "DNA解析" in rendered["ツバアブラシメジ"]
+    assert "アルコール" in rendered["ホテイシメジ"]
+    assert "毒成分名" in rendered["オオワライタケ"]
+    assert "安全を意味しない" in rendered["ウコンハツ"]
+
+
+@pytest.mark.parametrize("count, expected", [(1, None), (5, None), (6, 1), (10, 5)])
+def test_article_history_collapse(count, expected):
+    data = fixture_portal()
+    data["observations"] = [{
+        "gallery_name": "リンク名？",
+        "article": {"article_id": str(index), "title": f"記事{index}",
+                    "url": None if index == count - 1 else f"https://example.test/{index}",
+                    "published": f"2026-01-{count-index:02d}T00:00:00Z"},
+    } for index in range(count)]
+    view = build_detail_views(data)["リンク名？"]
+    output = render_detail_sections(view)
+    assert [article["title"] for article in view["articles"]] == [f"記事{i}" for i in range(count)]
+    assert all(f"記事{i}" in output for i in range(count))
+    if expected is None:
+        assert "subject-record-more" not in output
+    else:
+        assert f"過去の観察記録をさらに見る（{expected}件）" in output
+        assert output.count('target="_top"') == count - 1
+
+
+@pytest.mark.parametrize("reason", [
+    "manual_review_name_conflict", "confirmed_mushroom_identity_uncertain", "legacy_review",
+])
+def test_explicit_review_marks_unlinked_knowledge_pending(reason):
+    data = fixture_portal()
+    subject = data["subjects"][1]
+    subject["classification_counts"] = {reason: 1}
+    view = build_detail_views(data)["別名"]
+    assert view["knowledge_pending"] is True
+    assert "図鑑情報は現在整理中です" in render_detail_sections(view)
+
+
+def test_pending_uses_explicit_data_not_name_punctuation():
+    data = fixture_portal()
+    data["subjects"][1]["gallery_name"] = "テスト？"
+    data["observations"][4]["gallery_name"] = "テスト？"
+    plain = build_detail_views(data)["テスト？"]
+    assert plain["knowledge_pending"] is False
+    assert "knowledge-pending" not in render_detail_sections(plain)
+
+    data["subjects"][1]["taxonomy"] = {"subject_type": "mushroom"}
+    pending = build_detail_views(data)["テスト？"]
+    assert pending["knowledge_pending"] is True
+    assert "knowledge-pending" in render_detail_sections(pending)
+    assert build_detail_views(data)["リンク名？"]["knowledge_pending"] is False
+
+
+def test_empty_articles_have_no_section_and_css_contract():
+    view = {"knowledge": None, "knowledge_pending": False, "articles": []}
+    assert "subject-records" not in render_detail_sections(view)
+    css = open("assets/detail.css", encoding="utf-8").read()
+    assert ".subject-record-more" in css
+    assert ".subject-record-more summary" in css
+    assert ".knowledge-pending" in css
+    assert "@media (max-width: 600px)" in css
 
 
 def test_missing_fields_do_not_render_empty_rows():

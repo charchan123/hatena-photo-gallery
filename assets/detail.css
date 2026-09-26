@@ -1,4 +1,5 @@
 .knowledge-panel,
+.knowledge-pending,
 .subject-records {
   max-width: 920px;
   margin: 38px auto 0;
@@ -7,7 +8,10 @@
 }
 
 .knowledge-title,
+.knowledge-pending h2,
 .subject-records h2 { font-size: 21px; margin: 0 0 16px; }
+.knowledge-pending { padding-top: 16px; padding-bottom: 16px; border-left: 3px solid #9b7b45; background: #f7f5ef; }
+.knowledge-pending p { margin: 0; line-height: 1.7; }
 .knowledge-facts { margin: 0; border-top: 1px solid #dfe5df; }
 .knowledge-row { display: grid; grid-template-columns: minmax(150px, 28%) 1fr; gap: 18px; padding: 14px 0; border-bottom: 1px solid #dfe5df; }
 .knowledge-label { font-weight: 600; color: #526057; }
@@ -21,8 +25,11 @@
 .subject-record-item { padding: 12px 0; border-bottom: 1px solid #dfe5df; }
 .subject-record-date { display: block; color: #68736b; font-size: 13px; margin-bottom: 4px; }
 .subject-record-title { line-height: 1.55; }
+.subject-record-more { margin-top: 16px; }
+.subject-record-more summary { cursor: pointer; font-weight: 600; color: #526057; }
+.subject-record-more .subject-record-list { margin-top: 12px; }
 
 @media (max-width: 600px) {
-  .knowledge-panel, .subject-records { padding: 0 12px; }
+  .knowledge-panel, .knowledge-pending, .subject-records { padding-left: 12px; padding-right: 12px; }
   .knowledge-row { grid-template-columns: 1fr; gap: 5px; }
 }
