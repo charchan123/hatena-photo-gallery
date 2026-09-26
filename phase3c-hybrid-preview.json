@@ -1,11 +1,11 @@
 {
   "version": 2,
   "summary": {
-    "legacy_image_count": 896,
+    "legacy_image_count": 895,
     "hybrid_image_count": 923,
-    "net_image_delta": 27,
-    "legacy_preserved_exact_count": 881,
-    "confirmed_mushroom_same_name_count": 398,
+    "net_image_delta": 28,
+    "legacy_preserved_exact_count": 880,
+    "confirmed_mushroom_same_name_count": 397,
     "confirmed_mushroom_renamed_count": 15,
     "compatible_rename_count": 15,
     "rename_conflict_count": 7,
@@ -14,7 +14,7 @@
     "undetected_legacy_fallback_count": 33,
     "shadow_missing_legacy_fallback_count": 0,
     "confirmed_non_mushroom_removed_count": 0,
-    "confirmed_new_mushroom_added_count": 27,
+    "confirmed_new_mushroom_added_count": 28,
     "new_review_excluded_count": 52,
     "new_undetected_excluded_count": 16,
     "new_non_mushroom_excluded_count": 7,
@@ -23,7 +23,7 @@
     "images_blocked_by_rejected_boundary_count": 33,
     "hybrid_unique_names": 302,
     "rename_group_count": 5,
-    "added_gallery_name_count": 14
+    "added_gallery_name_count": 15
   },
   "rename_groups": [
     {
@@ -269,6 +269,17 @@
       ],
       "sample_article_urls": [
         "https://exsudoporus-ruber.hatenablog.jp/entry/2026/01/31/045140"
+      ]
+    },
+    {
+      "gallery_name": "マツオウジ",
+      "image_count": 1,
+      "article_count": 1,
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222601.jpg"
+      ],
+      "sample_article_urls": [
+        "https://exsudoporus-ruber.hatenablog.jp/entry/2026/08/28/073815"
       ]
     },
     {
@@ -4141,6 +4152,97 @@
       "article_path": "articles/article_5.html",
       "legacy_alt": null,
       "hybrid_alt": "ヤマイグチ",
+      "decision": "confirmed_new_mushroom_added"
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222601.jpg",
+      "subject_type": "mushroom",
+      "detected_label": "マツオウジ",
+      "gallery_name": "マツオウジ",
+      "taxonomy_match_type": "canonical_exact",
+      "taxonomy_canonical_name": "マツオウジ",
+      "classification_reason": "taxonomy_mushroom",
+      "subject_source_block_text": "マツオウジ",
+      "subject_source_candidate_reason": "accepted_kana_label",
+      "subject_state_status": "accepted_subject",
+      "last_rejected_boundary_text": null,
+      "last_rejected_boundary_reason": null,
+      "dom_context": {
+        "containing_block": {
+          "tag": "p",
+          "text": "",
+          "contains_image": true,
+          "candidate": false,
+          "candidate_reason": "empty",
+          "effective_candidate": false,
+          "effective_label": null
+        },
+        "previous_blocks": [
+          {
+            "tag": "p",
+            "text": "発見当初はイロガワリの仲間かニガイグチの仲間と予想していたが、議論の結果本種ではないか。とのこと。しかし柄の様子など本種とは違うようなところもあり、う～んと言う感じだ。",
+            "contains_image": false,
+            "candidate": false,
+            "candidate_reason": "too_long",
+            "effective_candidate": false,
+            "effective_label": null
+          },
+          {
+            "tag": "p",
+            "text": "マツオウジ",
+            "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_kana_label",
+            "effective_candidate": true,
+            "effective_label": "マツオウジ"
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
+            "candidate": false,
+            "candidate_reason": "empty",
+            "effective_candidate": false,
+            "effective_label": null
+          }
+        ],
+        "next_blocks": [
+          {
+            "tag": "p",
+            "text": "前方で人が集まっていて、なんだろうと見てみると本種の見事な株立で思わず感動してしまった。",
+            "contains_image": false,
+            "candidate": false,
+            "candidate_reason": "too_long",
+            "effective_candidate": false,
+            "effective_label": null
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": false,
+            "candidate": false,
+            "candidate_reason": "empty",
+            "effective_candidate": false,
+            "effective_label": null
+          },
+          {
+            "tag": "p",
+            "text": "この日はなかなかに暑く、なおかつキノコも少なかったので不覚な事にバテてしまった。夏キノコ前半戦は完全に終了だ。",
+            "contains_image": false,
+            "candidate": false,
+            "candidate_reason": "too_long",
+            "effective_candidate": false,
+            "effective_label": null
+          }
+        ]
+      },
+      "article_title": "2026年7月25日静岡県伊豆の国市",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/08/28/073815",
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032069702588",
+      "article_published": "2026-09-03T23:17:07+09:00",
+      "article_path": "articles/article_8.html",
+      "legacy_alt": null,
+      "hybrid_alt": "マツオウジ",
       "decision": "confirmed_new_mushroom_added"
     },
     {

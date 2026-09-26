@@ -1,7 +1,7 @@
 {
   "version": 1,
   "summary": {
-    "legacy_production_image_count": 896,
+    "legacy_production_image_count": 895,
     "legacy_unique_names": 307,
     "shadow_total_images": 1002,
     "shadow_detected_images": 949,
@@ -14,14 +14,14 @@
     "taxonomy_unavailable_review_images": 0,
     "candidate_production_image_count": 447,
     "candidate_unique_gallery_names": 46,
-    "exact_occurrence_overlap_count": 398,
+    "exact_occurrence_overlap_count": 397,
     "legacy_only_occurrence_count": 498,
-    "candidate_only_occurrence_count": 49,
+    "candidate_only_occurrence_count": 50,
     "legacy_src_only_count": 476,
-    "candidate_src_only_count": 27,
+    "candidate_src_only_count": 28,
     "same_src_name_change_count": 22,
     "blocked_review_unique_labels": 251,
-    "candidate_vs_legacy_ratio": 0.49888392857142855,
+    "candidate_vs_legacy_ratio": 0.4994413407821229,
     "taxonomy_mushroom_share_of_shadow": 0.44610778443113774
   },
   "blocked_review_labels": [
@@ -9510,6 +9510,16 @@
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月12日富士山(山梨県)",
       "article_path": "articles/article_5.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222601.jpg",
+      "gallery_name": "マツオウジ",
+      "detected_label": "マツオウジ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年7月25日静岡県伊豆の国市",
+      "article_path": "articles/article_8.html",
       "legacy_alt": ""
     },
     {
