@@ -10,4 +10,7 @@
 .feature-clear { border-radius: 8px; }
 .feature-result-count { margin: 24px 0 12px; font-weight: 700; }
 .feature-empty { padding: 24px; text-align: center; background: #f6f7f6; }
+.feature-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 10px 12px; }
+.feature-chip { display: inline-block; padding: 4px 8px; border-radius: 999px; background: #edf2ee; font-size: .8rem; line-height: 1.4; }
+.feature-chip.is-selected { outline: 2px solid #446b50; background: #dcecdf; font-weight: 700; }
 @media (max-width: 560px) { .feature-page { padding: 16px; } }
