@@ -15,6 +15,7 @@ from portal_data import (
     build_portal_data, failure_status, save_json, success_status,
 )
 from season_ui import generate_season_page, load_fresh_portal_data
+from records_ui import generate_records_page, render_record_cards
 
 # ===========================
 # 珍しい / 人気キノコリスト（手動）
@@ -2221,7 +2222,7 @@ def generate_gallery(entries, exif_cache):
 # ===========================
 # index.html を生成（最終確定版）
 # ===========================
-def generate_index(grouped, exif_cache):
+def generate_index(grouped, exif_cache, observation_records=None):
     copy_shared_assets()
     index_parts = []
 
@@ -2244,6 +2245,7 @@ def generate_index(grouped, exif_cache):
   ⭐ 気になった写真は★で保存して、あとで「観察ノート」で見返せます
 </p>
 {STYLE_TAG}
+{'<link rel="stylesheet" href="assets/records.css">' if observation_records else ''}
 {LIGHTGALLERY_TAGS}
 """)
 
@@ -2328,6 +2330,19 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
       <h2 class="section-title">🗓️ 季節から探す</h2>
       <p class="section-desc">写真の撮影月から探せます</p>
       <a class="aiuo-link feature-action-link" href="season.html">春・夏・秋・冬から見る</a>
+    </div>
+    </div>
+    """)
+
+
+    if observation_records:
+        index_parts.append(f"""
+    <div class="section">
+    <div class="feature-block">
+      <h2 class="section-title">📔 観察記録</h2>
+      <p class="section-desc">キノコ探索のブログ記事を新しい順に見られます</p>
+      <div class="record-list record-list-preview">{render_record_cards(observation_records, limit=3)}</div>
+      <a class="aiuo-link feature-action-link" href="records.html">観察記録をもっと見る</a>
     </div>
     </div>
     """)
@@ -2637,9 +2652,13 @@ def build_gallery():
         production_mode=production_mode,
     )
     generate_season_page_if_fresh(portal_status)
+    observation_records = generate_records_page_if_fresh(portal_status)
 
     grouped = generate_gallery(production_entries, exif_cache)
-    generate_index(grouped, exif_cache)
+    if observation_records:
+        generate_index(grouped, exif_cache, observation_records=observation_records)
+    else:
+        generate_index(grouped, exif_cache)
     generate_favorite_page(grouped)
 
 
@@ -2654,6 +2673,18 @@ def generate_season_page_if_fresh(portal_status):
         print(f"Phase 4A.1 season page generation failed: {error}")
         return False
     return True
+
+
+def generate_records_page_if_fresh(portal_status):
+    """Best-effort records output, gated on this run's successful export."""
+    if not isinstance(portal_status, dict) or portal_status.get("build_ok") is not True:
+        return []
+    try:
+        portal = load_fresh_portal_data(PORTAL_DATA_FILE)
+        return generate_records_page(portal, OUTPUT_DIR, ASSETS_DIR)
+    except Exception as error:
+        print(f"Phase 4A.2 records page generation failed: {error}")
+        return []
 
 
 def export_portal_data(*, production_entries, shadow_metadata, article_metadata=None,
