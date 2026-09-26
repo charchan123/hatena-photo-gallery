@@ -19,6 +19,7 @@ from season_ui import generate_season_page, load_fresh_portal_data
 from records_ui import generate_records_page, render_record_cards
 from detail_ui import build_detail_views, render_detail_sections
 from feature_ui import load_feature_facets, validate_feature_facets, generate_feature_page
+from research_ui import generate_research_page
 
 # ===========================
 # 珍しい / 人気キノコリスト（手動）
@@ -2234,7 +2235,7 @@ def generate_gallery(entries, exif_cache, detail_views=None):
 # index.html を生成（最終確定版）
 # ===========================
 def generate_index(grouped, exif_cache, observation_records=None,
-                   feature_search_available=False):
+                   feature_search_available=False, research_summary=None):
     copy_shared_assets()
     index_parts = []
 
@@ -2354,6 +2355,17 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
       <h2 class="section-title">🔎 特徴から探す</h2>
       <p class="section-desc">資料に記載された見た目の特徴を組み合わせて探せます</p>
       <a class="aiuo-link feature-action-link" href="features.html">特徴を選んで探す</a>
+    </div>
+    </div>
+    """)
+
+    if research_summary:
+        index_parts.append(f"""
+    <div class="section">
+    <div class="feature-block">
+      <h2 class="section-title">❓ 不明キノコ研究室</h2>
+      <p class="section-desc">まだ名前が分からない・候補名を調べている観察記録を集めています</p>
+      <a class="aiuo-link feature-action-link" href="research.html">研究室を見る（{research_summary['case_count']}件）</a>
     </div>
     </div>
     """)
@@ -2678,6 +2690,7 @@ def build_gallery():
     observation_records = generate_records_page_if_fresh(portal_status)
     detail_views = build_detail_views_if_fresh(portal_status)
     feature_search_available = generate_feature_page_if_fresh(portal_status)
+    research_summary = generate_research_page_if_fresh(portal_status)
 
     # Keep test/extension callables with the historical two-argument signature usable.
     if "detail_views" in inspect.signature(generate_gallery).parameters:
@@ -2690,6 +2703,8 @@ def build_gallery():
         index_options["observation_records"] = observation_records or None
     if "feature_search_available" in index_parameters:
         index_options["feature_search_available"] = feature_search_available
+    if "research_summary" in index_parameters:
+        index_options["research_summary"] = research_summary
     generate_index(grouped, exif_cache, **index_options)
     generate_favorite_page(grouped)
 
@@ -2744,6 +2759,25 @@ def generate_feature_page_if_fresh(portal_status):
         print(f"Phase 4A.4 feature page generation failed: {error}")
         return False
     return True
+
+
+def generate_research_page_if_fresh(portal_status):
+    """Best-effort research output, gated on this run's successful export."""
+    if not isinstance(portal_status, dict) or portal_status.get("build_ok") is not True:
+        return None
+    try:
+        portal = load_fresh_portal_data(PORTAL_DATA_FILE)
+        model = generate_research_page(portal, OUTPUT_DIR, ASSETS_DIR)
+        print("Phase 4A.5 research audit:")
+        print(f"eligible_photos={model['photo_count']}")
+        print(f"gallery_name_labels={model['label_count']}")
+        print(f"research_cases={model['case_count']}")
+        print(f"multi_photo_cases={model['multi_photo_count']}")
+        return {key: model[key] for key in
+                ("case_count", "photo_count", "label_count", "multi_photo_count")}
+    except Exception as error:
+        print(f"Phase 4A.5 research page generation failed: {error}")
+        return None
 
 
 def export_portal_data(*, production_entries, shadow_metadata, article_metadata=None,
