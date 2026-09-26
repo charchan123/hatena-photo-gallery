@@ -596,3 +596,17 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - Production safety: Phase 3C hybrid候補構築・validator・選択部分の後、既存の単一 `production_entries` を portal exportへ渡す構造は維持し、season生成は production selection 完了後の補助出力に限定した。Phase 4A.0 portal schema/versionと `portal_data.py` は変更していない。
 - Known issue: `generate_index()` の `hero-world` と `gallery-guide` が `<head>` 内にある既知の invalid HTML は、scope外として維持した。
 - Phase 4A.2候補: productionで季節別実測値とmobile操作を監査後、同じ portal contract の範囲内で観察年・撮影月など別の観察導線を小さく追加する。一般発生時期やknowledge seasonを統合する場合は、EXIF観察季節と明確に分離した別設計にする。
+
+# Phase 4A.1.1 — 季節ポータルUI・iframe遷移 hotfix
+
+- **Objective / starting point:** production PC/Android verificationで判明した季節導線の表示、iframe高さ、遷移問題を修正し、五十音別分類ページとUIを統一する。Starting SHA は `bd27d40abd9d2cfadf8b781bb99f285e9a78f5da`、許可された作業ブランチ `work`、clean treeを確認した。Baseline は **276 passed / 276 collected**。
+- **Screenshots / production issues:** トップの季節見出しにアイコンがなく説明が技術的、`season.html`だけ独自の `OBSERVATION ARCHIVE`・Georgia/明朝hero・カード・戻るUIだった。PC/Androidともカード一覧や遷移先詳細がiframe途中で切れ、詳細からbrowser backした季節一覧も切れる場合があった。
+- **Root cause:** season pageが `season.js` のみを読み、共通 `gallery.css` / `gallery.js` の実コンテンツ高さ計測、ResizeObserver、遅延再計測、requestHeight、HTMLリンクの `scrollToTitle`、カードfavorite同期を利用していなかった。またbfcache復帰時は文書側の `__lastSentHeight` が残る一方、親iframeは遷移先の高さになり得るため、同値dedupeが必要な再送を抑止していた。
+- **Shared gallery UI reuse:** season pageは `.aiuo-page`、`.aiuo-title`、`.mushroom-list`、`.mushroom-card`、`.mushroom-card-thumb`、`.mushroom-card-name`、`.card-fav`、`.back-btn` と `gallery.css` / `gallery.js` を直接再利用する。季節固有CSSは説明、4タブ、季節見出し、撮影月・季節内観察枚数metaの配置だけに縮小した。`.gallery` / `.favorite-gallery` は生成しないため、共通JSのLightGalleryループは起動しない。
+- **Height force resend / pageshow design:** `sendHeight(reason, force)` を追加し、通常のResizeObserver/resizeは従来どおり同値dedupeする。force要求は二重requestAnimationFrameの予約中にも失われないよう集約する。loadは即時・800ms・2000ms、pageshowは即時・100ms・800ms・2000msを有限のforce送信とし、`event.persisted` では `pageshow-bfcache` reasonを送る。requestHeightも親の明示要求なのでforce応答する。`setHeight` message shape、`"*"` origin、実content root計測、増減監視は維持した。
+- **Browser back / navigation:** bfcache復帰では高さだけをforce再送し、`scrollToTitle` は発火しないためseason内スクロール復元を妨げない。seasonのキノコカードは通常の `.html` anchorなので、既存gallery.jsのclick bridgeが遷移時だけ親へ `scrollToTitle` を通知する。season専用の重複handlerは追加していない。
+- **Changed files:** `main.py`, `season_ui.py`, `assets/season.css`, `assets/gallery.js`, `tests/test_season_ui.py`, `tests/test_gallery_height.js`, `HANDOFF.md`。
+- **Tests:** トップ文言、shared stylesheet/scriptと既存class群、独自hero削除、撮影月/meta、既存HTML navigation bridge、force/dedupe/pageshow/bfcache/requestHeight/ResizeObserver contractを回帰テスト化した。最終コマンドと件数はcommit時のtransfer reportを参照。
+- **Production / portal safety:** Phase 3C candidate build、validator、hybrid/legacy selection、production status schema、`production_entries` identityには触れていない。`portal_data.py` とportal schema v1、observation/matching/taxonomy/EXIF policyも不変。season groupingは引き続き `subjects[].capture_month_counts` のみで、春3–5、夏6–8、秋9–11、冬12/1/2、月なし非配置を維持する。fresh portal成功時だけseason生成するfailure isolationも不変。
+- **Known issue:** scope外の `generate_index()` にある `hero-world` / `gallery-guide` のhead内invalid HTMLは変更していない。実ブラウザが利用できない環境では、PC/mobileのproduction iframe実機確認が引き続き必要。
+- **Next Phase 4A.2 candidate:** deployment後にPC/Androidでseason→detail→browser backの高さ、親スクロール、favorite星を再監査する。その後、portal schema v1の観察年・撮影月など次の小さな観察導線を検討し、一般的発生時期はEXIF観察季節と明確に分離する。

@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import main
 import portal_data
 import season_ui
@@ -58,9 +60,50 @@ def test_generated_cards_link_to_existing_gallery_filename_rule():
     assert "この季節の観察写真 2枚" in rendered
 
 
+def test_season_page_reuses_shared_gallery_ui_and_scripts():
+    rendered = season_ui.render_season_page(
+        data(subject("春菌", {4: 1})), main.safe_filename
+    )
+    for expected in (
+        'href="assets/gallery.css"',
+        'src="assets/gallery.js"',
+        'class="aiuo-page season-page"',
+        'class="aiuo-title"',
+        'class="mushroom-list"',
+        'class="mushroom-card"',
+        'class="mushroom-card-thumb"',
+        'class="card-fav"',
+        'class="mushroom-card-name"',
+        'class="back-btn"',
+    ):
+        assert expected in rendered
+    assert "OBSERVATION ARCHIVE" not in rendered
+    assert "Georgia" not in rendered
+
+
+def test_season_card_link_is_handled_by_shared_html_navigation_bridge():
+    rendered = season_ui.render_season_page(
+        data(subject("春菌", {4: 1})), main.safe_filename
+    )
+    assert 'class="mushroom-card" href="春菌.html"' in rendered
+    gallery_source = (Path(main.ASSETS_DIR) / "gallery.js").read_text(encoding="utf-8")
+    assert '/\\.html(\\?|$)/.test(href)' in gallery_source
+    assert '{ type: "scrollToTitle" }' in gallery_source
+
+
+def test_index_uses_simple_season_entry_copy(monkeypatch, tmp_path):
+    monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
+    main.generate_index({}, {})
+    rendered = (tmp_path / "index.html").read_text(encoding="utf-8")
+    assert "🗓️ 季節から探す" in rendered
+    assert "写真の撮影月から探せます" in rendered
+    assert "EXIF撮影月から探せます" not in rendered
+
+
 def test_page_explains_exif_source_and_not_general_occurrence_season():
     rendered = season_ui.render_season_page(data(), main.safe_filename)
-    assert "実際に撮影した写真のEXIF撮影月" in rendered
+    assert "実際に撮影した写真の撮影月" in rendered
+    assert "撮影月は写真のEXIF情報を使用しています" in rendered
     assert "一般的なキノコの発生時期を示すものではありません" in rendered
     assert "推測配置していません" in rendered
 
