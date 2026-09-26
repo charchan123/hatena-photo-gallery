@@ -1,5 +1,5 @@
 :root { color-scheme: light; }
-body { margin: 0; background: #fff; color: #252821; }
+body { margin: 0; padding: 0; background: #fff; color: #252821; opacity: 1; }
 .research-page { box-sizing: border-box; max-width: 960px; margin: 0 auto; padding: 28px 20px 56px; }
 .research-intro { margin: 28px 0 42px; }
 .research-intro h1 { margin-bottom: 18px; font-size: clamp(1.75rem, 5vw, 2.5rem); }
