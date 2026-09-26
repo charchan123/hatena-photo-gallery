@@ -1,5 +1,6 @@
 
 let lastHeight = 0;
+const RECORD_EXTERNAL_RETURN_KEY = "record-external-return-refresh-v1";
 
 function calculateIframeContentHeight(rootHeight, paddingTop, paddingBottom) {
   return Math.ceil(rootHeight + paddingTop + paddingBottom);
@@ -32,6 +33,18 @@ document.addEventListener("DOMContentLoaded", () => {
   // ⭐ お気に入り保存キー
   // =========================
   const LG_FAVORITES_KEY = "lg_favorites";
+
+  // Only observation-record exits request a one-time refresh after browser Back.
+  // Storage failures (for example privacy settings) must never block navigation.
+  document.addEventListener("click", event => {
+    const link = event.target.closest?.("a.record-external-link[target='_top']");
+    if (!link) return;
+    try {
+      sessionStorage.setItem(RECORD_EXTERNAL_RETURN_KEY, "1");
+    } catch (_) {
+      // Navigation remains the browser's responsibility.
+    }
+  });
 
   // ページ全体フェードイン
   requestAnimationFrame(() => {
@@ -1350,6 +1363,20 @@ galleries.forEach(gallery => {
 
     if (isHistoryTraversal(event)) {
       window.parent.postMessage({ type: "scrollToTitle" }, "*");
+      let refreshAfterExternalRecord = false;
+      try {
+        refreshAfterExternalRecord = sessionStorage.getItem(RECORD_EXTERNAL_RETURN_KEY) === "1";
+        if (refreshAfterExternalRecord) {
+          sessionStorage.removeItem(RECORD_EXTERNAL_RETURN_KEY);
+        }
+      } catch (_) {
+        refreshAfterExternalRecord = false;
+      }
+
+      const isGalleryIndex = location.pathname.endsWith("/") || location.pathname.endsWith("/index.html");
+      if (refreshAfterExternalRecord && isGalleryIndex) {
+        window.location.reload();
+      }
     }
   });
 
