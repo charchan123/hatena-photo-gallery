@@ -1,4 +1,5 @@
 import copy
+from pathlib import Path
 import main
 import pytest
 from records_ui import build_observation_records, render_records_page
@@ -51,6 +52,7 @@ def test_records_page_contract_escape_and_navigation():
     assert "assets/gallery.css" in page and "assets/gallery.js" in page and "assets/records.css" in page
     assert 'class="back-btn"' in page and 'target="_top"' in page
     assert page.count("record-card-badge") == 1
+    assert "NEW!" in page and "現在の図鑑掲載 1枚・1種類" in page
     assert "2026年9月18日静岡県浜松市&lt;&amp;" in page
     assert "写真の撮影日とは別" in page and "観察日" not in page
 
@@ -66,11 +68,30 @@ def test_index_preview_optional_and_limited(monkeypatch, tmp_path):
     records = build_observation_records(portal(*[observation(i, article_id=str(i), published=f"2026-01-0{i+1}T00:00:00Z") for i in range(4)]))
     main.generate_index({}, {}, observation_records=records)
     text = (tmp_path / "index.html").read_text()
-    assert "📔 観察記録" in text and text.count('target="_top"') == 3
+    assert "📔 観察記録" in text and text.count('target="_top"') == 2
     assert text.count("record-card-badge") == 1
-    assert 'href="records.html"' in text and "feature-action-link" in text
+    assert "NEW!" in text and "img3?width=500" in text and "img2?width=500" not in text
+    assert 'href="https://exsudoporus-ruber.hatenablog.jp/"' in text
+    assert 'class="aiuo-link feature-action-link record-more-link record-external-link"' in text
+    assert 'href="records.html"' not in text and text.count('class="record-card record-external-link"') == 1
     main.generate_index({}, {}, observation_records=[])
     assert "📔 観察記録" not in (tmp_path / "index.html").read_text()
+
+
+def test_record_preview_css_and_external_return_contract():
+    root = Path(__file__).resolve().parents[1]
+    css = (root / "assets" / "records.css").read_text()
+    script = (root / "assets" / "gallery.js").read_text()
+    assert ".record-list-preview" in css and "max-width: 620px" in css
+    assert ".record-list-preview .record-card" in css and "grid-template-columns" in css
+    assert ".record-more-link { margin-top: 20px; }" in css
+    assert "@keyframes record-new-pulse" in css
+    assert "@media (prefers-reduced-motion: reduce)" in css and "animation: none" in css
+    assert 'a.record-external-link[target=\'_top\']' in script
+    assert "sessionStorage.setItem(RECORD_EXTERNAL_RETURN_KEY" in script
+    assert "sessionStorage.removeItem(RECORD_EXTERNAL_RETURN_KEY)" in script
+    assert 'location.pathname.endsWith("/index.html")' in script
+    assert "refreshAfterExternalRecord && isGalleryIndex" in script
 
 
 def test_records_failure_isolation_and_no_stale_read(monkeypatch):

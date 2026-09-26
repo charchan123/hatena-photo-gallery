@@ -7,9 +7,26 @@
 .record-card-thumb { aspect-ratio: 4 / 3; overflow: hidden; background: #f5f5f5; }
 .record-card-thumb img { width: 100%; height: 100%; object-fit: cover; }
 .record-card-body { padding: 14px 16px 16px; }
-.record-card-badge { display: inline-block; margin-bottom: 7px; padding: 2px 8px; border-radius: 999px; background: #176b3a; color: #fff; font-size: 11px; font-weight: 700; }
+.record-card-badge { display: inline-block; margin-bottom: 7px; padding: 3px 9px; border-radius: 999px; background: #d84a24; box-shadow: 0 0 0 rgba(216, 74, 36, 0); color: #fff; font-size: 11px; font-weight: 800; animation: record-new-pulse 1.8s ease-in-out infinite; }
 .record-card-date { color: #666; font-size: 12px; }
 .record-card-title { margin: 7px 0 10px; font-size: 17px; line-height: 1.5; }
 .record-card-meta { margin: 0; color: #666; font-size: 12px; }
+.record-list-preview { grid-template-columns: 1fr; max-width: 620px; margin: 0 auto 20px; }
+.record-list-preview .record-card { display: grid; grid-template-columns: minmax(170px, 36%) 1fr; }
+.record-list-preview .record-card-thumb { aspect-ratio: 4 / 3; }
+.record-more-link { margin-top: 20px; }
+@keyframes record-new-pulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(216, 74, 36, 0); transform: scale(1); }
+  50% { box-shadow: 0 0 0 4px rgba(216, 74, 36, .16); transform: scale(1.035); }
+}
 .records-back { margin: 40px 0 20px; text-align: center; }
-@media (max-width: 760px) { .record-list { grid-template-columns: 1fr; gap: 16px; } }
+@media (max-width: 760px) {
+  .record-list { grid-template-columns: 1fr; gap: 16px; }
+  .record-list-preview .record-card { grid-template-columns: minmax(130px, 40%) 1fr; }
+}
+@media (max-width: 520px) {
+  .record-list-preview .record-card { display: block; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .record-card-badge { animation: none; }
+}

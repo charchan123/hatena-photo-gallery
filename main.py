@@ -2341,8 +2341,8 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     <div class="feature-block">
       <h2 class="section-title">📔 観察記録</h2>
       <p class="section-desc">キノコ探索のブログ記事を新しい順に見られます</p>
-      <div class="record-list record-list-preview">{render_record_cards(observation_records, limit=3)}</div>
-      <a class="aiuo-link feature-action-link" href="records.html">観察記録をもっと見る</a>
+      <div class="record-list record-list-preview">{render_record_cards(observation_records, limit=1)}</div>
+      <a class="aiuo-link feature-action-link record-more-link record-external-link" href="https://exsudoporus-ruber.hatenablog.jp/" target="_top">観察記録をもっと見る</a>
     </div>
     </div>
     """)

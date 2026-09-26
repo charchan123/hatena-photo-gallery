@@ -97,15 +97,15 @@ def render_record_cards(records, limit=None):
         url = record.get("url")
         date = html.escape(_format_published(record.get("published")))
         cover = html.escape(str(record.get("cover_src") or ""), quote=True)
-        badge = '<span class="record-card-badge">NEW</span>' if position == 0 else ""
+        badge = '<span class="record-card-badge">NEW!</span>' if position == 0 else ""
         image = (f'<img src="{cover}?width=500" alt="" loading="lazy">' if cover else "")
         body = (f'<div class="record-card-thumb">{image}</div><div class="record-card-body">'
                 f'{badge}<div class="record-card-date">{date}</div>'
                 f'<h3 class="record-card-title">{title}</h3>'
-                f'<p class="record-card-meta">図鑑掲載写真 {record["photo_count"]}枚・{record["subject_count"]}種類</p></div>')
+                f'<p class="record-card-meta">現在の図鑑掲載 {record["photo_count"]}枚・{record["subject_count"]}種類</p></div>')
         if url:
             safe_url = html.escape(str(url), quote=True)
-            cards.append(f'<a class="record-card" href="{safe_url}" target="_top">{body}</a>')
+            cards.append(f'<a class="record-card record-external-link" href="{safe_url}" target="_top">{body}</a>')
         else:
             cards.append(f'<article class="record-card">{body}</article>')
     return "".join(cards)
