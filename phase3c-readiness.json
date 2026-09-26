@@ -1,28 +1,28 @@
 {
   "version": 1,
   "summary": {
-    "legacy_production_image_count": 895,
+    "legacy_production_image_count": 896,
     "legacy_unique_names": 307,
     "shadow_total_images": 1002,
     "shadow_detected_images": 949,
     "shadow_undetected_images": 53,
-    "taxonomy_mushroom_images": 447,
+    "taxonomy_mushroom_images": 446,
     "taxonomy_non_mushroom_images": 7,
-    "review_images": 548,
-    "taxonomy_unmatched_review_images": 495,
+    "review_images": 549,
+    "taxonomy_unmatched_review_images": 496,
     "no_detected_label_review_images": 53,
     "taxonomy_unavailable_review_images": 0,
-    "candidate_production_image_count": 447,
+    "candidate_production_image_count": 446,
     "candidate_unique_gallery_names": 46,
     "exact_occurrence_overlap_count": 397,
-    "legacy_only_occurrence_count": 498,
-    "candidate_only_occurrence_count": 50,
-    "legacy_src_only_count": 476,
-    "candidate_src_only_count": 28,
+    "legacy_only_occurrence_count": 499,
+    "candidate_only_occurrence_count": 49,
+    "legacy_src_only_count": 477,
+    "candidate_src_only_count": 27,
     "same_src_name_change_count": 22,
     "blocked_review_unique_labels": 251,
-    "candidate_vs_legacy_ratio": 0.4994413407821229,
-    "taxonomy_mushroom_share_of_shadow": 0.44610778443113774
+    "candidate_vs_legacy_ratio": 0.49776785714285715,
+    "taxonomy_mushroom_share_of_shadow": 0.44510978043912175
   },
   "blocked_review_labels": [
     {
@@ -31,8 +31,8 @@
       "article_count": 15,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828071351.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828071513.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222348.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222342.jpg",
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260622/20260622030002.jpg"
       ],
       "sample_articles": [
@@ -47,7 +47,7 @@
       "article_count": 5,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922220920.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222821.jpg",
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250803/20250803225759.jpg",
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250803/20250803230349.jpg"
       ],
@@ -63,9 +63,9 @@
       "article_count": 3,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922222028.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922222004.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828070817.jpg"
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222400.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222406.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222354.jpg"
       ],
       "sample_articles": [
         "articles/article_11.html",
@@ -111,7 +111,7 @@
       "sample_srcs": [
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224719.jpg",
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152302.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922221453.jpg"
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222458.jpg"
       ],
       "sample_articles": [
         "articles/article_1.html",
@@ -126,8 +126,8 @@
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224358.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922221734.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922222833.jpg"
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222434.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222239.jpg"
       ],
       "sample_articles": [
         "articles/article_3.html",
@@ -203,7 +203,7 @@
       "article_count": 4,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922223226.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222043.jpg",
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251115/20251115005227.jpg",
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018234443.jpg"
       ],
@@ -266,7 +266,7 @@
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152030.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922221853.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222510.jpg",
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018234636.jpg"
       ],
       "sample_articles": [
@@ -298,7 +298,7 @@
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925225116.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828072158.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222529.jpg",
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929215354.jpg"
       ],
       "sample_articles": [
@@ -345,7 +345,7 @@
       "article_count": 4,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922223102.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222141.jpg",
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929215443.jpg",
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250708/20250708225836.jpg"
       ],
@@ -361,8 +361,8 @@
       "article_count": 3,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922222701.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828063208.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222255.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222129.jpg",
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250824/20250824111613.jpg"
       ],
       "sample_articles": [
@@ -528,9 +528,9 @@
       "article_count": 3,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922221834.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922221932.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922222054.jpg"
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222523.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222422.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222324.jpg"
       ],
       "sample_articles": [
         "articles/article_10.html",
@@ -574,7 +574,7 @@
       "article_count": 3,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922223243.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222037.jpg",
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251115/20251115010300.jpg",
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250622/20250622130030.jpg"
       ],
@@ -1008,7 +1008,7 @@
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224630.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828064339.jpg"
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222233.jpg"
       ],
       "sample_articles": [
         "articles/article_3.html",
@@ -1334,7 +1334,7 @@
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152015.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922221705.jpg"
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222439.jpg"
       ],
       "sample_articles": [
         "articles/article_2.html",
@@ -1417,7 +1417,7 @@
       "article_count": 2,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828073019.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222452.jpg",
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250911/20250911235739.jpg"
       ],
       "sample_articles": [
@@ -1539,7 +1539,7 @@
       "article_count": 2,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922222632.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222306.jpg",
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525170716.jpg"
       ],
       "sample_articles": [
@@ -1619,7 +1619,7 @@
       "article_count": 2,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922220948.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222713.jpg",
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914222401.jpg"
       ],
       "sample_articles": [
@@ -1652,6 +1652,19 @@
       ],
       "sample_articles": [
         "articles/article_67.html"
+      ]
+    },
+    {
+      "detected_label": "ヤグラタケ",
+      "image_count": 2,
+      "article_count": 1,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222222.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222228.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_13.html"
       ]
     },
     {
@@ -1742,7 +1755,7 @@
       "article_count": 1,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828064752.jpg"
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222300.jpg"
       ],
       "sample_articles": [
         "articles/article_13.html"
@@ -1898,7 +1911,7 @@
       "article_count": 1,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922222950.jpg"
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222210.jpg"
       ],
       "sample_articles": [
         "articles/article_13.html"
@@ -2138,7 +2151,7 @@
       "article_count": 1,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828071022.jpg"
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222411.jpg"
       ],
       "sample_articles": [
         "articles/article_11.html"
@@ -2150,7 +2163,7 @@
       "article_count": 1,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828063923.jpg"
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222216.jpg"
       ],
       "sample_articles": [
         "articles/article_13.html"
@@ -2162,7 +2175,7 @@
       "article_count": 1,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922221337.jpg"
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222554.jpg"
       ],
       "sample_articles": [
         "articles/article_8.html"
@@ -2474,7 +2487,7 @@
       "article_count": 1,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828062959.jpg"
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222111.jpg"
       ],
       "sample_articles": [
         "articles/article_14.html"
@@ -2570,7 +2583,7 @@
       "article_count": 1,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922221106.jpg"
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222720.jpg"
       ],
       "sample_articles": [
         "articles/article_7.html"
@@ -3026,7 +3039,7 @@
       "article_count": 1,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922221240.jpg"
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222637.jpg"
       ],
       "sample_articles": [
         "articles/article_7.html"
@@ -3146,7 +3159,7 @@
       "article_count": 1,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922223128.jpg"
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222135.jpg"
       ],
       "sample_articles": [
         "articles/article_14.html"
@@ -3242,22 +3255,10 @@
       "article_count": 1,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922221313.jpg"
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222607.jpg"
       ],
       "sample_articles": [
         "articles/article_7.html"
-      ]
-    },
-    {
-      "detected_label": "ヤグラタケ",
-      "image_count": 1,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828064012.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_13.html"
       ]
     },
     {
@@ -3278,7 +3279,7 @@
       "article_count": 1,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828071128.jpg"
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222417.jpg"
       ],
       "sample_articles": [
         "articles/article_11.html"
@@ -3302,7 +3303,7 @@
       "article_count": 1,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922230403.jpg"
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222318.jpg"
       ],
       "sample_articles": [
         "articles/article_12.html"
@@ -3335,7 +3336,7 @@
   ],
   "legacy_only": [
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922221313.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222607.jpg",
       "legacy_alt": "モウセンアシベニイグチ",
       "detected_label": "モウセンアシベニイグチ",
       "subject_type": "review",
@@ -3347,7 +3348,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922221240.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222637.jpg",
       "legacy_alt": "バライロウラベニイロガワリ",
       "detected_label": "バライロウラベニイロガワリ",
       "subject_type": "review",
@@ -3359,7 +3360,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922221106.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222720.jpg",
       "legacy_alt": "コツブノオオワライタケ(仮称)",
       "detected_label": "コツブノオオワライタケ(仮称)",
       "subject_type": "review",
@@ -3371,7 +3372,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922220948.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222713.jpg",
       "legacy_alt": "ミヤマミドリニガイグチ",
       "detected_label": "ミヤマミドリニガイグチ",
       "subject_type": "review",
@@ -3383,7 +3384,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922220920.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222821.jpg",
       "legacy_alt": "Lanmaoa angustispora？",
       "detected_label": "Lanmaoa angustispora？",
       "subject_type": "review",
@@ -3395,7 +3396,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922221337.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222554.jpg",
       "legacy_alt": "キアシヤマドリタケ(仮称)？",
       "detected_label": "キアシヤマドリタケ(仮称)？",
       "subject_type": "review",
@@ -3407,7 +3408,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922221734.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222434.jpg",
       "legacy_alt": "アシナガイグチ",
       "detected_label": "アシナガイグチ",
       "subject_type": "review",
@@ -3419,7 +3420,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922221705.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222439.jpg",
       "legacy_alt": "チチタケ",
       "detected_label": "チチタケ",
       "subject_type": "review",
@@ -3431,7 +3432,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828073019.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222452.jpg",
       "legacy_alt": "ニワタケ",
       "detected_label": "ニワタケ",
       "subject_type": "review",
@@ -3443,7 +3444,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922221453.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222458.jpg",
       "legacy_alt": "ムラサキヤマドリタケ",
       "detected_label": "ムラサキヤマドリタケ",
       "subject_type": "review",
@@ -3455,7 +3456,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922221434.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222504.jpg",
       "legacy_alt": "ムラサキヤマドリタケ",
       "detected_label": "ムラサキヤマドリタケ",
       "subject_type": "review",
@@ -3467,7 +3468,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922221853.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222510.jpg",
       "legacy_alt": "サザナミイグチ",
       "detected_label": "サザナミイグチ",
       "subject_type": "review",
@@ -3479,7 +3480,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922221834.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222523.jpg",
       "legacy_alt": "オニテングタケ",
       "detected_label": "オニテングタケ",
       "subject_type": "review",
@@ -3491,7 +3492,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828072158.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222529.jpg",
       "legacy_alt": "シロオニタケ",
       "detected_label": "シロオニタケ",
       "subject_type": "review",
@@ -3503,7 +3504,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922222028.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222400.jpg",
       "legacy_alt": "キイロオオフウセンタケ(仮称)",
       "detected_label": "キイロオオフウセンタケ(仮称)",
       "subject_type": "review",
@@ -3515,7 +3516,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922222004.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222406.jpg",
       "legacy_alt": "キイロオオフウセンタケ(仮称)",
       "detected_label": "キイロオオフウセンタケ(仮称)",
       "subject_type": "review",
@@ -3527,7 +3528,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828070817.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222354.jpg",
       "legacy_alt": "キイロオオフウセンタケ(仮称)",
       "detected_label": "キイロオオフウセンタケ(仮称)",
       "subject_type": "review",
@@ -3539,7 +3540,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828071022.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222411.jpg",
       "legacy_alt": "ガンタケ",
       "detected_label": "ガンタケ",
       "subject_type": "review",
@@ -3551,7 +3552,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828071128.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222417.jpg",
       "legacy_alt": "ヨゴレキアミアシイグチ？",
       "detected_label": "ヨゴレキアミアシイグチ？",
       "subject_type": "review",
@@ -3563,7 +3564,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922221932.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222422.jpg",
       "legacy_alt": "オニテングタケ",
       "detected_label": "オニテングタケ",
       "subject_type": "review",
@@ -3575,7 +3576,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828071351.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222348.jpg",
       "legacy_alt": "不明",
       "detected_label": "不明",
       "subject_type": "review",
@@ -3587,7 +3588,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828071513.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222342.jpg",
       "legacy_alt": "不明",
       "detected_label": "不明",
       "subject_type": "review",
@@ -3599,7 +3600,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922230403.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222318.jpg",
       "legacy_alt": "ワセヌメリササタケ",
       "detected_label": "ワセヌメリササタケ",
       "subject_type": "review",
@@ -3611,7 +3612,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922222054.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222324.jpg",
       "legacy_alt": "オニテングタケ",
       "detected_label": "オニテングタケ",
       "subject_type": "review",
@@ -3623,7 +3624,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922222950.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222210.jpg",
       "legacy_alt": "ウスキテングタケ",
       "detected_label": "ウスキテングタケ",
       "subject_type": "review",
@@ -3635,7 +3636,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828063923.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222216.jpg",
       "legacy_alt": "キアシヤマドリタケ(仮称)",
       "detected_label": "キアシヤマドリタケ(仮称)",
       "subject_type": "review",
@@ -3647,7 +3648,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828064012.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222222.jpg",
       "legacy_alt": "ヤグラタケ",
       "detected_label": "ヤグラタケ",
       "subject_type": "review",
@@ -3659,7 +3660,19 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828064339.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222228.jpg",
+      "legacy_alt": "セイタカイグチ",
+      "detected_label": "ヤグラタケ",
+      "subject_type": "review",
+      "gallery_name": null,
+      "classification_reason": "taxonomy_unmatched",
+      "taxonomy_match_type": "none",
+      "article_title": "2026年7月5日静岡県掛川市(前編)",
+      "article_path": "articles/article_13.html",
+      "shadow_metadata_present": true
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222233.jpg",
       "legacy_alt": "アンズタケ(広義)",
       "detected_label": "アンズタケ(広義)",
       "subject_type": "review",
@@ -3671,7 +3684,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922222833.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222239.jpg",
       "legacy_alt": "アシナガイグチ",
       "detected_label": "アシナガイグチ",
       "subject_type": "review",
@@ -3683,7 +3696,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922222804.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222244.jpg",
       "legacy_alt": "アシナガイグチ",
       "detected_label": "アシナガイグチ",
       "subject_type": "review",
@@ -3695,7 +3708,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922222701.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222255.jpg",
       "legacy_alt": "テングタケ",
       "detected_label": "テングタケ",
       "subject_type": "review",
@@ -3707,7 +3720,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828064752.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222300.jpg",
       "legacy_alt": "アイカシワギタケ",
       "detected_label": "アイカシワギタケ",
       "subject_type": "review",
@@ -3719,7 +3732,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922222632.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222306.jpg",
       "legacy_alt": "フサヒメホウキタケ",
       "detected_label": "フサヒメホウキタケ",
       "subject_type": "review",
@@ -3731,7 +3744,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922223243.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222037.jpg",
       "legacy_alt": "キイボカサタケ",
       "detected_label": "キイボカサタケ",
       "subject_type": "review",
@@ -3743,7 +3756,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922223226.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222043.jpg",
       "legacy_alt": "カバイロツルタケ",
       "detected_label": "カバイロツルタケ",
       "subject_type": "review",
@@ -3755,7 +3768,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828062959.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222111.jpg",
       "legacy_alt": "コガネフウセンタケ？",
       "detected_label": "コガネフウセンタケ？",
       "subject_type": "review",
@@ -3767,7 +3780,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922223155.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222123.jpg",
       "legacy_alt": "キイロオオフウセンタケ(仮称)",
       "detected_label": "キイロオオフウセンタケ(仮称)",
       "subject_type": "review",
@@ -3779,7 +3792,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260828/20260828063208.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222129.jpg",
       "legacy_alt": "テングタケ",
       "detected_label": "テングタケ",
       "subject_type": "review",
@@ -3791,7 +3804,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922223128.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222135.jpg",
       "legacy_alt": "ベニヒガサ",
       "detected_label": "ベニヒガサ",
       "subject_type": "review",
@@ -3803,7 +3816,7 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260922/20260922223102.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222141.jpg",
       "legacy_alt": "ダイダイイグチ",
       "detected_label": "ダイダイイグチ",
       "subject_type": "review",
@@ -9510,16 +9523,6 @@
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月12日富士山(山梨県)",
       "article_path": "articles/article_5.html",
-      "legacy_alt": ""
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222601.jpg",
-      "gallery_name": "マツオウジ",
-      "detected_label": "マツオウジ",
-      "subject_type": "mushroom",
-      "classification_reason": "taxonomy_mushroom",
-      "article_title": "2026年7月25日静岡県伊豆の国市",
-      "article_path": "articles/article_8.html",
       "legacy_alt": ""
     },
     {
