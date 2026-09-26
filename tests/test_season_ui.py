@@ -100,6 +100,19 @@ def test_index_uses_simple_season_entry_copy(monkeypatch, tmp_path):
     assert "EXIF撮影月から探せます" not in rendered
 
 
+def test_index_centers_only_the_two_standalone_feature_actions(monkeypatch, tmp_path):
+    monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
+    main.generate_index({}, {})
+    rendered = (tmp_path / "index.html").read_text(encoding="utf-8")
+    css = (Path(main.ASSETS_DIR) / "gallery.css").read_text(encoding="utf-8")
+
+    assert 'class="aiuo-link feature-action-link" href="season.html"' in rendered
+    assert 'class="aiuo-link note-link feature-action-link" href="favorite.html"' in rendered
+    assert 'class="aiuo-link feature-action-link" href="あ行.html"' not in rendered
+    assert ".feature-action-link {" in css
+    assert "width: fit-content;" in css
+
+
 def test_page_explains_exif_source_and_not_general_occurrence_season():
     rendered = season_ui.render_season_page(data(), main.safe_filename)
     assert "実際に撮影した写真の撮影月" in rendered
