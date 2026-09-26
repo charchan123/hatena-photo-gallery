@@ -1,0 +1,33 @@
+:root { color-scheme: light; }
+body { margin: 0; background: #fff; color: #252821; }
+.research-page { box-sizing: border-box; max-width: 960px; margin: 0 auto; padding: 28px 20px 56px; }
+.research-intro { margin: 28px 0 42px; }
+.research-intro h1 { margin-bottom: 18px; font-size: clamp(1.75rem, 5vw, 2.5rem); }
+.research-intro p { margin: 7px 0; line-height: 1.75; }
+.research-warning { max-width: 700px; padding: 12px 14px; border-left: 4px solid #d29b23; background: #fff9e9; }
+.research-summary { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 22px; font-size: 1.05rem; }
+.research-summary strong { font-size: 1.35em; }
+.research-case { padding: 0 0 40px; margin: 0 0 40px; border-bottom: 1px solid #d8dcd3; }
+.research-case header { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px 14px; }
+.research-case h2 { min-width: 0; margin: 0; overflow-wrap: anywhere; font-size: 1.45rem; }
+.research-status { padding: 4px 10px; border-radius: 999px; background: #e9f0df; color: #3d592c; font-weight: 700; font-size: .84rem; }
+.research-candidate { display: grid; gap: 3px; margin-top: 18px; }
+.research-candidate span, .research-label { color: #61675c; font-size: .84rem; font-weight: 700; }
+.research-candidate strong { min-width: 0; overflow-wrap: anywhere; font-size: 1.15rem; }
+.research-facts { display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 18px 0; }
+.research-facts div { display: flex; gap: 8px; }
+.research-facts dt { color: #61675c; font-weight: 700; }
+.research-facts dd { margin: 0; }
+.research-photos { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; }
+.research-photo { display: block; aspect-ratio: 4 / 3; overflow: hidden; background: #f2f3ef; }
+.research-photo img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .2s ease; }
+.research-photo:hover img { transform: scale(1.02); }
+.research-photo:focus-visible { outline: 3px solid #547b3d; outline-offset: 2px; }
+.research-article { display: grid; gap: 4px; margin-top: 18px; }
+.research-article a, .research-article span:last-child { overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+  .research-page { padding: 18px 12px 40px; }
+  .research-intro { margin: 20px 0 34px; }
+  .research-case { margin-bottom: 32px; padding-bottom: 32px; }
+  .research-photos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+}
