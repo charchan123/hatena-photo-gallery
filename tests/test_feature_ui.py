@@ -68,3 +68,16 @@ def test_render_has_accessible_and_filter_contract(data):
     assert 'aria-live="polite"' in page and "選択をクリア" in page
     assert 'data-facets="rod_cylindrical"' in page and 'href="detail.html"' in page
     assert "判定する機能ではありません" in page and 'target="_top"' not in page
+    assert 'class="mushroom-list feature-results"' in page
+    assert 'class="mushroom-card feature-card"' in page
+    assert 'class="mushroom-card-thumb"' in page
+    assert '<span class="card-fav">☆</span>' in page
+    assert 'src="x.jpg?width=400"' in page and 'alt="表示名"' in page
+    assert 'class="mushroom-card-name">表示名</div>' in page
+    assert "feature-chip" not in page and "feature-chips" not in page
+
+def test_feature_css_leaves_card_layout_to_shared_gallery_styles():
+    css = (ROOT / "assets/features.css").read_text()
+    assert "grid-template-columns" not in css
+    assert ".feature-card" not in css
+    assert ".feature-chip" not in css
