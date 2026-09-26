@@ -7,6 +7,10 @@
     });
   }
 
+  function setCardVisibility(card, show) {
+    card.style.display = show ? "" : "none";
+  }
+
   function setupFeatureFilters(doc) {
     var buttons = Array.from(doc.querySelectorAll(".feature-filter"));
     var cards = Array.from(doc.querySelectorAll(".feature-card"));
@@ -20,11 +24,8 @@
       cards.forEach(function (card) {
         var facets = (card.dataset.facets || "").split(/\s+/).filter(Boolean);
         var show = matchesFacets(facets, selected);
-        card.hidden = !show;
+        setCardVisibility(card, show);
         if (show) visible += 1;
-        card.querySelectorAll("[data-facet-chip]").forEach(function (chip) {
-          chip.classList.toggle("is-selected", selected.has(chip.dataset.facetChip));
-        });
       });
       count.textContent = visible + "種類";
       empty.hidden = visible !== 0;
@@ -47,6 +48,9 @@
     return { selected: selected, update: update };
   }
 
-  if (typeof module !== "undefined") module.exports = { matchesFacets: matchesFacets };
+  if (typeof module !== "undefined") module.exports = {
+    matchesFacets: matchesFacets,
+    setCardVisibility: setCardVisibility
+  };
   if (root.document) root.document.addEventListener("DOMContentLoaded", function () { setupFeatureFilters(root.document); });
 }(typeof window !== "undefined" ? window : globalThis));

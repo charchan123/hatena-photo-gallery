@@ -135,10 +135,11 @@ def render_feature_page(model, safe_filename=None):
     cards = []
     for row in model["results"]:
         name = html.escape(row["gallery_name"]); cover = html.escape(str(row["cover_src"]), quote=True)
-        chips = "".join(f'<span class="feature-chip" data-facet-chip="{html.escape(fid, quote=True)}">{html.escape(label)}</span>'
-                        for fid, label in zip(row["facet_ids"], row["facet_labels"]))
-        cards.append(f'<a class="feature-card" href="{html.escape(row["href"], quote=True)}" data-facets="{html.escape(" ".join(row["facet_ids"]), quote=True)}">'
-                     f'<img src="{cover}?width=500" alt="{name}" loading="lazy"><h2>{name}</h2><div class="feature-chips">{chips}</div></a>')
+        cards.append(f'<a class="mushroom-card feature-card" href="{html.escape(row["href"], quote=True)}" '
+                     f'data-name="{name}" data-facets="{html.escape(" ".join(row["facet_ids"]), quote=True)}">'
+                     f'<div class="mushroom-card-thumb"><span class="card-fav">☆</span>'
+                     f'<img src="{cover}?width=400" alt="{name}" loading="lazy"></div>'
+                     f'<div class="mushroom-card-name">{name}</div></a>')
     count = model["coverage_count"]
     return f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>特徴から探す｜キノコ図鑑</title><link rel="stylesheet" href="assets/gallery.css"><link rel="stylesheet" href="assets/features.css">
@@ -147,7 +148,7 @@ def render_feature_page(model, safe_filename=None):
 <p>写真や資料に記載された見た目の特徴を組み合わせて探せます。</p><p class="feature-warning">選んだ特徴が出典資料に明記されている図鑑登録種を表示します。特徴だけでキノコの種類を判定する機能ではありません。</p>
 <p>特徴検索対応: {count}種類</p></header><section class="feature-controls"><p>選んだ特徴をすべて含む図鑑登録種を表示します。条件を選ぶと絞り込めます。</p>{''.join(groups)}
 <button type="button" class="feature-clear">選択をクリア</button></section><div class="feature-result-count" aria-live="polite">{count}種類</div>
-<div class="feature-results">{''.join(cards)}</div><p class="feature-empty" hidden>該当する図鑑登録種はありません。条件を減らしてみてください。</p></main></body></html>'''
+<div class="mushroom-list feature-results">{''.join(cards)}</div><p class="feature-empty" hidden>該当する図鑑登録種はありません。条件を減らしてみてください。</p></main></body></html>'''
 
 
 def generate_feature_page(portal_data, feature_data, output_dir, assets_dir, safe_filename):
