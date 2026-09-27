@@ -191,7 +191,7 @@ def copy_shared_assets():
     output_assets_dir = os.path.join(OUTPUT_DIR, "assets")
     os.makedirs(output_assets_dir, exist_ok=True)
 
-    for filename in ("gallery.css", "gallery.js", "detail.css"):
+    for filename in ("gallery.css", "gallery.js", "detail.css", "portal.css"):
         shutil.copy2(
             os.path.join(ASSETS_DIR, filename),
             os.path.join(output_assets_dir, filename),
@@ -2253,16 +2253,8 @@ def generate_index(grouped, exif_cache, observation_records=None,
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>キノコ図鑑</title>
-<div class="hero-world">
-  <p class="hero-world-text">
-    写真でたどる、キノコの観察記録
-  </p>
-</div>
-<p class="gallery-guide">
-  📷 写真をクリックするとフルスクリーンでじっくり観察できます<br>
-  ⭐ 気になった写真は★で保存して、あとで「観察ノート」で見返せます
-</p>
 {STYLE_TAG}
+<link rel="stylesheet" href="assets/portal.css">
 {'<link rel="stylesheet" href="assets/records.css">' if observation_records else ''}
 {LIGHTGALLERY_TAGS}
 """)
@@ -2286,47 +2278,62 @@ def generate_index(grouped, exif_cache, observation_records=None,
 window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 </script>
 </head>
-<body>
+<body class="portal-index">
+<main class="portal-shell">
+  <section class="portal-intro" aria-labelledby="portal-title">
+    <p class="portal-eyebrow">親子のキノコ観察記録</p>
+    <h1 id="portal-title">🍄 キノコを探しに行こう</h1>
+    <p class="portal-intro__lead">見つけたキノコを、写真と記録からたどれます</p>
+  </section>
+  <nav class="portal-grid" aria-label="キノコ図鑑の主な入口">
 """)
 
-    # ==========================================================
-    # 🔍 全キノコ横断検索
-    # ==========================================================
+    def append_portal_card(modifier, href, icon, title, description):
+        index_parts.append(f"""
+    <a class="portal-card portal-card--{modifier}" href="{href}">
+      <span class="portal-card__visual" aria-hidden="true"></span>
+      <span class="portal-card__content">
+        <span class="portal-card__icon" aria-hidden="true"></span>
+        <span class="portal-card__copy"><strong>{icon} {title}</strong><small>{description}</small></span>
+        <span class="portal-card__arrow" aria-hidden="true">→</span>
+      </span>
+    </a>
+""")
+
+    append_portal_card("guide", "#mushroom-guide", "📖", "図鑑を見る", "名前や写真からキノコを調べる")
+    append_portal_card("season", "season.html", "🗓️", "季節から探す", "どの季節に出会えるかを見る")
+    if feature_search_available:
+        append_portal_card("features", "features.html", "🔎", "特徴から探す", "見た目の特徴から絞り込む")
+    if research_summary:
+        append_portal_card("research", "research.html", "❓", "不明キノコ研究室", "正体を調べているキノコを見る")
+    if best_shot_summary and best_shot_summary.get("entry_count", 0) > 0:
+        append_portal_card("best-shots", "best-shots.html", "📸", "ベストショット", "とっておきの一枚を集めた写真館")
+    if observation_records:
+        append_portal_card("records", "records.html", "📔", "観察記録", "出会ったキノコを日ごとにたどる")
+
     index_parts.append("""
-    <div class="section">
-      <div class="feature-block">
-      <h2 class="section-title">🔍 全キノコ横断検索</h2>
+  </nav>
+  <section class="portal-secondary" id="mushroom-guide" aria-labelledby="guide-heading">
+    <h2 id="guide-heading" class="portal-zone-title">キノコを調べる</h2>
+    <div class="portal-tool">
+      <h3 class="section-title">🔍 全キノコ横断検索</h3>
       <p class="section-desc">キノコ名からブログ内のキノコを検索できます</p>
-    
       <div class="index-search-box">
-        <input type="text"
-               class="index-search-input"
+        <input type="text" class="index-search-input" aria-label="キノコ名で検索"
                placeholder="キノコ名で検索（例：ベニタケ）">
       </div>
-    
       <div class="index-search-results"></div>
-    
       <div class="search-empty" style="display:none;">
         🔍 該当するキノコが見つかりませんでした<br>
         <small>ひらがな・カタカナを変えて試してみてください</small>
       </div>
-    
       <div class="index-pagination"></div>
-      </div>
     </div>
-    """)
-
-    # ==========================================================
-    # 五十音別分類
-    # ==========================================================
-    index_parts.append("""
-    <div class="section">
-    <div class="feature-block">
-      <h2 class="section-title">📂 五十音別分類</h2>
+    <div class="portal-tool portal-tool--kana">
+      <h3 class="section-title">📂 五十音別分類</h3>
       <p class="section-desc">五十音順でキノコを探せます</p>
-    
       <div class="aiuo-links">
-    """)
+""")
 
     for g in AIUO_GROUPS.keys():
         index_parts.append(
@@ -2334,83 +2341,24 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
         )
 
     index_parts.append("""
-  </div>
-  </div>
-</div>
+      </div>
+    </div>
+  </section>
+  <section class="portal-secondary portal-more" aria-labelledby="more-heading">
+    <h2 id="more-heading" class="portal-zone-title">もっと楽しむ</h2>
 """)
-
-    # ==========================================================
-    # EXIF撮影月による季節ポータル
-    # ==========================================================
-    index_parts.append("""
-    <div class="section">
-    <div class="feature-block">
-      <h2 class="section-title">🗓️ 季節から探す</h2>
-      <p class="section-desc">写真の撮影月から探せます</p>
-      <a class="aiuo-link feature-action-link" href="season.html">春・夏・秋・冬から見る</a>
-    </div>
-    </div>
-    """)
-
-
-    if feature_search_available:
-        index_parts.append("""
-    <div class="section">
-    <div class="feature-block">
-      <h2 class="section-title">🔎 特徴から探す</h2>
-      <p class="section-desc">資料に記載された見た目の特徴を組み合わせて探せます</p>
-      <a class="aiuo-link feature-action-link" href="features.html">特徴を選んで探す</a>
-    </div>
-    </div>
-    """)
-
-    if research_summary:
-        index_parts.append(f"""
-    <div class="section">
-    <div class="feature-block">
-      <h2 class="section-title">❓ 不明キノコ研究室</h2>
-      <p class="section-desc">まだ名前が分からない・候補名を調べている観察記録を集めています</p>
-      <a class="aiuo-link feature-action-link" href="research.html">研究室を見る（{research_summary['case_count']}件）</a>
-    </div>
-    </div>
-    """)
-
-    if best_shot_summary and best_shot_summary.get("entry_count", 0) > 0:
-        index_parts.append("""
-    <div class="section">
-    <div class="feature-block">
-      <h2 class="section-title">📸 ベストショット</h2>
-      <p class="section-desc">撮影した本人が選んだ、とっておきの写真を紹介します</p>
-      <a class="aiuo-link feature-action-link" href="best-shots.html">ベストショットを見る</a>
-    </div>
-    </div>
-    """)
-
-    if observation_records:
-        index_parts.append(f"""
-    <div class="section">
-    <div class="feature-block">
-      <h2 class="section-title">📔 観察記録</h2>
-      <p class="section-desc">キノコ探索のブログ記事を新しい順に見られます</p>
-      <div class="record-list record-list-preview">{render_record_cards(observation_records, limit=1)}</div>
-      <a class="aiuo-link feature-action-link record-more-link record-external-link" href="https://exsudoporus-ruber.hatenablog.jp/" target="_top">観察記録をもっと見る</a>
-    </div>
-    </div>
-    """)
 
     # ==========================================================
     # 観察ノート専用セクション
     # ==========================================================
     index_parts.append("""
-    <div class="section">
-    <div class="feature-block">
-      <h2 class="section-title">📓 観察ノート</h2>
+    <div class="portal-tool">
+      <h3 class="section-title">📓 観察ノート</h3>
       <p class="section-desc">出会ったキノコを、時間の流れとともに記録として残せます。</p>
     
       <a class="aiuo-link note-link feature-action-link" href="favorite.html">
         ⭐ 観察中の写真 <span id="favorite-count"></span>
       </a>
-      </div>
     </div>
     """)
 
@@ -2448,9 +2396,8 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     recommend_popular = pick(POPULAR_LIST)
 
     index_parts.append("""
-    <div class="section">
-    <div class="feature-block">
-      <h2 class="section-title">🍄 おすすめキノコ</h2>
+    <div class="portal-tool">
+      <h3 class="section-title">🍄 おすすめキノコ</h3>
       <p class="section-desc">写真の中から、いくつかの切り口でピックアップしています。</p>
     
       <div class="recommend-grid">
@@ -2474,9 +2421,27 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     append_cards("人気キノコTOP3", recommend_popular)
 
     index_parts.append("""
-  </div>
-  </div>
-</div>
+      </div>
+    </div>
+""")
+
+    if observation_records:
+        index_parts.append(f"""
+    <div class="portal-tool portal-records-preview">
+      <h3 class="section-title">📔 最近の観察記録</h3>
+      <p class="section-desc">キノコ探索のブログ記事を新しい順に紹介します</p>
+      <div class="record-list record-list-preview">{render_record_cards(observation_records, limit=1)}</div>
+      <a class="aiuo-link feature-action-link record-more-link" href="records.html">観察記録をもっと見る</a>
+    </div>
+""")
+
+    index_parts.append("""
+    <aside class="portal-guide" aria-label="写真と観察ノートの使い方">
+      <p>📷 写真をクリックするとフルスクリーンでじっくり観察できます</p>
+      <p>⭐ 気になった写真は★で保存して、あとで「観察ノート」で見返せます</p>
+    </aside>
+  </section>
+</main>
 """)
 
     # ===========================
