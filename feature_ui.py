@@ -150,11 +150,12 @@ def render_feature_page(model, safe_filename=None):
     return f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>特徴から探す｜キノコ図鑑</title><link rel="stylesheet" href="assets/gallery.css"><link rel="stylesheet" href="assets/features.css">
 <script src="assets/gallery.js" defer></script><script src="assets/features.js" defer></script></head><body>
-<main class="feature-page"><a class="back-btn" href="index.html">◀ 図鑑トップに戻る</a><header><h1>🔎 特徴から探す</h1>
+<main class="feature-page"><header><h1>🔎 特徴から探す</h1>
 <p>写真や資料に記載された見た目の特徴を組み合わせて探せます。</p><p class="feature-warning">選んだ特徴が出典資料に明記されている図鑑登録種を表示します。特徴だけでキノコの種類を判定する機能ではありません。</p>
 <p>特徴検索対応: {count}種類</p></header><section class="feature-controls"><p>選んだ特徴をすべて含む図鑑登録種を表示します。条件を選ぶと絞り込めます。</p>{''.join(groups)}
 <button type="button" class="feature-clear">選択をクリア</button></section><div class="feature-result-count" aria-live="polite">{count}種類</div>
-<div class="mushroom-list feature-results">{''.join(cards)}</div><p class="feature-empty" hidden>該当する図鑑登録種はありません。条件を減らしてみてください。</p></main></body></html>'''
+<div class="mushroom-list feature-results">{''.join(cards)}</div><p class="feature-empty" hidden>該当する図鑑登録種はありません。条件を減らしてみてください。</p>
+<div class="feature-back"><a href="index.html" class="back-btn">◀ トップに戻る</a></div></main></body></html>'''
 
 
 def generate_feature_page(portal_data, feature_data, output_dir, assets_dir, safe_filename):
