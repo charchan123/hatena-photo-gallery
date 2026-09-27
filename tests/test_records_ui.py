@@ -68,12 +68,12 @@ def test_index_preview_optional_and_limited(monkeypatch, tmp_path):
     records = build_observation_records(portal(*[observation(i, article_id=str(i), published=f"2026-01-0{i+1}T00:00:00Z") for i in range(4)]))
     main.generate_index({}, {}, observation_records=records)
     text = (tmp_path / "index.html").read_text()
-    assert "📔 観察記録" in text and text.count('target="_top"') == 1
+    assert "📔 観察記録" in text and text.count('target="_top"') == 2
     assert text.count("record-card-badge") == 1
     assert "NEW!" in text and "img3?width=500" in text and "img2?width=500" not in text
-    assert 'class="portal-card portal-card--records" href="records.html"' in text
-    assert 'class="aiuo-link feature-action-link record-more-link" href="records.html"' in text
-    assert text.count('class="record-card record-external-link"') == 1
+    assert 'href="https://exsudoporus-ruber.hatenablog.jp/"' in text
+    assert 'class="aiuo-link feature-action-link record-more-link record-external-link"' in text
+    assert 'href="records.html"' not in text and text.count('class="record-card record-external-link"') == 1
     main.generate_index({}, {}, observation_records=[])
     assert "📔 観察記録" not in (tmp_path / "index.html").read_text()
 
