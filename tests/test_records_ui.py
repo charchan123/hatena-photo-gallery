@@ -90,8 +90,10 @@ def test_record_preview_css_and_external_return_contract():
     assert 'a.record-external-link[target=\'_top\']' in script
     assert "sessionStorage.setItem(RECORD_EXTERNAL_RETURN_KEY" in script
     assert "sessionStorage.removeItem(RECORD_EXTERNAL_RETURN_KEY)" in script
-    assert 'location.pathname.endsWith("/index.html")' in script
-    assert "refreshAfterExternalRecord && isGalleryIndex" in script
+    assert 'pathname.endsWith("/index.html")' in script
+    assert "shouldReloadGalleryIndex(event, location.pathname)" in script
+    assert "window.location.reload()" in script
+    assert "refreshAfterExternalRecord && isGalleryIndex" not in script
 
 
 def test_records_failure_isolation_and_no_stale_read(monkeypatch):

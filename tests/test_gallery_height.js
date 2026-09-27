@@ -18,7 +18,8 @@ const context = {
 vm.runInNewContext(
   `${source.slice(helperStart, helperEnd)}\n` +
     "this.calculate = calculateIframeContentHeight;\n" +
-    "this.isHistoryTraversal = isHistoryTraversal;",
+    "this.isHistoryTraversal = isHistoryTraversal;\n" +
+    "this.shouldReloadGalleryIndex = shouldReloadGalleryIndex;",
   context
 );
 
@@ -29,6 +30,11 @@ assert.equal(context.isHistoryTraversal({ persisted: true }), true);
 assert.equal(context.isHistoryTraversal({ persisted: false }), false);
 context.performance.getEntriesByType = () => [{ type: "back_forward" }];
 assert.equal(context.isHistoryTraversal({ persisted: false }), true);
+assert.equal(context.shouldReloadGalleryIndex({ persisted: false }, "/index.html"), true);
+assert.equal(context.shouldReloadGalleryIndex({ persisted: false }, "/"), true);
+assert.equal(context.shouldReloadGalleryIndex({ persisted: false }, "/research.html"), false);
+context.performance.getEntriesByType = () => [{ type: "navigate" }];
+assert.equal(context.shouldReloadGalleryIndex({ persisted: false }, "/index.html"), false);
 
 assert.match(source, /getElementById\("gallery-content-root"\)/);
 assert.match(source, /contentRoot\.getBoundingClientRect\(\)\.height/);
@@ -41,6 +47,7 @@ assert.match(source, /addEventListener\("pageshow"/);
 assert.match(source, /event\.persisted/);
 assert.match(source, /isHistoryTraversal\(event\)/);
 assert.match(source, /navigation\?\.type === "back_forward"/);
+assert.match(source, /shouldReloadGalleryIndex\(event, location\.pathname\)/);
 assert.match(source, /if \(isHistoryTraversal\(event\)\) \{\s*window\.parent\.postMessage\(\{ type: "scrollToTitle" \}, "\*"\)/);
 assert.match(source, /sendHeight\(prefix, true\)/);
 assert.match(source, /sendHeight\("request-height", true\)/);
