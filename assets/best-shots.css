@@ -1,0 +1,21 @@
+.best-shots-page { max-width: 1080px; margin: 0 auto; padding: 24px 16px 48px; color: #26352c; }
+.best-shots-header { text-align: center; margin-bottom: 32px; }
+.best-shots-header h1 { margin-bottom: 10px; }
+.best-shots-year-title, .best-shot-month > h2, .annual-best > h2 { margin: 32px 0 16px; }
+.best-shot-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+.best-shot-card { overflow: hidden; border: 1px solid #dfe7e1; border-radius: 14px; background: #fff; box-shadow: 0 4px 16px rgba(30, 55, 40, .08); }
+.best-shot-photo { display: block; background: #f2f5f2; text-align: center; }
+.best-shot-photo img { display: block; width: 100%; height: auto; }
+.best-shot-card__body { padding: 18px; }
+.best-shot-card__body h3 { margin: 8px 0 12px; }
+.best-shot-meta { margin: 5px 0; color: #526259; }
+.best-shot-comment { white-space: pre-wrap; line-height: 1.75; }
+.best-shot-badge { display: inline-block; padding: 4px 9px; border-radius: 999px; background: #fff2b5; color: #654c00; font-size: .85rem; font-weight: 700; }
+.best-shot-article { display: inline-block; margin-top: 8px; }
+.annual-best { padding: 1px 16px 20px; border-radius: 16px; background: #fff9df; }
+.best-shot-card--hero { max-width: 760px; margin: 0 auto; border-color: #e2c95d; }
+.best-shots-archive { margin-top: 42px; padding-top: 12px; border-top: 1px solid #dfe7e1; }
+.best-shots-archive li { margin: 10px 0; }
+.best-shots-empty { margin: 56px auto; text-align: center; }
+.best-shots-back { margin-top: 44px; text-align: center; }
+@media (min-width: 720px) { .best-shot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .best-shots-page { padding: 40px 24px 64px; } }

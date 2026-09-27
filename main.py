@@ -20,6 +20,7 @@ from records_ui import generate_records_page, render_record_cards
 from detail_ui import build_detail_views, render_detail_sections
 from feature_ui import load_feature_facets, validate_feature_facets, generate_feature_page
 from research_ui import generate_research_page
+from best_shot_ui import generate_best_shot_pages
 
 # ===========================
 # 珍しい / 人気キノコリスト（手動）
@@ -99,6 +100,9 @@ PORTAL_DATA_FILE = os.path.join(OUTPUT_DIR, "portal-data.json")
 PORTAL_DATA_STATUS_FILE = os.path.join(OUTPUT_DIR, "portal-data-status.json")
 FEATURE_FACETS_FILE = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), "data", "feature-facets.json"
+)
+BEST_SHOTS_FILE = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "data", "best-shots.json"
 )
 TAXONOMY_SUBJECT_TYPES = {"mushroom", "non_mushroom"}
 
@@ -2235,7 +2239,8 @@ def generate_gallery(entries, exif_cache, detail_views=None):
 # index.html を生成（最終確定版）
 # ===========================
 def generate_index(grouped, exif_cache, observation_records=None,
-                   feature_search_available=False, research_summary=None):
+                   feature_search_available=False, research_summary=None,
+                   best_shot_summary=None):
     copy_shared_assets()
     index_parts = []
 
@@ -2366,6 +2371,17 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
       <h2 class="section-title">❓ 不明キノコ研究室</h2>
       <p class="section-desc">まだ名前が分からない・候補名を調べている観察記録を集めています</p>
       <a class="aiuo-link feature-action-link" href="research.html">研究室を見る（{research_summary['case_count']}件）</a>
+    </div>
+    </div>
+    """)
+
+    if best_shot_summary and best_shot_summary.get("entry_count", 0) > 0:
+        index_parts.append("""
+    <div class="section">
+    <div class="feature-block">
+      <h2 class="section-title">📸 ベストショット</h2>
+      <p class="section-desc">撮影した本人が選んだ、とっておきの写真を紹介します</p>
+      <a class="aiuo-link feature-action-link" href="best-shots.html">ベストショットを見る</a>
     </div>
     </div>
     """)
@@ -2691,6 +2707,7 @@ def build_gallery():
     detail_views = build_detail_views_if_fresh(portal_status)
     feature_search_available = generate_feature_page_if_fresh(portal_status)
     research_summary = generate_research_page_if_fresh(portal_status)
+    best_shot_summary = generate_best_shot_pages_if_fresh(portal_status)
 
     # Keep test/extension callables with the historical two-argument signature usable.
     if "detail_views" in inspect.signature(generate_gallery).parameters:
@@ -2705,6 +2722,8 @@ def build_gallery():
         index_options["feature_search_available"] = feature_search_available
     if "research_summary" in index_parameters:
         index_options["research_summary"] = research_summary
+    if "best_shot_summary" in index_parameters:
+        index_options["best_shot_summary"] = best_shot_summary
     generate_index(grouped, exif_cache, **index_options)
     generate_favorite_page(grouped)
 
@@ -2777,6 +2796,25 @@ def generate_research_page_if_fresh(portal_status):
                 ("case_count", "photo_count", "label_count", "multi_photo_count")}
     except Exception as error:
         print(f"Phase 4A.5 research page generation failed: {error}")
+        return None
+
+
+def generate_best_shot_pages_if_fresh(portal_status):
+    """Best-effort Best Shot output, gated on this run's successful export."""
+    if not isinstance(portal_status, dict) or portal_status.get("build_ok") is not True:
+        return None
+    try:
+        portal = load_fresh_portal_data(PORTAL_DATA_FILE)
+        model = generate_best_shot_pages(
+            portal, BEST_SHOTS_FILE, OUTPUT_DIR, ASSETS_DIR
+        )
+        return {
+            "entry_count": model["entry_count"],
+            "year_count": model["year_count"],
+            "latest_year": model["latest_year"],
+        }
+    except Exception as error:
+        print(f"Phase 4A.6 Best Shot page generation failed: {error}")
         return None
 
 
