@@ -13,4 +13,5 @@
 .feature-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 10px 12px; }
 .feature-chip { display: inline-block; padding: 4px 8px; border-radius: 999px; background: #edf2ee; font-size: .8rem; line-height: 1.4; }
 .feature-chip.is-selected { outline: 2px solid #446b50; background: #dcecdf; font-weight: 700; }
+.feature-back { margin: 40px 0 20px; text-align: center; }
 @media (max-width: 560px) { .feature-page { padding: 16px; } }
