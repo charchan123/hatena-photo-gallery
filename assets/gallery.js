@@ -13,6 +13,11 @@ function isHistoryTraversal(event) {
   return navigation?.type === "back_forward";
 }
 
+function shouldReloadGalleryIndex(event, pathname) {
+  return isHistoryTraversal(event)
+    && (pathname.endsWith("/") || pathname.endsWith("/index.html"));
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 
   // Measure normal page content independently from the iframe viewport. Nodes
@@ -1373,8 +1378,7 @@ galleries.forEach(gallery => {
         refreshAfterExternalRecord = false;
       }
 
-      const isGalleryIndex = location.pathname.endsWith("/") || location.pathname.endsWith("/index.html");
-      if (refreshAfterExternalRecord && isGalleryIndex) {
+      if (shouldReloadGalleryIndex(event, location.pathname)) {
         window.location.reload();
       }
     }

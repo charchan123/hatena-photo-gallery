@@ -135,6 +135,11 @@ def _safe_web_url(value):
 
 
 def render_research_page(model):
+    status_classes = {
+        "未同定": "is-unidentified",
+        "候補名あり": "is-candidate",
+        "名称確認中": "is-review",
+    }
     cards = []
     for case in model["cases"]:
         name = html.escape(case["gallery_name"])
@@ -151,8 +156,9 @@ def render_research_page(model):
         url = _safe_web_url(article.get("url"))
         article_text = (f'<a href="{html.escape(url, quote=True)}" target="_top">{title}</a>'
                         if url else f'<span>{title}</span>')
+        status = case["status"]
         cards.append(f'''<article class="research-case">
-<header><span class="research-status">{case["status"]}</span><h2>{name}</h2></header>
+<header><span class="research-status {status_classes[status]}">{status}</span><h2>{name}</h2></header>
 {candidate}<dl class="research-facts"><div><dt>撮影日</dt><dd>{dates}</dd></div>
 <div><dt>写真枚数</dt><dd>{case["photo_count"]}枚</dd></div></dl>
 <div class="research-photos">{''.join(photos)}</div>
@@ -161,13 +167,14 @@ def render_research_page(model):
     return f'''<!doctype html><html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"><title>❓ 不明キノコ研究室</title>
 <link rel="stylesheet" href="assets/gallery.css"><link rel="stylesheet" href="assets/research.css"></head><body>
-<main class="research-page"><a class="back-btn" href="index.html">◀ 図鑑トップに戻る</a>
-<header class="research-intro"><h1>❓ 不明キノコ研究室</h1>
+<main class="research-page"><header class="research-intro"><h1>❓ 不明キノコ研究室</h1>
 <p>まだ名前が分からないキノコや、候補名を調べている観察を集めました。</p>
 <p>答えだけでなく、調べていく途中も観察記録の一部です。</p>
 <p class="research-warning">「？」付きの名前は候補であり、同定が確定していることを意味しません。</p>
+<p class="research-coming-soon">💬 コメント・返信機能は今後追加予定です。<br>同定のヒントや情報を寄せられるようにする予定です。</p>
 <div class="research-summary"><span>調査中 <strong>{model["case_count"]}</strong>件</span><span>写真 <strong>{model["photo_count"]}</strong>枚</span></div>
-</header><section class="research-cases" aria-label="調査中の観察">{''.join(cards)}</section></main>
+</header><section class="research-cases" aria-label="調査中の観察">{''.join(cards)}</section>
+<div class="research-back"><a href="index.html" class="back-btn">◀ トップに戻る</a></div></main>
 <script src="assets/gallery.js"></script></body></html>'''
 
 

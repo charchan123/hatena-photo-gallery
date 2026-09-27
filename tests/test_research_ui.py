@@ -76,8 +76,13 @@ def test_status_priority_and_candidate_is_exact_only():
     cases = build_research_cases(portal(conflict, observation(1, "不明", article_id="b"),
                                          observation(2, "候補？", article_id="c")))
     assert {case["status"] for case in cases} == {"名称確認中", "未同定", "候補名あり"}
-    page = render_research_page(build_research_model(portal(conflict, observation(2, "候補？", article_id="c"))))
+    page = render_research_page(build_research_model(portal(
+        conflict, observation(1, "不明", article_id="b"),
+        observation(2, "候補？", article_id="c"))))
     assert "現在の候補名" in page and "候補？" in page
+    assert 'class="research-status is-unidentified">未同定</span>' in page
+    assert 'class="research-status is-candidate">候補名あり</span>' in page
+    assert 'class="research-status is-review">名称確認中</span>' in page
     for forbidden in ("legacy_review", "manual_review_name_conflict", "detected_label",
                       "公開しない内部候補", "推測候補"):
         assert forbidden not in page
@@ -119,11 +124,21 @@ def test_page_and_css_design_contract():
     page = render_research_page(build_research_model(portal(observation(0))))
     css = (ROOT / "assets/research.css").read_text()
     assert "❓ 不明キノコ研究室" in page and "同定が確定していることを意味しません" in page
+    assert "コメント・返信機能は今後追加予定" in page
+    assert "同定のヒントや情報" in page and 'class="research-coming-soon"' in page
+    assert all(forbidden not in page for forbidden in ("<form", "<textarea", "supabase"))
+    assert "◀ 図鑑トップに戻る" not in page
+    assert page.count("◀ トップに戻る") == 1
+    assert 'class="research-back"' in page
+    assert page.index('class="research-cases"') < page.index('class="research-back"') < page.index("</main>")
     assert 'assets/research.css' in page and 'class="research-photos"' in page
     assert 'src="assets/gallery.js"' in page
     assert "@media (max-width: 600px)" in css and "padding: 18px 12px" in css
     assert "overflow-wrap: anywhere" in css and "background: #fff" in css
     assert "padding: 0" in css and "opacity: 1" in css
+    for selector in (".research-status.is-unidentified", ".research-status.is-candidate",
+                     ".research-status.is-review", ".research-coming-soon", ".research-back"):
+        assert selector in css
     assert "outer-panel" not in page + css
 
 

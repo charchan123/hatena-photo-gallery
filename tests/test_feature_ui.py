@@ -78,6 +78,10 @@ def test_render_has_accessible_and_filter_contract(data):
     assert 'class="feature-chip"' in page
     assert 'data-facet-chip="rod_cylindrical"' in page
     assert "棒状・円柱状の形" in page
+    assert "◀ 図鑑トップに戻る" not in page
+    assert page.count("◀ トップに戻る") == 1
+    assert 'class="feature-back"' in page
+    assert page.index('class="feature-empty"') < page.index('class="feature-back"') < page.index("</main>")
 
 def test_feature_css_leaves_card_layout_to_shared_gallery_styles():
     css = (ROOT / "assets/features.css").read_text()
@@ -86,3 +90,4 @@ def test_feature_css_leaves_card_layout_to_shared_gallery_styles():
     assert ".feature-chips" in css
     assert ".feature-chip" in css
     assert ".feature-chip.is-selected" in css
+    assert ".feature-back" in css
