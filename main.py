@@ -171,7 +171,7 @@ STYLE_TAG = '<link rel="stylesheet" href="assets/gallery.css">'
 
 # ====== LightGallery 読み込みタグ ======
 LIGHTGALLERY_TAGS = """
-<link rel="stylesheet" 
+<link rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/lightgallery.min.js"></script>
@@ -2115,37 +2115,37 @@ def generate_gallery(entries, exif_cache, detail_views=None):
     # ===========================
     # ② 五十音ページ（完全修正版）
     # ===========================
-    
+
     # 五十音 → キノコ名一覧
     aiuo_dict = {k: [] for k in AIUO_GROUPS.keys()}
-    
+
     for alt in grouped.keys():
         if not isinstance(alt, str) or not alt:
             continue
         g = get_aiuo_group(alt)
         if g in aiuo_dict:
             aiuo_dict[g].append(alt)
-    
+
     for g, names in aiuo_dict.items():
         # ★ 何も無い行はページを作らない
         if not names:
             continue
-    
+
         html_parts = []
-    
+
         # -------------------------
         # ページタイトル & フィルター枠
         # -------------------------
         html_parts.append(f"""
         <div class="aiuo-page">
-    
+
           <h2 class="aiuo-title">{html.escape(g)}のキノコ</h2>
-    
+
           <div class="aiuo-filter">
             <div class="kana-grid">
               <button class="kana-btn active" data-kana="all">すべて</button>
         """)
-    
+
         # -------------------------
         # ★ ここで initials を正しく生成
         # -------------------------
@@ -2154,46 +2154,46 @@ def generate_gallery(entries, exif_cache, detail_views=None):
             for n in names
             if isinstance(n, str) and len(n) > 0
         })
-    
+
         for ch in initials:
             esc_ch = html.escape(ch)
             html_parts.append(
                 f'<button class="kana-btn" data-kana="{esc_ch}">{esc_ch}</button>'
             )
-    
+
         html_parts.append("""
             </div>
           </div>
-    
+
           <div class="search-wrap search-wrap--page">
             <input type="text" class="search-input" placeholder="キノコ名で絞り込み">
           </div>
         """)
-    
+
         # -------------------------
         # カード一覧
         # -------------------------
         html_parts.append("<div class='mushroom-list'>")
-    
+
         for n in sorted(names):
             if not isinstance(n, str) or not n:
                 continue
-    
+
             safe = safe_filename(n)
             first_char = normalize_kana_initial(n)
             imgs_for_name = grouped.get(n, [])
             thumb_src = imgs_for_name[0] if imgs_for_name else ""
-    
+
             esc_name = html.escape(n)
             esc_kana = html.escape(first_char)
-    
+
             img_tag = ""
             if thumb_src:
                 img_tag = (
                     f"<img src='{thumb_src}?width=400' "
                     f"alt='{esc_name}' loading='lazy'>"
                 )
-    
+
             html_parts.append(f"""
             <a href="{safe}.html?from=aiuo&kana={html.escape(g)}"
                class="mushroom-card"
@@ -2206,9 +2206,9 @@ def generate_gallery(entries, exif_cache, detail_views=None):
               <div class="mushroom-card-name">{esc_name}</div>
             </a>
             """)
-    
+
         html_parts.append("</div>")  # .mushroom-list
-    
+
         # -------------------------
         # 戻るボタン
         # -------------------------
@@ -2220,25 +2220,287 @@ def generate_gallery(entries, exif_cache, detail_views=None):
           </div>
         </div>
         """)
-    
+
         # -------------------------
         # 共通タグ
         # -------------------------
         html_parts.append(STYLE_TAG)
         html_parts.append(LIGHTGALLERY_TAGS)
         html_parts.append(SCRIPT_TAG)
-    
+
         page_html = "".join(html_parts)
-    
+
         with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
             f.write(page_html)
-    
+
     return grouped
 
 # ===========================
 # index.html を生成（最終確定版）
 # ===========================
 def generate_index(grouped, exif_cache, observation_records=None,
+                   feature_search_available=False, research_summary=None,
+                   best_shot_summary=None):
+    copy_shared_assets()
+    index_parts = []
+
+    # ===========================
+    # HTML 骨格（head）
+    # ===========================
+    index_parts.append(f"""<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>キノコ図鑑</title>
+<div class="hero-world">
+  <p class="hero-world-text">
+    写真でたどる、キノコの観察記録
+  </p>
+</div>
+<p class="gallery-guide">
+  📷 写真をクリックするとフルスクリーンでじっくり観察できます<br>
+  ⭐ 気になった写真は★で保存して、あとで「観察ノート」で見返せます
+</p>
+{STYLE_TAG}
+{'<link rel="stylesheet" href="assets/records.css">' if observation_records else ''}
+{LIGHTGALLERY_TAGS}
+""")
+
+    # --------------------------
+    # 検索用 JS データ（headに置く）
+    # --------------------------
+    all_mushrooms_js = []
+
+    for alt, srcs in grouped.items():
+        thumb = srcs[0] if srcs else ""
+        all_mushrooms_js.append({
+            "name": alt,
+            "name_norm": normalize_japanese_search(alt),
+            "href": f"{safe_filename(alt)}.html",
+            "thumb": thumb + "?width=300"
+        })
+
+    index_parts.append(f"""
+<script>
+window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
+</script>
+</head>
+<body>
+""")
+
+    # ==========================================================
+    # 🔍 全キノコ横断検索
+    # ==========================================================
+    index_parts.append("""
+    <div class="section">
+      <div class="feature-block">
+      <h2 class="section-title">🔍 全キノコ横断検索</h2>
+      <p class="section-desc">キノコ名からブログ内のキノコを検索できます</p>
+
+      <div class="index-search-box">
+        <input type="text"
+               class="index-search-input"
+               placeholder="キノコ名で検索（例：ベニタケ）">
+      </div>
+
+      <div class="index-search-results"></div>
+
+      <div class="search-empty" style="display:none;">
+        🔍 該当するキノコが見つかりませんでした<br>
+        <small>ひらがな・カタカナを変えて試してみてください</small>
+      </div>
+
+      <div class="index-pagination"></div>
+      </div>
+    </div>
+    """)
+
+    # ==========================================================
+    # 五十音別分類
+    # ==========================================================
+    index_parts.append("""
+    <div class="section">
+    <div class="feature-block">
+      <h2 class="section-title">📂 五十音別分類</h2>
+      <p class="section-desc">五十音順でキノコを探せます</p>
+
+      <div class="aiuo-links">
+    """)
+
+    for g in AIUO_GROUPS.keys():
+        index_parts.append(
+            f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>'
+        )
+
+    index_parts.append("""
+  </div>
+  </div>
+</div>
+""")
+
+    # ==========================================================
+    # EXIF撮影月による季節ポータル
+    # ==========================================================
+    index_parts.append("""
+    <div class="section">
+    <div class="feature-block">
+      <h2 class="section-title">🗓️ 季節から探す</h2>
+      <p class="section-desc">写真の撮影月から探せます</p>
+      <a class="aiuo-link feature-action-link" href="season.html">春・夏・秋・冬から見る</a>
+    </div>
+    </div>
+    """)
+
+
+    if feature_search_available:
+        index_parts.append("""
+    <div class="section">
+    <div class="feature-block">
+      <h2 class="section-title">🔎 特徴から探す</h2>
+      <p class="section-desc">資料に記載された見た目の特徴を組み合わせて探せます</p>
+      <a class="aiuo-link feature-action-link" href="features.html">特徴を選んで探す</a>
+    </div>
+    </div>
+    """)
+
+    if research_summary:
+        index_parts.append(f"""
+    <div class="section">
+    <div class="feature-block">
+      <h2 class="section-title">❓ 不明キノコ研究室</h2>
+      <p class="section-desc">まだ名前が分からない・候補名を調べている観察記録を集めています</p>
+      <a class="aiuo-link feature-action-link" href="research.html">研究室を見る（{research_summary['case_count']}件）</a>
+    </div>
+    </div>
+    """)
+
+    if best_shot_summary and best_shot_summary.get("entry_count", 0) > 0:
+        index_parts.append("""
+    <div class="section">
+    <div class="feature-block">
+      <h2 class="section-title">📸 ベストショット</h2>
+      <p class="section-desc">撮影した本人が選んだ、とっておきの写真を紹介します</p>
+      <a class="aiuo-link feature-action-link" href="best-shots.html">ベストショットを見る</a>
+    </div>
+    </div>
+    """)
+
+    if observation_records:
+        index_parts.append(f"""
+    <div class="section">
+    <div class="feature-block">
+      <h2 class="section-title">📔 観察記録</h2>
+      <p class="section-desc">キノコ探索のブログ記事を新しい順に見られます</p>
+      <div class="record-list record-list-preview">{render_record_cards(observation_records, limit=1)}</div>
+      <a class="aiuo-link feature-action-link record-more-link record-external-link" href="https://exsudoporus-ruber.hatenablog.jp/" target="_top">観察記録をもっと見る</a>
+    </div>
+    </div>
+    """)
+
+    # ==========================================================
+    # 観察ノート専用セクション
+    # ==========================================================
+    index_parts.append("""
+    <div class="section">
+    <div class="feature-block">
+      <h2 class="section-title">📓 観察ノート</h2>
+      <p class="section-desc">出会ったキノコを、時間の流れとともに記録として残せます。</p>
+
+      <a class="aiuo-link note-link feature-action-link" href="favorite.html">
+        ⭐ 観察中の写真 <span id="favorite-count"></span>
+      </a>
+      </div>
+    </div>
+    """)
+
+    # ==========================================================
+    # おすすめキノコ
+    # ==========================================================
+    # altごとに最新撮影日
+    alt_latest = {}
+    for alt, srcs in grouped.items():
+        best = ""
+        for src in srcs:
+            d = (exif_cache.get(src) or {}).get("date") or ""
+            key = d.replace("/", "")
+            if len(key) == 8 and key > best:
+                best = key
+        if best:
+            alt_latest[alt] = best
+
+    sorted_new = sorted(alt_latest.items(), key=lambda x: x[1], reverse=True)
+    new_names = [n for n, _ in sorted_new][:3]
+
+    def pick(names):
+        out = []
+        for n in names:
+            if n in grouped and grouped[n]:
+                out.append({
+                    "name": n,
+                    "thumb": grouped[n][0] + "?width=400",
+                    "href": f"{safe_filename(n)}.html"
+                })
+        return out
+
+    recommend_new = pick(new_names)
+    recommend_rarity = pick(RARITY_LIST)
+    recommend_popular = pick(POPULAR_LIST)
+
+    index_parts.append("""
+    <div class="section">
+    <div class="feature-block">
+      <h2 class="section-title">🍄 おすすめキノコ</h2>
+      <p class="section-desc">写真の中から、いくつかの切り口でピックアップしています。</p>
+
+      <div class="recommend-grid">
+    """)
+
+    def append_cards(title, items):
+        index_parts.append(
+            f"<div class='recommend-card'><h3>{title}</h3><div class='rec-items'>"
+        )
+        for it in items:
+            index_parts.append(f"""
+<a class="rec-item" href="{it['href']}">
+  <img src="{it['thumb']}" alt="{it['name']}">
+  <div>{it['name']}</div>
+</a>
+""")
+        index_parts.append("</div></div>")
+
+    append_cards("新着キノコ", recommend_new)
+    append_cards("珍しいキノコ", recommend_rarity)
+    append_cards("人気キノコTOP3", recommend_popular)
+
+    index_parts.append("""
+  </div>
+  </div>
+</div>
+""")
+
+    # ===========================
+    # footer（JS）
+    # ===========================
+    index_parts.append(f"""
+{SCRIPT_TAG}
+</body>
+</html>
+""")
+
+    # ===========================
+    # 書き出し
+    # ===========================
+    with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
+        f.write("".join(index_parts))
+
+    print("✅ index.html 生成完了")
+
+
+# ===========================
+# new-top.html を生成（Top Portal Structural Prototype）
+# ===========================
+def generate_new_top(grouped, exif_cache, observation_records=None,
                    feature_search_available=False, research_summary=None,
                    best_shot_summary=None):
     copy_shared_assets()
@@ -2355,7 +2617,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     <div class="portal-tool">
       <h3 class="section-title">📓 観察ノート</h3>
       <p class="section-desc">出会ったキノコを、時間の流れとともに記録として残せます。</p>
-    
+
       <a class="aiuo-link note-link feature-action-link" href="favorite.html">
         ⭐ 観察中の写真 <span id="favorite-count"></span>
       </a>
@@ -2399,7 +2661,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     <div class="portal-tool">
       <h3 class="section-title">🍄 おすすめキノコ</h3>
       <p class="section-desc">写真の中から、いくつかの切り口でピックアップしています。</p>
-    
+
       <div class="recommend-grid">
     """)
 
@@ -2456,10 +2718,10 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     # ===========================
     # 書き出し
     # ===========================
-    with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
+    with open(f"{OUTPUT_DIR}/new-top.html", "w", encoding="utf-8") as f:
         f.write("".join(index_parts))
 
-    print("✅ index.html 生成完了")
+    print("✅ new-top.html 生成完了")
 
 # ===========================
 # ⭐ お気に入り専用ページ生成（写真単位）
@@ -2690,6 +2952,7 @@ def build_gallery():
     if "best_shot_summary" in index_parameters:
         index_options["best_shot_summary"] = best_shot_summary
     generate_index(grouped, exif_cache, **index_options)
+    generate_new_top(grouped, exif_cache, **index_options)
     generate_favorite_page(grouped)
 
 

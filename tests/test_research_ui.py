@@ -166,7 +166,7 @@ def test_index_link_only_after_success_with_derived_count(monkeypatch, tmp_path)
                         research_summary={"case_count": 2, "photo_count": 9})
     page = (tmp_path / "index.html").read_text()
     assert "特徴から探す" in page and page.index("特徴から探す") < page.index("不明キノコ研究室")
-    assert 'class="portal-card portal-card--research" href="research.html"' in page
+    assert "研究室を見る（2件）" in page
     main.generate_index({}, {}, research_summary=None)
     assert "不明キノコ研究室" not in (tmp_path / "index.html").read_text()
 
