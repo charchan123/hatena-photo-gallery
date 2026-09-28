@@ -48448,12 +48448,12 @@
           },
           {
             "tag": "p",
-            "text": "キイロタマゴタケ",
+            "text": "キタマゴタケ",
             "contains_image": false,
             "candidate": true,
             "candidate_reason": "accepted_kana_label",
             "effective_candidate": true,
-            "effective_label": "キイロタマゴタケ"
+            "effective_label": "キタマゴタケ"
           },
           {
             "tag": "p",
@@ -48477,12 +48477,12 @@
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224826.jpg",
       "subject_type": "review",
-      "detected_label": "キイロタマゴタケ",
+      "detected_label": "キタマゴタケ",
       "gallery_name": null,
       "taxonomy_match_type": "none",
       "taxonomy_canonical_name": null,
       "classification_reason": "taxonomy_unmatched",
-      "subject_source_block_text": "キイロタマゴタケ",
+      "subject_source_block_text": "キタマゴタケ",
       "subject_source_candidate_reason": "accepted_kana_label",
       "subject_state_status": "accepted_subject",
       "last_rejected_boundary_text": null,
@@ -48509,12 +48509,12 @@
           },
           {
             "tag": "p",
-            "text": "キイロタマゴタケ",
+            "text": "キタマゴタケ",
             "contains_image": false,
             "candidate": true,
             "candidate_reason": "accepted_kana_label",
             "effective_candidate": true,
-            "effective_label": "キイロタマゴタケ"
+            "effective_label": "キタマゴタケ"
           },
           {
             "tag": "p",

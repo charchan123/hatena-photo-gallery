@@ -1388,7 +1388,9 @@ galleries.forEach(gallery => {
     if (e.data?.type === "requestHeight") sendHeight("request-height", true);
   });
 
-  window.addEventListener("resize", sendHeight);
+  window.addEventListener("resize", () => {
+    sendHeight("resize");
+  });
 
     if ("ResizeObserver" in window) {
       const contentResizeObserver = new ResizeObserver(() => {

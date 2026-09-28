@@ -20,7 +20,7 @@
     "legacy_src_only_count": 477,
     "candidate_src_only_count": 27,
     "same_src_name_change_count": 22,
-    "blocked_review_unique_labels": 251,
+    "blocked_review_unique_labels": 250,
     "candidate_vs_legacy_ratio": 0.49776785714285715,
     "taxonomy_mushroom_share_of_shadow": 0.44510978043912175
   },
@@ -71,6 +71,22 @@
         "articles/article_11.html",
         "articles/article_14.html",
         "articles/article_15.html"
+      ]
+    },
+    {
+      "detected_label": "キタマゴタケ",
+      "image_count": 5,
+      "article_count": 3,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224826.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224236.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929214606.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_1.html",
+        "articles/article_3.html",
+        "articles/article_44.html"
       ]
     },
     {
@@ -226,21 +242,6 @@
       "sample_articles": [
         "articles/article_27.html",
         "articles/article_32.html"
-      ]
-    },
-    {
-      "detected_label": "キタマゴタケ",
-      "image_count": 4,
-      "article_count": 2,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224236.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929214606.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929214657.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_3.html",
-        "articles/article_44.html"
       ]
     },
     {
@@ -2179,18 +2180,6 @@
       ],
       "sample_articles": [
         "articles/article_8.html"
-      ]
-    },
-    {
-      "detected_label": "キイロタマゴタケ",
-      "image_count": 1,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224826.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_1.html"
       ]
     },
     {
