@@ -230,7 +230,7 @@ def _year_content(year_model):
 def _document(title, body):
     return f'''<!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{html.escape(title)}</title><link rel="stylesheet" href="assets/gallery.css"><link rel="stylesheet" href="assets/best-shots.css"></head>
+<title>{html.escape(title)}</title><link rel="stylesheet" href="assets/gallery.css"><link rel="stylesheet" href="assets/best-shots.css"><script src="assets/gallery.js" defer></script></head>
 <body><main class="best-shots-page">{body}</main></body></html>'''
 
 

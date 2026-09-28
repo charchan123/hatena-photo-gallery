@@ -789,3 +789,9 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - The 2025 Benitengutake selection is also the 2025 annual Best Shot. Schema v1 now accepts optional `annual_comment` so the monthly selection comment and annual-hero comment can differ without duplicating an observation.
 - Existing manual-selection rules remain unchanged: stable observation references, capture-date grouping, maximum three entries per month, and optional annual selection by `selection_id`.
 - These are explicitly temporary preview selections while the final Best Shot curation is still in progress.
+
+## Best Shot visibility hotfix — 2026-09-28
+
+- Best Shot HTML already contained the selected entries, but rendered blank because it loaded `gallery.css` (which initializes `body` at `opacity: 0`) without loading `gallery.js` (which reveals the body and synchronizes iframe height).
+- Best Shot documents now load the same shared `assets/gallery.js` used by season, records, research, and features pages.
+- No Best Shot selection data, schema, grouping, or comments were changed by this hotfix.
