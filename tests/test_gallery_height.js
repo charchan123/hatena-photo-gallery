@@ -52,6 +52,11 @@ assert.match(source, /if \(isHistoryTraversal\(event\)\) \{\s*window\.parent\.po
 assert.match(source, /sendHeight\(prefix, true\)/);
 assert.match(source, /sendHeight\("request-height", true\)/);
 assert.match(source, /sendHeight\("resize-observer"\)/);
+assert.doesNotMatch(source, /addEventListener\("resize",\s*sendHeight\)/);
+assert.match(
+  source,
+  /addEventListener\("resize",\s*\(\) => \{\s*sendHeight\("resize"\);\s*\}\)/
+);
 assert.doesNotMatch(source, /document\.body\.(?:scrollHeight|offsetHeight)/);
 assert.doesNotMatch(source, /document\.documentElement\.(?:scrollHeight|offsetHeight)/);
 
