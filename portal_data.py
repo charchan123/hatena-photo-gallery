@@ -100,7 +100,7 @@ def _article(shadow, article_metadata):
         return None
     path = shadow["article_path"]
     metadata = article_metadata.get(_normal_path(path), {})
-    return {
+    article = {
         "article_path": path,
         "article_id": metadata.get("article_id", shadow.get("article_id")),
         "title": metadata.get("title", shadow.get("article_title")),
@@ -111,6 +111,9 @@ def _article(shadow, article_metadata):
             "categories", shadow.get("article_categories") or []
         )),
     }
+    if "excerpt" in metadata:
+        article["excerpt"] = metadata.get("excerpt")
+    return article
 
 
 def _knowledge_link(gallery_name, taxonomy_by_name, master_ids):

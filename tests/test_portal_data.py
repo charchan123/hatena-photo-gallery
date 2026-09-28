@@ -64,7 +64,7 @@ def test_article_metadata_propagates_but_not_to_capture_date():
     articles = {"article.html": {
         "article_id": "id", "title": "2026年9月19日 静岡県浜松市",
         "url": "https://example.test/post", "published": "2026-09-19T01:00:00Z",
-        "updated": "2026-09-20T01:00:00Z", "categories": ["キノコ"],
+        "updated": "2026-09-20T01:00:00Z", "categories": ["キノコ"], "excerpt": "本文冒頭",
     }}
     observation = build(articles=articles)["observations"][0]
     assert observation["article"] == {"article_path": "article.html", **articles["article.html"]}
