@@ -50,7 +50,7 @@ def build_observation_records(portal_data):
         if record is None:
             record = {
                 key: article.get(key)
-                for key in ("article_id", "article_path", "title", "url", "published", "updated", "categories")
+                for key in ("article_id", "article_path", "title", "url", "published", "updated", "categories", "excerpt")
             }
             record.update({"cover_src": "", "photo_count": 0, "subject_count": 0,
                            "first_production_index": production_index,
@@ -109,6 +109,29 @@ def render_record_cards(records, limit=None):
         else:
             cards.append(f'<article class="record-card">{body}</article>')
     return "".join(cards)
+
+
+def render_record_preview_rows(records, limit=3):
+    """Render compact new-top previews without records-page statistics."""
+    rows = []
+    for record in records[:limit]:
+        title = html.escape(str(record.get("title") or "無題"))
+        date = html.escape(_format_published(record.get("published")))
+        excerpt = str(record.get("excerpt") or "").strip()
+        excerpt_html = (f'<p class="record-preview-excerpt">{html.escape(excerpt)}</p>'
+                        if excerpt else "")
+        cover = html.escape(str(record.get("cover_src") or ""), quote=True)
+        image = f'<img src="{cover}?width=300" alt="" loading="lazy">' if cover else ""
+        body = (f'<span class="record-preview-thumb">{image}</span>'
+                f'<span class="record-preview-body"><strong class="record-preview-title">{title}</strong>'
+                f'<time class="record-preview-date">{date}</time>{excerpt_html}</span>')
+        url = record.get("url")
+        if url:
+            safe_url = html.escape(str(url), quote=True)
+            rows.append(f'<a class="record-preview-row record-external-link" href="{safe_url}" target="_top">{body}</a>')
+        else:
+            rows.append(f'<article class="record-preview-row">{body}</article>')
+    return "".join(rows)
 
 
 def render_records_page(portal_data):
