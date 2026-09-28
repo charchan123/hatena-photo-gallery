@@ -782,3 +782,10 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Root cause / fix:** the native `resize` event listener passed `sendHeight` directly, so the browser supplied an `Event` as its `reason`; including that non-cloneable object in the `setHeight` `postMessage` caused `DataCloneError`. The listener now calls `sendHeight("resize")` explicitly, ensuring a string reason.
 - **Behavior / scope:** double `requestAnimationFrame` scheduling, `__lastSentHeight`, force sends, `ResizeObserver`, `pageshow`, `requestHeight`, content-height calculation, `setHeight` message shape, `scrollToTitle`, bfcache behavior, favorites, and LightGallery are otherwise unchanged. Only `assets/gallery.js`, its focused height regression test, and this handoff were changed.
 - **Validation / transfer:** baseline and final results are **366 passed / 366 collected**, and the Node iframe-height regression checks pass. The regression test rejects a direct `resize` → `sendHeight` listener and requires the explicit `"resize"` reason. Local commit SHA and deterministic exact-transfer patch metadata are reported externally because a commit cannot contain its own SHA or the digest of a patch containing itself; transfer base is `922af22c5c98a43db7db9148353a9854f3b95724`.
+
+## Temporary Best Shot preview selections — 2026-09-28
+
+- Added three owner-provided preview selections to `data/best-shots.json`: 2025 Benitengutake #2, 2025 Kiiro-suppontake #3, and 2026 Yamadoritakemodoki #1, all resolved against the current production portal observations before commit.
+- The 2025 Benitengutake selection is also the 2025 annual Best Shot. Schema v1 now accepts optional `annual_comment` so the monthly selection comment and annual-hero comment can differ without duplicating an observation.
+- Existing manual-selection rules remain unchanged: stable observation references, capture-date grouping, maximum three entries per month, and optional annual selection by `selection_id`.
+- These are explicitly temporary preview selections while the final Best Shot curation is still in progress.

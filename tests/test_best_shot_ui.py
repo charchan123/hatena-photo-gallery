@@ -61,6 +61,11 @@ def test_comment_contract():
     for comment in ("", "   ", "x" * 201):
         with pytest.raises(best_shot_ui.BestShotConfigError):
             best_shot_ui.build_best_shot_model(config([entry(comment=comment)]), portal())
+    for annual_comment in ("", "   ", "x" * 201):
+        with pytest.raises(best_shot_ui.BestShotConfigError):
+            best_shot_ui.build_best_shot_model(
+                config([entry(annual_comment=annual_comment)]), portal()
+            )
 
 
 def test_resolution_uses_portal_fields_and_capture_date_only():
@@ -105,11 +110,16 @@ def test_descending_year_month_and_ascending_manual_order_without_zero_months():
 
 
 def test_annual_best_validation_and_monthly_card_remains():
-    model = best_shot_ui.build_best_shot_model(config(annual={"2025": "best-1"}), portal())
+    model = best_shot_ui.build_best_shot_model(
+        config([entry(annual_comment="年間だけのコメント")], annual={"2025": "best-1"}),
+        portal(),
+    )
     page = best_shot_ui.render_best_shot_page(model)
     assert "2025年 年間ベストショット" in page
     assert page.count('data-selection-id="best-1"') == 2
     assert "🏆 年間ベスト" in page
+    assert page.count("本人が選んだ一枚") == 1
+    assert page.count("年間だけのコメント") == 1
     for annual in ({"2025": "missing"}, {"2024": "best-1"}, {"2025": "best-1", "2026": "best-1"}):
         with pytest.raises(best_shot_ui.BestShotConfigError):
             best_shot_ui.build_best_shot_model(config(annual=annual), portal())
@@ -147,9 +157,13 @@ def test_archive_latest_capture_year_and_all_year_pages(tmp_path):
     assert 'best-shots-2026.html' not in landing
 
 
-def test_empty_production_config_and_index_entrance_behavior(tmp_path, monkeypatch):
+def test_empty_model_and_index_entrance_behavior(tmp_path, monkeypatch):
     production = best_shot_ui.load_best_shot_config(Path("data/best-shots.json"))
-    model = best_shot_ui.build_best_shot_model(production, portal())
+    assert production["version"] == 1
+    assert isinstance(production["entries"], list)
+    model = best_shot_ui.build_best_shot_model(
+        {"version": 1, "entries": [], "annual_best": {}}, portal()
+    )
     assert "ベストショットは現在選定中です" in best_shot_ui.render_best_shot_page(model)
     monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
     monkeypatch.setattr(main, "copy_shared_assets", lambda: None)
@@ -175,6 +189,6 @@ def test_fresh_gate_and_failure_isolation(monkeypatch):
 
 
 def test_config_contract_contains_only_manual_metadata_and_reference():
-    allowed = {"selection_id", "observation_id", "comment", "location", "order"}
+    allowed = {"selection_id", "observation_id", "comment", "annual_comment", "location", "order"}
     assert best_shot_ui.ENTRY_FIELDS == allowed
     assert config(annual={"2025": "best-1"})["annual_best"]["2025"] == "best-1"

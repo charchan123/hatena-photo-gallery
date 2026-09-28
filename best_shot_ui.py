@@ -14,7 +14,7 @@ SCHEMA_VERSION = 1
 MAX_COMMENT_LENGTH = 200
 MAX_LOCATION_LENGTH = 100
 MAX_ENTRIES_PER_MONTH = 3
-ENTRY_FIELDS = {"selection_id", "observation_id", "comment", "location", "order"}
+ENTRY_FIELDS = {"selection_id", "observation_id", "comment", "annual_comment", "location", "order"}
 REQUIRED_ENTRY_FIELDS = {"selection_id", "observation_id", "comment", "order"}
 
 
@@ -84,6 +84,11 @@ def validate_best_shot_config(config, portal_data):
         comment = _non_empty_string(entry.get("comment"), "comment")
         if len(comment) > MAX_COMMENT_LENGTH:
             raise BestShotConfigError("comment is longer than 200 characters")
+        annual_comment = entry.get("annual_comment")
+        if annual_comment is not None:
+            annual_comment = _non_empty_string(annual_comment, "annual_comment")
+            if len(annual_comment) > MAX_COMMENT_LENGTH:
+                raise BestShotConfigError("annual_comment is longer than 200 characters")
         location = entry.get("location")
         if location is not None and not isinstance(location, str):
             raise BestShotConfigError("location must be a string")
@@ -128,6 +133,7 @@ def validate_best_shot_config(config, portal_data):
             "capture_date": captured.isoformat(),
             "location": location,
             "comment": comment,
+            "annual_comment": annual_comment,
             "article_title": str(article.get("title") or ""),
             "article_url": str(article.get("url") or ""),
             "is_annual_best": False,
@@ -199,11 +205,12 @@ def _card(entry, hero=False):
         article = (f'<a class="best-shot-article" href="{esc(entry["article_url"], True)}" '
                    f'target="_top" title="{title}">この日の観察記録を見る</a>')
     classes = "best-shot-card best-shot-card--hero" if hero else "best-shot-card"
+    comment = entry["annual_comment"] if hero and entry.get("annual_comment") else entry["comment"]
     return f'''<article class="{classes}" data-selection-id="{esc(entry['selection_id'], True)}">
   <a class="best-shot-photo" href="{src}" target="_top"><img src="{src}" alt="{name}" loading="lazy"></a>
   <div class="best-shot-card__body">{badge}<h3>{name}</h3>
     <p class="best-shot-meta">撮影日：{captured.year}年{captured.month}月{captured.day}日</p>{location}
-    <p class="best-shot-comment">{esc(entry['comment'])}</p>{article}
+    <p class="best-shot-comment">{esc(comment)}</p>{article}
   </div>
 </article>'''
 
