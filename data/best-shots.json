@@ -1,5 +1,27 @@
 {
   "version": 1,
-  "entries": [],
-  "annual_best": {}
+  "entries": [
+    {
+      "selection_id": "best-2025-10-benitengutake-02",
+      "observation_id": "obs-c250a3555a8920a30d212e93a4b1bca19c34359be543531708f402f2dc8698cd",
+      "comment": "ブログのトップページにも選ばれた最高の1枚",
+      "annual_comment": "記念すべき初の年間ベストショットはやはりこの1枚",
+      "order": 1
+    },
+    {
+      "selection_id": "best-2025-05-kiiro-suppontake-03",
+      "observation_id": "obs-50e871697b283aa5be603fd05f8e5265533c6512a835d77d684d6100c5e3c525",
+      "comment": "色がとても鮮やかで見ていて楽しいキノコ",
+      "order": 1
+    },
+    {
+      "selection_id": "best-2026-07-yamadoritakemodoki-01",
+      "observation_id": "obs-09a0f4d22601db11946b1b89434dae6144ba4f4cf4298925520e63d2b680472b",
+      "comment": "過去最高と言ってもいいくらいの完成度",
+      "order": 1
+    }
+  ],
+  "annual_best": {
+    "2025": "best-2025-10-benitengutake-02"
+  }
 }
