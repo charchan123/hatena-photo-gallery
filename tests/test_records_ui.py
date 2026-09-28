@@ -2,7 +2,7 @@ import copy
 from pathlib import Path
 import main
 import pytest
-from records_ui import build_observation_records, render_records_page
+from records_ui import build_observation_records, render_record_preview_rows, render_records_page
 
 
 def observation(index, *, article_id="a", path="/a", url="https://example/a", published="2026-09-25T10:00:00+09:00", categories=None, name="A", src=None):
@@ -10,7 +10,7 @@ def observation(index, *, article_id="a", path="/a", url="https://example/a", pu
             "capture": {"date": "1900/01/01"},
             "article": {"article_id": article_id, "article_path": path, "title": "2026年9月18日静岡県浜松市<&", "url": url,
                         "published": published, "updated": "2099-01-01T00:00:00Z",
-                        "categories": ["キノコ探索日記"] if categories is None else categories}}
+                        "categories": ["キノコ探索日記"] if categories is None else categories, "excerpt": "本文の冒頭<&"}}
 
 
 def portal(*rows):
@@ -102,3 +102,11 @@ def test_records_failure_isolation_and_no_stale_read(monkeypatch):
     monkeypatch.setattr(main, "load_fresh_portal_data", lambda path: {"version": 1})
     monkeypatch.setattr(main, "generate_records_page", lambda *args: (_ for _ in ()).throw(RuntimeError("boom")))
     assert main.generate_records_page_if_fresh({"build_ok": True}) == []
+
+
+def test_excerpt_is_preserved_and_compact_preview_is_escaped():
+    records = build_observation_records(portal(observation(0)))
+    assert records[0]["excerpt"] == "本文の冒頭<&"
+    preview = render_record_preview_rows(records)
+    assert "本文の冒頭&lt;&amp;" in preview and 'target="_top"' in preview
+    assert "現在の図鑑掲載" not in preview and "NEW!" not in preview
