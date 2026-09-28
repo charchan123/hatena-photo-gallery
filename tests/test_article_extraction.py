@@ -1343,3 +1343,13 @@ def test_exif_cache_summary_counts_unique_urls(monkeypatch, tmp_path, capsys):
     main.build_exif_cache(entries, {cached: {}})
 
     assert "total=3\nhits=1\nfetched=1\nfailed=1" in capsys.readouterr().out
+
+
+def test_extract_article_excerpt_contract():
+    assert main.extract_article_excerpt("<style>x</style><p> 最初の  自然な\n本文 <b>です</b> </p><p>次</p>") == "最初の 自然な 本文 です"
+    assert main.extract_article_excerpt("") == ""
+    assert main.extract_article_excerpt('<p><img alt="キノコの説明"></p>') == ""
+    assert main.extract_article_excerpt("<div>タグなしの <em>fallback</em></div>") == "タグなしの fallback"
+    exact = "あ" * 80
+    assert main.extract_article_excerpt(f"<p>{exact}</p>") == exact
+    assert main.extract_article_excerpt(f"<p>{exact}い</p>") == exact + "…"
