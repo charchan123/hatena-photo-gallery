@@ -16,7 +16,7 @@ from portal_data import (
     build_portal_data, failure_status, save_json, success_status,
 )
 from season_ui import generate_season_page, load_fresh_portal_data
-from records_ui import generate_records_page, render_record_cards
+from records_ui import generate_records_page, render_record_cards, render_record_preview_rows
 from detail_ui import build_detail_views, render_detail_sections
 from feature_ui import load_feature_facets, validate_feature_facets, generate_feature_page
 from research_ui import generate_research_page
@@ -468,6 +468,7 @@ def fetch_hatena_articles_api():
                 "url": _atom_entry_url(entry, ns),
                 "published": _atom_text(entry, "atom:published", ns),
                 "updated": _atom_text(entry, "atom:updated", ns),
+                "excerpt": extract_article_excerpt(html_content),
             }
             print(f"✅ 保存完了: {filename}")
 
@@ -481,6 +482,32 @@ def fetch_hatena_articles_api():
         print(f"Phase 3B article metadata capture failed: {error}")
     print(f"📦 合計 {count} 件の記事を保存しました。")
     return article_files
+
+
+def extract_article_excerpt(html_content, max_length=80):
+    """Extract a short, natural-text preview from already-fetched article HTML."""
+    if not html_content:
+        return ""
+    soup = BeautifulSoup(html_content, "html.parser")
+    for node in soup(["script", "style", "noscript", "template"]):
+        node.decompose()
+
+    def normalized_text(node):
+        # Images are intentionally removed so their alt text cannot become prose.
+        for image in node.find_all("img"):
+            image.decompose()
+        return " ".join(node.get_text(" ", strip=True).split())
+
+    text = ""
+    for paragraph in soup.find_all("p"):
+        text = normalized_text(paragraph)
+        if text:
+            break
+    if not text:
+        text = normalized_text(soup)
+    if len(text) <= max_length:
+        return text
+    return text[:max_length].rstrip() + "…"
 
 
 def _atom_text(entry, selector, namespace):
@@ -2501,226 +2528,61 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 # new-top.html を生成（Top Portal Structural Prototype）
 # ===========================
 def generate_new_top(grouped, exif_cache, observation_records=None,
-                   feature_search_available=False, research_summary=None,
-                   best_shot_summary=None):
+                     feature_search_available=False, research_summary=None,
+                     best_shot_summary=None):
+    """Generate the records-first preview portal; the gallery index stays separate."""
     copy_shared_assets()
-    index_parts = []
-
-    # ===========================
-    # HTML 骨格（head）
-    # ===========================
-    index_parts.append(f"""<!doctype html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
+    observation_records = observation_records or []
+    parts = [f'''<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>キノコ図鑑</title>
 {STYLE_TAG}
 <link rel="stylesheet" href="assets/portal.css">
-{'<link rel="stylesheet" href="assets/records.css">' if observation_records else ''}
-{LIGHTGALLERY_TAGS}
-""")
-
-    # --------------------------
-    # 検索用 JS データ（headに置く）
-    # --------------------------
-    all_mushrooms_js = []
-
-    for alt, srcs in grouped.items():
-        thumb = srcs[0] if srcs else ""
-        all_mushrooms_js.append({
-            "name": alt,
-            "name_norm": normalize_japanese_search(alt),
-            "href": f"{safe_filename(alt)}.html",
-            "thumb": thumb + "?width=300"
-        })
-
-    index_parts.append(f"""
-<script>
-window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
-</script>
-</head>
-<body class="portal-index">
+</head><body class="portal-index">
 <main class="portal-shell">
-  <section class="portal-intro" aria-labelledby="portal-title">
-    <p class="portal-eyebrow">親子のキノコ観察記録</p>
-    <h1 id="portal-title">🍄 キノコを探しに行こう</h1>
-    <p class="portal-intro__lead">見つけたキノコを、写真と記録からたどれます</p>
-  </section>
-  <nav class="portal-grid" aria-label="キノコ図鑑の主な入口">
-""")
+<section class="portal-records-hero" aria-labelledby="records-heading">
+  <div class="portal-records-visual" aria-hidden="true"></div>
+  <header class="portal-records-heading">
+    <p class="portal-eyebrow">FIELD NOTES</p>
+    <h1 id="records-heading">📔 観察記録</h1>
+    <p>キノコ探索のブログ記事を、新しい順に紹介します。</p>
+  </header>
+  <div class="record-preview-list">{render_record_preview_rows(observation_records, limit=3)}</div>
+  <a class="portal-more-link" href="records.html">観察記録をもっと見る <span aria-hidden="true">→</span></a>
+</section>
+<section class="portal-explore" aria-labelledby="explore-heading">
+  <h2 id="explore-heading" class="portal-zone-title">🍄 キノコを探す</h2>
+  <a class="portal-lead-card" href="index.html">
+    <span class="portal-lead-card__visual" aria-hidden="true"></span>
+    <span class="portal-card__content"><span class="portal-card__copy"><strong>📖 図鑑を見る</strong><small>名前や写真、五十音からキノコを探す</small></span><span class="portal-card__arrow" aria-hidden="true">→</span></span>
+  </a>
+  <nav class="portal-secondary-grid" aria-label="キノコを探す入口">
+''']
 
-    def append_portal_card(modifier, href, icon, title, description):
-        index_parts.append(f"""
-    <a class="portal-card portal-card--{modifier}" href="{href}">
-      <span class="portal-card__visual" aria-hidden="true"></span>
-      <span class="portal-card__content">
-        <span class="portal-card__icon" aria-hidden="true"></span>
-        <span class="portal-card__copy"><strong>{icon} {title}</strong><small>{description}</small></span>
-        <span class="portal-card__arrow" aria-hidden="true">→</span>
-      </span>
-    </a>
-""")
+    def append_card(modifier, href, icon, title, description):
+        parts.append(
+            f'    <a class="portal-card portal-card--{modifier}" href="{href}">\n'
+            '      <span class="portal-card__visual" aria-hidden="true"></span>\n'
+            f'      <span class="portal-card__content"><span class="portal-card__copy"><strong>{icon} {title}</strong><small>{description}</small></span><span class="portal-card__arrow" aria-hidden="true">→</span></span>\n'
+            '    </a>\n'
+        )
 
-    append_portal_card("guide", "#mushroom-guide", "📖", "図鑑を見る", "名前や写真からキノコを調べる")
-    append_portal_card("season", "season.html", "🗓️", "季節から探す", "どの季節に出会えるかを見る")
+    append_card("season", "season.html", "🗓️", "季節から探す", "撮影された季節からたどる")
     if feature_search_available:
-        append_portal_card("features", "features.html", "🔎", "特徴から探す", "見た目の特徴から絞り込む")
+        append_card("features", "features.html", "🔎", "特徴から探す", "見た目の特徴から絞り込む")
     if research_summary:
-        append_portal_card("research", "research.html", "❓", "不明キノコ研究室", "正体を調べているキノコを見る")
+        append_card("research", "research.html", "❓", "不明キノコ研究室", "正体を調べているキノコを見る")
     if best_shot_summary and best_shot_summary.get("entry_count", 0) > 0:
-        append_portal_card("best-shots", "best-shots.html", "📸", "ベストショット", "とっておきの一枚を集めた写真館")
-    if observation_records:
-        append_portal_card("records", "records.html", "📔", "観察記録", "出会ったキノコを日ごとにたどる")
-
-    index_parts.append("""
-  </nav>
-  <section class="portal-secondary" id="mushroom-guide" aria-labelledby="guide-heading">
-    <h2 id="guide-heading" class="portal-zone-title">キノコを調べる</h2>
-    <div class="portal-tool">
-      <h3 class="section-title">🔍 全キノコ横断検索</h3>
-      <p class="section-desc">キノコ名からブログ内のキノコを検索できます</p>
-      <div class="index-search-box">
-        <input type="text" class="index-search-input" aria-label="キノコ名で検索"
-               placeholder="キノコ名で検索（例：ベニタケ）">
-      </div>
-      <div class="index-search-results"></div>
-      <div class="search-empty" style="display:none;">
-        🔍 該当するキノコが見つかりませんでした<br>
-        <small>ひらがな・カタカナを変えて試してみてください</small>
-      </div>
-      <div class="index-pagination"></div>
-    </div>
-    <div class="portal-tool portal-tool--kana">
-      <h3 class="section-title">📂 五十音別分類</h3>
-      <p class="section-desc">五十音順でキノコを探せます</p>
-      <div class="aiuo-links">
-""")
-
-    for g in AIUO_GROUPS.keys():
-        index_parts.append(
-            f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>'
-        )
-
-    index_parts.append("""
-      </div>
-    </div>
-  </section>
-  <section class="portal-secondary portal-more" aria-labelledby="more-heading">
-    <h2 id="more-heading" class="portal-zone-title">もっと楽しむ</h2>
-""")
-
-    # ==========================================================
-    # 観察ノート専用セクション
-    # ==========================================================
-    index_parts.append("""
-    <div class="portal-tool">
-      <h3 class="section-title">📓 観察ノート</h3>
-      <p class="section-desc">出会ったキノコを、時間の流れとともに記録として残せます。</p>
-
-      <a class="aiuo-link note-link feature-action-link" href="favorite.html">
-        ⭐ 観察中の写真 <span id="favorite-count"></span>
-      </a>
-    </div>
-    """)
-
-    # ==========================================================
-    # おすすめキノコ
-    # ==========================================================
-    # altごとに最新撮影日
-    alt_latest = {}
-    for alt, srcs in grouped.items():
-        best = ""
-        for src in srcs:
-            d = (exif_cache.get(src) or {}).get("date") or ""
-            key = d.replace("/", "")
-            if len(key) == 8 and key > best:
-                best = key
-        if best:
-            alt_latest[alt] = best
-
-    sorted_new = sorted(alt_latest.items(), key=lambda x: x[1], reverse=True)
-    new_names = [n for n, _ in sorted_new][:3]
-
-    def pick(names):
-        out = []
-        for n in names:
-            if n in grouped and grouped[n]:
-                out.append({
-                    "name": n,
-                    "thumb": grouped[n][0] + "?width=400",
-                    "href": f"{safe_filename(n)}.html"
-                })
-        return out
-
-    recommend_new = pick(new_names)
-    recommend_rarity = pick(RARITY_LIST)
-    recommend_popular = pick(POPULAR_LIST)
-
-    index_parts.append("""
-    <div class="portal-tool">
-      <h3 class="section-title">🍄 おすすめキノコ</h3>
-      <p class="section-desc">写真の中から、いくつかの切り口でピックアップしています。</p>
-
-      <div class="recommend-grid">
-    """)
-
-    def append_cards(title, items):
-        index_parts.append(
-            f"<div class='recommend-card'><h3>{title}</h3><div class='rec-items'>"
-        )
-        for it in items:
-            index_parts.append(f"""
-<a class="rec-item" href="{it['href']}">
-  <img src="{it['thumb']}" alt="{it['name']}">
-  <div>{it['name']}</div>
-</a>
-""")
-        index_parts.append("</div></div>")
-
-    append_cards("新着キノコ", recommend_new)
-    append_cards("珍しいキノコ", recommend_rarity)
-    append_cards("人気キノコTOP3", recommend_popular)
-
-    index_parts.append("""
-      </div>
-    </div>
-""")
-
-    if observation_records:
-        index_parts.append(f"""
-    <div class="portal-tool portal-records-preview">
-      <h3 class="section-title">📔 最近の観察記録</h3>
-      <p class="section-desc">キノコ探索のブログ記事を新しい順に紹介します</p>
-      <div class="record-list record-list-preview">{render_record_cards(observation_records, limit=1)}</div>
-      <a class="aiuo-link feature-action-link record-more-link" href="records.html">観察記録をもっと見る</a>
-    </div>
-""")
-
-    index_parts.append("""
-    <aside class="portal-guide" aria-label="写真と観察ノートの使い方">
-      <p>📷 写真をクリックするとフルスクリーンでじっくり観察できます</p>
-      <p>⭐ 気になった写真は★で保存して、あとで「観察ノート」で見返せます</p>
-    </aside>
-  </section>
+        append_card("best-shots", "best-shots.html", "📸", "ベストショット", "とっておきの一枚を集めた写真館")
+    parts.append(f'''  </nav>
+</section>
 </main>
-""")
-
-    # ===========================
-    # footer（JS）
-    # ===========================
-    index_parts.append(f"""
 {SCRIPT_TAG}
-</body>
-</html>
-""")
-
-    # ===========================
-    # 書き出し
-    # ===========================
-    with open(f"{OUTPUT_DIR}/new-top.html", "w", encoding="utf-8") as f:
-        f.write("".join(index_parts))
-
+</body></html>
+''')
+    with open(f"{OUTPUT_DIR}/new-top.html", "w", encoding="utf-8") as stream:
+        stream.write("".join(parts))
     print("✅ new-top.html 生成完了")
 
 # ===========================
