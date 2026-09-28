@@ -141,6 +141,14 @@ def test_html_is_escaped_location_is_explicit_and_only_http_article_links():
     assert "場所：" not in no_location
 
 
+def test_best_shot_document_loads_shared_gallery_js_for_visibility_and_iframe_height():
+    page = best_shot_ui.render_best_shot_page(
+        best_shot_ui.build_best_shot_model(config(), portal())
+    )
+    assert '<link rel="stylesheet" href="assets/gallery.css">' in page
+    assert '<script src="assets/gallery.js" defer></script>' in page
+
+
 def test_archive_latest_capture_year_and_all_year_pages(tmp_path):
     rows = [observation("old", "2024-04-01"), observation("new", "2026-06-01")]
     cfg = config([entry("old", "old", 1), entry("new", "new", 1)])
