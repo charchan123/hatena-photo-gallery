@@ -121,7 +121,7 @@ def render_record_preview_rows(records, limit=3):
         excerpt_html = (f'<p class="record-preview-excerpt">{html.escape(excerpt)}</p>'
                         if excerpt else "")
         cover = html.escape(str(record.get("cover_src") or ""), quote=True)
-        image = f'<img src="{cover}?width=300" alt="" loading="lazy">' if cover else ""
+        image = f'<img src="{cover}?width=500" alt="" loading="lazy">' if cover else ""
         body = (f'<span class="record-preview-thumb">{image}</span>'
                 f'<span class="record-preview-body"><strong class="record-preview-title">{title}</strong>'
                 f'<time class="record-preview-date">{date}</time>{excerpt_html}</span>')
