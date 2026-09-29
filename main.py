@@ -2583,11 +2583,12 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
 ''']
 
     def append_card(modifier, href, title, description, eyebrow=None):
+        eyebrow_html = f'<span class="portal-eyebrow">{eyebrow}</span>' if eyebrow else ""
         parts.append(
             f'    <a class="portal-card portal-card--{modifier}" href="{href}">\n'
             '      <span class="portal-card__visual" aria-hidden="true"></span>\n'
             f'      <span class="portal-card__content"><span class="portal-card__copy">'
-            f'{f"<span class=\"portal-eyebrow\">{eyebrow}</span>" if eyebrow else ""}'
+            f'{eyebrow_html}'
             f'<strong>{portal_icon(modifier)}<span>{title}</span></strong><small>{description}</small></span></span>\n'
             '    </a>\n'
         )
