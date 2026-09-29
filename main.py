@@ -2571,12 +2571,27 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
     append_card("season", "season.html", "🗓️", "季節から探す", "撮影された季節からたどる")
     if feature_search_available:
         append_card("features", "features.html", "🔎", "特徴から探す", "見た目の特徴から絞り込む")
+    parts.append('  </nav>\n</section>\n')
+
+    independent_cards = []
     if research_summary:
-        append_card("research", "research.html", "❓", "不明キノコ研究室", "正体を調べているキノコを見る")
+        independent_cards.append(("research", "research.html", "❓", "不明キノコ研究室", "正体を調べているキノコを見る"))
     if best_shot_summary and best_shot_summary.get("entry_count", 0) > 0:
-        append_card("best-shots", "best-shots.html", "📸", "ベストショット", "とっておきの一枚を集めた写真館")
-    parts.append(f'''  </nav>
-</section>
+        independent_cards.append(("best-shots", "best-shots.html", "📸", "ベストショット", "とっておきの一枚を集めた写真館"))
+    if independent_cards:
+        parts.append('<section class="portal-independent-links" aria-label="特集コンテンツ">\n')
+        for card in independent_cards:
+            append_card(*card)
+        parts.append('</section>\n')
+
+    parts.append(f'''<footer class="portal-about" aria-labelledby="about-heading">
+  <h2 id="about-heading">このブログについて</h2>
+  <nav class="portal-about-links" aria-label="このブログについてのリンク">
+    <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E8%87%AA%E5%B7%B1%E7%B4%B9%E4%BB%8B" target="_top">👤 自己紹介</a>
+    <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E6%97%A5%E5%B8%B8%E3%81%AE%E8%A8%98%E9%8C%B2" target="_top">📝 日常記録</a>
+    <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E3%83%AA%E3%83%B3%E3%82%AF%E9%9B%86" target="_top">🔗 リンク集</a>
+  </nav>
+</footer>
 </main>
 {SCRIPT_TAG}
 </body></html>
