@@ -109,4 +109,5 @@ def test_excerpt_is_preserved_and_compact_preview_is_escaped():
     assert records[0]["excerpt"] == "本文の冒頭<&"
     preview = render_record_preview_rows(records)
     assert "本文の冒頭&lt;&amp;" in preview and 'target="_top"' in preview
+    assert "img0?width=500" in preview
     assert "現在の図鑑掲載" not in preview and "NEW!" not in preview

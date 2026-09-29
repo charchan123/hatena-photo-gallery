@@ -484,7 +484,7 @@ def fetch_hatena_articles_api():
     return article_files
 
 
-def extract_article_excerpt(html_content, max_length=80):
+def extract_article_excerpt(html_content, max_length=130):
     """Extract a short, natural-text preview from already-fetched article HTML."""
     if not html_content:
         return ""
@@ -498,13 +498,12 @@ def extract_article_excerpt(html_content, max_length=80):
             image.decompose()
         return " ".join(node.get_text(" ", strip=True).split())
 
-    text = ""
+    paragraphs = []
     for paragraph in soup.find_all("p"):
         text = normalized_text(paragraph)
         if text:
-            break
-    if not text:
-        text = normalized_text(soup)
+            paragraphs.append(text)
+    text = " ".join(paragraphs) if paragraphs else normalized_text(soup)
     if len(text) <= max_length:
         return text
     return text[:max_length].rstrip() + "…"
@@ -2527,6 +2526,23 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 # ===========================
 # new-top.html を生成（Top Portal Structural Prototype）
 # ===========================
+def portal_icon(name):
+    """Return a small, decorative line icon for the new-top portal."""
+    paths = {
+        "records": '<path d="M5 4.5h11a3 3 0 0 1 3 3V20H7a2 2 0 0 1-2-2z"/><path d="M8 4.5V20M11 9h5M11 13h5"/>',
+        "guide": '<path d="M3.5 5.5c3.2-.8 5.7-.2 8 1.7v12c-2.3-1.9-4.8-2.5-8-1.7zM20.5 5.5c-3.2-.8-5.7-.2-8 1.7v12c2.3-1.9 4.8-2.5 8-1.7z"/>',
+        "season": '<rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M7.5 3v4M16.5 3v4M3.5 9.5h17M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01"/>',
+        "features": '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/>',
+        "research": '<path d="M9 3h6M10 3v6l-5.2 9a2 2 0 0 0 1.8 3h10.8a2 2 0 0 0 1.8-3L14 9V3M7.5 16h9"/>',
+        "best-shots": '<path d="M4 7.5h3l1.5-2h7l1.5 2h3a1.5 1.5 0 0 1 1.5 1.5v9.5A1.5 1.5 0 0 1 20 20H4a1.5 1.5 0 0 1-1.5-1.5V9A1.5 1.5 0 0 1 4 7.5z"/><circle cx="12" cy="13.5" r="4"/>',
+        "person": '<circle cx="12" cy="8" r="3.5"/><path d="M5.5 21c.4-4.1 2.6-6.2 6.5-6.2s6.1 2.1 6.5 6.2"/>',
+        "note": '<path d="M5 3.5h14v17H5zM8.5 8h7M8.5 12h7M8.5 16h4"/>',
+        "link": '<path d="m9.5 14.5 5-5M7.5 17.5l-1 1a3.5 3.5 0 0 1-5-5l3.2-3.2a3.5 3.5 0 0 1 5 0M16.5 6.5l1-1a3.5 3.5 0 0 1 5 5l-3.2 3.2a3.5 3.5 0 0 1-5 0"/>',
+    }
+    return (f'<svg class="portal-icon" viewBox="0 0 24 24" aria-hidden="true" '
+            f'focusable="false">{paths[name]}</svg>')
+
+
 def generate_new_top(grouped, exif_cache, observation_records=None,
                      feature_search_available=False, research_summary=None,
                      best_shot_summary=None):
@@ -2545,39 +2561,47 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
   <div class="portal-records-visual" aria-hidden="true"></div>
   <header class="portal-records-heading">
     <p class="portal-eyebrow">FIELD NOTES</p>
-    <h1 id="records-heading">📔 観察記録</h1>
+    <h1 id="records-heading">{portal_icon("records")}<span>観察記録</span></h1>
     <p>キノコ探索のブログ記事を、新しい順に紹介します。</p>
   </header>
   <div class="record-preview-list">{render_record_preview_rows(observation_records, limit=3)}</div>
   <a class="portal-more-link" href="records.html">観察記録をもっと見る <span aria-hidden="true">→</span></a>
 </section>
 <section class="portal-explore" aria-labelledby="explore-heading">
-  <h2 id="explore-heading" class="portal-zone-title">🍄 キノコを探す</h2>
+  <div class="portal-section-visual portal-section-visual--explore" aria-hidden="true"></div>
+  <header class="portal-section-heading">
+    <p class="portal-eyebrow">MUSHROOM GUIDE</p>
+    <h2 id="explore-heading" class="portal-zone-title">{portal_icon("guide")}<span>キノコを探す</span></h2>
+    <p>名前や季節、見た目の特徴からキノコを探せます。</p>
+  </header>
+  <div class="portal-explore-content">
   <a class="portal-lead-card" href="index.html">
     <span class="portal-lead-card__visual" aria-hidden="true"></span>
-    <span class="portal-card__content"><span class="portal-card__copy"><strong>📖 図鑑を見る</strong><small>名前や写真、五十音からキノコを探す</small></span><span class="portal-card__arrow" aria-hidden="true">→</span></span>
+    <span class="portal-card__content"><span class="portal-card__copy"><strong>{portal_icon("guide")}<span>図鑑を見る</span></strong><small>名前や写真、五十音からキノコを探す</small></span></span>
   </a>
   <nav class="portal-secondary-grid" aria-label="キノコを探す入口">
 ''']
 
-    def append_card(modifier, href, icon, title, description):
+    def append_card(modifier, href, title, description, eyebrow=None):
         parts.append(
             f'    <a class="portal-card portal-card--{modifier}" href="{href}">\n'
             '      <span class="portal-card__visual" aria-hidden="true"></span>\n'
-            f'      <span class="portal-card__content"><span class="portal-card__copy"><strong>{icon} {title}</strong><small>{description}</small></span><span class="portal-card__arrow" aria-hidden="true">→</span></span>\n'
+            f'      <span class="portal-card__content"><span class="portal-card__copy">'
+            f'{f"<span class=\"portal-eyebrow\">{eyebrow}</span>" if eyebrow else ""}'
+            f'<strong>{portal_icon(modifier)}<span>{title}</span></strong><small>{description}</small></span></span>\n'
             '    </a>\n'
         )
 
-    append_card("season", "season.html", "🗓️", "季節から探す", "撮影された季節からたどる")
+    append_card("season", "season.html", "季節から探す", "撮影された季節からたどる")
     if feature_search_available:
-        append_card("features", "features.html", "🔎", "特徴から探す", "見た目の特徴から絞り込む")
-    parts.append('  </nav>\n</section>\n')
+        append_card("features", "features.html", "特徴から探す", "見た目の特徴から絞り込む")
+    parts.append('  </nav>\n  </div>\n</section>\n')
 
     independent_cards = []
     if research_summary:
-        independent_cards.append(("research", "research.html", "❓", "不明キノコ研究室", "正体を調べているキノコを見る"))
+        independent_cards.append(("research", "research.html", "不明キノコ研究室", "正体を調べているキノコを見る", "RESEARCH LAB"))
     if best_shot_summary and best_shot_summary.get("entry_count", 0) > 0:
-        independent_cards.append(("best-shots", "best-shots.html", "📸", "ベストショット", "とっておきの一枚を集めた写真館"))
+        independent_cards.append(("best-shots", "best-shots.html", "ベストショット", "とっておきの一枚を集めた写真館", "BEST SHOTS"))
     if independent_cards:
         parts.append('<section class="portal-independent-links" aria-label="特集コンテンツ">\n')
         for card in independent_cards:
@@ -2587,9 +2611,9 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
     parts.append(f'''<footer class="portal-about" aria-labelledby="about-heading">
   <h2 id="about-heading">このブログについて</h2>
   <nav class="portal-about-links" aria-label="このブログについてのリンク">
-    <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E8%87%AA%E5%B7%B1%E7%B4%B9%E4%BB%8B" target="_top">👤 自己紹介</a>
-    <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E6%97%A5%E5%B8%B8%E3%81%AE%E8%A8%98%E9%8C%B2" target="_top">📝 日常記録</a>
-    <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E3%83%AA%E3%83%B3%E3%82%AF%E9%9B%86" target="_top">🔗 リンク集</a>
+    <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E8%87%AA%E5%B7%B1%E7%B4%B9%E4%BB%8B" target="_top">{portal_icon("person")}<span>自己紹介</span></a>
+    <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E6%97%A5%E5%B8%B8%E3%81%AE%E8%A8%98%E9%8C%B2" target="_top">{portal_icon("note")}<span>日常記録</span></a>
+    <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E3%83%AA%E3%83%B3%E3%82%AF%E9%9B%86" target="_top">{portal_icon("link")}<span>リンク集</span></a>
   </nav>
 </footer>
 </main>

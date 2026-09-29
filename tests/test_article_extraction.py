@@ -1346,10 +1346,14 @@ def test_exif_cache_summary_counts_unique_urls(monkeypatch, tmp_path, capsys):
 
 
 def test_extract_article_excerpt_contract():
-    assert main.extract_article_excerpt("<style>x</style><p> 最初の  自然な\n本文 <b>です</b> </p><p>次</p>") == "最初の 自然な 本文 です"
+    html = """<style>style text</style><script>script text</script>
+    <p> 最初の  自然な\n本文 <b>です</b><img alt="画像説明"> </p>
+    <noscript>hidden</noscript><p>次の 段落です</p><template>template text</template>"""
+    assert main.extract_article_excerpt(html) == "最初の 自然な 本文 です 次の 段落です"
     assert main.extract_article_excerpt("") == ""
     assert main.extract_article_excerpt('<p><img alt="キノコの説明"></p>') == ""
     assert main.extract_article_excerpt("<div>タグなしの <em>fallback</em></div>") == "タグなしの fallback"
-    exact = "あ" * 80
+    exact = "あ" * 130
     assert main.extract_article_excerpt(f"<p>{exact}</p>") == exact
     assert main.extract_article_excerpt(f"<p>{exact}い</p>") == exact + "…"
+    assert "<" not in main.extract_article_excerpt("<p>本文<strong>強調</strong></p>")
