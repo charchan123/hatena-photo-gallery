@@ -834,3 +834,8 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **School Archive reference:** its contract is `--paper: #f7fcf4`, `body { background: var(--paper); }`, with a 150px hero-edge `linear-gradient(transparent, var(--paper))` fade.
 - **Hatena follow-up:** in the next repository-external Hatena `/new-top` Design CSS step, unify the background to `#f7fcf4`, replace the mask approach with a 150px pseudo-element fade, preserve the banner's overall opacity, and leave the observation-record visual unchanged. Validate content overlap beginning around `-24px` on desktop and `-14px` on mobile.
 - **Protected scope:** no Hatena Design CSS is stored or changed here. `main.py` portal structure, generated `new-top.html` structure, `records_ui.py`, Best Shot, Research, feature facets, portal-data schema, Phase 3C, taxonomy, EXIF, favorites, LightGallery, iframe height sync, `gallery.js`, workflows, `data/*`, AI visual placeholders, inline SVGs, excerpt logic, and thumbnail hover remain unchanged.
+
+## Phase 4A.8.2.2 — Widen new-top content shell
+
+- **Desktop proportions:** the desktop portal shell was widened from 1040px to 1180px, and its horizontal padding increased from 20px to 22px, based on the School Archive desktop content proportions.
+- **Protected scope:** the Hatena banner and fade are untouched, and the existing mobile behavior below 680px is unchanged.
