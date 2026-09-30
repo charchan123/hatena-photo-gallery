@@ -1,5 +1,5 @@
 .portal-index { --portal-panel-radius: 22px; --portal-panel-border: rgba(53,78,58,.16); --portal-paper: rgba(255,255,255,.78); margin: 0; padding: 0; background: #f7fcf4; color: #26352b; }
-.portal-index .portal-shell { width: min(100%,1040px); margin: 0 auto; padding: 24px 20px 52px; box-sizing: border-box; }
+.portal-index .portal-shell { width: min(100%,1180px); margin: 0 auto; padding: 24px 22px 52px; box-sizing: border-box; }
 .portal-records-hero,.portal-explore,.portal-independent-links .portal-card { overflow: hidden; border: 1px solid var(--portal-panel-border); border-radius: var(--portal-panel-radius); background: var(--portal-paper); box-shadow: 0 10px 30px rgba(42,61,45,.09); }
 .portal-records-visual,.portal-section-visual,.portal-independent-links .portal-card__visual { background: radial-gradient(circle at 75% 35%,rgba(240,211,132,.65),transparent 18%),radial-gradient(circle at 20% 90%,#806746 0 5%,transparent 6%),linear-gradient(135deg,#9aaa7b,#607955 52%,#334d3b); background-position:center; background-size:cover; }
 .portal-records-visual { height: 150px; }

@@ -96,5 +96,6 @@ def test_portal_styles_are_compact_and_scoped(monkeypatch, tmp_path):
     assert ".portal-card__arrow" not in css and "scale(1.08)" in css
     assert "#f7fcf4" in css
     assert "#f3f0e6" not in css
+    assert ".portal-index .portal-shell { width: min(100%,1180px); margin: 0 auto; padding: 24px 22px 52px;" in css
     main.generate_index({}, {})
     assert "portal.css" not in (tmp_path / "index.html").read_text()
