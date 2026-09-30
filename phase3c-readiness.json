@@ -3,13 +3,13 @@
   "summary": {
     "legacy_production_image_count": 896,
     "legacy_unique_names": 307,
-    "shadow_total_images": 1002,
-    "shadow_detected_images": 949,
+    "shadow_total_images": 1001,
+    "shadow_detected_images": 948,
     "shadow_undetected_images": 53,
     "taxonomy_mushroom_images": 446,
     "taxonomy_non_mushroom_images": 7,
-    "review_images": 549,
-    "taxonomy_unmatched_review_images": 496,
+    "review_images": 548,
+    "taxonomy_unmatched_review_images": 495,
     "no_detected_label_review_images": 53,
     "taxonomy_unavailable_review_images": 0,
     "candidate_production_image_count": 446,
@@ -22,7 +22,7 @@
     "same_src_name_change_count": 22,
     "blocked_review_unique_labels": 250,
     "candidate_vs_legacy_ratio": 0.49776785714285715,
-    "taxonomy_mushroom_share_of_shadow": 0.44510978043912175
+    "taxonomy_mushroom_share_of_shadow": 0.44555444555444557
   },
   "blocked_review_labels": [
     {
@@ -102,21 +102,6 @@
       "sample_articles": [
         "articles/article_44.html",
         "articles/article_52.html"
-      ]
-    },
-    {
-      "detected_label": "ベニイグチ",
-      "image_count": 5,
-      "article_count": 2,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224739.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224758.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250922/20250922201844.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_1.html",
-        "articles/article_45.html"
       ]
     },
     {
@@ -400,6 +385,21 @@
       "sample_articles": [
         "articles/article_87.html",
         "articles/article_88.html"
+      ]
+    },
+    {
+      "detected_label": "ベニイグチ",
+      "image_count": 4,
+      "article_count": 2,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224739.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250922/20250922201844.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250922/20250922202048.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_1.html",
+        "articles/article_45.html"
       ]
     },
     {

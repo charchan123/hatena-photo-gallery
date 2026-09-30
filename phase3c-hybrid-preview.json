@@ -15,7 +15,7 @@
     "shadow_missing_legacy_fallback_count": 0,
     "confirmed_non_mushroom_removed_count": 0,
     "confirmed_new_mushroom_added_count": 27,
-    "new_review_excluded_count": 52,
+    "new_review_excluded_count": 51,
     "new_undetected_excluded_count": 16,
     "new_non_mushroom_excluded_count": 7,
     "new_boundary_blocked_excluded_count": 4,
@@ -48169,100 +48169,10 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "最初はひっくり返ったベニタケかと思ったが、まさかの基部が巨大な本種の幼菌だった。面白い形だと思う。本種も多く発生していた。",
+            "text": "最初はひっくり返ったベニタケかと思ったが、まさかの基部が巨大な本種の幼菌だった。面白い形だと思う。本種も多く発生していた。ほ",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": true,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "普通の形をした本種も発見した。",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "sentence_punctuation",
-            "effective_candidate": false,
-            "effective_label": null
-          }
-        ]
-      },
-      "article_title": "2026年9月19日静岡県浜松市",
-      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
-      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
-      "article_published": "2026-09-25T22:53:27+09:00",
-      "article_path": "articles/article_1.html",
-      "legacy_alt": null,
-      "decision": "new_review_excluded"
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224758.jpg",
-      "subject_type": "review",
-      "detected_label": "ベニイグチ",
-      "gallery_name": null,
-      "taxonomy_match_type": "none",
-      "taxonomy_canonical_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "subject_source_block_text": "ベニイグチ",
-      "subject_source_candidate_reason": "accepted_kana_label",
-      "subject_state_status": "accepted_subject",
-      "last_rejected_boundary_text": null,
-      "last_rejected_boundary_reason": null,
-      "dom_context": {
-        "containing_block": {
-          "tag": "p",
-          "text": "",
-          "contains_image": true,
-          "candidate": false,
-          "candidate_reason": "empty",
-          "effective_candidate": false,
-          "effective_label": null
-        },
-        "previous_blocks": [
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": true,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "最初はひっくり返ったベニタケかと思ったが、まさかの基部が巨大な本種の幼菌だった。面白い形だと思う。本種も多く発生していた。",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "too_long",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": true,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          }
-        ],
-        "next_blocks": [
-          {
-            "tag": "p",
-            "text": "普通の形をした本種も発見した。",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "sentence_punctuation",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -48320,10 +48230,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "普通の形をした本種も発見した。",
+            "text": "最初はひっくり返ったベニタケかと思ったが、まさかの基部が巨大な本種の幼菌だった。面白い形だと思う。本種も多く発生していた。ほ",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "sentence_punctuation",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -49879,7 +49789,7 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "キノコの同定会中に、小学生のお子さんが「トリュフあった～！」とニコニコしながら持って走ってきたので最初は別の地下生菌だろう。と思っていたがまさかの本物。それもかなりのサイズ。初めて実物を見たと思う。どうやら駐車場の脇に発生していたらしく、合計で10個ぐらいはあったと記憶している。普段は地下生菌があってもあまりテンションは上がらないが、本種はこの一年のキノコ探索の中で一番興奮したと思う。本人に発見経緯を聞いたら「シロアリを追いかけていたら見つけた」とのこと。はっきり言ってとんでもない豪運の持ち主だと感じた。",
+            "text": "キノコの同定会中に、小学生のお子さんが「トリュフあった～！」とニコニコしながら持って走ってきたので最初は別の地下生菌だろう。と思っていたがまさかの本物。それもかなりのサイズ。初めて実物を見たと思う。どうやら駐車場の脇に発生していたらしく、合計で10個ぐらいはあったと記憶している。普段は地下生菌があってもあまりテンションは上がらないが、本種はこの一年のキノコ探索の中で一番興奮したと思う。本人に発見経緯を聞いたら「シロアリを追いかけていたら見つけた」とのこと。はっきり言ってとんでもない豪運の持ち主だと感じた。ちなみに写真は採取後の個体を苔に埋めて撮影した物。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
