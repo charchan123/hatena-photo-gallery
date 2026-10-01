@@ -2564,28 +2564,29 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
 </head><body class="portal-index">
 <main class="portal-shell">
 <section class="portal-records-hero" aria-labelledby="records-heading">
-  <div class="portal-records-visual" aria-hidden="true"></div>
-  <header class="portal-records-heading">
-    <p class="portal-eyebrow">FIELD NOTES</p>
-    <h1 id="records-heading">{portal_icon("records")}<span>観察記録</span></h1>
-    <p>キノコ探索のブログ記事を、新しい順に紹介します。</p>
-  </header>
+  <div class="portal-records-visual">
+    <span class="portal-visual-shade" aria-hidden="true"></span>
+    <header class="portal-records-heading">
+      <p class="portal-eyebrow">FIELD NOTES</p>
+      <h1 id="records-heading">{portal_icon("records")}<span>観察記録</span></h1>
+      <p>キノコ探索のブログ記事を、新しい順に紹介します。</p>
+    </header>
+  </div>
   <div class="record-preview-list">{render_record_preview_rows(observation_records, limit=3)}</div>
   <a class="portal-more-link" href="records.html">観察記録をもっと見る <span aria-hidden="true">→</span></a>
 </section>
 <section class="portal-explore" aria-labelledby="explore-heading">
-  <div class="portal-section-visual portal-section-visual--explore" aria-hidden="true"></div>
-  <header class="portal-section-heading">
-    <p class="portal-eyebrow">MUSHROOM GUIDE</p>
-    <h2 id="explore-heading" class="portal-zone-title">{portal_icon("guide")}<span>キノコを探す</span></h2>
-    <p>名前や季節、見た目の特徴からキノコを探せます。</p>
-  </header>
+  <div class="portal-section-visual portal-section-visual--explore">
+    <span class="portal-visual-shade" aria-hidden="true"></span>
+    <header class="portal-section-heading">
+      <p class="portal-eyebrow">MUSHROOM GUIDE</p>
+      <h2 id="explore-heading" class="portal-zone-title">{portal_icon("guide")}<span>キノコを探す</span></h2>
+      <p>名前や季節、見た目の特徴からキノコを探せます。</p>
+    </header>
+  </div>
   <div class="portal-explore-content">
-  <a class="portal-lead-card" href="index.html">
-    <span class="portal-lead-card__visual" aria-hidden="true"></span>
-    <span class="portal-card__content"><span class="portal-card__copy"><strong>{portal_icon("guide")}<span>図鑑を見る</span></strong><small>名前や写真、五十音からキノコを探す</small></span></span>
-  </a>
-  <nav class="portal-secondary-grid" aria-label="キノコを探す入口">
+    <p class="portal-guide-intro">{'図鑑・季節・見た目の特徴。3つの視点からキノコを探せます。' if feature_search_available else '図鑑や季節など、目的に合わせてキノコを探せます。'}</p>
+  <nav class="portal-guide-grid{' portal-guide-grid--three' if feature_search_available else ' portal-guide-grid--two'}" aria-label="キノコを探す入口">
 ''']
 
     def append_card(modifier, href, title, description, eyebrow=None):
@@ -2599,6 +2600,7 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
             '    </a>\n'
         )
 
+    append_card("guide", "index.html", "図鑑を見る", "名前や写真、五十音からキノコを探す")
     append_card("season", "season.html", "季節から探す", "撮影された季節からたどる")
     if feature_search_available:
         append_card("features", "features.html", "特徴から探す", "見た目の特徴から絞り込む")
@@ -2618,9 +2620,9 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
     parts.append(f'''<footer class="portal-about" aria-labelledby="about-heading">
   <h2 id="about-heading">このブログについて</h2>
   <nav class="portal-about-links" aria-label="このブログについてのリンク">
-    <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E8%87%AA%E5%B7%B1%E7%B4%B9%E4%BB%8B" target="_top">{portal_icon("person")}<span>自己紹介</span></a>
-    <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E6%97%A5%E5%B8%B8%E3%81%AE%E8%A8%98%E9%8C%B2" target="_top">{portal_icon("note")}<span>日常記録</span></a>
-    <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E3%83%AA%E3%83%B3%E3%82%AF%E9%9B%86" target="_top">{portal_icon("link")}<span>リンク集</span></a>
+    <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E8%87%AA%E5%B7%B1%E7%B4%B9%E4%BB%8B" target="_top">{portal_icon("person")}<span><strong>自己紹介</strong><small>このブログを書いている人</small></span></a>
+    <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E6%97%A5%E5%B8%B8%E3%81%AE%E8%A8%98%E9%8C%B2" target="_top">{portal_icon("note")}<span><strong>日常記録</strong><small>田舎での暮らしや日々のこと</small></span></a>
+    <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E3%83%AA%E3%83%B3%E3%82%AF%E9%9B%86" target="_top">{portal_icon("link")}<span><strong>リンク集</strong><small>関連サイトやおすすめリンク</small></span></a>
   </nav>
 </footer>
 </main>
