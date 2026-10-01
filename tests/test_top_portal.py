@@ -26,7 +26,7 @@ def test_records_first_information_architecture(monkeypatch, tmp_path):
     page = render(monkeypatch, tmp_path, observation_records=[record(i) for i in range(4)])
     assert '<body class="portal-index">' in page and 'href="assets/portal.css"' in page
     assert 'class="portal-records-hero"' in page and page.index("観察記録") < page.index("キノコを探す")
-    assert 'class="portal-lead-card" href="index.html"' in page and "図鑑を見る" in page
+    assert 'class="portal-card portal-card--guide" href="index.html"' in page and "図鑑を見る" in page
     assert "季節から探す" in page and 'href="records.html"' in page
     for i in range(3):
         assert f"photo{i}.jpg?width=500" in page and f"記事{i}" in page and f"本文{i}" in page
@@ -53,12 +53,17 @@ def test_optional_entrances_and_best_shot_condition(monkeypatch, tmp_path):
     for visual in ("portal-section-visual--explore", "portal-card--research", "portal-card--best-shots"):
         assert visual in page
     assert "portal-card__arrow" not in page and ">→<" not in independent
+    assert "portal-guide-grid portal-guide-grid--three" in page
+    assert "3つの視点" in page
     assert page.count('<svg class="portal-icon"') >= 9
     assert page.count('aria-hidden="true" focusable="false"') >= 9
     for emoji in ("📔", "🍄", "📖", "🗓️", "🔎", "❓", "📸"):
         assert emoji not in page
     assert "ベストショット" not in render(monkeypatch, tmp_path, best_shot_summary={"entry_count": 0})
     assert "portal-independent-links" not in render(monkeypatch, tmp_path)
+    without_features = render(monkeypatch, tmp_path)
+    assert "portal-guide-grid portal-guide-grid--two" in without_features
+    assert "3つの視点" not in without_features
 
 
 def test_independent_links_each_stand_alone(monkeypatch, tmp_path):
@@ -91,31 +96,32 @@ def test_portal_styles_are_compact_and_scoped(monkeypatch, tmp_path):
     page = render(monkeypatch, tmp_path)
     assert (tmp_path / "assets" / "portal.css").exists()
     css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
-    for expected in (".portal-records-visual", ".portal-section-visual", ".record-preview-row", ".record-preview-thumb img", ".portal-secondary-grid", ".portal-independent-links", ".portal-about", ":focus-visible", "prefers-reduced-motion"):
+    for expected in (".portal-records-visual", ".portal-section-visual", ".record-preview-row", ".record-preview-thumb img", ".portal-guide-grid", ".portal-independent-links", ".portal-about", ":focus-visible", "prefers-reduced-motion"):
         assert expected in css
     assert ".portal-card__arrow" not in css and "scale(1.08)" in css
     assert "#f7fcf4" in css
     assert "#f3f0e6" not in css
-    assert ".portal-index .portal-shell { width: min(100%,1180px); margin: 0 auto; padding: 24px 22px 52px;" in css
+    assert ".portal-index .portal-shell { width:min(100%,1180px); margin:0 auto; padding:24px 22px 52px;" in css
     desktop = css[css.index("@media (min-width:900px)"):css.index("@media (max-width:680px)")]
     for expected in (
         "grid-template-columns:repeat(2,minmax(0,1fr))",
         "column-gap:24px",
-        ".portal-records-visual,.portal-section-visual { height:170px; }",
+        "align-items:stretch",
+        ".portal-records-visual,.portal-section-visual { height:190px; }",
         ".portal-explore { margin-top:0; }",
-        ".portal-independent-links { grid-column:1/-1; width:min(100%,920px); justify-self:center; gap:20px;",
-        ".portal-independent-links .portal-card__visual { height:145px; }",
+        ".portal-independent-links { grid-column:1/-1; width:100%; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px;",
+        ".portal-independent-links .portal-card { min-height:185px; }",
         ".portal-about { grid-column:1/-1;",
     ):
         assert expected in desktop
+    assert "920px" not in css
     tablet = css[css.index("@media (max-width:899px)"):css.index("@media (max-width:680px)")]
     assert ".portal-independent-links { grid-template-columns:1fr; }" in tablet
     mobile = css[css.index("@media (max-width:680px)"):]
     for expected in (
-        ".portal-secondary-grid,.portal-independent-links { grid-template-columns:1fr;",
-        ".portal-records-visual { height:88px; }",
-        ".portal-section-visual { height:82px; }",
-        ".portal-independent-links .portal-card__visual { height:88px; }",
+        ".portal-records-visual,.portal-section-visual { height:150px; }",
+        ".portal-guide-grid,.portal-independent-links,.portal-about-links { grid-template-columns:1fr;",
+        ".portal-independent-links .portal-card { min-height:155px; }",
     ):
         assert expected in mobile
     artwork = Path(main.ASSETS_DIR) / "field-notes-observation-final.webp"
@@ -137,3 +143,26 @@ def test_portal_styles_are_compact_and_scoped(monkeypatch, tmp_path):
         assert "field-notes-observation-final.webp" not in rule
     main.generate_index({}, {})
     assert "portal.css" not in (tmp_path / "index.html").read_text()
+
+
+def test_reference_overlay_and_footer_contract(monkeypatch, tmp_path):
+    page = render(monkeypatch, tmp_path, feature_search_available=True,
+                  research_summary={"case_count": 1}, best_shot_summary={"entry_count": 1})
+    records_visual = page[page.index('<div class="portal-records-visual">'):page.index('</div>', page.index('<div class="portal-records-visual">'))]
+    guide_visual = page[page.index('<div class="portal-section-visual'):page.index('</div>', page.index('<div class="portal-section-visual'))]
+    assert 'class="portal-records-heading"' in records_visual and "FIELD NOTES" in records_visual
+    assert 'class="portal-section-heading"' in guide_visual and "MUSHROOM GUIDE" in guide_visual
+    assert records_visual.index("portal-eyebrow") < records_visual.index("観察記録")
+    assert guide_visual.index("portal-eyebrow") < guide_visual.index("キノコを探す")
+    independent = page[page.index('<section class="portal-independent-links"'):page.index('</section>', page.index('<section class="portal-independent-links"'))]
+    assert independent.count('class="portal-card__visual" aria-hidden="true"') == 2
+    assert independent.count('class="portal-card__content"') == 2
+    for label in ("RESEARCH LAB", "BEST SHOTS"):
+        assert label in independent
+    assert "portal-lead-card" not in page
+    about = page[page.index('<footer class="portal-about"'):page.index('</footer>')]
+    for description in ("このブログを書いている人", "田舎での暮らしや日々のこと", "関連サイトやおすすめリンク"):
+        assert description in about
+    css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
+    assert ".portal-about-links { display:grid; grid-template-columns:repeat(3,minmax(0,1fr));" in css
+    assert "filter:" not in css and "blur(" not in css and "sepia(" not in css
