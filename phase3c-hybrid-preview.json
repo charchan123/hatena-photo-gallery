@@ -232,7 +232,7 @@
       "image_count": 1,
       "article_count": 1,
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232135.jpg"
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261001/20261001001557.jpg"
       ],
       "sample_article_urls": [
         "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/23/232319"
@@ -3871,7 +3871,7 @@
       "decision": "confirmed_new_mushroom_added"
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232135.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261001/20261001001557.jpg",
       "subject_type": "mushroom",
       "detected_label": "タマゴタケ",
       "gallery_name": "タマゴタケ",
@@ -48025,7 +48025,7 @@
       "decision": "new_review_excluded"
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925225014.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261001/20261001001532.jpg",
       "subject_type": "review",
       "detected_label": "タマゴテングタケモドキ",
       "gallery_name": null,
@@ -50005,7 +50005,7 @@
       "decision": "new_review_excluded"
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923225103.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261001/20261001000912.jpg",
       "subject_type": "review",
       "detected_label": "サクラシメジモドキ",
       "gallery_name": null,
@@ -50059,7 +50059,7 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "この手の部類は初めて発見。なかなか静岡県西部から山梨県まで行かないのも原因だろう。",
+            "text": "この手の部類は初めて発見。なかなか静岡県西部から山梨県まで行かないのも原因だろう。また、今回撮影したこの写真はなぜかコントラストが非常に強く出ていて、編集で-40まで下げてはみたものの、あまり改善していないように見える。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
@@ -50120,7 +50120,7 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "この手の部類は初めて発見。なかなか静岡県西部から山梨県まで行かないのも原因だろう。",
+            "text": "この手の部類は初めて発見。なかなか静岡県西部から山梨県まで行かないのも原因だろう。また、今回撮影したこの写真はなぜかコントラストが非常に強く出ていて、編集で-40まで下げてはみたものの、あまり改善していないように見える。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
