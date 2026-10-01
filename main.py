@@ -191,7 +191,13 @@ def copy_shared_assets():
     output_assets_dir = os.path.join(OUTPUT_DIR, "assets")
     os.makedirs(output_assets_dir, exist_ok=True)
 
-    for filename in ("gallery.css", "gallery.js", "detail.css", "portal.css"):
+    for filename in (
+        "gallery.css",
+        "gallery.js",
+        "detail.css",
+        "portal.css",
+        "field-notes-observation-final.webp",
+    ):
         shutil.copy2(
             os.path.join(ASSETS_DIR, filename),
             os.path.join(output_assets_dir, filename),

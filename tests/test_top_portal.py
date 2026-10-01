@@ -120,6 +120,9 @@ def test_portal_styles_are_compact_and_scoped(monkeypatch, tmp_path):
         assert expected in mobile
     artwork = Path(main.ASSETS_DIR) / "field-notes-observation-final.webp"
     assert artwork.is_file()
+    deployed_artwork = tmp_path / "assets" / "field-notes-observation-final.webp"
+    assert deployed_artwork.is_file()
+    assert deployed_artwork.read_bytes() == artwork.read_bytes()
     records_visual = css[css.index(".portal-records-visual { "):css.index("}", css.index(".portal-records-visual { "))]
     assert 'background-image:url("field-notes-observation-final.webp")' in records_visual
     assert "background-size:cover" in records_visual
