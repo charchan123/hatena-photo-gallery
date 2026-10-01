@@ -2,7 +2,7 @@
 .portal-index .portal-shell { width: min(100%,1180px); margin: 0 auto; padding: 24px 22px 52px; box-sizing: border-box; }
 .portal-records-hero,.portal-explore,.portal-independent-links .portal-card { overflow: hidden; border: 1px solid var(--portal-panel-border); border-radius: var(--portal-panel-radius); background: var(--portal-paper); box-shadow: 0 10px 30px rgba(42,61,45,.09); }
 .portal-records-visual,.portal-section-visual,.portal-independent-links .portal-card__visual { background: radial-gradient(circle at 75% 35%,rgba(240,211,132,.65),transparent 18%),radial-gradient(circle at 20% 90%,#806746 0 5%,transparent 6%),linear-gradient(135deg,#9aaa7b,#607955 52%,#334d3b); background-position:center; background-size:cover; }
-.portal-records-visual { height: 150px; }
+.portal-records-visual { height:150px; background-image:url("field-notes-observation-final.webp"); background-size:cover; background-position:center center; background-repeat:no-repeat; }
 .portal-records-heading,.portal-section-heading { padding: 20px 28px 13px; }
 .portal-eyebrow { margin: 0 0 5px; color: #687a65; font-size: .69rem; font-weight: 800; letter-spacing: .18em; }
 .portal-records-heading h1,.portal-zone-title { display:flex; align-items:center; gap:9px; margin:0; color:#173f2a; font-size:clamp(1.4rem,3vw,1.55rem); line-height:1.25; }
