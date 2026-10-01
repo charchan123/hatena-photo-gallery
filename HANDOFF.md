@@ -839,3 +839,11 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 
 - **Desktop proportions:** the desktop portal shell was widened from 1040px to 1180px, and its horizontal padding increased from 20px to 22px, based on the School Archive desktop content proportions.
 - **Protected scope:** the Hatena banner and fade are untouched, and the existing mobile behavior below 680px is unchanged.
+
+## Phase 4A.8.2.3 — Desktop two-column portal composition
+
+- **Desktop composition:** at 900px and wider, the main portal is now a two-column grid with FIELD NOTES on the left and MUSHROOM GUIDE on the right. Their top edges align, while each panel keeps its natural content-driven height.
+- **Compact lower row:** Research and Best Shot span the portal grid as a centered, narrower 920px two-column region. About remains understated footer navigation and spans the full portal width.
+- **Artwork readiness:** the records and guide visuals are 170px tall on desktop, and the independent-card visuals are 145px tall, giving future cover artwork more balanced proportions. Desktop record metadata now flows title, date, then excerpt for the half-width panel.
+- **Responsive / asset scope:** below 900px the DOM order remains FIELD NOTES, MUSHROOM GUIDE, Research, Best Shot, and About in one-column flow; the existing 680px mobile visual heights remain unchanged. The tracked FIELD NOTES artwork `assets/field-notes-observation-final.webp` is retained byte-for-byte but is not referenced or applied yet.
+- **Next phase:** after production screenshot review, apply `field-notes-observation-final.webp` as the FIELD NOTES style-anchor artwork. No AI image was applied in this phase.

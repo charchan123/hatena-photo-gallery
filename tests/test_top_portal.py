@@ -97,5 +97,29 @@ def test_portal_styles_are_compact_and_scoped(monkeypatch, tmp_path):
     assert "#f7fcf4" in css
     assert "#f3f0e6" not in css
     assert ".portal-index .portal-shell { width: min(100%,1180px); margin: 0 auto; padding: 24px 22px 52px;" in css
+    desktop = css[css.index("@media (min-width:900px)"):css.index("@media (max-width:680px)")]
+    for expected in (
+        "grid-template-columns:repeat(2,minmax(0,1fr))",
+        "column-gap:24px",
+        ".portal-records-visual,.portal-section-visual { height:170px; }",
+        ".portal-explore { margin-top:0; }",
+        ".portal-independent-links { grid-column:1/-1; width:min(100%,920px); justify-self:center; gap:20px;",
+        ".portal-independent-links .portal-card__visual { height:145px; }",
+        ".portal-about { grid-column:1/-1;",
+    ):
+        assert expected in desktop
+    tablet = css[css.index("@media (max-width:899px)"):css.index("@media (max-width:680px)")]
+    assert ".portal-independent-links { grid-template-columns:1fr; }" in tablet
+    mobile = css[css.index("@media (max-width:680px)"):]
+    for expected in (
+        ".portal-secondary-grid,.portal-independent-links { grid-template-columns:1fr;",
+        ".portal-records-visual { height:88px; }",
+        ".portal-section-visual { height:82px; }",
+        ".portal-independent-links .portal-card__visual { height:88px; }",
+    ):
+        assert expected in mobile
+    artwork = Path(main.ASSETS_DIR) / "field-notes-observation-final.webp"
+    assert artwork.is_file()
+    assert "field-notes-observation-final.webp" not in css
     main.generate_index({}, {})
     assert "portal.css" not in (tmp_path / "index.html").read_text()
