@@ -120,6 +120,17 @@ def test_portal_styles_are_compact_and_scoped(monkeypatch, tmp_path):
         assert expected in mobile
     artwork = Path(main.ASSETS_DIR) / "field-notes-observation-final.webp"
     assert artwork.is_file()
-    assert "field-notes-observation-final.webp" not in css
+    records_visual = css[css.index(".portal-records-visual { "):css.index("}", css.index(".portal-records-visual { "))]
+    assert 'background-image:url("field-notes-observation-final.webp")' in records_visual
+    assert "background-size:cover" in records_visual
+    assert "background-position:center center" in records_visual
+    assert css.count("field-notes-observation-final.webp") == 1
+    for placeholder in (
+        ".portal-section-visual--explore",
+        ".portal-card--research .portal-card__visual",
+        ".portal-card--best-shots .portal-card__visual",
+    ):
+        rule = css[css.index(placeholder):css.index("}", css.index(placeholder))]
+        assert "field-notes-observation-final.webp" not in rule
     main.generate_index({}, {})
     assert "portal.css" not in (tmp_path / "index.html").read_text()
