@@ -197,6 +197,8 @@ def copy_shared_assets():
         "detail.css",
         "portal.css",
         "field-notes-observation-final.webp",
+        "hero-amanita-background.webp",
+        "hero-amanita-cutout.png",
     ):
         shutil.copy2(
             os.path.join(ASSETS_DIR, filename),
