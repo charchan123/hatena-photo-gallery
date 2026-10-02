@@ -891,3 +891,13 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Regression guard:** the top-portal test verifies exact source/output byte identity, WebP format, 2048×768 dimensions, all three CSS image references, and the shared 190px FIELD NOTES / MUSHROOM GUIDE desktop visual-height rule.
 - **Scope:** no portal-data schema, record ordering/excerpts, card text size/position, Hatena Design CSS, Hero banner, Phase 3C, taxonomy, EXIF, favorites, LightGallery, iframe height synchronization, workflow, or `data/*` behavior is changed.
 - **Validation:** GitHub Actions temporary Phase 4A.8.5 full-test workflow passed **372/372 pytest**, **372 collected**, Python compilation, `node --check assets/gallery.js`, 4 kana-insensitive highlight cases, iframe height regression checks, feature-filter checks, and `git diff --check` against production `287bbfc8...`. The temporary workflow is removed before merge and is not part of the final PR diff.
+
+## Phase 4A.8.6 — Reference card proportions and artwork correction
+
+- **Starting point:** production `main` is merge commit `9e2a1eedd61b4345460d66a9171aee2783d36cb4` after Phase 4A.8.5 artwork deployment.
+- **Reference sizing pass:** desktop portal spacing is tightened toward the adopted reference with a 20px column gap and 18px row gap. Grid items use natural height instead of row stretching, preventing the three MUSHROOM GUIDE entry cards from becoming excessively tall.
+- **Guide height contract:** FIELD NOTES and MUSHROOM GUIDE retain the exact same desktop hero-image height of 190px and the existing mobile 150px rule. The overlay eyebrow/title/description typography and positioning on all AI artwork are intentionally unchanged.
+- **Record preview:** the protected 150×96 desktop thumbnails remain unchanged. Only row padding/min-height and the final more-link margins are reduced slightly to bring the FIELD NOTES card closer to the reference proportion without changing record content or thumbnail crop.
+- **Lower cards:** Research / Best Shot cards use a 155px desktop minimum height and a 20px inter-card gap, with existing overlay typography/placement unchanged.
+- **Artwork correction:** the two lower artworks were previously assigned in reverse. Research now displays `best-shots-final.webp` (the microscope/research-desk illustration), while Best Shots displays `research-lab-final.webp` (the sunrise mountain / mushroom illustration). Asset bytes and filenames are unchanged.
+- **Scope:** no Hero/Hatena Design CSS, AI-image overlay text size/placement, portal-data schema, record ordering/excerpts, conditional rendering, Phase 3C, taxonomy, EXIF, favorites, LightGallery, iframe synchronization, workflow, or `data/*` behavior is changed.
