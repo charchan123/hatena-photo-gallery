@@ -197,6 +197,9 @@ def copy_shared_assets():
         "detail.css",
         "portal.css",
         "field-notes-observation-final.webp",
+        "mushroom-guide-final.webp",
+        "research-lab-final.webp",
+        "best-shots-final.webp",
         "hero-amanita-background.webp",
         "hero-amanita-cutout.png",
     ):

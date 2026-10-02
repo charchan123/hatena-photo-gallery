@@ -195,3 +195,30 @@ def test_hero_banner_assets_are_deployed_verbatim(monkeypatch, tmp_path):
         assert image.size == (725, 1000)
         assert image.mode == "RGBA"
         assert image.getchannel("A").getextrema() == (0, 255)
+
+def test_portal_artwork_assets_are_deployed_verbatim(monkeypatch, tmp_path):
+    monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
+    main.copy_shared_assets()
+
+    assets = Path(main.ASSETS_DIR)
+    expected = {
+        "mushroom-guide-final.webp": (2048, 768),
+        "research-lab-final.webp": (2048, 768),
+        "best-shots-final.webp": (2048, 768),
+    }
+
+    for filename, dimensions in expected.items():
+        source = assets / filename
+        deployed = tmp_path / "assets" / filename
+        assert source.is_file()
+        assert deployed.is_file()
+        assert deployed.read_bytes() == source.read_bytes()
+        with Image.open(source) as image:
+            assert image.format == "WEBP"
+            assert image.size == dimensions
+
+    css = (assets / "portal.css").read_text()
+    assert 'background-image:url("mushroom-guide-final.webp")' in css
+    assert 'background-image:url("research-lab-final.webp")' in css
+    assert 'background-image:url("best-shots-final.webp")' in css
+    assert ".portal-records-visual,.portal-section-visual { height:190px; }" in css
