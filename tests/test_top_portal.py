@@ -1,4 +1,5 @@
 from pathlib import Path
+from PIL import Image
 import main
 
 
@@ -166,3 +167,31 @@ def test_reference_overlay_and_footer_contract(monkeypatch, tmp_path):
     css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
     assert ".portal-about-links { display:grid; grid-template-columns:repeat(3,minmax(0,1fr));" in css
     assert "filter:" not in css and "blur(" not in css and "sepia(" not in css
+
+def test_hero_banner_assets_are_deployed_verbatim(monkeypatch, tmp_path):
+    monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
+    main.copy_shared_assets()
+
+    assets = Path(main.ASSETS_DIR)
+    background = assets / "hero-amanita-background.webp"
+    cutout = assets / "hero-amanita-cutout.png"
+    deployed_background = tmp_path / "assets" / background.name
+    deployed_cutout = tmp_path / "assets" / cutout.name
+
+    for source, deployed in (
+        (background, deployed_background),
+        (cutout, deployed_cutout),
+    ):
+        assert source.is_file()
+        assert deployed.is_file()
+        assert deployed.read_bytes() == source.read_bytes()
+
+    with Image.open(background) as image:
+        assert image.format == "WEBP"
+        assert image.size == (2048, 408)
+
+    with Image.open(cutout) as image:
+        assert image.format == "PNG"
+        assert image.size == (725, 1000)
+        assert image.mode == "RGBA"
+        assert image.getchannel("A").getextrema() == (0, 255)
