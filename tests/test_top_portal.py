@@ -106,12 +106,13 @@ def test_portal_styles_are_compact_and_scoped(monkeypatch, tmp_path):
     desktop = css[css.index("@media (min-width:900px)"):css.index("@media (max-width:680px)")]
     for expected in (
         "grid-template-columns:repeat(2,minmax(0,1fr))",
-        "column-gap:24px",
-        "align-items:stretch",
+        "column-gap:20px",
+        "row-gap:18px",
+        "align-items:start",
         ".portal-records-visual,.portal-section-visual { height:190px; }",
         ".portal-explore { margin-top:0; }",
-        ".portal-independent-links { grid-column:1/-1; width:100%; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px;",
-        ".portal-independent-links .portal-card { min-height:185px; }",
+        ".portal-independent-links { grid-column:1/-1; width:100%; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px;",
+        ".portal-independent-links .portal-card { min-height:155px; }",
         ".portal-about { grid-column:1/-1;",
     ):
         assert expected in desktop
