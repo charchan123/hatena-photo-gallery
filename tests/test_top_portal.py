@@ -195,4 +195,3 @@ def test_hero_banner_assets_are_deployed_verbatim(monkeypatch, tmp_path):
         assert image.size == (725, 1000)
         assert image.mode == "RGBA"
         assert image.getchannel("A").getextrema() == (0, 255)
-

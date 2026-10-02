@@ -879,4 +879,3 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Deployment:** `copy_shared_assets()` now copies both Hero assets into `output/assets` alongside the existing shared assets so GitHub Pages can serve them after the normal build/deploy.
 - **Regression guard:** `tests/test_top_portal.py` verifies source/output existence and byte identity, exact background format/dimensions (WebP, 2048×408), and exact cutout format/dimensions/alpha contract (PNG, 725×1000, RGBA, alpha extrema 0–255). Pillow was already an existing dependency; no dependency was added.
 - **Scope:** this phase does not change portal composition, portal CSS, Hatena Design CSS, title text, banner positioning, FIELD NOTES artwork, portal-data, Phase 3C, taxonomy, EXIF, favorites, LightGallery, iframe height synchronization, workflows, or `data/*`. The Hatena live Hero composition remains the next post-merge Design CSS step.
-
