@@ -149,6 +149,25 @@ def test_best_shot_document_loads_shared_gallery_js_for_visibility_and_iframe_he
     assert '<script src="assets/gallery.js" defer></script>' in page
 
 
+
+def test_best_shot_pc_visual_contract():
+    page = best_shot_ui.render_best_shot_page(
+        best_shot_ui.build_best_shot_model(config(), portal())
+    )
+    css = (Path("assets") / "best-shots.css").read_text(encoding="utf-8")
+    assert 'class="best-shots-index"' in page
+    assert 'class="best-shots-hub"' in page
+    assert 'class="best-shots-hero"' in page
+    assert "BEST SHOTS" in page
+    assert "← 図鑑へ戻る" in page
+    assert 'id="gallery-content-root"' in page
+    assert "body.best-shots-index" in css
+    assert "width:min(100%,1180px)" in css
+    assert 'url("research-lab-final.webp")' in css
+    assert "grid-template-columns:repeat(2,minmax(0,1fr))" in css
+    assert "@media (max-width:680px)" in css
+
+
 def test_archive_latest_capture_year_and_all_year_pages(tmp_path):
     rows = [observation("old", "2024-04-01"), observation("new", "2026-06-01")]
     cfg = config([entry("old", "old", 1), entry("new", "new", 1)])
