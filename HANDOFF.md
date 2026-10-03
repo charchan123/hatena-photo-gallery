@@ -952,3 +952,19 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Card shape:** guide action cards use a 10px radius to align visually with FIELD NOTES thumbnails while retaining the existing dark-green action treatment.
 - **Mobile:** guide actions return to full width and may wrap on narrow screens; desktop parity values are protected.
 - **Scope:** no artwork binaries, Hatena Design CSS/Hero banner, AI-artwork overlay text size/position, portal-data schema, record ordering/excerpts, Phase 3C, taxonomy, EXIF, favorites, LightGallery, iframe synchronization, workflows, or `data/*` behavior is changed.
+
+
+## Phase 4A.8.11 — Dedicated guide artwork and indoor Research Lab
+
+- **Starting point:** production `main` is merge commit `fb4bd25cf88cc3082628c948499e20aa7fa51135` after Phase 4A.8.10. PR #64 remains intentionally unmerged while artwork is finalized.
+- **Owner-uploaded dedicated assets:** commit `e82a69c72fe04f871d02099909a791c33086751c` adds four reviewed WebPs. Git blob SHAs match the locally approved files exactly:
+  - `guide-action-book.webp` — 1698×926, blob `44cae87a97406774325d3aaaca66332642aacdc6`
+  - `guide-action-season.webp` — 1698×926, blob `8fd0a862a605cf6796b1326da022ff40fae53e0c`
+  - `guide-action-features.webp` — 1698×926, blob `b40dfb684f6dc451f07f9fe55e5856cdce3f72f3`
+  - `research-lab-cabin.webp` — 2028×302, blob `75f43e5c4709056a1a47597ab7277825efdc6397`
+- **Guide-card mapping:** 図鑑→`guide-action-book.webp`, 季節→`guide-action-season.webp`, 特徴→`guide-action-features.webp`. The existing dark readability overlay and 176×96 desktop card geometry remain.
+- **Research Lab replacement:** `不明キノコ研究室` now uses the indoor mountain-cabin illustration `research-lab-cabin.webp`. The card uses `background-position:78% center` so the microscope, right-side work area, window, and forest view dominate while the fireplace is de-emphasized.
+- **Deployment:** `copy_shared_assets()` includes all four new WebPs. Regression tests verify source/output byte identity, WebP format/dimensions, dedicated CSS references, and the Research Lab crop position.
+- **Protected contracts:** guide-card width 176px, height 96px, row separators and spacing, right-side FIELD NOTES-matched typography, upper portal artwork heights, AI-overlay typography, Best Shots artwork, Hero/Hatena Design CSS, and all data/search/gallery contracts remain unchanged.
+- **Scope:** no new generated image beyond the four explicitly reviewed owner-uploaded assets, no portal-data schema, Phase 3C, taxonomy, EXIF, favorites, LightGallery, iframe synchronization, workflow, or `data/*` behavior is changed.
+- **Validation:** GitHub Actions temporary Phase 4A.8.11 dedicated-artwork workflow passed **376/376 pytest**, **376 collected**, Python compilation, `node --check assets/gallery.js`, 4 kana-insensitive highlight cases, iframe height regression checks, feature-filter checks, and `git diff --check` against production `fb4bd25c...`. The first dedicated-artwork run failed only because one existing regression still required the now-unused `best-shots-final.webp` CSS reference; after updating that stale expectation, the full suite passed. The temporary workflow is removed before merge and is not part of the final PR diff.
