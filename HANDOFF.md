@@ -952,3 +952,16 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Card shape:** guide action cards use a 10px radius to align visually with FIELD NOTES thumbnails while retaining the existing dark-green action treatment.
 - **Mobile:** guide actions return to full width and may wrap on narrow screens; desktop parity values are protected.
 - **Scope:** no artwork binaries, Hatena Design CSS/Hero banner, AI-artwork overlay text size/position, portal-data schema, record ordering/excerpts, Phase 3C, taxonomy, EXIF, favorites, LightGallery, iframe synchronization, workflows, or `data/*` behavior is changed.
+
+## Phase 4A.8.11 — Guide action artwork
+
+- **Starting point:** production `main` is merge commit `fb4bd25cf88cc3082628c948499e20aa7fa51135` after Phase 4A.8.10.
+- **Card width:** desktop Mushroom Guide action cards widen from **150px to 176px** while staying **96px high**, creating visible right-side breathing room for `撮影された季節からたどる` and `見た目の特徴から絞り込む`. Row gap, vertical padding, separators, and right-side explanation typography remain unchanged.
+- **Artwork reuse, no new binaries:** the three already-approved watercolor AI assets are reused as small-card backgrounds, so there is no new image-generation or asset-management step.
+  - `図鑑を見る` → `mushroom-guide-final.webp` (open mushroom guide)
+  - `季節から探す` → `research-lab-final.webp` (sunrise mountains / mushroom)
+  - `特徴から探す` → `best-shots-final.webp` (microscope / specimens)
+- **Legibility:** each small-card artwork receives a restrained dark green overlay while the existing card content gradient remains in place. This preserves the established white icon/title/subcopy treatment.
+- **Crop:** guide/season/features use tuned background positions to keep the relevant motif inside the compact 176×96 crop.
+- **Protected contracts:** 96px action-card height, 18px row gap, 8px vertical row padding, gray separators including final row, right-side FIELD NOTES-matched typography, 190px/150px upper artwork-height contract, and AI-artwork overlay text remain unchanged.
+- **Scope:** no new artwork files, no Hatena Design CSS/Hero banner, portal-data schema, record ordering/excerpts, Phase 3C, taxonomy, EXIF, favorites, LightGallery, iframe synchronization, workflows, or `data/*` behavior is changed.
