@@ -1135,4 +1135,3 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Deployment:** preview the additive CSS in Hatena first; do not save it to production until the new-top launch cutover. Rollback is removal of the appended Phase 4C.11 block.
 - **Protected contracts:** no portal-data, taxonomy, mushroom knowledge data, EXIF, Phase 3C, favorites, LightGallery, iframe synchronization, Hatena API extraction, article URLs, record selection/order logic, or Phase 4C.9 data are changed.
 - **Merge policy:** design-only PR; do not auto-merge.
-
