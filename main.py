@@ -2376,25 +2376,25 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     </div>
     <div class="guide-way-grid">
       <a class="guide-way guide-way--season" href="season.html">
-        <span>SEASON</span><strong>季節から探す</strong><small>撮影された季節からたどる</small>
+        <span>SEASON</span><strong>季節から探す</strong><small>写真の撮影月から探せます</small>
       </a>
 """)
 
     if feature_search_available:
         index_parts.append("""      <a class="guide-way guide-way--features" href="features.html">
-        <span>FEATURES</span><strong>特徴から探す</strong><small>見た目の特徴から絞り込む</small>
+        <span>FEATURES</span><strong>特徴から探す</strong><small>資料に記載された見た目の特徴から探す</small>
       </a>
 """)
 
     if research_summary:
         index_parts.append(f"""      <a class="guide-way guide-way--research" href="research.html">
-        <span>RESEARCH LAB</span><strong>不明キノコ研究室</strong><small>調査中の記録を見る（{research_summary['case_count']}件）</small>
+        <span>RESEARCH LAB</span><strong>不明キノコ研究室</strong><small>研究室を見る（{research_summary['case_count']}件）</small>
       </a>
 """)
 
     if best_shot_summary and best_shot_summary.get("entry_count", 0) > 0:
         index_parts.append("""      <a class="guide-way guide-way--best" href="best-shots.html">
-        <span>BEST SHOTS</span><strong>ベストショット</strong><small>とっておきの一枚を見る</small>
+        <span>BEST SHOTS</span><strong>ベストショット</strong><small>ベストショットを見る</small>
       </a>
 """)
 
