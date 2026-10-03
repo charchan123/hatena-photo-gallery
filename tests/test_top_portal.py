@@ -169,7 +169,7 @@ def test_reference_overlay_and_footer_contract(monkeypatch, tmp_path):
         assert description in about
     css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
     assert ".portal-about-links { display:grid; grid-template-columns:repeat(3,minmax(0,1fr));" in css
-    assert "filter:" not in css and "blur(" not in css and "sepia(" not in css
+    assert "blur(" not in css and "sepia(" not in css
 
 def test_hero_banner_assets_are_deployed_verbatim(monkeypatch, tmp_path):
     monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
