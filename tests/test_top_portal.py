@@ -55,7 +55,9 @@ def test_optional_entrances_and_best_shot_condition(monkeypatch, tmp_path):
         assert visual in page
     assert "portal-card__arrow" not in page and ">→<" not in independent
     assert "portal-guide-grid portal-guide-grid--three" in page
-    assert "3つの視点" in page
+    assert "3つの視点" not in page
+    assert 'class="portal-guide-layout"' in page
+    assert "名前がわかる場合は" in page
     assert page.count('<svg class="portal-icon"') >= 9
     assert page.count('aria-hidden="true" focusable="false"') >= 9
     for emoji in ("📔", "🍄", "📖", "🗓️", "🔎", "❓", "📸"):
