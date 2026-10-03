@@ -2305,7 +2305,6 @@ def generate_index(grouped, exif_cache, observation_records=None,
 <title>キノコ図鑑</title>
 {STYLE_TAG}
 <link rel="stylesheet" href="assets/guide.css">
-{'<link rel="stylesheet" href="assets/records.css">' if observation_records else ''}
 {LIGHTGALLERY_TAGS}
 <script>
 window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
@@ -2313,58 +2312,78 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 </head>
 <body class="guide-index">
 <main id="gallery-content-root" class="guide-shell">
-  <header class="guide-hero">
-    <a class="guide-back" href="new-top.html">← トップへ</a>
-    <div class="guide-hero-copy">
-      <span class="guide-eyebrow">MUSHROOM GUIDE</span>
-      <h1>キノコ図鑑</h1>
-      <p>名前や五十音順から、ブログで出会ったキノコを探せます。</p>
-    </div>
-  </header>
 
-  <section class="section guide-find" aria-labelledby="guide-find-title">
-    <div class="guide-section-heading">
-      <span class="guide-eyebrow">FIND A MUSHROOM</span>
-      <h2 id="guide-find-title">キノコを探す</h2>
-      <p>名前が分かるときは検索、分からないときは五十音からたどれます。</p>
-    </div>
+  <section class="guide-hub" aria-labelledby="guide-title">
+    <header class="guide-hero">
+      <a class="guide-back" href="new-top.html">← トップへ</a>
+      <div class="guide-hero-copy">
+        <span class="guide-eyebrow">MUSHROOM GUIDE</span>
+        <h1 id="guide-title">キノコ図鑑</h1>
+        <p>名前や五十音順から、ブログで出会ったキノコを探せます。</p>
+      </div>
+    </header>
 
-    <div class="guide-find-grid">
-      <article class="guide-panel guide-panel--search">
-        <span class="guide-panel-kicker">NAME SEARCH</span>
-        <h3>名前から探す</h3>
-        <p>和名の一部を入力すると、ブログ内のキノコを横断検索します。</p>
-        <div class="index-search-box">
-          <input type="text"
-                 class="index-search-input"
-                 aria-label="キノコ名で検索"
-                 placeholder="キノコ名で検索（例：ベニタケ）">
+    <div class="guide-hub-body">
+      <section class="guide-find-zone" aria-labelledby="guide-find-title">
+        <div class="guide-section-heading">
+          <span class="guide-eyebrow">FIND A MUSHROOM</span>
+          <h2 id="guide-find-title">キノコを探す</h2>
+          <p>名前が分かるときは検索、分からないときは五十音からたどれます。</p>
         </div>
-      </article>
 
-      <article class="guide-panel guide-panel--kana">
-        <span class="guide-panel-kicker">GOJUON INDEX</span>
-        <h3>五十音から探す</h3>
-        <p>名前の最初の文字から一覧へ進めます。</p>
-        <div class="aiuo-links">
+        <div class="guide-find-grid">
+          <article class="guide-mini-panel guide-mini-panel--search">
+            <span class="guide-panel-kicker">NAME SEARCH</span>
+            <h3>名前から探す</h3>
+            <p>和名の一部を入力すると、ブログ内のキノコを横断検索します。</p>
+            <div class="index-search-box">
+              <input type="text"
+                     class="index-search-input"
+                     aria-label="キノコ名で検索"
+                     placeholder="キノコ名で検索（例：ベニタケ）">
+            </div>
+          </article>
+
+          <article class="guide-mini-panel guide-mini-panel--kana">
+            <span class="guide-panel-kicker">GOJUON INDEX</span>
+            <h3>五十音から探す</h3>
+            <p>名前の最初の文字から一覧へ進めます。</p>
+            <div class="aiuo-links">
 """)
 
     for group in AIUO_GROUPS.keys():
         index_parts.append(
-            f'          <a class="aiuo-link" href="{safe_filename(group)}.html">{group}</a>\n'
+            f'              <a class="aiuo-link" href="{safe_filename(group)}.html">{group}</a>\n'
         )
 
-    index_parts.append("""        </div>
-      </article>
-    </div>
+    index_parts.append("""            </div>
+          </article>
+        </div>
 
-    <div class="guide-search-feedback">
-      <div class="index-search-results"></div>
-      <div class="search-empty" style="display:none;">
-        該当するキノコが見つかりませんでした
-        <small>ひらがな・カタカナを変えて試してみてください</small>
-      </div>
-      <div class="index-pagination"></div>
+        <div class="guide-search-feedback">
+          <div class="index-search-results"></div>
+          <div class="search-empty" style="display:none;">
+            該当するキノコが見つかりませんでした
+            <small>ひらがな・カタカナを変えて試してみてください</small>
+          </div>
+          <div class="index-pagination"></div>
+        </div>
+      </section>
+
+      <div class="guide-hub-separator" aria-hidden="true"></div>
+
+      <aside class="guide-note-zone" aria-labelledby="guide-note-title">
+        <div class="guide-section-heading">
+          <span class="guide-eyebrow">OBSERVATION NOTE</span>
+          <h2 id="guide-note-title">観察ノート</h2>
+          <p>気になった写真を★で保存して、あとからまとめて見返せます。</p>
+        </div>
+        <a class="guide-note-action" href="favorite.html">
+          <strong>観察中の写真</strong>
+          <span id="favorite-count"></span>
+          <small>保存した写真を見る →</small>
+        </a>
+      </aside>
     </div>
   </section>
 
@@ -2397,110 +2416,6 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
         <span>BEST SHOTS</span><strong>ベストショット</strong><small>ベストショットを見る</small>
       </a>
 """)
-
-    index_parts.append("""    </div>
-  </section>
-""")
-
-    if observation_records:
-        index_parts.append(f"""  <section class="guide-observe-grid" aria-label="観察と保存">
-    <article class="guide-panel guide-panel--records">
-      <div class="guide-section-heading guide-section-heading--compact">
-        <span class="guide-eyebrow">FIELD NOTES</span>
-        <h2>観察記録</h2>
-        <p>キノコ探索のブログ記事を新しい順に見られます。</p>
-      </div>
-      <div class="record-list record-list-preview">{render_record_cards(observation_records, limit=1)}</div>
-      <a class="guide-text-link record-external-link" href="https://exsudoporus-ruber.hatenablog.jp/" target="_top">観察記録をもっと見る →</a>
-    </article>
-
-    <article class="guide-panel guide-panel--note">
-      <div class="guide-section-heading guide-section-heading--compact">
-        <span class="guide-eyebrow">OBSERVATION NOTE</span>
-        <h2>観察ノート</h2>
-        <p>気になった写真を★で保存して、あとからまとめて見返せます。</p>
-      </div>
-      <a class="guide-note-action" href="favorite.html">
-        <strong>観察中の写真</strong>
-        <span id="favorite-count"></span>
-        <small>保存した写真を見る →</small>
-      </a>
-    </article>
-  </section>
-""")
-    else:
-        index_parts.append("""  <section class="guide-panel guide-panel--note guide-panel--note-alone">
-    <div class="guide-section-heading guide-section-heading--compact">
-      <span class="guide-eyebrow">OBSERVATION NOTE</span>
-      <h2>観察ノート</h2>
-      <p>気になった写真を★で保存して、あとからまとめて見返せます。</p>
-    </div>
-    <a class="guide-note-action" href="favorite.html">
-      <strong>観察中の写真</strong>
-      <span id="favorite-count"></span>
-      <small>保存した写真を見る →</small>
-    </a>
-  </section>
-""")
-
-    # Recommend mushrooms using the existing selection rules.
-    alt_latest = {}
-    for alt, srcs in grouped.items():
-        best = ""
-        for src in srcs:
-            date_value = (exif_cache.get(src) or {}).get("date") or ""
-            key = date_value.replace("/", "")
-            if len(key) == 8 and key > best:
-                best = key
-        if best:
-            alt_latest[alt] = best
-
-    sorted_new = sorted(alt_latest.items(), key=lambda item: item[1], reverse=True)
-    new_names = [name for name, _ in sorted_new][:3]
-
-    def pick(names):
-        items = []
-        for name in names:
-            if name in grouped and grouped[name]:
-                items.append({
-                    "name": name,
-                    "thumb": grouped[name][0] + "?width=400",
-                    "href": f"{safe_filename(name)}.html",
-                })
-        return items
-
-    recommend_new = pick(new_names)
-    recommend_rarity = pick(RARITY_LIST)
-    recommend_popular = pick(POPULAR_LIST)
-
-    index_parts.append("""  <section class="guide-panel guide-panel--recommend" aria-labelledby="guide-recommend-title">
-    <div class="guide-section-heading guide-section-heading--compact">
-      <span class="guide-eyebrow">PICK UP</span>
-      <h2 id="guide-recommend-title">おすすめキノコ</h2>
-      <p>新着・珍しいキノコ・人気のキノコからピックアップしています。</p>
-    </div>
-    <div class="recommend-grid">
-""")
-
-    def append_cards(title, items):
-        index_parts.append(
-            f"      <div class='recommend-card'><h3>{title}</h3><div class='rec-items'>"
-        )
-        if items:
-            for item in items:
-                index_parts.append(f"""
-        <a class="rec-item" href="{item['href']}">
-          <img src="{item['thumb']}" alt="{html.escape(item['name'])}">
-          <div>{html.escape(item['name'])}</div>
-        </a>
-""")
-        else:
-            index_parts.append('<p class="guide-empty-pick">該当する写真はまだありません。</p>')
-        index_parts.append("</div></div>")
-
-    append_cards("新着キノコ", recommend_new)
-    append_cards("珍しいキノコ", recommend_rarity)
-    append_cards("人気キノコTOP3", recommend_popular)
 
     index_parts.append("""    </div>
   </section>

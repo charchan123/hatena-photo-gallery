@@ -29,7 +29,6 @@ def test_guide_index_uses_pc_portal_visual_language(monkeypatch, tmp_path):
         "名前から探す",
         "五十音から探す",
         "ほかの探し方",
-        "おすすめキノコ",
         "観察ノート",
         'href="new-top.html"',
         'class="index-search-input"',
@@ -64,14 +63,40 @@ def test_guide_index_optional_routes_and_css_are_scoped(monkeypatch, tmp_path):
     assert ".guide-index .guide-shell" in css
     assert "width:min(100%,1180px)" in css
     assert 'url("mushroom-guide-final.webp")' in css
+    assert ".guide-index .guide-hub" in css
+    assert ".guide-index .guide-hub-body" in css
+    assert "grid-template-columns:minmax(0,2.15fr) 1px minmax(260px,.85fr)" in css
+    assert ".guide-index .guide-hub-separator" in css
+    assert "background:#d6ddd4" in css
     assert ".guide-index .guide-find-grid" in css
-    assert "grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)" in css
+    assert "grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr)" in css
     assert ".guide-index .index-search-results:not(:empty)" in css
-    assert "grid-template-columns:repeat(4,minmax(0,1fr))" in css
+    assert "grid-template-columns:repeat(3,minmax(0,1fr))" in css
     assert "@media (max-width:899px)" in css
     assert "@media (max-width:680px)" in css
     assert "@media (prefers-reduced-motion:reduce)" in css
 
+
+
+def test_guide_index_unifies_hero_search_and_observation_note(monkeypatch, tmp_path):
+    monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
+    main.generate_index({}, {}, observation_records=[record(0)])
+    page = (tmp_path / "index.html").read_text(encoding="utf-8")
+
+    hub_start = page.index('<section class="guide-hub"')
+    hub_end = page.index('</section>', page.index('<aside class="guide-note-zone"', hub_start)) + len('</section>')
+    hub = page[hub_start:hub_end]
+
+    assert 'class="guide-hero"' in hub
+    assert 'class="guide-find-zone"' in hub
+    assert 'class="guide-hub-separator"' in hub
+    assert 'class="guide-note-zone"' in hub
+    assert hub.index("キノコを探す") < hub.index("guide-hub-separator") < hub.index("観察ノート")
+
+    assert "観察記録" not in page
+    assert "おすすめキノコ" not in page
+    assert "record-list-preview" not in page
+    assert "guide-panel--recommend" not in page
 
 def test_records_first_information_architecture(monkeypatch, tmp_path):
     page = render(monkeypatch, tmp_path, observation_records=[record(i) for i in range(4)])
