@@ -76,7 +76,8 @@ def test_repository_counts_policies_and_links():
     assert all(by_name[name]["scientific_name"]["name_status"] == "source_reported" for name in BATCH_2_LABELS + BATCH_3_LABELS)
     assert all(by_name[name]["food_safety"]["status"] == "edibility_reported" for name in ("アカヤマドリ", "キクラゲ", "ハナイグチ", "カラカサタケ", "ヤマイグチ", "キクバナイグチ"))
     assert all(by_name[name]["food_safety"]["status"] == "edibility_reported" for name in ("アオロウジ", "ウラベニガサ", "トガリアミガサタケ", "ノウタケ", "エノキタケ", "タマゴタケ"))
-    assert all(by_name[name]["food_safety"]["status"] == "unknown" for name in ("ウコンハツ", "キニガイグチ"))
+    assert by_name["ウコンハツ"]["food_safety"]["status"] == "unknown"
+    assert by_name["キニガイグチ"]["food_safety"]["status"] == "edibility_reported"
     assert all(by_name[name]["food_safety"]["status"] == "edibility_reported" for name in ("アラゲキクラゲ", "ウラグロニガイグチ", "オオキツネタケ", "セイタカイグチ", "タマチョレイタケ"))
     assert all(by_name[name]["food_safety"]["status"] == "unknown" for name in ("キアミアシイグチ", "ツバアブラシメジ", "ホテイシメジ", "ミドリニガイグチ", "ミヤマタマゴタケ"))
     assert all(by_name[name]["scientific_name"]["name_status"] == "source_reported" for name in BATCH_4_LABELS)
