@@ -321,3 +321,13 @@ def test_dedicated_guide_and_cabin_assets_are_referenced(monkeypatch, tmp_path):
     assert 'url("guide-action-features.webp")' in css
     assert 'url("research-lab-cabin.webp")' in css
     assert 'background-position:78% center' in css
+
+def test_portal_artwork_brightness_preserves_text_layers():
+    css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
+
+    assert "rgba(10,25,16,.70)" in css
+    assert "rgba(10,25,16,.18) 55%" in css
+    assert ".portal-guide-row .portal-card__visual { filter:brightness(1.12) saturate(1.03); }" in css
+    assert ".portal-independent-links .portal-card__visual { filter:brightness(1.10) saturate(1.02); }" in css
+    assert ".portal-card__content { z-index:1;" in css
+    assert "background:linear-gradient(to top,rgba(10,25,16,.82),rgba(10,25,16,.22) 72%,transparent);" in css
