@@ -2101,7 +2101,7 @@ def generate_gallery(entries, exif_cache, detail_views=None):
         grouped.setdefault(e["alt"], []).append(e["src"])
 
     # index & 各ページ共通：五十音タイル HTML
-    group_links_html = "<div class='aiuo-links detail-aiuo-links'>"
+    group_links_html = '<div class="aiuo-links detail-aiuo-links">'
     for g in AIUO_GROUPS.keys():
         group_links_html += f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>'
     group_links_html += "</div>"
@@ -2137,7 +2137,7 @@ def generate_gallery(entries, exif_cache, detail_views=None):
         <h3>観察写真</h3>
         <p>{len(imgs)}枚の写真があります。写真をクリックすると大きく表示できます。</p>
       </div>
-      <div class="gallery">
+      <div class='gallery'>
 """]
 
         for src in imgs:
