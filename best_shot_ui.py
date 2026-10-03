@@ -229,30 +229,82 @@ def _year_content(year_model):
 
 def _document(title, body):
     return f'''<!doctype html>
-<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{html.escape(title)}</title><link rel="stylesheet" href="assets/gallery.css"><link rel="stylesheet" href="assets/best-shots.css"><script src="assets/gallery.js" defer></script></head>
-<body><main class="best-shots-page">{body}</main></body></html>'''
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{html.escape(title)}</title>
+<link rel="stylesheet" href="assets/gallery.css">
+<link rel="stylesheet" href="assets/best-shots.css">
+<script src="assets/gallery.js" defer></script>
+</head>
+<body class="best-shots-index">
+<main id="gallery-content-root" class="best-shots-page">{body}</main>
+</body>
+</html>'''
+
+
+def _best_shots_hero(title, description="", back_href="index.html", back_label="図鑑へ戻る"):
+    description_html = f"<p>{html.escape(description)}</p>" if description else ""
+    return f'''<header class="best-shots-hero">
+  <a class="best-shots-back-link" href="{html.escape(back_href, quote=True)}">← {html.escape(back_label)}</a>
+  <div class="best-shots-hero-copy">
+    <span class="best-shots-eyebrow">BEST SHOTS</span>
+    <h1>{html.escape(title)}</h1>
+    {description_html}
+  </div>
+</header>'''
 
 
 def render_best_shot_page(model):
     """Render the landing page with the latest selected capture year, if any."""
-    header = '<header class="best-shots-header"><h1>📸 ベストショット</h1><p>キノコ探索の中で出会った、とっておきの写真を集めました。</p></header>'
+    header = _best_shots_hero(
+        "ベストショット",
+        "キノコ探索の中で出会った、とっておきの写真を集めました。",
+    )
     if not model["years"]:
-        content = '<p class="best-shots-empty">ベストショットは現在選定中です。</p>'
+        content = '<section class="best-shots-content"><p class="best-shots-empty">ベストショットは現在選定中です。</p></section>'
     else:
         latest = model["years"][0]
-        content = f'<h2 class="best-shots-year-title">{latest["year"]}年のベストショット</h2>{_year_content(latest)}'
+        content = (
+            f'<section class="best-shots-content">'
+            f'<header class="best-shots-section-heading"><span class="best-shots-eyebrow">LATEST COLLECTION</span>'
+            f'<h2 class="best-shots-year-title">{latest["year"]}年のベストショット</h2></header>'
+            f'{_year_content(latest)}'
+        )
         older = model["years"][1:]
         if older:
-            links = "".join(f'<li><a href="best-shots-{row["year"]}.html">{row["year"]}年</a></li>' for row in older)
-            content += f'<nav class="best-shots-archive"><h2>📚 過去のベストショット</h2><ul>{links}</ul></nav>'
-    return _document("ベストショット｜キノコ図鑑", header + content + '<p class="best-shots-back"><a href="index.html">◀ トップに戻る</a></p>')
+            links = "".join(
+                f'<li><a href="best-shots-{row["year"]}.html">{row["year"]}年</a></li>'
+                for row in older
+            )
+            content += (
+                f'<nav class="best-shots-archive"><span class="best-shots-eyebrow">ARCHIVE</span>'
+                f'<h2>過去のベストショット</h2><ul>{links}</ul></nav>'
+            )
+        content += "</section>"
+    return _document(
+        "ベストショット｜キノコ図鑑",
+        '<section class="best-shots-hub">' + header + '</section>' + content
+        + '<footer class="best-shots-footer"><a href="index.html">← キノコ図鑑へ戻る</a></footer>'
+    )
 
 
 def render_best_shot_year_page(year_model):
     year = year_model["year"]
-    body = f'<header class="best-shots-header"><h1>📸 {year}年のベストショット</h1></header>{_year_content(year_model)}'
-    body += '<p class="best-shots-back"><a href="best-shots.html">◀ ベストショット一覧に戻る</a></p>'
+    header = _best_shots_hero(
+        f"{year}年のベストショット",
+        "その年に選んだ、とっておきの一枚を月ごとに振り返ります。",
+        "best-shots.html",
+        "ベストショット一覧へ戻る",
+    )
+    body = (
+        '<section class="best-shots-hub">' + header + '</section>'
+        + '<section class="best-shots-content">'
+        + _year_content(year_model)
+        + '</section>'
+        + '<footer class="best-shots-footer"><a href="best-shots.html">← ベストショット一覧へ戻る</a></footer>'
+    )
     return _document(f"{year}年のベストショット｜キノコ図鑑", body)
 
 
