@@ -239,7 +239,7 @@ def test_reference_portal_card_proportions_and_lower_artwork_assignment():
     assert "align-items:stretch" in desktop
     assert ".portal-independent-links .portal-card { min-height:155px; }" in desktop
 
-    assert ".portal-guide-list { display:grid; flex:1 1 auto; min-height:0; }" in css
+    assert ".portal-guide-list { display:grid; flex:1 1 auto; min-height:0; align-content:start; border-top:1px solid #d9ddcf; }" in css
     assert "grid-template-columns:150px minmax(0,1fr)" in css
     assert ".record-preview-thumb { display:block; height:96px;" in css
 
