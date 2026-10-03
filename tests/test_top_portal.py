@@ -237,28 +237,38 @@ def test_reference_portal_card_proportions_and_lower_artwork_assignment():
     assert "align-items:stretch" in desktop
     assert ".portal-independent-links .portal-card { min-height:155px; }" in desktop
 
-    assert ".portal-guide-grid { display:grid; flex:0 0 auto; gap:12px; }" in css
+    assert ".portal-guide-grid { display:grid; min-width:0; gap:10px; }" in css
     assert "grid-template-columns:150px minmax(0,1fr)" in css
     assert ".record-preview-thumb { display:block; height:96px;" in css
 
-def test_guide_help_fills_equal_height_without_stretching_entry_cards(monkeypatch, tmp_path):
+def test_guide_two_column_layout_matches_cards_with_explanations(monkeypatch, tmp_path):
     page = render(monkeypatch, tmp_path, feature_search_available=True,
                   observation_records=[record(i) for i in range(3)])
 
-    assert 'class="portal-guide-help"' in page
-    assert "こんなときは" in page
-    assert "名前が分かる" in page and "図鑑を見る" in page
-    assert "撮影時期が分かる" in page and "季節から探す" in page
-    assert "名前が分からない" in page and "特徴から探す" in page
+    assert "図鑑・季節・見た目の特徴。3つの視点からキノコを探せます。" not in page
+    assert 'class="portal-guide-layout"' in page
+    assert 'class="portal-guide-help portal-guide-help--three"' in page
+    for phrase in (
+        "名前がわかる場合は",
+        "図鑑から名前や写真、五十音で探せます。",
+        "撮影した時期がわかる場合は",
+        "季節から候補をたどれます。",
+        "名前がわからない場合は",
+        "傘やヒダなど、見た目の特徴から絞り込めます。",
+    ):
+        assert phrase in page
 
     without_features = render(monkeypatch, tmp_path, feature_search_available=False)
-    help_section = without_features[without_features.index('class="portal-guide-help"'):]
-    assert "名前が分からない" not in help_section
+    assert 'class="portal-guide-help portal-guide-help--two"' in without_features
+    assert "名前がわからない場合は" not in without_features
 
     css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
     desktop = css[css.index("@media (min-width:900px)"):css.index("@media (max-width:680px)")]
     assert "align-items:stretch" in desktop
     assert ".portal-records-visual,.portal-section-visual { height:190px; }" in desktop
-    assert ".portal-guide-grid .portal-card__copy strong { gap:6px; font-size:1rem; white-space:nowrap; }" in css
-    assert ".portal-guide-help { display:flex; flex:1 1 auto; min-height:112px;" in css
-    assert ".portal-guide-grid .portal-card { min-height:135px; }" in desktop
+    assert ".portal-guide-layout { display:grid;" in css
+    assert "grid-template-columns:minmax(0,1.16fr) minmax(0,.84fr)" in css
+    assert ".portal-guide-grid--three { grid-template-columns:1fr; grid-template-rows:repeat(3,minmax(76px,1fr)); }" in css
+    assert ".portal-guide-grid .portal-card__copy small { overflow:hidden; font-size:.76rem; line-height:1.35; text-overflow:ellipsis; white-space:nowrap; }" in css
+    assert ".portal-guide-help--three { grid-template-rows:repeat(3,minmax(76px,1fr)); }" in css
+

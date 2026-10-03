@@ -914,3 +914,14 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Mobile:** the helper panel stacks into a compact single-column list and does not force the desktop minimum height.
 - **Scope:** no artwork binaries, AI-image overlay text size/position, Hatena Design CSS/Hero banner, portal-data schema, record ordering/excerpts, Phase 3C, taxonomy, EXIF, favorites, LightGallery, iframe synchronization, workflow, or `data/*` behavior is changed.
 - **Validation:** GitHub Actions temporary Phase 4A.8.7 full-test workflow passed **374/374 pytest**, **374 collected**, Python compilation, `node --check assets/gallery.js`, 4 kana-insensitive highlight cases, iframe height regression checks, feature-filter checks, and `git diff --check` against production `27fba20d...`. The first temporary run failed only because one Phase 4A.8.6 regression assertion still expected `align-items:start`; that expectation was updated to the intentional equal-height `stretch` behavior, after which the full suite passed. The temporary workflow is removed before merge and is not part of the final PR diff.
+
+## Phase 4A.8.8 — Two-column Mushroom Guide actions
+
+- **Starting point:** production `main` is merge commit `886716bc8bd6be54d796f61f126a7817b38d0ed6` after Phase 4A.8.7.
+- **Guide simplification:** removes the standalone `図鑑・季節・見た目の特徴。3つの視点から…` intro sentence below the MUSHROOM GUIDE artwork.
+- **Desktop layout:** the lower MUSHROOM GUIDE area becomes a two-column matched-row layout. The left column contains the existing three dark-green actions as wide, low horizontal cards stacked vertically; the right column contains a corresponding explanation for each action.
+- **Action-card text:** titles stay one line. Each existing action description is also forced to one line with ellipsis safety, reducing vertical card height without removing the description itself.
+- **Explanations:** right-side copy is `名前がわかる場合は → 図鑑から名前や写真、五十音で探せます。`, `撮影した時期がわかる場合は → 季節から候補をたどれます。`, and, when feature search is available, `名前がわからない場合は → 傘やヒダなど、見た目の特徴から絞り込めます。`.
+- **Equal-height contract:** FIELD NOTES and MUSHROOM GUIDE remain equal-height in the desktop portal row; their AI artwork heights remain exactly 190px desktop / 150px mobile. AI-artwork overlay text size and placement remain unchanged.
+- **Mobile:** the two-column guide layout stacks into one column; the three action cards remain compact and the explanation blocks follow below.
+- **Scope:** no artwork binaries, Hatena Design CSS/Hero banner, AI-artwork overlay text size/position, portal-data schema, record ordering/excerpts, Phase 3C, taxonomy, EXIF, favorites, LightGallery, iframe synchronization, workflows, or `data/*` behavior is changed.
