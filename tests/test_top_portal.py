@@ -406,3 +406,19 @@ def test_portal_artwork_brightness_preserves_text_layers():
     assert ".portal-independent-links .portal-card__visual { filter:brightness(1.10) saturate(1.02); }" in css
     assert ".portal-card__content { z-index:1;" in css
     assert "background:linear-gradient(to top,rgba(10,25,16,.82),rgba(10,25,16,.22) 72%,transparent);" in css
+
+def test_typography_overlay_and_independent_card_spacing_polish():
+    guide_css = (Path(main.ASSETS_DIR) / "guide.css").read_text()
+    portal_css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
+
+    assert ".guide-index .guide-hero h1 {" in guide_css
+    assert "font-family:inherit;" in guide_css
+    assert '"Hiragino Mincho ProN"' not in guide_css
+
+    assert "linear-gradient(120deg,rgba(0,0,0,.18),rgba(0,0,0,.30))" in guide_css
+    assert "linear-gradient(120deg,rgba(24,62,37,.93),rgba(41,83,50,.80))" not in guide_css
+
+    assert ".portal-eyebrow { margin:0 0 6px;" in portal_css
+    assert ".portal-independent-links .portal-card__copy { gap:0; }" in portal_css
+    assert ".portal-independent-links .portal-eyebrow { margin-bottom:6px;" in portal_css
+    assert ".portal-independent-links .portal-card__copy strong + small { margin-top:5px; }" in portal_css

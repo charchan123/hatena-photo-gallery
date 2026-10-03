@@ -51,8 +51,10 @@
 .portal-card__copy small { color:rgba(255,255,255,.84); line-height:1.4; font-size:.82rem; }
 .portal-independent-links { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:24px; }
 .portal-independent-links .portal-card { min-height:160px; }
-.portal-independent-links .portal-eyebrow { color:rgba(255,255,255,.9); }
+.portal-independent-links .portal-card__copy { gap:0; }
+.portal-independent-links .portal-eyebrow { margin-bottom:6px; color:rgba(255,255,255,.9); }
 .portal-independent-links .portal-card__copy strong { font-size:1.35rem; }
+.portal-independent-links .portal-card__copy strong + small { margin-top:5px; }
 .portal-independent-links .portal-card__copy small { font-size:.91rem; }
 .portal-about { margin-top:34px; padding-top:20px; border-top:1px solid rgba(53,78,58,.22); }
 .portal-about h2 { margin:0 0 15px; color:#526255; font-size:1rem; }
