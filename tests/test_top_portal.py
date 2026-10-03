@@ -106,12 +106,13 @@ def test_portal_styles_are_compact_and_scoped(monkeypatch, tmp_path):
     desktop = css[css.index("@media (min-width:900px)"):css.index("@media (max-width:680px)")]
     for expected in (
         "grid-template-columns:repeat(2,minmax(0,1fr))",
-        "column-gap:24px",
-        "align-items:stretch",
+        "column-gap:20px",
+        "row-gap:18px",
+        "align-items:start",
         ".portal-records-visual,.portal-section-visual { height:190px; }",
         ".portal-explore { margin-top:0; }",
-        ".portal-independent-links { grid-column:1/-1; width:100%; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px;",
-        ".portal-independent-links .portal-card { min-height:185px; }",
+        ".portal-independent-links { grid-column:1/-1; width:100%; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px;",
+        ".portal-independent-links .portal-card { min-height:155px; }",
         ".portal-about { grid-column:1/-1;",
     ):
         assert expected in desktop
@@ -222,3 +223,20 @@ def test_portal_artwork_assets_are_deployed_verbatim(monkeypatch, tmp_path):
     assert 'background-image:url("research-lab-final.webp")' in css
     assert 'background-image:url("best-shots-final.webp")' in css
     assert ".portal-records-visual,.portal-section-visual { height:190px; }" in css
+
+def test_reference_portal_card_proportions_and_lower_artwork_assignment():
+    css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
+
+    assert '.portal-card--research .portal-card__visual { background-image:url("best-shots-final.webp")' in css
+    assert '.portal-card--best-shots .portal-card__visual { background-image:url("research-lab-final.webp")' in css
+
+    desktop = css[css.index("@media (min-width:900px)"):css.index("@media (max-width:680px)")]
+    assert ".portal-records-visual,.portal-section-visual { height:190px; }" in desktop
+    assert "column-gap:20px" in desktop
+    assert "row-gap:18px" in desktop
+    assert "align-items:start" in desktop
+    assert ".portal-independent-links .portal-card { min-height:155px; }" in desktop
+
+    assert ".portal-guide-grid { display:grid; flex:0 0 auto; gap:12px; }" in css
+    assert "grid-template-columns:150px minmax(0,1fr)" in css
+    assert ".record-preview-thumb { display:block; height:96px;" in css

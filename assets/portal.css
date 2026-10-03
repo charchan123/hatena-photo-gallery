@@ -12,26 +12,26 @@
 .portal-records-heading p:last-child,.portal-section-heading>p:last-child { margin:7px 0 0; color:rgba(255,255,255,.9); font-size:.91rem; }
 .portal-icon { width:24px; height:24px; flex:0 0 auto; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
 .record-preview-list { margin:0 28px; border-top:1px solid #d9ddcf; }
-.record-preview-row { display:grid; grid-template-columns:150px minmax(0,1fr); gap:18px; align-items:center; min-height:105px; padding:12px 0; border-bottom:1px solid #d9ddcf; color:inherit; text-decoration:none; }
+.record-preview-row { display:grid; grid-template-columns:150px minmax(0,1fr); gap:18px; align-items:center; min-height:96px; padding:8px 0; border-bottom:1px solid #d9ddcf; color:inherit; text-decoration:none; }
 .record-preview-thumb { display:block; height:96px; overflow:hidden; border-radius:10px; background:#dfe4d8; }
 .record-preview-thumb img { width:100%; height:100%; object-fit:cover; object-position:center; transition:transform .35s ease; }
 .record-preview-body { min-width:0; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:4px 16px; }
 .record-preview-title { overflow:hidden; color:#24472f; font-weight:650; text-overflow:ellipsis; white-space:nowrap; }
 .record-preview-date { color:#758077; font-size:.74rem; white-space:nowrap; }
 .record-preview-excerpt { grid-column:1/-1; display:-webkit-box; overflow:hidden; margin:2px 0 0; color:#526056; font-size:.88rem; line-height:1.45; -webkit-box-orient:vertical; -webkit-line-clamp:2; }
-.portal-more-link { display:block; width:fit-content; margin:18px 28px 24px auto; color:#285c3a; font-weight:700; }
+.portal-more-link { display:block; width:fit-content; margin:14px 28px 18px auto; color:#285c3a; font-weight:700; }
 .portal-explore { margin-top:32px; }
-.portal-explore-content { display:flex; flex:1; flex-direction:column; padding:18px 26px 26px; }
-.portal-guide-intro { margin:0 0 14px; color:#526255; font-size:.9rem; line-height:1.55; }
-.portal-guide-grid { display:grid; flex:1; gap:12px; }
+.portal-explore-content { display:flex; flex:0 0 auto; flex-direction:column; padding:16px 22px 20px; }
+.portal-guide-intro { margin:0 0 12px; color:#526255; font-size:.9rem; line-height:1.55; }
+.portal-guide-grid { display:grid; flex:0 0 auto; gap:12px; }
 .portal-guide-grid--two { grid-template-columns:repeat(2,minmax(0,1fr)); }
 .portal-guide-grid--three { grid-template-columns:repeat(3,minmax(0,1fr)); }
 .portal-card { position:relative; display:grid; min-height:130px; overflow:hidden; border-radius:16px; color:#fff; text-decoration:none; isolation:isolate; transition:transform .2s ease,box-shadow .2s ease; }
 .portal-guide-grid .portal-card { background:linear-gradient(145deg,#426745,#173c2b 72%,#102f22); }
 .portal-card__visual,.portal-card__content { grid-area:1/1; }
 .portal-card__visual { background:radial-gradient(circle at 78% 25%,rgba(255,228,151,.18),transparent 28%),linear-gradient(140deg,#567358,#173c2b); background-position:center; background-size:cover; }
-.portal-card--research .portal-card__visual { background-image:url("research-lab-final.webp"); background-position:center center; background-size:cover; background-repeat:no-repeat; }
-.portal-card--best-shots .portal-card__visual { background-image:url("best-shots-final.webp"); background-position:center center; background-size:cover; background-repeat:no-repeat; }
+.portal-card--research .portal-card__visual { background-image:url("best-shots-final.webp"); background-position:center center; background-size:cover; background-repeat:no-repeat; }
+.portal-card--best-shots .portal-card__visual { background-image:url("research-lab-final.webp"); background-position:center center; background-size:cover; background-repeat:no-repeat; }
 .portal-card__content { z-index:1; display:block; align-self:end; padding:42px 18px 17px; background:linear-gradient(to top,rgba(10,25,16,.82),rgba(10,25,16,.22) 72%,transparent); }
 .portal-card__copy { display:grid; gap:5px; }
 .portal-card__copy strong { display:flex; align-items:center; gap:8px; font-size:1.04rem; font-weight:650; }
@@ -52,7 +52,7 @@
 .portal-card:focus-visible,.record-preview-row:focus-visible,.portal-more-link:focus-visible,.portal-about-links a:focus-visible { outline:4px solid #eeb947; outline-offset:3px; }
 @media (hover:hover) { .portal-card:hover { transform:translateY(-2px); box-shadow:0 9px 20px rgba(30,50,35,.16); }.record-preview-row:hover .record-preview-thumb img { transform:scale(1.08); }.record-preview-row:hover .record-preview-title { text-decoration:underline; } }
 @media (min-width:900px) {
-  .portal-index .portal-shell { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:24px; row-gap:24px; align-items:stretch; }
+  .portal-index .portal-shell { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:20px; row-gap:18px; align-items:start; }
   .portal-records-visual,.portal-section-visual { height:190px; }
   .record-preview-body { display:block; }
   .record-preview-title,.record-preview-date { display:block; }
@@ -60,9 +60,9 @@
   .record-preview-excerpt { margin-top:5px; }
   .portal-explore { margin-top:0; }
   .portal-guide-grid .portal-card { min-height:135px; }
-  .portal-independent-links { grid-column:1/-1; width:100%; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; margin-top:0; }
-  .portal-independent-links .portal-card { min-height:185px; }
-  .portal-about { grid-column:1/-1; margin-top:10px; }
+  .portal-independent-links { grid-column:1/-1; width:100%; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; margin-top:0; }
+  .portal-independent-links .portal-card { min-height:155px; }
+  .portal-about { grid-column:1/-1; margin-top:4px; }
 }
 @media (max-width:899px) { .portal-independent-links { grid-template-columns:1fr; } }
 @media (max-width:680px) {
