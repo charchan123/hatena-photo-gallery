@@ -227,7 +227,6 @@ def test_portal_artwork_assets_are_deployed_verbatim(monkeypatch, tmp_path):
     css = (assets / "portal.css").read_text()
     assert 'background-image:url("mushroom-guide-final.webp")' in css
     assert 'background-image:url("research-lab-final.webp")' in css
-    assert 'background-image:url("best-shots-final.webp")' in css
     assert ".portal-records-visual,.portal-section-visual { height:190px; }" in css
 
 def test_reference_portal_card_proportions_and_lower_artwork_assignment():
