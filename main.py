@@ -200,6 +200,10 @@ def copy_shared_assets():
         "mushroom-guide-final.webp",
         "research-lab-final.webp",
         "best-shots-final.webp",
+        "guide-action-book.webp",
+        "guide-action-season.webp",
+        "guide-action-features.webp",
+        "research-lab-cabin.webp",
         "hero-amanita-background.webp",
         "hero-amanita-cutout.png",
     ):

@@ -36,12 +36,12 @@
 .portal-guide-note small { color:#526056; font-size:.88rem; line-height:1.45; }
 .portal-card { position:relative; display:grid; min-height:130px; overflow:hidden; border-radius:16px; color:#fff; text-decoration:none; isolation:isolate; transition:transform .2s ease,box-shadow .2s ease; }
 .portal-guide-row .portal-card { background:linear-gradient(145deg,#426745,#173c2b 72%,#102f22); }
-.portal-guide-row .portal-card--guide .portal-card__visual { background-image:linear-gradient(rgba(10,29,18,.34),rgba(10,29,18,.44)),url("mushroom-guide-final.webp"); background-position:72% 50%; background-size:cover; background-repeat:no-repeat; }
-.portal-guide-row .portal-card--season .portal-card__visual { background-image:linear-gradient(rgba(10,29,18,.34),rgba(10,29,18,.44)),url("research-lab-final.webp"); background-position:76% 50%; background-size:cover; background-repeat:no-repeat; }
-.portal-guide-row .portal-card--features .portal-card__visual { background-image:linear-gradient(rgba(10,29,18,.34),rgba(10,29,18,.44)),url("best-shots-final.webp"); background-position:72% 50%; background-size:cover; background-repeat:no-repeat; }
+.portal-guide-row .portal-card--guide .portal-card__visual { background-image:linear-gradient(rgba(10,29,18,.34),rgba(10,29,18,.44)),url("guide-action-book.webp"); background-position:72% 50%; background-size:cover; background-repeat:no-repeat; }
+.portal-guide-row .portal-card--season .portal-card__visual { background-image:linear-gradient(rgba(10,29,18,.34),rgba(10,29,18,.44)),url("guide-action-season.webp"); background-position:70% 50%; background-size:cover; background-repeat:no-repeat; }
+.portal-guide-row .portal-card--features .portal-card__visual { background-image:linear-gradient(rgba(10,29,18,.34),rgba(10,29,18,.44)),url("guide-action-features.webp"); background-position:72% 50%; background-size:cover; background-repeat:no-repeat; }
 .portal-card__visual,.portal-card__content { grid-area:1/1; }
 .portal-card__visual { background:radial-gradient(circle at 78% 25%,rgba(255,228,151,.18),transparent 28%),linear-gradient(140deg,#567358,#173c2b); background-position:center; background-size:cover; }
-.portal-card--research .portal-card__visual { background-image:url("best-shots-final.webp"); background-position:center center; background-size:cover; background-repeat:no-repeat; }
+.portal-card--research .portal-card__visual { background-image:url("research-lab-cabin.webp"); background-position:78% center; background-size:cover; background-repeat:no-repeat; }
 .portal-card--best-shots .portal-card__visual { background-image:url("research-lab-final.webp"); background-position:center center; background-size:cover; background-repeat:no-repeat; }
 .portal-card__content { z-index:1; display:block; align-self:end; padding:42px 18px 17px; background:linear-gradient(to top,rgba(10,25,16,.82),rgba(10,25,16,.22) 72%,transparent); }
 .portal-card__copy { display:grid; gap:5px; }
