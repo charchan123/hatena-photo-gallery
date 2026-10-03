@@ -182,8 +182,9 @@ def test_empty_model_and_index_entrance_behavior(tmp_path, monkeypatch):
     main.generate_index({}, {}, observation_records=[{"x": 1}], research_summary={"case_count": 1},
                         best_shot_summary={"entry_count": 2})
     page = (tmp_path / "index.html").read_text(encoding="utf-8")
-    assert page.index("不明キノコ研究室") < page.index("ベストショット") < page.index("観察記録")
-    assert "おすすめキノコ" in page
+    assert page.index("不明キノコ研究室") < page.index("ベストショット")
+    assert "観察記録" not in page
+    assert "おすすめキノコ" not in page
 
 
 def test_fresh_gate_and_failure_isolation(monkeypatch):
