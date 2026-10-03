@@ -1082,4 +1082,3 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Protected contracts:** iframe height sync, ResizeObserver, force resend, bfcache/pageshow, requestHeight, scrollToTitle, .html navigation bridge, browser back, LightGallery, favorites, kana filtering/search, portal-data, taxonomy, EXIF extraction, mushroom data files, observation IDs, Hatena API, and Phase 3C logic are unchanged.
 - **Responsive scope:** only safe tablet/narrow fallbacks are included. Full mobile visual optimization remains deferred until the PC page pass is complete.
 - **Validation:** temporary Phase 4C.5 workflow passed **386/386 pytest**, **386 collected**, Python compilation, `node --check assets/gallery.js`, 4 kana-insensitive highlight cases, iframe-height regression checks, feature-filter checks, and `git diff --check` against production `6b649d71...`. The temporary workflow is removed before the final PR.
-
