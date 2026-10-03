@@ -273,4 +273,3 @@ def test_guide_two_column_layout_matches_cards_with_explanations(monkeypatch, tm
     assert ".portal-guide-grid--three { grid-template-columns:1fr; grid-template-rows:repeat(3,minmax(76px,1fr)); }" in css
     assert ".portal-guide-grid .portal-card__copy small { overflow:hidden; font-size:.76rem; line-height:1.35; text-overflow:ellipsis; white-space:nowrap; }" in css
     assert ".portal-guide-help--three { grid-template-rows:repeat(3,minmax(76px,1fr)); }" in css
-
