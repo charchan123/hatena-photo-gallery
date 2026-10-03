@@ -279,11 +279,11 @@ body.records-index {
   .record-list-preview .record-card { display:block; }
 }
 
-@media (prefers-reduced-motion:reduce) {
+@media (prefers-reduced-motion: reduce) {
   .records-index .record-card,
   .records-index .record-card-thumb img,
   .records-index .records-footer .back-btn { transition:none; }
-  .records-index .record-card-badge { animation:none; }
+  .records-index .record-card-badge { animation: none; }
   .records-index .record-card:hover .record-card-thumb img,
   .records-index .records-footer .back-btn:hover { transform:none; }
 }
