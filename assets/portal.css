@@ -58,7 +58,7 @@
 .portal-independent-links .portal-card__copy small { font-size:.91rem; }
 .portal-about { margin-top:34px; padding-top:20px; border-top:1px solid rgba(53,78,58,.22); }
 .portal-about h2 { margin:0 0 15px; color:#526255; font-size:1rem; }
-.portal-about-grid { display:grid; grid-template-columns:minmax(250px,.72fr) minmax(0,1.28fr); gap:56px; align-items:start; }
+.portal-about-grid { display:grid; grid-template-columns:280px minmax(0,540px); gap:60px; align-items:start; width:min(100%,880px); margin-inline:auto; }
 .portal-about-links { display:grid; grid-template-columns:1fr; gap:15px; }
 .portal-about-links a { display:grid; grid-template-columns:22px minmax(0,1fr); gap:9px; align-items:start; color:#45604c; text-decoration:none; }
 .portal-about-links a>span { display:grid; gap:3px; }

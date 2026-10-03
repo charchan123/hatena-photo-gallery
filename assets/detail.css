@@ -142,14 +142,14 @@ body.detail-page {
   line-height:1.6;
 }
 
-/* Photo mosaic: natural aspect ratios with explicit balanced columns.
-   Column wrappers stretch to the same height; extra vertical space is distributed
-   between photos so every column ends on the same Y line. */
+/* Fixed-gap natural-ratio mosaic. JS solves column widths so bottoms align without
+   distributing spare space into the gaps or cropping the photographs. */
 .detail-page .gallery {
+  --detail-mosaic-gap:10px;
   display:grid !important;
-  grid-template-columns:repeat(var(--detail-mosaic-columns,5),minmax(0,1fr));
-  gap:10px;
-  align-items:stretch;
+  grid-template-columns:var(--detail-mosaic-tracks,repeat(var(--detail-mosaic-columns,5),minmax(0,1fr)));
+  gap:var(--detail-mosaic-gap);
+  align-items:start;
   width:100%;
   max-width:var(--detail-mosaic-max-width,1080px);
   margin:0 auto;
@@ -162,8 +162,8 @@ body.detail-page {
   display:flex;
   min-width:0;
   flex-direction:column;
-  justify-content:space-between;
-  gap:10px;
+  justify-content:flex-start;
+  gap:var(--detail-mosaic-gap);
 }
 
 .detail-page .gallery a.gallery-item {
@@ -178,10 +178,12 @@ body.detail-page {
 
 .detail-page .gallery a.gallery-item img {
   width:100%;
-  height:auto;
+  height:100%;
   display:block;
-  object-fit:contain;
+  object-fit:cover;
 }
+
+.detail-page .gallery.detail-mosaic-single { width:min(100%,380px); }
 
 .detail-page .gallery a.gallery-item.mosaic-corner-tl { border-top-left-radius:16px; }
 .detail-page .gallery a.gallery-item.mosaic-corner-tr { border-top-right-radius:16px; }
