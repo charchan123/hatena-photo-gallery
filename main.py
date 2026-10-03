@@ -2590,8 +2590,6 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
     </header>
   </div>
   <div class="portal-explore-content">
-    <div class="portal-guide-layout">
-  <nav class="portal-guide-grid{' portal-guide-grid--three' if feature_search_available else ' portal-guide-grid--two'}" aria-label="キノコを探す入口">
 ''']
 
     def append_card(modifier, href, title, description, eyebrow=None):
@@ -2605,29 +2603,54 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
             '    </a>\n'
         )
 
-    append_card("guide", "index.html", "図鑑を見る", "名前や写真、五十音からキノコを探す")
-    append_card("season", "season.html", "季節から探す", "撮影された季節からたどる")
-    if feature_search_available:
-        append_card("features", "features.html", "特徴から探す", "見た目の特徴から絞り込む")
-    parts.append('  </nav>\n')
-    guide_help_items = [
-        ("名前がわかる場合は", "図鑑から名前や写真、五十音で探せます。"),
-        ("撮影した時期がわかる場合は", "季節から候補をたどれます。"),
+    guide_rows = [
+        (
+            "guide",
+            "index.html",
+            "図鑑を見る",
+            "名前、五十音順からキノコを探す",
+            "名前がわかる場合は",
+            "図鑑から名前や五十音順で探せます。",
+        ),
+        (
+            "season",
+            "season.html",
+            "季節から探す",
+            "撮影された季節からたどる",
+            "撮影した時期がわかる場合は",
+            "季節から候補をたどれます。",
+        ),
     ]
     if feature_search_available:
-        guide_help_items.append(("名前がわからない場合は", "傘やヒダなど、見た目の特徴から絞り込めます。"))
-    help_class = "portal-guide-help--three" if feature_search_available else "portal-guide-help--two"
-    help_html = "".join(
-        f'<span class="portal-guide-help__item"><strong>{label}</strong><small>{description}</small></span>'
-        for label, description in guide_help_items
-    )
+        guide_rows.append(
+            (
+                "features",
+                "features.html",
+                "特徴から探す",
+                "見た目の特徴から絞り込む",
+                "名前がわからない場合は",
+                "傘やヒダなど、見た目の特徴から絞り込めます。",
+            )
+        )
+
     parts.append(
-        f'  <aside class="portal-guide-help {help_class}" aria-label="探し方のヒント">'
-        f'{help_html}'
-        '</aside>\n'
-        '    </div>\n'
-        '  </div>\n</section>\n'
+        f'  <nav class="portal-guide-list portal-guide-list--{len(guide_rows)}" '
+        'aria-label="キノコを探す入口">\n'
     )
+    for modifier, href, title, description, help_title, help_text in guide_rows:
+        parts.append(
+            '    <div class="portal-guide-row">\n'
+            f'      <a class="portal-card portal-card--{modifier}" href="{href}">\n'
+            '        <span class="portal-card__visual" aria-hidden="true"></span>\n'
+            '        <span class="portal-card__content"><span class="portal-card__copy">'
+            f'<strong>{portal_icon(modifier)}<span>{title}</span></strong>'
+            f'<small>{description}</small></span></span>\n'
+            '      </a>\n'
+            '      <span class="portal-guide-note">'
+            f'<strong>{help_title}</strong><small>{help_text}</small></span>\n'
+            '    </div>\n'
+        )
+    parts.append('  </nav>\n  </div>\n</section>\n')
 
     independent_cards = []
     if research_summary:
