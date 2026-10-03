@@ -2502,12 +2502,33 @@ def portal_icon(name):
             f'focusable="false">{paths[name]}</svg>')
 
 
+def _portal_new_update_html(observation_records):
+    """Render the newest observation as a compact NEW notice for new-top."""
+    if not observation_records:
+        return ""
+    latest = observation_records[0]
+    raw = str(latest.get("title") or latest.get("excerpt") or "最新の観察記録を公開しました").strip()
+    if len(raw) > 34:
+        raw = raw[:33].rstrip() + "…"
+    content = (
+        '<span class="portal-new-badge">NEW!</span>'
+        f'<span class="portal-new-copy">{html.escape(raw)}</span>'
+    )
+    url = latest.get("url")
+    if url:
+        safe_url = html.escape(str(url), quote=True)
+        return (f'<a class="portal-new-update record-external-link" href="{safe_url}" '
+                f'target="_top" aria-label="最新の観察記録を見る">{content}</a>')
+    return f'<span class="portal-new-update">{content}</span>'
+
+
 def generate_new_top(grouped, exif_cache, observation_records=None,
                      feature_search_available=False, research_summary=None,
                      best_shot_summary=None):
     """Generate the records-first preview portal; the gallery index stays separate."""
     copy_shared_assets()
     observation_records = observation_records or []
+    latest_update_html = _portal_new_update_html(observation_records)
     parts = [f'''<!doctype html>
 <html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -2519,6 +2540,7 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
 <section class="portal-records-hero" aria-labelledby="records-heading">
   <div class="portal-records-visual">
     <span class="portal-visual-shade" aria-hidden="true"></span>
+    {latest_update_html}
     <header class="portal-records-heading">
       <p class="portal-eyebrow">FIELD NOTES</p>
       <h1 id="records-heading">{portal_icon("records")}<span>観察記録</span></h1>

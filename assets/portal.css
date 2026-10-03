@@ -7,6 +7,9 @@
 .portal-section-visual--explore { background-image:url("mushroom-guide-final.webp"); background-position:center center; background-size:cover; background-repeat:no-repeat; }
 .portal-visual-shade { position:absolute; z-index:0; inset:0; background:linear-gradient(to top,rgba(10,25,16,.70),rgba(10,25,16,.18) 55%,transparent); pointer-events:none; }
 .portal-records-heading,.portal-section-heading { z-index:1; align-self:end; width:100%; padding:24px 28px 20px; box-sizing:border-box; color:#fff; text-shadow:0 1px 3px rgba(8,20,12,.42); }
+.portal-new-update { position:absolute; z-index:2; top:16px; right:18px; display:inline-flex; align-items:center; gap:7px; max-width:min(48%,390px); min-height:30px; padding:4px 9px 4px 5px; border:1px solid rgba(255,255,255,.32); border-radius:999px; background:rgba(14,35,22,.58); color:#fff; text-decoration:none; box-shadow:0 4px 12px rgba(8,20,12,.15); }
+.portal-new-badge { flex:0 0 auto; display:inline-flex; align-items:center; min-height:21px; padding:0 8px; border-radius:999px; background:#d84a24; color:#fff; font-size:.67rem; font-weight:850; letter-spacing:.04em; }
+.portal-new-copy { min-width:0; overflow:hidden; color:#fff; font-size:.75rem; font-weight:700; text-overflow:ellipsis; white-space:nowrap; }
 .portal-eyebrow { margin:0 0 6px; color:inherit; font-size:.69rem; font-weight:800; letter-spacing:.18em; }
 .portal-records-heading h1,.portal-zone-title { display:flex; align-items:center; gap:9px; margin:0; color:inherit; font-size:clamp(1.4rem,3vw,1.65rem); line-height:1.2; }
 .portal-records-heading p:last-child,.portal-section-heading>p:last-child { margin:7px 0 0; color:rgba(255,255,255,.9); font-size:.91rem; }
@@ -69,8 +72,8 @@
 .portal-request h2 { margin-bottom:12px; }
 .portal-request p { margin:0 0 13px; font-size:.82rem; line-height:1.85; }
 .portal-request p:last-child { margin-bottom:0; }
-.portal-card:focus-visible,.record-preview-row:focus-visible,.portal-more-link:focus-visible,.portal-about-links a:focus-visible { outline:4px solid #eeb947; outline-offset:3px; }
-@media (hover:hover) { .portal-card:hover { transform:translateY(-2px); box-shadow:0 9px 20px rgba(30,50,35,.16); }.record-preview-row:hover .record-preview-thumb img { transform:scale(1.08); }.record-preview-row:hover .record-preview-title { text-decoration:underline; } }
+.portal-card:focus-visible,.record-preview-row:focus-visible,.portal-more-link:focus-visible,.portal-about-links a:focus-visible,.portal-new-update:focus-visible { outline:4px solid #eeb947; outline-offset:3px; }
+@media (hover:hover) { .portal-card:hover { transform:translateY(-2px); box-shadow:0 9px 20px rgba(30,50,35,.16); }.record-preview-row:hover .record-preview-thumb img { transform:scale(1.08); }.record-preview-row:hover .record-preview-title { text-decoration:underline; }.portal-new-update:hover { background:rgba(14,35,22,.72); } }
 @media (min-width:900px) {
   .portal-index .portal-shell { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:20px; row-gap:18px; align-items:stretch; }
   .portal-records-visual,.portal-section-visual { height:190px; }
@@ -89,6 +92,9 @@
   .portal-index .portal-shell { padding:12px 10px 34px; }
   .portal-records-visual,.portal-section-visual { height:150px; }
   .portal-records-heading,.portal-section-heading { padding:20px 14px 16px; }
+  .portal-new-update { top:10px; right:10px; max-width:calc(100% - 20px); min-height:27px; padding:3px 7px 3px 4px; gap:5px; }
+  .portal-new-badge { min-height:19px; padding:0 7px; font-size:.62rem; }
+  .portal-new-copy { max-width:52vw; font-size:.69rem; }
   .portal-records-heading h1,.portal-zone-title { font-size:clamp(1.3rem,6vw,1.42rem); }
   .record-preview-list { margin:0 14px; }
   .record-preview-row { grid-template-columns:108px minmax(0,1fr); gap:11px; min-height:92px; padding:9px 0; }
@@ -114,4 +120,4 @@
   .portal-about { margin-top:26px; padding:17px 4px 0; }
   .portal-request p { font-size:.8rem; line-height:1.8; }
 }
-@media (prefers-reduced-motion:reduce) { .portal-card,.record-preview-thumb img { transition:none; }.portal-card:hover,.record-preview-row:hover .record-preview-thumb img { transform:none; } }
+@media (prefers-reduced-motion:reduce) { .portal-card,.record-preview-thumb img,.portal-new-update { transition:none; }.portal-card:hover,.record-preview-row:hover .record-preview-thumb img { transform:none; } }
