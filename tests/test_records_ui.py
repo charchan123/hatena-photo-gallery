@@ -131,4 +131,3 @@ def test_records_page_matches_new_top_field_notes_visual_contract():
     assert "grid-template-columns:190px minmax(0,1fr)" in css
     assert ".records-index .records-footer .back-btn" in css
     assert "@media (max-width:760px)" in css
-
