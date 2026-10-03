@@ -1008,3 +1008,12 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Other ways:** season/features/research/best-shot artwork links remain below the unified card with their existing conditional behavior.
 - **Protected contracts:** no gallery.js behavior, favorite storage, LightGallery, iframe-height sync, downstream detail/kana pages, records generation page, portal-data, taxonomy, EXIF, Phase 3C, data files, or Hatena parent-page CSS is changed.
 - **Validation:** GitHub Actions temporary Phase 4B.2 unified-guide workflow passed **379/379 pytest**, **379 collected**, Python compilation, `node --check assets/gallery.js`, 4 kana-insensitive highlight cases, iframe-height regression checks, feature-filter checks, and `git diff --check` against production `71f7075a...`. The temporary workflow is removed before merge and is not part of the final PR diff.
+
+## Phase 4B.3 — Typography, Observation Note overlay, and portal-card spacing polish
+
+- **Starting point:** production `main` is merge commit `e47cbc9f344b7fa34d73c1897d2ec8e978cddb13` after Phase 4B.2 / PR #67.
+- **Guide hero title:** `キノコ図鑑` no longer forces a Mincho/serif stack. It now inherits the same sans-serif family used by the rest of the Guide UI, including the lower `季節から探す` card typography.
+- **Observation Note artwork:** removes the green-tinted overlay over `guide-action-book.webp`. A neutral black transparency (`.18 → .30`) is retained only for white-text readability, so the artwork color is no longer shifted green.
+- **Top portal lower-card spacing:** `不明キノコ研究室` and `ベストショット` now use the same eyebrow-to-title spacing as `FIELD NOTES → 観察記録`: effective 6px. The independent-card grid gap is neutralized only for those cards, while title-to-description spacing is preserved explicitly at 5px.
+- **Scope:** CSS-only visual polish plus regression coverage and this HANDOFF note. No markup, data, route, search, favorite, LightGallery, iframe-height, taxonomy, EXIF, or Phase 3C behavior changes.
+- **Validation:** GitHub Actions temporary Phase 4B.3 visual-polish workflow passed **380/380 pytest**, **380 collected**, Python compilation, `node --check assets/gallery.js`, 4 kana-insensitive highlight cases, iframe-height regression checks, feature-filter checks, and `git diff --check` against production `e47cbc9f...`. The temporary workflow is removed before merge and is not part of the final PR diff.
