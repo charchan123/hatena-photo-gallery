@@ -22,9 +22,17 @@ def test_repository_data_is_complete_and_evidence_backed(data, master):
     before = copy.deepcopy((data, master))
     assert validate_feature_facets(data, master) is True
     assert (data, master) == before
+    assert len(data["groups"]) == 4
+    assert len(data["facets"]) == 20
+    assert len(data["entries"]) == 127
+    assert sum(len(e["assignments"]) for e in data["entries"]) == 383
     assert {e["mushroom_id"] for e in data["entries"]} == {
         e["mushroom_id"] for e in master["entries"]
         if (e.get("features") or {}).get("summary")
+    }
+    by_id = {e["mushroom_id"]: e for e in data["entries"]}
+    assert "ring" not in {
+        a["facet_id"] for a in by_id["tamagotakemodoki"]["assignments"]
     }
 
 def test_future_version_rejected(data, master):
