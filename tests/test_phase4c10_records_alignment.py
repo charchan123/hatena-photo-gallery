@@ -3,21 +3,25 @@ from pathlib import Path
 import main
 
 
-def test_detail_gojuon_buttons_match_guide_spacing_without_full_width_stretch():
+def test_detail_gojuon_buttons_stay_on_one_compact_row():
     detail_css = (Path(main.ASSETS_DIR) / "detail.css").read_text(encoding="utf-8")
-    guide_css = (Path(main.ASSETS_DIR) / "guide.css").read_text(encoding="utf-8")
 
-    for shared in (
-        "grid-template-columns:repeat(5,minmax(0,1fr))",
-        "gap:8px",
-        "padding:10px 6px",
-        "font-size:.8rem",
+    for expected in (
+        "display:flex",
+        "flex-wrap:nowrap",
+        "justify-content:flex-start",
+        "gap:4px",
+        "overflow-x:auto",
+        "overscroll-behavior-inline:contain",
+        "min-width:48px",
+        "padding:8px 9px",
+        "font-size:.78rem",
         "line-height:1",
         "text-align:center",
+        "white-space:nowrap",
     ):
-        assert shared in guide_css
-        assert shared in detail_css
+        assert expected in detail_css
 
-    assert "width:min(100%,500px)" in detail_css
-    assert ".detail-page .detail-aiuo-links { gap:6px; }" in detail_css
-    assert ".detail-page .detail-aiuo-links .aiuo-link { padding:9px 4px; font-size:.76rem; }" in detail_css
+    assert "grid-template-columns:repeat(5,minmax(0,1fr))" not in detail_css
+    assert ".detail-page .detail-aiuo-links { gap:3px; }" in detail_css
+    assert ".detail-page .detail-aiuo-links .aiuo-link { min-width:44px; padding:7px 8px; font-size:.74rem; }" in detail_css
