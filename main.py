@@ -2609,7 +2609,24 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
     append_card("season", "season.html", "季節から探す", "撮影された季節からたどる")
     if feature_search_available:
         append_card("features", "features.html", "特徴から探す", "見た目の特徴から絞り込む")
-    parts.append('  </nav>\n  </div>\n</section>\n')
+    parts.append('  </nav>\n')
+    guide_help_items = [
+        ("名前が分かる", "図鑑を見る"),
+        ("撮影時期が分かる", "季節から探す"),
+    ]
+    if feature_search_available:
+        guide_help_items.append(("名前が分からない", "特徴から探す"))
+    help_html = "".join(
+        f'<span class="portal-guide-help__item"><strong>{label}</strong><small>{destination}</small></span>'
+        for label, destination in guide_help_items
+    )
+    parts.append(
+        '  <aside class="portal-guide-help" aria-label="探し方のヒント">'
+        '<p class="portal-guide-help__title">こんなときは</p>'
+        f'<div class="portal-guide-help__grid">{help_html}</div>'
+        '</aside>\n'
+        '  </div>\n</section>\n'
+    )
 
     independent_cards = []
     if research_summary:
