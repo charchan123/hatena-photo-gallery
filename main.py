@@ -2610,12 +2610,26 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
         parts.append('</section>\n')
 
     parts.append(f'''<footer class="portal-about" aria-labelledby="about-heading">
-  <h2 id="about-heading">このブログについて</h2>
-  <nav class="portal-about-links" aria-label="このブログについてのリンク">
-    <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E8%87%AA%E5%B7%B1%E7%B4%B9%E4%BB%8B" target="_top">{portal_icon("person")}<span><strong>自己紹介</strong><small>このブログを書いている人</small></span></a>
-    <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E6%97%A5%E5%B8%B8%E3%81%AE%E8%A8%98%E9%8C%B2" target="_top">{portal_icon("note")}<span><strong>日常記録</strong><small>田舎での暮らしや日々のこと</small></span></a>
-    <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E3%83%AA%E3%83%B3%E3%82%AF%E9%9B%86" target="_top">{portal_icon("link")}<span><strong>リンク集</strong><small>関連サイトやおすすめリンク</small></span></a>
-  </nav>
+  <div class="portal-about-grid">
+    <section class="portal-about-nav">
+      <h2 id="about-heading">このブログについて</h2>
+      <nav class="portal-about-links" aria-label="このブログについてのリンク">
+        <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E8%87%AA%E5%B7%B1%E7%B4%B9%E4%BB%8B" target="_top">{portal_icon("person")}<span><strong>自己紹介</strong><small>このブログを書いている人</small></span></a>
+        <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E6%97%A5%E5%B8%B8%E3%81%AE%E8%A8%98%E9%8C%B2" target="_top">{portal_icon("note")}<span><strong>日常記録</strong><small>田舎での暮らしや日々のこと</small></span></a>
+        <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E3%83%AA%E3%83%B3%E3%82%AF%E9%9B%86" target="_top">{portal_icon("link")}<span><strong>リンク集</strong><small>関連サイトやおすすめリンク</small></span></a>
+      </nav>
+    </section>
+    <section class="portal-request" aria-labelledby="portal-request-heading">
+      <h2 id="portal-request-heading">お願い</h2>
+      <p>キノコ名は私が見た目で判断しています。<br>
+      そのため誤って記録してしまうことがあるかもしれません。<br>
+      大目に見ていただけると幸いです。</p>
+      <p>このブログの説明文や画像などの情報を元に天然キノコを食べないでください。<br>
+      もし食用とする場合は、自己判断、自己責任にてお願いいたします。<br>
+      確信がもてない場合は、採取しないことをお勧めします。</p>
+      <p>また掲載されている画像等の無断転載はご遠慮ください。</p>
+    </section>
+  </div>
 </footer>
 </main>
 {SCRIPT_TAG}

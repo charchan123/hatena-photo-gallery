@@ -176,15 +176,15 @@ body.favorite-page {
   background:#f4f9f1;
 }
 
-/* Match the Gojuon mushroom-card presentation exactly: four-column PC
-   cards, 64% image area, bordered white card, name below, and star over image. */
+/* Observation Note intentionally reuses the Gojuon card class names and
+   the same visual values as assets/aiuo.css. */
 .favorite-page .season-grid {
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
   gap:14px;
 }
 
-.favorite-page .season-grid .gallery-item {
+.favorite-page .mushroom-card {
   position:relative;
   display:block;
   margin:0;
@@ -195,22 +195,22 @@ body.favorite-page {
   color:#2b4934;
   text-decoration:none;
   box-shadow:0 5px 16px rgba(39,67,45,.06);
-  transition:transform .18s ease,box-shadow .18s ease;
 }
 
-.favorite-page .season-grid .gallery-item:hover {
+.favorite-page .mushroom-card:hover {
   transform:translateY(-2px);
   box-shadow:0 10px 22px rgba(39,67,45,.11);
+  filter:none;
 }
 
-.favorite-page .favorite-card-thumb {
+.favorite-page .mushroom-card-thumb {
   position:relative;
   padding-top:64%;
   overflow:hidden;
   background:#edf2ea;
 }
 
-.favorite-page .favorite-card-thumb img {
+.favorite-page .mushroom-card-thumb img {
   position:absolute;
   inset:0;
   width:100%;
@@ -220,11 +220,11 @@ body.favorite-page {
   transition:transform .35s ease;
 }
 
-.favorite-page .season-grid .gallery-item:hover .favorite-card-thumb img {
+.favorite-page .mushroom-card:hover .mushroom-card-thumb img {
   transform:scale(1.04);
 }
 
-.favorite-page .favorite-card-name {
+.favorite-page .mushroom-card-name {
   padding:11px 12px 13px;
   color:#294a32;
   font-size:.9rem;
@@ -233,7 +233,7 @@ body.favorite-page {
   text-align:left;
 }
 
-.favorite-page .favorite-card-thumb .thumb-fav {
+.favorite-page .mushroom-card-thumb .card-fav {
   top:6px;
   right:6px;
   font-size:16px;

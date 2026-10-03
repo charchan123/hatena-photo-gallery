@@ -211,6 +211,15 @@ def test_blog_about_links_are_last_and_escape_iframe(monkeypatch, tmp_path):
     for label, category in expected.items():
         assert label in about and f"/archive/category/{category}" in about
     assert about.count('target="_top"') == 3
+    assert 'class="portal-about-grid"' in about
+    assert 'class="portal-request"' in about
+    for notice in (
+        "キノコ名は私が見た目で判断しています。",
+        "このブログの説明文や画像などの情報を元に天然キノコを食べないでください。",
+        "自己判断、自己責任",
+        "無断転載はご遠慮ください。",
+    ):
+        assert notice in about
 
 
 def test_portal_styles_are_compact_and_scoped(monkeypatch, tmp_path):
@@ -242,7 +251,8 @@ def test_portal_styles_are_compact_and_scoped(monkeypatch, tmp_path):
     mobile = css[css.index("@media (max-width:680px)"):]
     for expected in (
         ".portal-records-visual,.portal-section-visual { height:150px; }",
-        ".portal-guide-list,.portal-independent-links,.portal-about-links { grid-template-columns:1fr;",
+        ".portal-guide-list,.portal-independent-links { grid-template-columns:1fr;",
+        ".portal-about-grid { grid-template-columns:1fr;",
         ".portal-independent-links .portal-card { min-height:155px; }",
     ):
         assert expected in mobile
@@ -286,7 +296,9 @@ def test_reference_overlay_and_footer_contract(monkeypatch, tmp_path):
     for description in ("このブログを書いている人", "田舎での暮らしや日々のこと", "関連サイトやおすすめリンク"):
         assert description in about
     css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
-    assert ".portal-about-links { display:grid; grid-template-columns:repeat(3,minmax(0,1fr));" in css
+    assert ".portal-about-grid { display:grid; grid-template-columns:minmax(250px,.72fr) minmax(0,1.28fr);" in css
+    assert ".portal-about-links { display:grid; grid-template-columns:1fr;" in css
+    assert ".portal-request p { margin:0 0 13px;" in css
     assert "blur(" not in css and "sepia(" not in css
 
 def test_hero_banner_assets_are_deployed_verbatim(monkeypatch, tmp_path):
