@@ -764,70 +764,11 @@ function configureDetailMosaic(gallery) {
 
   gallery.classList.add("detail-mosaic");
   const columns = Math.max(1, Math.min(items.length, detailMosaicViewportColumns()));
-  const maxWidth = Math.min(1080, columns * 210 + Math.max(0, columns - 1) * 10);
+  const maxWidth = items.length === 1 ? 380 : Math.min(1080, columns * 210 + Math.max(0, columns - 1) * 10);
   gallery.style.setProperty("--detail-mosaic-columns", String(columns));
   gallery.style.setProperty("--detail-mosaic-max-width", `${maxWidth}px`);
+  gallery.classList.toggle("detail-mosaic-single", items.length === 1);
   return true;
-}
-
-function estimateDetailMosaicHeight(item, columnWidth) {
-  const img = item.querySelector("img");
-  if (img?.naturalWidth > 0 && img?.naturalHeight > 0) {
-    return columnWidth * img.naturalHeight / img.naturalWidth;
-  }
-  const rect = img?.getBoundingClientRect();
-  return rect?.height > 0 ? rect.height : columnWidth;
-}
-
-function partitionDetailMosaic(items, columns, columnWidth) {
-  const gap = 10;
-  const heights = items.map(item => estimateDetailMosaicHeight(item, columnWidth));
-  const groups = [];
-  let index = 0;
-
-  for (let columnIndex = 0; columnIndex < columns; columnIndex++) {
-    const remainingColumns = columns - columnIndex;
-    const remainingItems = items.length - index;
-
-    if (remainingColumns === 1) {
-      groups.push(items.slice(index));
-      break;
-    }
-
-    const remainingHeight = heights
-      .slice(index)
-      .reduce((sum, value) => sum + value, 0);
-    const remainingGapHeight = gap * Math.max(0, remainingItems - remainingColumns);
-    const targetHeight = (remainingHeight + remainingGapHeight) / remainingColumns;
-    const lastAllowedIndex = items.length - (remainingColumns - 1);
-
-    const group = [];
-    let groupHeight = 0;
-    while (index < lastAllowedIndex) {
-      const nextHeight = heights[index];
-      const candidateHeight = groupHeight
-        + (group.length ? gap : 0)
-        + nextHeight;
-
-      if (group.length
-          && Math.abs(groupHeight - targetHeight)
-             <= Math.abs(candidateHeight - targetHeight)) {
-        break;
-      }
-
-      group.push(items[index]);
-      groupHeight = candidateHeight;
-      index++;
-    }
-
-    if (!group.length) {
-      group.push(items[index]);
-      index++;
-    }
-    groups.push(group);
-  }
-
-  return groups;
 }
 
 function rebuildDetailMosaic(gallery) {
@@ -835,13 +776,26 @@ function rebuildDetailMosaic(gallery) {
 
   const items = gallery.__detailMosaicItems;
   const columns = Math.max(1, Math.min(items.length, detailMosaicViewportColumns()));
-  const gap = 10;
+  const gap = DetailMosaicLayout.MOSAIC_GAP;
   const galleryWidth = Math.min(
     gallery.clientWidth || 1080,
     parseFloat(getComputedStyle(gallery).maxWidth) || 1080
   );
-  const columnWidth = Math.max(1, (galleryWidth - gap * (columns - 1)) / columns);
-  const groups = partitionDetailMosaic(items, columns, columnWidth);
+  const ratios = items.map(item => {
+    const img = item.querySelector("img");
+    return img?.naturalWidth > 0 && img?.naturalHeight > 0
+      ? img.naturalWidth / img.naturalHeight
+      : 1;
+  });
+  const layout = DetailMosaicLayout.computeMosaicLayout(
+    ratios, galleryWidth, columns, gap,
+    { maxCropRatio: DetailMosaicLayout.MAX_CROP_RATIO, singleMaxWidth: 380 }
+  );
+  const groups = layout.columns.map(column => column.items.map(index => items[index]));
+  gallery.style.setProperty(
+    "--detail-mosaic-tracks",
+    layout.columns.map(column => `${column.width}px`).join(" ")
+  );
 
   const cornerClasses = [
     "mosaic-corner-tl",
@@ -856,17 +810,18 @@ function rebuildDetailMosaic(gallery) {
     const column = document.createElement("div");
     column.className = "detail-mosaic-column";
     column.dataset.mosaicColumn = String(groupIndex);
-    group.forEach(item => column.appendChild(item));
+    group.forEach(item => {
+      const tile = layout.items[items.indexOf(item)];
+      item.style.height = `${tile.height}px`;
+      column.appendChild(item);
+    });
     fragment.appendChild(column);
   });
   gallery.replaceChildren(fragment);
 
-  const left = groups[0];
-  const right = groups[groups.length - 1];
-  left[0]?.classList.add("mosaic-corner-tl");
-  left[left.length - 1]?.classList.add("mosaic-corner-bl");
-  right[0]?.classList.add("mosaic-corner-tr");
-  right[right.length - 1]?.classList.add("mosaic-corner-br");
+  layout.items.forEach(tile => tile.corners.forEach(corner => {
+    items[tile.index].classList.add(`mosaic-corner-${corner}`);
+  }));
 }
 
 function refreshDetailMosaic(gallery) {

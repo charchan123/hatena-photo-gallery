@@ -3,16 +3,14 @@ from pathlib import Path
 import main
 
 
-def test_phase4c7_detail_mosaic_aligns_columns_to_common_bottom():
+def test_phase4c8_detail_mosaic_uses_fixed_gap_and_computed_dimensions():
     css = (Path(main.ASSETS_DIR) / "detail.css").read_text(encoding="utf-8")
     script = (Path(main.ASSETS_DIR) / "gallery.js").read_text(encoding="utf-8")
 
-    assert "align-items:stretch" in css
-    assert "justify-content:space-between" in css
-    assert "partitionDetailMosaic" in script
+    assert "--detail-mosaic-gap:10px" in css
+    assert "justify-content:flex-start" in css
+    assert "DetailMosaicLayout.computeMosaicLayout" in script
     assert "gallery.replaceChildren(fragment)" in script
-    assert 'left[left.length - 1]?.classList.add("mosaic-corner-bl")' in script
-    assert 'right[right.length - 1]?.classList.add("mosaic-corner-br")' in script
 
 
 def test_phase4c7_observation_note_reuses_gojuon_class_names():
