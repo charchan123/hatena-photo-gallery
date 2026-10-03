@@ -1067,3 +1067,19 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Deployment:** `copy_shared_assets()` now includes `aiuo.css`.
 - **Protected contracts:** kana normalization, voiced/semi-voiced grouping, search normalization/highlighting, favorites, detail-page filenames, LightGallery, iframe-height sync, portal-data, taxonomy, EXIF, Best Shot selection/config rules, and Phase 3C are unchanged.
 - **Validation:** GitHub Actions temporary Phase 4C.4 best-shot/gojuon workflow passed **383/383 pytest**, **383 collected**, Python compilation, `node --check assets/gallery.js`, 4 kana-insensitive highlight cases, iframe-height regression checks, feature-filter checks, and `git diff --check` against production `2f80acc0...`. The temporary workflow is removed before merge and is not part of the final PR diff.
+
+## Phase 4C.5 — Mushroom detail and Observation Note PC redesign
+
+- **Starting point:** production `main` is merge commit `6b649d7172c8098b2e31276e547a77322bd5d6b9` after Phase 4C.4 / PR #72.
+- **Mushroom detail pages:** generated `safe_filename(name).html` pages are now complete HTML documents with `body.detail-page` and `main#gallery-content-root.detail-shell`. They use the shared 1180px PC shell, green/white cards, and a `MUSHROOM DETAIL` hero using the existing `mushroom-guide-final.webp`.
+- **Detail photos:** the existing `.gallery`, `.gallery-item`, `.thumb-fav`, `.spores`, LightGallery caption, and image source hooks remain intact. PC photos are presented as a four-column square grid; safe tablet/narrow fallbacks use three/two columns.
+- **Detail information:** existing evidence-backed `knowledge-panel`, pending state, source list, and `subject-records` output are retained and restyled as modern white cards. No mushroom knowledge values or article linkage rules are changed.
+- **Detail navigation:** Gojuon links remain on every detail page and keep the same filenames. Links arriving from Gojuon still carry `?from=aiuo&kana=●行`, so the existing gallery.js contextual `●行の一覧に戻る` behavior remains active. A general `← 図鑑へ戻る` hero/footer route is also present.
+- **Observation Note:** `favorite.html` is now a complete `body.favorite-page` document with an `OBSERVATION NOTE / 観察ノート` hero using the existing `guide-action-book.webp`, a white content card, and a four-column PC saved-photo grid grouped by the existing EXIF-derived year/season logic.
+- **Observation Note behavior:** `.favorite-gallery`, `.season-block`, `.season-grid`, `.gallery-item`, favorite-star removal/undo behavior, LightGallery, `window.EXIF_CACHE`, and `window.SRC_TO_ALT` remain unchanged. The storage logic and `lg_favorites` compatibility are not modified.
+- **Guide count label:** `#favorite-count` now renders `（N件）` instead of `（N）` when one or more saved photos exist. Counting logic itself is unchanged.
+- **Assets:** adds scoped `assets/favorite.css`; `assets/detail.css` becomes the scoped PC-first detail design. Existing watercolor artwork is reused; no new image asset is added.
+- **Protected contracts:** iframe height sync, ResizeObserver, force resend, bfcache/pageshow, requestHeight, scrollToTitle, .html navigation bridge, browser back, LightGallery, favorites, kana filtering/search, portal-data, taxonomy, EXIF extraction, mushroom data files, observation IDs, Hatena API, and Phase 3C logic are unchanged.
+- **Responsive scope:** only safe tablet/narrow fallbacks are included. Full mobile visual optimization remains deferred until the PC page pass is complete.
+- **Validation:** temporary Phase 4C.5 workflow passed **386/386 pytest**, **386 collected**, Python compilation, `node --check assets/gallery.js`, 4 kana-insensitive highlight cases, iframe-height regression checks, feature-filter checks, and `git diff --check` against production `6b649d71...`. The temporary workflow is removed before the final PR.
+
