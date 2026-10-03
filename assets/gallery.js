@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.documentElement.dataset.favoriteCount = count;
 
     const el = document.getElementById("favorite-count");
-    if (el) el.textContent = count > 0 ? `（${count}）` : "";
+    if (el) el.textContent = count > 0 ? `（${count}件）` : "";
 
       // デバッグ確認用
       // console.log("⭐ 観察ノート件数:", count);

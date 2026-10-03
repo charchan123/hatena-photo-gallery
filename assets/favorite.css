@@ -1,0 +1,244 @@
+/* Phase 4C.5 — PC-first Observation Note page.
+   Scoped to body.favorite-page so favorite storage and LightGallery stay shared. */
+
+body.favorite-page {
+  max-width:none;
+  margin:0;
+  padding:0;
+  background:#f7fcf4;
+  color:#25412d;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;
+}
+
+.favorite-page *,
+.favorite-page *::before,
+.favorite-page *::after { box-sizing:border-box; }
+
+.favorite-page a { color:inherit; }
+
+.favorite-page .favorite-shell {
+  width:min(100%,1180px);
+  margin:0 auto;
+  padding:24px 22px 52px;
+}
+
+.favorite-page .favorite-hub {
+  overflow:hidden;
+  border:1px solid #dce7d9;
+  border-radius:22px;
+  background:#fff;
+  box-shadow:0 14px 36px rgba(39,63,44,.08);
+}
+
+.favorite-page .favorite-hero {
+  position:relative;
+  min-height:220px;
+  overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(11,34,20,.72) 0%,rgba(11,34,20,.47) 39%,rgba(11,34,20,.12) 70%,rgba(11,34,20,.03) 100%),
+    url("guide-action-book.webp") 58% 50%/cover no-repeat;
+}
+
+.favorite-page .favorite-hero::after {
+  content:"";
+  position:absolute;
+  inset:auto 0 0;
+  height:54px;
+  background:linear-gradient(to bottom,transparent,rgba(10,30,18,.14));
+  pointer-events:none;
+}
+
+.favorite-page .favorite-back-link {
+  position:absolute;
+  z-index:2;
+  top:18px;
+  left:22px;
+  display:inline-flex;
+  align-items:center;
+  min-height:34px;
+  padding:0 13px;
+  border:1px solid rgba(255,255,255,.34);
+  border-radius:999px;
+  background:rgba(17,48,30,.46);
+  color:#fff;
+  font-size:.78rem;
+  font-weight:700;
+  text-decoration:none;
+  backdrop-filter:blur(6px);
+}
+
+.favorite-page .favorite-hero-copy {
+  position:absolute;
+  z-index:1;
+  left:46px;
+  top:50%;
+  width:min(560px,58%);
+  transform:translateY(-38%);
+  color:#fff;
+  text-shadow:0 2px 10px rgba(0,0,0,.42);
+}
+
+.favorite-page .favorite-eyebrow {
+  display:block;
+  margin:0 0 7px;
+  color:#eef6eb;
+  font-size:.69rem;
+  font-weight:850;
+  letter-spacing:.16em;
+}
+
+.favorite-page .favorite-hero-copy h1 {
+  margin:0;
+  color:#fff;
+  font-size:2.5rem;
+  font-weight:720;
+  line-height:1.12;
+  letter-spacing:.02em;
+}
+
+.favorite-page .favorite-hero-copy p {
+  margin:11px 0 0;
+  font-size:.93rem;
+  font-weight:620;
+  line-height:1.65;
+}
+
+.favorite-page .favorite-hub-body { padding:26px 28px 30px; }
+
+.favorite-page .favorite-section-heading { margin-bottom:18px; }
+
+.favorite-page .favorite-section-heading .favorite-eyebrow {
+  margin-bottom:5px;
+  color:#63806a;
+  font-size:.67rem;
+}
+
+.favorite-page .favorite-section-heading h2 {
+  margin:0;
+  color:#23432d;
+  font-size:1.45rem;
+  line-height:1.3;
+}
+
+.favorite-page .favorite-section-heading p {
+  margin:6px 0 0;
+  color:#6c776e;
+  font-size:.88rem;
+  line-height:1.6;
+}
+
+.favorite-page .favorite-empty {
+  display:none;
+  margin:22px 0 0;
+  padding:34px 20px;
+  border:1px dashed #cbd9c8;
+  border-radius:16px;
+  background:#f9fcf7;
+  color:#647168;
+  font-size:.9rem;
+  line-height:1.9;
+  text-align:center;
+}
+
+.favorite-page .favorite-empty small {
+  display:block;
+  margin-top:5px;
+  color:#849087;
+  font-size:.8rem;
+}
+
+.favorite-page .favorite-gallery {
+  visibility:visible;
+  max-width:none;
+  margin:0;
+  column-count:unset !important;
+  column-gap:unset !important;
+}
+
+.favorite-page .season-block { margin:30px 0 0; }
+
+.favorite-page .season-header {
+  margin:0 0 12px;
+  color:#4f6d57;
+  font-size:.77rem;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-align:left;
+}
+
+.favorite-page .season-header span {
+  display:inline-flex;
+  align-items:center;
+  min-height:30px;
+  padding:0 12px;
+  border:1px solid #d7e3d4;
+  border-radius:999px;
+  background:#f4f9f1;
+}
+
+.favorite-page .season-grid {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+}
+
+.favorite-page .season-grid .gallery-item {
+  position:relative;
+  display:block;
+  aspect-ratio:1/1;
+  margin:0;
+  overflow:hidden;
+  border-radius:13px;
+  background:#edf2ea;
+}
+
+.favorite-page .season-grid .gallery-item img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.favorite-page .favorite-footer {
+  padding:24px 0 0;
+  text-align:center;
+}
+
+.favorite-page .favorite-footer a {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:38px;
+  padding:0 15px;
+  border:1px solid #cbd9c8;
+  border-radius:999px;
+  background:#fff;
+  color:#365b3f;
+  font-size:.82rem;
+  font-weight:750;
+  text-decoration:none;
+}
+
+.favorite-page .favorite-footer a:hover {
+  background:#edf5e9;
+  border-color:#abc2aa;
+  transform:translateY(-1px);
+}
+
+@media (max-width:899px) {
+  .favorite-page .season-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+
+@media (max-width:680px) {
+  .favorite-page .favorite-shell { padding:14px 12px 34px; }
+  .favorite-page .favorite-hero { min-height:200px; }
+  .favorite-page .favorite-back-link { top:14px; left:14px; }
+  .favorite-page .favorite-hero-copy {
+    left:22px;
+    width:calc(100% - 44px);
+    transform:translateY(-32%);
+  }
+  .favorite-page .favorite-hero-copy h1 { font-size:2rem; }
+  .favorite-page .favorite-hub-body { padding:20px 18px; }
+  .favorite-page .season-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; }
+}
