@@ -183,6 +183,7 @@ LIGHTGALLERY_TAGS = """
 
 # ====== LightGallery スクリプト ======
 SCRIPT_TAG = """<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+<script src="assets/mosaic-layout.js"></script>
 <script src="assets/gallery.js"></script>"""
 
 
@@ -194,6 +195,7 @@ def copy_shared_assets():
     for filename in (
         "gallery.css",
         "gallery.js",
+        "mosaic-layout.js",
         "detail.css",
         "favorite.css",
         "portal.css",

@@ -296,7 +296,7 @@ def test_reference_overlay_and_footer_contract(monkeypatch, tmp_path):
     for description in ("このブログを書いている人", "田舎での暮らしや日々のこと", "関連サイトやおすすめリンク"):
         assert description in about
     css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
-    assert ".portal-about-grid { display:grid; grid-template-columns:minmax(250px,.72fr) minmax(0,1.28fr);" in css
+    assert ".portal-about-grid { display:grid; grid-template-columns:280px minmax(0,540px); gap:60px; align-items:start; width:min(100%,880px); margin-inline:auto;" in css
     assert ".portal-about-links { display:grid; grid-template-columns:1fr;" in css
     assert ".portal-request p { margin:0 0 13px;" in css
     assert "blur(" not in css and "sepia(" not in css

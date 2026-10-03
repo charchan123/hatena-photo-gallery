@@ -7,18 +7,18 @@ def test_detail_photo_layout_is_natural_ratio_mosaic_with_only_outer_corners():
     css = (Path(main.ASSETS_DIR) / "detail.css").read_text(encoding="utf-8")
     script = (Path(main.ASSETS_DIR) / "gallery.js").read_text(encoding="utf-8")
 
-    assert "grid-template-columns:repeat(var(--detail-mosaic-columns,5),minmax(0,1fr))" in css
+    assert "--detail-mosaic-gap:10px" in css
     assert ".detail-page .detail-mosaic-column" in css
-    assert "justify-content:space-between" in css
+    assert "justify-content:flex-start" in css
     assert "aspect-ratio:1/1" not in css
-    assert "height:auto" in css
+    assert "height:100%" in css
     assert "border-radius:0" in css
     for corner in ("tl", "tr", "bl", "br"):
         assert f"mosaic-corner-{corner}" in css
         assert f'"mosaic-corner-{corner}"' in script
 
     assert "function configureDetailMosaic(gallery)" in script
-    assert "function partitionDetailMosaic(items, columns, columnWidth)" in script
+    assert "DetailMosaicLayout.computeMosaicLayout" in script
     assert "function rebuildDetailMosaic(gallery)" in script
     assert 'column.className = "detail-mosaic-column"' in script
 

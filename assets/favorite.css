@@ -182,6 +182,8 @@ body.favorite-page {
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));
   gap:14px;
+  align-items:start;
+  grid-auto-rows:max-content;
 }
 
 .favorite-page .mushroom-card {
@@ -195,6 +197,10 @@ body.favorite-page {
   color:#2b4934;
   text-decoration:none;
   box-shadow:0 5px 16px rgba(39,67,45,.06);
+  align-self:start;
+  height:auto;
+  min-height:0;
+  aspect-ratio:auto;
 }
 
 .favorite-page .mushroom-card:hover {
