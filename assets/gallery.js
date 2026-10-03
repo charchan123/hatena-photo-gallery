@@ -740,6 +740,77 @@ document.addEventListener("DOMContentLoaded", () => {
   })();
 
 // =========================
+// キノコ詳細：自然比率モザイク + 外周4隅だけ角丸
+// =========================
+function configureDetailMosaic(gallery) {
+  if (!document.body.classList.contains("detail-page")
+      || !gallery.classList.contains("gallery")) return false;
+
+  const items = Array.from(gallery.querySelectorAll("a.gallery-item"));
+  if (!items.length) return false;
+
+  gallery.classList.add("detail-mosaic");
+
+  const viewportColumns = window.matchMedia("(max-width: 680px)").matches
+    ? 2
+    : window.matchMedia("(max-width: 899px)").matches
+      ? 3
+      : 5;
+  const columns = Math.max(1, Math.min(items.length, viewportColumns));
+  const maxWidth = Math.min(1080, columns * 210 + Math.max(0, columns - 1) * 10);
+
+  gallery.style.setProperty("--detail-mosaic-columns", String(columns));
+  gallery.style.setProperty("--detail-mosaic-max-width", `${maxWidth}px`);
+  return true;
+}
+
+function updateDetailMosaicCorners(gallery) {
+  if (!gallery.classList.contains("detail-mosaic")) return;
+
+  const items = Array.from(gallery.querySelectorAll("a.gallery-item"));
+  const cornerClasses = [
+    "mosaic-corner-tl",
+    "mosaic-corner-tr",
+    "mosaic-corner-bl",
+    "mosaic-corner-br",
+  ];
+  items.forEach(item => item.classList.remove(...cornerClasses));
+  if (!items.length) return;
+
+  const measured = items
+    .map(item => ({ item, rect: item.getBoundingClientRect() }))
+    .filter(row => row.rect.width > 0 && row.rect.height > 0)
+    .sort((a, b) => a.rect.left - b.rect.left || a.rect.top - b.rect.top);
+  if (!measured.length) return;
+
+  // Multi-column layout can differ by a fraction of a pixel, so group left
+  // positions with a small tolerance rather than requiring exact equality.
+  const columns = [];
+  measured.forEach(row => {
+    let column = columns.find(col => Math.abs(col.left - row.rect.left) < 3);
+    if (!column) {
+      column = { left: row.rect.left, items: [] };
+      columns.push(column);
+    }
+    column.items.push(row);
+  });
+  columns.sort((a, b) => a.left - b.left);
+  columns.forEach(column => column.items.sort((a, b) => a.rect.top - b.rect.top));
+
+  const left = columns[0];
+  const right = columns[columns.length - 1];
+  left.items[0].item.classList.add("mosaic-corner-tl");
+  left.items[left.items.length - 1].item.classList.add("mosaic-corner-bl");
+  right.items[0].item.classList.add("mosaic-corner-tr");
+  right.items[right.items.length - 1].item.classList.add("mosaic-corner-br");
+}
+
+function refreshDetailMosaic(gallery) {
+  if (!configureDetailMosaic(gallery)) return;
+  requestAnimationFrame(() => updateDetailMosaicCorners(gallery));
+}
+
+// =========================
 // ギャラリー処理（LightGallery）
 // .gallery / .favorite-gallery 両対応
 // =========================
@@ -748,6 +819,10 @@ const galleries = document.querySelectorAll(
 );
 
 galleries.forEach(gallery => {
+
+  // Detail galleries use the reference-style natural-ratio mosaic. Configure
+  // the column count before images load so there is no square-grid flash.
+  configureDetailMosaic(gallery);
 
   // =========================
   // 通常ギャラリーのみ：画像フェードイン
@@ -767,6 +842,7 @@ galleries.forEach(gallery => {
   }
 
   imagesLoaded(gallery, () => {
+    refreshDetailMosaic(gallery);
     gallery.style.visibility = "visible";
 
     // 初期同期
@@ -896,6 +972,15 @@ galleries.forEach(gallery => {
       }
     });
   });
+
+  if (gallery.classList.contains("gallery")
+      && document.body.classList.contains("detail-page")) {
+    let mosaicResizeTimer = null;
+    window.addEventListener("resize", () => {
+      clearTimeout(mosaicResizeTimer);
+      mosaicResizeTimer = setTimeout(() => refreshDetailMosaic(gallery), 80);
+    });
+  }
 });
 
   // =========================
@@ -1082,14 +1167,33 @@ galleries.forEach(gallery => {
 
         group.items.forEach(src => {
           const a = document.createElement("a");
-          a.className = "gallery-item";
+          const name = window.SRC_TO_ALT?.[src] || "";
+
+          a.className = "gallery-item favorite-mushroom-card";
           a.href = src;
           a.setAttribute("data-sub-html", buildNoteCaption(src));
-          a.innerHTML = `
-            <span class="thumb-fav is-fav">★</span>
-            <span class="spores"></span>
-            <img src="${src}" loading="lazy">
-          `;
+
+          const thumb = document.createElement("div");
+          thumb.className = "favorite-card-thumb";
+
+          const star = document.createElement("span");
+          star.className = "thumb-fav is-fav";
+          star.textContent = "★";
+
+          const spores = document.createElement("span");
+          spores.className = "spores";
+
+          const img = document.createElement("img");
+          img.src = src;
+          img.loading = "lazy";
+          img.alt = name;
+
+          const nameEl = document.createElement("div");
+          nameEl.className = "favorite-card-name";
+          nameEl.textContent = name || "名称不明";
+
+          thumb.append(star, spores, img);
+          a.append(thumb, nameEl);
           grid.appendChild(a);
         });
 
