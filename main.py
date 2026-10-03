@@ -2590,7 +2590,7 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
     </header>
   </div>
   <div class="portal-explore-content">
-    <p class="portal-guide-intro">{'図鑑・季節・見た目の特徴。3つの視点からキノコを探せます。' if feature_search_available else '図鑑や季節など、目的に合わせてキノコを探せます。'}</p>
+    <div class="portal-guide-layout">
   <nav class="portal-guide-grid{' portal-guide-grid--three' if feature_search_available else ' portal-guide-grid--two'}" aria-label="キノコを探す入口">
 ''']
 
@@ -2611,20 +2611,21 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
         append_card("features", "features.html", "特徴から探す", "見た目の特徴から絞り込む")
     parts.append('  </nav>\n')
     guide_help_items = [
-        ("名前が分かる", "図鑑を見る"),
-        ("撮影時期が分かる", "季節から探す"),
+        ("名前がわかる場合は", "図鑑から名前や写真、五十音で探せます。"),
+        ("撮影した時期がわかる場合は", "季節から候補をたどれます。"),
     ]
     if feature_search_available:
-        guide_help_items.append(("名前が分からない", "特徴から探す"))
+        guide_help_items.append(("名前がわからない場合は", "傘やヒダなど、見た目の特徴から絞り込めます。"))
+    help_class = "portal-guide-help--three" if feature_search_available else "portal-guide-help--two"
     help_html = "".join(
-        f'<span class="portal-guide-help__item"><strong>{label}</strong><small>{destination}</small></span>'
-        for label, destination in guide_help_items
+        f'<span class="portal-guide-help__item"><strong>{label}</strong><small>{description}</small></span>'
+        for label, description in guide_help_items
     )
     parts.append(
-        '  <aside class="portal-guide-help" aria-label="探し方のヒント">'
-        '<p class="portal-guide-help__title">こんなときは</p>'
-        f'<div class="portal-guide-help__grid">{help_html}</div>'
+        f'  <aside class="portal-guide-help {help_class}" aria-label="探し方のヒント">'
+        f'{help_html}'
         '</aside>\n'
+        '    </div>\n'
         '  </div>\n</section>\n'
     )
 
