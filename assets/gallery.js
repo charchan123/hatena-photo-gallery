@@ -742,32 +742,107 @@ document.addEventListener("DOMContentLoaded", () => {
 // =========================
 // キノコ詳細：自然比率モザイク + 外周4隅だけ角丸
 // =========================
-function configureDetailMosaic(gallery) {
-  if (!document.body.classList.contains("detail-page")
-      || !gallery.classList.contains("gallery")) return false;
-
-  const items = Array.from(gallery.querySelectorAll("a.gallery-item"));
-  if (!items.length) return false;
-
-  gallery.classList.add("detail-mosaic");
-
-  const viewportColumns = window.matchMedia("(max-width: 680px)").matches
+function detailMosaicViewportColumns() {
+  return window.matchMedia("(max-width: 680px)").matches
     ? 2
     : window.matchMedia("(max-width: 899px)").matches
       ? 3
       : 5;
-  const columns = Math.max(1, Math.min(items.length, viewportColumns));
-  const maxWidth = Math.min(1080, columns * 210 + Math.max(0, columns - 1) * 10);
+}
 
+function configureDetailMosaic(gallery) {
+  if (!document.body.classList.contains("detail-page")
+      || !gallery.classList.contains("gallery")) return false;
+
+  const items = gallery.__detailMosaicItems
+    || Array.from(gallery.querySelectorAll("a.gallery-item"));
+  if (!items.length) return false;
+
+  if (!gallery.__detailMosaicItems) {
+    gallery.__detailMosaicItems = items;
+  }
+
+  gallery.classList.add("detail-mosaic");
+  const columns = Math.max(1, Math.min(items.length, detailMosaicViewportColumns()));
+  const maxWidth = Math.min(1080, columns * 210 + Math.max(0, columns - 1) * 10);
   gallery.style.setProperty("--detail-mosaic-columns", String(columns));
   gallery.style.setProperty("--detail-mosaic-max-width", `${maxWidth}px`);
   return true;
 }
 
-function updateDetailMosaicCorners(gallery) {
-  if (!gallery.classList.contains("detail-mosaic")) return;
+function estimateDetailMosaicHeight(item, columnWidth) {
+  const img = item.querySelector("img");
+  if (img?.naturalWidth > 0 && img?.naturalHeight > 0) {
+    return columnWidth * img.naturalHeight / img.naturalWidth;
+  }
+  const rect = img?.getBoundingClientRect();
+  return rect?.height > 0 ? rect.height : columnWidth;
+}
 
-  const items = Array.from(gallery.querySelectorAll("a.gallery-item"));
+function partitionDetailMosaic(items, columns, columnWidth) {
+  const gap = 10;
+  const heights = items.map(item => estimateDetailMosaicHeight(item, columnWidth));
+  const groups = [];
+  let index = 0;
+
+  for (let columnIndex = 0; columnIndex < columns; columnIndex++) {
+    const remainingColumns = columns - columnIndex;
+    const remainingItems = items.length - index;
+
+    if (remainingColumns === 1) {
+      groups.push(items.slice(index));
+      break;
+    }
+
+    const remainingHeight = heights
+      .slice(index)
+      .reduce((sum, value) => sum + value, 0);
+    const remainingGapHeight = gap * Math.max(0, remainingItems - remainingColumns);
+    const targetHeight = (remainingHeight + remainingGapHeight) / remainingColumns;
+    const lastAllowedIndex = items.length - (remainingColumns - 1);
+
+    const group = [];
+    let groupHeight = 0;
+    while (index < lastAllowedIndex) {
+      const nextHeight = heights[index];
+      const candidateHeight = groupHeight
+        + (group.length ? gap : 0)
+        + nextHeight;
+
+      if (group.length
+          && Math.abs(groupHeight - targetHeight)
+             <= Math.abs(candidateHeight - targetHeight)) {
+        break;
+      }
+
+      group.push(items[index]);
+      groupHeight = candidateHeight;
+      index++;
+    }
+
+    if (!group.length) {
+      group.push(items[index]);
+      index++;
+    }
+    groups.push(group);
+  }
+
+  return groups;
+}
+
+function rebuildDetailMosaic(gallery) {
+  if (!configureDetailMosaic(gallery)) return;
+
+  const items = gallery.__detailMosaicItems;
+  const columns = Math.max(1, Math.min(items.length, detailMosaicViewportColumns()));
+  const gap = 10;
+  const galleryWidth = Math.min(
+    gallery.clientWidth || 1080,
+    parseFloat(getComputedStyle(gallery).maxWidth) || 1080
+  );
+  const columnWidth = Math.max(1, (galleryWidth - gap * (columns - 1)) / columns);
+  const groups = partitionDetailMosaic(items, columns, columnWidth);
+
   const cornerClasses = [
     "mosaic-corner-tl",
     "mosaic-corner-tr",
@@ -775,39 +850,31 @@ function updateDetailMosaicCorners(gallery) {
     "mosaic-corner-br",
   ];
   items.forEach(item => item.classList.remove(...cornerClasses));
-  if (!items.length) return;
 
-  const measured = items
-    .map(item => ({ item, rect: item.getBoundingClientRect() }))
-    .filter(row => row.rect.width > 0 && row.rect.height > 0)
-    .sort((a, b) => a.rect.left - b.rect.left || a.rect.top - b.rect.top);
-  if (!measured.length) return;
-
-  // Multi-column layout can differ by a fraction of a pixel, so group left
-  // positions with a small tolerance rather than requiring exact equality.
-  const columns = [];
-  measured.forEach(row => {
-    let column = columns.find(col => Math.abs(col.left - row.rect.left) < 3);
-    if (!column) {
-      column = { left: row.rect.left, items: [] };
-      columns.push(column);
-    }
-    column.items.push(row);
+  const fragment = document.createDocumentFragment();
+  groups.forEach((group, groupIndex) => {
+    const column = document.createElement("div");
+    column.className = "detail-mosaic-column";
+    column.dataset.mosaicColumn = String(groupIndex);
+    group.forEach(item => column.appendChild(item));
+    fragment.appendChild(column);
   });
-  columns.sort((a, b) => a.left - b.left);
-  columns.forEach(column => column.items.sort((a, b) => a.rect.top - b.rect.top));
+  gallery.replaceChildren(fragment);
 
-  const left = columns[0];
-  const right = columns[columns.length - 1];
-  left.items[0].item.classList.add("mosaic-corner-tl");
-  left.items[left.items.length - 1].item.classList.add("mosaic-corner-bl");
-  right.items[0].item.classList.add("mosaic-corner-tr");
-  right.items[right.items.length - 1].item.classList.add("mosaic-corner-br");
+  const left = groups[0];
+  const right = groups[groups.length - 1];
+  left[0]?.classList.add("mosaic-corner-tl");
+  left[left.length - 1]?.classList.add("mosaic-corner-bl");
+  right[0]?.classList.add("mosaic-corner-tr");
+  right[right.length - 1]?.classList.add("mosaic-corner-br");
 }
 
 function refreshDetailMosaic(gallery) {
   if (!configureDetailMosaic(gallery)) return;
-  requestAnimationFrame(() => updateDetailMosaicCorners(gallery));
+  requestAnimationFrame(() => {
+    rebuildDetailMosaic(gallery);
+    sendHeight("detail-mosaic");
+  });
 }
 
 // =========================
@@ -1169,15 +1236,16 @@ galleries.forEach(gallery => {
           const a = document.createElement("a");
           const name = window.SRC_TO_ALT?.[src] || "";
 
-          a.className = "gallery-item favorite-mushroom-card";
+          a.className = "gallery-item mushroom-card favorite-mushroom-card";
+          a.setAttribute("data-name", name);
           a.href = src;
           a.setAttribute("data-sub-html", buildNoteCaption(src));
 
           const thumb = document.createElement("div");
-          thumb.className = "favorite-card-thumb";
+          thumb.className = "mushroom-card-thumb";
 
           const star = document.createElement("span");
-          star.className = "thumb-fav is-fav";
+          star.className = "thumb-fav card-fav is-fav";
           star.textContent = "★";
 
           const spores = document.createElement("span");
@@ -1189,7 +1257,7 @@ galleries.forEach(gallery => {
           img.alt = name;
 
           const nameEl = document.createElement("div");
-          nameEl.className = "favorite-card-name";
+          nameEl.className = "mushroom-card-name";
           nameEl.textContent = name || "名称不明";
 
           thumb.append(star, spores, img);
