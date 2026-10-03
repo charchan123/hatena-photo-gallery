@@ -1,0 +1,53 @@
+name: Phase 4C.9 Knowledge Promotion Tests
+
+on:
+  push:
+    branches:
+      - phase4c9-141-knowledge-expansion
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Python compile
+        run: python -m compileall -q .
+
+      - name: Pytest
+        run: python -m pytest -q
+
+      - name: Pytest collect
+        run: python -m pytest --collect-only -q
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: JavaScript checks
+        run: |
+          node --check assets/gallery.js
+          node --check assets/mosaic-layout.js
+          node tests/test_gallery_highlight.js
+          node tests/test_gallery_height.js
+          node tests/test_features_filter.js
+          node tests/test_mosaic_layout.js
+
+      - name: Diff check
+        run: git diff --check a1ba1c6d247291615378609dd82f0a3c1f0343e0..HEAD
