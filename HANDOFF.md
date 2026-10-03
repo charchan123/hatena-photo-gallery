@@ -939,3 +939,15 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Equal-height contract:** FIELD NOTES and MUSHROOM GUIDE remain equal-height on desktop; artwork heights remain exactly 190px desktop / 150px mobile. AI-artwork overlay text size and placement remain unchanged.
 - **Mobile:** each guide row stacks its action and explanation vertically; separators remain between rows and action descriptions may wrap on narrow screens.
 - **Scope:** no artwork binaries, Hatena Design CSS/Hero banner, AI-artwork overlay text size/position, portal-data schema, record ordering/excerpts, Phase 3C, taxonomy, EXIF, favorites, LightGallery, iframe synchronization, workflows, or `data/*` behavior is changed.
+
+## Phase 4A.8.10 — Match guide rows to FIELD NOTES metrics
+
+- **Starting point:** production `main` is merge commit `9418a985ebf8cdfeed546d836e320cd4c74f1b92` after Phase 4A.8.9.
+- **Guide description:** `図鑑を見る` subcopy changes from `名前、五十音順からキノコを探す` to `名前、五十音順から探す`.
+- **Exact desktop geometry parity:** each guide action card is exactly **150×96px**, matching the protected FIELD NOTES thumbnail size. Guide rows use the same **18px column gap** and **8px vertical padding** as FIELD NOTES rows.
+- **Separator parity:** the guide list starts with the same `1px solid #d9ddcf` top border as FIELD NOTES, and every guide row—including the third/final row—ends with the same separator. Grid tracks use content height with `align-content:start` so separator Y positions are not stretched.
+- **Right-side heading typography:** guide explanation headings use the same effective visual tokens as FIELD NOTES record titles: `#24472f`, `1rem`, weight `650`.
+- **Right-side body typography:** guide explanation body copy uses the same visual tokens as FIELD NOTES excerpts: `#526056`, `.88rem`, line-height `1.45`.
+- **Card shape:** guide action cards use a 10px radius to align visually with FIELD NOTES thumbnails while retaining the existing dark-green action treatment.
+- **Mobile:** guide actions return to full width and may wrap on narrow screens; desktop parity values are protected.
+- **Scope:** no artwork binaries, Hatena Design CSS/Hero banner, AI-artwork overlay text size/position, portal-data schema, record ordering/excerpts, Phase 3C, taxonomy, EXIF, favorites, LightGallery, iframe synchronization, workflows, or `data/*` behavior is changed.
