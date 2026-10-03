@@ -926,3 +926,15 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Mobile:** the two-column guide layout stacks into one column; the three action cards remain compact and the explanation blocks follow below.
 - **Scope:** no artwork binaries, Hatena Design CSS/Hero banner, AI-artwork overlay text size/position, portal-data schema, record ordering/excerpts, Phase 3C, taxonomy, EXIF, favorites, LightGallery, iframe synchronization, workflows, or `data/*` behavior is changed.
 - **Validation:** GitHub Actions temporary Phase 4A.8.8 full-test workflow passed **374/374 pytest**, **374 collected**, Python compilation, `node --check assets/gallery.js`, 4 kana-insensitive highlight cases, iframe height regression checks, feature-filter checks, and `git diff --check` against production `886716bc...`. The first temporary run failed because an older regression still required the intentionally removed `3つの視点` intro; a second run passed functional tests but exposed only a blank line at EOF; after updating the expectation and normalizing the file ending, the full suite passed. The temporary workflow is removed before merge and is not part of the final PR diff.
+
+## Phase 4A.8.9 — Guide row polish
+
+- **Starting point:** production `main` is merge commit `2c34d1dd12fc478bcfc08006f274c4c2304c692f` after Phase 4A.8.8.
+- **Row-based guide layout:** each Mushroom Guide action and its explanation is now one matched row. The row uses a narrow left action card and plain right-side text, which is closer to the FIELD NOTES visual language than the prior pale-green explanation cards.
+- **Separators:** the first two guide rows use exactly the FIELD NOTES separator color and thickness: `border-bottom:1px solid #d9ddcf`.
+- **Guide-card width:** desktop rows use `grid-template-columns:minmax(220px,.9fr) minmax(0,1.1fr)`, keeping the left card only as wide as needed for a single-line action description while giving the explanation more breathing room.
+- **Guide copy:** `図鑑を見る` description changes to `名前、五十音順からキノコを探す`. Season and feature descriptions remain unchanged. All three left-card descriptions remain single-line on desktop.
+- **Right-side explanations:** explanatory content is plain text only — no pale-green background, border, or rounded card. Existing headings remain and the body copy stays subordinate in size/color.
+- **Equal-height contract:** FIELD NOTES and MUSHROOM GUIDE remain equal-height on desktop; artwork heights remain exactly 190px desktop / 150px mobile. AI-artwork overlay text size and placement remain unchanged.
+- **Mobile:** each guide row stacks its action and explanation vertically; separators remain between rows and action descriptions may wrap on narrow screens.
+- **Scope:** no artwork binaries, Hatena Design CSS/Hero banner, AI-artwork overlay text size/position, portal-data schema, record ordering/excerpts, Phase 3C, taxonomy, EXIF, favorites, LightGallery, iframe synchronization, workflows, or `data/*` behavior is changed.

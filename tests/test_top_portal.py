@@ -54,9 +54,9 @@ def test_optional_entrances_and_best_shot_condition(monkeypatch, tmp_path):
     for visual in ("portal-section-visual--explore", "portal-card--research", "portal-card--best-shots"):
         assert visual in page
     assert "portal-card__arrow" not in page and ">→<" not in independent
-    assert "portal-guide-grid portal-guide-grid--three" in page
+    assert "portal-guide-list portal-guide-list--3" in page
     assert "3つの視点" not in page
-    assert 'class="portal-guide-layout"' in page
+    assert 'class="portal-guide-row"' in page
     assert "名前がわかる場合は" in page
     assert page.count('<svg class="portal-icon"') >= 9
     assert page.count('aria-hidden="true" focusable="false"') >= 9
@@ -65,7 +65,7 @@ def test_optional_entrances_and_best_shot_condition(monkeypatch, tmp_path):
     assert "ベストショット" not in render(monkeypatch, tmp_path, best_shot_summary={"entry_count": 0})
     assert "portal-independent-links" not in render(monkeypatch, tmp_path)
     without_features = render(monkeypatch, tmp_path)
-    assert "portal-guide-grid portal-guide-grid--two" in without_features
+    assert "portal-guide-list portal-guide-list--2" in without_features
     assert "3つの視点" not in without_features
 
 
@@ -99,7 +99,7 @@ def test_portal_styles_are_compact_and_scoped(monkeypatch, tmp_path):
     page = render(monkeypatch, tmp_path)
     assert (tmp_path / "assets" / "portal.css").exists()
     css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
-    for expected in (".portal-records-visual", ".portal-section-visual", ".record-preview-row", ".record-preview-thumb img", ".portal-guide-grid", ".portal-independent-links", ".portal-about", ":focus-visible", "prefers-reduced-motion"):
+    for expected in (".portal-records-visual", ".portal-section-visual", ".record-preview-row", ".record-preview-thumb img", ".portal-guide-list", ".portal-independent-links", ".portal-about", ":focus-visible", "prefers-reduced-motion"):
         assert expected in css
     assert ".portal-card__arrow" not in css and "scale(1.08)" in css
     assert "#f7fcf4" in css
@@ -124,7 +124,7 @@ def test_portal_styles_are_compact_and_scoped(monkeypatch, tmp_path):
     mobile = css[css.index("@media (max-width:680px)"):]
     for expected in (
         ".portal-records-visual,.portal-section-visual { height:150px; }",
-        ".portal-guide-grid,.portal-independent-links,.portal-about-links { grid-template-columns:1fr;",
+        ".portal-guide-list,.portal-independent-links,.portal-about-links { grid-template-columns:1fr;",
         ".portal-independent-links .portal-card { min-height:155px; }",
     ):
         assert expected in mobile
@@ -239,20 +239,22 @@ def test_reference_portal_card_proportions_and_lower_artwork_assignment():
     assert "align-items:stretch" in desktop
     assert ".portal-independent-links .portal-card { min-height:155px; }" in desktop
 
-    assert ".portal-guide-grid { display:grid; min-width:0; gap:10px; }" in css
+    assert ".portal-guide-list { display:grid; flex:1 1 auto; min-height:0; }" in css
     assert "grid-template-columns:150px minmax(0,1fr)" in css
     assert ".record-preview-thumb { display:block; height:96px;" in css
 
-def test_guide_two_column_layout_matches_cards_with_explanations(monkeypatch, tmp_path):
+def test_guide_rows_use_record_style_separators_and_plain_notes(monkeypatch, tmp_path):
     page = render(monkeypatch, tmp_path, feature_search_available=True,
                   observation_records=[record(i) for i in range(3)])
 
     assert "図鑑・季節・見た目の特徴。3つの視点からキノコを探せます。" not in page
-    assert 'class="portal-guide-layout"' in page
-    assert 'class="portal-guide-help portal-guide-help--three"' in page
+    assert 'class="portal-guide-list portal-guide-list--3"' in page
+    assert page.count('class="portal-guide-row"') == 3
+    assert "名前、五十音順からキノコを探す" in page
+    assert "名前や写真、五十音からキノコを探す" not in page
     for phrase in (
         "名前がわかる場合は",
-        "図鑑から名前や写真、五十音で探せます。",
+        "図鑑から名前や五十音順で探せます。",
         "撮影した時期がわかる場合は",
         "季節から候補をたどれます。",
         "名前がわからない場合は",
@@ -261,15 +263,18 @@ def test_guide_two_column_layout_matches_cards_with_explanations(monkeypatch, tm
         assert phrase in page
 
     without_features = render(monkeypatch, tmp_path, feature_search_available=False)
-    assert 'class="portal-guide-help portal-guide-help--two"' in without_features
+    assert 'class="portal-guide-list portal-guide-list--2"' in without_features
     assert "名前がわからない場合は" not in without_features
 
     css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
     desktop = css[css.index("@media (min-width:900px)"):css.index("@media (max-width:680px)")]
     assert "align-items:stretch" in desktop
     assert ".portal-records-visual,.portal-section-visual { height:190px; }" in desktop
-    assert ".portal-guide-layout { display:grid;" in css
-    assert "grid-template-columns:minmax(0,1.16fr) minmax(0,.84fr)" in css
-    assert ".portal-guide-grid--three { grid-template-columns:1fr; grid-template-rows:repeat(3,minmax(76px,1fr)); }" in css
-    assert ".portal-guide-grid .portal-card__copy small { overflow:hidden; font-size:.76rem; line-height:1.35; text-overflow:ellipsis; white-space:nowrap; }" in css
-    assert ".portal-guide-help--three { grid-template-rows:repeat(3,minmax(76px,1fr)); }" in css
+    assert ".portal-guide-row { display:grid;" in css
+    assert "grid-template-columns:minmax(220px,.9fr) minmax(0,1.1fr)" in css
+    assert ".portal-guide-row:not(:last-child) { border-bottom:1px solid #d9ddcf; }" in css
+    assert ".portal-guide-row .portal-card { width:100%; height:82px; min-height:82px; }" in css
+    assert ".portal-guide-row .portal-card__copy small { font-size:.74rem; line-height:1.3; white-space:nowrap; }" in css
+    assert ".portal-guide-note { display:grid; min-width:0; gap:4px; align-content:center; color:#36523e; }" in css
+    assert "background:#eef5ea" not in css
+    assert ".portal-guide-help" not in css
