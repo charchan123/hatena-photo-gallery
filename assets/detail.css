@@ -142,25 +142,35 @@ body.detail-page {
   line-height:1.6;
 }
 
-/* Photo mosaic: natural aspect ratios, five columns on PC, and only the
-   four outside corners rounded. JS recalculates columns/corners after images load. */
+/* Photo mosaic: natural aspect ratios with explicit balanced columns.
+   Column wrappers stretch to the same height; extra vertical space is distributed
+   between photos so every column ends on the same Y line. */
 .detail-page .gallery {
-  display:block !important;
+  display:grid !important;
+  grid-template-columns:repeat(var(--detail-mosaic-columns,5),minmax(0,1fr));
+  gap:10px;
+  align-items:stretch;
   width:100%;
   max-width:var(--detail-mosaic-max-width,1080px);
   margin:0 auto;
-  column-count:var(--detail-mosaic-columns,5);
-  column-gap:10px;
   visibility:hidden;
   border-radius:16px;
   box-shadow:0 10px 24px rgba(39,63,44,.10);
 }
 
+.detail-page .detail-mosaic-column {
+  display:flex;
+  min-width:0;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:10px;
+}
+
 .detail-page .gallery a.gallery-item {
   position:relative;
   display:block;
-  break-inside:avoid;
-  margin:0 0 10px;
+  flex:0 0 auto;
+  margin:0;
   overflow:hidden;
   border-radius:0;
   background:#edf2ea;
@@ -173,21 +183,10 @@ body.detail-page {
   object-fit:contain;
 }
 
-.detail-page .gallery a.gallery-item.mosaic-corner-tl {
-  border-top-left-radius:16px;
-}
-
-.detail-page .gallery a.gallery-item.mosaic-corner-tr {
-  border-top-right-radius:16px;
-}
-
-.detail-page .gallery a.gallery-item.mosaic-corner-bl {
-  border-bottom-left-radius:16px;
-}
-
-.detail-page .gallery a.gallery-item.mosaic-corner-br {
-  border-bottom-right-radius:16px;
-}
+.detail-page .gallery a.gallery-item.mosaic-corner-tl { border-top-left-radius:16px; }
+.detail-page .gallery a.gallery-item.mosaic-corner-tr { border-top-right-radius:16px; }
+.detail-page .gallery a.gallery-item.mosaic-corner-bl { border-bottom-left-radius:16px; }
+.detail-page .gallery a.gallery-item.mosaic-corner-br { border-bottom-right-radius:16px; }
 
 .detail-page .knowledge-panel,
 .detail-page .knowledge-pending,
