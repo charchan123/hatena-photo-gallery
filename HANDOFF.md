@@ -1093,4 +1093,3 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Observation Note behavior:** photo-level favorite removal/undo, `lg_favorites`, EXIF grouping, LightGallery, caption generation, and src-to-name mapping remain intact.
 - **Protected contracts:** no portal-data, taxonomy, EXIF extraction, mushroom data, observation ID, Hatena API, Phase 3C, kana/search, browser-back, or iframe-height logic changes.
 - **Validation:** temporary Phase 4C.6 workflow passed **388/388 pytest**, **388 collected**, Python compilation, `node --check assets/gallery.js`, 4 kana-insensitive highlight cases, iframe-height regression checks, feature-filter checks, and `git diff --check` against `a3d9c181...`. The temporary workflow is removed before the final PR.
-
