@@ -1124,3 +1124,15 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Hatena article pages:** changing the appearance of the actual Hatena article pages while preserving article authoring, comments, stars/bookmarks, and other Hatena-native functionality is feasible through Hatena Design CSS/header styling. The repository does not contain the current full Hatena Design CSS/header markup, so no Hatena-side production override is committed in this phase. Export the current Design CSS and header HTML from the Hatena admin screen before preparing append-only scoped overrides.
 - **Protected contracts:** no portal-data, taxonomy, knowledge data, EXIF, Phase 3C, favorite storage, LightGallery, iframe synchronization, Hatena API extraction, article URLs, or record selection/order logic changes.
 - **Merge policy:** design-only PR; do not auto-merge.
+
+## Phase 4C.11 — compact detail Gojuon, new-top NEW notice, Hatena article preview patch
+
+- **Starting point:** production `main` merge commit `4af4477768479bf4c1db96ae11c0dfddef94d5a7` after Phase 4C.10 / PR #77. The separate Phase 4C.9 knowledge/facet branch remains isolated.
+- **Detail Gojuon:** the ten 行 buttons now stay on one non-wrapping row. Spacing is reduced to 4px on normal screens and 3px on narrow screens. Buttons use compact fixed minimum widths; if a very narrow viewport cannot contain the row, only this nav strip may scroll horizontally rather than wrapping.
+- **new-top NEW notice:** when observation records exist, the newest record is surfaced as a compact `NEW!` notice inside the FIELD NOTES hero. The notice links to the same newest article, escapes title text, truncates the short copy to 34 characters, and uses CSS ellipsis when available width is smaller. With no observation records, no NEW notice is rendered.
+- **Hatena article preview:** adds `hatena/hatena-article-newtop-preview.css` as an inactive, append-only preview artifact. It reuses the existing `.header1/.header2` markup, new-top forest/Amanita assets, #f7fcf4 background, white/green article cards, green menu, styled sidebar modules, and responsive one-column fallback while explicitly scoping away from `body.static-page-new-top`.
+- **Hatena native behavior:** the preview patch does not hide or replace article content, comment areas, Hatena Star/bookmark/social controls, categories, article metadata, or the existing menu script. The current header HTML can remain unchanged.
+- **Deployment:** preview the additive CSS in Hatena first; do not save it to production until the new-top launch cutover. Rollback is removal of the appended Phase 4C.11 block.
+- **Protected contracts:** no portal-data, taxonomy, mushroom knowledge data, EXIF, Phase 3C, favorites, LightGallery, iframe synchronization, Hatena API extraction, article URLs, record selection/order logic, or Phase 4C.9 data are changed.
+- **Merge policy:** design-only PR; do not auto-merge.
+
