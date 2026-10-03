@@ -309,21 +309,24 @@ body.detail-page {
 .detail-page .subject-record-more .subject-record-list { margin-top:12px; }
 
 .detail-page .detail-aiuo-links {
+  width:min(100%,500px);
   max-width:none;
   margin:16px 0 0;
-  grid-template-columns:repeat(10,minmax(0,1fr));
+  grid-template-columns:repeat(5,minmax(0,1fr));
   gap:8px;
 }
 
 .detail-page .detail-aiuo-links .aiuo-link {
   min-width:0;
-  padding:10px 5px;
+  padding:10px 6px;
   border:1px solid #cbdac9;
   border-radius:10px;
   background:#f9fcf7;
   color:#31563a;
   font-size:.8rem;
   font-weight:700;
+  line-height:1;
+  text-align:center;
   text-decoration:none;
 }
 
@@ -382,6 +385,8 @@ body.detail-page {
   .detail-page .knowledge-pending,
   .detail-page .subject-records,
   .detail-page .detail-index-panel { padding:20px 18px; }
+  .detail-page .detail-aiuo-links { gap:6px; }
+  .detail-page .detail-aiuo-links .aiuo-link { padding:9px 4px; font-size:.76rem; }
   .detail-page .knowledge-row { grid-template-columns:1fr; gap:5px; }
 }
 
