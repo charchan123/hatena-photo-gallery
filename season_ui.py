@@ -92,16 +92,34 @@ def render_season_page(portal_data, safe_filename):
 <script src="assets/gallery.js" defer></script>
 <script src="assets/season.js" defer></script>
 </head>
-<body>
-<main class="aiuo-page season-page">
-  <header class="season-header">
-    <h1 class="aiuo-title">季節から探す</h1>
-    <p class="season-lead">このブログで実際に撮影した写真の撮影月から探せます。</p>
-    <p class="season-note">撮影月は写真のEXIF情報を使用しています。一般的なキノコの発生時期を示すものではありません。EXIF撮影月がない写真は推測配置していません。</p>
-  </header>
-  <div class="season-tabs" role="tablist" aria-label="季節を選ぶ">{''.join(buttons)}</div>
-  {''.join(sections)}
-  <div class="season-back"><a href="index.html" class="back-btn">◀ トップに戻る</a></div>
+<body class="season-index">
+<main id="gallery-content-root" class="season-shell">
+  <section class="season-hub" aria-labelledby="season-title">
+    <header class="season-hero">
+      <a class="season-back-link" href="index.html">← 図鑑へ戻る</a>
+      <div class="season-hero-copy">
+        <span class="season-eyebrow">SEASON FINDER</span>
+        <h1 id="season-title">季節から探す</h1>
+        <p>このブログで実際に撮影した写真の撮影月から探せます。</p>
+      </div>
+    </header>
+
+    <div class="season-hub-body">
+      <div class="season-picker-heading">
+        <span class="season-eyebrow">CHOOSE A SEASON</span>
+        <h2>季節を選ぶ</h2>
+        <p>撮影した時期から、ブログで出会ったキノコをたどれます。</p>
+      </div>
+      <div class="season-tabs" role="tablist" aria-label="季節を選ぶ">{''.join(buttons)}</div>
+      <p class="season-note">撮影月は写真のEXIF情報を使用しています。一般的なキノコの発生時期を示すものではありません。EXIF撮影月がない写真は推測配置していません。</p>
+    </div>
+  </section>
+
+  <div class="season-results-wrap">
+    {''.join(sections)}
+  </div>
+
+  <footer class="season-footer"><a href="index.html">← キノコ図鑑へ戻る</a></footer>
 </main>
 </body>
 </html>
