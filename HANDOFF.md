@@ -1115,3 +1115,16 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Few-photo behavior:** one image is centered and capped at 380px with all four corners rounded. Two images use two columns when the viewport allows, share an exact bottom, and receive the left/right outer corner pairs. Three/four images use no more than their image count; five or more use at most five PC columns. Tablet/narrow limits remain three/two and resize recalculation remains debounced at 80ms.
 - **Protected behavior:** detail anchors remain `a.gallery-item`; `.thumb-fav`, `selector: "a.gallery-item"`, LightGallery lifecycle/favorite synchronization, original image URLs, `lg_favorites`, and the existing `sendHeight("detail-mosaic")` call after recalculation remain intact. Existing image-load, resize, ResizeObserver, pageshow/bfcache, requestHeight, and scrollToTitle paths are not removed.
 - **Validation:** baseline was **391 passed / 391 collected** plus the existing JavaScript checks. Final validation adds five pure-layout cases (one, two, mixed five, practical fifteen, and extreme portrait/landscape), including fixed gaps, exact bottoms, crop ceiling, uniqueness, and corner rules.
+
+## Phase 4C.9 — promote independently reviewed 141-record mushroom knowledge candidate
+
+- **Starting point:** production `main` merge commit `a1ba1c6d247291615378609dd82f0a3c1f0343e0` after Phase 4C.8 / PR #76.
+- **Scope:** data-only promotion of the independently reviewed mushroom knowledge candidate into the three runtime reference files. UI, taxonomy, EXIF, Hatena extraction, portal-data, Phase 3C selection, favorites, LightGallery, and layout code are unchanged.
+- **Runtime data expansion:** `data/mushroom-master.json` expands from 41 to **141** records; `data/sources.json` expands from 47 to **419** source records; `data/feature-facets.json` remains schema version 1 with **4 groups / 20 facets / 127 covered records / 383 assignments**.
+- **Safety-status distribution:** the promoted master contains **31 poisonous_confirmed / 33 unknown / 77 edibility_reported**. `edibility_reported` remains a source-reporting status and must not be interpreted as safe-to-eat.
+- **Verification distribution:** **139 partial / 2 verified_core**.
+- **Final critical holds:** IA-019 ウラグロニガイグチ remains `edibility_reported` with explicit unresolved taxon-concept/safety notes and no toxin assertion; IA-020 キララタケ remains `edibility_reported` with the public-source conflict recorded and no coprine toxin assertion; IA-029 タマゴタケモドキ remains `poisonous_confirmed`, while its feature note records the annulus-source conflict and the `ring` facet remains intentionally absent.
+- **Audit artifacts:** the reviewed CSV/Markdown investigation outputs are not runtime inputs and are intentionally not added to the repository in this production-data PR. Their conclusions are represented through field-level source provenance, notes, the expanded source registry, and this handoff summary.
+- **Regression coverage:** repository count expectations are updated to 141/419; food-status and verification-status totals are locked; the three final-critical safety holds are asserted; facet totals are locked and the IA-029 `ring` hold is explicitly tested.
+- **Merge policy:** this branch is for a separate data PR only. Do not mix design changes and do not auto-merge.
+
