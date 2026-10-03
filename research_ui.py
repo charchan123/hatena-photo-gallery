@@ -143,39 +143,85 @@ def render_research_page(model):
     cards = []
     for case in model["cases"]:
         name = html.escape(case["gallery_name"])
-        candidate = (f'<div class="research-candidate"><span>現在の候補名</span>'
-                     f'<strong>{name}</strong></div>' if case["gallery_name"] != "不明" else "")
+        candidate = (
+            f'<div class="research-candidate"><span>現在の候補名</span>'
+            f'<strong>{name}</strong></div>'
+            if case["gallery_name"] != "不明" else ""
+        )
         dates = "、".join(_japanese_date(value) for value in case["capture_dates"]) or "不明"
         photos = []
         for number, photo in enumerate(case["photos"], 1):
             src = html.escape(str(photo["src"]), quote=True)
-            photos.append(f'<a class="research-photo" href="{src}" target="_blank" rel="noopener">'
-                          f'<img src="{src}" alt="{name}の観察写真 {number}" loading="lazy"></a>')
+            photos.append(
+                f'<a class="research-photo" href="{src}" target="_blank" rel="noopener">'
+                f'<img src="{src}" alt="{name}の観察写真 {number}" loading="lazy"></a>'
+            )
         article = case["article"]
         title = html.escape(str(article.get("title") or "タイトル不明"))
         url = _safe_web_url(article.get("url"))
-        article_text = (f'<a href="{html.escape(url, quote=True)}" target="_top">{title}</a>'
-                        if url else f'<span>{title}</span>')
+        article_text = (
+            f'<a href="{html.escape(url, quote=True)}" target="_top">{title}</a>'
+            if url else f'<span>{title}</span>'
+        )
         status = case["status"]
         cards.append(f'''<article class="research-case">
-<header><span class="research-status {status_classes[status]}">{status}</span><h2>{name}</h2></header>
-{candidate}<dl class="research-facts"><div><dt>撮影日</dt><dd>{dates}</dd></div>
+<header class="research-case__header">
+  <div><span class="research-status {status_classes[status]}">{status}</span><h2>{name}</h2></div>
+</header>
+{candidate}
+<dl class="research-facts"><div><dt>撮影日</dt><dd>{dates}</dd></div>
 <div><dt>写真枚数</dt><dd>{case["photo_count"]}枚</dd></div></dl>
 <div class="research-photos">{''.join(photos)}</div>
 <div class="research-article"><span class="research-label">観察記録</span>{article_text}</div>
 </article>''')
-    return f'''<!doctype html><html lang="ja"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><title>❓ 不明キノコ研究室</title>
-<link rel="stylesheet" href="assets/gallery.css"><link rel="stylesheet" href="assets/research.css"></head><body>
-<main class="research-page"><header class="research-intro"><h1>❓ 不明キノコ研究室</h1>
-<p>まだ名前が分からないキノコや、候補名を調べている観察を集めました。</p>
-<p>答えだけでなく、調べていく途中も観察記録の一部です。</p>
-<p class="research-warning">「？」付きの名前は候補であり、同定が確定していることを意味しません。</p>
-<p class="research-coming-soon">💬 コメント・返信機能は今後追加予定です。<br>同定のヒントや情報を寄せられるようにする予定です。</p>
-<div class="research-summary"><span>調査中 <strong>{model["case_count"]}</strong>件</span><span>写真 <strong>{model["photo_count"]}</strong>枚</span></div>
-</header><section class="research-cases" aria-label="調査中の観察">{''.join(cards)}</section>
-<div class="research-back"><a href="index.html" class="back-btn">◀ トップに戻る</a></div></main>
-<script src="assets/gallery.js"></script></body></html>'''
+    return f'''<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>不明キノコ研究室｜キノコ図鑑</title>
+<link rel="stylesheet" href="assets/gallery.css">
+<link rel="stylesheet" href="assets/research.css">
+<script src="assets/gallery.js" defer></script>
+</head>
+<body class="research-index">
+<main id="gallery-content-root" class="research-page">
+  <section class="research-hub" aria-labelledby="research-title">
+    <header class="research-hero">
+      <a class="research-back-link" href="index.html">← 図鑑へ戻る</a>
+      <div class="research-hero-copy">
+        <span class="research-eyebrow">RESEARCH LAB</span>
+        <h1 id="research-title">不明キノコ研究室</h1>
+        <p>まだ名前が分からないキノコや、候補名を調べている観察を集めました。</p>
+      </div>
+    </header>
+    <div class="research-overview">
+      <div class="research-overview-copy">
+        <span class="research-eyebrow">WORK IN PROGRESS</span>
+        <h2>調べている途中も観察記録</h2>
+        <p>答えだけでなく、名前へたどり着く途中の情報も残しています。</p>
+      </div>
+      <div class="research-summary">
+        <span>調査中 <strong>{model["case_count"]}</strong>件</span>
+        <span>写真 <strong>{model["photo_count"]}</strong>枚</span>
+      </div>
+      <div class="research-notices">
+        <p class="research-warning">「？」付きの名前は候補であり、同定が確定していることを意味しません。</p>
+        <p class="research-coming-soon"><strong>コメント・返信機能は今後追加予定です。</strong><br>同定のヒントや情報を寄せられるようにする予定です。</p>
+      </div>
+    </div>
+  </section>
+  <section class="research-cases-wrap" aria-labelledby="research-cases-title">
+    <header class="research-cases-heading">
+      <div><span class="research-eyebrow">OPEN CASES</span><h2 id="research-cases-title">調査中の観察</h2></div>
+      <span>{model["case_count"]}件</span>
+    </header>
+    <div class="research-cases">{''.join(cards)}</div>
+  </section>
+  <footer class="research-footer"><a href="index.html">← キノコ図鑑へ戻る</a></footer>
+</main>
+</body>
+</html>'''
 
 
 def generate_research_page(portal_data, output_dir, assets_dir):
