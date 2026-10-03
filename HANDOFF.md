@@ -1124,4 +1124,3 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Hatena article pages:** changing the appearance of the actual Hatena article pages while preserving article authoring, comments, stars/bookmarks, and other Hatena-native functionality is feasible through Hatena Design CSS/header styling. The repository does not contain the current full Hatena Design CSS/header markup, so no Hatena-side production override is committed in this phase. Export the current Design CSS and header HTML from the Hatena admin screen before preparing append-only scoped overrides.
 - **Protected contracts:** no portal-data, taxonomy, knowledge data, EXIF, Phase 3C, favorite storage, LightGallery, iframe synchronization, Hatena API extraction, article URLs, or record selection/order logic changes.
 - **Merge policy:** design-only PR; do not auto-merge.
-
