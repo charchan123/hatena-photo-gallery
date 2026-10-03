@@ -1,0 +1,45 @@
+name: Temporary Phase 4A.8.9 Full Test
+
+on:
+  push:
+    branches:
+      - phase4a8-9-guide-row-polish
+
+jobs:
+  full-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Full pytest
+        run: python -m pytest -q
+
+      - name: Collect-only
+        run: python -m pytest --collect-only -q
+
+      - name: Python compile
+        run: |
+          python -m py_compile main.py portal_data.py season_ui.py records_ui.py detail_ui.py feature_ui.py research_ui.py best_shot_ui.py mushroom_knowledge.py
+
+      - name: Node syntax and regressions
+        run: |
+          node --check assets/gallery.js
+          node tests/test_gallery_highlight.js
+          node tests/test_gallery_height.js
+          node tests/test_features_filter.js
+
+      - name: Diff whitespace check
+        run: git diff --check 2c34d1dd12fc478bcfc08006f274c4c2304c692f..HEAD
