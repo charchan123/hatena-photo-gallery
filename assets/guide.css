@@ -1,0 +1,560 @@
+/* Phase 4B.1 — PC-first Mushroom Guide index.
+   Scoped to body.guide-index so legacy detail/kana/gallery pages remain untouched. */
+
+body.guide-index {
+  max-width:none;
+  margin:0;
+  padding:0;
+  background:#f7fcf4;
+  color:#25412d;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;
+}
+
+.guide-index *,
+.guide-index *::before,
+.guide-index *::after { box-sizing:border-box; }
+
+.guide-index a { color:inherit; }
+
+.guide-index .guide-shell {
+  width:min(100%,1180px);
+  margin:0 auto;
+  padding:24px 22px 52px;
+}
+
+.guide-index .guide-hero {
+  position:relative;
+  min-height:220px;
+  overflow:hidden;
+  border-radius:22px;
+  background:
+    linear-gradient(90deg,rgba(11,34,20,.76) 0%,rgba(11,34,20,.52) 37%,rgba(11,34,20,.12) 68%,rgba(11,34,20,.04) 100%),
+    url("mushroom-guide-final.webp") 68% 50%/cover no-repeat;
+  box-shadow:0 18px 40px rgba(39,63,44,.12);
+}
+
+.guide-index .guide-hero::after {
+  content:"";
+  position:absolute;
+  inset:auto 0 0;
+  height:54px;
+  background:linear-gradient(to bottom,transparent,rgba(10,30,18,.18));
+  pointer-events:none;
+}
+
+.guide-index .guide-back {
+  position:absolute;
+  z-index:2;
+  top:18px;
+  left:22px;
+  display:inline-flex;
+  align-items:center;
+  min-height:34px;
+  padding:0 13px;
+  border:1px solid rgba(255,255,255,.34);
+  border-radius:999px;
+  background:rgba(17,48,30,.48);
+  color:#fff;
+  font-size:.78rem;
+  font-weight:700;
+  text-decoration:none;
+  backdrop-filter:blur(6px);
+}
+
+.guide-index .guide-hero-copy {
+  position:absolute;
+  z-index:1;
+  left:46px;
+  top:50%;
+  width:min(530px,58%);
+  transform:translateY(-39%);
+  color:#fff;
+  text-shadow:0 2px 10px rgba(0,0,0,.45);
+}
+
+.guide-index .guide-eyebrow,
+.guide-index .guide-panel-kicker {
+  display:block;
+  margin:0 0 8px;
+  color:#f0f6ed;
+  font-size:.72rem;
+  font-weight:850;
+  letter-spacing:.16em;
+}
+
+.guide-index .guide-hero h1 {
+  margin:0;
+  font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho",serif;
+  font-size:2.5rem;
+  font-weight:700;
+  line-height:1.12;
+  letter-spacing:.02em;
+}
+
+.guide-index .guide-hero p {
+  margin:12px 0 0;
+  font-size:.94rem;
+  font-weight:650;
+  line-height:1.6;
+}
+
+.guide-index .guide-find,
+.guide-index .guide-panel {
+  margin-top:20px;
+}
+
+.guide-index .guide-find {
+  padding:24px;
+  border:1px solid #e0e9dd;
+  border-radius:20px;
+  background:#fff;
+  box-shadow:0 12px 30px rgba(50,78,55,.07);
+}
+
+.guide-index .guide-section-heading {
+  margin-bottom:18px;
+}
+
+.guide-index .guide-section-heading--compact { margin-bottom:16px; }
+
+.guide-index .guide-section-heading .guide-eyebrow {
+  margin-bottom:5px;
+  color:#63806a;
+  font-size:.68rem;
+}
+
+.guide-index .guide-section-heading h2 {
+  margin:0;
+  color:#23432d;
+  font-size:1.45rem;
+  line-height:1.3;
+}
+
+.guide-index .guide-section-heading p {
+  margin:6px 0 0;
+  color:#6c776e;
+  font-size:.88rem;
+  line-height:1.55;
+}
+
+.guide-index .guide-find-grid {
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+  gap:18px;
+}
+
+.guide-index .guide-panel {
+  position:relative;
+  overflow:hidden;
+  padding:22px;
+  border:1px solid #e0e9dd;
+  border-radius:18px;
+  background:#fff;
+  box-shadow:0 10px 28px rgba(50,78,55,.065);
+}
+
+.guide-index .guide-find .guide-panel {
+  margin:0;
+  box-shadow:none;
+  background:#f9fcf7;
+}
+
+.guide-index .guide-panel-kicker {
+  margin-bottom:6px;
+  color:#63806a;
+  font-size:.66rem;
+}
+
+.guide-index .guide-panel h3 {
+  margin:0;
+  color:#23432d;
+  font-size:1.14rem;
+}
+
+.guide-index .guide-panel > p,
+.guide-index .guide-panel--search > p,
+.guide-index .guide-panel--kana > p {
+  margin:6px 0 14px;
+  color:#6c776e;
+  font-size:.82rem;
+  line-height:1.55;
+}
+
+.guide-index .index-search-box { margin:0; }
+
+.guide-index .index-search-input {
+  width:100%;
+  min-height:48px;
+  padding:0 16px;
+  border:1px solid #cad9c8;
+  border-radius:12px;
+  outline:none;
+  background:#fff;
+  color:#24472f;
+  font-size:.95rem;
+  box-shadow:inset 0 1px 2px rgba(20,50,30,.04);
+  transition:border-color .18s ease,box-shadow .18s ease;
+}
+
+.guide-index .index-search-input:focus {
+  border-color:#54775c;
+  box-shadow:0 0 0 3px rgba(74,112,83,.12);
+}
+
+.guide-index .aiuo-links {
+  max-width:none;
+  margin:0;
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:8px;
+}
+
+.guide-index .aiuo-link {
+  min-width:0;
+  padding:10px 8px;
+  border:1px solid #cbdac9;
+  border-radius:10px;
+  background:#fff;
+  color:#31563a;
+  font-size:.82rem;
+  font-weight:700;
+  line-height:1;
+  text-decoration:none;
+}
+
+.guide-index .aiuo-link:hover {
+  transform:translateY(-1px);
+  background:#edf5e9;
+  border-color:#a9c2a8;
+  box-shadow:0 5px 12px rgba(38,69,44,.08);
+}
+
+.guide-index .guide-search-feedback { margin-top:16px; }
+
+.guide-index .index-search-results:not(:empty) {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+  margin-top:4px;
+  padding-top:18px;
+  border-top:1px solid #dce5d9;
+}
+
+.guide-index .index-search-results .mushroom-card {
+  display:block;
+  min-width:0;
+  overflow:hidden;
+  border:1px solid #e0e7de;
+  border-radius:14px;
+  background:#fff;
+  color:#294a32;
+  text-decoration:none;
+  box-shadow:0 5px 14px rgba(40,68,46,.055);
+}
+
+.guide-index .index-search-results .mushroom-card-thumb {
+  position:relative;
+  height:150px;
+  overflow:hidden;
+  background:#edf2ea;
+}
+
+.guide-index .index-search-results .mushroom-card-thumb img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .35s ease;
+}
+
+.guide-index .index-search-results .mushroom-card:hover img { transform:scale(1.05); }
+
+.guide-index .index-search-results .mushroom-card-name {
+  padding:10px 12px 12px;
+  font-size:.86rem;
+  font-weight:750;
+}
+
+.guide-index .search-empty {
+  margin:16px 0 0;
+  padding:16px;
+  border-radius:12px;
+  background:#f4f7f1;
+  color:#526056;
+  text-align:center;
+  font-size:.88rem;
+}
+
+.guide-index .search-empty small {
+  display:block;
+  margin-top:3px;
+  color:#879087;
+}
+
+.guide-index .index-pagination {
+  margin:16px 0 0;
+  color:#526056;
+  text-align:center;
+  font-size:.84rem;
+}
+
+.guide-index .index-page-btn {
+  display:inline-flex;
+  align-items:center;
+  min-height:34px;
+  padding:0 12px;
+  border:1px solid #ccd8ca;
+  border-radius:999px;
+  background:#fff;
+  color:#35583e;
+  cursor:pointer;
+}
+
+.guide-index .index-page-btn.disabled { opacity:.4; pointer-events:none; }
+
+.guide-index .guide-panel--ways {
+  padding:22px;
+}
+
+.guide-index .guide-way-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:12px;
+}
+
+.guide-index .guide-way {
+  position:relative;
+  min-height:120px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:16px;
+  border-radius:14px;
+  color:#fff;
+  text-decoration:none;
+  isolation:isolate;
+  box-shadow:0 8px 20px rgba(25,53,34,.11);
+}
+
+.guide-index .guide-way::before {
+  content:"";
+  position:absolute;
+  z-index:-2;
+  inset:0;
+  background-position:center;
+  background-size:cover;
+  transition:transform .4s ease,filter .4s ease;
+}
+
+.guide-index .guide-way::after {
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  background:linear-gradient(to top,rgba(10,34,20,.84),rgba(10,34,20,.18) 78%,rgba(10,34,20,.04));
+}
+
+.guide-index .guide-way:hover::before { transform:scale(1.04); filter:brightness(1.08); }
+
+.guide-index .guide-way--season::before { background-image:url("guide-action-season.webp"); background-position:62% 50%; }
+.guide-index .guide-way--features::before { background-image:url("guide-action-features.webp"); background-position:70% 50%; }
+.guide-index .guide-way--research::before { background-image:url("research-lab-cabin.webp"); background-position:78% center; }
+.guide-index .guide-way--best::before { background-image:url("research-lab-final.webp"); background-position:72% 50%; }
+
+.guide-index .guide-way span {
+  margin-bottom:4px;
+  font-size:.62rem;
+  font-weight:850;
+  letter-spacing:.13em;
+}
+
+.guide-index .guide-way strong {
+  font-size:1rem;
+  line-height:1.3;
+}
+
+.guide-index .guide-way small {
+  margin-top:4px;
+  color:rgba(255,255,255,.92);
+  font-size:.75rem;
+}
+
+.guide-index .guide-observe-grid {
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:18px;
+}
+
+.guide-index .guide-panel--records,
+.guide-index .guide-panel--note { min-height:220px; }
+
+.guide-index .guide-panel--records .record-list-preview {
+  margin-top:4px;
+}
+
+.guide-index .guide-text-link {
+  display:block;
+  width:fit-content;
+  margin:14px 0 0 auto;
+  color:#35653f;
+  font-size:.82rem;
+  font-weight:750;
+  text-decoration:none;
+}
+
+.guide-index .guide-note-action {
+  position:relative;
+  min-height:120px;
+  display:grid;
+  align-content:center;
+  gap:4px;
+  overflow:hidden;
+  margin-top:18px;
+  padding:18px;
+  border-radius:14px;
+  background:
+    linear-gradient(120deg,rgba(24,62,37,.94),rgba(41,83,50,.82)),
+    url("guide-action-book.webp") center/cover;
+  color:#fff;
+  text-decoration:none;
+}
+
+.guide-index .guide-note-action strong {
+  font-size:1.12rem;
+}
+
+.guide-index .guide-note-action #favorite-count {
+  font-size:.84rem;
+  font-weight:700;
+}
+
+.guide-index .guide-note-action small {
+  margin-top:8px;
+  color:rgba(255,255,255,.9);
+  font-size:.75rem;
+}
+
+.guide-index .guide-panel--note-alone { max-width:560px; }
+
+.guide-index .guide-panel--recommend {
+  padding:22px;
+}
+
+.guide-index .recommend-grid {
+  max-width:none;
+  margin:0;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+
+.guide-index .recommend-card {
+  min-width:0;
+  padding:14px;
+  border:1px solid #e1e8df;
+  border-radius:14px;
+  background:#fbfdf9;
+  box-shadow:none;
+}
+
+.guide-index .recommend-card h3 {
+  margin:0 0 10px;
+  color:#31543a;
+  font-size:.92rem;
+  text-align:left;
+}
+
+.guide-index .rec-items {
+  display:grid;
+  gap:8px;
+}
+
+.guide-index .rec-item {
+  min-width:0;
+  display:grid;
+  grid-template-columns:58px minmax(0,1fr);
+  gap:10px;
+  align-items:center;
+  padding:5px;
+  border-radius:10px;
+  color:#31513a;
+  font-size:.82rem;
+  font-weight:650;
+  text-decoration:none;
+}
+
+.guide-index .rec-item img {
+  width:58px;
+  height:58px;
+  border-radius:9px;
+  object-fit:cover;
+}
+
+.guide-index .rec-item:hover {
+  transform:translateY(-1px);
+  background:#eef5ea;
+  box-shadow:none;
+}
+
+.guide-index .guide-empty-pick {
+  margin:0;
+  color:#8a938b;
+  font-size:.78rem;
+}
+
+.guide-index .guide-footer {
+  margin-top:22px;
+  padding-top:18px;
+  border-top:1px solid #dce5d9;
+  text-align:center;
+}
+
+.guide-index .guide-footer a {
+  color:#466c4e;
+  font-size:.82rem;
+  font-weight:700;
+  text-decoration:none;
+}
+
+.guide-index :focus-visible {
+  outline:3px solid rgba(70,110,78,.34);
+  outline-offset:3px;
+}
+
+@media (max-width:899px) {
+  .guide-index .guide-shell { padding:18px 16px 40px; }
+  .guide-index .guide-hero { min-height:205px; }
+  .guide-index .guide-hero-copy { left:30px; width:70%; }
+  .guide-index .guide-find-grid,
+  .guide-index .guide-observe-grid { grid-template-columns:1fr; }
+  .guide-index .index-search-results:not(:empty) { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+
+@media (max-width:680px) {
+  .guide-index .guide-shell { padding:12px 10px 32px; }
+  .guide-index .guide-hero { min-height:180px; border-radius:16px; background-position:65% 50%; }
+  .guide-index .guide-back { top:12px; left:12px; min-height:30px; }
+  .guide-index .guide-hero-copy { left:20px; width:78%; transform:translateY(-31%); }
+  .guide-index .guide-hero h1 { font-size:1.8rem; }
+  .guide-index .guide-hero p { font-size:.78rem; line-height:1.5; }
+  .guide-index .guide-find,
+  .guide-index .guide-panel { margin-top:12px; padding:16px; border-radius:14px; }
+  .guide-index .guide-find .guide-panel { padding:14px; }
+  .guide-index .aiuo-links { grid-template-columns:repeat(5,minmax(0,1fr)); gap:6px; }
+  .guide-index .aiuo-link { padding:9px 4px; font-size:.76rem; }
+  .guide-index .index-search-results:not(:empty) { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+  .guide-index .index-search-results .mushroom-card-thumb { height:120px; }
+  .guide-index .guide-way-grid,
+  .guide-index .recommend-grid { grid-template-columns:1fr; }
+  .guide-index .guide-way { min-height:108px; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .guide-index *,
+  .guide-index *::before,
+  .guide-index *::after {
+    scroll-behavior:auto !important;
+    transition:none !important;
+    animation:none !important;
+  }
+}
