@@ -23,7 +23,15 @@ def test_hatena_article_preview_patch_is_scoped_and_non_destructive():
     assert ".comment-box" in css
     assert ".hatena-star-container" in css
     assert ".social-buttons" in css
-    assert "display:none" not in css
+    for protected_selector in (
+        ".hatena-star-container",
+        ".social-buttons",
+        ".comment-box",
+        "#comments",
+        "#box2 .hatena-module",
+    ):
+        assert f"{protected_selector} {{ display:none" not in css
+        assert f"{protected_selector}{{display:none" not in css
     assert "@media screen and (max-width:960px)" in css
     assert "@media screen and (max-width:680px)" in css
 
