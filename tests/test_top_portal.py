@@ -15,6 +15,49 @@ def render(monkeypatch, tmp_path, **kwargs):
     return (tmp_path / "new-top.html").read_text(encoding="utf-8")
 
 
+
+def test_aiuo_pages_use_scoped_pc_portal_visual_language(monkeypatch, tmp_path):
+    monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
+    entries = [
+        {"alt": "アカヤマドリ", "src": "photo-a.jpg"},
+        {"alt": "イグチ", "src": "photo-i.jpg"},
+    ]
+    main.generate_gallery(entries, {}, detail_views={})
+    page = (tmp_path / "あ行.html").read_text(encoding="utf-8")
+    css = (Path(main.ASSETS_DIR) / "aiuo.css").read_text(encoding="utf-8")
+
+    for expected in (
+        "<!doctype html>",
+        '<body class="aiuo-index">',
+        'id="gallery-content-root"',
+        'href="assets/aiuo.css"',
+        'class="aiuo-hero"',
+        "GOJUON INDEX",
+        "あ行のキノコ",
+        "頭文字から絞り込む",
+        'class="kana-btn active" data-kana="all"',
+        'class="search-input"',
+        'class="aiuo-results-panel"',
+        "あ行のキノコ一覧",
+        "2種類",
+        'href="index.html"',
+        "?from=aiuo&kana=あ行",
+    ):
+        assert expected in page
+
+    assert "◀ トップに戻る" not in page
+    assert (tmp_path / "assets" / "aiuo.css").exists()
+    assert "body.aiuo-index" in css
+    assert "width:min(100%,1180px)" in css
+    assert 'url("mushroom-guide-final.webp")' in css
+    assert ".aiuo-index .aiuo-filter-panel" in css
+    assert "grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr)" in css
+    assert ".aiuo-index .mushroom-list" in css
+    assert "grid-template-columns:repeat(4,minmax(0,1fr))" in css
+    assert "@media (max-width:899px)" in css
+    assert "@media (max-width:680px)" in css
+
+
 def test_guide_index_uses_pc_portal_visual_language(monkeypatch, tmp_path):
     monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
     main.generate_index({}, {})
