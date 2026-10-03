@@ -1041,3 +1041,15 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Responsive safety:** only safe tablet/mobile fallbacks are included; full mobile visual optimization remains deferred until all PC pages are completed.
 - **Protected contracts:** no portal-data schema, taxonomy, EXIF extraction, feature evidence data, research inclusion/grouping logic, Best Shot config/data, gallery.js behavior, favorite storage, LightGallery, iframe-height sync, or Phase 3C behavior is changed.
 - **Validation:** GitHub Actions temporary Phase 4C.2 content-pages workflow passed **381/381 pytest**, **381 collected**, Python compilation, `node --check assets/gallery.js`, 4 kana-insensitive highlight cases, iframe-height regression checks, feature-filter checks, and `git diff --check` against production `8b4bced7...`. The temporary workflow is removed before merge and is not part of the final PR diff.
+
+## Phase 4C.3 — Research Lab copy and two-column row alignment
+
+- **Starting point:** production `main` is merge commit `8b9fd97c3d16103eca7b7fbc2ec0a3688e972b2d` after Phase 4C.2 / PR #70.
+- **Hero copy:** changes the Research Lab description to `まだ名前が分からないキノコや、候補名を調べているキノコを集めました。`.
+- **Overview copy:** replaces the unnatural heading `調べている途中も観察記録` with `名前が分かるまでの調査記録`, and replaces the supporting sentence with `名前が分かるまでに調べたことや、候補になった特徴を記録しています。`.
+- **Candidate slot parity:** every Research case now always renders `現在の候補名`. Truly unidentified cases display `-`; candidate/review cases display their current gallery name. This removes the prior structural mismatch between left/right cards.
+- **Desktop alignment:** each two-column Research case uses the same five row tracks — header 52px, candidate 52px, facts 42px, photos 190px, article auto — so `撮影日 / 写真枚数`, photo top edges, and `観察記録` start on the same Y positions across paired cards.
+- **Photo row:** PC photos stay in a single 190px-high horizontal row. Multiple photos can scroll horizontally rather than adding another vertical row and pushing the Observation Record section downward.
+- **Responsive safety:** below 899px the fixed row tracks are removed and the existing natural single-column flow is restored. Full mobile visual optimization remains deferred.
+- **Protected contracts:** Research inclusion/grouping/status logic, case ordering, candidate classification, photo/article URLs, counts, portal-data, gallery.js, iframe height, taxonomy, EXIF, and Phase 3C are unchanged.
+- **Validation:** GitHub Actions temporary Phase 4C.3 research-alignment workflow passed **382/382 pytest**, **382 collected**, Python compilation, `node --check assets/gallery.js`, 4 kana-insensitive highlight cases, iframe-height regression checks, feature-filter checks, and `git diff --check` against production `8b9fd97c...`. The temporary workflow is removed before merge and is not part of the final PR diff.

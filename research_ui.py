@@ -143,10 +143,10 @@ def render_research_page(model):
     cards = []
     for case in model["cases"]:
         name = html.escape(case["gallery_name"])
+        candidate_value = name if case["gallery_name"] != "不明" else "-"
         candidate = (
             f'<div class="research-candidate"><span>現在の候補名</span>'
-            f'<strong>{name}</strong></div>'
-            if case["gallery_name"] != "不明" else ""
+            f'<strong>{candidate_value}</strong></div>'
         )
         dates = "、".join(_japanese_date(value) for value in case["capture_dates"]) or "不明"
         photos = []
@@ -192,14 +192,14 @@ def render_research_page(model):
       <div class="research-hero-copy">
         <span class="research-eyebrow">RESEARCH LAB</span>
         <h1 id="research-title">不明キノコ研究室</h1>
-        <p>まだ名前が分からないキノコや、候補名を調べている観察を集めました。</p>
+        <p>まだ名前が分からないキノコや、候補名を調べているキノコを集めました。</p>
       </div>
     </header>
     <div class="research-overview">
       <div class="research-overview-copy">
         <span class="research-eyebrow">WORK IN PROGRESS</span>
-        <h2>調べている途中も観察記録</h2>
-        <p>答えだけでなく、名前へたどり着く途中の情報も残しています。</p>
+        <h2>名前が分かるまでの調査記録</h2>
+        <p>名前が分かるまでに調べたことや、候補になった特徴を記録しています。</p>
       </div>
       <div class="research-summary">
         <span>調査中 <strong>{model["case_count"]}</strong>件</span>

@@ -145,6 +145,30 @@ def test_page_and_css_design_contract():
                      ".research-status.is-review", ".research-coming-soon", ".research-footer"):
         assert selector in css
 
+
+def test_research_cards_keep_candidate_slot_and_pc_rows_aligned():
+    page = render_research_page(build_research_model(portal(
+        observation(0, "不明", article_id="unknown"),
+        observation(1, "候補?", article_id="candidate"),
+    )))
+    css = (ROOT / "assets/research.css").read_text()
+
+    assert page.count("現在の候補名") == 2
+    assert '<div class="research-candidate"><span>現在の候補名</span><strong>-</strong></div>' in page
+    assert '<div class="research-candidate"><span>現在の候補名</span><strong>候補?</strong></div>' in page
+    assert "まだ名前が分からないキノコや、候補名を調べているキノコを集めました。" in page
+    assert "名前が分かるまでの調査記録" in page
+    assert "名前が分かるまでに調べたことや、候補になった特徴を記録しています。" in page
+    assert "調べている途中も観察記録" not in page
+    assert "答えだけでなく、名前へたどり着く途中の情報も残しています。" not in page
+
+    assert "grid-template-rows:52px 52px 42px 190px auto" in css
+    assert ".research-index .research-photos { display:flex;" in css
+    assert "height:190px" in css
+    assert "overflow-x:auto" in css
+    assert "@media (max-width:899px)" in css
+    assert ".research-index .research-case { grid-template-rows:none; }" in css
+
 def test_generated_counts_are_derived_and_assets_copied(tmp_path):
     assets = tmp_path / "source-assets"; assets.mkdir()
     (assets / "research.css").write_text("mobile")
