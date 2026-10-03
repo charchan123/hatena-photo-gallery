@@ -1,35 +1,366 @@
-.knowledge-panel,
-.knowledge-pending,
-.subject-records {
-  max-width: 920px;
-  margin: 38px auto 0;
-  padding: 0 16px;
-  color: #2c332d;
+/* Phase 4C.5 — PC-first mushroom detail page.
+   Scoped to body.detail-page so shared gallery behavior stays unchanged. */
+
+body.detail-page {
+  max-width:none;
+  margin:0;
+  padding:0;
+  background:#f7fcf4;
+  color:#25412d;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;
 }
 
-.knowledge-title,
-.knowledge-pending h2,
-.subject-records h2 { font-size: 21px; margin: 0 0 16px; }
-.knowledge-pending { padding-top: 16px; padding-bottom: 16px; border-left: 3px solid #9b7b45; background: #f7f5ef; }
-.knowledge-pending p { margin: 0; line-height: 1.7; }
-.knowledge-facts { margin: 0; border-top: 1px solid #dfe5df; }
-.knowledge-row { display: grid; grid-template-columns: minmax(150px, 28%) 1fr; gap: 18px; padding: 14px 0; border-bottom: 1px solid #dfe5df; }
-.knowledge-label { font-weight: 600; color: #526057; }
-.knowledge-value { margin: 0; line-height: 1.75; }
-.knowledge-note { margin-top: 4px; color: #68736b; font-size: 13px; }
-.knowledge-warning { padding: 12px 14px; background: #f7f5ef; border-left: 3px solid #9b7b45; line-height: 1.7; font-size: 13px; }
-.knowledge-sources { margin-top: 16px; }
-.knowledge-sources summary { cursor: pointer; font-weight: 600; }
-.knowledge-sources ul { padding-left: 22px; line-height: 1.7; }
-.subject-record-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid #dfe5df; }
-.subject-record-item { padding: 12px 0; border-bottom: 1px solid #dfe5df; }
-.subject-record-date { display: block; color: #68736b; font-size: 13px; margin-bottom: 4px; }
-.subject-record-title { line-height: 1.55; }
-.subject-record-more { margin-top: 16px; }
-.subject-record-more summary { cursor: pointer; font-weight: 600; color: #526057; }
-.subject-record-more .subject-record-list { margin-top: 12px; }
+.detail-page *,
+.detail-page *::before,
+.detail-page *::after { box-sizing:border-box; }
 
-@media (max-width: 600px) {
-  .knowledge-panel, .knowledge-pending, .subject-records { padding-left: 12px; padding-right: 12px; }
-  .knowledge-row { grid-template-columns: 1fr; gap: 5px; }
+.detail-page a { color:inherit; }
+
+.detail-page .detail-shell {
+  width:min(100%,1180px);
+  margin:0 auto;
+  padding:24px 22px 52px;
+}
+
+.detail-page .detail-hub,
+.detail-page .knowledge-panel,
+.detail-page .knowledge-pending,
+.detail-page .subject-records,
+.detail-page .detail-index-panel {
+  overflow:hidden;
+  border:1px solid #dce7d9;
+  border-radius:22px;
+  background:#fff;
+  box-shadow:0 14px 36px rgba(39,63,44,.08);
+}
+
+.detail-page .detail-hero {
+  position:relative;
+  min-height:220px;
+  overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(11,34,20,.74) 0%,rgba(11,34,20,.50) 38%,rgba(11,34,20,.13) 69%,rgba(11,34,20,.04) 100%),
+    url("mushroom-guide-final.webp") 68% 50%/cover no-repeat;
+}
+
+.detail-page .detail-hero::after {
+  content:"";
+  position:absolute;
+  inset:auto 0 0;
+  height:54px;
+  background:linear-gradient(to bottom,transparent,rgba(10,30,18,.14));
+  pointer-events:none;
+}
+
+.detail-page .detail-back-link {
+  position:absolute;
+  z-index:2;
+  top:18px;
+  left:22px;
+  display:inline-flex;
+  align-items:center;
+  min-height:34px;
+  padding:0 13px;
+  border:1px solid rgba(255,255,255,.34);
+  border-radius:999px;
+  background:rgba(17,48,30,.46);
+  color:#fff;
+  font-size:.78rem;
+  font-weight:700;
+  text-decoration:none;
+  backdrop-filter:blur(6px);
+}
+
+.detail-page .detail-hero-copy {
+  position:absolute;
+  z-index:1;
+  left:46px;
+  top:50%;
+  width:min(610px,62%);
+  transform:translateY(-38%);
+  color:#fff;
+  text-shadow:0 2px 10px rgba(0,0,0,.42);
+}
+
+.detail-page .detail-eyebrow {
+  display:block;
+  margin:0 0 7px;
+  color:#eef6eb;
+  font-size:.69rem;
+  font-weight:850;
+  letter-spacing:.16em;
+}
+
+.detail-page .detail-hero-copy h2 {
+  margin:0;
+  color:#fff;
+  font-size:2.5rem;
+  font-weight:720;
+  line-height:1.12;
+  letter-spacing:.02em;
+}
+
+.detail-page .detail-hero-copy p {
+  margin:11px 0 0;
+  font-size:.93rem;
+  font-weight:620;
+  line-height:1.65;
+}
+
+.detail-page .detail-hero-copy nav {
+  margin:0 0 8px !important;
+  color:rgba(255,255,255,.82) !important;
+  font-size:.75rem !important;
+  text-align:left !important;
+  text-shadow:0 1px 6px rgba(0,0,0,.55);
+}
+
+.detail-page .detail-hero-copy nav a { color:#fff; }
+
+.detail-page .detail-hub-body { padding:26px 28px 30px; }
+
+.detail-page .detail-section-heading { margin-bottom:18px; }
+.detail-page .detail-section-heading--compact { margin-bottom:12px; }
+
+.detail-page .detail-section-heading .detail-eyebrow {
+  margin-bottom:5px;
+  color:#63806a;
+  font-size:.67rem;
+}
+
+.detail-page .detail-section-heading h3 {
+  margin:0;
+  color:#23432d;
+  font-size:1.45rem;
+  line-height:1.3;
+}
+
+.detail-page .detail-section-heading p {
+  margin:6px 0 0;
+  color:#6c776e;
+  font-size:.88rem;
+  line-height:1.6;
+}
+
+.detail-page .gallery {
+  display:grid !important;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  max-width:none;
+  margin:0;
+  column-count:unset !important;
+  column-gap:unset !important;
+}
+
+.detail-page .gallery a.gallery-item {
+  position:relative;
+  display:block;
+  aspect-ratio:1/1;
+  margin:0;
+  overflow:hidden;
+  border-radius:13px;
+  background:#edf2ea;
+}
+
+.detail-page .gallery a.gallery-item img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.detail-page .knowledge-panel,
+.detail-page .knowledge-pending,
+.detail-page .subject-records,
+.detail-page .detail-index-panel {
+  max-width:none;
+  margin:20px 0 0;
+  padding:24px 28px;
+  color:#2c3b30;
+}
+
+.detail-page .knowledge-title,
+.detail-page .knowledge-pending h2,
+.detail-page .subject-records h2 {
+  margin:0 0 16px;
+  color:#23432d;
+  font-size:1.35rem;
+}
+
+.detail-page .knowledge-pending {
+  border-left:1px solid #dce7d9;
+  background:#fbfdf9;
+}
+
+.detail-page .knowledge-pending p {
+  margin:0;
+  color:#667269;
+  line-height:1.7;
+}
+
+.detail-page .knowledge-facts {
+  margin:0;
+  border-top:1px solid #dfe7dc;
+}
+
+.detail-page .knowledge-row {
+  display:grid;
+  grid-template-columns:180px minmax(0,1fr);
+  gap:22px;
+  padding:14px 0;
+  border-bottom:1px solid #dfe7dc;
+}
+
+.detail-page .knowledge-label {
+  color:#58705e;
+  font-weight:700;
+}
+
+.detail-page .knowledge-value {
+  margin:0;
+  color:#33463a;
+  line-height:1.75;
+}
+
+.detail-page .knowledge-note {
+  margin-top:5px;
+  color:#758078;
+  font-size:.8rem;
+}
+
+.detail-page .knowledge-warning {
+  margin:18px 0 0;
+  padding:13px 15px;
+  border-left:3px solid #9b7b45;
+  border-radius:0 10px 10px 0;
+  background:#f8f6ef;
+  color:#5f625a;
+  font-size:.8rem;
+  line-height:1.7;
+}
+
+.detail-page .knowledge-sources { margin-top:16px; }
+.detail-page .knowledge-sources summary {
+  color:#47614e;
+  font-weight:700;
+  cursor:pointer;
+}
+.detail-page .knowledge-sources ul {
+  margin:10px 0 0;
+  padding-left:22px;
+  line-height:1.7;
+}
+.detail-page .knowledge-sources a { color:#3e6849; }
+
+.detail-page .subject-record-list {
+  list-style:none;
+  margin:0;
+  padding:0;
+  border-top:1px solid #dfe7dc;
+}
+
+.detail-page .subject-record-item {
+  padding:13px 0;
+  border-bottom:1px solid #dfe7dc;
+}
+
+.detail-page .subject-record-date {
+  display:block;
+  margin-bottom:4px;
+  color:#768178;
+  font-size:.78rem;
+}
+
+.detail-page .subject-record-title { line-height:1.55; }
+.detail-page .subject-record-title a {
+  color:#315f3b;
+  font-weight:650;
+  text-decoration-thickness:1px;
+  text-underline-offset:3px;
+}
+
+.detail-page .subject-record-more { margin-top:16px; }
+.detail-page .subject-record-more summary {
+  color:#526a58;
+  font-weight:700;
+  cursor:pointer;
+}
+.detail-page .subject-record-more .subject-record-list { margin-top:12px; }
+
+.detail-page .detail-aiuo-links {
+  max-width:none;
+  margin:16px 0 0;
+  grid-template-columns:repeat(10,minmax(0,1fr));
+  gap:8px;
+}
+
+.detail-page .detail-aiuo-links .aiuo-link {
+  min-width:0;
+  padding:10px 5px;
+  border:1px solid #cbdac9;
+  border-radius:10px;
+  background:#f9fcf7;
+  color:#31563a;
+  font-size:.8rem;
+  font-weight:700;
+  text-decoration:none;
+}
+
+.detail-page .detail-aiuo-links .aiuo-link:hover {
+  background:#edf5e9;
+  border-color:#a9c2a8;
+  box-shadow:0 5px 12px rgba(38,69,44,.08);
+  transform:translateY(-1px);
+}
+
+.detail-page .detail-footer {
+  padding:24px 0 0;
+  text-align:center;
+}
+
+.detail-page .detail-footer a,
+.detail-page .back-btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:38px;
+  padding:0 15px;
+  border:1px solid #cbd9c8;
+  border-radius:999px;
+  background:#fff;
+  color:#365b3f;
+  font-size:.82rem;
+  font-weight:750;
+  text-decoration:none;
+  box-shadow:none;
+}
+
+.detail-page .detail-footer a:hover,
+.detail-page .back-btn:hover {
+  background:#edf5e9;
+  border-color:#abc2aa;
+  transform:translateY(-1px);
+}
+
+@media (max-width:899px) {
+  .detail-page .gallery { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .detail-page .detail-aiuo-links { grid-template-columns:repeat(5,minmax(0,1fr)); }
+}
+
+@media (max-width:680px) {
+  .detail-page .detail-shell { padding:14px 12px 34px; }
+  .detail-page .detail-hero { min-height:200px; }
+  .detail-page .detail-back-link { top:14px; left:14px; }
+  .detail-page .detail-hero-copy {
+    left:22px;
+    width:calc(100% - 44px);
+    transform:translateY(-32%);
+  }
+  .detail-page .detail-hero-copy h2 { font-size:2rem; }
+  .detail-page .detail-hub-body,
+  .detail-page .knowledge-panel,
+  .detail-page .knowledge-pending,
+  .detail-page .subject-records,
+  .detail-page .detail-index-panel { padding:20px 18px; }
+  .detail-page .gallery { grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; }
+  .detail-page .knowledge-row { grid-template-columns:1fr; gap:5px; }
 }
