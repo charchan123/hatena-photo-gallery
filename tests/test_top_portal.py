@@ -239,7 +239,7 @@ def test_reference_portal_card_proportions_and_lower_artwork_assignment():
     assert "align-items:stretch" in desktop
     assert ".portal-independent-links .portal-card { min-height:155px; }" in desktop
 
-    assert ".portal-guide-list { display:grid; flex:1 1 auto; min-height:0; }" in css
+    assert ".portal-guide-list { display:grid; flex:1 1 auto; min-height:0; align-content:start; border-top:1px solid #d9ddcf; }" in css
     assert "grid-template-columns:150px minmax(0,1fr)" in css
     assert ".record-preview-thumb { display:block; height:96px;" in css
 
@@ -250,7 +250,8 @@ def test_guide_rows_use_record_style_separators_and_plain_notes(monkeypatch, tmp
     assert "図鑑・季節・見た目の特徴。3つの視点からキノコを探せます。" not in page
     assert 'class="portal-guide-list portal-guide-list--3"' in page
     assert page.count('class="portal-guide-row"') == 3
-    assert "名前、五十音順からキノコを探す" in page
+    assert "名前、五十音順から探す" in page
+    assert "名前、五十音順からキノコを探す" not in page
     assert "名前や写真、五十音からキノコを探す" not in page
     for phrase in (
         "名前がわかる場合は",
@@ -271,10 +272,12 @@ def test_guide_rows_use_record_style_separators_and_plain_notes(monkeypatch, tmp
     assert "align-items:stretch" in desktop
     assert ".portal-records-visual,.portal-section-visual { height:190px; }" in desktop
     assert ".portal-guide-row { display:grid;" in css
-    assert "grid-template-columns:minmax(220px,.9fr) minmax(0,1.1fr)" in css
-    assert ".portal-guide-row:not(:last-child) { border-bottom:1px solid #d9ddcf; }" in css
-    assert ".portal-guide-row .portal-card { width:100%; height:82px; min-height:82px; }" in css
-    assert ".portal-guide-row .portal-card__copy small { font-size:.74rem; line-height:1.3; white-space:nowrap; }" in css
-    assert ".portal-guide-note { display:grid; min-width:0; gap:4px; align-content:center; color:#36523e; }" in css
+    assert "grid-template-columns:150px minmax(0,1fr)" in css
+    assert ".portal-guide-list { display:grid; flex:1 1 auto; min-height:0; align-content:start; border-top:1px solid #d9ddcf; }" in css
+    assert ".portal-guide-row { display:grid; grid-template-columns:150px minmax(0,1fr); gap:18px; align-items:center; min-height:96px; padding:8px 0; border-bottom:1px solid #d9ddcf;" in css
+    assert ".portal-guide-row .portal-card { width:150px; height:96px; min-height:96px; border-radius:10px; }" in css
+    assert ".portal-guide-row .portal-card__copy small { font-size:.7rem; line-height:1.3; white-space:nowrap; }" in css
+    assert ".portal-guide-note strong { overflow:hidden; color:#24472f; font-size:1rem; font-weight:650;" in css
+    assert ".portal-guide-note small { color:#526056; font-size:.88rem; line-height:1.45; }" in css
     assert "background:#eef5ea" not in css
     assert ".portal-guide-help" not in css
