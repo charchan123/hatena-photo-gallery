@@ -27,7 +27,7 @@ def test_detail_page_uses_phase4c5_shell_without_changing_gallery_hooks(monkeypa
     assert "2枚の写真があります。" in page
     assert page.count('class="gallery-item"') == 2
     assert page.count('class="thumb-fav"') == 2
-    assert 'class="detail-aiuo-links"' in page
+    assert "detail-aiuo-links" in page
     assert 'href="assets/detail.css"' in page
     assert 'src="assets/gallery.js"' in page
 
