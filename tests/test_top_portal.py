@@ -154,6 +154,32 @@ def test_records_first_information_architecture(monkeypatch, tmp_path):
         assert forbidden not in page
 
 
+def test_new_top_latest_observation_has_new_notice_and_compact_content(monkeypatch, tmp_path):
+    latest = record(0)
+    latest["title"] = "最新のキノコ探索記事<&を公開しました"
+    page = render(monkeypatch, tmp_path, observation_records=[latest, record(1)])
+
+    assert page.count('class="portal-new-update record-external-link"') == 1
+    assert '<span class="portal-new-badge">NEW!</span>' in page
+    assert "最新のキノコ探索記事&lt;&amp;を公開しました" in page
+    assert 'href="https://example.test/0"' in page
+    assert 'target="_top" aria-label="最新の観察記録を見る"' in page
+    assert 'class="portal-new-copy"' in page
+
+    empty = render(monkeypatch, tmp_path, observation_records=[])
+    assert "portal-new-update" not in empty
+    assert "portal-new-badge" not in empty
+
+    css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
+    assert ".portal-new-update { position:absolute;" in css
+    assert ".portal-new-badge {" in css
+    assert ".portal-new-copy {" in css
+    assert "text-overflow:ellipsis" in css
+    mobile = css[css.index("@media (max-width:680px)"):]
+    assert ".portal-new-update { top:10px; right:10px;" in mobile
+    assert ".portal-new-copy { max-width:52vw;" in mobile
+
+
 def test_optional_entrances_and_best_shot_condition(monkeypatch, tmp_path):
     page = render(monkeypatch, tmp_path)
     for name in ("特徴から探す", "不明キノコ研究室", "ベストショット"):
