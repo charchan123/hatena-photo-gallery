@@ -162,7 +162,7 @@ def render_records_page(portal_data):
 <div class="record-list">{render_record_cards(records)}</div>
 </div>
 </section>
-<footer class="records-footer"><a href="new-top.html">← トップへ戻る</a></footer>
+<footer class="records-footer"><a href="new-top.html" class="back-btn">← トップへ戻る</a></footer>
 </main></body></html>"""
 
 
