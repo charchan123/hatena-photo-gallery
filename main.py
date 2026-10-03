@@ -196,6 +196,7 @@ def copy_shared_assets():
         "gallery.js",
         "detail.css",
         "portal.css",
+        "guide.css",
         "field-notes-observation-final.webp",
         "mushroom-guide-final.webp",
         "research-lab-final.webp",
@@ -2285,255 +2286,238 @@ def generate_index(grouped, exif_cache, observation_records=None,
     copy_shared_assets()
     index_parts = []
 
-    # ===========================
-    # HTML 骨格（head）
-    # ===========================
-    index_parts.append(f"""<!doctype html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>キノコ図鑑</title>
-<div class="hero-world">
-  <p class="hero-world-text">
-    写真でたどる、キノコの観察記録
-  </p>
-</div>
-<p class="gallery-guide">
-  📷 写真をクリックするとフルスクリーンでじっくり観察できます<br>
-  ⭐ 気になった写真は★で保存して、あとで「観察ノート」で見返せます
-</p>
-{STYLE_TAG}
-{'<link rel="stylesheet" href="assets/records.css">' if observation_records else ''}
-{LIGHTGALLERY_TAGS}
-""")
-
-    # --------------------------
-    # 検索用 JS データ（headに置く）
-    # --------------------------
+    # Search data keeps the existing gallery.js search/favorite contracts.
     all_mushrooms_js = []
-
     for alt, srcs in grouped.items():
         thumb = srcs[0] if srcs else ""
         all_mushrooms_js.append({
             "name": alt,
             "name_norm": normalize_japanese_search(alt),
             "href": f"{safe_filename(alt)}.html",
-            "thumb": thumb + "?width=300"
+            "thumb": thumb + "?width=300",
         })
 
-    index_parts.append(f"""
+    index_parts.append(f"""<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>キノコ図鑑</title>
+{STYLE_TAG}
+<link rel="stylesheet" href="assets/guide.css">
+{'<link rel="stylesheet" href="assets/records.css">' if observation_records else ''}
+{LIGHTGALLERY_TAGS}
 <script>
 window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 </script>
 </head>
-<body>
+<body class="guide-index">
+<main id="gallery-content-root" class="guide-shell">
+  <header class="guide-hero">
+    <a class="guide-back" href="new-top.html">← トップへ</a>
+    <div class="guide-hero-copy">
+      <span class="guide-eyebrow">MUSHROOM GUIDE</span>
+      <h1>キノコ図鑑</h1>
+      <p>名前や五十音順から、ブログで出会ったキノコを探せます。</p>
+    </div>
+  </header>
+
+  <section class="section guide-find" aria-labelledby="guide-find-title">
+    <div class="guide-section-heading">
+      <span class="guide-eyebrow">FIND A MUSHROOM</span>
+      <h2 id="guide-find-title">キノコを探す</h2>
+      <p>名前が分かるときは検索、分からないときは五十音からたどれます。</p>
+    </div>
+
+    <div class="guide-find-grid">
+      <article class="guide-panel guide-panel--search">
+        <span class="guide-panel-kicker">NAME SEARCH</span>
+        <h3>名前から探す</h3>
+        <p>和名の一部を入力すると、ブログ内のキノコを横断検索します。</p>
+        <div class="index-search-box">
+          <input type="text"
+                 class="index-search-input"
+                 aria-label="キノコ名で検索"
+                 placeholder="キノコ名で検索（例：ベニタケ）">
+        </div>
+      </article>
+
+      <article class="guide-panel guide-panel--kana">
+        <span class="guide-panel-kicker">GOJUON INDEX</span>
+        <h3>五十音から探す</h3>
+        <p>名前の最初の文字から一覧へ進めます。</p>
+        <div class="aiuo-links">
 """)
 
-    # ==========================================================
-    # 🔍 全キノコ横断検索
-    # ==========================================================
-    index_parts.append("""
-    <div class="section">
-      <div class="feature-block">
-      <h2 class="section-title">🔍 全キノコ横断検索</h2>
-      <p class="section-desc">キノコ名からブログ内のキノコを検索できます</p>
-
-      <div class="index-search-box">
-        <input type="text"
-               class="index-search-input"
-               placeholder="キノコ名で検索（例：ベニタケ）">
-      </div>
-
-      <div class="index-search-results"></div>
-
-      <div class="search-empty" style="display:none;">
-        🔍 該当するキノコが見つかりませんでした<br>
-        <small>ひらがな・カタカナを変えて試してみてください</small>
-      </div>
-
-      <div class="index-pagination"></div>
-      </div>
-    </div>
-    """)
-
-    # ==========================================================
-    # 五十音別分類
-    # ==========================================================
-    index_parts.append("""
-    <div class="section">
-    <div class="feature-block">
-      <h2 class="section-title">📂 五十音別分類</h2>
-      <p class="section-desc">五十音順でキノコを探せます</p>
-
-      <div class="aiuo-links">
-    """)
-
-    for g in AIUO_GROUPS.keys():
+    for group in AIUO_GROUPS.keys():
         index_parts.append(
-            f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>'
+            f'          <a class="aiuo-link" href="{safe_filename(group)}.html">{group}</a>\n'
         )
 
-    index_parts.append("""
-  </div>
-  </div>
-</div>
+    index_parts.append("""        </div>
+      </article>
+    </div>
+
+    <div class="guide-search-feedback">
+      <div class="index-search-results"></div>
+      <div class="search-empty" style="display:none;">
+        該当するキノコが見つかりませんでした
+        <small>ひらがな・カタカナを変えて試してみてください</small>
+      </div>
+      <div class="index-pagination"></div>
+    </div>
+  </section>
+
+  <section class="guide-panel guide-panel--ways" aria-labelledby="guide-ways-title">
+    <div class="guide-section-heading guide-section-heading--compact">
+      <span class="guide-eyebrow">OTHER WAYS</span>
+      <h2 id="guide-ways-title">ほかの探し方</h2>
+      <p>撮影時期や見た目の特徴など、別の手がかりから探せます。</p>
+    </div>
+    <div class="guide-way-grid">
+      <a class="guide-way guide-way--season" href="season.html">
+        <span>SEASON</span><strong>季節から探す</strong><small>写真の撮影月から探せます</small>
+      </a>
 """)
 
-    # ==========================================================
-    # EXIF撮影月による季節ポータル
-    # ==========================================================
-    index_parts.append("""
-    <div class="section">
-    <div class="feature-block">
-      <h2 class="section-title">🗓️ 季節から探す</h2>
-      <p class="section-desc">写真の撮影月から探せます</p>
-      <a class="aiuo-link feature-action-link" href="season.html">春・夏・秋・冬から見る</a>
-    </div>
-    </div>
-    """)
-
-
     if feature_search_available:
-        index_parts.append("""
-    <div class="section">
-    <div class="feature-block">
-      <h2 class="section-title">🔎 特徴から探す</h2>
-      <p class="section-desc">資料に記載された見た目の特徴を組み合わせて探せます</p>
-      <a class="aiuo-link feature-action-link" href="features.html">特徴を選んで探す</a>
-    </div>
-    </div>
-    """)
+        index_parts.append("""      <a class="guide-way guide-way--features" href="features.html">
+        <span>FEATURES</span><strong>特徴から探す</strong><small>資料に記載された見た目の特徴から探す</small>
+      </a>
+""")
 
     if research_summary:
-        index_parts.append(f"""
-    <div class="section">
-    <div class="feature-block">
-      <h2 class="section-title">❓ 不明キノコ研究室</h2>
-      <p class="section-desc">まだ名前が分からない・候補名を調べている観察記録を集めています</p>
-      <a class="aiuo-link feature-action-link" href="research.html">研究室を見る（{research_summary['case_count']}件）</a>
-    </div>
-    </div>
-    """)
+        index_parts.append(f"""      <a class="guide-way guide-way--research" href="research.html">
+        <span>RESEARCH LAB</span><strong>不明キノコ研究室</strong><small>研究室を見る（{research_summary['case_count']}件）</small>
+      </a>
+""")
 
     if best_shot_summary and best_shot_summary.get("entry_count", 0) > 0:
-        index_parts.append("""
-    <div class="section">
-    <div class="feature-block">
-      <h2 class="section-title">📸 ベストショット</h2>
-      <p class="section-desc">撮影した本人が選んだ、とっておきの写真を紹介します</p>
-      <a class="aiuo-link feature-action-link" href="best-shots.html">ベストショットを見る</a>
-    </div>
-    </div>
-    """)
+        index_parts.append("""      <a class="guide-way guide-way--best" href="best-shots.html">
+        <span>BEST SHOTS</span><strong>ベストショット</strong><small>ベストショットを見る</small>
+      </a>
+""")
+
+    index_parts.append("""    </div>
+  </section>
+""")
 
     if observation_records:
-        index_parts.append(f"""
-    <div class="section">
-    <div class="feature-block">
-      <h2 class="section-title">📔 観察記録</h2>
-      <p class="section-desc">キノコ探索のブログ記事を新しい順に見られます</p>
-      <div class="record-list record-list-preview">{render_record_cards(observation_records, limit=1)}</div>
-      <a class="aiuo-link feature-action-link record-more-link record-external-link" href="https://exsudoporus-ruber.hatenablog.jp/" target="_top">観察記録をもっと見る</a>
-    </div>
-    </div>
-    """)
-
-    # ==========================================================
-    # 観察ノート専用セクション
-    # ==========================================================
-    index_parts.append("""
-    <div class="section">
-    <div class="feature-block">
-      <h2 class="section-title">📓 観察ノート</h2>
-      <p class="section-desc">出会ったキノコを、時間の流れとともに記録として残せます。</p>
-
-      <a class="aiuo-link note-link feature-action-link" href="favorite.html">
-        ⭐ 観察中の写真 <span id="favorite-count"></span>
-      </a>
+        index_parts.append(f"""  <section class="guide-observe-grid" aria-label="観察と保存">
+    <article class="guide-panel guide-panel--records">
+      <div class="guide-section-heading guide-section-heading--compact">
+        <span class="guide-eyebrow">FIELD NOTES</span>
+        <h2>観察記録</h2>
+        <p>キノコ探索のブログ記事を新しい順に見られます。</p>
       </div>
-    </div>
-    """)
+      <div class="record-list record-list-preview">{render_record_cards(observation_records, limit=1)}</div>
+      <a class="guide-text-link record-external-link" href="https://exsudoporus-ruber.hatenablog.jp/" target="_top">観察記録をもっと見る →</a>
+    </article>
 
-    # ==========================================================
-    # おすすめキノコ
-    # ==========================================================
-    # altごとに最新撮影日
+    <article class="guide-panel guide-panel--note">
+      <div class="guide-section-heading guide-section-heading--compact">
+        <span class="guide-eyebrow">OBSERVATION NOTE</span>
+        <h2>観察ノート</h2>
+        <p>気になった写真を★で保存して、あとからまとめて見返せます。</p>
+      </div>
+      <a class="guide-note-action" href="favorite.html">
+        <strong>観察中の写真</strong>
+        <span id="favorite-count"></span>
+        <small>保存した写真を見る →</small>
+      </a>
+    </article>
+  </section>
+""")
+    else:
+        index_parts.append("""  <section class="guide-panel guide-panel--note guide-panel--note-alone">
+    <div class="guide-section-heading guide-section-heading--compact">
+      <span class="guide-eyebrow">OBSERVATION NOTE</span>
+      <h2>観察ノート</h2>
+      <p>気になった写真を★で保存して、あとからまとめて見返せます。</p>
+    </div>
+    <a class="guide-note-action" href="favorite.html">
+      <strong>観察中の写真</strong>
+      <span id="favorite-count"></span>
+      <small>保存した写真を見る →</small>
+    </a>
+  </section>
+""")
+
+    # Recommend mushrooms using the existing selection rules.
     alt_latest = {}
     for alt, srcs in grouped.items():
         best = ""
         for src in srcs:
-            d = (exif_cache.get(src) or {}).get("date") or ""
-            key = d.replace("/", "")
+            date_value = (exif_cache.get(src) or {}).get("date") or ""
+            key = date_value.replace("/", "")
             if len(key) == 8 and key > best:
                 best = key
         if best:
             alt_latest[alt] = best
 
-    sorted_new = sorted(alt_latest.items(), key=lambda x: x[1], reverse=True)
-    new_names = [n for n, _ in sorted_new][:3]
+    sorted_new = sorted(alt_latest.items(), key=lambda item: item[1], reverse=True)
+    new_names = [name for name, _ in sorted_new][:3]
 
     def pick(names):
-        out = []
-        for n in names:
-            if n in grouped and grouped[n]:
-                out.append({
-                    "name": n,
-                    "thumb": grouped[n][0] + "?width=400",
-                    "href": f"{safe_filename(n)}.html"
+        items = []
+        for name in names:
+            if name in grouped and grouped[name]:
+                items.append({
+                    "name": name,
+                    "thumb": grouped[name][0] + "?width=400",
+                    "href": f"{safe_filename(name)}.html",
                 })
-        return out
+        return items
 
     recommend_new = pick(new_names)
     recommend_rarity = pick(RARITY_LIST)
     recommend_popular = pick(POPULAR_LIST)
 
-    index_parts.append("""
-    <div class="section">
-    <div class="feature-block">
-      <h2 class="section-title">🍄 おすすめキノコ</h2>
-      <p class="section-desc">写真の中から、いくつかの切り口でピックアップしています。</p>
-
-      <div class="recommend-grid">
-    """)
+    index_parts.append("""  <section class="guide-panel guide-panel--recommend" aria-labelledby="guide-recommend-title">
+    <div class="guide-section-heading guide-section-heading--compact">
+      <span class="guide-eyebrow">PICK UP</span>
+      <h2 id="guide-recommend-title">おすすめキノコ</h2>
+      <p>新着・珍しいキノコ・人気のキノコからピックアップしています。</p>
+    </div>
+    <div class="recommend-grid">
+""")
 
     def append_cards(title, items):
         index_parts.append(
-            f"<div class='recommend-card'><h3>{title}</h3><div class='rec-items'>"
+            f"      <div class='recommend-card'><h3>{title}</h3><div class='rec-items'>"
         )
-        for it in items:
-            index_parts.append(f"""
-<a class="rec-item" href="{it['href']}">
-  <img src="{it['thumb']}" alt="{it['name']}">
-  <div>{it['name']}</div>
-</a>
+        if items:
+            for item in items:
+                index_parts.append(f"""
+        <a class="rec-item" href="{item['href']}">
+          <img src="{item['thumb']}" alt="{html.escape(item['name'])}">
+          <div>{html.escape(item['name'])}</div>
+        </a>
 """)
+        else:
+            index_parts.append('<p class="guide-empty-pick">該当する写真はまだありません。</p>')
         index_parts.append("</div></div>")
 
     append_cards("新着キノコ", recommend_new)
     append_cards("珍しいキノコ", recommend_rarity)
     append_cards("人気キノコTOP3", recommend_popular)
 
-    index_parts.append("""
-  </div>
-  </div>
-</div>
+    index_parts.append("""    </div>
+  </section>
+
+  <footer class="guide-footer">
+    <a href="new-top.html">← トップへ戻る</a>
+  </footer>
+</main>
 """)
 
-    # ===========================
-    # footer（JS）
-    # ===========================
-    index_parts.append(f"""
-{SCRIPT_TAG}
+    index_parts.append(f"""{SCRIPT_TAG}
 </body>
 </html>
 """)
 
-    # ===========================
-    # 書き出し
-    # ===========================
-    with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as f:
-        f.write("".join(index_parts))
+    with open(f"{OUTPUT_DIR}/index.html", "w", encoding="utf-8") as stream:
+        stream.write("".join(index_parts))
 
     print("✅ index.html 生成完了")
 

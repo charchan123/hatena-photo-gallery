@@ -15,12 +15,62 @@ def render(monkeypatch, tmp_path, **kwargs):
     return (tmp_path / "new-top.html").read_text(encoding="utf-8")
 
 
-def test_existing_index_restores_gallery_presentation(monkeypatch, tmp_path):
-    monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path)); main.generate_index({}, {})
+def test_guide_index_uses_pc_portal_visual_language(monkeypatch, tmp_path):
+    monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
+    main.generate_index({}, {})
     page = (tmp_path / "index.html").read_text(encoding="utf-8")
-    for expected in ("写真でたどる、キノコの観察記録", "gallery-guide", "全キノコ横断検索", "五十音別分類", "おすすめキノコ", "観察ノート"):
+
+    for expected in (
+        '<body class="guide-index">',
+        'href="assets/guide.css"',
+        'class="guide-hero"',
+        "MUSHROOM GUIDE",
+        "キノコ図鑑",
+        "名前から探す",
+        "五十音から探す",
+        "ほかの探し方",
+        "おすすめキノコ",
+        "観察ノート",
+        'href="new-top.html"',
+        'class="index-search-input"',
+        'class="index-search-results"',
+        'class="index-pagination"',
+    ):
         assert expected in page
-    assert '<body class="portal-index">' not in page and "assets/portal.css" not in page
+
+    for legacy in ("hero-world", "gallery-guide", "全キノコ横断検索", "五十音別分類"):
+        assert legacy not in page
+
+    assert '<body class="portal-index">' not in page
+    assert "assets/portal.css" not in page
+    assert (tmp_path / "assets" / "guide.css").exists()
+
+
+def test_guide_index_optional_routes_and_css_are_scoped(monkeypatch, tmp_path):
+    monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
+    main.generate_index(
+        {},
+        {},
+        feature_search_available=True,
+        research_summary={"case_count": 2},
+        best_shot_summary={"entry_count": 1},
+    )
+    page = (tmp_path / "index.html").read_text(encoding="utf-8")
+    for href in ("season.html", "features.html", "research.html", "best-shots.html"):
+        assert f'href="{href}"' in page
+
+    css = (Path(main.ASSETS_DIR) / "guide.css").read_text()
+    assert "body.guide-index" in css
+    assert ".guide-index .guide-shell" in css
+    assert "width:min(100%,1180px)" in css
+    assert 'url("mushroom-guide-final.webp")' in css
+    assert ".guide-index .guide-find-grid" in css
+    assert "grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)" in css
+    assert ".guide-index .index-search-results:not(:empty)" in css
+    assert "grid-template-columns:repeat(4,minmax(0,1fr))" in css
+    assert "@media (max-width:899px)" in css
+    assert "@media (max-width:680px)" in css
+    assert "@media (prefers-reduced-motion:reduce)" in css
 
 
 def test_records_first_information_architecture(monkeypatch, tmp_path):

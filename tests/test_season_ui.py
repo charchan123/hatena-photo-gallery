@@ -95,22 +95,22 @@ def test_index_uses_simple_season_entry_copy(monkeypatch, tmp_path):
     monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
     main.generate_index({}, {})
     rendered = (tmp_path / "index.html").read_text(encoding="utf-8")
-    assert "🗓️ 季節から探す" in rendered
+    assert "季節から探す" in rendered
     assert "写真の撮影月から探せます" in rendered
     assert "EXIF撮影月から探せます" not in rendered
 
 
-def test_index_centers_only_the_two_standalone_feature_actions(monkeypatch, tmp_path):
+def test_index_keeps_season_and_note_routes_in_new_guide_layout(monkeypatch, tmp_path):
     monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
     main.generate_index({}, {})
     rendered = (tmp_path / "index.html").read_text(encoding="utf-8")
-    css = (Path(main.ASSETS_DIR) / "gallery.css").read_text(encoding="utf-8")
+    css = (Path(main.ASSETS_DIR) / "guide.css").read_text(encoding="utf-8")
 
-    assert 'class="aiuo-link feature-action-link" href="season.html"' in rendered
-    assert 'class="aiuo-link note-link feature-action-link" href="favorite.html"' in rendered
-    assert 'class="aiuo-link feature-action-link" href="あ行.html"' not in rendered
-    assert ".feature-action-link {" in css
-    assert "width: fit-content;" in css
+    assert 'class="guide-way guide-way--season" href="season.html"' in rendered
+    assert 'class="guide-note-action" href="favorite.html"' in rendered
+    assert 'class="aiuo-link" href="あ行.html"' in rendered
+    assert ".guide-index .guide-way" in css
+    assert ".guide-index .guide-note-action" in css
 
 
 def test_page_explains_exif_source_and_not_general_occurrence_season():
