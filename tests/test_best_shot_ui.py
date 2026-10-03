@@ -166,12 +166,12 @@ def test_best_shot_pc_visual_contract():
     assert 'url("research-lab-final.webp")' in css
     assert "grid-template-columns:repeat(2,minmax(0,1fr))" in css
     assert ".best-shots-index .annual-best" in css
-    assert "background:#0c0f0d" in css
+    assert ".best-shots-index .annual-best { margin:0 0 28px; padding:18px; border:1px solid #dce7d9; border-radius:16px; background:#fff;" in css
     assert ".best-shots-index .best-shot-card--hero" in css
-    assert "background:#111412" in css
-    assert ".best-shots-index .best-shot-card--hero .best-shot-card__body h3 { color:#f5f6f4; }" in css
+    assert "background:#111412" not in css
+    assert ".best-shots-index .best-shot-card--hero .best-shot-card__body h3 { color:#294a32; }" in css
     assert ".best-shots-index .best-shot-card--hero .best-shot-badge" in css
-    assert "color:#e4c66f" in css
+    assert "background:#fff0ad; color:#6d5200" in css
     assert "@media (max-width:680px)" in css
 
 
