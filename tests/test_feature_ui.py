@@ -78,16 +78,21 @@ def test_render_has_accessible_and_filter_contract(data):
     assert 'class="feature-chip"' in page
     assert 'data-facet-chip="rod_cylindrical"' in page
     assert "棒状・円柱状の形" in page
-    assert "◀ 図鑑トップに戻る" not in page
-    assert page.count("◀ トップに戻る") == 1
-    assert 'class="feature-back"' in page
-    assert page.index('class="feature-empty"') < page.index('class="feature-back"') < page.index("</main>")
+    assert 'class="feature-index"' in page
+    assert 'class="feature-hero"' in page
+    assert "FEATURE FINDER" in page
+    assert page.count("← 図鑑へ戻る") == 1
+    assert 'class="feature-footer"' in page
+    assert page.index('class="feature-empty"') < page.index('class="feature-footer"') < page.index("</main>")
 
-def test_feature_css_leaves_card_layout_to_shared_gallery_styles():
+def test_feature_css_uses_scoped_pc_portal_layout():
     css = (ROOT / "assets/features.css").read_text()
-    assert "grid-template-columns" not in css
-    assert ".feature-card" not in css
-    assert ".feature-chips" in css
-    assert ".feature-chip" in css
+    assert "body.feature-index" in css
+    assert "width:min(100%,1180px)" in css
+    assert 'url("guide-action-features.webp")' in css
+    assert ".feature-index .feature-controls" in css
+    assert ".feature-index .feature-card" in css
+    assert "grid-template-columns:repeat(4,minmax(0,1fr))" in css
     assert ".feature-chip.is-selected" in css
-    assert ".feature-back" in css
+    assert "@media (max-width:899px)" in css
+    assert "@media (max-width:680px)" in css

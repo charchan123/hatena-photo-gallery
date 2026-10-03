@@ -123,24 +123,27 @@ def test_render_escapes_article_and_photo_and_links_only_valid_urls():
 def test_page_and_css_design_contract():
     page = render_research_page(build_research_model(portal(observation(0))))
     css = (ROOT / "assets/research.css").read_text()
-    assert "❓ 不明キノコ研究室" in page and "同定が確定していることを意味しません" in page
+    assert "不明キノコ研究室" in page and "同定が確定していることを意味しません" in page
     assert "コメント・返信機能は今後追加予定" in page
     assert "同定のヒントや情報" in page and 'class="research-coming-soon"' in page
     assert all(forbidden not in page for forbidden in ("<form", "<textarea", "supabase"))
-    assert "◀ 図鑑トップに戻る" not in page
-    assert page.count("◀ トップに戻る") == 1
-    assert 'class="research-back"' in page
-    assert page.index('class="research-cases"') < page.index('class="research-back"') < page.index("</main>")
+    assert 'class="research-index"' in page
+    assert 'class="research-hub"' in page
+    assert 'class="research-hero"' in page
+    assert "RESEARCH LAB" in page
+    assert page.count("← 図鑑へ戻る") == 1
+    assert 'class="research-footer"' in page
+    assert page.index('class="research-cases-wrap"') < page.index('class="research-footer"') < page.index("</main>")
     assert 'assets/research.css' in page and 'class="research-photos"' in page
-    assert 'src="assets/gallery.js"' in page
-    assert "@media (max-width: 600px)" in css and "padding: 18px 12px" in css
-    assert "overflow-wrap: anywhere" in css and "background: #fff" in css
-    assert "padding: 0" in css and "opacity: 1" in css
+    assert 'src="assets/gallery.js" defer' in page
+    assert "body.research-index" in css
+    assert "width:min(100%,1180px)" in css
+    assert 'url("research-lab-cabin.webp")' in css
+    assert "grid-template-columns:repeat(2,minmax(0,1fr))" in css
+    assert "overflow-wrap:anywhere" in css
     for selector in (".research-status.is-unidentified", ".research-status.is-candidate",
-                     ".research-status.is-review", ".research-coming-soon", ".research-back"):
+                     ".research-status.is-review", ".research-coming-soon", ".research-footer"):
         assert selector in css
-    assert "outer-panel" not in page + css
-
 
 def test_generated_counts_are_derived_and_assets_copied(tmp_path):
     assets = tmp_path / "source-assets"; assets.mkdir()

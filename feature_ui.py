@@ -131,31 +131,76 @@ def render_feature_page(model, safe_filename=None):
             f'<button type="button" class="feature-filter" data-facet="{html.escape(f["facet_id"], quote=True)}" '
             f'aria-pressed="false">{html.escape(f["label"])} <span>{f["count"]}</span></button>'
             for f in group["facets"])
-        groups.append(f'<fieldset><legend>{html.escape(group["label"])}</legend><div class="feature-buttons">{buttons}</div></fieldset>')
+        groups.append(
+            f'<fieldset><legend>{html.escape(group["label"])}</legend>'
+            f'<div class="feature-buttons">{buttons}</div></fieldset>'
+        )
     cards = []
     for row in model["results"]:
-        name = html.escape(row["gallery_name"]); cover = html.escape(str(row["cover_src"]), quote=True)
+        name = html.escape(row["gallery_name"])
+        cover = html.escape(str(row["cover_src"]), quote=True)
         chips = "".join(
             f'<span class="feature-chip" data-facet-chip="{html.escape(facet_id, quote=True)}">'
             f'{html.escape(label)}</span>'
             for facet_id, label in zip(row["facet_ids"], row["facet_labels"])
         )
-        cards.append(f'<a class="mushroom-card feature-card" href="{html.escape(row["href"], quote=True)}" '
-                     f'data-name="{name}" data-facets="{html.escape(" ".join(row["facet_ids"]), quote=True)}">'
-                     f'<div class="mushroom-card-thumb"><span class="card-fav">☆</span>'
-                     f'<img src="{cover}?width=400" alt="{name}" loading="lazy"></div>'
-                     f'<div class="mushroom-card-name">{name}</div>'
-                     f'<div class="feature-chips">{chips}</div></a>')
+        cards.append(
+            f'<a class="mushroom-card feature-card" href="{html.escape(row["href"], quote=True)}" '
+            f'data-name="{name}" data-facets="{html.escape(" ".join(row["facet_ids"]), quote=True)}">'
+            f'<div class="mushroom-card-thumb"><span class="card-fav">☆</span>'
+            f'<img src="{cover}?width=400" alt="{name}" loading="lazy"></div>'
+            f'<div class="mushroom-card-name">{name}</div>'
+            f'<div class="feature-chips">{chips}</div></a>'
+        )
     count = model["coverage_count"]
-    return f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>特徴から探す｜キノコ図鑑</title><link rel="stylesheet" href="assets/gallery.css"><link rel="stylesheet" href="assets/features.css">
-<script src="assets/gallery.js" defer></script><script src="assets/features.js" defer></script></head><body>
-<main class="feature-page"><header><h1>🔎 特徴から探す</h1>
-<p>写真や資料に記載された見た目の特徴を組み合わせて探せます。</p><p class="feature-warning">選んだ特徴が出典資料に明記されている図鑑登録種を表示します。特徴だけでキノコの種類を判定する機能ではありません。</p>
-<p>特徴検索対応: {count}種類</p></header><section class="feature-controls"><p>選んだ特徴をすべて含む図鑑登録種を表示します。条件を選ぶと絞り込めます。</p>{''.join(groups)}
-<button type="button" class="feature-clear">選択をクリア</button></section><div class="feature-result-count" aria-live="polite">{count}種類</div>
-<div class="mushroom-list feature-results">{''.join(cards)}</div><p class="feature-empty" hidden>該当する図鑑登録種はありません。条件を減らしてみてください。</p>
-<div class="feature-back"><a href="index.html" class="back-btn">◀ トップに戻る</a></div></main></body></html>'''
+    return f'''<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>特徴から探す｜キノコ図鑑</title>
+<link rel="stylesheet" href="assets/gallery.css">
+<link rel="stylesheet" href="assets/features.css">
+<script src="assets/gallery.js" defer></script>
+<script src="assets/features.js" defer></script>
+</head>
+<body class="feature-index">
+<main id="gallery-content-root" class="feature-page">
+  <section class="feature-hub" aria-labelledby="feature-title">
+    <header class="feature-hero">
+      <a class="feature-back-link" href="index.html">← 図鑑へ戻る</a>
+      <div class="feature-hero-copy">
+        <span class="feature-eyebrow">FEATURE FINDER</span>
+        <h1 id="feature-title">特徴から探す</h1>
+        <p>写真や資料に記載された見た目の特徴を組み合わせて探せます。</p>
+      </div>
+    </header>
+    <div class="feature-hub-body">
+      <div class="feature-heading">
+        <span class="feature-eyebrow">FILTER BY APPEARANCE</span>
+        <h2>特徴を選ぶ</h2>
+        <p>選んだ特徴をすべて含む図鑑登録種を表示します。条件は複数選択できます。</p>
+      </div>
+      <p class="feature-warning">選んだ特徴が出典資料に明記されている図鑑登録種だけを表示します。特徴だけでキノコの種類を判定する機能ではありません。</p>
+      <div class="feature-coverage"><span>特徴検索対応</span><strong>{count}</strong><span>種類</span></div>
+      <section class="feature-controls" aria-label="特徴で絞り込む">
+        {''.join(groups)}
+        <button type="button" class="feature-clear">選択をクリア</button>
+      </section>
+    </div>
+  </section>
+  <section class="feature-results-panel" aria-labelledby="feature-results-title">
+    <header class="feature-results-heading">
+      <div><span class="feature-eyebrow">MATCHING MUSHROOMS</span><h2 id="feature-results-title">該当するキノコ</h2></div>
+      <div class="feature-result-count" aria-live="polite">{count}種類</div>
+    </header>
+    <div class="mushroom-list feature-results">{''.join(cards)}</div>
+    <p class="feature-empty" hidden>該当する図鑑登録種はありません。条件を減らしてみてください。</p>
+  </section>
+  <footer class="feature-footer"><a href="index.html">← キノコ図鑑へ戻る</a></footer>
+</main>
+</body>
+</html>'''
 
 
 def generate_feature_page(portal_data, feature_data, output_dir, assets_dir, safe_filename):
