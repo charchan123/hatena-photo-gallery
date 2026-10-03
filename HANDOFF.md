@@ -1082,3 +1082,15 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Protected contracts:** iframe height sync, ResizeObserver, force resend, bfcache/pageshow, requestHeight, scrollToTitle, .html navigation bridge, browser back, LightGallery, favorites, kana filtering/search, portal-data, taxonomy, EXIF extraction, mushroom data files, observation IDs, Hatena API, and Phase 3C logic are unchanged.
 - **Responsive scope:** only safe tablet/narrow fallbacks are included. Full mobile visual optimization remains deferred until the PC page pass is complete.
 - **Validation:** temporary Phase 4C.5 workflow passed **386/386 pytest**, **386 collected**, Python compilation, `node --check assets/gallery.js`, 4 kana-insensitive highlight cases, iframe-height regression checks, feature-filter checks, and `git diff --check` against production `6b649d71...`. The temporary workflow is removed before the final PR.
+
+## Phase 4C.6 — Detail mosaic and Gojuon-style Observation Note cards
+
+- **Starting point:** production `main` is merge commit `a3d9c181f132fc8a062b442b0abad9e0929192e0` after Phase 4C.5 / PR #73.
+- **Detail photo mosaic:** mushroom detail pages no longer force square four-column thumbnails. They use natural image aspect ratios in a reference-style masonry/multi-column mosaic: up to five columns on PC, three on tablet, and two on narrow screens.
+- **Outer-corner rule:** every internal tile corner remains 90 degrees. Runtime layout measurement assigns rounding only to the mosaic's top-left, top-right, bottom-left, and bottom-right outside corners. One/two/few-photo cases are handled by the same measured-column logic.
+- **Detail favorites:** every detail thumbnail keeps the existing top-right `.thumb-fav` star and existing favorite/LightGallery behavior.
+- **Observation Note cards:** saved-photo cards now match the Gojuon mushroom-card visual language: four-column PC grid, 14px gap, white bordered card, 14px radius, subtle shadow, 64% image area, mushroom name below, and top-right favorite star. Existing year/season grouping remains unchanged.
+- **Observation Note behavior:** photo-level favorite removal/undo, `lg_favorites`, EXIF grouping, LightGallery, caption generation, and src-to-name mapping remain intact.
+- **Protected contracts:** no portal-data, taxonomy, EXIF extraction, mushroom data, observation ID, Hatena API, Phase 3C, kana/search, browser-back, or iframe-height logic changes.
+- **Validation:** temporary Phase 4C.6 workflow passed **388/388 pytest**, **388 collected**, Python compilation, `node --check assets/gallery.js`, 4 kana-insensitive highlight cases, iframe-height regression checks, feature-filter checks, and `git diff --check` against `a3d9c181...`. The temporary workflow is removed before the final PR.
+
