@@ -89,7 +89,8 @@ def test_repository_counts_policies_and_links():
     assert "キクラゲ（広義）" not in by_name["キクラゲ"]["aliases_ja"]
     assert by_name["ウラグロニガイグチ"]["food_safety"]["status"] == "edibility_reported"
     assert by_name["ウラグロニガイグチ"]["toxins"] == []
-    assert "安全保証" in by_name["ウラグロニガイグチ"]["food_safety"]["notes"]
+    assert "安全" in by_name["ウラグロニガイグチ"]["food_safety"]["notes"]
+    assert "保証しない" in by_name["ウラグロニガイグチ"]["food_safety"]["notes"]
     assert by_name["キララタケ"]["food_safety"]["status"] == "edibility_reported"
     assert by_name["キララタケ"]["toxins"] == []
     assert "コプリン" in by_name["キララタケ"]["food_safety"]["notes"]
