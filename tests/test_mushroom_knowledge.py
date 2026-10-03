@@ -45,14 +45,33 @@ def repository_data():
 
 def test_repository_counts_policies_and_links():
     sources, master, taxonomy = repository_data()
-    assert len(sources["sources"]) == 47
-    assert len(master["entries"]) == 41
+    assert len(sources["sources"]) == 419
+    assert len(master["entries"]) == 141
     assert len(taxonomy["entries"]) == 48
     assert sum(row["subject_type"] == "mushroom" for row in taxonomy["entries"]) == 45
     assert sum(row["subject_type"] == "non_mushroom" for row in taxonomy["entries"]) == 3
     assert {row["canonical_name"] for row in taxonomy["entries"] if row["verification_status"] == "externally_verified"} == set(BATCH_1_LABELS + BATCH_2_LABELS + BATCH_3_LABELS + BATCH_4_LABELS)
     assert all(row["scientific_name"]["name_status"] == "source_reported" for row in master["entries"])
-    assert {row["canonical_name_ja"] for row in master["entries"] if row["food_safety"]["status"] == "poisonous_confirmed"} == {"カエンタケ", "ドクツルタケ", "ヘビキノコモドキ", "オオワライタケ", "コテングタケモドキ"}
+    food_counts = {}
+    for row in master["entries"]:
+        status = row["food_safety"]["status"]
+        food_counts[status] = food_counts.get(status, 0) + 1
+    assert food_counts == {
+        "edibility_reported": 77,
+        "unknown": 33,
+        "poisonous_confirmed": 31,
+    }
+    record_counts = {}
+    for row in master["entries"]:
+        status = row["verification"]["record_status"]
+        record_counts[status] = record_counts.get(status, 0) + 1
+    assert record_counts == {"partial": 139, "verified_core": 2}
+    poisonous_names = {
+        row["canonical_name_ja"]
+        for row in master["entries"]
+        if row["food_safety"]["status"] == "poisonous_confirmed"
+    }
+    assert {"カエンタケ", "ドクツルタケ", "ヘビキノコモドキ", "オオワライタケ", "コテングタケモドキ"} <= poisonous_names
     by_name = {row["canonical_name_ja"]: row for row in master["entries"]}
     assert all(by_name[name]["scientific_name"]["name_status"] == "source_reported" for name in BATCH_2_LABELS + BATCH_3_LABELS)
     assert all(by_name[name]["food_safety"]["status"] == "edibility_reported" for name in ("アカヤマドリ", "キクラゲ", "ハナイグチ", "カラカサタケ", "ヤマイグチ", "キクバナイグチ"))
@@ -67,6 +86,14 @@ def test_repository_counts_policies_and_links():
     assert all(by_name[name]["food_safety"]["status"] == "unknown" for name in ("ヒロメノトガリアミガサタケ", "アミガサタケ", "クロカワ"))
     assert "広義アミガサタケ" not in by_name["アミガサタケ"]["aliases_ja"]
     assert "キクラゲ（広義）" not in by_name["キクラゲ"]["aliases_ja"]
+    assert by_name["ウラグロニガイグチ"]["food_safety"]["status"] == "edibility_reported"
+    assert by_name["ウラグロニガイグチ"]["toxins"] == []
+    assert "安全保証" in by_name["ウラグロニガイグチ"]["food_safety"]["notes"]
+    assert by_name["キララタケ"]["food_safety"]["status"] == "edibility_reported"
+    assert by_name["キララタケ"]["toxins"] == []
+    assert "コプリン" in by_name["キララタケ"]["food_safety"]["notes"]
+    assert by_name["タマゴタケモドキ"]["food_safety"]["status"] == "poisonous_confirmed"
+    assert "1933年初記載" in by_name["タマゴタケモドキ"]["features"]["summary"]
     assert not any(row["food_safety"]["status"] in {"safe", "safe_to_eat", "edible_safe", "non_poisonous"} for row in master["entries"])
     assert knowledge.validate_subject_taxonomy_links()
 
