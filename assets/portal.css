@@ -7,7 +7,7 @@
 .portal-section-visual--explore { background-image:url("mushroom-guide-final.webp"); background-position:center center; background-size:cover; background-repeat:no-repeat; }
 .portal-visual-shade { position:absolute; z-index:0; inset:0; background:linear-gradient(to top,rgba(10,25,16,.70),rgba(10,25,16,.18) 55%,transparent); pointer-events:none; }
 .portal-records-heading,.portal-section-heading { z-index:1; align-self:end; width:100%; padding:24px 28px 20px; box-sizing:border-box; color:#fff; text-shadow:0 1px 3px rgba(8,20,12,.42); }
-.portal-new-update { position:absolute; z-index:2; top:16px; right:18px; display:inline-flex; align-items:center; gap:7px; max-width:min(48%,390px); min-height:30px; padding:4px 9px 4px 5px; border:1px solid rgba(255,255,255,.32); border-radius:999px; background:rgba(14,35,22,.58); color:#fff; text-decoration:none; box-shadow:0 4px 12px rgba(8,20,12,.15); backdrop-filter:blur(5px); }
+.portal-new-update { position:absolute; z-index:2; top:16px; right:18px; display:inline-flex; align-items:center; gap:7px; max-width:min(48%,390px); min-height:30px; padding:4px 9px 4px 5px; border:1px solid rgba(255,255,255,.32); border-radius:999px; background:rgba(14,35,22,.58); color:#fff; text-decoration:none; box-shadow:0 4px 12px rgba(8,20,12,.15); }
 .portal-new-badge { flex:0 0 auto; display:inline-flex; align-items:center; min-height:21px; padding:0 8px; border-radius:999px; background:#d84a24; color:#fff; font-size:.67rem; font-weight:850; letter-spacing:.04em; }
 .portal-new-copy { min-width:0; overflow:hidden; color:#fff; font-size:.75rem; font-weight:700; text-overflow:ellipsis; white-space:nowrap; }
 .portal-eyebrow { margin:0 0 6px; color:inherit; font-size:.69rem; font-weight:800; letter-spacing:.18em; }
