@@ -142,13 +142,27 @@ def render_records_page(portal_data):
 <title>観察記録｜キノコ図鑑</title>
 <link rel="stylesheet" href="assets/gallery.css">
 <link rel="stylesheet" href="assets/records.css">
-<script src="assets/gallery.js" defer></script></head><body>
-<main class="aiuo-page records-page">
-<header class="records-header"><h1 class="aiuo-title">📔 観察記録</h1>
-<p class="records-lead">キノコ探索のブログ記事を新しい順にまとめています。</p>
-<p class="records-note">表示順の日付は記事の公開日です。写真の撮影日とは別です。</p></header>
+<script src="assets/gallery.js" defer></script></head><body class="records-index">
+<main id="gallery-content-root" class="records-shell">
+<section class="records-hub" aria-labelledby="records-title">
+<header class="records-hero">
+<a class="records-back-link" href="new-top.html">← トップへ</a>
+<div class="records-hero-copy">
+<span class="records-eyebrow">FIELD NOTES</span>
+<h1 id="records-title">観察記録</h1>
+<p>キノコ探索のブログ記事を新しい順にまとめています。</p>
+</div>
+</header>
+<div class="records-hub-body">
+<div class="records-section-heading">
+<span class="records-eyebrow">OBSERVATION ARCHIVE</span>
+<h2>これまでの観察記録</h2>
+<p>表示順の日付は記事の公開日です。写真の撮影日とは別です。</p>
+</div>
 <div class="record-list">{render_record_cards(records)}</div>
-<div class="records-back"><a href="index.html" class="back-btn">◀ トップに戻る</a></div>
+</div>
+</section>
+<footer class="records-footer"><a href="new-top.html">← トップへ戻る</a></footer>
 </main></body></html>"""
 
 
