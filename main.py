@@ -197,6 +197,7 @@ def copy_shared_assets():
         "detail.css",
         "portal.css",
         "guide.css",
+        "aiuo.css",
         "field-notes-observation-final.webp",
         "mushroom-guide-final.webp",
         "research-lab-final.webp",
@@ -2155,10 +2156,9 @@ def generate_gallery(entries, exif_cache, detail_views=None):
             f.write(page_html)
 
     # ===========================
-    # ② 五十音ページ（完全修正版）
+    # ② 五十音ページ
     # ===========================
 
-    # 五十音 → キノコ名一覧
     aiuo_dict = {k: [] for k in AIUO_GROUPS.keys()}
 
     for alt in grouped.keys():
@@ -2169,55 +2169,76 @@ def generate_gallery(entries, exif_cache, detail_views=None):
             aiuo_dict[g].append(alt)
 
     for g, names in aiuo_dict.items():
-        # ★ 何も無い行はページを作らない
         if not names:
             continue
 
-        html_parts = []
+        escaped_group = html.escape(g)
+        sorted_names = sorted(names)
+        html_parts = [f"""<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{escaped_group}のキノコ｜キノコ図鑑</title>
+{STYLE_TAG}
+<link rel="stylesheet" href="assets/aiuo.css">
+{LIGHTGALLERY_TAGS}
+</head>
+<body class="aiuo-index">
+<main id="gallery-content-root" class="aiuo-page">
+  <section class="aiuo-hub" aria-labelledby="aiuo-title">
+    <header class="aiuo-hero">
+      <a class="aiuo-back-link" href="index.html">← 図鑑へ戻る</a>
+      <div class="aiuo-hero-copy">
+        <span class="aiuo-eyebrow">GOJUON INDEX</span>
+        <h1 id="aiuo-title">{escaped_group}のキノコ</h1>
+        <p>名前の最初の文字から、このブログで出会ったキノコを探せます。</p>
+      </div>
+    </header>
 
-        # -------------------------
-        # ページタイトル & フィルター枠
-        # -------------------------
-        html_parts.append(f"""
-        <div class="aiuo-page">
+    <div class="aiuo-hub-body">
+      <div class="aiuo-heading">
+        <span class="aiuo-eyebrow">FILTER BY INITIAL</span>
+        <h2>頭文字から絞り込む</h2>
+        <p>{escaped_group}に登録されているキノコを、頭文字または名前から絞り込めます。</p>
+      </div>
+      <div class="aiuo-filter-panel">
+        <div class="aiuo-filter">
+          <div class="kana-grid">
+            <button type="button" class="kana-btn active" data-kana="all">すべて</button>
+"""]
 
-          <h2 class="aiuo-title">{html.escape(g)}のキノコ</h2>
-
-          <div class="aiuo-filter">
-            <div class="kana-grid">
-              <button class="kana-btn active" data-kana="all">すべて</button>
-        """)
-
-        # -------------------------
-        # ★ ここで initials を正しく生成
-        # -------------------------
         initials = sorted({
             normalize_kana_initial(n)
-            for n in names
+            for n in sorted_names
             if isinstance(n, str) and len(n) > 0
         })
 
         for ch in initials:
             esc_ch = html.escape(ch)
             html_parts.append(
-                f'<button class="kana-btn" data-kana="{esc_ch}">{esc_ch}</button>'
+                f'            <button type="button" class="kana-btn" data-kana="{esc_ch}">{esc_ch}</button>\n'
             )
 
-        html_parts.append("""
-            </div>
-          </div>
+        html_parts.append("""          </div>
+        </div>
+        <div class="search-wrap search-wrap--page">
+          <input type="text" class="search-input" aria-label="キノコ名で絞り込み"
+                 placeholder="キノコ名で絞り込み">
+        </div>
+      </div>
+    </div>
+  </section>
 
-          <div class="search-wrap search-wrap--page">
-            <input type="text" class="search-input" placeholder="キノコ名で絞り込み">
-          </div>
-        """)
-
-        # -------------------------
-        # カード一覧
-        # -------------------------
+  <section class="aiuo-results-panel" aria-labelledby="aiuo-results-title">
+    <header class="aiuo-results-heading">
+      <div>
+        <span class="aiuo-eyebrow">MUSHROOMS</span>
+        <h2 id="aiuo-results-title">""")
+        html_parts.append(f"{escaped_group}のキノコ一覧</h2></div><span>{len(sorted_names)}種類</span></header>")
         html_parts.append("<div class='mushroom-list'>")
 
-        for n in sorted(names):
+        for n in sorted_names:
             if not isinstance(n, str) or not n:
                 continue
 
@@ -2237,43 +2258,34 @@ def generate_gallery(entries, exif_cache, detail_views=None):
                 )
 
             html_parts.append(f"""
-            <a href="{safe}.html?from=aiuo&kana={html.escape(g)}"
-               class="mushroom-card"
-               data-name="{esc_name}"
-               data-kana="{esc_kana}">
-              <div class="mushroom-card-thumb">
-                <span class="card-fav">☆</span>
-                {img_tag}
-              </div>
-              <div class="mushroom-card-name">{esc_name}</div>
-            </a>
-            """)
-
-        html_parts.append("</div>")  # .mushroom-list
-
-        # -------------------------
-        # 戻るボタン
-        # -------------------------
-        html_parts.append("""
-          <div style="text-align:center; margin:40px 0 20px;">
-            <a href="index.html" class="back-btn">
-              ◀ トップに戻る
-            </a>
+        <a href="{safe}.html?from=aiuo&kana={escaped_group}"
+           class="mushroom-card"
+           data-name="{esc_name}"
+           data-kana="{esc_kana}">
+          <div class="mushroom-card-thumb">
+            <span class="card-fav">☆</span>
+            {img_tag}
           </div>
-        </div>
-        """)
+          <div class="mushroom-card-name">{esc_name}</div>
+        </a>
+""")
 
-        # -------------------------
-        # 共通タグ
-        # -------------------------
-        html_parts.append(STYLE_TAG)
-        html_parts.append(LIGHTGALLERY_TAGS)
+        html_parts.append("""      </div>
+  </section>
+
+  <footer class="aiuo-footer">
+    <a href="index.html">← キノコ図鑑へ戻る</a>
+  </footer>
+</main>
+""")
         html_parts.append(SCRIPT_TAG)
-
-        page_html = "".join(html_parts)
+        html_parts.append("""
+</body>
+</html>
+""")
 
         with open(f"{OUTPUT_DIR}/{safe_filename(g)}.html", "w", encoding="utf-8") as f:
-            f.write(page_html)
+            f.write("".join(html_parts))
 
     return grouped
 

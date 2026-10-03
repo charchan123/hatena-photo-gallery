@@ -1053,3 +1053,17 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Responsive safety:** below 899px the fixed row tracks are removed and the existing natural single-column flow is restored. Full mobile visual optimization remains deferred.
 - **Protected contracts:** Research inclusion/grouping/status logic, case ordering, candidate classification, photo/article URLs, counts, portal-data, gallery.js, iframe height, taxonomy, EXIF, and Phase 3C are unchanged.
 - **Validation:** GitHub Actions temporary Phase 4C.3 research-alignment workflow passed **382/382 pytest**, **382 collected**, Python compilation, `node --check assets/gallery.js`, 4 kana-insensitive highlight cases, iframe-height regression checks, feature-filter checks, and `git diff --check` against production `8b9fd97c...`. The temporary workflow is removed before merge and is not part of the final PR diff.
+
+## Phase 4C.4 — Annual Best Shot black presentation and Gojuon page redesign
+
+- **Starting point:** production `main` is merge commit `2f80acc04e6c64e721a79952097710afeece58cd` after Phase 4C.3 / PR #71.
+- **Annual Best Shot:** the annual-best section changes from the pale orange treatment to a near-black presentation (`#0c0f0d`) so the selected photograph receives visual priority. The annual hero card also becomes dark (`#111412`) rather than remaining a white card inside a black section.
+- **Annual Best typography:** `🏆 YYYY年 年間ベストショット` becomes near-white; the annual badge uses subdued gold; the mushroom name becomes white; metadata uses neutral gray; the comment uses light gray; the article link uses a muted pale green. Monthly/non-annual cards remain unchanged.
+- **Gojuon page shell:** generated `あ行.html`–`わ行.html` pages are now complete HTML documents with `body.aiuo-index`, `main#gallery-content-root`, and a dedicated scoped `assets/aiuo.css`.
+- **Gojuon hero:** each page gets a `GOJUON INDEX / ●行のキノコ` watercolor hero using the existing `mushroom-guide-final.webp`, plus a consistent `← 図鑑へ戻る` link.
+- **Gojuon filters:** existing `.kana-btn`, `.search-input`, `data-kana`, and `data-name` hooks are preserved exactly. The initial buttons and name search are reorganized into one white/green filter panel.
+- **Gojuon results:** the existing mushroom cards and favorite-star behavior are preserved, but results use a four-column PC grid inside a rounded white card. Safe fallbacks use three columns on tablet and two on narrow screens; full mobile visual optimization remains deferred.
+- **Navigation contract:** mushroom detail links still append `?from=aiuo&kana=●行`, preserving the existing detail-page contextual return behavior and gallery.js scroll/height bridge.
+- **Deployment:** `copy_shared_assets()` now includes `aiuo.css`.
+- **Protected contracts:** kana normalization, voiced/semi-voiced grouping, search normalization/highlighting, favorites, detail-page filenames, LightGallery, iframe-height sync, portal-data, taxonomy, EXIF, Best Shot selection/config rules, and Phase 3C are unchanged.
+- **Validation:** GitHub Actions temporary Phase 4C.4 best-shot/gojuon workflow passed **383/383 pytest**, **383 collected**, Python compilation, `node --check assets/gallery.js`, 4 kana-insensitive highlight cases, iframe-height regression checks, feature-filter checks, and `git diff --check` against production `2f80acc0...`. The temporary workflow is removed before merge and is not part of the final PR diff.
