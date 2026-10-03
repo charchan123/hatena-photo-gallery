@@ -309,24 +309,31 @@ body.detail-page {
 .detail-page .subject-record-more .subject-record-list { margin-top:12px; }
 
 .detail-page .detail-aiuo-links {
-  width:min(100%,500px);
+  display:flex;
+  flex-wrap:nowrap;
+  justify-content:flex-start;
+  gap:4px;
+  width:100%;
   max-width:none;
   margin:16px 0 0;
-  grid-template-columns:repeat(5,minmax(0,1fr));
-  gap:8px;
+  overflow-x:auto;
+  overscroll-behavior-inline:contain;
+  scrollbar-width:thin;
 }
 
 .detail-page .detail-aiuo-links .aiuo-link {
-  min-width:0;
-  padding:10px 6px;
+  flex:0 0 auto;
+  min-width:48px;
+  padding:8px 9px;
   border:1px solid #cbdac9;
   border-radius:10px;
   background:#f9fcf7;
   color:#31563a;
-  font-size:.8rem;
+  font-size:.78rem;
   font-weight:700;
   line-height:1;
   text-align:center;
+  white-space:nowrap;
   text-decoration:none;
 }
 
@@ -366,10 +373,6 @@ body.detail-page {
   transform:translateY(-1px);
 }
 
-@media (max-width:899px) {
-  .detail-page .detail-aiuo-links { grid-template-columns:repeat(5,minmax(0,1fr)); }
-}
-
 @media (max-width:680px) {
   .detail-page .detail-shell { padding:14px 12px 34px; }
   .detail-page .detail-hero { min-height:200px; }
@@ -385,8 +388,8 @@ body.detail-page {
   .detail-page .knowledge-pending,
   .detail-page .subject-records,
   .detail-page .detail-index-panel { padding:20px 18px; }
-  .detail-page .detail-aiuo-links { gap:6px; }
-  .detail-page .detail-aiuo-links .aiuo-link { padding:9px 4px; font-size:.76rem; }
+  .detail-page .detail-aiuo-links { gap:3px; }
+  .detail-page .detail-aiuo-links .aiuo-link { min-width:44px; padding:7px 8px; font-size:.74rem; }
   .detail-page .knowledge-row { grid-template-columns:1fr; gap:5px; }
 }
 
