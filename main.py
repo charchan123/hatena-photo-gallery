@@ -195,6 +195,7 @@ def copy_shared_assets():
         "gallery.css",
         "gallery.js",
         "detail.css",
+        "favorite.css",
         "portal.css",
         "guide.css",
         "aiuo.css",
@@ -2100,27 +2101,45 @@ def generate_gallery(entries, exif_cache, detail_views=None):
         grouped.setdefault(e["alt"], []).append(e["src"])
 
     # index & 各ページ共通：五十音タイル HTML
-    group_links_html = "<div class='aiuo-links' style='margin-top:40px;'>"
+    group_links_html = '<div class="aiuo-links detail-aiuo-links">'
     for g in AIUO_GROUPS.keys():
         group_links_html += f'<a class="aiuo-link" href="{safe_filename(g)}.html">{g}</a>'
     group_links_html += "</div>"
 
     # ① 各キノコページ
     for alt, imgs in grouped.items():
-        html_parts = []
+        escaped_alt = html.escape(alt)
+        html_parts = [f"""<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{escaped_alt}｜キノコ図鑑</title>
+{STYLE_TAG}
+<link rel="stylesheet" href="assets/detail.css">
+{LIGHTGALLERY_TAGS}
+</head>
+<body class="detail-page">
+<main id="gallery-content-root" class="detail-shell">
+  <section class="detail-hub" aria-labelledby="detail-title">
+    <header class="detail-hero">
+      <a class="detail-back-link" href="index.html">← 図鑑へ戻る</a>
+      <div class="detail-hero-copy">
+        <span class="detail-eyebrow">MUSHROOM DETAIL</span>
+        <h2 id="detail-title">{escaped_alt}</h2>
+        <p>このブログで出会った写真と、確認できた図鑑情報をまとめています。</p>
+      </div>
+    </header>
 
-        # タイトル（キノコ名 + 枚数）
-        html_parts.append(
-            f"<h2 style='font-size:24px; font-weight:600; text-align:center; margin-top:20px;'>"
-            f"{html.escape(alt)}"
-            f"<span style='font-size:15px; font-weight:400; color:#666; margin-left:6px;'>"
-            f"— {len(imgs)} photos"
-            f"</span>"
-            f"</h2>"
-        )
+    <div class="detail-hub-body">
+      <div class="detail-section-heading">
+        <span class="detail-eyebrow">OBSERVATION PHOTOS</span>
+        <h3>観察写真</h3>
+        <p>{len(imgs)}枚の写真があります。写真をクリックすると大きく表示できます。</p>
+      </div>
+      <div class='gallery'>
+"""]
 
-        # ギャラリー本体
-        html_parts.append("<div class='gallery'>")
         for src in imgs:
             thumb = src + "?width=300"
             exif = exif_cache.get(src, {}) or {}
@@ -2130,30 +2149,42 @@ def generate_gallery(entries, exif_cache, detail_views=None):
                 f'<a class="gallery-item" href="{src}" '
                 f'data-exthumbimage="{thumb}" '
                 f'data-sub-html="{caption_attr}">'
-                f'<span class="thumb-fav">☆</span>'   # ← ★これだけ追加
+                f'<span class="thumb-fav">☆</span>'
                 f'<span class="spores"></span>'
-                f'<img src="{src}" alt="{html.escape(alt)}" loading="lazy">'
+                f'<img src="{src}" alt="{escaped_alt}" loading="lazy">'
                 f'</a>'
             )
-        html_parts.append("</div>")
+
+        html_parts.append("""      </div>
+    </div>
+  </section>
+""")
 
         # Evidence-backed knowledge and article links follow the primary photo gallery.
         html_parts.append(render_detail_sections(detail_views.get(alt)))
 
-        # 五十音タイル
-        html_parts.append(group_links_html)
+        html_parts.append(f"""
+  <section class="detail-index-panel" aria-labelledby="detail-index-title">
+    <div class="detail-section-heading detail-section-heading--compact">
+      <span class="detail-eyebrow">GOJUON INDEX</span>
+      <h3 id="detail-index-title">ほかのキノコを探す</h3>
+      <p>五十音から別のキノコページへ移動できます。</p>
+    </div>
+    {group_links_html}
+  </section>
 
-        # スタイル・LG・JS
-        html_parts.append(STYLE_TAG)
-        html_parts.append('<link rel="stylesheet" href="assets/detail.css">')
-        html_parts.append(LIGHTGALLERY_TAGS)
-        html_parts.append(SCRIPT_TAG)
-
-        page_html = "".join(html_parts)
+  <footer class="detail-footer">
+    <a href="index.html">← キノコ図鑑へ戻る</a>
+  </footer>
+</main>
+{SCRIPT_TAG}
+</body>
+</html>
+""")
 
         safe = safe_filename(alt)
         with open(f"{OUTPUT_DIR}/{safe}.html", "w", encoding="utf-8") as f:
-            f.write(page_html)
+            f.write("".join(html_parts))
 
     # ===========================
     # ② 五十音ページ
@@ -2599,59 +2630,79 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
 # ===========================
 def generate_favorite_page(grouped):
     copy_shared_assets()
-    parts = []
+    parts = ["""<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>観察ノート｜キノコ図鑑</title>
+"""
+    + STYLE_TAG
+    + """
+<link rel="stylesheet" href="assets/favorite.css">
+"""
+    + LIGHTGALLERY_TAGS
+    + """
+</head>
+<body class="favorite-page">
+<main id="gallery-content-root" class="favorite-shell">
+  <section class="favorite-hub" aria-labelledby="favorite-title">
+    <header class="favorite-hero">
+      <a class="favorite-back-link" href="index.html">← 図鑑へ戻る</a>
+      <div class="favorite-hero-copy">
+        <span class="favorite-eyebrow">OBSERVATION NOTE</span>
+        <h1 id="favorite-title">観察ノート</h1>
+        <p>気になった写真を★で保存して、あとから季節ごとに見返せます。</p>
+      </div>
+    </header>
 
-    parts.append("""
-<h2 class="section-title">⭐ 観察ノート</h2>
-<section class="note-intro" aria-label="観察ノートの説明">
-  <p class="note-intro__lead">
-    写真で出会ったキノコを、あとからゆっくり見返せる場所です。
-  </p>
-  <p class="note-intro__hint">
-    ★をつけた写真は、あとでもう一度見たいと思ったものとして残ります。
-  </p>
-</section>
-<hr class="note-divider">
-<div class="section-card">
-    <div class="favorite-empty" style="display:none; text-align:center; line-height:1.9;">
-      まだ、ここは静かです。<br>
-      <small>気になった写真に ★ をつけると、少しずつ並びはじめます。</small>
+    <div class="favorite-hub-body">
+      <div class="favorite-section-heading">
+        <span class="favorite-eyebrow">SAVED PHOTOS</span>
+        <h2>観察中の写真</h2>
+        <p>★をつけた写真を、撮影時期ごとにまとめています。</p>
+      </div>
+
+      <div class="favorite-empty">
+        まだ、ここは静かです。<br>
+        <small>気になった写真に ★ をつけると、少しずつ並びはじめます。</small>
+      </div>
+
+      <div class="favorite-gallery"></div>
     </div>
+  </section>
 
-  <!-- ★ JSが描画するので空 -->
-  <div class="favorite-gallery"></div>
-
-  <div style="text-align:center; margin-top:30px;">
-    <a href="index.html" class="back-btn">
-      ◀ トップに戻る
-    </a>
-  </div>
-</div>
-""")
+  <footer class="favorite-footer">
+    <a href="index.html">← キノコ図鑑へ戻る</a>
+  </footer>
+</main>
+"""]
 
     exif_cache = load_exif_cache()
-    
+
     parts.append(f"""
-    <script>
-    window.EXIF_CACHE = {json.dumps(exif_cache, ensure_ascii=False)};
-    </script>
-    """)
+<script>
+window.EXIF_CACHE = {json.dumps(exif_cache, ensure_ascii=False)};
+</script>
+""")
 
     # src → alt（キノコ名）対応表
     src_to_alt = {}
     for alt, srcs in grouped.items():
         for src in srcs:
             src_to_alt[src] = alt
-    
-    parts.append(f"""
-    <script>
-    window.SRC_TO_ALT = {json.dumps(src_to_alt, ensure_ascii=False)};
-    </script>
-    """)
 
-    parts.append(STYLE_TAG)
-    parts.append(LIGHTGALLERY_TAGS)
+    parts.append(f"""
+<script>
+window.SRC_TO_ALT = {json.dumps(src_to_alt, ensure_ascii=False)};
+</script>
+""")
+
     parts.append(SCRIPT_TAG)
+    parts.append("""
+</body>
+</html>
+""")
 
     with open(f"{OUTPUT_DIR}/favorite.html", "w", encoding="utf-8") as f:
         f.write("".join(parts))
