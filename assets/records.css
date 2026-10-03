@@ -1,32 +1,289 @@
-/* Article-record layout only; shared portal styles live in gallery.css. */
-.records-header { max-width: 760px; margin: 0 auto 28px; text-align: center; }
-.records-lead { margin: 0 0 8px; font-size: 16px; line-height: 1.7; }
-.records-note { margin: 0; color: #666; font-size: 13px; line-height: 1.7; }
-.record-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; max-width: 1000px; margin: 0 auto; }
-.record-card { display: block; overflow: hidden; border: 1px solid #ddd; border-radius: 12px; background: #fff; color: inherit; text-decoration: none; }
-.record-card-thumb { aspect-ratio: 4 / 3; overflow: hidden; background: #f5f5f5; }
-.record-card-thumb img { width: 100%; height: 100%; object-fit: cover; }
-.record-card-body { padding: 14px 16px 16px; }
-.record-card-badge { display: inline-block; margin-bottom: 7px; padding: 3px 9px; border-radius: 999px; background: #d84a24; box-shadow: 0 0 0 rgba(216, 74, 36, 0); color: #fff; font-size: 11px; font-weight: 800; animation: record-new-pulse 1.8s ease-in-out infinite; }
-.record-card-date { color: #666; font-size: 12px; }
-.record-card-title { margin: 7px 0 10px; font-size: 17px; line-height: 1.5; }
-.record-card-meta { margin: 0; color: #666; font-size: 12px; }
+/* Observation archive aligned with the new-top FIELD NOTES design. */
+body.records-index {
+  max-width:none;
+  margin:0;
+  padding:0;
+  background:#f7fcf4;
+  color:#26352b;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;
+}
+
+.records-index *,
+.records-index *::before,
+.records-index *::after { box-sizing:border-box; }
+
+.records-index a { color:inherit; }
+
+.records-index .records-shell {
+  width:min(100%,1180px);
+  margin:0 auto;
+  padding:24px 22px 52px;
+}
+
+.records-index .records-hub {
+  overflow:hidden;
+  border:1px solid rgba(53,78,58,.16);
+  border-radius:22px;
+  background:#fff;
+  box-shadow:0 10px 30px rgba(42,61,45,.09);
+}
+
+.records-index .records-hero {
+  position:relative;
+  min-height:220px;
+  overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(10,30,18,.72) 0%,rgba(10,30,18,.48) 40%,rgba(10,30,18,.14) 72%,rgba(10,30,18,.04) 100%),
+    url("field-notes-observation-final.webp") center/cover no-repeat;
+}
+
+.records-index .records-hero::after {
+  content:"";
+  position:absolute;
+  inset:auto 0 0;
+  height:54px;
+  background:linear-gradient(to bottom,transparent,rgba(10,30,18,.14));
+  pointer-events:none;
+}
+
+.records-index .records-back-link {
+  position:absolute;
+  z-index:2;
+  top:18px;
+  left:22px;
+  display:inline-flex;
+  align-items:center;
+  min-height:34px;
+  padding:0 13px;
+  border:1px solid rgba(255,255,255,.34);
+  border-radius:999px;
+  background:rgba(17,48,30,.46);
+  color:#fff;
+  font-size:.78rem;
+  font-weight:700;
+  text-decoration:none;
+  backdrop-filter:blur(6px);
+}
+
+.records-index .records-hero-copy {
+  position:absolute;
+  z-index:1;
+  left:46px;
+  top:50%;
+  width:min(610px,62%);
+  transform:translateY(-34%);
+  color:#fff;
+  text-shadow:0 2px 10px rgba(0,0,0,.42);
+}
+
+.records-index .records-eyebrow {
+  display:block;
+  margin:0 0 7px;
+  color:#eef6eb;
+  font-size:.69rem;
+  font-weight:850;
+  letter-spacing:.16em;
+}
+
+.records-index .records-hero-copy h1 {
+  margin:0;
+  color:#fff;
+  font-size:2.5rem;
+  font-weight:720;
+  line-height:1.12;
+  letter-spacing:.02em;
+}
+
+.records-index .records-hero-copy p {
+  margin:11px 0 0;
+  font-size:.93rem;
+  font-weight:620;
+  line-height:1.65;
+}
+
+.records-index .records-hub-body { padding:26px 28px 30px; }
+
+.records-index .records-section-heading { margin-bottom:18px; }
+.records-index .records-section-heading .records-eyebrow {
+  margin-bottom:5px;
+  color:#63806a;
+  font-size:.67rem;
+}
+
+.records-index .records-section-heading h2 {
+  margin:0;
+  color:#23432d;
+  font-size:1.45rem;
+  line-height:1.3;
+}
+
+.records-index .records-section-heading p {
+  margin:6px 0 0;
+  color:#6c776e;
+  font-size:.88rem;
+  line-height:1.6;
+}
+
+.records-index .record-list {
+  display:grid;
+  grid-template-columns:1fr;
+  gap:0;
+  margin:0;
+  border-top:1px solid #d9ddcf;
+}
+
+.records-index .record-card {
+  position:relative;
+  display:grid;
+  grid-template-columns:190px minmax(0,1fr);
+  gap:20px;
+  align-items:center;
+  min-height:142px;
+  padding:12px 0;
+  border:0;
+  border-bottom:1px solid #d9ddcf;
+  border-radius:0;
+  background:transparent;
+  color:inherit;
+  text-decoration:none;
+  transition:background .18s ease,transform .18s ease;
+}
+
+.records-index .record-card-thumb {
+  width:190px;
+  height:118px;
+  overflow:hidden;
+  border-radius:12px;
+  background:#e5ece2;
+}
+
+.records-index .record-card-thumb img {
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  transition:transform .35s ease;
+}
+
+.records-index .record-card-body {
+  min-width:0;
+  padding:0 12px 0 0;
+}
+
+.records-index .record-card-badge {
+  display:inline-flex;
+  align-items:center;
+  min-height:23px;
+  margin:0 0 7px;
+  padding:0 9px;
+  border-radius:999px;
+  background:#d84a24;
+  color:#fff;
+  font-size:.68rem;
+  font-weight:850;
+  letter-spacing:.04em;
+  animation:record-new-pulse 1.8s ease-in-out infinite;
+}
+
+.records-index .record-card-date {
+  color:#758077;
+  font-size:.76rem;
+}
+
+.records-index .record-card-title {
+  margin:5px 0 8px;
+  color:#24472f;
+  font-size:1.04rem;
+  font-weight:700;
+  line-height:1.48;
+}
+
+.records-index .record-card-meta {
+  margin:0;
+  color:#68766c;
+  font-size:.78rem;
+  line-height:1.5;
+}
+
+.records-index .records-footer {
+  padding:24px 0 0;
+  text-align:center;
+}
+
+.records-index .records-footer .back-btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:38px;
+  padding:0 15px;
+  border:1px solid #cbd9c8;
+  border-radius:999px;
+  background:#fff;
+  color:#365b3f;
+  font-size:.82rem;
+  font-weight:750;
+  text-decoration:none;
+}
+
+.records-index .records-back-link:focus-visible,
+.records-index .record-card:focus-visible,
+.records-index .records-footer .back-btn:focus-visible {
+  outline:4px solid #eeb947;
+  outline-offset:3px;
+}
+
+@media (hover:hover) {
+  .records-index .record-card:hover { background:#f8fbf6; }
+  .records-index .record-card:hover .record-card-thumb img { transform:scale(1.05); }
+  .records-index .record-card:hover .record-card-title { text-decoration:underline; }
+  .records-index .records-footer .back-btn:hover {
+    background:#edf5e9;
+    border-color:#abc2aa;
+    transform:translateY(-1px);
+  }
+}
+
+@keyframes record-new-pulse {
+  0%,100% { box-shadow:0 0 0 rgba(216,74,36,0); transform:scale(1); }
+  50% { box-shadow:0 0 0 4px rgba(216,74,36,.16); transform:scale(1.035); }
+}
+
+/* Legacy preview contracts retained for old callers; new-top uses portal.css. */
 .record-list-preview { grid-template-columns: 1fr; max-width: 620px; margin: 0 auto 20px; }
 .record-list-preview .record-card { display: grid; grid-template-columns: minmax(170px, 36%) 1fr; }
 .record-list-preview .record-card-thumb { aspect-ratio: 4 / 3; }
 .record-more-link { margin-top: 20px; }
-@keyframes record-new-pulse {
-  0%, 100% { box-shadow: 0 0 0 rgba(216, 74, 36, 0); transform: scale(1); }
-  50% { box-shadow: 0 0 0 4px rgba(216, 74, 36, .16); transform: scale(1.035); }
+
+@media (max-width:760px) {
+  .records-index .records-shell { padding:16px 12px 38px; }
+  .records-index .records-hero { min-height:190px; }
+  .records-index .records-back-link { top:14px; left:14px; }
+  .records-index .records-hero-copy {
+    left:24px;
+    width:calc(100% - 48px);
+    transform:translateY(-30%);
+  }
+  .records-index .records-hero-copy h1 { font-size:2rem; }
+  .records-index .records-hub-body { padding:20px 18px 24px; }
+  .records-index .record-card { grid-template-columns:128px minmax(0,1fr); gap:14px; min-height:112px; }
+  .records-index .record-card-thumb { width:128px; height:88px; border-radius:10px; }
+  .records-index .record-card-title { font-size:.95rem; }
 }
-.records-back { margin: 40px 0 20px; text-align: center; }
-@media (max-width: 760px) {
-  .record-list { grid-template-columns: 1fr; gap: 16px; }
-  .record-list-preview .record-card { grid-template-columns: minmax(130px, 40%) 1fr; }
+
+@media (max-width:520px) {
+  .records-index .record-card { grid-template-columns:108px minmax(0,1fr); gap:11px; }
+  .records-index .record-card-thumb { width:108px; height:80px; }
+  .records-index .record-card-body { padding-right:0; }
+  .records-index .record-card-title { margin:4px 0 6px; font-size:.9rem; }
+  .records-index .record-card-meta { font-size:.72rem; }
+  .record-list-preview .record-card { display:block; }
 }
-@media (max-width: 520px) {
-  .record-list-preview .record-card { display: block; }
-}
+
 @media (prefers-reduced-motion: reduce) {
-  .record-card-badge { animation: none; }
+  .records-index .record-card,
+  .records-index .record-card-thumb img,
+  .records-index .records-footer .back-btn { transition:none; }
+  .records-index .record-card-badge { animation: none; }
+  .records-index .record-card:hover .record-card-thumb img,
+  .records-index .records-footer .back-btn:hover { transform:none; }
 }

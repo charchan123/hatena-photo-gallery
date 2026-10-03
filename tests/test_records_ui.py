@@ -50,7 +50,11 @@ def test_chronology_uses_published_and_invalid_is_deterministic():
 def test_records_page_contract_escape_and_navigation():
     page = render_records_page(portal(observation(0), observation(1, article_id="b", url=None)))
     assert "assets/gallery.css" in page and "assets/gallery.js" in page and "assets/records.css" in page
-    assert 'class="back-btn"' in page and 'target="_top"' in page
+    assert '<body class="records-index">' in page
+    assert '<main id="gallery-content-root" class="records-shell">' in page
+    assert 'class="records-hero"' in page and "FIELD NOTES" in page
+    assert '<h1 id="records-title">観察記録</h1>' in page
+    assert 'href="new-top.html"' in page and 'class="back-btn"' in page and 'target="_top"' in page
     assert page.count("record-card-badge") == 1
     assert "NEW!" in page and "現在の図鑑掲載 1枚・1種類" in page
     assert "2026年9月18日静岡県浜松市&lt;&amp;" in page
@@ -114,3 +118,16 @@ def test_excerpt_is_preserved_and_compact_preview_is_escaped():
     assert "本文の冒頭&lt;&amp;" in preview and 'target="_top"' in preview
     assert "img0?width=500" in preview
     assert "現在の図鑑掲載" not in preview and "NEW!" not in preview
+
+def test_records_page_matches_new_top_field_notes_visual_contract():
+    root = Path(__file__).resolve().parents[1]
+    css = (root / "assets" / "records.css").read_text(encoding="utf-8")
+    assert "body.records-index" in css
+    assert "width:min(100%,1180px)" in css
+    assert 'url("field-notes-observation-final.webp")' in css
+    assert ".records-index .records-hub" in css
+    assert ".records-index .record-list" in css
+    assert "grid-template-columns:1fr" in css
+    assert "grid-template-columns:190px minmax(0,1fr)" in css
+    assert ".records-index .records-footer .back-btn" in css
+    assert "@media (max-width:760px)" in css
