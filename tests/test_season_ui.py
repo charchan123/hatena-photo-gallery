@@ -60,25 +60,36 @@ def test_generated_cards_link_to_existing_gallery_filename_rule():
     assert "この季節の観察写真 2枚" in rendered
 
 
-def test_season_page_reuses_shared_gallery_ui_and_scripts():
+def test_season_page_reuses_shared_gallery_behavior_in_new_pc_layout():
     rendered = season_ui.render_season_page(
         data(subject("春菌", {4: 1})), main.safe_filename
     )
     for expected in (
         'href="assets/gallery.css"',
         'src="assets/gallery.js"',
-        'class="aiuo-page season-page"',
-        'class="aiuo-title"',
+        'class="season-index"',
+        'class="season-shell"',
+        'class="season-hub"',
+        'class="season-hero"',
+        'SEASON FINDER',
+        'href="index.html"',
+        'class="season-tabs"',
         'class="mushroom-list"',
         'class="mushroom-card"',
         'class="mushroom-card-thumb"',
         'class="card-fav"',
         'class="mushroom-card-name"',
-        'class="back-btn"',
     ):
         assert expected in rendered
     assert "OBSERVATION ARCHIVE" not in rendered
     assert "Georgia" not in rendered
+
+    css = (Path(main.ASSETS_DIR) / "season.css").read_text(encoding="utf-8")
+    assert "body.season-index" in css
+    assert "width:min(100%,1180px)" in css
+    assert 'url("guide-action-season.webp")' in css
+    assert "grid-template-columns:repeat(4,minmax(0,1fr))" in css
+    assert ".season-index .season-results[hidden] { display:none; }" in css
 
 
 def test_season_card_link_is_handled_by_shared_html_navigation_bridge():

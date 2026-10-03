@@ -1017,3 +1017,14 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - **Top portal lower-card spacing:** `不明キノコ研究室` and `ベストショット` now use the same eyebrow-to-title spacing as `FIELD NOTES → 観察記録`: effective 6px. The independent-card grid gap is neutralized only for those cards, while title-to-description spacing is preserved explicitly at 5px.
 - **Scope:** CSS-only visual polish plus regression coverage and this HANDOFF note. No markup, data, route, search, favorite, LightGallery, iframe-height, taxonomy, EXIF, or Phase 3C behavior changes.
 - **Validation:** GitHub Actions temporary Phase 4B.3 visual-polish workflow passed **380/380 pytest**, **380 collected**, Python compilation, `node --check assets/gallery.js`, 4 kana-insensitive highlight cases, iframe-height regression checks, feature-filter checks, and `git diff --check` against production `e47cbc9f...`. The temporary workflow is removed before merge and is not part of the final PR diff.
+
+## Phase 4C.1 — Seasonal Finder PC redesign
+
+- **Starting point:** production `main` is merge commit `986a885d3f85562df2c042e05add5e137c1db869` after Phase 4B.3 / PR #68.
+- **Goal:** redesign `season.html` for PC so it visually matches new-top and the redesigned Guide index without changing the EXIF-only seasonal classification contract.
+- **Hero:** adds a watercolor `SEASON FINDER / 季節から探す` hero using the existing dedicated `guide-action-season.webp`, plus a `← 図鑑へ戻る` link.
+- **Season picker:** Spring/Summer/Autumn/Winter remain the same JS tab controls and ARIA relationships, but are presented as four large cards in the shared green/white visual system.
+- **EXIF disclaimer:** the existing warning remains verbatim and is moved into a pale neutral information strip under the picker. No inference of occurrence season is introduced.
+- **Results:** the selected seasonal panel is presented as a white rounded card with a four-column PC mushroom grid. Existing `mushroom-card`, favorite-star hook, detail-page filename rule, and gallery.js navigation bridge remain unchanged.
+- **Responsive safety:** tablet falls to three columns and narrow screens to two; full mobile visual optimization remains deferred until the PC content pages are completed.
+- **Protected contracts:** `SEASONS`, month mapping, EXIF-only grouping, counts, uncertain/provisional names, detail links, favorite behavior, gallery.js navigation, portal-data schema, taxonomy, EXIF extraction, and Phase 3C are unchanged.
