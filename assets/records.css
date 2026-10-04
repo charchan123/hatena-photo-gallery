@@ -170,33 +170,24 @@ body.records-index {
   padding:0 12px 0 0;
 }
 
-.records-index .record-card-badge {
-  display:inline-flex;
-  align-items:center;
-  min-height:23px;
-  margin:0 0 7px;
-  padding:0 9px;
-  border-radius:999px;
-  background:#d84a24;
-  color:#fff;
-  font-size:.68rem;
-  font-weight:850;
-  letter-spacing:.04em;
-  animation:record-new-pulse 1.8s ease-in-out infinite;
-}
-
 .records-index .record-card-date {
   color:#758077;
   font-size:.76rem;
 }
 
 .records-index .record-card-title {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:5px 8px;
   margin:5px 0 8px;
   color:#24472f;
   font-size:1.04rem;
   font-weight:700;
   line-height:1.48;
 }
+
+.records-index .record-card-title > span:first-child { min-width:0; overflow-wrap:anywhere; }
 
 .records-index .record-card-meta {
   margin:0;
@@ -243,11 +234,6 @@ body.records-index {
   }
 }
 
-@keyframes record-new-pulse {
-  0%,100% { box-shadow:0 0 0 rgba(216,74,36,0); transform:scale(1); }
-  50% { box-shadow:0 0 0 4px rgba(216,74,36,.16); transform:scale(1.035); }
-}
-
 /* Legacy preview contracts retained for old callers; new-top uses portal.css. */
 .record-list-preview { grid-template-columns: 1fr; max-width: 620px; margin: 0 auto 20px; }
 .record-list-preview .record-card { display: grid; grid-template-columns: minmax(170px, 36%) 1fr; }
@@ -275,7 +261,9 @@ body.records-index {
   .records-index .record-card-thumb { width:108px; height:80px; }
   .records-index .record-card-body { padding-right:0; }
   .records-index .record-card-title { margin:4px 0 6px; font-size:.9rem; }
-  .records-index .record-card-meta { font-size:.72rem; }
+  .records-index .record-card-title > span:first-child { min-width:0; overflow-wrap:anywhere; }
+
+.records-index .record-card-meta { font-size:.72rem; }
   .record-list-preview .record-card { display:block; }
 }
 
@@ -283,7 +271,6 @@ body.records-index {
   .records-index .record-card,
   .records-index .record-card-thumb img,
   .records-index .records-footer .back-btn { transition:none; }
-  .records-index .record-card-badge { animation: none; }
   .records-index .record-card:hover .record-card-thumb img,
   .records-index .records-footer .back-btn:hover { transform:none; }
 }

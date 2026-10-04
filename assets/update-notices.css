@@ -1,0 +1,30 @@
+/* Small field-note stamps shared by the portal and observation archive. */
+.update-badge {
+  display:inline-flex;
+  flex:0 0 auto;
+  align-items:center;
+  justify-content:center;
+  box-sizing:border-box;
+  min-height:21px;
+  padding:1px 8px;
+  border:1px solid #e0bb53;
+  border-radius:7px;
+  background:#ffe293;
+  color:#3e4524;
+  font:800 10px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  letter-spacing:.035em;
+  white-space:nowrap;
+  text-shadow:none;
+  transform:rotate(-1.5deg);
+  vertical-align:middle;
+}
+.update-badge--update { background:#e0efbc; border-color:#b0ca7d; color:#294c2f; }
+.update-badge--identified { background:#e9def8; border-color:#c6ade4; color:#523477; }
+.portal-update-note { display:flex; flex-wrap:wrap; align-items:center; gap:5px 7px; margin-top:7px; font-size:.78rem; line-height:1.5; }
+.portal-update-summary { min-width:0; overflow-wrap:anywhere; }
+.portal-guide-note .portal-update-note { color:#365b3f; }
+.portal-update-link { color:inherit; text-decoration:none; }
+.portal-update-link:hover .portal-update-summary { text-decoration:underline; }
+.portal-update-link:focus-visible { outline:3px solid #eeb947; outline-offset:3px; }
+[data-notice-start][hidden] { display:none !important; }
+@media (prefers-reduced-motion:reduce) { .update-badge { transform:none; } }
