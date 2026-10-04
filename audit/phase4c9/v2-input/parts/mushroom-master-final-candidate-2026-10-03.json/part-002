@@ -1,0 +1,2355 @@
+          "source_ids": []
+        },
+        "order": {
+          "value": "Polyporales",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "family": {
+          "value": "Polyporaceae",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [
+          "research-ishikawa-hatinosutake"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「不食」。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘は半円形～腎臓形、小鱗片密生。傘の下面は管孔、ハチの巣状。柄は短い。",
+        "source_ids": [
+          "research-ishikawa-hatinosutake"
+        ]
+      },
+      "season": {
+        "summary": "春～秋",
+        "source_ids": [
+          "research-ishikawa-hatinosutake"
+        ]
+      },
+      "habitat": {
+        "summary": "広葉樹倒木、枯枝",
+        "source_ids": [
+          "research-ishikawa-hatinosutake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。 保留：scientific_name/DB受容名（Polyporus alveolaris / Neofavolus alveolaris）。資料掲載学名を保持。シノニム表示のみを理由に和名や別レコードへ統合しない。 保留：taxonomy.genus（null / Neofavolus）。競合または掲載学名の属と不一致のためnullを維持。"
+      }
+    },
+    {
+      "mushroom_id": "hatutake",
+      "canonical_name_ja": "ハツタケ",
+      "name_ja_sources": [
+        "research-ishikawa-hatutake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Lactarius hatsudake",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-ishikawa-hatutake"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-lactarius-hatsudake"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-gbif-lactarius-hatsudake"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-lactarius-hatsudake"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Russulales",
+          "source_ids": [
+            "research-gbif-lactarius-hatsudake"
+          ]
+        },
+        "family": {
+          "value": "ベニタケ科",
+          "source_ids": [
+            "research-ishikawa-hatutake"
+          ]
+        },
+        "genus": {
+          "value": "Lactarius",
+          "source_ids": [
+            "research-gbif-lactarius-hatsudake"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "edibility_reported",
+        "source_ids": [
+          "research-ishikawa-hatutake"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘は中央窪む。傘の下面はヒダ、直生～やや垂生、密。柄は髄状～中空。",
+        "source_ids": [
+          "research-ishikawa-hatutake"
+        ]
+      },
+      "season": {
+        "summary": "夏～秋",
+        "source_ids": [
+          "research-ishikawa-hatutake"
+        ]
+      },
+      "habitat": {
+        "summary": "マツ林",
+        "source_ids": [
+          "research-ishikawa-hatutake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。"
+      }
+    },
+    {
+      "mushroom_id": "haratake",
+      "canonical_name_ja": "ハラタケ",
+      "name_ja_sources": [
+        "research-ishikawa-haratake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Agaricus campestris",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-ishikawa-haratake"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-agaricus-campestris"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-agaricus-campestris"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Agaricales",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "family": {
+          "value": "Agaricaceae",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "genus": {
+          "value": "Agaricus",
+          "source_ids": [
+            "research-gbif-agaricus-campestris"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "edibility_reported",
+        "source_ids": [
+          "research-ishikawa-haratake"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘は絹糸状光沢有。傘の下面はヒダ、離生、密、ピンク色後黒褐色。柄は中実後中空、ツバ有。",
+        "source_ids": [
+          "research-ishikawa-haratake"
+        ]
+      },
+      "season": {
+        "summary": "夏～秋",
+        "source_ids": [
+          "research-ishikawa-haratake"
+        ]
+      },
+      "habitat": {
+        "summary": "畑地、芝生、草地",
+        "source_ids": [
+          "research-ishikawa-haratake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。"
+      }
+    },
+    {
+      "mushroom_id": "hidahatake",
+      "canonical_name_ja": "ヒダハタケ",
+      "name_ja_sources": [
+        "research-ishikawa-hidahatake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Paxillus involutus",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-ishikawa-hidahatake"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-paxillus-involutus"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-paxillus-involutus"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Boletales",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "family": {
+          "value": "Paxillaceae",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "genus": {
+          "value": "Paxillus",
+          "source_ids": [
+            "research-gbif-paxillus-involutus"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "poisonous_confirmed",
+        "source_ids": [
+          "research-ishikawa-hidahatake"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「毒」。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘は湿時粘性有、短い条線有。傘の下面はヒダ、垂生、密。柄は中実。",
+        "source_ids": [
+          "research-ishikawa-hidahatake"
+        ]
+      },
+      "season": {
+        "summary": "夏～秋",
+        "source_ids": [
+          "research-ishikawa-hidahatake"
+        ]
+      },
+      "habitat": {
+        "summary": "針・広葉樹林",
+        "source_ids": [
+          "research-ishikawa-hidahatake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。"
+      }
+    },
+    {
+      "mushroom_id": "hitoyotake",
+      "canonical_name_ja": "ヒトヨタケ",
+      "name_ja_sources": [
+        "research-ishikawa-hitoyotake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Coprinus atramentarius",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-ishikawa-hitoyotake"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-coprinus-atramentarius"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-gbif-coprinus-atramentarius"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-coprinus-atramentarius"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Agaricales",
+          "source_ids": [
+            "research-gbif-coprinus-atramentarius"
+          ]
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "poisonous_confirmed",
+        "source_ids": [
+          "research-ishikawa-hitoyotake",
+          "audit-shiojiri-hitoyotake"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「毒」。 塩尻市自然博物館はヒトヨタケの飲酒との併用による中毒を説明している。現在のpoisonous_confirmedは維持し、飲酒条件を明示する。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘は淡灰褐色細鱗片におおわれる。傘の下面はヒダ、上生、密、白色後黒色液化。柄は中空、不完全なツバ痕跡有。",
+        "source_ids": [
+          "research-ishikawa-hitoyotake"
+        ]
+      },
+      "season": {
+        "summary": "春～秋",
+        "source_ids": [
+          "research-ishikawa-hitoyotake"
+        ]
+      },
+      "habitat": {
+        "summary": "広葉樹朽木付近",
+        "source_ids": [
+          "research-ishikawa-hitoyotake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。 保留：scientific_name/DB受容名（Coprinus atramentarius / Coprinopsis atramentaria）。資料掲載学名を保持。シノニム表示のみを理由に和名や別レコードへ統合しない。 保留：taxonomy.family（null / ヒトヨタケ科 / ヒトヨタケ科 / Psathyrellaceae）。競合または掲載学名の属と不一致のためnullを維持。 保留：taxonomy.genus（null / ヒトヨタケ属 / Coprinopsis）。競合または掲載学名の属と不一致のためnullを維持。"
+      }
+    },
+    {
+      "mushroom_id": "bunasimeji",
+      "canonical_name_ja": "ブナシメジ",
+      "name_ja_sources": [
+        "research-ishikawa-bunasimeji"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Hypsizygus marmoreus",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-kyoto-fungi-2015"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-hypsizygus-marmoreus"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-hypsizygus-marmoreus"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Agaricales",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": "Hypsizygus",
+          "source_ids": [
+            "research-gbif-hypsizygus-marmoreus"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "edibility_reported",
+        "source_ids": [
+          "research-ishikawa-bunasimeji"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘は中央に大理石模様を表す。傘の下面はヒダ、直生、やや密。柄は中実。",
+        "source_ids": [
+          "research-ishikawa-bunasimeji"
+        ]
+      },
+      "season": {
+        "summary": "秋",
+        "source_ids": [
+          "research-ishikawa-bunasimeji"
+        ]
+      },
+      "habitat": {
+        "summary": "ブナの倒木",
+        "source_ids": [
+          "research-ishikawa-bunasimeji"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。 学名表記に資料差がある。採用値はsource_reportedであり受容名の最終判定ではない。 保留：資料掲載学名（Hypsizigus marmoreus / Hypsizygus marmoreus）。採用学名の出典を明示。誤記と分類差は区別し、同義関係の推測はしない。 保留：taxonomy.family（null / キシメジ科 / Lyophyllaceae）。和名を同じくする資料の科が異なるためnullとし、どちらが正しいかは保留。"
+      }
+    },
+    {
+      "mushroom_id": "bunaharitake",
+      "canonical_name_ja": "ブナハリタケ",
+      "name_ja_sources": [
+        "research-ishikawa-bunaharitake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Mycoleptodonoides aitchisonii",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-ishikawa-bunaharitake"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-mycoleptodonoides-aitchisonii"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-mycoleptodonoides-aitchisonii"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Polyporales",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": "Mycoleptodonoides",
+          "source_ids": [
+            "research-gbif-mycoleptodonoides-aitchisonii"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "edibility_reported",
+        "source_ids": [
+          "research-ishikawa-bunaharitake"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘は扇形、縁部鋸歯状。傘の下面は子実層托、針状。柄はなし。",
+        "source_ids": [
+          "research-ishikawa-bunaharitake"
+        ]
+      },
+      "season": {
+        "summary": "秋",
+        "source_ids": [
+          "research-ishikawa-bunaharitake"
+        ]
+      },
+      "habitat": {
+        "summary": "ブナ、イタヤカエデの枯幹",
+        "source_ids": [
+          "research-ishikawa-bunaharitake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。 保留：taxonomy.family（null / Meruliaceae / エゾハリタケ科 / Meruliaceae）。競合または掲載学名の属と不一致のためnullを維持。"
+      }
+    },
+    {
+      "mushroom_id": "hokoritake",
+      "canonical_name_ja": "ホコリタケ",
+      "name_ja_sources": [
+        "research-ishikawa-hokoritake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Lycoperdon perlatum",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-ishikawa-hokoritake"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-lycoperdon-perlatum"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-gbif-lycoperdon-perlatum"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-lycoperdon-perlatum"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Agaricales",
+          "source_ids": [
+            "research-gbif-lycoperdon-perlatum"
+          ]
+        },
+        "family": {
+          "value": "ホコリタケ科",
+          "source_ids": [
+            "research-ishikawa-hokoritake"
+          ]
+        },
+        "genus": {
+          "value": "Lycoperdon",
+          "source_ids": [
+            "research-gbif-lycoperdon-perlatum"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "edibility_reported",
+        "source_ids": [
+          "research-ishikawa-hokoritake"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「幼時食」。幼時に限定された食利用の記録であり、時期を限定しない食用判断へ拡張しない。公的資料に食用記述があるという記録であり安全保証ではない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "暗褐色の針でおおわれる、内部は白色後暗褐色の紛状となる。",
+        "source_ids": [
+          "research-ishikawa-hokoritake"
+        ]
+      },
+      "season": {
+        "summary": "梅雨～秋",
+        "source_ids": [
+          "research-ishikawa-hokoritake"
+        ]
+      },
+      "habitat": {
+        "summary": "林地、朽木",
+        "source_ids": [
+          "research-ishikawa-hokoritake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。"
+      }
+    },
+    {
+      "mushroom_id": "honsimeji",
+      "canonical_name_ja": "ホンシメジ",
+      "name_ja_sources": [
+        "research-ishikawa-honsimeji"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Lyophyllum shimeji",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-ishikawa-honsimeji"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-lyophyllum-shimeji"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-lyophyllum-shimeji"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Agaricales",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": "Lyophyllum",
+          "source_ids": [
+            "research-gbif-lyophyllum-shimeji"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "edibility_reported",
+        "source_ids": [
+          "research-ishikawa-honsimeji"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘は暗灰褐色～灰褐色、かすり模様。傘の下面はヒダ、湾生～やや垂生、密。柄は中実、下方肥大。",
+        "source_ids": [
+          "research-ishikawa-honsimeji"
+        ]
+      },
+      "season": {
+        "summary": "秋",
+        "source_ids": [
+          "research-ishikawa-honsimeji"
+        ]
+      },
+      "habitat": {
+        "summary": "コナラ、マツ混生林",
+        "source_ids": [
+          "research-ishikawa-honsimeji"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。 保留：taxonomy.family（null / Lyophyllaceae / キシメジ科 / Lyophyllaceae）。競合または掲載学名の属と不一致のためnullを維持。"
+      }
+    },
+    {
+      "mushroom_id": "maitake",
+      "canonical_name_ja": "マイタケ",
+      "name_ja_sources": [
+        "research-ishikawa-maitake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Grifola frondosa",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-ishikawa-maitake"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-grifola-frondosa"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-grifola-frondosa"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": "Grifola",
+          "source_ids": [
+            "research-gbif-grifola-frondosa"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "edibility_reported",
+        "source_ids": [
+          "research-ishikawa-maitake"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘は扇形～半円形、不鮮明な環紋有。傘の下面は管孔、垂生。柄は中実、多数分岐する。",
+        "source_ids": [
+          "research-ishikawa-maitake"
+        ]
+      },
+      "season": {
+        "summary": "秋",
+        "source_ids": [
+          "research-ishikawa-maitake"
+        ]
+      },
+      "habitat": {
+        "summary": "広葉樹根際",
+        "source_ids": [
+          "research-ishikawa-maitake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。 保留：taxonomy.order（null / Hymenochaetales / Polyporales）。競合または掲載学名の属と不一致のためnullを維持。 保留：taxonomy.family（null / Meripilaceae / タコウキン科 / Grifolaceae）。競合または掲載学名の属と不一致のためnullを維持。"
+      }
+    },
+    {
+      "mushroom_id": "matutake",
+      "canonical_name_ja": "マツタケ",
+      "name_ja_sources": [
+        "research-ishikawa-matutake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Tricholoma matsutake",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-ishikawa-matutake"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-tricholoma-matsutake"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-tricholoma-matsutake"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Agaricales",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "family": {
+          "value": "Tricholomataceae",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "genus": {
+          "value": "Tricholoma",
+          "source_ids": [
+            "research-gbif-tricholoma-matsutake"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "edibility_reported",
+        "source_ids": [
+          "research-ishikawa-matutake"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘はクリ褐色の鱗片有。傘の下面はヒダ、湾生、密。柄は中実、ツバ有。",
+        "source_ids": [
+          "research-ishikawa-matutake"
+        ]
+      },
+      "season": {
+        "summary": "秋",
+        "source_ids": [
+          "research-ishikawa-matutake"
+        ]
+      },
+      "habitat": {
+        "summary": "マツ林",
+        "source_ids": [
+          "research-ishikawa-matutake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。"
+      }
+    },
+    {
+      "mushroom_id": "mannentake",
+      "canonical_name_ja": "マンネンタケ",
+      "name_ja_sources": [
+        "research-ishikawa-mannentake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Ganoderma lucidum",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-ishikawa-mannentake"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-ganoderma-lucidum"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-ganoderma-lucidum"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": "マンネンタケ属",
+          "source_ids": [
+            "research-ffpri-kinoko060"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [
+          "research-ishikawa-mannentake"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「薬用、鑑賞」。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘は腎臓形、環溝としわ有、光沢有。傘の下面は管孔、孔口鮮黄色で触れると暗色化。柄は中実、硬質。",
+        "source_ids": [
+          "research-ishikawa-mannentake"
+        ]
+      },
+      "season": {
+        "summary": "夏～秋",
+        "source_ids": [
+          "research-ishikawa-mannentake"
+        ]
+      },
+      "habitat": {
+        "summary": "広葉樹切株",
+        "source_ids": [
+          "research-ishikawa-mannentake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。 保留：taxonomy.order（null / Hymenochaetales / Polyporales）。競合または掲載学名の属と不一致のためnullを維持。 保留：taxonomy.family（null / Ganodermataceae / マンネンタケ科 / マンネンタケ科 / Polyporaceae）。競合または掲載学名の属と不一致のためnullを維持。"
+      }
+    },
+    {
+      "mushroom_id": "mukitake",
+      "canonical_name_ja": "ムキタケ",
+      "name_ja_sources": [
+        "research-ishikawa-mukitake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Panellus serotinus",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-ishikawa-mukitake"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-panellus-serotinus"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-gbif-panellus-serotinus"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-panellus-serotinus"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Agaricales",
+          "source_ids": [
+            "research-gbif-panellus-serotinus"
+          ]
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "edibility_reported",
+        "source_ids": [
+          "research-ishikawa-mukitake"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘は微毛を密生、表皮はむきやすい。傘の下面はヒダ、直生、密。柄は短く側着生、中実。",
+        "source_ids": [
+          "research-ishikawa-mukitake"
+        ]
+      },
+      "season": {
+        "summary": "秋",
+        "source_ids": [
+          "research-ishikawa-mukitake"
+        ]
+      },
+      "habitat": {
+        "summary": "広葉樹の倒木",
+        "source_ids": [
+          "research-ishikawa-mukitake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。 保留：scientific_name/DB受容名（Panellus serotinus / Sarcomyxa serotina）。資料掲載学名を保持。シノニム表示のみを理由に和名や別レコードへ統合しない。 保留：taxonomy.family（null / キシメジ科 / Sarcomyxaceae）。競合または掲載学名の属と不一致のためnullを維持。 保留：taxonomy.genus（null / Sarcomyxa）。競合または掲載学名の属と不一致のためnullを維持。"
+      }
+    },
+    {
+      "mushroom_id": "murasakisimeji",
+      "canonical_name_ja": "ムラサキシメジ",
+      "name_ja_sources": [
+        "research-ishikawa-murasakisimeji"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Lepista nuda",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-ishikawa-murasakisimeji"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-lepista-nuda"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-lepista-nuda"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Agaricales",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "family": {
+          "value": "Tricholomataceae",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "genus": {
+          "value": "ムラサキシメジ属",
+          "source_ids": [
+            "research-ffpri-kimoko002"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "edibility_reported",
+        "source_ids": [
+          "research-ishikawa-murasakisimeji"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘は紫色。傘の下面はヒダ、湾生～やや垂生、密。柄は中実、基部は球根状に肥大。",
+        "source_ids": [
+          "research-ishikawa-murasakisimeji"
+        ]
+      },
+      "season": {
+        "summary": "晩秋",
+        "source_ids": [
+          "research-ishikawa-murasakisimeji"
+        ]
+      },
+      "habitat": {
+        "summary": "林内落葉堆積地",
+        "source_ids": [
+          "research-ishikawa-murasakisimeji"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。"
+      }
+    },
+    {
+      "mushroom_id": "murasakifuusentake",
+      "canonical_name_ja": "ムラサキフウセンタケ",
+      "name_ja_sources": [
+        "research-ishikawa-murasakifuusentake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Cortinarius violaceus",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-ishikawa-murasakifuusentake"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-cortinarius-violaceus"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-cortinarius-violaceus"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Agaricales",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "family": {
+          "value": "Cortinariaceae",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "genus": {
+          "value": "Cortinarius",
+          "source_ids": [
+            "research-gbif-cortinarius-violaceus"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "edibility_reported",
+        "source_ids": [
+          "research-ishikawa-murasakifuusentake"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘は暗紫色微毛密生、ささくれ状。傘の下面はヒダ、直生～上生、疎。柄は中実、基部球根状。",
+        "source_ids": [
+          "research-ishikawa-murasakifuusentake"
+        ]
+      },
+      "season": {
+        "summary": "秋",
+        "source_ids": [
+          "research-ishikawa-murasakifuusentake"
+        ]
+      },
+      "habitat": {
+        "summary": "広葉樹林",
+        "source_ids": [
+          "research-ishikawa-murasakifuusentake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。"
+      }
+    },
+    {
+      "mushroom_id": "yakoutake",
+      "canonical_name_ja": "ヤコウタケ",
+      "name_ja_sources": [
+        "research-ishikawa-yakoutake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Mycena chlorophos",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-ishikawa-yakoutake"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-mycena-chlorophos"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-mycena-chlorophos"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Agaricales",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": "Mycena",
+          "source_ids": [
+            "research-gbif-mycena-chlorophos"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [
+          "research-ishikawa-yakoutake"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「不明」。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘はゼラチン質におおわれ強い粘性有。傘の下面はヒダ、離生、やや密。柄は中空、基部は吸盤状。",
+        "source_ids": [
+          "research-ishikawa-yakoutake"
+        ]
+      },
+      "season": {
+        "summary": "梅雨～夏",
+        "source_ids": [
+          "research-ishikawa-yakoutake"
+        ]
+      },
+      "habitat": {
+        "summary": "広葉樹枯幹",
+        "source_ids": [
+          "research-ishikawa-yakoutake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。 保留：taxonomy.family（null / Mycenaceae / キシメジ科 / Mycenaceae）。競合または掲載学名の属と不一致のためnullを維持。"
+      }
+    },
+    {
+      "mushroom_id": "yamadoritakemodoki",
+      "canonical_name_ja": "ヤマドリタケモドキ",
+      "name_ja_sources": [
+        "research-ishikawa-yamadoritakemodoki"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Boletus reticulatus",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-ishikawa-yamadoritakemodoki"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-boletus-reticulatus"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-boletus-reticulatus"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Boletales",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "family": {
+          "value": "Boletaceae",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "genus": {
+          "value": "イグチ属",
+          "source_ids": [
+            "research-ffpri-kinoko042"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "edibility_reported",
+        "source_ids": [
+          "research-ishikawa-yamadoritakemodoki"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘は湿時粘性有。傘の下面は管孔、直生～離生。柄は中実、網目模様有。",
+        "source_ids": [
+          "research-ishikawa-yamadoritakemodoki"
+        ]
+      },
+      "season": {
+        "summary": "夏～秋",
+        "source_ids": [
+          "research-ishikawa-yamadoritakemodoki"
+        ]
+      },
+      "habitat": {
+        "summary": "ブナ科樹木",
+        "source_ids": [
+          "research-ishikawa-yamadoritakemodoki"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。"
+      }
+    },
+    {
+      "mushroom_id": "yamabusitake",
+      "canonical_name_ja": "ヤマブシタケ",
+      "name_ja_sources": [
+        "research-ishikawa-yamabusitake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Hericium erinaceum",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-ishikawa-yamabusitake"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "サンゴハリタケ科",
+          "source_ids": [
+            "research-ishikawa-yamabusitake"
+          ]
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "edibility_reported",
+        "source_ids": [
+          "research-ishikawa-yamabusitake"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "倒卵形で無数の針を垂下する。",
+        "source_ids": [
+          "research-ishikawa-yamabusitake"
+        ]
+      },
+      "season": {
+        "summary": "秋",
+        "source_ids": [
+          "research-ishikawa-yamabusitake"
+        ]
+      },
+      "habitat": {
+        "summary": "ブナ科樹幹",
+        "source_ids": [
+          "research-ishikawa-yamabusitake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。"
+      }
+    },
+    {
+      "mushroom_id": "rurihatutake",
+      "canonical_name_ja": "ルリハツタケ",
+      "name_ja_sources": [
+        "research-ishikawa-rurihatutake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Lactarius indigo",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-ishikawa-rurihatutake"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-lactarius-indigo"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-gbif-lactarius-indigo"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-lactarius-indigo"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Russulales",
+          "source_ids": [
+            "research-gbif-lactarius-indigo"
+          ]
+        },
+        "family": {
+          "value": "ベニタケ科",
+          "source_ids": [
+            "research-ishikawa-rurihatutake"
+          ]
+        },
+        "genus": {
+          "value": "Lactarius",
+          "source_ids": [
+            "research-gbif-lactarius-indigo"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "edibility_reported",
+        "source_ids": [
+          "research-ishikawa-rurihatutake"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘は湿時弱い粘性有、環紋有。傘の下面はヒダ、直生、やや密。柄は中実後中空。",
+        "source_ids": [
+          "research-ishikawa-rurihatutake"
+        ]
+      },
+      "season": {
+        "summary": "夏～秋",
+        "source_ids": [
+          "research-ishikawa-rurihatutake"
+        ]
+      },
+      "habitat": {
+        "summary": "広葉樹林",
+        "source_ids": [
+          "research-ishikawa-rurihatutake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。"
+      }
+    },
+    {
+      "mushroom_id": "shirotamagotengutake",
+      "canonical_name_ja": "シロタマゴテングタケ",
+      "name_ja_sources": [
+        "research-mhlw-0000142708",
+        "research-kyoto-fungi-2015"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Amanita verna",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-mhlw-0000142708"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-amanita-verna"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-amanita-verna"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Agaricales",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "family": {
+          "value": "Amanitaceae",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "genus": {
+          "value": "テングタケ属",
+          "source_ids": [
+            "research-mhlw-0000142708"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "poisonous_confirmed",
+        "source_ids": [
+          "research-mhlw-0000142708"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 厚生労働省が中毒症状・毒性を記載した記録であり、採取個体の同定資料ではない。 厚生労働省は中毒症状または事例を記載。"
+      },
+      "toxins": [
+        {
+          "name": "アマトキシン類",
+          "source_ids": [
+            "research-mhlw-0000142708"
+          ]
+        },
+        {
+          "name": "ファロトキシン類",
+          "source_ids": [
+            "research-mhlw-0000142708"
+          ]
+        }
+      ],
+      "features": {
+        "summary": "全体が白色で傘表面は滑らか。白いひだ、柄のつば、基部のつぼを持つ。",
+        "source_ids": [
+          "research-mhlw-0000142708"
+        ]
+      },
+      "season": {
+        "summary": "夏～秋",
+        "source_ids": [
+          "research-mhlw-0000142708"
+        ]
+      },
+      "habitat": {
+        "summary": "針葉樹林・広葉樹林の地上。",
+        "source_ids": [
+          "research-mhlw-0000142708"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。"
+      }
+    },
+    {
+      "mushroom_id": "benitengutake",
+      "canonical_name_ja": "ベニテングタケ",
+      "name_ja_sources": [
+        "research-mhlw-0000142728",
+        "research-kyoto-fungi-2015"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Amanita muscaria",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-kyoto-fungi-2015"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-amanita-muscaria"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-amanita-muscaria"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Agaricales",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "family": {
+          "value": "Amanitaceae",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "genus": {
+          "value": "Amanita",
+          "source_ids": [
+            "research-gbif-amanita-muscaria"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "poisonous_confirmed",
+        "source_ids": [
+          "research-mhlw-0000142728"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 厚生労働省が中毒症状・毒性を記載した記録であり、採取個体の同定資料ではない。 厚生労働省は中毒症状または事例を記載。"
+      },
+      "toxins": [
+        {
+          "name": "イボテン酸",
+          "source_ids": [
+            "research-mhlw-0000142728"
+          ]
+        },
+        {
+          "name": "ムシモール",
+          "source_ids": [
+            "research-mhlw-0000142728"
+          ]
+        }
+      ],
+      "features": {
+        "summary": "赤い傘に多数のいぼがあるが脱落することもある。ひだと柄は白く、柄上部につば、その下にささくれ状の組織がある。",
+        "source_ids": [
+          "research-mhlw-0000142728"
+        ]
+      },
+      "season": {
+        "summary": "夏～秋",
+        "source_ids": [
+          "research-mhlw-0000142728"
+        ]
+      },
+      "habitat": {
+        "summary": "マツなどの針葉樹やシラカバなどの広葉樹の地上。",
+        "source_ids": [
+          "research-mhlw-0000142728"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。 毒成分ムシモールは本文のムッシモール(muscimol)と同じ英名に対応する表記として収録。資料にない毒成分を推測追加していない。 保留：資料掲載学名（Amanita muscarina / Amanita muscaria）。京都府が掲載する学名をsource_reportedとして収録。厚労省表題の異なる綴りは統合せず記録。"
+      }
+    },
+    {
+      "mushroom_id": "dokusasako",
+      "canonical_name_ja": "ドクササコ",
+      "name_ja_sources": [
+        "research-mhlw-0000142713"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Clitocybe acromelalga",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-mhlw-0000142713"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-clitocybe-acromelalga"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-gbif-clitocybe-acromelalga"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-clitocybe-acromelalga"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Agaricales",
+          "source_ids": [
+            "research-gbif-clitocybe-acromelalga"
+          ]
+        },
+        "family": {
+          "value": "キシメジ科",
+          "source_ids": [
+            "research-mhlw-0000142713"
+          ]
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "poisonous_confirmed",
+        "source_ids": [
+          "research-mhlw-0000142713"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 厚生労働省が中毒症状・毒性を記載した記録であり、採取個体の同定資料ではない。 厚生労働省は中毒症状または事例を記載。"
+      },
+      "toxins": [
+        {
+          "name": "アクロメリン酸類",
+          "source_ids": [
+            "research-mhlw-0000142713"
+          ]
+        },
+        {
+          "name": "クリチジン",
+          "source_ids": [
+            "research-mhlw-0000142713"
+          ]
+        }
+      ],
+      "features": {
+        "summary": "傘は橙褐色～黄褐色で中央がくぼみ、縁が内側へ巻く。ひだは傘より淡く密。柄は繊維質で中実、一部中空のものもある。",
+        "source_ids": [
+          "research-mhlw-0000142713"
+        ]
+      },
+      "season": {
+        "summary": "秋",
+        "source_ids": [
+          "research-mhlw-0000142713"
+        ]
+      },
+      "habitat": {
+        "summary": "雑木林や竹林などの地上。",
+        "source_ids": [
+          "research-mhlw-0000142713"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。 保留：scientific_name/DB受容名（Clitocybe acromelalga / Paralepistopsis acromelalga）。資料掲載学名を保持。シノニム表示のみを理由に和名や別レコードへ統合しない。 保留：taxonomy.genus（null / カヤタケ属 / Paralepistopsis）。競合または掲載学名の属と不一致のためnullを維持。"
+      }
+    },
+    {
+      "mushroom_id": "dokuyamadori",
+      "canonical_name_ja": "ドクヤマドリ",
+      "name_ja_sources": [
+        "research-mhlw-0000143400"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Boletus venenatus",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-mhlw-0000143400"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-boletus-venenatus"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-gbif-boletus-venenatus"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-boletus-venenatus"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Boletales",
+          "source_ids": [
+            "research-gbif-boletus-venenatus"
+          ]
+        },
+        "family": {
+          "value": "イグチ科",
+          "source_ids": [
+            "research-mhlw-0000143400"
+          ]
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "poisonous_confirmed",
+        "source_ids": [
+          "research-mhlw-0000143400"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 厚生労働省が中毒症状・毒性を記載した記録であり、採取個体の同定資料ではない。 厚生労働省は中毒症状または事例を記載。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "黄褐色でまんじゅう形の大きな傘。下面は淡黄色～黄褐色の管孔。傷で青く変わった後に褐色になり、柄も黄褐色。",
+        "source_ids": [
+          "research-mhlw-0000143400"
+        ]
+      },
+      "season": {
+        "summary": "夏～秋",
+        "source_ids": [
+          "research-mhlw-0000143400"
+        ]
+      },
+      "habitat": {
+        "summary": "亜高山帯の針葉樹林内に発生。",
+        "source_ids": [
+          "research-mhlw-0000143400"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。 毒性本体が未同定または含有成分との因果が未確定のためtoxinsは空配列。安全や無毒を意味しない。 保留：scientific_name/DB受容名（Boletus venenatus / Sutorius venenatus）。資料掲載学名を保持。シノニム表示のみを理由に和名や別レコードへ統合しない。 保留：taxonomy.genus（null / ヤマドリタケ属 / Sutorius）。競合または掲載学名の属と不一致のためnullを維持。"
+      }
+    },
+    {
+      "mushroom_id": "nezumishimeji",
+      "canonical_name_ja": "ネズミシメジ",
+      "name_ja_sources": [
+        "research-mhlw-0000143409"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Tricholoma virgatum",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-mhlw-0000143409"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-tricholoma-virgatum"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-tricholoma-virgatum"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Agaricales",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "family": {
+          "value": "Tricholomataceae",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "genus": {
+          "value": "キシメジ属",
+          "source_ids": [
+            "research-mhlw-0000143409"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "poisonous_confirmed",
+        "source_ids": [
+          "research-mhlw-0000143409"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 厚生労働省が中毒症状・毒性を記載した記録であり、採取個体の同定資料ではない。 厚生労働省は中毒症状または事例を記載。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "灰色の傘は成熟後も中央が尖り、中央が黒みを帯びる。白いひだはのち灰色～淡黄土色。太い柄に繊維状の模様がある。",
+        "source_ids": [
+          "research-mhlw-0000143409"
+        ]
+      },
+      "season": {
+        "summary": "夏～秋",
+        "source_ids": [
+          "research-mhlw-0000143409"
+        ]
+      },
+      "habitat": {
+        "summary": "マツなど針葉樹の地上。",
+        "source_ids": [
+          "research-mhlw-0000143409"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。 毒性本体が未同定または含有成分との因果が未確定のためtoxinsは空配列。安全や無毒を意味しない。"
+      }
+    },
+    {
+      "mushroom_id": "haiiroshimeji",
+      "canonical_name_ja": "ハイイロシメジ",
+      "name_ja_sources": [
+        "research-mhlw-0000143411"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Clitocybe nebularis",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-mhlw-0000143411"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-clitocybe-nebularis"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-clitocybe-nebularis"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Agaricales",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "family": {
+          "value": "Tricholomataceae",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "genus": {
+          "value": "カヤタケ属",
+          "source_ids": [
+            "research-mhlw-0000143411"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "poisonous_confirmed",
+        "source_ids": [
+          "research-mhlw-0000143411"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 厚生労働省が中毒症状・毒性を記載した記録であり、採取個体の同定資料ではない。 厚生労働省は中毒症状または事例を記載。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "淡灰色の傘は中央が濃く、成熟すると平らになり、中央がくぼむ場合がある。ひだは白色～淡灰色またはクリーム色で密。",
+        "source_ids": [
+          "research-mhlw-0000143411"
+        ]
+      },
+      "season": {
+        "summary": "秋～晩秋",
+        "source_ids": [
+          "research-mhlw-0000143411"
+        ]
+      },
+      "habitat": {
+        "summary": "落葉の多い地上に群生または散生。",
+        "source_ids": [
+          "research-mhlw-0000143411"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。 毒性本体が未同定または含有成分との因果が未確定のためtoxinsは空配列。安全や無毒を意味しない。"
+      }
+    },
+    {
+      "mushroom_id": "hikageshibiretake",
+      "canonical_name_ja": "ヒカゲシビレタケ",
+      "name_ja_sources": [
+        "research-mhlw-0000143413"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Psilocybe argentipes",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-mhlw-0000143413"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-psilocybe-argentipes"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-psilocybe-argentipes"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Agaricales",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": "シビレタケ属",
+          "source_ids": [
+            "research-mhlw-0000143413"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "poisonous_confirmed",
+        "source_ids": [
+          "research-mhlw-0000143413"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 厚生労働省が中毒症状・毒性を記載した記録であり、採取個体の同定資料ではない。 厚生労働省は中毒症状または事例を記載。"
+      },
+      "toxins": [
+        {
+          "name": "シロシビン",
+          "source_ids": [
+            "research-mhlw-0000143413"
+          ]
+        },
+        {
+          "name": "シロシン",
+          "source_ids": [
+            "research-mhlw-0000143413"
+          ]
+        }
+      ],
+      "features": {
+        "summary": "傘は黄土色～褐色で中央が尖り、湿時に粘性がある。紫褐色のひだ、細長い中空の柄を持つ。肉は傷を付けると青変する。",
+        "source_ids": [
+          "research-mhlw-0000143413"
+        ]
+      },
+      "season": {
+        "summary": "春～秋",
+        "source_ids": [
+          "research-mhlw-0000143413"
+        ]
+      },
+      "habitat": {
+        "summary": "公園や林の日陰。",
+        "source_ids": [
+          "research-mhlw-0000143413"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。 保留：scientific_name/DB受容名（Psilocybe argentipes / Psilocybe subcaerulipes）。資料掲載学名を保持。シノニム表示のみを理由に和名や別レコードへ統合しない。 保留：taxonomy.family（null / Strophariaceae / モエギタケ科 / Hymenogastraceae）。競合または掲載学名の属と不一致のためnullを維持。"
+      }
+    },
+    {
+      "mushroom_id": "shiitake",
+      "canonical_name_ja": "シイタケ",
+      "name_ja_sources": [
+        "research-ffpri-kinoko003"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Lentinula edodes",
+        "name_status": "source_reported",
+        "source_ids": [
+          "research-ffpri-kinoko003"
+        ]
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "research-gbif-lentinula-edodes"
+          ]
+        },
+        "phylum": {
+          "value": "Basidiomycota",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "class": {
+          "value": "Agaricomycetes",
+          "source_ids": [
+            "research-gbif-lentinula-edodes"
+          ]
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": "Agaricales",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": "シイタケ属",
+          "source_ids": [
+            "research-ffpri-kinoko003"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "edibility_reported",
+        "source_ids": [
+          "research-gap-maff-kinoko2016"
+        ],
+        "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 農林水産省が食用きのこと明記した利用記録。野生個体の判定には使用しない。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "若い傘の縁に白い綿毛状の鱗片があり、成長とともに消える。傘がひび割れることもある。ひだは白色で、柄は上部が白く下方ほど褐色。",
+        "source_ids": [
+          "research-mhlw-0000142114"
+        ]
+      },
+      "season": {
+        "summary": "春と秋。",
+        "source_ids": [
+          "research-ffpri-kinoko003",
+          "research-gap-maff-kinoko2016"
+        ]
+      },
+      "habitat": {
+        "summary": "ブナ科の倒木・枯木に発生。",
+        "source_ids": [
+          "research-ffpri-kinoko003"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-10-03",
+        "notes": "公的種別資料の記載を収録。現行受容学名・資料間の分類差・毒性本体は未解決部分を含むためpartial。未確認項目は推測しない。 形態の根拠は厚生労働省ツキヨタケ詳細の比較表「シイタケ」列（Lentinula edodes）を確認。隣接するムキタケ・ヒラタケ列から転記していない。 保留：taxonomy.family（null / Omphalotaceae / キシメジ科 / Omphalotaceae）。競合または掲載学名の属と不一致のためnullを維持。"
+      }
+    }
+  ]
+}

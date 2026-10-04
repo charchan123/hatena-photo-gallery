@@ -1,0 +1,5000 @@
+      "evidence_refs": [
+        "FCE-259-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "柄：中空、根状に長くのびる",
+        "source_ids": [
+          "research-ishikawa-tuetake"
+        ],
+        "evidence_refs": [
+          "FCE-259-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-259",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f1cd319d6472cf615c05264c766c3a8a3b49bb34bfa35b38cc077e73f04a6be3"
+      }
+    },
+    {
+      "decision_id": "FCR-260",
+      "mushroom_id": "tukiyotake",
+      "facet_id": "cap_scales_warts",
+      "evidence_text": "傘：半円形、小鱗片を密着",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-tukiyotake"
+      ],
+      "evidence_refs": [
+        "FCE-260-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "傘：半円形、小鱗片を密着",
+        "source_ids": [
+          "research-ishikawa-tukiyotake"
+        ],
+        "evidence_refs": [
+          "FCE-260-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-260",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c5ecd2eb642bd1bce97949ec754504f8f17c6154f23ce87114c27ca8d9a83322"
+      }
+    },
+    {
+      "decision_id": "FCR-261",
+      "mushroom_id": "tukiyotake",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、垂生、暗中で発光",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-tukiyotake"
+      ],
+      "evidence_refs": [
+        "FCE-261-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、垂生、暗中で発光",
+        "source_ids": [
+          "research-ishikawa-tukiyotake"
+        ],
+        "evidence_refs": [
+          "FCE-261-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-261",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "75084c020eb52d2608d92371e04c1f024c81b87dd53b2bf631b0d568b0eeb165"
+      }
+    },
+    {
+      "decision_id": "FCR-262",
+      "mushroom_id": "tukiyotake",
+      "facet_id": "stem_solid",
+      "evidence_text": "柄：短く中実",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-tukiyotake"
+      ],
+      "evidence_refs": [
+        "FCE-262-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：短く中実",
+        "source_ids": [
+          "research-ishikawa-tukiyotake"
+        ],
+        "evidence_refs": [
+          "FCE-262-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-262",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "28d1c5cc3227221dbb58c3d9d05ebbd8fd6eede6e228d7f397d0a6fc851a0291"
+      }
+    },
+    {
+      "decision_id": "FCR-263",
+      "mushroom_id": "turiganetake",
+      "facet_id": "pores",
+      "evidence_text": "傘の下面：菅孔、多層",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-turiganetake"
+      ],
+      "evidence_refs": [
+        "FCE-263-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "pores",
+        "evidence_text": "傘の下面：菅孔、多層",
+        "source_ids": [
+          "research-ishikawa-turiganetake"
+        ],
+        "evidence_refs": [
+          "FCE-263-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-263",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b0eb578716604726ee9d538aaece0f5e86eba0a459e9233dc22ef3a50fefbef7"
+      }
+    },
+    {
+      "decision_id": "FCR-264",
+      "mushroom_id": "turutake",
+      "facet_id": "cap_sticky",
+      "evidence_text": "傘：湿時粘性有、条線有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-turutake"
+      ],
+      "evidence_refs": [
+        "FCE-264-1"
+      ],
+      "qualifiers": [
+        "湿時という条件を保持"
+      ],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_sticky",
+        "evidence_text": "傘：湿時粘性有、条線有",
+        "source_ids": [
+          "research-ishikawa-turutake"
+        ],
+        "evidence_refs": [
+          "FCE-264-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "湿時という条件を保持"
+        ],
+        "review": {
+          "decision_id": "FCR-264",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "7691878a675bdff39207932390c7d6554b0343cdd531628aa75be175411fc8a9"
+      }
+    },
+    {
+      "decision_id": "FCR-265",
+      "mushroom_id": "turutake",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、離生、密",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-turutake"
+      ],
+      "evidence_refs": [
+        "FCE-265-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、離生、密",
+        "source_ids": [
+          "research-ishikawa-turutake"
+        ],
+        "evidence_refs": [
+          "FCE-265-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-265",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "11e5a9fb2a00b69c6015414881017d208d3b6d6503883456c7f22bb548cd35ca"
+      }
+    },
+    {
+      "decision_id": "FCR-266",
+      "mushroom_id": "turutake",
+      "facet_id": "volva",
+      "evidence_text": "柄：中空、ツバなし、ツボは膜質さや状",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-turutake"
+      ],
+      "evidence_refs": [
+        "FCE-266-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "volva",
+        "evidence_text": "柄：中空、ツバなし、ツボは膜質さや状",
+        "source_ids": [
+          "research-ishikawa-turutake"
+        ],
+        "evidence_refs": [
+          "FCE-266-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-266",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "dc6b01a80fa03cc7e7f549867ff037dc5ef5f9c4d9b9d5a30b8ce3bbaba63e41"
+      }
+    },
+    {
+      "decision_id": "FCR-267",
+      "mushroom_id": "turutake",
+      "facet_id": "stem_hollow",
+      "evidence_text": "柄：中空、ツバなし、ツボは膜質さや状",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-turutake"
+      ],
+      "evidence_refs": [
+        "FCE-267-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "柄：中空、ツバなし、ツボは膜質さや状",
+        "source_ids": [
+          "research-ishikawa-turutake"
+        ],
+        "evidence_refs": [
+          "FCE-267-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-267",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "e7c331a1686c4aa93df1c1f76c123f4791d8f0ccae85222273ac27ad9c65c9ee"
+      }
+    },
+    {
+      "decision_id": "FCR-268",
+      "mushroom_id": "tengutake",
+      "facet_id": "cap_scales_warts",
+      "evidence_text": "傘：白色のイボが散在、条線有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-tengutake"
+      ],
+      "evidence_refs": [
+        "FCE-268-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "傘：白色のイボが散在、条線有",
+        "source_ids": [
+          "research-ishikawa-tengutake"
+        ],
+        "evidence_refs": [
+          "FCE-268-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-268",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b4abc489e16bbdd818903d4d58bd4c08d8f0619a8cdaae982b65ebe534609c4b"
+      }
+    },
+    {
+      "decision_id": "FCR-269",
+      "mushroom_id": "tengutake",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、離生、密",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-tengutake"
+      ],
+      "evidence_refs": [
+        "FCE-269-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、離生、密",
+        "source_ids": [
+          "research-ishikawa-tengutake"
+        ],
+        "evidence_refs": [
+          "FCE-269-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-269",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "4dd8af98e5ad4149c51d18b2a8c0e1895d36f6d3125c8085c5b0d2f4f70b8508"
+      }
+    },
+    {
+      "decision_id": "FCR-270",
+      "mushroom_id": "tengutake",
+      "facet_id": "ring",
+      "evidence_text": "柄：中空、ツバ有、ツボは環状",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-tengutake"
+      ],
+      "evidence_refs": [
+        "FCE-270-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "ring",
+        "evidence_text": "柄：中空、ツバ有、ツボは環状",
+        "source_ids": [
+          "research-ishikawa-tengutake"
+        ],
+        "evidence_refs": [
+          "FCE-270-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-270",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "5bb5b58b846a6e3cdfb68ae866f244244b10674397044838faac78349e469383"
+      }
+    },
+    {
+      "decision_id": "FCR-271",
+      "mushroom_id": "tengutake",
+      "facet_id": "volva",
+      "evidence_text": "柄：中空、ツバ有、ツボは環状",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-tengutake"
+      ],
+      "evidence_refs": [
+        "FCE-271-1"
+      ],
+      "qualifiers": [
+        "完全な袋状つぼに限定しない。環状・襟状・不完全・破片等の原文限定を表示"
+      ],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "volva",
+        "evidence_text": "柄：中空、ツバ有、ツボは環状",
+        "source_ids": [
+          "research-ishikawa-tengutake"
+        ],
+        "evidence_refs": [
+          "FCE-271-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "完全な袋状つぼに限定しない。環状・襟状・不完全・破片等の原文限定を表示"
+        ],
+        "review": {
+          "decision_id": "FCR-271",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "42f6aeacd89002b35aae42ae97b464564f6e25080002578ef5ffc1377b2700fd"
+      }
+    },
+    {
+      "decision_id": "FCR-272",
+      "mushroom_id": "tengutake",
+      "facet_id": "stem_hollow",
+      "evidence_text": "柄：中空、ツバ有、ツボは環状",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-tengutake"
+      ],
+      "evidence_refs": [
+        "FCE-272-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "柄：中空、ツバ有、ツボは環状",
+        "source_ids": [
+          "research-ishikawa-tengutake"
+        ],
+        "evidence_refs": [
+          "FCE-272-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-272",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "6016c05c7d3bd2703b37d87f58685cbc0e6c464b0fae3731b428e25262221192"
+      }
+    },
+    {
+      "decision_id": "FCR-273",
+      "mushroom_id": "tokiirohiratake",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、垂生、密～やや疎",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-tokiirohiratake"
+      ],
+      "evidence_refs": [
+        "FCE-273-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、垂生、密～やや疎",
+        "source_ids": [
+          "research-ishikawa-tokiirohiratake"
+        ],
+        "evidence_refs": [
+          "FCE-273-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-273",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "d44781fddee26ad59f82ce42632c73f1ec334bbe83a6870df48bb998cac65811"
+      }
+    },
+    {
+      "decision_id": "FCR-274",
+      "mushroom_id": "dokukarakasatake",
+      "facet_id": "cap_scales_warts",
+      "evidence_text": "傘：黄褐色鱗片を散在",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-dokukarakasatake"
+      ],
+      "evidence_refs": [
+        "FCE-274-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "傘：黄褐色鱗片を散在",
+        "source_ids": [
+          "research-ishikawa-dokukarakasatake"
+        ],
+        "evidence_refs": [
+          "FCE-274-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-274",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "d3580e2ee3b9ba014f49c6ba836429af5f7a70c4e675c65bf5dcc65b7704716f"
+      }
+    },
+    {
+      "decision_id": "FCR-275",
+      "mushroom_id": "dokukarakasatake",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、隔生、密",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-dokukarakasatake"
+      ],
+      "evidence_refs": [
+        "FCE-275-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、隔生、密",
+        "source_ids": [
+          "research-ishikawa-dokukarakasatake"
+        ],
+        "evidence_refs": [
+          "FCE-275-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-275",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f0d0d1b8938f297f8b7b490d9dea43d7406ac19e60d46ec70a5e94b602eabcb1"
+      }
+    },
+    {
+      "decision_id": "FCR-276",
+      "mushroom_id": "dokukarakasatake",
+      "facet_id": "ring",
+      "evidence_text": "柄：中空、基部カブラ状に肥大、ツバ有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-dokukarakasatake"
+      ],
+      "evidence_refs": [
+        "FCE-276-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "ring",
+        "evidence_text": "柄：中空、基部カブラ状に肥大、ツバ有",
+        "source_ids": [
+          "research-ishikawa-dokukarakasatake"
+        ],
+        "evidence_refs": [
+          "FCE-276-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-276",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "7e725e1e9c01b8aedc1113a3aed08b0ea5ad269cab1606bf6449b065db42ef83"
+      }
+    },
+    {
+      "decision_id": "FCR-277",
+      "mushroom_id": "dokukarakasatake",
+      "facet_id": "stem_hollow",
+      "evidence_text": "柄：中空、基部カブラ状に肥大、ツバ有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-dokukarakasatake"
+      ],
+      "evidence_refs": [
+        "FCE-277-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "柄：中空、基部カブラ状に肥大、ツバ有",
+        "source_ids": [
+          "research-ishikawa-dokukarakasatake"
+        ],
+        "evidence_refs": [
+          "FCE-277-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-277",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "90fde639422c13c515190918ea98f606143c0e67abb400c63d2026eb84ec14b9"
+      }
+    },
+    {
+      "decision_id": "FCR-278",
+      "mushroom_id": "dokubenitake",
+      "facet_id": "cap_sticky",
+      "evidence_text": "傘：湿時粘性有、条線有、表皮はぎやすい",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-dokubenitake"
+      ],
+      "evidence_refs": [
+        "FCE-278-1"
+      ],
+      "qualifiers": [
+        "湿時という条件を保持"
+      ],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_sticky",
+        "evidence_text": "傘：湿時粘性有、条線有、表皮はぎやすい",
+        "source_ids": [
+          "research-ishikawa-dokubenitake"
+        ],
+        "evidence_refs": [
+          "FCE-278-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "湿時という条件を保持"
+        ],
+        "review": {
+          "decision_id": "FCR-278",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "6b9f78af20fc78a19bff9d7872c55782eec0c1792dceb0c08b68eba12ba058f9"
+      }
+    },
+    {
+      "decision_id": "FCR-279",
+      "mushroom_id": "dokubenitake",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、直生～離生、やや疎",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-dokubenitake"
+      ],
+      "evidence_refs": [
+        "FCE-279-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、直生～離生、やや疎",
+        "source_ids": [
+          "research-ishikawa-dokubenitake"
+        ],
+        "evidence_refs": [
+          "FCE-279-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-279",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "a2e6ab47dc3ba4eb08eec8a736b569a546a07691510067d8b154b73ce1f8a3a7"
+      }
+    },
+    {
+      "decision_id": "FCR-280",
+      "mushroom_id": "nameko",
+      "facet_id": "cap_sticky",
+      "evidence_text": "傘：粘液におおわれる",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-nameko"
+      ],
+      "evidence_refs": [
+        "FCE-280-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_sticky",
+        "evidence_text": "傘：粘液におおわれる",
+        "source_ids": [
+          "research-ishikawa-nameko"
+        ],
+        "evidence_refs": [
+          "FCE-280-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-280",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "d79df63d5712d33bb28fbfa494dda5d15a54a2b4ea75b4f4e85fddd8ae196c85"
+      }
+    },
+    {
+      "decision_id": "FCR-281",
+      "mushroom_id": "nameko",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、直生、密、淡黄色後褐色",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-nameko"
+      ],
+      "evidence_refs": [
+        "FCE-281-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、直生、密、淡黄色後褐色",
+        "source_ids": [
+          "research-ishikawa-nameko"
+        ],
+        "evidence_refs": [
+          "FCE-281-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-281",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "aeee4b0d84d74f50e9887104dd66565b2b93f4be27df5e16733d198cc60eae96"
+      }
+    },
+    {
+      "decision_id": "FCR-282",
+      "mushroom_id": "nameko",
+      "facet_id": "ring",
+      "evidence_text": "柄：中実、粘液におおわれる、ツバ有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-nameko"
+      ],
+      "evidence_refs": [
+        "FCE-282-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "ring",
+        "evidence_text": "柄：中実、粘液におおわれる、ツバ有",
+        "source_ids": [
+          "research-ishikawa-nameko"
+        ],
+        "evidence_refs": [
+          "FCE-282-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-282",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "62613d57834bc0870ac190f4d7df25383e70c0406d16ddd09669b71e97c3148b"
+      }
+    },
+    {
+      "decision_id": "FCR-283",
+      "mushroom_id": "nameko",
+      "facet_id": "stem_solid",
+      "evidence_text": "柄：中実、粘液におおわれる、ツバ有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-nameko"
+      ],
+      "evidence_refs": [
+        "FCE-283-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、粘液におおわれる、ツバ有",
+        "source_ids": [
+          "research-ishikawa-nameko"
+        ],
+        "evidence_refs": [
+          "FCE-283-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-283",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "1bda9c483f31654ec9ca08a9dd923471b7c8ce482b1e3d6180407e40207f184e"
+      }
+    },
+    {
+      "decision_id": "FCR-284",
+      "mushroom_id": "nameko",
+      "facet_id": "stem_sticky",
+      "evidence_text": "柄：中実、粘液におおわれる、ツバ有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-nameko"
+      ],
+      "evidence_refs": [
+        "FCE-284-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_sticky",
+        "evidence_text": "柄：中実、粘液におおわれる、ツバ有",
+        "source_ids": [
+          "research-ishikawa-nameko"
+        ],
+        "evidence_refs": [
+          "FCE-284-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-284",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "70c748370c74fd942ebb69d51791c3498c36827861d3853d3741400df7be9e41"
+      }
+    },
+    {
+      "decision_id": "FCR-285",
+      "mushroom_id": "naratake",
+      "facet_id": "cap_scales_warts",
+      "evidence_text": "傘：中央に暗褐色の鱗片密生",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-naratake"
+      ],
+      "evidence_refs": [
+        "FCE-285-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "傘：中央に暗褐色の鱗片密生",
+        "source_ids": [
+          "research-ishikawa-naratake"
+        ],
+        "evidence_refs": [
+          "FCE-285-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-285",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "351b78a6d514b4aec138c770439dd4a0942c0dfdddced27d50ca8e0361b0ea10"
+      }
+    },
+    {
+      "decision_id": "FCR-286",
+      "mushroom_id": "naratake",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、直生～垂生、やや密",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-naratake"
+      ],
+      "evidence_refs": [
+        "FCE-286-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、直生～垂生、やや密",
+        "source_ids": [
+          "research-ishikawa-naratake"
+        ],
+        "evidence_refs": [
+          "FCE-286-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-286",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b5e7b4da0d41ff3c41506c08510b4b20421510acbf8be687faf68423ee622fbe"
+      }
+    },
+    {
+      "decision_id": "FCR-287",
+      "mushroom_id": "naratake",
+      "facet_id": "ring",
+      "evidence_text": "柄：永続性のツバ有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-naratake"
+      ],
+      "evidence_refs": [
+        "FCE-287-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "ring",
+        "evidence_text": "柄：永続性のツバ有",
+        "source_ids": [
+          "research-ishikawa-naratake"
+        ],
+        "evidence_refs": [
+          "FCE-287-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-287",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "a5147bdf4fb29f5c244598228b1a36027b7fae977a9d9a1ca73794df668668e6"
+      }
+    },
+    {
+      "decision_id": "FCR-288",
+      "mushroom_id": "naratakemodoki",
+      "facet_id": "cap_scales_warts",
+      "evidence_text": "傘：中央に暗色の鱗片を密生",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-naratakemodoki"
+      ],
+      "evidence_refs": [
+        "FCE-288-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "傘：中央に暗色の鱗片を密生",
+        "source_ids": [
+          "research-ishikawa-naratakemodoki"
+        ],
+        "evidence_refs": [
+          "FCE-288-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-288",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "05001854b50516a6704dde83d9f0222927abd9b372c5ca514c521cc3ebf72ae5"
+      }
+    },
+    {
+      "decision_id": "FCR-289",
+      "mushroom_id": "naratakemodoki",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、直生～垂生、やや密",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-naratakemodoki"
+      ],
+      "evidence_refs": [
+        "FCE-289-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、直生～垂生、やや密",
+        "source_ids": [
+          "research-ishikawa-naratakemodoki"
+        ],
+        "evidence_refs": [
+          "FCE-289-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-289",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "7edb5d15fbaa5342876cf3616f1c8a600a1f4a611cf7c4a1272caa786eaae35a"
+      }
+    },
+    {
+      "decision_id": "FCR-290",
+      "mushroom_id": "naratakemodoki",
+      "facet_id": "stem_solid",
+      "evidence_text": "柄：中実、ツバなし",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-naratakemodoki"
+      ],
+      "evidence_refs": [
+        "FCE-290-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、ツバなし",
+        "source_ids": [
+          "research-ishikawa-naratakemodoki"
+        ],
+        "evidence_refs": [
+          "FCE-290-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-290",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "a5b112ec3aca11978df616cb921a21a5e54a04b1013665de82116d54bad98f7d"
+      }
+    },
+    {
+      "decision_id": "FCR-291",
+      "mushroom_id": "nigakuritake",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、湾生～上生、密、いおう色後暗紫褐色",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-nigakuritake"
+      ],
+      "evidence_refs": [
+        "FCE-291-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、湾生～上生、密、いおう色後暗紫褐色",
+        "source_ids": [
+          "research-ishikawa-nigakuritake"
+        ],
+        "evidence_refs": [
+          "FCE-291-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-291",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "99e99597e5f90fbf94e8d966b688c0c3f81fa9fdc95664303a6a3ab84c460efc"
+      }
+    },
+    {
+      "decision_id": "FCR-293",
+      "mushroom_id": "nisekurohatu",
+      "facet_id": "cap_depressed",
+      "evidence_text": "傘：中央窪む、灰褐色",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-nisekurohatu"
+      ],
+      "evidence_refs": [
+        "FCE-293-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_depressed",
+        "evidence_text": "傘：中央窪む、灰褐色",
+        "source_ids": [
+          "research-ishikawa-nisekurohatu"
+        ],
+        "evidence_refs": [
+          "FCE-293-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-293",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b1d555bd06615eb02a45acc504de7e1f23ac96e57279fcdcb7783bd4431b68e7"
+      }
+    },
+    {
+      "decision_id": "FCR-294",
+      "mushroom_id": "nisekurohatu",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、直生～やや垂生、疎、傷口赤変するが黒変しない",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-nisekurohatu"
+      ],
+      "evidence_refs": [
+        "FCE-294-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、直生～やや垂生、疎、傷口赤変するが黒変しない",
+        "source_ids": [
+          "research-ishikawa-nisekurohatu"
+        ],
+        "evidence_refs": [
+          "FCE-294-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-294",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b4fb14a75a8e0845e73af49e517db7101da37ea9ee555891c21c9ad17f02fc87"
+      }
+    },
+    {
+      "decision_id": "FCR-295",
+      "mushroom_id": "nisekurohatu",
+      "facet_id": "stem_solid",
+      "evidence_text": "柄：中実",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-nisekurohatu"
+      ],
+      "evidence_refs": [
+        "FCE-295-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実",
+        "source_ids": [
+          "research-ishikawa-nisekurohatu"
+        ],
+        "evidence_refs": [
+          "FCE-295-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-295",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "cf2e605200b08053e87e51bb974f3124089c9a15b279beced101e63a0d84c23b"
+      }
+    },
+    {
+      "decision_id": "FCR-296",
+      "mushroom_id": "numeriiguti",
+      "facet_id": "cap_sticky",
+      "evidence_text": "傘：強い粘性有、表皮はぎやすい",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-numeriiguti"
+      ],
+      "evidence_refs": [
+        "FCE-296-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_sticky",
+        "evidence_text": "傘：強い粘性有、表皮はぎやすい",
+        "source_ids": [
+          "research-ishikawa-numeriiguti"
+        ],
+        "evidence_refs": [
+          "FCE-296-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-296",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "4fddbb32a977e33989d22ef5eb0dfa83cc0e553c388bc6fa0d6374d0e0bcc7ab"
+      }
+    },
+    {
+      "decision_id": "FCR-297",
+      "mushroom_id": "numeriiguti",
+      "facet_id": "pores",
+      "evidence_text": "傘の下面：菅孔、直生～やや垂生",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-numeriiguti"
+      ],
+      "evidence_refs": [
+        "FCE-297-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "pores",
+        "evidence_text": "傘の下面：菅孔、直生～やや垂生",
+        "source_ids": [
+          "research-ishikawa-numeriiguti"
+        ],
+        "evidence_refs": [
+          "FCE-297-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-297",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "2eeb190c5e9e72a370e81a461040c2678bd6eba4eed975a57501f051eaad0e8a"
+      }
+    },
+    {
+      "decision_id": "FCR-298",
+      "mushroom_id": "numeriiguti",
+      "facet_id": "ring",
+      "evidence_text": "柄：細粒点密布、ツバ有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-numeriiguti"
+      ],
+      "evidence_refs": [
+        "FCE-298-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "ring",
+        "evidence_text": "柄：細粒点密布、ツバ有",
+        "source_ids": [
+          "research-ishikawa-numeriiguti"
+        ],
+        "evidence_refs": [
+          "FCE-298-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-298",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "26c10893a9a5e098f2b76added33445b863b1e365680798f96e31216cf0bf5f2"
+      }
+    },
+    {
+      "decision_id": "FCR-299",
+      "mushroom_id": "numerisugitake",
+      "facet_id": "cap_sticky",
+      "evidence_text": "傘：強い粘性有、三角形の鱗片散在",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-numerisugitake"
+      ],
+      "evidence_refs": [
+        "FCE-299-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_sticky",
+        "evidence_text": "傘：強い粘性有、三角形の鱗片散在",
+        "source_ids": [
+          "research-ishikawa-numerisugitake"
+        ],
+        "evidence_refs": [
+          "FCE-299-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-299",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "3bbb527893ae659b5322b2a4823f4d1dd4eb2f98697bfec0487eb3b7be2731be"
+      }
+    },
+    {
+      "decision_id": "FCR-300",
+      "mushroom_id": "numerisugitake",
+      "facet_id": "cap_scales_warts",
+      "evidence_text": "傘：強い粘性有、三角形の鱗片散在",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-numerisugitake"
+      ],
+      "evidence_refs": [
+        "FCE-300-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "傘：強い粘性有、三角形の鱗片散在",
+        "source_ids": [
+          "research-ishikawa-numerisugitake"
+        ],
+        "evidence_refs": [
+          "FCE-300-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-300",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "0a1c91f13aa2b7cb508f5364867c5b10a20910582b518f2c589e2146a29cabd6"
+      }
+    },
+    {
+      "decision_id": "FCR-301",
+      "mushroom_id": "numerisugitake",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、直生～上生、密、黄色後褐色",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-numerisugitake"
+      ],
+      "evidence_refs": [
+        "FCE-301-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、直生～上生、密、黄色後褐色",
+        "source_ids": [
+          "research-ishikawa-numerisugitake"
+        ],
+        "evidence_refs": [
+          "FCE-301-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-301",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "93dfc47586e6fc4c7e813fe19db948ba160ad6124e2742c16351f2986512ccd8"
+      }
+    },
+    {
+      "decision_id": "FCR-302",
+      "mushroom_id": "numerisugitake",
+      "facet_id": "ring",
+      "evidence_text": "柄：中空～髄状、粘性有、ツバ有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-numerisugitake"
+      ],
+      "evidence_refs": [
+        "FCE-302-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "ring",
+        "evidence_text": "柄：中空～髄状、粘性有、ツバ有",
+        "source_ids": [
+          "research-ishikawa-numerisugitake"
+        ],
+        "evidence_refs": [
+          "FCE-302-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-302",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "9f7ca781d85d8462a38e6d842450095de1157e0ab604dec69ce9cb7802ddb096"
+      }
+    },
+    {
+      "decision_id": "FCR-303",
+      "mushroom_id": "numerisugitake",
+      "facet_id": "stem_hollow",
+      "evidence_text": "柄：中空～髄状、粘性有、ツバ有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-numerisugitake"
+      ],
+      "evidence_refs": [
+        "FCE-303-1"
+      ],
+      "qualifiers": [
+        "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+      ],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "柄：中空～髄状、粘性有、ツバ有",
+        "source_ids": [
+          "research-ishikawa-numerisugitake"
+        ],
+        "evidence_refs": [
+          "FCE-303-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+        ],
+        "review": {
+          "decision_id": "FCR-303",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "887d59a643e295662869060e1769244512ecedf4d864870827c41ff61ca0a54e"
+      }
+    },
+    {
+      "decision_id": "FCR-304",
+      "mushroom_id": "numerisugitake",
+      "facet_id": "stem_sticky",
+      "evidence_text": "柄：中空～髄状、粘性有、ツバ有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-numerisugitake"
+      ],
+      "evidence_refs": [
+        "FCE-304-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_sticky",
+        "evidence_text": "柄：中空～髄状、粘性有、ツバ有",
+        "source_ids": [
+          "research-ishikawa-numerisugitake"
+        ],
+        "evidence_refs": [
+          "FCE-304-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-304",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "be9829c2ad22fbc9c447824656c55c5a882736bfb20d86c6cf5125167db8a5f0"
+      }
+    },
+    {
+      "decision_id": "FCR-305",
+      "mushroom_id": "hatakesimeji",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、やや垂生、密",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-hatakesimeji"
+      ],
+      "evidence_refs": [
+        "FCE-305-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、やや垂生、密",
+        "source_ids": [
+          "research-ishikawa-hatakesimeji"
+        ],
+        "evidence_refs": [
+          "FCE-305-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-305",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "aeb4183e58f181e650cd9ff4e2608cf2a199b50d8f3dd6faee57f466dbb2d75b"
+      }
+    },
+    {
+      "decision_id": "FCR-306",
+      "mushroom_id": "hatakesimeji",
+      "facet_id": "stem_solid",
+      "evidence_text": "柄：淡褐色を帯びる、紛状、中実",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-hatakesimeji"
+      ],
+      "evidence_refs": [
+        "FCE-306-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：淡褐色を帯びる、紛状、中実",
+        "source_ids": [
+          "research-ishikawa-hatakesimeji"
+        ],
+        "evidence_refs": [
+          "FCE-306-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-306",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c2ef5f9c76fd25b49abb73b2b2a48ab93c4f1742eec5dfc784d7fe746f31ec30"
+      }
+    },
+    {
+      "decision_id": "FCR-307",
+      "mushroom_id": "hatinosutake",
+      "facet_id": "cap_scales_warts",
+      "evidence_text": "傘：半円形～腎臓形、小鱗片密生",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-hatinosutake"
+      ],
+      "evidence_refs": [
+        "FCE-307-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "傘：半円形～腎臓形、小鱗片密生",
+        "source_ids": [
+          "research-ishikawa-hatinosutake"
+        ],
+        "evidence_refs": [
+          "FCE-307-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-307",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "83ad21c5af0948ab85b66e65fb44c7b9301019889ae82f829d088f401be3a5fe"
+      }
+    },
+    {
+      "decision_id": "FCR-308",
+      "mushroom_id": "hatinosutake",
+      "facet_id": "pores",
+      "evidence_text": "傘の下面：菅孔、ハチの巣状",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-hatinosutake"
+      ],
+      "evidence_refs": [
+        "FCE-308-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "pores",
+        "evidence_text": "傘の下面：菅孔、ハチの巣状",
+        "source_ids": [
+          "research-ishikawa-hatinosutake"
+        ],
+        "evidence_refs": [
+          "FCE-308-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-308",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "8a135e058ae0c8d8e32ea08802210aca43edf57e65c665f4912ed22de7c6a57b"
+      }
+    },
+    {
+      "decision_id": "FCR-309",
+      "mushroom_id": "hatutake",
+      "facet_id": "cap_depressed",
+      "evidence_text": "傘：中央窪む",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-hatutake"
+      ],
+      "evidence_refs": [
+        "FCE-309-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_depressed",
+        "evidence_text": "傘：中央窪む",
+        "source_ids": [
+          "research-ishikawa-hatutake"
+        ],
+        "evidence_refs": [
+          "FCE-309-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-309",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "293c8aa923ccfa14e032463b5b13a36729946c42c78b3e889c0fce595766749b"
+      }
+    },
+    {
+      "decision_id": "FCR-310",
+      "mushroom_id": "hatutake",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、直生～やや垂生、密",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-hatutake"
+      ],
+      "evidence_refs": [
+        "FCE-310-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、直生～やや垂生、密",
+        "source_ids": [
+          "research-ishikawa-hatutake"
+        ],
+        "evidence_refs": [
+          "FCE-310-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-310",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "582c7760e0568f43bff2c54f5cb004953d84b72eae515392684cf3044e194ad2"
+      }
+    },
+    {
+      "decision_id": "FCR-311",
+      "mushroom_id": "hatutake",
+      "facet_id": "stem_hollow",
+      "evidence_text": "柄：髄状～中空",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-hatutake"
+      ],
+      "evidence_refs": [
+        "FCE-311-1"
+      ],
+      "qualifiers": [
+        "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+      ],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "柄：髄状～中空",
+        "source_ids": [
+          "research-ishikawa-hatutake"
+        ],
+        "evidence_refs": [
+          "FCE-311-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+        ],
+        "review": {
+          "decision_id": "FCR-311",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "2fecfec77c11a8b005b66333f7c1c021b1208f48d018fc753bcf5c67dc7b561f"
+      }
+    },
+    {
+      "decision_id": "FCR-312",
+      "mushroom_id": "haratake",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、離生、密、ピンク色後黒褐色",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-haratake"
+      ],
+      "evidence_refs": [
+        "FCE-312-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、離生、密、ピンク色後黒褐色",
+        "source_ids": [
+          "research-ishikawa-haratake"
+        ],
+        "evidence_refs": [
+          "FCE-312-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-312",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "47d4926c0faba924b5ea1cf7800c2186ac1aaaabf3a6d384ad392e652dc55bf7"
+      }
+    },
+    {
+      "decision_id": "FCR-313",
+      "mushroom_id": "haratake",
+      "facet_id": "ring",
+      "evidence_text": "柄：中実後中空、ツバ有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-haratake"
+      ],
+      "evidence_refs": [
+        "FCE-313-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "ring",
+        "evidence_text": "柄：中実後中空、ツバ有",
+        "source_ids": [
+          "research-ishikawa-haratake"
+        ],
+        "evidence_refs": [
+          "FCE-313-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-313",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "eb081eaa596a6f52a8a0a87bc176fa90250b87a07f5bcd1f3bfee63c5937db50"
+      }
+    },
+    {
+      "decision_id": "FCR-314",
+      "mushroom_id": "haratake",
+      "facet_id": "stem_hollow",
+      "evidence_text": "柄：中実後中空、ツバ有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-haratake"
+      ],
+      "evidence_refs": [
+        "FCE-314-1"
+      ],
+      "qualifiers": [
+        "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+      ],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "柄：中実後中空、ツバ有",
+        "source_ids": [
+          "research-ishikawa-haratake"
+        ],
+        "evidence_refs": [
+          "FCE-314-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+        ],
+        "review": {
+          "decision_id": "FCR-314",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "e20446af8c49d193a22a927474be3df49aa6fc6c450a447c6ea8adc4c08c2522"
+      }
+    },
+    {
+      "decision_id": "FCR-315",
+      "mushroom_id": "haratake",
+      "facet_id": "stem_solid",
+      "evidence_text": "柄：中実後中空、ツバ有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-haratake"
+      ],
+      "evidence_refs": [
+        "FCE-315-1"
+      ],
+      "qualifiers": [
+        "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+      ],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実後中空、ツバ有",
+        "source_ids": [
+          "research-ishikawa-haratake"
+        ],
+        "evidence_refs": [
+          "FCE-315-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+        ],
+        "review": {
+          "decision_id": "FCR-315",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c55ee8dd48ec123c9df6eb8a25446fd7cc3ccae577a5f2a4a9312396c487f59f"
+      }
+    },
+    {
+      "decision_id": "FCR-316",
+      "mushroom_id": "hidahatake",
+      "facet_id": "cap_sticky",
+      "evidence_text": "傘：湿時粘性有、短い条線有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-hidahatake"
+      ],
+      "evidence_refs": [
+        "FCE-316-1"
+      ],
+      "qualifiers": [
+        "湿時という条件を保持"
+      ],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_sticky",
+        "evidence_text": "傘：湿時粘性有、短い条線有",
+        "source_ids": [
+          "research-ishikawa-hidahatake"
+        ],
+        "evidence_refs": [
+          "FCE-316-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "湿時という条件を保持"
+        ],
+        "review": {
+          "decision_id": "FCR-316",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "df904ea5ac6d2f064b4d9bf9fed2bc24645855d820a6ee60c239749bfab3f17d"
+      }
+    },
+    {
+      "decision_id": "FCR-317",
+      "mushroom_id": "hidahatake",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、垂生、密",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-hidahatake"
+      ],
+      "evidence_refs": [
+        "FCE-317-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、垂生、密",
+        "source_ids": [
+          "research-ishikawa-hidahatake"
+        ],
+        "evidence_refs": [
+          "FCE-317-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-317",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c00a60a3068ac86d3cd25a93cce847e59d35cad0dcae6bc3a42eda54eeabda51"
+      }
+    },
+    {
+      "decision_id": "FCR-318",
+      "mushroom_id": "hidahatake",
+      "facet_id": "stem_solid",
+      "evidence_text": "柄：中実",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-hidahatake"
+      ],
+      "evidence_refs": [
+        "FCE-318-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実",
+        "source_ids": [
+          "research-ishikawa-hidahatake"
+        ],
+        "evidence_refs": [
+          "FCE-318-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-318",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "69a5bc778ea95b6261d568d58ee5e05ddae33590d595345446fd3865c5fbcac4"
+      }
+    },
+    {
+      "decision_id": "FCR-319",
+      "mushroom_id": "hitoyotake",
+      "facet_id": "cap_scales_warts",
+      "evidence_text": "傘：淡灰褐色細鱗片におおわれる",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-hitoyotake"
+      ],
+      "evidence_refs": [
+        "FCE-319-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "傘：淡灰褐色細鱗片におおわれる",
+        "source_ids": [
+          "research-ishikawa-hitoyotake"
+        ],
+        "evidence_refs": [
+          "FCE-319-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-319",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "40b69c5490e3ddef6789865a25a9101b726fb3b0fe7bafca641b55d9849ffe12"
+      }
+    },
+    {
+      "decision_id": "FCR-320",
+      "mushroom_id": "hitoyotake",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、上生、密、白色後黒色液化",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-hitoyotake"
+      ],
+      "evidence_refs": [
+        "FCE-320-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、上生、密、白色後黒色液化",
+        "source_ids": [
+          "research-ishikawa-hitoyotake"
+        ],
+        "evidence_refs": [
+          "FCE-320-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-320",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "d1c3a3bda64ae51cc5c696cfaf8024fb3496b1a17447cc2f6f86a5d6a246786c"
+      }
+    },
+    {
+      "decision_id": "FCR-322",
+      "mushroom_id": "hitoyotake",
+      "facet_id": "stem_hollow",
+      "evidence_text": "柄：中空、不完全なツバ痕跡有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-hitoyotake"
+      ],
+      "evidence_refs": [
+        "FCE-322-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "柄：中空、不完全なツバ痕跡有",
+        "source_ids": [
+          "research-ishikawa-hitoyotake"
+        ],
+        "evidence_refs": [
+          "FCE-322-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-322",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "5766e91661481922286c9c71d112a13a90a5978abdf19b8e5dda663deba5df21"
+      }
+    },
+    {
+      "decision_id": "FCR-323",
+      "mushroom_id": "bunasimeji",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、直生、やや密",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-bunasimeji"
+      ],
+      "evidence_refs": [
+        "FCE-323-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、直生、やや密",
+        "source_ids": [
+          "research-ishikawa-bunasimeji"
+        ],
+        "evidence_refs": [
+          "FCE-323-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-323",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b1e57d3595b9d0da0b6fe6a1bc895acc3ba96ae25d6210e71ac181eaebcc2153"
+      }
+    },
+    {
+      "decision_id": "FCR-324",
+      "mushroom_id": "bunasimeji",
+      "facet_id": "stem_solid",
+      "evidence_text": "柄：中実",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-bunasimeji"
+      ],
+      "evidence_refs": [
+        "FCE-324-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実",
+        "source_ids": [
+          "research-ishikawa-bunasimeji"
+        ],
+        "evidence_refs": [
+          "FCE-324-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-324",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "ed7764850c06b99e14d9fb293ffa399dd97be0e4c9e86624c42647ccb59012e5"
+      }
+    },
+    {
+      "decision_id": "FCR-325",
+      "mushroom_id": "honsimeji",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、湾生～やや垂生、密",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-honsimeji"
+      ],
+      "evidence_refs": [
+        "FCE-325-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、湾生～やや垂生、密",
+        "source_ids": [
+          "research-ishikawa-honsimeji"
+        ],
+        "evidence_refs": [
+          "FCE-325-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-325",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "00db46608e137ff58a4d4b8017dca2b6359131c27f5bba32715b7a40f14eb6c6"
+      }
+    },
+    {
+      "decision_id": "FCR-326",
+      "mushroom_id": "honsimeji",
+      "facet_id": "stem_solid",
+      "evidence_text": "柄：中実、下方肥大",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-honsimeji"
+      ],
+      "evidence_refs": [
+        "FCE-326-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、下方肥大",
+        "source_ids": [
+          "research-ishikawa-honsimeji"
+        ],
+        "evidence_refs": [
+          "FCE-326-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-326",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "a468f27836bab28eeb5bb1fbff54d1f2d93ec4c6488595f4dd572b3a69a60c68"
+      }
+    },
+    {
+      "decision_id": "FCR-327",
+      "mushroom_id": "maitake",
+      "facet_id": "pores",
+      "evidence_text": "傘の下面：菅孔、垂生",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-maitake"
+      ],
+      "evidence_refs": [
+        "FCE-327-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "pores",
+        "evidence_text": "傘の下面：菅孔、垂生",
+        "source_ids": [
+          "research-ishikawa-maitake"
+        ],
+        "evidence_refs": [
+          "FCE-327-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-327",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "ce0e14309670b894df1fbe3a933c991ade0f99029a9b985d357627963793759b"
+      }
+    },
+    {
+      "decision_id": "FCR-328",
+      "mushroom_id": "maitake",
+      "facet_id": "stem_solid",
+      "evidence_text": "柄：中実、多数分岐する",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-maitake"
+      ],
+      "evidence_refs": [
+        "FCE-328-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、多数分岐する",
+        "source_ids": [
+          "research-ishikawa-maitake"
+        ],
+        "evidence_refs": [
+          "FCE-328-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-328",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "9d742f198346240599cdf68455380a7b551b53bd0eb9b379cb0a82b91340ed8e"
+      }
+    },
+    {
+      "decision_id": "FCR-329",
+      "mushroom_id": "matutake",
+      "facet_id": "cap_scales_warts",
+      "evidence_text": "傘：クリ褐色の鱗片有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-matutake"
+      ],
+      "evidence_refs": [
+        "FCE-329-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "傘：クリ褐色の鱗片有",
+        "source_ids": [
+          "research-ishikawa-matutake"
+        ],
+        "evidence_refs": [
+          "FCE-329-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-329",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "636992b18c8425e71bca0da5637fcd87b6f68502f3c0fbe1d1748269263ea886"
+      }
+    },
+    {
+      "decision_id": "FCR-330",
+      "mushroom_id": "matutake",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、湾生、密",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-matutake"
+      ],
+      "evidence_refs": [
+        "FCE-330-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、湾生、密",
+        "source_ids": [
+          "research-ishikawa-matutake"
+        ],
+        "evidence_refs": [
+          "FCE-330-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-330",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c3075c7705eb4ca0fda39de80f8395f9fd54b74a5ac47d57282bf09143106cfd"
+      }
+    },
+    {
+      "decision_id": "FCR-331",
+      "mushroom_id": "matutake",
+      "facet_id": "ring",
+      "evidence_text": "柄：中実、ツバ有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-matutake"
+      ],
+      "evidence_refs": [
+        "FCE-331-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "ring",
+        "evidence_text": "柄：中実、ツバ有",
+        "source_ids": [
+          "research-ishikawa-matutake"
+        ],
+        "evidence_refs": [
+          "FCE-331-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-331",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "9838f737da0dbabf4f68cc21fbdb8686f6862b7211d86e679029cc5b2d06d262"
+      }
+    },
+    {
+      "decision_id": "FCR-332",
+      "mushroom_id": "matutake",
+      "facet_id": "stem_solid",
+      "evidence_text": "柄：中実、ツバ有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-matutake"
+      ],
+      "evidence_refs": [
+        "FCE-332-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、ツバ有",
+        "source_ids": [
+          "research-ishikawa-matutake"
+        ],
+        "evidence_refs": [
+          "FCE-332-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-332",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "85212c44238365968e2cdbe57425c0121f33b692a13d3f5511e1208a48ec240c"
+      }
+    },
+    {
+      "decision_id": "FCR-333",
+      "mushroom_id": "mannentake",
+      "facet_id": "pores",
+      "evidence_text": "傘の下面：菅孔、孔口鮮黄色で触れると暗色化",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-mannentake"
+      ],
+      "evidence_refs": [
+        "FCE-333-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "pores",
+        "evidence_text": "傘の下面：菅孔、孔口鮮黄色で触れると暗色化",
+        "source_ids": [
+          "research-ishikawa-mannentake"
+        ],
+        "evidence_refs": [
+          "FCE-333-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-333",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "6dd95fde6d4e1808e51820ba841534833971860ea5803a9639636ff59cf86c64"
+      }
+    },
+    {
+      "decision_id": "FCR-334",
+      "mushroom_id": "mannentake",
+      "facet_id": "stem_solid",
+      "evidence_text": "柄：中実、硬質",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-mannentake"
+      ],
+      "evidence_refs": [
+        "FCE-334-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、硬質",
+        "source_ids": [
+          "research-ishikawa-mannentake"
+        ],
+        "evidence_refs": [
+          "FCE-334-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-334",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "eefacdc7424becd481d7d280f244892d036bb268e8a6018cbd2bb1702fb1f3e4"
+      }
+    },
+    {
+      "decision_id": "FCR-335",
+      "mushroom_id": "mukitake",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、直生、密",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-mukitake"
+      ],
+      "evidence_refs": [
+        "FCE-335-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、直生、密",
+        "source_ids": [
+          "research-ishikawa-mukitake"
+        ],
+        "evidence_refs": [
+          "FCE-335-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-335",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "975da187ff1e4493ecf588979606e15f55fcfc61460aa7e501c4b6cba34b0ed1"
+      }
+    },
+    {
+      "decision_id": "FCR-336",
+      "mushroom_id": "mukitake",
+      "facet_id": "stem_solid",
+      "evidence_text": "柄：短く側着生、中実",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-mukitake"
+      ],
+      "evidence_refs": [
+        "FCE-336-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：短く側着生、中実",
+        "source_ids": [
+          "research-ishikawa-mukitake"
+        ],
+        "evidence_refs": [
+          "FCE-336-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-336",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "bdb2d9e4521fbe0050fdc373d5a3156831690e84dc463b44c53a816b73eb32ca"
+      }
+    },
+    {
+      "decision_id": "FCR-337",
+      "mushroom_id": "mukitake",
+      "facet_id": "hairy",
+      "evidence_text": "傘：微毛を密生、表皮はむきやすい",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-mukitake"
+      ],
+      "evidence_refs": [
+        "FCE-337-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "hairy",
+        "evidence_text": "傘：微毛を密生、表皮はむきやすい",
+        "source_ids": [
+          "research-ishikawa-mukitake"
+        ],
+        "evidence_refs": [
+          "FCE-337-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-337",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "05548701cc1f1f5df2feebc1af2def045574fcd8ce43bea5599a88e171cae968"
+      }
+    },
+    {
+      "decision_id": "FCR-338",
+      "mushroom_id": "murasakisimeji",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、湾生～やや垂生、密",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-murasakisimeji"
+      ],
+      "evidence_refs": [
+        "FCE-338-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、湾生～やや垂生、密",
+        "source_ids": [
+          "research-ishikawa-murasakisimeji"
+        ],
+        "evidence_refs": [
+          "FCE-338-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-338",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "8c98753d62102883689b781100346545fa9cb146dade1c35cee5f31700bb85d9"
+      }
+    },
+    {
+      "decision_id": "FCR-339",
+      "mushroom_id": "murasakisimeji",
+      "facet_id": "stem_solid",
+      "evidence_text": "柄：中実、基部は球根状に肥大",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-murasakisimeji"
+      ],
+      "evidence_refs": [
+        "FCE-339-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、基部は球根状に肥大",
+        "source_ids": [
+          "research-ishikawa-murasakisimeji"
+        ],
+        "evidence_refs": [
+          "FCE-339-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-339",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "a875fe2b58ac9df0b5f8676b1d359654160d009c24961751f068713342dc92c1"
+      }
+    },
+    {
+      "decision_id": "FCR-340",
+      "mushroom_id": "murasakifuusentake",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、直生～上生、疎",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-murasakifuusentake"
+      ],
+      "evidence_refs": [
+        "FCE-340-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、直生～上生、疎",
+        "source_ids": [
+          "research-ishikawa-murasakifuusentake"
+        ],
+        "evidence_refs": [
+          "FCE-340-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-340",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "0e8b3de6c29fdf93c0b87836b842a897f09c5b4f690ced289df16f9dc64f8ac5"
+      }
+    },
+    {
+      "decision_id": "FCR-341",
+      "mushroom_id": "murasakifuusentake",
+      "facet_id": "stem_solid",
+      "evidence_text": "柄：中実、基部球根状",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-murasakifuusentake"
+      ],
+      "evidence_refs": [
+        "FCE-341-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、基部球根状",
+        "source_ids": [
+          "research-ishikawa-murasakifuusentake"
+        ],
+        "evidence_refs": [
+          "FCE-341-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-341",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "9a0fb4a3b593b53e29bdaac20a5d421921369c89a652e0bef5dda0dd54b1e42e"
+      }
+    },
+    {
+      "decision_id": "FCR-342",
+      "mushroom_id": "murasakifuusentake",
+      "facet_id": "hairy",
+      "evidence_text": "傘：暗紫色微毛密生、ささくれ状",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-murasakifuusentake"
+      ],
+      "evidence_refs": [
+        "FCE-342-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "hairy",
+        "evidence_text": "傘：暗紫色微毛密生、ささくれ状",
+        "source_ids": [
+          "research-ishikawa-murasakifuusentake"
+        ],
+        "evidence_refs": [
+          "FCE-342-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-342",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "e74f5d32183e37e274dafe014f41c7fb3e062d42d50570f9373dbcbd43c7de9d"
+      }
+    },
+    {
+      "decision_id": "FCR-343",
+      "mushroom_id": "yakoutake",
+      "facet_id": "cap_sticky",
+      "evidence_text": "傘：ゼラチン質におおわれ強い粘性有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-yakoutake"
+      ],
+      "evidence_refs": [
+        "FCE-343-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_sticky",
+        "evidence_text": "傘：ゼラチン質におおわれ強い粘性有",
+        "source_ids": [
+          "research-ishikawa-yakoutake"
+        ],
+        "evidence_refs": [
+          "FCE-343-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-343",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "257797427d624720f61e3bbed6e1755afd72a5ddfee7b1f428cc23ca78ad71ac"
+      }
+    },
+    {
+      "decision_id": "FCR-344",
+      "mushroom_id": "yakoutake",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、離生、やや密",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-yakoutake"
+      ],
+      "evidence_refs": [
+        "FCE-344-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、離生、やや密",
+        "source_ids": [
+          "research-ishikawa-yakoutake"
+        ],
+        "evidence_refs": [
+          "FCE-344-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-344",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "6795b20934a3916f02b1a211a0bde51e81935cb795a6faea3c7a999650663d81"
+      }
+    },
+    {
+      "decision_id": "FCR-345",
+      "mushroom_id": "yakoutake",
+      "facet_id": "stem_hollow",
+      "evidence_text": "柄：中空、基部は吸盤状",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-yakoutake"
+      ],
+      "evidence_refs": [
+        "FCE-345-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "柄：中空、基部は吸盤状",
+        "source_ids": [
+          "research-ishikawa-yakoutake"
+        ],
+        "evidence_refs": [
+          "FCE-345-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-345",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "98e5e11cc9fe1242f28e3917eb01e588eb6e8002bd9b8f41162982d9775f7c53"
+      }
+    },
+    {
+      "decision_id": "FCR-346",
+      "mushroom_id": "yakoutake",
+      "facet_id": "gelatinous",
+      "evidence_text": "傘：ゼラチン質におおわれ強い粘性有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-yakoutake"
+      ],
+      "evidence_refs": [
+        "FCE-346-1"
+      ],
+      "qualifiers": [
+        "傘の被覆層のみ。子実体全体がゼラチン質とは断定しない"
+      ],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gelatinous",
+        "evidence_text": "傘：ゼラチン質におおわれ強い粘性有",
+        "source_ids": [
+          "research-ishikawa-yakoutake"
+        ],
+        "evidence_refs": [
+          "FCE-346-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "傘の被覆層のみ。子実体全体がゼラチン質とは断定しない"
+        ],
+        "review": {
+          "decision_id": "FCR-346",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "374aa43bac8f4d1f4fa2e11c58f22d4f534fc4ed86c06f645608c9c5ae75117f"
+      }
+    },
+    {
+      "decision_id": "FCR-347",
+      "mushroom_id": "yamadoritakemodoki",
+      "facet_id": "cap_sticky",
+      "evidence_text": "傘：湿時粘性有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-yamadoritakemodoki"
+      ],
+      "evidence_refs": [
+        "FCE-347-1"
+      ],
+      "qualifiers": [
+        "湿時という条件を保持"
+      ],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_sticky",
+        "evidence_text": "傘：湿時粘性有",
+        "source_ids": [
+          "research-ishikawa-yamadoritakemodoki"
+        ],
+        "evidence_refs": [
+          "FCE-347-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "湿時という条件を保持"
+        ],
+        "review": {
+          "decision_id": "FCR-347",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "ed19eda60570d0006751165e98d7ee3693086e547b862b868ae6ba9fd233e7eb"
+      }
+    },
+    {
+      "decision_id": "FCR-348",
+      "mushroom_id": "yamadoritakemodoki",
+      "facet_id": "pores",
+      "evidence_text": "傘の下面：菅孔、直生～離生",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-yamadoritakemodoki"
+      ],
+      "evidence_refs": [
+        "FCE-348-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "pores",
+        "evidence_text": "傘の下面：菅孔、直生～離生",
+        "source_ids": [
+          "research-ishikawa-yamadoritakemodoki"
+        ],
+        "evidence_refs": [
+          "FCE-348-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-348",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "70812aa092c00bfdc6e129d6b92701b13587efdb551371254c3e583226cc3b8b"
+      }
+    },
+    {
+      "decision_id": "FCR-349",
+      "mushroom_id": "yamadoritakemodoki",
+      "facet_id": "stem_solid",
+      "evidence_text": "柄：中実、網目模様有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-yamadoritakemodoki"
+      ],
+      "evidence_refs": [
+        "FCE-349-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、網目模様有",
+        "source_ids": [
+          "research-ishikawa-yamadoritakemodoki"
+        ],
+        "evidence_refs": [
+          "FCE-349-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-349",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b539618f6d2bfbff17bbf83d63fdc164ec0e833aed8dee153244f0ea5cb19ca0"
+      }
+    },
+    {
+      "decision_id": "FCR-350",
+      "mushroom_id": "yamadoritakemodoki",
+      "facet_id": "stem_scales_pattern",
+      "evidence_text": "柄：中実、網目模様有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-yamadoritakemodoki"
+      ],
+      "evidence_refs": [
+        "FCE-350-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_scales_pattern",
+        "evidence_text": "柄：中実、網目模様有",
+        "source_ids": [
+          "research-ishikawa-yamadoritakemodoki"
+        ],
+        "evidence_refs": [
+          "FCE-350-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-350",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "045bb662eca770738388ec290edff099775e2544171da7434bcd54a6649f6073"
+      }
+    },
+    {
+      "decision_id": "FCR-351",
+      "mushroom_id": "yamadoritakemodoki",
+      "facet_id": "stem_reticulate",
+      "evidence_text": "柄：中実、網目模様有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-yamadoritakemodoki"
+      ],
+      "evidence_refs": [
+        "FCE-351-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_reticulate",
+        "evidence_text": "柄：中実、網目模様有",
+        "source_ids": [
+          "research-ishikawa-yamadoritakemodoki"
+        ],
+        "evidence_refs": [
+          "FCE-351-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-351",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c75ea9407d73e79734c51e583e782eefa4dd53ad466865dbcbbf7393e63dd203"
+      }
+    },
+    {
+      "decision_id": "FCR-352",
+      "mushroom_id": "rurihatutake",
+      "facet_id": "cap_sticky",
+      "evidence_text": "傘：湿時弱い粘性有、環紋有",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-rurihatutake"
+      ],
+      "evidence_refs": [
+        "FCE-352-1"
+      ],
+      "qualifiers": [
+        "湿時という条件を保持"
+      ],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_sticky",
+        "evidence_text": "傘：湿時弱い粘性有、環紋有",
+        "source_ids": [
+          "research-ishikawa-rurihatutake"
+        ],
+        "evidence_refs": [
+          "FCE-352-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "湿時という条件を保持"
+        ],
+        "review": {
+          "decision_id": "FCR-352",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "0d739693c29c078f8cbd95dec037ca1bb32e444ffa533beb58ff75c62e88a5de"
+      }
+    },
+    {
+      "decision_id": "FCR-353",
+      "mushroom_id": "rurihatutake",
+      "facet_id": "gills",
+      "evidence_text": "傘の下面：ヒダ、直生、やや密",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-rurihatutake"
+      ],
+      "evidence_refs": [
+        "FCE-353-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、直生、やや密",
+        "source_ids": [
+          "research-ishikawa-rurihatutake"
+        ],
+        "evidence_refs": [
+          "FCE-353-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-353",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "4a4817b0cd22b7fc44bbcef27e2c2eb89b06dd057a26e6460e8afc229580d9d0"
+      }
+    },
+    {
+      "decision_id": "FCR-354",
+      "mushroom_id": "rurihatutake",
+      "facet_id": "stem_hollow",
+      "evidence_text": "柄：中実後中空",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-rurihatutake"
+      ],
+      "evidence_refs": [
+        "FCE-354-1"
+      ],
+      "qualifiers": [
+        "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+      ],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "柄：中実後中空",
+        "source_ids": [
+          "research-ishikawa-rurihatutake"
+        ],
+        "evidence_refs": [
+          "FCE-354-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+        ],
+        "review": {
+          "decision_id": "FCR-354",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "3652f9265342edbac1533635cde5a3a91bcaa4c216423a00a9a5acd786e50d35"
+      }
+    },
+    {
+      "decision_id": "FCR-355",
+      "mushroom_id": "rurihatutake",
+      "facet_id": "stem_solid",
+      "evidence_text": "柄：中実後中空",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-rurihatutake"
+      ],
+      "evidence_refs": [
+        "FCE-355-1"
+      ],
+      "qualifiers": [
+        "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+      ],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実後中空",
+        "source_ids": [
+          "research-ishikawa-rurihatutake"
+        ],
+        "evidence_refs": [
+          "FCE-355-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+        ],
+        "review": {
+          "decision_id": "FCR-355",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "6302b3bc0e014ea570cec1c587f7374bef6fdf04e958bc185e8b79e8636c4262"
+      }
+    },
+    {
+      "decision_id": "FCR-356",
+      "mushroom_id": "shirotamagotengutake",
+      "facet_id": "gills",
+      "evidence_text": "ひだ：白色",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000142708"
+      ],
+      "evidence_refs": [
+        "FCE-356-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "ひだ：白色",
+        "source_ids": [
+          "research-mhlw-0000142708"
+        ],
+        "evidence_refs": [
+          "FCE-356-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-356",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "43a1b2fd33e010ea69428bec6b0ad4bb741d5af89f3ca62775879ec1e4eec7b9"
+      }
+    },
+    {
+      "decision_id": "FCR-357",
+      "mushroom_id": "shirotamagotengutake",
+      "facet_id": "ring",
+      "evidence_text": "柄　：白色で袋状のつば、基部につぼがある。",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000142708"
+      ],
+      "evidence_refs": [
+        "FCE-357-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "ring",
+        "evidence_text": "柄　：白色で袋状のつば、基部につぼがある。",
+        "source_ids": [
+          "research-mhlw-0000142708"
+        ],
+        "evidence_refs": [
+          "FCE-357-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-357",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "329694bd00fed7734fa9dd91afeebfefaf07e8d29331dba4665440d3060ef26e"
+      }
+    },
+    {
+      "decision_id": "FCR-358",
+      "mushroom_id": "shirotamagotengutake",
+      "facet_id": "volva",
+      "evidence_text": "柄　：白色で袋状のつば、基部につぼがある。",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000142708"
+      ],
+      "evidence_refs": [
+        "FCE-358-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "volva",
+        "evidence_text": "柄　：白色で袋状のつば、基部につぼがある。",
+        "source_ids": [
+          "research-mhlw-0000142708"
+        ],
+        "evidence_refs": [
+          "FCE-358-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-358",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "2eaeb5de232a2036c9d4394f3839980c07f32c228da2dbd1423d0f9421e60068"
+      }
+    },
+    {
+      "decision_id": "FCR-359",
+      "mushroom_id": "benitengutake",
+      "facet_id": "cap_scales_warts",
+      "evidence_text": "傘　：赤色で表面には多数のイボがあるが、脱落していることもある。",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000142728"
+      ],
+      "evidence_refs": [
+        "FCE-359-1"
+      ],
+      "qualifiers": [
+        "脱落／成長による消失あり。見えない個体を除外する識別根拠にしない"
+      ],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "傘　：赤色で表面には多数のイボがあるが、脱落していることもある。",
+        "source_ids": [
+          "research-mhlw-0000142728"
+        ],
+        "evidence_refs": [
+          "FCE-359-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "脱落／成長による消失あり。見えない個体を除外する識別根拠にしない"
+        ],
+        "review": {
+          "decision_id": "FCR-359",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "a6bf7155cdf6a713f66b15ba343c0333e9e1453ab8ad4382ec9952e3c3785210"
+      }
+    },
+    {
+      "decision_id": "FCR-360",
+      "mushroom_id": "benitengutake",
+      "facet_id": "gills",
+      "evidence_text": "ひだ：白色で密である。",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000142728"
+      ],
+      "evidence_refs": [
+        "FCE-360-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "ひだ：白色で密である。",
+        "source_ids": [
+          "research-mhlw-0000142728"
+        ],
+        "evidence_refs": [
+          "FCE-360-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-360",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "23e881ad59cffba85f72ae08e3d7c813bf42f1a4ac43ea48f26576d695e87295"
+      }
+    },
+    {
+      "decision_id": "FCR-361",
+      "mushroom_id": "benitengutake",
+      "facet_id": "ring",
+      "evidence_text": "柄　：白色で上部にツバがある。その下はささくれ状である。",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000142728"
+      ],
+      "evidence_refs": [
+        "FCE-361-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "ring",
+        "evidence_text": "柄　：白色で上部にツバがある。その下はささくれ状である。",
+        "source_ids": [
+          "research-mhlw-0000142728"
+        ],
+        "evidence_refs": [
+          "FCE-361-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-361",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "fbfdd32b38024ffc4371609fefae7eddcf7a3549437527dd1233b32502234165"
+      }
+    },
+    {
+      "decision_id": "FCR-362",
+      "mushroom_id": "benitengutake",
+      "facet_id": "stem_scales_pattern",
+      "evidence_text": "柄　：白色で上部にツバがある。その下はささくれ状である。",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000142728"
+      ],
+      "evidence_refs": [
+        "FCE-362-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_scales_pattern",
+        "evidence_text": "柄　：白色で上部にツバがある。その下はささくれ状である。",
+        "source_ids": [
+          "research-mhlw-0000142728"
+        ],
+        "evidence_refs": [
+          "FCE-362-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-362",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "42afe6e65b42b2c55d637016cba81948875c74194c779ece037154ed102b9500"
+      }
+    },
+    {
+      "decision_id": "FCR-363",
+      "mushroom_id": "dokusasako",
+      "facet_id": "gills",
+      "evidence_text": "ひだ：傘よりうすい色で、密である。",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000142713"
+      ],
+      "evidence_refs": [
+        "FCE-363-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "ひだ：傘よりうすい色で、密である。",
+        "source_ids": [
+          "research-mhlw-0000142713"
+        ],
+        "evidence_refs": [
+          "FCE-363-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-363",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "1e5fda764fc21a23d562030bdf09f0ef2a6dff86e481ce97850eb60cda382cb5"
+      }
+    },
+    {
+      "decision_id": "FCR-364",
+      "mushroom_id": "dokusasako",
+      "facet_id": "cap_depressed",
+      "evidence_text": "中央部がくぼんでいる。",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000142713"
+      ],
+      "evidence_refs": [
+        "FCE-364-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_depressed",
+        "evidence_text": "中央部がくぼんでいる。",
+        "source_ids": [
+          "research-mhlw-0000142713"
+        ],
+        "evidence_refs": [
+          "FCE-364-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-364",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "6596334a5e3ca4ca2a2e5504da3343b89b29ad87b330754a07c7f5de92946a87"
+      }
+    },
+    {
+      "decision_id": "FCR-365",
+      "mushroom_id": "dokusasako",
+      "facet_id": "stem_hollow",
+      "evidence_text": "中実で一部中空のものもある。",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000142713"
+      ],
+      "evidence_refs": [
+        "FCE-365-1"
+      ],
+      "qualifiers": [
+        "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+      ],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "中実で一部中空のものもある。",
+        "source_ids": [
+          "research-mhlw-0000142713"
+        ],
+        "evidence_refs": [
+          "FCE-365-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+        ],
+        "review": {
+          "decision_id": "FCR-365",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "a63568f4a7ac0d7a1dbd0b16da0fbb777dff452d7472323c7a84545df3389d53"
+      }
+    },
+    {
+      "decision_id": "FCR-366",
+      "mushroom_id": "dokusasako",
+      "facet_id": "stem_solid",
+      "evidence_text": "中実で一部中空のものもある。",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000142713"
+      ],
+      "evidence_refs": [
+        "FCE-366-1"
+      ],
+      "qualifiers": [
+        "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+      ],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "中実で一部中空のものもある。",
+        "source_ids": [
+          "research-mhlw-0000142713"
+        ],
+        "evidence_refs": [
+          "FCE-366-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+        ],
+        "review": {
+          "decision_id": "FCR-366",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "36d89388e5ace04f2543b15f9a4754e4ed10eaf0ae857ace4f494a6443da38d9"
+      }
+    },
+    {
+      "decision_id": "FCR-367",
+      "mushroom_id": "dokuyamadori",
+      "facet_id": "pores",
+      "evidence_text": "ひだ：やわい黄色から黄褐色で管孔によりスポンジ状に見える。傷つけると青く変色し、その後褐色となる。",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000143400"
+      ],
+      "evidence_refs": [
+        "FCE-367-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "pores",
+        "evidence_text": "ひだ：やわい黄色から黄褐色で管孔によりスポンジ状に見える。傷つけると青く変色し、その後褐色となる。",
+        "source_ids": [
+          "research-mhlw-0000143400"
+        ],
+        "evidence_refs": [
+          "FCE-367-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-367",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "28a4ecaac75bd8d09cae976dce0b064b33a2be680b24fe64c35b1efe99ebce3a"
+      }
+    },
+    {
+      "decision_id": "FCR-368",
+      "mushroom_id": "dokuyamadori",
+      "facet_id": "blue_stain",
+      "evidence_text": "傷つけると青く変色し、その後褐色となる。",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000143400"
+      ],
+      "evidence_refs": [
+        "FCE-368-1"
+      ],
+      "qualifiers": [
+        "変色する部位・損傷条件・強弱・後続の変色を原文どおり表示"
+      ],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "blue_stain",
+        "evidence_text": "傷つけると青く変色し、その後褐色となる。",
+        "source_ids": [
+          "research-mhlw-0000143400"
+        ],
+        "evidence_refs": [
+          "FCE-368-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "変色する部位・損傷条件・強弱・後続の変色を原文どおり表示"
+        ],
+        "review": {
+          "decision_id": "FCR-368",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "7ad6e07d074842639e7b3caf90357ba2079d72eaebfca9c6d6d94fa0adcc4dd4"
+      }
+    },
+    {
+      "decision_id": "FCR-369",
+      "mushroom_id": "nezumishimeji",
+      "facet_id": "gills",
+      "evidence_text": "ひだ：白色で後に灰色から薄い黄土色のようになり、やや密である。",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000143409"
+      ],
+      "evidence_refs": [
+        "FCE-369-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "ひだ：白色で後に灰色から薄い黄土色のようになり、やや密である。",
+        "source_ids": [
+          "research-mhlw-0000143409"
+        ],
+        "evidence_refs": [
+          "FCE-369-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-369",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "2d1646c2d9eb2d76aef1ca5d5acace861f0049385906711a2e555057222da3ca"
+      }
+    },
+    {
+      "decision_id": "FCR-370",
+      "mushroom_id": "nezumishimeji",
+      "facet_id": "stem_scales_pattern",
+      "evidence_text": "柄　：太く繊維状の模様がある。",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000143409"
+      ],
+      "evidence_refs": [
+        "FCE-370-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_scales_pattern",
+        "evidence_text": "柄　：太く繊維状の模様がある。",
+        "source_ids": [
+          "research-mhlw-0000143409"
+        ],
+        "evidence_refs": [
+          "FCE-370-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-370",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "d6c95f4d9a489d62aad7888267af1929f6601d1b0a641a9404a7039064a341f6"
+      }
+    },
+    {
+      "decision_id": "FCR-371",
+      "mushroom_id": "haiiroshimeji",
+      "facet_id": "gills",
+      "evidence_text": "ひだ：白色からごくうすい灰色またはクリーム色で、密である。",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000143411"
+      ],
+      "evidence_refs": [
+        "FCE-371-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "ひだ：白色からごくうすい灰色またはクリーム色で、密である。",
+        "source_ids": [
+          "research-mhlw-0000143411"
+        ],
+        "evidence_refs": [
+          "FCE-371-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-371",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "352874cf09190516391f35f23f3cdb0f6bb545e74ecefbb72ce7d22bc9c4a6fa"
+      }
+    },
+    {
+      "decision_id": "FCR-372",
+      "mushroom_id": "haiiroshimeji",
+      "facet_id": "cap_depressed",
+      "evidence_text": "中央がくぼむこともある。",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000143411"
+      ],
+      "evidence_refs": [
+        "FCE-372-1"
+      ],
+      "qualifiers": [
+        "中央がくぼむ場合がある。常時ではない"
+      ],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_depressed",
+        "evidence_text": "中央がくぼむこともある。",
+        "source_ids": [
+          "research-mhlw-0000143411"
+        ],
+        "evidence_refs": [
+          "FCE-372-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "中央がくぼむ場合がある。常時ではない"
+        ],
+        "review": {
+          "decision_id": "FCR-372",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "2cf46fd6c64a8656acc54aa2a88f446dbaba448e4b6478a3069ff4490109a27b"
+      }
+    },
+    {
+      "decision_id": "FCR-373",
+      "mushroom_id": "hikageshibiretake",
+      "facet_id": "cap_sticky",
+      "evidence_text": "傘　：黄土色から褐色。円錐形で中央が盛り上がって尖っている。表面は平滑。湿時粘性",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000143413"
+      ],
+      "evidence_refs": [
+        "FCE-373-1"
+      ],
+      "qualifiers": [
+        "湿時という条件を保持"
+      ],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_sticky",
+        "evidence_text": "傘　：黄土色から褐色。円錐形で中央が盛り上がって尖っている。表面は平滑。湿時粘性",
+        "source_ids": [
+          "research-mhlw-0000143413"
+        ],
+        "evidence_refs": [
+          "FCE-373-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "湿時という条件を保持"
+        ],
+        "review": {
+          "decision_id": "FCR-373",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "7387320038b95076734d8423b8d6b39c899a828df1585f9089c694adbd4f769e"
+      }
+    },
+    {
+      "decision_id": "FCR-374",
+      "mushroom_id": "hikageshibiretake",
+      "facet_id": "gills",
+      "evidence_text": "ひだ：紫褐色で、密である。",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000143413"
+      ],
+      "evidence_refs": [
+        "FCE-374-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "ひだ：紫褐色で、密である。",
+        "source_ids": [
+          "research-mhlw-0000143413"
+        ],
+        "evidence_refs": [
+          "FCE-374-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-374",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "312b20b000f454c51bafd46a9445c4876b7bd6be55c695e7a2305a44960b361e"
+      }
+    },
+    {
+      "decision_id": "FCR-375",
+      "mushroom_id": "hikageshibiretake",
+      "facet_id": "stem_hollow",
+      "evidence_text": "柄　：細長く中空。つばはない。肉を傷付けると青く変色する。",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000143413"
+      ],
+      "evidence_refs": [
+        "FCE-375-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "柄　：細長く中空。つばはない。肉を傷付けると青く変色する。",
+        "source_ids": [
+          "research-mhlw-0000143413"
+        ],
+        "evidence_refs": [
+          "FCE-375-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-375",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c05152ae75e037a0a53bf912d9689cdd56663ea6cfac0189b4ef5a0b79f8162a"
+      }
+    },
+    {
+      "decision_id": "FCR-376",
+      "mushroom_id": "hikageshibiretake",
+      "facet_id": "blue_stain",
+      "evidence_text": "肉を傷付けると青く変色する。",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000143413"
+      ],
+      "evidence_refs": [
+        "FCE-376-1"
+      ],
+      "qualifiers": [
+        "変色する部位・損傷条件・強弱・後続の変色を原文どおり表示"
+      ],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "blue_stain",
+        "evidence_text": "肉を傷付けると青く変色する。",
+        "source_ids": [
+          "research-mhlw-0000143413"
+        ],
+        "evidence_refs": [
+          "FCE-376-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "変色する部位・損傷条件・強弱・後続の変色を原文どおり表示"
+        ],
+        "review": {
+          "decision_id": "FCR-376",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "8d4a14437afb1629d7a001d9dc41a0a5fda046263a49f358b5e790089d3958cb"
+      }
+    },
+    {
+      "decision_id": "FCR-377",
+      "mushroom_id": "amigasatake",
+      "facet_id": "head_reticulate",
+      "evidence_text": "網目のある卵形のかたまりに柄が付いた形",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-fukui-amigasatake"
+      ],
+      "evidence_refs": [
+        "FCE-377-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "head_reticulate",
+        "evidence_text": "網目のある卵形のかたまりに柄が付いた形",
+        "source_ids": [
+          "research-fukui-amigasatake"
+        ],
+        "evidence_refs": [
+          "FCE-377-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-377",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "1e3b055fd5af3e580e236b12aca0dcfe6c53ae43fcfc373be3a8cb9356b41d83"
+      }
+    },
+    {
+      "decision_id": "FCR-378",
+      "mushroom_id": "yanagimatsutake",
+      "facet_id": "ring",
+      "evidence_text": "柄の中程には「つば」がある",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-chiba-yanagimatsutake"
+      ],
+      "evidence_refs": [
+        "FCE-378-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "ring",
+        "evidence_text": "柄の中程には「つば」がある",
+        "source_ids": [
+          "research-chiba-yanagimatsutake"
+        ],
+        "evidence_refs": [
+          "FCE-378-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-378",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "bfd32df75e9a099b6e602b4c5f8f93d18b34c079926e3d0a6c879a7b3286fe7a"
+      }
+    },
+    {
+      "decision_id": "FCR-379",
+      "mushroom_id": "shiitake",
+      "facet_id": "cap_scales_warts",
+      "evidence_text": "はじめ傘の周縁部に白い綿毛状の鱗片をつけるが、成長するにつれて鱗片が消失",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000142114"
+      ],
+      "evidence_refs": [
+        "FCE-379-1"
+      ],
+      "qualifiers": [
+        "脱落／成長による消失あり。見えない個体を除外する識別根拠にしない"
+      ],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "はじめ傘の周縁部に白い綿毛状の鱗片をつけるが、成長するにつれて鱗片が消失",
+        "source_ids": [
+          "research-mhlw-0000142114"
+        ],
+        "evidence_refs": [
+          "FCE-379-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "脱落／成長による消失あり。見えない個体を除外する識別根拠にしない"
+        ],
+        "review": {
+          "decision_id": "FCR-379",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "eff25a63642b3c14cd21aa557ceb90a79ded493fa468696e6f903b50a296a0c8"
+      }
+    },
+    {
+      "decision_id": "FCR-380",
+      "mushroom_id": "shiitake",
+      "facet_id": "gills",
+      "evidence_text": "ヒダ：白色",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-mhlw-0000142114"
+      ],
+      "evidence_refs": [
+        "FCE-380-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "ヒダ：白色",
+        "source_ids": [
+          "research-mhlw-0000142114"
+        ],
+        "evidence_refs": [
+          "FCE-380-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-380",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f7af4795fdc8e78a38fc1a4cbf8359dfbe72fc4b45a2d9db50d3700f4c7d4651"
+      }
+    },
+    {
+      "decision_id": "FCR-381",
+      "mushroom_id": "kinugasatake",
+      "facet_id": "head_reticulate",
+      "evidence_text": "レ-スのようなマントを広げる、傘には網目状の隆起があり暗緑色の粘液物がある",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-kinugasatake"
+      ],
+      "evidence_refs": [
+        "FCE-381-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "head_reticulate",
+        "evidence_text": "レ-スのようなマントを広げる、傘には網目状の隆起があり暗緑色の粘液物がある",
+        "source_ids": [
+          "research-ishikawa-kinugasatake"
+        ],
+        "evidence_refs": [
+          "FCE-381-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-381",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "86624a3520ddf470399995a4ca9a97e9683154ce93f959b10d47ed77324c5a7b"
+      }
+    },
+    {
+      "decision_id": "FCR-382",
+      "mushroom_id": "suppontake",
+      "facet_id": "head_reticulate",
+      "evidence_text": "傘には網目状隆起があり暗緑色の粘液は悪臭を放つ",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-suppontake"
+      ],
+      "evidence_refs": [
+        "FCE-382-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "head_reticulate",
+        "evidence_text": "傘には網目状隆起があり暗緑色の粘液は悪臭を放つ",
+        "source_ids": [
+          "research-ishikawa-suppontake"
+        ],
+        "evidence_refs": [
+          "FCE-382-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-382",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "eadb22f8966f5a53897c9af52c5262f81864dea6225579448437ae2f0e6c282d"
+      }
+    },
+    {
+      "decision_id": "FCR-383",
+      "mushroom_id": "sanagitake",
+      "facet_id": "granular_powdery",
+      "evidence_text": "頭部は橙黄色で疣粒が密生、柄は円柱状でまれに分岐する",
+      "evidence_kind": "source_quote",
+      "source_ids": [
+        "research-ishikawa-sanagitake"
+      ],
+      "evidence_refs": [
+        "FCE-383-1"
+      ],
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "approval_scope": "runtime_candidate_assignment_acceptance",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "original_runtime_assignment": {
+        "facet_id": "granular_powdery",
+        "evidence_text": "頭部は橙黄色で疣粒が密生、柄は円柱状でまれに分岐する",
+        "source_ids": [
+          "research-ishikawa-sanagitake"
+        ],
+        "evidence_refs": [
+          "FCE-383-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-383",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f7250b35db1f3dda3a6d930605c33c2f1407814708c61d2be8ee077d7f2d3e46"
+      }
+    }
+  ],
+  "evidence_records": [
+    {
+      "decision_id": "FCR-001",
+      "evidence_id": "FCE-001-1",
+      "mushroom_id": "kaentake",
+      "facet_id": "rod_cylindrical",
+      "source_id": "mhlw-kaentake",
+      "source_url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000143427.html",
+      "retrieved_url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000143427.html",
+      "evidence_kind": "source_supported_paraphrase",
+      "evidence_kind_scope": "assignment-level; inherited without change from the approved candidate",
+      "evidence_text_exact_substring_of_this_quote": false,
+      "evidence_text": "細長い棒状または円柱状",
+      "quote": "表面はオレンジ色から赤色、細長い円柱状または棒状で、土から手の指が出ているように群生または単生する。中は白く、硬い。",
+      "quote_sha256": "606bf69d2b935ace96d49f8da083742412773f3fed225b3328960d3626790dff",
+      "locator": "自然毒のリスクプロファイル／対象種の形と色",
+      "snapshot_identity": "urn:phase4c9:source-snapshot:mhlw-kaentake:sha256:bf50f45702b5f78b86b3c48fd2eb1a4546d678acc9452358cd72397c0ef0ccc6",
+      "extracted_text_sha256": "bf50f45702b5f78b86b3c48fd2eb1a4546d678acc9452358cd72397c0ef0ccc6",
+      "text_snapshot_sha256": "bf50f45702b5f78b86b3c48fd2eb1a4546d678acc9452358cd72397c0ef0ccc6",
+      "original_response_sha256": "542bb6d2ce02de28797fd48619c8b9b6da4bfd18d940ac72495412fa87c328dc",
+      "snapshot_line_start": 219,
+      "snapshot_line_end": 219,
+      "char_start": 2213,
+      "char_end": 2271,
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "review_reason": "子実体全体の円柱状または棒状を確認。柄だけの円柱形からは追加しない。",
+      "approval_scope": "supporting_evidence_for_approved_runtime_candidate_assignment",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "source_review_actor": "assistant_source_reading",
+      "target_note": null
+    },
+    {
+      "decision_id": "FCR-002",
+      "evidence_id": "FCE-002-1",
+      "mushroom_id": "dokutsurutake",
+      "facet_id": "ring",
+      "source_id": "mhlw-dokutsurutake",
+      "source_url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000142727.html",
+      "retrieved_url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000142727.html",
+      "evidence_kind": "source_supported_paraphrase",
+      "evidence_kind_scope": "assignment-level; inherited without change from the approved candidate",
+      "evidence_text_exact_substring_of_this_quote": false,
+      "evidence_text": "柄の上部につば",
+      "quote": "柄　：白色で上部にはつばが付き、つばの下はささくれに覆れている。",
+      "quote_sha256": "fbe0150ff5f225b6f8d664d74849499c172da12b38430f18830d063951e9951c",
+      "locator": "自然毒のリスクプロファイル／対象種の形と色",
+      "snapshot_identity": "urn:phase4c9:source-snapshot:mhlw-dokutsurutake:sha256:23961f9fa3d39366768f9e8c980a20ac2475199d1840e2b3fff1bf7ec1bd94b5",
+      "extracted_text_sha256": "23961f9fa3d39366768f9e8c980a20ac2475199d1840e2b3fff1bf7ec1bd94b5",
+      "text_snapshot_sha256": "23961f9fa3d39366768f9e8c980a20ac2475199d1840e2b3fff1bf7ec1bd94b5",
+      "original_response_sha256": "3dcb6bded7a5defb7164aedde9a0b7a422b3ca377700bac385e3df972b476b14",
+      "snapshot_line_start": 223,
+      "snapshot_line_end": 223,
+      "char_start": 2258,
+      "char_end": 2290,
+      "qualifiers": [],
+      "review_result": "supports_facet",
+      "review_reason": "柄のつばを明示する本文を確認。欠如併記・早落性・不完全・痕跡の例は保留。",
+      "approval_scope": "supporting_evidence_for_approved_runtime_candidate_assignment",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "source_review_actor": "assistant_source_reading",
+      "target_note": null
+    },
+    {
+      "decision_id": "FCR-003",
+      "evidence_id": "FCE-003-1",
+      "mushroom_id": "dokutsurutake",
+      "facet_id": "volva",
+      "source_id": "mhlw-dokutsurutake",
+      "source_url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000142727.html",
+      "retrieved_url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000142727.html",
+      "evidence_kind": "source_supported_paraphrase",
+      "evidence_kind_scope": "assignment-level; inherited without change from the approved candidate",
+      "evidence_text_exact_substring_of_this_quote": false,
+      "evidence_text": "基部につぼ",
+      "quote": "根もと(基部)には袋状のつぼの名残がある。",
+      "quote_sha256": "8a9418e295f6a3c9280e8ec6b44866beb9ce2f07e241c973ef78c886d8ac3d3c",
+      "locator": "自然毒のリスクプロファイル／対象種の形と色",
+      "snapshot_identity": "urn:phase4c9:source-snapshot:mhlw-dokutsurutake:sha256:23961f9fa3d39366768f9e8c980a20ac2475199d1840e2b3fff1bf7ec1bd94b5",
+      "extracted_text_sha256": "23961f9fa3d39366768f9e8c980a20ac2475199d1840e2b3fff1bf7ec1bd94b5",
+      "text_snapshot_sha256": "23961f9fa3d39366768f9e8c980a20ac2475199d1840e2b3fff1bf7ec1bd94b5",
+      "original_response_sha256": "3dcb6bded7a5defb7164aedde9a0b7a422b3ca377700bac385e3df972b476b14",
+      "snapshot_line_start": 224,
+      "snapshot_line_end": 224,
+      "char_start": 2291,
+      "char_end": 2312,
+      "qualifiers": [
+        "完全な袋状つぼに限定しない。環状・襟状・不完全・破片等の原文限定を表示"
+      ],
+      "review_result": "supports_facet",
+      "review_reason": "つぼの明示を確認。袋状・環状・襟状・破片・不完全など、資料の形態限定を保持。単なる基部膨大からは推測しない。",
+      "approval_scope": "supporting_evidence_for_approved_runtime_candidate_assignment",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "source_review_actor": "assistant_source_reading",
+      "target_note": null
+    },
+    {
+      "decision_id": "FCR-004",
+      "evidence_id": "FCE-004-1",
+      "mushroom_id": "dokutsurutake",
+      "facet_id": "cap_sticky",
+      "source_id": "research-ishikawa-dokuturutake",
+      "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/dokuturutake.html",
+      "retrieved_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/dokuturutake.html",
+      "evidence_kind": "source_quote",
+      "evidence_kind_scope": "assignment-level; inherited without change from the approved candidate",
+      "evidence_text_exact_substring_of_this_quote": true,
+      "evidence_text": "傘：湿時弱い粘性有",
+      "quote": "傘：湿時弱い粘性有",
+      "quote_sha256": "a46e1483bd4886f63908f87d10fb620b57cb3a1659024d4fc79d5f67b4018dea",
+      "locator": "種別ページ本文の形態欄",
+      "snapshot_identity": "urn:phase4c9:source-snapshot:research-ishikawa-dokuturutake:sha256:b01cd6e5f8cf82015a861e55f68893109f3daf1d218160f3362774e141ed3e6f",
+      "extracted_text_sha256": "b01cd6e5f8cf82015a861e55f68893109f3daf1d218160f3362774e141ed3e6f",
+      "text_snapshot_sha256": "b01cd6e5f8cf82015a861e55f68893109f3daf1d218160f3362774e141ed3e6f",
+      "original_response_sha256": "bc2aa1027d012d4a081957bc7043b142f375373b888e566ae97d1ada6299bf2b",
+      "snapshot_line_start": 82,
+      "snapshot_line_end": 82,
+      "char_start": 584,
+      "char_end": 593,
+      "qualifiers": [
+        "湿時という条件を保持"
+      ],
+      "review_result": "supports_facet",
+      "review_reason": "傘の粘性を肯定する記載。湿時・強弱の条件を根拠文に保持。",
+      "approval_scope": "supporting_evidence_for_approved_runtime_candidate_assignment",
+      "approval_status": "approved_by_conversation_explicit_approval",
+      "source_review_actor": "assistant_source_reading",

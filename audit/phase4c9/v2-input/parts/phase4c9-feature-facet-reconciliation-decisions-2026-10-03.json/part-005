@@ -1,0 +1,3582 @@
+    },
+    {
+      "decision_id": "FCR-317",
+      "input_assignment_index": 317,
+      "mushroom_id": "hidahatake",
+      "canonical_name_ja": "ヒダハタケ",
+      "facet_id": "gills",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、垂生、密",
+        "source_ids": [
+          "research-ishikawa-hidahatake"
+        ]
+      },
+      "master_features_summary": "傘は湿時粘性有、短い条線有。傘の下面はヒダ、垂生、密。柄は中実。",
+      "master_features_source_ids": [
+        "research-ishikawa-hidahatake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘の下面はヒダ、垂生、密",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-317-1"
+      ],
+      "reason": "対象種の傘下面のひだを本文で確認。比較表は対象列を特定。しわ状・ヒダ状の類推は追加しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、垂生、密",
+        "source_ids": [
+          "research-ishikawa-hidahatake"
+        ],
+        "evidence_refs": [
+          "FCE-317-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-317",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-318",
+      "input_assignment_index": 318,
+      "mushroom_id": "hidahatake",
+      "canonical_name_ja": "ヒダハタケ",
+      "facet_id": "stem_solid",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実",
+        "source_ids": [
+          "research-ishikawa-hidahatake"
+        ]
+      },
+      "master_features_summary": "傘は湿時粘性有、短い条線有。傘の下面はヒダ、垂生、密。柄は中実。",
+      "master_features_source_ids": [
+        "research-ishikawa-hidahatake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄は中実",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-318-1"
+      ],
+      "reason": "柄の中実の明示を確認。髄状だけからは推定せず、範囲・成長変化は原文に保持。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実",
+        "source_ids": [
+          "research-ishikawa-hidahatake"
+        ],
+        "evidence_refs": [
+          "FCE-318-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-318",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-319",
+      "input_assignment_index": 319,
+      "mushroom_id": "hitoyotake",
+      "canonical_name_ja": "ヒトヨタケ",
+      "facet_id": "cap_scales_warts",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "傘：淡灰褐色細鱗片におおわれる",
+        "source_ids": [
+          "research-ishikawa-hitoyotake"
+        ]
+      },
+      "master_features_summary": "傘は淡灰褐色細鱗片におおわれる。傘の下面はヒダ、上生、密、白色後黒色液化。柄は中空、不完全なツバ痕跡有。",
+      "master_features_source_ids": [
+        "research-ishikawa-hitoyotake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘は淡灰褐色細鱗片におおわれる",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-319-1"
+      ],
+      "reason": "傘の鱗片／いぼの記載を確認。柄の装飾や被膜一般からは推測しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "傘：淡灰褐色細鱗片におおわれる",
+        "source_ids": [
+          "research-ishikawa-hitoyotake"
+        ],
+        "evidence_refs": [
+          "FCE-319-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-319",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-320",
+      "input_assignment_index": 320,
+      "mushroom_id": "hitoyotake",
+      "canonical_name_ja": "ヒトヨタケ",
+      "facet_id": "gills",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、上生、密、白色後黒色液化",
+        "source_ids": [
+          "research-ishikawa-hitoyotake"
+        ]
+      },
+      "master_features_summary": "傘は淡灰褐色細鱗片におおわれる。傘の下面はヒダ、上生、密、白色後黒色液化。柄は中空、不完全なツバ痕跡有。",
+      "master_features_source_ids": [
+        "research-ishikawa-hitoyotake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘の下面はヒダ、上生、密、白色後黒色液化",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-320-1"
+      ],
+      "reason": "対象種の傘下面のひだを本文で確認。比較表は対象列を特定。しわ状・ヒダ状の類推は追加しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、上生、密、白色後黒色液化",
+        "source_ids": [
+          "research-ishikawa-hitoyotake"
+        ],
+        "evidence_refs": [
+          "FCE-320-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-320",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-321",
+      "input_assignment_index": 321,
+      "mushroom_id": "hitoyotake",
+      "canonical_name_ja": "ヒトヨタケ",
+      "facet_id": "ring",
+      "classification": "D",
+      "classification_name": "INSUFFICIENT_OR_UNSUPPORTED",
+      "input_assignment": {
+        "facet_id": "ring",
+        "evidence_text": "柄：中空、不完全なツバ痕跡有",
+        "source_ids": [
+          "research-ishikawa-hitoyotake"
+        ]
+      },
+      "master_features_summary": "傘は淡灰褐色細鱗片におおわれる。傘の下面はヒダ、上生、密、白色後黒色液化。柄は中空、不完全なツバ痕跡有。",
+      "master_features_source_ids": [
+        "research-ishikawa-hitoyotake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": null,
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-321-1"
+      ],
+      "reason": "不完全なつば痕跡。現行ring意味との対応保留",
+      "runtime_action": "hold",
+      "runtime_assignment": null,
+      "recommended_changes": [
+        {
+          "operation": "hold_assignment",
+          "old_value": {
+            "facet_id": "ring",
+            "evidence_text": "柄：中空、不完全なツバ痕跡有",
+            "source_ids": [
+              "research-ishikawa-hitoyotake"
+            ]
+          },
+          "proposed_value": null,
+          "reason": "不完全なつば痕跡。現行ring意味との対応保留"
+        }
+      ],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-322",
+      "input_assignment_index": 322,
+      "mushroom_id": "hitoyotake",
+      "canonical_name_ja": "ヒトヨタケ",
+      "facet_id": "stem_hollow",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "柄：中空、不完全なツバ痕跡有",
+        "source_ids": [
+          "research-ishikawa-hitoyotake"
+        ]
+      },
+      "master_features_summary": "傘は淡灰褐色細鱗片におおわれる。傘の下面はヒダ、上生、密、白色後黒色液化。柄は中空、不完全なツバ痕跡有。",
+      "master_features_source_ids": [
+        "research-ishikawa-hitoyotake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄は中空、不完全なツバ痕跡有",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-322-1"
+      ],
+      "reason": "柄の中空の明示を確認。中実／髄状との範囲・成長変化も原文に保持。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "柄：中空、不完全なツバ痕跡有",
+        "source_ids": [
+          "research-ishikawa-hitoyotake"
+        ],
+        "evidence_refs": [
+          "FCE-322-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-322",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-323",
+      "input_assignment_index": 323,
+      "mushroom_id": "bunasimeji",
+      "canonical_name_ja": "ブナシメジ",
+      "facet_id": "gills",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、直生、やや密",
+        "source_ids": [
+          "research-ishikawa-bunasimeji"
+        ]
+      },
+      "master_features_summary": "傘は中央に大理石模様を表す。傘の下面はヒダ、直生、やや密。柄は中実。",
+      "master_features_source_ids": [
+        "research-ishikawa-bunasimeji"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘の下面はヒダ、直生、やや密",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-323-1"
+      ],
+      "reason": "対象種の傘下面のひだを本文で確認。比較表は対象列を特定。しわ状・ヒダ状の類推は追加しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、直生、やや密",
+        "source_ids": [
+          "research-ishikawa-bunasimeji"
+        ],
+        "evidence_refs": [
+          "FCE-323-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-323",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-324",
+      "input_assignment_index": 324,
+      "mushroom_id": "bunasimeji",
+      "canonical_name_ja": "ブナシメジ",
+      "facet_id": "stem_solid",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実",
+        "source_ids": [
+          "research-ishikawa-bunasimeji"
+        ]
+      },
+      "master_features_summary": "傘は中央に大理石模様を表す。傘の下面はヒダ、直生、やや密。柄は中実。",
+      "master_features_source_ids": [
+        "research-ishikawa-bunasimeji"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄は中実",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-324-1"
+      ],
+      "reason": "柄の中実の明示を確認。髄状だけからは推定せず、範囲・成長変化は原文に保持。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実",
+        "source_ids": [
+          "research-ishikawa-bunasimeji"
+        ],
+        "evidence_refs": [
+          "FCE-324-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-324",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-325",
+      "input_assignment_index": 325,
+      "mushroom_id": "honsimeji",
+      "canonical_name_ja": "ホンシメジ",
+      "facet_id": "gills",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、湾生～やや垂生、密",
+        "source_ids": [
+          "research-ishikawa-honsimeji"
+        ]
+      },
+      "master_features_summary": "傘は暗灰褐色～灰褐色、かすり模様。傘の下面はヒダ、湾生～やや垂生、密。柄は中実、下方肥大。",
+      "master_features_source_ids": [
+        "research-ishikawa-honsimeji"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘の下面はヒダ、湾生～やや垂生、密",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-325-1"
+      ],
+      "reason": "対象種の傘下面のひだを本文で確認。比較表は対象列を特定。しわ状・ヒダ状の類推は追加しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、湾生～やや垂生、密",
+        "source_ids": [
+          "research-ishikawa-honsimeji"
+        ],
+        "evidence_refs": [
+          "FCE-325-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-325",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-326",
+      "input_assignment_index": 326,
+      "mushroom_id": "honsimeji",
+      "canonical_name_ja": "ホンシメジ",
+      "facet_id": "stem_solid",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、下方肥大",
+        "source_ids": [
+          "research-ishikawa-honsimeji"
+        ]
+      },
+      "master_features_summary": "傘は暗灰褐色～灰褐色、かすり模様。傘の下面はヒダ、湾生～やや垂生、密。柄は中実、下方肥大。",
+      "master_features_source_ids": [
+        "research-ishikawa-honsimeji"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄は中実、下方肥大",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-326-1"
+      ],
+      "reason": "柄の中実の明示を確認。髄状だけからは推定せず、範囲・成長変化は原文に保持。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、下方肥大",
+        "source_ids": [
+          "research-ishikawa-honsimeji"
+        ],
+        "evidence_refs": [
+          "FCE-326-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-326",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-327",
+      "input_assignment_index": 327,
+      "mushroom_id": "maitake",
+      "canonical_name_ja": "マイタケ",
+      "facet_id": "pores",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "pores",
+        "evidence_text": "傘の下面：菅孔、垂生",
+        "source_ids": [
+          "research-ishikawa-maitake"
+        ]
+      },
+      "master_features_summary": "傘は扇形～半円形、不鮮明な環紋有。傘の下面は管孔、垂生。柄は中実、多数分岐する。",
+      "master_features_source_ids": [
+        "research-ishikawa-maitake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘の下面は管孔、垂生",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-327-1"
+      ],
+      "reason": "傘下面の管孔を本文で確認。石川県の「菅孔」は原文表記のまま保存し、器官名の読みを注記。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "pores",
+        "evidence_text": "傘の下面：菅孔、垂生",
+        "source_ids": [
+          "research-ishikawa-maitake"
+        ],
+        "evidence_refs": [
+          "FCE-327-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-327",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-328",
+      "input_assignment_index": 328,
+      "mushroom_id": "maitake",
+      "canonical_name_ja": "マイタケ",
+      "facet_id": "stem_solid",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、多数分岐する",
+        "source_ids": [
+          "research-ishikawa-maitake"
+        ]
+      },
+      "master_features_summary": "傘は扇形～半円形、不鮮明な環紋有。傘の下面は管孔、垂生。柄は中実、多数分岐する。",
+      "master_features_source_ids": [
+        "research-ishikawa-maitake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄は中実、多数分岐する",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-328-1"
+      ],
+      "reason": "柄の中実の明示を確認。髄状だけからは推定せず、範囲・成長変化は原文に保持。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、多数分岐する",
+        "source_ids": [
+          "research-ishikawa-maitake"
+        ],
+        "evidence_refs": [
+          "FCE-328-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-328",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-329",
+      "input_assignment_index": 329,
+      "mushroom_id": "matutake",
+      "canonical_name_ja": "マツタケ",
+      "facet_id": "cap_scales_warts",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "傘：クリ褐色の鱗片有",
+        "source_ids": [
+          "research-ishikawa-matutake"
+        ]
+      },
+      "master_features_summary": "傘はクリ褐色の鱗片有。傘の下面はヒダ、湾生、密。柄は中実、ツバ有。",
+      "master_features_source_ids": [
+        "research-ishikawa-matutake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘はクリ褐色の鱗片有",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-329-1"
+      ],
+      "reason": "傘の鱗片／いぼの記載を確認。柄の装飾や被膜一般からは推測しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "傘：クリ褐色の鱗片有",
+        "source_ids": [
+          "research-ishikawa-matutake"
+        ],
+        "evidence_refs": [
+          "FCE-329-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-329",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-330",
+      "input_assignment_index": 330,
+      "mushroom_id": "matutake",
+      "canonical_name_ja": "マツタケ",
+      "facet_id": "gills",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、湾生、密",
+        "source_ids": [
+          "research-ishikawa-matutake"
+        ]
+      },
+      "master_features_summary": "傘はクリ褐色の鱗片有。傘の下面はヒダ、湾生、密。柄は中実、ツバ有。",
+      "master_features_source_ids": [
+        "research-ishikawa-matutake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘の下面はヒダ、湾生、密",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-330-1"
+      ],
+      "reason": "対象種の傘下面のひだを本文で確認。比較表は対象列を特定。しわ状・ヒダ状の類推は追加しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、湾生、密",
+        "source_ids": [
+          "research-ishikawa-matutake"
+        ],
+        "evidence_refs": [
+          "FCE-330-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-330",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-331",
+      "input_assignment_index": 331,
+      "mushroom_id": "matutake",
+      "canonical_name_ja": "マツタケ",
+      "facet_id": "ring",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "ring",
+        "evidence_text": "柄：中実、ツバ有",
+        "source_ids": [
+          "research-ishikawa-matutake"
+        ]
+      },
+      "master_features_summary": "傘はクリ褐色の鱗片有。傘の下面はヒダ、湾生、密。柄は中実、ツバ有。",
+      "master_features_source_ids": [
+        "research-ishikawa-matutake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄は中実、ツバ有",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-331-1"
+      ],
+      "reason": "柄のつばを明示する本文を確認。欠如併記・早落性・不完全・痕跡の例は保留。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "ring",
+        "evidence_text": "柄：中実、ツバ有",
+        "source_ids": [
+          "research-ishikawa-matutake"
+        ],
+        "evidence_refs": [
+          "FCE-331-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-331",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-332",
+      "input_assignment_index": 332,
+      "mushroom_id": "matutake",
+      "canonical_name_ja": "マツタケ",
+      "facet_id": "stem_solid",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、ツバ有",
+        "source_ids": [
+          "research-ishikawa-matutake"
+        ]
+      },
+      "master_features_summary": "傘はクリ褐色の鱗片有。傘の下面はヒダ、湾生、密。柄は中実、ツバ有。",
+      "master_features_source_ids": [
+        "research-ishikawa-matutake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄は中実、ツバ有",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-332-1"
+      ],
+      "reason": "柄の中実の明示を確認。髄状だけからは推定せず、範囲・成長変化は原文に保持。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、ツバ有",
+        "source_ids": [
+          "research-ishikawa-matutake"
+        ],
+        "evidence_refs": [
+          "FCE-332-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-332",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-333",
+      "input_assignment_index": 333,
+      "mushroom_id": "mannentake",
+      "canonical_name_ja": "マンネンタケ",
+      "facet_id": "pores",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "pores",
+        "evidence_text": "傘の下面：菅孔、孔口鮮黄色で触れると暗色化",
+        "source_ids": [
+          "research-ishikawa-mannentake"
+        ]
+      },
+      "master_features_summary": "傘は腎臓形、環溝としわ有、光沢有。傘の下面は管孔、孔口鮮黄色で触れると暗色化。柄は中実、硬質。",
+      "master_features_source_ids": [
+        "research-ishikawa-mannentake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘の下面は管孔、孔口鮮黄色で触れると暗色化",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-333-1"
+      ],
+      "reason": "傘下面の管孔を本文で確認。石川県の「菅孔」は原文表記のまま保存し、器官名の読みを注記。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "pores",
+        "evidence_text": "傘の下面：菅孔、孔口鮮黄色で触れると暗色化",
+        "source_ids": [
+          "research-ishikawa-mannentake"
+        ],
+        "evidence_refs": [
+          "FCE-333-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-333",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-334",
+      "input_assignment_index": 334,
+      "mushroom_id": "mannentake",
+      "canonical_name_ja": "マンネンタケ",
+      "facet_id": "stem_solid",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、硬質",
+        "source_ids": [
+          "research-ishikawa-mannentake"
+        ]
+      },
+      "master_features_summary": "傘は腎臓形、環溝としわ有、光沢有。傘の下面は管孔、孔口鮮黄色で触れると暗色化。柄は中実、硬質。",
+      "master_features_source_ids": [
+        "research-ishikawa-mannentake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄は中実、硬質",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-334-1"
+      ],
+      "reason": "柄の中実の明示を確認。髄状だけからは推定せず、範囲・成長変化は原文に保持。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、硬質",
+        "source_ids": [
+          "research-ishikawa-mannentake"
+        ],
+        "evidence_refs": [
+          "FCE-334-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-334",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-335",
+      "input_assignment_index": 335,
+      "mushroom_id": "mukitake",
+      "canonical_name_ja": "ムキタケ",
+      "facet_id": "gills",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、直生、密",
+        "source_ids": [
+          "research-ishikawa-mukitake"
+        ]
+      },
+      "master_features_summary": "傘は微毛を密生、表皮はむきやすい。傘の下面はヒダ、直生、密。柄は短く側着生、中実。",
+      "master_features_source_ids": [
+        "research-ishikawa-mukitake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘の下面はヒダ、直生、密",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-335-1"
+      ],
+      "reason": "対象種の傘下面のひだを本文で確認。比較表は対象列を特定。しわ状・ヒダ状の類推は追加しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、直生、密",
+        "source_ids": [
+          "research-ishikawa-mukitake"
+        ],
+        "evidence_refs": [
+          "FCE-335-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-335",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-336",
+      "input_assignment_index": 336,
+      "mushroom_id": "mukitake",
+      "canonical_name_ja": "ムキタケ",
+      "facet_id": "stem_solid",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：短く側着生、中実",
+        "source_ids": [
+          "research-ishikawa-mukitake"
+        ]
+      },
+      "master_features_summary": "傘は微毛を密生、表皮はむきやすい。傘の下面はヒダ、直生、密。柄は短く側着生、中実。",
+      "master_features_source_ids": [
+        "research-ishikawa-mukitake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄は短く側着生、中実",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-336-1"
+      ],
+      "reason": "柄の中実の明示を確認。髄状だけからは推定せず、範囲・成長変化は原文に保持。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：短く側着生、中実",
+        "source_ids": [
+          "research-ishikawa-mukitake"
+        ],
+        "evidence_refs": [
+          "FCE-336-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-336",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-337",
+      "input_assignment_index": 337,
+      "mushroom_id": "mukitake",
+      "canonical_name_ja": "ムキタケ",
+      "facet_id": "hairy",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "hairy",
+        "evidence_text": "傘：微毛を密生、表皮はむきやすい",
+        "source_ids": [
+          "research-ishikawa-mukitake"
+        ]
+      },
+      "master_features_summary": "傘は微毛を密生、表皮はむきやすい。傘の下面はヒダ、直生、密。柄は短く側着生、中実。",
+      "master_features_source_ids": [
+        "research-ishikawa-mukitake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘は微毛を密生、表皮はむきやすい",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-337-1"
+      ],
+      "reason": "微毛・短毛・粗毛・毛の密生を部位とともに確認。比喩的な綿毛状だけの例は保留。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "hairy",
+        "evidence_text": "傘：微毛を密生、表皮はむきやすい",
+        "source_ids": [
+          "research-ishikawa-mukitake"
+        ],
+        "evidence_refs": [
+          "FCE-337-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-337",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-338",
+      "input_assignment_index": 338,
+      "mushroom_id": "murasakisimeji",
+      "canonical_name_ja": "ムラサキシメジ",
+      "facet_id": "gills",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、湾生～やや垂生、密",
+        "source_ids": [
+          "research-ishikawa-murasakisimeji"
+        ]
+      },
+      "master_features_summary": "傘は紫色。傘の下面はヒダ、湾生～やや垂生、密。柄は中実、基部は球根状に肥大。",
+      "master_features_source_ids": [
+        "research-ishikawa-murasakisimeji"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘の下面はヒダ、湾生～やや垂生、密",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-338-1"
+      ],
+      "reason": "対象種の傘下面のひだを本文で確認。比較表は対象列を特定。しわ状・ヒダ状の類推は追加しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、湾生～やや垂生、密",
+        "source_ids": [
+          "research-ishikawa-murasakisimeji"
+        ],
+        "evidence_refs": [
+          "FCE-338-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-338",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-339",
+      "input_assignment_index": 339,
+      "mushroom_id": "murasakisimeji",
+      "canonical_name_ja": "ムラサキシメジ",
+      "facet_id": "stem_solid",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、基部は球根状に肥大",
+        "source_ids": [
+          "research-ishikawa-murasakisimeji"
+        ]
+      },
+      "master_features_summary": "傘は紫色。傘の下面はヒダ、湾生～やや垂生、密。柄は中実、基部は球根状に肥大。",
+      "master_features_source_ids": [
+        "research-ishikawa-murasakisimeji"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄は中実、基部は球根状に肥大",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-339-1"
+      ],
+      "reason": "柄の中実の明示を確認。髄状だけからは推定せず、範囲・成長変化は原文に保持。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、基部は球根状に肥大",
+        "source_ids": [
+          "research-ishikawa-murasakisimeji"
+        ],
+        "evidence_refs": [
+          "FCE-339-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-339",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-340",
+      "input_assignment_index": 340,
+      "mushroom_id": "murasakifuusentake",
+      "canonical_name_ja": "ムラサキフウセンタケ",
+      "facet_id": "gills",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、直生～上生、疎",
+        "source_ids": [
+          "research-ishikawa-murasakifuusentake"
+        ]
+      },
+      "master_features_summary": "傘は暗紫色微毛密生、ささくれ状。傘の下面はヒダ、直生～上生、疎。柄は中実、基部球根状。",
+      "master_features_source_ids": [
+        "research-ishikawa-murasakifuusentake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘の下面はヒダ、直生～上生、疎",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-340-1"
+      ],
+      "reason": "対象種の傘下面のひだを本文で確認。比較表は対象列を特定。しわ状・ヒダ状の類推は追加しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、直生～上生、疎",
+        "source_ids": [
+          "research-ishikawa-murasakifuusentake"
+        ],
+        "evidence_refs": [
+          "FCE-340-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-340",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-341",
+      "input_assignment_index": 341,
+      "mushroom_id": "murasakifuusentake",
+      "canonical_name_ja": "ムラサキフウセンタケ",
+      "facet_id": "stem_solid",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、基部球根状",
+        "source_ids": [
+          "research-ishikawa-murasakifuusentake"
+        ]
+      },
+      "master_features_summary": "傘は暗紫色微毛密生、ささくれ状。傘の下面はヒダ、直生～上生、疎。柄は中実、基部球根状。",
+      "master_features_source_ids": [
+        "research-ishikawa-murasakifuusentake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄は中実、基部球根状",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-341-1"
+      ],
+      "reason": "柄の中実の明示を確認。髄状だけからは推定せず、範囲・成長変化は原文に保持。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、基部球根状",
+        "source_ids": [
+          "research-ishikawa-murasakifuusentake"
+        ],
+        "evidence_refs": [
+          "FCE-341-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-341",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-342",
+      "input_assignment_index": 342,
+      "mushroom_id": "murasakifuusentake",
+      "canonical_name_ja": "ムラサキフウセンタケ",
+      "facet_id": "hairy",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "hairy",
+        "evidence_text": "傘：暗紫色微毛密生、ささくれ状",
+        "source_ids": [
+          "research-ishikawa-murasakifuusentake"
+        ]
+      },
+      "master_features_summary": "傘は暗紫色微毛密生、ささくれ状。傘の下面はヒダ、直生～上生、疎。柄は中実、基部球根状。",
+      "master_features_source_ids": [
+        "research-ishikawa-murasakifuusentake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘は暗紫色微毛密生、ささくれ状",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-342-1"
+      ],
+      "reason": "微毛・短毛・粗毛・毛の密生を部位とともに確認。比喩的な綿毛状だけの例は保留。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "hairy",
+        "evidence_text": "傘：暗紫色微毛密生、ささくれ状",
+        "source_ids": [
+          "research-ishikawa-murasakifuusentake"
+        ],
+        "evidence_refs": [
+          "FCE-342-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-342",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-343",
+      "input_assignment_index": 343,
+      "mushroom_id": "yakoutake",
+      "canonical_name_ja": "ヤコウタケ",
+      "facet_id": "cap_sticky",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "cap_sticky",
+        "evidence_text": "傘：ゼラチン質におおわれ強い粘性有",
+        "source_ids": [
+          "research-ishikawa-yakoutake"
+        ]
+      },
+      "master_features_summary": "傘はゼラチン質におおわれ強い粘性有。傘の下面はヒダ、離生、やや密。柄は中空、基部は吸盤状。",
+      "master_features_source_ids": [
+        "research-ishikawa-yakoutake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘はゼラチン質におおわれ強い粘性有",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-343-1"
+      ],
+      "reason": "傘の粘性を肯定する記載。湿時・強弱の条件を根拠文に保持。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "cap_sticky",
+        "evidence_text": "傘：ゼラチン質におおわれ強い粘性有",
+        "source_ids": [
+          "research-ishikawa-yakoutake"
+        ],
+        "evidence_refs": [
+          "FCE-343-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-343",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-344",
+      "input_assignment_index": 344,
+      "mushroom_id": "yakoutake",
+      "canonical_name_ja": "ヤコウタケ",
+      "facet_id": "gills",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、離生、やや密",
+        "source_ids": [
+          "research-ishikawa-yakoutake"
+        ]
+      },
+      "master_features_summary": "傘はゼラチン質におおわれ強い粘性有。傘の下面はヒダ、離生、やや密。柄は中空、基部は吸盤状。",
+      "master_features_source_ids": [
+        "research-ishikawa-yakoutake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘の下面はヒダ、離生、やや密",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-344-1"
+      ],
+      "reason": "対象種の傘下面のひだを本文で確認。比較表は対象列を特定。しわ状・ヒダ状の類推は追加しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、離生、やや密",
+        "source_ids": [
+          "research-ishikawa-yakoutake"
+        ],
+        "evidence_refs": [
+          "FCE-344-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-344",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-345",
+      "input_assignment_index": 345,
+      "mushroom_id": "yakoutake",
+      "canonical_name_ja": "ヤコウタケ",
+      "facet_id": "stem_hollow",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "柄：中空、基部は吸盤状",
+        "source_ids": [
+          "research-ishikawa-yakoutake"
+        ]
+      },
+      "master_features_summary": "傘はゼラチン質におおわれ強い粘性有。傘の下面はヒダ、離生、やや密。柄は中空、基部は吸盤状。",
+      "master_features_source_ids": [
+        "research-ishikawa-yakoutake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄は中空、基部は吸盤状",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-345-1"
+      ],
+      "reason": "柄の中空の明示を確認。中実／髄状との範囲・成長変化も原文に保持。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "柄：中空、基部は吸盤状",
+        "source_ids": [
+          "research-ishikawa-yakoutake"
+        ],
+        "evidence_refs": [
+          "FCE-345-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-345",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-346",
+      "input_assignment_index": 346,
+      "mushroom_id": "yakoutake",
+      "canonical_name_ja": "ヤコウタケ",
+      "facet_id": "gelatinous",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "gelatinous",
+        "evidence_text": "傘：ゼラチン質におおわれ強い粘性有",
+        "source_ids": [
+          "research-ishikawa-yakoutake"
+        ]
+      },
+      "master_features_summary": "傘はゼラチン質におおわれ強い粘性有。傘の下面はヒダ、離生、やや密。柄は中空、基部は吸盤状。",
+      "master_features_source_ids": [
+        "research-ishikawa-yakoutake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘はゼラチン質におおわれ強い粘性有",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-346-1"
+      ],
+      "reason": "ゼラチン質の明示を確認。ヤコウタケは傘を覆う層に限定し、子実体全体へ拡張しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "gelatinous",
+        "evidence_text": "傘：ゼラチン質におおわれ強い粘性有",
+        "source_ids": [
+          "research-ishikawa-yakoutake"
+        ],
+        "evidence_refs": [
+          "FCE-346-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "傘の被覆層のみ。子実体全体がゼラチン質とは断定しない"
+        ],
+        "review": {
+          "decision_id": "FCR-346",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [
+        "傘の被覆層のみ。子実体全体がゼラチン質とは断定しない"
+      ],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-347",
+      "input_assignment_index": 347,
+      "mushroom_id": "yamadoritakemodoki",
+      "canonical_name_ja": "ヤマドリタケモドキ",
+      "facet_id": "cap_sticky",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "cap_sticky",
+        "evidence_text": "傘：湿時粘性有",
+        "source_ids": [
+          "research-ishikawa-yamadoritakemodoki"
+        ]
+      },
+      "master_features_summary": "傘は湿時粘性有。傘の下面は管孔、直生～離生。柄は中実、網目模様有。",
+      "master_features_source_ids": [
+        "research-ishikawa-yamadoritakemodoki"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘は湿時粘性有",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-347-1"
+      ],
+      "reason": "傘の粘性を肯定する記載。湿時・強弱の条件を根拠文に保持。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "cap_sticky",
+        "evidence_text": "傘：湿時粘性有",
+        "source_ids": [
+          "research-ishikawa-yamadoritakemodoki"
+        ],
+        "evidence_refs": [
+          "FCE-347-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "湿時という条件を保持"
+        ],
+        "review": {
+          "decision_id": "FCR-347",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [
+        "湿時という条件を保持"
+      ],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-348",
+      "input_assignment_index": 348,
+      "mushroom_id": "yamadoritakemodoki",
+      "canonical_name_ja": "ヤマドリタケモドキ",
+      "facet_id": "pores",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "pores",
+        "evidence_text": "傘の下面：菅孔、直生～離生",
+        "source_ids": [
+          "research-ishikawa-yamadoritakemodoki"
+        ]
+      },
+      "master_features_summary": "傘は湿時粘性有。傘の下面は管孔、直生～離生。柄は中実、網目模様有。",
+      "master_features_source_ids": [
+        "research-ishikawa-yamadoritakemodoki"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘の下面は管孔、直生～離生",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-348-1"
+      ],
+      "reason": "傘下面の管孔を本文で確認。石川県の「菅孔」は原文表記のまま保存し、器官名の読みを注記。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "pores",
+        "evidence_text": "傘の下面：菅孔、直生～離生",
+        "source_ids": [
+          "research-ishikawa-yamadoritakemodoki"
+        ],
+        "evidence_refs": [
+          "FCE-348-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-348",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-349",
+      "input_assignment_index": 349,
+      "mushroom_id": "yamadoritakemodoki",
+      "canonical_name_ja": "ヤマドリタケモドキ",
+      "facet_id": "stem_solid",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、網目模様有",
+        "source_ids": [
+          "research-ishikawa-yamadoritakemodoki"
+        ]
+      },
+      "master_features_summary": "傘は湿時粘性有。傘の下面は管孔、直生～離生。柄は中実、網目模様有。",
+      "master_features_source_ids": [
+        "research-ishikawa-yamadoritakemodoki"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄は中実、網目模様有",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-349-1"
+      ],
+      "reason": "柄の中実の明示を確認。髄状だけからは推定せず、範囲・成長変化は原文に保持。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実、網目模様有",
+        "source_ids": [
+          "research-ishikawa-yamadoritakemodoki"
+        ],
+        "evidence_refs": [
+          "FCE-349-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-349",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-350",
+      "input_assignment_index": 350,
+      "mushroom_id": "yamadoritakemodoki",
+      "canonical_name_ja": "ヤマドリタケモドキ",
+      "facet_id": "stem_scales_pattern",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "stem_scales_pattern",
+        "evidence_text": "柄：中実、網目模様有",
+        "source_ids": [
+          "research-ishikawa-yamadoritakemodoki"
+        ]
+      },
+      "master_features_summary": "傘は湿時粘性有。傘の下面は管孔、直生～離生。柄は中実、網目模様有。",
+      "master_features_source_ids": [
+        "research-ishikawa-yamadoritakemodoki"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄は中実、網目模様有",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-350-1"
+      ],
+      "reason": "柄の鱗片・模様・ささくれの明示を確認。facet定義に「模様」が含まれるため網目模様も対象。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "stem_scales_pattern",
+        "evidence_text": "柄：中実、網目模様有",
+        "source_ids": [
+          "research-ishikawa-yamadoritakemodoki"
+        ],
+        "evidence_refs": [
+          "FCE-350-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-350",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-351",
+      "input_assignment_index": 351,
+      "mushroom_id": "yamadoritakemodoki",
+      "canonical_name_ja": "ヤマドリタケモドキ",
+      "facet_id": "stem_reticulate",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "stem_reticulate",
+        "evidence_text": "柄：中実、網目模様有",
+        "source_ids": [
+          "research-ishikawa-yamadoritakemodoki"
+        ]
+      },
+      "master_features_summary": "傘は湿時粘性有。傘の下面は管孔、直生～離生。柄は中実、網目模様有。",
+      "master_features_source_ids": [
+        "research-ishikawa-yamadoritakemodoki"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄は中実、網目模様有",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-351-1"
+      ],
+      "reason": "柄の網目を明示。頭部網目との混同なし。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "stem_reticulate",
+        "evidence_text": "柄：中実、網目模様有",
+        "source_ids": [
+          "research-ishikawa-yamadoritakemodoki"
+        ],
+        "evidence_refs": [
+          "FCE-351-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-351",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-352",
+      "input_assignment_index": 352,
+      "mushroom_id": "rurihatutake",
+      "canonical_name_ja": "ルリハツタケ",
+      "facet_id": "cap_sticky",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "cap_sticky",
+        "evidence_text": "傘：湿時弱い粘性有、環紋有",
+        "source_ids": [
+          "research-ishikawa-rurihatutake"
+        ]
+      },
+      "master_features_summary": "傘は湿時弱い粘性有、環紋有。傘の下面はヒダ、直生、やや密。柄は中実後中空。",
+      "master_features_source_ids": [
+        "research-ishikawa-rurihatutake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘は湿時弱い粘性有、環紋有",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-352-1"
+      ],
+      "reason": "傘の粘性を肯定する記載。湿時・強弱の条件を根拠文に保持。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "cap_sticky",
+        "evidence_text": "傘：湿時弱い粘性有、環紋有",
+        "source_ids": [
+          "research-ishikawa-rurihatutake"
+        ],
+        "evidence_refs": [
+          "FCE-352-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "湿時という条件を保持"
+        ],
+        "review": {
+          "decision_id": "FCR-352",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [
+        "湿時という条件を保持"
+      ],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-353",
+      "input_assignment_index": 353,
+      "mushroom_id": "rurihatutake",
+      "canonical_name_ja": "ルリハツタケ",
+      "facet_id": "gills",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、直生、やや密",
+        "source_ids": [
+          "research-ishikawa-rurihatutake"
+        ]
+      },
+      "master_features_summary": "傘は湿時弱い粘性有、環紋有。傘の下面はヒダ、直生、やや密。柄は中実後中空。",
+      "master_features_source_ids": [
+        "research-ishikawa-rurihatutake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘の下面はヒダ、直生、やや密",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-353-1"
+      ],
+      "reason": "対象種の傘下面のひだを本文で確認。比較表は対象列を特定。しわ状・ヒダ状の類推は追加しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下面：ヒダ、直生、やや密",
+        "source_ids": [
+          "research-ishikawa-rurihatutake"
+        ],
+        "evidence_refs": [
+          "FCE-353-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-353",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-354",
+      "input_assignment_index": 354,
+      "mushroom_id": "rurihatutake",
+      "canonical_name_ja": "ルリハツタケ",
+      "facet_id": "stem_hollow",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "柄：中実後中空",
+        "source_ids": [
+          "research-ishikawa-rurihatutake"
+        ]
+      },
+      "master_features_summary": "傘は湿時弱い粘性有、環紋有。傘の下面はヒダ、直生、やや密。柄は中実後中空。",
+      "master_features_source_ids": [
+        "research-ishikawa-rurihatutake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄は中実後中空",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-354-1"
+      ],
+      "reason": "柄の中空の明示を確認。中実／髄状との範囲・成長変化も原文に保持。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "柄：中実後中空",
+        "source_ids": [
+          "research-ishikawa-rurihatutake"
+        ],
+        "evidence_refs": [
+          "FCE-354-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+        ],
+        "review": {
+          "decision_id": "FCR-354",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [
+        "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+      ],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-355",
+      "input_assignment_index": 355,
+      "mushroom_id": "rurihatutake",
+      "canonical_name_ja": "ルリハツタケ",
+      "facet_id": "stem_solid",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実後中空",
+        "source_ids": [
+          "research-ishikawa-rurihatutake"
+        ]
+      },
+      "master_features_summary": "傘は湿時弱い粘性有、環紋有。傘の下面はヒダ、直生、やや密。柄は中実後中空。",
+      "master_features_source_ids": [
+        "research-ishikawa-rurihatutake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄は中実後中空",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-355-1"
+      ],
+      "reason": "柄の中実の明示を確認。髄状だけからは推定せず、範囲・成長変化は原文に保持。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "柄：中実後中空",
+        "source_ids": [
+          "research-ishikawa-rurihatutake"
+        ],
+        "evidence_refs": [
+          "FCE-355-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+        ],
+        "review": {
+          "decision_id": "FCR-355",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [
+        "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+      ],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-356",
+      "input_assignment_index": 356,
+      "mushroom_id": "shirotamagotengutake",
+      "canonical_name_ja": "シロタマゴテングタケ",
+      "facet_id": "gills",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "ひだ：白色",
+        "source_ids": [
+          "research-mhlw-0000142708"
+        ]
+      },
+      "master_features_summary": "全体が白色で傘表面は滑らか。白いひだ、柄のつば、基部のつぼを持つ。",
+      "master_features_source_ids": [
+        "research-mhlw-0000142708"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "白いひだ",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-356-1"
+      ],
+      "reason": "対象種の傘下面のひだを本文で確認。比較表は対象列を特定。しわ状・ヒダ状の類推は追加しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "ひだ：白色",
+        "source_ids": [
+          "research-mhlw-0000142708"
+        ],
+        "evidence_refs": [
+          "FCE-356-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-356",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-357",
+      "input_assignment_index": 357,
+      "mushroom_id": "shirotamagotengutake",
+      "canonical_name_ja": "シロタマゴテングタケ",
+      "facet_id": "ring",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "ring",
+        "evidence_text": "柄　：白色で袋状のつば、基部につぼがある。",
+        "source_ids": [
+          "research-mhlw-0000142708"
+        ]
+      },
+      "master_features_summary": "全体が白色で傘表面は滑らか。白いひだ、柄のつば、基部のつぼを持つ。",
+      "master_features_source_ids": [
+        "research-mhlw-0000142708"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄のつば",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-357-1"
+      ],
+      "reason": "柄のつばを明示する本文を確認。欠如併記・早落性・不完全・痕跡の例は保留。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "ring",
+        "evidence_text": "柄　：白色で袋状のつば、基部につぼがある。",
+        "source_ids": [
+          "research-mhlw-0000142708"
+        ],
+        "evidence_refs": [
+          "FCE-357-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-357",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-358",
+      "input_assignment_index": 358,
+      "mushroom_id": "shirotamagotengutake",
+      "canonical_name_ja": "シロタマゴテングタケ",
+      "facet_id": "volva",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "volva",
+        "evidence_text": "柄　：白色で袋状のつば、基部につぼがある。",
+        "source_ids": [
+          "research-mhlw-0000142708"
+        ]
+      },
+      "master_features_summary": "全体が白色で傘表面は滑らか。白いひだ、柄のつば、基部のつぼを持つ。",
+      "master_features_source_ids": [
+        "research-mhlw-0000142708"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "基部のつぼを持つ",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-358-1"
+      ],
+      "reason": "つぼの明示を確認。袋状・環状・襟状・破片・不完全など、資料の形態限定を保持。単なる基部膨大からは推測しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "volva",
+        "evidence_text": "柄　：白色で袋状のつば、基部につぼがある。",
+        "source_ids": [
+          "research-mhlw-0000142708"
+        ],
+        "evidence_refs": [
+          "FCE-358-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-358",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-359",
+      "input_assignment_index": 359,
+      "mushroom_id": "benitengutake",
+      "canonical_name_ja": "ベニテングタケ",
+      "facet_id": "cap_scales_warts",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "傘　：赤色で表面には多数のイボがあるが、脱落していることもある。",
+        "source_ids": [
+          "research-mhlw-0000142728"
+        ]
+      },
+      "master_features_summary": "赤い傘に多数のいぼがあるが脱落することもある。ひだと柄は白く、柄上部につば、その下にささくれ状の組織がある。",
+      "master_features_source_ids": [
+        "research-mhlw-0000142728"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "赤い傘に多数のいぼがあるが脱落することもある",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-359-1"
+      ],
+      "reason": "傘の鱗片／いぼの記載を確認。柄の装飾や被膜一般からは推測しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "傘　：赤色で表面には多数のイボがあるが、脱落していることもある。",
+        "source_ids": [
+          "research-mhlw-0000142728"
+        ],
+        "evidence_refs": [
+          "FCE-359-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "脱落／成長による消失あり。見えない個体を除外する識別根拠にしない"
+        ],
+        "review": {
+          "decision_id": "FCR-359",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [
+        "脱落／成長による消失あり。見えない個体を除外する識別根拠にしない"
+      ],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-360",
+      "input_assignment_index": 360,
+      "mushroom_id": "benitengutake",
+      "canonical_name_ja": "ベニテングタケ",
+      "facet_id": "gills",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "ひだ：白色で密である。",
+        "source_ids": [
+          "research-mhlw-0000142728"
+        ]
+      },
+      "master_features_summary": "赤い傘に多数のいぼがあるが脱落することもある。ひだと柄は白く、柄上部につば、その下にささくれ状の組織がある。",
+      "master_features_source_ids": [
+        "research-mhlw-0000142728"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "ひだと柄は白く",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-360-1"
+      ],
+      "reason": "対象種の傘下面のひだを本文で確認。比較表は対象列を特定。しわ状・ヒダ状の類推は追加しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "ひだ：白色で密である。",
+        "source_ids": [
+          "research-mhlw-0000142728"
+        ],
+        "evidence_refs": [
+          "FCE-360-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-360",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-361",
+      "input_assignment_index": 361,
+      "mushroom_id": "benitengutake",
+      "canonical_name_ja": "ベニテングタケ",
+      "facet_id": "ring",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "ring",
+        "evidence_text": "柄　：白色で上部にツバがある。その下はささくれ状である。",
+        "source_ids": [
+          "research-mhlw-0000142728"
+        ]
+      },
+      "master_features_summary": "赤い傘に多数のいぼがあるが脱落することもある。ひだと柄は白く、柄上部につば、その下にささくれ状の組織がある。",
+      "master_features_source_ids": [
+        "research-mhlw-0000142728"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄上部につば",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-361-1"
+      ],
+      "reason": "柄のつばを明示する本文を確認。欠如併記・早落性・不完全・痕跡の例は保留。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "ring",
+        "evidence_text": "柄　：白色で上部にツバがある。その下はささくれ状である。",
+        "source_ids": [
+          "research-mhlw-0000142728"
+        ],
+        "evidence_refs": [
+          "FCE-361-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-361",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-362",
+      "input_assignment_index": 362,
+      "mushroom_id": "benitengutake",
+      "canonical_name_ja": "ベニテングタケ",
+      "facet_id": "stem_scales_pattern",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "stem_scales_pattern",
+        "evidence_text": "柄　：白色で上部にツバがある。その下はささくれ状である。",
+        "source_ids": [
+          "research-mhlw-0000142728"
+        ]
+      },
+      "master_features_summary": "赤い傘に多数のいぼがあるが脱落することもある。ひだと柄は白く、柄上部につば、その下にささくれ状の組織がある。",
+      "master_features_source_ids": [
+        "research-mhlw-0000142728"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄上部につば、その下にささくれ状の組織がある",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-362-1"
+      ],
+      "reason": "柄の鱗片・模様・ささくれの明示を確認。facet定義に「模様」が含まれるため網目模様も対象。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "stem_scales_pattern",
+        "evidence_text": "柄　：白色で上部にツバがある。その下はささくれ状である。",
+        "source_ids": [
+          "research-mhlw-0000142728"
+        ],
+        "evidence_refs": [
+          "FCE-362-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-362",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-363",
+      "input_assignment_index": 363,
+      "mushroom_id": "dokusasako",
+      "canonical_name_ja": "ドクササコ",
+      "facet_id": "gills",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "ひだ：傘よりうすい色で、密である。",
+        "source_ids": [
+          "research-mhlw-0000142713"
+        ]
+      },
+      "master_features_summary": "傘は橙褐色～黄褐色で中央がくぼみ、縁が内側へ巻く。ひだは傘より淡く密。柄は繊維質で中実、一部中空のものもある。",
+      "master_features_source_ids": [
+        "research-mhlw-0000142713"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "ひだは傘より淡く密",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-363-1"
+      ],
+      "reason": "対象種の傘下面のひだを本文で確認。比較表は対象列を特定。しわ状・ヒダ状の類推は追加しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "ひだ：傘よりうすい色で、密である。",
+        "source_ids": [
+          "research-mhlw-0000142713"
+        ],
+        "evidence_refs": [
+          "FCE-363-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-363",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-364",
+      "input_assignment_index": 364,
+      "mushroom_id": "dokusasako",
+      "canonical_name_ja": "ドクササコ",
+      "facet_id": "cap_depressed",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "cap_depressed",
+        "evidence_text": "中央部がくぼんでいる。",
+        "source_ids": [
+          "research-mhlw-0000142713"
+        ]
+      },
+      "master_features_summary": "傘は橙褐色～黄褐色で中央がくぼみ、縁が内側へ巻く。ひだは傘より淡く密。柄は繊維質で中実、一部中空のものもある。",
+      "master_features_source_ids": [
+        "research-mhlw-0000142713"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘は橙褐色～黄褐色で中央がくぼみ",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-364-1"
+      ],
+      "reason": "傘の中央がくぼむ記載を確認。単なる漏斗形からは追加しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "cap_depressed",
+        "evidence_text": "中央部がくぼんでいる。",
+        "source_ids": [
+          "research-mhlw-0000142713"
+        ],
+        "evidence_refs": [
+          "FCE-364-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-364",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-365",
+      "input_assignment_index": 365,
+      "mushroom_id": "dokusasako",
+      "canonical_name_ja": "ドクササコ",
+      "facet_id": "stem_hollow",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "中実で一部中空のものもある。",
+        "source_ids": [
+          "research-mhlw-0000142713"
+        ]
+      },
+      "master_features_summary": "傘は橙褐色～黄褐色で中央がくぼみ、縁が内側へ巻く。ひだは傘より淡く密。柄は繊維質で中実、一部中空のものもある。",
+      "master_features_source_ids": [
+        "research-mhlw-0000142713"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄は繊維質で中実、一部中空のものもある",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-365-1"
+      ],
+      "reason": "柄の中空の明示を確認。中実／髄状との範囲・成長変化も原文に保持。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "中実で一部中空のものもある。",
+        "source_ids": [
+          "research-mhlw-0000142713"
+        ],
+        "evidence_refs": [
+          "FCE-365-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+        ],
+        "review": {
+          "decision_id": "FCR-365",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [
+        "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+      ],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-366",
+      "input_assignment_index": 366,
+      "mushroom_id": "dokusasako",
+      "canonical_name_ja": "ドクササコ",
+      "facet_id": "stem_solid",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "中実で一部中空のものもある。",
+        "source_ids": [
+          "research-mhlw-0000142713"
+        ]
+      },
+      "master_features_summary": "傘は橙褐色～黄褐色で中央がくぼみ、縁が内側へ巻く。ひだは傘より淡く密。柄は繊維質で中実、一部中空のものもある。",
+      "master_features_source_ids": [
+        "research-mhlw-0000142713"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "柄は繊維質で中実、一部中空のものもある",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-366-1"
+      ],
+      "reason": "柄の中実の明示を確認。髄状だけからは推定せず、範囲・成長変化は原文に保持。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "stem_solid",
+        "evidence_text": "中実で一部中空のものもある。",
+        "source_ids": [
+          "research-mhlw-0000142713"
+        ],
+        "evidence_refs": [
+          "FCE-366-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+        ],
+        "review": {
+          "decision_id": "FCR-366",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [
+        "中実・中空・髄状の範囲／成長段階を原文どおり表示。全個体・同時成立を意味しない"
+      ],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-367",
+      "input_assignment_index": 367,
+      "mushroom_id": "dokuyamadori",
+      "canonical_name_ja": "ドクヤマドリ",
+      "facet_id": "pores",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "pores",
+        "evidence_text": "ひだ：やわい黄色から黄褐色で管孔によりスポンジ状に見える。傷つけると青く変色し、その後褐色となる。",
+        "source_ids": [
+          "research-mhlw-0000143400"
+        ]
+      },
+      "master_features_summary": "黄褐色でまんじゅう形の大きな傘。下面は淡黄色～黄褐色の管孔。傷で青く変わった後に褐色になり、柄も黄褐色。",
+      "master_features_source_ids": [
+        "research-mhlw-0000143400"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "下面は淡黄色～黄褐色の管孔",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-367-1"
+      ],
+      "reason": "傘下面の管孔を本文で確認。石川県の「菅孔」は原文表記のまま保存し、器官名の読みを注記。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "pores",
+        "evidence_text": "ひだ：やわい黄色から黄褐色で管孔によりスポンジ状に見える。傷つけると青く変色し、その後褐色となる。",
+        "source_ids": [
+          "research-mhlw-0000143400"
+        ],
+        "evidence_refs": [
+          "FCE-367-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-367",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-368",
+      "input_assignment_index": 368,
+      "mushroom_id": "dokuyamadori",
+      "canonical_name_ja": "ドクヤマドリ",
+      "facet_id": "blue_stain",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "blue_stain",
+        "evidence_text": "傷つけると青く変色し、その後褐色となる。",
+        "source_ids": [
+          "research-mhlw-0000143400"
+        ]
+      },
+      "master_features_summary": "黄褐色でまんじゅう形の大きな傘。下面は淡黄色～黄褐色の管孔。傷で青く変わった後に褐色になり、柄も黄褐色。",
+      "master_features_source_ids": [
+        "research-mhlw-0000143400"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傷で青く変わった後に褐色になり",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-368-1"
+      ],
+      "reason": "損傷と青変の関係を本文で確認。赤変・黒変・調理時の変色は代用しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "blue_stain",
+        "evidence_text": "傷つけると青く変色し、その後褐色となる。",
+        "source_ids": [
+          "research-mhlw-0000143400"
+        ],
+        "evidence_refs": [
+          "FCE-368-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "変色する部位・損傷条件・強弱・後続の変色を原文どおり表示"
+        ],
+        "review": {
+          "decision_id": "FCR-368",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [
+        "変色する部位・損傷条件・強弱・後続の変色を原文どおり表示"
+      ],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-369",
+      "input_assignment_index": 369,
+      "mushroom_id": "nezumishimeji",
+      "canonical_name_ja": "ネズミシメジ",
+      "facet_id": "gills",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "ひだ：白色で後に灰色から薄い黄土色のようになり、やや密である。",
+        "source_ids": [
+          "research-mhlw-0000143409"
+        ]
+      },
+      "master_features_summary": "灰色の傘は成熟後も中央が尖り、中央が黒みを帯びる。白いひだはのち灰色～淡黄土色。太い柄に繊維状の模様がある。",
+      "master_features_source_ids": [
+        "research-mhlw-0000143409"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "白いひだはのち灰色～淡黄土色",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-369-1"
+      ],
+      "reason": "対象種の傘下面のひだを本文で確認。比較表は対象列を特定。しわ状・ヒダ状の類推は追加しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "ひだ：白色で後に灰色から薄い黄土色のようになり、やや密である。",
+        "source_ids": [
+          "research-mhlw-0000143409"
+        ],
+        "evidence_refs": [
+          "FCE-369-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-369",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-370",
+      "input_assignment_index": 370,
+      "mushroom_id": "nezumishimeji",
+      "canonical_name_ja": "ネズミシメジ",
+      "facet_id": "stem_scales_pattern",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "stem_scales_pattern",
+        "evidence_text": "柄　：太く繊維状の模様がある。",
+        "source_ids": [
+          "research-mhlw-0000143409"
+        ]
+      },
+      "master_features_summary": "灰色の傘は成熟後も中央が尖り、中央が黒みを帯びる。白いひだはのち灰色～淡黄土色。太い柄に繊維状の模様がある。",
+      "master_features_source_ids": [
+        "research-mhlw-0000143409"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "太い柄に繊維状の模様がある",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-370-1"
+      ],
+      "reason": "柄の鱗片・模様・ささくれの明示を確認。facet定義に「模様」が含まれるため網目模様も対象。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "stem_scales_pattern",
+        "evidence_text": "柄　：太く繊維状の模様がある。",
+        "source_ids": [
+          "research-mhlw-0000143409"
+        ],
+        "evidence_refs": [
+          "FCE-370-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-370",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-371",
+      "input_assignment_index": 371,
+      "mushroom_id": "haiiroshimeji",
+      "canonical_name_ja": "ハイイロシメジ",
+      "facet_id": "gills",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "ひだ：白色からごくうすい灰色またはクリーム色で、密である。",
+        "source_ids": [
+          "research-mhlw-0000143411"
+        ]
+      },
+      "master_features_summary": "淡灰色の傘は中央が濃く、成熟すると平らになり、中央がくぼむ場合がある。ひだは白色～淡灰色またはクリーム色で密。",
+      "master_features_source_ids": [
+        "research-mhlw-0000143411"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "ひだは白色～淡灰色またはクリーム色で密",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-371-1"
+      ],
+      "reason": "対象種の傘下面のひだを本文で確認。比較表は対象列を特定。しわ状・ヒダ状の類推は追加しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "ひだ：白色からごくうすい灰色またはクリーム色で、密である。",
+        "source_ids": [
+          "research-mhlw-0000143411"
+        ],
+        "evidence_refs": [
+          "FCE-371-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-371",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-372",
+      "input_assignment_index": 372,
+      "mushroom_id": "haiiroshimeji",
+      "canonical_name_ja": "ハイイロシメジ",
+      "facet_id": "cap_depressed",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "cap_depressed",
+        "evidence_text": "中央がくぼむこともある。",
+        "source_ids": [
+          "research-mhlw-0000143411"
+        ]
+      },
+      "master_features_summary": "淡灰色の傘は中央が濃く、成熟すると平らになり、中央がくぼむ場合がある。ひだは白色～淡灰色またはクリーム色で密。",
+      "master_features_source_ids": [
+        "research-mhlw-0000143411"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "淡灰色の傘は中央が濃く、成熟すると平らになり、中央がくぼむ場合がある",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-372-1"
+      ],
+      "reason": "傘の中央がくぼむ記載を確認。単なる漏斗形からは追加しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "cap_depressed",
+        "evidence_text": "中央がくぼむこともある。",
+        "source_ids": [
+          "research-mhlw-0000143411"
+        ],
+        "evidence_refs": [
+          "FCE-372-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "中央がくぼむ場合がある。常時ではない"
+        ],
+        "review": {
+          "decision_id": "FCR-372",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [
+        "中央がくぼむ場合がある。常時ではない"
+      ],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-373",
+      "input_assignment_index": 373,
+      "mushroom_id": "hikageshibiretake",
+      "canonical_name_ja": "ヒカゲシビレタケ",
+      "facet_id": "cap_sticky",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "cap_sticky",
+        "evidence_text": "傘　：黄土色から褐色。円錐形で中央が盛り上がって尖っている。表面は平滑。湿時粘性",
+        "source_ids": [
+          "research-mhlw-0000143413"
+        ]
+      },
+      "master_features_summary": "傘は黄土色～褐色で中央が尖り、湿時に粘性がある。紫褐色のひだ、細長い中空の柄を持つ。肉は傷を付けると青変する。",
+      "master_features_source_ids": [
+        "research-mhlw-0000143413"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘は黄土色～褐色で中央が尖り、湿時に粘性がある",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-373-1"
+      ],
+      "reason": "傘の粘性を肯定する記載。湿時・強弱の条件を根拠文に保持。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "cap_sticky",
+        "evidence_text": "傘　：黄土色から褐色。円錐形で中央が盛り上がって尖っている。表面は平滑。湿時粘性",
+        "source_ids": [
+          "research-mhlw-0000143413"
+        ],
+        "evidence_refs": [
+          "FCE-373-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "湿時という条件を保持"
+        ],
+        "review": {
+          "decision_id": "FCR-373",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [
+        "湿時という条件を保持"
+      ],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-374",
+      "input_assignment_index": 374,
+      "mushroom_id": "hikageshibiretake",
+      "canonical_name_ja": "ヒカゲシビレタケ",
+      "facet_id": "gills",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "ひだ：紫褐色で、密である。",
+        "source_ids": [
+          "research-mhlw-0000143413"
+        ]
+      },
+      "master_features_summary": "傘は黄土色～褐色で中央が尖り、湿時に粘性がある。紫褐色のひだ、細長い中空の柄を持つ。肉は傷を付けると青変する。",
+      "master_features_source_ids": [
+        "research-mhlw-0000143413"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "紫褐色のひだ",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-374-1"
+      ],
+      "reason": "対象種の傘下面のひだを本文で確認。比較表は対象列を特定。しわ状・ヒダ状の類推は追加しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "ひだ：紫褐色で、密である。",
+        "source_ids": [
+          "research-mhlw-0000143413"
+        ],
+        "evidence_refs": [
+          "FCE-374-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-374",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-375",
+      "input_assignment_index": 375,
+      "mushroom_id": "hikageshibiretake",
+      "canonical_name_ja": "ヒカゲシビレタケ",
+      "facet_id": "stem_hollow",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "柄　：細長く中空。つばはない。肉を傷付けると青く変色する。",
+        "source_ids": [
+          "research-mhlw-0000143413"
+        ]
+      },
+      "master_features_summary": "傘は黄土色～褐色で中央が尖り、湿時に粘性がある。紫褐色のひだ、細長い中空の柄を持つ。肉は傷を付けると青変する。",
+      "master_features_source_ids": [
+        "research-mhlw-0000143413"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "細長い中空の柄を持つ",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-375-1"
+      ],
+      "reason": "柄の中空の明示を確認。中実／髄状との範囲・成長変化も原文に保持。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "柄　：細長く中空。つばはない。肉を傷付けると青く変色する。",
+        "source_ids": [
+          "research-mhlw-0000143413"
+        ],
+        "evidence_refs": [
+          "FCE-375-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-375",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-376",
+      "input_assignment_index": 376,
+      "mushroom_id": "hikageshibiretake",
+      "canonical_name_ja": "ヒカゲシビレタケ",
+      "facet_id": "blue_stain",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "blue_stain",
+        "evidence_text": "肉を傷付けると青く変色する。",
+        "source_ids": [
+          "research-mhlw-0000143413"
+        ]
+      },
+      "master_features_summary": "傘は黄土色～褐色で中央が尖り、湿時に粘性がある。紫褐色のひだ、細長い中空の柄を持つ。肉は傷を付けると青変する。",
+      "master_features_source_ids": [
+        "research-mhlw-0000143413"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "肉は傷を付けると青変する",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-376-1"
+      ],
+      "reason": "損傷と青変の関係を本文で確認。赤変・黒変・調理時の変色は代用しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "blue_stain",
+        "evidence_text": "肉を傷付けると青く変色する。",
+        "source_ids": [
+          "research-mhlw-0000143413"
+        ],
+        "evidence_refs": [
+          "FCE-376-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "変色する部位・損傷条件・強弱・後続の変色を原文どおり表示"
+        ],
+        "review": {
+          "decision_id": "FCR-376",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [
+        "変色する部位・損傷条件・強弱・後続の変色を原文どおり表示"
+      ],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-377",
+      "input_assignment_index": 377,
+      "mushroom_id": "amigasatake",
+      "canonical_name_ja": "アミガサタケ",
+      "facet_id": "head_reticulate",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "head_reticulate",
+        "evidence_text": "網目のある卵形のかたまりに柄が付いた形",
+        "source_ids": [
+          "research-fukui-amigasatake"
+        ]
+      },
+      "master_features_summary": "網目を持つ卵形の頭部と柄からなり、内部は空洞。高さは5～12cmと記載。",
+      "master_features_source_ids": [
+        "research-fukui-amigasatake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "網目を持つ卵形の頭部",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-377-1"
+      ],
+      "reason": "頭部／傘の網目・網目状隆起、または原著のalveoliとその縁の記載を確認。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "head_reticulate",
+        "evidence_text": "網目のある卵形のかたまりに柄が付いた形",
+        "source_ids": [
+          "research-fukui-amigasatake"
+        ],
+        "evidence_refs": [
+          "FCE-377-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-377",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-378",
+      "input_assignment_index": 378,
+      "mushroom_id": "yanagimatsutake",
+      "canonical_name_ja": "ヤナギマツタケ",
+      "facet_id": "ring",
+      "classification": "C",
+      "classification_name": "SOURCE_PROVENANCE_ADJUSTMENT",
+      "input_assignment": {
+        "facet_id": "ring",
+        "evidence_text": "柄の中程には「つば」がある",
+        "source_ids": [
+          "research-chiba-yanagimatsutake"
+        ]
+      },
+      "master_features_summary": "傘は淡褐色で直径5～15cmと自治体資料に記載。柄には垂れ下がる膜質のつばを持つ。",
+      "master_features_source_ids": [
+        "research-kaizuka-nisikiplant",
+        "research-chiba-yanagimatsutake"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": false,
+      "safe_summary_equivalent": "つばを持つ",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-378-1"
+      ],
+      "reason": "柄のつばを明示する本文を確認。欠如併記・早落性・不完全・痕跡の例は保留。 summaryでfacet自体は支持できるが、source単位の集合設計を要調整。masterの全sourceへの水増しはしない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "ring",
+        "evidence_text": "柄の中程には「つば」がある",
+        "source_ids": [
+          "research-chiba-yanagimatsutake"
+        ],
+        "evidence_refs": [
+          "FCE-378-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-378",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-379",
+      "input_assignment_index": 379,
+      "mushroom_id": "shiitake",
+      "canonical_name_ja": "シイタケ",
+      "facet_id": "cap_scales_warts",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "はじめ傘の周縁部に白い綿毛状の鱗片をつけるが、成長するにつれて鱗片が消失",
+        "source_ids": [
+          "research-mhlw-0000142114"
+        ]
+      },
+      "master_features_summary": "若い傘の縁に白い綿毛状の鱗片があり、成長とともに消える。傘がひび割れることもある。ひだは白色で、柄は上部が白く下方ほど褐色。",
+      "master_features_source_ids": [
+        "research-mhlw-0000142114"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "若い傘の縁に白い綿毛状の鱗片があり、成長とともに消える",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-379-1"
+      ],
+      "reason": "傘の鱗片／いぼの記載を確認。柄の装飾や被膜一般からは推測しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "はじめ傘の周縁部に白い綿毛状の鱗片をつけるが、成長するにつれて鱗片が消失",
+        "source_ids": [
+          "research-mhlw-0000142114"
+        ],
+        "evidence_refs": [
+          "FCE-379-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [
+          "脱落／成長による消失あり。見えない個体を除外する識別根拠にしない"
+        ],
+        "review": {
+          "decision_id": "FCR-379",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [
+        "脱落／成長による消失あり。見えない個体を除外する識別根拠にしない"
+      ],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-380",
+      "input_assignment_index": 380,
+      "mushroom_id": "shiitake",
+      "canonical_name_ja": "シイタケ",
+      "facet_id": "gills",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "ヒダ：白色",
+        "source_ids": [
+          "research-mhlw-0000142114"
+        ]
+      },
+      "master_features_summary": "若い傘の縁に白い綿毛状の鱗片があり、成長とともに消える。傘がひび割れることもある。ひだは白色で、柄は上部が白く下方ほど褐色。",
+      "master_features_source_ids": [
+        "research-mhlw-0000142114"
+      ],
+      "v1_evidence_exact_substring": false,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "ひだは白色",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-380-1"
+      ],
+      "reason": "対象種の傘下面のひだを本文で確認。比較表は対象列を特定。しわ状・ヒダ状の類推は追加しない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "gills",
+        "evidence_text": "ヒダ：白色",
+        "source_ids": [
+          "research-mhlw-0000142114"
+        ],
+        "evidence_refs": [
+          "FCE-380-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-380",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-381",
+      "input_assignment_index": 381,
+      "mushroom_id": "kinugasatake",
+      "canonical_name_ja": "キヌガサタケ",
+      "facet_id": "head_reticulate",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "head_reticulate",
+        "evidence_text": "レ-スのようなマントを広げる、傘には網目状の隆起があり暗緑色の粘液物がある",
+        "source_ids": [
+          "research-ishikawa-kinugasatake"
+        ]
+      },
+      "master_features_summary": "レ-スのようなマントを広げる、傘には網目状の隆起があり暗緑色の粘液物がある。",
+      "master_features_source_ids": [
+        "research-ishikawa-kinugasatake"
+      ],
+      "v1_evidence_exact_substring": true,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "レ-スのようなマントを広げる、傘には網目状の隆起があり暗緑色の粘液物がある",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-381-1"
+      ],
+      "reason": "頭部／傘の網目・網目状隆起、または原著のalveoliとその縁の記載を確認。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "head_reticulate",
+        "evidence_text": "レ-スのようなマントを広げる、傘には網目状の隆起があり暗緑色の粘液物がある",
+        "source_ids": [
+          "research-ishikawa-kinugasatake"
+        ],
+        "evidence_refs": [
+          "FCE-381-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-381",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-382",
+      "input_assignment_index": 382,
+      "mushroom_id": "suppontake",
+      "canonical_name_ja": "スッポンタケ",
+      "facet_id": "head_reticulate",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "head_reticulate",
+        "evidence_text": "傘には網目状隆起があり暗緑色の粘液は悪臭を放つ",
+        "source_ids": [
+          "research-ishikawa-suppontake"
+        ]
+      },
+      "master_features_summary": "傘には網目状隆起があり暗緑色の粘液は悪臭を放つ。",
+      "master_features_source_ids": [
+        "research-ishikawa-suppontake"
+      ],
+      "v1_evidence_exact_substring": true,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "傘には網目状隆起があり暗緑色の粘液は悪臭を放つ",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-382-1"
+      ],
+      "reason": "頭部／傘の網目・網目状隆起、または原著のalveoliとその縁の記載を確認。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "head_reticulate",
+        "evidence_text": "傘には網目状隆起があり暗緑色の粘液は悪臭を放つ",
+        "source_ids": [
+          "research-ishikawa-suppontake"
+        ],
+        "evidence_refs": [
+          "FCE-382-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-382",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    },
+    {
+      "decision_id": "FCR-383",
+      "input_assignment_index": 383,
+      "mushroom_id": "sanagitake",
+      "canonical_name_ja": "サナギタケ",
+      "facet_id": "granular_powdery",
+      "classification": "B",
+      "classification_name": "SAFE_SUMMARY_EQUIVALENT",
+      "input_assignment": {
+        "facet_id": "granular_powdery",
+        "evidence_text": "頭部は橙黄色で疣粒が密生、柄は円柱状でまれに分岐する",
+        "source_ids": [
+          "research-ishikawa-sanagitake"
+        ]
+      },
+      "master_features_summary": "頭部は橙黄色で疣粒が密生、柄は円柱状でまれに分岐する。",
+      "master_features_source_ids": [
+        "research-ishikawa-sanagitake"
+      ],
+      "v1_evidence_exact_substring": true,
+      "v1_source_set_equal": true,
+      "safe_summary_equivalent": "頭部は橙黄色で疣粒が密生、柄は円柱状でまれに分岐する",
+      "source_ids_subset_of_master": true,
+      "source_evidence_refs": [
+        "FCE-383-1"
+      ],
+      "reason": "表面の粒／粉状の記載を確認。色・写真からの推定ではない。 summary内の同じfacetを支持する完全一致文字列を別欄に記録。原文引用をsummaryへ寄せるだけの変更は推奨しない。",
+      "runtime_action": "retain_with_provenance",
+      "runtime_assignment": {
+        "facet_id": "granular_powdery",
+        "evidence_text": "頭部は橙黄色で疣粒が密生、柄は円柱状でまれに分岐する",
+        "source_ids": [
+          "research-ishikawa-sanagitake"
+        ],
+        "evidence_refs": [
+          "FCE-383-1"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "FCR-383",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "recommended_changes": [],
+      "qualifiers": [],
+      "human_approval": null
+    }
+  ],
+  "validation": {
+    "status": "PASS",
+    "checks": [
+      {
+        "check": "JSON構文",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "input master件数",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "input source件数",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "input assignment件数",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "383件の決定一対一",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "candidate version2を明示",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "4groups/20facets定義を変更しない",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "master ID重複なし",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "source ID重複なし",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "candidate entry ID重複なし",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "facet assignment重複なし",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "既存assignment以外の追加なし",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "全20facet利用",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "source/master/facet参照切れなし",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "evidenceとsource_ids非空かつsource重複なし",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "証拠参照の閉包",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "source集合と支持証拠集合一致",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "証拠対象種/facet/支持判定一致",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "全証拠quote/offset/本文SHA256/source URL整合",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "coverage 139対象=127収録+12明示未収録",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "373採用+10保留=383",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "A/B/C/D集計整合",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "candidateと決定の完全対応",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "人間承認の未取得を明示",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "IA-029 ringなし/既存4facet維持",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "添付CSV308件と再現結果対応",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "元308evidence/16source不一致再現",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "5入力ファイルSHA256不変",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "変更はevidence3件/source1件",
+        "result": "PASS",
+        "detail": ""
+      },
+      {
+        "check": "v1期待どおり拒否:original_input",
+        "result": "PASS",
+        "detail": "mushroom_id dokutsurutake, facet_id cap_sticky: evidence_text is not an exact summary substring"
+      },
+      {
+        "check": "v1期待どおり拒否:candidate_v2",
+        "result": "PASS",
+        "detail": "feature facets version must be 1"
+      },
+      {
+        "check": "保存済みexpandedでも308/16",
+        "result": "PASS",
+        "detail": "308/16"
+      }
+    ],
+    "count": 32,
+    "production_approval": "PENDING; not tested as approved production v2",
+    "candidate_v1_evidence_mismatches": 299,
+    "candidate_v1_source_mismatches": 17
+  },
+  "identity_context": [
+    {
+      "applies_to_mushroom_id": "kiamiashiiguchi",
+      "scope": "既存IA-035の名称対応の参照。taxonomyの再監査ではない",
+      "source_id": "research-kyoto-fungi-2015",
+      "source_url": "https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html",
+      "quote": "Boletus ornatipes\nキアミアシイグチ",
+      "cache_text_sha256": "8db10a8e7d30b0efbaadb9424fafab7a85905ceb6de8c8fbe0aed936677f10b9",
+      "source_heading_discrepancy": "形態sourceの石川県頁は「キアミアミイグチ」と表示。両頁のBoletus ornatipes表記と既存判断を参照する。誤記を原文中で訂正して引用しない。"
+    }
+  ]
+}
