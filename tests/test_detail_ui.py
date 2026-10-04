@@ -157,7 +157,7 @@ def test_all_repository_food_notes_hide_internal_terms_and_preserve_limits():
                for note in rendered.values() if note is not None)
     assert "幼時食" in rendered["ノウタケ"]
     assert "DNA解析" in rendered["ツバアブラシメジ"]
-    assert "アルコール" in rendered["ホテイシメジ"]
+    assert "飲酒" in rendered["ホテイシメジ"]
     assert "毒成分名" in rendered["オオワライタケ"]
     assert "安全を意味しない" in rendered["ウコンハツ"]
 

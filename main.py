@@ -19,7 +19,8 @@ from season_ui import generate_season_page, load_fresh_portal_data
 from records_ui import generate_records_page, render_record_cards, render_record_preview_rows
 from update_notices import load_notice_events, render_section_notice
 from detail_ui import build_detail_views, render_detail_sections
-from feature_ui import load_feature_facets, validate_feature_facets, generate_feature_page
+from feature_ui import (generate_feature_page, load_feature_facets,
+                        load_feature_v2_inputs, validate_feature_facets)
 from research_ui import generate_research_page
 from best_shot_ui import generate_best_shot_pages
 
@@ -2951,8 +2952,12 @@ def generate_feature_page_if_fresh(portal_status):
         portal = load_fresh_portal_data(PORTAL_DATA_FILE)
         feature_data = load_feature_facets(FEATURE_FACETS_FILE)
         master = (portal.get("reference_data") or {}).get("mushroom_master")
-        validate_feature_facets(feature_data, master)
-        generate_feature_page(portal, feature_data, OUTPUT_DIR, ASSETS_DIR, safe_filename)
+        v2_inputs = load_feature_v2_inputs() if feature_data.get("version") == 2 else {}
+        if v2_inputs:
+            master = v2_inputs.pop("mushroom_master")
+        validate_feature_facets(feature_data, master, **v2_inputs)
+        generate_feature_page(portal, feature_data, OUTPUT_DIR, ASSETS_DIR,
+                              safe_filename, mushroom_master=master, **v2_inputs)
     except Exception as error:
         print(f"Phase 4A.4 feature page generation failed: {error}")
         return False

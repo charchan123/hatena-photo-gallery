@@ -1,0 +1,4997 @@
+{
+  "schema_version": 1,
+  "manifest_type": "conversation_approval_manifest_candidate",
+  "package_label_date": "2026-10-03",
+  "implementation_readiness": "READY",
+  "approval_scope": "Existing candidate assignment acceptance and Option B v2 provenance implementation package; no GitHub writes or immediate production deployment authorized.",
+  "approved_runtime_assignments": 373,
+  "held_assignments": 10,
+  "approved_option": "B",
+  "ia029_ring": "not_approved",
+  "uncovered_12": "no_inferred_assignment",
+  "candidate_sha256": "6d4d987a535dca9c1d0d3668b65de245fbdc281f56c546af436c6fb853bdd84d",
+  "decisions_sha256": "e0dbbee4e8bb794d4d4f6306a44ba0bea3fd9879419087a11455fd48c42ed7d2",
+  "master_sha256": "2ce8cfc61726ef04bb6f4bba26c42511e2c0bf1d4017b9e87e0a359d61decca4",
+  "sources_sha256": "d5213f1cf0881af1c60ea949c0321ae0eb854daa3f300135dae9e9f9ad2fdb66",
+  "snapshot_bundle_sha256": "5583716324d8ba2600352241c47ff5b61f5f2cef0bea9180f34f4315e2ec048e",
+  "evidence_ledger_sha256": "0253787fb1bc0cea03cc5aba5759e08c2b0fcfa9fd37e194986011573c926ee7",
+  "approval_timestamp": "2026-10-04T00:27:57+09:00",
+  "approval_timestamp_utc": "2026-10-03T15:27:57Z",
+  "approval_provenance": {
+    "kind": "conversation_explicit_approval",
+    "approval_timestamp": "2026-10-04T00:27:57+09:00",
+    "approval_timestamp_utc": "2026-10-03T15:27:57Z",
+    "timestamp_basis": "developer-provided submission time of the current user approval message",
+    "approver": "conversation user (non-identifying)",
+    "approved_scope": "Acceptance of the existing 373 runtime-candidate assignments and Option B v2 design, with 10 assignments held, IA-029 ring not approved, and no inferred assignments for the 12 uncovered species.",
+    "limitations": [
+      "No assertion that the user personally reread every source or acted as a taxonomy expert.",
+      "No approval of GitHub writes, automatic data changes, or immediate production release."
+    ],
+    "user_message_approval_items": [
+      "373 assignmentを採用候補として承認",
+      "10 assignmentは保留のまま除外",
+      "Option Bのv2 provenance設計を採用",
+      "IA-029 タマゴタケモドキのringは追加しない",
+      "未収録12種へ推測でfacetを追加しない"
+    ]
+  },
+  "artifacts": [
+    {
+      "role": "runtime_candidate",
+      "filename": "feature-facets-runtime-candidate-2026-10-03.json",
+      "sha256": "6d4d987a535dca9c1d0d3668b65de245fbdc281f56c546af436c6fb853bdd84d",
+      "byte_length": 240548
+    },
+    {
+      "role": "prior_decisions",
+      "filename": "phase4c9-feature-facet-reconciliation-decisions-2026-10-03.json",
+      "sha256": "e0dbbee4e8bb794d4d4f6306a44ba0bea3fd9879419087a11455fd48c42ed7d2",
+      "byte_length": 1265200
+    },
+    {
+      "role": "master",
+      "filename": "mushroom-master-final-candidate-2026-10-03(1).json",
+      "sha256": "2ce8cfc61726ef04bb6f4bba26c42511e2c0bf1d4017b9e87e0a359d61decca4",
+      "byte_length": 399484
+    },
+    {
+      "role": "sources",
+      "filename": "sources-final-candidate-2026-10-03(1).json",
+      "sha256": "d5213f1cf0881af1c60ea949c0321ae0eb854daa3f300135dae9e9f9ad2fdb66",
+      "byte_length": 238648
+    },
+    {
+      "role": "original_facet_candidate",
+      "filename": "feature-facets-final-candidate-2026-10-03(1).json",
+      "sha256": "57d1ba6b700e1dbff6d3980a55d9bc8718ab8508006c747c0d1c72800d7fb5f4",
+      "byte_length": 92459
+    },
+    {
+      "role": "prior_report",
+      "filename": "phase4c9-feature-facet-reconciliation-report-2026-10-03.md",
+      "sha256": "9314f4df6f6ee5348e675cfa7b64c44b5cd814fc3cd830fb32c8ee2504282889",
+      "byte_length": 57508
+    },
+    {
+      "role": "validator_plan",
+      "filename": "phase4c9-feature-facet-validator-plan-2026-10-03.md",
+      "sha256": "b20e9118158769eccbb3ec34e2f4689db1f1413cbd1299fefee207e974fd6ce3",
+      "byte_length": 15275
+    },
+    {
+      "role": "source_snapshot_bundle",
+      "filename": "phase4c9-feature-source-snapshots-2026-10-03.jsonl",
+      "sha256": "5583716324d8ba2600352241c47ff5b61f5f2cef0bea9180f34f4315e2ec048e",
+      "byte_length": 1584424
+    },
+    {
+      "role": "approved_evidence_ledger",
+      "filename": "phase4c9-feature-evidence-ledger-approved-2026-10-03.json",
+      "sha256": "0253787fb1bc0cea03cc5aba5759e08c2b0fcfa9fd37e194986011573c926ee7",
+      "byte_length": 1268962
+    }
+  ],
+  "approved_assignment_keys": [
+    {
+      "decision_id": "FCR-001",
+      "mushroom_id": "kaentake",
+      "facet_id": "rod_cylindrical",
+      "evidence_refs": [
+        "FCE-001-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "e038b3b58557f39b4a8039cd2e8653b86df75b2f6033ef768855dc045b71c522"
+      }
+    },
+    {
+      "decision_id": "FCR-002",
+      "mushroom_id": "dokutsurutake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-002-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "06a5fcd90d51580daeb9e49e61abbcd2c8d8a3c066f835944880fa0e2a7fad18"
+      }
+    },
+    {
+      "decision_id": "FCR-003",
+      "mushroom_id": "dokutsurutake",
+      "facet_id": "volva",
+      "evidence_refs": [
+        "FCE-003-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "45848740c14c712c82ca4956858268b02638702305f328043e816bb5b893f8b8"
+      }
+    },
+    {
+      "decision_id": "FCR-004",
+      "mushroom_id": "dokutsurutake",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-004-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "bfb3fdb449c244fac139057f44637d817da936013dcb44ee85548c5551ac1577"
+      }
+    },
+    {
+      "decision_id": "FCR-005",
+      "mushroom_id": "dokutsurutake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-005-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "5df136bdde1fea69dca9dd4fbd22b6ef7516b73cb4f6dccc63cd237bed0856ee"
+      }
+    },
+    {
+      "decision_id": "FCR-006",
+      "mushroom_id": "dokutsurutake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-006-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "cfb7a4defd6c763b60c00232f4a6fc81f4126c83543b6e3d4f67ad3174612b94"
+      }
+    },
+    {
+      "decision_id": "FCR-007",
+      "mushroom_id": "dokutsurutake",
+      "facet_id": "stem_scales_pattern",
+      "evidence_refs": [
+        "FCE-007-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "ef958f9655b41f56db39a05ad2ab42b72de2a260e2c8203b0b55dec7775cacf7"
+      }
+    },
+    {
+      "decision_id": "FCR-008",
+      "mushroom_id": "akayamadori",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-008-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "6affa6d4654d9feff683c03070972d5297966d9913aa94c3187d558e91b11771"
+      }
+    },
+    {
+      "decision_id": "FCR-009",
+      "mushroom_id": "akayamadori",
+      "facet_id": "stem_scales_pattern",
+      "evidence_refs": [
+        "FCE-009-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "ade2aaf36c70354659fecd919b4257ec7865f934689f8b42a6cbf9acb7aceaae"
+      }
+    },
+    {
+      "decision_id": "FCR-010",
+      "mushroom_id": "akayamadori",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-010-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "32edd2cbe0fc8b66398d6962bb7acb22b59ad898e5556d956396814d4c3cd659"
+      }
+    },
+    {
+      "decision_id": "FCR-011",
+      "mushroom_id": "akayamadori",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-011-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "8ca5fdcd0627569f10f4e8f45a18a83c6f0620c3ff679a5ecba620da5e2562d3"
+      }
+    },
+    {
+      "decision_id": "FCR-012",
+      "mushroom_id": "hiromenotogariamigasatake",
+      "facet_id": "head_reticulate",
+      "evidence_refs": [
+        "FCE-012-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "46c7d77c6722138dabcec7b85c8bf43be7a870b3bfc97f0d20f99fa256288192"
+      }
+    },
+    {
+      "decision_id": "FCR-013",
+      "mushroom_id": "kikurage",
+      "facet_id": "gelatinous",
+      "evidence_refs": [
+        "FCE-013-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "e6602de6142ce230ffe44fb0d91ca137e2e410dce1b63185e5cb73eeb9b7e6fe"
+      }
+    },
+    {
+      "decision_id": "FCR-014",
+      "mushroom_id": "kikurage",
+      "facet_id": "hairy",
+      "evidence_refs": [
+        "FCE-014-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "47fdddcee5a94b2bb10aa72e4587d40fc8075f75f9311ae2c7721b9d395bcd48"
+      }
+    },
+    {
+      "decision_id": "FCR-015",
+      "mushroom_id": "hebikinokomodoki",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-015-1",
+        "FCE-015-2"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "3aaaf3addd64a14486830dd8ceb21f6c3fca45c1c8030655336854aa3def5c26"
+      }
+    },
+    {
+      "decision_id": "FCR-016",
+      "mushroom_id": "hebikinokomodoki",
+      "facet_id": "volva",
+      "evidence_refs": [
+        "FCE-016-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "20fee68eae1c1713f0ebe4fe8deffba98acfff24aeb590a7adf07a169296317f"
+      }
+    },
+    {
+      "decision_id": "FCR-017",
+      "mushroom_id": "hebikinokomodoki",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-017-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b5be7ee67ec42d93ba3d77dfdc68d6915c75bc199150772589ae8d84840578bd"
+      }
+    },
+    {
+      "decision_id": "FCR-018",
+      "mushroom_id": "hebikinokomodoki",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-018-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "02118298faf089fa5e92ae310161b8e760d1aef2bc9e105a1ae205b286357340"
+      }
+    },
+    {
+      "decision_id": "FCR-019",
+      "mushroom_id": "hanaiguchi",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-019-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "75238c0c2a4c4d69f15bafd1d7487df0b6bc40a4bd9aecc5755eb4fd199cb707"
+      }
+    },
+    {
+      "decision_id": "FCR-020",
+      "mushroom_id": "hanaiguchi",
+      "facet_id": "stem_sticky",
+      "evidence_refs": [
+        "FCE-020-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "95b92dae017464401405a97f7fe0217f50f58da750bed0da891ef6c23be4eaec"
+      }
+    },
+    {
+      "decision_id": "FCR-021",
+      "mushroom_id": "hanaiguchi",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-021-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "264744468406c0e1466e55009216a9be16a31436a46da1e7b44531cfdf20e250"
+      }
+    },
+    {
+      "decision_id": "FCR-022",
+      "mushroom_id": "karakasatake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-022-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f2afbc66fc5b40c53d8198041c80bb025e84d7089c54cf0f758c82d9f613f38b"
+      }
+    },
+    {
+      "decision_id": "FCR-023",
+      "mushroom_id": "karakasatake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-023-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "a0602db3b1f8e52a1d1532e1f62b4ed97f6aa1ba2a095cb058353abfaef5c6a1"
+      }
+    },
+    {
+      "decision_id": "FCR-024",
+      "mushroom_id": "karakasatake",
+      "facet_id": "stem_scales_pattern",
+      "evidence_refs": [
+        "FCE-024-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "09a3157040a722e71e7eff3bb9c5e09206719452fb531e21b19fe584ea8c70b2"
+      }
+    },
+    {
+      "decision_id": "FCR-025",
+      "mushroom_id": "karakasatake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-025-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f0ef9b019b49607908a433bd2cf55372a47964efc1735328a6d1ab2fd6cc1c9e"
+      }
+    },
+    {
+      "decision_id": "FCR-026",
+      "mushroom_id": "karakasatake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-026-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "d390a5ea504c98453c481e7d96660c39f4535b03b748360398454617689ddffa"
+      }
+    },
+    {
+      "decision_id": "FCR-027",
+      "mushroom_id": "yamaiguchi",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-027-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b07f9d370f7f7f393312da865331902b37b51422cc341ac7eb30749d921146ed"
+      }
+    },
+    {
+      "decision_id": "FCR-028",
+      "mushroom_id": "yamaiguchi",
+      "facet_id": "stem_scales_pattern",
+      "evidence_refs": [
+        "FCE-028-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f5ba5685b158305703dbd5f0e78b797c3884a16817f3f422398bf2df1b2f46c2"
+      }
+    },
+    {
+      "decision_id": "FCR-029",
+      "mushroom_id": "yamaiguchi",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-029-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "a077105585ffd799f79eb3c26eae7c605e912bf31db071a9e27e8c93e88a8237"
+      }
+    },
+    {
+      "decision_id": "FCR-030",
+      "mushroom_id": "yamaiguchi",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-030-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "4d12256ac6fa048794d30a7cea157415394c108b77dec7c980e4597c2300a88d"
+      }
+    },
+    {
+      "decision_id": "FCR-032",
+      "mushroom_id": "kikubanaiguchi",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-032-1",
+        "FCE-032-2"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "0eb6329c9e1b6369651761803a51a5e5e2797d7b07afef6bd3ca49f72d423cfa"
+      }
+    },
+    {
+      "decision_id": "FCR-033",
+      "mushroom_id": "kikubanaiguchi",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-033-1",
+        "FCE-033-2"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "194da62975124cf5e64984a8c310a68cf30e5bf590f3b9185464f3e4ed7b8e8e"
+      }
+    },
+    {
+      "decision_id": "FCR-034",
+      "mushroom_id": "kikubanaiguchi",
+      "facet_id": "blue_stain",
+      "evidence_refs": [
+        "FCE-034-1",
+        "FCE-034-2"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "98962e0c656a6d4f825d4e9bdc7ce32008545f90abf1642295ef5db977d81d93"
+      }
+    },
+    {
+      "decision_id": "FCR-035",
+      "mushroom_id": "kikubanaiguchi",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-035-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c8a1c189f31152db1932702313eba25584f47e3d7db5ada8827558c00ea6f3b7"
+      }
+    },
+    {
+      "decision_id": "FCR-036",
+      "mushroom_id": "oowaraitake",
+      "facet_id": "cap_fibrous_felt",
+      "evidence_refs": [
+        "FCE-036-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "5cbf68b2465d860a836546fe0a33f74fed8de063f34c1f1b29b30d30553fbd09"
+      }
+    },
+    {
+      "decision_id": "FCR-037",
+      "mushroom_id": "oowaraitake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-037-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "3fc01152e7d98fe3c6d24108067811c0953020f2b79c1a0ff1ea292eecc1243b"
+      }
+    },
+    {
+      "decision_id": "FCR-038",
+      "mushroom_id": "oowaraitake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-038-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "2064b3ce343626cd7b1fa46604112725bdb9b94a59289a9e422604adbff0cffe"
+      }
+    },
+    {
+      "decision_id": "FCR-039",
+      "mushroom_id": "oowaraitake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-039-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "6418ff4bc141038becc55972dac79befcb2bc20d120808a21ef23a241d23bfc2"
+      }
+    },
+    {
+      "decision_id": "FCR-040",
+      "mushroom_id": "aorouji",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-040-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "cd428859a1944de01cfbf1587e3909ce5508eb8c423323196674e876149d30cd"
+      }
+    },
+    {
+      "decision_id": "FCR-041",
+      "mushroom_id": "aorouji",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-041-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "3ad1695373e8d7316b7bb875abe87f8b7bd4afd350210176d1c089f3ae48f1d1"
+      }
+    },
+    {
+      "decision_id": "FCR-042",
+      "mushroom_id": "urabenigasa",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-042-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "9184fa04be0ded2db7ebf39d7d13b3f3e56bf361bcd7b42a707189a3132d6f18"
+      }
+    },
+    {
+      "decision_id": "FCR-043",
+      "mushroom_id": "urabenigasa",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-043-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "2ade96667162052a023f634de5cf266f75f30dc99db46e82468d09bff9e434fb"
+      }
+    },
+    {
+      "decision_id": "FCR-044",
+      "mushroom_id": "urabenigasa",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-044-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "eb2b62566b692e495ce19a1944458b029dcc80d9bbf21c8e9cbad72164e30ee9"
+      }
+    },
+    {
+      "decision_id": "FCR-045",
+      "mushroom_id": "togariamigasatake",
+      "facet_id": "head_reticulate",
+      "evidence_refs": [
+        "FCE-045-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b69417336a042f9b74e4ecd08fda6b0031fd5bb12bc3a40b0960ee1ea8cb8580"
+      }
+    },
+    {
+      "decision_id": "FCR-046",
+      "mushroom_id": "noutake",
+      "facet_id": "granular_powdery",
+      "evidence_refs": [
+        "FCE-046-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "ce48f33a7ad5542bf1a4b16110825abdbf92826721f5f4c55d2eadb2a68cd34f"
+      }
+    },
+    {
+      "decision_id": "FCR-047",
+      "mushroom_id": "ukonhatsu",
+      "facet_id": "granular_powdery",
+      "evidence_refs": [
+        "FCE-047-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c9dd49001ff2c816c025c263cacfd5aca165393098190ea9cd4ec307326b291f"
+      }
+    },
+    {
+      "decision_id": "FCR-048",
+      "mushroom_id": "ukonhatsu",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-048-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "e5511b6cf33197f4ebe7819bb41edb317e1bef2d8976189f6c47409095395f99"
+      }
+    },
+    {
+      "decision_id": "FCR-050",
+      "mushroom_id": "enokitake",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-050-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "93141524c715b0aa755f68f4eb13084e5be01bf3f7fd8d13beaea83a29e46385"
+      }
+    },
+    {
+      "decision_id": "FCR-051",
+      "mushroom_id": "enokitake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-051-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "ef2b7dd6d4fb7d519f8a731124998223d2a172d3557c152ce492d42a51a17411"
+      }
+    },
+    {
+      "decision_id": "FCR-052",
+      "mushroom_id": "enokitake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-052-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "716fd294215db46e0fbc00e811f4de46fd0612b5e43cafdf0aad985632e7e315"
+      }
+    },
+    {
+      "decision_id": "FCR-053",
+      "mushroom_id": "enokitake",
+      "facet_id": "hairy",
+      "evidence_refs": [
+        "FCE-053-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "ff083022fb18506002296d6803df3488dc44f73bbc48f984d7f59adcd93ec02e"
+      }
+    },
+    {
+      "decision_id": "FCR-054",
+      "mushroom_id": "kotengutakemodoki",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-054-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "bfb595935ba680fbf6ba00384293c926484305f61cab4af2c8f9c25d16406517"
+      }
+    },
+    {
+      "decision_id": "FCR-055",
+      "mushroom_id": "kotengutakemodoki",
+      "facet_id": "cap_fibrous_felt",
+      "evidence_refs": [
+        "FCE-055-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b25c53d131f101f76c265134eee56384a3e3c6d0888c1b433b79bc91df972079"
+      }
+    },
+    {
+      "decision_id": "FCR-056",
+      "mushroom_id": "kotengutakemodoki",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-056-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c8c360b3798e528c79386042f42db39bc1726e633faff03ba52422e852c5b878"
+      }
+    },
+    {
+      "decision_id": "FCR-057",
+      "mushroom_id": "kotengutakemodoki",
+      "facet_id": "stem_scales_pattern",
+      "evidence_refs": [
+        "FCE-057-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "825df88d3e436fd22edea2733321f0aa52c33218225d12034f33b98c8150ad6e"
+      }
+    },
+    {
+      "decision_id": "FCR-058",
+      "mushroom_id": "kotengutakemodoki",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-058-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "9f4ceb043e9896fb1c0c25af615c440b8cfff09a92b940e3d70e5dc093422bcc"
+      }
+    },
+    {
+      "decision_id": "FCR-059",
+      "mushroom_id": "kotengutakemodoki",
+      "facet_id": "volva",
+      "evidence_refs": [
+        "FCE-059-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "6698df0f4810c6535bd21a1b9479d326693f7286ad07b45dd003cd2e08a231a6"
+      }
+    },
+    {
+      "decision_id": "FCR-060",
+      "mushroom_id": "tamagotake",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-060-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "d2a5186df8d0aa627a1c27162493f6380a4957dd9698cec78df3e08dd12b4e7f"
+      }
+    },
+    {
+      "decision_id": "FCR-062",
+      "mushroom_id": "tamagotake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-062-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "6f246a59b40ca987a4b1535fd606939bf9b925324e1fbd2fa987ff867699e2f5"
+      }
+    },
+    {
+      "decision_id": "FCR-063",
+      "mushroom_id": "tamagotake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-063-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "805116bd59c4ca7f2314250ed1d2f99088268843a37f5324f286d0b545f5b423"
+      }
+    },
+    {
+      "decision_id": "FCR-064",
+      "mushroom_id": "tamagotake",
+      "facet_id": "stem_scales_pattern",
+      "evidence_refs": [
+        "FCE-064-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "7c3c57a1d22a785219897a074eb60d3ab49a6e370394067966864a1e9eb660dc"
+      }
+    },
+    {
+      "decision_id": "FCR-065",
+      "mushroom_id": "tamagotake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-065-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "95778361e7f02f2b25a78e69b73283ee52106cb06fcbb45abfdd712bbe460232"
+      }
+    },
+    {
+      "decision_id": "FCR-066",
+      "mushroom_id": "tamagotake",
+      "facet_id": "volva",
+      "evidence_refs": [
+        "FCE-066-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "9829e72c1f6132e4efa398be30e0c3ab2491167c3cfcdcb14d422cd84628e8c5"
+      }
+    },
+    {
+      "decision_id": "FCR-067",
+      "mushroom_id": "aragekikurage",
+      "facet_id": "gelatinous",
+      "evidence_refs": [
+        "FCE-067-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "27e226dac4a4393f6531b41f99b5e679787133ebf4ccafdb89f3f89eb4e565bb"
+      }
+    },
+    {
+      "decision_id": "FCR-068",
+      "mushroom_id": "aragekikurage",
+      "facet_id": "hairy",
+      "evidence_refs": [
+        "FCE-068-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "85ba03536b48c92c7ebeea0c1fad2b31c7ba457221b6d38aea1d354461012b42"
+      }
+    },
+    {
+      "decision_id": "FCR-069",
+      "mushroom_id": "uraguronigaiguchi",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-069-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "3d28940442552309083b8c54629c7ade9c1d61662be4427b4427131e1f2171bf"
+      }
+    },
+    {
+      "decision_id": "FCR-070",
+      "mushroom_id": "uraguronigaiguchi",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-070-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "0f9c0c28e055a3ad8176c5aa31c742bd12405c63526c113a79881dce4f67a55b"
+      }
+    },
+    {
+      "decision_id": "FCR-071",
+      "mushroom_id": "uraguronigaiguchi",
+      "facet_id": "stem_scales_pattern",
+      "evidence_refs": [
+        "FCE-071-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "cda99e075eecbf55fb31970e46c9bd7be7d544dff6021ba859835be53a518102"
+      }
+    },
+    {
+      "decision_id": "FCR-072",
+      "mushroom_id": "uraguronigaiguchi",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-072-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "eee044537052dbcaa8d032724f2e1709eea0bd71030a2af823624c3fdbf2052d"
+      }
+    },
+    {
+      "decision_id": "FCR-073",
+      "mushroom_id": "ookitunetake",
+      "facet_id": "cap_depressed",
+      "evidence_refs": [
+        "FCE-073-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "0724b2e196298bddb292bb32b251aeca7774a7ef76845a9332fcf5d196fe0798"
+      }
+    },
+    {
+      "decision_id": "FCR-074",
+      "mushroom_id": "ookitunetake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-074-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "4460145255ccea2f4dceded0d46bcbc338084b752e2aa8cf216b27b326e8c45b"
+      }
+    },
+    {
+      "decision_id": "FCR-075",
+      "mushroom_id": "ookitunetake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-075-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f35782caaccf990b6ce7251b44561bc4b8f36bd4029992c6e10f572676bad197"
+      }
+    },
+    {
+      "decision_id": "FCR-076",
+      "mushroom_id": "seitakaiguchi",
+      "facet_id": "cap_fibrous_felt",
+      "evidence_refs": [
+        "FCE-076-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "a9118921f4e269bb4fcb72554625f03760ff91821465528ade51c0ac28e7a870"
+      }
+    },
+    {
+      "decision_id": "FCR-077",
+      "mushroom_id": "seitakaiguchi",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-077-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f7f00f700038d7aefed06cd5360241ee2d8a48e751a44ce4fda4b8e86ade8e52"
+      }
+    },
+    {
+      "decision_id": "FCR-078",
+      "mushroom_id": "seitakaiguchi",
+      "facet_id": "stem_reticulate",
+      "evidence_refs": [
+        "FCE-078-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "9c897d446d3e20c253077a52ab50ce8c5ea8e629daa766e98521ba74c1529bbb"
+      }
+    },
+    {
+      "decision_id": "FCR-079",
+      "mushroom_id": "seitakaiguchi",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-079-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "be0997a223ca1968eb235fe07c14bb9fdd62f6fe23d552af0c41a1a268d9b4f1"
+      }
+    },
+    {
+      "decision_id": "FCR-080",
+      "mushroom_id": "seitakaiguchi",
+      "facet_id": "stem_scales_pattern",
+      "evidence_refs": [
+        "FCE-080-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "7732a6aa09444828387eeb79cad707b1522f1b8ec5a94622aa516c518aa22410"
+      }
+    },
+    {
+      "decision_id": "FCR-081",
+      "mushroom_id": "tamachoreitake",
+      "facet_id": "cap_depressed",
+      "evidence_refs": [
+        "FCE-081-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "6af387232f0c096fdcb3e6399e7d3b843a5bbd6b3a39b12751d2d0a0eb76ec67"
+      }
+    },
+    {
+      "decision_id": "FCR-082",
+      "mushroom_id": "tamachoreitake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-082-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "944c1666efc14575a44e232fcab4dc48b45c59876aa54bc0606187901665b6b1"
+      }
+    },
+    {
+      "decision_id": "FCR-083",
+      "mushroom_id": "tamachoreitake",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-083-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b56b88338231894729d68eb9cfae57727c88e703913e22aee9c73b477dd0e282"
+      }
+    },
+    {
+      "decision_id": "FCR-084",
+      "mushroom_id": "tamachoreitake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-084-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "aaa9d0e6cbbd7b201d57e73d09d70d629a1e3375b8c2835f159cc13f78ce19d8"
+      }
+    },
+    {
+      "decision_id": "FCR-085",
+      "mushroom_id": "tsubaaburashimeji",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-085-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "fce2bc50f9d3e286d38fdf1cc42b241a51e1732c89bd695ddc8c9389ececc149"
+      }
+    },
+    {
+      "decision_id": "FCR-086",
+      "mushroom_id": "tsubaaburashimeji",
+      "facet_id": "stem_sticky",
+      "evidence_refs": [
+        "FCE-086-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "decf33a76637fb9490a1246c832eef09c5e7f7a8bce9796e42af5cb14b4a5da7"
+      }
+    },
+    {
+      "decision_id": "FCR-087",
+      "mushroom_id": "miyamatamagotake",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-087-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "339625fe1918c57e4798cb0a73ee95afc4d8100a215476dde281fd2d091d98a0"
+      }
+    },
+    {
+      "decision_id": "FCR-088",
+      "mushroom_id": "miyamatamagotake",
+      "facet_id": "cap_striate_grooved",
+      "evidence_refs": [
+        "FCE-088-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "9424091f3e41f8cf5a65138f1a73ed0d30de9d4fed30ea84b1b836d91d94948f"
+      }
+    },
+    {
+      "decision_id": "FCR-089",
+      "mushroom_id": "miyamatamagotake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-089-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "64fdd2c2a5e438a8d8cd72dc2dc74aa22b2fa7f659a53362932b0a8f65b995b6"
+      }
+    },
+    {
+      "decision_id": "FCR-090",
+      "mushroom_id": "miyamatamagotake",
+      "facet_id": "volva",
+      "evidence_refs": [
+        "FCE-090-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "ac5ab14df568666561902b85d9d0d2da96f489c4157f5f0f9b1bd26ab32d9c43"
+      }
+    },
+    {
+      "decision_id": "FCR-091",
+      "mushroom_id": "chichiawatake",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-091-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "315a1806bf2b1e0b13cc2d9b59b8ac7cc0e25fe70e82d41146e8fd412b23fad4"
+      }
+    },
+    {
+      "decision_id": "FCR-092",
+      "mushroom_id": "chichiawatake",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-092-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "d817dd3477da014624bf75ed676d489195e537b81ed516a001450317f0877445"
+      }
+    },
+    {
+      "decision_id": "FCR-093",
+      "mushroom_id": "chichiawatake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-093-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "ca17d77c8b859098653ee5fbae83280bec23cccbd97d6bfbe4539a376e8304b5"
+      }
+    },
+    {
+      "decision_id": "FCR-094",
+      "mushroom_id": "hiratake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-094-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "48c72dbe83504fb45c6f6b51940ededf4dbf86264cf823fc7dc05bd7cb360a97"
+      }
+    },
+    {
+      "decision_id": "FCR-095",
+      "mushroom_id": "ooshirokarakasatake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-095-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f0ce8b1f0a77a5c61ef31232e642115cca66f9da7d4a81cbc2262271bb7a84f0"
+      }
+    },
+    {
+      "decision_id": "FCR-096",
+      "mushroom_id": "ooshirokarakasatake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-096-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "2f898dbb09056550c4ea4ff33dbdbed1fcd4b53f5376439c6efcc399b8fd3304"
+      }
+    },
+    {
+      "decision_id": "FCR-097",
+      "mushroom_id": "ooshirokarakasatake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-097-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "1fa9f531c200f3d83b60827612305095ca2c103c0019d1a3f78ff7805cbd89f8"
+      }
+    },
+    {
+      "decision_id": "FCR-098",
+      "mushroom_id": "ooshirokarakasatake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-098-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "fe25a44567a1d76d0c1f6633523b0504af45d4f98c4e220b03e2fbdce6bdad66"
+      }
+    },
+    {
+      "decision_id": "FCR-099",
+      "mushroom_id": "aitake",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-099-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "5fffc9df24fff192bfce0aabc504b8f3541525c6b708d92df4ed7ae20ecc9882"
+      }
+    },
+    {
+      "decision_id": "FCR-100",
+      "mushroom_id": "aitake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-100-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "6f476471938fe33e3c7f9950d343e81ed991226710e76c7a224a240e4c4fbbe4"
+      }
+    },
+    {
+      "decision_id": "FCR-101",
+      "mushroom_id": "aitake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-101-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "d24196e7a204c7aad4318035f3353c03012c56c3f7daa9463ebab9061a654e15"
+      }
+    },
+    {
+      "decision_id": "FCR-102",
+      "mushroom_id": "usuhiratake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-102-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "02a6a7977cdc1fcc92f3188968f43f29e806237409959e1710ab018dfc7e5184"
+      }
+    },
+    {
+      "decision_id": "FCR-103",
+      "mushroom_id": "kinigaiguchi",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-103-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "aa80a179bad34eac932fd58960f74ce3b5c679b848c412c95659a92f5f4064b2"
+      }
+    },
+    {
+      "decision_id": "FCR-104",
+      "mushroom_id": "kinigaiguchi",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-104-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "3fe03010bfc7a95d726de6a8ac98efe7543c97562195fb34bbe8a039cae10707"
+      }
+    },
+    {
+      "decision_id": "FCR-105",
+      "mushroom_id": "kinigaiguchi",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-105-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "188f0c2f93c01756f2739fc62bcfee862dd0ceb8b0ba332b90b3abc803179fe5"
+      }
+    },
+    {
+      "decision_id": "FCR-106",
+      "mushroom_id": "kinigaiguchi",
+      "facet_id": "stem_reticulate",
+      "evidence_refs": [
+        "FCE-106-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "31e5742ac474ed001c1c02d872b1a32cc3a50934ceaa73899e37bcc3fa7b58bc"
+      }
+    },
+    {
+      "decision_id": "FCR-108",
+      "mushroom_id": "kiamiashiiguchi",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-108-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c430fb165f90cdbba0368a45eb884c97ec924aec0573fefa39fd3eeb5e2fd95f"
+      }
+    },
+    {
+      "decision_id": "FCR-109",
+      "mushroom_id": "kiamiashiiguchi",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-109-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "3b5ebeea5e02f7ae6ea1a46da93c47eaa8a4be4915f7a0b0be6e327687380ecb"
+      }
+    },
+    {
+      "decision_id": "FCR-110",
+      "mushroom_id": "kiamiashiiguchi",
+      "facet_id": "stem_scales_pattern",
+      "evidence_refs": [
+        "FCE-110-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "9c89b0d1de3906834363af7182d19c36804e6ade5397377315d79065dfc5ca4e"
+      }
+    },
+    {
+      "decision_id": "FCR-111",
+      "mushroom_id": "kiamiashiiguchi",
+      "facet_id": "stem_reticulate",
+      "evidence_refs": [
+        "FCE-111-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "848f3126900e2404c1d3aec2e88f45c505b4fc84fd8eb2bd4c14ceda3e0da6e9"
+      }
+    },
+    {
+      "decision_id": "FCR-112",
+      "mushroom_id": "midorinigaiguchi",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-112-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b015092f20076a5072b1223944f1a1c43edec6e289242fb18611de6599e1e8f5"
+      }
+    },
+    {
+      "decision_id": "FCR-113",
+      "mushroom_id": "midorinigaiguchi",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-113-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "1ee8bb4a2b56fd4863c03aa08239b1915e9a8ffb877a3f721f02b375b227468e"
+      }
+    },
+    {
+      "decision_id": "FCR-114",
+      "mushroom_id": "midorinigaiguchi",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-114-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f6b8ff116f3e760aec33f9d183db0e298cccb420bbe22dc7a755b508dff60c3c"
+      }
+    },
+    {
+      "decision_id": "FCR-115",
+      "mushroom_id": "matsuouji",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-115-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "6eeba861767bde5c059e6279bdc48455b16216bf83c4ed4a67026b839acd7cd1"
+      }
+    },
+    {
+      "decision_id": "FCR-116",
+      "mushroom_id": "matsuouji",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-116-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "ee48542ae7c33f5d61f500eb4c1e896789d45611485827a8abef8586ff67aa13"
+      }
+    },
+    {
+      "decision_id": "FCR-118",
+      "mushroom_id": "matsuouji",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-118-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f1f4d2cddc603267dbdc7c9c1121c95bfd7fbd3ddb04589d1f474520f60dc5bd"
+      }
+    },
+    {
+      "decision_id": "FCR-119",
+      "mushroom_id": "hoteishimeji",
+      "facet_id": "cap_fibrous_felt",
+      "evidence_refs": [
+        "FCE-119-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "4f06e070f20c54965b8ec7981be4672b9831136f10968e48fac618018c1e3688"
+      }
+    },
+    {
+      "decision_id": "FCR-120",
+      "mushroom_id": "hoteishimeji",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-120-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "a50fc44e1f86713587f476fdc0a1d38af9a6e1f6996fee0e03dcae858708205f"
+      }
+    },
+    {
+      "decision_id": "FCR-121",
+      "mushroom_id": "hoteishimeji",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-121-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "21da5d58bafc6802374b3940d67bc548efb71956c7a510d0ad79729f1ed9e9c5"
+      }
+    },
+    {
+      "decision_id": "FCR-122",
+      "mushroom_id": "akajikou",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-122-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "275d6ae64ccbd7956d7b7355b4db6f03f7d80bfb4b63d661220c03318d7ab804"
+      }
+    },
+    {
+      "decision_id": "FCR-123",
+      "mushroom_id": "akajikou",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-123-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "0e3e91aaa2a09084f66cf7ff72d0bf4e1a1aa50c0ff27eb67509ec1cdb2e02df"
+      }
+    },
+    {
+      "decision_id": "FCR-124",
+      "mushroom_id": "akajikou",
+      "facet_id": "stem_reticulate",
+      "evidence_refs": [
+        "FCE-124-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "67462a4fc676cb7cfc4c71e9feaf9b4fb8af7d41d7f3559362a4c6b46f53d8e3"
+      }
+    },
+    {
+      "decision_id": "FCR-125",
+      "mushroom_id": "akajikou",
+      "facet_id": "blue_stain",
+      "evidence_refs": [
+        "FCE-125-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "21f086c23ef87f94da84ddcaf3b7276ff43c3f2279216cdcbe55b307b7a69449"
+      }
+    },
+    {
+      "decision_id": "FCR-126",
+      "mushroom_id": "akamomitake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-126-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "451cee97bb84d68a8a823d13fb086d3c59448e2ec696bcae78444da5e950b55e"
+      }
+    },
+    {
+      "decision_id": "FCR-127",
+      "mushroom_id": "akamomitake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-127-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "6c3d14c2404d1ebb53a01a396834f5ddb10b302512906acf76433136664b0cc0"
+      }
+    },
+    {
+      "decision_id": "FCR-128",
+      "mushroom_id": "amitake",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-128-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "4d8fd3f0023547ebd61bd291e30e2130589d84c01313a9fdd03b505b52d59e5b"
+      }
+    },
+    {
+      "decision_id": "FCR-129",
+      "mushroom_id": "amitake",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-129-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "0ba0890a8b8818db6fa9feaaf6c5b5f04532af7edc8a09a5d3a354755204a52f"
+      }
+    },
+    {
+      "decision_id": "FCR-130",
+      "mushroom_id": "amitake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-130-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "7d985ca024f47cf9db5c883b4eca61cb64f78763f38f7bb3cbe2613b2464b377"
+      }
+    },
+    {
+      "decision_id": "FCR-132",
+      "mushroom_id": "awatake",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-132-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "d6fad76d818590b50b5e15c0597a8f1e260908fe0d08c8a68053a307970c2bdd"
+      }
+    },
+    {
+      "decision_id": "FCR-133",
+      "mushroom_id": "awatake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-133-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "090fb7a170f5b56fc08c7657153fd896d29aa59203fde5e9d55bd6462c0b6961"
+      }
+    },
+    {
+      "decision_id": "FCR-134",
+      "mushroom_id": "awatake",
+      "facet_id": "blue_stain",
+      "evidence_refs": [
+        "FCE-134-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "110726bbe7ccd25b07e1f823d52d850d453eb3cb0e93c8a1bbd918352dfbe65e"
+      }
+    },
+    {
+      "decision_id": "FCR-135",
+      "mushroom_id": "anzutake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-135-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "bba462fb32eb7dd77adc01ba0f397b51a642f882903c422c2a9f048265e2a212"
+      }
+    },
+    {
+      "decision_id": "FCR-136",
+      "mushroom_id": "inusenbontake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-136-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "381b8bf920e17f67d54ad7c8fbe7e5d20733550aeff541f6a427589c841aa279"
+      }
+    },
+    {
+      "decision_id": "FCR-137",
+      "mushroom_id": "inusenbontake",
+      "facet_id": "hairy",
+      "evidence_refs": [
+        "FCE-137-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c73a121c163d58e708f8c1513129ddfb8d13c04e10ea9a0982948c5f95c930e6"
+      }
+    },
+    {
+      "decision_id": "FCR-138",
+      "mushroom_id": "irogawari",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-138-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c4cafd11a23710ace65bdefd11443ed712789ecb8e42dc46090f1757f226bcde"
+      }
+    },
+    {
+      "decision_id": "FCR-139",
+      "mushroom_id": "irogawari",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-139-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "acc2a93fa15b1c05452a74e470c27445cddbd0f5a8391663be28c3a8dd5ebd98"
+      }
+    },
+    {
+      "decision_id": "FCR-140",
+      "mushroom_id": "irogawari",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-140-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "6f4b80af14df23807a141bc525b178ead622ac6550da3e1d5aecc5d72abe3a33"
+      }
+    },
+    {
+      "decision_id": "FCR-141",
+      "mushroom_id": "irogawari",
+      "facet_id": "hairy",
+      "evidence_refs": [
+        "FCE-141-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "a49bb9ada4619e6b90ed43920d54de30ce0b210eaa63aca40b8fd5483c4a907a"
+      }
+    },
+    {
+      "decision_id": "FCR-142",
+      "mushroom_id": "irogawari",
+      "facet_id": "blue_stain",
+      "evidence_refs": [
+        "FCE-142-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "d0b6f59f40da335cee44e84fb8a78f72acb0fe2a1bcb692edbe7d1975b5ef5f0"
+      }
+    },
+    {
+      "decision_id": "FCR-143",
+      "mushroom_id": "usutake",
+      "facet_id": "cap_depressed",
+      "evidence_refs": [
+        "FCE-143-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f10937c7c3a5057aba5af46b29334bf3890d79d4ce09c0eb458898bb108c14b4"
+      }
+    },
+    {
+      "decision_id": "FCR-144",
+      "mushroom_id": "urabenihoteisimeji",
+      "facet_id": "cap_fibrous_felt",
+      "evidence_refs": [
+        "FCE-144-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "0e3ef4430afbdd2d826b3f61b66f71eca7d30aa84222f28f0a8416e21c0ebc09"
+      }
+    },
+    {
+      "decision_id": "FCR-145",
+      "mushroom_id": "urabenihoteisimeji",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-145-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c2c130e50d2f7e1ba37263939896aa5b2a7b5cf5db77c6a9c36e2eac55cf69af"
+      }
+    },
+    {
+      "decision_id": "FCR-146",
+      "mushroom_id": "urabenihoteisimeji",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-146-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "1425b8fc4b9416e93530d24577ca4f993cfb87687547a8115e878b4acafc8ad9"
+      }
+    },
+    {
+      "decision_id": "FCR-147",
+      "mushroom_id": "ooicyoutake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-147-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "950f0fd896aa50835bb93aff4b5c65dd171dcc8a04cbda0d29896173f4f84eea"
+      }
+    },
+    {
+      "decision_id": "FCR-148",
+      "mushroom_id": "ooicyoutake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-148-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "4594d44ed6fc7c66bf210f2913a206521d5bf30f68deb0036430c5c963bc0aeb"
+      }
+    },
+    {
+      "decision_id": "FCR-149",
+      "mushroom_id": "oniiguti",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-149-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "a983b9ec2d33aede0f92e3b821135b7fb9402ad2d504abf232e433a4650238b4"
+      }
+    },
+    {
+      "decision_id": "FCR-150",
+      "mushroom_id": "oniiguti",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-150-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "af8f077d20ee82d499c053e7599026102df3b5c180f72b650f63008a9c062bbf"
+      }
+    },
+    {
+      "decision_id": "FCR-151",
+      "mushroom_id": "oniiguti",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-151-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "835e18677f3cc4973d54acef2b3635a512a4815755db0de35e142a9d43a86214"
+      }
+    },
+    {
+      "decision_id": "FCR-152",
+      "mushroom_id": "oniiguti",
+      "facet_id": "stem_scales_pattern",
+      "evidence_refs": [
+        "FCE-152-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "ad7ebc7e20ebcb00a6ffcfb0970ef7ddbc1e87838adc49644262e624fd4ae37d"
+      }
+    },
+    {
+      "decision_id": "FCR-153",
+      "mushroom_id": "oniiguti",
+      "facet_id": "stem_reticulate",
+      "evidence_refs": [
+        "FCE-153-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "28a2d0fd4854758db07e64ee6c6d102048ff35b9f95bce19ab916e42be0057de"
+      }
+    },
+    {
+      "decision_id": "FCR-155",
+      "mushroom_id": "oniigutimodoki",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-155-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "fa24d3dd3d155ffb7dea29ee31db2675a7d08738ac3da634efa08b5c84a316a2"
+      }
+    },
+    {
+      "decision_id": "FCR-156",
+      "mushroom_id": "oniigutimodoki",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-156-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "0bacaa826b41ae2a0177f101a8b80ab7da63173545b7756797206350f33e1df6"
+      }
+    },
+    {
+      "decision_id": "FCR-158",
+      "mushroom_id": "oniigutimodoki",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-158-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "5607639a897f1aa9781a7ccd09a912ed91038c1be96f0b1ae4ffb239e8e320a8"
+      }
+    },
+    {
+      "decision_id": "FCR-159",
+      "mushroom_id": "oniigutimodoki",
+      "facet_id": "stem_reticulate",
+      "evidence_refs": [
+        "FCE-159-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "be2f392a3d51fbb88d45e3bc4134e8cf0de669b601c84b427e466a4e06f3d838"
+      }
+    },
+    {
+      "decision_id": "FCR-160",
+      "mushroom_id": "kaigaratake",
+      "facet_id": "hairy",
+      "evidence_refs": [
+        "FCE-160-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "0a7d5bf1a0124eb44dbf272ac9738552d804857d211c679cee2debb66ec4563f"
+      }
+    },
+    {
+      "decision_id": "FCR-161",
+      "mushroom_id": "kakisimeji",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-161-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "0d386a09775f879f432905bd1f22236a71e92592f6d99d3201a1984912774282"
+      }
+    },
+    {
+      "decision_id": "FCR-162",
+      "mushroom_id": "kakisimeji",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-162-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "682b1909dabed04e07bf6be4917ec07b287c98b5af81f42de65a0c97921c539d"
+      }
+    },
+    {
+      "decision_id": "FCR-163",
+      "mushroom_id": "kakisimeji",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-163-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "42e522d75b7160fc6d920603f8e3d7bcedeeca78af77e92cb8ee20729848533a"
+      }
+    },
+    {
+      "decision_id": "FCR-164",
+      "mushroom_id": "kabairoturutake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-164-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "71010ba676f6eaba372ac36fd17e609fd6d4b313d6e0b80c8868e471bf54feaa"
+      }
+    },
+    {
+      "decision_id": "FCR-165",
+      "mushroom_id": "kabairoturutake",
+      "facet_id": "volva",
+      "evidence_refs": [
+        "FCE-165-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f448f89ae815fa47b2bb4291599ea16d882d1fe9d30a9e4c6d16a3253fe908bf"
+      }
+    },
+    {
+      "decision_id": "FCR-166",
+      "mushroom_id": "kabairoturutake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-166-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "fa2f494f2ebfa4cb238920606248db38f2e68611c85c292c6f9083067f500986"
+      }
+    },
+    {
+      "decision_id": "FCR-167",
+      "mushroom_id": "kawaratake",
+      "facet_id": "hairy",
+      "evidence_refs": [
+        "FCE-167-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "1eefb0a6125cc85e5c19030d27ebab61993ed866b088da5e368d8b22ff91241b"
+      }
+    },
+    {
+      "decision_id": "FCR-168",
+      "mushroom_id": "kawarihatu",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-168-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "bc220cd76bbf87492a3f69155ec711c95cec4a264c2386528c68aff2ea6eafdc"
+      }
+    },
+    {
+      "decision_id": "FCR-169",
+      "mushroom_id": "kawarihatu",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-169-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "d994ad76218cf2fa436a4e7784dfd1770074f2b364d1e68b6395b14a13a3bbfa"
+      }
+    },
+    {
+      "decision_id": "FCR-170",
+      "mushroom_id": "kanzoutake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-170-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "96b9d28eedc3fa4ab26b36c815888439af7a59bbe079bcc84ab0568b8783cae8"
+      }
+    },
+    {
+      "decision_id": "FCR-171",
+      "mushroom_id": "gantake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-171-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "aa848869f4fd095188eb86ec24c61387507e4007c81f5f6e30e716153cc43e5e"
+      }
+    },
+    {
+      "decision_id": "FCR-172",
+      "mushroom_id": "gantake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-172-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "fd8f22c243e6580776de8e3ec7941a460c0cf899777613c40922b1236e812e33"
+      }
+    },
+    {
+      "decision_id": "FCR-173",
+      "mushroom_id": "gantake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-173-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "e6627bca3f22090603f00f26ce3f38986afacae2aef211ace56ff0db857b84c7"
+      }
+    },
+    {
+      "decision_id": "FCR-174",
+      "mushroom_id": "gantake",
+      "facet_id": "volva",
+      "evidence_refs": [
+        "FCE-174-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f5c37259b68cfadaad0318aed359a5a2119aa1979deeed894cd6ef9e16d8a7ad"
+      }
+    },
+    {
+      "decision_id": "FCR-175",
+      "mushroom_id": "gantake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-175-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f1be3d63a5f81cb3fc87b63ebff3b40531c8f4b312569af9f960773ded588dd2"
+      }
+    },
+    {
+      "decision_id": "FCR-176",
+      "mushroom_id": "kitunetake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-176-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "09c6b060c7f627762447f50e12b6ab139b2b06a67f1feb27ccc5b24f3c13ca3b"
+      }
+    },
+    {
+      "decision_id": "FCR-177",
+      "mushroom_id": "kitunetake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-177-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b16448e4698a8e277c14462577def76ad2ec5b6fc785f65b5f8216c6e43a584d"
+      }
+    },
+    {
+      "decision_id": "FCR-178",
+      "mushroom_id": "kitunetake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-178-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "55c861f90b8c61ea49e7777bb83cb822c64ad887b393ca205f25ecab53f27888"
+      }
+    },
+    {
+      "decision_id": "FCR-179",
+      "mushroom_id": "kiraratake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-179-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "2cb8996c6892d43d54fa093d3ac920baf0656a2927192c14d52b613be3d64be1"
+      }
+    },
+    {
+      "decision_id": "FCR-180",
+      "mushroom_id": "kiraratake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-180-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f95b146425fee7a1f6b7dd06f6a2bff043c3e43377789cb2664a15ff0f4d0b7a"
+      }
+    },
+    {
+      "decision_id": "FCR-181",
+      "mushroom_id": "kusaurabenitake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-181-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "8dbfd36a7a5ac281cc56455daf5f380aa2bf3b149fcb5f7312bcaf9787fdff92"
+      }
+    },
+    {
+      "decision_id": "FCR-182",
+      "mushroom_id": "kusaurabenitake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-182-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c2d79e87b691a1b16b2a8e1ece484a19523ace1ce5286b8bc0bbf407ddd8ae13"
+      }
+    },
+    {
+      "decision_id": "FCR-183",
+      "mushroom_id": "kuritake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-183-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "109358ee332098d19e7e9293657ad203592d0f84667cbd08628342486c4568d1"
+      }
+    },
+    {
+      "decision_id": "FCR-184",
+      "mushroom_id": "kuritake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-184-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f8eb76a0c0da48e346c5e738f1ac120aa013d48f81ff4ae4f65d3d315d6e8879"
+      }
+    },
+    {
+      "decision_id": "FCR-185",
+      "mushroom_id": "kurohatu",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-185-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "a59469cc9ae992d851dc58415604c8220423ff1dbb24246625b5d6dc9519a2fe"
+      }
+    },
+    {
+      "decision_id": "FCR-186",
+      "mushroom_id": "kurohatu",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-186-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "71419a65b0a661ddc8066490420ab8d9977fecf0d7e3d8e33d814b7421131b7f"
+      }
+    },
+    {
+      "decision_id": "FCR-187",
+      "mushroom_id": "kurohatumodoki",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-187-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "2967565ca6a6c778fc7adf6e27c4b7a3482875bb702782f02545bb5ee56c64f8"
+      }
+    },
+    {
+      "decision_id": "FCR-188",
+      "mushroom_id": "kurohatumodoki",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-188-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b45f87241d41da7156d290325e8543c1b33d7546549cd4bf3d61ad945c28f83a"
+      }
+    },
+    {
+      "decision_id": "FCR-189",
+      "mushroom_id": "kurorappatake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-189-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "5286a46caf00b05134ddfc349caeea4488dd92155035c6c96820f86ca3082a45"
+      }
+    },
+    {
+      "decision_id": "FCR-190",
+      "mushroom_id": "kurorappatake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-190-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "d86a0ea4b369546edf36c7a46b114233fa910bcb1334086449c20725e219f864"
+      }
+    },
+    {
+      "decision_id": "FCR-191",
+      "mushroom_id": "koutake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-191-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "547dc62b1b093542e02b277e5fcb74b1b1deefde7ea5000b61d52be92b76c57d"
+      }
+    },
+    {
+      "decision_id": "FCR-192",
+      "mushroom_id": "koutake",
+      "facet_id": "cap_depressed",
+      "evidence_refs": [
+        "FCE-192-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "e06f3e1ac51cca828c209597498ebc08fa58834ed1f15f9e4e56b14328712203"
+      }
+    },
+    {
+      "decision_id": "FCR-193",
+      "mushroom_id": "koutake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-193-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "0bd2efcdac674b7c8a0e68638e4e05407760896c02bcd0c5d8ce2b0a55b950f6"
+      }
+    },
+    {
+      "decision_id": "FCR-194",
+      "mushroom_id": "koganetake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-194-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "eec81ce9bb50f5b6a4c7ec0a69b34bcff2d8baac7022b228323bdaffef98ee3a"
+      }
+    },
+    {
+      "decision_id": "FCR-195",
+      "mushroom_id": "koganetake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-195-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "d76353c0a12f89078b4108841618bcfc4c4e524cadd02a6b63d5bf7a895ac93f"
+      }
+    },
+    {
+      "decision_id": "FCR-196",
+      "mushroom_id": "koganetake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-196-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "e873b2f53de25f39e0b30437424c425859bffb539b064e070e8be6a41e488e34"
+      }
+    },
+    {
+      "decision_id": "FCR-197",
+      "mushroom_id": "koganenikawatake",
+      "facet_id": "gelatinous",
+      "evidence_refs": [
+        "FCE-197-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "3cfd2cb2f7b0c598fd5a4af66b0922fb4a9dfd78c53bb0103b13b5e3ad7a7bce"
+      }
+    },
+    {
+      "decision_id": "FCR-198",
+      "mushroom_id": "kotamagotengutake",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-198-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "af7d793780354503e2c43b2604aa22126b5e54067bfb82ec5c238182e56c5bfb"
+      }
+    },
+    {
+      "decision_id": "FCR-199",
+      "mushroom_id": "kotamagotengutake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-199-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "526ce9c2756f625f49f0d3788b288ed9ba468ad452ec752c45dc23d89efc3e77"
+      }
+    },
+    {
+      "decision_id": "FCR-200",
+      "mushroom_id": "kotamagotengutake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-200-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "1df7e3e548b20bd3dc1f53abc1f01802431cb71549a85a52dee8f98afcad8b4b"
+      }
+    },
+    {
+      "decision_id": "FCR-201",
+      "mushroom_id": "kotamagotengutake",
+      "facet_id": "volva",
+      "evidence_refs": [
+        "FCE-201-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "3093b680634b9d63e75d232cfa3f707feb63deb4a6f12582a70b181357869de5"
+      }
+    },
+    {
+      "decision_id": "FCR-202",
+      "mushroom_id": "kotamagotengutake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-202-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "1d6b858f4c10c14bfb148c1ba36ff30fd5ae2d83cc75d851d47cc297bf628c91"
+      }
+    },
+    {
+      "decision_id": "FCR-203",
+      "mushroom_id": "kofukisarunokosikake",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-203-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "550265936f3393f01d7669f96b7bed2ab62b1828654a7c06bfe9f52d79abe886"
+      }
+    },
+    {
+      "decision_id": "FCR-204",
+      "mushroom_id": "sakurasimeji",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-204-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "e980cffa2e823a219c85db1545b9fadf9f3af06048b70673a94f050384069568"
+      }
+    },
+    {
+      "decision_id": "FCR-205",
+      "mushroom_id": "sakurasimeji",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-205-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "e53f1e3300df509897f772128df61f0723c4877a20c67610209e5f4110f4a0b5"
+      }
+    },
+    {
+      "decision_id": "FCR-206",
+      "mushroom_id": "sakurasimeji",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-206-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "bbcf7802e62609d2b484817df0bb50cff5316ac38e3a559366eaeb447bc32314"
+      }
+    },
+    {
+      "decision_id": "FCR-207",
+      "mushroom_id": "sakuratake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-207-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "e1cd8c7579b781cd6d280d850f8bace8a71af25625974f04104fc4631a6448ca"
+      }
+    },
+    {
+      "decision_id": "FCR-208",
+      "mushroom_id": "sakuratake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-208-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "1ba194a5eac44b50a6d0b8738b5e5efc4649573170b90540aaef9404361f14c1"
+      }
+    },
+    {
+      "decision_id": "FCR-209",
+      "mushroom_id": "sakuratake",
+      "facet_id": "hairy",
+      "evidence_refs": [
+        "FCE-209-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "3af747fae57c5916e6d20b8871ff783ba2199d32e9d3f7ae4b5497a15ce3e312"
+      }
+    },
+    {
+      "decision_id": "FCR-210",
+      "mushroom_id": "saketubatake",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-210-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b5dafecb66934826bfc091e1bf5a1f306a1e0dd95d260cb847d842826bea0804"
+      }
+    },
+    {
+      "decision_id": "FCR-211",
+      "mushroom_id": "saketubatake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-211-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "036d68b886c0f8f485097a29708ff1a3e6cda1b61851f735c51179c8ee3814c5"
+      }
+    },
+    {
+      "decision_id": "FCR-212",
+      "mushroom_id": "saketubatake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-212-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "900adb1f16ceab6baf01542255f9a50f861bb584e2fad420866f96d1262336ed"
+      }
+    },
+    {
+      "decision_id": "FCR-213",
+      "mushroom_id": "saketubatake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-213-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f9d3a1d2c5fcd81b33444142a0b99fcfc933281d22298c63412087c53ae08933"
+      }
+    },
+    {
+      "decision_id": "FCR-214",
+      "mushroom_id": "saketubatake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-214-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c480ec7b6610f2db7255f9c842d48bcc8f703bb123b51b1c23cd76342447e609"
+      }
+    },
+    {
+      "decision_id": "FCR-215",
+      "mushroom_id": "saketubatake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-215-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "01c90a4d16ecb2dd9b0a113e8eab5521463ca87c023404f02f6b6445b3868d79"
+      }
+    },
+    {
+      "decision_id": "FCR-216",
+      "mushroom_id": "sasakurehitoyotake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-216-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "5df6058617ca6d6cc4754580d715f3d5707997b85c66f0ac2d470e2a6ab81a68"
+      }
+    },
+    {
+      "decision_id": "FCR-217",
+      "mushroom_id": "sasakurehitoyotake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-217-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "59517ed2cf44bc3451fc4eba145d680ab1ab7796005b536d705bf210d973c419"
+      }
+    },
+    {
+      "decision_id": "FCR-218",
+      "mushroom_id": "sasakurehitoyotake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-218-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "9f94edc8367b982e9ec2300620093961daa01cc10cd263db3358d7db5e5ff590"
+      }
+    },
+    {
+      "decision_id": "FCR-219",
+      "mushroom_id": "sasakurehitoyotake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-219-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f2d8cc4d7f6f5ba93d368669ffdf28591c3b087659fbdc7080b0b220c8d05b73"
+      }
+    },
+    {
+      "decision_id": "FCR-220",
+      "mushroom_id": "simofurisimeji",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-220-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f382c7e9068e6117ca4f996cba1850e3b11a68e782e23ca27ac6f8d0c63d49f9"
+      }
+    },
+    {
+      "decision_id": "FCR-221",
+      "mushroom_id": "simofurisimeji",
+      "facet_id": "cap_fibrous_felt",
+      "evidence_refs": [
+        "FCE-221-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "2768aff6563036990e7599975b11eff856a9b0e8cc4957151e7033511472451a"
+      }
+    },
+    {
+      "decision_id": "FCR-222",
+      "mushroom_id": "simofurisimeji",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-222-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f8da4c4af2634fde6434ccfe6534d141f99ea29c851251f866dfa4a73bd78b4e"
+      }
+    },
+    {
+      "decision_id": "FCR-223",
+      "mushroom_id": "simofurisimeji",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-223-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "28b51be6281ed44f889869c37ce475f2585d08d43a94267cd865fa576780adfb"
+      }
+    },
+    {
+      "decision_id": "FCR-224",
+      "mushroom_id": "simofurisimeji",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-224-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "14c0982ddaa1792056fb18e037ed2315a361bc624915b774421226fe0677843e"
+      }
+    },
+    {
+      "decision_id": "FCR-225",
+      "mushroom_id": "syougenji",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-225-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "76b0191d3269ab60ec0dc219863c661502e7959ff4edd052ca91873aae860fff"
+      }
+    },
+    {
+      "decision_id": "FCR-226",
+      "mushroom_id": "syougenji",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-226-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "8e2d7ae5259d307688b898a87ed76312823c099ecb21fa7d8aefb4f20cfe5f8a"
+      }
+    },
+    {
+      "decision_id": "FCR-227",
+      "mushroom_id": "syougenji",
+      "facet_id": "volva",
+      "evidence_refs": [
+        "FCE-227-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "8d2358e1cbb9aed4b27f54be777918c8679c31c1fff226fefc7f3507ed911b85"
+      }
+    },
+    {
+      "decision_id": "FCR-228",
+      "mushroom_id": "syougenji",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-228-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f632f43fe1a1cee139600986cfda2c4d0f1a4001ad30d5ea5612e5fb5cb830fa"
+      }
+    },
+    {
+      "decision_id": "FCR-229",
+      "mushroom_id": "siroonitake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-229-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "23a42b58ee883f251d9d44867d288a045a68eb181b89a404938928dd81047244"
+      }
+    },
+    {
+      "decision_id": "FCR-230",
+      "mushroom_id": "siroonitake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-230-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "3d3ca0d7500cb069862fc3e7a931f61dd7aa786d6d8032b105b937a942d98904"
+      }
+    },
+    {
+      "decision_id": "FCR-231",
+      "mushroom_id": "siroonitake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-231-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "80a21e6a5e95a3e39d4c9fc522ad5622507351520900e80dbaad16a48a82a3b1"
+      }
+    },
+    {
+      "decision_id": "FCR-232",
+      "mushroom_id": "siroonitake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-232-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "678a677e0aad407544513e92e557f45c4b3a50ae060e3f325a0634d60841efcc"
+      }
+    },
+    {
+      "decision_id": "FCR-233",
+      "mushroom_id": "sirokanosita",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-233-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "dc80d30734128b14aafae3085c1f989613707d8ae2e818dae49fa5d33292fef3"
+      }
+    },
+    {
+      "decision_id": "FCR-234",
+      "mushroom_id": "suehirotake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-234-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "e0cbc6a1bc393cf90fa1d2e405a87a11353670d8f2811a05a1991b0ab632c08d"
+      }
+    },
+    {
+      "decision_id": "FCR-235",
+      "mushroom_id": "suehirotake",
+      "facet_id": "hairy",
+      "evidence_refs": [
+        "FCE-235-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "257f5c4cb4104a38397192f940fdcd5f480be9b213f6c3edf63e3c336d5dff20"
+      }
+    },
+    {
+      "decision_id": "FCR-236",
+      "mushroom_id": "sugiedatake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-236-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "7e46e1e6a8c40aafa259b50e467a77693074bb1307f75c16c32bbe908bc7d51c"
+      }
+    },
+    {
+      "decision_id": "FCR-237",
+      "mushroom_id": "sugiedatake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-237-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "9d584489a28806956ad3e982fec252c36985b40a191649e7c20c77479f20fe4c"
+      }
+    },
+    {
+      "decision_id": "FCR-238",
+      "mushroom_id": "sugiedatake",
+      "facet_id": "hairy",
+      "evidence_refs": [
+        "FCE-238-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "aa981150f0915a77f8248b7eace8f8d3414e015f1544c70e72292727033e8932"
+      }
+    },
+    {
+      "decision_id": "FCR-239",
+      "mushroom_id": "sugitake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-239-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "2734626c9aecb5f342bf7e560c12ead75e5694c76b88f715d94b19da5eda6738"
+      }
+    },
+    {
+      "decision_id": "FCR-240",
+      "mushroom_id": "sugitake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-240-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "5bcabdcc2213d858525b2c37554ac64eadc4f3e3a4de254b018272292a7873f3"
+      }
+    },
+    {
+      "decision_id": "FCR-241",
+      "mushroom_id": "sugitake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-241-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "42be85bf3ba910096f1f4d36b91b5ef0f9cf8bcccd06b7de358b29190ba8fbcd"
+      }
+    },
+    {
+      "decision_id": "FCR-242",
+      "mushroom_id": "sugitake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-242-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "70816a4487aceed898d86a9674b01a85f49efe72b1f0aae565f158c6dc3c0ac1"
+      }
+    },
+    {
+      "decision_id": "FCR-243",
+      "mushroom_id": "sugihiratake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-243-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "d7f24ab45dad5e1eb58ee3f44c8d551f2756a946ca7644e255ba630427ae940e"
+      }
+    },
+    {
+      "decision_id": "FCR-244",
+      "mushroom_id": "sugihiratake",
+      "facet_id": "hairy",
+      "evidence_refs": [
+        "FCE-244-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "0211aa0928ce96b4bab461ba089bb89b1cf50389c4950b6b45ef42bd3d429cdf"
+      }
+    },
+    {
+      "decision_id": "FCR-245",
+      "mushroom_id": "tamagotakemodoki",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-245-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "255156f4e9d079d55a6f52c69252cfba4c923ef2d33ac7687831e0ceabbf6d06"
+      }
+    },
+    {
+      "decision_id": "FCR-246",
+      "mushroom_id": "tamagotakemodoki",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-246-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "13f6c82cf0a1c9236964511816d9245a64a141c1275e6fdf30512c509c69f357"
+      }
+    },
+    {
+      "decision_id": "FCR-247",
+      "mushroom_id": "tamagotakemodoki",
+      "facet_id": "volva",
+      "evidence_refs": [
+        "FCE-247-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b62aafeaf80d44d590a2ffcd4a5ffbd575aa149758ddc72924bb8af6f7dfd1bd"
+      }
+    },
+    {
+      "decision_id": "FCR-248",
+      "mushroom_id": "tamagotakemodoki",
+      "facet_id": "stem_scales_pattern",
+      "evidence_refs": [
+        "FCE-248-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "521ccb432f14efdf289638857189c001b680a167a96a5c52a297e11ce5639c31"
+      }
+    },
+    {
+      "decision_id": "FCR-249",
+      "mushroom_id": "tititake",
+      "facet_id": "granular_powdery",
+      "evidence_refs": [
+        "FCE-249-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "fb3567aec54dbd7f4ac51adb1e10db877b00338c6939fdee63c11e40ece58951"
+      }
+    },
+    {
+      "decision_id": "FCR-250",
+      "mushroom_id": "tititake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-250-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "69d4db48a67144ffbda27d2563e1345bbc4d01fafb6812eb67d94109e8ca14f5"
+      }
+    },
+    {
+      "decision_id": "FCR-251",
+      "mushroom_id": "tititake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-251-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "5f72ba56896c9b2efbc0ff192021ed74c072b8325eaf7129a4f1f0775e05adfd"
+      }
+    },
+    {
+      "decision_id": "FCR-252",
+      "mushroom_id": "cyanamemututake",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-252-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "5ee69c852b9a66e598622cf6e9244aa94a6d2766aaabe8ee263bbac9515191f3"
+      }
+    },
+    {
+      "decision_id": "FCR-253",
+      "mushroom_id": "cyanamemututake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-253-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b95cca75bd4c95df57d425dad1acd1a3b4c572af60ca38ac904a6b8a07f41b4f"
+      }
+    },
+    {
+      "decision_id": "FCR-254",
+      "mushroom_id": "cyanamemututake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-254-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c251dcdf083abb73fed4e39e92ba2efde737bd703747ac9589d2047dc1542fcb"
+      }
+    },
+    {
+      "decision_id": "FCR-255",
+      "mushroom_id": "cyanamemututake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-255-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "76aa791bc1821f4ee8fdb242614ad6cfb1c278c00e501af6d21c84966bbbef61"
+      }
+    },
+    {
+      "decision_id": "FCR-256",
+      "mushroom_id": "cyanamemututake",
+      "facet_id": "stem_scales_pattern",
+      "evidence_refs": [
+        "FCE-256-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "3bcf80a040a349c90b88aaecc7e6c426e944a149680e62aaebe075f7f885dde7"
+      }
+    },
+    {
+      "decision_id": "FCR-257",
+      "mushroom_id": "tuetake",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-257-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b5ff0c45d9d949d592d33442eeb2ef1422e5352b78d94d9be1a9f1ceccbc2289"
+      }
+    },
+    {
+      "decision_id": "FCR-258",
+      "mushroom_id": "tuetake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-258-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "0d0e75efe3cd4f53889cf82fa87ccd12d64cf5731a6fa39a54f711fcc3cc9036"
+      }
+    },
+    {
+      "decision_id": "FCR-259",
+      "mushroom_id": "tuetake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-259-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f1cd319d6472cf615c05264c766c3a8a3b49bb34bfa35b38cc077e73f04a6be3"
+      }
+    },
+    {
+      "decision_id": "FCR-260",
+      "mushroom_id": "tukiyotake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-260-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c5ecd2eb642bd1bce97949ec754504f8f17c6154f23ce87114c27ca8d9a83322"
+      }
+    },
+    {
+      "decision_id": "FCR-261",
+      "mushroom_id": "tukiyotake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-261-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "75084c020eb52d2608d92371e04c1f024c81b87dd53b2bf631b0d568b0eeb165"
+      }
+    },
+    {
+      "decision_id": "FCR-262",
+      "mushroom_id": "tukiyotake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-262-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "28d1c5cc3227221dbb58c3d9d05ebbd8fd6eede6e228d7f397d0a6fc851a0291"
+      }
+    },
+    {
+      "decision_id": "FCR-263",
+      "mushroom_id": "turiganetake",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-263-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b0eb578716604726ee9d538aaece0f5e86eba0a459e9233dc22ef3a50fefbef7"
+      }
+    },
+    {
+      "decision_id": "FCR-264",
+      "mushroom_id": "turutake",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-264-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "7691878a675bdff39207932390c7d6554b0343cdd531628aa75be175411fc8a9"
+      }
+    },
+    {
+      "decision_id": "FCR-265",
+      "mushroom_id": "turutake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-265-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "11e5a9fb2a00b69c6015414881017d208d3b6d6503883456c7f22bb548cd35ca"
+      }
+    },
+    {
+      "decision_id": "FCR-266",
+      "mushroom_id": "turutake",
+      "facet_id": "volva",
+      "evidence_refs": [
+        "FCE-266-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "dc6b01a80fa03cc7e7f549867ff037dc5ef5f9c4d9b9d5a30b8ce3bbaba63e41"
+      }
+    },
+    {
+      "decision_id": "FCR-267",
+      "mushroom_id": "turutake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-267-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "e7c331a1686c4aa93df1c1f76c123f4791d8f0ccae85222273ac27ad9c65c9ee"
+      }
+    },
+    {
+      "decision_id": "FCR-268",
+      "mushroom_id": "tengutake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-268-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b4abc489e16bbdd818903d4d58bd4c08d8f0619a8cdaae982b65ebe534609c4b"
+      }
+    },
+    {
+      "decision_id": "FCR-269",
+      "mushroom_id": "tengutake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-269-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "4dd8af98e5ad4149c51d18b2a8c0e1895d36f6d3125c8085c5b0d2f4f70b8508"
+      }
+    },
+    {
+      "decision_id": "FCR-270",
+      "mushroom_id": "tengutake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-270-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "5bb5b58b846a6e3cdfb68ae866f244244b10674397044838faac78349e469383"
+      }
+    },
+    {
+      "decision_id": "FCR-271",
+      "mushroom_id": "tengutake",
+      "facet_id": "volva",
+      "evidence_refs": [
+        "FCE-271-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "42f6aeacd89002b35aae42ae97b464564f6e25080002578ef5ffc1377b2700fd"
+      }
+    },
+    {
+      "decision_id": "FCR-272",
+      "mushroom_id": "tengutake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-272-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "6016c05c7d3bd2703b37d87f58685cbc0e6c464b0fae3731b428e25262221192"
+      }
+    },
+    {
+      "decision_id": "FCR-273",
+      "mushroom_id": "tokiirohiratake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-273-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "d44781fddee26ad59f82ce42632c73f1ec334bbe83a6870df48bb998cac65811"
+      }
+    },
+    {
+      "decision_id": "FCR-274",
+      "mushroom_id": "dokukarakasatake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-274-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "d3580e2ee3b9ba014f49c6ba836429af5f7a70c4e675c65bf5dcc65b7704716f"
+      }
+    },
+    {
+      "decision_id": "FCR-275",
+      "mushroom_id": "dokukarakasatake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-275-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f0d0d1b8938f297f8b7b490d9dea43d7406ac19e60d46ec70a5e94b602eabcb1"
+      }
+    },
+    {
+      "decision_id": "FCR-276",
+      "mushroom_id": "dokukarakasatake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-276-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "7e725e1e9c01b8aedc1113a3aed08b0ea5ad269cab1606bf6449b065db42ef83"
+      }
+    },
+    {
+      "decision_id": "FCR-277",
+      "mushroom_id": "dokukarakasatake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-277-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "90fde639422c13c515190918ea98f606143c0e67abb400c63d2026eb84ec14b9"
+      }
+    },
+    {
+      "decision_id": "FCR-278",
+      "mushroom_id": "dokubenitake",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-278-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "6b9f78af20fc78a19bff9d7872c55782eec0c1792dceb0c08b68eba12ba058f9"
+      }
+    },
+    {
+      "decision_id": "FCR-279",
+      "mushroom_id": "dokubenitake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-279-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "a2e6ab47dc3ba4eb08eec8a736b569a546a07691510067d8b154b73ce1f8a3a7"
+      }
+    },
+    {
+      "decision_id": "FCR-280",
+      "mushroom_id": "nameko",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-280-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "d79df63d5712d33bb28fbfa494dda5d15a54a2b4ea75b4f4e85fddd8ae196c85"
+      }
+    },
+    {
+      "decision_id": "FCR-281",
+      "mushroom_id": "nameko",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-281-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "aeee4b0d84d74f50e9887104dd66565b2b93f4be27df5e16733d198cc60eae96"
+      }
+    },
+    {
+      "decision_id": "FCR-282",
+      "mushroom_id": "nameko",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-282-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "62613d57834bc0870ac190f4d7df25383e70c0406d16ddd09669b71e97c3148b"
+      }
+    },
+    {
+      "decision_id": "FCR-283",
+      "mushroom_id": "nameko",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-283-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "1bda9c483f31654ec9ca08a9dd923471b7c8ce482b1e3d6180407e40207f184e"
+      }
+    },
+    {
+      "decision_id": "FCR-284",
+      "mushroom_id": "nameko",
+      "facet_id": "stem_sticky",
+      "evidence_refs": [
+        "FCE-284-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "70c748370c74fd942ebb69d51791c3498c36827861d3853d3741400df7be9e41"
+      }
+    },
+    {
+      "decision_id": "FCR-285",
+      "mushroom_id": "naratake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-285-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "351b78a6d514b4aec138c770439dd4a0942c0dfdddced27d50ca8e0361b0ea10"
+      }
+    },
+    {
+      "decision_id": "FCR-286",
+      "mushroom_id": "naratake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-286-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b5e7b4da0d41ff3c41506c08510b4b20421510acbf8be687faf68423ee622fbe"
+      }
+    },
+    {
+      "decision_id": "FCR-287",
+      "mushroom_id": "naratake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-287-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "a5147bdf4fb29f5c244598228b1a36027b7fae977a9d9a1ca73794df668668e6"
+      }
+    },
+    {
+      "decision_id": "FCR-288",
+      "mushroom_id": "naratakemodoki",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-288-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "05001854b50516a6704dde83d9f0222927abd9b372c5ca514c521cc3ebf72ae5"
+      }
+    },
+    {
+      "decision_id": "FCR-289",
+      "mushroom_id": "naratakemodoki",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-289-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "7edb5d15fbaa5342876cf3616f1c8a600a1f4a611cf7c4a1272caa786eaae35a"
+      }
+    },
+    {
+      "decision_id": "FCR-290",
+      "mushroom_id": "naratakemodoki",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-290-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "a5b112ec3aca11978df616cb921a21a5e54a04b1013665de82116d54bad98f7d"
+      }
+    },
+    {
+      "decision_id": "FCR-291",
+      "mushroom_id": "nigakuritake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-291-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "99e99597e5f90fbf94e8d966b688c0c3f81fa9fdc95664303a6a3ab84c460efc"
+      }
+    },
+    {
+      "decision_id": "FCR-293",
+      "mushroom_id": "nisekurohatu",
+      "facet_id": "cap_depressed",
+      "evidence_refs": [
+        "FCE-293-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b1d555bd06615eb02a45acc504de7e1f23ac96e57279fcdcb7783bd4431b68e7"
+      }
+    },
+    {
+      "decision_id": "FCR-294",
+      "mushroom_id": "nisekurohatu",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-294-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b4fb14a75a8e0845e73af49e517db7101da37ea9ee555891c21c9ad17f02fc87"
+      }
+    },
+    {
+      "decision_id": "FCR-295",
+      "mushroom_id": "nisekurohatu",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-295-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "cf2e605200b08053e87e51bb974f3124089c9a15b279beced101e63a0d84c23b"
+      }
+    },
+    {
+      "decision_id": "FCR-296",
+      "mushroom_id": "numeriiguti",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-296-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "4fddbb32a977e33989d22ef5eb0dfa83cc0e553c388bc6fa0d6374d0e0bcc7ab"
+      }
+    },
+    {
+      "decision_id": "FCR-297",
+      "mushroom_id": "numeriiguti",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-297-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "2eeb190c5e9e72a370e81a461040c2678bd6eba4eed975a57501f051eaad0e8a"
+      }
+    },
+    {
+      "decision_id": "FCR-298",
+      "mushroom_id": "numeriiguti",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-298-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "26c10893a9a5e098f2b76added33445b863b1e365680798f96e31216cf0bf5f2"
+      }
+    },
+    {
+      "decision_id": "FCR-299",
+      "mushroom_id": "numerisugitake",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-299-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "3bbb527893ae659b5322b2a4823f4d1dd4eb2f98697bfec0487eb3b7be2731be"
+      }
+    },
+    {
+      "decision_id": "FCR-300",
+      "mushroom_id": "numerisugitake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-300-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "0a1c91f13aa2b7cb508f5364867c5b10a20910582b518f2c589e2146a29cabd6"
+      }
+    },
+    {
+      "decision_id": "FCR-301",
+      "mushroom_id": "numerisugitake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-301-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "93dfc47586e6fc4c7e813fe19db948ba160ad6124e2742c16351f2986512ccd8"
+      }
+    },
+    {
+      "decision_id": "FCR-302",
+      "mushroom_id": "numerisugitake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-302-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "9f7ca781d85d8462a38e6d842450095de1157e0ab604dec69ce9cb7802ddb096"
+      }
+    },
+    {
+      "decision_id": "FCR-303",
+      "mushroom_id": "numerisugitake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-303-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "887d59a643e295662869060e1769244512ecedf4d864870827c41ff61ca0a54e"
+      }
+    },
+    {
+      "decision_id": "FCR-304",
+      "mushroom_id": "numerisugitake",
+      "facet_id": "stem_sticky",
+      "evidence_refs": [
+        "FCE-304-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "be9829c2ad22fbc9c447824656c55c5a882736bfb20d86c6cf5125167db8a5f0"
+      }
+    },
+    {
+      "decision_id": "FCR-305",
+      "mushroom_id": "hatakesimeji",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-305-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "aeb4183e58f181e650cd9ff4e2608cf2a199b50d8f3dd6faee57f466dbb2d75b"
+      }
+    },
+    {
+      "decision_id": "FCR-306",
+      "mushroom_id": "hatakesimeji",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-306-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c2ef5f9c76fd25b49abb73b2b2a48ab93c4f1742eec5dfc784d7fe746f31ec30"
+      }
+    },
+    {
+      "decision_id": "FCR-307",
+      "mushroom_id": "hatinosutake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-307-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "83ad21c5af0948ab85b66e65fb44c7b9301019889ae82f829d088f401be3a5fe"
+      }
+    },
+    {
+      "decision_id": "FCR-308",
+      "mushroom_id": "hatinosutake",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-308-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "8a135e058ae0c8d8e32ea08802210aca43edf57e65c665f4912ed22de7c6a57b"
+      }
+    },
+    {
+      "decision_id": "FCR-309",
+      "mushroom_id": "hatutake",
+      "facet_id": "cap_depressed",
+      "evidence_refs": [
+        "FCE-309-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "293c8aa923ccfa14e032463b5b13a36729946c42c78b3e889c0fce595766749b"
+      }
+    },
+    {
+      "decision_id": "FCR-310",
+      "mushroom_id": "hatutake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-310-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "582c7760e0568f43bff2c54f5cb004953d84b72eae515392684cf3044e194ad2"
+      }
+    },
+    {
+      "decision_id": "FCR-311",
+      "mushroom_id": "hatutake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-311-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "2fecfec77c11a8b005b66333f7c1c021b1208f48d018fc753bcf5c67dc7b561f"
+      }
+    },
+    {
+      "decision_id": "FCR-312",
+      "mushroom_id": "haratake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-312-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "47d4926c0faba924b5ea1cf7800c2186ac1aaaabf3a6d384ad392e652dc55bf7"
+      }
+    },
+    {
+      "decision_id": "FCR-313",
+      "mushroom_id": "haratake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-313-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "eb081eaa596a6f52a8a0a87bc176fa90250b87a07f5bcd1f3bfee63c5937db50"
+      }
+    },
+    {
+      "decision_id": "FCR-314",
+      "mushroom_id": "haratake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-314-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "e20446af8c49d193a22a927474be3df49aa6fc6c450a447c6ea8adc4c08c2522"
+      }
+    },
+    {
+      "decision_id": "FCR-315",
+      "mushroom_id": "haratake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-315-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c55ee8dd48ec123c9df6eb8a25446fd7cc3ccae577a5f2a4a9312396c487f59f"
+      }
+    },
+    {
+      "decision_id": "FCR-316",
+      "mushroom_id": "hidahatake",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-316-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "df904ea5ac6d2f064b4d9bf9fed2bc24645855d820a6ee60c239749bfab3f17d"
+      }
+    },
+    {
+      "decision_id": "FCR-317",
+      "mushroom_id": "hidahatake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-317-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c00a60a3068ac86d3cd25a93cce847e59d35cad0dcae6bc3a42eda54eeabda51"
+      }
+    },
+    {
+      "decision_id": "FCR-318",
+      "mushroom_id": "hidahatake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-318-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "69a5bc778ea95b6261d568d58ee5e05ddae33590d595345446fd3865c5fbcac4"
+      }
+    },
+    {
+      "decision_id": "FCR-319",
+      "mushroom_id": "hitoyotake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-319-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "40b69c5490e3ddef6789865a25a9101b726fb3b0fe7bafca641b55d9849ffe12"
+      }
+    },
+    {
+      "decision_id": "FCR-320",
+      "mushroom_id": "hitoyotake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-320-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "d1c3a3bda64ae51cc5c696cfaf8024fb3496b1a17447cc2f6f86a5d6a246786c"
+      }
+    },
+    {
+      "decision_id": "FCR-322",
+      "mushroom_id": "hitoyotake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-322-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "5766e91661481922286c9c71d112a13a90a5978abdf19b8e5dda663deba5df21"
+      }
+    },
+    {
+      "decision_id": "FCR-323",
+      "mushroom_id": "bunasimeji",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-323-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b1e57d3595b9d0da0b6fe6a1bc895acc3ba96ae25d6210e71ac181eaebcc2153"
+      }
+    },
+    {
+      "decision_id": "FCR-324",
+      "mushroom_id": "bunasimeji",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-324-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "ed7764850c06b99e14d9fb293ffa399dd97be0e4c9e86624c42647ccb59012e5"
+      }
+    },
+    {
+      "decision_id": "FCR-325",
+      "mushroom_id": "honsimeji",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-325-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "00db46608e137ff58a4d4b8017dca2b6359131c27f5bba32715b7a40f14eb6c6"
+      }
+    },
+    {
+      "decision_id": "FCR-326",
+      "mushroom_id": "honsimeji",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-326-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "a468f27836bab28eeb5bb1fbff54d1f2d93ec4c6488595f4dd572b3a69a60c68"
+      }
+    },
+    {
+      "decision_id": "FCR-327",
+      "mushroom_id": "maitake",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-327-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "ce0e14309670b894df1fbe3a933c991ade0f99029a9b985d357627963793759b"
+      }
+    },
+    {
+      "decision_id": "FCR-328",
+      "mushroom_id": "maitake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-328-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "9d742f198346240599cdf68455380a7b551b53bd0eb9b379cb0a82b91340ed8e"
+      }
+    },
+    {
+      "decision_id": "FCR-329",
+      "mushroom_id": "matutake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-329-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "636992b18c8425e71bca0da5637fcd87b6f68502f3c0fbe1d1748269263ea886"
+      }
+    },
+    {
+      "decision_id": "FCR-330",
+      "mushroom_id": "matutake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-330-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c3075c7705eb4ca0fda39de80f8395f9fd54b74a5ac47d57282bf09143106cfd"
+      }
+    },
+    {
+      "decision_id": "FCR-331",
+      "mushroom_id": "matutake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-331-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "9838f737da0dbabf4f68cc21fbdb8686f6862b7211d86e679029cc5b2d06d262"
+      }
+    },
+    {
+      "decision_id": "FCR-332",
+      "mushroom_id": "matutake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-332-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "85212c44238365968e2cdbe57425c0121f33b692a13d3f5511e1208a48ec240c"
+      }
+    },
+    {
+      "decision_id": "FCR-333",
+      "mushroom_id": "mannentake",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-333-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "6dd95fde6d4e1808e51820ba841534833971860ea5803a9639636ff59cf86c64"
+      }
+    },
+    {
+      "decision_id": "FCR-334",
+      "mushroom_id": "mannentake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-334-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "eefacdc7424becd481d7d280f244892d036bb268e8a6018cbd2bb1702fb1f3e4"
+      }
+    },
+    {
+      "decision_id": "FCR-335",
+      "mushroom_id": "mukitake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-335-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "975da187ff1e4493ecf588979606e15f55fcfc61460aa7e501c4b6cba34b0ed1"
+      }
+    },
+    {
+      "decision_id": "FCR-336",
+      "mushroom_id": "mukitake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-336-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "bdb2d9e4521fbe0050fdc373d5a3156831690e84dc463b44c53a816b73eb32ca"
+      }
+    },
+    {
+      "decision_id": "FCR-337",
+      "mushroom_id": "mukitake",
+      "facet_id": "hairy",
+      "evidence_refs": [
+        "FCE-337-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "05548701cc1f1f5df2feebc1af2def045574fcd8ce43bea5599a88e171cae968"
+      }
+    },
+    {
+      "decision_id": "FCR-338",
+      "mushroom_id": "murasakisimeji",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-338-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "8c98753d62102883689b781100346545fa9cb146dade1c35cee5f31700bb85d9"
+      }
+    },
+    {
+      "decision_id": "FCR-339",
+      "mushroom_id": "murasakisimeji",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-339-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "a875fe2b58ac9df0b5f8676b1d359654160d009c24961751f068713342dc92c1"
+      }
+    },
+    {
+      "decision_id": "FCR-340",
+      "mushroom_id": "murasakifuusentake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-340-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "0e8b3de6c29fdf93c0b87836b842a897f09c5b4f690ced289df16f9dc64f8ac5"
+      }
+    },
+    {
+      "decision_id": "FCR-341",
+      "mushroom_id": "murasakifuusentake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-341-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "9a0fb4a3b593b53e29bdaac20a5d421921369c89a652e0bef5dda0dd54b1e42e"
+      }
+    },
+    {
+      "decision_id": "FCR-342",
+      "mushroom_id": "murasakifuusentake",
+      "facet_id": "hairy",
+      "evidence_refs": [
+        "FCE-342-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "e74f5d32183e37e274dafe014f41c7fb3e062d42d50570f9373dbcbd43c7de9d"
+      }
+    },
+    {
+      "decision_id": "FCR-343",
+      "mushroom_id": "yakoutake",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-343-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "257797427d624720f61e3bbed6e1755afd72a5ddfee7b1f428cc23ca78ad71ac"
+      }
+    },
+    {
+      "decision_id": "FCR-344",
+      "mushroom_id": "yakoutake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-344-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "6795b20934a3916f02b1a211a0bde51e81935cb795a6faea3c7a999650663d81"
+      }
+    },
+    {
+      "decision_id": "FCR-345",
+      "mushroom_id": "yakoutake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-345-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "98e5e11cc9fe1242f28e3917eb01e588eb6e8002bd9b8f41162982d9775f7c53"
+      }
+    },
+    {
+      "decision_id": "FCR-346",
+      "mushroom_id": "yakoutake",
+      "facet_id": "gelatinous",
+      "evidence_refs": [
+        "FCE-346-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "374aa43bac8f4d1f4fa2e11c58f22d4f534fc4ed86c06f645608c9c5ae75117f"
+      }
+    },
+    {
+      "decision_id": "FCR-347",
+      "mushroom_id": "yamadoritakemodoki",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-347-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "ed19eda60570d0006751165e98d7ee3693086e547b862b868ae6ba9fd233e7eb"
+      }
+    },
+    {
+      "decision_id": "FCR-348",
+      "mushroom_id": "yamadoritakemodoki",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-348-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "70812aa092c00bfdc6e129d6b92701b13587efdb551371254c3e583226cc3b8b"
+      }
+    },
+    {
+      "decision_id": "FCR-349",
+      "mushroom_id": "yamadoritakemodoki",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-349-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "b539618f6d2bfbff17bbf83d63fdc164ec0e833aed8dee153244f0ea5cb19ca0"
+      }
+    },
+    {
+      "decision_id": "FCR-350",
+      "mushroom_id": "yamadoritakemodoki",
+      "facet_id": "stem_scales_pattern",
+      "evidence_refs": [
+        "FCE-350-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "045bb662eca770738388ec290edff099775e2544171da7434bcd54a6649f6073"
+      }
+    },
+    {
+      "decision_id": "FCR-351",
+      "mushroom_id": "yamadoritakemodoki",
+      "facet_id": "stem_reticulate",
+      "evidence_refs": [
+        "FCE-351-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c75ea9407d73e79734c51e583e782eefa4dd53ad466865dbcbbf7393e63dd203"
+      }
+    },
+    {
+      "decision_id": "FCR-352",
+      "mushroom_id": "rurihatutake",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-352-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "0d739693c29c078f8cbd95dec037ca1bb32e444ffa533beb58ff75c62e88a5de"
+      }
+    },
+    {
+      "decision_id": "FCR-353",
+      "mushroom_id": "rurihatutake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-353-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "4a4817b0cd22b7fc44bbcef27e2c2eb89b06dd057a26e6460e8afc229580d9d0"
+      }
+    },
+    {
+      "decision_id": "FCR-354",
+      "mushroom_id": "rurihatutake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-354-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "3652f9265342edbac1533635cde5a3a91bcaa4c216423a00a9a5acd786e50d35"
+      }
+    },
+    {
+      "decision_id": "FCR-355",
+      "mushroom_id": "rurihatutake",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-355-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "6302b3bc0e014ea570cec1c587f7374bef6fdf04e958bc185e8b79e8636c4262"
+      }
+    },
+    {
+      "decision_id": "FCR-356",
+      "mushroom_id": "shirotamagotengutake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-356-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "43a1b2fd33e010ea69428bec6b0ad4bb741d5af89f3ca62775879ec1e4eec7b9"
+      }
+    },
+    {
+      "decision_id": "FCR-357",
+      "mushroom_id": "shirotamagotengutake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-357-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "329694bd00fed7734fa9dd91afeebfefaf07e8d29331dba4665440d3060ef26e"
+      }
+    },
+    {
+      "decision_id": "FCR-358",
+      "mushroom_id": "shirotamagotengutake",
+      "facet_id": "volva",
+      "evidence_refs": [
+        "FCE-358-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "2eaeb5de232a2036c9d4394f3839980c07f32c228da2dbd1423d0f9421e60068"
+      }
+    },
+    {
+      "decision_id": "FCR-359",
+      "mushroom_id": "benitengutake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-359-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "a6bf7155cdf6a713f66b15ba343c0333e9e1453ab8ad4382ec9952e3c3785210"
+      }
+    },
+    {
+      "decision_id": "FCR-360",
+      "mushroom_id": "benitengutake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-360-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "23e881ad59cffba85f72ae08e3d7c813bf42f1a4ac43ea48f26576d695e87295"
+      }
+    },
+    {
+      "decision_id": "FCR-361",
+      "mushroom_id": "benitengutake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-361-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "fbfdd32b38024ffc4371609fefae7eddcf7a3549437527dd1233b32502234165"
+      }
+    },
+    {
+      "decision_id": "FCR-362",
+      "mushroom_id": "benitengutake",
+      "facet_id": "stem_scales_pattern",
+      "evidence_refs": [
+        "FCE-362-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "42afe6e65b42b2c55d637016cba81948875c74194c779ece037154ed102b9500"
+      }
+    },
+    {
+      "decision_id": "FCR-363",
+      "mushroom_id": "dokusasako",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-363-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "1e5fda764fc21a23d562030bdf09f0ef2a6dff86e481ce97850eb60cda382cb5"
+      }
+    },
+    {
+      "decision_id": "FCR-364",
+      "mushroom_id": "dokusasako",
+      "facet_id": "cap_depressed",
+      "evidence_refs": [
+        "FCE-364-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "6596334a5e3ca4ca2a2e5504da3343b89b29ad87b330754a07c7f5de92946a87"
+      }
+    },
+    {
+      "decision_id": "FCR-365",
+      "mushroom_id": "dokusasako",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-365-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "a63568f4a7ac0d7a1dbd0b16da0fbb777dff452d7472323c7a84545df3389d53"
+      }
+    },
+    {
+      "decision_id": "FCR-366",
+      "mushroom_id": "dokusasako",
+      "facet_id": "stem_solid",
+      "evidence_refs": [
+        "FCE-366-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "36d89388e5ace04f2543b15f9a4754e4ed10eaf0ae857ace4f494a6443da38d9"
+      }
+    },
+    {
+      "decision_id": "FCR-367",
+      "mushroom_id": "dokuyamadori",
+      "facet_id": "pores",
+      "evidence_refs": [
+        "FCE-367-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "28a4ecaac75bd8d09cae976dce0b064b33a2be680b24fe64c35b1efe99ebce3a"
+      }
+    },
+    {
+      "decision_id": "FCR-368",
+      "mushroom_id": "dokuyamadori",
+      "facet_id": "blue_stain",
+      "evidence_refs": [
+        "FCE-368-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "7ad6e07d074842639e7b3caf90357ba2079d72eaebfca9c6d6d94fa0adcc4dd4"
+      }
+    },
+    {
+      "decision_id": "FCR-369",
+      "mushroom_id": "nezumishimeji",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-369-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "2d1646c2d9eb2d76aef1ca5d5acace861f0049385906711a2e555057222da3ca"
+      }
+    },
+    {
+      "decision_id": "FCR-370",
+      "mushroom_id": "nezumishimeji",
+      "facet_id": "stem_scales_pattern",
+      "evidence_refs": [
+        "FCE-370-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "d6c95f4d9a489d62aad7888267af1929f6601d1b0a641a9404a7039064a341f6"
+      }
+    },
+    {
+      "decision_id": "FCR-371",
+      "mushroom_id": "haiiroshimeji",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-371-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "352874cf09190516391f35f23f3cdb0f6bb545e74ecefbb72ce7d22bc9c4a6fa"
+      }
+    },
+    {
+      "decision_id": "FCR-372",
+      "mushroom_id": "haiiroshimeji",
+      "facet_id": "cap_depressed",
+      "evidence_refs": [
+        "FCE-372-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "2cf46fd6c64a8656acc54aa2a88f446dbaba448e4b6478a3069ff4490109a27b"
+      }
+    },
+    {
+      "decision_id": "FCR-373",
+      "mushroom_id": "hikageshibiretake",
+      "facet_id": "cap_sticky",
+      "evidence_refs": [
+        "FCE-373-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "7387320038b95076734d8423b8d6b39c899a828df1585f9089c694adbd4f769e"
+      }
+    },
+    {
+      "decision_id": "FCR-374",
+      "mushroom_id": "hikageshibiretake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-374-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "312b20b000f454c51bafd46a9445c4876b7bd6be55c695e7a2305a44960b361e"
+      }
+    },
+    {
+      "decision_id": "FCR-375",
+      "mushroom_id": "hikageshibiretake",
+      "facet_id": "stem_hollow",
+      "evidence_refs": [
+        "FCE-375-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "c05152ae75e037a0a53bf912d9689cdd56663ea6cfac0189b4ef5a0b79f8162a"
+      }
+    },
+    {
+      "decision_id": "FCR-376",
+      "mushroom_id": "hikageshibiretake",
+      "facet_id": "blue_stain",
+      "evidence_refs": [
+        "FCE-376-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "8d4a14437afb1629d7a001d9dc41a0a5fda046263a49f358b5e790089d3958cb"
+      }
+    },
+    {
+      "decision_id": "FCR-377",
+      "mushroom_id": "amigasatake",
+      "facet_id": "head_reticulate",
+      "evidence_refs": [
+        "FCE-377-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "1e3b055fd5af3e580e236b12aca0dcfe6c53ae43fcfc373be3a8cb9356b41d83"
+      }
+    },
+    {
+      "decision_id": "FCR-378",
+      "mushroom_id": "yanagimatsutake",
+      "facet_id": "ring",
+      "evidence_refs": [
+        "FCE-378-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "bfd32df75e9a099b6e602b4c5f8f93d18b34c079926e3d0a6c879a7b3286fe7a"
+      }
+    },
+    {
+      "decision_id": "FCR-379",
+      "mushroom_id": "shiitake",
+      "facet_id": "cap_scales_warts",
+      "evidence_refs": [
+        "FCE-379-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "eff25a63642b3c14cd21aa557ceb90a79ded493fa468696e6f903b50a296a0c8"
+      }
+    },
+    {
+      "decision_id": "FCR-380",
+      "mushroom_id": "shiitake",
+      "facet_id": "gills",
+      "evidence_refs": [
+        "FCE-380-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f7af4795fdc8e78a38fc1a4cbf8359dfbe72fc4b45a2d9db50d3700f4c7d4651"
+      }
+    },
+    {
+      "decision_id": "FCR-381",
+      "mushroom_id": "kinugasatake",
+      "facet_id": "head_reticulate",
+      "evidence_refs": [
+        "FCE-381-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "86624a3520ddf470399995a4ca9a97e9683154ce93f959b10d47ed77324c5a7b"
+      }
+    },
+    {
+      "decision_id": "FCR-382",
+      "mushroom_id": "suppontake",
+      "facet_id": "head_reticulate",
+      "evidence_refs": [
+        "FCE-382-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "eadb22f8966f5a53897c9af52c5262f81864dea6225579448437ae2f0e6c282d"
+      }
+    },
+    {
+      "decision_id": "FCR-383",
+      "mushroom_id": "sanagitake",
+      "facet_id": "granular_powdery",
+      "evidence_refs": [
+        "FCE-383-1"
+      ],
+      "runtime_assignment_digest": {
+        "serialization": "UTF-8 JSON; ensure_ascii=false; sort_keys=true; separators=(comma,colon); no trailing newline",
+        "sha256": "f7250b35db1f3dda3a6d930605c33c2f1407814708c61d2be8ee077d7f2d3e46"
+      }
+    }
+  ],
+  "held_assignment_keys": [
+    {
+      "decision_id": "FCR-031",
+      "mushroom_id": "yamaiguchi",
+      "facet_id": "hairy"
+    },
+    {
+      "decision_id": "FCR-049",
+      "mushroom_id": "ukonhatsu",
+      "facet_id": "cap_fibrous_felt"
+    },
+    {
+      "decision_id": "FCR-061",
+      "mushroom_id": "tamagotake",
+      "facet_id": "cap_striate_grooved"
+    },
+    {
+      "decision_id": "FCR-107",
+      "mushroom_id": "kiamiashiiguchi",
+      "facet_id": "cap_fibrous_felt"
+    },
+    {
+      "decision_id": "FCR-117",
+      "mushroom_id": "matsuouji",
+      "facet_id": "ring"
+    },
+    {
+      "decision_id": "FCR-131",
+      "mushroom_id": "awatake",
+      "facet_id": "cap_fibrous_felt"
+    },
+    {
+      "decision_id": "FCR-154",
+      "mushroom_id": "oniiguti",
+      "facet_id": "hairy"
+    },
+    {
+      "decision_id": "FCR-157",
+      "mushroom_id": "oniigutimodoki",
+      "facet_id": "ring"
+    },
+    {
+      "decision_id": "FCR-292",
+      "mushroom_id": "nigakuritake",
+      "facet_id": "ring"
+    },
+    {
+      "decision_id": "FCR-321",
+      "mushroom_id": "hitoyotake",
+      "facet_id": "ring"
+    }
+  ],
+  "coverage": {
+    "eligible": 139,
+    "included": 127,
+    "excluded": 12,
+    "eligible_mushroom_ids": [
+      "kaentake",
+      "dokutsurutake",
+      "chichiawatake",
+      "hiratake",
+      "yanagimatsutake",
+      "ooshirokarakasatake",
+      "aitake",
+      "matsuouji",
+      "usuhiratake",
+      "kiirosuppontake",
+      "akayamadori",
+      "hiromenotogariamigasatake",
+      "amigasatake",
+      "kikurage",
+      "hebikinokomodoki",
+      "hanaiguchi",
+      "karakasatake",
+      "yamaiguchi",
+      "kikubanaiguchi",
+      "oowaraitake",
+      "aorouji",
+      "urabenigasa",
+      "togariamigasatake",
+      "noutake",
+      "ukonhatsu",
+      "enokitake",
+      "kinigaiguchi",
+      "kotengutakemodoki",
+      "tamagotake",
+      "aragekikurage",
+      "uraguronigaiguchi",
+      "ookitunetake",
+      "kiamiashiiguchi",
+      "seitakaiguchi",
+      "tamachoreitake",
+      "tsubaaburashimeji",
+      "hoteishimeji",
+      "midorinigaiguchi",
+      "miyamatamagotake",
+      "akajikou",
+      "akamomitake",
+      "amitake",
+      "awatake",
+      "anzutake",
+      "inusenbontake",
+      "irogawari",
+      "usutake",
+      "urabenihoteisimeji",
+      "erimakitutiguri",
+      "ooicyoutake",
+      "oniiguti",
+      "oniigutimodoki",
+      "onifusube",
+      "kaigaratake",
+      "kakisimeji",
+      "kaninotume",
+      "kabairoturutake",
+      "kawaratake",
+      "kawarihatu",
+      "kanzoutake",
+      "gantake",
+      "kitunetake",
+      "kinugasatake",
+      "kiraratake",
+      "kusaurabenitake",
+      "kutibenitake",
+      "kuritake",
+      "kurohatu",
+      "kurohatumodoki",
+      "kurorappatake",
+      "koutake",
+      "koganetake",
+      "koganenikawatake",
+      "kotamagotengutake",
+      "kotubutake",
+      "kofukisarunokosikake",
+      "sakurasimeji",
+      "sakuratake",
+      "saketubatake",
+      "sasakurehitoyotake",
+      "sanagitake",
+      "sankotake",
+      "simofurisimeji",
+      "syougenji",
+      "syouro",
+      "siroonitake",
+      "sirokanosita",
+      "suehirotake",
+      "sugiedatake",
+      "sugitake",
+      "sugihiratake",
+      "suppontake",
+      "tamagotakemodoki",
+      "tititake",
+      "cyanamemututake",
+      "tuetake",
+      "tukiyotake",
+      "tutiguri",
+      "turiganetake",
+      "turutake",
+      "tengutake",
+      "tokiirohiratake",
+      "dokukarakasatake",
+      "dokubenitake",
+      "nameko",
+      "naratake",
+      "naratakemodoki",
+      "nigakuritake",
+      "nisekurohatu",
+      "numeriiguti",
+      "numerisugitake",
+      "hatakesimeji",
+      "hatinosutake",
+      "hatutake",
+      "haratake",
+      "hidahatake",
+      "hitoyotake",
+      "bunasimeji",
+      "bunaharitake",
+      "hokoritake",
+      "honsimeji",
+      "maitake",
+      "matutake",
+      "mannentake",
+      "mukitake",
+      "murasakisimeji",
+      "murasakifuusentake",
+      "yakoutake",
+      "yamadoritakemodoki",
+      "yamabusitake",
+      "rurihatutake",
+      "shirotamagotengutake",
+      "benitengutake",
+      "dokusasako",
+      "dokuyamadori",
+      "nezumishimeji",
+      "haiiroshimeji",
+      "hikageshibiretake",
+      "shiitake"
+    ],
+    "included_mushroom_ids": [
+      "kaentake",
+      "dokutsurutake",
+      "akayamadori",
+      "hiromenotogariamigasatake",
+      "kikurage",
+      "hebikinokomodoki",
+      "hanaiguchi",
+      "karakasatake",
+      "yamaiguchi",
+      "kikubanaiguchi",
+      "oowaraitake",
+      "aorouji",
+      "urabenigasa",
+      "togariamigasatake",
+      "noutake",
+      "ukonhatsu",
+      "enokitake",
+      "kotengutakemodoki",
+      "tamagotake",
+      "aragekikurage",
+      "uraguronigaiguchi",
+      "ookitunetake",
+      "seitakaiguchi",
+      "tamachoreitake",
+      "tsubaaburashimeji",
+      "miyamatamagotake",
+      "chichiawatake",
+      "hiratake",
+      "ooshirokarakasatake",
+      "aitake",
+      "usuhiratake",
+      "kinigaiguchi",
+      "kiamiashiiguchi",
+      "midorinigaiguchi",
+      "matsuouji",
+      "hoteishimeji",
+      "akajikou",
+      "akamomitake",
+      "amitake",
+      "awatake",
+      "anzutake",
+      "inusenbontake",
+      "irogawari",
+      "usutake",
+      "urabenihoteisimeji",
+      "ooicyoutake",
+      "oniiguti",
+      "oniigutimodoki",
+      "kaigaratake",
+      "kakisimeji",
+      "kabairoturutake",
+      "kawaratake",
+      "kawarihatu",
+      "kanzoutake",
+      "gantake",
+      "kitunetake",
+      "kiraratake",
+      "kusaurabenitake",
+      "kuritake",
+      "kurohatu",
+      "kurohatumodoki",
+      "kurorappatake",
+      "koutake",
+      "koganetake",
+      "koganenikawatake",
+      "kotamagotengutake",
+      "kofukisarunokosikake",
+      "sakurasimeji",
+      "sakuratake",
+      "saketubatake",
+      "sasakurehitoyotake",
+      "simofurisimeji",
+      "syougenji",
+      "siroonitake",
+      "sirokanosita",
+      "suehirotake",
+      "sugiedatake",
+      "sugitake",
+      "sugihiratake",
+      "tamagotakemodoki",
+      "tititake",
+      "cyanamemututake",
+      "tuetake",
+      "tukiyotake",
+      "turiganetake",
+      "turutake",
+      "tengutake",
+      "tokiirohiratake",
+      "dokukarakasatake",
+      "dokubenitake",
+      "nameko",
+      "naratake",
+      "naratakemodoki",
+      "nigakuritake",
+      "nisekurohatu",
+      "numeriiguti",
+      "numerisugitake",
+      "hatakesimeji",
+      "hatinosutake",
+      "hatutake",
+      "haratake",
+      "hidahatake",
+      "hitoyotake",
+      "bunasimeji",
+      "honsimeji",
+      "maitake",
+      "matutake",
+      "mannentake",
+      "mukitake",
+      "murasakisimeji",
+      "murasakifuusentake",
+      "yakoutake",
+      "yamadoritakemodoki",
+      "rurihatutake",
+      "shirotamagotengutake",
+      "benitengutake",
+      "dokusasako",
+      "dokuyamadori",
+      "nezumishimeji",
+      "haiiroshimeji",
+      "hikageshibiretake",
+      "amigasatake",
+      "yanagimatsutake",
+      "shiitake",
+      "kinugasatake",
+      "suppontake",
+      "sanagitake"
+    ],
+    "excluded_mushrooms": [
+      {
+        "mushroom_id": "kiirosuppontake",
+        "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+        "status": "not_in_input_assignment_scope"
+      },
+      {
+        "mushroom_id": "erimakitutiguri",
+        "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+        "status": "not_in_input_assignment_scope"
+      },
+      {
+        "mushroom_id": "onifusube",
+        "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+        "status": "not_in_input_assignment_scope"
+      },
+      {
+        "mushroom_id": "kaninotume",
+        "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+        "status": "not_in_input_assignment_scope"
+      },
+      {
+        "mushroom_id": "kutibenitake",
+        "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+        "status": "not_in_input_assignment_scope"
+      },
+      {
+        "mushroom_id": "kotubutake",
+        "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+        "status": "not_in_input_assignment_scope"
+      },
+      {
+        "mushroom_id": "sankotake",
+        "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+        "status": "not_in_input_assignment_scope"
+      },
+      {
+        "mushroom_id": "syouro",
+        "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+        "status": "not_in_input_assignment_scope"
+      },
+      {
+        "mushroom_id": "tutiguri",
+        "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+        "status": "not_in_input_assignment_scope"
+      },
+      {
+        "mushroom_id": "bunaharitake",
+        "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+        "status": "not_in_input_assignment_scope"
+      },
+      {
+        "mushroom_id": "hokoritake",
+        "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+        "status": "not_in_input_assignment_scope"
+      },
+      {
+        "mushroom_id": "yamabusitake",
+        "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+        "status": "not_in_input_assignment_scope"
+      }
+    ]
+  },
+  "snapshot_completeness": {
+    "required_cited_sources": 130,
+    "packaged_sources": 130,
+    "missing_source_ids": [],
+    "active_evidence_refs": 377,
+    "missing_evidence_refs": [],
+    "original_response_hash_recomputed": 4,
+    "original_response_hash_inherited_only": 126
+  },
+  "trust_and_scope": {
+    "cryptographic_signature": null,
+    "authentication_type": "conversation_explicit_approval_record; not a digital signature or identity certificate",
+    "trusted_pin_required": "Pin the SHA-256 of this manifest through the authorized implementation/review workflow outside candidate-controlled self-approval fields.",
+    "approval_supersedes_only": "Historical human_approval:null and pending candidate-acceptance status for these exact hashes; no biological content, exclusions or runtime assignments are changed.",
+    "forbidden": "Do not rewrite the old candidate review fields; do not treat arbitrary approved:true as authorization."
+  },
+  "production_gate": {
+    "candidate_acceptance": "approved_in_current_conversation",
+    "snapshot_and_ledger_packaging": "complete",
+    "v2_validator_implementation": "pending",
+    "negative_and_regression_tests": "pending",
+    "qualifier_ui_and_render_check": "pending",
+    "trusted_manifest_hash_pin": "pending_implementation",
+    "github_write_authorized": false,
+    "production_release_authorized": false
+  },
+  "hash_conventions": {
+    "file_hashes": "SHA-256 of exact file bytes, including final LF",
+    "text_and_quote_hashes": "SHA-256 of original UTF-8 encoded text/quote; no normalization",
+    "manifest_self_hash": "Not stored inside this manifest to avoid self-reference; listed in the package summary."
+  }
+}

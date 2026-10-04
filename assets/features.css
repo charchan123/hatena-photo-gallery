@@ -42,6 +42,7 @@ body.feature-index { max-width:none; margin:0; padding:0; background:#f7fcf4; co
 .feature-index .feature-chips { display:flex; flex-wrap:wrap; gap:5px; padding:0 12px 13px; }
 .feature-index .feature-chip { display:inline-block; padding:4px 7px; border-radius:999px; background:#edf2ee; color:#647168; font-size:.68rem; line-height:1.35; }
 .feature-index .feature-chip.is-selected { outline:2px solid #50745a; background:#dcecdf; color:#31543a; font-weight:700; }
+.feature-index .feature-qualifier { display:block; margin-top:3px; max-width:28ch; font-size:.62rem; font-weight:500; line-height:1.35; }
 .feature-index .feature-empty { margin:0; padding:28px; border-radius:12px; background:#f4f7f1; color:#68746b; text-align:center; }
 .feature-index .feature-footer { margin-top:22px; padding-top:18px; border-top:1px solid #dce5d9; text-align:center; }
 .feature-index .feature-footer a { color:#466c4e; font-size:.82rem; font-weight:700; text-decoration:none; }

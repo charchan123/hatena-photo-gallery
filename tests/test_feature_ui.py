@@ -12,13 +12,13 @@ ROOT = Path(__file__).parents[1]
 
 @pytest.fixture
 def data():
-    return load_feature_facets(ROOT / "data/feature-facets.json")
+    return load_feature_facets(ROOT / "tests/fixtures/feature-v1/feature-facets.json")
 
 @pytest.fixture
 def master():
-    return json.loads((ROOT / "data/mushroom-master.json").read_text())
+    return json.loads((ROOT / "tests/fixtures/feature-v1/mushroom-master.json").read_text())
 
-def test_repository_data_is_complete_and_evidence_backed(data, master):
+def test_legacy_v1_data_is_complete_and_evidence_backed(data, master):
     before = copy.deepcopy((data, master))
     assert validate_feature_facets(data, master) is True
     assert (data, master) == before
@@ -28,7 +28,7 @@ def test_repository_data_is_complete_and_evidence_backed(data, master):
     }
 
 def test_future_version_rejected(data, master):
-    data["version"] = 2
+    data["version"] = 3
     with pytest.raises(FeatureFacetError, match="version"):
         validate_feature_facets(data, master)
 

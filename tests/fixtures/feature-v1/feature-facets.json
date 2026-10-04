@@ -1,0 +1,764 @@
+{
+  "version": 1,
+  "groups": [
+    {
+      "group_id": "cap_head",
+      "label": "傘・頭部"
+    },
+    {
+      "group_id": "underside",
+      "label": "裏面"
+    },
+    {
+      "group_id": "stem",
+      "label": "柄"
+    },
+    {
+      "group_id": "texture_change",
+      "label": "質感・変化"
+    }
+  ],
+  "facets": [
+    {
+      "facet_id": "cap_sticky",
+      "group_id": "cap_head",
+      "label": "傘に粘性がある"
+    },
+    {
+      "facet_id": "cap_scales_warts",
+      "group_id": "cap_head",
+      "label": "傘に鱗片・いぼがある"
+    },
+    {
+      "facet_id": "cap_fibrous_felt",
+      "group_id": "cap_head",
+      "label": "傘に繊維紋・フェルト状の質感がある"
+    },
+    {
+      "facet_id": "cap_striate_grooved",
+      "group_id": "cap_head",
+      "label": "傘の縁に条線・溝がある"
+    },
+    {
+      "facet_id": "cap_depressed",
+      "group_id": "cap_head",
+      "label": "傘の中央がくぼむ"
+    },
+    {
+      "facet_id": "head_reticulate",
+      "group_id": "cap_head",
+      "label": "頭部に網目模様がある"
+    },
+    {
+      "facet_id": "rod_cylindrical",
+      "group_id": "cap_head",
+      "label": "棒状・円柱状の形"
+    },
+    {
+      "facet_id": "granular_powdery",
+      "group_id": "cap_head",
+      "label": "表面に細かな粒・粉状の質感がある"
+    },
+    {
+      "facet_id": "gills",
+      "group_id": "underside",
+      "label": "裏面がヒダ"
+    },
+    {
+      "facet_id": "pores",
+      "group_id": "underside",
+      "label": "裏面が管孔"
+    },
+    {
+      "facet_id": "ring",
+      "group_id": "stem",
+      "label": "柄につばがある"
+    },
+    {
+      "facet_id": "volva",
+      "group_id": "stem",
+      "label": "柄の基部につぼがある"
+    },
+    {
+      "facet_id": "stem_hollow",
+      "group_id": "stem",
+      "label": "柄が中空"
+    },
+    {
+      "facet_id": "stem_solid",
+      "group_id": "stem",
+      "label": "柄が中実"
+    },
+    {
+      "facet_id": "stem_scales_pattern",
+      "group_id": "stem",
+      "label": "柄に鱗片・模様・ささくれがある"
+    },
+    {
+      "facet_id": "stem_sticky",
+      "group_id": "stem",
+      "label": "柄に粘性がある"
+    },
+    {
+      "facet_id": "stem_reticulate",
+      "group_id": "stem",
+      "label": "柄に網目模様がある"
+    },
+    {
+      "facet_id": "gelatinous",
+      "group_id": "texture_change",
+      "label": "ゼラチン質"
+    },
+    {
+      "facet_id": "hairy",
+      "group_id": "texture_change",
+      "label": "毛がある"
+    },
+    {
+      "facet_id": "blue_stain",
+      "group_id": "texture_change",
+      "label": "傷つくと青変する"
+    }
+  ],
+  "entries": [
+    {
+      "mushroom_id": "kaentake",
+      "assignments": [
+        {
+          "facet_id": "rod_cylindrical",
+          "evidence_text": "細長い棒状または円柱状",
+          "source_ids": [
+            "mhlw-kaentake"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "dokutsurutake",
+      "assignments": [
+        {
+          "facet_id": "ring",
+          "evidence_text": "柄の上部につば",
+          "source_ids": [
+            "mhlw-dokutsurutake"
+          ]
+        },
+        {
+          "facet_id": "volva",
+          "evidence_text": "基部につぼ",
+          "source_ids": [
+            "mhlw-dokutsurutake"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "akayamadori",
+      "assignments": [
+        {
+          "facet_id": "cap_sticky",
+          "evidence_text": "湿時に傘に粘性があり",
+          "source_ids": [
+            "ishikawa-akayamadori"
+          ]
+        },
+        {
+          "facet_id": "stem_scales_pattern",
+          "evidence_text": "柄には細かな鱗片が密にある",
+          "source_ids": [
+            "ishikawa-akayamadori"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "hiromenotogariamigasatake",
+      "assignments": [
+        {
+          "facet_id": "head_reticulate",
+          "evidence_text": "主要な網目が比較的少なく",
+          "source_ids": [
+            "mycoscience-myc590"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "kikurage",
+      "assignments": [
+        {
+          "facet_id": "gelatinous",
+          "evidence_text": "ゼラチン質",
+          "source_ids": [
+            "ishikawa-kikurage"
+          ]
+        },
+        {
+          "facet_id": "hairy",
+          "evidence_text": "背面に細かな毛を持つ",
+          "source_ids": [
+            "ishikawa-kikurage"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "hebikinokomodoki",
+      "assignments": [
+        {
+          "facet_id": "cap_scales_warts",
+          "evidence_text": "傘表面に黒褐色のいぼ",
+          "source_ids": [
+            "ishikawa-hebikinokomodoki",
+            "ffpri-hebikinokomodoki"
+          ]
+        },
+        {
+          "facet_id": "volva",
+          "evidence_text": "柄基部に黒褐色のつぼ状組織",
+          "source_ids": [
+            "ishikawa-hebikinokomodoki",
+            "ffpri-hebikinokomodoki"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "hanaiguchi",
+      "assignments": [
+        {
+          "facet_id": "cap_sticky",
+          "evidence_text": "傘に強い粘性",
+          "source_ids": [
+            "ishikawa-hanaiguchi"
+          ]
+        },
+        {
+          "facet_id": "stem_sticky",
+          "evidence_text": "柄にも粘性",
+          "source_ids": [
+            "ishikawa-hanaiguchi"
+          ]
+        },
+        {
+          "facet_id": "ring",
+          "evidence_text": "つばがある",
+          "source_ids": [
+            "ishikawa-hanaiguchi"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "karakasatake",
+      "assignments": [
+        {
+          "facet_id": "cap_scales_warts",
+          "evidence_text": "傘に暗褐色の鱗片",
+          "source_ids": [
+            "ishikawa-karakasatake"
+          ]
+        },
+        {
+          "facet_id": "stem_hollow",
+          "evidence_text": "柄は中空",
+          "source_ids": [
+            "ishikawa-karakasatake"
+          ]
+        },
+        {
+          "facet_id": "stem_scales_pattern",
+          "evidence_text": "だんだら模様",
+          "source_ids": [
+            "ishikawa-karakasatake"
+          ]
+        },
+        {
+          "facet_id": "ring",
+          "evidence_text": "可動性のつば",
+          "source_ids": [
+            "ishikawa-karakasatake"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "yamaiguchi",
+      "assignments": [
+        {
+          "facet_id": "cap_sticky",
+          "evidence_text": "傘は湿時に粘性があり",
+          "source_ids": [
+            "ishikawa-yamaiguchi"
+          ]
+        },
+        {
+          "facet_id": "stem_scales_pattern",
+          "evidence_text": "柄には黒色の鱗片",
+          "source_ids": [
+            "ishikawa-yamaiguchi"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "kikubanaiguchi",
+      "assignments": [
+        {
+          "facet_id": "cap_scales_warts",
+          "evidence_text": "傘表面に大きな鱗片",
+          "source_ids": [
+            "ishikawa-kikubanaiguchi",
+            "ffpri-kikubanaiguchi"
+          ]
+        },
+        {
+          "facet_id": "pores",
+          "evidence_text": "管孔",
+          "source_ids": [
+            "ishikawa-kikubanaiguchi",
+            "ffpri-kikubanaiguchi"
+          ]
+        },
+        {
+          "facet_id": "blue_stain",
+          "evidence_text": "傷で強く青変",
+          "source_ids": [
+            "ishikawa-kikubanaiguchi",
+            "ffpri-kikubanaiguchi"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "oowaraitake",
+      "assignments": [
+        {
+          "facet_id": "cap_fibrous_felt",
+          "evidence_text": "傘に細かな繊維紋",
+          "source_ids": [
+            "ishikawa-oowaraitake"
+          ]
+        },
+        {
+          "facet_id": "stem_solid",
+          "evidence_text": "柄は中実",
+          "source_ids": [
+            "ishikawa-oowaraitake"
+          ]
+        },
+        {
+          "facet_id": "ring",
+          "evidence_text": "つばを持ち",
+          "source_ids": [
+            "ishikawa-oowaraitake"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "aorouji",
+      "assignments": [
+        {
+          "facet_id": "pores",
+          "evidence_text": "下面は管孔",
+          "source_ids": [
+            "ishikawa-aorouji"
+          ]
+        },
+        {
+          "facet_id": "stem_solid",
+          "evidence_text": "柄は中実",
+          "source_ids": [
+            "ishikawa-aorouji"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "urabenigasa",
+      "assignments": [
+        {
+          "facet_id": "cap_scales_warts",
+          "evidence_text": "傘は微細な鱗片で覆われ",
+          "source_ids": [
+            "ishikawa-urabenigasa"
+          ]
+        },
+        {
+          "facet_id": "gills",
+          "evidence_text": "ヒダは離生・密",
+          "source_ids": [
+            "ishikawa-urabenigasa"
+          ]
+        },
+        {
+          "facet_id": "stem_solid",
+          "evidence_text": "柄は中実",
+          "source_ids": [
+            "ishikawa-urabenigasa"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "togariamigasatake",
+      "assignments": [
+        {
+          "facet_id": "head_reticulate",
+          "evidence_text": "狭い縦長の網目",
+          "source_ids": [
+            "ishikawa-togariamigasatake"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "noutake",
+      "assignments": [
+        {
+          "facet_id": "granular_powdery",
+          "evidence_text": "頭部に微細な粒が密布",
+          "source_ids": [
+            "ishikawa-noutake"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "ukonhatsu",
+      "assignments": [
+        {
+          "facet_id": "granular_powdery",
+          "evidence_text": "傘はビロード状から粉状",
+          "source_ids": [
+            "ishikawa-ukonhatsu"
+          ]
+        },
+        {
+          "facet_id": "gills",
+          "evidence_text": "ヒダは離生から上生でやや密",
+          "source_ids": [
+            "ishikawa-ukonhatsu"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "enokitake",
+      "assignments": [
+        {
+          "facet_id": "cap_sticky",
+          "evidence_text": "傘に強い粘性",
+          "source_ids": [
+            "ishikawa-enokitake"
+          ]
+        },
+        {
+          "facet_id": "gills",
+          "evidence_text": "ヒダは上生でやや疎",
+          "source_ids": [
+            "ishikawa-enokitake"
+          ]
+        },
+        {
+          "facet_id": "stem_hollow",
+          "evidence_text": "柄は中空",
+          "source_ids": [
+            "ishikawa-enokitake"
+          ]
+        },
+        {
+          "facet_id": "hairy",
+          "evidence_text": "ビロード状の短毛を密生",
+          "source_ids": [
+            "ishikawa-enokitake"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "kotengutakemodoki",
+      "assignments": [
+        {
+          "facet_id": "cap_sticky",
+          "evidence_text": "傘は弱い粘性",
+          "source_ids": [
+            "ishikawa-kotengutakemodoki"
+          ]
+        },
+        {
+          "facet_id": "cap_fibrous_felt",
+          "evidence_text": "繊維紋",
+          "source_ids": [
+            "ishikawa-kotengutakemodoki"
+          ]
+        },
+        {
+          "facet_id": "gills",
+          "evidence_text": "ヒダは離生・密",
+          "source_ids": [
+            "ishikawa-kotengutakemodoki"
+          ]
+        },
+        {
+          "facet_id": "stem_scales_pattern",
+          "evidence_text": "柄はささくれ状",
+          "source_ids": [
+            "ishikawa-kotengutakemodoki"
+          ]
+        },
+        {
+          "facet_id": "ring",
+          "evidence_text": "つばがあり",
+          "source_ids": [
+            "ishikawa-kotengutakemodoki"
+          ]
+        },
+        {
+          "facet_id": "volva",
+          "evidence_text": "つぼはさや状",
+          "source_ids": [
+            "ishikawa-kotengutakemodoki"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "tamagotake",
+      "assignments": [
+        {
+          "facet_id": "cap_sticky",
+          "evidence_text": "傘に弱い粘性",
+          "source_ids": [
+            "ishikawa-tamagotake"
+          ]
+        },
+        {
+          "facet_id": "cap_striate_grooved",
+          "evidence_text": "条線",
+          "source_ids": [
+            "ishikawa-tamagotake"
+          ]
+        },
+        {
+          "facet_id": "gills",
+          "evidence_text": "ヒダは離生・密",
+          "source_ids": [
+            "ishikawa-tamagotake"
+          ]
+        },
+        {
+          "facet_id": "stem_hollow",
+          "evidence_text": "柄は中空",
+          "source_ids": [
+            "ishikawa-tamagotake"
+          ]
+        },
+        {
+          "facet_id": "stem_scales_pattern",
+          "evidence_text": "だんだら模様",
+          "source_ids": [
+            "ishikawa-tamagotake"
+          ]
+        },
+        {
+          "facet_id": "ring",
+          "evidence_text": "つばと袋状のつぼがある",
+          "source_ids": [
+            "ishikawa-tamagotake"
+          ]
+        },
+        {
+          "facet_id": "volva",
+          "evidence_text": "つばと袋状のつぼがある",
+          "source_ids": [
+            "ishikawa-tamagotake"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "aragekikurage",
+      "assignments": [
+        {
+          "facet_id": "gelatinous",
+          "evidence_text": "硬いゼラチン質",
+          "source_ids": [
+            "ishikawa-aragekikurage"
+          ]
+        },
+        {
+          "facet_id": "hairy",
+          "evidence_text": "直立した毛を密生",
+          "source_ids": [
+            "ishikawa-aragekikurage"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "uraguronigaiguchi",
+      "assignments": [
+        {
+          "facet_id": "cap_sticky",
+          "evidence_text": "傘は湿時に粘性があり",
+          "source_ids": [
+            "ishikawa-uraguronigaiguchi"
+          ]
+        },
+        {
+          "facet_id": "pores",
+          "evidence_text": "管孔の孔口",
+          "source_ids": [
+            "ishikawa-uraguronigaiguchi"
+          ]
+        },
+        {
+          "facet_id": "stem_scales_pattern",
+          "evidence_text": "柄にワイン色の細鱗片",
+          "source_ids": [
+            "ishikawa-uraguronigaiguchi"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "ookitunetake",
+      "assignments": [
+        {
+          "facet_id": "cap_depressed",
+          "evidence_text": "傘中央は窪み",
+          "source_ids": [
+            "ishikawa-ookitunetake"
+          ]
+        },
+        {
+          "facet_id": "gills",
+          "evidence_text": "ヒダは直生～垂生でやや疎",
+          "source_ids": [
+            "ishikawa-ookitunetake"
+          ]
+        },
+        {
+          "facet_id": "stem_solid",
+          "evidence_text": "柄は中実",
+          "source_ids": [
+            "ishikawa-ookitunetake"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "seitakaiguchi",
+      "assignments": [
+        {
+          "facet_id": "cap_fibrous_felt",
+          "evidence_text": "傘はフェルト状",
+          "source_ids": [
+            "ishikawa-seitakaiguchi"
+          ]
+        },
+        {
+          "facet_id": "pores",
+          "evidence_text": "管孔は上生～離生",
+          "source_ids": [
+            "ishikawa-seitakaiguchi"
+          ]
+        },
+        {
+          "facet_id": "stem_reticulate",
+          "evidence_text": "柄に隆起した網目模様",
+          "source_ids": [
+            "ishikawa-seitakaiguchi"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "tamachoreitake",
+      "assignments": [
+        {
+          "facet_id": "cap_depressed",
+          "evidence_text": "傘中央はやや窪み",
+          "source_ids": [
+            "ishikawa-tamachoreitake"
+          ]
+        },
+        {
+          "facet_id": "cap_scales_warts",
+          "evidence_text": "鱗片を密布",
+          "source_ids": [
+            "ishikawa-tamachoreitake"
+          ]
+        },
+        {
+          "facet_id": "pores",
+          "evidence_text": "下面は垂生する管孔",
+          "source_ids": [
+            "ishikawa-tamachoreitake"
+          ]
+        },
+        {
+          "facet_id": "stem_solid",
+          "evidence_text": "柄は中実",
+          "source_ids": [
+            "ishikawa-tamachoreitake"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "tsubaaburashimeji",
+      "assignments": [
+        {
+          "facet_id": "cap_sticky",
+          "evidence_text": "傘表面と柄が粘液に包まれる",
+          "source_ids": [
+            "ishikawa-hakusan-sizen35"
+          ]
+        },
+        {
+          "facet_id": "stem_sticky",
+          "evidence_text": "傘表面と柄が粘液に包まれる",
+          "source_ids": [
+            "ishikawa-hakusan-sizen35"
+          ]
+        }
+      ]
+    },
+    {
+      "mushroom_id": "miyamatamagotake",
+      "assignments": [
+        {
+          "facet_id": "cap_sticky",
+          "evidence_text": "傘は褐色で湿時に粘性があり",
+          "source_ids": [
+            "kyoto-rdb-miyamatamagotake"
+          ]
+        },
+        {
+          "facet_id": "cap_striate_grooved",
+          "evidence_text": "縁部に溝条",
+          "source_ids": [
+            "kyoto-rdb-miyamatamagotake"
+          ]
+        },
+        {
+          "facet_id": "ring",
+          "evidence_text": "膜質のつば",
+          "source_ids": [
+            "kyoto-rdb-miyamatamagotake"
+          ]
+        },
+        {
+          "facet_id": "volva",
+          "evidence_text": "厚い膜質のつぼ",
+          "source_ids": [
+            "kyoto-rdb-miyamatamagotake"
+          ]
+        }
+      ]
+    }
+  ]
+}
