@@ -341,3 +341,58 @@ def test_source_quote_requires_exact_quote_relationship(package):
     with pytest.raises(FeatureFacetError, match="exact-substring flag mismatch"):
         _validate(package)
 
+def test_unused_active_facet_fails(package):
+    package["feature"]["facets"].append({
+        "facet_id": "audit_unused_facet",
+        "group_id": package["feature"]["groups"][0]["group_id"],
+        "label": "監査用未使用facet",
+    })
+    with pytest.raises(FeatureFacetError, match="unused facet_id"):
+        _validate(package)
+
+
+def test_non_supporting_active_evidence_fails(package):
+    package["ledger"]["evidence_records"][0]["review_result"] = "does_not_support_this_facet"
+    with pytest.raises(FeatureFacetError, match="not supporting evidence"):
+        _validate(package)
+
+
+def test_uncovered_species_cannot_gain_inferred_assignment(package):
+    excluded_id = package["feature"]["coverage"]["excluded_mushrooms"][0]["mushroom_id"]
+    copied = copy.deepcopy(package["feature"]["entries"][0]["assignments"][0])
+    package["feature"]["entries"].append({
+        "mushroom_id": excluded_id,
+        "assignments": [copied],
+    })
+    with pytest.raises(FeatureFacetError):
+        _validate(package)
+
+
+def test_production_rejects_mutated_manifest_and_snapshot_bundle(package):
+    package["manifest"]["approval_timestamp"] = "2099-01-01T00:00:00+09:00"
+    with pytest.raises(FeatureFacetError, match="hash-pinned approved package"):
+        _validate(package, "production")
+
+    package = copy.deepcopy(package)
+    package["manifest"] = _json("phase4c9-feature-approval-manifest-2026-10-03.json")
+    rows = [json.loads(line) for line in package["snapshots"].splitlines()]
+    package["snapshots"] = "\n".join(
+        json.dumps(row, ensure_ascii=False, separators=(",", ":"))
+        for row in reversed(rows)
+    ) + "\n"
+    with pytest.raises(FeatureFacetError, match="hash-pinned approved package"):
+        _validate(package, "production")
+
+
+def test_trusted_manifest_pin_mismatch_fails(package, monkeypatch):
+    import feature_ui
+
+    filename, _ = feature_ui._V2_FILES["manifest"]
+    monkeypatch.setitem(
+        feature_ui._V2_FILES,
+        "manifest",
+        (filename, "0" * 64),
+    )
+    with pytest.raises(FeatureFacetError, match="trusted manifest artifact hash mismatch"):
+        _validate(package, "production")
+

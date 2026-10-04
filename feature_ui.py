@@ -184,8 +184,6 @@ def _validate_feature_facets_v2(feature_data, mushroom_master, sources,
     entries = _unique(_rows(feature_data, "entries"), "mushroom_id", "feature entry")
     masters = _unique(_rows(mushroom_master, "entries"), "mushroom_id", "mushroom master")
     source_map = _unique(_rows(sources, "sources"), "source_id", "source")
-    if len(groups) != 4 or len(facets) != 20:
-        raise FeatureFacetError("v2 group/facet boundary mismatch")
     for facet_id, facet in facets.items():
         if facet.get("group_id") not in groups:
             raise FeatureFacetError(f"facet_id {facet_id}: unknown group_id")
@@ -343,6 +341,8 @@ def _validate_feature_facets_v2(feature_data, mushroom_master, sources,
 
     if set(facets) - used:
         raise FeatureFacetError(f"unused facet_id values: {sorted(set(facets)-used)}")
+    if len(groups) != 4 or len(facets) != 20:
+        raise FeatureFacetError("v2 group/facet boundary mismatch")
     if assignment_keys != set(approved_by_key):
         raise FeatureFacetError("runtime assignment set differs from approved assignments")
     if set(held_by_key) & assignment_keys:
