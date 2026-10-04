@@ -16,6 +16,7 @@ body.aiuo-index {
 
 .aiuo-index .aiuo-page {
   width:min(100%,1180px);
+  max-width:1180px;
   margin:0 auto;
   padding:24px 22px 52px;
 }
