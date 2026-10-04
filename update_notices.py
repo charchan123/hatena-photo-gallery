@@ -14,6 +14,27 @@ SECTIONS = {"guide", "season", "features", "research", "best-shots", "about", "d
 CONFIG_PATH = Path(__file__).parent / "data" / "update-notices.json"
 
 
+def validate_notice_config(data):
+    """Validate the shared editorial event contract and return its event list."""
+    if not isinstance(data, dict) or data.get("version") != 1 or not isinstance(data.get("events"), list):
+        raise ValueError("expected version 1 and an events list")
+    events = data["events"]
+    for event in events:
+        if not isinstance(event, dict):
+            raise ValueError("event must be an object")
+        if set(event) != {"section", "kind", "summary", "occurred_at"}:
+            raise ValueError("event has invalid fields")
+        if event.get("section") not in SECTIONS or event.get("kind") not in NOTICE_DAYS:
+            raise ValueError("unknown notice section or kind")
+        if timestamp(event.get("occurred_at")) is None:
+            raise ValueError("occurred_at requires an ISO datetime with timezone")
+        if not isinstance(event.get("summary"), str) or not event["summary"].strip() or len(event["summary"]) > 80:
+            raise ValueError("summary must contain 1–80 characters")
+        if event["kind"] == "identified" and event["section"] != "research":
+            raise ValueError("identified notices belong to research")
+    return events
+
+
 def timestamp(value):
     """Require an explicit timezone; do not guess from observation dates/titles."""
     if not isinstance(value, str) or "T" not in value:
@@ -63,21 +84,7 @@ def load_notice_events(path=None):
     """An invalid optional config must not take down the gallery build."""
     try:
         data = json.loads(Path(path or CONFIG_PATH).read_text(encoding="utf-8"))
-        if not isinstance(data, dict) or data.get("version") != 1 or not isinstance(data.get("events"), list):
-            raise ValueError("expected version 1 and an events list")
-        events = data["events"]
-        for event in events:
-            if not isinstance(event, dict):
-                raise ValueError("event must be an object")
-            if event.get("section") not in SECTIONS or event.get("kind") not in NOTICE_DAYS:
-                raise ValueError("unknown notice section or kind")
-            if timestamp(event.get("occurred_at")) is None:
-                raise ValueError("occurred_at requires an ISO datetime with timezone")
-            if not isinstance(event.get("summary"), str) or not event["summary"].strip() or len(event["summary"]) > 80:
-                raise ValueError("summary must contain 1–80 characters")
-            if event["kind"] == "identified" and event["section"] != "research":
-                raise ValueError("identified notices belong to research")
-        return events
+        return validate_notice_config(data)
     except (OSError, ValueError, TypeError) as error:
         warnings.warn(f"Update notices unavailable: {error}", stacklevel=2)
         return []

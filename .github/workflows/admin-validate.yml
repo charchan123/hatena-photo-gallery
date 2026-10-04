@@ -1,0 +1,45 @@
+name: Validate Admin Changes
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install production and test requirements
+        run: pip install -r requirements.txt -r requirements-dev.txt
+      - name: Verify Hatena secrets are available
+        env:
+          HATENA_USER: ${{ secrets.HATENA_USER }}
+          HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
+          HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
+        run: test -n "$HATENA_USER" && test -n "$HATENA_BLOG_ID" && test -n "$HATENA_API_KEY"
+      - name: Generate from latest Hatena data (validation only)
+        env:
+          HATENA_USER: ${{ secrets.HATENA_USER }}
+          HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
+          HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
+        run: python main.py
+      - name: Python tests and compilation
+        run: |
+          python -m pytest -q
+          python -m compileall -q .
+      - name: JavaScript syntax and regression tests
+        run: |
+          for f in assets/*.js tests/*.js gallery.js admin/static/*.js; do node --check "$f"; done
+          for f in tests/*.js; do node "$f"; done
+      - name: Validate generated tree and public isolation
+        run: |
+          test -f output/portal-data.json
+          test ! -e output/admin
+          ! find output -type f -print0 | xargs -0 grep -l 'きのこブログ管理室'

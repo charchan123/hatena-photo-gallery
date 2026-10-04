@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>きのこブログ管理室</title><link rel="stylesheet" href="admin.css"><script src="admin.js" defer></script></head>
+<body><aside><h1>🍄 きのこブログ<br>管理室</h1><nav>
+<button data-page="dashboard">ダッシュボード</button><button data-page="best">ベストショット</button>
+<button data-page="research">不明キノコ研究室</button><button data-page="notices">更新告知</button>
+<button data-page="knowledge">情報拡充</button><button data-page="status">サイト状態</button><button data-page="changes">変更内容を確認</button>
+</nav><p class="local">🔒 localhost 専用</p></aside><main>
+<header><h2 id="page-title">ダッシュボード</h2><span id="message" role="status"></span></header>
+<section id="dashboard" class="page"><div id="cards" class="cards"></div></section>
+<section id="best" class="page" hidden><div class="toolbar"><button class="primary" id="add-best">＋ 新規追加</button></div><div id="best-list" class="list"></div></section>
+<section id="research" class="page" hidden><h3>調査中</h3><div id="case-list" class="list"></div><h3>正体が判明したキノコ</h3><div id="identified-list" class="list"></div></section>
+<section id="notices" class="page" hidden><div class="toolbar"><button class="primary" id="add-notice">＋ 告知を追加</button></div><div id="notice-list" class="list"></div></section>
+<section id="knowledge" class="page" hidden><div class="empty"><h3>情報拡充</h3><p>Workで収集した調査batchを安全に取り込む機能を次フェーズで追加予定です。</p><p>将来はbatch一覧、validator結果、approved / held、source snapshot、promote、PR作成をここに追加します。</p><button disabled>準備中</button></div></section>
+<section id="status" class="page" hidden><div id="site-status" class="panel"></div></section>
+<section id="changes" class="page" hidden><div id="preview" class="list"></div><div class="actions"><button id="validate">検証する</button><button class="primary" id="create-pr" disabled>PRを作成</button></div></section>
+</main>
+<dialog id="editor"><form method="dialog"><button class="close" value="cancel" aria-label="閉じる">×</button><h3 id="dialog-title"></h3><div id="dialog-fields"></div><menu><button value="cancel">キャンセル</button><button id="dialog-save" class="primary" value="default">変更予定に追加</button></menu></form></dialog>
+<dialog id="confirm"><form method="dialog"><h3>確認</h3><p id="confirm-text"></p><menu><button value="cancel">キャンセル</button><button id="confirm-ok" class="danger" value="default">実行する</button></menu></form></dialog>
+</body></html>
