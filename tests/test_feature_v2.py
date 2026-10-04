@@ -395,4 +395,3 @@ def test_trusted_manifest_pin_mismatch_fails(package, monkeypatch):
     )
     with pytest.raises(FeatureFacetError, match="trusted manifest artifact hash mismatch"):
         _validate(package, "production")
-
