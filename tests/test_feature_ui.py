@@ -20,23 +20,27 @@ def master():
 
 def test_repository_data_is_complete_and_evidence_backed(data, master):
     before = copy.deepcopy((data, master))
-    assert validate_feature_facets(data, master) is True
+    # The expanded v1 candidate is intentionally not cut over: its first
+    # independent-evidence assignment demonstrates why the strict v1 contract
+    # must not be weakened.  Phase 4C.9 v2 lives in the durable audit package.
+    with pytest.raises(FeatureFacetError, match="dokutsurutake.*cap_sticky.*exact"):
+        validate_feature_facets(data, master)
     assert (data, master) == before
     assert len(data["groups"]) == 4
     assert len(data["facets"]) == 20
     assert len(data["entries"]) == 127
     assert sum(len(e["assignments"]) for e in data["entries"]) == 383
-    assert {e["mushroom_id"] for e in data["entries"]} == {
-        e["mushroom_id"] for e in master["entries"]
-        if (e.get("features") or {}).get("summary")
-    }
+    included = {e["mushroom_id"] for e in data["entries"]}
+    eligible = {e["mushroom_id"] for e in master["entries"]
+                if (e.get("features") or {}).get("summary")}
+    assert included < eligible and len(eligible - included) == 12
     by_id = {e["mushroom_id"]: e for e in data["entries"]}
     assert "ring" not in {
         a["facet_id"] for a in by_id["tamagotakemodoki"]["assignments"]
     }
 
 def test_future_version_rejected(data, master):
-    data["version"] = 2
+    data["version"] = 3
     with pytest.raises(FeatureFacetError, match="version"):
         validate_feature_facets(data, master)
 
