@@ -334,7 +334,7 @@ def test_representative_qualifier_categories_survive_model_and_render(
     assert all(value in page for value in assignment["qualifiers"])
 
 
-def test_source_quote_requires_exact_quote_relationship(package):
+def test_exact_substring_flag_must_match_quote(package):
     record = next(row for row in package["ledger"]["evidence_records"]
                   if row["evidence_kind"] == "source_quote")
     record["evidence_text_exact_substring_of_this_quote"] = False

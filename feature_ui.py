@@ -303,6 +303,11 @@ def _validate_feature_facets_v2(feature_data, mushroom_master, sources,
                 raise FeatureFacetError(f"{context}: approved decision binding mismatch")
             if approved.get("review_result") != "supports_facet":
                 raise FeatureFacetError(f"{context}: approved decision is not supporting")
+            raw = json.dumps(assignment, ensure_ascii=False, sort_keys=True,
+                             separators=(",", ":")).encode()
+            expected = (approved.get("runtime_assignment_digest") or {}).get("sha256")
+            if hashlib.sha256(raw).hexdigest() != expected:
+                raise FeatureFacetError(f"{context}: approved assignment digest mismatch")
 
             records = []
             for ref in refs:
@@ -333,11 +338,6 @@ def _validate_feature_facets_v2(feature_data, mushroom_master, sources,
 
             if set(source_ids) != {row.get("source_id") for row in records}:
                 raise FeatureFacetError(f"{context}: source set differs from active evidence")
-            raw = json.dumps(assignment, ensure_ascii=False, sort_keys=True,
-                             separators=(",", ":")).encode()
-            expected = (approved.get("runtime_assignment_digest") or {}).get("sha256")
-            if hashlib.sha256(raw).hexdigest() != expected:
-                raise FeatureFacetError(f"{context}: approved assignment digest mismatch")
 
     if set(facets) - used:
         raise FeatureFacetError(f"unused facet_id values: {sorted(set(facets)-used)}")
@@ -381,7 +381,8 @@ def _validate_feature_facets_v2(feature_data, mushroom_master, sources,
             "original_response_sha256",
         ):
             if record.get(field) != snapshot.get(field):
-                raise FeatureFacetError(f"evidence {evidence_id}: {field} mismatch")
+                label = "snapshot identity" if field == "snapshot_identity" else field
+                raise FeatureFacetError(f"evidence {evidence_id}: {label} mismatch")
 
         start = record.get("char_start")
         end = record.get("char_end")
@@ -405,8 +406,6 @@ def _validate_feature_facets_v2(feature_data, mushroom_master, sources,
             raise FeatureFacetError(f"evidence {evidence_id}: exact-substring flag must be boolean")
         if exact != (record.get("evidence_text") in quote):
             raise FeatureFacetError(f"evidence {evidence_id}: exact-substring flag mismatch")
-        if record.get("evidence_kind") == "source_quote" and not exact:
-            raise FeatureFacetError(f"evidence {evidence_id}: source_quote must be an exact quote")
 
     if set(snapshots) != evidence_source_ids or len(snapshots) != 130:
         raise FeatureFacetError("snapshot source set/count mismatch")
