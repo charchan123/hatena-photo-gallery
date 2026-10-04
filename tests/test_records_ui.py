@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 import copy
 from pathlib import Path
 import main
@@ -48,14 +49,15 @@ def test_chronology_uses_published_and_invalid_is_deterministic():
 
 
 def test_records_page_contract_escape_and_navigation():
-    page = render_records_page(portal(observation(0), observation(1, article_id="b", url=None)))
+    page = render_records_page(portal(observation(0), observation(1, article_id="b", url=None)),
+                               now=datetime(2026, 9, 26, tzinfo=timezone.utc))
     assert "assets/gallery.css" in page and "assets/gallery.js" in page and "assets/records.css" in page
     assert '<body class="records-index">' in page
     assert '<main id="gallery-content-root" class="records-shell">' in page
     assert 'class="records-hero"' in page and "FIELD NOTES" in page
     assert '<h1 id="records-title">観察記録</h1>' in page
     assert 'href="new-top.html"' in page and 'class="back-btn"' in page and 'target="_top"' in page
-    assert page.count("record-card-badge") == 1
+    assert page.count("update-badge--new") == 2
     assert "NEW!" in page and "現在の図鑑掲載 1枚・1種類" in page
     assert "2026年9月18日静岡県浜松市&lt;&amp;" in page
     assert "写真の撮影日とは別" in page and "観察日" not in page
@@ -92,8 +94,8 @@ def test_record_preview_css_and_external_return_contract():
     assert ".record-list-preview" in css and "max-width: 620px" in css
     assert ".record-list-preview .record-card" in css and "grid-template-columns" in css
     assert ".record-more-link { margin-top: 20px; }" in css
-    assert "@keyframes record-new-pulse" in css
-    assert "@media (prefers-reduced-motion: reduce)" in css and "animation: none" in css
+    assert "@keyframes record-new-pulse" not in css
+    assert "@media (prefers-reduced-motion: reduce)" in css
     assert 'a.record-external-link[target=\'_top\']' in script
     assert "sessionStorage.setItem(RECORD_EXTERNAL_RETURN_KEY" in script
     assert "sessionStorage.removeItem(RECORD_EXTERNAL_RETURN_KEY)" in script
@@ -114,7 +116,7 @@ def test_records_failure_isolation_and_no_stale_read(monkeypatch):
 def test_excerpt_is_preserved_and_compact_preview_is_escaped():
     records = build_observation_records(portal(observation(0)))
     assert records[0]["excerpt"] == "本文の冒頭<&"
-    preview = render_record_preview_rows(records)
+    preview = render_record_preview_rows(records, now=datetime(2026, 10, 4, tzinfo=timezone.utc))
     assert "本文の冒頭&lt;&amp;" in preview and 'target="_top"' in preview
     assert "img0?width=500" in preview
     assert "現在の図鑑掲載" not in preview and "NEW!" not in preview

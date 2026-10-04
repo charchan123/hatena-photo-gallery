@@ -17,6 +17,7 @@ from portal_data import (
 )
 from season_ui import generate_season_page, load_fresh_portal_data
 from records_ui import generate_records_page, render_record_cards, render_record_preview_rows
+from update_notices import load_notice_events, render_section_notice
 from detail_ui import build_detail_views, render_detail_sections
 from feature_ui import load_feature_facets, validate_feature_facets, generate_feature_page
 from research_ui import generate_research_page
@@ -199,6 +200,8 @@ def copy_shared_assets():
         "detail.css",
         "favorite.css",
         "portal.css",
+        "update-notices.css",
+        "update-notices.js",
         "guide.css",
         "aiuo.css",
         "field-notes-observation-final.webp",
@@ -2502,45 +2505,30 @@ def portal_icon(name):
             f'focusable="false">{paths[name]}</svg>')
 
 
-def _portal_new_update_html(observation_records):
-    """Render the newest observation as a compact NEW notice for new-top."""
-    if not observation_records:
-        return ""
-    latest = observation_records[0]
-    raw = str(latest.get("title") or latest.get("excerpt") or "最新の観察記録を公開しました").strip()
-    if len(raw) > 34:
-        raw = raw[:33].rstrip() + "…"
-    content = (
-        '<span class="portal-new-badge">NEW!</span>'
-        f'<span class="portal-new-copy">{html.escape(raw)}</span>'
-    )
-    url = latest.get("url")
-    if url:
-        safe_url = html.escape(str(url), quote=True)
-        return (f'<a class="portal-new-update record-external-link" href="{safe_url}" '
-                f'target="_top" aria-label="最新の観察記録を見る">{content}</a>')
-    return f'<span class="portal-new-update">{content}</span>'
-
-
 def generate_new_top(grouped, exif_cache, observation_records=None,
                      feature_search_available=False, research_summary=None,
                      best_shot_summary=None):
     """Generate the records-first preview portal; the gallery index stays separate."""
     copy_shared_assets()
     observation_records = observation_records or []
-    latest_update_html = _portal_new_update_html(observation_records)
+    notice_events = load_notice_events()
+
+    def section_notice(section, href=None):
+        return render_section_notice(section, notice_events, href=href)
+
     parts = [f'''<!doctype html>
 <html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>キノコ図鑑</title>
 {STYLE_TAG}
 <link rel="stylesheet" href="assets/portal.css">
+<link rel="stylesheet" href="assets/update-notices.css">
+<script src="assets/update-notices.js" defer></script>
 </head><body class="portal-index">
 <main class="portal-shell">
 <section class="portal-records-hero" aria-labelledby="records-heading">
   <div class="portal-records-visual">
     <span class="portal-visual-shade" aria-hidden="true"></span>
-    {latest_update_html}
     <header class="portal-records-heading">
       <p class="portal-eyebrow">FIELD NOTES</p>
       <h1 id="records-heading">{portal_icon("records")}<span>観察記録</span></h1>
@@ -2569,7 +2557,8 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
             '      <span class="portal-card__visual" aria-hidden="true"></span>\n'
             f'      <span class="portal-card__content"><span class="portal-card__copy">'
             f'{eyebrow_html}'
-            f'<strong>{portal_icon(modifier)}<span>{title}</span></strong><small>{description}</small></span></span>\n'
+            f'<strong>{portal_icon(modifier)}<span>{title}</span></strong><small>{description}</small>'
+            f'{section_notice(modifier)}</span></span>\n'
             '    </a>\n'
         )
 
@@ -2608,6 +2597,7 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
         'aria-label="キノコを探す入口">\n'
     )
     for modifier, href, title, description, help_title, help_text in guide_rows:
+        linked_notice = section_notice(modifier, href=href)
         parts.append(
             '    <div class="portal-guide-row">\n'
             f'      <a class="portal-card portal-card--{modifier}" href="{href}">\n'
@@ -2617,7 +2607,8 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
             f'<small>{description}</small></span></span>\n'
             '      </a>\n'
             '      <span class="portal-guide-note">'
-            f'<strong>{help_title}</strong><small>{help_text}</small></span>\n'
+            f'<strong>{help_title}</strong><small>{help_text}</small>'
+            f'{linked_notice}</span>\n'
             '    </div>\n'
         )
     parts.append('  </nav>\n  </div>\n</section>\n')
@@ -2638,9 +2629,9 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
     <section class="portal-about-nav">
       <h2 id="about-heading">このブログについて</h2>
       <nav class="portal-about-links" aria-label="このブログについてのリンク">
-        <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E8%87%AA%E5%B7%B1%E7%B4%B9%E4%BB%8B" target="_top">{portal_icon("person")}<span><strong>自己紹介</strong><small>このブログを書いている人</small></span></a>
-        <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E6%97%A5%E5%B8%B8%E3%81%AE%E8%A8%98%E9%8C%B2" target="_top">{portal_icon("note")}<span><strong>日常記録</strong><small>田舎での暮らしや日々のこと</small></span></a>
-        <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E3%83%AA%E3%83%B3%E3%82%AF%E9%9B%86" target="_top">{portal_icon("link")}<span><strong>リンク集</strong><small>関連サイトやおすすめリンク</small></span></a>
+        <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E8%87%AA%E5%B7%B1%E7%B4%B9%E4%BB%8B" target="_top">{portal_icon("person")}<span><strong>自己紹介</strong><small>このブログを書いている人</small>{section_notice("about")}</span></a>
+        <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E6%97%A5%E5%B8%B8%E3%81%AE%E8%A8%98%E9%8C%B2" target="_top">{portal_icon("note")}<span><strong>日常記録</strong><small>田舎での暮らしや日々のこと</small>{section_notice("daily")}</span></a>
+        <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E3%83%AA%E3%83%B3%E3%82%AF%E9%9B%86" target="_top">{portal_icon("link")}<span><strong>リンク集</strong><small>関連サイトやおすすめリンク</small>{section_notice("links")}</span></a>
       </nav>
     </section>
     <section class="portal-request" aria-labelledby="portal-request-heading">

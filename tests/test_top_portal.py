@@ -154,30 +154,25 @@ def test_records_first_information_architecture(monkeypatch, tmp_path):
         assert forbidden not in page
 
 
-def test_new_top_latest_observation_has_new_notice_and_compact_content(monkeypatch, tmp_path):
+def test_new_top_observation_notice_is_beside_title_not_on_artwork(monkeypatch, tmp_path):
+    from datetime import datetime, timezone
+    from bs4 import BeautifulSoup
     latest = record(0)
-    latest["title"] = "最新のキノコ探索記事<&を公開しました"
+    latest["published"] = datetime.now(timezone.utc).isoformat()
+    latest["title"] = "2026年9月19日静岡県浜松市<&"
     page = render(monkeypatch, tmp_path, observation_records=[latest, record(1)])
-
-    assert page.count('class="portal-new-update record-external-link"') == 1
-    assert '<span class="portal-new-badge">NEW!</span>' in page
-    assert "最新のキノコ探索記事&lt;&amp;を公開しました" in page
-    assert 'href="https://example.test/0"' in page
-    assert 'target="_top" aria-label="最新の観察記録を見る"' in page
-    assert 'class="portal-new-copy"' in page
-
-    empty = render(monkeypatch, tmp_path, observation_records=[])
-    assert "portal-new-update" not in empty
-    assert "portal-new-badge" not in empty
-
-    css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
-    assert ".portal-new-update { position:absolute;" in css
-    assert ".portal-new-badge {" in css
-    assert ".portal-new-copy {" in css
-    assert "text-overflow:ellipsis" in css
-    mobile = css[css.index("@media (max-width:680px)"):]
-    assert ".portal-new-update { top:10px; right:10px;" in mobile
-    assert ".portal-new-copy { max-width:52vw;" in mobile
+    soup = BeautifulSoup(page, "html.parser")
+    assert not soup.select(".portal-records-visual .update-badge")
+    assert not soup.select(".portal-new-update")
+    row = soup.select_one(".record-preview-row")
+    assert row["href"] == latest["url"] and row["target"] == "_top"
+    heading = row.select_one(".record-preview-heading")
+    assert heading.strong.get_text() == latest["title"]
+    assert heading.select_one(".update-badge").get_text() == "NEW!"
+    assert "静岡県浜松市&lt;&amp;" in page
+    assert not BeautifulSoup(render(monkeypatch, tmp_path), "html.parser").select(".update-badge")
+    assert (tmp_path / "assets" / "update-notices.js").is_file()
+    assert (tmp_path / "assets" / "update-notices.css").is_file()
 
 
 def test_optional_entrances_and_best_shot_condition(monkeypatch, tmp_path):
