@@ -303,11 +303,6 @@ def _validate_feature_facets_v2(feature_data, mushroom_master, sources,
                 raise FeatureFacetError(f"{context}: approved decision binding mismatch")
             if approved.get("review_result") != "supports_facet":
                 raise FeatureFacetError(f"{context}: approved decision is not supporting")
-            raw = json.dumps(assignment, ensure_ascii=False, sort_keys=True,
-                             separators=(",", ":")).encode()
-            expected = (approved.get("runtime_assignment_digest") or {}).get("sha256")
-            if hashlib.sha256(raw).hexdigest() != expected:
-                raise FeatureFacetError(f"{context}: approved assignment digest mismatch")
 
             records = []
             for ref in refs:
@@ -318,16 +313,8 @@ def _validate_feature_facets_v2(feature_data, mushroom_master, sources,
                     raise FeatureFacetError(f"{context}: evidence {ref} belongs to another mushroom")
                 if record.get("facet_id") != facet_id:
                     raise FeatureFacetError(f"{context}: evidence {ref} belongs to another facet")
-                if record.get("decision_id") != decision_id:
-                    raise FeatureFacetError(f"{context}: evidence {ref} decision binding mismatch")
                 if record.get("review_result") != "supports_facet":
                     raise FeatureFacetError(f"{context}: evidence {ref} is not supporting evidence")
-                if record.get("evidence_kind") != kind:
-                    raise FeatureFacetError(f"{context}: evidence {ref} evidence_kind mismatch")
-                if record.get("evidence_text") != evidence_text:
-                    raise FeatureFacetError(f"{context}: evidence {ref} evidence_text mismatch")
-                if list(record.get("qualifiers") or []) != qualifiers:
-                    raise FeatureFacetError(f"{context}: evidence {ref} qualifier mismatch")
                 source_id = record.get("source_id")
                 if not isinstance(source_id, str) or not source_id.strip() or source_id not in source_map:
                     raise FeatureFacetError(f"{context}: evidence {ref} has unknown source")
@@ -338,6 +325,23 @@ def _validate_feature_facets_v2(feature_data, mushroom_master, sources,
 
             if set(source_ids) != {row.get("source_id") for row in records}:
                 raise FeatureFacetError(f"{context}: source set differs from active evidence")
+
+            raw = json.dumps(assignment, ensure_ascii=False, sort_keys=True,
+                             separators=(",", ":")).encode()
+            expected = (approved.get("runtime_assignment_digest") or {}).get("sha256")
+            if hashlib.sha256(raw).hexdigest() != expected:
+                raise FeatureFacetError(f"{context}: approved assignment digest mismatch")
+
+            for record in records:
+                ref = record["evidence_id"]
+                if record.get("decision_id") != decision_id:
+                    raise FeatureFacetError(f"{context}: evidence {ref} decision binding mismatch")
+                if record.get("evidence_kind") != kind:
+                    raise FeatureFacetError(f"{context}: evidence {ref} evidence_kind mismatch")
+                if record.get("evidence_text") != evidence_text:
+                    raise FeatureFacetError(f"{context}: evidence {ref} evidence_text mismatch")
+                if list(record.get("qualifiers") or []) != qualifiers:
+                    raise FeatureFacetError(f"{context}: evidence {ref} qualifier mismatch")
 
     if set(facets) - used:
         raise FeatureFacetError(f"unused facet_id values: {sorted(set(facets)-used)}")
