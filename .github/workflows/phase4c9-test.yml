@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - phase4c9-141-knowledge-expansion
+      - phase4c9-v2-validator-implementation
   workflow_dispatch:
 
 jobs:
