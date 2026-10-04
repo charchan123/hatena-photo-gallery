@@ -395,3 +395,19 @@ def test_trusted_manifest_pin_mismatch_fails(package, monkeypatch):
     )
     with pytest.raises(FeatureFacetError, match="trusted manifest artifact hash mismatch"):
         _validate(package, "production")
+
+def test_ring_mobility_evidence_text_survives_model_and_render(package):
+    assignment = _assignment(package, "karakasatake", "ring")
+    assert "可動性" in assignment["evidence_text"]
+    portal = {"version": 1, "subjects": [{
+        "gallery_name": "可動性つば表示",
+        "cover_src": "x.jpg",
+        "mushroom_master_id": "karakasatake",
+    }]}
+    model = build_feature_search_model(portal, package["feature"], lambda _: "detail")
+    detail = next(row for row in model["results"][0]["assignments"]
+                  if row["facet_id"] == "ring")
+    assert detail["evidence_text"] == assignment["evidence_text"]
+    page = render_feature_page(model)
+    assert "可動性のつば" in page
+
