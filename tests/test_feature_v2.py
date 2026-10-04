@@ -410,4 +410,3 @@ def test_ring_mobility_evidence_text_survives_model_and_render(package):
     assert detail["evidence_text"] == assignment["evidence_text"]
     page = render_feature_page(model)
     assert "可動性のつば" in page
-
