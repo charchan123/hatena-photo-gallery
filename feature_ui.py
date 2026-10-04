@@ -184,6 +184,8 @@ def _validate_feature_facets_v2(feature_data, mushroom_master, sources,
     entries = _unique(_rows(feature_data, "entries"), "mushroom_id", "feature entry")
     masters = _unique(_rows(mushroom_master, "entries"), "mushroom_id", "mushroom master")
     source_map = _unique(_rows(sources, "sources"), "source_id", "source")
+    if len(groups) != 4 or len(facets) != 20:
+        raise FeatureFacetError("v2 group/facet boundary mismatch")
     for facet_id, facet in facets.items():
         if facet.get("group_id") not in groups:
             raise FeatureFacetError(f"facet_id {facet_id}: unknown group_id")
@@ -191,15 +193,56 @@ def _validate_feature_facets_v2(feature_data, mushroom_master, sources,
     evidence_map = _unique(_rows(evidence_ledger, "evidence_records"),
                            "evidence_id", "evidence")
     approved_rows = _rows(evidence_ledger, "approved_assignments")
-    approved_by_key = {(row.get("mushroom_id"), row.get("facet_id")): row
-                       for row in approved_rows if isinstance(row, dict)}
     held = _rows(evidence_ledger, "held_decisions")
-    retired = _rows(evidence_ledger, "retired_citations")
-    forbidden_refs = {
-        record.get("evidence_id")
-        for row in held for record in (row.get("evidence_records") or [])
-        if isinstance(record, dict)
-    } | {row.get("evidence_id") for row in retired if isinstance(row, dict)}
+    retired_map = _unique(_rows(evidence_ledger, "retired_citations"),
+                          "evidence_id", "retired citation")
+
+    def decision_rows(rows, kind):
+        by_decision = {}
+        by_key = {}
+        for row in rows:
+            if not isinstance(row, dict):
+                raise FeatureFacetError(f"{kind} rows must be objects")
+            decision_id = row.get("decision_id")
+            mushroom_id = row.get("mushroom_id")
+            facet_id = row.get("facet_id")
+            for value, label in (
+                (decision_id, "decision_id"),
+                (mushroom_id, "mushroom_id"),
+                (facet_id, "facet_id"),
+            ):
+                if not isinstance(value, str) or not value.strip():
+                    raise FeatureFacetError(f"{kind} requires non-empty {label}")
+            if decision_id in by_decision:
+                raise FeatureFacetError(f"duplicate decision_id: {decision_id}")
+            key = (mushroom_id, facet_id)
+            if key in by_key:
+                raise FeatureFacetError(f"duplicate {kind} assignment key: {key}")
+            by_decision[decision_id] = row
+            by_key[key] = row
+        return by_decision, by_key
+
+    approved_decisions, approved_by_key = decision_rows(approved_rows, "approved assignment")
+    held_decisions, held_by_key = decision_rows(held, "held decision")
+    if (len(approved_by_key) != 373 or len(held_by_key) != 10
+            or set(approved_decisions) & set(held_decisions)):
+        raise FeatureFacetError("original assignment boundary mismatch")
+
+    held_evidence_rows = []
+    for row in held:
+        records = row.get("evidence_records")
+        if not isinstance(records, list) or not records:
+            raise FeatureFacetError(
+                f"held decision {row['decision_id']}: evidence_records must be non-empty")
+        held_evidence_rows.extend(records)
+    held_evidence_map = _unique(held_evidence_rows, "evidence_id", "held evidence")
+    if len(evidence_map) != 377 or len(held_evidence_map) != 10 or len(retired_map) != 1:
+        raise FeatureFacetError("historical evidence boundary mismatch")
+    if (set(evidence_map) & set(held_evidence_map)
+            or set(evidence_map) & set(retired_map)
+            or set(held_evidence_map) & set(retired_map)):
+        raise FeatureFacetError("active/held/retired evidence IDs must be disjoint")
+    forbidden_refs = set(held_evidence_map) | set(retired_map)
 
     used = set()
     assignment_keys = set()
@@ -220,7 +263,10 @@ def _validate_feature_facets_v2(feature_data, mushroom_master, sources,
                 raise FeatureFacetError(f"{context}: unknown facet")
             if facet_id in seen:
                 raise FeatureFacetError(f"{context}: duplicate assignment")
-            seen.add(facet_id); used.add(facet_id); assignment_keys.add((mushroom_id, facet_id))
+            seen.add(facet_id)
+            used.add(facet_id)
+            assignment_keys.add((mushroom_id, facet_id))
+
             evidence_text = assignment.get("evidence_text")
             if not isinstance(evidence_text, str) or not evidence_text.strip():
                 raise FeatureFacetError(f"{context}: evidence_text must be non-empty")
@@ -231,6 +277,35 @@ def _validate_feature_facets_v2(feature_data, mushroom_master, sources,
             refs = _strings(assignment.get("evidence_refs"), f"{context}: evidence_refs")
             if set(refs) & forbidden_refs:
                 raise FeatureFacetError(f"{context}: held or retired evidence is not active support")
+            qualifiers = assignment.get("qualifiers")
+            if not isinstance(qualifiers, list):
+                raise FeatureFacetError(f"{context}: qualifiers must be a list")
+            if any(not isinstance(value, str) or not value.strip() for value in qualifiers):
+                raise FeatureFacetError(f"{context}: qualifiers require non-empty strings")
+            if len(qualifiers) != len(set(qualifiers)):
+                raise FeatureFacetError(f"{context}: duplicate qualifier")
+
+            kind = assignment.get("evidence_kind")
+            if kind not in ("source_quote", "source_supported_paraphrase"):
+                raise FeatureFacetError(f"{context}: unsupported evidence_kind")
+            review = assignment.get("review")
+            if not isinstance(review, dict):
+                raise FeatureFacetError(f"{context}: review metadata is required")
+            decision_id = review.get("decision_id")
+            if not isinstance(decision_id, str) or not decision_id.strip():
+                raise FeatureFacetError(f"{context}: review decision_id is required")
+            if review.get("human_approval") is not None:
+                raise FeatureFacetError(
+                    f"{context}: candidate human_approval must remain historical null")
+
+            approved = approved_by_key.get((mushroom_id, facet_id))
+            if approved is None:
+                raise FeatureFacetError(f"{context}: assignment is not approved")
+            if approved.get("decision_id") != decision_id:
+                raise FeatureFacetError(f"{context}: approved decision binding mismatch")
+            if approved.get("review_result") != "supports_facet":
+                raise FeatureFacetError(f"{context}: approved decision is not supporting")
+
             records = []
             for ref in refs:
                 record = evidence_map.get(ref)
@@ -240,20 +315,26 @@ def _validate_feature_facets_v2(feature_data, mushroom_master, sources,
                     raise FeatureFacetError(f"{context}: evidence {ref} belongs to another mushroom")
                 if record.get("facet_id") != facet_id:
                     raise FeatureFacetError(f"{context}: evidence {ref} belongs to another facet")
+                if record.get("decision_id") != decision_id:
+                    raise FeatureFacetError(f"{context}: evidence {ref} decision binding mismatch")
                 if record.get("review_result") != "supports_facet":
                     raise FeatureFacetError(f"{context}: evidence {ref} is not supporting evidence")
-                source = source_map[record.get("source_id")]
+                if record.get("evidence_kind") != kind:
+                    raise FeatureFacetError(f"{context}: evidence {ref} evidence_kind mismatch")
+                if record.get("evidence_text") != evidence_text:
+                    raise FeatureFacetError(f"{context}: evidence {ref} evidence_text mismatch")
+                if list(record.get("qualifiers") or []) != qualifiers:
+                    raise FeatureFacetError(f"{context}: evidence {ref} qualifier mismatch")
+                source_id = record.get("source_id")
+                if not isinstance(source_id, str) or not source_id.strip() or source_id not in source_map:
+                    raise FeatureFacetError(f"{context}: evidence {ref} has unknown source")
+                source = source_map[source_id]
                 if record.get("source_url") != source.get("url"):
                     raise FeatureFacetError(f"{context}: evidence {ref} source URL mismatch")
                 records.append(record)
+
             if set(source_ids) != {row.get("source_id") for row in records}:
                 raise FeatureFacetError(f"{context}: source set differs from active evidence")
-            kind = assignment.get("evidence_kind")
-            if kind not in ("source_quote", "source_supported_paraphrase"):
-                raise FeatureFacetError(f"{context}: unsupported evidence_kind")
-            approved = approved_by_key.get((mushroom_id, facet_id))
-            if approved is None:
-                raise FeatureFacetError(f"{context}: assignment is not approved")
             raw = json.dumps(assignment, ensure_ascii=False, sort_keys=True,
                              separators=(",", ":")).encode()
             expected = (approved.get("runtime_assignment_digest") or {}).get("sha256")
@@ -264,66 +345,142 @@ def _validate_feature_facets_v2(feature_data, mushroom_master, sources,
         raise FeatureFacetError(f"unused facet_id values: {sorted(set(facets)-used)}")
     if assignment_keys != set(approved_by_key):
         raise FeatureFacetError("runtime assignment set differs from approved assignments")
+    if set(held_by_key) & assignment_keys:
+        raise FeatureFacetError("held assignment present in runtime")
+    if ("tamagotakemodoki", "ring") in assignment_keys:
+        raise FeatureFacetError("IA-029 ring is not approved")
 
     snapshots = _unique(_snapshot_rows(source_snapshots), "source_id", "snapshot")
+    evidence_source_ids = {row.get("source_id") for row in evidence_map.values()}
     for evidence_id, record in evidence_map.items():
-        snapshot = snapshots.get(record.get("source_id"))
+        source_id = record.get("source_id")
+        snapshot = snapshots.get(source_id)
         if snapshot is None:
             raise FeatureFacetError(f"evidence {evidence_id}: missing snapshot")
         text = snapshot.get("full_extracted_text")
         if not isinstance(text, str):
             raise FeatureFacetError(f"evidence {evidence_id}: snapshot text missing")
-        text_hash = hashlib.sha256(text.encode()).hexdigest()
-        if text_hash != snapshot.get("extracted_text_sha256") or text_hash != snapshot.get("text_snapshot_sha256"):
+        if snapshot.get("encoding") != "UTF-8":
+            raise FeatureFacetError(f"evidence {evidence_id}: snapshot encoding mismatch")
+        text_hash = hashlib.sha256(text.encode("utf-8")).hexdigest()
+        if (text_hash != snapshot.get("extracted_text_sha256")
+                or text_hash != snapshot.get("text_snapshot_sha256")):
             raise FeatureFacetError(f"evidence {evidence_id}: snapshot text hash mismatch")
-        if snapshot.get("unicode_codepoint_length") != len(text) or snapshot.get("utf8_byte_length") != len(text.encode()):
+        if (snapshot.get("unicode_codepoint_length") != len(text)
+                or snapshot.get("utf8_byte_length") != len(text.encode("utf-8"))):
             raise FeatureFacetError(f"evidence {evidence_id}: snapshot length mismatch")
-        if record.get("snapshot_identity") != snapshot.get("snapshot_identity"):
-            raise FeatureFacetError(f"evidence {evidence_id}: snapshot identity mismatch")
-        start, end, quote = record.get("char_start"), record.get("char_end"), record.get("quote")
-        if not isinstance(start, int) or isinstance(start, bool) or not isinstance(end, int) or isinstance(end, bool):
+        if snapshot.get("lf_line_count") != 1 + text.count("\n"):
+            raise FeatureFacetError(f"evidence {evidence_id}: snapshot LF line count mismatch")
+        source = source_map.get(source_id)
+        if source is None or snapshot.get("source_url") != source.get("url"):
+            raise FeatureFacetError(f"evidence {evidence_id}: snapshot source binding mismatch")
+        for field in (
+            "snapshot_identity",
+            "extracted_text_sha256",
+            "text_snapshot_sha256",
+            "original_response_sha256",
+        ):
+            if record.get(field) != snapshot.get(field):
+                raise FeatureFacetError(f"evidence {evidence_id}: {field} mismatch")
+
+        start = record.get("char_start")
+        end = record.get("char_end")
+        quote = record.get("quote")
+        if (not isinstance(start, int) or isinstance(start, bool)
+                or not isinstance(end, int) or isinstance(end, bool)):
             raise FeatureFacetError(f"evidence {evidence_id}: invalid character offsets")
-        if text[start:end] != quote:
+        if not isinstance(quote, str):
+            raise FeatureFacetError(f"evidence {evidence_id}: quote must be a string")
+        if start < 0 or end < start or end > len(text) or text[start:end] != quote:
             raise FeatureFacetError(f"evidence {evidence_id}: quote/offset mismatch")
-        if hashlib.sha256(quote.encode()).hexdigest() != record.get("quote_sha256"):
+        if hashlib.sha256(quote.encode("utf-8")).hexdigest() != record.get("quote_sha256"):
             raise FeatureFacetError(f"evidence {evidence_id}: quote hash mismatch")
         line_start = 1 + text[:start].count("\n")
         line_end = line_start + quote.count("\n")
-        if (line_start, line_end) != (record.get("snapshot_line_start"), record.get("snapshot_line_end")):
+        if (line_start, line_end) != (
+                record.get("snapshot_line_start"), record.get("snapshot_line_end")):
             raise FeatureFacetError(f"evidence {evidence_id}: line range mismatch")
         exact = record.get("evidence_text_exact_substring_of_this_quote")
-        if exact is not (record.get("evidence_text") in quote):
+        if not isinstance(exact, bool):
+            raise FeatureFacetError(f"evidence {evidence_id}: exact-substring flag must be boolean")
+        if exact != (record.get("evidence_text") in quote):
             raise FeatureFacetError(f"evidence {evidence_id}: exact-substring flag mismatch")
+        if record.get("evidence_kind") == "source_quote" and not exact:
+            raise FeatureFacetError(f"evidence {evidence_id}: source_quote must be an exact quote")
 
-    coverage = evidence_ledger.get("coverage")
-    if not isinstance(coverage, dict):
-        raise FeatureFacetError("coverage must be an object")
+    if set(snapshots) != evidence_source_ids or len(snapshots) != 130:
+        raise FeatureFacetError("snapshot source set/count mismatch")
+
     eligible = {key for key, row in masters.items()
                 if isinstance((row.get("features") or {}).get("summary"), str)
                 and (row.get("features") or {}).get("summary").strip()}
     included = set(entries)
-    excluded_rows = coverage.get("excluded_mushrooms")
-    if not isinstance(excluded_rows, list):
-        raise FeatureFacetError("coverage excluded_mushrooms must be a list")
-    excluded = set()
-    for row in excluded_rows:
-        mushroom_id = row.get("mushroom_id") if isinstance(row, dict) else None
-        if not isinstance(mushroom_id, str) or not mushroom_id.strip() or mushroom_id in excluded:
-            raise FeatureFacetError("excluded mushroom IDs must be unique non-empty strings")
-        if not isinstance(row.get("reason"), str) or not row["reason"].strip() or not isinstance(row.get("status"), str) or not row["status"].strip():
-            raise FeatureFacetError(f"excluded mushroom {mushroom_id}: reason/status required")
-        excluded.add(mushroom_id)
-    if included & excluded or excluded - eligible or eligible != included | excluded:
-        raise FeatureFacetError("eligible/included/excluded coverage mismatch")
-    approved_keys = {(row.get("decision_id"), row.get("mushroom_id"), row.get("facet_id")) for row in approved_rows}
-    held_keys = {(row.get("decision_id"), row.get("mushroom_id"), row.get("facet_id")) for row in held}
-    if len(approved_keys) != 373 or len(held_keys) != 10 or approved_keys & held_keys:
-        raise FeatureFacetError("original assignment boundary mismatch")
-    if any(key[1:] in assignment_keys for key in held_keys):
-        raise FeatureFacetError("held assignment present in runtime")
-    if ("tamagotakemodoki", "ring") in assignment_keys:
-        raise FeatureFacetError("IA-029 ring is not approved")
+    expected_held_keys = {
+        (row["decision_id"], row["mushroom_id"], row["facet_id"]) for row in held
+    }
 
+    def validate_coverage_block(coverage, label):
+        if not isinstance(coverage, dict):
+            raise FeatureFacetError(f"{label} coverage must be an object")
+        recorded_eligible = set(_strings(
+            coverage.get("eligible_mushroom_ids"),
+            f"{label} coverage eligible_mushroom_ids"))
+        recorded_included = set(_strings(
+            coverage.get("included_mushroom_ids"),
+            f"{label} coverage included_mushroom_ids"))
+        excluded_rows = coverage.get("excluded_mushrooms")
+        if not isinstance(excluded_rows, list):
+            raise FeatureFacetError(f"{label} coverage excluded_mushrooms must be a list")
+        excluded = set()
+        for row in excluded_rows:
+            mushroom_id = row.get("mushroom_id") if isinstance(row, dict) else None
+            if (not isinstance(mushroom_id, str) or not mushroom_id.strip()
+                    or mushroom_id in excluded):
+                raise FeatureFacetError(
+                    f"{label} excluded mushroom IDs must be unique non-empty strings")
+            if (not isinstance(row.get("reason"), str) or not row["reason"].strip()
+                    or not isinstance(row.get("status"), str) or not row["status"].strip()):
+                raise FeatureFacetError(
+                    f"{label} excluded mushroom {mushroom_id}: reason/status required")
+            excluded.add(mushroom_id)
+
+        if recorded_eligible != eligible:
+            raise FeatureFacetError(f"{label} eligible coverage mismatch")
+        if recorded_included != included:
+            raise FeatureFacetError(f"{label} included coverage mismatch")
+        if included & excluded or excluded - eligible or eligible != included | excluded:
+            raise FeatureFacetError(f"{label} eligible/included/excluded coverage mismatch")
+        if len(eligible) != 139 or len(included) != 127 or len(excluded) != 12:
+            raise FeatureFacetError(f"{label} coverage boundary mismatch")
+        if (coverage.get("assignment_count") != len(assignment_keys)
+                or coverage.get("entry_count") != len(included)
+                or coverage.get("active_facet_count") != len(facets)):
+            raise FeatureFacetError(f"{label} coverage count mismatch")
+
+        coverage_held = coverage.get("held_assignments")
+        if not isinstance(coverage_held, list):
+            raise FeatureFacetError(f"{label} coverage held_assignments must be a list")
+        coverage_held_keys = set()
+        for row in coverage_held:
+            if not isinstance(row, dict):
+                raise FeatureFacetError(f"{label} held assignment rows must be objects")
+            decision_id = row.get("decision_id")
+            mushroom_id = row.get("mushroom_id")
+            facet_id = row.get("facet_id")
+            reason = row.get("reason")
+            if any(not isinstance(value, str) or not value.strip()
+                   for value in (decision_id, mushroom_id, facet_id, reason)):
+                raise FeatureFacetError(
+                    f"{label} held assignment requires decision/mushroom/facet/reason")
+            key = (decision_id, mushroom_id, facet_id)
+            if key in coverage_held_keys:
+                raise FeatureFacetError(f"{label} duplicate held assignment")
+            coverage_held_keys.add(key)
+        if coverage_held_keys != expected_held_keys:
+            raise FeatureFacetError(f"{label} held assignment coverage mismatch")
+
+    validate_coverage_block(feature_data.get("coverage"), "candidate")
+    validate_coverage_block(evidence_ledger.get("coverage"), "ledger")
 
 def _bytes_and_object(role):
     filename, expected = _V2_FILES[role]

@@ -211,3 +211,133 @@ def test_held_boundary_and_candidate_self_approval_fail(package):
     package["feature"]["approved"] = True
     with pytest.raises(FeatureFacetError, match="hash-pinned"):
         _validate(package, "production")
+
+def test_independent_evidence_and_source_set_difference_are_valid(package):
+    assignment = _assignment(package, "dokutsurutake", "cap_sticky")
+    master = next(row for row in package["master"]["entries"]
+                  if row["mushroom_id"] == "dokutsurutake")
+    assert assignment["evidence_text"] not in master["features"]["summary"]
+    assert set(assignment["source_ids"]) != set(master["features"]["source_ids"])
+    assert _validate(package) is True
+
+
+@pytest.mark.parametrize("mutation,match", [
+    (lambda p: p["ledger"]["evidence_records"][0].update(source_id="missing"),
+     "unknown source"),
+    (lambda p: p["ledger"]["evidence_records"][0].update(decision_id="wrong"),
+     "decision binding"),
+    (lambda p: p["ledger"]["evidence_records"][0].update(evidence_kind="source_quote"),
+     "evidence_kind mismatch"),
+    (lambda p: p["ledger"]["evidence_records"][0].update(evidence_text="wrong"),
+     "evidence_text mismatch"),
+    (lambda p: p["ledger"]["evidence_records"][0].update(qualifiers=["wrong"]),
+     "qualifier mismatch"),
+    (lambda p: p["ledger"]["evidence_records"][0].update(extracted_text_sha256="0" * 64),
+     "extracted_text_sha256 mismatch"),
+    (lambda p: p["ledger"]["evidence_records"][0].update(text_snapshot_sha256="0" * 64),
+     "text_snapshot_sha256 mismatch"),
+    (lambda p: p["ledger"]["evidence_records"][0].update(original_response_sha256="0" * 64),
+     "original_response_sha256 mismatch"),
+])
+def test_record_to_runtime_and_snapshot_binding_failures(package, mutation, match):
+    mutation(package)
+    with pytest.raises(FeatureFacetError, match=match):
+        _validate(package)
+
+
+def test_duplicate_approved_decision_id_fails(package):
+    rows = package["ledger"]["approved_assignments"]
+    rows[1]["decision_id"] = rows[0]["decision_id"]
+    with pytest.raises(FeatureFacetError, match="duplicate decision_id"):
+        _validate(package)
+
+
+def test_candidate_human_approval_cannot_be_rewritten(package):
+    _assignment(package)["review"]["human_approval"] = True
+    with pytest.raises(FeatureFacetError, match="historical null"):
+        _validate(package)
+
+
+def test_extra_snapshot_and_snapshot_source_binding_fail(package):
+    rows = [json.loads(line) for line in package["snapshots"].splitlines()]
+    extra = copy.deepcopy(rows[0])
+    extra["source_id"] = "unexpected-extra-snapshot"
+    rows.append(extra)
+    package["snapshots"] = rows
+    with pytest.raises(FeatureFacetError, match="snapshot source set/count"):
+        _validate(package)
+
+    package["snapshots"] = [json.loads(line) for line in _jsonl().splitlines()]
+    package["snapshots"][0]["source_url"] = "https://example.invalid/"
+    with pytest.raises(FeatureFacetError, match="snapshot source binding"):
+        _validate(package)
+
+
+def _jsonl():
+    return (V2 / "phase4c9-feature-source-snapshots-2026-10-03.jsonl").read_text()
+
+
+@pytest.mark.parametrize("target,key,match", [
+    ("feature", "eligible_mushroom_ids", "candidate eligible coverage mismatch"),
+    ("feature", "included_mushroom_ids", "candidate included coverage mismatch"),
+    ("ledger", "eligible_mushroom_ids", "ledger eligible coverage mismatch"),
+    ("ledger", "included_mushroom_ids", "ledger included coverage mismatch"),
+])
+def test_recorded_coverage_id_sets_must_match_recomputed_sets(package, target, key, match):
+    package[target]["coverage"][key].pop()
+    with pytest.raises(FeatureFacetError, match=match):
+        _validate(package)
+
+
+@pytest.mark.parametrize("target,key,value,match", [
+    ("feature", "assignment_count", 372, "candidate coverage count mismatch"),
+    ("feature", "entry_count", 126, "candidate coverage count mismatch"),
+    ("feature", "active_facet_count", 19, "candidate coverage count mismatch"),
+    ("ledger", "assignment_count", 372, "ledger coverage count mismatch"),
+])
+def test_recorded_coverage_counts_must_match_runtime(package, target, key, value, match):
+    package[target]["coverage"][key] = value
+    with pytest.raises(FeatureFacetError, match=match):
+        _validate(package)
+
+
+def test_recorded_held_assignment_set_must_match_ledger(package):
+    package["feature"]["coverage"]["held_assignments"].pop()
+    with pytest.raises(FeatureFacetError, match="candidate held assignment coverage mismatch"):
+        _validate(package)
+
+
+@pytest.mark.parametrize("mushroom,facet,expected", [
+    ("dokutsurutake", "cap_sticky", "湿時という条件を保持"),
+    ("haratake", "stem_solid", "成長段階"),
+    ("benitengutake", "cap_scales_warts", "脱落／成長による消失"),
+    ("dokutsurutake", "volva", "完全な袋状つぼに限定しない"),
+    ("dokuyamadori", "blue_stain", "変色する部位・損傷条件"),
+    ("yakoutake", "gelatinous", "傘の被覆層のみ"),
+])
+def test_representative_qualifier_categories_survive_model_and_render(
+        package, mushroom, facet, expected):
+    assignment = _assignment(package, mushroom, facet)
+    portal = {"version": 1, "subjects": [{
+        "gallery_name": f"条件表示-{mushroom}",
+        "cover_src": "x.jpg",
+        "mushroom_master_id": mushroom,
+    }]}
+    model = build_feature_search_model(portal, package["feature"], lambda _: "detail")
+    detail = next(row for row in model["results"][0]["assignments"]
+                  if row["facet_id"] == facet)
+    assert detail["evidence_text"] == assignment["evidence_text"]
+    assert detail["qualifiers"] == assignment["qualifiers"]
+    page = render_feature_page(model)
+    assert assignment["evidence_text"] in page
+    assert expected in page
+    assert all(value in page for value in assignment["qualifiers"])
+
+
+def test_source_quote_requires_exact_quote_relationship(package):
+    record = next(row for row in package["ledger"]["evidence_records"]
+                  if row["evidence_kind"] == "source_quote")
+    record["evidence_text_exact_substring_of_this_quote"] = False
+    with pytest.raises(FeatureFacetError, match="exact-substring flag mismatch"):
+        _validate(package)
+
