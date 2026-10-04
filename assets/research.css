@@ -33,6 +33,10 @@ body.research-index { max-width:none; margin:0; padding:0; background:#f7fcf4; c
 .research-index .research-status.is-unidentified { background:#e5edf2; color:#38546a; }
 .research-index .research-status.is-candidate { background:#fff0cc; color:#78510b; }
 .research-index .research-status.is-review { background:#f7e3eb; color:#7b3552; }
+.research-index .research-status.is-identified { background:#dcefdc; color:#23552c; }
+.research-index .research-case--identified { grid-template:140px / 170px 1fr; gap:18px; align-items:center; }
+.research-index .research-case--identified > img { width:100%; height:140px; object-fit:cover; border-radius:10px; }
+.research-index .research-case--identified h3 { color:#294a32; overflow-wrap:anywhere; }
 .research-index .research-candidate { display:grid; align-content:center; gap:3px; margin:0; min-width:0; }
 .research-index .research-candidate span,.research-index .research-label { color:#758077; font-size:.72rem; font-weight:700; }
 .research-index .research-candidate strong { overflow-wrap:anywhere; color:#31543a; font-size:.95rem; }

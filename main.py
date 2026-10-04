@@ -2970,7 +2970,12 @@ def generate_research_page_if_fresh(portal_status):
         return None
     try:
         portal = load_fresh_portal_data(PORTAL_DATA_FILE)
-        model = generate_research_page(portal, OUTPUT_DIR, ASSETS_DIR)
+        data_directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
+        with open(os.path.join(data_directory, "research-identifications.json"), encoding="utf-8") as stream:
+            registry = json.load(stream)
+        with open(os.path.join(data_directory, "mushroom-master.json"), encoding="utf-8") as stream:
+            mushroom_master = json.load(stream)
+        model = generate_research_page(portal, OUTPUT_DIR, ASSETS_DIR, registry, mushroom_master)
         print("Phase 4A.5 research audit:")
         print(f"eligible_photos={model['photo_count']}")
         print(f"gallery_name_labels={model['label_count']}")

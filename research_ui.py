@@ -134,7 +134,7 @@ def _safe_web_url(value):
     return value if parsed.scheme in {"http", "https"} and parsed.netloc else None
 
 
-def render_research_page(model):
+def render_research_page(model, identified=None):
     status_classes = {
         "未同定": "is-unidentified",
         "候補名あり": "is-candidate",
@@ -174,6 +174,22 @@ def render_research_page(model):
 <div class="research-photos">{''.join(photos)}</div>
 <div class="research-article"><span class="research-label">観察記録</span>{article_text}</div>
 </article>''')
+    archives = []
+    for item in identified or []:
+        case, identification = item["case"], item["identification"]
+        photo = case["photos"][0] if case["photos"] else {"src": ""}
+        article_url = _safe_web_url(case["article"].get("url"))
+        article_link = (f'<a href="{html.escape(article_url, quote=True)}" target="_top">観察記録を見る</a>'
+                        if article_url else "")
+        archives.append(f'''<article class="research-case research-case--identified">
+<img src="{html.escape(str(photo['src']), quote=True)}" alt="{html.escape(case['gallery_name'])}" loading="lazy">
+<div><span class="research-status is-identified">判明済み</span>
+<h3>{html.escape(case['gallery_name'])} <span aria-hidden="true">→</span> {html.escape(identification['identified_name'])}</h3>
+<p>{html.escape(str(identification.get('note') or ''))}</p>{article_link}</div></article>''')
+    archive_html = (f'''<section class="research-cases-wrap" aria-labelledby="identified-title">
+<header class="research-cases-heading"><div><span class="research-eyebrow">IDENTIFIED</span>
+<h2 id="identified-title">正体が判明したキノコ</h2></div><span>{len(archives)}件</span></header>
+<div class="research-cases">{''.join(archives)}</div></section>''' if archives else "")
     return f'''<!doctype html>
 <html lang="ja">
 <head>
@@ -211,6 +227,7 @@ def render_research_page(model):
       </div>
     </div>
   </section>
+  {archive_html}
   <section class="research-cases-wrap" aria-labelledby="research-cases-title">
     <header class="research-cases-heading">
       <div><span class="research-eyebrow">OPEN CASES</span><h2 id="research-cases-title">調査中の観察</h2></div>
@@ -224,11 +241,20 @@ def render_research_page(model):
 </html>'''
 
 
-def generate_research_page(portal_data, output_dir, assets_dir):
-    model = build_research_model(portal_data)
+def generate_research_page(portal_data, output_dir, assets_dir, registry=None, mushroom_master=None):
+    identified = []
+    if registry is not None and mushroom_master is not None:
+        from research_identifications import split_research_cases
+        open_cases, identified = split_research_cases(portal_data, registry, mushroom_master)
+        model = {"cases": open_cases, "case_count": len(open_cases),
+                 "photo_count": sum(c["photo_count"] for c in open_cases),
+                 "label_count": len({c["gallery_name"] for c in open_cases}),
+                 "multi_photo_count": sum(c["photo_count"] > 1 for c in open_cases)}
+    else:
+        model = build_research_model(portal_data)
     os.makedirs(os.path.join(output_dir, "assets"), exist_ok=True)
     with open(os.path.join(output_dir, "research.html"), "w", encoding="utf-8") as stream:
-        stream.write(render_research_page(model))
+        stream.write(render_research_page(model, identified))
     shutil.copy2(os.path.join(assets_dir, "research.css"),
                  os.path.join(output_dir, "assets", "research.css"))
     return model

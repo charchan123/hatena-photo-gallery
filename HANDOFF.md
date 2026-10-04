@@ -1175,3 +1175,56 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 | `phase4c9-feature-source-snapshots-2026-10-03.jsonl` | `5583716324d8ba2600352241c47ff5b61f5f2cef0bea9180f34f4315e2ec048e` |
 | `phase4c9-feature-evidence-ledger-approved-2026-10-03.json` | `0253787fb1bc0cea03cc5aba5759e08c2b0fcfa9fd37e194986011573c926ee7` |
 | `phase4c9-feature-approval-manifest-2026-10-03.json` | `2d6f21f31d7e0e33a513c02a5188f563baa4a8e8bbe1f40866501c3780521d05` |
+# Admin Console v1 (2026-10-04)
+
+## Starting point / branch
+
+- Starting SHA: `5e0ccf79b2be9655417bd0ea4156967d055bcfdd` (the supplied PR #83 merge SHA).
+- Branch: `admin-console-v1`.
+- The environment blocked the HTTPS fetch with `CONNECT tunnel failed, response 403`; therefore the
+  supplied SHA was used. A fresh `origin/main` fetch remains mandatory inside the PR workflow.
+
+## Architecture and localhost security
+
+- `admin.server` is a Python standard-library `ThreadingHTTPServer`, hard-coded to `127.0.0.1:8765`.
+  It verifies the client address, `Host`, and `Origin`, issues a per-process CSRF token, and accepts
+  mutations only via POST. Static paths are decoded and allow-listed. No token or API secret reaches
+  HTML, JavaScript, localStorage, or the repository. GitHub writes use the authenticated `gh` CLI.
+- The browser edits an in-memory `ChangeSet`; data files in the administrator's checkout are not written.
+  Existing Best Shot and notice validators are reused. Research identifications have a dedicated v1 validator.
+- `output/` remains the sole Pages deployment folder. Nothing under `admin/` is generated or copied there.
+
+## Behavior and data
+
+- Added the dashboard, Best Shot CRUD/photo replacement/annual selection UI, research open and identified
+  views, notice management, site status, review/validation/PR flow, and a deliberately disabled information
+  expansion page. Photo selection uses existing observation IDs and prioritizes the same article/name.
+- Added `data/research-identifications.json` v1. Records use the stable research `case_id`, carry available
+  article identities (preferring `article_id`), original and identified names, timezone-aware timestamp,
+  optional existing master ID/note, and `identified|reopened` status. Reopen retains the record as `reopened`
+  rather than deleting it, preserving an audit trail. Exact canonical master names are auto-linked; unknown
+  names remain registrable and never mutate `mushroom-master.json`.
+- Explicit identification creates an `IDENTIFIED!` research notice in the same in-memory operation. Best Shot
+  `NEW!` is opt-in; edits do not add notices implicitly. Existing 7/7/14-day rules remain authoritative.
+- Public research output receives validated registry data and separates open and identified cases. Original
+  photos are retained. Hatena content, gallery names, and knowledge taxonomy are never rewritten.
+
+## Git / PR and CI
+
+- PR creation requires `gh` authentication, fetches `origin/main`, creates a random safe `admin/...` branch
+  in a temporary worktree, allow-lists paths, validates/tests/compiles, commits, pushes, and runs
+  `gh pr create --base main`. It never force-pushes, merges, deploys, writes gh-pages, or dispatches workflows.
+  The user's branch/dirty tree is untouched and cleanup occurs in `finally`.
+- `.github/workflows/admin-validate.yml` handles same-repository PRs with read-only permission, requires Hatena
+  secrets, generates current data, runs Python/JS checks, checks public isolation, and performs no deployment.
+
+## Protected contracts, limitations, and Admin v2
+
+- Portal schema, observation identity, taxonomy, extraction/EXIF, Phase 3C, Best Shot contracts, notice windows,
+  frontend behavior, and Phase 4C.9 constants/artifacts were not generalized or changed. The knowledge files
+  remain 141 mushrooms, 419 sources, and the v2 package with 373 approved assignments.
+- Drafts are process-memory-only. The portal fallback is read-only; startup fails safely if neither local nor
+  published data exists. GitHub status degrades to “取得できませんでした” without authentication/network.
+- Knowledge batch listing/approval/promotion is deferred to Admin v2. Durable drafts, bulk identification,
+  richer observation search, and semantic diffs are also suitable follow-ups. Phase 4C.9 trusted manifest and
+  validator changes require a separate reviewed design.
