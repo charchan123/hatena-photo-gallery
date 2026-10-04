@@ -5814,11 +5814,13 @@
       "capture_date_count": 7,
       "capture_months": [
         8,
-        10
+        10,
+        11
       ],
       "capture_month_counts": {
         "8": 1,
-        "10": 6
+        "10": 5,
+        "11": 1
       },
       "first_capture_date": "2025-10-05",
       "last_capture_date": "2026-08-01",
@@ -24241,10 +24243,10 @@
       "mushroom_master_id": null
     },
     {
-      "observation_id": "obs-c250a3555a8920a30d212e93a4b1bca19c34359be543531708f402f2dc8698cd",
+      "observation_id": "obs-40f26bfbe6aed86b8ead434dbf6a4884e31b206f290e888c23a4947a58765bc6",
       "production_index": 304,
       "gallery_name": "ベニテングタケ",
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005200550.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261004/20261004210812.jpg",
       "shadow_match_status": "exact_gallery_name",
       "classification": {
         "status": "confirmed_named_mushroom",
@@ -24258,16 +24260,16 @@
         "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
-        "date": "2025-10-05",
-        "month": 10,
+        "date": "2025-11-02",
+        "month": 11,
         "date_source": "exif",
         "camera": {
-          "model": "DC-G9M2",
-          "lens": "OLYMPUS M.12-40mm F2.8",
-          "iso": "100",
-          "f": "f/9.0",
-          "exposure": "10/13",
-          "focal": "21mm"
+          "model": "",
+          "lens": "",
+          "iso": "",
+          "f": "",
+          "exposure": "None",
+          "focal": ""
         }
       },
       "article": {
