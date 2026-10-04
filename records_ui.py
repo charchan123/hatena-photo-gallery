@@ -5,6 +5,8 @@ import html
 import os
 import shutil
 
+from update_notices import render_record_notice
+
 
 RECORD_CATEGORY = "キノコ探索日記"
 
@@ -90,18 +92,18 @@ def _format_published(value):
     return f"{published.year}年{published.month}月{published.day}日 公開"
 
 
-def render_record_cards(records, limit=None):
+def render_record_cards(records, limit=None, *, now=None):
     cards = []
-    for position, record in enumerate(records[:limit] if limit is not None else records):
+    for record in (records[:limit] if limit is not None else records):
         title = html.escape(str(record.get("title") or "無題"))
         url = record.get("url")
         date = html.escape(_format_published(record.get("published")))
         cover = html.escape(str(record.get("cover_src") or ""), quote=True)
-        badge = '<span class="record-card-badge">NEW!</span>' if position == 0 else ""
+        badge = render_record_notice(record, now=now)
         image = (f'<img src="{cover}?width=500" alt="" loading="lazy">' if cover else "")
         body = (f'<div class="record-card-thumb">{image}</div><div class="record-card-body">'
-                f'{badge}<div class="record-card-date">{date}</div>'
-                f'<h3 class="record-card-title">{title}</h3>'
+                f'<div class="record-card-date">{date}</div>'
+                f'<h3 class="record-card-title"><span>{title}</span>{badge}</h3>'
                 f'<p class="record-card-meta">現在の図鑑掲載 {record["photo_count"]}枚・{record["subject_count"]}種類</p></div>')
         if url:
             safe_url = html.escape(str(url), quote=True)
@@ -111,11 +113,12 @@ def render_record_cards(records, limit=None):
     return "".join(cards)
 
 
-def render_record_preview_rows(records, limit=3):
+def render_record_preview_rows(records, limit=3, *, now=None):
     """Render compact new-top previews without records-page statistics."""
     rows = []
     for record in records[:limit]:
         title = html.escape(str(record.get("title") or "無題"))
+        badge = render_record_notice(record, now=now)
         date = html.escape(_format_published(record.get("published")))
         excerpt = str(record.get("excerpt") or "").strip()
         excerpt_html = (f'<p class="record-preview-excerpt">{html.escape(excerpt)}</p>'
@@ -123,7 +126,8 @@ def render_record_preview_rows(records, limit=3):
         cover = html.escape(str(record.get("cover_src") or ""), quote=True)
         image = f'<img src="{cover}?width=500" alt="" loading="lazy">' if cover else ""
         body = (f'<span class="record-preview-thumb">{image}</span>'
-                f'<span class="record-preview-body"><strong class="record-preview-title">{title}</strong>'
+                f'<span class="record-preview-body"><span class="record-preview-heading">'
+                f'<strong class="record-preview-title">{title}</strong>{badge}</span>'
                 f'<time class="record-preview-date">{date}</time>{excerpt_html}</span>')
         url = record.get("url")
         if url:
@@ -134,7 +138,7 @@ def render_record_preview_rows(records, limit=3):
     return "".join(rows)
 
 
-def render_records_page(portal_data):
+def render_records_page(portal_data, *, now=None):
     records = build_observation_records(portal_data)
     return f"""<!doctype html>
 <html lang="ja"><head><meta charset="utf-8">
@@ -142,6 +146,8 @@ def render_records_page(portal_data):
 <title>観察記録｜キノコ図鑑</title>
 <link rel="stylesheet" href="assets/gallery.css">
 <link rel="stylesheet" href="assets/records.css">
+<link rel="stylesheet" href="assets/update-notices.css">
+<script src="assets/update-notices.js" defer></script>
 <script src="assets/gallery.js" defer></script></head><body class="records-index">
 <main id="gallery-content-root" class="records-shell">
 <section class="records-hub" aria-labelledby="records-title">
@@ -159,7 +165,7 @@ def render_records_page(portal_data):
 <h2>これまでの観察記録</h2>
 <p>表示順の日付は記事の公開日です。写真の撮影日とは別です。</p>
 </div>
-<div class="record-list">{render_record_cards(records)}</div>
+<div class="record-list">{render_record_cards(records, now=now)}</div>
 </div>
 </section>
 <footer class="records-footer"><a href="new-top.html" class="back-btn">← トップへ戻る</a></footer>
@@ -172,6 +178,7 @@ def generate_records_page(portal_data, output_dir, assets_dir):
     os.makedirs(os.path.join(output_dir, "assets"), exist_ok=True)
     with open(os.path.join(output_dir, "records.html"), "w", encoding="utf-8") as stream:
         stream.write(render_records_page(portal_data))
-    shutil.copyfile(os.path.join(assets_dir, "records.css"),
-                    os.path.join(output_dir, "assets", "records.css"))
+    for filename in ("records.css", "update-notices.css", "update-notices.js"):
+        shutil.copyfile(os.path.join(assets_dir, filename),
+                        os.path.join(output_dir, "assets", filename))
     return records
