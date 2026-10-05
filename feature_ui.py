@@ -626,6 +626,17 @@ def render_feature_page(model, safe_filename=None):
 </html>'''
 
 
+def _write_feature_page(portal_data, feature_data, output_dir, assets_dir, safe_filename):
+    """Render files after the caller has completed the appropriate validation path."""
+    model = build_feature_search_model(portal_data, feature_data, safe_filename)
+    os.makedirs(os.path.join(output_dir, "assets"), exist_ok=True)
+    with open(os.path.join(output_dir, "features.html"), "w", encoding="utf-8") as stream:
+        stream.write(render_feature_page(model))
+    for filename in ("features.css", "features.js"):
+        shutil.copy2(os.path.join(assets_dir, filename), os.path.join(output_dir, "assets", filename))
+    return model
+
+
 def generate_feature_page(portal_data, feature_data, output_dir, assets_dir, safe_filename,
                           *, mushroom_master=None, sources=None, evidence_ledger=None,
                           source_snapshots=None, approval_manifest=None):
@@ -634,10 +645,4 @@ def generate_feature_page(portal_data, feature_data, output_dir, assets_dir, saf
             feature_data, mushroom_master, sources=sources,
             evidence_ledger=evidence_ledger, source_snapshots=source_snapshots,
             approval_manifest=approval_manifest, mode="production")
-    model = build_feature_search_model(portal_data, feature_data, safe_filename)
-    os.makedirs(os.path.join(output_dir, "assets"), exist_ok=True)
-    with open(os.path.join(output_dir, "features.html"), "w", encoding="utf-8") as stream:
-        stream.write(render_feature_page(model))
-    for filename in ("features.css", "features.js"):
-        shutil.copy2(os.path.join(assets_dir, filename), os.path.join(output_dir, "assets", filename))
-    return model
+    return _write_feature_page(portal_data, feature_data, output_dir, assets_dir, safe_filename)
