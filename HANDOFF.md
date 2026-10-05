@@ -1228,3 +1228,55 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 - Knowledge batch listing/approval/promotion is deferred to Admin v2. Durable drafts, bulk identification,
   richer observation search, and semantic diffs are also suitable follow-ups. Phase 4C.9 trusted manifest and
   validator changes require a separate reviewed design.
+# Phase 4C.9 Incremental Overlay Contract (2026-10-05)
+
+The production feature contract now has two strictly separated layers. The existing
+Phase 4C.9 Option B package remains an immutable, hash-pinned baseline: its 373 approved
+assignments, 10 held decisions, 377 approved evidence records, 10 held evidence records,
+one retired citation, 130 snapshots, 20 facets, four groups, and trusted manifest/file
+hashes are still validated by the original `validate_feature_facets(..., mode="production")`
+path without relaxed counts or fallback.
+
+`audit/feature-overlays/index.json` is the reviewed Git-history boundary for future
+incremental packages and is initially empty. Entries must be sorted safe ASCII overlay
+IDs and pin a manifest beneath `audit/knowledge-batches/<overlay-id>/`. The manifest pins
+the immutable baseline manifest and each delta, decision manifest, and JSONL snapshot
+artifact, producing the chain registry → manifest → artifact bytes. Paths, symlinks,
+timestamps, hashes, identities, and schemas are fail-closed and no network is used.
+
+An overlay is additive only. It may append a new source, mushroom, or evidence-backed
+assignment, but cannot replace/reorder/delete baseline records, redefine facets/groups,
+reuse baseline/prior IDs or snapshots, promote baseline held/retired evidence, or add the
+prohibited IA-029 `tamagotakemodoki/ring` key. Human truth is stored separately in the
+decision manifest; only explicit `approved` plus `supports_facet` rows may occur in a
+promotion delta. Held and pending rows cannot enter runtime, and assignment
+`review.human_approval` keeps its historical shape.
+
+`validate_feature_production_state` first validates the hash-pinned baseline with the
+unchanged validator, validates and applies overlays lexicographically to deep copies,
+recomputes coverage mechanically, reuses the source/master validators, then requires
+deep equality with all three production JSON files. With the empty registry, expected
+runtime is byte-content-equivalent to today's production, so search output is unchanged.
+The production feature generation path validates this state before rendering actual
+production data; there is no v2→v1 or baseline-only fallback on failure.
+
+Future Admin Console v2 may prepare these packages and human decisions, but must not
+write production immediately or weaken this contract. No production biology data or
+Phase 4C.9 artifact was changed in this phase.
+
+## Phase 4C.9 overlay hardening
+
+The production generator now validates the immutable v2 package and complete overlay
+production state before calling a private render/write helper; there is no public boolean
+that can bypass production validation, and overlay-expanded data is not sent through the
+legacy fixed-count validator. Overlay assignments, decisions, evidence provenance,
+snapshot usage, hashes, line/character ranges, and package paths are validated strictly.
+Package and artifact resolution is confined beneath the fixed knowledge-batches root,
+including symlink resolution, and each overlay snapshot must be used by its approved
+evidence. The immutable baseline and production biology JSON remain unchanged.
+
+Follow-up hardening binds the `knowledge-batches` root itself to the repository before
+checking child packages, so moving that fixed boundary through a symlink is rejected.
+Snapshot completeness is evaluated against all snapshots available before each overlay:
+baseline and prior-overlay snapshots may be reused without duplication, while a newly
+needed snapshot must be supplied exactly once by the current overlay.
