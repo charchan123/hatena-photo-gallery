@@ -37,14 +37,16 @@
 .portal-guide-note small { color:#526056; font-size:.88rem; line-height:1.45; }
 .portal-card { position:relative; display:grid; min-height:130px; overflow:hidden; border-radius:16px; color:#fff; text-decoration:none; isolation:isolate; transition:transform .2s ease,box-shadow .2s ease; }
 .portal-guide-row .portal-card { background:linear-gradient(145deg,#426745,#173c2b 72%,#102f22); }
-.portal-guide-row .portal-card--guide .portal-card__visual { background-image:linear-gradient(rgba(10,29,18,.34),rgba(10,29,18,.44)),url("guide-action-book.webp"); background-position:72% 50%; background-size:cover; background-repeat:no-repeat; }
-.portal-guide-row .portal-card--season .portal-card__visual { background-image:linear-gradient(rgba(10,29,18,.34),rgba(10,29,18,.44)),url("guide-action-season.webp"); background-position:70% 50%; background-size:cover; background-repeat:no-repeat; }
-.portal-guide-row .portal-card--features .portal-card__visual { background-image:linear-gradient(rgba(10,29,18,.34),rgba(10,29,18,.44)),url("guide-action-features.webp"); background-position:72% 50%; background-size:cover; background-repeat:no-repeat; }
+/* Quiet botanical washes belong only to the new-top navigation cards. */
+.portal-index .portal-guide-row .portal-card--guide .portal-card__visual { --wash-light:#899365; --wash-mid:#66754b; --wash-deep:#465638; }
+.portal-index .portal-guide-row .portal-card--season .portal-card__visual { --wash-light:#c39455; --wash-mid:#b07c42; --wash-deep:#8a5733; }
+.portal-index .portal-guide-row .portal-card--features .portal-card__visual { --wash-light:#71968d; --wash-mid:#49796f; --wash-deep:#345c54; }
+.portal-index .portal-guide-row .portal-card__visual { background-image:url("new-top-botanical-wash.svg"),radial-gradient(ellipse at 90% 5%,var(--wash-light),transparent 72%),linear-gradient(125deg,var(--wash-mid),var(--wash-deep)); background-position:right center,center,center; background-size:auto 100%,cover,cover; background-repeat:no-repeat; }
 .portal-guide-row .portal-card__visual { filter:brightness(1.12) saturate(1.03); }
 .portal-card__visual,.portal-card__content { grid-area:1/1; }
 .portal-card__visual { background:radial-gradient(circle at 78% 25%,rgba(255,228,151,.18),transparent 28%),linear-gradient(140deg,#567358,#173c2b); background-position:center; background-size:cover; }
 .portal-card--research .portal-card__visual { background-image:url("research-lab-cabin.webp"); background-position:78% center; background-size:cover; background-repeat:no-repeat; }
-.portal-card--best-shots .portal-card__visual { background-image:url("research-lab-final.webp"); background-position:center center; background-size:cover; background-repeat:no-repeat; }
+.portal-index .portal-card--best-shots .portal-card__visual { background-image:url("new-top-best-shots-camera-mushrooms.webp"); background-position:50% 58%; background-size:cover; background-repeat:no-repeat; }
 .portal-independent-links .portal-card__visual { filter:brightness(1.10) saturate(1.02); }
 .portal-card__content { z-index:1; display:block; align-self:end; padding:42px 18px 17px; background:linear-gradient(to top,rgba(10,25,16,.82),rgba(10,25,16,.22) 72%,transparent); }
 .portal-card__copy { display:grid; gap:5px; }
