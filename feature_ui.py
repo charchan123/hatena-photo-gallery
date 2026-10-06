@@ -24,6 +24,35 @@ class FeatureFacetError(ValueError):
     """Raised when curated feature data breaks its evidence contract."""
 
 
+FEATURE_UI_LABELS = {
+    "cap_sticky": "傘が粘る",
+    "cap_scales_warts": "傘にいぼ・鱗片",
+    "cap_fibrous_felt": "傘が繊維っぽい",
+    "cap_striate_grooved": "傘のふちにスジ",
+    "cap_depressed": "傘の中央がくぼむ",
+    "head_reticulate": "頭に網目模様",
+    "rod_cylindrical": "棒状・円柱状",
+    "granular_powdery": "表面が粒・粉っぽい",
+    "gills": "ヒダ",
+    "pores": "スポンジ状（管孔）",
+    "ring": "つばがある",
+    "volva": "根元につぼがある",
+    "stem_hollow": "柄が空洞",
+    "stem_solid": "柄が詰まっている",
+    "stem_scales_pattern": "柄に模様・ささくれ",
+    "stem_sticky": "柄が粘る",
+    "stem_reticulate": "柄に網目模様",
+    "gelatinous": "ぷるぷる・ゼラチン質",
+    "hairy": "毛がある",
+    "blue_stain": "傷つくと青くなる",
+}
+
+
+def feature_ui_label(facet):
+    """Return a concise display-only label while preserving official facet data."""
+    return FEATURE_UI_LABELS.get(facet["facet_id"], facet["label"])
+
+
 def load_feature_facets(path):
     with open(path, encoding="utf-8") as stream:
         return json.load(stream)
@@ -527,7 +556,7 @@ def build_feature_search_model(portal_data, feature_data, safe_filename=lambda v
             continue
         result = {"gallery_name": name, "cover_src": subject.get("cover_src", ""),
                   "href": f"{safe_filename(name)}.html", "facet_ids": list(facet_ids),
-                  "facet_labels": [facets[value]["label"] for value in facet_ids]}
+                  "facet_labels": [feature_ui_label(facets[value]) for value in facet_ids]}
         if feature_data.get("version") == 2:
             result["assignments"] = [{"facet_id": item["facet_id"],
                                       "evidence_text": item["evidence_text"],
@@ -535,7 +564,8 @@ def build_feature_search_model(portal_data, feature_data, safe_filename=lambda v
                                      for item in subject_assignments]
         results.append(result)
     counts = {facet_id: sum(facet_id in row["facet_ids"] for row in results) for facet_id in facets}
-    groups = [{**group, "facets": [{**facet, "count": counts[facet["facet_id"]]}
+    groups = [{**group, "facets": [{**facet, "ui_label": feature_ui_label(facet),
+                                     "count": counts[facet["facet_id"]]}
                for facet in feature_data["facets"] if facet["group_id"] == group["group_id"]]}
               for group in feature_data["groups"]]
     return {"groups": groups, "results": results, "coverage_count": len(results)}
@@ -546,7 +576,7 @@ def render_feature_page(model, safe_filename=None):
     for group in model["groups"]:
         buttons = "".join(
             f'<button type="button" class="feature-filter" data-facet="{html.escape(f["facet_id"], quote=True)}" '
-            f'aria-pressed="false">{html.escape(f["label"])} <span>{f["count"]}</span></button>'
+            f'aria-pressed="false">{html.escape(f.get("ui_label", f["label"]))} <span>{f["count"]}</span></button>'
             for f in group["facets"])
         groups.append(
             f'<fieldset><legend>{html.escape(group["label"])}</legend>'
@@ -556,14 +586,9 @@ def render_feature_page(model, safe_filename=None):
     for row in model["results"]:
         name = html.escape(row["gallery_name"])
         cover = html.escape(str(row["cover_src"]), quote=True)
-        details = {item["facet_id"]: item for item in row.get("assignments", [])}
         chips = "".join(
             f'<span class="feature-chip" data-facet-chip="{html.escape(facet_id, quote=True)}">'
-            f'{html.escape(label)}'
-            + (f'<small class="feature-qualifier">{html.escape(details[facet_id]["evidence_text"])}'
-               + (f'（{html.escape("、".join(details[facet_id]["qualifiers"]))}）'
-                  if details[facet_id]["qualifiers"] else '') + '</small>'
-               if facet_id in details else '') + '</span>'
+            f'{html.escape(label)}</span>'
             for facet_id, label in zip(row["facet_ids"], row["facet_labels"])
         )
         cards.append(
