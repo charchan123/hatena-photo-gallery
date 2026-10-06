@@ -13,7 +13,10 @@ import webbrowser
 from research_ui import build_research_cases
 from research_identifications import split_research_cases
 from .core import ChangeSet, DATA, ROOT, notice_window, read_json
-from .git_workflow import GitWorkflowError, create_pull_request, repository_status, run
+from .git_workflow import (GitWorkflowError, create_pull_request,
+                           create_knowledge_pull_request, repository_status, run)
+from .knowledge import (preview_promotion, reset_review_state,
+                        scan_knowledge_batches, set_candidate_decision)
 
 BIND_ADDRESS = "127.0.0.1"
 DEFAULT_PORT = 8765
@@ -77,6 +80,7 @@ class Handler(BaseHTTPRequestHandler):
             observations = draft.portal.get("observations", [])
             try: repo = repository_status()
             except GitWorkflowError: repo = {"branch": "取得できませんでした", "dirty": None, "gh_authenticated": False}
+            knowledge = scan_knowledge_batches(origin_main_sha=repo.get("origin_main_sha"))
             state = {"csrf": self.server.csrf_token, "portal_source": self.server.portal_source,
                      "best_shots": draft.best_shots, "notices": [{**e, **notice_window(e)} for e in draft.notices["events"]],
                      "cases": open_cases, "identified": identified, "observations": observations,
@@ -84,12 +88,15 @@ class Handler(BaseHTTPRequestHandler):
                      "production_mode": draft.portal.get("production_mode", "取得できませんでした"),
                      "portal_observation_count": len(observations),
                      "feature_facets": read_json(DATA / "feature-facets.json"),
+                     "knowledge": knowledge,
                      "counts": {"best_shots": len(draft.best_shots["entries"]),
                                 "annual_years": len(draft.best_shots["annual_best"]), "research_open": len(open_cases),
                                 "research_identified": len(identified),
                                 "active_notices": sum(notice_window(e)["active"] for e in draft.notices["events"]),
                                 "master": len(draft.master.get("entries", [])),
-                                "sources": len(read_json(DATA / "sources.json").get("sources", []))}}
+                                "sources": len(read_json(DATA / "sources.json").get("sources", [])),
+                                "knowledge_batches": len(knowledge),
+                                "knowledge_pending": sum(row.get("pending_count", 0) for row in knowledge)}}
             return self._json(state)
         if path == "/": path = "/index.html"
         relative = unquote(path).lstrip("/")
@@ -118,6 +125,10 @@ class Handler(BaseHTTPRequestHandler):
             }
             if self.path == "/api/validate": result = draft.validate()
             elif self.path == "/api/pr": result = create_pull_request(draft.files(), draft.validate(), body.get("operation", "changes"))
+            elif self.path == "/api/knowledge/decision": result = set_candidate_decision(body["batch_id"], body["candidate_id"], body["human_decision"], body.get("note", ""))
+            elif self.path == "/api/knowledge/reset": result = reset_review_state(body["batch_id"])
+            elif self.path == "/api/knowledge/preview": result = preview_promotion(body["batch_id"], origin_main_sha=repository_status().get("origin_main_sha"))
+            elif self.path == "/api/knowledge/pr": result = create_knowledge_pull_request(body["batch_id"])
             elif self.path in actions: result = actions[self.path]() or {"ok": True}
             else: return self._json({"error": "not found"}, 404)
             return self._json(result)

@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from feature_ui import (FeatureFacetError, TRUSTED_FEATURE_V2_MANIFEST_SHA256,
+from feature_ui import (FEATURE_UI_LABELS, FeatureFacetError, TRUSTED_FEATURE_V2_MANIFEST_SHA256,
                         build_feature_search_model, generate_feature_page,
                         render_feature_page, validate_feature_facets)
 
@@ -65,7 +65,7 @@ def test_main_feature_cutover_uses_production_gate(package, monkeypatch, tmp_pat
     monkeypatch.setattr(main, "ASSETS_DIR", str(ROOT / "assets"))
     assert main.generate_feature_page_if_fresh({"build_ok": True}) is True
     page = (tmp_path / "features.html").read_text()
-    assert "feature-qualifier" in page
+    assert "feature-qualifier" not in page
     assert "判定する機能ではありません" in page
     assert TRUSTED_FEATURE_V2_MANIFEST_SHA256 not in page
 
@@ -95,6 +95,28 @@ def test_exact_approved_package_passes_review_and_production(package):
     assert len(package["ledger"]["held_decisions"]) == 10
     assert len(package["ledger"]["evidence_records"]) == 377
     assert len(package["feature"]["coverage"]["excluded_mushrooms"]) == 12
+
+
+def test_all_beginner_labels_drive_filters_and_card_chips(package):
+    first_by_facet = {}
+    for entry in package["feature"]["entries"]:
+        for assignment in entry["assignments"]:
+            first_by_facet.setdefault(assignment["facet_id"], entry["mushroom_id"])
+    portal = {"version": 1, "subjects": [
+        {"gallery_name": f"表示-{facet_id}", "cover_src": "x.jpg",
+         "mushroom_master_id": mushroom_id}
+        for facet_id, mushroom_id in first_by_facet.items()
+    ]}
+    official = copy.deepcopy(package["feature"]["facets"])
+    model = build_feature_search_model(portal, package["feature"], lambda _: "detail")
+    assert {facet["facet_id"]: facet["ui_label"] for group in model["groups"]
+            for facet in group["facets"]} == FEATURE_UI_LABELS
+    page = render_feature_page(model)
+    for facet_id, label in FEATURE_UI_LABELS.items():
+        assert f'data-facet="{facet_id}"' in page
+        assert f'data-facet-chip="{facet_id}"' in page
+        assert label in page
+    assert package["feature"]["facets"] == official
 
 
 def test_v1_contract_stays_strict_and_bool_version_is_rejected():
@@ -196,7 +218,7 @@ def test_v2_generation_requires_production_validation(package, tmp_path):
                               evidence_ledger=package["ledger"], source_snapshots=package["snapshots"])
 
 
-def test_qualifiers_survive_model_and_render(package):
+def test_qualifiers_survive_model_but_are_hidden_from_cards(package):
     qualified = [(entry["mushroom_id"], assignment) for entry in package["feature"]["entries"]
                  for assignment in entry["assignments"] if assignment.get("qualifiers")]
     mushroom_id, assignment = qualified[0]
@@ -208,8 +230,9 @@ def test_qualifiers_survive_model_and_render(package):
     assert detail["evidence_text"] == assignment["evidence_text"]
     assert detail["qualifiers"] == assignment["qualifiers"]
     page = render_feature_page(model)
-    assert assignment["evidence_text"] in page
-    assert all(value in page for value in assignment["qualifiers"])
+    assert assignment["evidence_text"] not in page
+    assert all(value not in page for value in assignment["qualifiers"])
+    assert "feature-qualifier" not in page
     assert "同じ個体で同時に現れることを保証" in page
     assert "特徴だけでキノコの種類を判定" in page
 
@@ -360,7 +383,7 @@ def test_recorded_held_assignment_set_must_match_ledger(package):
     ("dokuyamadori", "blue_stain", "変色する部位・損傷条件"),
     ("yakoutake", "gelatinous", "傘の被覆層のみ"),
 ])
-def test_representative_qualifier_categories_survive_model_and_render(
+def test_representative_qualifier_categories_survive_model_but_not_render(
         package, mushroom, facet, expected):
     assignment = _assignment(package, mushroom, facet)
     portal = {"version": 1, "subjects": [{
@@ -374,9 +397,10 @@ def test_representative_qualifier_categories_survive_model_and_render(
     assert detail["evidence_text"] == assignment["evidence_text"]
     assert detail["qualifiers"] == assignment["qualifiers"]
     page = render_feature_page(model)
-    assert assignment["evidence_text"] in page
-    assert expected in page
-    assert all(value in page for value in assignment["qualifiers"])
+    assert assignment["evidence_text"] not in page
+    assert expected not in page
+    assert all(value not in page for value in assignment["qualifiers"])
+    assert "feature-qualifier" not in page
 
 
 def test_exact_substring_flag_must_match_quote(package):
@@ -454,4 +478,5 @@ def test_ring_mobility_evidence_text_survives_model_and_render(package):
                   if row["facet_id"] == "ring")
     assert detail["evidence_text"] == assignment["evidence_text"]
     page = render_feature_page(model)
-    assert "可動性のつば" in page
+    assert "可動性のつば" not in page
+    assert "つばがある" in page
