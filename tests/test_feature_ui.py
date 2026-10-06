@@ -4,7 +4,8 @@ from pathlib import Path
 
 import pytest
 
-from feature_ui import (FeatureFacetError, build_feature_search_model,
+from feature_ui import (FEATURE_UI_LABELS, FeatureFacetError, build_feature_search_model,
+                        feature_ui_label,
                         load_feature_facets, render_feature_page,
                         validate_feature_facets)
 
@@ -57,8 +58,23 @@ def test_model_uses_only_explicit_master_link(data):
     before = copy.deepcopy((portal, data))
     model = build_feature_search_model(portal, data, lambda value: "safe-" + value)
     assert model["coverage_count"] == 1
-    assert model["results"][0] == {"gallery_name":"表示名？", "cover_src":"b.jpg", "href":"safe-表示名？.html", "facet_ids":["rod_cylindrical"], "facet_labels":["棒状・円柱状の形"]}
+    assert model["results"][0] == {"gallery_name":"表示名？", "cover_src":"b.jpg", "href":"safe-表示名？.html", "facet_ids":["rod_cylindrical"], "facet_labels":["棒状・円柱状"]}
     assert (portal, data) == before
+
+def test_beginner_facing_labels_are_complete_and_exact():
+    assert FEATURE_UI_LABELS == {
+        "cap_sticky":"傘が粘る", "cap_scales_warts":"傘にいぼ・鱗片",
+        "cap_fibrous_felt":"傘が繊維っぽい", "cap_striate_grooved":"傘のふちにスジ",
+        "cap_depressed":"傘の中央がくぼむ", "head_reticulate":"頭に網目模様",
+        "rod_cylindrical":"棒状・円柱状", "granular_powdery":"表面が粒・粉っぽい",
+        "gills":"ヒダ", "pores":"スポンジ状（管孔）", "ring":"つばがある",
+        "volva":"根元につぼがある", "stem_hollow":"柄が空洞",
+        "stem_solid":"柄が詰まっている", "stem_scales_pattern":"柄に模様・ささくれ",
+        "stem_sticky":"柄が粘る", "stem_reticulate":"柄に網目模様",
+        "gelatinous":"ぷるぷる・ゼラチン質", "hairy":"毛がある",
+        "blue_stain":"傷つくと青くなる",
+    }
+    assert feature_ui_label({"facet_id":"future_facet","label":"正式ラベル"}) == "正式ラベル"
 
 def test_render_has_accessible_and_filter_contract(data):
     portal = {"version":1,"subjects":[{"gallery_name":"表示名", "cover_src":"x.jpg", "mushroom_master_id":"kaentake"}]}
@@ -77,7 +93,8 @@ def test_render_has_accessible_and_filter_contract(data):
     assert 'class="feature-chips"' in page
     assert 'class="feature-chip"' in page
     assert 'data-facet-chip="rod_cylindrical"' in page
-    assert "棒状・円柱状の形" in page
+    assert "棒状・円柱状" in page
+    assert "棒状・円柱状の形" not in page
     assert 'class="feature-index"' in page
     assert 'class="feature-hero"' in page
     assert "FEATURE FINDER" in page
