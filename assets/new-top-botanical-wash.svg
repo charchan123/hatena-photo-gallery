@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="132" viewBox="0 0 240 132">
+  <defs>
+    <filter id="paper" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <filter id="soft"><feGaussianBlur stdDeviation=".4"/></filter>
+  </defs>
+  <!-- A restrained paper grain and botanical silhouette; no scenic artwork. -->
+  <rect width="240" height="132" filter="url(#paper)" opacity=".07"/>
+  <g fill="#f6eed4" opacity=".10" filter="url(#soft)">
+    <path d="M210 139C203 107 202 65 231-7" fill="none" stroke="#f6eed4" stroke-width="1.5"/>
+    <path d="M216 39C194 35 180 21 186 7C205 9 219 21 216 39ZM219 31C219 9 232 1 245 4C242 19 233 29 219 31ZM208 66C187 62 175 48 181 34C200 37 211 51 208 66ZM211 58C214 36 228 26 242 30C238 47 227 57 211 58ZM206 95C183 89 170 75 174 61C194 64 208 78 206 95ZM206 85C214 65 229 59 242 66C235 82 222 87 206 85ZM208 122C184 120 169 108 171 94C192 94 207 106 208 122ZM207 113C218 94 232 91 246 100C235 114 222 116 207 113Z"/>
+    <path d="M149 128L147 113L132 108L142 101L139 87L152 91L161 78L165 94L180 95L170 107L175 119L160 117L153 130Z"/>
+    <path d="M99 8L104 18L98 29L111 28L117 38L120 25L132 20L119 16L118 3L110 12Z" opacity=".65"/>
+  </g>
+</svg>

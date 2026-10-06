@@ -359,6 +359,7 @@ def test_portal_artwork_assets_are_deployed_verbatim(monkeypatch, tmp_path):
         "mushroom-guide-final.webp": (2048, 768),
         "research-lab-final.webp": (2048, 768),
         "best-shots-final.webp": (2048, 768),
+        "new-top-best-shots-camera-mushrooms.webp": (1916, 821),
         "guide-action-book.webp": (1698, 926),
         "guide-action-season.webp": (1698, 926),
         "guide-action-features.webp": (1698, 926),
@@ -377,14 +378,14 @@ def test_portal_artwork_assets_are_deployed_verbatim(monkeypatch, tmp_path):
 
     css = (assets / "portal.css").read_text()
     assert 'background-image:url("mushroom-guide-final.webp")' in css
-    assert 'background-image:url("research-lab-final.webp")' in css
+    assert 'background-image:url("new-top-best-shots-camera-mushrooms.webp")' in css
     assert ".portal-records-visual,.portal-section-visual { height:190px; }" in css
 
 def test_reference_portal_card_proportions_and_lower_artwork_assignment():
     css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
 
     assert '.portal-card--research .portal-card__visual { background-image:url("research-lab-cabin.webp"); background-position:78% center;' in css
-    assert '.portal-card--best-shots .portal-card__visual { background-image:url("research-lab-final.webp")' in css
+    assert '.portal-index .portal-card--best-shots .portal-card__visual { background-image:url("new-top-best-shots-camera-mushrooms.webp"); background-position:50% 58%;' in css
 
     desktop = css[css.index("@media (min-width:900px)"):css.index("@media (max-width:680px)")]
     assert ".portal-records-visual,.portal-section-visual { height:190px; }" in desktop
@@ -436,19 +437,21 @@ def test_guide_rows_use_record_style_separators_and_plain_notes(monkeypatch, tmp
     assert "background:#eef5ea" not in css
     assert ".portal-guide-help" not in css
 
-def test_guide_action_cards_use_dedicated_watercolor_artwork():
+def test_guide_action_cards_use_scoped_botanical_washes():
     css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
 
-    assert '.portal-guide-row .portal-card--guide .portal-card__visual' in css
-    assert 'url("guide-action-book.webp")' in css
+    assert '.portal-index .portal-guide-row .portal-card--guide .portal-card__visual' in css
+    assert 'url("new-top-botanical-wash.svg")' in css
+    assert 'linear-gradient(125deg,var(--wash-mid),var(--wash-deep))' in css
+    assert 'url("guide-action-book.webp")' not in css
     assert '.portal-guide-row .portal-card--season .portal-card__visual' in css
-    assert 'url("guide-action-season.webp")' in css
+    assert 'url("guide-action-season.webp")' not in css
     assert '.portal-guide-row .portal-card--features .portal-card__visual' in css
-    assert 'url("guide-action-features.webp")' in css
+    assert 'url("guide-action-features.webp")' not in css
     assert "grid-template-columns:176px minmax(0,1fr)" in css
     assert ".portal-guide-row .portal-card { width:176px; height:96px; min-height:96px; border-radius:10px; }" in css
 
-def test_dedicated_guide_and_cabin_assets_are_referenced(monkeypatch, tmp_path):
+def test_legacy_guide_and_new_portal_assets_are_copied(monkeypatch, tmp_path):
     monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
     main.copy_shared_assets()
 
@@ -458,6 +461,8 @@ def test_dedicated_guide_and_cabin_assets_are_referenced(monkeypatch, tmp_path):
         "guide-action-season.webp",
         "guide-action-features.webp",
         "research-lab-cabin.webp",
+        "new-top-botanical-wash.svg",
+        "new-top-best-shots-camera-mushrooms.webp",
     )
     for filename in expected:
         source = assets / filename
@@ -467,9 +472,9 @@ def test_dedicated_guide_and_cabin_assets_are_referenced(monkeypatch, tmp_path):
         assert deployed.read_bytes() == source.read_bytes()
 
     css = (assets / "portal.css").read_text()
-    assert 'url("guide-action-book.webp")' in css
-    assert 'url("guide-action-season.webp")' in css
-    assert 'url("guide-action-features.webp")' in css
+    assert 'url("guide-action-book.webp")' not in css
+    assert 'url("guide-action-season.webp")' not in css
+    assert 'url("guide-action-features.webp")' not in css
     assert 'url("research-lab-cabin.webp")' in css
     assert 'background-position:78% center' in css
 
