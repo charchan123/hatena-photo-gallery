@@ -210,6 +210,8 @@ def copy_shared_assets():
         "mushroom-guide-final.webp",
         "research-lab-final.webp",
         "best-shots-final.webp",
+        "new-top-best-shots-camera-mushrooms.webp",
+        "new-top-botanical-wash.svg",
         "guide-action-book.webp",
         "guide-action-season.webp",
         "guide-action-features.webp",
