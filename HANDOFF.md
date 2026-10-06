@@ -1280,3 +1280,20 @@ checking child packages, so moving that fixed boundary through a symlink is reje
 Snapshot completeness is evaluated against all snapshots available before each overlay:
 baseline and prior-overlay snapshots may be reused without duplication, while a newly
 needed snapshot must be supplied exactly once by the current overlay.
+
+## Admin Console v2 Knowledge Expansion (2026-10-05)
+
+- Starting contract: commit `26f763efdf662a91766fd06edc2d0200ce78d31f`, tree `88a41c087d7daeedfb74586ee015b8fed04ad712` (clean).
+- Input: safe ASCII `admin/inbox/<batch-id>/` with exact manifest, candidate delta, and full snapshot JSONL. Paths and artifacts reject traversal/symlinks; hashes, bytes, counts, timestamp, base SHA, evidence/snapshot provenance, collisions, facets, and IA-029 are validated through the existing Phase 4C.9 contract.
+- Human state: schema v1 under ignored `admin/local-state/knowledge/`; atomic writes, pending defaults, no automatic approval, and manifest-hash changes require explicit reset.
+- Promotion audit: approved-only delta plus approved-required new snapshots, complete decision manifest (approved/held), validator report, promotion manifest, and byte-identical intake copies under `audit/knowledge-batches/<batch-id>/`.
+- Production reconstruction: a temporary worktree appends a sorted registry row and derives all three production JSON files only from `reconstruct_feature_production_state`, then runs `validate_feature_production_state`, pytest, compileall, diff checks, and a strict path allow-list.
+- Security: localhost/Origin/CSRF protections remain; APIs accept IDs rather than paths; browser receives quotes rather than snapshot text; external URLs permit only HTTP(S); local state is never stored in browser/public output.
+- Tests: baseline was 559 passing tests; Admin v2 adds real intake-to-reconstruction integration and negative validation/security coverage. Remaining operational work is to place a genuine externally produced batch in the ignored inbox and complete human review; no real batch was promoted here.
+
+### Final hardening (2026-10-06)
+
+- Intake schemas and referenced source, mushroom, and snapshot sets now fail closed.
+- Snapshot reuse is based on validated baseline/prior-overlay snapshot IDs rather than source IDs, with an explicit contract root for fresh-worktree validation.
+- Knowledge PR staging unions tracked and untracked paths, allow-lists and stages that exact set, checks the cached diff, and requires the running checkout to equal freshly fetched `origin/main`.
+- Candidate state and UI expose every evidence record plus canonical mushroom and facet labels, but never full snapshot text.

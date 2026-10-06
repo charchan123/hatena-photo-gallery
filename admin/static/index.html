@@ -11,7 +11,7 @@
 <section id="best" class="page" hidden><div class="toolbar"><button class="primary" id="add-best">＋ 新規追加</button></div><div id="best-list" class="list"></div></section>
 <section id="research" class="page" hidden><h3>調査中</h3><div id="case-list" class="list"></div><h3>正体が判明したキノコ</h3><div id="identified-list" class="list"></div></section>
 <section id="notices" class="page" hidden><div class="toolbar"><button class="primary" id="add-notice">＋ 告知を追加</button></div><div id="notice-list" class="list"></div></section>
-<section id="knowledge" class="page" hidden><div class="empty"><h3>情報拡充</h3><p>Workで収集した調査batchを安全に取り込む機能を次フェーズで追加予定です。</p><p>将来はbatch一覧、validator結果、approved / held、source snapshot、promote、PR作成をここに追加します。</p><button disabled>準備中</button></div></section>
+<section id="knowledge" class="page" hidden><div class="knowledge-grid"><div><h3>Local research batches</h3><div id="knowledge-batches" class="list"></div></div><div><h3>候補レビュー</h3><div id="knowledge-candidates" class="list"></div><div class="actions"><button id="knowledge-preview">Promotion preview</button><button class="primary" id="knowledge-pr" disabled>知識更新PRを作成</button></div><pre id="knowledge-preview-result"></pre></div></div></section>
 <section id="status" class="page" hidden><div id="site-status" class="panel"></div></section>
 <section id="changes" class="page" hidden><div id="preview" class="list"></div><div class="actions"><button id="validate">検証する</button><button class="primary" id="create-pr" disabled>PRを作成</button></div></section>
 </main>
