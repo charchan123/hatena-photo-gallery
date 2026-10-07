@@ -37,12 +37,12 @@
 .portal-guide-note small { color:#526056; font-size:.88rem; line-height:1.45; }
 .portal-card { position:relative; display:grid; min-height:130px; overflow:hidden; border-radius:16px; color:#fff; text-decoration:none; isolation:isolate; transition:transform .2s ease,box-shadow .2s ease; }
 .portal-guide-row .portal-card { background:linear-gradient(145deg,#426745,#173c2b 72%,#102f22); }
-/* Quiet botanical washes belong only to the new-top navigation cards. */
-.portal-index .portal-guide-row .portal-card--guide .portal-card__visual { --wash-light:#899365; --wash-mid:#66754b; --wash-deep:#465638; }
-.portal-index .portal-guide-row .portal-card--season .portal-card__visual { --wash-light:#c39455; --wash-mid:#b07c42; --wash-deep:#8a5733; }
-.portal-index .portal-guide-row .portal-card--features .portal-card__visual { --wash-light:#71968d; --wash-mid:#49796f; --wash-deep:#345c54; }
-.portal-index .portal-guide-row .portal-card__visual { background-image:url("new-top-botanical-wash.svg"),radial-gradient(ellipse at 90% 5%,var(--wash-light),transparent 72%),linear-gradient(125deg,var(--wash-mid),var(--wash-deep)); background-position:right center,center,center; background-size:auto 100%,cover,cover; background-repeat:no-repeat; }
-.portal-guide-row .portal-card__visual { filter:brightness(1.12) saturate(1.03); }
+/* Approved watercolor images are exclusive to new-top's three guide cards. */
+.portal-index .portal-guide-row .portal-card--guide .portal-card__visual { background-image:url("new-top-guide-watercolor.webp"); }
+.portal-index .portal-guide-row .portal-card--season .portal-card__visual { background-image:url("new-top-season-watercolor.webp"); }
+.portal-index .portal-guide-row .portal-card--features .portal-card__visual { background-image:url("new-top-features-watercolor.webp"); }
+.portal-index .portal-guide-row .portal-card__visual { background-position:center; background-size:cover; background-repeat:no-repeat; filter:none; }
+.portal-index .portal-guide-row .portal-card__content { background:linear-gradient(90deg,rgba(0,0,0,.38),rgba(0,0,0,.20)); }
 .portal-card__visual,.portal-card__content { grid-area:1/1; }
 .portal-card__visual { background:radial-gradient(circle at 78% 25%,rgba(255,228,151,.18),transparent 28%),linear-gradient(140deg,#567358,#173c2b); background-position:center; background-size:cover; }
 .portal-card--research .portal-card__visual { background-image:url("research-lab-cabin.webp"); background-position:78% center; background-size:cover; background-repeat:no-repeat; }
