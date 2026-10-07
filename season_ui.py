@@ -5,6 +5,8 @@ import html
 import json
 import os
 
+from detail_ui import build_detail_views, poison_spore_attribute
+
 
 SEASONS = OrderedDict((
     ("spring", {"label": "春", "months": (3, 4, 5)}),
@@ -32,7 +34,7 @@ def group_subjects_by_season(portal_data):
     return grouped
 
 
-def _subject_card(subject, safe_filename):
+def _subject_card(subject, safe_filename, view=None):
     name = html.escape(str(subject.get("gallery_name", "")))
     cover = html.escape(str(subject.get("cover_src", "")), quote=True)
     href = html.escape(f"{safe_filename(subject.get('gallery_name', ''))}.html", quote=True)
@@ -40,7 +42,7 @@ def _subject_card(subject, safe_filename):
     months = "・".join(f"{month}月" for month in counts)
     photo_count = sum(counts.values())
     return f"""
-      <a class="mushroom-card" href="{href}" data-name="{name}">
+      <a class="mushroom-card" href="{href}" data-name="{name}"{poison_spore_attribute(view)}>
         <div class="mushroom-card-thumb">
           <span class="card-fav">☆</span>
           <img src="{cover}?width=400" alt="{name}" loading="lazy">
@@ -58,6 +60,7 @@ def render_season_page(portal_data, safe_filename):
     if portal_data.get("version") != 1:
         raise ValueError("season UI requires portal-data schema version 1")
     grouped = group_subjects_by_season(portal_data)
+    detail_views = build_detail_views(portal_data)
     buttons = []
     sections = []
     for position, (key, season) in enumerate(SEASONS.items()):
@@ -72,7 +75,7 @@ def render_season_page(portal_data, safe_filename):
             f'aria-selected="{selected}" data-season="{key}">'
             f'<strong>{season["label"]}</strong><span>{"・".join(map(str, season["months"]))}月</span></button>'
         )
-        cards = "".join(_subject_card(row, safe_filename) for row in subjects)
+        cards = "".join(_subject_card(row, safe_filename, detail_views.get(row.get("gallery_name"))) for row in subjects)
         sections.append(f"""
     <section class="season-results" id="season-{key}" role="tabpanel" aria-labelledby="tab-{key}" data-season-panel="{key}">
       <header class="season-results__header">
@@ -90,6 +93,7 @@ def render_season_page(portal_data, safe_filename):
 <link rel="stylesheet" href="assets/gallery.css">
 <link rel="stylesheet" href="assets/season.css">
 <script src="assets/gallery.js" defer></script>
+<script src="assets/poison-spores.js" defer></script>
 <script src="assets/season.js" defer></script>
 </head>
 <body class="season-index">
@@ -131,7 +135,7 @@ def generate_season_page(portal_data, output_dir, assets_dir, safe_filename):
     os.makedirs(os.path.join(output_dir, "assets"), exist_ok=True)
     with open(os.path.join(output_dir, "season.html"), "w", encoding="utf-8") as stream:
         stream.write(render_season_page(portal_data, safe_filename))
-    for filename in ("season.css", "season.js"):
+    for filename in ("season.css", "season.js", "poison-spores.js"):
         source = os.path.join(assets_dir, filename)
         target = os.path.join(output_dir, "assets", filename)
         with open(source, "rb") as source_stream, open(target, "wb") as target_stream:
