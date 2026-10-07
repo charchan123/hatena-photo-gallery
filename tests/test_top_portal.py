@@ -1,4 +1,6 @@
+import re
 from pathlib import Path
+from bs4 import BeautifulSoup
 from PIL import Image
 import main
 
@@ -356,6 +358,9 @@ def test_portal_artwork_assets_are_deployed_verbatim(monkeypatch, tmp_path):
 
     assets = Path(main.ASSETS_DIR)
     expected = {
+        "new-top-guide-watercolor.webp": (1983, 793),
+        "new-top-season-watercolor.webp": (1983, 793),
+        "new-top-features-watercolor.webp": (1983, 793),
         "mushroom-guide-final.webp": (2048, 768),
         "research-lab-final.webp": (2048, 768),
         "best-shots-final.webp": (2048, 768),
@@ -437,19 +442,53 @@ def test_guide_rows_use_record_style_separators_and_plain_notes(monkeypatch, tmp
     assert "background:#eef5ea" not in css
     assert ".portal-guide-help" not in css
 
-def test_guide_action_cards_use_scoped_botanical_washes():
-    css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
+def test_guide_action_cards_use_scoped_approved_watercolors():
+    assets = Path(main.ASSETS_DIR)
+    css = (assets / "portal.css").read_text()
+    rules = re.findall(r"([^{}]+)\{([^{}]*)\}", css)
+    for modifier, filename in (
+        ("guide", "new-top-guide-watercolor.webp"),
+        ("season", "new-top-season-watercolor.webp"),
+        ("features", "new-top-features-watercolor.webp"),
+    ):
+        matching = [(selector, body) for selector, body in rules if filename in body]
+        assert len(matching) == 1
+        selector, body = matching[0]
+        # Strip the preceding CSS comment before checking the complete scope.
+        selector = re.sub(r"/\*.*?\*/", "", selector, flags=re.S).strip()
+        assert selector == f".portal-index .portal-guide-row .portal-card--{modifier} .portal-card__visual"
+        assert body.strip() == f'background-image:url("{filename}");'
 
-    assert '.portal-index .portal-guide-row .portal-card--guide .portal-card__visual' in css
-    assert 'url("new-top-botanical-wash.svg")' in css
-    assert 'linear-gradient(125deg,var(--wash-mid),var(--wash-deep))' in css
-    assert 'url("guide-action-book.webp")' not in css
-    assert '.portal-guide-row .portal-card--season .portal-card__visual' in css
-    assert 'url("guide-action-season.webp")' not in css
-    assert '.portal-guide-row .portal-card--features .portal-card__visual' in css
-    assert 'url("guide-action-features.webp")' not in css
-    assert "grid-template-columns:176px minmax(0,1fr)" in css
-    assert ".portal-guide-row .portal-card { width:176px; height:96px; min-height:96px; border-radius:10px; }" in css
+    assert '.portal-index .portal-guide-row .portal-card__visual { background-position:center; background-size:cover; background-repeat:no-repeat; filter:none; }' in css
+    for stylesheet, artwork in (
+        ("guide.css", "guide-action-book.webp"),
+        ("season.css", "guide-action-season.webp"),
+        ("features.css", "guide-action-features.webp"),
+    ):
+        destination_css = (assets / stylesheet).read_text()
+        assert f'url("{artwork}")' in destination_css
+        assert 'new-top-' not in destination_css
+        assert f'url("{artwork}")' not in css
+
+
+def test_approved_backgrounds_preserve_guide_text_and_links(monkeypatch, tmp_path):
+    page = render(monkeypatch, tmp_path, feature_search_available=True)
+    soup = BeautifulSoup(page, "html.parser")
+    expected = (
+        ("guide", "index.html", "図鑑を見る", "名前、五十音順から探す", "名前がわかる場合は", "図鑑から名前や五十音順で探せます。"),
+        ("season", "season.html", "季節から探す", "撮影された季節からたどる", "撮影した時期がわかる場合は", "季節から候補をたどれます。"),
+        ("features", "features.html", "特徴から探す", "見た目の特徴から絞り込む", "名前がわからない場合は", "傘やヒダなど、見た目の特徴から絞り込めます。"),
+    )
+    rows = soup.select(".portal-guide-row")
+    assert len(rows) == len(expected)
+    for row, (modifier, href, title, description, note_title, note) in zip(rows, expected):
+        card = row.select_one(f".portal-card--{modifier}")
+        assert card["href"] == href
+        assert card.select_one("strong span").get_text() == title
+        assert card.select_one("small").get_text() == description
+        assert row.select_one(".portal-guide-note strong").get_text() == note_title
+        assert row.select_one(".portal-guide-note small").get_text() == note
+
 
 def test_legacy_guide_and_new_portal_assets_are_copied(monkeypatch, tmp_path):
     monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
@@ -461,7 +500,9 @@ def test_legacy_guide_and_new_portal_assets_are_copied(monkeypatch, tmp_path):
         "guide-action-season.webp",
         "guide-action-features.webp",
         "research-lab-cabin.webp",
-        "new-top-botanical-wash.svg",
+        "new-top-guide-watercolor.webp",
+        "new-top-season-watercolor.webp",
+        "new-top-features-watercolor.webp",
         "new-top-best-shots-camera-mushrooms.webp",
     )
     for filename in expected:
@@ -483,7 +524,7 @@ def test_portal_artwork_brightness_preserves_text_layers():
 
     assert "rgba(10,25,16,.70)" in css
     assert "rgba(10,25,16,.18) 55%" in css
-    assert ".portal-guide-row .portal-card__visual { filter:brightness(1.12) saturate(1.03); }" in css
+    assert ".portal-index .portal-guide-row .portal-card__content { background:linear-gradient(90deg,rgba(0,0,0,.38),rgba(0,0,0,.20)); }" in css
     assert ".portal-independent-links .portal-card__visual { filter:brightness(1.10) saturate(1.02); }" in css
     assert ".portal-card__content { z-index:1;" in css
     assert "background:linear-gradient(to top,rgba(10,25,16,.82),rgba(10,25,16,.22) 72%,transparent);" in css
