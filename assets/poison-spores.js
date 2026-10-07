@@ -4,17 +4,18 @@
   const CARD = '.mushroom-card[data-food-safety="poisonous_confirmed"]';
   const PAGES = '.guide-index, .aiuo-index, .season-index, .feature-index';
   const PRESETS = [
-    // x/y are fractions of the image; dx/sway/rise are pixels.
-    { x:.44, y:.40, dx:-18, sway:12, rise:86, size:4, opacity:.58, duration:2200, delay:0, blur:0, color:"#B8E34A" },
-    { x:.53, y:.46, dx:21, sway:-11, rise:74, size:5, opacity:.46, duration:2100, delay:55, blur:.5, color:"#9A6BC9" },
-    { x:.48, y:.56, dx:-14, sway:10, rise:63, size:3, opacity:.60, duration:1800, delay:110, blur:0, color:"#B8E34A" },
-    { x:.57, y:.40, dx:17, sway:-13, rise:89, size:6, opacity:.40, duration:2400, delay:75, blur:1, color:"#9A6BC9" },
-    { x:.41, y:.62, dx:-23, sway:14, rise:54, size:4, opacity:.50, duration:2000, delay:170, blur:.3, color:"#B8E34A" },
-    { x:.60, y:.51, dx:24, sway:-10, rise:70, size:5, opacity:.55, duration:2300, delay:225, blur:0, color:"#B8E34A" },
-    { x:.46, y:.68, dx:-20, sway:12, rise:46, size:7, opacity:.27, duration:1900, delay:260, blur:1.5, color:"#9A6BC9" },
-    { x:.55, y:.58, dx:12, sway:-14, rise:60, size:3, opacity:.62, duration:2100, delay:145, blur:0, color:"#B8E34A" },
-    { x:.50, y:.43, dx:-16, sway:11, rise:83, size:8, opacity:.28, duration:2500, delay:95, blur:2, color:"#9A6BC9" },
-    { x:.43, y:.53, dx:19, sway:-12, rise:68, size:4, opacity:.48, duration:2200, delay:295, blur:.5, color:"#B8E34A" }
+    // x/y are image fractions. Signed dx/dy spread around the mushroom;
+    // sway bends the slow tail without changing the initial radial direction.
+    { x:.44, y:.40, dx:-36, dy:-52, sway:10, size:5, opacity:.64, duration:2200, delay:0, blur:0, color:"#C7ED55" },
+    { x:.53, y:.46, dx:40, dy:-51, sway:-10, size:6, opacity:.78, duration:2100, delay:55, blur:.3, color:"#C084FC" },
+    { x:.48, y:.56, dx:-48, dy:-40, sway:12, size:4, opacity:.68, duration:1800, delay:110, blur:0, color:"#C7ED55" },
+    { x:.57, y:.40, dx:49, dy:-40, sway:-12, size:7, opacity:.74, duration:2400, delay:75, blur:.5, color:"#C084FC" },
+    { x:.41, y:.62, dx:-63, dy:-8, sway:10, size:5, opacity:.60, duration:2000, delay:170, blur:.3, color:"#C7ED55" },
+    { x:.60, y:.51, dx:64, dy:-12, sway:-10, size:6, opacity:.70, duration:2300, delay:225, blur:0, color:"#C7ED55" },
+    { x:.46, y:.68, dx:-57, dy:-24, sway:12, size:7, opacity:.76, duration:1900, delay:260, blur:.4, color:"#C084FC" },
+    { x:.55, y:.58, dx:57, dy:-19, sway:-12, size:4, opacity:.66, duration:2100, delay:145, blur:0, color:"#C7ED55" },
+    { x:.50, y:.40, dx:5, dy:-78, sway:10, size:8, opacity:.72, duration:2700, delay:95, blur:.6, color:"#C084FC" },
+    { x:.43, y:.53, dx:40, dy:14, sway:-10, size:5, opacity:.62, duration:2500, delay:295, blur:.5, color:"#C7ED55" }
   ];
 
   function burstBounds(rect, width, height) {
@@ -70,10 +71,13 @@
           '--spore-size':p.size + 'px', '--spore-color':p.color,
           '--spore-alpha':p.opacity, '--spore-duration':p.duration + 'ms',
           '--spore-delay':p.delay + 'ms', '--spore-blur':p.blur + 'px',
-          '--spore-kick-x':(p.dx * .55) + 'px',
-          '--spore-drift-x':p.dx + 'px', '--spore-sway-x':(p.dx + p.sway) + 'px',
-          '--spore-mid-y':(-p.rise * .63) + 'px',
-          '--spore-late-y':(-p.rise * .85) + 'px', '--spore-end-y':-p.rise + 'px'
+          // A normalized 16px kick follows each particle's own direction.
+          '--spore-kick-x':(16 * p.dx / Math.hypot(p.dx, p.dy)) + 'px',
+          '--spore-kick-y':(16 * p.dy / Math.hypot(p.dx, p.dy)) + 'px',
+          '--spore-mid-x':(p.dx * .63) + 'px', '--spore-mid-y':(p.dy * .63) + 'px',
+          '--spore-sway-x':(p.dx * .85 + p.sway) + 'px',
+          '--spore-late-y':(p.dy * .85) + 'px',
+          '--spore-end-x':p.dx + 'px', '--spore-end-y':p.dy + 'px'
         };
         for (const [key, value] of Object.entries(vars)) particle.style.setProperty(key, String(value));
         particle.addEventListener('animationend', () => {
