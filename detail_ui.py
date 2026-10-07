@@ -181,6 +181,8 @@ def build_detail_views(portal_data):
         )
         views[name] = {
             "gallery_name": name,
+            # Presentation metadata from the same explicit ID join as food labels.
+            "food_safety_status": (master.get("food_safety") or {}).get("status") if master else None,
             "knowledge": _knowledge(master, source_map) if master is not None else None,
             "knowledge_pending": master is None and (review_pending or taxonomy_pending),
             "articles": _articles_for(name, observations),
@@ -247,3 +249,10 @@ def render_detail_sections(view):
         parts.append('<section class="subject-records"><h2>📔 このキノコが登場した観察記録</h2>'
                      f'<ul class="subject-record-list">{visible}</ul>{more}</section>')
     return "".join(parts)
+
+
+def poison_spore_attribute(view):
+    """Opt in only for the existing, explicitly linked poisonous status."""
+    if (view or {}).get("food_safety_status") == "poisonous_confirmed":
+        return ' data-food-safety="poisonous_confirmed"'
+    return ""

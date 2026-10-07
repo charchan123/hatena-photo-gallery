@@ -7,6 +7,8 @@ import os
 import shutil
 from pathlib import Path
 
+from detail_ui import build_detail_views, poison_spore_attribute
+
 
 TRUSTED_FEATURE_V2_MANIFEST_SHA256 = "2d6f21f31d7e0e33a513c02a5188f563baa4a8e8bbe1f40866501c3780521d05"
 _V2_DIR = Path(__file__).parent / "audit" / "phase4c9" / "v2"
@@ -546,6 +548,7 @@ def build_feature_search_model(portal_data, feature_data, safe_filename=lambda v
     facets = {row["facet_id"]: row for row in feature_data["facets"]}
     assignment_rows = {row["mushroom_id"]: row["assignments"] for row in feature_data["entries"]}
     results = []
+    detail_views = build_detail_views(portal_data)
     for subject in portal_data.get("subjects", []):
         subject_assignments = assignment_rows.get(subject.get("mushroom_master_id"))
         if not subject_assignments:
@@ -557,6 +560,9 @@ def build_feature_search_model(portal_data, feature_data, safe_filename=lambda v
         result = {"gallery_name": name, "cover_src": subject.get("cover_src", ""),
                   "href": f"{safe_filename(name)}.html", "facet_ids": list(facet_ids),
                   "facet_labels": [feature_ui_label(facets[value]) for value in facet_ids]}
+        food_status = (detail_views.get(name) or {}).get("food_safety_status")
+        if food_status is not None:
+            result["food_safety_status"] = food_status
         if feature_data.get("version") == 2:
             result["assignments"] = [{"facet_id": item["facet_id"],
                                       "evidence_text": item["evidence_text"],
@@ -593,7 +599,7 @@ def render_feature_page(model, safe_filename=None):
         )
         cards.append(
             f'<a class="mushroom-card feature-card" href="{html.escape(row["href"], quote=True)}" '
-            f'data-name="{name}" data-facets="{html.escape(" ".join(row["facet_ids"]), quote=True)}">'
+            f'data-name="{name}" data-facets="{html.escape(" ".join(row["facet_ids"]), quote=True)}"{poison_spore_attribute(row)}>'
             f'<div class="mushroom-card-thumb"><span class="card-fav">☆</span>'
             f'<img src="{cover}?width=400" alt="{name}" loading="lazy"></div>'
             f'<div class="mushroom-card-name">{name}</div>'
@@ -609,6 +615,7 @@ def render_feature_page(model, safe_filename=None):
 <link rel="stylesheet" href="assets/gallery.css">
 <link rel="stylesheet" href="assets/features.css">
 <script src="assets/gallery.js" defer></script>
+<script src="assets/poison-spores.js" defer></script>
 <script src="assets/features.js" defer></script>
 </head>
 <body class="feature-index">
@@ -657,7 +664,7 @@ def _write_feature_page(portal_data, feature_data, output_dir, assets_dir, safe_
     os.makedirs(os.path.join(output_dir, "assets"), exist_ok=True)
     with open(os.path.join(output_dir, "features.html"), "w", encoding="utf-8") as stream:
         stream.write(render_feature_page(model))
-    for filename in ("features.css", "features.js"):
+    for filename in ("features.css", "features.js", "poison-spores.js"):
         shutil.copy2(os.path.join(assets_dir, filename), os.path.join(output_dir, "assets", filename))
     return model
 

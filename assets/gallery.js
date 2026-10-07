@@ -1375,7 +1375,7 @@ galleries.forEach(gallery => {
 
       indexResults.innerHTML = list.map(item => `
         <a href="${item.href}?from=index&q=${encodeURIComponent(q)}"
-           class="mushroom-card search-result-item">
+           class="mushroom-card search-result-item"${item.food_safety_status === "poisonous_confirmed" ? ' data-food-safety="poisonous_confirmed"' : ""}>
           <div class="mushroom-card-thumb">
             <span class="card-fav">☆</span>
             <img src="${item.thumb}" alt="${item.name}">

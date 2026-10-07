@@ -18,7 +18,7 @@ from portal_data import (
 from season_ui import generate_season_page, load_fresh_portal_data
 from records_ui import generate_records_page, render_record_cards, render_record_preview_rows
 from update_notices import load_notice_events, render_section_notice
-from detail_ui import build_detail_views, render_detail_sections
+from detail_ui import build_detail_views, render_detail_sections, poison_spore_attribute
 from feature_ui import (_write_feature_page, generate_feature_page, load_feature_facets,
                         load_feature_v2_inputs, validate_feature_facets)
 from feature_overlay import validate_feature_production_state
@@ -198,6 +198,7 @@ def copy_shared_assets():
     for filename in (
         "gallery.css",
         "gallery.js",
+        "poison-spores.js",
         "mosaic-layout.js",
         "detail.css",
         "favorite.css",
@@ -2303,7 +2304,7 @@ def generate_gallery(entries, exif_cache, detail_views=None):
         <a href="{safe}.html?from=aiuo&kana={escaped_group}"
            class="mushroom-card"
            data-name="{esc_name}"
-           data-kana="{esc_kana}">
+           data-kana="{esc_kana}"{poison_spore_attribute(detail_views.get(n))}>
           <div class="mushroom-card-thumb">
             <span class="card-fav">☆</span>
             {img_tag}
@@ -2320,7 +2321,7 @@ def generate_gallery(entries, exif_cache, detail_views=None):
   </footer>
 </main>
 """)
-        html_parts.append(SCRIPT_TAG)
+        html_parts.append(SCRIPT_TAG + '\n<script src="assets/poison-spores.js"></script>')
         html_parts.append("""
 </body>
 </html>
@@ -2336,8 +2337,9 @@ def generate_gallery(entries, exif_cache, detail_views=None):
 # ===========================
 def generate_index(grouped, exif_cache, observation_records=None,
                    feature_search_available=False, research_summary=None,
-                   best_shot_summary=None):
+                   best_shot_summary=None, detail_views=None):
     copy_shared_assets()
+    detail_views = detail_views or {}
     index_parts = []
 
     # Search data keeps the existing gallery.js search/favorite contracts.
@@ -2349,6 +2351,7 @@ def generate_index(grouped, exif_cache, observation_records=None,
             "name_norm": normalize_japanese_search(alt),
             "href": f"{safe_filename(alt)}.html",
             "thumb": thumb + "?width=300",
+            "food_safety_status": (detail_views.get(alt) or {}).get("food_safety_status"),
         })
 
     index_parts.append(f"""<!doctype html>
@@ -2360,6 +2363,7 @@ def generate_index(grouped, exif_cache, observation_records=None,
 {STYLE_TAG}
 <link rel="stylesheet" href="assets/guide.css">
 {LIGHTGALLERY_TAGS}
+<script src="assets/poison-spores.js" defer></script>
 <script>
 window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
 </script>
@@ -2908,7 +2912,10 @@ def build_gallery():
         index_options["research_summary"] = research_summary
     if "best_shot_summary" in index_parameters:
         index_options["best_shot_summary"] = best_shot_summary
-    generate_index(grouped, exif_cache, **index_options)
+    if "detail_views" in index_parameters:
+        generate_index(grouped, exif_cache, detail_views=detail_views, **index_options)
+    else:
+        generate_index(grouped, exif_cache, **index_options)
     generate_new_top(grouped, exif_cache, **index_options)
     generate_favorite_page(grouped)
 
