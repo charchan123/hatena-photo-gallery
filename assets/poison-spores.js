@@ -4,26 +4,49 @@
   const CARD = '.mushroom-card[data-food-safety="poisonous_confirmed"]';
   const PAGES = '.guide-index, .aiuo-index, .season-index, .feature-index';
   const PRESETS = [
-    // x/y are image fractions. Signed dx/dy spread around the mushroom;
-    // sway bends the slow tail without changing the initial radial direction.
-    { x:.44, y:.40, dx:-36, dy:-52, sway:10, size:5, opacity:.64, duration:2200, delay:0, blur:0, color:"#C7ED55" },
-    { x:.53, y:.46, dx:40, dy:-51, sway:-10, size:6, opacity:.78, duration:2100, delay:55, blur:.3, color:"#C084FC" },
-    { x:.48, y:.56, dx:-48, dy:-40, sway:12, size:4, opacity:.68, duration:1800, delay:110, blur:0, color:"#C7ED55" },
-    { x:.57, y:.40, dx:49, dy:-40, sway:-12, size:7, opacity:.74, duration:2400, delay:75, blur:.5, color:"#C084FC" },
-    { x:.41, y:.62, dx:-63, dy:-8, sway:10, size:5, opacity:.60, duration:2000, delay:170, blur:.3, color:"#C7ED55" },
-    { x:.60, y:.51, dx:64, dy:-12, sway:-10, size:6, opacity:.70, duration:2300, delay:225, blur:0, color:"#C7ED55" },
-    { x:.46, y:.68, dx:-57, dy:-24, sway:12, size:7, opacity:.76, duration:1900, delay:260, blur:.4, color:"#C084FC" },
-    { x:.55, y:.58, dx:57, dy:-19, sway:-12, size:4, opacity:.66, duration:2100, delay:145, blur:0, color:"#C7ED55" },
-    { x:.50, y:.40, dx:5, dy:-78, sway:10, size:8, opacity:.72, duration:2700, delay:95, blur:.6, color:"#C084FC" },
-    { x:.43, y:.53, dx:40, dy:14, sway:-10, size:5, opacity:.62, duration:2500, delay:295, blur:.5, color:"#C7ED55" }
+    // Six outward paths cross the photo edge; the others drift around the cap.
+    { x:.44, y:.40, dx:-83, dy:-104, bend:14, exit:"top", size:7, opacity:.90, duration:3200, delay:0, core:"#EEFF88", edge:"#D7F957" },
+    { x:.53, y:.46, dx:90, dy:-73, bend:-15, size:8, opacity:.95, duration:3000, delay:45, core:"#F0D2FF", edge:"#E2A5FF" },
+    { x:.48, y:.56, dx:-78, dy:-58, bend:12, size:6, opacity:.90, duration:2800, delay:80, core:"#EEFF88", edge:"#D7F957" },
+    { x:.57, y:.40, dx:97, dy:-62, bend:-16, size:9, opacity:.95, duration:3000, delay:60, core:"#F0D2FF", edge:"#E2A5FF" },
+    { x:.41, y:.62, dx:-132, dy:-12, bend:14, exit:"left", size:7, opacity:.90, duration:3200, delay:120, core:"#EEFF88", edge:"#D7F957" },
+    { x:.60, y:.51, dx:134, dy:-18, bend:-14, exit:"right", size:8, opacity:.90, duration:3300, delay:160, core:"#EEFF88", edge:"#D7F957" },
+    { x:.46, y:.68, dx:-140, dy:-26, bend:15, exit:"left", size:9, opacity:.95, duration:3400, delay:180, core:"#F0D2FF", edge:"#E2A5FF" },
+    { x:.55, y:.58, dx:130, dy:-20, bend:-13, exit:"right", size:6, opacity:.90, duration:3200, delay:105, core:"#EEFF88", edge:"#D7F957" },
+    { x:.50, y:.40, dx:6, dy:-122, bend:16, exit:"top", size:10, opacity:.95, duration:3100, delay:70, core:"#F0D2FF", edge:"#E2A5FF" },
+    { x:.43, y:.53, dx:76, dy:18, bend:-12, size:7, opacity:.90, duration:2600, delay:195, core:"#EEFF88", edge:"#D7F957" }
   ];
+  const OVERHANG = 80;
+  const CLEANUP_MS = Math.max(...PRESETS.map(p => p.duration + p.delay)) + 200;
+
+  function trajectory(p, width, height) {
+    let x = width * p.x, y = height * p.y;
+    // Keep outward emitters near the subject, but within reach of wide cards'
+    // edges. Only presentation coordinates change, never card geometry.
+    if (p.exit === 'left') x = Math.min(x, 88);
+    if (p.exit === 'right') x = Math.max(x, width - 88);
+    if (p.exit === 'top') y = Math.min(y, 65);
+    // Small cards must not send their longer presets into the layer's clip edge.
+    const dx = Math.max(-x - 60, Math.min(p.dx, width - x + 60));
+    const dy = Math.max(-y - 60, p.dy);
+    const length = Math.hypot(dx, dy);
+    const nx = -dy / length * p.bend, ny = dx / length * p.bend;
+    return [[x, y], [x + dx * .30 + nx, y + dy * .30 + ny],
+      [x + dx * .70 + nx, y + dy * .70 + ny], [x + dx, y + dy]];
+  }
+
+  function motionPath(p, rect, bounds) {
+    const points = trajectory(p, rect.width, rect.height).map(([x, y]) =>
+      `${(x + rect.left - bounds.left).toFixed(3)} ${(y + rect.top - bounds.top).toFixed(3)}`);
+    return `path("M ${points[0]} C ${points.slice(1).join(', ')}")`;
+  }
 
   function burstBounds(rect, width, height) {
     // Body-level fixed paint avoids card/ancestor clipping and never extends
     // the scrollable document. Bottom clipping keeps names/chips unobscured.
-    const left = Math.max(0, rect.left - 24);
-    const top = Math.max(0, rect.top - 24);
-    return { left, top, width:Math.max(0, Math.min(width, rect.right + 24) - left),
+    const left = Math.max(0, rect.left - OVERHANG);
+    const top = Math.max(0, rect.top - OVERHANG);
+    return { left, top, width:Math.max(0, Math.min(width, rect.right + OVERHANG) - left),
       height:Math.max(0, Math.min(height, rect.bottom) - top) };
   }
 
@@ -66,29 +89,23 @@
         const particle = doc.createElement('span');
         particle.className = 'poison-spore';
         const vars = {
-          '--spore-x':(rect.left - bounds.left + rect.width * p.x) + 'px',
-          '--spore-y':(rect.top - bounds.top + rect.height * p.y) + 'px',
-          '--spore-size':p.size + 'px', '--spore-color':p.color,
+          '--spore-path':motionPath(p, rect, bounds),
+          '--spore-size':p.size + 'px', '--spore-core':p.core, '--spore-edge':p.edge,
           '--spore-alpha':p.opacity, '--spore-duration':p.duration + 'ms',
-          '--spore-delay':p.delay + 'ms', '--spore-blur':p.blur + 'px',
-          // A normalized 16px kick follows each particle's own direction.
-          '--spore-kick-x':(16 * p.dx / Math.hypot(p.dx, p.dy)) + 'px',
-          '--spore-kick-y':(16 * p.dy / Math.hypot(p.dx, p.dy)) + 'px',
-          '--spore-mid-x':(p.dx * .63) + 'px', '--spore-mid-y':(p.dy * .63) + 'px',
-          '--spore-sway-x':(p.dx * .85 + p.sway) + 'px',
-          '--spore-late-y':(p.dy * .85) + 'px',
-          '--spore-end-x':p.dx + 'px', '--spore-end-y':p.dy + 'px'
+          '--spore-delay':p.delay + 'ms'
         };
         for (const [key, value] of Object.entries(vars)) particle.style.setProperty(key, String(value));
-        particle.addEventListener('animationend', () => {
+        particle.addEventListener('animationend', event => {
+          // Appearance also emits animationend; count each particle only once.
+          if (event.animationName !== 'poison-spore-motion') return;
           particle.remove();
           if (--remaining === 0) clear(card);
-        }, { once:true });
+        });
         layer.appendChild(particle);
       }
       doc.body.appendChild(layer);
       // Fallback for interrupted animations; never retain decorative DOM.
-      active.set(card, { layer, timer:win.setTimeout(() => clear(card), 2900) });
+      active.set(card, { layer, timer:win.setTimeout(() => clear(card), CLEANUP_MS) });
       observer.observe(doc.body, { subtree:true, childList:true, attributes:true,
         attributeFilter:['style', 'class', 'hidden', 'data-food-safety'] });
     }
@@ -125,6 +142,6 @@
     hover.addEventListener('change', clearAll);
     return { clearAll };
   }
-  if (typeof module !== 'undefined') module.exports = { PRESETS, burstBounds, setup };
+  if (typeof module !== 'undefined') module.exports = { PRESETS, OVERHANG, CLEANUP_MS, trajectory, motionPath, burstBounds, setup };
   if (root.document) root.document.addEventListener('DOMContentLoaded', () => setup(root.document, root));
 }(typeof window !== 'undefined' ? window : globalThis));
