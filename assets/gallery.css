@@ -1171,25 +1171,32 @@ mark {
   pointer-events:none;
   z-index:8;
 }
+/* Path and appearance have independent timelines: position easing never restarts. */
 .poison-spore {
   position:absolute;
-  left:var(--spore-x);
-  top:var(--spore-y);
+  left:0;
+  top:0;
   width:var(--spore-size);
   height:var(--spore-size);
   border-radius:50%;
-  background:var(--spore-color);
-  filter:blur(var(--spore-blur));
+  background:radial-gradient(circle, var(--spore-core) 0% 25%, var(--spore-edge) 55%, transparent 100%);
+  offset-path:var(--spore-path);
+  offset-anchor:center;
+  offset-rotate:0deg;
   opacity:0;
   pointer-events:none;
-  animation:poison-spore-drift var(--spore-duration) cubic-bezier(.2,.65,.45,1) var(--spore-delay) both;
+  animation:
+    poison-spore-motion var(--spore-duration) cubic-bezier(.25,.60,.55,.88) var(--spore-delay) both,
+    poison-spore-appearance var(--spore-duration) linear var(--spore-delay) both;
 }
-@keyframes poison-spore-drift {
-  0% { transform:translate(0,0) scale(.7); opacity:0; }
-  10% { transform:translate(var(--spore-kick-x),var(--spore-kick-y)) scale(1); opacity:var(--spore-alpha); }
-  50% { transform:translate(var(--spore-mid-x),var(--spore-mid-y)); opacity:var(--spore-alpha); }
-  75% { transform:translate(var(--spore-sway-x),var(--spore-late-y)); opacity:calc(var(--spore-alpha) * .65); }
-  100% { transform:translate(var(--spore-end-x),var(--spore-end-y)) scale(.8); opacity:0; }
+@keyframes poison-spore-motion {
+  from { offset-distance:0%; }
+  to { offset-distance:100%; }
+}
+@keyframes poison-spore-appearance {
+  0% { opacity:0; }
+  10%, 65% { opacity:var(--spore-alpha); }
+  100% { opacity:0; }
 }
 @media (prefers-reduced-motion:reduce) {
   .poison-spore-burst { display:none; }

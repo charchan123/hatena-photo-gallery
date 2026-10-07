@@ -1,6 +1,9 @@
 const assert = require('node:assert/strict');
 const {test} = require('node:test');
-const {PRESETS, burstBounds, setup} = require('../assets/poison-spores.js');
+const fs = require('node:fs');
+const path = require('node:path');
+const css = fs.readFileSync(path.join(__dirname, '../assets/gallery.css'), 'utf8');
+const {PRESETS, OVERHANG, CLEANUP_MS, trajectory, motionPath, burstBounds, setup} = require('../assets/poison-spores.js');
 
 function environment() {
   const handlers = {}, windowHandlers = {}, timers = new Map();
@@ -32,66 +35,94 @@ function environment() {
     fire:(type,target,pointerType='mouse')=>handlers[type]({target,pointerType})};
 }
 
-test('ten visible particles retain the six green / four bright purple balance',()=>{
+test('ten bright cores retain the six green / four purple balance and soft edges',()=>{
   assert.equal(PRESETS.length,10);
-  const green=PRESETS.filter(p=>p.color==='#C7ED55');
-  const purple=PRESETS.filter(p=>p.color==='#C084FC');
+  const green=PRESETS.filter(p=>p.core==='#EEFF88'&&p.edge==='#D7F957');
+  const purple=PRESETS.filter(p=>p.core==='#F0D2FF'&&p.edge==='#E2A5FF');
   assert.equal(green.length,6);assert.equal(purple.length,4);
-  for(const p of green){
-    assert.ok(p.size>=3&&p.size<=7&&p.opacity>=.55&&p.opacity<=.75);
-    assert.ok(p.blur>=0&&p.blur<=1.5);
-  }
-  for(const p of purple){
-    assert.ok(p.size>=4&&p.size<=8&&p.opacity>=.65&&p.opacity<=.85);
-    assert.ok(p.blur>=0&&p.blur<=1);
-  }
-  assert.ok(Math.min(...purple.map(p=>p.opacity))>=Math.max(...green.map(p=>p.opacity)));
-  assert.ok(new Set(PRESETS.map(p=>p.size)).size>3);
-  assert.ok(new Set(PRESETS.map(p=>p.duration)).size>4);
+  for(const p of green)assert.ok(p.size>=5&&p.size<=9&&p.opacity===.90);
+  for(const p of purple)assert.ok(p.size>=6&&p.size<=10&&p.opacity===.95);
+  const block=css.match(/\.poison-spore \{([^}]+)\}/)[1];
+  assert.match(block,/radial-gradient\(circle, var\(--spore-core\) 0% 25%, var\(--spore-edge\) 55%, transparent 100%\)/);
+  assert.doesNotMatch(block,/filter:|box-shadow:/);
   for(const p of PRESETS){
-    assert.ok(p.duration>=1800&&p.duration<=2700&&p.delay>=0&&p.delay<=300);
-    assert.ok(p.duration+p.delay<2900, 'finish before the unchanged cleanup fallback');
-    assert.ok(p.y>=.4&&p.y<=.7&&p.x>=.4&&p.x<=.6);
+    assert.ok(p.duration>=2400&&p.duration<=3400&&p.delay>=0&&p.delay<=200);
+    assert.ok(p.duration+p.delay<CLEANUP_MS);
   }
+  assert.ok(new Set(PRESETS.map(p=>p.size)).size>=4);
+  assert.ok(new Set(PRESETS.map(p=>p.duration)).size>=4);
 });
 
-test('radial destinations include diagonals, lateral drift and a gentle downward particle',()=>{
+function point(points,t) {
+  const u=1-t;
+  return [0,1].map(i=>u*u*u*points[0][i]+3*u*u*t*points[1][i]+3*u*t*t*points[2][i]+t*t*t*points[3][i]);
+}
+function pathLength(points) {
+  let length=0,prev=points[0];
+  for(let i=1;i<=1000;i++) { const next=point(points,i/1000);length+=Math.hypot(next[0]-prev[0],next[1]-prev[1]);prev=next; }
+  return length;
+}
+
+test('single regular Bezier curves spread in six directions with bounded arc lengths',()=>{
   const directions={upperLeft:0,upperRight:0,left:0,right:0,up:0,down:0};
   for(const p of PRESETS){
-    assert.ok(Math.hypot(p.dx,p.dy)>=35&&Math.hypot(p.dx,p.dy)<=80);
     if(p.dy>0)directions.down++;
     else if(Math.abs(p.dx)<=10)directions.up++;
     else if(p.dy<=-35)directions[p.dx<0?'upperLeft':'upperRight']++;
     else directions[p.dx<0?'left':'right']++;
-    // The bent path stays bounded too, not just its endpoint.
-    assert.ok(Math.hypot(p.dx*.85+p.sway,p.dy*.85)<=80);
+    const points=trajectory(p,260,166);
+    assert.ok(pathLength(points)>=70&&pathLength(points)<=150);
+    const forward=[points[3][0]-points[0][0],points[3][1]-points[0][1]];
+    // Positive projection of all derivative control vectors: no cusp, stop or reversal.
+    for(let i=0;i<3;i++)assert.ok((points[i+1][0]-points[i][0])*forward[0]+(points[i+1][1]-points[i][1])*forward[1]>0);
+    assert.ok(Math.abs((points[1][0]-points[0][0])*forward[1]-(points[1][1]-points[0][1])*forward[0])>1);
+    assert.match(motionPath(p,{left:100,top:100,width:260,height:166},{left:20,top:20}),/^path\("M [-\d.]+ [-\d.]+ C [-\d.]+ [-\d.]+, [-\d.]+ [-\d.]+, [-\d.]+ [-\d.]+"\)$/);
   }
   assert.deepEqual(directions,{upperLeft:2,upperRight:2,left:2,right:2,up:1,down:1});
-  assert.ok(PRESETS.filter(p=>Math.abs(p.dy)<=20&&Math.abs(p.dx)>=30).length>=3);
 });
 
-test('initial kick follows each destination and slows into a bent drift',()=>{
-  const e=environment();setup(e.doc,e.win);e.fire('pointerenter',e.card());
-  const particles=e.body.children[0].children;
-  PRESETS.forEach((p,i)=>{
-    const style=particles[i].style, value=k=>parseFloat(style[k]);
-    const x=value('--spore-kick-x'),y=value('--spore-kick-y');
-    assert.ok(Math.hypot(x,y)>=10&&Math.hypot(x,y)<=20);
-    assert.ok(Math.abs(x*p.dy-y*p.dx)<1e-9, 'kick follows the signed radial vector');
-    assert.equal(Math.sign(x),Math.sign(p.dx));assert.equal(Math.sign(y),Math.sign(p.dy));
-    assert.ok(p.duration*.1>=150&&p.duration*.1<=300);
-    const midX=value('--spore-mid-x'),midY=value('--spore-mid-y');
-    const initialSpeed=Math.hypot(x,y)/(p.duration*.1);
-    const driftSpeed=Math.hypot(midX-x,midY-y)/(p.duration*.4);
-    assert.ok(initialSpeed>driftSpeed*1.5);
-    const lateX=value('--spore-sway-x'),lateY=value('--spore-late-y');
-    assert.ok(Math.abs(lateX*p.dy-lateY*p.dx)>1, 'late drift bends off the launch line');
-    assert.equal(value('--spore-end-x'),p.dx);assert.equal(value('--spore-end-y'),p.dy);
-  });
+test('motion has only endpoints, separate appearance, and continuously decreasing nonzero speed',()=>{
+  const motion=css.match(/@keyframes poison-spore-motion \{([\s\S]*?)\n\}/)[1];
+  assert.equal((motion.match(/offset-distance:/g)||[]).length,2);
+  assert.match(motion,/from \{ offset-distance:0%; \}/);
+  assert.match(motion,/to \{ offset-distance:100%; \}/);
+  assert.doesNotMatch(motion,/opacity|transform/);
+  const appearance=css.match(/@keyframes poison-spore-appearance \{([\s\S]*?)\n\}/)[1];
+  assert.doesNotMatch(appearance,/offset-distance|transform/);
+  assert.match(appearance,/10%, 65%/);
+  assert.match(css,/poison-spore-appearance var\(--spore-duration\) linear/);
+  const curve=css.match(/poison-spore-motion var\(--spore-duration\) cubic-bezier\(([^)]+)\)/)[1].split(',').map(Number);
+  const [x1,y1,x2,y2]=curve;
+  function derivative(a,b,t){return 3*(1-t)**2*a+6*(1-t)*t*(b-a)+3*t*t*(1-b);}
+  let previous=Infinity,initial;
+  for(let i=0;i<=10000;i++){
+    const t=i/10000, speed=derivative(y1,y2,t)/derivative(x1,x2,t);
+    if(i===0)initial=speed;
+    assert.ok(speed>0&&speed<=previous+1e-10,'no re-acceleration or resting plateau');
+    previous=speed;
+  }
+  assert.ok(initial/previous>5&&previous>.15,'clearly slower but still moving at the end');
 });
 
-test('bounds escape the image by at most 24px, avoid names and viewport overflow',()=>{
-  assert.deepEqual(burstBounds({left:100,top:100,right:300,bottom:230},400,600),{left:76,top:76,width:248,height:154});
+test('six outward paths reach surrounding space without clipping or touching names',()=>{
+  for(const width of [160,200,260,326,400]){
+    const height=width*.64;
+    let crossed=0;
+    for(const p of PRESETS){
+      const points=trajectory(p,width,height),[x,y]=points[3];
+      const outside=Math.max(-x,x-width,-y,0);
+      if(outside>=35)crossed++;
+      assert.ok(outside<=60+1e-8);
+      for(let i=0;i<=100;i++){
+        const [px,py]=point(points,i/100);
+        assert.ok(px-p.size/2>-OVERHANG&&px+p.size/2<width+OVERHANG);
+        assert.ok(py-p.size/2>-OVERHANG&&py+p.size/2<height);
+      }
+    }
+    assert.ok(crossed>=6);
+  }
+  assert.equal(OVERHANG,80);
+  assert.deepEqual(burstBounds({left:100,top:100,right:300,bottom:230},400,600),{left:20,top:20,width:360,height:210});
   assert.deepEqual(burstBounds({left:5,top:10,right:395,bottom:200},400,600),{left:0,top:0,width:400,height:200});
 });
 
@@ -106,7 +137,9 @@ test('one burst per enter, no nonpoison/touch, re-enter and keyboard work',()=>{
   assert.equal(e.body.children[0]['aria-hidden'],'true');
   const layer=e.body.children[0];e.fire('pointerenter',c);e.fire('focusin',c);
   assert.equal(e.body.children[0],layer);
-  for(const p of [...layer.children])p.events.animationend();
+  for(const p of [...layer.children])p.events.animationend({animationName:'poison-spore-appearance'});
+  assert.equal(layer.children.length,10,'appearance completion must not remove particles early');
+  for(const p of [...layer.children])p.events.animationend({animationName:'poison-spore-motion'});
   assert.equal(e.body.children.length,0);assert.equal(e.timers.size,0);
   e.fire('pointerenter',c);assert.equal(e.body.children.length,0); // Still hovering.
   e.fire('focusout',c);e.fire('pointerleave',c);e.fire('pointerenter',c);
