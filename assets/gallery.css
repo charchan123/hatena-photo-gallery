@@ -1162,3 +1162,36 @@ mark {
 .feature-block .section-desc {
   margin-bottom: 18px;
 }
+
+/* Transient, presentation-only poison spores. Card clipping stays unchanged. */
+.poison-spore-burst {
+  position:fixed;
+  overflow:hidden;
+  contain:strict;
+  pointer-events:none;
+  z-index:8;
+}
+.poison-spore {
+  position:absolute;
+  left:var(--spore-x);
+  top:var(--spore-y);
+  width:var(--spore-size);
+  height:var(--spore-size);
+  border-radius:50%;
+  background:var(--spore-color);
+  filter:blur(var(--spore-blur));
+  opacity:0;
+  pointer-events:none;
+  animation:poison-spore-drift var(--spore-duration) cubic-bezier(.2,.65,.45,1) var(--spore-delay) both;
+}
+@keyframes poison-spore-drift {
+  0% { transform:translate(0,0) scale(.7); opacity:0; }
+  10% { transform:translate(var(--spore-kick-x),-20px) scale(1); opacity:var(--spore-alpha); }
+  45% { transform:translate(var(--spore-drift-x),var(--spore-mid-y)); opacity:var(--spore-alpha); }
+  75% { transform:translate(var(--spore-sway-x),var(--spore-late-y)); opacity:calc(var(--spore-alpha) * .65); }
+  100% { transform:translate(var(--spore-drift-x),var(--spore-end-y)) scale(.8); opacity:0; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .poison-spore-burst { display:none; }
+  .poison-spore { animation:none; }
+}
