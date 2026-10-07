@@ -1186,10 +1186,10 @@ mark {
 }
 @keyframes poison-spore-drift {
   0% { transform:translate(0,0) scale(.7); opacity:0; }
-  10% { transform:translate(var(--spore-kick-x),-20px) scale(1); opacity:var(--spore-alpha); }
-  45% { transform:translate(var(--spore-drift-x),var(--spore-mid-y)); opacity:var(--spore-alpha); }
+  10% { transform:translate(var(--spore-kick-x),var(--spore-kick-y)) scale(1); opacity:var(--spore-alpha); }
+  50% { transform:translate(var(--spore-mid-x),var(--spore-mid-y)); opacity:var(--spore-alpha); }
   75% { transform:translate(var(--spore-sway-x),var(--spore-late-y)); opacity:calc(var(--spore-alpha) * .65); }
-  100% { transform:translate(var(--spore-drift-x),var(--spore-end-y)) scale(.8); opacity:0; }
+  100% { transform:translate(var(--spore-end-x),var(--spore-end-y)) scale(.8); opacity:0; }
 }
 @media (prefers-reduced-motion:reduce) {
   .poison-spore-burst { display:none; }
