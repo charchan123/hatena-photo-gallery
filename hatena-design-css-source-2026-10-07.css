@@ -1,0 +1,2310 @@
+/* <system section="theme" selected="8599973812333959601"> */
+@import "https://usercss.blog.st-hatena.com/-/theme/8599973812333959601.css?version=6393a61d4f723883aa0cd2863caba7e86fc9802f";
+/* </system> */
+
+/* <system section="background" selected="e9ecf4"> */
+body{background:#e9ecf4;}
+/* </system> */
+
+
+
+.entries-access-ranking-item::before {
+    padding-top: 1px;
+    padding-right: 10px;
+    padding-bottom: 1px;
+    padding-left: 10px;
+    background-color: #4169e1;
+    color: #ffffff;
+    counter-increment: rank 1;
+    content: counter(rank) " ";
+}
+
+.entries-access-ranking-item-inner {
+    margin-top: -22px;
+}
+
+.rank-1::before{
+    background-color: #dbb400;
+}
+
+.rank-2::before{
+    background-color: #c9caca;
+}
+
+.rank-3::before{
+    background-color: #c47022;
+}
+
+
+
+h1 {
+  position: relative;/*相対位置*/
+  padding-left: 0em;/*アイコン分のスペース*/
+  line-height: 1.4;/*行高*/
+  color: #7b6459;/*文字色*/
+}
+
+h1:before {
+    content: url("https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250322/20250322030119.png");  /*画像のURL*/
+    margin-right:-10px;  /*画像右の余白*/
+    position:relative;
+    top:10px;      /*上からの位置*/
+    left:-5px;       /*左からの位置*/
+}
+
+
+
+h5 {
+  padding: 0.4em 0.5em;/*文字の上下 左右の余白*/
+  color: #494949;/*文字色*/
+  background: #f4f4f4;/*背景色*/
+  border-left: solid 5px #7db4e6;/*左線*/
+  border-bottom: solid 3px #d7d7d7;/*下線*/
+}
+
+
+
+/***トップへ戻るボタン***/
+#page_top{
+width: 50px;
+height: 50px;/*大きさ変えたいときには、変更可能*/
+position: fixed;
+right: 0;
+bottom: -50px;
+background: #696969;/*色変更可能*/
+opacity: 0.6;
+border-radius: 50%;;
+}
+
+#page_top a{
+position: relative;
+display: block;
+width: 50px;
+height: 50px;/*大きさ変えたいときはここを変更する*/
+text-decoration: none;
+}
+
+#page_top a::before{
+font-family: 'blogicon';/*fontawesomeの場合は、Font Awesome 5 Freeと入力*/
+font-weight: 900;
+content: '\f007';/*fontawesomeの場合は、f102orf106*/
+font-size: 25px;
+color: #fff;
+position: absolute;
+width: 25px;
+height: 25px;/*大きさ変えたいときに変更可能*/
+top: -35px;
+bottom: 0;
+right: 0;
+left: 0;
+margin: auto;
+text-align: center;
+}
+
+#page_top::before {
+content: 'PAGE TOP';
+font-size: 12px;
+color: #ffffff;
+position: absolute;
+text-align: center;
+margin: auto;
+width: 100%;
+top: 30%;
+left: 50%;
+translate: -50%;
+top: 22px;
+line-height: 12px;
+}
+
+
+
+/***グローバルメニュー***/
+#menu{
+ width: 100%;
+ margin: 10px auto;
+ margin-top: 0px;
+ background: #b0c4de;
+}
+
+#menu-inner{
+ width: 1000px;
+ height: 40px;/*メニューバーの太さ*/
+ margin: 0 auto;
+ background: #b0c4de;/*メニューバーの背景色*/
+}
+
+#menu-btn{
+ display: none;
+}
+
+#menu-content{
+ padding-left: 0;
+ margin: 0;
+ width: 100%;
+ height: 100%;
+ list-style-type: none;
+}
+
+#menu-content > li{
+ position: relative;
+ float: left;
+ height: 100%;
+ text-align: center;
+ width: 16.66666%;
+}
+
+#menu-content > li > a{
+ position: relative;
+ display: block;
+ height: 100%;
+ width: 100%;
+ line-height: 40px;/*メニューバーの太さ*/
+ background: #b0c4de;/*文字の背景*/
+ color: #000000;/*文字の色*/
+ font-size: 95%;
+ text-decoration: none;
+ z-index: 2;
+}
+
+#menu-content > li > a:hover{
+ background: #fff;/*選択時の背景色*/
+ color: #000000;/*選択時の文字色*/
+}
+
+
+
+/***横幅が狭いときのメニュー***/
+@media screen and (max-width:960px){/*19*/
+
+#menu-inner{
+    width: 100%;
+    height: auto;
+}
+
+#btn-content{
+    text-align: left;
+}
+
+#menu-btn{
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 5px;
+    cursor: pointer;
+    background: #b0c4de;
+    color: #000000;
+    font-size: 100%;
+}
+
+#menu-content{
+    display: none;
+    width: 100%;
+}
+
+#menu-content > li{
+    width: 50%;
+    height: 40px;
+}
+
+#menu-content > li > a{
+    width: 100%;
+    line-height: 40px;
+    padding: 0;
+    text-decoration: none;
+}
+
+}
+
+/* =========================================================
+   /new-top 専用レイアウト + Hero Banner
+   Phase 4A.8.5
+   ========================================================= */
+
+/*
+   /new-top だけを対象にする。
+   通常の記事ページ・アーカイブ等には影響させない。
+*/
+body.static-page-new-top {
+  --new-top-css-v3: 1;
+  --new-top-paper: #f7fcf4;
+
+  background: var(--new-top-paper) !important;
+}
+
+
+/* 固定ページタイトルを非表示 */
+body.static-page-new-top .entry-header,
+body.static-page-new-top .entry-title,
+body.static-page-new-top .entry-title-link,
+body.static-page-new-top .entry-date,
+body.static-page-new-top .entry-meta {
+  display: none !important;
+}
+
+
+/* はてな側の幅制限を解除 */
+body.static-page-new-top #container,
+body.static-page-new-top #container-inner,
+body.static-page-new-top #content,
+body.static-page-new-top #content-inner,
+body.static-page-new-top #wrapper,
+body.static-page-new-top #main,
+body.static-page-new-top #main-inner {
+
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+
+  float: none !important;
+
+  box-sizing: border-box !important;
+}
+
+
+/* 記事カードを完全に透明化 */
+body.static-page-new-top article.entry,
+body.static-page-new-top .entry,
+body.static-page-new-top .hentry,
+body.static-page-new-top .entry-inner,
+body.static-page-new-top .entry-content {
+
+  width: 100% !important;
+  max-width: none !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+
+  box-shadow: none !important;
+
+  background: transparent !important;
+
+  box-sizing: border-box !important;
+}
+
+
+/* 親ページ全体をGitHub Pages側と同色へ */
+body.static-page-new-top #container,
+body.static-page-new-top #container-inner,
+body.static-page-new-top #content,
+body.static-page-new-top #content-inner,
+body.static-page-new-top #wrapper,
+body.static-page-new-top #main,
+body.static-page-new-top #main-inner {
+
+  background: var(--new-top-paper) !important;
+}
+
+
+/* iframe外側 */
+body.static-page-new-top .new-top-embed {
+
+  display: block !important;
+
+  width: 100% !important;
+  max-width: none !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  background: var(--new-top-paper) !important;
+}
+
+
+/* iframe本体 */
+body.static-page-new-top #photoGallery {
+
+  display: block !important;
+
+  width: 100% !important;
+  max-width: none !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+
+  background: var(--new-top-paper) !important;
+
+  vertical-align: top !important;
+}
+
+
+/* サイドバーは完全非表示 */
+body.static-page-new-top #box2 {
+  display: none !important;
+}
+
+
+/* /new-top ではブログ内ナビを非表示 */
+body.static-page-new-top #menu {
+
+  display: none !important;
+
+  width: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: 0 !important;
+
+  overflow: hidden !important;
+}
+
+
+/* =========================================================
+   Hero Banner
+   ========================================================= */
+
+/*
+   背景:
+   - 2048×408 standalone WebP
+   - 左側はタイトル可読性のため少し暗くする
+   - 旧150px fadeは使わず、下端はclean hard edge
+*/
+body.static-page-new-top .header1,
+body.static-page-new-top .header2 {
+
+  position: relative !important;
+
+  z-index: 20 !important;
+
+  width: 100% !important;
+  max-width: none !important;
+  height: 240px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  /*
+     ベニテングタケの傘だけ上へ少し出すためvisible。
+     柄の下側はimg自身のclip-pathで切る。
+  */
+  overflow: visible !important;
+
+  border: 0 !important;
+  border-bottom: 0 !important;
+  border-radius: 0 !important;
+
+  outline: 0 !important;
+  box-shadow: none !important;
+
+  -webkit-mask: none !important;
+  mask: none !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(10, 28, 17, 0.42) 0%,
+      rgba(10, 28, 17, 0.24) 36%,
+      rgba(10, 28, 17, 0.06) 60%,
+      rgba(10, 28, 17, 0.00) 72%
+    ),
+    url("https://charchan123.github.io/hatena-photo-gallery/assets/hero-amanita-background.webp") !important;
+
+  background-repeat: no-repeat, no-repeat !important;
+  background-size: cover, cover !important;
+  background-position: center center, center center !important;
+
+  box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   実写ベニテングタケ
+   ========================================================= */
+
+/*
+   元のheader <img> の箱を利用し、
+   元のHatenaヘッダー画像は画面外へ追い出す。
+
+   desktop:
+   - 傘を約20px上へ
+   - 下側46pxをclipして、切り抜きの粗い柄下端を使わない
+   - 見える下端はHeroの下端に揃う
+   - 少し暗く・少し彩度を落として森になじませる
+*/
+body.static-page-new-top .header1 img,
+body.static-page-new-top .header2 img {
+
+  display: block !important;
+
+  position: absolute !important;
+  z-index: 3 !important;
+
+  top: -20px !important;
+  bottom: auto !important;
+
+  right: max(
+    56px,
+    calc((100% - 1180px) / 2 + 104px)
+  ) !important;
+
+  width: 222px !important;
+  height: 306px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: 0 !important;
+  border-bottom: 0 !important;
+
+  outline: 0 !important;
+  box-shadow: none !important;
+
+  object-fit: none !important;
+  object-position: -9999px -9999px !important;
+
+  background-image:
+    url("https://charchan123.github.io/hatena-photo-gallery/assets/hero-amanita-cutout.png") !important;
+
+  background-repeat: no-repeat !important;
+  background-position: center bottom !important;
+  background-size: contain !important;
+
+  /*
+     -20 + 306 - 46 = 240
+     → 傘は20px上へ出る
+     → clip後の見える下端は240pxでHero下端に一致
+  */
+  -webkit-clip-path: inset(0 0 46px 0);
+  clip-path: inset(0 0 46px 0);
+
+  filter:
+    brightness(0.90)
+    saturate(0.90)
+    contrast(0.97)
+    drop-shadow(0 4px 6px rgba(17, 29, 14, 0.13)) !important;
+
+  opacity: 0.98 !important;
+
+  pointer-events: none !important;
+}
+
+
+/* =========================================================
+   Hero Main Title
+   ========================================================= */
+
+body.static-page-new-top .header1::before,
+body.static-page-new-top .header2::before {
+
+  content: "キノコと田舎遊び";
+
+  position: absolute !important;
+  z-index: 5 !important;
+
+  left: max(
+    24px,
+    calc((100% - 1180px) / 2 + 22px)
+  ) !important;
+
+  top: 54px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  color: #fffdf4 !important;
+
+  font-family:
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    "Hiragino Mincho Pro",
+    serif !important;
+
+  font-size: clamp(38px, 4vw, 54px) !important;
+  font-weight: 700 !important;
+
+  line-height: 1.15 !important;
+  letter-spacing: 0.07em !important;
+
+  white-space: nowrap !important;
+
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.34),
+    0 1px 2px rgba(0, 0, 0, 0.28) !important;
+
+  pointer-events: none !important;
+}
+
+
+/* =========================================================
+   Hero Subtitle
+   ========================================================= */
+
+/*
+   旧150px fadeで使っていた ::after は、
+   新Heroではsubtitleとして使用する。
+*/
+body.static-page-new-top .header1::after,
+body.static-page-new-top .header2::after {
+
+  content:
+    "森を歩き、見つけて、調べて、撮って楽しむ。キノコと自然のフォトブログです。";
+
+  position: absolute !important;
+  z-index: 5 !important;
+
+  left: max(
+    24px,
+    calc((100% - 1180px) / 2 + 24px)
+  ) !important;
+
+  right: auto !important;
+  top: 128px !important;
+  bottom: auto !important;
+
+  width: min(610px, 52vw) !important;
+  height: auto !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  color: rgba(255, 255, 255, 0.94) !important;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    "Yu Gothic",
+    "Hiragino Kaku Gothic ProN",
+    sans-serif !important;
+
+  font-size: 15px !important;
+  font-weight: 500 !important;
+
+  line-height: 1.75 !important;
+  letter-spacing: 0.045em !important;
+
+  background: none !important;
+
+  text-shadow:
+    0 1px 5px rgba(0, 0, 0, 0.38) !important;
+
+  pointer-events: none !important;
+}
+
+
+/* =========================================================
+   Hero → Portal
+   ========================================================= */
+
+/*
+   旧fade / negative overlapは完全廃止。
+   Heroの下からportalを自然に始める。
+*/
+body.static-page-new-top #content {
+
+  position: relative !important;
+  z-index: 10 !important;
+
+  margin-top: 0 !important;
+
+  border: 0 !important;
+  border-top: 0 !important;
+
+  outline: 0 !important;
+  box-shadow: none !important;
+
+  background: var(--new-top-paper) !important;
+}
+
+
+/* iframeもpaper color */
+body.static-page-new-top .new-top-embed,
+body.static-page-new-top #photoGallery {
+
+  position: relative !important;
+  z-index: 1 !important;
+
+  background: var(--new-top-paper) !important;
+}
+
+
+/* =========================================================
+   PAGE TOP
+   ========================================================= */
+
+/*
+   元のサイズ・位置・疑似要素は変更しない。
+   親だけ最前面へ。
+*/
+body.static-page-new-top #page_top {
+  z-index: 2147483647 !important;
+}
+
+
+/* =========================================================
+   Tablet
+   ========================================================= */
+
+@media screen and (max-width: 960px) {
+
+  body.static-page-new-top .header1,
+  body.static-page-new-top .header2 {
+    height: 220px !important;
+  }
+
+  body.static-page-new-top .header1 img,
+  body.static-page-new-top .header2 img {
+
+    /*
+       -16 + 270 - 34 = 220
+    */
+    top: -16px !important;
+    bottom: auto !important;
+
+    right: 34px !important;
+
+    width: 196px !important;
+    height: 270px !important;
+
+    -webkit-clip-path: inset(0 0 34px 0);
+    clip-path: inset(0 0 34px 0);
+
+    filter:
+      brightness(0.91)
+      saturate(0.91)
+      contrast(0.97)
+      drop-shadow(0 4px 6px rgba(17, 29, 14, 0.12)) !important;
+  }
+
+  body.static-page-new-top .header1::before,
+  body.static-page-new-top .header2::before {
+
+    left: 28px !important;
+    top: 49px !important;
+
+    font-size: clamp(34px, 5vw, 46px) !important;
+  }
+
+  body.static-page-new-top .header1::after,
+  body.static-page-new-top .header2::after {
+
+    left: 30px !important;
+    top: 113px !important;
+
+    width: 56vw !important;
+
+    font-size: 14px !important;
+    line-height: 1.65 !important;
+  }
+
+  body.static-page-new-top #content {
+    margin-top: 0 !important;
+  }
+
+  body.static-page-new-top #page_top {
+    z-index: 2147483647 !important;
+  }
+}
+
+
+/* =========================================================
+   Mobile
+   ========================================================= */
+
+@media screen and (max-width: 680px) {
+
+  body.static-page-new-top #container,
+  body.static-page-new-top #container-inner,
+  body.static-page-new-top #content,
+  body.static-page-new-top #content-inner,
+  body.static-page-new-top #wrapper,
+  body.static-page-new-top #main,
+  body.static-page-new-top #main-inner,
+  body.static-page-new-top article.entry,
+  body.static-page-new-top .entry,
+  body.static-page-new-top .entry-inner,
+  body.static-page-new-top .entry-content,
+  body.static-page-new-top .new-top-embed,
+  body.static-page-new-top #photoGallery {
+
+    width: 100% !important;
+    max-width: none !important;
+
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+
+  body.static-page-new-top .header1,
+  body.static-page-new-top .header2 {
+
+    height: 188px !important;
+
+    /*
+       スマホではHatena上部UIとの安全を優先。
+       傘を上へ飛び出させずbanner内へ収める。
+    */
+    overflow: hidden !important;
+
+    background-position:
+      center center,
+      54% center !important;
+  }
+
+
+  body.static-page-new-top .header1 img,
+  body.static-page-new-top .header2 img {
+
+    /*
+       0 + 216 - 28 = 188
+       → 下側28pxを使わない
+       → 見える下端はHero下端に一致
+    */
+    top: 0 !important;
+    bottom: auto !important;
+
+    right: 6px !important;
+
+    width: 157px !important;
+    height: 216px !important;
+
+    -webkit-clip-path: inset(0 0 28px 0);
+    clip-path: inset(0 0 28px 0);
+
+    filter:
+      brightness(0.92)
+      saturate(0.92)
+      contrast(0.98)
+      drop-shadow(0 3px 5px rgba(17, 29, 14, 0.10)) !important;
+  }
+
+
+  body.static-page-new-top .header1::before,
+  body.static-page-new-top .header2::before {
+
+    left: 16px !important;
+    top: 36px !important;
+
+    font-size: 29px !important;
+    line-height: 1.18 !important;
+    letter-spacing: 0.045em !important;
+  }
+
+
+  body.static-page-new-top .header1::after,
+  body.static-page-new-top .header2::after {
+
+    left: 17px !important;
+    top: 91px !important;
+
+    width: 54vw !important;
+
+    font-size: 12px !important;
+    line-height: 1.55 !important;
+    letter-spacing: 0.015em !important;
+  }
+
+
+  body.static-page-new-top #content {
+    margin-top: 0 !important;
+  }
+
+
+  body.static-page-new-top #page_top {
+    z-index: 2147483647 !important;
+  }
+}
+
+/* =========================================================
+   /new-top Hero PC final tuning 01
+   reference screenshot alignment
+   ========================================================= */
+
+@media screen and (min-width: 961px) {
+
+  /*
+     傘をHero上端より外へ出せるようにする。
+     header1だけvisibleでも親で切られる場合があるため、
+     /new-top の親要素もvisibleにする。
+  */
+  body.static-page-new-top #container,
+  body.static-page-new-top #container-inner,
+  body.static-page-new-top #top-editarea {
+    overflow: visible !important;
+  }
+
+  body.static-page-new-top #top-editarea {
+    position: relative !important;
+    z-index: 20 !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     Hero本体
+     240px → 220px
+     --------------------------------------------------------- */
+
+  body.static-page-new-top .header1,
+  body.static-page-new-top .header2 {
+
+    height: 220px !important;
+
+    overflow: visible !important;
+
+    /*
+       理想画像より左側が少し暗めなので
+       タイトルの可読性は残しつつ暗幕を少し弱める
+    */
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba(10, 28, 17, 0.32) 0%,
+        rgba(10, 28, 17, 0.17) 36%,
+        rgba(10, 28, 17, 0.035) 61%,
+        rgba(10, 28, 17, 0.00) 72%
+      ),
+      url("https://charchan123.github.io/hatena-photo-gallery/assets/hero-amanita-background.webp") !important;
+
+    background-size: cover, cover !important;
+    background-position: center center, center center !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     ベニテングタケ
+     ・かなり左へ
+     ・元画像より少し明るく
+     ・傘を上へ
+     ・柄の荒い最下部は使用しない
+     --------------------------------------------------------- */
+
+  body.static-page-new-top .header1 img,
+  body.static-page-new-top .header2 img {
+
+    top: -16px !important;
+    bottom: auto !important;
+
+    /*
+       現在より約100px前後、左側へ移動
+    */
+    left: auto !important;
+
+    right: max(
+      86px,
+      calc((100% - 1180px) / 2 + 220px)
+    ) !important;
+
+    width: 222px !important;
+    height: 306px !important;
+
+    /*
+       -16 + 306 - 70 = 220
+       見える柄の最下端をHero下端に揃える
+    */
+    -webkit-clip-path: inset(0 0 70px 0) !important;
+    clip-path: inset(0 0 70px 0) !important;
+
+    /*
+       前回の0.90は暗すぎたので撤回。
+       理想画像のように明るい赤と白を出す。
+    */
+    filter:
+      brightness(1.10)
+      saturate(1.04)
+      contrast(1.00)
+      drop-shadow(0 3px 5px rgba(17, 29, 14, 0.09)) !important;
+
+    opacity: 1 !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     メインタイトル
+     左端揃え → 理想画像のように内側へ
+     --------------------------------------------------------- */
+
+  body.static-page-new-top .header1::before,
+  body.static-page-new-top .header2::before {
+
+    left: clamp(78px, 9.5vw, 160px) !important;
+    top: 46px !important;
+
+    font-size: clamp(48px, 4vw, 60px) !important;
+    font-weight: 700 !important;
+
+    line-height: 1.12 !important;
+    letter-spacing: 0.055em !important;
+
+    text-shadow:
+      0 2px 7px rgba(0, 0, 0, 0.30),
+      0 1px 2px rgba(0, 0, 0, 0.24) !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     Subtitle
+     タイトルと同じ左ラインへ
+     少し下へ・少し大きく
+     --------------------------------------------------------- */
+
+  body.static-page-new-top .header1::after,
+  body.static-page-new-top .header2::after {
+
+    left: clamp(80px, 9.6vw, 162px) !important;
+
+    top: 127px !important;
+
+    width: min(660px, 51vw) !important;
+
+    font-size: 16px !important;
+    font-weight: 600 !important;
+
+    line-height: 1.65 !important;
+    letter-spacing: 0.025em !important;
+
+    text-shadow:
+      0 1px 4px rgba(0, 0, 0, 0.32) !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     Heroとportalの間
+     現在は少し空きすぎているため詰める
+     --------------------------------------------------------- */
+
+  body.static-page-new-top #content {
+    margin-top: -18px !important;
+  }
+
+}
+
+/* =========================================================
+   /new-top Hero PC final tuning 02
+   - 傘を少し上にはみ出させる
+   - キノコ左側の影を明るくする
+   - 背景左側の暗さを少し弱める
+   ========================================================= */
+
+@media screen and (min-width: 961px) {
+
+  /* Hero背景の左側を少し明るくする */
+  body.static-page-new-top .header1,
+  body.static-page-new-top .header2 {
+
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba(10, 28, 17, 0.22) 0%,
+        rgba(10, 28, 17, 0.11) 34%,
+        rgba(10, 28, 17, 0.02) 58%,
+        rgba(10, 28, 17, 0.00) 72%
+      ),
+      url("https://charchan123.github.io/hatena-photo-gallery/assets/hero-amanita-background.webp") !important;
+  }
+
+
+  /* キノコを少し上へ出し、左側の影を明るくする */
+  body.static-page-new-top .header1 img,
+  body.static-page-new-top .header2 img {
+
+    /*
+       傘を少し上にはみ出させる
+       以前より少しだけ上へ
+    */
+    top: -26px !important;
+
+    /*
+       topを上げた分だけ、下側の不要部分を少し減らして
+       見える下端をHero下端に合わせる
+       -26 + 306 - 60 = 220
+    */
+    -webkit-clip-path: inset(0 0 60px 0) !important;
+    clip-path: inset(0 0 60px 0) !important;
+
+    /*
+       左側の影が暗すぎるので少し明るくする
+       コントラストも少しだけ弱める
+    */
+    filter:
+      brightness(1.18)
+      saturate(1.03)
+      contrast(0.96)
+      drop-shadow(0 3px 5px rgba(17, 29, 14, 0.07)) !important;
+  }
+
+}
+
+/* =========================================================
+   /new-top Hero PC final tuning 03
+   - 傘を上にはみ出させる
+   - タイトル/説明文を理想画像に寄せる
+   - バナー下にぼかしデザインを追加
+   - バナーとカードの間隔を詰める
+   ========================================================= */
+
+@media screen and (min-width: 961px) {
+
+  /* ---------------------------------------------------------
+     傘を上にはみ出させるため
+     親側でも切られないようにする
+     --------------------------------------------------------- */
+  body.static-page-new-top #container,
+  body.static-page-new-top #container-inner,
+  body.static-page-new-top #top-editarea,
+  body.static-page-new-top .header1,
+  body.static-page-new-top .header2 {
+    overflow: visible !important;
+  }
+
+  body.static-page-new-top #top-editarea {
+    position: relative !important;
+    z-index: 20 !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     Hero背景
+     左の暗幕は今のまま大きく変えず、
+     タイトルの可読性を維持
+     --------------------------------------------------------- */
+  body.static-page-new-top .header1,
+  body.static-page-new-top .header2 {
+    height: 220px !important;
+    position: relative !important;
+    z-index: 20 !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     キノコ
+     ・位置はそのまま
+     ・傘だけ少し上にはみ出させる
+     ・下の不要部分は見せない
+     --------------------------------------------------------- */
+  body.static-page-new-top .header1 img,
+  body.static-page-new-top .header2 img {
+
+    z-index: 24 !important;
+
+    /*
+      傘を上へ少し出す
+    */
+    top: -34px !important;
+    bottom: auto !important;
+
+    /*
+      位置はいったんOKとのことなので、前回のまま維持
+    */
+    right: max(
+      86px,
+      calc((100% - 1180px) / 2 + 220px)
+    ) !important;
+
+    width: 222px !important;
+    height: 306px !important;
+
+    /*
+      -34 + 306 - 52 = 220
+      → 見える下端をHero下端に揃える
+      → 傘は34px上にはみ出す
+    */
+    -webkit-clip-path: inset(0 0 52px 0) !important;
+    clip-path: inset(0 0 52px 0) !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     タイトル
+     2枚目に近い位置・サイズへ
+     --------------------------------------------------------- */
+  body.static-page-new-top .header1::before,
+  body.static-page-new-top .header2::before {
+
+    left: clamp(42px, 5.2vw, 86px) !important;
+    top: 38px !important;
+
+    font-size: clamp(56px, 5.1vw, 78px) !important;
+    font-weight: 700 !important;
+
+    line-height: 1.08 !important;
+    letter-spacing: 0.04em !important;
+
+    text-shadow:
+      0 2px 7px rgba(0, 0, 0, 0.28),
+      0 1px 2px rgba(0, 0, 0, 0.22) !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     タイトル下テキスト
+     2枚目に近い位置・サイズへ
+     --------------------------------------------------------- */
+  body.static-page-new-top .header1::after,
+  body.static-page-new-top .header2::after {
+
+    left: clamp(44px, 5.3vw, 88px) !important;
+    top: 128px !important;
+
+    width: min(760px, 58vw) !important;
+
+    font-size: 18px !important;
+    font-weight: 600 !important;
+
+    line-height: 1.55 !important;
+    letter-spacing: 0.015em !important;
+
+    text-shadow:
+      0 1px 4px rgba(0, 0, 0, 0.30) !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     バナー下のぼかし風デザイン
+     旧fadeではなく、下端だけやわらかくつなぐ
+     --------------------------------------------------------- */
+  body.static-page-new-top #content {
+    position: relative !important;
+    z-index: 10 !important;
+
+    /*
+      バナーとカードの間隔を2枚目に近づける
+    */
+    margin-top: -22px !important;
+  }
+
+  body.static-page-new-top #content::before {
+    content: "";
+
+    position: absolute;
+    left: 50%;
+    top: -18px;
+    transform: translateX(-50%);
+
+    width: min(96%, 1320px);
+    height: 54px;
+
+    pointer-events: none;
+
+    z-index: 14;
+
+    /*
+      ぼかし風のやわらかい帯
+    */
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(247, 252, 244, 0.00) 0%,
+        rgba(247, 252, 244, 0.42) 22%,
+        rgba(247, 252, 244, 0.74) 48%,
+        rgba(247, 252, 244, 0.96) 78%,
+        rgba(247, 252, 244, 1.00) 100%
+      );
+
+    filter: blur(16px);
+    opacity: 0.96;
+  }
+
+}
+
+/* =========================================================
+   /new-top Hero PC final tuning 04
+   - 傘を上にはみ出させる
+   - タイトルを太く
+   - タイトル字間を詰める
+   - subtitleを観察記録下文と同程度サイズへ
+   - title + subtitle を縦中央寄せに近づける
+   ========================================================= */
+
+@media screen and (min-width: 961px) {
+
+  /* ---------------------------------------------------------
+     傘が上へ出られるように、周辺ラッパーも visible
+     --------------------------------------------------------- */
+  body.static-page-new-top #container,
+  body.static-page-new-top #container-inner,
+  body.static-page-new-top #wrapper,
+  body.static-page-new-top #main,
+  body.static-page-new-top #main-inner,
+  body.static-page-new-top #content,
+  body.static-page-new-top article.entry,
+  body.static-page-new-top .entry,
+  body.static-page-new-top .entry-content,
+  body.static-page-new-top #top-editarea,
+  body.static-page-new-top .header1,
+  body.static-page-new-top .header2 {
+    overflow: visible !important;
+  }
+
+  body.static-page-new-top #top-editarea,
+  body.static-page-new-top .header1,
+  body.static-page-new-top .header2 {
+    position: relative !important;
+  }
+
+  /* ---------------------------------------------------------
+     Hero本体
+     --------------------------------------------------------- */
+  body.static-page-new-top .header1,
+  body.static-page-new-top .header2 {
+    height: 220px !important;
+    z-index: 20 !important;
+  }
+
+  /* ---------------------------------------------------------
+     キノコ
+     - 今までよりさらに上へ
+     - 下側の荒い部分は引き続き見せない
+     - 位置と明るさは現状維持ベース
+     --------------------------------------------------------- */
+  body.static-page-new-top .header1 img,
+  body.static-page-new-top .header2 img {
+
+    z-index: 30 !important;
+
+    /*
+      傘をさらに上へ出す
+    */
+    top: -44px !important;
+    bottom: auto !important;
+
+    right: max(
+      86px,
+      calc((100% - 1180px) / 2 + 220px)
+    ) !important;
+
+    width: 222px !important;
+    height: 306px !important;
+
+    /*
+      -44 + 306 - 42 = 220
+      → 見える下端をHero下端へ合わせる
+      → 傘は44px上へ出る
+    */
+    -webkit-clip-path: inset(0 0 42px 0) !important;
+    clip-path: inset(0 0 42px 0) !important;
+  }
+
+  /* ---------------------------------------------------------
+     タイトル
+     - 2枚目より太く
+     - 全体の字間を詰める
+     - palt / kerning を有効化して
+       「キノコと」が詰まって見える方向へ寄せる
+     --------------------------------------------------------- */
+  body.static-page-new-top .header1::before,
+  body.static-page-new-top .header2::before {
+
+    left: clamp(40px, 4.8vw, 78px) !important;
+
+    /*
+      title + subtitle をまとまりとして
+      Hero内で縦中央寄せに近づけるため少し下げる
+    */
+    top: 52px !important;
+
+    font-size: clamp(64px, 5.4vw, 86px) !important;
+    font-weight: 900 !important;
+    line-height: 1.02 !important;
+
+    /*
+      全体の字間をかなり詰める
+      （「キノコと」だけ個別調整はCSSのみでは困難）
+    */
+    letter-spacing: -0.045em !important;
+
+    font-kerning: normal !important;
+    font-feature-settings: "palt" 1 !important;
+
+    text-shadow:
+      0 2px 7px rgba(0, 0, 0, 0.26),
+      0 1px 2px rgba(0, 0, 0, 0.20) !important;
+  }
+
+  /* ---------------------------------------------------------
+     サブテキスト
+     - 観察記録下の文と同じくらいのサイズ感
+     - titleとの間隔を詰める
+     - 2行セットとして縦中央寄せに近づける
+     --------------------------------------------------------- */
+  body.static-page-new-top .header1::after,
+  body.static-page-new-top .header2::after {
+
+    left: clamp(44px, 5.0vw, 82px) !important;
+
+    /*
+      タイトルとの距離を詰める
+    */
+    top: 128px !important;
+
+    width: min(760px, 58vw) !important;
+
+    /*
+      観察記録下の文に近いサイズ感
+    */
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    line-height: 1.55 !important;
+    letter-spacing: 0.00em !important;
+
+    text-shadow:
+      0 1px 4px rgba(0, 0, 0, 0.28) !important;
+  }
+
+  /* ---------------------------------------------------------
+     Heroと下カードの間隔
+     現状の詰まりを維持しつつ微調整
+     --------------------------------------------------------- */
+  body.static-page-new-top #content {
+    margin-top: -18px !important;
+  }
+
+}
+
+/* =========================================================
+   /new-top Hero PC final tuning 05
+   - 実はみ出しはやめて「上ギリギリに見せる」方式へ
+   - タイトルをHiragino明朝へ
+   - タイトルサイズと字間を2枚目寄りに再調整
+   - subtitleを小さくして観察記録下文と近づける
+   - バナー下にぼかし帯を追加
+   ========================================================= */
+
+@media screen and (min-width: 961px) {
+
+  /* ---------------------------------------------------------
+     Hero本体
+     実はみ出しではなく、Heroの中で上ギリギリに見せる
+     --------------------------------------------------------- */
+  body.static-page-new-top .header1,
+  body.static-page-new-top .header2 {
+
+    height: 228px !important;
+
+    /*
+      今回は「本当に外へ出す」のをやめる
+      → Hero内で上ギリギリに見せる
+    */
+    overflow: hidden !important;
+    position: relative !important;
+    z-index: 20 !important;
+  }
+
+  /* ---------------------------------------------------------
+     キノコ
+     ・削りすぎた傘上部を戻す
+     ・上ギリギリに配置して、少し出て見える印象にする
+     ・下の荒い部分は引き続き使わない
+     --------------------------------------------------------- */
+  body.static-page-new-top .header1 img,
+  body.static-page-new-top .header2 img {
+
+    z-index: 24 !important;
+
+    /*
+      上へ出しすぎず、傘上部を戻す
+      実はみ出しではなく、上端ギリギリに見せる
+    */
+    top: -6px !important;
+    bottom: auto !important;
+
+    right: max(
+      86px,
+      calc((100% - 1180px) / 2 + 220px)
+    ) !important;
+
+    width: 222px !important;
+    height: 306px !important;
+
+    /*
+      -6 + 306 - 72 = 228
+      → 傘上部はかなり戻る
+      → 下側の不要部分は引き続き使わない
+    */
+    -webkit-clip-path: inset(0 0 72px 0) !important;
+    clip-path: inset(0 0 72px 0) !important;
+  }
+
+  /* ---------------------------------------------------------
+     タイトル
+     ・Hiragino 明朝系へ
+     ・大きすぎたので縮小
+     ・詰まりすぎた字間を戻す
+     --------------------------------------------------------- */
+  body.static-page-new-top .header1::before,
+  body.static-page-new-top .header2::before {
+
+    left: clamp(42px, 4.9vw, 82px) !important;
+    top: 48px !important;
+
+    color: #fffdf4 !important;
+
+    font-family:
+      "Hiragino Mincho ProN",
+      "Hiragino Mincho Pro",
+      "Yu Mincho",
+      "MS PMincho",
+      serif !important;
+
+    /*
+      HiraginoのW6くらいの見え方を狙う
+    */
+    font-weight: 600 !important;
+
+    /*
+      いまは大きすぎるので縮小
+    */
+    font-size: clamp(54px, 4.7vw, 68px) !important;
+
+    line-height: 1.04 !important;
+
+    /*
+      「キノコと」が詰まりすぎたので戻す
+      2枚目寄りに少しだけ詰める程度にする
+    */
+    letter-spacing: 0.00em !important;
+
+    /*
+      paltで詰まりすぎていたので切る
+    */
+    font-kerning: normal !important;
+    font-feature-settings: "palt" 0, "kern" 1 !important;
+
+    text-shadow:
+      0 2px 7px rgba(0, 0, 0, 0.26),
+      0 1px 2px rgba(0, 0, 0, 0.20) !important;
+  }
+
+  /* ---------------------------------------------------------
+     subtitle
+     ・観察記録下の「キノコ探索のブログ記事を…」と近いサイズ感
+     ・titleとの行間を少し詰める
+     --------------------------------------------------------- */
+  body.static-page-new-top .header1::after,
+  body.static-page-new-top .header2::after {
+
+    left: clamp(46px, 5.0vw, 84px) !important;
+    top: 128px !important;
+
+    width: min(760px, 58vw) !important;
+
+    /*
+      観察記録下の文と近いサイズ感
+    */
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    line-height: 1.50 !important;
+    letter-spacing: 0.00em !important;
+
+    text-shadow:
+      0 1px 4px rgba(0, 0, 0, 0.28) !important;
+  }
+
+  /* ---------------------------------------------------------
+     バナー下のぼかし帯
+     2枚目の「ふわっとしたつながり」に寄せる
+     --------------------------------------------------------- */
+  body.static-page-new-top #content {
+    position: relative !important;
+
+    /*
+      カードとの間隔も2枚目寄りに
+    */
+    margin-top: -14px !important;
+    z-index: 10 !important;
+  }
+
+  body.static-page-new-top #content::before {
+    content: "";
+
+    position: absolute;
+    left: 50%;
+    top: -18px;
+    transform: translateX(-50%);
+
+    width: min(96%, 1320px);
+    height: 58px;
+
+    pointer-events: none;
+    z-index: 14;
+
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(247, 252, 244, 0.00) 0%,
+        rgba(247, 252, 244, 0.34) 24%,
+        rgba(247, 252, 244, 0.72) 52%,
+        rgba(247, 252, 244, 0.96) 82%,
+        rgba(247, 252, 244, 1.00) 100%
+      );
+
+    filter: blur(18px);
+    opacity: 0.96;
+  }
+
+}
+
+/* =========================================================
+   /new-top Hero PC final tuning 06
+   - タイトルを太くする
+   - title + subtitle をセットで少し下げて
+     バナー内で縦中央寄せに近づける
+   ========================================================= */
+
+@media screen and (min-width: 961px) {
+
+  /* タイトルを太くする */
+  body.static-page-new-top .header1::before,
+  body.static-page-new-top .header2::before {
+
+    /*
+      Hiragino明朝の太さを少し強める
+    */
+    font-weight: 700 !important;
+    -webkit-text-stroke: 0.5px currentColor;
+
+    /*
+      title + subtitle 全体を少し下へ
+    */
+    top: 62px !important;
+  }
+
+  /* subtitle もセットで下へ */
+  body.static-page-new-top .header1::after,
+  body.static-page-new-top .header2::after {
+
+    /*
+      titleとの間隔は保ったまま
+      全体を少し下へ移動
+    */
+    top: 142px !important;
+  }
+
+}
+
+/* =========================================================
+   /new-top Hero PC
+   Hatenaヘッダと同色の帯で「傘がはみ出して見える」表現
+   ========================================================= */
+
+@media screen and (min-width: 961px) {
+
+  body.static-page-new-top .header1,
+  body.static-page-new-top .header2 {
+
+    /*
+      上18pxだけHatenaヘッダと同じ白色。
+      キノコ画像は子要素なので、この白帯より前面に表示される。
+    */
+    background-image:
+      linear-gradient(
+        to bottom,
+        #ffffff 0,
+        #ffffff 18px,
+        rgba(255,255,255,0) 18px,
+        rgba(255,255,255,0) 100%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(10,28,17,0.22) 0%,
+        rgba(10,28,17,0.11) 34%,
+        rgba(10,28,17,0.02) 58%,
+        rgba(10,28,17,0.00) 72%
+      ),
+      url("https://charchan123.github.io/hatena-photo-gallery/assets/hero-amanita-background.webp") !important;
+
+    background-repeat:
+      no-repeat,
+      no-repeat,
+      no-repeat !important;
+
+    background-size:
+      100% 100%,
+      100% 100%,
+      cover !important;
+
+    background-position:
+      center top,
+      center center,
+      center center !important;
+
+    overflow: hidden !important;
+  }
+
+
+  /*
+     本当に外へはみ出させるのではなく、
+     白帯の領域までキノコを戻して見せる。
+  */
+  body.static-page-new-top .header1 img,
+  body.static-page-new-top .header2 img {
+
+    top: 0 !important;
+
+    /*
+      Hero高さ228pxの場合
+      0 + 306 - 78 = 228
+      → 柄の荒い最下部は隠したまま下端を揃える
+    */
+    -webkit-clip-path: inset(0 0 78px 0) !important;
+    clip-path: inset(0 0 78px 0) !important;
+  }
+
+}
+
+/* =========================================================
+   /new-top Hero final adjustment
+   - Hatenaヘッダ下の境界線を消す
+   - 白帯18px分、タイトル2行を下へ移動
+   ========================================================= */
+
+@media screen and (min-width: 961px) {
+
+  /* Hatenaグローバルヘッダ下端の線・影を消す */
+  body.static-page-new-top #globalheader-container,
+  body.static-page-new-top #globalheader {
+    border-bottom: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* 「キノコと田舎遊び」を18px下へ */
+  body.static-page-new-top .header1::before,
+  body.static-page-new-top .header2::before {
+    transform: translateY(18px) !important;
+  }
+
+  /* 「森を歩き、見つけて…」も同じ18px下へ */
+  body.static-page-new-top .header1::after,
+  body.static-page-new-top .header2::after {
+    transform: translateY(18px) !important;
+  }
+
+}
+
+/*
+ * Hatena article-page preview patch
+ * Phase 4C.11
+ *
+ * Append this block to the END of the current Hatena Design CSS and use Preview.
+ * It is intentionally scoped away from /new-top.
+ * Existing article markup, comments, Hatena Star, bookmarks and authoring are preserved.
+ */
+
+body.page-entry:not(.static-page-new-top) {
+  --article-paper:#f7fcf4;
+  --article-green:#24472f;
+  --article-green-2:#365b3f;
+  --article-muted:#6b776d;
+  --article-border:#dce7d9;
+  --article-card:#ffffff;
+  max-width:none;
+  margin:0;
+  background:var(--article-paper) !important;
+  color:#2a3b30;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP","Yu Gothic",sans-serif;
+}
+
+body.page-entry:not(.static-page-new-top) *,
+body.page-entry:not(.static-page-new-top) *::before,
+body.page-entry:not(.static-page-new-top) *::after {
+  box-sizing:border-box;
+}
+
+/* ===== Hero: reuse the new-top visual language without changing header HTML ===== */
+body.page-entry:not(.static-page-new-top) .header1,
+body.page-entry:not(.static-page-new-top) .header2 {
+  position:relative !important;
+  width:100% !important;
+  max-width:none !important;
+  height:228px !important;
+  margin:0 !important;
+  padding:0 !important;
+  overflow:hidden !important;
+  border:0 !important;
+  box-shadow:none !important;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(10,28,17,.22) 0%,
+      rgba(10,28,17,.11) 34%,
+      rgba(10,28,17,.02) 58%,
+      rgba(10,28,17,0) 72%
+    ),
+    url("https://charchan123.github.io/hatena-photo-gallery/assets/hero-amanita-background.webp") !important;
+  background-repeat:no-repeat,no-repeat !important;
+  background-size:cover,cover !important;
+  background-position:center center,center center !important;
+}
+
+body.page-entry:not(.static-page-new-top) .header1 img,
+body.page-entry:not(.static-page-new-top) .header2 img {
+  position:absolute !important;
+  z-index:3 !important;
+  top:0 !important;
+  right:max(86px,calc((100% - 1180px) / 2 + 220px)) !important;
+  width:222px !important;
+  height:306px !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  object-fit:none !important;
+  object-position:-9999px -9999px !important;
+  background-image:url("https://charchan123.github.io/hatena-photo-gallery/assets/hero-amanita-cutout.png") !important;
+  background-repeat:no-repeat !important;
+  background-position:center bottom !important;
+  background-size:contain !important;
+  -webkit-clip-path:inset(0 0 78px 0) !important;
+  clip-path:inset(0 0 78px 0) !important;
+  filter:brightness(1.12) saturate(1.03) contrast(.98) drop-shadow(0 3px 5px rgba(17,29,14,.08)) !important;
+  pointer-events:none !important;
+}
+
+body.page-entry:not(.static-page-new-top) .header1::before,
+body.page-entry:not(.static-page-new-top) .header2::before {
+  content:"キノコと田舎遊び";
+  position:absolute;
+  z-index:5;
+  left:clamp(42px,4.9vw,82px);
+  top:62px;
+  color:#fffdf4;
+  font-family:"Hiragino Mincho ProN","Hiragino Mincho Pro","Yu Mincho","MS PMincho",serif;
+  font-size:clamp(54px,4.7vw,68px);
+  font-weight:700;
+  line-height:1.04;
+  letter-spacing:0;
+  text-shadow:0 2px 7px rgba(0,0,0,.26),0 1px 2px rgba(0,0,0,.20);
+  pointer-events:none;
+}
+
+body.page-entry:not(.static-page-new-top) .header1::after,
+body.page-entry:not(.static-page-new-top) .header2::after {
+  content:"森を歩き、見つけて、調べて、撮って楽しむ。キノコと自然のフォトブログです。";
+  position:absolute;
+  z-index:5;
+  left:clamp(46px,5vw,84px);
+  top:142px;
+  width:min(760px,58vw);
+  color:rgba(255,255,255,.94);
+  font-size:14px;
+  font-weight:600;
+  line-height:1.5;
+  text-shadow:0 1px 4px rgba(0,0,0,.28);
+  pointer-events:none;
+}
+
+/* ===== Navigation: keep the existing menu/functionality, only restyle it ===== */
+body.page-entry:not(.static-page-new-top) #menu {
+  width:100%;
+  margin:0 auto 22px;
+  border:0;
+  border-bottom:1px solid #d6e1d3;
+  background:#eef5ea;
+}
+
+body.page-entry:not(.static-page-new-top) #menu-inner {
+  width:min(100%,1180px);
+  height:44px;
+  margin:0 auto;
+  background:#eef5ea;
+}
+
+body.page-entry:not(.static-page-new-top) #menu-content > li > a {
+  line-height:44px;
+  background:#eef5ea;
+  color:#31563a;
+  font-weight:700;
+}
+
+body.page-entry:not(.static-page-new-top) #menu-content > li > a:hover {
+  background:#dfeadb;
+  color:#24472f;
+}
+
+body.page-entry:not(.static-page-new-top) #menu-btn {
+  border:1px solid #c8d8c5;
+  border-radius:999px;
+  background:#f8fcf6;
+  color:#31563a;
+  font-weight:750;
+}
+
+/* ===== Two-column article shell ===== */
+body.page-entry:not(.static-page-new-top) #container,
+body.page-entry:not(.static-page-new-top) #container-inner,
+body.page-entry:not(.static-page-new-top) #content {
+  background:var(--article-paper) !important;
+}
+
+body.page-entry:not(.static-page-new-top) #content-inner {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 300px;
+  gap:24px;
+  align-items:start;
+  width:min(100%,1180px) !important;
+  max-width:1180px !important;
+  margin:0 auto !important;
+  padding:0 22px 48px !important;
+}
+
+body.page-entry:not(.static-page-new-top) #wrapper,
+body.page-entry:not(.static-page-new-top) #main,
+body.page-entry:not(.static-page-new-top) #main-inner,
+body.page-entry:not(.static-page-new-top) #box2 {
+  width:auto !important;
+  max-width:none !important;
+  min-width:0 !important;
+  margin:0 !important;
+  float:none !important;
+}
+
+body.page-entry:not(.static-page-new-top) #wrapper {
+  grid-column:1;
+}
+
+body.page-entry:not(.static-page-new-top) #box2 {
+  grid-column:2;
+}
+
+/* ===== Article card ===== */
+body.page-entry:not(.static-page-new-top) article.entry,
+body.page-entry:not(.static-page-new-top) .entry.hentry {
+  overflow:hidden;
+  margin:0 0 22px !important;
+  padding:28px 30px 30px !important;
+  border:1px solid var(--article-border) !important;
+  border-radius:22px !important;
+  background:var(--article-card) !important;
+  box-shadow:0 12px 32px rgba(39,63,44,.08) !important;
+}
+
+body.page-entry:not(.static-page-new-top) .entry-header {
+  margin:0 0 24px !important;
+  padding:0 0 18px !important;
+  border-bottom:1px solid #dfe7dc;
+}
+
+body.page-entry:not(.static-page-new-top) .entry-title,
+body.page-entry:not(.static-page-new-top) .entry-title a,
+body.page-entry:not(.static-page-new-top) .entry-title-link {
+  margin:0 !important;
+  color:var(--article-green) !important;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP","Yu Gothic",sans-serif !important;
+  font-size:clamp(1.65rem,3vw,2.15rem) !important;
+  font-weight:760 !important;
+  line-height:1.35 !important;
+  letter-spacing:.01em !important;
+  text-decoration:none !important;
+}
+
+body.page-entry:not(.static-page-new-top) .entry-title::before,
+body.page-entry:not(.static-page-new-top) .entry-title a::before,
+body.page-entry:not(.static-page-new-top) .entry-content h1::before,
+body.page-entry:not(.static-page-new-top) h1.entry-title::before {
+  content:none !important;
+  display:none !important;
+}
+
+body.page-entry:not(.static-page-new-top) .entry-date,
+body.page-entry:not(.static-page-new-top) .entry-meta,
+body.page-entry:not(.static-page-new-top) .entry-header-menu {
+  color:#788279 !important;
+  font-size:.8rem !important;
+}
+
+body.page-entry:not(.static-page-new-top) .entry-content {
+  color:#33463a;
+  font-size:16px;
+  line-height:1.9;
+}
+
+body.page-entry:not(.static-page-new-top) .entry-content p {
+  margin:0 0 1.35em;
+}
+
+body.page-entry:not(.static-page-new-top) .entry-content h1,
+body.page-entry:not(.static-page-new-top) .entry-content h2,
+body.page-entry:not(.static-page-new-top) .entry-content h3,
+body.page-entry:not(.static-page-new-top) .entry-content h4,
+body.page-entry:not(.static-page-new-top) .entry-content h5 {
+  color:var(--article-green) !important;
+  font-family:inherit !important;
+  font-weight:750 !important;
+  line-height:1.45 !important;
+}
+
+body.page-entry:not(.static-page-new-top) .entry-content h2 {
+  margin:2.2em 0 .9em;
+  padding:.55em .75em;
+  border:0;
+  border-left:4px solid #6e9b72;
+  border-radius:0 10px 10px 0;
+  background:#eef6eb;
+}
+
+body.page-entry:not(.static-page-new-top) .entry-content h3 {
+  margin:1.9em 0 .7em;
+  padding:0 0 .42em;
+  border:0;
+  border-bottom:1px solid #cfddcc;
+  background:none;
+}
+
+body.page-entry:not(.static-page-new-top) .entry-content h4,
+body.page-entry:not(.static-page-new-top) .entry-content h5 {
+  margin:1.6em 0 .6em;
+  padding:0;
+  border:0;
+  background:none;
+}
+
+body.page-entry:not(.static-page-new-top) .entry-content a {
+  color:#2f6940;
+  text-decoration-thickness:1px;
+  text-underline-offset:3px;
+}
+
+body.page-entry:not(.static-page-new-top) .entry-content img {
+  max-width:100%;
+  height:auto;
+  border-radius:12px;
+}
+
+body.page-entry:not(.static-page-new-top) .entry-content blockquote {
+  margin:1.5em 0;
+  padding:14px 18px;
+  border-left:3px solid #88a889;
+  border-radius:0 10px 10px 0;
+  background:#f5f9f3;
+  color:#55625a;
+}
+
+body.page-entry:not(.static-page-new-top) .entry-content table {
+  width:100%;
+  border-collapse:collapse;
+  background:#fff;
+}
+
+body.page-entry:not(.static-page-new-top) .entry-content th {
+  background:#edf5e9;
+  color:#31563a;
+}
+
+body.page-entry:not(.static-page-new-top) .entry-content th,
+body.page-entry:not(.static-page-new-top) .entry-content td {
+  padding:9px 10px;
+  border:1px solid #dce5d9;
+}
+
+/* ===== Native Hatena controls remain present ===== */
+body.page-entry:not(.static-page-new-top) .entry-footer {
+  margin-top:26px;
+  padding-top:18px;
+  border-top:1px solid #dfe7dc;
+}
+
+body.page-entry:not(.static-page-new-top) .hatena-star-container,
+body.page-entry:not(.static-page-new-top) .social-buttons,
+body.page-entry:not(.static-page-new-top) .entry-footer-section {
+  max-width:100%;
+}
+
+body.page-entry:not(.static-page-new-top) .comment-box,
+body.page-entry:not(.static-page-new-top) #comments {
+  margin:22px 0 0;
+  padding:22px 24px;
+  border:1px solid var(--article-border);
+  border-radius:18px;
+  background:#fff;
+  box-shadow:0 9px 24px rgba(39,63,44,.06);
+}
+
+body.page-entry:not(.static-page-new-top) .comment-box .comment,
+body.page-entry:not(.static-page-new-top) .comment-list li {
+  padding:14px 0;
+  border-bottom:1px solid #e1e8df;
+}
+
+body.page-entry:not(.static-page-new-top) .comment-user-name,
+body.page-entry:not(.static-page-new-top) .comment-user-name a,
+body.page-entry:not(.static-page-new-top) .leave-comment-title {
+  color:#31563a;
+  font-weight:750;
+}
+
+/* ===== Sidebar ===== */
+body.page-entry:not(.static-page-new-top) #box2 .hatena-module {
+  overflow:hidden;
+  margin:0 0 18px !important;
+  padding:0 !important;
+  border:1px solid var(--article-border);
+  border-radius:16px;
+  background:#fff;
+  box-shadow:0 8px 22px rgba(39,63,44,.06);
+}
+
+body.page-entry:not(.static-page-new-top) #box2 .hatena-module-title {
+  margin:0 !important;
+  padding:13px 15px !important;
+  border:0 !important;
+  border-bottom:1px solid #dfe7dc !important;
+  background:#eef6eb !important;
+  color:#31563a !important;
+  font-size:.9rem !important;
+  font-weight:800 !important;
+}
+
+body.page-entry:not(.static-page-new-top) #box2 .hatena-module-body {
+  padding:14px 15px !important;
+  color:#5b685f;
+  font-size:.82rem;
+  line-height:1.65;
+}
+
+body.page-entry:not(.static-page-new-top) #box2 a {
+  color:#356246;
+  text-decoration-thickness:1px;
+  text-underline-offset:2px;
+}
+
+/* Keep PAGE TOP above the redesigned cards. */
+body.page-entry:not(.static-page-new-top) #page_top {
+  z-index:2147483647 !important;
+}
+
+@media screen and (max-width:960px) {
+  body.page-entry:not(.static-page-new-top) .header1,
+  body.page-entry:not(.static-page-new-top) .header2 {
+    height:210px !important;
+  }
+
+  body.page-entry:not(.static-page-new-top) .header1 img,
+  body.page-entry:not(.static-page-new-top) .header2 img {
+    right:32px !important;
+    width:194px !important;
+    height:268px !important;
+    -webkit-clip-path:inset(0 0 58px 0) !important;
+    clip-path:inset(0 0 58px 0) !important;
+  }
+
+  body.page-entry:not(.static-page-new-top) .header1::before,
+  body.page-entry:not(.static-page-new-top) .header2::before {
+    left:28px;
+    top:54px;
+    font-size:clamp(40px,6vw,54px);
+  }
+
+  body.page-entry:not(.static-page-new-top) .header1::after,
+  body.page-entry:not(.static-page-new-top) .header2::after {
+    left:30px;
+    top:124px;
+    width:58vw;
+    font-size:13px;
+  }
+
+  body.page-entry:not(.static-page-new-top) #menu-inner {
+    width:100%;
+    height:auto;
+  }
+
+  body.page-entry:not(.static-page-new-top) #content-inner {
+    display:block;
+    padding:0 16px 40px !important;
+  }
+
+  body.page-entry:not(.static-page-new-top) #box2 {
+    margin-top:20px !important;
+  }
+}
+
+@media screen and (max-width:680px) {
+  body.page-entry:not(.static-page-new-top) .header1,
+  body.page-entry:not(.static-page-new-top) .header2 {
+    height:188px !important;
+  }
+
+  body.page-entry:not(.static-page-new-top) .header1 img,
+  body.page-entry:not(.static-page-new-top) .header2 img {
+    top:0 !important;
+    right:4px !important;
+    width:148px !important;
+    height:204px !important;
+    -webkit-clip-path:inset(0 0 16px 0) !important;
+    clip-path:inset(0 0 16px 0) !important;
+    filter:brightness(1.08) saturate(1.02) contrast(.99) drop-shadow(0 2px 4px rgba(17,29,14,.07)) !important;
+  }
+
+  body.page-entry:not(.static-page-new-top) .header1::before,
+  body.page-entry:not(.static-page-new-top) .header2::before {
+    left:15px;
+    top:42px;
+    max-width:62vw;
+    font-size:30px;
+    line-height:1.15;
+  }
+
+  body.page-entry:not(.static-page-new-top) .header1::after,
+  body.page-entry:not(.static-page-new-top) .header2::after {
+    left:16px;
+    top:94px;
+    width:57vw;
+    font-size:11px;
+    line-height:1.5;
+  }
+
+  body.page-entry:not(.static-page-new-top) #menu {
+    margin-bottom:12px;
+  }
+
+  body.page-entry:not(.static-page-new-top) #content-inner {
+    padding:0 10px 32px !important;
+  }
+
+  body.page-entry:not(.static-page-new-top) article.entry,
+  body.page-entry:not(.static-page-new-top) .entry.hentry {
+    padding:20px 17px 22px !important;
+    border-radius:15px !important;
+  }
+
+  body.page-entry:not(.static-page-new-top) .entry-header {
+    margin-bottom:18px !important;
+    padding-bottom:14px !important;
+  }
+
+  body.page-entry:not(.static-page-new-top) .entry-title,
+  body.page-entry:not(.static-page-new-top) .entry-title a,
+  body.page-entry:not(.static-page-new-top) .entry-title-link {
+    font-size:1.45rem !important;
+    line-height:1.4 !important;
+  }
+
+  body.page-entry:not(.static-page-new-top) .entry-content {
+    font-size:15px;
+    line-height:1.85;
+  }
+
+  body.page-entry:not(.static-page-new-top) .entry-content h2 {
+    padding:.48em .65em;
+  }
+
+  body.page-entry:not(.static-page-new-top) .comment-box,
+  body.page-entry:not(.static-page-new-top) #comments {
+    padding:18px 16px;
+    border-radius:14px;
+  }
+}
+
+/* ===== Phase 4C.11 hero top-strip override ===== */
+
+body.page-entry:not(.static-page-new-top) .header1,
+body.page-entry:not(.static-page-new-top) .header2 {
+  height:236px !important;
+
+  background-image:
+    linear-gradient(to bottom, #ffffff 0 12px, transparent 12px),
+    linear-gradient(
+      90deg,
+      rgba(10,28,17,.22) 0%,
+      rgba(10,28,17,.11) 34%,
+      rgba(10,28,17,.02) 58%,
+      rgba(10,28,17,0) 72%
+    ),
+    url("https://charchan123.github.io/hatena-photo-gallery/assets/hero-amanita-background.webp") !important;
+
+  background-repeat:no-repeat,no-repeat,no-repeat !important;
+  background-size:100% 100%,cover,cover !important;
+  background-position:top left,center center,center center !important;
+}
+
+body.page-entry:not(.static-page-new-top) .header1 img,
+body.page-entry:not(.static-page-new-top) .header2 img {
+  top:-10px !important;
+}
+
+@media screen and (max-width:960px) {
+  body.page-entry:not(.static-page-new-top) .header1 img,
+  body.page-entry:not(.static-page-new-top) .header2 img {
+    top:-8px !important;
+  }
+}
+
+@media screen and (max-width:680px) {
+  body.page-entry:not(.static-page-new-top) .header1 img,
+  body.page-entry:not(.static-page-new-top) .header2 img {
+    top:-6px !important;
+  }
+}
+
+/* ===== Phase 4C.11 hero mushroom position fine tuning ===== */
+
+/* 上部の白帯を少し細くする */
+body.page-entry:not(.static-page-new-top) .header1,
+body.page-entry:not(.static-page-new-top) .header2 {
+  height:232px !important;
+
+  background-image:
+    linear-gradient(to bottom, #ffffff 0 7px, transparent 7px),
+    linear-gradient(
+      90deg,
+      rgba(10,28,17,.22) 0%,
+      rgba(10,28,17,.11) 34%,
+      rgba(10,28,17,.02) 58%,
+      rgba(10,28,17,0) 72%
+    ),
+    url("https://charchan123.github.io/hatena-photo-gallery/assets/hero-amanita-background.webp") !important;
+
+  background-repeat:no-repeat,no-repeat,no-repeat !important;
+  background-size:100% 100%,cover,cover !important;
+  background-position:top left,center center,center center !important;
+}
+
+/* PC：傘のはみ出しを控えめにし、柄を下まで見せる */
+body.page-entry:not(.static-page-new-top) .header1 img,
+body.page-entry:not(.static-page-new-top) .header2 img {
+  top:-2px !important;
+
+  -webkit-clip-path:inset(0 0 48px 0) !important;
+  clip-path:inset(0 0 48px 0) !important;
+}
+
+/* タブレット */
+@media screen and (max-width:960px) {
+  body.page-entry:not(.static-page-new-top) .header1 img,
+  body.page-entry:not(.static-page-new-top) .header2 img {
+    top:-1px !important;
+
+    -webkit-clip-path:inset(0 0 42px 0) !important;
+    clip-path:inset(0 0 42px 0) !important;
+  }
+}
+
+/* スマホ */
+@media screen and (max-width:680px) {
+  body.page-entry:not(.static-page-new-top) .header1,
+  body.page-entry:not(.static-page-new-top) .header2 {
+    height:188px !important;
+  }
+
+  body.page-entry:not(.static-page-new-top) .header1 img,
+  body.page-entry:not(.static-page-new-top) .header2 img {
+    top:0 !important;
+
+    -webkit-clip-path:inset(0 0 10px 0) !important;
+    clip-path:inset(0 0 10px 0) !important;
+  }
+}
+
+/* ===== キノコの傘をほんの少し上へ ===== */
+
+@media screen and (min-width:961px) {
+  body.page-entry:not(.static-page-new-top) .header1 img,
+  body.page-entry:not(.static-page-new-top) .header2 img {
+    top:-6px !important;
+  }
+}
