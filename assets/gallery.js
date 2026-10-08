@@ -1009,6 +1009,7 @@ galleries.forEach(gallery => {
   // scrollToTitle 判定（既存）
   // =========================
   document.addEventListener("click", (e) => {
+    if (e.defaultPrevented || e.button > 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     const a = e.target.closest("a");
     if (!a) return;
 
@@ -1423,7 +1424,6 @@ galleries.forEach(gallery => {
         btn.addEventListener("click", () => {
           page += Number(btn.dataset.move);
           doSearch();
-          window.parent.postMessage({ type: "scrollToTitle" }, "*");
         });
       });
     }

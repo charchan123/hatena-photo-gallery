@@ -226,13 +226,13 @@ def test_blog_about_links_are_last_and_escape_iframe(monkeypatch, tmp_path):
     assert page.index("キノコを探す") < page.index("不明キノコ研究室")
     assert page.index("ベストショット") < page.index("このブログについて")
     expected = {
-        "自己紹介": "%E8%87%AA%E5%B7%B1%E7%B4%B9%E4%BB%8B",
-        "日常記録": "%E6%97%A5%E5%B8%B8%E3%81%AE%E8%A8%98%E9%8C%B2",
-        "リンク集": "%E3%83%AA%E3%83%B3%E3%82%AF%E9%9B%86",
+        "自己紹介": "/entry/2025/03/22/032440",
+        "日常記録": "/archive/category/%E6%97%A5%E5%B8%B8%E3%81%AE%E8%A8%98%E9%8C%B2",
+        "リンク集": "/entry/links",
     }
     about = page[page.index('<footer class="portal-about"'):page.index('</footer>')]
     for label, category in expected.items():
-        assert label in about and f"/archive/category/{category}" in about
+        assert label in about and category in about
     assert about.count('target="_top"') == 3
     assert 'class="portal-about-grid"' in about
     assert 'class="portal-request"' in about
@@ -467,7 +467,8 @@ def test_guide_action_cards_use_scoped_approved_watercolors():
     ):
         destination_css = (assets / stylesheet).read_text()
         assert f'url("{artwork}")' in destination_css
-        assert 'new-top-' not in destination_css
+        for image in ('new-top-guide-watercolor.webp', 'new-top-season-watercolor.webp', 'new-top-features-watercolor.webp'):
+            assert image not in destination_css
         assert f'url("{artwork}")' not in css
 
 

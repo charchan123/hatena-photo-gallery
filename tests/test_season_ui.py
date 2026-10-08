@@ -127,8 +127,8 @@ def test_index_keeps_season_and_note_routes_in_new_guide_layout(monkeypatch, tmp
 def test_page_explains_exif_source_and_not_general_occurrence_season():
     rendered = season_ui.render_season_page(data(), main.safe_filename)
     assert "実際に撮影した写真の撮影月" in rendered
-    assert "撮影月は写真のEXIF情報を使用しています" in rendered
-    assert "一般的なキノコの発生時期を示すものではありません" in rendered
+    assert "撮影月は写真のEXIF情報をもとにしています" in rendered
+    assert "キノコの発生時期は地域や気候、その年の状況によって前後します" in rendered
     assert "推測配置していません" in rendered
 
 

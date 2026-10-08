@@ -115,7 +115,7 @@ def render_season_page(portal_data, safe_filename):
         <p>撮影した時期から、ブログで出会ったキノコをたどれます。</p>
       </div>
       <div class="season-tabs" role="tablist" aria-label="季節を選ぶ">{''.join(buttons)}</div>
-      <p class="season-note">撮影月は写真のEXIF情報を使用しています。一般的なキノコの発生時期を示すものではありません。EXIF撮影月がない写真は推測配置していません。</p>
+      <p class="season-note">撮影月は写真のEXIF情報をもとにしています。表示しているのは、このブログで実際に観察・撮影した時期です。キノコの発生時期は地域や気候、その年の状況によって前後します。EXIF撮影月がない写真は推測配置していません。</p>
     </div>
   </section>
 
