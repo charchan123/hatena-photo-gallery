@@ -5,16 +5,16 @@
   const PAGES = '.guide-index, .aiuo-index, .season-index, .feature-index';
   const PRESETS = [
     // Six outward paths cross the photo edge; the others drift around the cap.
-    { x:.44, y:.40, dx:-83, dy:-104, bend:14, exit:"top", size:7, opacity:.90, duration:3200, delay:0, core:"#EEFF88", edge:"#D7F957" },
-    { x:.53, y:.46, dx:90, dy:-73, bend:-15, size:8, opacity:.95, duration:3000, delay:45, core:"#F0D2FF", edge:"#E2A5FF" },
-    { x:.48, y:.56, dx:-78, dy:-58, bend:12, size:6, opacity:.90, duration:2800, delay:80, core:"#EEFF88", edge:"#D7F957" },
-    { x:.57, y:.40, dx:97, dy:-62, bend:-16, size:9, opacity:.95, duration:3000, delay:60, core:"#F0D2FF", edge:"#E2A5FF" },
-    { x:.41, y:.62, dx:-132, dy:-12, bend:14, exit:"left", size:7, opacity:.90, duration:3200, delay:120, core:"#EEFF88", edge:"#D7F957" },
-    { x:.60, y:.51, dx:134, dy:-18, bend:-14, exit:"right", size:8, opacity:.90, duration:3300, delay:160, core:"#EEFF88", edge:"#D7F957" },
-    { x:.46, y:.68, dx:-140, dy:-26, bend:15, exit:"left", size:9, opacity:.95, duration:3400, delay:180, core:"#F0D2FF", edge:"#E2A5FF" },
-    { x:.55, y:.58, dx:130, dy:-20, bend:-13, exit:"right", size:6, opacity:.90, duration:3200, delay:105, core:"#EEFF88", edge:"#D7F957" },
-    { x:.50, y:.40, dx:6, dy:-122, bend:16, exit:"top", size:10, opacity:.95, duration:3100, delay:70, core:"#F0D2FF", edge:"#E2A5FF" },
-    { x:.43, y:.53, dx:76, dy:18, bend:-12, size:7, opacity:.90, duration:2600, delay:195, core:"#EEFF88", edge:"#D7F957" }
+    { x:.44, y:.40, dx:-83, dy:-104, bend:14, exit:"top", size:7, opacity:.90, duration:3200, delay:0, core:"#D2FF5A", edge:"#69D600" },
+    { x:.53, y:.46, dx:90, dy:-73, bend:-15, size:8, opacity:.95, duration:3000, delay:45, core:"#CFA0FF", edge:"#7838D1" },
+    { x:.48, y:.56, dx:-78, dy:-58, bend:12, size:6, opacity:.90, duration:2800, delay:80, core:"#D2FF5A", edge:"#69D600" },
+    { x:.57, y:.40, dx:97, dy:-62, bend:-16, size:9, opacity:.95, duration:3000, delay:60, core:"#CFA0FF", edge:"#7838D1" },
+    { x:.41, y:.62, dx:-132, dy:-12, bend:14, exit:"left", size:7, opacity:.90, duration:3200, delay:120, core:"#D2FF5A", edge:"#69D600" },
+    { x:.60, y:.51, dx:134, dy:-18, bend:-14, exit:"right", size:8, opacity:.90, duration:3300, delay:160, core:"#D2FF5A", edge:"#69D600" },
+    { x:.46, y:.68, dx:-140, dy:-26, bend:15, exit:"left", size:9, opacity:.95, duration:3400, delay:180, core:"#CFA0FF", edge:"#7838D1" },
+    { x:.55, y:.58, dx:130, dy:-20, bend:-13, exit:"right", size:6, opacity:.90, duration:3200, delay:105, core:"#D2FF5A", edge:"#69D600" },
+    { x:.50, y:.40, dx:6, dy:-122, bend:16, exit:"top", size:10, opacity:.95, duration:3100, delay:70, core:"#CFA0FF", edge:"#7838D1" },
+    { x:.43, y:.53, dx:76, dy:18, bend:-12, size:7, opacity:.90, duration:2600, delay:195, core:"#D2FF5A", edge:"#69D600" }
   ];
   const TOUCH_DELAY_MS = 600;
   const OVERHANG = 80;
