@@ -16,7 +16,14 @@ The adjacent HTML candidate replaces **only the complete photoGallery communicat
 - Reserve minimum height on the outer wrapper when content shrinks near the page bottom. This may leave blank space below the iframe; it preserves the viewport without lying about iframe height. Upward scrolling, child navigation/load, and growth reclaim it.
 - Preserve `requestHeight`, explicit navigation `scrollToTitle`, and `lgClosed` fullscreen cleanup/retries.
 - Accept messages only from this iframe's `contentWindow` and its exact URL origin. A future hosting-origin change needs review.
+- Settle explicit navigation immediately (`behavior: instant`), separately from height synchronization. No scroll is scheduled by iframe load or setHeight.
+- Deploy the paired `assets/gallery.js` change with this candidate: a same-frame internal HTML navigation is recorded in sessionStorage and consumed once by its destination on pageshow (matching pathname, at most 10 seconds old). This sends from the live destination rather than accepting a null message source. No navigation delay, extra retry timer, or filter message is introduced.
+- If sessionStorage is blocked, native links still work; the best-effort departing message remains. Reliable replay then cannot be guaranteed. Review this privacy-mode limitation on the intended devices.
 - Do not call `scrollTo` for filters, tabs, search or details. Navigation remains separate.
+
+## Navigation diagnosis
+
+Four focused Chromium trials showed a delivered `scrollToTitle` with the correct origin but `event.source === null` after the old child document was destroyed. The strict parent correctly rejected it; `scrollTo` was not called. Smooth-scroll cancellation alone was therefore not the demonstrated primary cause. The destination replay retains exact origin/source checks, including rejection of null sources. Instant positioning also removes the animated-scroll/load race for accepted navigation requests.
 
 ## Manual verification and rollback
 

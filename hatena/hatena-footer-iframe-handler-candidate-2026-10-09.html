@@ -39,6 +39,10 @@
     iframe.style.height = height + 'px';
     iframe.style.opacity = '1';
   }
+  function scrollToTitle() {
+    const top = iframe.getBoundingClientRect().top + window.scrollY - 20;
+    window.scrollTo({ top, behavior:'instant' });
+  }
   iframe.addEventListener('load', () => {
     releaseSpace();
     lastHeight = -1;
@@ -51,8 +55,8 @@
     if (data.type === 'setHeight') {
       applyHeight(data.height);
     } else if (data.type === 'scrollToTitle') {
-      const top = iframe.getBoundingClientRect().top + window.scrollY - 20;
-      window.scrollTo({ top, behavior:'smooth' });
+      // Navigation is explicit; settle immediately, independently of height updates.
+      scrollToTitle();
       setTimeout(requestHeight, 200);
     } else if (data.type === 'lgClosed') {
       if (document.fullscreenElement) document.exitFullscreen().catch(() => {});

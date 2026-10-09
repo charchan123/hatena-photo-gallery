@@ -5,7 +5,7 @@ const vm = require('node:vm');
 const code = fs.readFileSync('hatena/hatena-footer-iframe-handler-candidate-2026-10-09.html','utf8').match(/<script>([\s\S]*)<\/script>/)[1];
 function fixture() {
   const handlers={}, loads={}, writes=[], posts=[], scrolls=[], timers=[];
-  const win={scrollY:350,innerHeight:900,addEventListener:(t,f)=>handlers[t]=f,scrollTo:v=>scrolls.push(v)};
+  const win={scrollY:350,innerHeight:900,addEventListener:(t,f)=>handlers[t]=f,scrollTo:v=>{scrolls.push(v);win.scrollY=v.top;}};
   const wrapper={style:{minHeight:'',overflowAnchor:''},getBoundingClientRect:()=>({top:300-win.scrollY})};
   const iframe={src:'https://charchan123.github.io/hatena-photo-gallery/new-top.html',closest:()=>wrapper,parentElement:wrapper,
     contentWindow:{postMessage:(...v)=>posts.push(v)},addEventListener:(t,f)=>loads[t]=f,getBoundingClientRect:()=>({top:300-win.scrollY}),
@@ -32,8 +32,11 @@ test('bottom collapse reserves outer space and reclaims on upward scroll',()=>{
 });
 test('navigation, lightbox close and requestHeight remain source-bound',()=>{
  const f=fixture();f.message({type:'scrollToTitle'},{source:{}});assert.equal(f.scrolls.length,0);
- f.message({type:'scrollToTitle'});assert.equal(f.scrolls[0].top,280);assert.equal(f.scrolls[0].behavior,'smooth');
+ f.message({type:'scrollToTitle'});assert.equal(f.scrolls[0].top,280);assert.equal(f.scrolls[0].behavior,'instant');assert.equal(f.win.scrollY,280);
  f.doc.fullscreenElement={};f.message({type:'lgClosed'});assert.equal(f.doc.exits,1);
- f.loads.load();for(const [fn] of f.timers) fn();
+ f.loads.load();assert.equal(f.scrolls.length,1,'load does not create a scroll request');
+ f.message({type:'setHeight',height:700});assert.equal(f.win.scrollY,280);
+ f.message({type:'scrollToTitle'});assert.equal(f.win.scrollY,280,'destination replay settles at the same title');
+ for(const [fn] of f.timers) fn();
  assert.ok(f.posts.length>=8);assert.ok(f.posts.every(x=>x[0].type==='requestHeight'&&x[1]==='https://charchan123.github.io'));
 });
