@@ -31,7 +31,11 @@ test('bottom collapse reserves outer space and reclaims on upward scroll',()=>{
  f.handlers.scroll();f.win.scrollY=100;f.handlers.scroll();assert.equal(f.wrapper.style.minHeight,'');assert.equal(f.scrolls.length,0);
 });
 test('navigation, lightbox close and requestHeight remain source-bound',()=>{
- const f=fixture();f.message({type:'scrollToTitle'},{source:{}});assert.equal(f.scrolls.length,0);
+ const f=fixture();
+ f.message({type:'scrollToTitle'},{source:{}});
+ f.message({type:'scrollToTitle'},{source:null});
+ f.message({type:'scrollToTitle'},{origin:'https://evil.github.io'});
+ assert.equal(f.scrolls.length,0);
  f.message({type:'scrollToTitle'});assert.equal(f.scrolls[0].top,280);assert.equal(f.scrolls[0].behavior,'instant');assert.equal(f.win.scrollY,280);
  f.doc.fullscreenElement={};f.message({type:'lgClosed'});assert.equal(f.doc.exits,1);
  f.loads.load();assert.equal(f.scrolls.length,1,'load does not create a scroll request');

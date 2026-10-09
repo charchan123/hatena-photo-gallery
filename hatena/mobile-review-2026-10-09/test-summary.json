@@ -1,0 +1,34 @@
+{
+  "full_pytest": {
+    "passed": 600,
+    "exit_code": 0,
+    "duration_seconds": 20.69
+  },
+  "collected": 600,
+  "focused_pytest": {
+    "passed": 70,
+    "exit_code": 0
+  },
+  "node_tests": {
+    "passed": 23,
+    "exit_code": 0
+  },
+  "compileall": "PASS",
+  "js_syntax": [
+    "assets/gallery.js",
+    "assets/poison-spores.js"
+  ],
+  "diff_check": "PASS (cr-at-eol accepts preserved Hatena system-section CRLF)",
+  "protected_paths_diff": [],
+  "css_parser": "tinycss2; stylesheet/media/declaration recursion; seven files; no parse errors",
+  "generator": "321 real HTML files; 923 observations; 302 subjects",
+  "iframe_js": 3,
+  "poison_js": 10,
+  "navigation_js": 5,
+  "other_js": 5,
+  "validation_checkpoint": "8622db82dd8c2111bb46245658ec7dd06569a5d4",
+  "in_place_cases": 45,
+  "navigation_cases": 15,
+  "visual_cases_reused": 34,
+  "computed_style_cases_reused": 10
+}

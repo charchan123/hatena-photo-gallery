@@ -1,0 +1,127 @@
+{
+  "status": "SUPERSEDED_INTERMEDIATE_RESULT",
+  "use_for_final_acceptance": false,
+  "superseded_by": "final-interactions.json",
+  "note": "Retained instead of deleting; final 60-case evidence is authoritative.",
+  "results": [
+    {
+      "width": 360,
+      "label": "feature ON",
+      "before": 492,
+      "after": 492,
+      "delta": 0,
+      "messages": [
+        "setHeight"
+      ],
+      "iframeHeight": "3518px"
+    },
+    {
+      "width": 360,
+      "label": "feature OFF",
+      "before": 492,
+      "after": 492,
+      "delta": 0,
+      "messages": [
+        "setHeight"
+      ],
+      "iframeHeight": "6372px"
+    },
+    {
+      "width": 360,
+      "label": "feature clear",
+      "before": 1158,
+      "after": 1158,
+      "delta": 0,
+      "messages": [
+        "setHeight"
+      ],
+      "iframeHeight": "6372px"
+    },
+    {
+      "width": 360,
+      "label": "details open",
+      "before": 1158,
+      "after": 1158,
+      "delta": 0,
+      "messages": [
+        "setHeight"
+      ],
+      "iframeHeight": "2325px"
+    },
+    {
+      "width": 360,
+      "label": "details close",
+      "before": 1158,
+      "after": 1158,
+      "delta": 0,
+      "messages": [
+        "setHeight"
+      ],
+      "iframeHeight": "2206px"
+    },
+    {
+      "width": 360,
+      "label": "bottom-edge details close",
+      "before": 1848,
+      "after": 1848,
+      "delta": 0,
+      "messages": [
+        "setHeight"
+      ],
+      "iframeHeight": "2206px"
+    },
+    {
+      "width": 360,
+      "label": "season tab",
+      "before": 235,
+      "after": 235,
+      "delta": 0,
+      "messages": [
+        "setHeight"
+      ],
+      "iframeHeight": "13557px"
+    },
+    {
+      "width": 360,
+      "label": "kana filter",
+      "before": 235,
+      "after": 235,
+      "delta": 0,
+      "messages": [
+        "setHeight"
+      ],
+      "iframeHeight": "2190px"
+    },
+    {
+      "width": 360,
+      "label": "kana search",
+      "before": 235,
+      "after": 235,
+      "delta": 0,
+      "messages": [
+        "setHeight"
+      ],
+      "iframeHeight": "1871px"
+    },
+    {
+      "width": 360,
+      "label": "index search",
+      "before": 235,
+      "after": 235,
+      "delta": 0,
+      "messages": [
+        "setHeight"
+      ],
+      "iframeHeight": "4626px"
+    },
+    {
+      "width": 360,
+      "label": "index pagination",
+      "before": 3428,
+      "after": 3428,
+      "delta": 0,
+      "messages": [],
+      "iframeHeight": "4626px"
+    }
+  ]
+}

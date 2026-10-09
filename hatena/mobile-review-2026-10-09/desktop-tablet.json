@@ -1,0 +1,413 @@
+[
+  {
+    "width": 1440,
+    "page": "new-top.html",
+    "same": true,
+    "baseline_sha256": "851067e91a633cda7a54c5dcdb18a4fce6936dc4f55b918517306aebaf6e40df",
+    "candidate_sha256": "851067e91a633cda7a54c5dcdb18a4fce6936dc4f55b918517306aebaf6e40df",
+    "parent_selectors": [
+      ".header1",
+      ".header2",
+      ".header1 img",
+      ".header2 img",
+      "#content"
+    ],
+    "child_selectors": [
+      ".header1",
+      ".header1 img",
+      "#content",
+      "#photoGallery",
+      ".portal-guide-row",
+      ".portal-independent-links"
+    ],
+    "properties": [
+      "rect",
+      "display",
+      "position",
+      "width",
+      "height",
+      "margin",
+      "padding",
+      "fontSize",
+      "fontWeight",
+      "lineHeight",
+      "color",
+      "borderRadius",
+      "transform",
+      "filter",
+      "clipPath",
+      "overflow",
+      "gap"
+    ],
+    "full_snapshot_artifact": "desktop-tablet-full.json (external review bundle)"
+  },
+  {
+    "width": 1440,
+    "page": "index.html",
+    "same": true,
+    "baseline_sha256": "d1bc5c6d5f6136eb8e3e2811511c6bb4b10e50e206f22c50d5f79a98f56c3ef8",
+    "candidate_sha256": "d1bc5c6d5f6136eb8e3e2811511c6bb4b10e50e206f22c50d5f79a98f56c3ef8",
+    "parent_selectors": [
+      ".header1",
+      ".header2",
+      ".header1 img",
+      ".header2 img",
+      "#content"
+    ],
+    "child_selectors": [
+      ".guide-hero",
+      ".guide-intro",
+      ".guide-panel",
+      ".guide-way--best"
+    ],
+    "properties": [
+      "rect",
+      "display",
+      "position",
+      "width",
+      "height",
+      "margin",
+      "padding",
+      "fontSize",
+      "fontWeight",
+      "lineHeight",
+      "color",
+      "borderRadius",
+      "transform",
+      "filter",
+      "clipPath",
+      "overflow",
+      "gap"
+    ],
+    "full_snapshot_artifact": "desktop-tablet-full.json (external review bundle)"
+  },
+  {
+    "width": 1440,
+    "page": "か行.html",
+    "same": true,
+    "baseline_sha256": "becb766b645fc245dc3fee98d0ced8322fedee36bc045849e6092d3b683a09c4",
+    "candidate_sha256": "becb766b645fc245dc3fee98d0ced8322fedee36bc045849e6092d3b683a09c4",
+    "parent_selectors": [
+      ".header1",
+      ".header2",
+      ".header1 img",
+      ".header2 img",
+      "#content"
+    ],
+    "child_selectors": [
+      ".aiuo-hero",
+      ".aiuo-filter-panel",
+      ".kana-btn",
+      ".mushroom-card"
+    ],
+    "properties": [
+      "rect",
+      "display",
+      "position",
+      "width",
+      "height",
+      "margin",
+      "padding",
+      "fontSize",
+      "fontWeight",
+      "lineHeight",
+      "color",
+      "borderRadius",
+      "transform",
+      "filter",
+      "clipPath",
+      "overflow",
+      "gap"
+    ],
+    "full_snapshot_artifact": "desktop-tablet-full.json (external review bundle)"
+  },
+  {
+    "width": 1440,
+    "page": "season.html",
+    "same": true,
+    "baseline_sha256": "1ea3f5457daf8b5c2544d0c3baead06f3e4c15ccc36ef84fd248f8e6d5e77321",
+    "candidate_sha256": "1ea3f5457daf8b5c2544d0c3baead06f3e4c15ccc36ef84fd248f8e6d5e77321",
+    "parent_selectors": [
+      ".header1",
+      ".header2",
+      ".header1 img",
+      ".header2 img",
+      "#content"
+    ],
+    "child_selectors": [
+      ".season-hero",
+      ".season-tab",
+      ".mushroom-card"
+    ],
+    "properties": [
+      "rect",
+      "display",
+      "position",
+      "width",
+      "height",
+      "margin",
+      "padding",
+      "fontSize",
+      "fontWeight",
+      "lineHeight",
+      "color",
+      "borderRadius",
+      "transform",
+      "filter",
+      "clipPath",
+      "overflow",
+      "gap"
+    ],
+    "full_snapshot_artifact": "desktop-tablet-full.json (external review bundle)"
+  },
+  {
+    "width": 1440,
+    "page": "features.html",
+    "same": true,
+    "baseline_sha256": "4369f775f70505d146ce5b7b799924387e55a5e2983ac8989fa23c10c4fb6d81",
+    "candidate_sha256": "4369f775f70505d146ce5b7b799924387e55a5e2983ac8989fa23c10c4fb6d81",
+    "parent_selectors": [
+      ".header1",
+      ".header2",
+      ".header1 img",
+      ".header2 img",
+      "#content"
+    ],
+    "child_selectors": [
+      ".features-hero",
+      ".feature-filter",
+      ".mushroom-card"
+    ],
+    "properties": [
+      "rect",
+      "display",
+      "position",
+      "width",
+      "height",
+      "margin",
+      "padding",
+      "fontSize",
+      "fontWeight",
+      "lineHeight",
+      "color",
+      "borderRadius",
+      "transform",
+      "filter",
+      "clipPath",
+      "overflow",
+      "gap"
+    ],
+    "full_snapshot_artifact": "desktop-tablet-full.json (external review bundle)"
+  },
+  {
+    "width": 1440,
+    "page": "カエンタケ.html",
+    "same": true,
+    "baseline_sha256": "9519c9170ded2448571107413d83c11373e021521a7938b6bd5c05dc475d9d34",
+    "candidate_sha256": "9519c9170ded2448571107413d83c11373e021521a7938b6bd5c05dc475d9d34",
+    "parent_selectors": [
+      ".header1",
+      ".header2",
+      ".header1 img",
+      ".header2 img",
+      "#content"
+    ],
+    "child_selectors": [
+      ".detail-hero-copy",
+      ".detail-aiuo-links",
+      ".detail-aiuo-links a"
+    ],
+    "properties": [
+      "rect",
+      "display",
+      "position",
+      "width",
+      "height",
+      "margin",
+      "padding",
+      "fontSize",
+      "fontWeight",
+      "lineHeight",
+      "color",
+      "borderRadius",
+      "transform",
+      "filter",
+      "clipPath",
+      "overflow",
+      "gap"
+    ],
+    "full_snapshot_artifact": "desktop-tablet-full.json (external review bundle)"
+  },
+  {
+    "width": 1440,
+    "page": "best-shots-2025.html",
+    "same": true,
+    "baseline_sha256": "8c669939f8b3051051c1272a597488a25019a7f5282442eedaef90036806ef9c",
+    "candidate_sha256": "8c669939f8b3051051c1272a597488a25019a7f5282442eedaef90036806ef9c",
+    "parent_selectors": [
+      ".header1",
+      ".header2",
+      ".header1 img",
+      ".header2 img",
+      "#content"
+    ],
+    "child_selectors": [
+      ".best-shots-hero",
+      ".best-shots-hero-copy",
+      ".best-shots-hero h1",
+      ".best-shots-hero p"
+    ],
+    "properties": [
+      "rect",
+      "display",
+      "position",
+      "width",
+      "height",
+      "margin",
+      "padding",
+      "fontSize",
+      "fontWeight",
+      "lineHeight",
+      "color",
+      "borderRadius",
+      "transform",
+      "filter",
+      "clipPath",
+      "overflow",
+      "gap"
+    ],
+    "full_snapshot_artifact": "desktop-tablet-full.json (external review bundle)"
+  },
+  {
+    "width": 1440,
+    "page": "article",
+    "same": true,
+    "baseline_sha256": "6776a4aad4aac51458a1f40d3d6509f91fed33d4e3ed979176ff18e12c5fac5a",
+    "candidate_sha256": "6776a4aad4aac51458a1f40d3d6509f91fed33d4e3ed979176ff18e12c5fac5a",
+    "parent_selectors": [
+      ".header1",
+      ".header2",
+      ".header1 img",
+      ".header2 img",
+      "#content"
+    ],
+    "child_selectors": [
+      ".header1",
+      ".header1 img",
+      "#menu",
+      "#content-inner",
+      "article.entry",
+      ".entry-title",
+      ".entry-content",
+      "#box2",
+      ".comment-box"
+    ],
+    "properties": [
+      "rect",
+      "display",
+      "position",
+      "width",
+      "height",
+      "margin",
+      "padding",
+      "fontSize",
+      "fontWeight",
+      "lineHeight",
+      "color",
+      "borderRadius",
+      "transform",
+      "filter",
+      "clipPath",
+      "overflow",
+      "gap"
+    ],
+    "full_snapshot_artifact": "desktop-tablet-full.json (external review bundle)"
+  },
+  {
+    "width": 768,
+    "page": "new-top.html",
+    "same": true,
+    "baseline_sha256": "54a587a6a27aa6549ec6449e00d38cb44b6fc72eee06e68215f5cae85a6c691d",
+    "candidate_sha256": "54a587a6a27aa6549ec6449e00d38cb44b6fc72eee06e68215f5cae85a6c691d",
+    "parent_selectors": [
+      ".header1",
+      ".header2",
+      ".header1 img",
+      ".header2 img",
+      "#content"
+    ],
+    "child_selectors": [
+      ".header1",
+      ".header1 img",
+      "#content",
+      "#photoGallery",
+      ".portal-guide-row",
+      ".portal-independent-links"
+    ],
+    "properties": [
+      "rect",
+      "display",
+      "position",
+      "width",
+      "height",
+      "margin",
+      "padding",
+      "fontSize",
+      "fontWeight",
+      "lineHeight",
+      "color",
+      "borderRadius",
+      "transform",
+      "filter",
+      "clipPath",
+      "overflow",
+      "gap"
+    ],
+    "full_snapshot_artifact": "desktop-tablet-full.json (external review bundle)"
+  },
+  {
+    "width": 768,
+    "page": "article",
+    "same": true,
+    "baseline_sha256": "847295410dd69ae071c7febcdcf754387e69d699c77dadf5889bcbfb97fe0841",
+    "candidate_sha256": "847295410dd69ae071c7febcdcf754387e69d699c77dadf5889bcbfb97fe0841",
+    "parent_selectors": [
+      ".header1",
+      ".header2",
+      ".header1 img",
+      ".header2 img",
+      "#content"
+    ],
+    "child_selectors": [
+      ".header1",
+      ".header1 img",
+      "#menu",
+      "#content-inner",
+      "article.entry",
+      ".entry-title",
+      ".entry-content",
+      "#box2",
+      ".comment-box"
+    ],
+    "properties": [
+      "rect",
+      "display",
+      "position",
+      "width",
+      "height",
+      "margin",
+      "padding",
+      "fontSize",
+      "fontWeight",
+      "lineHeight",
+      "color",
+      "borderRadius",
+      "transform",
+      "filter",
+      "clipPath",
+      "overflow",
+      "gap"
+    ],
+    "full_snapshot_artifact": "desktop-tablet-full.json (external review bundle)"
+  }
+]

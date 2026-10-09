@@ -1,0 +1,531 @@
+[
+  {
+    "page": "new-top.html",
+    "width": 360,
+    "child": {
+      "scrollWidth": 360,
+      "clientWidth": 360
+    },
+    "parent": {
+      "scrollWidth": 360,
+      "clientWidth": 360
+    },
+    "flags": {
+      "cardHeights": [
+        98,
+        98,
+        98
+      ],
+      "spacing": "18px"
+    },
+    "result": "PASS"
+  },
+  {
+    "page": "index.html",
+    "width": 360,
+    "child": {
+      "scrollWidth": 360,
+      "clientWidth": 360
+    },
+    "parent": {
+      "scrollWidth": 360,
+      "clientWidth": 360
+    },
+    "flags": {},
+    "result": "PASS"
+  },
+  {
+    "page": "か行.html",
+    "width": 360,
+    "child": {
+      "scrollWidth": 360,
+      "clientWidth": 360
+    },
+    "parent": {
+      "scrollWidth": 360,
+      "clientWidth": 360
+    },
+    "flags": {
+      "kana": "all / 5"
+    },
+    "result": "PASS"
+  },
+  {
+    "page": "season.html",
+    "width": 360,
+    "child": {
+      "scrollWidth": 360,
+      "clientWidth": 360
+    },
+    "parent": {
+      "scrollWidth": 360,
+      "clientWidth": 360
+    },
+    "flags": {},
+    "result": "PASS"
+  },
+  {
+    "page": "features.html",
+    "width": 360,
+    "child": {
+      "scrollWidth": 360,
+      "clientWidth": 360
+    },
+    "parent": {
+      "scrollWidth": 360,
+      "clientWidth": 360
+    },
+    "flags": {},
+    "result": "PASS"
+  },
+  {
+    "page": "カエンタケ.html?from=aiuo&kana=か行",
+    "width": 360,
+    "child": {
+      "scrollWidth": 360,
+      "clientWidth": 360
+    },
+    "parent": {
+      "scrollWidth": 360,
+      "clientWidth": 360
+    },
+    "flags": {
+      "gojuon": "5x2"
+    },
+    "result": "PASS"
+  },
+  {
+    "page": "best-shots-2025.html",
+    "width": 360,
+    "child": {
+      "scrollWidth": 360,
+      "clientWidth": 360
+    },
+    "parent": {
+      "scrollWidth": 360,
+      "clientWidth": 360
+    },
+    "flags": {
+      "hero": {
+        "bottom": 198.59375,
+        "descriptionBottom": 180.59375,
+        "words": [
+          {
+            "text": "2025年の",
+            "wrap": "nowrap"
+          },
+          {
+            "text": "ベストショット",
+            "wrap": "nowrap"
+          }
+        ]
+      }
+    },
+    "result": "PASS"
+  },
+  {
+    "page": "Phase4C11 article",
+    "width": 360,
+    "child": {
+      "scrollWidth": 360,
+      "clientWidth": 360
+    },
+    "result": "PASS"
+  },
+  {
+    "page": "new-top.html",
+    "width": 390,
+    "child": {
+      "scrollWidth": 390,
+      "clientWidth": 390
+    },
+    "parent": {
+      "scrollWidth": 390,
+      "clientWidth": 390
+    },
+    "flags": {
+      "cardHeights": [
+        98,
+        98,
+        98
+      ],
+      "spacing": "18px"
+    },
+    "result": "PASS"
+  },
+  {
+    "page": "index.html",
+    "width": 390,
+    "child": {
+      "scrollWidth": 390,
+      "clientWidth": 390
+    },
+    "parent": {
+      "scrollWidth": 390,
+      "clientWidth": 390
+    },
+    "flags": {},
+    "result": "PASS"
+  },
+  {
+    "page": "か行.html",
+    "width": 390,
+    "child": {
+      "scrollWidth": 390,
+      "clientWidth": 390
+    },
+    "parent": {
+      "scrollWidth": 390,
+      "clientWidth": 390
+    },
+    "flags": {
+      "kana": "all / 5"
+    },
+    "result": "PASS"
+  },
+  {
+    "page": "season.html",
+    "width": 390,
+    "child": {
+      "scrollWidth": 390,
+      "clientWidth": 390
+    },
+    "parent": {
+      "scrollWidth": 390,
+      "clientWidth": 390
+    },
+    "flags": {},
+    "result": "PASS"
+  },
+  {
+    "page": "features.html",
+    "width": 390,
+    "child": {
+      "scrollWidth": 390,
+      "clientWidth": 390
+    },
+    "parent": {
+      "scrollWidth": 390,
+      "clientWidth": 390
+    },
+    "flags": {},
+    "result": "PASS"
+  },
+  {
+    "page": "カエンタケ.html?from=aiuo&kana=か行",
+    "width": 390,
+    "child": {
+      "scrollWidth": 390,
+      "clientWidth": 390
+    },
+    "parent": {
+      "scrollWidth": 390,
+      "clientWidth": 390
+    },
+    "flags": {
+      "gojuon": "5x2"
+    },
+    "result": "PASS"
+  },
+  {
+    "page": "best-shots-2025.html",
+    "width": 390,
+    "child": {
+      "scrollWidth": 390,
+      "clientWidth": 390
+    },
+    "parent": {
+      "scrollWidth": 390,
+      "clientWidth": 390
+    },
+    "flags": {
+      "hero": {
+        "bottom": 199.78125,
+        "descriptionBottom": 181.78125,
+        "words": [
+          {
+            "text": "2025年の",
+            "wrap": "nowrap"
+          },
+          {
+            "text": "ベストショット",
+            "wrap": "nowrap"
+          }
+        ]
+      }
+    },
+    "result": "PASS"
+  },
+  {
+    "page": "Phase4C11 article",
+    "width": 390,
+    "child": {
+      "scrollWidth": 390,
+      "clientWidth": 390
+    },
+    "result": "PASS"
+  },
+  {
+    "page": "new-top.html",
+    "width": 430,
+    "child": {
+      "scrollWidth": 430,
+      "clientWidth": 430
+    },
+    "parent": {
+      "scrollWidth": 430,
+      "clientWidth": 430
+    },
+    "flags": {
+      "cardHeights": [
+        98,
+        98,
+        98
+      ],
+      "spacing": "18px"
+    },
+    "result": "PASS"
+  },
+  {
+    "page": "index.html",
+    "width": 430,
+    "child": {
+      "scrollWidth": 430,
+      "clientWidth": 430
+    },
+    "parent": {
+      "scrollWidth": 430,
+      "clientWidth": 430
+    },
+    "flags": {},
+    "result": "PASS"
+  },
+  {
+    "page": "か行.html",
+    "width": 430,
+    "child": {
+      "scrollWidth": 430,
+      "clientWidth": 430
+    },
+    "parent": {
+      "scrollWidth": 430,
+      "clientWidth": 430
+    },
+    "flags": {
+      "kana": "all / 5"
+    },
+    "result": "PASS"
+  },
+  {
+    "page": "season.html",
+    "width": 430,
+    "child": {
+      "scrollWidth": 430,
+      "clientWidth": 430
+    },
+    "parent": {
+      "scrollWidth": 430,
+      "clientWidth": 430
+    },
+    "flags": {},
+    "result": "PASS"
+  },
+  {
+    "page": "features.html",
+    "width": 430,
+    "child": {
+      "scrollWidth": 430,
+      "clientWidth": 430
+    },
+    "parent": {
+      "scrollWidth": 430,
+      "clientWidth": 430
+    },
+    "flags": {},
+    "result": "PASS"
+  },
+  {
+    "page": "カエンタケ.html?from=aiuo&kana=か行",
+    "width": 430,
+    "child": {
+      "scrollWidth": 430,
+      "clientWidth": 430
+    },
+    "parent": {
+      "scrollWidth": 430,
+      "clientWidth": 430
+    },
+    "flags": {
+      "gojuon": "5x2"
+    },
+    "result": "PASS"
+  },
+  {
+    "page": "best-shots-2025.html",
+    "width": 430,
+    "child": {
+      "scrollWidth": 430,
+      "clientWidth": 430
+    },
+    "parent": {
+      "scrollWidth": 430,
+      "clientWidth": 430
+    },
+    "flags": {
+      "hero": {
+        "bottom": 202.984375,
+        "descriptionBottom": 184.984375,
+        "words": [
+          {
+            "text": "2025年の",
+            "wrap": "nowrap"
+          },
+          {
+            "text": "ベストショット",
+            "wrap": "nowrap"
+          }
+        ]
+      }
+    },
+    "result": "PASS"
+  },
+  {
+    "page": "Phase4C11 article",
+    "width": 430,
+    "child": {
+      "scrollWidth": 430,
+      "clientWidth": 430
+    },
+    "result": "PASS"
+  },
+  {
+    "page": "new-top.html",
+    "width": 1440,
+    "child": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    },
+    "parent": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    },
+    "flags": {},
+    "result": "PASS"
+  },
+  {
+    "page": "index.html",
+    "width": 1440,
+    "child": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    },
+    "parent": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    },
+    "flags": {},
+    "result": "PASS"
+  },
+  {
+    "page": "か行.html",
+    "width": 1440,
+    "child": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    },
+    "parent": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    },
+    "flags": {},
+    "result": "PASS"
+  },
+  {
+    "page": "season.html",
+    "width": 1440,
+    "child": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    },
+    "parent": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    },
+    "flags": {},
+    "result": "PASS"
+  },
+  {
+    "page": "features.html",
+    "width": 1440,
+    "child": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    },
+    "parent": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    },
+    "flags": {},
+    "result": "PASS"
+  },
+  {
+    "page": "カエンタケ.html?from=aiuo&kana=か行",
+    "width": 1440,
+    "child": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    },
+    "parent": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    },
+    "flags": {},
+    "result": "PASS"
+  },
+  {
+    "page": "best-shots-2025.html",
+    "width": 1440,
+    "child": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    },
+    "parent": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    },
+    "flags": {},
+    "result": "PASS"
+  },
+  {
+    "page": "Phase4C11 article",
+    "width": 1440,
+    "child": {
+      "scrollWidth": 1440,
+      "clientWidth": 1440
+    },
+    "result": "PASS"
+  },
+  {
+    "page": "new-top.html",
+    "width": 768,
+    "child": {
+      "scrollWidth": 768,
+      "clientWidth": 768
+    },
+    "parent": {
+      "scrollWidth": 768,
+      "clientWidth": 768
+    },
+    "flags": {},
+    "result": "PASS"
+  },
+  {
+    "page": "Phase4C11 article",
+    "width": 768,
+    "child": {
+      "scrollWidth": 768,
+      "clientWidth": 768
+    },
+    "result": "PASS"
+  }
+]

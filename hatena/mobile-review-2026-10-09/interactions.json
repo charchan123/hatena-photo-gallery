@@ -1,0 +1,30 @@
+[
+  {
+    "page": "article",
+    "width": 360,
+    "menu": "PASS",
+    "page_top": "PASS",
+    "controls": 82
+  },
+  {
+    "page": "article",
+    "width": 390,
+    "menu": "PASS",
+    "page_top": "PASS",
+    "controls": 82
+  },
+  {
+    "page": "article",
+    "width": 430,
+    "menu": "PASS",
+    "page_top": "PASS",
+    "controls": 82
+  },
+  {
+    "page": "article",
+    "width": 768,
+    "menu": "PASS",
+    "page_top": "PASS",
+    "controls": 82
+  }
+]

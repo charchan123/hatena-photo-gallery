@@ -1,0 +1,14 @@
+{
+  "after": 0,
+  "messages": [
+    {
+      "type": "setHeight",
+      "height": 2524,
+      "y": 350,
+      "time": 4608.399999999907
+    }
+  ],
+  "before": 350,
+  "zeroForcedReflow": true,
+  "source": "captured public Hatena footer"
+}
