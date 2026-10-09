@@ -4,12 +4,15 @@
   "use strict";
   const iframe = document.getElementById("photoGallery");
   if (!iframe) return;
-  const galleryOrigin = new URL(iframe.src, location.href).origin;
+  const galleryURL = new URL(iframe.src, location.href);
+  const galleryOrigin = galleryURL.origin;
+  const galleryPath = galleryURL.pathname.slice(0, galleryURL.pathname.lastIndexOf("/") + 1);
   const wrapper = iframe.closest('.new-top-embed, #galleryWrapper') || iframe.parentElement;
   const originalMinHeight = wrapper.style.minHeight;
   const originalAnchor = wrapper.style.overflowAnchor;
   const baseMinHeight = parseFloat(getComputedStyle(wrapper).minHeight) || 0;
   let lastHeight = -1, reserved = false, previousY = window.scrollY;
+  let navigationPending = null;
 
   function requestHeight() {
     iframe.contentWindow?.postMessage({ type:"requestHeight" }, galleryOrigin);
@@ -44,15 +47,33 @@
     window.scrollTo({ top, behavior:'instant' });
   }
   iframe.addEventListener('load', () => {
+    // Only authenticated navigation intent authorizes load-time scrolling.
+    if (navigationPending) {
+      navigationPending = null;
+      scrollToTitle(); // Move before releasing space to avoid bottom clamping.
+    }
     releaseSpace();
     lastHeight = -1;
+    previousY = window.scrollY;
     requestHeight();
     [200, 800, 2000].forEach(delay => setTimeout(requestHeight, delay));
   });
   window.addEventListener('message', event => {
     if (event.source !== iframe.contentWindow || event.origin !== galleryOrigin) return;
     const data = event.data || {};
-    if (data.type === 'setHeight') {
+    if (data.type === 'navigationIntent') {
+      if (typeof data.id !== 'string' || !data.id || data.id.length > 80 ||
+          typeof data.destination !== 'string') return;
+      let destination;
+      try { destination = new URL(data.destination, galleryURL); } catch (_) { return; }
+      if (destination.origin !== galleryOrigin || !destination.pathname.startsWith(galleryPath) ||
+          !destination.pathname.endsWith('.html')) return;
+      navigationPending = { id:data.id };
+      // The child waits for this source/origin-bound ACK before replacing itself.
+      iframe.contentWindow.postMessage({ type:'navigationIntentAck', id:data.id }, galleryOrigin);
+    } else if (data.type === 'navigationIntentCancel') {
+      if (data.id === navigationPending?.id) navigationPending = null;
+    } else if (data.type === 'setHeight') {
       applyHeight(data.height);
     } else if (data.type === 'scrollToTitle') {
       // Navigation is explicit; settle immediately, independently of height updates.

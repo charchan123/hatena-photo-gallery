@@ -44,3 +44,22 @@ test('navigation, lightbox close and requestHeight remain source-bound',()=>{
  for(const [fn] of f.timers) fn();
  assert.ok(f.posts.length>=8);assert.ok(f.posts.every(x=>x[0].type==='requestHeight'&&x[1]==='https://charchan123.github.io'));
 });
+
+test('authenticated intent ACK is required for load-time navigation scroll and short-page reclaim',()=>{
+ const f=fixture();f.loads.load();assert.equal(f.scrolls.length,0,'initial load never scrolls');
+ f.win.scrollY=5850;f.message({type:'setHeight',height:1797});assert.equal(f.wrapper.style.minHeight,'6450px');
+ const intent={type:'navigationIntent',id:'nav-1',destination:'/hatena-photo-gallery/index.html'};
+ for(const extra of [{source:null},{source:{}},{origin:'https://evil.github.io'}])f.message(intent,extra);
+ assert.equal(f.posts.filter(x=>x[0].type==='navigationIntentAck').length,0);
+ for(const destination of ['https://evil.test/index.html','/other/index.html','/hatena-photo-gallery/image.jpg'])f.message({...intent,destination});
+ assert.equal(f.posts.filter(x=>x[0].type==='navigationIntentAck').length,0);
+ f.message(intent);assert.equal(f.win.scrollY,5850,'intent alone does not scroll');assert.equal(f.posts.at(-1)[0].type,'navigationIntentAck');
+ f.loads.load();assert.equal(f.win.scrollY,280);assert.equal(f.wrapper.style.minHeight,'');
+ f.message({type:'setHeight',height:1797});assert.equal(f.iframe.style.height,'1797px');assert.equal(f.wrapper.style.minHeight,'');assert.equal(f.scrolls.length,1);
+ f.loads.load();assert.equal(f.scrolls.length,1,'consumed intent cannot scroll later loads');
+});
+test('cancelled intent and ordinary height/resize do not authorize navigation scroll',()=>{
+ const f=fixture();f.message({type:'navigationIntent',id:'cancel',destination:'/hatena-photo-gallery/index.html'});
+ f.message({type:'navigationIntentCancel',id:'cancel'});f.loads.load();assert.equal(f.scrolls.length,0);
+ f.message({type:'setHeight',height:1000});f.handlers.resize();assert.equal(f.scrolls.length,0);
+});

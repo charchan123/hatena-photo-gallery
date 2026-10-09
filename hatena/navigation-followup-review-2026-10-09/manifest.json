@@ -1,0 +1,78 @@
+{
+  "starting_main": "33dd7817e1b5af355cf41ab48d9fb6db0ad35e3c",
+  "created_at_utc": "2026-10-09T15:15:45.272207+00:00",
+  "files": {
+    "hatena/navigation-followup-review-2026-10-09/spore-colors-after.png": {
+      "bytes": 129672,
+      "sha256": "8e973836c386a9099dc797eb036c4e14c484dcb36e698dfe9098706791550469"
+    },
+    "hatena/navigation-followup-review-2026-10-09/poison-paired-iframe.json": {
+      "bytes": 335,
+      "sha256": "cd8031771f7da20170d3b63352732f700e26524790d368355f60030601f02bd1"
+    },
+    "hatena/navigation-followup-review-2026-10-09/test-summary.json": {
+      "bytes": 961,
+      "sha256": "3072643570e12dd5aa01bee48b38ccb8c46d73c631770c1adda2ee098bd8c308"
+    },
+    "hatena/navigation-followup-review-2026-10-09/reproduction-before.json": {
+      "bytes": 9272,
+      "sha256": "389319455f52daff374e12d3a54b2567cc16edf3a9aa781449a5ac380f2ba228"
+    },
+    "hatena/navigation-followup-review-2026-10-09/spore-colors.json": {
+      "bytes": 4385,
+      "sha256": "22fe3d68e78527fce48e6358218acc18d86d44068aa93bcdd8a8f65762bbec3d"
+    },
+    "hatena/navigation-followup-review-2026-10-09/build.json": {
+      "bytes": 267,
+      "sha256": "6b6ad2072f6f0044320dc56060d719bd6221ebf6e746168bc68f2c6bde84b207"
+    },
+    "hatena/navigation-followup-review-2026-10-09/css-unchanged.json": {
+      "bytes": 538,
+      "sha256": "0c9116a582eec4155357b33e0b77766b1ce66d986be3bde42b042c4887081362"
+    },
+    "hatena/navigation-followup-review-2026-10-09/browser-matrix.json": {
+      "bytes": 107154,
+      "sha256": "46bcae5139bf7f2eb7ce681b57eab86f720e996ce2e7705b7da19668737f5a89"
+    },
+    "hatena/navigation-followup-review-2026-10-09/slow-pageshow-before.json": {
+      "bytes": 4242,
+      "sha256": "dd88e8eca4cb0e81ed9d2cd96476d5ac3a6786639c3636493b2e8a101081c374"
+    },
+    "hatena/navigation-followup-review-2026-10-09/reproduction-after.json": {
+      "bytes": 8853,
+      "sha256": "f8a78013222568a9e22c968b454eede2240d92c30468b7426ff269d9c9010fa4"
+    },
+    "hatena/navigation-followup-review-2026-10-09/slow-pageshow-after.json": {
+      "bytes": 4425,
+      "sha256": "4b1f2c16331555dd64a66d044d92e545a3c2a6f425407c8edd5d0e270034ef1c"
+    },
+    "hatena/navigation-followup-review-2026-10-09/spore-colors-before.png": {
+      "bytes": 129625,
+      "sha256": "ce6984af9e0d05773083264e39d7537bd02ad2f161fca509d0ca82482ddc4b47"
+    },
+    "hatena/navigation-followup-review-2026-10-09/chained-navigation.json": {
+      "bytes": 3382,
+      "sha256": "fa7144ce902c0427b53370dc8831ee932c7c7fc74c2d1a3b9af5a72192f5750c"
+    },
+    "hatena/navigation-followup-review-2026-10-09/poison.json": {
+      "bytes": 830,
+      "sha256": "0e53507e817d2a3ed5ad258d74e3d51b3eef5a40abc2217197a85644931d1016"
+    },
+    "assets/gallery.js": {
+      "bytes": 50769,
+      "sha256": "1dfaa891f1d94190d09cfac0b45cd9694781fa2b820cef728efc11a9a872758e"
+    },
+    "assets/poison-spores.js": {
+      "bytes": 10050,
+      "sha256": "b7b59668b30935ede05f328b6867b958e1db0680514d627fb0e8b885e74d2c0b"
+    },
+    "hatena/hatena-footer-iframe-handler-candidate-2026-10-09.html": {
+      "bytes": 4513,
+      "sha256": "5dc34f7547e115d6a0c1ea7b955c2dccfc3452baeecc2967e4512c0c0cde4e5f"
+    },
+    "hatena/HATENA_IFRAME_SCROLL_FIX_2026-10-09.md": {
+      "bytes": 12017,
+      "sha256": "3d07df6257c22081aba3d901c542f9f073b4bfce811c72abaffa4bb46f11cc86"
+    }
+  }
+}

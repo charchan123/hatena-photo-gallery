@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "starting_main": "33dd7817e1b5af355cf41ab48d9fb6db0ad35e3c",
+  "starting_tree": "aaa7b5168361afb06e3e6b25e8b6a71eda05a4ef",
+  "full_pytest": {
+    "passed": 600,
+    "seconds": 23.88
+  },
+  "collected": 600,
+  "gallery_navigation_js": 7,
+  "parent_iframe_js": 5,
+  "poison_js": 11,
+  "all_js": 28,
+  "compileall": "PASS",
+  "js_syntax": "PASS",
+  "diff_check": "PASS",
+  "generator_html_count": 321,
+  "navigation_cases": 30,
+  "in_place_cases": 45,
+  "in_place_max_abs_delta_px": 0,
+  "chained_navigation_cases": 10,
+  "widths": [
+    360,
+    390,
+    430,
+    768,
+    1440
+  ],
+  "overflow": "NONE",
+  "protected_paths_diff": "NONE",
+  "hatena_production_modified": false,
+  "manual_deploy_triggered": false,
+  "model_identity": "Not exposed by execution environment; requested GPT-6.1 Sol / High",
+  "actual_staging_privacy_setting": "unconfirmed; storage-denied and delayed-pageshow equivalent failures independently reproduced"
+}

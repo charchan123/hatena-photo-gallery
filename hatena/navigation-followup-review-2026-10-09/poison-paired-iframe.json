@@ -1,0 +1,14 @@
+{
+  "delay_ms": 604,
+  "navigation_count": 1,
+  "navigation": [
+    {
+      "time": 1791558539644,
+      "url": "https://charchan123.github.io/hatena-photo-gallery/%E3%82%AB%E3%82%A8%E3%83%B3%E3%82%BF%E3%82%B1.html?from=aiuo&kana=%E3%81%8B%E8%A1%8C"
+    }
+  ],
+  "y": 301,
+  "target": 301.296875,
+  "reserve": "",
+  "result": "PASS"
+}

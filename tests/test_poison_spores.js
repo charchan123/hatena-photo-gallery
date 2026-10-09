@@ -41,8 +41,8 @@ function environment() {
 
 test('ten bright cores retain the six green / four purple balance and soft edges',()=>{
   assert.equal(PRESETS.length,10);
-  const green=PRESETS.filter(p=>p.core==='#EEFF88'&&p.edge==='#D7F957');
-  const purple=PRESETS.filter(p=>p.core==='#F0D2FF'&&p.edge==='#E2A5FF');
+  const green=PRESETS.filter(p=>p.core==='#D2FF5A'&&p.edge==='#69D600');
+  const purple=PRESETS.filter(p=>p.core==='#CFA0FF'&&p.edge==='#7838D1');
   assert.equal(green.length,6);assert.equal(purple.length,4);
   for(const p of green)assert.ok(p.size>=5&&p.size<=9&&p.opacity===.90);
   for(const p of purple)assert.ok(p.size>=6&&p.size<=10&&p.opacity===.95);
@@ -199,4 +199,12 @@ test('touch cancellation and stale targets cannot trigger deferred navigation',(
   if(mode==='removed')c.isConnected=false;if(mode==='changed')c.href='other.html';
   for(const [id,fn]of [...e.timers])if(e.delays.get(id)===600)fn();assert.equal(c.navigations,0,mode);
  }
+});
+
+// Color-only follow-up: freeze every preset's geometry, timing and opacity.
+test('color adjustment leaves every motion and appearance parameter unchanged',()=>{
+  const crypto=require('node:crypto');
+  const geometry=PRESETS.map(({core,edge,...rest})=>rest);
+  assert.equal(crypto.createHash('sha256').update(JSON.stringify(geometry)).digest('hex'),
+    '1037f439d0687a8c8fdaf3b6cf92ae500a21475f74ef1b4e0a7662d3304bb766');
 });
