@@ -1,0 +1,80 @@
+<!-- Manual Hatena footer replacement: photoGallery communication block only. -->
+<script>
+(function() {
+  "use strict";
+  const iframe = document.getElementById("photoGallery");
+  if (!iframe) return;
+  const galleryOrigin = new URL(iframe.src, location.href).origin;
+  const wrapper = iframe.closest('.new-top-embed, #galleryWrapper') || iframe.parentElement;
+  const originalMinHeight = wrapper.style.minHeight;
+  const originalAnchor = wrapper.style.overflowAnchor;
+  const baseMinHeight = parseFloat(getComputedStyle(wrapper).minHeight) || 0;
+  let lastHeight = -1, reserved = false, previousY = window.scrollY;
+
+  function requestHeight() {
+    iframe.contentWindow?.postMessage({ type:"requestHeight" }, galleryOrigin);
+  }
+  function releaseSpace() {
+    wrapper.style.minHeight = originalMinHeight;
+    wrapper.style.overflowAnchor = originalAnchor;
+    reserved = false;
+  }
+  function preserveViewport(height) {
+    const top = wrapper.getBoundingClientRect().top + window.scrollY;
+    // Keep the actual iframe height accurate. Reserve space outside the iframe
+    // so an in-place collapse cannot clamp the parent's scroll position.
+    const floor = Math.max(baseMinHeight, Math.ceil(window.scrollY + window.innerHeight - top));
+    if (floor > height) {
+      wrapper.style.minHeight = floor + 'px';
+      wrapper.style.overflowAnchor = 'none';
+      reserved = true;
+    } else if (reserved) releaseSpace();
+  }
+  function applyHeight(value) {
+    if (typeof value !== 'number' || !Number.isFinite(value) || value < 0) return;
+    const height = Math.ceil(value);
+    if (height === lastHeight) return;
+    preserveViewport(height);
+    lastHeight = height;
+    iframe.style.height = height + 'px';
+    iframe.style.opacity = '1';
+  }
+  function scrollToTitle() {
+    const top = iframe.getBoundingClientRect().top + window.scrollY - 20;
+    window.scrollTo({ top, behavior:'instant' });
+  }
+  iframe.addEventListener('load', () => {
+    releaseSpace();
+    lastHeight = -1;
+    requestHeight();
+    [200, 800, 2000].forEach(delay => setTimeout(requestHeight, delay));
+  });
+  window.addEventListener('message', event => {
+    if (event.source !== iframe.contentWindow || event.origin !== galleryOrigin) return;
+    const data = event.data || {};
+    if (data.type === 'setHeight') {
+      applyHeight(data.height);
+    } else if (data.type === 'scrollToTitle') {
+      // Navigation is explicit; settle immediately, independently of height updates.
+      scrollToTitle();
+      setTimeout(requestHeight, 200);
+    } else if (data.type === 'lgClosed') {
+      if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+      [80, 250, 800].forEach(delay => setTimeout(requestHeight, delay));
+    }
+  });
+  window.addEventListener('scroll', () => {
+    // Reclaim only during upward scrolling, without programmatically moving it.
+    if (reserved && window.scrollY < previousY) preserveViewport(lastHeight);
+    previousY = window.scrollY;
+  }, { passive:true });
+  window.addEventListener('resize', () => {
+    if (lastHeight >= 0) preserveViewport(lastHeight);
+    requestHeight();
+  });
+  window.addEventListener('click', event => {
+    if (event.target.closest?.('#galleryWrapper a')) setTimeout(requestHeight, 100);
+  });
+  requestHeight();
+})();
+</script>

@@ -1,0 +1,52 @@
+{
+  "status": "SUPERSEDED_INTERMEDIATE_RESULT",
+  "use_for_final_acceptance": false,
+  "superseded_by": "final-interactions.json",
+  "note": "Retained instead of deleting; final 60-case evidence is authoritative.",
+  "results": [
+    {
+      "width": 390,
+      "action": "guide navigation",
+      "url": "https://charchan123.github.io/hatena-photo-gallery/index.html?",
+      "scroll": {
+        "y": 301,
+        "target": 301.296875
+      },
+      "result": "PASS"
+    },
+    {
+      "width": 390,
+      "action": "detail GOJUON link",
+      "url": "https://charchan123.github.io/hatena-photo-gallery/%E3%81%8B%E8%A1%8C.html",
+      "result": "PASS"
+    },
+    {
+      "width": 390,
+      "action": "Best Shots back/archive",
+      "url": "https://charchan123.github.io/hatena-photo-gallery/best-shots-2025.html",
+      "result": "PASS"
+    },
+    {
+      "width": 1440,
+      "action": "guide navigation",
+      "url": "https://charchan123.github.io/hatena-photo-gallery/index.html?",
+      "scroll": {
+        "y": 266,
+        "target": 266
+      },
+      "result": "PASS"
+    },
+    {
+      "width": 1440,
+      "action": "detail GOJUON link",
+      "url": "https://charchan123.github.io/hatena-photo-gallery/%E3%81%8B%E8%A1%8C.html",
+      "result": "PASS"
+    },
+    {
+      "width": 1440,
+      "action": "Best Shots back/archive",
+      "url": "https://charchan123.github.io/hatena-photo-gallery/best-shots-2025.html",
+      "result": "PASS"
+    }
+  ]
+}

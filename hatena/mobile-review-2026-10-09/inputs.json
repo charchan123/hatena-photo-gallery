@@ -1,0 +1,20 @@
+[
+  {
+    "name": "top.html",
+    "url": "https://exsudoporus-ruber.hatenablog.jp/new-top",
+    "sha256": "b4f6652a01e90af2fc94588d6d7aa55c3ff69bd9454f11a65069eb40840f020d",
+    "bytes": 24841
+  },
+  {
+    "name": "article.html",
+    "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+    "sha256": "b25fe867e4cfb9974ee7a22e5d9eb54e483ddaf92c8a0e7ce0502b96c76fa5b5",
+    "bytes": 79112
+  },
+  {
+    "name": "portal-data.json",
+    "url": "https://charchan123.github.io/hatena-photo-gallery/portal-data.json",
+    "sha256": "258ad8e11db1b50f2e6f6fa270f1a9005978352446d0862452bf7ed09f5d9058",
+    "bytes": 3280950
+  }
+]

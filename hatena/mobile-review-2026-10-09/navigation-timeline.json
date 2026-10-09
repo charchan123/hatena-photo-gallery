@@ -1,0 +1,157 @@
+{
+  "width": 390,
+  "case": "poison card → detail",
+  "instrumentation": "console timestamp immediately before original postMessage; parent receipt/call/load/scroll timestamps; navigation request timestamp",
+  "childSends": [
+    {
+      "time": 1791518030879,
+      "url": "https://charchan123.github.io/hatena-photo-gallery/%E3%81%8B%E8%A1%8C.html",
+      "type": "scrollToTitle"
+    },
+    {
+      "time": 1791518030968,
+      "url": "https://charchan123.github.io/hatena-photo-gallery/%E3%82%AB%E3%82%A8%E3%83%B3%E3%82%BF%E3%82%B1.html?from=aiuo&kana=%E3%81%8B%E8%A1%8C",
+      "type": "scrollToTitle"
+    }
+  ],
+  "requests": [
+    {
+      "time": 1791518030881,
+      "url": "https://charchan123.github.io/hatena-photo-gallery/%E3%82%AB%E3%82%A8%E3%83%B3%E3%82%BF%E3%82%B1.html?from=aiuo&kana=%E3%81%8B%E8%A1%8C"
+    }
+  ],
+  "timeline": [
+    {
+      "event": "message",
+      "time": 1791518030879,
+      "y": 605,
+      "type": "scrollToTitle",
+      "origin": "https://charchan123.github.io",
+      "sourceNull": false,
+      "sourceMatches": true,
+      "reserve": ""
+    },
+    {
+      "event": "scrollTo",
+      "time": 1791518030879,
+      "y": 605,
+      "args": [
+        {
+          "top": 301.296875,
+          "behavior": "instant"
+        }
+      ]
+    },
+    {
+      "event": "scroll",
+      "time": 1791518030890,
+      "y": 301
+    },
+    {
+      "event": "message",
+      "time": 1791518030923,
+      "y": 301,
+      "type": "setHeight",
+      "height": 2119,
+      "origin": "https://charchan123.github.io",
+      "sourceNull": false,
+      "sourceMatches": true,
+      "reserve": ""
+    },
+    {
+      "event": "iframe-load",
+      "time": 1791518030967,
+      "y": 301
+    },
+    {
+      "event": "message",
+      "time": 1791518030973,
+      "y": 301,
+      "type": "scrollToTitle",
+      "origin": "https://charchan123.github.io",
+      "sourceNull": false,
+      "sourceMatches": true,
+      "reserve": ""
+    },
+    {
+      "event": "scrollTo",
+      "time": 1791518030973,
+      "y": 301,
+      "args": [
+        {
+          "top": 301.296875,
+          "behavior": "instant"
+        }
+      ]
+    },
+    {
+      "event": "message",
+      "time": 1791518030978,
+      "y": 301,
+      "type": "setHeight",
+      "height": 2357,
+      "origin": "https://charchan123.github.io",
+      "sourceNull": false,
+      "sourceMatches": true,
+      "reserve": ""
+    },
+    {
+      "event": "message",
+      "time": 1791518031006,
+      "y": 301,
+      "type": "setHeight",
+      "height": 2278,
+      "origin": "https://charchan123.github.io",
+      "sourceNull": false,
+      "sourceMatches": true,
+      "reserve": ""
+    },
+    {
+      "event": "message",
+      "time": 1791518031089,
+      "y": 301,
+      "type": "setHeight",
+      "height": 2278,
+      "origin": "https://charchan123.github.io",
+      "sourceNull": false,
+      "sourceMatches": true,
+      "reserve": ""
+    },
+    {
+      "event": "message",
+      "time": 1791518031190,
+      "y": 301,
+      "type": "setHeight",
+      "height": 2278,
+      "origin": "https://charchan123.github.io",
+      "sourceNull": false,
+      "sourceMatches": true,
+      "reserve": ""
+    },
+    {
+      "event": "message",
+      "time": 1791518031789,
+      "y": 301,
+      "type": "setHeight",
+      "height": 2278,
+      "origin": "https://charchan123.github.io",
+      "sourceNull": false,
+      "sourceMatches": true,
+      "reserve": ""
+    },
+    {
+      "event": "message",
+      "time": 1791518032989,
+      "y": 301,
+      "type": "setHeight",
+      "height": 2278,
+      "origin": "https://charchan123.github.io",
+      "sourceNull": false,
+      "sourceMatches": true,
+      "reserve": ""
+    }
+  ],
+  "finalY": 301,
+  "target": 301.296875,
+  "result": "PASS"
+}

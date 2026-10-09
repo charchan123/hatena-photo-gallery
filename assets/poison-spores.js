@@ -16,6 +16,7 @@
     { x:.50, y:.40, dx:6, dy:-122, bend:16, exit:"top", size:10, opacity:.95, duration:3100, delay:70, core:"#F0D2FF", edge:"#E2A5FF" },
     { x:.43, y:.53, dx:76, dy:18, bend:-12, size:7, opacity:.90, duration:2600, delay:195, core:"#EEFF88", edge:"#D7F957" }
   ];
+  const TOUCH_DELAY_MS = 600;
   const OVERHANG = 80;
   const CLEANUP_MS = Math.max(...PRESETS.map(p => p.duration + p.delay)) + 200;
 
@@ -54,6 +55,8 @@
     if (!doc.body.matches(PAGES)) return null;
     const reduced = win.matchMedia('(prefers-reduced-motion: reduce)');
     const hover = win.matchMedia('(hover: hover) and (pointer: fine)');
+    const coarse = win.matchMedia('(pointer: coarse)');
+    let touchCard = null, pendingNavigation = null, committing = false;
     const states = new WeakMap();
     const active = new Map();
     const observer = new win.MutationObserver(() => {
@@ -134,6 +137,42 @@
     doc.addEventListener('focusout', event => {
       if (event.target.matches?.(CARD)) state(event.target).focus = false;
     });
+    function cancelNavigation() {
+      if (pendingNavigation) win.clearTimeout(pendingNavigation.timer);
+      pendingNavigation = null;
+      touchCard = null;
+    }
+    doc.addEventListener('pointerdown', event => {
+      touchCard = event.pointerType === 'touch' ? event.target.closest?.(CARD) : null;
+    }, true);
+    doc.addEventListener('pointercancel', () => { touchCard = null; }, true);
+    doc.addEventListener('contextmenu', () => { touchCard = null; }, true);
+    doc.addEventListener('click', event => {
+      const card = event.target.closest?.(CARD);
+      const touch = event.pointerType === 'touch' || (!event.pointerType && touchCard === card);
+      touchCard = null;
+      if (committing || event.defaultPrevented || !card || !coarse.matches || !touch ||
+          reduced.matches || doc.hidden || !event.detail || event.button !== 0 ||
+          event.ctrlKey || event.metaKey || event.shiftKey || event.altKey ||
+          event.target.closest?.('.card-fav') || card.hasAttribute('download') ||
+          !['', '_self'].includes(card.getAttribute('target') || '') || !card.getAttribute('href')) return;
+      event.preventDefault();
+      if (pendingNavigation?.card === card) return;
+      cancelNavigation();
+      burst(card);
+      const href = card.getAttribute('href');
+      const navigate = () => {
+        pendingNavigation = null;
+        if (!card.isConnected || card.getAttribute('href') !== href) return;
+        // Reuse native link activation and the existing navigation/scroll hook.
+        committing = true;
+        try { card.click(); } finally { committing = false; }
+      };
+      if (!active.has(card)) { navigate(); return; }
+      pendingNavigation = { card, timer:win.setTimeout(navigate, TOUCH_DELAY_MS) };
+    }, true);
+    win.addEventListener('pagehide', cancelNavigation);
+    doc.addEventListener('visibilitychange', () => { if (doc.hidden) cancelNavigation(); });
     win.addEventListener('scroll', clearAll, true);
     win.addEventListener('resize', clearAll);
     win.addEventListener('pagehide', clearAll);
@@ -142,6 +181,6 @@
     hover.addEventListener('change', clearAll);
     return { clearAll };
   }
-  if (typeof module !== 'undefined') module.exports = { PRESETS, OVERHANG, CLEANUP_MS, trajectory, motionPath, burstBounds, setup };
+  if (typeof module !== 'undefined') module.exports = { PRESETS, OVERHANG, CLEANUP_MS, TOUCH_DELAY_MS, trajectory, motionPath, burstBounds, setup };
   if (root.document) root.document.addEventListener('DOMContentLoaded', () => setup(root.document, root));
 }(typeof window !== 'undefined' ? window : globalThis));

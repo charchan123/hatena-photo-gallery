@@ -1,0 +1,50 @@
+{
+  "provenance": "Summarized from instrumented Chromium console output before the diagnostic JSON was replaced by the fixed-run result. No reconstructed scroll samples are claimed.",
+  "width": 390,
+  "trials": [
+    {
+      "attempt": 0,
+      "message_time_unix_ms": 1791517680470,
+      "message": "scrollToTitle",
+      "origin": "https://charchan123.github.io",
+      "source_null": true,
+      "source_matches": false,
+      "scroll_to_calls": 0,
+      "result": "FAIL",
+      "message_y": 671
+    },
+    {
+      "attempt": 1,
+      "message_time_unix_ms": 1791517687670,
+      "message": "scrollToTitle",
+      "origin": "https://charchan123.github.io",
+      "source_null": true,
+      "source_matches": false,
+      "scroll_to_calls": 0,
+      "result": "FAIL",
+      "message_y": 671
+    },
+    {
+      "attempt": 2,
+      "message_time_unix_ms": 1791517694753,
+      "message": "scrollToTitle",
+      "origin": "https://charchan123.github.io",
+      "source_null": true,
+      "source_matches": false,
+      "scroll_to_calls": 0,
+      "result": "FAIL",
+      "message_y": 671
+    },
+    {
+      "attempt": 3,
+      "message_time_unix_ms": 1791517701820,
+      "message": "scrollToTitle",
+      "origin": "https://charchan123.github.io",
+      "source_null": true,
+      "source_matches": false,
+      "scroll_to_calls": 0,
+      "result": "FAIL",
+      "message_y": 671
+    }
+  ]
+}

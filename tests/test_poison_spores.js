@@ -3,10 +3,11 @@ const {test} = require('node:test');
 const fs = require('node:fs');
 const path = require('node:path');
 const css = fs.readFileSync(path.join(__dirname, '../assets/gallery.css'), 'utf8');
-const {PRESETS, OVERHANG, CLEANUP_MS, trajectory, motionPath, burstBounds, setup} = require('../assets/poison-spores.js');
+const {PRESETS, OVERHANG, CLEANUP_MS, TOUCH_DELAY_MS, trajectory, motionPath, burstBounds, setup} = require('../assets/poison-spores.js');
 
 function environment() {
-  const handlers = {}, windowHandlers = {}, timers = new Map();
+  const handlers = {}, windowHandlers = {}, timers = new Map(), delays = new Map();
+  const add = (store,type,fn) => { const prev=store[type]; store[type]=event=>{if(prev)prev(event);fn(event);}; };
   let timerId = 0, mutation;
   class Element {
     constructor() { this.children=[]; this.style={setProperty:(k,v)=>{this.style[k]=v;}}; this.events={}; this.isConnected=true; }
@@ -17,21 +18,24 @@ function environment() {
   }
   const body=new Element(); body.matches=()=>true;
   const doc={body, hidden:false, documentElement:{clientWidth:1440}, createElement:()=>new Element(),
-    addEventListener:(type,fn)=>{handlers[type]=fn;}};
+    addEventListener:(type,fn)=>add(handlers,type,fn)};
   const reduced={matches:false,addEventListener:(type,fn)=>{reduced.change=fn;}};
   const hover={matches:true,addEventListener:(type,fn)=>{hover.change=fn;}};
-  const win={innerHeight:900,matchMedia:q=>q.includes('reduced')?reduced:hover,
+  const coarse={matches:false};
+  const win={innerHeight:900,matchMedia:q=>q.includes('reduced')?reduced:q==='(pointer: coarse)'?coarse:hover,
     MutationObserver:class {constructor(fn){mutation=fn;}observe(){}disconnect(){}},
-    setTimeout:fn=>{timers.set(++timerId,fn);return timerId;}, clearTimeout:id=>timers.delete(id),
-    addEventListener:(type,fn)=>{windowHandlers[type]=fn;}};
+    setTimeout:(fn,ms)=>{timers.set(++timerId,fn);delays.set(timerId,ms);return timerId;}, clearTimeout:id=>timers.delete(id),
+    addEventListener:(type,fn)=>add(windowHandlers,type,fn)};
   function card(poison=true) {
     const c=new Element();c.visible=true;c.focusVisible=true;c.poison=poison;
+    c.href='detail.html';c.getAttribute=k=>c[k]||null;c.hasAttribute=k=>!!c[k];c.closest=selector=>selector.includes('card-fav')?null:c.poison?c:null;
+    c.navigations=0;c.click=()=>{const e=clickEvent(c,{detail:0,pointerType:''});handlers.click(e);if(!e.defaultPrevented)c.navigations++;};
     c.matches=selector=>selector===':focus-visible'?c.focusVisible:c.poison;
     c.getClientRects=()=>c.visible?[{}]:[];
     c.querySelector=()=>({getBoundingClientRect:()=>({left:100,top:200,right:300,bottom:330,width:200,height:130})});
     return c;
   }
-  return {doc,win,body,handlers,windowHandlers,timers,reduced,hover,card,mutate:()=>mutation(),
+  return {doc,win,body,handlers,windowHandlers,timers,delays,reduced,hover,coarse,card,mutate:()=>mutation(),
     fire:(type,target,pointerType='mouse')=>handlers[type]({target,pointerType})};
 }
 
@@ -165,4 +169,34 @@ test('filter/removal, scroll, reduced motion, timer and burst cap clean up',()=>
   assert.equal(e.body.children.length,3);assert.equal(e.timers.size,3);
   e.windowHandlers.scroll();assert.equal(e.body.children.length,0);assert.equal(e.timers.size,0);
   e.fire('pointerenter',e.card());for(const fn of [...e.timers.values()])fn();assert.equal(e.body.children.length,0);
+});
+
+function clickEvent(card, extra={}) {
+  return {target:card,pointerType:'touch',detail:1,button:0,defaultPrevented:false,
+    preventDefault(){this.defaultPrevented=true;},...extra};
+}
+test('coarse poison tap delays native activation 600ms and double tap stays one burst',()=>{
+ const e=environment();e.coarse.matches=true;setup(e.doc,e.win);const c=e.card();
+ const first=clickEvent(c);e.handlers.click(first);assert(first.defaultPrevented);
+ assert.equal(e.body.children.length,1);assert.equal(e.body.children[0].children.length,10);
+ const timers=[...e.timers.keys()];const second=clickEvent(c);e.handlers.click(second);
+ assert(second.defaultPrevented);assert.deepEqual([...e.timers.keys()],timers);
+ const id=timers.find(id=>e.delays.get(id)===TOUCH_DELAY_MS);assert.equal(TOUCH_DELAY_MS,600);
+ assert.equal(c.navigations,0);e.timers.get(id)();assert.equal(c.navigations,1);
+});
+test('ordinary, reduced, keyboard and modified links keep native immediate behavior',()=>{
+ for(const mode of ['nonpoison','reduced','keyboard','mouse','modified','blank','download','fine']){
+  const e=environment();e.coarse.matches=mode!=='fine';e.reduced.matches=mode==='reduced';setup(e.doc,e.win);
+  const c=e.card(mode!=='nonpoison');if(mode==='blank')c.target='_blank';if(mode==='download')c.download='photo';
+  const event=clickEvent(c,{detail:mode==='keyboard'?0:1,pointerType:mode==='mouse'?'mouse':'touch',ctrlKey:mode==='modified'});
+  e.handlers.click(event);assert(!event.defaultPrevented,mode);assert.equal(e.body.children.length,0,mode);
+ }
+});
+test('touch cancellation and stale targets cannot trigger deferred navigation',()=>{
+ for(const mode of ['pagehide','hidden','removed','changed']){
+  const e=environment();e.coarse.matches=true;setup(e.doc,e.win);const c=e.card();e.handlers.click(clickEvent(c));
+  if(mode==='pagehide')e.windowHandlers.pagehide();if(mode==='hidden'){e.doc.hidden=true;e.handlers.visibilitychange();}
+  if(mode==='removed')c.isConnected=false;if(mode==='changed')c.href='other.html';
+  for(const [id,fn]of [...e.timers])if(e.delays.get(id)===600)fn();assert.equal(c.navigations,0,mode);
+ }
 });

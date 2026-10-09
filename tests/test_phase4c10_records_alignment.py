@@ -3,7 +3,7 @@ from pathlib import Path
 import main
 
 
-def test_detail_gojuon_buttons_stay_on_one_compact_row():
+def test_detail_gojuon_desktop_row_and_mobile_five_by_two():
     detail_css = (Path(main.ASSETS_DIR) / "detail.css").read_text(encoding="utf-8")
 
     for expected in (
@@ -22,6 +22,6 @@ def test_detail_gojuon_buttons_stay_on_one_compact_row():
     ):
         assert expected in detail_css
 
-    assert "grid-template-columns:repeat(5,minmax(0,1fr))" not in detail_css
-    assert ".detail-page .detail-aiuo-links { gap:3px; }" in detail_css
-    assert ".detail-page .detail-aiuo-links .aiuo-link { min-width:44px; padding:7px 8px; font-size:.74rem; }" in detail_css
+    assert "grid-template-columns:repeat(5,minmax(0,1fr))" in detail_css
+    assert "gap:5px; overflow-x:visible" in detail_css
+    assert ".detail-page .detail-aiuo-links .aiuo-link { min-width:0; min-height:44px; padding:7px 4px; font-size:.74rem; }" in detail_css

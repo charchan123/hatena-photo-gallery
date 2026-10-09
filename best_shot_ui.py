@@ -244,13 +244,17 @@ def _document(title, body):
 </html>'''
 
 
-def _best_shots_hero(title, description="", back_href="index.html", back_label="図鑑へ戻る"):
+def _best_shots_hero(title, description="", back_href="index.html", back_label="図鑑へ戻る", *, year=None):
     description_html = f"<p>{html.escape(description)}</p>" if description else ""
+    title_html = html.escape(title)
+    if year is not None:
+        title_html = (f'<span class="best-shots-title-year">{html.escape(str(year))}年の</span>'
+                      '<wbr><span class="best-shots-title-subject">ベストショット</span>')
     return f'''<header class="best-shots-hero">
   <a class="best-shots-back-link" href="{html.escape(back_href, quote=True)}">← {html.escape(back_label)}</a>
   <div class="best-shots-hero-copy">
     <span class="best-shots-eyebrow">BEST SHOTS</span>
-    <h1>{html.escape(title)}</h1>
+    <h1>{title_html}</h1>
     {description_html}
   </div>
 </header>'''
@@ -297,6 +301,7 @@ def render_best_shot_year_page(year_model):
         "その年に選んだ、とっておきの一枚を月ごとに振り返ります。",
         "best-shots.html",
         "ベストショット一覧へ戻る",
+        year=year,
     )
     body = (
         '<section class="best-shots-hub">' + header + '</section>'

@@ -297,6 +297,9 @@ body.aiuo-index {
 
 @media (max-width:680px) {
   .aiuo-index .aiuo-page { padding:12px 10px 32px; }
+  .aiuo-index .kana-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); }
+  .aiuo-index .kana-btn { min-width:0; min-height:44px; }
+  .aiuo-index .kana-btn[data-kana="all"] { grid-column:1/-1; justify-self:start; padding-inline:18px; }
   .aiuo-index .aiuo-hub,
   .aiuo-index .aiuo-results-panel { border-radius:16px; }
   .aiuo-index .aiuo-hero { min-height:180px; background-position:66% 50%; }

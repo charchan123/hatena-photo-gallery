@@ -2639,9 +2639,9 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
     <section class="portal-about-nav">
       <h2 id="about-heading">このブログについて</h2>
       <nav class="portal-about-links" aria-label="このブログについてのリンク">
-        <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E8%87%AA%E5%B7%B1%E7%B4%B9%E4%BB%8B" target="_top">{portal_icon("person")}<span><strong>自己紹介</strong><small>このブログを書いている人</small>{section_notice("about")}</span></a>
+        <a href="https://exsudoporus-ruber.hatenablog.jp/entry/2025/03/22/032440" target="_top">{portal_icon("person")}<span><strong>自己紹介</strong><small>このブログを書いている人</small>{section_notice("about")}</span></a>
         <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E6%97%A5%E5%B8%B8%E3%81%AE%E8%A8%98%E9%8C%B2" target="_top">{portal_icon("note")}<span><strong>日常記録</strong><small>田舎での暮らしや日々のこと</small>{section_notice("daily")}</span></a>
-        <a href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E3%83%AA%E3%83%B3%E3%82%AF%E9%9B%86" target="_top">{portal_icon("link")}<span><strong>リンク集</strong><small>関連サイトやおすすめリンク</small>{section_notice("links")}</span></a>
+        <a href="https://exsudoporus-ruber.hatenablog.jp/entry/links" target="_top">{portal_icon("link")}<span><strong>リンク集</strong><small>関連サイトやおすすめリンク</small>{section_notice("links")}</span></a>
       </nav>
     </section>
     <section class="portal-request" aria-labelledby="portal-request-heading">

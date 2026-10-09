@@ -409,7 +409,7 @@ body.guide-index {
 .guide-index .guide-way--season::before { background-image:url("guide-action-season.webp"); background-position:62% 50%; }
 .guide-index .guide-way--features::before { background-image:url("guide-action-features.webp"); background-position:70% 50%; }
 .guide-index .guide-way--research::before { background-image:url("research-lab-cabin.webp"); background-position:78% center; }
-.guide-index .guide-way--best::before { background-image:url("research-lab-final.webp"); background-position:72% 50%; }
+.guide-index .guide-way--best::before { background-image:url("new-top-best-shots-camera-mushrooms.webp"); background-position:50% 58%; }
 
 .guide-index .guide-way span {
   margin-bottom:4px;

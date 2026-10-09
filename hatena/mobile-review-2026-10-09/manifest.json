@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-09",
+  "ui_checkpoint": "ed1aca8ab3f642941452bc7be846f81c3486e1d4",
+  "navigation_checkpoint": "8622db82dd8c2111bb46245658ec7dd06569a5d4",
+  "retained_evidence": [
+    "visual.json",
+    "desktop-tablet.json",
+    "interactions.json"
+  ],
+  "final_navigation_evidence": [
+    "final-interactions.json",
+    "navigation-diagnosis.json",
+    "navigation-timeline.json"
+  ],
+  "files": [
+    {
+      "path": "build-baseline.json",
+      "bytes": 267,
+      "sha256": "6b6ad2072f6f0044320dc56060d719bd6221ebf6e746168bc68f2c6bde84b207"
+    },
+    {
+      "path": "build.json",
+      "bytes": 267,
+      "sha256": "6b6ad2072f6f0044320dc56060d719bd6221ebf6e746168bc68f2c6bde84b207"
+    },
+    {
+      "path": "css-validation.json",
+      "bytes": 1442,
+      "sha256": "61458f54f9445329ecb7dea6e277bdcbff1fa37c0833f2490f861e893f8f4532"
+    },
+    {
+      "path": "desktop-tablet.json",
+      "bytes": 9361,
+      "sha256": "d88999c8b44ff1befc031970888ddeea46d9023471cd9eac7b1586526713918d"
+    },
+    {
+      "path": "final-interactions.json",
+      "bytes": 56408,
+      "sha256": "c54224bab2ac960eeed4fdc135aa313e83dce42cf9ea3d44d38d396ebcfc7efa"
+    },
+    {
+      "path": "inputs.json",
+      "bytes": 640,
+      "sha256": "de7d3e797d6d8a654ae2767033afa7d9097c5f3f4ae7112cdd400a8d6ab605b4"
+    },
+    {
+      "path": "interactions.json",
+      "bytes": 455,
+      "sha256": "35a61c64759d1cef23ae8f8dfd0645f2bca02ae0af4c0dfdf437f28a1a83d69f"
+    },
+    {
+      "path": "navigation-diagnosis-before.json",
+      "bytes": 1395,
+      "sha256": "c69a1b0478126106685503f7b6211b232f96869acf9580426c2746358ddcfa2b"
+    },
+    {
+      "path": "navigation-diagnosis.json",
+      "bytes": 11715,
+      "sha256": "d70380d09bd36f2409cf81520a35a383e0abfce0a1741b25ca700f488ce0cb1d"
+    },
+    {
+      "path": "navigation-timeline.json",
+      "bytes": 3749,
+      "sha256": "24e6adbecff086b5a20c09ce6378d1f2829932bf89072267d0c8b35db09bee21"
+    },
+    {
+      "path": "navigation.json",
+      "bytes": 1465,
+      "sha256": "cc92f1e2824f3fe6ab7e8932bc9f1926972ecc753c9bea9a880d147bb8bf9384"
+    },
+    {
+      "path": "poison.json",
+      "bytes": 830,
+      "sha256": "3d683d87eb625a9402f9cc78608d176b90a8881547d14675e71f42f1a95ccf2b"
+    },
+    {
+      "path": "root-cause.json",
+      "bytes": 237,
+      "sha256": "399e32a2b0a06bbc1d017db01e3f1f0ae67bd3bcc9ade999ab53fb7e06d3638f"
+    },
+    {
+      "path": "scroll.json",
+      "bytes": 2464,
+      "sha256": "85ba1529d7c72b5b24a54d601a642a2e83d71188d9a057427a1177960b1fbf2b"
+    },
+    {
+      "path": "test-summary.json",
+      "bytes": 883,
+      "sha256": "3688306fb1bc567244579522b33ff29121b48a88546c53b7bc81c44bc01e4109"
+    },
+    {
+      "path": "visual.json",
+      "bytes": 9308,
+      "sha256": "8a0985031c29bc5af9d64b73db626a89349115610f532c6338f036fb857f6db7"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 
 let lastHeight = 0;
 const RECORD_EXTERNAL_RETURN_KEY = "record-external-return-refresh-v1";
+const IFRAME_NAVIGATION_KEY = "gallery-iframe-navigation-v1";
 
 function calculateIframeContentHeight(rootHeight, paddingTop, paddingBottom) {
   return Math.ceil(rootHeight + paddingTop + paddingBottom);
@@ -16,6 +17,32 @@ function isHistoryTraversal(event) {
 function shouldReloadGalleryIndex(event, pathname) {
   return isHistoryTraversal(event)
     && (pathname.endsWith("/") || pathname.endsWith("/index.html"));
+}
+
+// A departing iframe document can lose its postMessage source before delivery.
+// Remember only a real same-frame HTML link; its destination replays once.
+function rememberIframeNavigation(link) {
+  try {
+    if (window.parent === window || link.hasAttribute("download") ||
+        !["", "_self"].includes(link.getAttribute("target") || "")) return;
+    const destination = new URL(link.href, location.href);
+    if (destination.origin !== location.origin || !destination.pathname.endsWith(".html")) return;
+    sessionStorage.setItem(IFRAME_NAVIGATION_KEY, JSON.stringify({
+      pathname: destination.pathname, time: Date.now()
+    }));
+  } catch (_) { /* Storage restrictions must never block native navigation. */ }
+}
+
+function consumeIframeNavigation() {
+  try {
+    const raw = sessionStorage.getItem(IFRAME_NAVIGATION_KEY);
+    if (raw === null) return false;
+    sessionStorage.removeItem(IFRAME_NAVIGATION_KEY);
+    const pending = JSON.parse(raw);
+    const age = Date.now() - pending.time;
+    return window.parent !== window && pending.pathname === location.pathname &&
+      Number.isFinite(age) && age >= 0 && age <= 10000;
+  } catch (_) { return false; }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -1009,6 +1036,7 @@ galleries.forEach(gallery => {
   // scrollToTitle 判定（既存）
   // =========================
   document.addEventListener("click", (e) => {
+    if (e.defaultPrevented || e.button > 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     const a = e.target.closest("a");
     if (!a) return;
 
@@ -1016,6 +1044,7 @@ galleries.forEach(gallery => {
     const href = a.getAttribute("href") || "";
 
     if (/\.html(\?|$)/.test(href)) {
+      rememberIframeNavigation(a);
       window.parent.postMessage({ type: "scrollToTitle" }, "*");
       return;
     }
@@ -1423,7 +1452,6 @@ galleries.forEach(gallery => {
         btn.addEventListener("click", () => {
           page += Number(btn.dataset.move);
           doSearch();
-          window.parent.postMessage({ type: "scrollToTitle" }, "*");
         });
       });
     }
@@ -1487,6 +1515,9 @@ galleries.forEach(gallery => {
   // parent iframe may still have the page we navigated to. Re-send even when
   // the measured value is unchanged; bounded retries cover restored images.
   window.addEventListener("pageshow", event => {
+    if (consumeIframeNavigation() && !isHistoryTraversal(event)) {
+      window.parent.postMessage({ type: "scrollToTitle" }, "*");
+    }
     const prefix = event.persisted ? "pageshow-bfcache" : "pageshow";
     sendHeight(prefix, true);
     setTimeout(() => sendHeight(`${prefix}-100ms`, true), 100);
