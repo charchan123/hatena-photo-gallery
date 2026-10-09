@@ -1,0 +1,330 @@
+[
+  {
+    "mode": "normal",
+    "before": {
+      "y": 5850,
+      "height": "6327px",
+      "reserve": ""
+    },
+    "after": {
+      "y": 301,
+      "height": "1797px",
+      "reserve": "",
+      "target": 301.296875,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558683727,
+          "path": "/new-top",
+          "y": 5850,
+          "type": "navigationIntent",
+          "sourceNull": false,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558683793,
+          "path": "/new-top",
+          "y": 5850,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceNull": false,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558683920,
+          "path": "/new-top",
+          "y": 5850,
+          "args": [
+            {
+              "top": 301.296875,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558683921,
+          "path": "/new-top",
+          "y": 301,
+          "reserve": ""
+        },
+        {
+          "event": "message",
+          "time": 1791558683960,
+          "path": "/new-top",
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceNull": false,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558684044,
+          "path": "/new-top",
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceNull": false,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558684143,
+          "path": "/new-top",
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceNull": false,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558684742,
+          "path": "/new-top",
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceNull": false,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558685942,
+          "path": "/new-top",
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceNull": false,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "destination": {
+      "url": "https://charchan123.github.io/hatena-photo-gallery/index.html?",
+      "trace": [
+        {
+          "event": "pageshow",
+          "time": 1791558683921,
+          "path": "/hatena-photo-gallery/index.html",
+          "y": 0,
+          "marker": null
+        },
+        {
+          "event": "message",
+          "time": 1791558683921,
+          "path": "/hatena-photo-gallery/index.html",
+          "y": 0,
+          "type": "requestHeight",
+          "sourceNull": false,
+          "sourceMatches": false,
+          "origin": "https://exsudoporus-ruber.hatenablog.jp"
+        },
+        {
+          "event": "message",
+          "time": 1791558684121,
+          "path": "/hatena-photo-gallery/index.html",
+          "y": 0,
+          "type": "requestHeight",
+          "sourceNull": false,
+          "sourceMatches": false,
+          "origin": "https://exsudoporus-ruber.hatenablog.jp"
+        },
+        {
+          "event": "message",
+          "time": 1791558684721,
+          "path": "/hatena-photo-gallery/index.html",
+          "y": 0,
+          "type": "requestHeight",
+          "sourceNull": false,
+          "sourceMatches": false,
+          "origin": "https://exsudoporus-ruber.hatenablog.jp"
+        },
+        {
+          "event": "message",
+          "time": 1791558685921,
+          "path": "/hatena-photo-gallery/index.html",
+          "y": 0,
+          "type": "requestHeight",
+          "sourceNull": false,
+          "sourceMatches": false,
+          "origin": "https://exsudoporus-ruber.hatenablog.jp"
+        }
+      ]
+    },
+    "errors": []
+  },
+  {
+    "mode": "blocked-storage",
+    "before": {
+      "y": 5850,
+      "height": "6327px",
+      "reserve": ""
+    },
+    "after": {
+      "y": 301,
+      "height": "1797px",
+      "reserve": "",
+      "target": 301.296875,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558691360,
+          "path": "/new-top",
+          "y": 5850,
+          "type": "navigationIntent",
+          "sourceNull": false,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558691426,
+          "path": "/new-top",
+          "y": 5850,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceNull": false,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558691533,
+          "path": "/new-top",
+          "y": 5850,
+          "args": [
+            {
+              "top": 301.296875,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558691534,
+          "path": "/new-top",
+          "y": 301,
+          "reserve": ""
+        },
+        {
+          "event": "message",
+          "time": 1791558691576,
+          "path": "/new-top",
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceNull": false,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558691659,
+          "path": "/new-top",
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceNull": false,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558691759,
+          "path": "/new-top",
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceNull": false,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558692359,
+          "path": "/new-top",
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceNull": false,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558693559,
+          "path": "/new-top",
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceNull": false,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "destination": {
+      "url": "https://charchan123.github.io/hatena-photo-gallery/index.html?",
+      "trace": [
+        {
+          "event": "pageshow",
+          "time": 1791558691535,
+          "path": "/hatena-photo-gallery/index.html",
+          "y": 0,
+          "marker": "SecurityError"
+        },
+        {
+          "event": "message",
+          "time": 1791558691535,
+          "path": "/hatena-photo-gallery/index.html",
+          "y": 0,
+          "type": "requestHeight",
+          "sourceNull": false,
+          "sourceMatches": false,
+          "origin": "https://exsudoporus-ruber.hatenablog.jp"
+        },
+        {
+          "event": "message",
+          "time": 1791558691734,
+          "path": "/hatena-photo-gallery/index.html",
+          "y": 0,
+          "type": "requestHeight",
+          "sourceNull": false,
+          "sourceMatches": false,
+          "origin": "https://exsudoporus-ruber.hatenablog.jp"
+        },
+        {
+          "event": "message",
+          "time": 1791558692334,
+          "path": "/hatena-photo-gallery/index.html",
+          "y": 0,
+          "type": "requestHeight",
+          "sourceNull": false,
+          "sourceMatches": false,
+          "origin": "https://exsudoporus-ruber.hatenablog.jp"
+        },
+        {
+          "event": "message",
+          "time": 1791558693534,
+          "path": "/hatena-photo-gallery/index.html",
+          "y": 0,
+          "type": "requestHeight",
+          "sourceNull": false,
+          "sourceMatches": false,
+          "origin": "https://exsudoporus-ruber.hatenablog.jp"
+        }
+      ]
+    },
+    "errors": []
+  }
+]

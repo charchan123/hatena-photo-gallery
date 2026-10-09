@@ -1,0 +1,50 @@
+[
+  {
+    "mode": "poison",
+    "delay_ms": 605,
+    "navigation_count": 1,
+    "particles": 10,
+    "bursts": 1,
+    "result": "PASS"
+  },
+  {
+    "mode": "double",
+    "delay_ms": 603,
+    "navigation_count": 1,
+    "particles": 10,
+    "bursts": 1,
+    "result": "PASS"
+  },
+  {
+    "mode": "nonpoison",
+    "delay_ms": 4,
+    "navigation_count": 1,
+    "particles": 0,
+    "bursts": 0,
+    "result": "PASS"
+  },
+  {
+    "mode": "reduced",
+    "delay_ms": 7,
+    "navigation_count": 1,
+    "particles": 0,
+    "bursts": 0,
+    "result": "PASS"
+  },
+  {
+    "mode": "keyboard",
+    "delay_ms": 4,
+    "navigation_count": 1,
+    "particles": 0,
+    "bursts": 0,
+    "result": "PASS"
+  },
+  {
+    "mode": "desktop",
+    "delay_ms": null,
+    "navigation_count": 0,
+    "particles": 10,
+    "bursts": 1,
+    "result": "PASS"
+  }
+]

@@ -19,18 +19,84 @@ function shouldReloadGalleryIndex(event, pathname) {
     && (pathname.endsWith("/") || pathname.endsWith("/index.html"));
 }
 
-// A departing iframe document can lose its postMessage source before delivery.
-// Remember only a real same-frame HTML link; its destination replays once.
+// Only an unmodified same-frame internal HTML link is a navigation intent.
+function iframeNavigationDestination(link, win = window) {
+  try {
+    if (win.parent === win || link.hasAttribute("download") ||
+        !["", "_self"].includes(link.getAttribute("target") || "")) return null;
+    const destination = new URL(link.href, win.location.href);
+    if (destination.origin !== win.location.origin || !destination.pathname.endsWith(".html")) return null;
+    const current = new URL(win.location.href);
+    if (destination.pathname === current.pathname && destination.search === current.search && destination.hash) return null;
+    return destination;
+  } catch (_) { return null; }
+}
+
+// Retain destination replay for old parents; storage is not the primary transport.
 function rememberIframeNavigation(link) {
   try {
-    if (window.parent === window || link.hasAttribute("download") ||
-        !["", "_self"].includes(link.getAttribute("target") || "")) return;
-    const destination = new URL(link.href, location.href);
-    if (destination.origin !== location.origin || !destination.pathname.endsWith(".html")) return;
+    const destination = iframeNavigationDestination(link);
+    if (!destination) return;
     sessionStorage.setItem(IFRAME_NAVIGATION_KEY, JSON.stringify({
       pathname: destination.pathname, time: Date.now()
     }));
   } catch (_) { /* Storage restrictions must never block native navigation. */ }
+}
+
+function setupIframeNavigation(doc, win) {
+  let pending = null, committing = false, sequence = 0;
+  let parentOrigin = "*";
+  // After same-frame navigation referrer is the previous child, not the parent.
+  // Without a cross-origin referrer, bind the ACK by WindowProxy (never by URL).
+  try {
+    const referrer = new URL(doc.referrer);
+    if (/^https?:$/.test(referrer.protocol) && referrer.origin !== win.location.origin) parentOrigin = referrer.origin;
+  } catch (_) {}
+  function cancel() {
+    if (pending) win.clearTimeout(pending.timer);
+    pending = null;
+  }
+  function finish() {
+    const navigation = pending;
+    cancel();
+    if (!navigation) return;
+    if (!navigation.link.isConnected || navigation.link.href !== navigation.href) {
+      win.parent.postMessage({ type:"navigationIntentCancel", id:navigation.id }, parentOrigin);
+      return;
+    }
+    // Preserve native link activation and the existing context-link handlers.
+    committing = true;
+    try { navigation.link.click(); } finally { committing = false; }
+  }
+  doc.addEventListener("click", event => {
+    if (committing || event.defaultPrevented || event.button > 0 ||
+        event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const link = event.target.closest?.("a");
+    if (!link) return;
+    const destination = iframeNavigationDestination(link, win);
+    if (!destination) return;
+    event.preventDefault();
+    if (pending?.link === link) return;
+    cancel();
+    rememberIframeNavigation(link);
+    const id = `${Date.now()}-${++sequence}`;
+    // The current document stays alive until the parent has authenticated intent.
+    // An older/missing parent gets one bounded fallback, never an endless wait.
+    pending = { id, link, href:link.href, timer:win.setTimeout(() => {
+      win.parent.postMessage({ type:"scrollToTitle" }, parentOrigin);
+      finish();
+    }, 120) };
+    win.parent.postMessage({ type:"navigationIntent", id,
+      destination:destination.pathname + destination.search }, parentOrigin);
+  });
+  win.addEventListener("message", event => {
+    if (event.source !== win.parent || (parentOrigin !== "*" && event.origin !== parentOrigin) ||
+        event.data?.type !== "navigationIntentAck" || event.data.id !== pending?.id) return;
+    // ACK is the primary path: do not also replay storage and scroll twice.
+    try { win.sessionStorage.removeItem(IFRAME_NAVIGATION_KEY); } catch (_) {}
+    finish();
+  });
+  win.addEventListener("pagehide", cancel);
 }
 
 function consumeIframeNavigation() {
@@ -1032,33 +1098,8 @@ galleries.forEach(gallery => {
   }
 });
 
-  // =========================
-  // scrollToTitle 判定（既存）
-  // =========================
-  document.addEventListener("click", (e) => {
-    if (e.defaultPrevented || e.button > 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-    const a = e.target.closest("a");
-    if (!a) return;
-
-    const txt = a.textContent || "";
-    const href = a.getAttribute("href") || "";
-
-    if (/\.html(\?|$)/.test(href)) {
-      rememberIframeNavigation(a);
-      window.parent.postMessage({ type: "scrollToTitle" }, "*");
-      return;
-    }
-
-    if (/^(あ行|か行|さ行|た行|な行|は行|ま行|や行|ら行|わ行)$/.test(txt)) {
-      window.parent.postMessage({ type: "scrollToTitle" }, "*");
-      return;
-    }
-
-    if (/戻る/.test(txt)) {
-      window.parent.postMessage({ type: "scrollToTitle" }, "*");
-      return;
-    }
-  });
+  // Handshake only real page navigation; filters/details never enter this path.
+  setupIframeNavigation(document, window);
 
   // =========================
   // 五十音ページ 検索＋かなフィルタ

@@ -98,7 +98,8 @@ def test_season_card_link_is_handled_by_shared_html_navigation_bridge():
     )
     assert 'class="mushroom-card" href="春菌.html"' in rendered
     gallery_source = (Path(main.ASSETS_DIR) / "gallery.js").read_text(encoding="utf-8")
-    assert '/\\.html(\\?|$)/.test(href)' in gallery_source
+    assert 'setupIframeNavigation(document, window)' in gallery_source
+    assert 'destination.pathname.endsWith(".html")' in gallery_source
     assert '{ type: "scrollToTitle" }' in gallery_source
 
 

@@ -1,0 +1,112 @@
+[
+  {
+    "blocked": false,
+    "action": "features → index",
+    "referrer": "",
+    "url": "https://charchan123.github.io/hatena-photo-gallery/index.html?",
+    "y": 301,
+    "target": 301.296875,
+    "reserve": "",
+    "height": "1797px",
+    "result": "PASS"
+  },
+  {
+    "blocked": false,
+    "action": "index → aiuo",
+    "referrer": "https://charchan123.github.io/hatena-photo-gallery/features.html",
+    "url": "https://charchan123.github.io/hatena-photo-gallery/か行.html",
+    "y": 301,
+    "target": 301.296875,
+    "reserve": "",
+    "height": "7807px",
+    "result": "PASS"
+  },
+  {
+    "blocked": false,
+    "action": "aiuo → detail",
+    "referrer": "https://charchan123.github.io/hatena-photo-gallery/index.html?",
+    "url": "https://charchan123.github.io/hatena-photo-gallery/カエンタケ.html?from=aiuo&kana=か行",
+    "y": 301,
+    "target": 301.296875,
+    "reserve": "",
+    "height": "2278px",
+    "result": "PASS"
+  },
+  {
+    "blocked": false,
+    "action": "detail → aiuo",
+    "referrer": "https://charchan123.github.io/hatena-photo-gallery/%E3%81%8B%E8%A1%8C.html",
+    "url": "https://charchan123.github.io/hatena-photo-gallery/か行.html",
+    "y": 301,
+    "target": 301.296875,
+    "reserve": "",
+    "height": "7807px",
+    "result": "PASS"
+  },
+  {
+    "blocked": false,
+    "action": "aiuo → index",
+    "referrer": "https://charchan123.github.io/hatena-photo-gallery/%E3%82%AB%E3%82%A8%E3%83%B3%E3%82%BF%E3%82%B1.html?from=aiuo&kana=%E3%81%8B%E8%A1%8C",
+    "url": "https://charchan123.github.io/hatena-photo-gallery/index.html?",
+    "y": 301,
+    "target": 301.296875,
+    "reserve": "",
+    "height": "1797px",
+    "result": "PASS"
+  },
+  {
+    "blocked": true,
+    "action": "features → index",
+    "referrer": "",
+    "url": "https://charchan123.github.io/hatena-photo-gallery/index.html?",
+    "y": 301,
+    "target": 301.296875,
+    "reserve": "",
+    "height": "1797px",
+    "result": "PASS"
+  },
+  {
+    "blocked": true,
+    "action": "index → aiuo",
+    "referrer": "https://charchan123.github.io/hatena-photo-gallery/features.html",
+    "url": "https://charchan123.github.io/hatena-photo-gallery/か行.html",
+    "y": 301,
+    "target": 301.296875,
+    "reserve": "",
+    "height": "7807px",
+    "result": "PASS"
+  },
+  {
+    "blocked": true,
+    "action": "aiuo → detail",
+    "referrer": "https://charchan123.github.io/hatena-photo-gallery/index.html?",
+    "url": "https://charchan123.github.io/hatena-photo-gallery/カエンタケ.html?from=aiuo&kana=か行",
+    "y": 301,
+    "target": 301.296875,
+    "reserve": "",
+    "height": "2278px",
+    "result": "PASS"
+  },
+  {
+    "blocked": true,
+    "action": "detail → aiuo",
+    "referrer": "https://charchan123.github.io/hatena-photo-gallery/%E3%81%8B%E8%A1%8C.html",
+    "url": "https://charchan123.github.io/hatena-photo-gallery/か行.html",
+    "y": 301,
+    "target": 301.296875,
+    "reserve": "",
+    "height": "7807px",
+    "result": "PASS"
+  },
+  {
+    "blocked": true,
+    "action": "aiuo → index",
+    "referrer": "https://charchan123.github.io/hatena-photo-gallery/%E3%82%AB%E3%82%A8%E3%83%B3%E3%82%BF%E3%82%B1.html?from=aiuo&kana=%E3%81%8B%E8%A1%8C",
+    "url": "https://charchan123.github.io/hatena-photo-gallery/index.html?",
+    "y": 301,
+    "target": 301.296875,
+    "reserve": "",
+    "height": "1797px",
+    "result": "PASS"
+  }
+]

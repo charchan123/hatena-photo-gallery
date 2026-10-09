@@ -60,7 +60,7 @@ assert.match(
 assert.doesNotMatch(source, /document\.body\.(?:scrollHeight|offsetHeight)/);
 assert.doesNotMatch(source, /document\.documentElement\.(?:scrollHeight|offsetHeight)/);
 
-assert.match(source, /\/\\\.html\(\\\?\|\$\)\/.test\(href\)/);
-assert.match(source, /if \(\/戻る\/.test\(txt\)\)/);
+assert.match(source, /setupIframeNavigation\(document, window\)/);
+assert.match(source, /destination\.pathname\.endsWith\("\.html"\)/);
 
 console.log("iframe content height regression checks passed");

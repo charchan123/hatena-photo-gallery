@@ -1,0 +1,4547 @@
+[
+  {
+    "width": 360,
+    "kind": "navigation",
+    "action": "features bottom → index",
+    "before": {
+      "y": 5895,
+      "height": 6372,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 1797,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558260627,
+          "y": 5895,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558260693,
+          "y": 5895,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558260838,
+          "y": 5895,
+          "args": [
+            {
+              "top": 301.296875,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558260838,
+          "y": 301
+        },
+        {
+          "event": "message",
+          "time": 1791558260877,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558260960,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558261060,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558261659,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 360,
+    "kind": "navigation",
+    "action": "season → index",
+    "before": {
+      "y": 5883,
+      "height": 6360,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 1797,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558265794,
+          "y": 5883,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558265860,
+          "y": 5883,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558265972,
+          "y": 5883,
+          "args": [
+            {
+              "top": 301.296875,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558265973,
+          "y": 301
+        },
+        {
+          "event": "message",
+          "time": 1791558266012,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558266093,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558266193,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558266792,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 360,
+    "kind": "navigation",
+    "action": "aiuo → index",
+    "before": {
+      "y": 7011,
+      "height": 7488,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 1797,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558270861,
+          "y": 7011,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558270927,
+          "y": 7011,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558271069,
+          "y": 7011,
+          "args": [
+            {
+              "top": 301.296875,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558271069,
+          "y": 301
+        },
+        {
+          "event": "message",
+          "time": 1791558271115,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558271192,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558271292,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558271892,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 360,
+    "kind": "navigation",
+    "action": "detail → aiuo",
+    "before": {
+      "y": 1729,
+      "height": 2206,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 7488,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558275926,
+          "y": 1729,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558275977,
+          "y": 1729,
+          "type": "setHeight",
+          "height": 7488,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558276003,
+          "y": 1729,
+          "args": [
+            {
+              "top": 301.296875,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558276003,
+          "y": 301
+        },
+        {
+          "event": "message",
+          "time": 1791558276032,
+          "y": 301,
+          "type": "setHeight",
+          "height": 7488,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558276128,
+          "y": 301,
+          "type": "setHeight",
+          "height": 7488,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558276226,
+          "y": 301,
+          "type": "setHeight",
+          "height": 7488,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558276827,
+          "y": 301,
+          "type": "setHeight",
+          "height": 7488,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558278026,
+          "y": 301,
+          "type": "setHeight",
+          "height": 7488,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/か行.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 360,
+    "kind": "navigation",
+    "action": "detail → index",
+    "before": {
+      "y": 301,
+      "height": 2206,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 1797,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558281109,
+          "y": 301,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558281193,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558281368,
+          "y": 301,
+          "args": [
+            {
+              "top": 301.296875,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558281368,
+          "y": 301
+        },
+        {
+          "event": "message",
+          "time": 1791558281392,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558281492,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558281592,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558282193,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 360,
+    "kind": "navigation",
+    "action": "card → detail",
+    "before": {
+      "y": 301,
+      "height": 7488,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 2284,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558286832,
+          "y": 301,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558286909,
+          "y": 301,
+          "type": "setHeight",
+          "height": 2140,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558286961,
+          "y": 301,
+          "type": "setHeight",
+          "height": 2356,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558286964,
+          "y": 301,
+          "args": [
+            {
+              "top": 301.296875,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558286964,
+          "y": 301
+        },
+        {
+          "event": "message",
+          "time": 1791558287017,
+          "y": 301,
+          "type": "setHeight",
+          "height": 2284,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558287092,
+          "y": 301,
+          "type": "setHeight",
+          "height": 2284,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558287194,
+          "y": 301,
+          "type": "setHeight",
+          "height": 2284,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558287792,
+          "y": 301,
+          "type": "setHeight",
+          "height": 2284,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/カエンタケ.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 360,
+    "kind": "in-place",
+    "action": "feature ON",
+    "before": {
+      "y": 301,
+      "height": 6372,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 3518,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558291328,
+          "y": 301,
+          "type": "setHeight",
+          "height": 3518,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 360,
+    "kind": "in-place",
+    "action": "feature OFF",
+    "before": {
+      "y": 301,
+      "height": 3518,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 6372,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558292595,
+          "y": 301,
+          "type": "setHeight",
+          "height": 6372,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 360,
+    "kind": "in-place",
+    "action": "feature clear",
+    "before": {
+      "y": 1158,
+      "height": 3518,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 1158,
+      "height": 6372,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558294245,
+          "y": 1158,
+          "type": "setHeight",
+          "height": 6372,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 360,
+    "kind": "in-place",
+    "action": "details open",
+    "before": {
+      "y": 1158,
+      "height": 2206,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 1158,
+      "height": 2325,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558298942,
+          "y": 1158,
+          "type": "setHeight",
+          "height": 2325,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 360,
+    "kind": "in-place",
+    "action": "details close",
+    "before": {
+      "y": 1158,
+      "height": 2325,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 1158,
+      "height": 2206,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558300175,
+          "y": 1158,
+          "type": "setHeight",
+          "height": 2206,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 360,
+    "kind": "in-place",
+    "action": "bottom-edge close",
+    "before": {
+      "y": 1848,
+      "height": 2325,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 1848,
+      "height": 2206,
+      "wrapperMinHeight": "2427px",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558301858,
+          "y": 1848,
+          "type": "setHeight",
+          "height": 2206,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 360,
+    "kind": "in-place",
+    "action": "season tab",
+    "before": {
+      "y": 235,
+      "height": 6360,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 235,
+      "height": 13557,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558305849,
+          "y": 235,
+          "type": "setHeight",
+          "height": 13557,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 360,
+    "kind": "in-place",
+    "action": "kana filter",
+    "before": {
+      "y": 235,
+      "height": 7488,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 235,
+      "height": 2190,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558309659,
+          "y": 235,
+          "type": "setHeight",
+          "height": 2190,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 360,
+    "kind": "in-place",
+    "action": "kana search",
+    "before": {
+      "y": 235,
+      "height": 2190,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 235,
+      "height": 1871,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558310875,
+          "y": 235,
+          "type": "setHeight",
+          "height": 1871,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 390,
+    "kind": "navigation",
+    "action": "features bottom → index",
+    "before": {
+      "y": 5850,
+      "height": 6327,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 1797,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558316625,
+          "y": 5850,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558316697,
+          "y": 5850,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558316827,
+          "y": 5850,
+          "args": [
+            {
+              "top": 301.296875,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558316827,
+          "y": 301
+        },
+        {
+          "event": "message",
+          "time": 1791558316858,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558316957,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558317058,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558317657,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 390,
+    "kind": "navigation",
+    "action": "season → index",
+    "before": {
+      "y": 5588,
+      "height": 6065,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 1797,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558321775,
+          "y": 5588,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558321858,
+          "y": 5588,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558321984,
+          "y": 5588,
+          "args": [
+            {
+              "top": 301.296875,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558321984,
+          "y": 301
+        },
+        {
+          "event": "message",
+          "time": 1791558322025,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558322108,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558322207,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558322807,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 390,
+    "kind": "navigation",
+    "action": "aiuo → index",
+    "before": {
+      "y": 7330,
+      "height": 7807,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 1797,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558326891,
+          "y": 7330,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558326959,
+          "y": 7330,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558327101,
+          "y": 7330,
+          "args": [
+            {
+              "top": 301.296875,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558327101,
+          "y": 301
+        },
+        {
+          "event": "message",
+          "time": 1791558327141,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558327224,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558327324,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558327924,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 390,
+    "kind": "navigation",
+    "action": "detail → aiuo",
+    "before": {
+      "y": 1723,
+      "height": 2200,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 7807,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558331991,
+          "y": 1723,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558332057,
+          "y": 1723,
+          "type": "setHeight",
+          "height": 7807,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558332170,
+          "y": 1723,
+          "args": [
+            {
+              "top": 301.296875,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558332170,
+          "y": 301
+        },
+        {
+          "event": "message",
+          "time": 1791558332199,
+          "y": 301,
+          "type": "setHeight",
+          "height": 7807,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558332295,
+          "y": 301,
+          "type": "setHeight",
+          "height": 7807,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558332390,
+          "y": 301,
+          "type": "setHeight",
+          "height": 7807,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558332990,
+          "y": 301,
+          "type": "setHeight",
+          "height": 7807,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/か行.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 390,
+    "kind": "navigation",
+    "action": "detail → index",
+    "before": {
+      "y": 301,
+      "height": 2200,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 1797,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558337107,
+          "y": 301,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558337174,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558337351,
+          "y": 301,
+          "args": [
+            {
+              "top": 301.296875,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558337351,
+          "y": 301
+        },
+        {
+          "event": "message",
+          "time": 1791558337373,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558337473,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558337573,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558338173,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1797,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 390,
+    "kind": "navigation",
+    "action": "card → detail",
+    "before": {
+      "y": 301,
+      "height": 7807,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 2278,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558342769,
+          "y": 301,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558342859,
+          "y": 301,
+          "type": "setHeight",
+          "height": 2119,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558342926,
+          "y": 301,
+          "args": [
+            {
+              "top": 301.296875,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558342927,
+          "y": 301
+        },
+        {
+          "event": "message",
+          "time": 1791558342977,
+          "y": 301,
+          "type": "setHeight",
+          "height": 2278,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558343056,
+          "y": 301,
+          "type": "setHeight",
+          "height": 2278,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558343156,
+          "y": 301,
+          "type": "setHeight",
+          "height": 2278,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558343756,
+          "y": 301,
+          "type": "setHeight",
+          "height": 2278,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/カエンタケ.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 390,
+    "kind": "in-place",
+    "action": "feature ON",
+    "before": {
+      "y": 301,
+      "height": 6327,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 3471,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558347292,
+          "y": 301,
+          "type": "setHeight",
+          "height": 3471,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 390,
+    "kind": "in-place",
+    "action": "feature OFF",
+    "before": {
+      "y": 301,
+      "height": 3471,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 6327,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558348543,
+          "y": 301,
+          "type": "setHeight",
+          "height": 6327,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 390,
+    "kind": "in-place",
+    "action": "feature clear",
+    "before": {
+      "y": 1113,
+      "height": 3471,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 1113,
+      "height": 6327,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558350192,
+          "y": 1113,
+          "type": "setHeight",
+          "height": 6327,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 390,
+    "kind": "in-place",
+    "action": "details open",
+    "before": {
+      "y": 1113,
+      "height": 2200,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 1113,
+      "height": 2291,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558354023,
+          "y": 1113,
+          "type": "setHeight",
+          "height": 2291,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 390,
+    "kind": "in-place",
+    "action": "details close",
+    "before": {
+      "y": 1113,
+      "height": 2291,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 1113,
+      "height": 2200,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558355273,
+          "y": 1113,
+          "type": "setHeight",
+          "height": 2200,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 390,
+    "kind": "in-place",
+    "action": "bottom-edge close",
+    "before": {
+      "y": 1814,
+      "height": 2291,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 1814,
+      "height": 2200,
+      "wrapperMinHeight": "2393px",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558356939,
+          "y": 1814,
+          "type": "setHeight",
+          "height": 2200,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 390,
+    "kind": "in-place",
+    "action": "season tab",
+    "before": {
+      "y": 235,
+      "height": 6065,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 235,
+      "height": 12982,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558360927,
+          "y": 235,
+          "type": "setHeight",
+          "height": 12982,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 390,
+    "kind": "in-place",
+    "action": "kana filter",
+    "before": {
+      "y": 235,
+      "height": 7807,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 235,
+      "height": 2256,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558364723,
+          "y": 235,
+          "type": "setHeight",
+          "height": 2256,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 390,
+    "kind": "in-place",
+    "action": "kana search",
+    "before": {
+      "y": 235,
+      "height": 2256,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 235,
+      "height": 1917,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558365922,
+          "y": 235,
+          "type": "setHeight",
+          "height": 1917,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 430,
+    "kind": "navigation",
+    "action": "features bottom → index",
+    "before": {
+      "y": 5983,
+      "height": 6460,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 1776,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558371624,
+          "y": 5983,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558371689,
+          "y": 5983,
+          "type": "setHeight",
+          "height": 1776,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558371836,
+          "y": 5983,
+          "args": [
+            {
+              "top": 301.296875,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558371836,
+          "y": 301
+        },
+        {
+          "event": "message",
+          "time": 1791558371872,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1776,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558371955,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1776,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558372056,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1776,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558372655,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1776,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 430,
+    "kind": "navigation",
+    "action": "season → index",
+    "before": {
+      "y": 5803,
+      "height": 6280,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 1776,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558376722,
+          "y": 5803,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558376789,
+          "y": 5803,
+          "type": "setHeight",
+          "height": 1776,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558376903,
+          "y": 5803,
+          "args": [
+            {
+              "top": 301.296875,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558376903,
+          "y": 301
+        },
+        {
+          "event": "message",
+          "time": 1791558376940,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1776,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558377022,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1776,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558377122,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1776,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558377721,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1776,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 430,
+    "kind": "navigation",
+    "action": "aiuo → index",
+    "before": {
+      "y": 7678,
+      "height": 8155,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 1776,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558381840,
+          "y": 7678,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558381905,
+          "y": 7678,
+          "type": "setHeight",
+          "height": 1776,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558382052,
+          "y": 7678,
+          "args": [
+            {
+              "top": 301.296875,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558382053,
+          "y": 301
+        },
+        {
+          "event": "message",
+          "time": 1791558382089,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1776,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558382172,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1776,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558382272,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1776,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558382871,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1776,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 430,
+    "kind": "navigation",
+    "action": "detail → aiuo",
+    "before": {
+      "y": 1712,
+      "height": 2189,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 8155,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558386956,
+          "y": 1712,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558387008,
+          "y": 1712,
+          "type": "setHeight",
+          "height": 8155,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558387101,
+          "y": 1712,
+          "args": [
+            {
+              "top": 301.296875,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558387102,
+          "y": 301
+        },
+        {
+          "event": "message",
+          "time": 1791558387144,
+          "y": 301,
+          "type": "setHeight",
+          "height": 8155,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558387227,
+          "y": 301,
+          "type": "setHeight",
+          "height": 8155,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558387321,
+          "y": 301,
+          "type": "setHeight",
+          "height": 8155,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558387922,
+          "y": 301,
+          "type": "setHeight",
+          "height": 8155,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558389121,
+          "y": 301,
+          "type": "setHeight",
+          "height": 8155,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/か行.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 430,
+    "kind": "navigation",
+    "action": "detail → index",
+    "before": {
+      "y": 301,
+      "height": 2189,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 1776,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558392021,
+          "y": 301,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558392088,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1776,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558392239,
+          "y": 301,
+          "args": [
+            {
+              "top": 301.296875,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558392239,
+          "y": 301
+        },
+        {
+          "event": "message",
+          "time": 1791558392273,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1776,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558392371,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1776,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558392471,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1776,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558393071,
+          "y": 301,
+          "type": "setHeight",
+          "height": 1776,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 430,
+    "kind": "navigation",
+    "action": "card → detail",
+    "before": {
+      "y": 301,
+      "height": 8155,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 2267,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558397731,
+          "y": 301,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558397809,
+          "y": 301,
+          "type": "setHeight",
+          "height": 2088,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558397857,
+          "y": 301,
+          "type": "setHeight",
+          "height": 2222,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558397861,
+          "y": 301,
+          "args": [
+            {
+              "top": 301.296875,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558397861,
+          "y": 301
+        },
+        {
+          "event": "message",
+          "time": 1791558397907,
+          "y": 301,
+          "type": "setHeight",
+          "height": 2267,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558397988,
+          "y": 301,
+          "type": "setHeight",
+          "height": 2267,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558398088,
+          "y": 301,
+          "type": "setHeight",
+          "height": 2267,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558398689,
+          "y": 301,
+          "type": "setHeight",
+          "height": 2267,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/カエンタケ.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 430,
+    "kind": "in-place",
+    "action": "feature ON",
+    "before": {
+      "y": 301,
+      "height": 6460,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 3532,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558402192,
+          "y": 301,
+          "type": "setHeight",
+          "height": 3532,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 430,
+    "kind": "in-place",
+    "action": "feature OFF",
+    "before": {
+      "y": 301,
+      "height": 3532,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 301,
+      "height": 6460,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558403440,
+          "y": 301,
+          "type": "setHeight",
+          "height": 6460,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 430,
+    "kind": "in-place",
+    "action": "feature clear",
+    "before": {
+      "y": 1113,
+      "height": 3532,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 1113,
+      "height": 6460,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558405091,
+          "y": 1113,
+          "type": "setHeight",
+          "height": 6460,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 430,
+    "kind": "in-place",
+    "action": "details open",
+    "before": {
+      "y": 1113,
+      "height": 2189,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 1113,
+      "height": 2280,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558408937,
+          "y": 1113,
+          "type": "setHeight",
+          "height": 2280,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 430,
+    "kind": "in-place",
+    "action": "details close",
+    "before": {
+      "y": 1113,
+      "height": 2280,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 1113,
+      "height": 2189,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558410187,
+          "y": 1113,
+          "type": "setHeight",
+          "height": 2189,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 430,
+    "kind": "in-place",
+    "action": "bottom-edge close",
+    "before": {
+      "y": 1803,
+      "height": 2280,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 1803,
+      "height": 2189,
+      "wrapperMinHeight": "2382px",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558411889,
+          "y": 1803,
+          "type": "setHeight",
+          "height": 2189,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 430,
+    "kind": "in-place",
+    "action": "season tab",
+    "before": {
+      "y": 213,
+      "height": 6280,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 213,
+      "height": 13451,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558415756,
+          "y": 213,
+          "type": "setHeight",
+          "height": 13451,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 430,
+    "kind": "in-place",
+    "action": "kana filter",
+    "before": {
+      "y": 213,
+      "height": 8155,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 213,
+      "height": 2329,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558419554,
+          "y": 213,
+          "type": "setHeight",
+          "height": 2329,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 430,
+    "kind": "in-place",
+    "action": "kana search",
+    "before": {
+      "y": 213,
+      "height": 2329,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 213,
+      "height": 1986,
+      "wrapperMinHeight": "",
+      "target": 301.296875,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558420753,
+          "y": 213,
+          "type": "setHeight",
+          "height": 1986,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 768,
+    "kind": "navigation",
+    "action": "features bottom → index",
+    "before": {
+      "y": 4465,
+      "height": 4977,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 272,
+      "height": 1412,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558426287,
+          "y": 4465,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558426353,
+          "y": 4465,
+          "type": "setHeight",
+          "height": 1412,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558426479,
+          "y": 4465,
+          "args": [
+            {
+              "top": 272,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558426479,
+          "y": 272
+        },
+        {
+          "event": "message",
+          "time": 1791558426520,
+          "y": 272,
+          "type": "setHeight",
+          "height": 1412,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558426603,
+          "y": 272,
+          "type": "setHeight",
+          "height": 1412,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558426703,
+          "y": 272,
+          "type": "setHeight",
+          "height": 1412,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558427303,
+          "y": 272,
+          "type": "setHeight",
+          "height": 1412,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 768,
+    "kind": "navigation",
+    "action": "season → index",
+    "before": {
+      "y": 4367,
+      "height": 4879,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 272,
+      "height": 1412,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558431387,
+          "y": 4367,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558431454,
+          "y": 4367,
+          "type": "setHeight",
+          "height": 1412,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558431564,
+          "y": 4367,
+          "args": [
+            {
+              "top": 272,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558431564,
+          "y": 272
+        },
+        {
+          "event": "message",
+          "time": 1791558431605,
+          "y": 272,
+          "type": "setHeight",
+          "height": 1412,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558431686,
+          "y": 272,
+          "type": "setHeight",
+          "height": 1412,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558431786,
+          "y": 272,
+          "type": "setHeight",
+          "height": 1412,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558432386,
+          "y": 272,
+          "type": "setHeight",
+          "height": 1412,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 768,
+    "kind": "navigation",
+    "action": "aiuo → index",
+    "before": {
+      "y": 5881,
+      "height": 6393,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 272,
+      "height": 1412,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558437421,
+          "y": 5881,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558437487,
+          "y": 5881,
+          "type": "setHeight",
+          "height": 1412,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558437628,
+          "y": 5881,
+          "args": [
+            {
+              "top": 272,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558437628,
+          "y": 272
+        },
+        {
+          "event": "message",
+          "time": 1791558437654,
+          "y": 272,
+          "type": "setHeight",
+          "height": 1412,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558437755,
+          "y": 272,
+          "type": "setHeight",
+          "height": 1412,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558437853,
+          "y": 272,
+          "type": "setHeight",
+          "height": 1412,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558438453,
+          "y": 272,
+          "type": "setHeight",
+          "height": 1412,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 768,
+    "kind": "navigation",
+    "action": "detail → aiuo",
+    "before": {
+      "y": 1477,
+      "height": 1989,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 272,
+      "height": 6393,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558442536,
+          "y": 1477,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558442606,
+          "y": 1477,
+          "type": "setHeight",
+          "height": 6393,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558442635,
+          "y": 1477,
+          "args": [
+            {
+              "top": 272,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558442635,
+          "y": 272
+        },
+        {
+          "event": "message",
+          "time": 1791558442662,
+          "y": 272,
+          "type": "setHeight",
+          "height": 6393,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558442774,
+          "y": 272,
+          "type": "setHeight",
+          "height": 6393,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558442871,
+          "y": 272,
+          "type": "setHeight",
+          "height": 6393,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558443469,
+          "y": 272,
+          "type": "setHeight",
+          "height": 6393,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558444652,
+          "y": 272,
+          "type": "setHeight",
+          "height": 6393,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/か行.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 768,
+    "kind": "navigation",
+    "action": "detail → index",
+    "before": {
+      "y": 272,
+      "height": 1989,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 272,
+      "height": 1412,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558447652,
+          "y": 272,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558447737,
+          "y": 272,
+          "type": "setHeight",
+          "height": 1412,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558447997,
+          "y": 272,
+          "args": [
+            {
+              "top": 272,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558447997,
+          "y": 272
+        },
+        {
+          "event": "message",
+          "time": 1791558448004,
+          "y": 272,
+          "type": "setHeight",
+          "height": 1412,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558448119,
+          "y": 272,
+          "type": "setHeight",
+          "height": 1412,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558448219,
+          "y": 272,
+          "type": "setHeight",
+          "height": 1412,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558448819,
+          "y": 272,
+          "type": "setHeight",
+          "height": 1412,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 768,
+    "kind": "navigation",
+    "action": "card → detail",
+    "before": {
+      "y": 272,
+      "height": 6393,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 272,
+      "height": 2067,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558452791,
+          "y": 272,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558452869,
+          "y": 272,
+          "type": "setHeight",
+          "height": 1857,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558452923,
+          "y": 272,
+          "args": [
+            {
+              "top": 272,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558452924,
+          "y": 272
+        },
+        {
+          "event": "message",
+          "time": 1791558452952,
+          "y": 272,
+          "type": "setHeight",
+          "height": 2172,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558453010,
+          "y": 272,
+          "type": "setHeight",
+          "height": 2067,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558453052,
+          "y": 272,
+          "type": "setHeight",
+          "height": 2067,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558453152,
+          "y": 272,
+          "type": "setHeight",
+          "height": 2067,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558453752,
+          "y": 272,
+          "type": "setHeight",
+          "height": 2067,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558454952,
+          "y": 272,
+          "type": "setHeight",
+          "height": 2067,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/カエンタケ.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 768,
+    "kind": "in-place",
+    "action": "feature ON",
+    "before": {
+      "y": 272,
+      "height": 4977,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 272,
+      "height": 2752,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558457888,
+          "y": 272,
+          "type": "setHeight",
+          "height": 2752,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 768,
+    "kind": "in-place",
+    "action": "feature OFF",
+    "before": {
+      "y": 272,
+      "height": 2752,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 272,
+      "height": 4977,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558459121,
+          "y": 272,
+          "type": "setHeight",
+          "height": 4977,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 768,
+    "kind": "in-place",
+    "action": "feature clear",
+    "before": {
+      "y": 835,
+      "height": 2752,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 835,
+      "height": 4977,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558460770,
+          "y": 835,
+          "type": "setHeight",
+          "height": 4977,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 768,
+    "kind": "in-place",
+    "action": "details open",
+    "before": {
+      "y": 835,
+      "height": 1989,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 835,
+      "height": 2053,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558464568,
+          "y": 835,
+          "type": "setHeight",
+          "height": 2053,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 768,
+    "kind": "in-place",
+    "action": "details close",
+    "before": {
+      "y": 835,
+      "height": 2053,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 835,
+      "height": 1989,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558465801,
+          "y": 835,
+          "type": "setHeight",
+          "height": 1989,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 768,
+    "kind": "in-place",
+    "action": "bottom-edge close",
+    "before": {
+      "y": 1541,
+      "height": 2053,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 1541,
+      "height": 1989,
+      "wrapperMinHeight": "2149px",
+      "target": 272,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558467485,
+          "y": 1541,
+          "type": "setHeight",
+          "height": 1989,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 768,
+    "kind": "in-place",
+    "action": "season tab",
+    "before": {
+      "y": 230,
+      "height": 4879,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 230,
+      "height": 10315,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558471307,
+          "y": 230,
+          "type": "setHeight",
+          "height": 10315,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 768,
+    "kind": "in-place",
+    "action": "kana filter",
+    "before": {
+      "y": 230,
+      "height": 6393,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 230,
+      "height": 1951,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558476002,
+          "y": 230,
+          "type": "setHeight",
+          "height": 1951,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 768,
+    "kind": "in-place",
+    "action": "kana search",
+    "before": {
+      "y": 230,
+      "height": 1951,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 230,
+      "height": 1750,
+      "wrapperMinHeight": "",
+      "target": 272,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558477201,
+          "y": 230,
+          "type": "setHeight",
+          "height": 1750,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 1440,
+    "kind": "navigation",
+    "action": "features bottom → index",
+    "before": {
+      "y": 3930,
+      "height": 4448,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 266,
+      "height": 1029,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558482768,
+          "y": 3930,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558482818,
+          "y": 3930,
+          "type": "setHeight",
+          "height": 1029,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558482932,
+          "y": 3930,
+          "args": [
+            {
+              "top": 266,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558482932,
+          "y": 266
+        },
+        {
+          "event": "message",
+          "time": 1791558482970,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1029,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558483051,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1029,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558483150,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1029,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558483751,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1029,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558484951,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1029,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 1440,
+    "kind": "navigation",
+    "action": "season → index",
+    "before": {
+      "y": 4289,
+      "height": 4807,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 266,
+      "height": 1029,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558487868,
+          "y": 4289,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558487934,
+          "y": 4289,
+          "type": "setHeight",
+          "height": 1029,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558488048,
+          "y": 4289,
+          "args": [
+            {
+              "top": 266,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558488048,
+          "y": 266
+        },
+        {
+          "event": "message",
+          "time": 1791558488088,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1029,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558488168,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1029,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558488267,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1029,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558488867,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1029,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 1440,
+    "kind": "navigation",
+    "action": "aiuo → index",
+    "before": {
+      "y": 5007,
+      "height": 5525,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 266,
+      "height": 1029,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558492901,
+          "y": 5007,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558492971,
+          "y": 5007,
+          "type": "setHeight",
+          "height": 1029,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558493073,
+          "y": 5007,
+          "args": [
+            {
+              "top": 266,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558493073,
+          "y": 266
+        },
+        {
+          "event": "message",
+          "time": 1791558493101,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1029,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558493204,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1029,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558493300,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1029,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558493900,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1029,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 1440,
+    "kind": "navigation",
+    "action": "detail → aiuo",
+    "before": {
+      "y": 1393,
+      "height": 1911,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 266,
+      "height": 5525,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558497968,
+          "y": 1393,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558498018,
+          "y": 1393,
+          "type": "setHeight",
+          "height": 5525,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558498196,
+          "y": 1393,
+          "args": [
+            {
+              "top": 266,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558498197,
+          "y": 266
+        },
+        {
+          "event": "message",
+          "time": 1791558498245,
+          "y": 266,
+          "type": "setHeight",
+          "height": 5525,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558498319,
+          "y": 266,
+          "type": "setHeight",
+          "height": 5525,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558498417,
+          "y": 266,
+          "type": "setHeight",
+          "height": 5525,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558499017,
+          "y": 266,
+          "type": "setHeight",
+          "height": 5525,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/か行.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 1440,
+    "kind": "navigation",
+    "action": "detail → index",
+    "before": {
+      "y": 266,
+      "height": 1911,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 266,
+      "height": 1029,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558503017,
+          "y": 266,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558503083,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1029,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558503247,
+          "y": 266,
+          "args": [
+            {
+              "top": 266,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558503247,
+          "y": 266
+        },
+        {
+          "event": "message",
+          "time": 1791558503331,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1029,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558503384,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1029,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558503467,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1029,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558504066,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1029,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 1440,
+    "kind": "navigation",
+    "action": "card → detail",
+    "before": {
+      "y": 266,
+      "height": 5525,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 266,
+      "height": 1989,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558508169,
+          "y": 266,
+          "type": "navigationIntent",
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558508234,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1779,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558508295,
+          "y": 266,
+          "type": "setHeight",
+          "height": 2094,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "scrollTo",
+          "time": 1791558508296,
+          "y": 266,
+          "args": [
+            {
+              "top": 266,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "iframe-load",
+          "time": 1791558508296,
+          "y": 266
+        },
+        {
+          "event": "message",
+          "time": 1791558508358,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1989,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558508400,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1989,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558508500,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1989,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558509117,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1989,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        },
+        {
+          "event": "message",
+          "time": 1791558510316,
+          "y": 266,
+          "type": "setHeight",
+          "height": 1989,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/カエンタケ.html",
+    "overflow": false,
+    "scrollToCount": 1,
+    "loadCount": 1,
+    "errors": [],
+    "result": "PASS"
+  },
+  {
+    "width": 1440,
+    "kind": "in-place",
+    "action": "feature ON",
+    "before": {
+      "y": 266,
+      "height": 4448,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 266,
+      "height": 2524,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558513252,
+          "y": 266,
+          "type": "setHeight",
+          "height": 2524,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 1440,
+    "kind": "in-place",
+    "action": "feature OFF",
+    "before": {
+      "y": 266,
+      "height": 2524,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 266,
+      "height": 4448,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558514486,
+          "y": 266,
+          "type": "setHeight",
+          "height": 4448,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 1440,
+    "kind": "in-place",
+    "action": "feature clear",
+    "before": {
+      "y": 740,
+      "height": 2524,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 740,
+      "height": 4448,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558516168,
+          "y": 740,
+          "type": "setHeight",
+          "height": 4448,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 1440,
+    "kind": "in-place",
+    "action": "details open",
+    "before": {
+      "y": 740,
+      "height": 1911,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 740,
+      "height": 1948,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558519983,
+          "y": 740,
+          "type": "setHeight",
+          "height": 1948,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 1440,
+    "kind": "in-place",
+    "action": "details close",
+    "before": {
+      "y": 740,
+      "height": 1948,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 740,
+      "height": 1911,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558521216,
+          "y": 740,
+          "type": "setHeight",
+          "height": 1911,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 1440,
+    "kind": "in-place",
+    "action": "bottom-edge close",
+    "before": {
+      "y": 1430,
+      "height": 1948,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 1430,
+      "height": 1911,
+      "wrapperMinHeight": "2044px",
+      "target": 266,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558522882,
+          "y": 1430,
+          "type": "setHeight",
+          "height": 1911,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 1440,
+    "kind": "in-place",
+    "action": "season tab",
+    "before": {
+      "y": 245,
+      "height": 4807,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 245,
+      "height": 9815,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558526636,
+          "y": 245,
+          "type": "setHeight",
+          "height": 9815,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 1440,
+    "kind": "in-place",
+    "action": "kana filter",
+    "before": {
+      "y": 245,
+      "height": 5525,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 245,
+      "height": 1866,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558530500,
+          "y": 245,
+          "type": "setHeight",
+          "height": 1866,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  },
+  {
+    "width": 1440,
+    "kind": "in-place",
+    "action": "kana search",
+    "before": {
+      "y": 245,
+      "height": 1866,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false
+    },
+    "after": {
+      "y": 245,
+      "height": 1639,
+      "wrapperMinHeight": "",
+      "target": 266,
+      "parentOverflow": false,
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791558531716,
+          "y": 245,
+          "type": "setHeight",
+          "height": 1639,
+          "sourceMatches": true,
+          "origin": "https://charchan123.github.io"
+        }
+      ]
+    },
+    "childOverflow": false,
+    "delta": 0,
+    "scrollToCount": 0,
+    "loadCount": 0,
+    "result": "PASS"
+  }
+]
