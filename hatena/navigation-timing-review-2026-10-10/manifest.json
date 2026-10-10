@@ -1,0 +1,42 @@
+{
+  "created_at_utc": "2026-10-10T08:19:08.089305+00:00",
+  "starting_main": "1d6572c04da1cb9b1ba6119a619c777608fd6cf3",
+  "files": {
+    "hatena/navigation-timing-review-2026-10-10/browser-matrix.json": {
+      "bytes": 125211,
+      "sha256": "0a45b3d71725e940ef2d5f07e37b940aa014997d9c4b1e210f936c9d3bbabbd7"
+    },
+    "hatena/navigation-timing-review-2026-10-10/test-summary.json": {
+      "bytes": 1672,
+      "sha256": "b606e93937847d0cbdf62e45b26085db5c6b91189ab8d3c443f427ff801debf8"
+    },
+    "hatena/navigation-timing-review-2026-10-10/build.json": {
+      "bytes": 267,
+      "sha256": "6b6ad2072f6f0044320dc56060d719bd6221ebf6e746168bc68f2c6bde84b207"
+    },
+    "hatena/HATENA_IFRAME_SCROLL_FIX_2026-10-09.md": {
+      "bytes": 17011,
+      "sha256": "3353ebd022bc215a44072a539dc557bc20358173a2b4423b5801ca1339ed0dcf"
+    },
+    "hatena/hatena-footer-iframe-handler-candidate-2026-10-09.html": {
+      "bytes": 4613,
+      "sha256": "59188c8f59dbbe738075c4b1fc5ca52f61e661a76ac02322d9feaaef77dc72e1"
+    },
+    "tests/test_hatena_iframe_handler.js": {
+      "bytes": 6172,
+      "sha256": "c23d7671e3a848a6c1e6ed21e442c938fe56f4719bfb61922475a5adf97611e7"
+    },
+    "assets/gallery.js": {
+      "bytes": 50769,
+      "sha256": "1dfaa891f1d94190d09cfac0b45cd9694781fa2b820cef728efc11a9a872758e"
+    },
+    "assets/poison-spores.js": {
+      "bytes": 10050,
+      "sha256": "b7b59668b30935ede05f328b6867b958e1db0680514d627fb0e8b885e74d2c0b"
+    },
+    "hatena/hatena-design-css-mobile-optimized-2026-10-09.css": {
+      "bytes": 35442,
+      "sha256": "4298621f4f6f85c11ac0f7496b452e5774e2664501f416af23069d0e1b907842"
+    }
+  }
+}

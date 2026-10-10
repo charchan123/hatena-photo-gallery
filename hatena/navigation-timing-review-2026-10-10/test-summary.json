@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "starting_main": "1d6572c04da1cb9b1ba6119a619c777608fd6cf3",
+  "starting_tree": "4023b2da84a04337f64934810649ca9f41c9c630",
+  "branch": "fix/hatena-navigation-scroll-timing-2026-10-10",
+  "browser": "Chromium 153; saved actual Hatena DOM, real generated pages, distinct origins",
+  "widths": [
+    360,
+    390,
+    430,
+    768,
+    1440
+  ],
+  "navigation_cases": 30,
+  "navigation_order": "validated intent → completed instant scroll → ACK sent → native document navigation → iframe load → forced height response",
+  "navigation_scroll_count": 1,
+  "load_scroll_count": 0,
+  "initial_load_scroll_count": 0,
+  "in_place_cases": 45,
+  "in_place_scroll_count": 0,
+  "in_place_delta_px": 0,
+  "bottom_edge": "PASS",
+  "actual_destination_height": "PASS",
+  "wrapper_reservation_after_navigation": "empty",
+  "overflow": "NONE",
+  "cancel_policy": "clear pending, no rollback/no additional scroll",
+  "full_pytest": {
+    "passed": 600,
+    "seconds": 42.214
+  },
+  "collected": 600,
+  "parent_js": 6,
+  "gallery_js": 7,
+  "poison_js": 11,
+  "all_js": 29,
+  "compileall": "PASS",
+  "js_syntax": "PASS",
+  "diff_check": "PASS",
+  "generator_build": {
+    "html_count": 321,
+    "observations": 923,
+    "subjects": 302,
+    "research": {
+      "case_count": 67,
+      "photo_count": 110,
+      "label_count": 43,
+      "multi_photo_count": 21
+    },
+    "best": {
+      "entry_count": 3,
+      "year_count": 2,
+      "latest_year": 2026
+    }
+  },
+  "assets_changed": false,
+  "protected_paths_changed": false,
+  "hatena_production_modified": false,
+  "staging_changed_by_this_run": false,
+  "real_staging_fix_verified_by_this_run": false
+}

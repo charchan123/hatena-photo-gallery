@@ -47,11 +47,8 @@
     window.scrollTo({ top, behavior:'instant' });
   }
   iframe.addEventListener('load', () => {
-    // Only authenticated navigation intent authorizes load-time scrolling.
-    if (navigationPending) {
-      navigationPending = null;
-      scrollToTitle(); // Move before releasing space to avoid bottom clamping.
-    }
+    // Navigation has already scrolled before ACK; load only fits the new page.
+    navigationPending = null;
     releaseSpace();
     lastHeight = -1;
     previousY = window.scrollY;
@@ -68,7 +65,12 @@
       try { destination = new URL(data.destination, galleryURL); } catch (_) { return; }
       if (destination.origin !== galleryOrigin || !destination.pathname.startsWith(galleryPath) ||
           !destination.pathname.endsWith('.html')) return;
-      navigationPending = { id:data.id };
+      if (navigationPending?.id !== data.id) {
+        // Settle while the long departing page still exists, before child ACK.
+        scrollToTitle();
+        navigationPending = { id:data.id, scrolled:true };
+        previousY = window.scrollY;
+      }
       // The child waits for this source/origin-bound ACK before replacing itself.
       iframe.contentWindow.postMessage({ type:'navigationIntentAck', id:data.id }, galleryOrigin);
     } else if (data.type === 'navigationIntentCancel') {
