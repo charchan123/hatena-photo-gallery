@@ -1,0 +1,305 @@
+[
+  {
+    "version": "PR98",
+    "initialOriginWarnings": [
+      {
+        "type": "warning",
+        "text": "Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://charchan123.github.io') does not match the recipient window's origin ('https://exsudoporus-ruber.hatenablog.jp')."
+      }
+    ],
+    "initialWarningCount": 1,
+    "before": {
+      "windowY": 0,
+      "bodyY": 5906,
+      "bodyClientHeight": 844,
+      "bodyRectTop": 56,
+      "rootOverflow": "hidden",
+      "bodyOverflow": "auto",
+      "target": 301.296875,
+      "height": 6327,
+      "reserved": "",
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791638020420,
+          "windowY": 0,
+          "bodyY": 0,
+          "type": "setHeight"
+        },
+        {
+          "event": "message",
+          "time": 1791638021592,
+          "windowY": 0,
+          "bodyY": 0,
+          "type": "setHeight"
+        },
+        {
+          "event": "message",
+          "time": 1791638021726,
+          "windowY": 0,
+          "bodyY": 0,
+          "type": "setHeight"
+        },
+        {
+          "event": "message",
+          "time": 1791638022078,
+          "windowY": 0,
+          "bodyY": 0,
+          "type": "setHeight"
+        },
+        {
+          "event": "message",
+          "time": 1791638023328,
+          "windowY": 0,
+          "bodyY": 0,
+          "type": "setHeight"
+        },
+        {
+          "event": "message",
+          "time": 1791638023616,
+          "windowY": 0,
+          "bodyY": 0,
+          "type": "setHeight"
+        },
+        {
+          "event": "message",
+          "time": 1791638023728,
+          "windowY": 0,
+          "bodyY": 0,
+          "type": "setHeight"
+        },
+        {
+          "event": "message",
+          "time": 1791638023828,
+          "windowY": 0,
+          "bodyY": 0,
+          "type": "setHeight"
+        },
+        {
+          "event": "message",
+          "time": 1791638024429,
+          "windowY": 0,
+          "bodyY": 0,
+          "type": "setHeight"
+        },
+        {
+          "event": "message",
+          "time": 1791638025642,
+          "windowY": 0,
+          "bodyY": 0,
+          "type": "setHeight"
+        }
+      ]
+    },
+    "after": {
+      "windowY": 0,
+      "bodyY": 1376,
+      "bodyClientHeight": 844,
+      "bodyRectTop": 56,
+      "rootOverflow": "hidden",
+      "bodyOverflow": "auto",
+      "target": 301.296875,
+      "height": 1797,
+      "reserved": "1899px",
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791638027072,
+          "windowY": 0,
+          "bodyY": 5906,
+          "type": "navigationIntent"
+        },
+        {
+          "event": "window-scroll",
+          "time": 1791638027073,
+          "windowY": 0,
+          "bodyY": 5906,
+          "args": [
+            {
+              "top": -5548.703125,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "ack-sent",
+          "time": 1791638027073,
+          "y": 5906,
+          "windowY": 0,
+          "bodyY": 5906,
+          "height": 6327,
+          "id": "1791638027070-1"
+        },
+        {
+          "event": "message",
+          "time": 1791638027361,
+          "windowY": 0,
+          "bodyY": 5906,
+          "type": "setHeight"
+        },
+        {
+          "event": "message",
+          "time": 1791638028578,
+          "windowY": 0,
+          "bodyY": 1376,
+          "type": "setHeight"
+        },
+        {
+          "event": "message",
+          "time": 1791638029408,
+          "windowY": 0,
+          "bodyY": 1376,
+          "type": "setHeight"
+        },
+        {
+          "event": "message",
+          "time": 1791638029431,
+          "windowY": 0,
+          "bodyY": 1376,
+          "type": "setHeight"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "scrollToTarget": false
+  },
+  {
+    "version": "candidate",
+    "initialOriginWarnings": [],
+    "initialWarningCount": 0,
+    "before": {
+      "windowY": 0,
+      "bodyY": 5906,
+      "bodyClientHeight": 844,
+      "bodyRectTop": 56,
+      "rootOverflow": "hidden",
+      "bodyOverflow": "auto",
+      "target": 301.296875,
+      "height": 6327,
+      "reserved": "",
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791638032018,
+          "windowY": 0,
+          "bodyY": 0,
+          "type": "setHeight"
+        },
+        {
+          "event": "message",
+          "time": 1791638033633,
+          "windowY": 0,
+          "bodyY": 0,
+          "type": "setHeight"
+        },
+        {
+          "event": "message",
+          "time": 1791638033756,
+          "windowY": 0,
+          "bodyY": 0,
+          "type": "setHeight"
+        },
+        {
+          "event": "message",
+          "time": 1791638034102,
+          "windowY": 0,
+          "bodyY": 0,
+          "type": "setHeight"
+        },
+        {
+          "event": "message",
+          "time": 1791638035449,
+          "windowY": 0,
+          "bodyY": 0,
+          "type": "setHeight"
+        },
+        {
+          "event": "message",
+          "time": 1791638035499,
+          "windowY": 0,
+          "bodyY": 0,
+          "type": "setHeight"
+        },
+        {
+          "event": "message",
+          "time": 1791638035594,
+          "windowY": 0,
+          "bodyY": 0,
+          "type": "setHeight"
+        },
+        {
+          "event": "message",
+          "time": 1791638035770,
+          "windowY": 0,
+          "bodyY": 0,
+          "type": "setHeight"
+        },
+        {
+          "event": "message",
+          "time": 1791638036294,
+          "windowY": 0,
+          "bodyY": 0,
+          "type": "setHeight"
+        },
+        {
+          "event": "message",
+          "time": 1791638037495,
+          "windowY": 0,
+          "bodyY": 0,
+          "type": "setHeight"
+        }
+      ]
+    },
+    "after": {
+      "windowY": 0,
+      "bodyY": 301,
+      "bodyClientHeight": 844,
+      "bodyRectTop": 56,
+      "rootOverflow": "hidden",
+      "bodyOverflow": "auto",
+      "target": 301.296875,
+      "height": 1797,
+      "reserved": "",
+      "trace": [
+        {
+          "event": "message",
+          "time": 1791638039052,
+          "windowY": 0,
+          "bodyY": 5906,
+          "type": "navigationIntent"
+        },
+        {
+          "event": "element-scroll",
+          "time": 1791638039053,
+          "windowY": 0,
+          "bodyY": 5906,
+          "host": "BODY",
+          "args": [
+            {
+              "top": 301.296875,
+              "behavior": "instant"
+            }
+          ]
+        },
+        {
+          "event": "ack-sent",
+          "time": 1791638039053,
+          "y": 301,
+          "windowY": 0,
+          "bodyY": 301,
+          "height": 6327,
+          "id": "1791638039042-1"
+        },
+        {
+          "event": "message",
+          "time": 1791638039796,
+          "windowY": 0,
+          "bodyY": 301,
+          "type": "setHeight"
+        }
+      ]
+    },
+    "path": "/hatena-photo-gallery/index.html",
+    "scrollToTarget": true
+  }
+]

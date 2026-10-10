@@ -1,0 +1,33 @@
+{
+  "starting_main": "08c3f2c056bd7ffa53461022a288cb25902760f0",
+  "starting_tree": "cb9c673a7c4f06019e2dd98a653453ddd75c1911",
+  "artifacts": {
+    "hatena/HATENA_IFRAME_SCROLL_FIX_2026-10-09.md": "0a455116bac574a6b819fcd408f57f9071c2b0c66dd1f77b9dc6eef6e34bd55e",
+    "hatena/hatena-footer-iframe-handler-candidate-2026-10-09.html": "ef0e581067a0d0142c0dd4d10548a6b403bc23303ccab462a6f324cf7d52c7ab",
+    "tests/test_hatena_iframe_handler.js": "6be315b7392c22f59cc1901a24b9735b82764251f7da82bf27c9d41cb669345f",
+    "hatena/body-scroll-review-2026-10-10/test-summary.json": "e736264e9868205a506d547ed8683d687bed1fb2af187b01ea9c0522077bb101",
+    "hatena/body-scroll-review-2026-10-10/focused-reproduction.json": "25020ac7383f84520d2a67abf6aaad80a69e19a68dcb02b65dea18ee8d7e337f",
+    "hatena/body-scroll-review-2026-10-10/build.json": "6b6ad2072f6f0044320dc56060d719bd6221ebf6e746168bc68f2c6bde84b207",
+    "hatena/body-scroll-review-2026-10-10/staging-diagnostic.json": "59fdc0ad91dbae279229787733996fdad230c34a770b8ceb62a09a56114fe594",
+    "hatena/body-scroll-review-2026-10-10/browser-matrix.json": "fab1578f4dc856de77275cfb7d4d385ccedd60dcdb00d08b4fb5b318d345a434"
+  },
+  "immutable_inputs": {
+    "assets/gallery.js": "1dfaa891f1d94190d09cfac0b45cd9694781fa2b820cef728efc11a9a872758e",
+    "assets/poison-spores.js": "b7b59668b30935ede05f328b6867b958e1db0680514d627fb0e8b885e74d2c0b",
+    "assets/gallery.css": "c313ec5deeb64b835832267597ac123b672002f136b1a75cb254b3e017ac0412",
+    "hatena/hatena-design-css-mobile-optimized-2026-10-09.css": "4298621f4f6f85c11ac0f7496b452e5774e2664501f416af23069d0e1b907842",
+    "hatena/hatena-design-css-slimmed-2026-10-07.css": "0158ad4f6b192abc8315903a7149be7ac5ed950253938f80b88329c1ae1f15c2"
+  },
+  "saved_browser_input_hashes": {
+    "top.html": "b4f6652a01e90af2fc94588d6d7aa55c3ff69bd9454f11a65069eb40840f020d",
+    "portal-data.json": "258ad8e11db1b50f2e6f6fa270f1a9005978352446d0862452bf7ed09f5d9058",
+    "body-harness.cjs": "2708cb2ffbe3efb8541756c50aeb99294a444fbcd4f018ae503732669d3f364c",
+    "body-matrix.cjs": "a5d80688e7a9b2004ffa186d8cfc208896ea1fe99f97ae6b2bd515606836465b",
+    "body-reproduction.cjs": "9a4aa762ddffae9572dfb644b9327e3f223f2dadc0884d8d14fe79789b59bd23"
+  },
+  "fixture_only_css": "html height:100%, overflow:hidden; body position:fixed, top:56px, height:calc(100% - 56px), overflow-y:auto, overflow-x:hidden, width:100%; no production CSS changed",
+  "measurement_tolerance_px": 1,
+  "in_place_actual_delta_px": 0,
+  "page_top_script": "captured DOM unchanged; replacement communication block only",
+  "private_staging_accessed": false
+}

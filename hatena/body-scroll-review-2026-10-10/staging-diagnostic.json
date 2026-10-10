@@ -1,0 +1,30 @@
+{
+  "source": "User-provided real Hatena Design Staging DevTools diagnostic (2026-10-10 instruction)",
+  "private_staging_accessed_by_this_run": false,
+  "windowScrollY": 0,
+  "document_scrolling_element": "HTML",
+  "html": {
+    "scrollTop": 0,
+    "clientHeight": 897,
+    "scrollHeight": 897,
+    "overflowY": "hidden"
+  },
+  "body": {
+    "scrollTop": 4000,
+    "clientHeight": 841,
+    "scrollHeight": 4841,
+    "overflowY": "auto",
+    "rectTop": 56
+  },
+  "iframe": {
+    "id": "photoGallery",
+    "src": "https://charchan123.github.io/hatena-photo-gallery/new-top.html",
+    "rectTop": -3652,
+    "rectHeight": 4199
+  },
+  "old_window_target": -3672,
+  "body_content_top": 292,
+  "body_target_with_20px_offset": 272,
+  "fixture_asserted_body_after": 272,
+  "fixture_asserted_window_after": 0
+}
