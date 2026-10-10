@@ -2,17 +2,51 @@
 
 PARENT_HATENA_PATCH_REQUIRED: YES
 
-Status: PASS for the browser-equivalent acceptance matrix. Hatena production and Design Staging were not edited during this run. The actual Staging device/storage restriction remains unconfirmed; the two independently reproduced failure mechanisms below do not require guessing that restriction.
+Status: PASS for the current browser-equivalent navigation-timing acceptance matrix. Hatena production and Design Staging were not edited in this run; the revised parent candidate still needs verification in the user's Staging environment. Previous PR #97 investigations are preserved below as historical evidence.
 
-Starting main: `33dd7817e1b5af355cf41ab48d9fb6db0ad35e3c`
-Starting tree: `aaa7b5168361afb06e3e6b25e8b6a71eda05a4ef`
-Branch: `fix/hatena-navigation-and-spore-colors-2026-10-09`
+Starting main: `1d6572c04da1cb9b1ba6119a619c777608fd6cf3`
+Starting tree: `4023b2da84a04337f64934810649ca9f41c9c630`
+Branch: `fix/hatena-navigation-scroll-timing-2026-10-10`
+
+## 2026-10-10 timing follow-up — current specification
+
+The user applied PR #97's parent candidate to actual Hatena Design Staging and confirmed **height shrink PASS / giant blank space resolved / scroll-to-iframe-top FAIL** for features-bottom → index. This supersedes the prior browser-equivalent success as evidence of real Staging navigation behavior. The Staging result was supplied by the user; this run does not claim access to that private session.
+
+PR #97 postponed scroll until destination iframe load, after ACK allowed destruction of the long departing document. That ordering could not guarantee the user's pre-navigation scroll UX in Staging. The specific browser-internal reason for the missed load-time repositioning has not been independently established; it is not presented as a proven storage denial or smooth-scroll cancellation.
+
+The fix changes **only parent timing**: validate source/origin/path/ID → complete instant scroll → record pending/scrolled → ACK → native navigation. Load no longer calls scrollToTitle. This restores the old footer's click-time positioning without its destructive zero-height hack. Child sender, gallery.js, poison colors/motion/eligibility, CSS and renderer are unchanged from starting main.
+
+### Cancel/error/fallback policy
+
+If a link is changed or removed while ACK is in flight, the existing child may send navigationIntentCancel. The parent clears its matching pending state but **does not roll back an already completed scroll**. The user remains at the iframe top on the old page; this rare cancellation is not a completed navigation and does not trigger a second scroll. Automatically restoring a stale lower position would fight any intervening user scroll. No new timeout or rollback machinery is added. The existing 120ms child fallback and legacy scrollToTitle compatibility path remain unchanged.
+
+### Current browser and test evidence
+
+Current evidence is stored separately in `navigation-timing-review-2026-10-10/`; the PR #97 evidence below remains historical and is not relabeled.
+
+| Width | Navigation | In-place | Parent/child overflow |
+| --- | --- | --- | --- |
+| 360 | 6/6 PASS | 9/9 PASS; delta 0px | NONE |
+| 390 | 6/6 PASS | 9/9 PASS; delta 0px | NONE |
+| 430 | 6/6 PASS | 9/9 PASS; delta 0px | NONE |
+| 768 | 6/6 PASS | 9/9 PASS; delta 0px | NONE |
+| 1440 | 6/6 PASS | 9/9 PASS; delta 0px | NONE |
+
+All **30 navigation** cases have exactly **one** scroll, completed before ACK is sent and before native document navigation. The recorded ordering is intent received → scroll complete → ACK sent → document navigation → load. Load itself scrolls **zero** times. Destination actual height matches its measured content root and body padding; wrapper reservation is empty. A post-load forced height response is present in every case. The unchanged child can also send an early height measurement before load; that is safe and never triggers another scroll.
+
+Representative features-bottom → index, 360px: parent **5895 → 301px**, iframe **6372 → 1797px**, wrapper min-height empty. At time **1791619973549ms** intent is received, instant scroll completes at y=301 and ACK is sent. Native document navigation follows at **1791619973563ms**; load follows at **1791619973822ms**. Final height is 1797px. The ordering was asserted at each width, not inferred from final position alone. A same-document query/history URL change may produce an additional framenavigated notification; it is not a second document load or link activation.
+
+All **45 in-place** cases have scroll call **0**, parent delta **0px**, no intent/scrollToTitle message and no overflow, including bottom-edge details close. Initial load makes zero scroll calls at all five widths.
+
+Current validation: **600 pytest passed / 600 collected**; parent JS **6**, gallery navigation JS **7**, poison JS **11**, all JS scripts **29** passed. compileall, JS syntax and diff check PASS. Real generator build: **321 HTML**, 923 observations, 302 subjects. All assets (including gallery.js and poison-spores.js), Design CSS, renderer, protected data and workflows have no diff from starting main.
+
+See `browser-matrix.json` for event timestamps, scroll/height before/after, wrapper min-height, source/origin, document navigation, load count and scroll count; `test-summary.json`, `build.json` and `manifest.json` hold compact final validation and hashes. The evidence uses an ACK-send logging hook in the browser harness only; no logging hook was added to the shipped candidate. Hatena production/Staging were not edited in this run; the user must verify the revised parent candidate in the same Staging environment that exposed PR #97's timing failure.
 
 ## PR #96 follow-up: observed failure and diagnosis
 
 After PR #96 was merged, the user confirmed a real Hatena Design Staging failure: **features → bottom footer → index** navigated to the shorter index but left the parent in a pale-green blank area. Feature filters already preserved scroll correctly. This report distinguishes that user observation from this run's local measurements.
 
-This run reused the saved real Hatena DOM, cached resources, generated pages and Chromium 153. Both origins remained distinct (`exsudoporus-ruber.hatenablog.jp` parent / `charchan123.github.io` child). No private Staging session was accessed. Original assets/parent were taken from the starting main.
+The historical PR #97 investigation reused the saved real Hatena DOM, cached resources, generated pages and Chromium 153. Both origins remained distinct (`exsudoporus-ruber.hatenablog.jp` parent / `charchan123.github.io` child). No private Staging session was accessed. Its original assets/parent were taken from main `33dd7817e1b5af355cf41ab48d9fb6db0ad35e3c`.
 
 The features footer does reach the shared navigation listener. With normal sessionStorage, the marker is saved, remains available at destination pageshow, is consumed, and the live destination's message passes the exact origin/source guard. Ordinary navigation succeeds. The prior 15 cases exercised this successful path, not unavailable storage or a delayed pageshow.
 
@@ -33,9 +67,9 @@ Smooth-scroll cancellation is not the demonstrated cause here: the PR #96 handle
 Deploy the paired `assets/gallery.js` change and replace the complete **photoGallery communication script** with `hatena-footer-iframe-handler-candidate-2026-10-09.html`. Do not append a second handler or replace the adjacent PAGE TOP script.
 
 1. An unmodified, same-frame, same-origin HTML link sends `navigationIntent` with an ID and destination path. The child prevents only that activation, keeping its document alive.
-2. The parent requires the existing exact iframe WindowProxy and origin checks, validates the ID and destination within the gallery directory, records pending navigation, and sends `navigationIntentAck` to the gallery origin. Intent alone does not scroll.
+2. The parent requires the existing exact iframe WindowProxy and origin checks and validates the ID and destination within the gallery directory. It then **completes instant scrollToTitle while the departing page still exists**, records `{id, scrolled:true}`, and only then sends `navigationIntentAck` to the gallery origin. A repeated pending ID receives another ACK without another scroll.
 3. The child accepts only a matching ACK from its actual parent (also exact origin when known from a cross-origin referrer), clears the optional storage replay marker, and activates the original native link once. No navigation URL is taken from the ACK.
-4. The **next iframe load with authenticated pending intent**, and only that load, scrolls instantly to iframe top minus 20px **before** releasing wrapper reservation. It consumes the intent, releases reserved space, resets the height cache and requests actual destination height.
+4. Iframe load **does not scroll**, whether initial, ordinary or navigation load. It clears pending intent, releases reserved space, resets the height cache and requests actual destination height. The authenticated intent has already settled the parent at iframe top minus 20px before native navigation.
 5. Actual setHeight messages directly set finite, nonnegative height. The existing bounded height retries remain. No temporary `height=0px` / forced reflow returns.
 
 Acknowledging intent before document replacement guarantees that the parent has recorded the explicit navigation even if storage is unavailable or destination load is slow. A changed/disconnected link cancels its matching intent rather than navigating. Repeated clicks on the pending link cannot multiply activations; pagehide cleans up the child timer.
@@ -54,7 +88,7 @@ Keep actual iframe height accurate, reserve minimum height on the outer wrapper 
 
 The old footer's intended UX—navigate, return to iframe top, fit the new page—is restored conceptually. Its destructive zero-height intermediate step is not restored.
 
-## Current-run browser evidence
+## PR #97 browser evidence — historical
 
 Evidence: [`navigation-followup-review-2026-10-09/`](navigation-followup-review-2026-10-09/).
 
@@ -81,7 +115,7 @@ Detailed machine-readable evidence:
 - `poison.json` / `poison-paired-iframe.json`
 - `test-summary.json`, `build.json`, `css-unchanged.json`, `manifest.json`
 
-## Color-only poison spore follow-up
+## PR #97 color-only poison spore follow-up — historical
 
 Only the four preset core/edge colors changed:
 
@@ -100,7 +134,7 @@ Count remains 10 (six green/four violet). Preset size/path/bend/duration/delay/o
 
 Measured browser timings: poison 605ms, double tap 603ms, paired parent/child double tap 604ms; navigation exactly once in each. Non-poison 4ms, reduced motion 7ms, keyboard 4ms. PC hover: one burst, 10 particles, no navigation. Toxicity remains explicit server-supplied `poisonous_confirmed`, with no inference.
 
-## Final automated validation
+## PR #97 automated validation — historical
 
 - Full pytest: **600 passed**; collection: **600**.
 - Gallery navigation JS: **7 passed**; parent iframe JS: **5 passed**; poison JS: **11 passed**.
