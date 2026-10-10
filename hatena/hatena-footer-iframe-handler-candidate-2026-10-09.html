@@ -11,10 +11,47 @@
   const originalMinHeight = wrapper.style.minHeight;
   const originalAnchor = wrapper.style.overflowAnchor;
   const baseMinHeight = parseFloat(getComputedStyle(wrapper).minHeight) || 0;
-  let lastHeight = -1, reserved = false, previousY = window.scrollY;
+  let lastHeight = -1, reserved = false, previousY = 0;
+  let scrollTarget = null, galleryReady = false;
   let navigationPending = null;
 
+  function getScrollContext() {
+    const root = document.documentElement, body = document.body;
+    // Hatena Staging locks HTML and scrolls an independently sized BODY.
+    // Detect the layout even at scrollTop=0 or after content becomes short.
+    const bodyScrolls = body && /^(auto|scroll)$/.test(getComputedStyle(body).overflowY) &&
+      body.clientHeight > 0 && body.clientHeight <= window.innerHeight &&
+      (/^(hidden|clip)$/.test(getComputedStyle(root).overflowY) ||
+       root.scrollHeight <= root.clientHeight + 1);
+    const element = bodyScrolls ? body : null;
+    const context = {
+      mode: element ? 'element' : 'window', element,
+      scrollTop: element ? element.scrollTop : window.scrollY,
+      viewportHeight: element ? element.clientHeight : window.innerHeight,
+      viewportTop: element ? element.getBoundingClientRect().top + element.clientTop : 0
+    };
+    const target = element || window;
+    if (target !== scrollTarget) {
+      scrollTarget?.removeEventListener('scroll', onScroll);
+      scrollTarget = target;
+      previousY = context.scrollTop;
+      target.addEventListener('scroll', onScroll, { passive:true });
+    }
+    return context;
+  }
+  function contentTop(element, context) {
+    return element.getBoundingClientRect().top - context.viewportTop + context.scrollTop;
+  }
+  function onScroll() {
+    const context = getScrollContext();
+    // Reclaim only during upward scrolling, without programmatically moving it.
+    if (reserved && context.scrollTop < previousY) preserveViewport(lastHeight);
+    previousY = context.scrollTop;
+  }
   function requestHeight() {
+    // Initial about:blank still belongs to Hatena; wait for load or an
+    // authenticated child message before posting to the exact gallery origin.
+    if (!galleryReady) return;
     iframe.contentWindow?.postMessage({ type:"requestHeight" }, galleryOrigin);
   }
   function releaseSpace() {
@@ -23,10 +60,11 @@
     reserved = false;
   }
   function preserveViewport(height) {
-    const top = wrapper.getBoundingClientRect().top + window.scrollY;
+    const context = getScrollContext();
+    const top = contentTop(wrapper, context);
     // Keep the actual iframe height accurate. Reserve space outside the iframe
     // so an in-place collapse cannot clamp the parent's scroll position.
-    const floor = Math.max(baseMinHeight, Math.ceil(window.scrollY + window.innerHeight - top));
+    const floor = Math.max(baseMinHeight, Math.ceil(context.scrollTop + context.viewportHeight - top));
     if (floor > height) {
       wrapper.style.minHeight = floor + 'px';
       wrapper.style.overflowAnchor = 'none';
@@ -43,20 +81,27 @@
     iframe.style.opacity = '1';
   }
   function scrollToTitle() {
-    const top = iframe.getBoundingClientRect().top + window.scrollY - 20;
-    window.scrollTo({ top, behavior:'instant' });
+    const context = getScrollContext();
+    const top = Math.max(0, contentTop(iframe, context) - 20);
+    (context.element || window).scrollTo({ top, behavior:'instant' });
   }
   iframe.addEventListener('load', () => {
+    // Ignore the initial parent-origin document, if its load is observable.
+    try {
+      if (iframe.contentWindow.location.origin !== galleryOrigin) return;
+    } catch (_) { /* Cross-origin gallery document: location is inaccessible. */ }
+    galleryReady = true;
     // Navigation has already scrolled before ACK; load only fits the new page.
     navigationPending = null;
     releaseSpace();
     lastHeight = -1;
-    previousY = window.scrollY;
+    previousY = getScrollContext().scrollTop;
     requestHeight();
     [200, 800, 2000].forEach(delay => setTimeout(requestHeight, delay));
   });
   window.addEventListener('message', event => {
     if (event.source !== iframe.contentWindow || event.origin !== galleryOrigin) return;
+    galleryReady = true;
     const data = event.data || {};
     if (data.type === 'navigationIntent') {
       if (typeof data.id !== 'string' || !data.id || data.id.length > 80 ||
@@ -69,7 +114,7 @@
         // Settle while the long departing page still exists, before child ACK.
         scrollToTitle();
         navigationPending = { id:data.id, scrolled:true };
-        previousY = window.scrollY;
+        previousY = getScrollContext().scrollTop;
       }
       // The child waits for this source/origin-bound ACK before replacing itself.
       iframe.contentWindow.postMessage({ type:'navigationIntentAck', id:data.id }, galleryOrigin);
@@ -86,18 +131,14 @@
       [80, 250, 800].forEach(delay => setTimeout(requestHeight, delay));
     }
   });
-  window.addEventListener('scroll', () => {
-    // Reclaim only during upward scrolling, without programmatically moving it.
-    if (reserved && window.scrollY < previousY) preserveViewport(lastHeight);
-    previousY = window.scrollY;
-  }, { passive:true });
   window.addEventListener('resize', () => {
+    getScrollContext();
     if (lastHeight >= 0) preserveViewport(lastHeight);
     requestHeight();
   });
   window.addEventListener('click', event => {
     if (event.target.closest?.('#galleryWrapper a')) setTimeout(requestHeight, 100);
   });
-  requestHeight();
+  getScrollContext();
 })();
 </script>

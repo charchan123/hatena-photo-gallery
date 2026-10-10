@@ -1,0 +1,81 @@
+{
+  "status": "PASS",
+  "starting_main": "08c3f2c056bd7ffa53461022a288cb25902760f0",
+  "starting_tree": "cb9c673a7c4f06019e2dd98a653453ddd75c1911",
+  "branch": "fix/hatena-body-scroll-container-2026-10-10",
+  "real_root_cause": "BODY scroll container (user-provided actual Staging diagnostic)",
+  "real_diagnostic_incorporated": true,
+  "private_staging_accessed": false,
+  "production_modified": false,
+  "browser": "Chromium 153, captured public Hatena DOM plus test-only BODY geometry; real generated child HTML; distinct origins",
+  "widths": [
+    360,
+    390,
+    430,
+    768,
+    1440
+  ],
+  "scroll_models": [
+    "window",
+    "body"
+  ],
+  "navigation_cases": 60,
+  "in_place_cases": 90,
+  "navigation_scroll_calls": 1,
+  "load_scroll_calls": 0,
+  "initial_load_scroll_calls": 0,
+  "in_place_scroll_calls": 0,
+  "in_place_delta_px": 0,
+  "height_shrink": "PASS",
+  "blank": "NONE",
+  "horizontal_overflow": "NONE",
+  "body_fixture_window_y": 0,
+  "exact_diagnostic_unit_fixture_body_y": [
+    4000,
+    272
+  ],
+  "body_viewport_top_browser": 56,
+  "navigation_order": "validated intent \u2192 actual host instant scroll complete \u2192 ACK \u2192 native navigation \u2192 load \u2192 actual height",
+  "warning_reproduction": {
+    "old_initial_warning_count": 1,
+    "candidate_initial_warning_count": 0,
+    "classification": "FIXED for reproduced initial-origin race; actual private Staging must verify"
+  },
+  "full_pytest": {
+    "passed": 600,
+    "seconds": 116.292
+  },
+  "collected": 600,
+  "parent_js": 17,
+  "gallery_js": 7,
+  "poison_js": 11,
+  "other_js": 5,
+  "all_js": 40,
+  "compileall": "PASS",
+  "js_syntax": "PASS",
+  "diff_check": "PASS",
+  "unchanged_css_validation": "PASS",
+  "build": {
+    "html_count": 321,
+    "observations": 923,
+    "subjects": 302,
+    "research": {
+      "case_count": 67,
+      "photo_count": 110,
+      "label_count": 43,
+      "multi_photo_count": 21
+    },
+    "best": {
+      "entry_count": 3,
+      "year_count": 2,
+      "latest_year": 2026
+    }
+  },
+  "assets_gallery_js_changed": false,
+  "poison_spores_changed": false,
+  "css_changed": false,
+  "page_top_changed": false,
+  "protected_paths_changed": false,
+  "hatena_parent_manual_patch_required": true,
+  "real_staging_fix_verified_by_this_run": false
+}

@@ -2,13 +2,128 @@
 
 PARENT_HATENA_PATCH_REQUIRED: YES
 
-Status: PASS for the current browser-equivalent navigation-timing acceptance matrix. Hatena production and Design Staging were not edited in this run; the revised parent candidate still needs verification in the user's Staging environment. Previous PR #97 investigations are preserved below as historical evidence.
+Starting main: `08c3f2c056bd7ffa53461022a288cb25902760f0`
+Starting tree: `cb9c673a7c4f06019e2dd98a653453ddd75c1911`
+Branch: `fix/hatena-body-scroll-container-2026-10-10`
 
-Starting main: `1d6572c04da1cb9b1ba6119a619c777608fd6cf3`
-Starting tree: `4023b2da84a04337f64934810649ca9f41c9c630`
-Branch: `fix/hatena-navigation-scroll-timing-2026-10-10`
+## 2026-10-10 BODY scroll host — current finding
 
-## 2026-10-10 timing follow-up — current specification
+**Actual root cause: Hatena Design Staging uses BODY as its scroll container.**
+The user measured this directly in the top-level Hatena Staging console after manually
+applying PR #98. Height shrink worked and the giant blank area disappeared, but
+scroll-to-iframe-top still failed. The actual measurements were:
+
+| Element | Scroll top | Client height | Scroll height | Overflow Y | Rect top |
+| --- | ---: | ---: | ---: | --- | ---: |
+| Window | 0 | — | — | — | — |
+| HTML / document.scrollingElement | 0 | 897 | 897 | hidden | — |
+| BODY | 4000 | 841 | 4841 | auto | 56 |
+| photoGallery iframe | — | — | — | — | -3652 |
+
+The iframe rect height was 4199px. The old window-coordinate target was -3672;
+window.scrollTo left window.scrollY=0 and did not move the actual view. The correct
+BODY content top is `-3652 - 56 + 4000 = 292`; the 20px offset gives **272px**.
+These are user-supplied real Staging diagnostics, not a claim that this run accessed
+or edited the user's private Staging session. They supersede timing-only explanations
+as the current root cause. The PR #96–98 investigations below remain historical;
+their browser harness exercised only normal window scrolling.
+
+### Unified scroll context
+
+The communication candidate now chooses Window/HTML for normal scrolling or the
+independently sized, auto/scroll-overflow BODY when HTML is locked/non-scrolling.
+It detects that layout even at BODY.scrollTop=0 and after content becomes shorter
+than the viewport. All positioning, reservation, upward reclaim and viewport-size
+calculations use the same context. BODY coordinates subtract its viewport rect top
+and clientTop (border), then add BODY.scrollTop; its viewport height is clientHeight.
+Window mode retains rect top + window.scrollY and window.innerHeight.
+
+A passive scroll listener is attached to the actual host. Host changes detach the
+old listener and reset the previous-position baseline; resize rechecks the host.
+Neither listener selection nor resize scrolls the page.
+
+Validated intent still completes **instant scroll on the actual host before ACK**.
+Load only clears pending intent, releases old reservation, resets the height cache
+and requests the destination height. Cancel clears pending state without rollback.
+No setHeight/in-place/resize/initial or ordinary load calls scrollTo. No 0px collapse
+or forced reflow is reintroduced. The source, origin, destination and ID guards,
+legacy navigation and lgClosed behavior are retained.
+
+### Initial postMessage warning
+
+A delayed initial GitHub iframe load reproduced one target-origin warning with
+PR #98's eager requestHeight, while the initial iframe document still belonged to
+Hatena. The candidate sends no eager request. It waits for a gallery load or a
+strictly authenticated gallery message, ignores an observable parent-origin initial
+load, and retains exact galleryOrigin for height requests and ACKs. No permanent
+wildcard targetOrigin is introduced. Bounded post-load retries remain unchanged.
+The same delayed-load browser fixture produced zero origin warnings with the candidate.
+
+### Validation evidence
+
+Current evidence: `body-scroll-review-2026-10-10/`. Browser acceptance uses the saved
+actual Hatena DOM and real generator output at separate parent/child origins. A
+**test-only** root/BODY layout overlay reproduces HTML overflow:hidden, BODY
+overflow:auto and BODY viewport top=56; no production CSS is changed. The browser
+fixture's current content geometry is recorded separately from the exact measured
+4000→272 unit fixture. Prior window-only evidence is not relabeled as BODY evidence.
+
+| Width | Window navigation / in-place | BODY navigation / in-place | Overflow |
+| --- | --- | --- | --- |
+| 360 | 6/6; 9/9 | 6/6; 9/9 | NONE |
+| 390 | 6/6; 9/9 | 6/6; 9/9 | NONE |
+| 430 | 6/6; 9/9 | 6/6; 9/9 | NONE |
+| 768 | 6/6; 9/9 | 6/6; 9/9 | NONE |
+| 1440 | 6/6; 9/9 | 6/6; 9/9 | NONE |
+
+**60 navigation / 90 in-place PASS**. Navigation scrolls exactly once on the selected
+host before ACK; iframe load scrolls zero times. All in-place changes have **delta
+0px / scroll call 0**, including bottom-edge details close. Both parent and child
+have no horizontal overflow. Initial load makes no scroll calls in either model.
+Actual destination height matches the child content measurement; navigation leaves
+no wrapper min-height reservation. BODY mode keeps window.scrollY=0 throughout.
+
+The exact user-coordinate unit fixture asserts **BODY 4000→272px**, with HTML as
+`document.scrollingElement`, HTML overflow hidden, BODY viewport height 841px and
+rect top 56px; no window.scrollTo call is made. Listener transfer, BODY-at-top/short
+content, border offsets, BODY viewport resize, upward reclaim, authentication,
+legacy navigation and lgClosed are also covered.
+
+Browser BODY example, 390px features-bottom→index: **5906→301px**,
+iframe **6327→1797px**, BODY viewport top
+**56px**, viewport height **844px**.
+The instant scroll completes at **1791638253286ms**, ACK is sent at
+**1791638253286ms**, and load follows at **1791638254257ms**.
+Target=301.296875px; the browser rounds to 301px. This geometry comes
+from the current saved DOM/mobile CSS and is not misrepresented as the user's exact
+private Staging geometry.
+
+Focused old/new BODY reproduction: PR #98 goes **5906→1376px**, missing its
+301.296875px target; the candidate goes **5906→301px**. The separate delayed-initial
+load experiment gives **1 old / 0 candidate** target-origin warnings.
+
+Validation: **600 pytest passed / 600 collected**; parent JS **17**, gallery JS
+**7**, poison JS **11**, other JS **5**, all JS **40** passed. compileall, parent JS
+syntax, diff check and unchanged CSS parsing PASS. Real generator build: **321 HTML
+pages**, 923 observations, 302 subjects. All assets, CSS, renderer, knowledge,
+provenance/facet/toxicity data, admin and workflows are unchanged from starting main.
+
+Evidence files contain the complete event/coordinate matrix, old/new reproduction,
+user diagnostic, build, test summary and SHA-256 manifest. These are browser-equivalent
+acceptance results. The revised parent still requires manual verification in the
+same private Staging environment; no Hatena save/publish was performed.
+
+
+### Manual replacement and scope
+
+Apply only `hatena-footer-iframe-handler-candidate-2026-10-09.html` in authorized
+Staging after backing up the current communication block. Do not append another
+handler or replace PAGE TOP. Verify features-bottom→index in the same real BODY
+scroll environment; this run does not save/publish Hatena or claim that private
+Staging acceptance is completed. The GitHub Pages child and all CSS need no change.
+PAGE TOP is explicitly outside this patch and remains byte-identical.
+
+## 2026-10-10 PR #98 timing follow-up — historical window-only specification
 
 The user applied PR #97's parent candidate to actual Hatena Design Staging and confirmed **height shrink PASS / giant blank space resolved / scroll-to-iframe-top FAIL** for features-bottom → index. This supersedes the prior browser-equivalent success as evidence of real Staging navigation behavior. The Staging result was supplied by the user; this run does not claim access to that private session.
 
@@ -20,7 +135,7 @@ The fix changes **only parent timing**: validate source/origin/path/ID → compl
 
 If a link is changed or removed while ACK is in flight, the existing child may send navigationIntentCancel. The parent clears its matching pending state but **does not roll back an already completed scroll**. The user remains at the iframe top on the old page; this rare cancellation is not a completed navigation and does not trigger a second scroll. Automatically restoring a stale lower position would fight any intervening user scroll. No new timeout or rollback machinery is added. The existing 120ms child fallback and legacy scrollToTitle compatibility path remain unchanged.
 
-### Current browser and test evidence
+### PR #98 browser and test evidence — historical
 
 Current evidence is stored separately in `navigation-timing-review-2026-10-10/`; the PR #97 evidence below remains historical and is not relabeled.
 
@@ -62,7 +177,7 @@ The departing message arrives with **event.source === null** after document repl
 
 Smooth-scroll cancellation is not the demonstrated cause here: the PR #96 handler already uses instant positioning. The fragile dependency is the departing-message/destination-storage replay chain and its ordering with height/load/reservation.
 
-## Paired replacement behavior
+## PR #97 paired replacement behavior — historical child protocol
 
 Deploy the paired `assets/gallery.js` change and replace the complete **photoGallery communication script** with `hatena-footer-iframe-handler-candidate-2026-10-09.html`. Do not append a second handler or replace the adjacent PAGE TOP script.
 
@@ -152,4 +267,4 @@ PARENT_HATENA_PATCH_REQUIRED: YES. This Draft PR cannot automatically update Hat
 
 Review other actual navigation links, initial load, all in-place operations, bottom-edge shrink, native controls, PAGE TOP and lightGallery close. The full mobile Design CSS does not need replacing again for this follow-up. If only the child is updated, old-parent fallback remains best effort; the paired parent replacement is necessary for the reliability guarantee.
 
-Rollback: restore the previously backed-up communication block and the prior child JS versions together. The Slim baseline and full mobile CSS are preserved. No merge, manual deployment, workflow_dispatch, auto-merge, Hatena production save or publish was performed.
+Rollback for this follow-up: restore only the backed-up communication block. No child JS or CSS version changes are included in this patch. The historical PR #97 paired rollback required restoring its prior child JS as well. The Slim baseline and full mobile CSS are preserved. No merge, manual deployment, workflow_dispatch, auto-merge, Hatena production save or publish was performed.

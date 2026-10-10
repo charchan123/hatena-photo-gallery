@@ -1,0 +1,16 @@
+{
+  "html_count": 321,
+  "observations": 923,
+  "subjects": 302,
+  "research": {
+    "case_count": 67,
+    "photo_count": 110,
+    "label_count": 43,
+    "multi_photo_count": 21
+  },
+  "best": {
+    "entry_count": 3,
+    "year_count": 2,
+    "latest_year": 2026
+  }
+}
