@@ -1,16 +1,16 @@
 {
   "version": 2,
   "summary": {
-    "legacy_image_count": 896,
-    "hybrid_image_count": 923,
+    "legacy_image_count": 886,
+    "hybrid_image_count": 913,
     "net_image_delta": 27,
-    "legacy_preserved_exact_count": 881,
-    "confirmed_mushroom_same_name_count": 397,
+    "legacy_preserved_exact_count": 871,
+    "confirmed_mushroom_same_name_count": 394,
     "confirmed_mushroom_renamed_count": 15,
     "compatible_rename_count": 15,
-    "rename_conflict_count": 7,
+    "rename_conflict_count": 6,
     "rename_conflict_group_count": 2,
-    "review_legacy_fallback_count": 444,
+    "review_legacy_fallback_count": 438,
     "undetected_legacy_fallback_count": 33,
     "shadow_missing_legacy_fallback_count": 0,
     "confirmed_non_mushroom_removed_count": 0,
@@ -22,7 +22,7 @@
     "rejected_subject_boundary_count": 31,
     "images_blocked_by_rejected_boundary_count": 33,
     "hybrid_unique_names": 302,
-    "rename_group_count": 5,
+    "rename_group_count": 6,
     "added_gallery_name_count": 14
   },
   "rename_groups": [
@@ -58,20 +58,6 @@
       ]
     },
     {
-      "legacy_alt": "ヘビキノコモドキ？",
-      "hybrid_alt": "不明",
-      "image_count": 2,
-      "article_count": 2,
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250824/20250824112312.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250615/20250615183227.jpg"
-      ],
-      "sample_article_urls": [
-        "https://exsudoporus-ruber.hatenablog.jp/entry/2025/08/24/113813",
-        "https://exsudoporus-ruber.hatenablog.jp/entry/2025/06/15/191757"
-      ]
-    },
-    {
       "legacy_alt": "ヤナギマツタケ？",
       "hybrid_alt": "不明",
       "image_count": 2,
@@ -96,6 +82,30 @@
       "sample_article_urls": [
         "https://exsudoporus-ruber.hatenablog.jp/entry/2025/07/06/220032"
       ]
+    },
+    {
+      "legacy_alt": "ヘビキノコモドキ？",
+      "hybrid_alt": "ヘビキノコモドキ",
+      "image_count": 1,
+      "article_count": 1,
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250615/20250615183227.jpg"
+      ],
+      "sample_article_urls": [
+        "https://exsudoporus-ruber.hatenablog.jp/entry/2025/06/15/191757"
+      ]
+    },
+    {
+      "legacy_alt": "ヘビキノコモドキ？",
+      "hybrid_alt": "不明",
+      "image_count": 1,
+      "article_count": 1,
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250824/20250824112312.jpg"
+      ],
+      "sample_article_urls": [
+        "https://exsudoporus-ruber.hatenablog.jp/entry/2025/08/24/113813"
+      ]
     }
   ],
   "rename_conflict_groups": [
@@ -116,11 +126,10 @@
     {
       "legacy_alt": "アミヒラタケ？",
       "proposed_hybrid_alt": "タマチョレイタケ",
-      "image_count": 2,
+      "image_count": 1,
       "article_count": 1,
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525182825.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525182902.jpg"
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525182825.jpg"
       ],
       "sample_article_urls": [
         "https://exsudoporus-ruber.hatenablog.jp/entry/2025/05/25/205946"
@@ -1586,12 +1595,12 @@
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250615/20250615183227.jpg",
       "subject_type": "mushroom",
-      "detected_label": "ヘビキノコモドキ？",
-      "gallery_name": "不明",
-      "taxonomy_match_type": "normalized",
+      "detected_label": "ヘビキノコモドキ",
+      "gallery_name": "ヘビキノコモドキ",
+      "taxonomy_match_type": "canonical_exact",
       "taxonomy_canonical_name": "ヘビキノコモドキ",
       "classification_reason": "taxonomy_mushroom",
-      "subject_source_block_text": "ヘビキノコモドキ？",
+      "subject_source_block_text": "ヘビキノコモドキ",
       "subject_source_candidate_reason": "accepted_kana_label",
       "subject_state_status": "accepted_subject",
       "last_rejected_boundary_text": null,
@@ -1609,21 +1618,21 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "この場所に群生していた。辺りには幼菌や老菌もあり本種特有の臭気が漂っていたため急いで撮影を行った。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
           {
             "tag": "p",
-            "text": "ヘビキノコモドキ？",
+            "text": "ヘビキノコモドキ",
             "contains_image": false,
             "candidate": true,
             "candidate_reason": "accepted_kana_label",
             "effective_candidate": true,
-            "effective_label": "ヘビキノコモドキ？"
+            "effective_label": "ヘビキノコモドキ"
           },
           {
             "tag": "p",
@@ -1638,15 +1647,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "本種としたが、いつもと様子が違い別種なような気がする。",
             "contains_image": false,
             "candidate": false,
@@ -1656,8 +1656,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "不明",
             "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_unknown_label",
+            "effective_candidate": true,
+            "effective_label": "不明"
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -1671,8 +1680,8 @@
       "article_published": "2025-06-15T19:17:57+09:00",
       "article_path": "articles/article_67.html",
       "legacy_alt": "ヘビキノコモドキ？",
-      "hybrid_alt": "不明",
-      "proposed_hybrid_alt": "不明",
+      "hybrid_alt": "ヘビキノコモドキ",
+      "proposed_hybrid_alt": "ヘビキノコモドキ",
       "decision": "compatible_rename"
     }
   ],
@@ -1736,98 +1745,6 @@
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": true,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "別の固体も発見。",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "sentence_punctuation",
-            "effective_candidate": false,
-            "effective_label": null
-          }
-        ]
-      },
-      "article_title": "2025年5月24日　富士山(静岡県)",
-      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/05/25/205946",
-      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398444758929",
-      "article_published": "2025-05-25T20:59:46+09:00",
-      "article_path": "articles/article_71.html",
-      "legacy_alt": "アミヒラタケ？",
-      "hybrid_alt": "アミヒラタケ？",
-      "proposed_hybrid_alt": "タマチョレイタケ",
-      "decision": "rename_conflict_manual_review"
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525182902.jpg",
-      "subject_type": "mushroom",
-      "detected_label": "タマチョレイタケ",
-      "gallery_name": "タマチョレイタケ",
-      "taxonomy_match_type": "canonical_exact",
-      "taxonomy_canonical_name": "タマチョレイタケ",
-      "classification_reason": "taxonomy_mushroom",
-      "subject_source_block_text": "タマチョレイタケ",
-      "subject_source_candidate_reason": "accepted_kana_label",
-      "subject_state_status": "accepted_subject",
-      "last_rejected_boundary_text": null,
-      "last_rejected_boundary_reason": null,
-      "dom_context": {
-        "containing_block": {
-          "tag": "p",
-          "text": "",
-          "contains_image": true,
-          "candidate": false,
-          "candidate_reason": "empty",
-          "effective_candidate": false,
-          "effective_label": null
-        },
-        "previous_blocks": [
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": true,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "富士山の本種はタマチョレイタケとする説もあるので「？」を付けた。",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "too_long",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": true,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          }
-        ],
-        "next_blocks": [
-          {
-            "tag": "p",
-            "text": "別の固体も発見。",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "sentence_punctuation",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -34203,10 +34120,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "私の所属している静岡木の子の会の観察会の日程と場所が告知されたので下見がてらに夏キノコを探してきた。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -34232,15 +34149,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "最初は硬質菌やカバイロツルタケが発生していたりして出だしは順調だったが、それっきりキノコの発生はポツリと止み、しばらく歩いた先に発見したのが本種だった。",
             "contains_image": false,
             "candidate": false,
@@ -34251,9 +34159,18 @@
           {
             "tag": "p",
             "text": "",
-            "contains_image": false,
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
+            "effective_candidate": false,
+            "effective_label": null
+          },
+          {
+            "tag": "p",
+            "text": "別の固体。綺麗な幼菌だった。",
+            "contains_image": false,
+            "candidate": false,
+            "candidate_reason": "sentence_punctuation",
             "effective_candidate": false,
             "effective_label": null
           }
@@ -34293,19 +34210,19 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "最初は硬質菌やカバイロツルタケが発生していたりして出だしは順調だったが、それっきりキノコの発生はポツリと止み、しばらく歩いた先に発見したのが本種だった。",
-            "contains_image": false,
+            "text": "",
+            "contains_image": true,
             "candidate": false,
-            "candidate_reason": "too_long",
+            "candidate_reason": "empty",
             "effective_candidate": false,
             "effective_label": null
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "最初は硬質菌やカバイロツルタケが発生していたりして出だしは順調だったが、それっきりキノコの発生はポツリと止み、しばらく歩いた先に発見したのが本種だった。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -34322,15 +34239,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "別の固体。綺麗な幼菌だった。",
             "contains_image": false,
             "candidate": false,
@@ -34340,8 +34248,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "不明",
             "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_unknown_label",
+            "effective_candidate": true,
+            "effective_label": "不明"
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -34383,10 +34300,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "別の固体。綺麗な幼菌だった。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "sentence_punctuation",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -34412,15 +34329,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "尾根に出た所、シダの下に発生。実子体は大きく特徴的だったが全く正体が分からなかった。",
             "contains_image": false,
             "candidate": false,
@@ -34430,8 +34338,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "イタチタケ",
             "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_kana_label",
+            "effective_candidate": true,
+            "effective_label": "イタチタケ"
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -34473,10 +34390,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "尾根に出た所、シダの下に発生。実子体は大きく特徴的だったが全く正体が分からなかった。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -34502,15 +34419,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "木の根元に発生。状態が良く被写体としても良かった。",
             "contains_image": false,
             "candidate": false,
@@ -34520,8 +34428,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "ハナオチバタケ？",
             "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_kana_label",
+            "effective_candidate": true,
+            "effective_label": "ハナオチバタケ？"
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -34563,10 +34480,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "木の根元に発生。状態が良く被写体としても良かった。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -34592,15 +34509,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "ハナオチバタケとしたが、ハリガネオチバタケの可能性もあり「？」を付けた。",
             "contains_image": false,
             "candidate": false,
@@ -34611,9 +34519,18 @@
           {
             "tag": "p",
             "text": "",
-            "contains_image": false,
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
+            "effective_candidate": false,
+            "effective_label": null
+          },
+          {
+            "tag": "p",
+            "text": "別の固体。",
+            "contains_image": false,
+            "candidate": false,
+            "candidate_reason": "sentence_punctuation",
             "effective_candidate": false,
             "effective_label": null
           }
@@ -34653,19 +34570,19 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "ハナオチバタケとしたが、ハリガネオチバタケの可能性もあり「？」を付けた。",
-            "contains_image": false,
+            "text": "",
+            "contains_image": true,
             "candidate": false,
-            "candidate_reason": "too_long",
+            "candidate_reason": "empty",
             "effective_candidate": false,
             "effective_label": null
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "ハナオチバタケとしたが、ハリガネオチバタケの可能性もあり「？」を付けた。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -34682,15 +34599,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "別の固体。",
             "contains_image": false,
             "candidate": false,
@@ -34700,8 +34608,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "アカカバイロタケ",
             "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_kana_label",
+            "effective_candidate": true,
+            "effective_label": "アカカバイロタケ"
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -34743,10 +34660,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "別の固体。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "sentence_punctuation",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -34772,15 +34689,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "この場所に群生していた。辺りには幼菌や老菌もあり本種特有の臭気が漂っていたため急いで撮影を行った。",
             "contains_image": false,
             "candidate": false,
@@ -34790,8 +34698,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "ヘビキノコモドキ",
             "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_kana_label",
+            "effective_candidate": true,
+            "effective_label": "ヘビキノコモドキ"
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -34833,10 +34750,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "本種としたが、いつもと様子が違い別種なような気がする。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -34862,15 +34779,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "本種に柄は似ているが傘の模様が本種とは異なっており、「？」を付けた。形はエリンギに似ている。",
             "contains_image": false,
             "candidate": false,
@@ -34884,6 +34792,15 @@
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "unsupported_characters",
+            "effective_candidate": false,
+            "effective_label": null
+          },
+          {
+            "tag": "p",
+            "text": "おそらくカビによりこのような姿になったと思われる。そのため不明としておく。",
+            "contains_image": false,
+            "candidate": false,
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           }
@@ -34923,10 +34840,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "おそらくカビによりこのような姿になったと思われる。そのため不明としておく。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -34952,15 +34869,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "木の隙間に発生。本種は久しぶりに見た。",
             "contains_image": false,
             "candidate": false,
@@ -34970,8 +34878,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "モリノカレバタケ",
             "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_kana_label",
+            "effective_candidate": true,
+            "effective_label": "モリノカレバタケ"
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -35013,10 +34930,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "木の隙間に発生。本種は久しぶりに見た。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "sentence_punctuation",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -35042,16 +34959,7 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "ポイントを移動。観察会予定の公園ではイグチ類が見つからず不燃焼だったので、公園近くの緑地に訪れてみた。",
+            "text": "ポイントを移動。観察会予定の公園ではイグチ類が見つからず満足出来なかっただので、公園近くの緑地に訪れてみた。本種はそこでカエデの下で発生しているのを発見した。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
@@ -35061,9 +34969,18 @@
           {
             "tag": "p",
             "text": "",
-            "contains_image": false,
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
+            "effective_candidate": false,
+            "effective_label": null
+          },
+          {
+            "tag": "p",
+            "text": "幼菌。",
+            "contains_image": false,
+            "candidate": false,
+            "candidate_reason": "sentence_punctuation",
             "effective_candidate": false,
             "effective_label": null
           }
@@ -35103,19 +35020,19 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "本種はそこでカエデの下で発生しているのを発見した。",
-            "contains_image": false,
+            "text": "",
+            "contains_image": true,
             "candidate": false,
-            "candidate_reason": "too_long",
+            "candidate_reason": "empty",
             "effective_candidate": false,
             "effective_label": null
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "ポイントを移動。観察会予定の公園ではイグチ類が見つからず満足出来なかっただので、公園近くの緑地に訪れてみた。本種はそこでカエデの下で発生しているのを発見した。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -35132,15 +35049,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "幼菌。",
             "contains_image": false,
             "candidate": false,
@@ -35150,8 +35058,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "ヌメリツバイグチ",
             "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_kana_label",
+            "effective_candidate": true,
+            "effective_label": "ヌメリツバイグチ"
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -35193,10 +35110,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "幼菌。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "sentence_punctuation",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -35222,15 +35139,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "テーダマツの樹下に発生。春に発生するなら分かるが初夏に発生しているとは思わなかった。",
             "contains_image": false,
             "candidate": false,
@@ -35244,6 +35152,15 @@
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "unsupported_characters",
+            "effective_candidate": false,
+            "effective_label": null
+          },
+          {
+            "tag": "p",
+            "text": "もともとヌメリツバイグチ？と掲載していたが、2026年の探索会で本種が見つかったことにより確実に本種と判明。また、黒松だと思っていた木はテーダマツのようだ。",
+            "contains_image": false,
+            "candidate": false,
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           }
@@ -35283,19 +35200,19 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "2026年の探索会で本種が見つかったことにより確実に本種と判明。",
+            "text": "追記",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "too_long",
+            "candidate_reason": "unsupported_characters",
             "effective_candidate": false,
             "effective_label": null
           },
           {
             "tag": "p",
-            "text": "また、黒松だと思っていた木はテーダマツのようだ。",
+            "text": "もともとヌメリツバイグチ？と掲載していたが、2026年の探索会で本種が見つかったことにより確実に本種と判明。また、黒松だと思っていた木はテーダマツのようだ。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "sentence_punctuation",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -35312,15 +35229,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "幼菌。この場所はテーダマツを囲んで菌輪を描き相当数発生していた。",
             "contains_image": false,
             "candidate": false,
@@ -35330,8 +35238,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "ハナオチバタケ",
             "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_kana_label",
+            "effective_candidate": true,
+            "effective_label": "ハナオチバタケ"
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -35373,10 +35290,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "幼菌。この場所はテーダマツを囲んで菌輪を描き相当数発生していた。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -35402,15 +35319,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "この場所に群生していた。また双子と状態が良好ということもあり被写体として完璧だった。",
             "contains_image": false,
             "candidate": false,
@@ -35421,9 +35329,18 @@
           {
             "tag": "p",
             "text": "",
-            "contains_image": false,
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
+            "effective_candidate": false,
+            "effective_label": null
+          },
+          {
+            "tag": "p",
+            "text": "束生していた物も撮影。",
+            "contains_image": false,
+            "candidate": false,
+            "candidate_reason": "sentence_punctuation",
             "effective_candidate": false,
             "effective_label": null
           }
@@ -35463,19 +35380,19 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "この場所に群生していた。また双子と状態が良好ということもあり被写体として完璧だった。",
-            "contains_image": false,
+            "text": "",
+            "contains_image": true,
             "candidate": false,
-            "candidate_reason": "too_long",
+            "candidate_reason": "empty",
             "effective_candidate": false,
             "effective_label": null
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "この場所に群生していた。また双子と状態が良好ということもあり被写体として完璧だった。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -35492,15 +35409,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "束生していた物も撮影。",
             "contains_image": false,
             "candidate": false,
@@ -35510,8 +35418,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "シロハツ",
             "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_kana_label",
+            "effective_candidate": true,
+            "effective_label": "シロハツ"
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -35553,10 +35470,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "束生していた物も撮影。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "sentence_punctuation",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -35582,15 +35499,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "松葉が盛り上がっていたので葉を退けると本種が現れた。しかし一部黒みがかっており、脱色したクロハツかもしれない。",
             "contains_image": false,
             "candidate": false,
@@ -35600,8 +35508,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "キヒダタケ",
             "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_kana_label",
+            "effective_candidate": true,
+            "effective_label": "キヒダタケ"
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -35643,10 +35560,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "松葉が盛り上がっていたので葉を退けると本種が現れた。しかし一部黒みがかっており、脱色したクロハツかもしれない。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -35672,16 +35589,7 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "イグチのような傘を見つけ「これはイグチだろう。」と思い下部を見るとヒダ。しかし本種もイグチの仲間なので納得。",
+            "text": "イグチのような傘を見つけ「これはイグチだろう。」と思い下部を見るとまさかのヒダ。しかし本種もイグチの仲間なので納得した。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
@@ -35694,6 +35602,15 @@
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "empty",
+            "effective_candidate": false,
+            "effective_label": null
+          },
+          {
+            "tag": "p",
+            "text": "今回の探索は実は土曜日に行こうと思っていたのだが、あいにく雨が降ってしまい今日に予定変更をしたという経緯があった。今日は曇り予報だったが9時頃から晴れだし最初はうれしかったが探索中には高気温と蒸し暑さのフルコンボで汗が止まらなかった。また今日の探索では夏のイグチを発見出ず、観察会でイグチの発生している所を見られるか？という心配もある。しかし、それ以外は程々にキノコが発生していてテングタケの仲間を多く見られたため、今回の探索は行って良かったと言えるだろう。",
+            "contains_image": false,
+            "candidate": false,
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           }
@@ -35733,10 +35650,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "散髪のついでに近辺の黒松の並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -35762,16 +35679,7 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "この固体はかなりの大型で傘が約20センチほどあった。。この他にも並木中に散生していた。",
+            "text": "この固体はかなりの大型で傘が約20センチほどあった。この他にも並木中に散生していた。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
@@ -35780,8 +35688,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "オチバタケの仲間？",
             "contains_image": false,
+            "candidate": false,
+            "candidate_reason": "unsupported_characters",
+            "effective_candidate": false,
+            "effective_label": null
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -35823,10 +35740,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "この種も多く発生していたが名前は分からない。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "sentence_punctuation",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -35852,15 +35769,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "道路脇に発生。特に左の固体が大きく傘も30センチほどあった。これほどの大きい固体がまとまって発生していると写真にも力が入る。",
             "contains_image": false,
             "candidate": false,
@@ -35871,9 +35779,18 @@
           {
             "tag": "p",
             "text": "",
-            "contains_image": false,
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
+            "effective_candidate": false,
+            "effective_label": null
+          },
+          {
+            "tag": "p",
+            "text": "この固体も大かったが単発だった。",
+            "contains_image": false,
+            "candidate": false,
+            "candidate_reason": "sentence_punctuation",
             "effective_candidate": false,
             "effective_label": null
           }
@@ -35913,19 +35830,19 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "道路脇に発生。特に左の固体が大きく傘も30センチほどあった。これほどの大きい固体がまとまって発生していると写真にも力が入る。",
-            "contains_image": false,
+            "text": "",
+            "contains_image": true,
             "candidate": false,
-            "candidate_reason": "too_long",
+            "candidate_reason": "empty",
             "effective_candidate": false,
             "effective_label": null
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "道路脇に発生。特に左の固体が大きく傘も30センチほどあった。これほどの大きい固体がまとまって発生していると写真にも力が入る。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -35942,15 +35859,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "この固体も大かったが単発だった。",
             "contains_image": false,
             "candidate": false,
@@ -35961,9 +35869,18 @@
           {
             "tag": "p",
             "text": "",
-            "contains_image": false,
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
+            "effective_candidate": false,
+            "effective_label": null
+          },
+          {
+            "tag": "p",
+            "text": "幼菌も発生。本当に可愛らしい見た目をしている。",
+            "contains_image": false,
+            "candidate": false,
+            "candidate_reason": "sentence_punctuation",
             "effective_candidate": false,
             "effective_label": null
           }
@@ -36003,19 +35920,19 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "この固体も大かったが単発だった。",
-            "contains_image": false,
+            "text": "",
+            "contains_image": true,
             "candidate": false,
-            "candidate_reason": "sentence_punctuation",
+            "candidate_reason": "empty",
             "effective_candidate": false,
             "effective_label": null
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "この固体も大かったが単発だった。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "sentence_punctuation",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -36032,15 +35949,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "幼菌も発生。本当に可愛らしい見た目をしている。",
             "contains_image": false,
             "candidate": false,
@@ -36050,8 +35958,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "チチアワタケ",
             "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_kana_label",
+            "effective_candidate": true,
+            "effective_label": "チチアワタケ"
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -36093,10 +36010,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "幼菌が三つ子で発生していた。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "sentence_punctuation",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -36122,28 +36039,28 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "ヘビキノコモドキのすぐ側に発生。まさかこの時期・この場所に発生しているとは思わず驚いた。この松並木は比較的町中で例年では里山で見ることが出来るぐらいだったのでここでの発見は大きかった。しかし実は去年の11月に緑色に変色したベニタケのような物をここで発見していたのでもしかしたら本種だったのかもしれない。",
             "contains_image": false,
+            "candidate": false,
+            "candidate_reason": "too_long",
+            "effective_candidate": false,
+            "effective_label": null
+          },
+          {
+            "tag": "p",
+            "text": "ツルタケ",
+            "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_kana_label",
+            "effective_candidate": true,
+            "effective_label": "ツルタケ"
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "ヘビキノコモドキのすぐ側に発生。まさかこの時期・この場所に発生しているとは思わず声も出なかった。",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "too_long",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "この松並木は比較的町中で例年では里山で見ることが出来るぐらいだったのでこの発見は大きかった。",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           }
@@ -36183,10 +36100,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "ヘビキノコモドキのすぐ側に発生。まさかこの時期・この場所に発生しているとは思わず驚いた。この松並木は比較的町中で例年では里山で見ることが出来るぐらいだったのでここでの発見は大きかった。しかし実は去年の11月に緑色に変色したベニタケのような物をここで発見していたのでもしかしたら本種だったのかもしれない。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -36212,15 +36129,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "本種も多く発生していた。",
             "contains_image": false,
             "candidate": false,
@@ -36234,6 +36142,15 @@
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "empty",
+            "effective_candidate": false,
+            "effective_label": null
+          },
+          {
+            "tag": "p",
+            "text": "今回の探索では何故か半種程のキノコが巨大化していて写真を撮っても見応えがあった。また写真は撮ってはいないがクロアワタケやヤマドリタケモドキの腐ったような老菌も発見できた。ネットで検索した情報などから見てもヤマドリタケ系を含むイグチ類の発生も増えてくるのでは無いかと思う。",
+            "contains_image": false,
+            "candidate": false,
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           }
@@ -36273,10 +36190,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったのでまとめて掲載。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -36302,15 +36219,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "近所の公園に発生。この時期に本種は初めて見た。",
             "contains_image": false,
             "candidate": false,
@@ -36320,8 +36228,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "不明",
             "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_unknown_label",
+            "effective_candidate": true,
+            "effective_label": "不明"
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -36363,10 +36280,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "近所の公園に発生。この時期に本種は初めて見た。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "sentence_punctuation",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -36392,16 +36309,7 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "芝生に発生。この場所に群生していた",
+            "text": "芝生に発生していた。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "sentence_punctuation",
@@ -36410,8 +36318,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "不明",
             "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_unknown_label",
+            "effective_candidate": true,
+            "effective_label": "不明"
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -36453,10 +36370,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "芝生に発生していた。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "sentence_punctuation",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -36482,15 +36399,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "朽木に発生。見た目はスギヒラタケに近いものを感じるが根元に菌糸の綿がある点で不明とした。",
             "contains_image": false,
             "candidate": false,
@@ -36500,8 +36408,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "オオキヌハダトマヤタケ",
             "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_kana_label",
+            "effective_candidate": true,
+            "effective_label": "オオキヌハダトマヤタケ"
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -36543,10 +36460,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "朽木に発生。見た目はスギヒラタケに近いものを感じるが根元に菌糸の綿がある点で不明とした。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -36572,15 +36489,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "シイの根元に発生。この日はとにかく発生量が多かった。",
             "contains_image": false,
             "candidate": false,
@@ -36590,188 +36498,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "不明",
             "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          }
-        ]
-      },
-      "article_title": "5月下旬〜6月上旬　静岡県掛川市",
-      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/06/08/004256",
-      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398459984714",
-      "article_published": "2025-06-08T00:42:56+09:00",
-      "article_path": "articles/article_70.html",
-      "legacy_alt": "オオキヌハダトマヤタケ",
-      "decision": "legacy_fallback_review"
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250604/20250604011959.jpg",
-      "subject_type": "review",
-      "detected_label": "オオキヌハダトマヤタケ",
-      "gallery_name": null,
-      "taxonomy_match_type": "none",
-      "taxonomy_canonical_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "subject_source_block_text": "オオキヌハダトマヤタケ",
-      "subject_source_candidate_reason": "accepted_kana_label",
-      "subject_state_status": "accepted_subject",
-      "last_rejected_boundary_text": null,
-      "last_rejected_boundary_reason": null,
-      "dom_context": {
-        "containing_block": {
-          "tag": "p",
-          "text": "",
-          "contains_image": true,
-          "candidate": false,
-          "candidate_reason": "empty",
-          "effective_candidate": false,
-          "effective_label": null
-        },
-        "previous_blocks": [
-          {
-            "tag": "p",
-            "text": "シイの根元に発生。この日はとにかく発生量が多かった。",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "too_long",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
+            "candidate": true,
+            "candidate_reason": "accepted_unknown_label",
+            "effective_candidate": true,
+            "effective_label": "不明"
           },
           {
             "tag": "p",
             "text": "",
             "contains_image": true,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          }
-        ],
-        "next_blocks": [
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "このような小さい固体も多かった。",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "sentence_punctuation",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          }
-        ]
-      },
-      "article_title": "5月下旬〜6月上旬　静岡県掛川市",
-      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/06/08/004256",
-      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398459984714",
-      "article_published": "2025-06-08T00:42:56+09:00",
-      "article_path": "articles/article_70.html",
-      "legacy_alt": "オオキヌハダトマヤタケ",
-      "decision": "legacy_fallback_review"
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250604/20250604012045.jpg",
-      "subject_type": "review",
-      "detected_label": "オオキヌハダトマヤタケ",
-      "gallery_name": null,
-      "taxonomy_match_type": "none",
-      "taxonomy_canonical_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "subject_source_block_text": "オオキヌハダトマヤタケ",
-      "subject_source_candidate_reason": "accepted_kana_label",
-      "subject_state_status": "accepted_subject",
-      "last_rejected_boundary_text": null,
-      "last_rejected_boundary_reason": null,
-      "dom_context": {
-        "containing_block": {
-          "tag": "p",
-          "text": "",
-          "contains_image": true,
-          "candidate": false,
-          "candidate_reason": "empty",
-          "effective_candidate": false,
-          "effective_label": null
-        },
-        "previous_blocks": [
-          {
-            "tag": "p",
-            "text": "このような小さい固体も多かった。",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "sentence_punctuation",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": true,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          }
-        ],
-        "next_blocks": [
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "この固体は大柄でずっしりとしていた。",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "sentence_punctuation",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": false,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -36813,10 +36550,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "シイの根元に発生。この日はとにかく発生量が多かった。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -36842,15 +36579,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "状態はとても良いとは言えないが記念として撮影。",
             "contains_image": false,
             "candidate": false,
@@ -36866,6 +36594,15 @@
             "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
+          },
+          {
+            "tag": "p",
+            "text": "コショウイグチ？",
+            "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_kana_label",
+            "effective_candidate": true,
+            "effective_label": "コショウイグチ？"
           }
         ]
       },
@@ -36903,10 +36640,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "テングタケ科なのは確かだが腐ってしまっているので同定には至らない。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -36932,15 +36669,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "アラカシの樹下に発生。今季初の夏イグチという事もあり、この発見はうれしかったが撮影後採取してみた所自分の知識ではこのイグチを同定することが出来ず不明種入りとなった。",
             "contains_image": false,
             "candidate": false,
@@ -36956,94 +36684,13 @@
             "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
-          }
-        ]
-      },
-      "article_title": "5月下旬〜6月上旬　静岡県掛川市",
-      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/06/08/004256",
-      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398459984714",
-      "article_published": "2025-06-08T00:42:56+09:00",
-      "article_path": "articles/article_70.html",
-      "legacy_alt": "コショウイグチ？",
-      "decision": "legacy_fallback_review"
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250608/20250608001018.jpg",
-      "subject_type": "review",
-      "detected_label": "コショウイグチ？",
-      "gallery_name": null,
-      "taxonomy_match_type": "none",
-      "taxonomy_canonical_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "subject_source_block_text": "コショウイグチ？",
-      "subject_source_candidate_reason": "accepted_kana_label",
-      "subject_state_status": "accepted_subject",
-      "last_rejected_boundary_text": null,
-      "last_rejected_boundary_reason": null,
-      "dom_context": {
-        "containing_block": {
-          "tag": "p",
-          "text": "",
-          "contains_image": true,
-          "candidate": false,
-          "candidate_reason": "empty",
-          "effective_candidate": false,
-          "effective_label": null
-        },
-        "previous_blocks": [
+          },
           {
             "tag": "p",
-            "text": "追記 後日自分が持っている図鑑を見返していたところ特徴が合致する固体が掲載されていたため、本種と判明。",
+            "text": "〈追記〉後日自分が持っている図鑑を見返していたところ特徴が合致する固体が掲載されていたため、本種と判明。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": true,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          }
-        ],
-        "next_blocks": [
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "こちらは成菌。午前中の撮影だったこともあり逆光してしまい白飛びしてしまった。",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "too_long",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
             "effective_candidate": false,
             "effective_label": null
           }
@@ -37083,10 +36730,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "〈追記〉後日自分が持っている図鑑を見返していたところ特徴が合致する固体が掲載されていたため、本種と判明。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -37112,16 +36759,7 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "コケの上に発生。後ろには謎のキノコが発生している。",
+            "text": "コケの上に発生していた。後ろには謎のキノコが発生している。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
@@ -37130,8 +36768,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "ニセショウロ？",
             "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_kana_label",
+            "effective_candidate": true,
+            "effective_label": "ニセショウロ？"
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -37173,10 +36820,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "コケの上に発生していた。後ろには謎のキノコが発生している。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -37202,15 +36849,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "シイの樹下に発生。中身が黒くおそらく本種だと思うのだが自信は無い。",
             "contains_image": false,
             "candidate": false,
@@ -37220,8 +36858,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "不明",
             "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_unknown_label",
+            "effective_candidate": true,
+            "effective_label": "不明"
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -37263,10 +36910,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "シイの樹下に発生。中身が黒くおそらく本種だと思うのだが自信は無い。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -37292,26 +36939,26 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "特徴的だが思い当たる節がなく同定出来なかった。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "sentence_punctuation",
             "effective_candidate": false,
             "effective_label": null
           },
           {
             "tag": "p",
-            "text": "特徴的だが思い当たる節がなく同定出来なかった。(若干ムジナタケ似)",
+            "text": "不明",
             "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "too_long",
-            "effective_candidate": false,
-            "effective_label": null
+            "candidate": true,
+            "candidate_reason": "accepted_unknown_label",
+            "effective_candidate": true,
+            "effective_label": "不明"
           },
           {
             "tag": "p",
             "text": "",
-            "contains_image": false,
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -37353,10 +37000,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "特徴的だが思い当たる節がなく同定出来なかった。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "sentence_punctuation",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -37382,15 +37029,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "この辺りに多く発生。まとまって発生していたので被写体としては良かった。",
             "contains_image": false,
             "candidate": false,
@@ -37400,8 +37038,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "ヤナギマツタケ",
             "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_kana_label",
+            "effective_candidate": true,
+            "effective_label": "ヤナギマツタケ"
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -37414,186 +37061,6 @@
       "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398459984714",
       "article_published": "2025-06-08T00:42:56+09:00",
       "article_path": "articles/article_70.html",
-      "legacy_alt": "不明",
-      "decision": "legacy_fallback_review"
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525170432.jpg",
-      "subject_type": "review",
-      "detected_label": "不明",
-      "gallery_name": null,
-      "taxonomy_match_type": "none",
-      "taxonomy_canonical_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "subject_source_block_text": "不明",
-      "subject_source_candidate_reason": "accepted_unknown_label",
-      "subject_state_status": "accepted_subject",
-      "last_rejected_boundary_text": null,
-      "last_rejected_boundary_reason": null,
-      "dom_context": {
-        "containing_block": {
-          "tag": "p",
-          "text": "",
-          "contains_image": true,
-          "candidate": false,
-          "candidate_reason": "empty",
-          "effective_candidate": false,
-          "effective_label": null
-        },
-        "previous_blocks": [
-          {
-            "tag": "p",
-            "text": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "too_long",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "不明",
-            "contains_image": false,
-            "candidate": true,
-            "candidate_reason": "accepted_unknown_label",
-            "effective_candidate": true,
-            "effective_label": "不明"
-          },
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": true,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          }
-        ],
-        "next_blocks": [
-          {
-            "tag": "p",
-            "text": "この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "too_long",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "不明",
-            "contains_image": false,
-            "candidate": true,
-            "candidate_reason": "accepted_unknown_label",
-            "effective_candidate": true,
-            "effective_label": "不明"
-          },
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": true,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          }
-        ]
-      },
-      "article_title": "2025年5月24日　富士山(静岡県)",
-      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/05/25/205946",
-      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398444758929",
-      "article_published": "2025-05-25T20:59:46+09:00",
-      "article_path": "articles/article_71.html",
-      "legacy_alt": "不明",
-      "decision": "legacy_fallback_review"
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525170409.jpg",
-      "subject_type": "review",
-      "detected_label": "不明",
-      "gallery_name": null,
-      "taxonomy_match_type": "none",
-      "taxonomy_canonical_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "subject_source_block_text": "不明",
-      "subject_source_candidate_reason": "accepted_unknown_label",
-      "subject_state_status": "accepted_subject",
-      "last_rejected_boundary_text": null,
-      "last_rejected_boundary_reason": null,
-      "dom_context": {
-        "containing_block": {
-          "tag": "p",
-          "text": "",
-          "contains_image": true,
-          "candidate": false,
-          "candidate_reason": "empty",
-          "effective_candidate": false,
-          "effective_label": null
-        },
-        "previous_blocks": [
-          {
-            "tag": "p",
-            "text": "この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "too_long",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "不明",
-            "contains_image": false,
-            "candidate": true,
-            "candidate_reason": "accepted_unknown_label",
-            "effective_candidate": true,
-            "effective_label": "不明"
-          },
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": true,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          }
-        ],
-        "next_blocks": [
-          {
-            "tag": "p",
-            "text": "参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "too_long",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "コツブオオワライタケ(仮称)",
-            "contains_image": false,
-            "candidate": true,
-            "candidate_reason": "accepted_kana_label",
-            "effective_candidate": true,
-            "effective_label": "コツブオオワライタケ(仮称)"
-          },
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": true,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          }
-        ]
-      },
-      "article_title": "2025年5月24日　富士山(静岡県)",
-      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/05/25/205946",
-      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398444758929",
-      "article_published": "2025-05-25T20:59:46+09:00",
-      "article_path": "articles/article_71.html",
       "legacy_alt": "不明",
       "decision": "legacy_fallback_review"
     },
@@ -37623,7 +37090,7 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。",
+            "text": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
@@ -37958,7 +37425,7 @@
       "decision": "legacy_fallback_review"
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525170826.jpg",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525182621.jpg",
       "subject_type": "review",
       "detected_label": "キツネナミハタケ",
       "gallery_name": null,
@@ -38012,97 +37479,7 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "倒木に発生。今回の観察会で本種は多く見つかった。",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "sentence_punctuation",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": true,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "別の固体。重なり合うように発生していた。",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "sentence_punctuation",
-            "effective_candidate": false,
-            "effective_label": null
-          }
-        ]
-      },
-      "article_title": "2025年5月24日　富士山(静岡県)",
-      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/05/25/205946",
-      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398444758929",
-      "article_published": "2025-05-25T20:59:46+09:00",
-      "article_path": "articles/article_71.html",
-      "legacy_alt": "キツネナミハタケ",
-      "decision": "legacy_fallback_review"
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525182621.jpg",
-      "subject_type": "review",
-      "detected_label": "キツネナミハタケ",
-      "gallery_name": null,
-      "taxonomy_match_type": "none",
-      "taxonomy_canonical_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "subject_source_block_text": "キツネナミハタケ",
-      "subject_source_candidate_reason": "accepted_kana_label",
-      "subject_state_status": "accepted_subject",
-      "last_rejected_boundary_text": null,
-      "last_rejected_boundary_reason": null,
-      "dom_context": {
-        "containing_block": {
-          "tag": "p",
-          "text": "",
-          "contains_image": true,
-          "candidate": false,
-          "candidate_reason": "empty",
-          "effective_candidate": false,
-          "effective_label": null
-        },
-        "previous_blocks": [
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": true,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "倒木に発生。今回の観察会で本種は多く見つかった。",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "sentence_punctuation",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
-            "text": "",
-            "contains_image": true,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          }
-        ],
-        "next_blocks": [
-          {
-            "tag": "p",
-            "text": "別の固体。重なり合うように発生していた。",
+            "text": "今回の探索では比較的多く見つかった種の一つ目。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "sentence_punctuation",
@@ -38163,7 +37540,7 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "別の固体。重なり合うように発生していた。",
+            "text": "今回の探索では比較的多く見つかった種の一つ目。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "sentence_punctuation",
@@ -38282,7 +37659,7 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "小枝に発生。前回の観察会では多く見つかったが今回は傷んだりカビた固体ばかりだった。",
+            "text": "小枝に発生。去年の観察会では多く見つかったが今回は傷んだりカビた固体ばかりだった。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
@@ -38372,7 +37749,7 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "本種は去年この場所で行われた観察会では多く見つかり、今回も多く発生していると想ったが、残念な事にこの2本と黒くなった老菌だけだった。",
+            "text": "本種も去年この場所で行われた観察会では多く見つかり、今回も多く発生していると思ったが残念な事にこの2本と黒くなった老菌だけだった。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
@@ -38433,7 +37810,7 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "本種は去年この場所で行われた観察会では多く見つかり、今回も多く発生していると想ったが、残念な事にこの2本と黒くなった老菌だけだった。",
+            "text": "本種も去年この場所で行われた観察会では多く見つかり、今回も多く発生していると思ったが残念な事にこの2本と黒くなった老菌だけだった。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
@@ -38883,7 +38260,7 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "タマゴの状態の物も撮影した。しかしこの場所に集中して本種が群生していたため、皆鼻を押さえ嗚咽し本種の悪臭に耐えながら撮影していた。",
+            "text": "タマゴの状態の物も撮影した。しかしこの場所に集中して本種が群生していたため、参加者は鼻を押さえ嗚咽し本種の悪臭に耐えながら撮影していた。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
@@ -39092,7 +38469,7 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "師匠から「カワキタケが向こうで生えてたよ」と報告していただき、向かってみると大きな固体が重なり合って発生していた。",
+            "text": "師匠から「カワキタケが向こうで生えてたよ」と教えていただいたので向かってみると大きな固体が重なり合って発生していた。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
@@ -39153,7 +38530,7 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "師匠から「カワキタケが向こうで生えてたよ」と報告していただき、向かってみると大きな固体が重なり合って発生していた。",
+            "text": "師匠から「カワキタケが向こうで生えてたよ」と教えていただいたので向かってみると大きな固体が重なり合って発生していた。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
@@ -40053,7 +39430,7 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "この場所に多く発生していた。見た目的にはクサハツの仲間のように見えるが確信は無い。",
+            "text": "この場所に多く発生していた。見た目的にはクサハツの仲間のように見えるが確証は無い。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
@@ -40892,7 +40269,7 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "本種もこの時期のキノコでは無いため、頭がパンクしてしまいそうだ。普通なら8月頃のはずなのだが…",
+            "text": "本種もこの時期のキノコでは無いため、頭がパンクしてしまいそうだ。普通なら8月頃の発生のはずなのだが…。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
@@ -40953,7 +40330,7 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "本種もこの時期のキノコでは無いため、頭がパンクしてしまいそうだ。普通なら8月頃のはずなのだが…",
+            "text": "本種もこの時期のキノコでは無いため、頭がパンクしてしまいそうだ。普通なら8月頃の発生のはずなのだが…。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
@@ -40982,7 +40359,7 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "去年発見したポイントにまたしても発生していた。本種も夏に発生するイメージがあるのだが…",
+            "text": "去年発見したポイントにまたしても発生していた。本種も夏に発生するイメージがあるのだが…。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
@@ -41043,7 +40420,7 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "去年発見したポイントにまたしても発生していた。本種も夏に発生するイメージがあるのだが…",
+            "text": "去年発見したポイントにまたしても発生していた。本種も夏に発生するイメージがあるのだが…。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
@@ -46733,10 +46110,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "この固体はかなりの大型で傘が約20センチほどあった。この他にも並木中に散生していた。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -46762,15 +46139,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "この種も多く発生していたが名前は分からない。",
             "contains_image": false,
             "candidate": false,
@@ -46780,8 +46148,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "イボテングタケ",
             "contains_image": false,
+            "candidate": true,
+            "candidate_reason": "accepted_kana_label",
+            "effective_candidate": true,
+            "effective_label": "イボテングタケ"
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -46823,10 +46200,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "傘裏。ツバは消えてしまっている。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "sentence_punctuation",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -46852,15 +46229,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "本種は毎年このポイントに発生していて11月程まで観察出来るので発生期間が長い事が伺える。",
             "contains_image": false,
             "candidate": false,
@@ -46870,8 +46238,17 @@
           },
           {
             "tag": "p",
-            "text": "",
+            "text": "ベニタケの仲間(2)",
             "contains_image": false,
+            "candidate": false,
+            "candidate_reason": "unsupported_annotation",
+            "effective_candidate": false,
+            "effective_label": null
+          },
+          {
+            "tag": "p",
+            "text": "",
+            "contains_image": true,
             "candidate": false,
             "candidate_reason": "empty",
             "effective_candidate": false,
@@ -46913,10 +46290,10 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "",
+            "text": "本種は毎年このポイントに発生していて11月程まで観察出来るので発生期間が長い事が伺える。",
             "contains_image": false,
             "candidate": false,
-            "candidate_reason": "empty",
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           },
@@ -46942,15 +46319,6 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "",
-            "contains_image": false,
-            "candidate": false,
-            "candidate_reason": "empty",
-            "effective_candidate": false,
-            "effective_label": null
-          },
-          {
-            "tag": "p",
             "text": "カワリハツに類似しているがヒダが二股に分かれていない点で別種と同定。",
             "contains_image": false,
             "candidate": false,
@@ -46964,6 +46332,15 @@
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "empty",
+            "effective_candidate": false,
+            "effective_label": null
+          },
+          {
+            "tag": "p",
+            "text": "ここ最近は色々な場所へキノコ散策に出かけているのだが思うように良い被写体が見つからず、ただただ森を徘徊しているだけだったが、ようやく思うようにキノコが見つかり、更にはコショウイグチ？やヤナギマツタケも発見出来たので今回の探索は結果的に良かったと言えるだろう。",
+            "contains_image": false,
+            "candidate": false,
+            "candidate_reason": "too_long",
             "effective_candidate": false,
             "effective_label": null
           }
@@ -47032,7 +46409,7 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "この場所に多く発生していた。見た目的にはクサハツの仲間のように見えるが確信は無い。",
+            "text": "この場所に多く発生していた。見た目的にはクサハツの仲間のように見えるが確証は無い。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
@@ -51949,7 +51326,7 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "車を止めた駐車場に植えられていた。しかしここの場所のソメイヨシノは果実の成熟が早く毎年驚かされる。",
+            "text": "車を止めた駐車場に植えられていた。ここのソメイヨシノは果実の成熟が早く毎年驚かされる。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
@@ -51967,7 +51344,7 @@
           },
           {
             "tag": "p",
-            "text": "このように一枝に大量に実が付いていた。",
+            "text": "このように一枝に大量の実が付いていた。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "sentence_punctuation",
@@ -52019,7 +51396,7 @@
           },
           {
             "tag": "p",
-            "text": "車を止めた駐車場に植えられていた。しかしここの場所のソメイヨシノは果実の成熟が早く毎年驚かされる。",
+            "text": "車を止めた駐車場に植えられていた。ここのソメイヨシノは果実の成熟が早く毎年驚かされる。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",
@@ -52039,7 +51416,7 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "このように一枝に大量に実が付いていた。",
+            "text": "このように一枝に大量の実が付いていた。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "sentence_punctuation",
@@ -52100,7 +51477,7 @@
         "previous_blocks": [
           {
             "tag": "p",
-            "text": "このように一枝に大量に実が付いていた。",
+            "text": "このように一枝に大量の実が付いていた。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "sentence_punctuation",
@@ -52129,7 +51506,7 @@
         "next_blocks": [
           {
             "tag": "p",
-            "text": "このブログでは書いていなかったが、実は自分の趣味はキノコだけではなくココヤシを栽培、海岸に探しに行く事も趣味の一つでこの日の目的は、実はココヤシ探しでもあった。ココヤシを探すポイントはとにかく長距離海岸を歩くことが大切だと思う。この日も8キロ程歩いただろうか？ちなみにだが一番奥のココヤシが一番状態が良く、過去類を見ないほど状態が良かった。",
+            "text": "このブログでは書いていなかったが、実は自分の趣味はキノコだけではなくココヤシを栽培、海岸に探しに行く事も趣味の一つ。この日の目的は、実はココヤシ探しでもあった。ココヤシを探すポイントはとにかく長距離海岸を歩くことが大切だと思う。この日も8キロ程歩いただろうか？ちなみにだが一番奥のココヤシが一番状態が良く、過去類を見ないほど状態が良かった。",
             "contains_image": false,
             "candidate": false,
             "candidate_reason": "too_long",

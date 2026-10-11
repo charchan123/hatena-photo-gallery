@@ -3,22 +3,22 @@
   "production": {
     "mode": "phase3c_hybrid",
     "cutover_active": true,
-    "image_count": 923
+    "image_count": 913
   },
   "summary": {
-    "production_image_count": 923,
-    "observation_count": 923,
+    "production_image_count": 913,
+    "observation_count": 913,
     "subject_count": 302,
     "article_count": 90,
-    "shadow_matched_observation_count": 923,
+    "shadow_matched_observation_count": 913,
     "shadow_src_only_fallback_count": 0,
     "shadow_missing_observation_count": 0,
-    "exif_dated_observation_count": 893,
+    "exif_dated_observation_count": 883,
     "exif_undated_observation_count": 30,
-    "confirmed_named_mushroom_count": 426,
-    "confirmed_mushroom_identity_uncertain_count": 13,
-    "manual_review_name_conflict_count": 7,
-    "legacy_review_count": 444,
+    "confirmed_named_mushroom_count": 424,
+    "confirmed_mushroom_identity_uncertain_count": 12,
+    "manual_review_name_conflict_count": 6,
+    "legacy_review_count": 438,
     "legacy_undetected_count": 33,
     "legacy_shadow_missing_count": 0,
     "master_linked_subject_count": 41,
@@ -666,20 +666,20 @@
     },
     {
       "gallery_name": "アミヒラタケ？",
-      "photo_count": 2,
+      "photo_count": 1,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525182825.jpg",
       "article_count": 1,
-      "capture_date_count": 2,
+      "capture_date_count": 1,
       "capture_months": [
         5
       ],
       "capture_month_counts": {
-        "5": 2
+        "5": 1
       },
       "first_capture_date": "2025-05-24",
       "last_capture_date": "2025-05-24",
       "classification_counts": {
-        "manual_review_name_conflict": 2
+        "manual_review_name_conflict": 1
       },
       "taxonomy": null,
       "mushroom_master_id": null,
@@ -1233,22 +1233,22 @@
     },
     {
       "gallery_name": "オオキヌハダトマヤタケ",
-      "photo_count": 4,
+      "photo_count": 2,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250604/20250604011808.jpg",
       "article_count": 2,
-      "capture_date_count": 4,
+      "capture_date_count": 2,
       "capture_months": [
         1,
         6
       ],
       "capture_month_counts": {
         "1": 1,
-        "6": 3
+        "6": 1
       },
       "first_capture_date": "2011-01-01",
       "last_capture_date": "2025-06-01",
       "classification_counts": {
-        "legacy_review": 4
+        "legacy_review": 2
       },
       "taxonomy": null,
       "mushroom_master_id": null,
@@ -2259,20 +2259,20 @@
     },
     {
       "gallery_name": "キツネナミハタケ",
-      "photo_count": 2,
-      "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525170826.jpg",
+      "photo_count": 1,
+      "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525182621.jpg",
       "article_count": 1,
-      "capture_date_count": 2,
+      "capture_date_count": 1,
       "capture_months": [
         5
       ],
       "capture_month_counts": {
-        "5": 2
+        "5": 1
       },
       "first_capture_date": "2025-05-24",
       "last_capture_date": "2025-05-24",
       "classification_counts": {
-        "legacy_review": 2
+        "legacy_review": 1
       },
       "taxonomy": null,
       "mushroom_master_id": null,
@@ -3140,22 +3140,20 @@
     },
     {
       "gallery_name": "コショウイグチ？",
-      "photo_count": 2,
+      "photo_count": 1,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250604/20250604012333.jpg",
       "article_count": 1,
-      "capture_date_count": 2,
+      "capture_date_count": 1,
       "capture_months": [
-        1,
         6
       ],
       "capture_month_counts": {
-        "1": 1,
         "6": 1
       },
-      "first_capture_date": "2011-01-01",
+      "first_capture_date": "2025-06-01",
       "last_capture_date": "2025-06-01",
       "classification_counts": {
-        "legacy_review": 2
+        "legacy_review": 1
       },
       "taxonomy": null,
       "mushroom_master_id": null,
@@ -3925,10 +3923,10 @@
     },
     {
       "gallery_name": "チチアワタケ",
-      "photo_count": 15,
+      "photo_count": 13,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260622/20260622025142.jpg",
       "article_count": 10,
-      "capture_date_count": 14,
+      "capture_date_count": 12,
       "capture_months": [
         1,
         3,
@@ -3938,7 +3936,7 @@
         10
       ],
       "capture_month_counts": {
-        "1": 4,
+        "1": 2,
         "3": 1,
         "4": 3,
         "6": 1,
@@ -3948,7 +3946,7 @@
       "first_capture_date": "2011-01-02",
       "last_capture_date": "2026-06-14",
       "classification_counts": {
-        "confirmed_named_mushroom": 15
+        "confirmed_named_mushroom": 13
       },
       "taxonomy": {
         "canonical_name": "チチアワタケ",
@@ -5451,20 +5449,20 @@
     },
     {
       "gallery_name": "ヒロメノトガリアミガサタケ",
-      "photo_count": 21,
+      "photo_count": 20,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260622/20260622024119.jpg",
       "article_count": 3,
-      "capture_date_count": 21,
+      "capture_date_count": 20,
       "capture_months": [
         5
       ],
       "capture_month_counts": {
-        "5": 21
+        "5": 20
       },
       "first_capture_date": "2025-05-24",
       "last_capture_date": "2026-05-23",
       "classification_counts": {
-        "confirmed_named_mushroom": 21
+        "confirmed_named_mushroom": 20
       },
       "taxonomy": {
         "canonical_name": "ヒロメノトガリアミガサタケ",
@@ -5689,10 +5687,10 @@
     },
     {
       "gallery_name": "ヘビキノコモドキ",
-      "photo_count": 10,
+      "photo_count": 11,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222100.jpg",
-      "article_count": 8,
-      "capture_date_count": 9,
+      "article_count": 9,
+      "capture_date_count": 10,
       "capture_months": [
         1,
         6,
@@ -5701,14 +5699,14 @@
       ],
       "capture_month_counts": {
         "1": 4,
-        "6": 2,
+        "6": 3,
         "7": 2,
         "9": 1
       },
       "first_capture_date": "2011-01-01",
       "last_capture_date": "2026-07-04",
       "classification_counts": {
-        "confirmed_named_mushroom": 9,
+        "confirmed_named_mushroom": 10,
         "legacy_undetected": 1
       },
       "taxonomy": {
@@ -6625,10 +6623,10 @@
     },
     {
       "gallery_name": "不明",
-      "photo_count": 41,
+      "photo_count": 38,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222348.jpg",
       "article_count": 22,
-      "capture_date_count": 41,
+      "capture_date_count": 38,
       "capture_months": [
         1,
         3,
@@ -6645,8 +6643,8 @@
         "1": 7,
         "3": 2,
         "4": 6,
-        "5": 9,
-        "6": 5,
+        "5": 7,
+        "6": 4,
         "7": 2,
         "8": 2,
         "9": 3,
@@ -6656,8 +6654,8 @@
       "first_capture_date": "2011-01-01",
       "last_capture_date": "2026-09-19",
       "classification_counts": {
-        "confirmed_mushroom_identity_uncertain": 13,
-        "legacy_review": 28
+        "confirmed_mushroom_identity_uncertain": 12,
+        "legacy_review": 26
       },
       "taxonomy": null,
       "mushroom_master_id": null,
@@ -45039,19 +45037,19 @@
     {
       "observation_id": "obs-60af331294ef27feaf6194930d37a9265dc13af94e7ac6c357108ed828b88b27",
       "production_index": 651,
-      "gallery_name": "不明",
+      "gallery_name": "ヘビキノコモドキ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250615/20250615183227.jpg",
       "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "confirmed_mushroom_identity_uncertain",
+        "status": "confirmed_named_mushroom",
         "subject_type": "mushroom",
-        "detected_label": "ヘビキノコモドキ？",
-        "shadow_gallery_name": "不明",
+        "detected_label": "ヘビキノコモドキ",
+        "shadow_gallery_name": "ヘビキノコモドキ",
         "classification_reason": "taxonomy_mushroom",
         "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
         "taxonomy_canonical_name": "ヘビキノコモドキ",
-        "taxonomy_match_type": "normalized"
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-06-15",
@@ -45090,7 +45088,7 @@
         ],
         "excerpt": "私の所属している静岡木の子の会の観察会の日程と場所が告知されたので下見がてらに夏キノコを探してきた。 ケショウハツ 最初は硬質菌やカバイロツルタケが発生していたりして出だしは順調だったが、それっきりキノコの発生はポツリと止み、しばらく歩いた先に発見したのが本種…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "hebikinokomodoki"
     },
     {
       "observation_id": "obs-2d5958d52432bd24f982ee1979c890f3eac12878dceb86e70e8389832dd62fcb",
@@ -45698,7 +45696,7 @@
           "キリンタケ",
           "ベニタケ"
         ],
-        "excerpt": "散髪のついでに近辺の黒松の松並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。…"
+        "excerpt": "散髪のついでに近辺の黒松の並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。 イ…"
       },
       "mushroom_master_id": null
     },
@@ -45748,7 +45746,7 @@
           "キリンタケ",
           "ベニタケ"
         ],
-        "excerpt": "散髪のついでに近辺の黒松の松並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。…"
+        "excerpt": "散髪のついでに近辺の黒松の並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。 イ…"
       },
       "mushroom_master_id": null
     },
@@ -45798,7 +45796,7 @@
           "キリンタケ",
           "ベニタケ"
         ],
-        "excerpt": "散髪のついでに近辺の黒松の松並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。…"
+        "excerpt": "散髪のついでに近辺の黒松の並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。 イ…"
       },
       "mushroom_master_id": null
     },
@@ -45848,7 +45846,7 @@
           "キリンタケ",
           "ベニタケ"
         ],
-        "excerpt": "散髪のついでに近辺の黒松の松並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。…"
+        "excerpt": "散髪のついでに近辺の黒松の並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。 イ…"
       },
       "mushroom_master_id": null
     },
@@ -45898,7 +45896,7 @@
           "キリンタケ",
           "ベニタケ"
         ],
-        "excerpt": "散髪のついでに近辺の黒松の松並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。…"
+        "excerpt": "散髪のついでに近辺の黒松の並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。 イ…"
       },
       "mushroom_master_id": null
     },
@@ -45948,113 +45946,13 @@
           "キリンタケ",
           "ベニタケ"
         ],
-        "excerpt": "散髪のついでに近辺の黒松の松並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。…"
-      },
-      "mushroom_master_id": "chichiawatake"
-    },
-    {
-      "observation_id": "obs-44b828c980fba162212ab05ce2bf63db5241af974fa64e6fe95879b3fd3a3562",
-      "production_index": 668,
-      "gallery_name": "チチアワタケ",
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250614/20250614194627.jpg",
-      "shadow_match_status": "exact_gallery_name",
-      "classification": {
-        "status": "confirmed_named_mushroom",
-        "subject_type": "mushroom",
-        "detected_label": "チチアワタケ",
-        "shadow_gallery_name": "チチアワタケ",
-        "classification_reason": "taxonomy_mushroom",
-        "classification_confidence": "high",
-        "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": "チチアワタケ",
-        "taxonomy_match_type": "canonical_exact"
-      },
-      "capture": {
-        "date": "2011-01-05",
-        "month": 1,
-        "date_source": "exif",
-        "camera": {
-          "model": "EOS Kiss X5",
-          "lens": "EF-S18-55mm f/3.5-5.6 IS",
-          "iso": "1600",
-          "f": "f/5.6",
-          "exposure": "1/10",
-          "focal": "55mm"
-        }
-      },
-      "article": {
-        "article_path": "articles/article_68.html",
-        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398474349308",
-        "title": "2025年6月12日　静岡県掛川市",
-        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/06/14/200240",
-        "published": "2025-06-14T20:02:40+09:00",
-        "updated": "2025-06-14T20:02:40+09:00",
-        "categories": [
-          "キノコ探索日記",
-          "イボテングタケ",
-          "ハツタケ",
-          "チチアワタケ",
-          "ツルタケ",
-          "キリンタケ",
-          "ベニタケ"
-        ],
-        "excerpt": "散髪のついでに近辺の黒松の松並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。…"
-      },
-      "mushroom_master_id": "chichiawatake"
-    },
-    {
-      "observation_id": "obs-887f03b5a9edea79a5004ae083299784ed52bdd365eb9639c3c3944cde254fa4",
-      "production_index": 669,
-      "gallery_name": "チチアワタケ",
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250614/20250614194718.jpg",
-      "shadow_match_status": "exact_gallery_name",
-      "classification": {
-        "status": "confirmed_named_mushroom",
-        "subject_type": "mushroom",
-        "detected_label": "チチアワタケ",
-        "shadow_gallery_name": "チチアワタケ",
-        "classification_reason": "taxonomy_mushroom",
-        "classification_confidence": "high",
-        "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": "チチアワタケ",
-        "taxonomy_match_type": "canonical_exact"
-      },
-      "capture": {
-        "date": "2011-01-05",
-        "month": 1,
-        "date_source": "exif",
-        "camera": {
-          "model": "EOS Kiss X5",
-          "lens": "EF-S18-55mm f/3.5-5.6 IS",
-          "iso": "1600",
-          "f": "f/22.0",
-          "exposure": "1/1",
-          "focal": "41mm"
-        }
-      },
-      "article": {
-        "article_path": "articles/article_68.html",
-        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398474349308",
-        "title": "2025年6月12日　静岡県掛川市",
-        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/06/14/200240",
-        "published": "2025-06-14T20:02:40+09:00",
-        "updated": "2025-06-14T20:02:40+09:00",
-        "categories": [
-          "キノコ探索日記",
-          "イボテングタケ",
-          "ハツタケ",
-          "チチアワタケ",
-          "ツルタケ",
-          "キリンタケ",
-          "ベニタケ"
-        ],
-        "excerpt": "散髪のついでに近辺の黒松の松並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。…"
+        "excerpt": "散髪のついでに近辺の黒松の並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。 イ…"
       },
       "mushroom_master_id": "chichiawatake"
     },
     {
       "observation_id": "obs-3325e0e601b4e087a529da5436630afb5772b6e85358b235408bbba44f3af262",
-      "production_index": 670,
+      "production_index": 668,
       "gallery_name": "ヘビキノコモドキ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250614/20250614194857.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -46098,13 +45996,13 @@
           "キリンタケ",
           "ベニタケ"
         ],
-        "excerpt": "散髪のついでに近辺の黒松の松並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。…"
+        "excerpt": "散髪のついでに近辺の黒松の並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。 イ…"
       },
       "mushroom_master_id": "hebikinokomodoki"
     },
     {
       "observation_id": "obs-8874b5b35b20db5db9ccff48d0348ac35bec92f21b42f498e2a6cdc6fa1c5722",
-      "production_index": 671,
+      "production_index": 669,
       "gallery_name": "ヘビキノコモドキ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250614/20250614195211.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -46148,13 +46046,13 @@
           "キリンタケ",
           "ベニタケ"
         ],
-        "excerpt": "散髪のついでに近辺の黒松の松並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。…"
+        "excerpt": "散髪のついでに近辺の黒松の並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。 イ…"
       },
       "mushroom_master_id": "hebikinokomodoki"
     },
     {
       "observation_id": "obs-55ee3c30358eaa844bbcd250e90496d84dce97cf021c953eacca65f4a67fa0ad",
-      "production_index": 672,
+      "production_index": 670,
       "gallery_name": "ハツタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250614/20250614195321.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -46198,13 +46096,13 @@
           "キリンタケ",
           "ベニタケ"
         ],
-        "excerpt": "散髪のついでに近辺の黒松の松並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。…"
+        "excerpt": "散髪のついでに近辺の黒松の並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。 イ…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-5753922b387766dcba47cf35d90363223adadbfea10f2b5c5f676a34834539d3",
-      "production_index": 673,
+      "production_index": 671,
       "gallery_name": "ツルタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250614/20250614195755.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -46248,13 +46146,13 @@
           "キリンタケ",
           "ベニタケ"
         ],
-        "excerpt": "散髪のついでに近辺の黒松の松並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。…"
+        "excerpt": "散髪のついでに近辺の黒松の並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。 イ…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-7d1e51caec7ee7fede4ab9ec323593cd2b61833c7214c371501dec4be725c382",
-      "production_index": 674,
+      "production_index": 672,
       "gallery_name": "クロハツ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250604/20250604011334.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -46298,13 +46196,13 @@
           "クロハツ",
           "コショウイグチ"
         ],
-        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったので纏めて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生。この場所に群生していた 不明 朽木に発生。見た目はスギヒラタケに近いものを…"
+        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったのでまとめて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生していた。 不明 朽木に発生。見た目はスギヒラタケに近いものを感じるが根元…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-6323f588dbdeb03b6e7ff6c63a754fbdbb152ac59550c48da07e2d8bddf2ce9f",
-      "production_index": 675,
+      "production_index": 673,
       "gallery_name": "不明",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250604/20250604011444.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -46348,13 +46246,13 @@
           "クロハツ",
           "コショウイグチ"
         ],
-        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったので纏めて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生。この場所に群生していた 不明 朽木に発生。見た目はスギヒラタケに近いものを…"
+        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったのでまとめて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生していた。 不明 朽木に発生。見た目はスギヒラタケに近いものを感じるが根元…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-3865ca27cb2903fc7102003402aa4012a7dda2f3426ac35bc75805157d7443b7",
-      "production_index": 676,
+      "production_index": 674,
       "gallery_name": "不明",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250604/20250604011543.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -46398,13 +46296,13 @@
           "クロハツ",
           "コショウイグチ"
         ],
-        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったので纏めて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生。この場所に群生していた 不明 朽木に発生。見た目はスギヒラタケに近いものを…"
+        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったのでまとめて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生していた。 不明 朽木に発生。見た目はスギヒラタケに近いものを感じるが根元…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-73f035fc82d3bd616c410c0fdd86ca40156bae138e645db7cd4d28062185a9bb",
-      "production_index": 677,
+      "production_index": 675,
       "gallery_name": "オオキヌハダトマヤタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250604/20250604011808.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -46448,113 +46346,13 @@
           "クロハツ",
           "コショウイグチ"
         ],
-        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったので纏めて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生。この場所に群生していた 不明 朽木に発生。見た目はスギヒラタケに近いものを…"
-      },
-      "mushroom_master_id": null
-    },
-    {
-      "observation_id": "obs-05cf87c8e3b571ca1a37aacae910120d17c185a26db64c8ef2d92ebb8b151051",
-      "production_index": 678,
-      "gallery_name": "オオキヌハダトマヤタケ",
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250604/20250604011959.jpg",
-      "shadow_match_status": "exact_legacy_alt",
-      "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
-        "detected_label": "オオキヌハダトマヤタケ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
-        "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
-      },
-      "capture": {
-        "date": "2025-06-01",
-        "month": 6,
-        "date_source": "exif",
-        "camera": {
-          "model": "EOS Kiss X5",
-          "lens": "EF-S18-55mm f/3.5-5.6 IS",
-          "iso": "800",
-          "f": "f/5.6",
-          "exposure": "1/125",
-          "focal": "55mm"
-        }
-      },
-      "article": {
-        "article_path": "articles/article_70.html",
-        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398459984714",
-        "title": "5月下旬〜6月上旬　静岡県掛川市",
-        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/06/08/004256",
-        "published": "2025-06-08T00:42:56+09:00",
-        "updated": "2025-06-08T00:42:56+09:00",
-        "categories": [
-          "オオキヌハダトマヤタケ",
-          "ヒナノヒガサ",
-          "ヤナギマツタケ",
-          "不明種",
-          "キノコ探索日記",
-          "クロハツ",
-          "コショウイグチ"
-        ],
-        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったので纏めて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生。この場所に群生していた 不明 朽木に発生。見た目はスギヒラタケに近いものを…"
-      },
-      "mushroom_master_id": null
-    },
-    {
-      "observation_id": "obs-84c69e5665b1dce237aac9849e4b5dfcb90f8135c73cab81715a312f5c667fda",
-      "production_index": 679,
-      "gallery_name": "オオキヌハダトマヤタケ",
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250604/20250604012045.jpg",
-      "shadow_match_status": "exact_legacy_alt",
-      "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
-        "detected_label": "オオキヌハダトマヤタケ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
-        "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
-      },
-      "capture": {
-        "date": "2025-06-01",
-        "month": 6,
-        "date_source": "exif",
-        "camera": {
-          "model": "EOS Kiss X5",
-          "lens": "EF-S18-55mm f/3.5-5.6 IS",
-          "iso": "200",
-          "f": "f/5.6",
-          "exposure": "1/40",
-          "focal": "55mm"
-        }
-      },
-      "article": {
-        "article_path": "articles/article_70.html",
-        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398459984714",
-        "title": "5月下旬〜6月上旬　静岡県掛川市",
-        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/06/08/004256",
-        "published": "2025-06-08T00:42:56+09:00",
-        "updated": "2025-06-08T00:42:56+09:00",
-        "categories": [
-          "オオキヌハダトマヤタケ",
-          "ヒナノヒガサ",
-          "ヤナギマツタケ",
-          "不明種",
-          "キノコ探索日記",
-          "クロハツ",
-          "コショウイグチ"
-        ],
-        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったので纏めて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生。この場所に群生していた 不明 朽木に発生。見た目はスギヒラタケに近いものを…"
+        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったのでまとめて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生していた。 不明 朽木に発生。見た目はスギヒラタケに近いものを感じるが根元…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-cce46f71a161b8b930493b0ea14dc50b312702a7d7762a559f0b6b4ef33969c0",
-      "production_index": 680,
+      "production_index": 676,
       "gallery_name": "不明",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250604/20250604012143.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -46598,13 +46396,13 @@
           "クロハツ",
           "コショウイグチ"
         ],
-        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったので纏めて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生。この場所に群生していた 不明 朽木に発生。見た目はスギヒラタケに近いものを…"
+        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったのでまとめて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生していた。 不明 朽木に発生。見た目はスギヒラタケに近いものを感じるが根元…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-48b3a7588f9367ff1ea248eb14abc76ea64b98e606b59107611b622f44fa7eb0",
-      "production_index": 681,
+      "production_index": 677,
       "gallery_name": "コショウイグチ？",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250604/20250604012333.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -46648,63 +46446,13 @@
           "クロハツ",
           "コショウイグチ"
         ],
-        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったので纏めて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生。この場所に群生していた 不明 朽木に発生。見た目はスギヒラタケに近いものを…"
-      },
-      "mushroom_master_id": null
-    },
-    {
-      "observation_id": "obs-759fe90f20d0ad34559fefd7b9904a28eec08a536332f108d02f3de719ba6a18",
-      "production_index": 682,
-      "gallery_name": "コショウイグチ？",
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250608/20250608001018.jpg",
-      "shadow_match_status": "exact_legacy_alt",
-      "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
-        "detected_label": "コショウイグチ？",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
-        "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
-      },
-      "capture": {
-        "date": "2011-01-01",
-        "month": 1,
-        "date_source": "exif",
-        "camera": {
-          "model": "EOS Kiss X5",
-          "lens": "EF-S18-55mm f/3.5-5.6 IS",
-          "iso": "400",
-          "f": "f/5.6",
-          "exposure": "1/80",
-          "focal": "50mm"
-        }
-      },
-      "article": {
-        "article_path": "articles/article_70.html",
-        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398459984714",
-        "title": "5月下旬〜6月上旬　静岡県掛川市",
-        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/06/08/004256",
-        "published": "2025-06-08T00:42:56+09:00",
-        "updated": "2025-06-08T00:42:56+09:00",
-        "categories": [
-          "オオキヌハダトマヤタケ",
-          "ヒナノヒガサ",
-          "ヤナギマツタケ",
-          "不明種",
-          "キノコ探索日記",
-          "クロハツ",
-          "コショウイグチ"
-        ],
-        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったので纏めて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生。この場所に群生していた 不明 朽木に発生。見た目はスギヒラタケに近いものを…"
+        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったのでまとめて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生していた。 不明 朽木に発生。見た目はスギヒラタケに近いものを感じるが根元…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-7b6bff701094488bf1a6c92210faaebc43582f7adee5a1dc03b2b60226f24203",
-      "production_index": 683,
+      "production_index": 678,
       "gallery_name": "ヒナノヒガサ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250608/20250608000420.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -46748,13 +46496,13 @@
           "クロハツ",
           "コショウイグチ"
         ],
-        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったので纏めて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生。この場所に群生していた 不明 朽木に発生。見た目はスギヒラタケに近いものを…"
+        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったのでまとめて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生していた。 不明 朽木に発生。見た目はスギヒラタケに近いものを感じるが根元…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-936d9ce6cbffefed1c1a76917b6008dfecf16402c16712859f44f67229844196",
-      "production_index": 684,
+      "production_index": 679,
       "gallery_name": "ニセショウロ？",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250608/20250608001205.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -46798,13 +46546,13 @@
           "クロハツ",
           "コショウイグチ"
         ],
-        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったので纏めて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生。この場所に群生していた 不明 朽木に発生。見た目はスギヒラタケに近いものを…"
+        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったのでまとめて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生していた。 不明 朽木に発生。見た目はスギヒラタケに近いものを感じるが根元…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-75b45776a01eaa906badbaf170f43b69b8465c5ff2be44fba9012f784c444d7c",
-      "production_index": 685,
+      "production_index": 680,
       "gallery_name": "不明",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250608/20250608001353.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -46848,13 +46596,13 @@
           "クロハツ",
           "コショウイグチ"
         ],
-        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったので纏めて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生。この場所に群生していた 不明 朽木に発生。見た目はスギヒラタケに近いものを…"
+        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったのでまとめて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生していた。 不明 朽木に発生。見た目はスギヒラタケに近いものを感じるが根元…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-2e0d01b54f2c57af009f24de63de65a1f89e2377fa0ab38d0ad2223d169c410a",
-      "production_index": 686,
+      "production_index": 681,
       "gallery_name": "不明",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250608/20250608001839.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -46898,13 +46646,13 @@
           "クロハツ",
           "コショウイグチ"
         ],
-        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったので纏めて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生。この場所に群生していた 不明 朽木に発生。見た目はスギヒラタケに近いものを…"
+        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったのでまとめて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生していた。 不明 朽木に発生。見た目はスギヒラタケに近いものを感じるが根元…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-0ba9398f5079674e57ec260f6c7f1afd6cb7080a8d91036bf0971399f35bfd5b",
-      "production_index": 687,
+      "production_index": 682,
       "gallery_name": "ヤナギマツタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250608/20250608002035.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -46948,13 +46696,13 @@
           "クロハツ",
           "コショウイグチ"
         ],
-        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったので纏めて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生。この場所に群生していた 不明 朽木に発生。見た目はスギヒラタケに近いものを…"
+        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったのでまとめて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生していた。 不明 朽木に発生。見た目はスギヒラタケに近いものを感じるが根元…"
       },
       "mushroom_master_id": "yanagimatsutake"
     },
     {
       "observation_id": "obs-5298cd6aec9f5999ff85ac598d74240bbcaa8a34465308e7905bef6030215aa1",
-      "production_index": 688,
+      "production_index": 683,
       "gallery_name": "ヤナギマツタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250608/20250608002745.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -46998,13 +46746,13 @@
           "クロハツ",
           "コショウイグチ"
         ],
-        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったので纏めて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生。この場所に群生していた 不明 朽木に発生。見た目はスギヒラタケに近いものを…"
+        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったのでまとめて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生していた。 不明 朽木に発生。見た目はスギヒラタケに近いものを感じるが根元…"
       },
       "mushroom_master_id": "yanagimatsutake"
     },
     {
       "observation_id": "obs-9c3a6d2e4ab03b76ebf790b8e039295ea32813ea842377021d8cb256f3a76d86",
-      "production_index": 689,
+      "production_index": 684,
       "gallery_name": "ヤナギマツタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250608/20250608003213.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -47048,13 +46796,13 @@
           "クロハツ",
           "コショウイグチ"
         ],
-        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったので纏めて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生。この場所に群生していた 不明 朽木に発生。見た目はスギヒラタケに近いものを…"
+        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったのでまとめて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生していた。 不明 朽木に発生。見た目はスギヒラタケに近いものを感じるが根元…"
       },
       "mushroom_master_id": "yanagimatsutake"
     },
     {
       "observation_id": "obs-db8914fd42e16b4f1da5200904bd123557ac060755ed63ed5d91b87abde52deb",
-      "production_index": 690,
+      "production_index": 685,
       "gallery_name": "ベニタケの仲間",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250608/20250608003438.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -47098,13 +46846,13 @@
           "クロハツ",
           "コショウイグチ"
         ],
-        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったので纏めて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生。この場所に群生していた 不明 朽木に発生。見た目はスギヒラタケに近いものを…"
+        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったのでまとめて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生していた。 不明 朽木に発生。見た目はスギヒラタケに近いものを感じるが根元…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-4e280482ac190be1b55c075f8af21990fec3cfd7edd0694e8df3fa4b57e20012",
-      "production_index": 691,
+      "production_index": 686,
       "gallery_name": "ベニタケの仲間",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250608/20250608003708.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -47148,141 +46896,13 @@
           "クロハツ",
           "コショウイグチ"
         ],
-        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったので纏めて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生。この場所に群生していた 不明 朽木に発生。見た目はスギヒラタケに近いものを…"
-      },
-      "mushroom_master_id": null
-    },
-    {
-      "observation_id": "obs-582de9ec495d3956c2cd10dff591382cd05e387fb857fcb2cd5957e76622c580",
-      "production_index": 692,
-      "gallery_name": "不明",
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525170432.jpg",
-      "shadow_match_status": "exact_legacy_alt",
-      "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
-        "detected_label": "不明",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
-        "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
-      },
-      "capture": {
-        "date": "2025-05-24",
-        "month": 5,
-        "date_source": "exif",
-        "camera": {
-          "model": "EOS Kiss X5",
-          "lens": "EF-S18-55mm f/3.5-5.6 IS",
-          "iso": "800",
-          "f": "f/32.0",
-          "exposure": "1/10",
-          "focal": "55mm"
-        }
-      },
-      "article": {
-        "article_path": "articles/article_71.html",
-        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398444758929",
-        "title": "2025年5月24日　富士山(静岡県)",
-        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/05/25/205946",
-        "published": "2025-05-25T20:59:46+09:00",
-        "updated": "2025-05-25T20:59:46+09:00",
-        "categories": [
-          "不明種",
-          "コツブオオワライタケ",
-          "フサヒメホウキタケ",
-          "キララタケ",
-          "キツネナミハタケ",
-          "ムササビタケ",
-          "アミヒラタケ",
-          "コガネヌメリタケ",
-          "ウラベニガサ",
-          "ブナノシロハツ(仮称)",
-          "ハゴロモイタチタケ",
-          "ヒロメノトガリアミガサタケ",
-          "キイロスッポンタケ",
-          "ナラタケ",
-          "フジイロチャワンタケモドキ",
-          "キノハダアシグロタケ(仮称)",
-          "キノコ探索日記",
-          "エノキタケ",
-          "カワキタケ",
-          "アクニオイタケ",
-          "ギンリョウソウ"
-        ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
-      },
-      "mushroom_master_id": null
-    },
-    {
-      "observation_id": "obs-9b8bbfd51ba80a6d2ce8611c93964043ee8b3d51a6ea2cf427d6389ced4aa9c3",
-      "production_index": 693,
-      "gallery_name": "不明",
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525170409.jpg",
-      "shadow_match_status": "exact_legacy_alt",
-      "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
-        "detected_label": "不明",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
-        "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
-      },
-      "capture": {
-        "date": "2025-05-24",
-        "month": 5,
-        "date_source": "exif",
-        "camera": {
-          "model": "EOS Kiss X5",
-          "lens": "EF-S18-55mm f/3.5-5.6 IS",
-          "iso": "800",
-          "f": "f/5.6",
-          "exposure": "1/100",
-          "focal": "35mm"
-        }
-      },
-      "article": {
-        "article_path": "articles/article_71.html",
-        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398444758929",
-        "title": "2025年5月24日　富士山(静岡県)",
-        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/05/25/205946",
-        "published": "2025-05-25T20:59:46+09:00",
-        "updated": "2025-05-25T20:59:46+09:00",
-        "categories": [
-          "不明種",
-          "コツブオオワライタケ",
-          "フサヒメホウキタケ",
-          "キララタケ",
-          "キツネナミハタケ",
-          "ムササビタケ",
-          "アミヒラタケ",
-          "コガネヌメリタケ",
-          "ウラベニガサ",
-          "ブナノシロハツ(仮称)",
-          "ハゴロモイタチタケ",
-          "ヒロメノトガリアミガサタケ",
-          "キイロスッポンタケ",
-          "ナラタケ",
-          "フジイロチャワンタケモドキ",
-          "キノハダアシグロタケ(仮称)",
-          "キノコ探索日記",
-          "エノキタケ",
-          "カワキタケ",
-          "アクニオイタケ",
-          "ギンリョウソウ"
-        ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったのでまとめて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生していた。 不明 朽木に発生。見た目はスギヒラタケに近いものを感じるが根元…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-19db15a2ee18953cd3af0e10d103d5e95666da24cc77eb513aa5b16d62e736fa",
-      "production_index": 694,
+      "production_index": 687,
       "gallery_name": "コツブオオワライタケ(仮称)",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525170517.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -47340,13 +46960,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-ef8264b79eaec38e349fb15274283dcc21698b7dae79edf9ff8bc42542ea074b",
-      "production_index": 695,
+      "production_index": 688,
       "gallery_name": "不明",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525170615.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -47404,13 +47024,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-756cd1225a7846af1eb79a773059672db62b45ef0f627077674ca43a8b4587d4",
-      "production_index": 696,
+      "production_index": 689,
       "gallery_name": "フサヒメホウキタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525170716.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -47468,13 +47088,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-45b839d64736b66ac8ba51b1827a950046a27261563ca42d6c55165c2a96734b",
-      "production_index": 697,
+      "production_index": 690,
       "gallery_name": "キララタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525170747.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -47532,77 +47152,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
-      },
-      "mushroom_master_id": null
-    },
-    {
-      "observation_id": "obs-e0a7bfe70f1160daf0ea299e7a18570f1ba38b366d16c15f9c75386e6fe7e312",
-      "production_index": 698,
-      "gallery_name": "キツネナミハタケ",
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525170826.jpg",
-      "shadow_match_status": "exact_legacy_alt",
-      "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
-        "detected_label": "キツネナミハタケ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
-        "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
-      },
-      "capture": {
-        "date": "2025-05-24",
-        "month": 5,
-        "date_source": "exif",
-        "camera": {
-          "model": "EOS Kiss X5",
-          "lens": "EF-S18-55mm f/3.5-5.6 IS",
-          "iso": "800",
-          "f": "f/10.0",
-          "exposure": "1/60",
-          "focal": "47mm"
-        }
-      },
-      "article": {
-        "article_path": "articles/article_71.html",
-        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398444758929",
-        "title": "2025年5月24日　富士山(静岡県)",
-        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/05/25/205946",
-        "published": "2025-05-25T20:59:46+09:00",
-        "updated": "2025-05-25T20:59:46+09:00",
-        "categories": [
-          "不明種",
-          "コツブオオワライタケ",
-          "フサヒメホウキタケ",
-          "キララタケ",
-          "キツネナミハタケ",
-          "ムササビタケ",
-          "アミヒラタケ",
-          "コガネヌメリタケ",
-          "ウラベニガサ",
-          "ブナノシロハツ(仮称)",
-          "ハゴロモイタチタケ",
-          "ヒロメノトガリアミガサタケ",
-          "キイロスッポンタケ",
-          "ナラタケ",
-          "フジイロチャワンタケモドキ",
-          "キノハダアシグロタケ(仮称)",
-          "キノコ探索日記",
-          "エノキタケ",
-          "カワキタケ",
-          "アクニオイタケ",
-          "ギンリョウソウ"
-        ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-75e57b885ee391987189c47ce1bfecbd71c075bd34b03fb4c8b0f27ca6148cda",
-      "production_index": 699,
+      "production_index": 691,
       "gallery_name": "キツネナミハタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525182621.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -47660,13 +47216,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-6b16498308b6f6e5e0990ffae2bf4b5b17c6ab98c63c8a4a9994cf6ad940daf2",
-      "production_index": 700,
+      "production_index": 692,
       "gallery_name": "ムササビタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525182657.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -47724,13 +47280,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-481909ad50f28b5826e2c2e39bc88ea0691c6697b486eca0621bafed6c2c6372",
-      "production_index": 701,
+      "production_index": 693,
       "gallery_name": "アミヒラタケ？",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525182825.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -47788,77 +47344,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
-      },
-      "mushroom_master_id": null
-    },
-    {
-      "observation_id": "obs-2f12b4bde7b0766d8aac0bdf173031f8a14d20b0574d030c17e118585587e903",
-      "production_index": 702,
-      "gallery_name": "アミヒラタケ？",
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525182902.jpg",
-      "shadow_match_status": "exact_legacy_alt",
-      "classification": {
-        "status": "manual_review_name_conflict",
-        "subject_type": "mushroom",
-        "detected_label": "タマチョレイタケ",
-        "shadow_gallery_name": "タマチョレイタケ",
-        "classification_reason": "taxonomy_mushroom",
-        "classification_confidence": "high",
-        "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": "タマチョレイタケ",
-        "taxonomy_match_type": "canonical_exact"
-      },
-      "capture": {
-        "date": "2025-05-24",
-        "month": 5,
-        "date_source": "exif",
-        "camera": {
-          "model": "EOS Kiss X5",
-          "lens": "EF-S18-55mm f/3.5-5.6 IS",
-          "iso": "800",
-          "f": "f/5.0",
-          "exposure": "1/250",
-          "focal": "43mm"
-        }
-      },
-      "article": {
-        "article_path": "articles/article_71.html",
-        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398444758929",
-        "title": "2025年5月24日　富士山(静岡県)",
-        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/05/25/205946",
-        "published": "2025-05-25T20:59:46+09:00",
-        "updated": "2025-05-25T20:59:46+09:00",
-        "categories": [
-          "不明種",
-          "コツブオオワライタケ",
-          "フサヒメホウキタケ",
-          "キララタケ",
-          "キツネナミハタケ",
-          "ムササビタケ",
-          "アミヒラタケ",
-          "コガネヌメリタケ",
-          "ウラベニガサ",
-          "ブナノシロハツ(仮称)",
-          "ハゴロモイタチタケ",
-          "ヒロメノトガリアミガサタケ",
-          "キイロスッポンタケ",
-          "ナラタケ",
-          "フジイロチャワンタケモドキ",
-          "キノハダアシグロタケ(仮称)",
-          "キノコ探索日記",
-          "エノキタケ",
-          "カワキタケ",
-          "アクニオイタケ",
-          "ギンリョウソウ"
-        ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-dc64bc07677cc07db20e8d657b40eef879616eb96c1a4bf705e0e623323b266f",
-      "production_index": 703,
+      "production_index": 694,
       "gallery_name": "コガネヌメリタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525182935.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -47916,13 +47408,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-ea1762e44468d480a3db1a984efbcae0aadb6c75fbf2fe9aceb1a8fec8071083",
-      "production_index": 704,
+      "production_index": 695,
       "gallery_name": "エノキタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525190217.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -47980,13 +47472,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "enokitake"
     },
     {
       "observation_id": "obs-0e82c5e7a394d8bd883f746986ad2d4b751b2e6b566e2b40c5c9faafc5bb1439",
-      "production_index": 705,
+      "production_index": 696,
       "gallery_name": "ナラタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525190338.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -48044,13 +47536,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-23f5a7bc7e35a5eb8d1129aae9b1a7da932fe914efc4c4f6d3a432482fff59d5",
-      "production_index": 706,
+      "production_index": 697,
       "gallery_name": "フジイロチャワンタケモドキ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525192041.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -48108,13 +47600,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-81cdce709cd9e49b5c46be3c41bf7442f406af5e5c62082d3dd2771f336ce06c",
-      "production_index": 707,
+      "production_index": 698,
       "gallery_name": "ウラベニガサ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525192107.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -48172,13 +47664,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "urabenigasa"
     },
     {
       "observation_id": "obs-92e024c1fce1273e9dbb0ea68e5ddc60b9ed06f04352a222c93a3b9aa06f5327",
-      "production_index": 708,
+      "production_index": 699,
       "gallery_name": "ブナノシロハツ(仮称)",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525192141.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -48236,13 +47728,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-57b1b5d5df92399cb8bf29810c950dc02cd2a0faa40aa6a7fd6c245671f987fe",
-      "production_index": 709,
+      "production_index": 700,
       "gallery_name": "ブナノシロハツ(仮称)",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525192212.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -48300,13 +47792,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-cd47bb6cb4cd519c0568a19fb2b54d4bc5e9da1cc65c2398a018ac6573097b0c",
-      "production_index": 710,
+      "production_index": 701,
       "gallery_name": "ハゴロモイタチタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525192259.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -48364,13 +47856,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-22a834b7b84c16de86e722ee92bc2dae87d74ead599f0922ce048ac07fc26175",
-      "production_index": 711,
+      "production_index": 702,
       "gallery_name": "ヒロメノトガリアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525192856.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -48428,13 +47920,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "hiromenotogariamigasatake"
     },
     {
       "observation_id": "obs-24619fe17590277d050bdabb41ae9265d2e18194fbb3294ea4fde4844947e554",
-      "production_index": 712,
+      "production_index": 703,
       "gallery_name": "ヒロメノトガリアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525192931.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -48492,13 +47984,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "hiromenotogariamigasatake"
     },
     {
       "observation_id": "obs-a351ffec8a53533ea2e42d1be69f332fad6b8db919114eb7ebadf8a3a03ddd15",
-      "production_index": 713,
+      "production_index": 704,
       "gallery_name": "ヒロメノトガリアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525193025.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -48556,13 +48048,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "hiromenotogariamigasatake"
     },
     {
       "observation_id": "obs-a88848cf377a7e3c71a9e81fc26211ca836dae08f7a4839e5748db28e919d1f5",
-      "production_index": 714,
+      "production_index": 705,
       "gallery_name": "ヒロメノトガリアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525193107.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -48620,13 +48112,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "hiromenotogariamigasatake"
     },
     {
       "observation_id": "obs-08a765a6ac0f31bbf31808bc5615cc79028751b1648e54ffdc5cf57fb0ceeb41",
-      "production_index": 715,
+      "production_index": 706,
       "gallery_name": "ヒロメノトガリアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525193522.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -48684,13 +48176,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "hiromenotogariamigasatake"
     },
     {
       "observation_id": "obs-2589bb7b25670e581ef615ee053946199d09a698424f7283fa0a51f33ec9d9b8",
-      "production_index": 716,
+      "production_index": 707,
       "gallery_name": "ヒロメノトガリアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525193625.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -48748,13 +48240,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "hiromenotogariamigasatake"
     },
     {
       "observation_id": "obs-d47c517be1cc20e816102b75e4f0c8bfea3ce9c7b2eb41b0fc7944752f9c36f2",
-      "production_index": 717,
+      "production_index": 708,
       "gallery_name": "ヒロメノトガリアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525193710.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -48812,13 +48304,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "hiromenotogariamigasatake"
     },
     {
       "observation_id": "obs-53423d4d3ad241e2e578fcaaf335b7927b2fe9ede543707630d21b5acde78dcd",
-      "production_index": 718,
+      "production_index": 709,
       "gallery_name": "ヒロメノトガリアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525193754.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -48876,13 +48368,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "hiromenotogariamigasatake"
     },
     {
       "observation_id": "obs-7dab7da394ebc375d89ada011fc300dfe8ac125f0aa59691ce3352047c53bece",
-      "production_index": 719,
+      "production_index": 710,
       "gallery_name": "ヒロメノトガリアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525193829.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -48940,13 +48432,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "hiromenotogariamigasatake"
     },
     {
       "observation_id": "obs-11e55d6c54d844e1bf9b490edb87318a06a252106fbd7e998af57a60223d1bee",
-      "production_index": 720,
+      "production_index": 711,
       "gallery_name": "ヒロメノトガリアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525193911.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -49004,13 +48496,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "hiromenotogariamigasatake"
     },
     {
       "observation_id": "obs-2da7dccb4a7a3d4ddaff5ecd2685a0478c8d3f53f3abe6a26b02cbd00baa7bb7",
-      "production_index": 721,
+      "production_index": 712,
       "gallery_name": "ヒロメノトガリアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525194025.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -49068,13 +48560,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "hiromenotogariamigasatake"
     },
     {
       "observation_id": "obs-72bcf3ff66ee099748c4b9152351be7a42db20a6d8724fd045a00d5be5ff4676",
-      "production_index": 722,
+      "production_index": 713,
       "gallery_name": "不明",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525194525.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -49132,13 +48624,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-d6c2db5941aa547c35a59ae8d4993102944e4ebc9a6bbf8c39212e16630581bd",
-      "production_index": 723,
+      "production_index": 714,
       "gallery_name": "キイロスッポンタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525194355.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -49196,13 +48688,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "kiirosuppontake"
     },
     {
       "observation_id": "obs-8b3982d0e7671dc9db7cdb945eaa20fa09e53391483a4c8a2e253a0cfb23a189",
-      "production_index": 724,
+      "production_index": 715,
       "gallery_name": "キイロスッポンタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525195222.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -49260,13 +48752,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "kiirosuppontake"
     },
     {
       "observation_id": "obs-50e871697b283aa5be603fd05f8e5265533c6512a835d77d684d6100c5e3c525",
-      "production_index": 725,
+      "production_index": 716,
       "gallery_name": "キイロスッポンタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525195533.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -49324,13 +48816,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "kiirosuppontake"
     },
     {
       "observation_id": "obs-07358c80651df2a6c23bc385b42a2fc624546ad70ea6e15dc1454373d36a9dc4",
-      "production_index": 726,
+      "production_index": 717,
       "gallery_name": "キイロスッポンタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525195643.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -49388,13 +48880,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "kiirosuppontake"
     },
     {
       "observation_id": "obs-f97b5f69bb74c5b20e8e193f638700947100cb8bf5fa293df9a0387500fdcc82",
-      "production_index": 727,
+      "production_index": 718,
       "gallery_name": "キイロスッポンタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525195850.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -49452,13 +48944,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "kiirosuppontake"
     },
     {
       "observation_id": "obs-d17ec53b8ea22ba11cba8cb54ed5f00ce6000cd54aede09bb17046c9c0109990",
-      "production_index": 728,
+      "production_index": 719,
       "gallery_name": "アクニオイタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525200503.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -49516,13 +49008,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-aae4e7d2a597e5abbd0e5c11aced73da2a975c3095cec792d174c7fb51f6021d",
-      "production_index": 729,
+      "production_index": 720,
       "gallery_name": "ハゴロモイタチタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525200816.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -49580,13 +49072,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-c0854e26a46ab890aed27f092001ac98a006264a24a5b5fc321a2270000cbf5e",
-      "production_index": 730,
+      "production_index": 721,
       "gallery_name": "カワキタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525201005.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -49644,13 +49136,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-b1b838b490a66fa642f9b180b5b7ade6cb431afaa0fbf1e959d9e11dfd3b5a22",
-      "production_index": 731,
+      "production_index": 722,
       "gallery_name": "キノハダアシグロタケ(仮称)",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525201326.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -49708,13 +49200,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": null
     },
     {
       "observation_id": "obs-91b3a02521637267fbcd2eeaa07b84f7ad5c2623f2157c5af7fd0b5b40514493",
-      "production_index": 732,
+      "production_index": 723,
       "gallery_name": "キイロスッポンタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525201938.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -49772,13 +49264,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "kiirosuppontake"
     },
     {
       "observation_id": "obs-23827913020d65253696c6d3a19c8fbcb5559e9c5ad4f88bc0babf0e3e15305e",
-      "production_index": 733,
+      "production_index": 724,
       "gallery_name": "キイロスッポンタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525202426.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -49836,13 +49328,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "kiirosuppontake"
     },
     {
       "observation_id": "obs-bfe60f7e4330d89a52d6327d861dafc7f8685ab62ad52048be441e9f07c7b121",
-      "production_index": 734,
+      "production_index": 725,
       "gallery_name": "キイロスッポンタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525202609.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -49900,13 +49392,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "kiirosuppontake"
     },
     {
       "observation_id": "obs-f045d579e7317fae92548958cf7bf23fa7601ea7d0ecaa1cd488387b642b390c",
-      "production_index": 735,
+      "production_index": 726,
       "gallery_name": "ヒロメノトガリアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525203129.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -49964,13 +49456,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "hiromenotogariamigasatake"
     },
     {
       "observation_id": "obs-033cdb9f4a637ae8e699966d00615cc0ca371e322678cf944b7a3c992ff78aa3",
-      "production_index": 736,
+      "production_index": 727,
       "gallery_name": "ヒロメノトガリアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525203442.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -50028,13 +49520,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "hiromenotogariamigasatake"
     },
     {
       "observation_id": "obs-555507b8970a80dd2d1b40baba6951950c1c0ebf66740d22e143f08daa2d2beb",
-      "production_index": 737,
+      "production_index": 728,
       "gallery_name": "ヒロメノトガリアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525203733.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -50092,13 +49584,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "hiromenotogariamigasatake"
     },
     {
       "observation_id": "obs-7ad204f42e61d9605e91e727d7dfc61820022890c09554a2b0d3f439b13bd70d",
-      "production_index": 738,
+      "production_index": 729,
       "gallery_name": "ヒロメノトガリアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525204009.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -50156,13 +49648,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "hiromenotogariamigasatake"
     },
     {
       "observation_id": "obs-19333b794e128eaecb149283cddb698b72d8f7f460426cc9790d0171ea747b4b",
-      "production_index": 739,
+      "production_index": 730,
       "gallery_name": "ヒロメノトガリアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525204223.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -50220,77 +49712,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
-      },
-      "mushroom_master_id": "hiromenotogariamigasatake"
-    },
-    {
-      "observation_id": "obs-d86926a5f3a5145f01ed94460c21f2750af7e4305f32dc00553a27d2c5f8494f",
-      "production_index": 740,
-      "gallery_name": "ヒロメノトガリアミガサタケ",
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525204325.jpg",
-      "shadow_match_status": "exact_gallery_name",
-      "classification": {
-        "status": "confirmed_named_mushroom",
-        "subject_type": "mushroom",
-        "detected_label": "ヒロメノトガリアミガサタケ",
-        "shadow_gallery_name": "ヒロメノトガリアミガサタケ",
-        "classification_reason": "taxonomy_mushroom",
-        "classification_confidence": "high",
-        "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": "ヒロメノトガリアミガサタケ",
-        "taxonomy_match_type": "canonical_exact"
-      },
-      "capture": {
-        "date": "2025-05-24",
-        "month": 5,
-        "date_source": "exif",
-        "camera": {
-          "model": "EOS Kiss X5",
-          "lens": "EF-S18-55mm f/3.5-5.6 IS",
-          "iso": "800",
-          "f": "f/3.5",
-          "exposure": "1/30",
-          "focal": "18mm"
-        }
-      },
-      "article": {
-        "article_path": "articles/article_71.html",
-        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398444758929",
-        "title": "2025年5月24日　富士山(静岡県)",
-        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/05/25/205946",
-        "published": "2025-05-25T20:59:46+09:00",
-        "updated": "2025-05-25T20:59:46+09:00",
-        "categories": [
-          "不明種",
-          "コツブオオワライタケ",
-          "フサヒメホウキタケ",
-          "キララタケ",
-          "キツネナミハタケ",
-          "ムササビタケ",
-          "アミヒラタケ",
-          "コガネヌメリタケ",
-          "ウラベニガサ",
-          "ブナノシロハツ(仮称)",
-          "ハゴロモイタチタケ",
-          "ヒロメノトガリアミガサタケ",
-          "キイロスッポンタケ",
-          "ナラタケ",
-          "フジイロチャワンタケモドキ",
-          "キノハダアシグロタケ(仮称)",
-          "キノコ探索日記",
-          "エノキタケ",
-          "カワキタケ",
-          "アクニオイタケ",
-          "ギンリョウソウ"
-        ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "hiromenotogariamigasatake"
     },
     {
       "observation_id": "obs-d16160995969f603ac8665c2cd52ca3219124061fe9d58d886039ab46197f4f4",
-      "production_index": 741,
+      "production_index": 731,
       "gallery_name": "ヒロメノトガリアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525204445.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -50348,13 +49776,13 @@
           "アクニオイタケ",
           "ギンリョウソウ"
         ],
-        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 不明 この日かなり多く見つかったキノコ。ヒメスギタケに似ているが誰も分からなかった。 不明 参加者全員が集まり、歩き始めてすぐのモミ林の倒木に発生。アシナガタケに似ている。 コツブオオワライ…"
+        "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
       "mushroom_master_id": "hiromenotogariamigasatake"
     },
     {
       "observation_id": "obs-9a2aede66b1801c0de5a5f401e5917daa3550324cd30cf39d449e8e7fe618ef1",
-      "production_index": 742,
+      "production_index": 732,
       "gallery_name": "アミスギタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521210126.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -50403,7 +49831,7 @@
     },
     {
       "observation_id": "obs-43f5e6cbf0675f5abbb7da02fb44ae75da68801a5d87a34d23ba9b49818c2559",
-      "production_index": 743,
+      "production_index": 733,
       "gallery_name": "アミタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521210647.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -50452,7 +49880,7 @@
     },
     {
       "observation_id": "obs-afd3c5fedcbb6f6ab4432d7d56f98995b41961560cd4d4514c1fc392ec6b1724",
-      "production_index": 744,
+      "production_index": 734,
       "gallery_name": "ニオイコベニタケ似のベニタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521211137.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -50501,7 +49929,7 @@
     },
     {
       "observation_id": "obs-1486f8b359c9c22bad12ac27152e8e3e4abe182c5f3158759d6bdacba4da07ee",
-      "production_index": 745,
+      "production_index": 735,
       "gallery_name": "チチアワタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521211358.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -50550,7 +49978,7 @@
     },
     {
       "observation_id": "obs-bd16dfbf687e57ff4baf0081af10b63191169115eb9af15cc4f629f33b4b0860",
-      "production_index": 746,
+      "production_index": 736,
       "gallery_name": "マツオウジ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521211934.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -50599,7 +50027,7 @@
     },
     {
       "observation_id": "obs-b76d4f957f488e01ecf04df1e2ec52a2c934849af2c0bc350a45268d1240284a",
-      "production_index": 747,
+      "production_index": 737,
       "gallery_name": "キクラゲ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521180207.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -50654,7 +50082,7 @@
     },
     {
       "observation_id": "obs-fb00877cdc57bd99a89d090983a2fc4916e4d5725c64cbe3b50463bbf752d411",
-      "production_index": 748,
+      "production_index": 738,
       "gallery_name": "不明ベニタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521180554.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -50709,7 +50137,7 @@
     },
     {
       "observation_id": "obs-96251b2b7cb9a6ec52520c8fcff94daad2a409125240948648dfb53a1f843c95",
-      "production_index": 749,
+      "production_index": 739,
       "gallery_name": "不明ベニタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521180740.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -50764,7 +50192,7 @@
     },
     {
       "observation_id": "obs-81f1ca2146a10fb4a012d868d9d7e70eee2a2ba7123577185da73304c169c7f7",
-      "production_index": 750,
+      "production_index": 740,
       "gallery_name": "不明ベニタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521180845.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -50819,7 +50247,7 @@
     },
     {
       "observation_id": "obs-7aadeb03e86360498293db31b4f042810070972030bf449580fb2b1c997bfbcf",
-      "production_index": 751,
+      "production_index": 741,
       "gallery_name": "不明",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521181023.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -50874,7 +50302,7 @@
     },
     {
       "observation_id": "obs-e69dea18f57a2898bc782dc39208505d272b931c8648504c0813af29a60173c1",
-      "production_index": 752,
+      "production_index": 742,
       "gallery_name": "不明",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521181153.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -50929,7 +50357,7 @@
     },
     {
       "observation_id": "obs-366a00ceb8cbf8d895ede72bd0ea98a70c42100cbe3f16868dbdd4564c78a1e1",
-      "production_index": 753,
+      "production_index": 743,
       "gallery_name": "不明",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521181313.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -50984,7 +50412,7 @@
     },
     {
       "observation_id": "obs-a7c9e61142d96724f7c656fea0fdc8a03c444180bfa249b250cf2e602b3cb435",
-      "production_index": 754,
+      "production_index": 744,
       "gallery_name": "クサハツの仲間？",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521181410.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -51039,7 +50467,7 @@
     },
     {
       "observation_id": "obs-101bbf4e6a870ca559224d315f1dc50bdddc280dc4e0f6b4cf29d03f08c768f6",
-      "production_index": 755,
+      "production_index": 745,
       "gallery_name": "ヒナノヒガサ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521181539.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -51094,7 +50522,7 @@
     },
     {
       "observation_id": "obs-18c011d93f338ffdb7e2d72ddff8225ee755779416efcd97f3f26e96e0262570",
-      "production_index": 756,
+      "production_index": 746,
       "gallery_name": "コツブタケ？",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521181751.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -51149,7 +50577,7 @@
     },
     {
       "observation_id": "obs-493d0c2cc4a9e2124a09e20a22a6be906d8b872f18761c593d8e046732a666f8",
-      "production_index": 757,
+      "production_index": 747,
       "gallery_name": "ツルタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521181923.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -51204,7 +50632,7 @@
     },
     {
       "observation_id": "obs-eb2922e3d8276ccc679b33d87a50bbf4163c94c853e61a162841dbc5d252dc4c",
-      "production_index": 758,
+      "production_index": 748,
       "gallery_name": "ツルタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521182714.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -51259,7 +50687,7 @@
     },
     {
       "observation_id": "obs-26eeeb95ee3f4f94d7990f8b07addc0f1ae1c81a695c950dcf3c5412f530facd",
-      "production_index": 759,
+      "production_index": 749,
       "gallery_name": "ヘビキノコモドキ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521182808.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -51314,7 +50742,7 @@
     },
     {
       "observation_id": "obs-95a8a4005036985573157a7021e9505052abddd3989f15c7d0041c4cd11b6514",
-      "production_index": 760,
+      "production_index": 750,
       "gallery_name": "不明ベニタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521183143.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -51369,7 +50797,7 @@
     },
     {
       "observation_id": "obs-cedaa5c8d813823dc86f63a10b8eb3484f1c94ea1fae1d1464a4888c254b765a",
-      "production_index": 761,
+      "production_index": 751,
       "gallery_name": "不明ベニタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521183330.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -51424,7 +50852,7 @@
     },
     {
       "observation_id": "obs-b3a092b23d066aa8e248122ae534099edc71c981b6ab27c9c2bd679c4fcca184",
-      "production_index": 762,
+      "production_index": 752,
       "gallery_name": "不明ベニタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521183712.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -51479,7 +50907,7 @@
     },
     {
       "observation_id": "obs-30a21ccf4fa8886230480ab1245b215e21ef57fcfc5da59ba0ed70297a699f2d",
-      "production_index": 763,
+      "production_index": 753,
       "gallery_name": "不明",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521183445.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -51534,7 +50962,7 @@
     },
     {
       "observation_id": "obs-806dbf6da7aeb66de1f01fb6fd4dcd65144f5e0d8d89a986fffdc322ab71feea",
-      "production_index": 764,
+      "production_index": 754,
       "gallery_name": "不明",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521183600.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -51589,7 +51017,7 @@
     },
     {
       "observation_id": "obs-c58191571284d97b98d68b766e5463d04f984b22f952382a5f1af4fcc7e56273",
-      "production_index": 765,
+      "production_index": 755,
       "gallery_name": "シロソウメンタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521183809.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -51644,7 +51072,7 @@
     },
     {
       "observation_id": "obs-7f75c73bdf7170cb6b613bed5c164b8d38307f777752ed1486902b565dbd03c6",
-      "production_index": 766,
+      "production_index": 756,
       "gallery_name": "キツネタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521184112.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -51699,7 +51127,7 @@
     },
     {
       "observation_id": "obs-e989525127df8399f2bd07bf6b40c7b3d15a19643e7cff2c42a7b51746bea36f",
-      "production_index": 767,
+      "production_index": 757,
       "gallery_name": "ベニタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521184346.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -51754,7 +51182,7 @@
     },
     {
       "observation_id": "obs-91c27f377157142b563b4bb764f3be4bbb1090aad455971b6c075bc67c375070",
-      "production_index": 768,
+      "production_index": 758,
       "gallery_name": "ベニタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521184455.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -51809,7 +51237,7 @@
     },
     {
       "observation_id": "obs-3f92ac6d14757bc382e2a09a67394e1c08980867dc3287bef6ac6f6f894354dd",
-      "production_index": 769,
+      "production_index": 759,
       "gallery_name": "ツルタケの仲間",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521184538.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -51864,7 +51292,7 @@
     },
     {
       "observation_id": "obs-7a924cc3dbf1752d0e0ddf4009429ab6316adff4aa32c40f46275053e25dfa14",
-      "production_index": 770,
+      "production_index": 760,
       "gallery_name": "オオキヌハダトマヤタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521185229.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -51919,7 +51347,7 @@
     },
     {
       "observation_id": "obs-386fc0e97e8ffb98f049104e50f6637d4aed097b12d2a4789a31cc5faf6fd491",
-      "production_index": 771,
+      "production_index": 761,
       "gallery_name": "キクラゲ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250511/20250511180548.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -51964,7 +51392,7 @@
     },
     {
       "observation_id": "obs-0b797d71d00afdebf59db224a5b1c7e252e6ee02509522da155344fbed94ecc6",
-      "production_index": 772,
+      "production_index": 762,
       "gallery_name": "キクラゲ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250511/20250511180712.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -52009,7 +51437,7 @@
     },
     {
       "observation_id": "obs-f1b647b0b93d88ef3faae7bbf03882935d3d0350e89cbd06fd32820b0818e6b2",
-      "production_index": 773,
+      "production_index": 763,
       "gallery_name": "キクラゲ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250511/20250511180810.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -52054,7 +51482,7 @@
     },
     {
       "observation_id": "obs-37e2703f56801de5e3f758511ec4d3fa5ef25e4d8f78624ac5564ec930f8a57d",
-      "production_index": 774,
+      "production_index": 764,
       "gallery_name": "キクラゲ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250511/20250511181001.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -52099,7 +51527,7 @@
     },
     {
       "observation_id": "obs-882fdb3a6de680acc89b4bf833644a5ecc64bc291d5935e5a13593f63d0eceb1",
-      "production_index": 775,
+      "production_index": 765,
       "gallery_name": "キクラゲ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250511/20250511181131.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -52144,7 +51572,7 @@
     },
     {
       "observation_id": "obs-517972bf22a3ad838eb0ee0cf446d72676c2eeb65f536e20905ecbd3b1e03131",
-      "production_index": 776,
+      "production_index": 766,
       "gallery_name": "キクラゲ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250425/20250425181843.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -52189,7 +51617,7 @@
     },
     {
       "observation_id": "obs-521cccd3b597acbc04e23de68f2f970d45b3d851b19eecfa4695bfb4ba3aced1",
-      "production_index": 777,
+      "production_index": 767,
       "gallery_name": "キクラゲ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250425/20250425182028.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -52234,7 +51662,7 @@
     },
     {
       "observation_id": "obs-c2085d7f187039eb7d7455c430abb41ce21095d5fc49d47b4ea1ad46455be6ee",
-      "production_index": 778,
+      "production_index": 768,
       "gallery_name": "キクラゲ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250425/20250425182159.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -52279,7 +51707,7 @@
     },
     {
       "observation_id": "obs-4a8d6c20e31ddd99694208b91157fa556904834ad841e1a3f0b1220d9934df1b",
-      "production_index": 779,
+      "production_index": 769,
       "gallery_name": "キクラゲ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250425/20250425183145.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -52324,7 +51752,7 @@
     },
     {
       "observation_id": "obs-99ee0be2463175309fb20305fda95a7ebe2d166c10a10df29c40a15ef11ba7ea",
-      "production_index": 780,
+      "production_index": 770,
       "gallery_name": "キクラゲ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250425/20250425182959.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -52369,7 +51797,7 @@
     },
     {
       "observation_id": "obs-4d9516ad56ea5e7a84d827cd22c1a1dc4bab6c995ffe3214f75f35c6faaf7f7f",
-      "production_index": 781,
+      "production_index": 771,
       "gallery_name": "アミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250425/20250425174359.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -52414,7 +51842,7 @@
     },
     {
       "observation_id": "obs-dd7d8783d6e128a800ea92027f402ed9b5570ea34c0849800f3f2607d7cae630",
-      "production_index": 782,
+      "production_index": 772,
       "gallery_name": "アミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250425/20250425174950.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -52459,7 +51887,7 @@
     },
     {
       "observation_id": "obs-19a0824e5104590af3885be0187c79a030de2b57dd2388feffabd720bebe860d",
-      "production_index": 783,
+      "production_index": 773,
       "gallery_name": "アミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250425/20250425175303.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -52504,7 +51932,7 @@
     },
     {
       "observation_id": "obs-34753496e5ab676bfebee821ea6a46c8072e2dc5c62ba5df62e7018aa2385a92",
-      "production_index": 784,
+      "production_index": 774,
       "gallery_name": "アミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250425/20250425175449.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -52549,7 +51977,7 @@
     },
     {
       "observation_id": "obs-e0ba555bf29c33efe204452ae1c4cab16e9656ab7458aa5a3f24240fabd95c46",
-      "production_index": 785,
+      "production_index": 775,
       "gallery_name": "アミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250425/20250425175846.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -52594,7 +52022,7 @@
     },
     {
       "observation_id": "obs-eafb6488e962a994bd4ae69c37371b909de593545606cae29c7349ca31b39671",
-      "production_index": 786,
+      "production_index": 776,
       "gallery_name": "アミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250425/20250425175947.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -52639,7 +52067,7 @@
     },
     {
       "observation_id": "obs-988a3a7d6ae72b0fd261f83bb5020eea14ea2e76e541039faaef54364d999dd0",
-      "production_index": 787,
+      "production_index": 777,
       "gallery_name": "アミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250425/20250425180132.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -52684,7 +52112,7 @@
     },
     {
       "observation_id": "obs-f9bc971614aa6009a1ca013510d89c67271a05680d9191f43dbc5b875e2188e9",
-      "production_index": 788,
+      "production_index": 778,
       "gallery_name": "アミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250425/20250425180519.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -52729,7 +52157,7 @@
     },
     {
       "observation_id": "obs-6e7ff948b6363d9e3098b668c782d5275a8527823c38d6d80b895c61ffa44b9a",
-      "production_index": 789,
+      "production_index": 779,
       "gallery_name": "アミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250425/20250425180649.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -52774,7 +52202,7 @@
     },
     {
       "observation_id": "obs-6ca599aad6654bd647e06be2aeb7774e58e9d4161ad04a531e95c86c46f08773",
-      "production_index": 790,
+      "production_index": 780,
       "gallery_name": "アミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250425/20250425180958.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -52819,7 +52247,7 @@
     },
     {
       "observation_id": "obs-8bcd01da124471951e0d04839568ca41b0bc63dc9424abd7b4c52bf09fc6c28f",
-      "production_index": 791,
+      "production_index": 781,
       "gallery_name": "ジャガイモタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250419/20250419221327.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -52870,7 +52298,7 @@
     },
     {
       "observation_id": "obs-24b2d8ffc150f66c81af3d1a3e18636aa5fae558335a3412f0692640c26bcd07",
-      "production_index": 792,
+      "production_index": 782,
       "gallery_name": "チャコブタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250419/20250419221434.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -52921,7 +52349,7 @@
     },
     {
       "observation_id": "obs-c2cd24af5c1612173e1611ee556c9610cb4495f4422e338f90856e35ac3c882d",
-      "production_index": 793,
+      "production_index": 783,
       "gallery_name": "シイタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250419/20250419221522.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -52972,7 +52400,7 @@
     },
     {
       "observation_id": "obs-3988e8dc163b239c85af92caf656f76676ffb94311c4f63db6663dfd239251e3",
-      "production_index": 794,
+      "production_index": 784,
       "gallery_name": "ヌメリスギタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250419/20250419221649.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -53023,7 +52451,7 @@
     },
     {
       "observation_id": "obs-e90f849accecf71edf2249196f15388e9245d272b8b34693da34989c45f8ae08",
-      "production_index": 795,
+      "production_index": 785,
       "gallery_name": "チャアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250419/20250419221959.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -53074,7 +52502,7 @@
     },
     {
       "observation_id": "obs-27c6061dd479eb3f98b115089c0d60927ee4525d0b6f7e97ccc931ce04be3a90",
-      "production_index": 796,
+      "production_index": 786,
       "gallery_name": "チャアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250419/20250419222208.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -53125,7 +52553,7 @@
     },
     {
       "observation_id": "obs-eac853c93f6ba27de0b2dbed474e15bcc03de7553d556b949e6cafb6f6f26ca4",
-      "production_index": 797,
+      "production_index": 787,
       "gallery_name": "チャアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250419/20250419222348.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -53176,7 +52604,7 @@
     },
     {
       "observation_id": "obs-70f3c2ae8bcd50dbaa53f1e3e510e9c3863b0a1884d78cc2ee0e2bb399e35b4d",
-      "production_index": 798,
+      "production_index": 788,
       "gallery_name": "チャアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250419/20250419222454.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -53227,7 +52655,7 @@
     },
     {
       "observation_id": "obs-7f503b8bbb39c58912b0ca8b12bacf3a15096b15c5a4cc5f995ce3f8084f1eea",
-      "production_index": 799,
+      "production_index": 789,
       "gallery_name": "チャアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250419/20250419222634.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -53278,7 +52706,7 @@
     },
     {
       "observation_id": "obs-24872713835ce7f248021f7285c55e49d68cbd7a63ae1916b66fa44e50973284",
-      "production_index": 800,
+      "production_index": 790,
       "gallery_name": "チャアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250419/20250419222746.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -53329,7 +52757,7 @@
     },
     {
       "observation_id": "obs-bb37eda04fdfd467722529ea075ea289b448356d904c787ae971b189daa22500",
-      "production_index": 801,
+      "production_index": 791,
       "gallery_name": "アミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250419/20250419222848.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -53380,7 +52808,7 @@
     },
     {
       "observation_id": "obs-c7921bf9bf46d26bd448bec57b35d9307b4354fe1942150fff480d4f0928b983",
-      "production_index": 802,
+      "production_index": 792,
       "gallery_name": "アミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250419/20250419223043.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -53431,7 +52859,7 @@
     },
     {
       "observation_id": "obs-1f1d084d1c76a3236f4249171a53fad39055b10fbad53552be65e20f328b7fb8",
-      "production_index": 803,
+      "production_index": 793,
       "gallery_name": "アミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250419/20250419223130.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -53482,7 +52910,7 @@
     },
     {
       "observation_id": "obs-37dea747dfe2547fd86b9d99f1e32962d28d862c21315e7d95db650f7cd1710e",
-      "production_index": 804,
+      "production_index": 794,
       "gallery_name": "アミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250419/20250419223226.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -53533,7 +52961,7 @@
     },
     {
       "observation_id": "obs-99939a4a5516cd172b617b841ae1cdad8c39d47dc199225f0a737d82b26a1556",
-      "production_index": 805,
+      "production_index": 795,
       "gallery_name": "アミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250419/20250419223448.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -53584,7 +53012,7 @@
     },
     {
       "observation_id": "obs-d36560c1279698145bd3c0f759ff503535112b114494bb92361badfffb73787a",
-      "production_index": 806,
+      "production_index": 796,
       "gallery_name": "アミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250419/20250419223808.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -53635,7 +53063,7 @@
     },
     {
       "observation_id": "obs-74a9fceed0406bead39b07a0ea6fae0f681eb6900139825b35facf5b36ab871c",
-      "production_index": 807,
+      "production_index": 797,
       "gallery_name": "ヒトクチタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250419/20250419224230.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -53686,7 +53114,7 @@
     },
     {
       "observation_id": "obs-0e2e6b827e5e8b88f689cfaa95b96aeb97a6ba92ddb46207dc992f0225b24430",
-      "production_index": 808,
+      "production_index": 798,
       "gallery_name": "チャコブタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250412/20250412234253.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -53733,7 +53161,7 @@
     },
     {
       "observation_id": "obs-a3875cb08a272b210cfd9f893f4a66693b0beb28ef7dbf7be993f5a33fe55ac0",
-      "production_index": 809,
+      "production_index": 799,
       "gallery_name": "シイタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250412/20250412234823.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -53780,7 +53208,7 @@
     },
     {
       "observation_id": "obs-1d59a8ad5d54679c2ee828095a3986a5a99d80a4fb88bbd503cb4cf7b47068c4",
-      "production_index": 810,
+      "production_index": 800,
       "gallery_name": "シイタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250412/20250412235605.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -53827,7 +53255,7 @@
     },
     {
       "observation_id": "obs-d5e2033c6643a7496769b15df5ceaa2e0ee997fdb5bf730c6f10b6b41cedf3bb",
-      "production_index": 811,
+      "production_index": 801,
       "gallery_name": "シイタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250412/20250412235849.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -53874,7 +53302,7 @@
     },
     {
       "observation_id": "obs-fb3c89950a7add5e4002c5ccc8d1f7d1ed68e53e97686411087e37218cd57b10",
-      "production_index": 812,
+      "production_index": 802,
       "gallery_name": "チチアワタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250413/20250413000138.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -53921,7 +53349,7 @@
     },
     {
       "observation_id": "obs-a5218482897678d2882e05fbebb85fc7a423a96a84a25e1e7d3d47a4f24fd6e9",
-      "production_index": 813,
+      "production_index": 803,
       "gallery_name": "チチアワタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250413/20250413000433.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -53968,7 +53396,7 @@
     },
     {
       "observation_id": "obs-90712b3e1cc60f8b47b338feca38530a6e43f5b0799cca42bbffbe5433796792",
-      "production_index": 814,
+      "production_index": 804,
       "gallery_name": "チチアワタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250413/20250413000744.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -54015,7 +53443,7 @@
     },
     {
       "observation_id": "obs-72d54331ba0f45d54377b1d53a9ba8e890add7d6d6d07c5a1f56641ef9eff427",
-      "production_index": 815,
+      "production_index": 805,
       "gallery_name": "アクニオイタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406154020.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -54072,7 +53500,7 @@
     },
     {
       "observation_id": "obs-d31d621744e0cdc5341c73bd049150ea7ded88b08ba8ce6038bd8cecd378d76a",
-      "production_index": 816,
+      "production_index": 806,
       "gallery_name": "アラゲキクラゲ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406154222.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -54129,7 +53557,7 @@
     },
     {
       "observation_id": "obs-2c0dd85157d2e9e4cec8168a4eebc9705453ed97fc070bf5a676daddc88bab95",
-      "production_index": 817,
+      "production_index": 807,
       "gallery_name": "アシボソアミガサタケ？",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406154522.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -54186,7 +53614,7 @@
     },
     {
       "observation_id": "obs-65e860f40aa3ed47202742ed76d9f7171730f76e8d27e5ba4eb63b989dfb3381",
-      "production_index": 818,
+      "production_index": 808,
       "gallery_name": "アシボソアミガサタケ？",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406155109.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -54243,7 +53671,7 @@
     },
     {
       "observation_id": "obs-b873bc5f004f1964c46c81b39fe6adc4d9e01150c920654acf8ae549200ff0f0",
-      "production_index": 819,
+      "production_index": 809,
       "gallery_name": "アシボソアミガサタケ？",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406155301.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -54300,7 +53728,7 @@
     },
     {
       "observation_id": "obs-712e8a9c21a827815c75713339c5333471cec5730ff62a5e41719ec04d7ed283",
-      "production_index": 820,
+      "production_index": 810,
       "gallery_name": "アシボソアミガサタケ？",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406155813.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -54357,7 +53785,7 @@
     },
     {
       "observation_id": "obs-67c979180ad51c2d220b9cddccf9711dd23313b4bc0e285bd10f448094d1644b",
-      "production_index": 821,
+      "production_index": 811,
       "gallery_name": "アシボソアミガサタケ？",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406155534.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -54414,7 +53842,7 @@
     },
     {
       "observation_id": "obs-88bf8277596b09ded5bbbfa2a1abcaaf1cbfa07ad77d022e9d5e56f83c77dc77",
-      "production_index": 822,
+      "production_index": 812,
       "gallery_name": "チャアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406160120.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -54471,7 +53899,7 @@
     },
     {
       "observation_id": "obs-adb4911a42fa003e77450e63f8080eee9d7c9d8607e4c8504d331f07c3e61045",
-      "production_index": 823,
+      "production_index": 813,
       "gallery_name": "チャアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406160347.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -54528,7 +53956,7 @@
     },
     {
       "observation_id": "obs-f9fb4962c6c106ee36cd53bee1766594501098b65a69cfe2ff02a885408b4993",
-      "production_index": 824,
+      "production_index": 814,
       "gallery_name": "クロハナビラニカワタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406161134.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -54585,7 +54013,7 @@
     },
     {
       "observation_id": "obs-9d3858560496b8b08c524a8c959d603301753a2d5cbf4fdc63c5f5a623b2bac2",
-      "production_index": 825,
+      "production_index": 815,
       "gallery_name": "エノキタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406161519.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -54642,7 +54070,7 @@
     },
     {
       "observation_id": "obs-b7be75652648403fdf6998ef2237326909c6d24f843b2339ce2a6a750aba1eca",
-      "production_index": 826,
+      "production_index": 816,
       "gallery_name": "エノキタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406161850.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -54699,7 +54127,7 @@
     },
     {
       "observation_id": "obs-b9766fb5d938ad15224bf36bbf7ca76cd4d821bc17591e435329f7e5c94bcdb0",
-      "production_index": 827,
+      "production_index": 817,
       "gallery_name": "コナエカレバタケ(仮称)",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406161933.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -54756,7 +54184,7 @@
     },
     {
       "observation_id": "obs-d8a723c215494a8928ba6cc6c011459fb21373d04346af5bfa2feb3e1872e9e0",
-      "production_index": 828,
+      "production_index": 818,
       "gallery_name": "キクラゲ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406162956.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -54813,7 +54241,7 @@
     },
     {
       "observation_id": "obs-f649a929e458efa32a8cc23d46dec51fbad9d51a7e7c27de64c8170f7e632531",
-      "production_index": 829,
+      "production_index": 819,
       "gallery_name": "タマキクラゲ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406162749.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -54870,7 +54298,7 @@
     },
     {
       "observation_id": "obs-c175910255f17c9f46ade4180ec6052d1dfc1f609b7b046d3c8306be887d4f63",
-      "production_index": 830,
+      "production_index": 820,
       "gallery_name": "ノイバラハルシメジ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406163126.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -54927,7 +54355,7 @@
     },
     {
       "observation_id": "obs-9721c0291de1a2385599a57143f00c8d5c2aa93c79c77e13f9a50a0dc8fc28f7",
-      "production_index": 831,
+      "production_index": 821,
       "gallery_name": "ノイバラハルシメジ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406163534.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -54984,7 +54412,7 @@
     },
     {
       "observation_id": "obs-e127d88eabf8be172ed76e00c8191edce7c3b19c874533514f62c08ad26ff07d",
-      "production_index": 832,
+      "production_index": 822,
       "gallery_name": "シイタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406163836.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -55041,7 +54469,7 @@
     },
     {
       "observation_id": "obs-184376233d888e31a6d522ad5fa90705e91f9cb8c1aab294095f5aa64d095283",
-      "production_index": 833,
+      "production_index": 823,
       "gallery_name": "アラゲキクラゲ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406163955.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -55098,7 +54526,7 @@
     },
     {
       "observation_id": "obs-521aa1c7e79f3e5bc1a4b64ba79d441d26eb67fe4840b4e0454c8db9ea424bc2",
-      "production_index": 834,
+      "production_index": 824,
       "gallery_name": "ヒラタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406164245.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -55155,7 +54583,7 @@
     },
     {
       "observation_id": "obs-b70833d3f7ff432c856b7cefcc1a51895abdaf2f0ac9d4689908ad6a4814d166",
-      "production_index": 835,
+      "production_index": 825,
       "gallery_name": "エノキタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406164716.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -55212,7 +54640,7 @@
     },
     {
       "observation_id": "obs-ebf715d120cf9842bd504fc78d4449c7fdc3301cf0a0f7c38cff3f559e067d9f",
-      "production_index": 836,
+      "production_index": 826,
       "gallery_name": "チャアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406164900.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -55269,7 +54697,7 @@
     },
     {
       "observation_id": "obs-a85ecf444c54c409f88a90c5eb0ef7157b835920c3b21802f557645ce4368ddc",
-      "production_index": 837,
+      "production_index": 827,
       "gallery_name": "チャアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406165150.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -55326,7 +54754,7 @@
     },
     {
       "observation_id": "obs-470cbd38620f1bc8cccc9a62c05bd1f2025e3b18856a87b1cda7312fd7cee8e2",
-      "production_index": 838,
+      "production_index": 828,
       "gallery_name": "チャアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406165406.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -55383,7 +54811,7 @@
     },
     {
       "observation_id": "obs-d6d0d6c7951b500aa44f0535af1aa3800d3f41db297bc47d1855464ba00ce98a",
-      "production_index": 839,
+      "production_index": 829,
       "gallery_name": "チャアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406165747.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -55440,7 +54868,7 @@
     },
     {
       "observation_id": "obs-59971474142102cc930e1f9c91157c292dfd9b4bbd8cbfa3d4f330250bbe18b5",
-      "production_index": 840,
+      "production_index": 830,
       "gallery_name": "タマキクラゲ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250404/20250404231141.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -55488,7 +54916,7 @@
     },
     {
       "observation_id": "obs-9e96d0b646575b730cbf513f9d53da026ada6649bba4537e1a53da1184631f08",
-      "production_index": 841,
+      "production_index": 831,
       "gallery_name": "コナエカレバタケ(仮称)？",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250404/20250404231517.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -55536,7 +54964,7 @@
     },
     {
       "observation_id": "obs-1aee7340b267599d102f302badf8df6545421050a206c4d38dc2893533bd47da",
-      "production_index": 842,
+      "production_index": 832,
       "gallery_name": "ヒトクチタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250404/20250404231618.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -55584,7 +55012,7 @@
     },
     {
       "observation_id": "obs-ee832a00085fe9b5db75b39d1d41dacf3e88a845e8b90e5f002288152b6ee601",
-      "production_index": 843,
+      "production_index": 833,
       "gallery_name": "シイタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250404/20250404231844.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -55632,7 +55060,7 @@
     },
     {
       "observation_id": "obs-b429aedf5f48e5406df1c07c7f236491e6e53fd24ac3975449bf64c3e3691a0d",
-      "production_index": 844,
+      "production_index": 834,
       "gallery_name": "シイタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250404/20250404232102.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -55680,7 +55108,7 @@
     },
     {
       "observation_id": "obs-a276255201ea0f88d0ff110ed06fc63faffa363834c03e1f7a6c35b990826b3a",
-      "production_index": 845,
+      "production_index": 835,
       "gallery_name": "シイタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250404/20250404232439.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -55728,7 +55156,7 @@
     },
     {
       "observation_id": "obs-37b9655ddaf063aa2a1d0834cf0e8ae457e621da66d25c66ef3267406b1dd376",
-      "production_index": 846,
+      "production_index": 836,
       "gallery_name": "シイタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250404/20250404232938.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -55776,7 +55204,7 @@
     },
     {
       "observation_id": "obs-fea460db72319ca7f08eeab192fd22e43eb39cf3e5e870e7fa5751d55df24ece",
-      "production_index": 847,
+      "production_index": 837,
       "gallery_name": "シイタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250404/20250404233202.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -55824,7 +55252,7 @@
     },
     {
       "observation_id": "obs-7d3a5ae2128b010ce0e622781040906e2026a07e1362f4183beb34b44906fecd",
-      "production_index": 848,
+      "production_index": 838,
       "gallery_name": "シイタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250404/20250404233307.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -55872,7 +55300,7 @@
     },
     {
       "observation_id": "obs-971704fd4e17f27f2225a7d3c7d1d0385956745d9a14003f2451ab6ac678800c",
-      "production_index": 849,
+      "production_index": 839,
       "gallery_name": "不明",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250324/20250324215613.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -55917,7 +55345,7 @@
     },
     {
       "observation_id": "obs-e4dde03fe6c2ca2275e654f82fe45098de926c832f0ae548036e99586dcb696e",
-      "production_index": 850,
+      "production_index": 840,
       "gallery_name": "クズヒトヨタケ？",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250323/20250323095742.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -55962,7 +55390,7 @@
     },
     {
       "observation_id": "obs-c38c3dc7714ff7e71522f9e1f0456d9c395cbd7be7c4c2d2cac0eb9b081199bf",
-      "production_index": 851,
+      "production_index": 841,
       "gallery_name": "ウラベニガサ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250320/20250320124815.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56007,7 +55435,7 @@
     },
     {
       "observation_id": "obs-9d4678a332e83417d306a9c51969d3a10972235b04b4c7636a37d6310829c45c",
-      "production_index": 852,
+      "production_index": 842,
       "gallery_name": "ウラベニガサ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250320/20250320125124.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56052,7 +55480,7 @@
     },
     {
       "observation_id": "obs-5b285275cc5d018fa70ea1dc630fe266df336f38a3ca8bb0fcfe235da9f158e1",
-      "production_index": 853,
+      "production_index": 843,
       "gallery_name": "ハチノスタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250320/20250320123738.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -56097,7 +55525,7 @@
     },
     {
       "observation_id": "obs-dae096e748fd9c3902a9e7bc8b7e613ba4c6b4bd5bf142039afa2551d46a8be4",
-      "production_index": 854,
+      "production_index": 844,
       "gallery_name": "ハチノスタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250320/20250320124123.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -56142,7 +55570,7 @@
     },
     {
       "observation_id": "obs-f68559f288db82efac9eb44d68188ec00ebfaba14a3211273fd415da802bfc8b",
-      "production_index": 855,
+      "production_index": 845,
       "gallery_name": "f:id:exsudoporus_ruber:20250316194123j:image",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316194123.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -56186,7 +55614,7 @@
     },
     {
       "observation_id": "obs-7725ec3f61a327454c8330df84926b81edc1f409e3dec5c0e26637606373c2d7",
-      "production_index": 856,
+      "production_index": 846,
       "gallery_name": "f:id:exsudoporus_ruber:20250316194402j:image",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316194402.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -56230,7 +55658,7 @@
     },
     {
       "observation_id": "obs-3e3fd7ddb5e111a1913399f889514be906a47364c924598ed3c6a5aa9940bee9",
-      "production_index": 857,
+      "production_index": 847,
       "gallery_name": "f:id:exsudoporus_ruber:20250316194450j:image",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316194450.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -56274,7 +55702,7 @@
     },
     {
       "observation_id": "obs-41e5829867f5f08737cd25bdb415bcafc00cb9526db90bab33d3316a605aa8ad",
-      "production_index": 858,
+      "production_index": 848,
       "gallery_name": "f:id:exsudoporus_ruber:20250316193622j:image",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316193622.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -56318,7 +55746,7 @@
     },
     {
       "observation_id": "obs-cca9f0b5173d776440e6d97f4943a5d9185e014ee529295dce5b987e2da29b92",
-      "production_index": 859,
+      "production_index": 849,
       "gallery_name": "ヒラタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316185855.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56363,7 +55791,7 @@
     },
     {
       "observation_id": "obs-91e82ef145847c63a0ab8d0c95021ddd5752eabab0fbe6369527ec2d36d2c17a",
-      "production_index": 860,
+      "production_index": 850,
       "gallery_name": "ヒラタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316190142.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56408,7 +55836,7 @@
     },
     {
       "observation_id": "obs-29a59dff59e0b13b60fb06fcc6dee72c7d2732259c368cbf40a2d23891ca2179",
-      "production_index": 861,
+      "production_index": 851,
       "gallery_name": "ヒラタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316184630.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56453,7 +55881,7 @@
     },
     {
       "observation_id": "obs-ddfbfd4c8df04f93b9437ff59a6a13e60f61e0c9095bc7f082ae48e37b3e1dcb",
-      "production_index": 862,
+      "production_index": 852,
       "gallery_name": "ヒラタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316184942.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56498,7 +55926,7 @@
     },
     {
       "observation_id": "obs-c0cd689b1af87d86ab7396b7d0385479806ecaaae1e464f9000cdb6b295e71ca",
-      "production_index": 863,
+      "production_index": 853,
       "gallery_name": "ヒラタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316185149.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56543,7 +55971,7 @@
     },
     {
       "observation_id": "obs-a5155ade76b0c2d2cf775c39fb686e146155ec0cb60fc5371012323485410a3f",
-      "production_index": 864,
+      "production_index": 854,
       "gallery_name": "シイタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316183452.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56588,7 +56016,7 @@
     },
     {
       "observation_id": "obs-a8abd516a340b764feb3e7e7739bf6db04ba966c9cccb332a80c0d1e69defbb8",
-      "production_index": 865,
+      "production_index": 855,
       "gallery_name": "シイタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316183735.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56633,7 +56061,7 @@
     },
     {
       "observation_id": "obs-54e316793bd4fa6a59795c48c35691c7ee62010a3767157459d6bc91ebce179c",
-      "production_index": 866,
+      "production_index": 856,
       "gallery_name": "ベニタケ科不明種",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316162756.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -56678,7 +56106,7 @@
     },
     {
       "observation_id": "obs-4f629d6400b143f6316e4bc5faa7fb889e706addeca94db5ab532fdb2dc5fa9c",
-      "production_index": 867,
+      "production_index": 857,
       "gallery_name": "ベニタケ科不明種",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316162943.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -56723,7 +56151,7 @@
     },
     {
       "observation_id": "obs-ee3975f48dc2ed0a4dfd8169175bd0c728bb3951260c4bf52aa36c39d92aefc8",
-      "production_index": 868,
+      "production_index": 858,
       "gallery_name": "オオワライタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316161809.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -56769,7 +56197,7 @@
     },
     {
       "observation_id": "obs-57322d30fbac247e7d75fa5e12685cef98cf66e9f8228be2eb943cc242332648",
-      "production_index": 869,
+      "production_index": 859,
       "gallery_name": "ヘビキノコモドキ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316161933.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56815,7 +56243,7 @@
     },
     {
       "observation_id": "obs-f5b60424f7532b8c1eb9e503bb1032ee46986014535cb64aff6a658c8fd1f6f7",
-      "production_index": 870,
+      "production_index": 860,
       "gallery_name": "オオワライタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316160806.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -56860,7 +56288,7 @@
     },
     {
       "observation_id": "obs-d744e73964fd43b4a00bdd261039656299e88d8cbf8a374aa937771a40a5e2c9",
-      "production_index": 871,
+      "production_index": 861,
       "gallery_name": "オオワライタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316160913.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -56905,7 +56333,7 @@
     },
     {
       "observation_id": "obs-b4867dc7eeadd0230179fa1b3c99bd4027485e4864e64f2f00b6edd961aec970",
-      "production_index": 872,
+      "production_index": 862,
       "gallery_name": "オオワライタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316161008.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -56950,7 +56378,7 @@
     },
     {
       "observation_id": "obs-8f0cfbb1ff3f7ebaf45c30a95e218f6fddb33abab01f75d61ca0b4a07f2888d9",
-      "production_index": 873,
+      "production_index": 863,
       "gallery_name": "オオワライタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316155944.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56996,7 +56424,7 @@
     },
     {
       "observation_id": "obs-cf69df15c03bffd29954cdc6b9ccaa5c808106f54b5ab167b45e222e8537db01",
-      "production_index": 874,
+      "production_index": 864,
       "gallery_name": "オオワライタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316160159.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -57042,7 +56470,7 @@
     },
     {
       "observation_id": "obs-e64b9a190b44a19ab4fe8775c7b24c54feda5da2fceb52fcc7a42ef30b474403",
-      "production_index": 875,
+      "production_index": 865,
       "gallery_name": "オオワライタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316160237.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -57088,7 +56516,7 @@
     },
     {
       "observation_id": "obs-b7bc1cf4446e171059dbd7f7ffb8a1937281c79d246e8c3f8e4cd402b3c60bc8",
-      "production_index": 876,
+      "production_index": 866,
       "gallery_name": "チチアワタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316161213.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -57134,7 +56562,7 @@
     },
     {
       "observation_id": "obs-095a458aac1243b1f8d8c289c27c8209c7e8cdd8d55645c2bcf792eb356c7d3f",
-      "production_index": 877,
+      "production_index": 867,
       "gallery_name": "ノウタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316155102.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -57179,7 +56607,7 @@
     },
     {
       "observation_id": "obs-dae63370b56604ad1159927c380e5d1ae278591e91cbacd4cdfa4c65a60f6807",
-      "production_index": 878,
+      "production_index": 868,
       "gallery_name": "ノウタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316155332.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -57224,7 +56652,7 @@
     },
     {
       "observation_id": "obs-03f30ea65bba54b439245068df5658b1cae98deb1c169b05baf20cfc601aa49a",
-      "production_index": 879,
+      "production_index": 869,
       "gallery_name": "コツブタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316154327.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -57269,7 +56697,7 @@
     },
     {
       "observation_id": "obs-cc3902327747d3a8b6ad99433707376a0bc47dd91b48c1b3b10fdfa6fbf9a8ef",
-      "production_index": 880,
+      "production_index": 870,
       "gallery_name": "コツブタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316154457.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -57314,7 +56742,7 @@
     },
     {
       "observation_id": "obs-2a33fd5ae6c540a7994fe2ae073601c5b5c685ec94c3772d9e752b04b5f273d4",
-      "production_index": 881,
+      "production_index": 871,
       "gallery_name": "ニセショウロ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316153118.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -57359,7 +56787,7 @@
     },
     {
       "observation_id": "obs-f15be13088e0cb1a624e1518ce20a33443e77b3e77a3d6d3f8fa4d3fae12c8fe",
-      "production_index": 882,
+      "production_index": 872,
       "gallery_name": "カワムラフウセンタケ？",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316125125.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -57409,7 +56837,7 @@
     },
     {
       "observation_id": "obs-9eaeaf4574b8fb1174dc2c60ccef32852e3b9eaacec999bf1383a63a8fc042b5",
-      "production_index": 883,
+      "production_index": 873,
       "gallery_name": "カオリツムタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316125705.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -57459,7 +56887,7 @@
     },
     {
       "observation_id": "obs-8b70d8af69302630037e78f230321d81e18fd070b3df0a2cbc86d78f6ae53f74",
-      "production_index": 884,
+      "production_index": 874,
       "gallery_name": "センニンタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316130005.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -57509,7 +56937,7 @@
     },
     {
       "observation_id": "obs-3d9748d9a3ab80fae4b603cb1b0dd7b58bf7dbe259ad26765f26290a24b2486a",
-      "production_index": 885,
+      "production_index": 875,
       "gallery_name": "センニンタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316131152.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -57559,7 +56987,7 @@
     },
     {
       "observation_id": "obs-bd211e5b952d7d4c5764c8184869adaad77356c7a14e154bbeadbfd212ab1d4c",
-      "production_index": 886,
+      "production_index": 876,
       "gallery_name": "ムラサキホウキタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316131318.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -57609,7 +57037,7 @@
     },
     {
       "observation_id": "obs-dd2eab59766b06d6296b381cb5b538a59a6af118c805221e36bb5ccff35ed01a",
-      "production_index": 887,
+      "production_index": 877,
       "gallery_name": "アシボソノボリリュウ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316131520.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -57659,7 +57087,7 @@
     },
     {
       "observation_id": "obs-3bae2b44c76b12e7fcb3bd561340ce941adaba801760354d55f4d6ddb003bd23",
-      "production_index": 888,
+      "production_index": 878,
       "gallery_name": "ヌメリスギタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316131621.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -57709,7 +57137,7 @@
     },
     {
       "observation_id": "obs-c0d81341ad80a67066fbd06e1c7098796589cc3f5e5e35f7916a9783a70cb204",
-      "production_index": 889,
+      "production_index": 879,
       "gallery_name": "ハツタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316132051.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -57759,7 +57187,7 @@
     },
     {
       "observation_id": "obs-7b7eafb52b04e32522da3258525c9cdb959c92f3effb68e5f6432eed60e57e0c",
-      "production_index": 890,
+      "production_index": 880,
       "gallery_name": "オオワライタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316115031.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -57805,7 +57233,7 @@
     },
     {
       "observation_id": "obs-409d628d02644a7dcfce4e9099a590d226bfb8fd8e2739f9db0430c154fbb3f8",
-      "production_index": 891,
+      "production_index": 881,
       "gallery_name": "オオワライタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316115504.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -57851,7 +57279,7 @@
     },
     {
       "observation_id": "obs-c74203ffd69c6bda09569fd84e2d7c350982528a249b50fcf1093f23d6a4ee2a",
-      "production_index": 892,
+      "production_index": 882,
       "gallery_name": "ニガクリタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316115719.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -57897,7 +57325,7 @@
     },
     {
       "observation_id": "obs-e73b9497fbdcd9593127b73257b9cd405ff3c43dc1e6cb118562ea8cba5bb6f9",
-      "production_index": 893,
+      "production_index": 883,
       "gallery_name": "イボテングタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316113501.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -57942,7 +57370,7 @@
     },
     {
       "observation_id": "obs-7032ced4c423d4056ba68c747b5393bf65b57efe20a7b636f612afc9a77ddf34",
-      "production_index": 894,
+      "production_index": 884,
       "gallery_name": "サトタマゴタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250315/20250315201641.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -57988,7 +57416,7 @@
     },
     {
       "observation_id": "obs-98b09248cb6a95c622c81b1e280acfceeff421639913f0e4b0b90a93d0cce58e",
-      "production_index": 895,
+      "production_index": 885,
       "gallery_name": "コツブタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316111938.jpg",
       "shadow_match_status": "exact_legacy_alt",
@@ -58034,7 +57462,7 @@
     },
     {
       "observation_id": "obs-673e7be6219affee0542ea08c57222940f47308607ac63385b18f39d3de269ce",
-      "production_index": 896,
+      "production_index": 886,
       "gallery_name": "アカヤマドリ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224333.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -58092,7 +57520,7 @@
     },
     {
       "observation_id": "obs-3ff0cc1743cda9f33e90bbb5326cc8f1883cdb5b0852a31a4d5b112c36832110",
-      "production_index": 897,
+      "production_index": 887,
       "gallery_name": "アカヤマドリ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224355.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -58150,7 +57578,7 @@
     },
     {
       "observation_id": "obs-b9426daec360f8ef2e20bb6f770e8a55e582ff923965d1a3d9402d04a1408a77",
-      "production_index": 898,
+      "production_index": 888,
       "gallery_name": "アカヤマドリ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224411.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -58208,7 +57636,7 @@
     },
     {
       "observation_id": "obs-dc00ae270e90d5e3fef122d35cfba50ff0e91d9b434cc2d86f8bea878d71e2ba",
-      "production_index": 899,
+      "production_index": 889,
       "gallery_name": "アカヤマドリ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224431.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -58266,7 +57694,7 @@
     },
     {
       "observation_id": "obs-57560deedf42e9fb298c5a1fe2938a3c30577744d248ddbbf2665529a0a9d9f5",
-      "production_index": 900,
+      "production_index": 890,
       "gallery_name": "アカヤマドリ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224610.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -58324,7 +57752,7 @@
     },
     {
       "observation_id": "obs-89a4a045798af2122f8c1ad304f2c20990eb24b74433b4678952762608029a40",
-      "production_index": 901,
+      "production_index": 891,
       "gallery_name": "アカヤマドリ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925225551.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -58382,7 +57810,7 @@
     },
     {
       "observation_id": "obs-fd455a16abd04413e78a9e51f0285b0618c3997e804928ed81b5cdd62a88811a",
-      "production_index": 902,
+      "production_index": 892,
       "gallery_name": "アカヤマドリ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224525.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -58440,7 +57868,7 @@
     },
     {
       "observation_id": "obs-f4f5f9739210e6837fd7ff64a9e6ada7bfdd590dac01bc0409c53e52eea12d82",
-      "production_index": 903,
+      "production_index": 893,
       "gallery_name": "ミドリニガイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925225041.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -58498,7 +57926,7 @@
     },
     {
       "observation_id": "obs-4b3e25c595bc7ff19707f0b5436b1d6c0271e2023fe6a5055761c6ceacc3cf0e",
-      "production_index": 904,
+      "production_index": 894,
       "gallery_name": "不明",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224838.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -58556,7 +57984,7 @@
     },
     {
       "observation_id": "obs-6bca3ed373e55261b75b74c7f2e0611548f8626c9eb9d15251be9114cd135e72",
-      "production_index": 905,
+      "production_index": 895,
       "gallery_name": "ヤマドリタケモドキ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224854.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -58614,7 +58042,7 @@
     },
     {
       "observation_id": "obs-0d185b272f8e2d822efead02ec066060d58d8cd0a181c118f515283619bf2c54",
-      "production_index": 906,
+      "production_index": 896,
       "gallery_name": "アカヤマドリ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152816.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -58665,7 +58093,7 @@
     },
     {
       "observation_id": "obs-fc7a89a7056aa24ecf51f8fb44d3cb32161845315658268a7c5be32545f18ad4",
-      "production_index": 907,
+      "production_index": 897,
       "gallery_name": "キアミアシイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224252.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -58719,7 +58147,7 @@
     },
     {
       "observation_id": "obs-dbf5de25224ee0db8295fea9c8793785838ea575979d829ca26e96ac15947350",
-      "production_index": 908,
+      "production_index": 898,
       "gallery_name": "アカヤマドリ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224412.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -58773,7 +58201,7 @@
     },
     {
       "observation_id": "obs-7e978259f7cc503c3421f77e8d690c15be9997526b4a37043b0381779ca9a512",
-      "production_index": 909,
+      "production_index": 899,
       "gallery_name": "アカヤマドリ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224430.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -58827,7 +58255,7 @@
     },
     {
       "observation_id": "obs-b6d9ff88ee6e2c3ff9542877dece0a029ac512738847f8ee15b47a26ec0e235e",
-      "production_index": 910,
+      "production_index": 900,
       "gallery_name": "セイタカイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224518.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -58881,7 +58309,7 @@
     },
     {
       "observation_id": "obs-65da6a1d67d4faa27163392fc3a7f85d0e4beb684650b22361de2e228ba5d7e3",
-      "production_index": 911,
+      "production_index": 901,
       "gallery_name": "ヤマドリタケモドキ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224537.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -58935,7 +58363,7 @@
     },
     {
       "observation_id": "obs-0d92d5e0d64019ff457b1f5b89f13240d51adacfa928c7faef207ce38a0f05e4",
-      "production_index": 912,
+      "production_index": 902,
       "gallery_name": "ヤマドリタケモドキ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224922.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -58989,7 +58417,7 @@
     },
     {
       "observation_id": "obs-b9b4c45e8425add39d9c79885a933965d1c84ca44e890a447b6b687c99f7ad30",
-      "production_index": 913,
+      "production_index": 903,
       "gallery_name": "タマゴタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261001/20261001001557.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -59043,7 +58471,7 @@
     },
     {
       "observation_id": "obs-90963a4a7bb62c3c704ad0a74e3238bd840ef2ca771a16de0cf4b9df86fbf88a",
-      "production_index": 914,
+      "production_index": 904,
       "gallery_name": "カラカサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232221.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -59097,7 +58525,7 @@
     },
     {
       "observation_id": "obs-22d4f31584f60b50dbb9db8e57b24d4863a4f0ece0a45f347095e02d300c8340",
-      "production_index": 915,
+      "production_index": 905,
       "gallery_name": "ヤマイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923224858.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -59147,7 +58575,7 @@
     },
     {
       "observation_id": "obs-1606a216b6d92b088daf5fc2e613fbebd3e79afe06830ab6d2b412ffc8b4a9d0",
-      "production_index": 916,
+      "production_index": 906,
       "gallery_name": "ヒロメノトガリアミガサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131043336.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -59189,7 +58617,7 @@
     },
     {
       "observation_id": "obs-655a99526af5075cd5e6a89471023dfa95cec6e6a0d63b6883288d1b151c7eed",
-      "production_index": 917,
+      "production_index": 907,
       "gallery_name": "キイロスッポンタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131043307.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -59231,7 +58659,7 @@
     },
     {
       "observation_id": "obs-edbc5538482ca9c4c16775541ea796098f9f10f10d6df48d0344df6345f8862e",
-      "production_index": 918,
+      "production_index": 908,
       "gallery_name": "ヤマイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131043226.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -59273,7 +58701,7 @@
     },
     {
       "observation_id": "obs-9a6df3f20da75f3ec768cb476c2a1ae1a9df5997a3909b8207044fbb9214559f",
-      "production_index": 919,
+      "production_index": 909,
       "gallery_name": "オオシロカラカサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131043136.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -59315,7 +58743,7 @@
     },
     {
       "observation_id": "obs-53eef24d4d30f049cef1de92f31ee284ae7dbadf01b82c1550aab215f9a6bea1",
-      "production_index": 920,
+      "production_index": 910,
       "gallery_name": "セイタカイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131044940.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -59357,7 +58785,7 @@
     },
     {
       "observation_id": "obs-a1d82085cc1e51406e44b45c6a8a1c5592a1606a4593821d26631db08384bc68",
-      "production_index": 921,
+      "production_index": 911,
       "gallery_name": "ホテイシメジ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131042750.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -59399,7 +58827,7 @@
     },
     {
       "observation_id": "obs-b48b18a8aea124a7ac0df22caa8b483c9db68a84e80c9ae151aa67852aa9b786",
-      "production_index": 922,
+      "production_index": 912,
       "gallery_name": "ヒラタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131044320.jpg",
       "shadow_match_status": "exact_gallery_name",
