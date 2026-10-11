@@ -17,6 +17,81 @@ def render(monkeypatch, tmp_path, **kwargs):
     return (tmp_path / "new-top.html").read_text(encoding="utf-8")
 
 
+def test_new_top_counts_follow_build_inputs_and_update(monkeypatch, tmp_path):
+    monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
+    for article_count, names, case_count, entry_count in (
+        (4, ["ベニテングタケ", "タマゴタケ"], 12, 3),
+        (7, ["ベニテングタケ", "タマゴタケ", "アカヤマドリ"], 1, 6),
+    ):
+        grouped = {name: ["photo.jpg", "another-photo.jpg"] for name in names}
+        grouped["不明"] = ["unknown.jpg"]
+        records = [{**record(i), "photo_count": 100} for i in range(article_count)]
+        main.generate_new_top(
+            grouped, {}, observation_records=records, feature_search_available=True,
+            research_summary={"case_count": case_count, "photo_count": 80, "label_count": 50},
+            best_shot_summary={"entry_count": entry_count, "year_count": 2},
+        )
+        soup = BeautifulSoup((tmp_path / "new-top.html").read_text(), "html.parser")
+        for selector, text in (
+            ("#records-heading", f"観察記録（{article_count}記事）"),
+            ("#explore-heading", f"キノコを探す（{len(names)}種）"),
+            (".portal-card--research strong", f"不明キノコ研究室（{case_count}件）"),
+            (".portal-card--best-shots strong", f"ベストショット（{entry_count}枚）"),
+        ):
+            heading = soup.select_one(selector)
+            assert heading.get_text() == text
+            assert heading.select_one(".portal-content-count") is not None
+        assert len(soup.select(".portal-content-count")) == 4
+        assert len(soup.select(".record-preview-row")) == 3
+        assert soup.select_one(".portal-more-link")["href"] == "records.html"
+        for modifier, href, description in (
+            ("research", "research.html", "正体を調べているキノコを見る"),
+            ("best-shots", "best-shots.html", "とっておきの一枚を集めた写真館"),
+        ):
+            card = soup.select_one(f".portal-card--{modifier}")
+            assert card["href"] == href
+            assert card.select_one("small").get_text() == description
+        assert soup.select_one(".portal-records-heading > p:last-child").get_text() == "キノコ探索のブログ記事を、新しい順に紹介します。"
+        assert soup.select_one(".portal-section-heading > p:last-child").get_text() == "名前や季節、見た目の特徴からキノコを探せます。"
+
+
+def test_new_top_guide_count_excludes_only_exact_unknown_and_empty_names(monkeypatch, tmp_path):
+    monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
+    grouped = {"ベニテングタケ": ["a.jpg", "a.jpg"], "タマゴタケ": ["b.jpg"],
+               "不明": ["c.jpg"], "": ["d.jpg"], "  ": ["e.jpg"]}
+    main.generate_new_top(grouped, {})
+    soup = BeautifulSoup((tmp_path / "new-top.html").read_text(), "html.parser")
+    assert soup.select_one("#explore-heading").get_text() == "キノコを探す（2種）"
+    grouped.update({"不明？": ["f.jpg"], " 不明 ": ["g.jpg"]})
+    main.generate_new_top(grouped, {})
+    soup = BeautifulSoup((tmp_path / "new-top.html").read_text(), "html.parser")
+    assert soup.select_one("#explore-heading").get_text() == "キノコを探す（4種）"
+
+
+def test_new_top_omits_uncertain_empty_observation_count(monkeypatch, tmp_path):
+    for records in (None, []):
+        soup = BeautifulSoup(render(monkeypatch, tmp_path, observation_records=records), "html.parser")
+        heading = soup.select_one("#records-heading")
+        assert heading.get_text() == "観察記録"
+        assert heading.select_one(".portal-content-count") is None
+        assert "（0記事）" not in soup.get_text()
+
+
+def test_new_top_optional_counts_keep_presence_policy_without_invented_zero(monkeypatch, tmp_path):
+    soup = BeautifulSoup(render(monkeypatch, tmp_path,
+                               research_summary={"case_count": 0, "photo_count": 0},
+                               best_shot_summary={"entry_count": 0}), "html.parser")
+    assert soup.select_one(".portal-card--research strong").get_text() == "不明キノコ研究室（0件）"
+    assert soup.select_one(".portal-card--best-shots") is None
+    soup = BeautifulSoup(render(monkeypatch, tmp_path,
+                               research_summary={"photo_count": 99}), "html.parser")
+    assert soup.select_one(".portal-card--research strong").get_text() == "不明キノコ研究室"
+    assert soup.select_one(".portal-card--research .portal-content-count") is None
+    absent = BeautifulSoup(render(monkeypatch, tmp_path), "html.parser")
+    assert absent.select_one(".portal-card--research") is None
+    assert absent.select_one(".portal-card--best-shots") is None
+
+
 
 def test_aiuo_pages_use_scoped_pc_portal_visual_language(monkeypatch, tmp_path):
     monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
