@@ -5,6 +5,14 @@ on:
     branches:
       - main
   workflow_dispatch:
+  schedule:
+    # 00:00 UTC = 09:00 JST. GitHub may delay scheduled runs.
+    - cron: '0 0 * * *'
+
+# Compare against the last publication, never two concurrent stale baselines.
+concurrency:
+  group: hatena-gallery-publication
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -13,6 +21,19 @@ jobs:
     steps:
       - name: 📥 リポジトリ取得
         uses: actions/checkout@v4
+
+      - name: Restore previous successful publication (read-only)
+        continue-on-error: true # Wrapper records UNKNOWN and fails closed if unavailable.
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: .sync-previous
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /portal-data.json
+            /phase3c-production-status.json
+            /article-sync-snapshot.json
+          persist-credentials: false
 
       - name: 🐍 Python セットアップ
         uses: actions/setup-python@v4
@@ -50,7 +71,16 @@ jobs:
           HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
           HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
         run: |
-          python main.py
+          python article_sync.py --previous .sync-previous
+
+      - name: Save sanitized read-only sync report (including failures)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: article-sync-report-${{ github.run_id }}-${{ github.run_attempt }}
+          path: cache/article-sync-report.json
+          if-no-files-found: ignore
+          retention-days: 30
 
       - name: 📤 EXIFキャッシュを保存
         uses: actions/cache/save@v4

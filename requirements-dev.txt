@@ -1,2 +1,3 @@
 -r requirements.txt
 pytest
+PyYAML  # Parse the publication workflow in synchronization regression tests.
