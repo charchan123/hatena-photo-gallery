@@ -33,15 +33,26 @@ def test_new_top_counts_follow_build_inputs_and_update(monkeypatch, tmp_path):
         )
         soup = BeautifulSoup((tmp_path / "new-top.html").read_text(), "html.parser")
         for selector, text in (
-            ("#records-heading", f"観察記録（{article_count}記事）"),
-            ("#explore-heading", f"キノコを探す（{len(names)}種）"),
-            (".portal-card--research strong", f"不明キノコ研究室（{case_count}件）"),
-            (".portal-card--best-shots strong", f"ベストショット（{entry_count}枚）"),
+            ("#records-heading", f"観察記録 ({article_count}記事)"),
+            ("#explore-heading", f"キノコを探す ({len(names)}種)"),
+            (".portal-card--research strong", f"不明キノコ研究室 ({case_count}件)"),
+            (".portal-card--best-shots strong", f"ベストショット ({entry_count}枚)"),
         ):
             heading = soup.select_one(selector)
             assert heading.get_text() == text
             assert heading.select_one(".portal-content-count") is not None
         assert len(soup.select(".portal-content-count")) == 4
+        for count in soup.select(".portal-content-count"):
+            assert count.get_text().startswith(" (")
+            assert count.get_text().endswith(")")
+            assert "（" not in count.get_text() and "）" not in count.get_text()
+        css = (Path(main.ASSETS_DIR) / "portal.css").read_text(encoding="utf-8")
+        count_rule = re.search(r"\\.portal-index \\.portal-content-count \\{([^}]*)\\}", css)
+        assert count_rule is not None
+        declarations = count_rule.group(1)
+        assert "font-size:.55em" in declarations
+        assert "opacity:1" in declarations
+        assert "margin-left" not in declarations
         assert len(soup.select(".record-preview-row")) == 3
         assert soup.select_one(".portal-more-link")["href"] == "records.html"
         for modifier, href, description in (
@@ -61,11 +72,11 @@ def test_new_top_guide_count_excludes_only_exact_unknown_and_empty_names(monkeyp
                "不明": ["c.jpg"], "": ["d.jpg"], "  ": ["e.jpg"]}
     main.generate_new_top(grouped, {})
     soup = BeautifulSoup((tmp_path / "new-top.html").read_text(), "html.parser")
-    assert soup.select_one("#explore-heading").get_text() == "キノコを探す（2種）"
+    assert soup.select_one("#explore-heading").get_text() == "キノコを探す (2種)"
     grouped.update({"不明？": ["f.jpg"], " 不明 ": ["g.jpg"]})
     main.generate_new_top(grouped, {})
     soup = BeautifulSoup((tmp_path / "new-top.html").read_text(), "html.parser")
-    assert soup.select_one("#explore-heading").get_text() == "キノコを探す（4種）"
+    assert soup.select_one("#explore-heading").get_text() == "キノコを探す (4種)"
 
 
 def test_new_top_omits_uncertain_empty_observation_count(monkeypatch, tmp_path):
@@ -74,14 +85,14 @@ def test_new_top_omits_uncertain_empty_observation_count(monkeypatch, tmp_path):
         heading = soup.select_one("#records-heading")
         assert heading.get_text() == "観察記録"
         assert heading.select_one(".portal-content-count") is None
-        assert "（0記事）" not in soup.get_text()
+        assert " (0記事)" not in soup.get_text()
 
 
 def test_new_top_optional_counts_keep_presence_policy_without_invented_zero(monkeypatch, tmp_path):
     soup = BeautifulSoup(render(monkeypatch, tmp_path,
                                research_summary={"case_count": 0, "photo_count": 0},
                                best_shot_summary={"entry_count": 0}), "html.parser")
-    assert soup.select_one(".portal-card--research strong").get_text() == "不明キノコ研究室（0件）"
+    assert soup.select_one(".portal-card--research strong").get_text() == "不明キノコ研究室 (0件)"
     assert soup.select_one(".portal-card--best-shots") is None
     soup = BeautifulSoup(render(monkeypatch, tmp_path,
                                research_summary={"photo_count": 99}), "html.parser")

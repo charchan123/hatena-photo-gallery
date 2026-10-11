@@ -2529,8 +2529,8 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
     def content_count(count, unit):
         if count is None:
             return ""
-        return (f'<span class="portal-content-count">'
-                f'（{html.escape(str(count))}{unit}）</span>')
+        return (f'<span class="portal-content-count"> '
+                f'({html.escape(str(count))}{unit})</span>')
 
     # Count the actual detail-page names, not the taxonomy or facet inventory.
     guide_count = len({name for name in grouped
