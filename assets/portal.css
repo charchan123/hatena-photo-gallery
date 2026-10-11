@@ -9,7 +9,7 @@
 .portal-records-heading,.portal-section-heading { z-index:1; align-self:end; width:100%; padding:24px 28px 20px; box-sizing:border-box; color:#fff; text-shadow:0 1px 3px rgba(8,20,12,.42); }
 .portal-eyebrow { margin:0 0 6px; color:inherit; font-size:.69rem; font-weight:800; letter-spacing:.18em; }
 .portal-records-heading h1,.portal-zone-title { display:flex; align-items:center; gap:9px; margin:0; color:inherit; font-size:clamp(1.4rem,3vw,1.65rem); line-height:1.2; }
-.portal-index .portal-content-count { display:inline-block; margin-left:.35em; font-size:.65em; font-weight:500; opacity:.82; white-space:nowrap; }
+.portal-index .portal-content-count { display:inline-block; font-size:.55em; font-weight:500; opacity:1; white-space:nowrap; }
 .portal-records-heading p:last-child,.portal-section-heading>p:last-child { margin:7px 0 0; color:rgba(255,255,255,.9); font-size:.91rem; }
 .portal-icon { width:24px; height:24px; flex:0 0 auto; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
 .record-preview-list { margin:0 28px; border-top:1px solid #d9ddcf; }
