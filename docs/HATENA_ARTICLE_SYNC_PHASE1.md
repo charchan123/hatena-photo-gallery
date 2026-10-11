@@ -192,13 +192,95 @@ See `ARTICLE_SYNC_PHASE1_VALIDATION.json` for final executed counts.
   live Atom harvest.
 * Full Python/JavaScript regression suites cover existing admin localhost/CSRF,
   Phase 3C and HTML/data contracts. Workflow YAML/trigger/order checks are fixtures.
-* No live authenticated Hatena request, Actions schedule run or deployment was
-  executed in this task. The exact real API result and first scheduled execution
-  remain operational checks after human merge; strict validation will block rather
-  than guess if their shape or identity is incompatible. No live rollback/deployment
-  claim is made; failure retention is demonstrated by local fixtures and workflow
-  success gating.
+* A later PR #105-only read-only Actions preflight completed authenticated Atom
+  pagination but blocked photo compatibility. See the evidence below. No schedule,
+  deployment or Hatena write was executed; live API completion is not publication
+  readiness. Failure retention is demonstrated by local fixtures and workflow gates.
 
 Only the generator entry/integration, fetch health safeguards, workflow, isolated
 sync module, regression tests, the dev-only YAML parser dependency and these review documents change. No biological,
 provenance, facet, toxicity, registry, Hatena, poison, CSS or typography data changes.
+
+## PR #105 read-only real API preflight — BLOCKER
+
+Starting main remained `df1a5dfe69a9c01b39d44ee2421fd77b3940ad7a`.
+Starting PR head was `9e3f8d2d8047767437752ec9100c96c3732cbcf9`.
+The existing PR CI showed all three configured Secrets available. A temporary
+`pull_request` workflow restricted to PR 105 and same-repository heads used only
+`contents: read`, credential-free checkout and Hatena GET requests. It ran the
+existing `article_sync.py` / `main.py` in a runner temporary directory. Only
+allowlisted counts/codes were logged/uploaded. No API body, article HTML, draft
+identity, credential value or generated site was uploaded. The workflow contained
+no deployment, write operation, dispatch or cache save and was removed from the
+final PR diff after diagnosis, including because this preflight was blocked.
+
+Executed runs:
+
+* [First guarded preflight](https://github.com/charchan123/hatena-photo-gallery/actions/runs/38165841209): complete API fetch, compatibility blocked.
+* [HTML representation diagnosis](https://github.com/charchan123/hatena-photo-gallery/actions/runs/38166003032): no image-source difference between raw HTML and formatted HTML in the 110 public articles.
+* [Draft-related identity diagnosis](https://github.com/charchan123/hatena-photo-gallery/actions/runs/38166194193): confirmed cause below; head `4770dfa38f1ac2e0910099d16db8855f2be02eb7`.
+
+All three used the read-only publication baseline
+`f3114e2bbd367047eef04d7a9291303ae7161f4c`.
+The final diagnosis returned:
+
+| Check | Observed result |
+| --- | --- |
+| Completed Atom pages | 12; terminal `rel=next` absent; metadata save completed |
+| Total entries received | 112 |
+| Published articles / verified HTML articles | 110 / 110 |
+| Excluded drafts | 2 |
+| Public article DOM image occurrences | 976 |
+| Phase 3C gallery candidate | 906 photos; not approved/published |
+| Previous published observations | 913 |
+| Missing prior photo keys | 7, all in one currently excluded draft article |
+| Missing affected articles from the entire API harvest | 0 |
+| Error stage / code | ID reconciliation / `REMOVED_OR_REPLACED_PUBLISHED_PHOTO` |
+| Inventory differences | `UNKNOWN`; no previous full Atom inventory |
+| Best Shot 3 / research 67 final reference checks | NOT REACHED in this live run |
+| Completed observation/guide/top downstream generation | NOT REACHED in this live run |
+| Publication / Hatena write | None |
+
+This is not an API transport/response-format failure. All 110 public entries had
+explicit `text/html` content and formatted HTML; both representations contained
+the same ordered image URL lists. The previous portal contains seven photo keys
+whose article is now explicitly `app:draft=yes`. The previous site has no full
+article inventory, so whether it was already a draft when historically generated
+or was changed to a draft later is unknown. No private article identity/body is
+recorded in this report.
+
+The 913-ID preservation requirement therefore **fails**. Do not call the 906-photo
+candidate an approved adoption or claim all protected references passed: execution
+stopped before final reference validation and page generation. Earlier offline
+913/3/67 compatibility tests remain valid fixture evidence, not evidence that this
+current API harvest passes. Classification review count 597 is an aggregate of
+pending image occurrences and legacy review signals, not 597 new problems; the
+bootstrap cannot determine newly changed classification counts.
+
+### Decision and necessary follow-up
+
+**Do not merge or enable daily publication yet.** Including the draft would undo
+privacy filtering; deleting/rebinding the seven old photo records or resetting the
+baseline would bypass preservation. Neither is authorized. A human must review
+publication intent for the affected draft and resolve the legacy-publication
+compatibility discrepancy before a new read-only preflight can succeed. The
+registered Best Shot/research data remains unchanged. No automatic approval,
+force-regenerated ID, alias or knowledge edit was introduced.
+
+This follow-up only adds safe fetch/provenance counts, draft-related compatibility
+diagnosis, full-photo preservation counting, and an explicit existing research
+case/photo-reference preservation gate. Regression fixtures check complete vs
+partial fetch telemetry, hidden draft exclusion, guarded bootstrap counts and an
+unregistered research case disappearing. Workflow/bootstrap safety gates were not
+weakened, and `generate.yml` is unchanged from the starting PR head.
+
+Final local tests: **670 pytest passed / 670 collected**, **265 focused passed**
+(including 64 sync cases); **40 Node test-runner tests passed**, plus direct execution
+of all eight JS files. Python compilation, all JS syntax, workflow YAML, workflow
+removal, protected-path comparison and `git diff --check`: PASS. Full fixture
+builds exercise bootstrap and zero-diff repeat; the actual live build remained
+blocked. Counts and all three sanitized run summaries are retained in
+`ARTICLE_SYNC_PHASE1_VALIDATION.json`.
+
+Hatena production, gh-pages, main, knowledge/provenance, facets, Best Shot/research
+registries, UI assets and admin behavior were not modified. PR #105 remains Draft.
