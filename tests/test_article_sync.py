@@ -290,7 +290,9 @@ def test_complete_paginated_fetch_excludes_drafts_and_has_timeout(monkeypatch, t
     assert len(calls) == 2 and all(x[1]["timeout"] == (10, 60) and x[1]["allow_redirects"] is False for x in calls)
     assert all("DRAFT" not in Path(x).read_text() for x in files)
     assert audit == {"pages_completed": 2, "entries_received": 3, "drafts_excluded": 1,
-                     "published_articles": 2, "html_articles": 2, "pagination_complete": True}
+                     "published_articles": 2, "html_articles": 2, "pagination_complete": True,
+                     "content_type_counts": {"text/html": 2}, "html_source_counts": {"content_html": 2},
+                     "html_image_representation_difference_articles": 0}
 
 
 @pytest.mark.parametrize("response,expected", [

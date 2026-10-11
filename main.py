@@ -474,7 +474,9 @@ def fetch_hatena_articles_api(*, strict=False, audit=None):
     endpoint = urlsplit(ATOM_ENDPOINT)
     if audit is not None:
         audit.update(pages_completed=0, entries_received=0, drafts_excluded=0,
-                     published_articles=0, html_articles=0, pagination_complete=False)
+                     published_articles=0, html_articles=0, pagination_complete=False,
+                     content_type_counts={}, html_source_counts={},
+                     html_image_representation_difference_articles=0)
     while url:
         target = urlsplit(url)
         if (url in visited or len(visited) >= 1000 or target.scheme != "https"
@@ -521,6 +523,16 @@ def fetch_hatena_articles_api(*, strict=False, audit=None):
             html_content = content.text or ""
             if strict:
                 formatted = entry.find("{http://www.hatena.ne.jp/info/xmlns#}formatted-content")
+                if audit is not None:
+                    kind = content.attrib.get("type", "")
+                    kind = kind if kind in {"text/html", "html", "text/x-markdown", "text/x-hatena-syntax", "text/plain"} else "other"
+                    audit["content_type_counts"][kind] = audit["content_type_counts"].get(kind, 0) + 1
+                    source = "formatted" if formatted is not None else "content_html"
+                    audit["html_source_counts"][source] = audit["html_source_counts"].get(source, 0) + 1
+                    if formatted is not None and kind in {"text/html", "html"}:
+                        raw_images = [node.get("src") for node in BeautifulSoup(html_content, "html.parser").find_all("img")]
+                        rendered_images = [node.get("src") for node in BeautifulSoup(formatted.text or "", "html.parser").find_all("img")]
+                        audit["html_image_representation_difference_articles"] += int(raw_images != rendered_images)
                 if formatted is not None:
                     html_content = formatted.text or ""
                 elif content.attrib.get("type", "") not in {"text/html", "html"}:

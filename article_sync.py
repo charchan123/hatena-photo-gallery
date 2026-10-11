@@ -282,6 +282,11 @@ class SyncRun:
         self.articles = inventory(self.article_files, self.metadata, shadows)
         self.status["published_article_count"] = len(self.articles)
         self.status["detected_image_count"] = sum(len(row["images"]) for row in self.articles.values())
+        old_groups, new_groups = observation_groups(self.previous), observation_groups(portal)
+        self.status.update(previous_photo_count=len(self.previous["observations"]),
+                           candidate_gallery_photo_count=len(portal["observations"]),
+                           missing_published_photo_keys=len(old_groups.keys() - new_groups.keys()),
+                           missing_published_article_ids=len({aid for aid, _ in old_groups} - {aid for aid, _ in new_groups}))
         before = self.previous_snapshot["articles"] if self.previous_snapshot else None
         differences = compare_inventory(before, self.articles)
         self.status.update({k: v for k, v in differences.items()
