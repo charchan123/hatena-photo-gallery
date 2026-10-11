@@ -47,7 +47,7 @@ def test_new_top_counts_follow_build_inputs_and_update(monkeypatch, tmp_path):
             assert count.get_text().endswith(")")
             assert "（" not in count.get_text() and "）" not in count.get_text()
         css = (Path(main.ASSETS_DIR) / "portal.css").read_text(encoding="utf-8")
-        count_rule = re.search(r"\\.portal-index \\.portal-content-count \\{([^}]*)\\}", css)
+        count_rule = re.search(r"\.portal-index \.portal-content-count \{([^}]*)\}", css)
         assert count_rule is not None
         declarations = count_rule.group(1)
         assert "font-size:.55em" in declarations
