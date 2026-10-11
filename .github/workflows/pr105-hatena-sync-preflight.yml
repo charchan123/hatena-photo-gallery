@@ -68,6 +68,7 @@ jobs:
                   'baseline_error', 'fetch_audit', 'published_article_count', 'detected_image_count',
                   'previous_photo_count', 'preserved_photo_ids', 'gallery_photo_count',
                   'candidate_gallery_photo_count', 'missing_published_photo_keys', 'missing_published_article_ids',
+                  'missing_photos_in_excluded_drafts', 'missing_articles_in_excluded_drafts', 'missing_articles_from_api_harvest',
                   'best_shot_references_preserved', 'research_cases_preserved', 'generated_html_pages',
                   'bootstrap', 'new_articles', 'deleted_articles', 'new_images', 'deleted_images',
                   'possible_url_changes', 'url_changes', 'updated_articles', 'classification_changes',

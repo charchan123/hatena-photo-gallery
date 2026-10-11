@@ -259,6 +259,7 @@ class SyncRun:
                        "last_success_at": None, "classification_review_count": None,
                        "fetch_error": None, "id_compatibility_error": None}
         self.status["fetch_audit"] = {}
+        self.excluded_draft_hashes = set()
         self.previous = read_json(self.previous_directory / "portal-data.json")
         observation_groups(self.previous)
         phase = read_json(self.previous_directory / "phase3c-production-status.json")
@@ -287,6 +288,12 @@ class SyncRun:
                            candidate_gallery_photo_count=len(portal["observations"]),
                            missing_published_photo_keys=len(old_groups.keys() - new_groups.keys()),
                            missing_published_article_ids=len({aid for aid, _ in old_groups} - {aid for aid, _ in new_groups}))
+        missing_keys = old_groups.keys() - new_groups.keys()
+        missing_draft_keys = {key for key in missing_keys if digest(key[0]) in self.excluded_draft_hashes}
+        self.status["missing_photos_in_excluded_drafts"] = sum(len(old_groups[key]) for key in missing_draft_keys)
+        self.status["missing_articles_in_excluded_drafts"] = len({aid for aid, _ in missing_draft_keys})
+        self.status["missing_articles_from_api_harvest"] = len({digest(aid) for aid, _ in missing_keys}
+            - set(self.articles) - self.excluded_draft_hashes)
         before = self.previous_snapshot["articles"] if self.previous_snapshot else None
         differences = compare_inventory(before, self.articles)
         self.status.update({k: v for k, v in differences.items()

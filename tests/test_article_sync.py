@@ -284,11 +284,13 @@ def test_complete_paginated_fetch_excludes_drafts_and_has_timeout(monkeypatch, t
     main, calls = api_fixture(monkeypatch, tmp_path, [
         feed(atom_entry() + atom_entry("DRAFT", draft="yes"), endpoint + "?page=2"), feed(atom_entry("B"))])
     audit = {}
-    files = main.fetch_hatena_articles_api(strict=True, audit=audit)
+    drafts = set()
+    files = main.fetch_hatena_articles_api(strict=True, audit=audit, excluded_draft_hashes=drafts)
     metadata = main.load_article_metadata()
     assert len(files) == 2 and {x["article_id"] for x in metadata.values()} == {"A", "B"}
     assert len(calls) == 2 and all(x[1]["timeout"] == (10, 60) and x[1]["allow_redirects"] is False for x in calls)
     assert all("DRAFT" not in Path(x).read_text() for x in files)
+    assert drafts == {sync.digest("DRAFT")}
     assert audit == {"pages_completed": 2, "entries_received": 3, "drafts_excluded": 1,
                      "published_articles": 2, "html_articles": 2, "pagination_complete": True,
                      "content_type_counts": {"text/html": 2}, "html_source_counts": {"content_html": 2},
@@ -439,6 +441,22 @@ def test_unregistered_research_case_cannot_silently_disappear(tmp_path):
     sync.write_json(tmp_path / "best-shots.json", {"version": 1, "entries": []})
     with pytest.raises(sync.SyncError, match="PROTECTED_REFERENCE_ERROR"):
         sync.validate_references(portal(), old, tmp_path)
+
+
+def test_excluded_draft_photo_is_reported_but_gate_is_not_bypassed(tmp_path):
+    old = portal(photo(aid="A"), photo(aid="now-draft", src="draft.jpg", oid="old-draft-photo"))
+    run = sync.SyncRun(prior(tmp_path, old), tmp_path / "report.json")
+    run.excluded_draft_hashes.add(sync.digest("now-draft"))
+    f = tmp_path / "article.html"
+    f.write_text('<img src="https://images.example/A.jpg">')
+    run.capture([str(f)], {str(f): {"article_id": "A", "updated": "1"}})
+    # Add enough unrelated valid photos to isolate the exact-ID disappearance gate.
+    current = portal(photo(aid="A"), photo(aid="new", src="new", oid="new"))
+    with pytest.raises(sync.SyncError, match="REMOVED_OR_REPLACED_PUBLISHED_PHOTO"):
+        run.reconcile(current, [])
+    assert run.status["missing_photos_in_excluded_drafts"] == 1
+    assert run.status["missing_articles_in_excluded_drafts"] == 1
+    assert run.status["missing_articles_from_api_harvest"] == 0
 
 
 @pytest.mark.parametrize("generator", ["generate_season_page_if_fresh", "generate_records_page_if_fresh",

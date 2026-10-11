@@ -456,8 +456,8 @@ def build_caption_html(alt, exif: dict):
 # ===========================
 # はてなAPI 全記事取得
 # ===========================
-def fetch_hatena_articles_api(*, strict=False, audit=None):
-    from article_sync import SyncError
+def fetch_hatena_articles_api(*, strict=False, audit=None, excluded_draft_hashes=None):
+    from article_sync import SyncError, digest
     from urllib.parse import urljoin, urlsplit
     if not all([HATENA_USER, HATENA_BLOG_ID, HATENA_API_KEY]):
         raise EnvironmentError(
@@ -508,6 +508,8 @@ def fetch_hatena_articles_api(*, strict=False, audit=None):
             if draft is not None and (draft.text or "").strip() == "yes":
                 if audit is not None:
                     audit["drafts_excluded"] += 1
+                if excluded_draft_hashes is not None:
+                    excluded_draft_hashes.add(digest(_atom_text(entry, "atom:id", ns)))
                 continue
             if strict and (draft is None or (draft.text or "").strip() != "no"):
                 raise SyncError("API_DRAFT_STATE_INVALID")
@@ -2832,7 +2834,9 @@ window.SRC_TO_ALT = {json.dumps(src_to_alt, ensure_ascii=False)};
 # ===========================
 def build_gallery(*, sync_run=None):
     """APIの最新取得結果からギャラリー一式を生成する。"""
-    article_files = fetch_hatena_articles_api(strict=True, audit=sync_run.status["fetch_audit"]) if sync_run else fetch_hatena_articles_api()
+    article_files = fetch_hatena_articles_api(
+        strict=True, audit=sync_run.status["fetch_audit"],
+        excluded_draft_hashes=sync_run.excluded_draft_hashes) if sync_run else fetch_hatena_articles_api()
     if sync_run:
         sync_run.capture(article_files, load_article_metadata())
     if not article_files:
