@@ -43,7 +43,8 @@ def test_new_top_counts_follow_build_inputs_and_update(monkeypatch, tmp_path):
             assert heading.select_one(".portal-content-count") is not None
         assert len(soup.select(".portal-content-count")) == 4
         for count in soup.select(".portal-content-count"):
-            assert count.get_text().startswith(" (")
+            assert count.get_text().startswith("(")
+            assert count.previous_sibling.endswith(" ")
             assert count.get_text().endswith(")")
             assert "（" not in count.get_text() and "）" not in count.get_text()
         css = (Path(main.ASSETS_DIR) / "portal.css").read_text(encoding="utf-8")
