@@ -1,0 +1,89 @@
+name: PR105 read-only Hatena sync preflight
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    if: github.event.pull_request.number == 105 && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout audited same-repository PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Read previous publication only
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: .preflight-previous
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /portal-data.json
+            /phase3c-production-status.json
+            /article-sync-snapshot.json
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install existing production requirements
+        run: python -m pip install -r requirements.txt
+      - name: Restore EXIF performance cache (no save)
+        uses: actions/cache/restore@v4
+        with:
+          path: cache/exif-cache.json
+          key: exif-cache-v1-${{ runner.os }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            exif-cache-v1-${{ runner.os }}-
+      - name: Existing guarded sync with Hatena GET-only access
+        env:
+          HATENA_USER: ${{ secrets.HATENA_USER }}
+          HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
+          HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
+        run: |
+          if [ -z "$HATENA_USER" ] || [ -z "$HATENA_BLOG_ID" ] || [ -z "$HATENA_API_KEY" ]; then
+            echo 'PREFLIGHT_BLOCKED: SECRETS_UNAVAILABLE'
+            exit 1
+          fi
+          workdir=$(mktemp -d "${RUNNER_TEMP}/hatena-preflight.XXXXXX")
+          cp -a "$GITHUB_WORKSPACE/." "$workdir/work"
+          cd "$workdir/work"
+          python article_sync.py --previous .preflight-previous --output "$RUNNER_TEMP/hatena-preflight-site" --report "$RUNNER_TEMP/hatena-preflight-report.json"
+      - name: Counts and reason codes only (no source content)
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, os, pathlib, subprocess
+          root = pathlib.Path(os.environ['RUNNER_TEMP'])
+          path = root / 'hatena-preflight-report.json'
+          report = json.loads(path.read_text()) if path.exists() else {'result': 'BLOCKED', 'error_code': 'REPORT_UNAVAILABLE'}
+          keys = ('result', 'comparison', 'error_code', 'fetch_error', 'id_compatibility_error',
+                  'baseline_error', 'fetch_audit', 'published_article_count', 'detected_image_count',
+                  'previous_photo_count', 'preserved_photo_ids', 'gallery_photo_count',
+                  'best_shot_references_preserved', 'research_cases_preserved', 'generated_html_pages',
+                  'bootstrap', 'new_articles', 'deleted_articles', 'new_images', 'deleted_images',
+                  'possible_url_changes', 'url_changes', 'updated_articles', 'classification_changes',
+                  'classification_review_count', 'classification_state_counts')
+          safe = {key: report[key] for key in keys if key in report}
+          safe['head_sha'] = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          safe['previous_publication_sha'] = subprocess.check_output(['git', '-C', '.preflight-previous', 'rev-parse', 'HEAD'], text=True).strip()
+          safe['publication_executed'] = False
+          safe['hatena_write_executed'] = False
+          (root / 'hatena-preflight-summary.json').write_text(json.dumps(safe, indent=2) + '\n')
+          print('PREFLIGHT_SUMMARY=' + json.dumps(safe, sort_keys=True))
+          PY
+      - name: Upload sanitized counts only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr105-hatena-read-only-preflight
+          path: ${{ runner.temp }}/hatena-preflight-summary.json
+          if-no-files-found: error
+          retention-days: 7

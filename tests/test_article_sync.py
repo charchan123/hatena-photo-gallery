@@ -283,11 +283,14 @@ def test_complete_paginated_fetch_excludes_drafts_and_has_timeout(monkeypatch, t
     endpoint = "https://blog.hatena.ne.jp/fixture/fixture.example/atom/entry"
     main, calls = api_fixture(monkeypatch, tmp_path, [
         feed(atom_entry() + atom_entry("DRAFT", draft="yes"), endpoint + "?page=2"), feed(atom_entry("B"))])
-    files = main.fetch_hatena_articles_api(strict=True)
+    audit = {}
+    files = main.fetch_hatena_articles_api(strict=True, audit=audit)
     metadata = main.load_article_metadata()
     assert len(files) == 2 and {x["article_id"] for x in metadata.values()} == {"A", "B"}
     assert len(calls) == 2 and all(x[1]["timeout"] == (10, 60) and x[1]["allow_redirects"] is False for x in calls)
     assert all("DRAFT" not in Path(x).read_text() for x in files)
+    assert audit == {"pages_completed": 2, "entries_received": 3, "drafts_excluded": 1,
+                     "published_articles": 2, "html_articles": 2, "pagination_complete": True}
 
 
 @pytest.mark.parametrize("response,expected", [
@@ -321,9 +324,12 @@ def test_page_two_timeout_does_not_mark_partial_fetch_complete(monkeypatch, tmp_
     import requests
     endpoint = "https://blog.hatena.ne.jp/fixture/fixture.example/atom/entry"
     main, _ = api_fixture(monkeypatch, tmp_path, [feed(atom_entry(), endpoint + "?page=2"), requests.Timeout("SECRET")])
+    audit = {}
     with pytest.raises(sync.SyncError, match="API_TRANSPORT_ERROR"):
-        main.fetch_hatena_articles_api(strict=True)
+        main.fetch_hatena_articles_api(strict=True, audit=audit)
     assert not Path(main.ARTICLE_METADATA_FILE).exists()
+    assert audit["pages_completed"] == 1 and audit["pagination_complete"] is False
+    assert "SECRET" not in json.dumps(audit)
 
 
 def test_snapshot_deletion_blocks_even_if_remaining_portal_is_unchanged(tmp_path):
@@ -365,6 +371,11 @@ def test_real_generator_guarded_bootstrap_then_second_sync_zero_diff(tmp_path, m
     first = sync.read_json(output / "article-sync-status.json")
     assert first["bootstrap"] is True and first["comparison"] == "UNKNOWN"
     assert first["new_images"] is None
+    assert first["fetch_audit"]["pagination_complete"] is True
+    assert first["published_article_count"] == first["detected_image_count"] == 1
+    assert first["previous_photo_count"] == first["preserved_photo_ids"] == first["gallery_photo_count"] == 1
+    assert first["best_shot_references_preserved"] == first["research_cases_preserved"] == 0
+    assert first["generated_html_pages"] > 8
     assert sync.read_json(output / "portal-data.json")["observations"][0]["observation_id"] == "obs-published-A"
     assert (output / "シイタケ.html").exists()
     assert (output / "assets/poison-spores.js").exists()
@@ -413,9 +424,19 @@ def test_research_registration_survives_path_and_order_changes(tmp_path):
     current["observations"][0]["article"]["article_path"] = "articles/article_987.html"
     current["observations"][0]["observation_id"] = "unstable"
     resolved = sync.reconcile_ids(current, old)
-    sync.validate_references(resolved, old, tmp_path)
+    counts = sync.validate_references(resolved, old, tmp_path)
+    assert counts == {"best_shot_references_preserved": 0, "research_cases_preserved": 1}
     assert build_research_cases(resolved)[0]["case_id"] == case["case_id"]
     assert sync.read_json(tmp_path / "research-identifications.json") == registry
+
+
+def test_unregistered_research_case_cannot_silently_disappear(tmp_path):
+    old = portal(photo(name="不明", state="confirmed_mushroom_identity_uncertain"))
+    sync.write_json(tmp_path / "research-identifications.json", {"version": 1, "identifications": []})
+    sync.write_json(tmp_path / "mushroom-master.json", {"version": 1, "entries": []})
+    sync.write_json(tmp_path / "best-shots.json", {"version": 1, "entries": []})
+    with pytest.raises(sync.SyncError, match="PROTECTED_REFERENCE_ERROR"):
+        sync.validate_references(portal(), old, tmp_path)
 
 
 @pytest.mark.parametrize("generator", ["generate_season_page_if_fresh", "generate_records_page_if_fresh",

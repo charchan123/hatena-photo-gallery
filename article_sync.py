@@ -226,6 +226,7 @@ def compare_inventory(previous, current):
 def validate_references(portal, previous, data_directory):
     from best_shot_ui import validate_best_shot_config
     from research_identifications import validate_registry
+    from research_ui import build_research_cases
     old = {row["observation_id"]: row for row in previous["observations"]}
     current = {row["observation_id"]: row for row in portal["observations"]}
     try:
@@ -238,8 +239,16 @@ def validate_references(portal, previous, data_directory):
             assert oid in old and oid in current
             assert (old[oid]["src"], old[oid]["article"]["article_id"]) == (
                 current[oid]["src"], current[oid]["article"]["article_id"])
+        old_cases = build_research_cases(previous)
+        new_cases = {case["case_id"]: case for case in build_research_cases(portal)}
+        for case in old_cases:
+            assert case["case_id"] in new_cases
+            assert {photo["observation_id"] for photo in case["photos"]} <= {
+                photo["observation_id"] for photo in new_cases[case["case_id"]]["photos"]}
     except (ValueError, KeyError, AssertionError):
         raise SyncError("PROTECTED_REFERENCE_ERROR") from None
+    return {"best_shot_references_preserved": len(config["entries"]),
+            "research_cases_preserved": len(old_cases)}
 
 
 class SyncRun:
@@ -249,6 +258,7 @@ class SyncRun:
         self.status = {"version": 1, "result": "BLOCKED", **compare_inventory(None, {}),
                        "last_success_at": None, "classification_review_count": None,
                        "fetch_error": None, "id_compatibility_error": None}
+        self.status["fetch_audit"] = {}
         self.previous = read_json(self.previous_directory / "portal-data.json")
         observation_groups(self.previous)
         phase = read_json(self.previous_directory / "phase3c-production-status.json")
@@ -270,6 +280,8 @@ class SyncRun:
         if self.article_files is None:
             raise SyncError("HARVEST_NOT_COMPLETED")
         self.articles = inventory(self.article_files, self.metadata, shadows)
+        self.status["published_article_count"] = len(self.articles)
+        self.status["detected_image_count"] = sum(len(row["images"]) for row in self.articles.values())
         before = self.previous_snapshot["articles"] if self.previous_snapshot else None
         differences = compare_inventory(before, self.articles)
         self.status.update({k: v for k, v in differences.items()
@@ -311,7 +323,15 @@ class SyncRun:
                 or status.get("build_ok") is not True or not all(flags)
                 or phase.get("production_image_count") != len(portal["observations"])):
             raise SyncError("OUTPUT_INTEGRITY_ERROR")
-        validate_references(portal, self.previous, data_directory)
+        self.status.update(validate_references(portal, self.previous, data_directory))
+        old = {row["observation_id"]: row for row in self.previous["observations"]}
+        current = {row["observation_id"]: row for row in portal["observations"]}
+        preserved = sum(oid in current and (row["src"], row["article"]["article_id"]) == (
+            current[oid]["src"], current[oid]["article"]["article_id"]) for oid, row in old.items())
+        if preserved != len(old):
+            raise SyncError("ID_COMPATIBILITY_ERROR")
+        self.status.update(previous_photo_count=len(old), preserved_photo_ids=preserved,
+                           gallery_photo_count=len(current))
         for filename in ("index.html", "new-top.html", "records.html", "season.html", "features.html",
                          "research.html", "best-shots.html", "favorite.html"):
             file = output / filename
@@ -320,6 +340,7 @@ class SyncRun:
         now = datetime.now(timezone.utc).isoformat()
         snapshot = seal_snapshot(self.articles, portal, now)
         validate_snapshot(snapshot, portal)
+        self.status["generated_html_pages"] = sum(1 for _ in output.rglob("*.html"))
         self.status.update(result="SUCCESS", last_success_at=now,
                            bootstrap=self.previous_snapshot is None)
         write_json(output / "article-sync-snapshot.json", snapshot)

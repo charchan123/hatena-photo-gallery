@@ -456,7 +456,7 @@ def build_caption_html(alt, exif: dict):
 # ===========================
 # はてなAPI 全記事取得
 # ===========================
-def fetch_hatena_articles_api(*, strict=False):
+def fetch_hatena_articles_api(*, strict=False, audit=None):
     from article_sync import SyncError
     from urllib.parse import urljoin, urlsplit
     if not all([HATENA_USER, HATENA_BLOG_ID, HATENA_API_KEY]):
@@ -472,6 +472,9 @@ def fetch_hatena_articles_api(*, strict=False):
     article_metadata = {}
     visited, article_ids = set(), set()
     endpoint = urlsplit(ATOM_ENDPOINT)
+    if audit is not None:
+        audit.update(pages_completed=0, entries_received=0, drafts_excluded=0,
+                     published_articles=0, html_articles=0, pagination_complete=False)
     while url:
         target = urlsplit(url)
         if (url in visited or len(visited) >= 1000 or target.scheme != "https"
@@ -494,11 +497,15 @@ def fetch_hatena_articles_api(*, strict=False):
             raise SyncError("API_FEED_INVALID")
         ns = {"atom": "http://www.w3.org/2005/Atom", "app": "http://www.w3.org/2007/app"}
         entries = root.findall("atom:entry", ns)
+        if audit is not None:
+            audit["entries_received"] += len(entries)
 
         for i, entry in enumerate(entries, 1):
             # Atom includes drafts. Never generate public pages from private drafts.
             draft = entry.find("app:control/app:draft", ns)
             if draft is not None and (draft.text or "").strip() == "yes":
+                if audit is not None:
+                    audit["drafts_excluded"] += 1
                 continue
             if strict and (draft is None or (draft.text or "").strip() != "no"):
                 raise SyncError("API_DRAFT_STATE_INVALID")
@@ -524,6 +531,9 @@ def fetch_hatena_articles_api(*, strict=False):
             with open(filename, "w", encoding="utf-8") as f:
                 f.write(html_content)
             article_files.append(filename)
+            if audit is not None:
+                audit["published_articles"] += 1
+                audit["html_articles"] += int(strict)
             article_metadata[os.path.normpath(filename)] = {
                 "article_id": _atom_text(entry, "atom:id", ns),
                 "title": _atom_text(entry, "atom:title", ns),
@@ -544,6 +554,8 @@ def fetch_hatena_articles_api(*, strict=False):
         if len(next_links) > 1 or (next_links and not next_links[0].get("href")):
             raise SyncError("API_PAGINATION_INVALID")
         url = urljoin(url, next_links[0].get("href")) if next_links else None
+        if audit is not None:
+            audit["pages_completed"] += 1
 
     try:
         save_article_metadata(article_metadata)
@@ -552,6 +564,8 @@ def fetch_hatena_articles_api(*, strict=False):
             raise SyncError("API_METADATA_WRITE_FAILED") from None
         print(f"Phase 3B article metadata capture failed: {error}")
     print(f"📦 合計 {count} 件の記事を保存しました。")
+    if audit is not None:
+        audit["pagination_complete"] = True
     return article_files
 
 
@@ -2806,7 +2820,7 @@ window.SRC_TO_ALT = {json.dumps(src_to_alt, ensure_ascii=False)};
 # ===========================
 def build_gallery(*, sync_run=None):
     """APIの最新取得結果からギャラリー一式を生成する。"""
-    article_files = fetch_hatena_articles_api(strict=True) if sync_run else fetch_hatena_articles_api()
+    article_files = fetch_hatena_articles_api(strict=True, audit=sync_run.status["fetch_audit"]) if sync_run else fetch_hatena_articles_api()
     if sync_run:
         sync_run.capture(article_files, load_article_metadata())
     if not article_files:
