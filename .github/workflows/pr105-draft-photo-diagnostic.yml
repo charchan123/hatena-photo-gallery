@@ -1,0 +1,161 @@
+name: PR105 read-only draft photo diagnosis
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    if: github.event.pull_request.number == 105 && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Read pinned old public snapshot
+        uses: actions/checkout@v4
+        with:
+          ref: f3114e2bbd367047eef04d7a9291303ae7161f4c
+          path: .diagnostic-previous
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /portal-data.json
+            /phase3c-production-status.json
+            /article-sync-snapshot.json
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install existing production requirements
+        run: python -m pip install -r requirements.txt
+      - name: Restore EXIF cache without saving
+        uses: actions/cache/restore@v4
+        with:
+          path: cache/exif-cache.json
+          key: exif-cache-v1-${{ runner.os }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            exif-cache-v1-${{ runner.os }}-
+      - name: Observe existing fail-closed sync; independently validate remaining IDs
+        env:
+          HATENA_USER: ${{ secrets.HATENA_USER }}
+          HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
+          HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
+        run: |
+          if [ -z "$HATENA_USER" ] || [ -z "$HATENA_BLOG_ID" ] || [ -z "$HATENA_API_KEY" ]; then
+            echo 'DIAGNOSTIC_BLOCKED: SECRETS_UNAVAILABLE'
+            exit 1
+          fi
+          workdir=$(mktemp -d "${RUNNER_TEMP}/hatena-draft-diagnostic.XXXXXX")
+          cp -a "$GITHUB_WORKSPACE/." "$workdir/work"
+          cd "$workdir/work"
+          python - <<'PY'
+          from copy import deepcopy
+          import json, os
+          from pathlib import Path
+          import article_sync as sync
+          from best_shot_ui import validate_best_shot_config
+          from research_ui import build_research_cases
+          from research_identifications import validate_registry
+
+          destination = Path(os.environ['RUNNER_TEMP']) / 'draft-photo-diagnostic.json'
+          original = sync.SyncRun.reconcile
+          result = {'diagnostic_result': 'BLOCKED', 'production_sync_result': 'NOT_COMPLETED',
+                    'publication_executed': False, 'hatena_write_executed': False,
+                    'identity_check_scope': 'read-only in-memory subset; not publication approval'}
+
+          def observe(self, portal, shadows):
+              # Execute the actual full-production gate first; never override its failure.
+              try:
+                  original(self, portal, shadows)
+              except sync.SyncError as failure:
+                  code = str(failure)
+                  result['production_sync_result'] = 'BLOCKED'
+                  result['production_error_code'] = code
+                  result['fetch_audit'] = deepcopy(self.status['fetch_audit'])
+                  result['previous_photo_count'] = len(self.previous['observations'])
+                  result['candidate_gallery_photo_count'] = len(portal['observations'])
+                  result['public_article_count'] = self.status.get('published_article_count')
+                  result['detected_public_image_count'] = self.status.get('detected_image_count')
+                  result['comparison'] = self.status.get('comparison')
+                  if code != 'REMOVED_OR_REPLACED_PUBLISHED_PHOTO':
+                      raise
+                  old_groups = sync.observation_groups(self.previous)
+                  new_groups = sync.observation_groups(portal)
+                  missing = old_groups.keys() - new_groups.keys()
+                  affected = [row for key in missing for row in old_groups[key]]
+                  ids = {row['observation_id'] for row in affected}
+                  draft_hashes = {sync.digest(row['article']['article_id']) for row in affected}
+                  result['affected_old_observation_ids'] = sorted(ids)
+                  result['affected_old_article_count'] = len(draft_hashes)
+                  result['all_affected_articles_currently_draft'] = bool(draft_hashes) and draft_hashes <= self.excluded_draft_hashes
+                  result['affected_photo_count'] = len(affected)
+                  # Only IDs taken from the pinned old public portal may leave this job.
+                  assert ids <= {row['observation_id'] for row in self.previous['observations']}
+                  config = sync.read_json('data/best-shots.json')
+                  registry = sync.read_json('data/research-identifications.json')
+                  master = sync.read_json('data/mushroom-master.json')
+                  validate_best_shot_config(config, self.previous)
+                  validate_registry(registry, self.previous, master)
+                  cases = build_research_cases(self.previous)
+                  affected_cases = [case for case in cases if ids & {p['observation_id'] for p in case['photos']}]
+                  case_ids = {case['case_id'] for case in affected_cases}
+                  result['best_shot_registered_count'] = len(config['entries'])
+                  result['best_shot_affected_count'] = sum(row['observation_id'] in ids for row in config['entries'])
+                  result['research_case_count'] = len(cases)
+                  result['research_affected_case_count'] = len(affected_cases)
+                  result['affected_old_research_case_ids'] = sorted(case_ids)
+                  result['identification_registry_count'] = len(registry['identifications'])
+                  result['identification_affected_count'] = sum(row['case_id'] in case_ids for row in registry['identifications'])
+                  remaining = deepcopy(self.previous)
+                  remaining['observations'] = [row for row in remaining['observations'] if row['observation_id'] not in ids]
+                  remaining['summary']['observation_count'] = len(remaining['observations'])
+                  result['remaining_previous_photo_count'] = len(remaining['observations'])
+                  try:
+                      # Existing reconciler and validators, no new ID algorithm/alias or persisted subset baseline.
+                      resolved = sync.reconcile_ids(portal, remaining)
+                      before = {row['observation_id']: row for row in remaining['observations']}
+                      after = {row['observation_id']: row for row in resolved['observations']}
+                      preserved = sum(oid in after and (row['src'], row['gallery_name'], row['article']['article_id']) ==
+                          (after[oid]['src'], after[oid]['gallery_name'], after[oid]['article']['article_id'])
+                          for oid, row in before.items())
+                      assert preserved == len(before)
+                      result.update(remaining_id_compatibility='PASS', remaining_photo_ids_preserved=preserved,
+                                    remaining_candidate_photo_count=len(after), additional_candidate_photos=len(after.keys() - before.keys()))
+                  except sync.SyncError as error:
+                      result.update(remaining_id_compatibility='FAIL', remaining_error_code=str(error))
+                  if result.get('remaining_id_compatibility') == 'PASS':
+                      try:
+                          result['remaining_reference_checks'] = sync.validate_references(resolved, remaining, 'data')
+                          result['remaining_reference_result'] = 'PASS'
+                      except sync.SyncError as error:
+                          result['remaining_reference_result'] = 'FAIL'
+                          result['remaining_reference_error_code'] = str(error)
+                  result['diagnostic_result'] = 'COMPLETE'
+                  # Re-raise the original 913-photo gate failure. finalize/publication cannot run.
+                  raise
+              # Even an unexpectedly healthy sync is stopped; this job never approves publication.
+              raise sync.SyncError('DIAGNOSTIC_STATE_CHANGED')
+
+          sync.SyncRun.reconcile = observe
+          exit_code = sync.run('.diagnostic-previous',
+              output=str(Path(os.environ['RUNNER_TEMP']) / 'never-published-site'),
+              report=str(Path(os.environ['RUNNER_TEMP']) / 'internal-sync-report.json'))
+          result['guarded_sync_exit_code'] = exit_code
+          destination.write_text(json.dumps(result, sort_keys=True, indent=2) + '\n')
+          print('DRAFT_DIAGNOSTIC=' + json.dumps(result, sort_keys=True))
+          raise SystemExit(0 if result['diagnostic_result'] == 'COMPLETE' and exit_code != 0 else 1)
+          PY
+      - name: Upload old public IDs and counts only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr105-read-only-draft-diagnosis
+          path: ${{ runner.temp }}/draft-photo-diagnostic.json
+          if-no-files-found: error
+          retention-days: 7
