@@ -1,0 +1,17 @@
+{
+  "lines": 1718,
+  "bytes": 49662,
+  "sha256": "f242421591f50379ffbd8cd24c3745610f256d2ef9b42a61def48d08d08ba013",
+  "baseline_sha256": "4298621f4f6f85c11ac0f7496b452e5774e2664501f416af23069d0e1b907842",
+  "baseline_preserved_byte_for_byte": true,
+  "css_parse_errors": [],
+  "scoped_rules": 71,
+  "documented_limit_bytes": 65536,
+  "headroom_bytes": 15874,
+  "limit_source": "https://help.hatenablog.com/entry/design/design-css",
+  "invalidSelectors": [],
+  "invalidDeclarations": [],
+  "hasSupported": true,
+  "browser_selector_validation": "PASS",
+  "browser_declaration_validation": "PASS"
+}
