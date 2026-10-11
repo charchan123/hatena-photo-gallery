@@ -2526,6 +2526,17 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
     def section_notice(section, href=None):
         return render_section_notice(section, notice_events, href=href)
 
+    def content_count(count, unit):
+        if count is None:
+            return ""
+        return (f'<span class="portal-content-count">'
+                f'（{html.escape(str(count))}{unit}）</span>')
+
+    # Count the actual detail-page names, not the taxonomy or facet inventory.
+    guide_count = len({name for name in grouped
+                       if name and name.strip() and name != "不明"})
+    records_count = len(observation_records) if observation_records else None
+
     parts = [f'''<!doctype html>
 <html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -2541,7 +2552,7 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
     <span class="portal-visual-shade" aria-hidden="true"></span>
     <header class="portal-records-heading">
       <p class="portal-eyebrow">FIELD NOTES</p>
-      <h1 id="records-heading">{portal_icon("records")}<span>観察記録</span></h1>
+      <h1 id="records-heading">{portal_icon("records")}<span>観察記録{content_count(records_count, "記事")}</span></h1>
       <p>キノコ探索のブログ記事を、新しい順に紹介します。</p>
     </header>
   </div>
@@ -2553,21 +2564,22 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
     <span class="portal-visual-shade" aria-hidden="true"></span>
     <header class="portal-section-heading">
       <p class="portal-eyebrow">MUSHROOM GUIDE</p>
-      <h2 id="explore-heading" class="portal-zone-title">{portal_icon("guide")}<span>キノコを探す</span></h2>
+      <h2 id="explore-heading" class="portal-zone-title">{portal_icon("guide")}<span>キノコを探す{content_count(guide_count, "種")}</span></h2>
       <p>名前や季節、見た目の特徴からキノコを探せます。</p>
     </header>
   </div>
   <div class="portal-explore-content">
 ''']
 
-    def append_card(modifier, href, title, description, eyebrow=None):
+    def append_card(modifier, href, title, description, eyebrow=None,
+                    count=None, count_unit=None):
         eyebrow_html = f'<span class="portal-eyebrow">{eyebrow}</span>' if eyebrow else ""
         parts.append(
             f'    <a class="portal-card portal-card--{modifier}" href="{href}">\n'
             '      <span class="portal-card__visual" aria-hidden="true"></span>\n'
             f'      <span class="portal-card__content"><span class="portal-card__copy">'
             f'{eyebrow_html}'
-            f'<strong>{portal_icon(modifier)}<span>{title}</span></strong><small>{description}</small>'
+            f'<strong>{portal_icon(modifier)}<span>{title}{content_count(count, count_unit)}</span></strong><small>{description}</small>'
             f'{section_notice(modifier)}</span></span>\n'
             '    </a>\n'
         )
@@ -2625,9 +2637,9 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
 
     independent_cards = []
     if research_summary:
-        independent_cards.append(("research", "research.html", "不明キノコ研究室", "正体を調べているキノコを見る", "RESEARCH LAB"))
+        independent_cards.append(("research", "research.html", "不明キノコ研究室", "正体を調べているキノコを見る", "RESEARCH LAB", research_summary.get("case_count"), "件"))
     if best_shot_summary and best_shot_summary.get("entry_count", 0) > 0:
-        independent_cards.append(("best-shots", "best-shots.html", "ベストショット", "とっておきの一枚を集めた写真館", "BEST SHOTS"))
+        independent_cards.append(("best-shots", "best-shots.html", "ベストショット", "とっておきの一枚を集めた写真館", "BEST SHOTS", best_shot_summary["entry_count"], "枚"))
     if independent_cards:
         parts.append('<section class="portal-independent-links" aria-label="特集コンテンツ">\n')
         for card in independent_cards:
