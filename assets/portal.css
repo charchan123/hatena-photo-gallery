@@ -57,7 +57,7 @@
 .portal-independent-links .portal-card { min-height:160px; }
 .portal-independent-links .portal-card__copy { gap:0; }
 .portal-independent-links .portal-eyebrow { margin-bottom:6px; color:rgba(255,255,255,.9); }
-.portal-independent-links .portal-card__copy strong { font-size:1.35rem; }
+.portal-independent-links .portal-card__copy strong { font-size:clamp(1.4rem,3vw,1.65rem); }
 .portal-independent-links .portal-card__copy strong + small { margin-top:5px; }
 .portal-independent-links .portal-card__copy small { font-size:.91rem; }
 .portal-about { margin-top:34px; padding-top:20px; border-top:1px solid rgba(53,78,58,.22); }
@@ -93,7 +93,7 @@
   .portal-index .portal-shell { padding:12px 10px 34px; }
   .portal-records-visual,.portal-section-visual { height:150px; }
   .portal-records-heading,.portal-section-heading { padding:20px 14px 16px; }
-  .portal-records-heading h1,.portal-zone-title { font-size:clamp(1.3rem,6vw,1.42rem); }
+  .portal-records-heading h1,.portal-zone-title,.portal-independent-links .portal-card__copy strong { font-size:clamp(1.3rem,6vw,1.42rem); }
   .record-preview-list { margin:0 14px; }
   .record-preview-row { grid-template-columns:108px minmax(0,1fr); gap:11px; min-height:92px; padding:9px 0; }
   .record-preview-thumb { height:84px; }

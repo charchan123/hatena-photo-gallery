@@ -632,3 +632,24 @@ def test_typography_overlay_and_independent_card_spacing_polish():
     assert ".portal-independent-links .portal-card__copy { gap:0; }" in portal_css
     assert ".portal-independent-links .portal-eyebrow { margin-bottom:6px;" in portal_css
     assert ".portal-independent-links .portal-card__copy strong + small { margin-top:5px; }" in portal_css
+
+
+def test_new_top_four_titles_share_responsive_sizes_and_keep_count_typography():
+    css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
+    desktop, mobile = css.split("@media (max-width:680px)", 1)
+
+    def declarations(text, selector):
+        match = re.search(re.escape(selector) + r"\s*\{([^}]*)\}", text)
+        assert match is not None
+        return dict(part.strip().split(":", 1) for part in match.group(1).split(";")
+                    if part.strip())
+
+    upper = ".portal-records-heading h1,.portal-zone-title"
+    lower = ".portal-independent-links .portal-card__copy strong"
+    assert declarations(desktop, lower) == {"font-size": declarations(desktop, upper)["font-size"]}
+    assert declarations(desktop, lower)["font-size"] == "clamp(1.4rem,3vw,1.65rem)"
+    assert declarations(mobile, f"{upper},{lower}") == {"font-size": "clamp(1.3rem,6vw,1.42rem)"}
+    assert declarations(css, ".portal-index .portal-content-count") == {
+        "display": "inline-block", "font-size": ".55em", "font-weight": "500",
+        "opacity": "1", "white-space": "nowrap",
+    }
