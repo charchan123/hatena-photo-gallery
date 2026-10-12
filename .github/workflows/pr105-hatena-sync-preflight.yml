@@ -104,12 +104,45 @@ jobs:
           assert second['comparison'] == 'KNOWN'
           assert all(second[key] == 0 for key in ['new_articles','deleted_articles','new_images','deleted_images','updated_articles','classification_changes','possible_url_changes','url_changes'])
           assert second['retirement']['state'] == 'ALREADY_APPLIED' and second['retirement']['retired_this_run'] == 0
+          # Bounded in-memory faults using the actual validated portal; never published.
+          from copy import deepcopy
+          import sync_retirement as retirement
+          failures = {}
+          for kind in ['deletion','rename','url_replacement']:
+              changed = deepcopy(after)
+              if kind == 'deletion': changed['observations'].pop()
+              if kind == 'rename': changed['observations'][0]['gallery_name'] += '_synthetic_change'
+              if kind == 'url_replacement': changed['observations'][0]['src'] = 'https://fixture.invalid/replacement.jpg'
+              changed['summary']['observation_count'] = len(changed['observations'])
+              try: sync.reconcile_ids(changed, after)
+              except sync.SyncError as error: failures[kind] = str(error)
+              else: raise AssertionError('unapproved photo change did not block')
+          original_manifest_path = retirement.MANIFEST_PATH
+          try:
+              retirement.MANIFEST_PATH = root / 'absent-manifest.json'
+              try: retirement.load_manifest()
+              except sync.SyncError as error: failures['missing_manifest'] = str(error)
+              else: raise AssertionError('missing manifest did not block')
+              bad = root / 'tampered-manifest.json'
+              bad.write_bytes(original_manifest_path.read_bytes() + b' ')
+              retirement.MANIFEST_PATH = bad
+              try: retirement.load_manifest()
+              except sync.SyncError as error: failures['tampered_manifest'] = str(error)
+              else: raise AssertionError('tampered manifest did not block')
+          finally: retirement.MANIFEST_PATH = original_manifest_path
+          try: retirement.Retirement(before, None, Path.cwd()) # PR checkout is not pinned gh-pages.
+          except sync.SyncError as error: failures['wrong_baseline_commit'] = str(error)
+          else: raise AssertionError('wrong baseline commit did not block')
+          policy = retirement.Retirement(after, sync.read_json(first/'article-sync-snapshot.json')['payload'], first)
+          try: policy.prepare(after, {manifest['target_article_sha256']: {}}, set(), 'data')
+          except sync.SyncError as error: failures['retired_article_published'] = str(error)
+          else: raise AssertionError('retired article republication did not block')
           first_status = sync.read_json(first_report)
           first_status['preflight_checks'] = {'all_906_ids_names_article_urls_preserved': True,
               'individual_five_names_preserved':5,'second_same_input_zero_diff':True,
               'second_sync_result':second['result'],'second_retirement':second['retirement'],
               'second_output_inspection':second['retired_output_inspection'],
-              'additional_accepted_photos':len(now)-len(old), 'live_atom_pages':len(responses)}
+              'additional_accepted_photos':len(now)-len(old), 'live_atom_pages':len(responses), 'live_input_failure_probes':failures}
           sync.write_json(first_report, first_status)
           PYRUN
       - name: Counts and reason codes only (no source content)
