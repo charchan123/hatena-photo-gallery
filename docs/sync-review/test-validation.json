@@ -1,8 +1,8 @@
 {
-  "status": "PARTIAL",
-  "full_pytest": "757 passed",
-  "collected": 757,
-  "focused": "185 passed in 11.11s",
+  "status": "LOCAL_TESTS_COMPLETE_CI_PENDING",
+  "full_pytest": "741 passed",
+  "collected": 741,
+  "focused": "35 passed: daily generator + sync-admin; old approval-gate tests replaced",
   "javascript": "43 passed",
   "js_syntax": "PASS",
   "compileall": "PASS",
@@ -25,8 +25,8 @@
       ".github"
     ]
   },
-  "generator": "real parsing/Phase3C/portal/HTML fixture integration PASS; only HTTP/EXIF external data fixture",
-  "live_phase2_api": "NOT_EXECUTED (no local Hatena credentials)",
-  "admin_pr_route": "mocked git/gh sequencing PASS; real user-photo approval PR NOT_EXECUTED",
+  "generator": "Real generator fixtures: article update, one/multiple automatic additions and next IDs PASS; uncertain and destructive cases BLOCKED",
+  "live_phase2_api": "Runner read-only preflight pending",
+  "admin_pr_route": "Addition-approval PR route removed; confirmation is local audit only",
   "production_publication": "NOT_PERFORMED"
 }

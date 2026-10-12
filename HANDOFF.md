@@ -1301,17 +1301,18 @@ needed snapshot must be supplied exactly once by the current overlay.
 ## Phase 2 article/photo sync review (2026-10-12)
 
 Starting main `20b1a09cb8b9d7b582d02896f6d89171b3048ba4`, tree
-`a79eccbbf6e6e1e50a0bc97373a48c259ddcec9e`. See
-`docs/ARTICLE_PHOTO_SYNC_PHASE2.md` for Windows instructions, evidence and limits.
+`a79eccbbf6e6e1e50a0bc97373a48c259ddcec9e`. Draft PR #106.
+See `docs/ARTICLE_PHOTO_SYNC_PHASE2.md` for Windows instructions and limitations.
 
-Partial capability, deliberately fail-closed: public dashboard and paged 552 legacy
-reviews; local human decisions/audit; exact-snapshot approval of **new, already
-high-confidence Phase3C gallery photos**; actual generator preview; separate
-single-manifest-only isolated Draft PR route. Every new gallery photo now needs
-human approval in addition to the unchanged Phase3C/ID gates. Existing 906 require
-no reapproval. After a successful publication, adopted new photos become ordinary
-existing identities. No general deletion/name/URL override exists. Such proposals
-remain local and explicitly require an individual migration. Retired7 stay blocked.
-No real Phase2 live API/admin PR acceptance run was possible without local Hatena
-credentials; do not claim that part PASS. Production knowledge and curated JSON,
-existing admin promotion routes, iframe, portal design and poison are unchanged.
+Correction: normal daily synchronization remains automatic under the unchanged
+Phase1 API/Phase3C/ID/name/URL/retirement/reference gates. The initial human-approval
+requirement was contrary to the daily-update goal and has been removed, including
+the addition-approval manifest and dedicated addition-PR route. `confirmed`/hold
+are local audit records, never publication permissions. High-confidence new photos
+are auto-added without review. Hash-only automatic-addition receipts in the public
+snapshot are read-only history, not an exception/approval list. Existing 906 IDs,
+retired7, Best Shot3 and research67 references remain protected. No new uncertain
+photo quarantine is introduced; unsupported changes retain fail-closed behavior.
+The local dashboard, paged photo review, search/filter, freshness and audit storage
+remain. Manual classification/old name/URL/deletion migration remains future work;
+existing admin knowledge/curated PR allowlists remain untouched.

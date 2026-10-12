@@ -34,39 +34,41 @@ $('#knowledge-pr').onclick=()=>confirmAction('承認済み候補のみをpromoti
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>show(b.dataset.page));
 async function load(){try{const r=await fetch('/api/state');state=await r.json();if(!r.ok)throw Error(state.error);csrf=state.csrf;render()}catch(e){message(e.message,true)}}load();show('dashboard');
 
-// Sync review uses a separate server-side allow-list and local audit state.
+//  server-side allow-list and local audit state.
 let syncState, syncPage=1, syncTotal=0;
 const syncStateNames={non_mushroom:'キノコ以外',unidentified_mushroom:'キノコと確認済み・種名不明',named_mushroom:'名前のあるキノコ',conflict:'判定の競合',unclassified:'未分類',ambiguous:'曖昧な判定'};
 const syncReasons={taxonomy_unmatched:'名前の対応が未確認',no_detected_label:'名前の記載を検出できません',taxonomy_mushroom:'既存分類でキノコと確認',taxonomy_review:'分類の確認が必要',shadow_metadata_missing:'判定情報不足',missing:'前回の写真が今回見つかりません'};
-function syncError(code){const labels={NEW_PHOTO_HUMAN_APPROVAL_REQUIRED:'追加する写真に未承認のものがあります。',STALE_REVIEW:'取得内容が変わりました。再確認してください。',STALE_PUBLIC_SNAPSHOT:'公開状態が更新されました。再取得してください。',STALE_LIVE_REVIEW:'記事や写真が更新されました。再取得して判断し直してください。',INDIVIDUAL_MIGRATION_REQUIRED:'この変更は個別移行が必要です。この画面では適用できません。',LOCAL_HATENA_CREDENTIALS_UNAVAILABLE:'ローカルのはてな認証が未設定です。',NO_APPROVED_NEW_PHOTOS:'採用済みの追加写真がありません。',PROTECTED_REFERENCE_ERROR:'既存の登録参照を維持できないため停止しました。',REVIEW_ALREADY_HAS_DRAFT_PR:'このレビューからDraft PRは作成済みです。重複作成しません。',FRESH_MAIN_CHECKOUT_REQUIRED:'ローカルcheckoutを最新mainへ更新してください。',GITHUB_AUTH_REQUIRED:'GitHub CLIの認証が必要です。'};return (labels[code]||'確認・検証が完了していません。')+' ('+code+')'}
-const syncGroupNames={blocker:'要対応',new:'新しい記事・写真',legacy:'以前からの分類保留',migration:'要個別移行',reviewed:'確認・承認済み',held:'人間が保留'};
+function syncError(code){const labels={STALE_REVIEW:'取得内容が変わりました。再確認してください。',STALE_PUBLIC_SNAPSHOT:'公開状態が更新されました。再取得してください。',STALE_LIVE_REVIEW:'記事や写真が更新されました。再取得して判断し直してください。',INDIVIDUAL_MIGRATION_REQUIRED:'この変更は個別移行が必要です。この画面では適用できません。',LOCAL_HATENA_CREDENTIALS_UNAVAILABLE:'ローカルのはてな認証が未設定です。',PROTECTED_REFERENCE_ERROR:'既存の登録参照を維持できないため停止しました。',FRESH_MAIN_CHECKOUT_REQUIRED:'ローカルcheckoutを最新mainへ更新してください。',GITHUB_AUTH_REQUIRED:'GitHub CLIの認証が必要です。'};return (labels[code]||'確認・検証が完了していません。')+' ('+code+')'}
+const syncGroupNames={blocker:'要対応',new:'確認待ち（新規）',legacy:'確認待ち（以前から）',migration:'要対応・個別移行',auto_added:'自動追加済み',reviewed:'確認済み（履歴のみ）',held:'人間が保留'};
 function syncValue(v){return v===null?'UNKNOWN':v===undefined?'未取得':String(v)}
 async function syncGet(path){const r=await fetch(path,{cache:'no-store'}),v=await r.json();if(!r.ok)throw Error(v.error);return v}
 async function loadSync(){try{
  syncState=await syncGet('/api/sync/state');const out=$('#sync-summary');out.replaceChildren();
- $('#sync-pr').disabled=true;$('#sync-preview').disabled=!syncState.live_review_available;
+ $('#sync-preview').disabled=!syncState.live_review_available;
  $('#sync-live').disabled=!syncState.credentials_available;
  if(!syncState.available){out.append(node('p','公開状態を取得できません: '+syncState.error,'error'));return}
  const s=syncState.summary,a=syncState.latest_action;
  out.append(node('p','前回成功（日本時間）: '+syncValue(s.last_success_jst)),node('p','最新Actions: '+(a?.available?`${a.status} / ${a.conclusion||'未確定'}`:'未取得（gh認証が必要）')));
  if(a?.available&&a.conclusion&&a.conclusion!=='success')out.append(node('p','直近の実行は成功していません。原因: '+(a.error_code||'未取得（Actionsの実行ログで確認してください）'),'error'));
- const fields=[['公開記事',s.published_articles],['公開写真',s.gallery_photos],['新規記事',s.new_articles],['新規画像',s.new_images],['削除検出',s.deleted_images],['URL変更候補',s.possible_url_changes],['分類確認候補（従来からの保留を含む）',s.classification_review_count],['人間が保留',syncState.groups.held||0],['古い判断（再確認必要）',syncState.stale_decisions]];
+ const fields=[['公開記事',s.published_articles],['公開写真',s.gallery_photos],['新規記事',s.new_articles],['新規画像',s.new_images],['削除検出',s.deleted_images],['URL変更候補',s.possible_url_changes],['分類確認候補（従来からの保留を含む）',s.classification_review_count],['人間が保留',syncState.groups.held||0],['古い判断（再確認必要）',syncState.stale_decisions],['直近成功時の自動追加写真',s.automatic_added_photo_count],['自動追加日時',s.automatic_added_photo_count===0?'今回追加なし':s.automatic_added_at],['記録された自動追加履歴',s.automatic_history_count]];
  fields.forEach(([k,v])=>out.append(node('p',k+': '+syncValue(v))));
  out.append(node('p',syncState.notice),node('p','ローカル取得エラー: '+(s.error||'なし')),node('p','公開commit: '+s.publication_sha,'meta'),node('p','snapshot: '+s.snapshot_sha256,'meta'),node('p','承認済み移行: '+(s.retirement?`${s.retirement.migration_id} / 合計 ${s.retirement.retired_total}枚`:'未取得'),'meta'));
- if(!syncState.credentials_available)out.append(node('p','ローカルのはてな認証環境変数がないため、新しい写真の取得・承認・PRは利用できません。公開済み状態の確認と保留は可能です。'));
+ if(!syncState.credentials_available)out.append(node('p','ローカルのはてな認証環境変数がないため、同期候補の追加取得は利用できません。通常の自動同期は止まりません。公開済み状態の確認と保留は可能です。'));
  const history=node('details');history.append(node('summary','最近の判断履歴（ローカル・最大30件）'));(syncState.history||[]).forEach(h=>history.append(node('p',`${h.decided_at||h.at||''} / ${h.decision||h.event||''} / ${h.candidate_id||''}`,'meta')));out.append(history);
  await loadSyncRows();
  }catch(e){message(syncError(e.message),true)}}
 async function loadSyncRows(){const query=new URLSearchParams({q:$('#sync-search').value,group:$('#sync-group').value,page:String(syncPage)});const v=await syncGet('/api/sync/candidates?'+query);syncTotal=v.total;$('#sync-page-info').textContent=`${v.total}件 / ${v.page}ページ目 / 30件ずつ表示`;$('#sync-prev').disabled=syncPage===1;$('#sync-next').disabled=syncPage*30>=syncTotal;const out=$('#sync-list');out.replaceChildren();
  v.rows.forEach(r=>{const [e,a,b]=item(r.current_name||r.candidate_name||r.detected_name||'名前未確認',syncGroupNames[r.group],r.thumbnail);if(e.querySelector('img')){e.querySelector('img').loading='lazy';e.querySelector('img').referrerPolicy='no-referrer'}
  b.append(node('p',`現在: ${r.current_name||'未登録'} / 検出: ${r.detected_name||'なし'} / 候補: ${r.candidate_name||'未確定'}`),node('p',`${syncStateNames[r.state]||r.state} / ${syncReasons[r.reason]||'追加の確認が必要です'}`,'badge'),node('p',`${r.article_title||'記事情報未取得'} / 公開 ${r.published||'未取得'} / 更新 ${r.updated||'未取得'}`,'meta'),node('p',`EXIF撮影日: ${r.capture_date||'情報なし'} / 以前: ${r.previous_state||'未収録'}`,'meta'),node('p',`変更: ${r.change_type} / ${r.candidate_id}`,'meta'),node('p',`画像重複番号: ${r.ordinal} / 既存ID: ${r.observation_id||'未登録'}`,'meta'));
+ if(r.auto_eligible)b.append(node('p','既存の安全条件を満たす自動追加候補です。事前承認は不要です。','meta'));
+ if(r.automatic_receipt)b.append(node('p',`自動追加: ${r.automatic_receipt.added_at} / 追加時判定: ${r.automatic_receipt.classification_status} / ${r.automatic_receipt.reason}`,'meta'));
  if(r.article_url){const link=node('a','公開記事を確認');link.href=r.article_url;link.target='_blank';link.rel='noopener noreferrer';b.append(link)}
  if(!r.thumbnail)b.append(node('p','安全な画像URLを取得できないため写真表示は利用できません。ハッシュからURLを推測しません。','meta'));
  if(r.stale_review)b.append(node('p','前の判断は古いため適用しません。再確認してください。','error'));
  if(r.protected_existing)b.append(node('p','既存写真は保護されています。名前・ID・URL・削除はこの画面で適用しません。','meta'));
  const comment=field('確認メモ（ローカルに保存。PRには本文ではなくハッシュのみ）','comment',r.review?.comment||'','textarea');b.append(comment);
- const choose=async(decision,proposed_name='')=>{try{await api('/api/sync/decision',{candidate_id:r.candidate_id,bundle_id:v.bundle_id,decision,comment:comment.querySelector('textarea').value,proposed_name});await loadSync();message(decision==='adopt'?'採用予定を保存しました。まだ公開されていません。':'判断をローカルに保存しました。')}catch(e){message(syncError(e.message),true)}};
- const adopt=button('採用（追加）',()=>choose('adopt'));adopt.disabled=!r.adoptable;a.append(adopt,button('保留',()=>choose('hold')),button('確認不要・現状維持',()=>choose('no_change')),button('判断取消',()=>choose('pending')));
+ const choose=async(decision,proposed_name='')=>{try{await api('/api/sync/decision',{candidate_id:r.candidate_id,bundle_id:v.bundle_id,decision,comment:comment.querySelector('textarea').value,proposed_name});await loadSync();message('確認履歴をローカルに保存しました。自動公開の許可・停止条件は変わりません。')}catch(e){message(syncError(e.message),true)}};
+ a.append(button('確認済み（履歴のみ）',()=>choose('confirmed')),button('保留',()=>choose('hold')),button('確認不要・現状維持',()=>choose('no_change')),button('判断取消',()=>choose('pending')));
  a.append(button('名前修正を提案（要個別移行）',()=>openEditor('名前の提案を保留として保存',[field('人間が確認した名前','name')],async f=>{await choose('propose_name',f.get('name'));$('#editor').close()})));
  if(!r.protected_existing)a.append(button('対象外を提案（保留）',()=>choose('exclude')));
  out.append(e);
@@ -76,5 +78,4 @@ $('#sync-refresh').onclick=async()=>{try{await api('/api/sync/refresh');syncPage
 $('#sync-live').onclick=async()=>{try{message('公開記事をGET取得・検証しています。');await api('/api/sync/refresh',{live:true});syncPage=1;await loadSync()}catch(e){message(syncError(e.message),true)}};
 $('#sync-search-button').onclick=()=>{syncPage=1;loadSyncRows().catch(e=>message(syncError(e.message),true))};
 $('#sync-prev').onclick=()=>{syncPage--;loadSyncRows().catch(e=>message(syncError(e.message),true))};$('#sync-next').onclick=()=>{syncPage++;loadSyncRows().catch(e=>message(syncError(e.message),true))};
-$('#sync-preview').onclick=async()=>{try{const v=await api('/api/sync/preview');$('#sync-preview-result').textContent=JSON.stringify(v,null,2);$('#sync-pr').disabled=!(v.ready&&state.repo.gh_authenticated);message(v.ready?'実生成・参照保護の検証が成功しました。まだ公開されていません。':'検証は保留です: '+syncError(v.error_code),!v.ready)}catch(e){$('#sync-pr').disabled=true;message(syncError(e.message),true)}};
-$('#sync-pr').onclick=()=>confirmAction('fresh mainと最新公開・API入力を再確認し、採用した高信頼の新規写真だけのDraft PRを作成します。既存写真の変更・merge・公開は行いません。',async()=>{const v=await api('/api/sync/pr');message('Draft PR: '+v.url)});
+$('#sync-preview').onclick=async()=>{try{const v=await api('/api/sync/preview');$('#sync-preview-result').textContent=JSON.stringify(v,null,2);message(v.ready?'実生成・参照保護の検証が成功しました。まだ公開されていません。':'検証は保留です: '+syncError(v.error_code),!v.ready)}catch(e){message(syncError(e.message),true)}};

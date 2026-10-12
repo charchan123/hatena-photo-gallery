@@ -1,0 +1,84 @@
+name: PR106 read-only sync preflight
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+jobs:
+  preflight:
+    if: github.event.pull_request.number == 106 && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: .sync-previous
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /portal-data.json
+            /phase3c-production-status.json
+            /article-sync-snapshot.json
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements-dev.txt
+      - uses: actions/cache/restore@v4
+        with:
+          path: cache/exif-cache.json
+          key: pr106-readonly-${{ github.run_id }}
+          restore-keys: |
+            exif-cache-v1-${{ runner.os }}-
+      - name: Strict GET full generator and reference verification (no publish)
+        env:
+          HATENA_USER: ${{ secrets.HATENA_USER }}
+          HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
+          HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          import article_sync as sync
+          original = sync.read_json('.sync-previous/portal-data.json')
+          previous = '.sync-previous'
+          temporary = Path(os.environ['RUNNER_TEMP']) / 'pr106-readonly'
+          temporary.mkdir()
+          results=[]
+          for index in range(2):
+              output=temporary / str(index)
+              report=temporary / ('report-'+str(index)+'.json')
+              code=sync.run(previous,output,report)
+              status=sync.read_json(report)
+              if code:
+                  print('PR106_PREFLIGHT_JSON='+json.dumps({'result':'BLOCKED','stage':index,'error_code':status.get('error_code')}))
+                  raise SystemExit(1)
+              current=sync.read_json(output/'portal-data.json')
+              old={r['observation_id']:r for r in original['observations']}
+              new={r['observation_id']:r for r in current['observations']}
+              preserved=sum(oid in new and all(row[k]==new[oid][k] for k in ('src','gallery_name'))
+                  and row['article']['article_id']==new[oid]['article']['article_id'] for oid,row in old.items())
+              assert preserved==len(old)
+              assert not (output/'admin').exists() and not (output/'sync-reviews').exists()
+              phase=sync.read_json(output/'phase3c-production-status.json')
+              assert phase['validation']['valid'] is True
+              results.append({'result':status['result'],'baseline_photos':len(old),
+                  'articles':status['published_article_count'],'detected_images':status['detected_image_count'],
+                  'gallery_photos':status['gallery_photo_count'],'preserved_ids_names_urls':preserved,
+                  'automatic_added_photos':status['automatic_added_photo_count'],
+                  'new_articles':status['new_articles'],'new_images':status['new_images'],
+                  'drafts_excluded':status['fetch_audit']['drafts_excluded'],
+                  'pages_completed':status['fetch_audit']['pages_completed'],
+                  'pagination_complete':status['fetch_audit']['pagination_complete'],
+                  'best_shot_references':status['best_shot_references_preserved'],
+                  'research_cases':status['research_cases_preserved'],
+                  'retired_total':status['retirement']['retired_total'],
+                  'retired_output':status['retired_output_inspection']['result'],
+                  'html_pages':status['generated_html_pages'],'phase3c':'PASS'})
+              previous=output
+          print('PR106_PREFLIGHT_JSON='+json.dumps({'result':'SUCCESS','runs':results}))
+          PY

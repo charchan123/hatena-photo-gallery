@@ -19,7 +19,6 @@ from .knowledge import (preview_promotion, reset_review_state,
                         scan_knowledge_batches, set_candidate_decision)
 
 from .sync import SyncReview, ReviewError, latest_actions
-from .sync_git import create_sync_pull_request
 from article_sync import SyncError
 
 BIND_ADDRESS = "127.0.0.1"
@@ -154,7 +153,7 @@ class Handler(BaseHTTPRequestHandler):
                     result = review.preview()
                 elif self.path == "/api/sync/pr":
                     if body: raise ReviewError("INVALID_INPUT")
-                    result = create_sync_pull_request(review)
+                    raise ReviewError("INDIVIDUAL_MIGRATION_REQUIRED")
                 else: return self._json({"error":"not found"},404)
             elif self.path == "/api/validate": result = draft.validate()
             elif self.path == "/api/pr": result = create_pull_request(draft.files(), draft.validate(), body.get("operation", "changes"))

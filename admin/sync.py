@@ -1,8 +1,8 @@
 """Local-only sync review: read public state, GET live source, persist human audit.
 
-The safe production capability is deliberately narrow: adopt *new* photographs
-already eligible under unchanged Phase3C. Renames, URL swaps and deletions remain
-individual migrations. Neither a button nor a review record bypasses that rule.
+Normal synchronization remains automatic under the unchanged Phase1 gates.
+Human confirmations are local audit records, never publication permissions.
+Renames, URL swaps and deletions remain individual migrations.
 """
 from collections import Counter
 from contextlib import contextmanager, redirect_stdout, redirect_stderr
@@ -16,18 +16,17 @@ import threading
 import time
 from urllib.parse import urlsplit
 
-from article_sync import (SAFE_NEW, REVIEW_STATES, SyncError, SyncRun, compare_inventory,
-    digest, inventory, observation_groups, payload_hash, read_json, validate_snapshot)
-from sync_review import (APPROVAL_PATH, identity, occurrence_rows, photo_fingerprint,
-                         load_approvals, validate_approvals)
+from article_sync import (SAFE_NEW, REVIEW_STATES, SyncError, compare_inventory,
+    digest, inventory, payload_hash, read_json, validate_snapshot)
+from sync_review import identity, occurrence_rows, photo_fingerprint
 from .core import ROOT
 from .git_workflow import run
 
 LOCK = threading.RLock()
 ACTION_CACHE = {'at': 0, 'value': None}
 LOCAL = ROOT / 'admin/local-state/sync'
-GROUPS = ['blocker', 'new', 'legacy', 'migration', 'reviewed', 'held']
-DECISIONS = {'adopt', 'hold', 'no_change', 'propose_name', 'exclude', 'confirm_url', 'delete', 'pending'}
+GROUPS = ['blocker', 'migration', 'new', 'legacy', 'auto_added', 'reviewed', 'held']
+DECISIONS = {'confirmed', 'hold', 'no_change', 'propose_name', 'exclude', 'confirm_url', 'delete', 'pending'}
 
 
 class ReviewError(ValueError):
@@ -200,27 +199,30 @@ def candidates(publication, live=None):
     images = {(ah, x['url_hash'], x['ordinal']): x for ah, a in articles.items() for x in a['images']}
     from sync_retirement import load_manifest
     retired_article = load_manifest()['target_article_sha256']
+    automatic = {r['observation_id']:r for r in snap['payload'].get('automatic_additions', [])}
     result = []
-    image_counts = Counter(k[:2] for k in images)
     row_counts = Counter(k[:2] for k in rows)
+    old_row_counts = Counter(k[:2] for k in old_rows)
     for key in sorted(images.keys() | old_images.keys()):
         ah, uh, ordinal = key; image = images.get(key); row = rows.get(key); old = old_rows.get(key)
         old_image = old_images.get(key)
         removed = image is None
         new = old_image is None
         changed = old_image is not None and image is not None and image != old_image
-        old_change = old is not None and (row is None or row.get('gallery_name') != old.get('gallery_name'))
+        old_change = bool(old_row_counts[key[:2]] and old_row_counts[key[:2]] != row_counts[key[:2]]) or (old is not None and (row is None or row.get('gallery_name') != old.get('gallery_name')))
         state = image['state'] if image else old_image['state']
         uncertain = state in REVIEW_STATES or (row and row.get('classification', {}).get('status') not in SAFE_NEW)
-        if not (new or changed or removed or old_change or uncertain): continue
+        receipt = automatic.get(old.get('observation_id')) if old else None
+        if not (new or changed or removed or old_change or uncertain or receipt): continue
         classification = row.get('classification', {}) if row else {}
-        adoptable = bool(ah != retired_article and live and new and row and not old and image_counts[key[:2]] == row_counts[key[:2]] and
+        auto_eligible = bool(ah != retired_article and live and new and row and not old and not old_row_counts[key[:2]] and
             classification.get('status') in SAFE_NEW and classification.get('subject_state_status') == 'accepted_subject'
             and classification.get('classification_confidence') == 'high')
         if ah == retired_article: group = 'migration'; kind = 'retired_article_requires_individual_review'
         elif removed or old_change: group = 'migration'; kind = 'removed_or_changed_existing_photo'
-        elif new: group = 'new' if adoptable or row is None else 'blocker'; kind = 'new_gallery_photo' if row else 'new_non_gallery_image'
+        elif new: group = 'new' if auto_eligible or row is None else 'blocker'; kind = 'new_gallery_photo' if row else 'new_non_gallery_image'
         elif changed: group = 'blocker' if old_change else 'legacy'; kind = 'classification_change'
+        elif receipt and classification.get('status') in SAFE_NEW: group = 'auto_added'; kind = 'automatically_added_photo'
         else: group = 'legacy'; kind = 'legacy_classification_review'
         detail = (live.get('photos', {}).get(key, {}) if live else {})
         source = row or old
@@ -229,10 +231,10 @@ def candidates(publication, live=None):
             detail = {**{'thumbnail': safe_url(source['src'], image=True), 'article_title': article.get('title'),
                 'article_url': safe_url(article.get('url')), 'published': article.get('published'),
                 'updated': article.get('updated'), 'detected_name': source.get('classification',{}).get('detected_label')}, **detail}
-        adoptable = adoptable and bool(detail.get('thumbnail') and detail.get('article_url'))
-        if new and row and not adoptable and ah != retired_article: group = 'blocker'
+        # Missing display URLs do not grant or revoke production eligibility.
+        if new and row and not auto_eligible and ah != retired_article: group = 'blocker'
         protected = False
-        if old:
+        if old_row_counts[key[:2]]:
             # All existing identities are protected by the normal gate. Explicit
             # curated reference protection is also checked in preview/finalize.
             protected = True
@@ -245,7 +247,8 @@ def candidates(publication, live=None):
             'previous_state': old_image['state'] if old_image else None,
             'classification': classification, 'protected_existing': protected,
             'fingerprint': photo_fingerprint(articles.get(ah, {}), image, row),
-            'adoptable': adoptable, 'individual_migration_required': not adoptable and kind != 'legacy_classification_review',
+            'auto_eligible':auto_eligible, 'automatic_receipt':receipt,
+            'individual_migration_required':group in {'migration','blocker'},
             **detail})
     rank = {v:i for i,v in enumerate(GROUPS)}
     return sorted(result, key=lambda r:(rank[r['group']], r['candidate_id']))
@@ -324,9 +327,12 @@ class SyncReview:
             'gallery_photos':len(self.publication['portal-data.json']['observations']),
             'classification_review_count':status.get('classification_review_count'),
             'retirement':status.get('retirement'), 'error':self.error,
-            'publication_sha':self.publication['publication_sha'], 'snapshot_sha256':self.publication['article-sync-snapshot.json']['sha256']}
+            'publication_sha':self.publication['publication_sha'], 'snapshot_sha256':self.publication['article-sync-snapshot.json']['sha256'],
+            'automatic_added_photo_count':status.get('automatic_added_photo_count'),
+            'automatic_added_at':status.get('automatic_added_at'),
+            'automatic_history_count':len(self.publication['article-sync-snapshot.json']['payload'].get('automatic_additions', []))}
         return {'available':True,'summary':summary,'bundle_id':self.bundle_id,'live_review_available':self.live is not None,
-            'credentials_available':authenticated(),'notice':'公開済みデータのみ。新しい写真の承認にはローカル認証GET取得が必要です。' if not self.live else '公開記事のみGET取得済み。既存名変更・削除・URL置換は要個別移行です。',
+            'credentials_available':authenticated(),'notice':'公開済みデータのみ。未公開の同期候補の確認にはローカル認証GET取得が必要です。' if not self.live else '公開記事のみGET取得済み。既存名変更・削除・URL置換は要個別移行です。',
             'groups':dict(Counter(self.view(r)['group'] for r in self.rows)),
             'stale_decisions':sum(d.get('bundle_id') != self.bundle_id for d in self.decisions.values()),
             'history':[{k:record[k] for k in ('event','candidate_id','decision','decided_at','at','application') if k in record}
@@ -338,7 +344,9 @@ class SyncReview:
         result['review'] = d if fresh else None; result['stale_review'] = bool(d and not fresh)
         if fresh:
             if d['decision'] == 'hold' or d['decision'] in {'propose_name','exclude','confirm_url','delete'}: result['group']='held'
-            elif d['decision'] in {'adopt','no_change'}: result['group']='reviewed'
+            elif d['decision'] in {'confirmed','no_change'}:
+                result['confirmation_only']=True
+                if row['group'] not in {'blocker','migration'}: result['group']='reviewed'
         return result
 
     def page(self, query='', group='', page=1):
@@ -346,7 +354,7 @@ class SyncReview:
         if not isinstance(query,str) or len(query)>120 or type(page) is not int or not 1<=page<=10000:
             raise ReviewError('INVALID_FILTER')
         rows = [self.view(r) for r in self.rows]
-        rows = [r for r in rows if (not group or r['group']==group) and query.casefold() in ' '.join(str(r.get(k) or '') for k in ('current_name','candidate_name','detected_name','article_title','published','updated','state')).casefold()]
+        rows = [r for r in rows if (not group or r['group']==group or (group=='reviewed' and r.get('confirmation_only'))) and query.casefold() in ' '.join(str(r.get(k) or '') for k in ('current_name','candidate_name','detected_name','article_title','published','updated','state')).casefold()]
         return {'rows':rows[(page-1)*30:page*30],'total':len(rows),'page':page,'page_size':30,'bundle_id':self.bundle_id}
 
     def decide(self, body):
@@ -358,7 +366,6 @@ class SyncReview:
             choice = body.get('decision'); comment=body.get('comment',''); name=body.get('proposed_name','')
             if not row or choice not in DECISIONS: raise ReviewError('INVALID_CANDIDATE_OR_DECISION')
             if not isinstance(comment,str) or len(comment)>2000 or not isinstance(name,str) or len(name)>120: raise ReviewError('INVALID_DECISION_INPUT')
-            if choice == 'adopt' and not row['adoptable']: raise ReviewError('INDIVIDUAL_MIGRATION_REQUIRED')
             if choice in {'delete','confirm_url','exclude'} and row['protected_existing']:
                 raise ReviewError('EXISTING_PHOTO_PROTECTED_USE_INDIVIDUAL_MIGRATION')
             if choice == 'propose_name' and not name.strip(): raise ReviewError('NAME_REQUIRED')
@@ -368,29 +375,10 @@ class SyncReview:
                 'base_snapshot_sha256':self.publication['article-sync-snapshot.json']['sha256'],
                 'inventory_sha256':self.inventory_hash,'article_hash':row['article_hash'],'url_hash':row['url_hash'],
                 'ordinal':row['ordinal'],'change_type':row['change_type'],'fingerprint':row['fingerprint'],
-                'application':'requires_individual_migration' if choice in {'propose_name','exclude','confirm_url','delete'} else 'local_review_only' if choice != 'adopt' else 'pending_draft_pr'}
+                'application':'requires_individual_migration' if choice in {'propose_name','exclude','confirm_url','delete'} else 'local_review_only'}
             self.audit.append(d); self.decisions[row['candidate_id']]=d
             self._save()
             return {'saved':True,'application':d['application']}
-
-    def package(self, root=ROOT):
-        if not self.live: raise ReviewError('LIVE_REVIEW_REQUIRED')
-        if any(a.get('event')=='draft_pr_created' and a.get('bundle_id')==self.bundle_id for a in self.audit):
-            raise ReviewError('REVIEW_ALREADY_HAS_DRAFT_PR')
-        manifest = deepcopy(load_approvals(root)); additions = []
-        for row in self.rows:
-            d = self.decisions.get(row['candidate_id'], {})
-            if d.get('decision') != 'adopt': continue
-            if d.get('bundle_id') != self.bundle_id: raise ReviewError('STALE_REVIEW')
-            if not row['adoptable']: raise ReviewError('INDIVIDUAL_MIGRATION_REQUIRED')
-            additions.append({k:d[k] for k in ('candidate_id','article_hash','url_hash','ordinal','base_snapshot_sha256','inventory_sha256','fingerprint','decided_at','change_type')}
-                | {'name_hash':digest(row['candidate_name']), 'comment_sha256':digest(d['comment']),
-                   'decision':'adopt','reviewer':'explicit-local-human-review'})
-        if not additions: raise ReviewError('NO_APPROVED_NEW_PHOTOS')
-        for row in additions:
-            if row not in manifest['approvals']: manifest['approvals'].append(row)
-        validate_approvals(manifest)
-        return manifest
 
     def assert_fresh(self, publication, live):
         if not self.publication or publication['article-sync-snapshot.json']['sha256'] != self.publication['article-sync-snapshot.json']['sha256']:
@@ -401,13 +389,13 @@ class SyncReview:
 
     def plan(self):
         reviewed = [self.view(row) for row in self.rows]
-        return {'additions':[{'candidate_id':r['candidate_id'],'name':r['candidate_name'],
+        return {'automatic_addition_candidates':[{'candidate_id':r['candidate_id'],'name':r['candidate_name'],
                             'article_title':r.get('article_title')} for r in reviewed
-                            if r.get('review',{} ) and r['review']['decision']=='adopt'],
+                            if r['auto_eligible']],
                 'existing_names_changed':[], 'deletions':[], 'url_replacements':[],
                 'held':[{'candidate_id':r['candidate_id'],'operation':r['review']['decision'],
                          'application':'NOT_APPLIED'} for r in reviewed if r['group']=='held'],
-                'unapproved_count':sum(not r.get('review') or r['review']['decision']=='pending' for r in reviewed),
+                'unreviewed_count':sum(not r.get('review') or r['review']['decision']=='pending' for r in reviewed),
                 'existing_references':'unchanged; validated by production preview'}
 
     def preview(self):
@@ -415,17 +403,16 @@ class SyncReview:
             fresh = public_publication(refresh=True); live = live_capture(); self.assert_fresh(fresh,live)
             plan = self.plan()
             try:
-                manifest = self.package()
-                result = validate_package(fresh, manifest)
+                result = validate_package(fresh)
             except (ReviewError, SyncError) as error:
                 self.last_preview = None
                 return {'ready':False, 'error_code':str(error), 'plan':plan}
             result['plan'] = plan
-            self.last_preview = {'bundle_id':self.bundle_id,'manifest_sha256':payload_hash(manifest),**result}
+            self.last_preview = {'bundle_id':self.bundle_id,**result}
             return self.last_preview
 
 
-def validate_package(publication, manifest):
+def validate_package(publication):
     """Full, fail-closed real generator in a temporary directory, never publish."""
     from article_sync import run as generate
     with isolated_generator() as (_, temporary):
@@ -433,11 +420,11 @@ def validate_package(publication, manifest):
         for name in ('portal-data.json','article-sync-snapshot.json','phase3c-production-status.json'):
             (previous/name).write_text(json.dumps(publication[name]),encoding='utf-8')
         output=temporary/'candidate'; report=temporary/'report.json'
-        code = generate(previous, output, report, review_manifest=manifest)
+        code = generate(previous, output, report)
         status = read_json(report)
         if code: raise ReviewError(status.get('error_code','PREVIEW_BLOCKED'))
         if (output/'admin').exists() or (output/'sync-reviews').exists(): raise ReviewError('PUBLIC_ISOLATION_FAILED')
-        return {'ready':True, 'result':status['result'], 'added_photos':status['human_review']['approved_new_photos'],
+        return {'ready':True, 'result':status['result'], 'added_photos':status['automatic_added_photo_count'],
                 'preserved_photo_ids':status['preserved_photo_ids'], 'gallery_photos':status['gallery_photo_count'],
                 'best_shot_references_preserved':status['best_shot_references_preserved'],
                 'research_cases_preserved':status['research_cases_preserved'], 'retirement':status['retirement'],
