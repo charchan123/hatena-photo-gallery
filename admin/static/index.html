@@ -4,13 +4,23 @@
 <body><aside><h1>🍄 きのこブログ<br>管理室</h1><nav>
 <button data-page="dashboard">ダッシュボード</button><button data-page="best">ベストショット</button>
 <button data-page="research">不明キノコ研究室</button><button data-page="notices">更新告知</button>
-<button data-page="knowledge">情報拡充</button><button data-page="status">サイト状態</button><button data-page="changes">変更内容を確認</button>
+<button data-page="sync">記事・写真の同期管理</button><button data-page="knowledge">情報拡充</button><button data-page="status">サイト状態</button><button data-page="changes">変更内容を確認</button>
 </nav><p class="local">🔒 localhost 専用</p></aside><main>
 <header><h2 id="page-title">ダッシュボード</h2><span id="message" role="status"></span></header>
 <section id="dashboard" class="page"><div id="cards" class="cards"></div></section>
 <section id="best" class="page" hidden><div class="toolbar"><button class="primary" id="add-best">＋ 新規追加</button></div><div id="best-list" class="list"></div></section>
 <section id="research" class="page" hidden><h3>調査中</h3><div id="case-list" class="list"></div><h3>正体が判明したキノコ</h3><div id="identified-list" class="list"></div></section>
 <section id="notices" class="page" hidden><div class="toolbar"><button class="primary" id="add-notice">＋ 告知を追加</button></div><div id="notice-list" class="list"></div></section>
+<section id="sync" class="page" hidden>
+<p>公開サイトはここでは変更されません。552件などの過去の分類保留は、新規の要対応案件とは別です。</p>
+<div class="sync-tools"><button id="sync-refresh">公開状態を再取得</button><button id="sync-live">公開記事を取得して写真レビュー</button></div>
+<div id="sync-summary" class="panel"></div>
+<div class="sync-tools"><label>名前・記事・日付・分類状態<input id="sync-search" type="search" maxlength="120"></label><label>表示する案件<select id="sync-group"><option value="">緊急度順・すべて</option value="blocker">自動同期を止める要対応</option><option value="new">新しい記事・写真</option><option value="legacy">以前からの分類保留</option><option value="migration">URL・削除など要個別移行</option><option value="reviewed">確認・承認済み</option><option value="held">人間が保留</option></select></label><button id="sync-search-button">検索</button></div>
+<p id="sync-page-info" class="meta"></p><div id="sync-list" class="list"></div>
+<div class="actions"><button id="sync-prev">前の30件</button><button id="sync-next">次の30件</button></div>
+<p>採用できるのは既存Phase 3Cで高信頼と確認された新規写真だけです。「不明」もキノコとして確認済みの場合に限ります。既存名変更・削除・URL置換・未分類写真の名付けは要個別移行です。</p>
+<div class="actions"><button id="sync-preview">採用した追加写真を実生成・検証</button><button id="sync-pr" class="primary" disabled>同期レビューDraft PRを作成</button></div><pre id="sync-preview-result"></pre>
+</section>
 <section id="knowledge" class="page" hidden><div class="knowledge-grid"><div><h3>Local research batches</h3><div id="knowledge-batches" class="list"></div></div><div><h3>候補レビュー</h3><div id="knowledge-candidates" class="list"></div><div class="actions"><button id="knowledge-preview">Promotion preview</button><button class="primary" id="knowledge-pr" disabled>知識更新PRを作成</button></div><pre id="knowledge-preview-result"></pre></div></div></section>
 <section id="status" class="page" hidden><div id="site-status" class="panel"></div></section>
 <section id="changes" class="page" hidden><div id="preview" class="list"></div><div class="actions"><button id="validate">検証する</button><button class="primary" id="create-pr" disabled>PRを作成</button></div></section>

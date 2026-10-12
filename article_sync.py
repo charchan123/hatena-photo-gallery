@@ -261,7 +261,8 @@ def validate_references(portal, previous, data_directory):
 
 
 class SyncRun:
-    def __init__(self, previous_directory, report_path):
+    def __init__(self, previous_directory, report_path, *, review_manifest=None):
+        self.review_manifest = review_manifest
         self.previous_directory = Path(previous_directory)
         self.report_path = Path(report_path)
         self.status = {"version": 1, "result": "BLOCKED", **compare_inventory(None, {}),
@@ -340,6 +341,11 @@ class SyncRun:
             Path(__file__).parent / "data")
         result = reconcile_ids(portal, self.effective_previous)
         self.status["retirement"] = self.retirement.status()
+        from sync_review import gate_new_photos, load_approvals
+        self.status["human_review"] = gate_new_photos(
+            result, self.effective_previous, self.articles,
+            payload_hash(self.previous_snapshot) if self.previous_snapshot else None,
+            self.review_manifest if self.review_manifest is not None else load_approvals(Path(__file__).parent))
         return result
 
     def finalize(self, output, flags, data_directory):
@@ -383,12 +389,12 @@ class SyncRun:
         write_json(self.report_path, self.status)
 
 
-def run(previous, output="output", report="cache/article-sync-report.json"):
+def run(previous, output="output", report="cache/article-sync-report.json", *, review_manifest=None):
     """Generate into an isolated candidate; failed builds never replace output."""
     import main
     sync = None
     try:
-        sync = SyncRun(previous, report)
+        sync = SyncRun(previous, report) if review_manifest is None else SyncRun(previous, report, review_manifest=review_manifest)
         output_path = Path(output).resolve()
         original_path = sync.previous_directory.resolve()
         if sync.retirement.initial and (output_path == original_path or output_path in original_path.parents):

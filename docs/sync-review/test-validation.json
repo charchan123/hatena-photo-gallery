@@ -1,0 +1,32 @@
+{
+  "status": "PARTIAL",
+  "full_pytest": "757 passed",
+  "collected": 757,
+  "focused": "185 passed in 11.11s",
+  "javascript": "43 passed",
+  "js_syntax": "PASS",
+  "compileall": "PASS",
+  "diff_check": "PASS",
+  "css_parse": "PASS (tinycss2, runtime-only)",
+  "protected_paths": {
+    "result": "PASS",
+    "paths": [
+      "data",
+      "audit",
+      "sync-migrations",
+      "feature_overlay.py",
+      "main.py",
+      "portal_data.py",
+      "assets",
+      "hatena",
+      "admin/core.py",
+      "admin/git_workflow.py",
+      "admin/knowledge.py",
+      ".github"
+    ]
+  },
+  "generator": "real parsing/Phase3C/portal/HTML fixture integration PASS; only HTTP/EXIF external data fixture",
+  "live_phase2_api": "NOT_EXECUTED (no local Hatena credentials)",
+  "admin_pr_route": "mocked git/gh sequencing PASS; real user-photo approval PR NOT_EXECUTED",
+  "production_publication": "NOT_PERFORMED"
+}

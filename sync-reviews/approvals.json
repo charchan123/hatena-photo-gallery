@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "scope": "phase3c-safe-new-photo-only",
+  "require_new_photo_review": true,
+  "approvals": []
+}

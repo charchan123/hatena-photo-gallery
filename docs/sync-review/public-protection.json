@@ -1,0 +1,22 @@
+{
+  "starting_main": "20b1a09cb8b9d7b582d02896f6d89171b3048ba4",
+  "starting_tree": "a79eccbbf6e6e1e50a0bc97373a48c259ddcec9e",
+  "public_commit": "ac1038aafb8dbedc8dc28a0e1264ef2fb500055c",
+  "snapshot_sha256": "ed7bbfe07fff35e6fd33e9ff51971b83a9b0cffd287545406d387432a1f311ea",
+  "photos": 906,
+  "photo_ids_preserved": 906,
+  "public_articles": 110,
+  "image_occurrences": 976,
+  "retired_photos_absent": 7,
+  "best_shot_references_preserved": 3,
+  "research_cases_preserved": 67,
+  "new_photo_gate": {
+    "approved_new_photos": 0,
+    "manifest_sha256": "023292c9d42d4fb983610bcd5de68b49cc5266fada303c444145a3b05b847443"
+  },
+  "read_only_candidate_counts": {
+    "legacy": 552
+  },
+  "classification_review_count": 552,
+  "local_live_api": "NOT_AVAILABLE_NO_CREDENTIALS"
+}

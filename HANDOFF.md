@@ -1297,3 +1297,21 @@ needed snapshot must be supplied exactly once by the current overlay.
 - Snapshot reuse is based on validated baseline/prior-overlay snapshot IDs rather than source IDs, with an explicit contract root for fresh-worktree validation.
 - Knowledge PR staging unions tracked and untracked paths, allow-lists and stages that exact set, checks the cached diff, and requires the running checkout to equal freshly fetched `origin/main`.
 - Candidate state and UI expose every evidence record plus canonical mushroom and facet labels, but never full snapshot text.
+
+## Phase 2 article/photo sync review (2026-10-12)
+
+Starting main `20b1a09cb8b9d7b582d02896f6d89171b3048ba4`, tree
+`a79eccbbf6e6e1e50a0bc97373a48c259ddcec9e`. See
+`docs/ARTICLE_PHOTO_SYNC_PHASE2.md` for Windows instructions, evidence and limits.
+
+Partial capability, deliberately fail-closed: public dashboard and paged 552 legacy
+reviews; local human decisions/audit; exact-snapshot approval of **new, already
+high-confidence Phase3C gallery photos**; actual generator preview; separate
+single-manifest-only isolated Draft PR route. Every new gallery photo now needs
+human approval in addition to the unchanged Phase3C/ID gates. Existing 906 require
+no reapproval. After a successful publication, adopted new photos become ordinary
+existing identities. No general deletion/name/URL override exists. Such proposals
+remain local and explicitly require an individual migration. Retired7 stay blocked.
+No real Phase2 live API/admin PR acceptance run was possible without local Hatena
+credentials; do not claim that part PASS. Production knowledge and curated JSON,
+existing admin promotion routes, iframe, portal design and poison are unchanged.

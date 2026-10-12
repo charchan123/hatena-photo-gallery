@@ -358,6 +358,8 @@ def test_real_generator_guarded_bootstrap_then_second_sync_zero_diff(tmp_path, m
     """Real parsing/Phase 3C/portal/UI build. Only HTTP and EXIF are fixtures."""
     main, calls = api_fixture(monkeypatch, tmp_path, [feed(atom_entry()), feed(atom_entry()),
         feed(atom_entry("B", src="https://images.example/B.jpg") + atom_entry()),
+        feed(atom_entry("B", src="https://images.example/B.jpg") + atom_entry()),
+        feed(atom_entry("B", src="https://images.example/B.jpg") + atom_entry()),
         feed(atom_entry("B", src="https://images.example/B.jpg") + atom_entry(src="https://images.example/replacement.jpg"))])
     previous = prior(tmp_path, portal(photo(aid="A")))
     data = tmp_path / "data"
@@ -391,7 +393,24 @@ def test_real_generator_guarded_bootstrap_then_second_sync_zero_diff(tmp_path, m
     assert "pending_classification" not in second
     second_output = tmp_path / "second-output"
     third_output = tmp_path / "third-output"
-    assert sync.run(second_output, third_output, report) == 0, sync.read_json(report)
+    assert sync.run(second_output, third_output, report) == 1
+    assert sync.read_json(report)['error_code'] == 'NEW_PHOTO_HUMAN_APPROVAL_REQUIRED'
+    assert not third_output.exists()
+    from admin.sync import SyncReview, live_capture
+    # Fixture hosts replace only the local display allow-list, not any classifier
+    # or generation/identity gate. Production allows the actual Hatena hosts only.
+    monkeypatch.setattr('admin.sync.safe_url', lambda value, **k: value if isinstance(value,str) and value.startswith('https://') else None)
+    publication = {name: sync.read_json(second_output / name) for name in (
+        'portal-data.json','article-sync-snapshot.json','article-sync-status.json','phase3c-production-status.json')}
+    publication['publication_sha'] = 'a' * 40
+    review = SyncReview(tmp_path / 'local-review')
+    review.install(publication, live_capture())
+    candidate = next(r for r in review.rows if r['change_type'] == 'new_gallery_photo')
+    assert candidate['adoptable'] is True
+    review.decide({'candidate_id':candidate['candidate_id'], 'bundle_id':review.bundle_id,
+                   'decision':'adopt', 'comment':'実写真を確認（fixture）'})
+    approved = review.package()
+    assert sync.run(second_output, third_output, report, review_manifest=approved) == 0, sync.read_json(report)
     third = sync.read_json(third_output / "article-sync-status.json")
     assert third["new_articles"] == third["new_images"] == 1
     old_photo = next(r for r in sync.read_json(third_output / "portal-data.json")["observations"] if r["article"]["article_id"] == "A")
