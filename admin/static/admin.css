@@ -3,3 +3,25 @@
 
 /* Local sync-review controls only. */
 .sync-tools{display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin:16px 0}.sync-tools label{min-width:220px;flex:1}#sync-list .item{align-items:start}#sync-list .item-actions{max-width:230px}#sync-summary{overflow-wrap:anywhere}#sync-list .meta{overflow-wrap:anywhere}
+
+/* Best Shot editor only: bounded photo lists and an in-dialog preview. */
+dialog.best-editor{width:min(980px,calc(100% - 24px));max-height:calc(100dvh - 24px);overflow:auto}
+.best-editor .photo-picker{min-width:0}.best-editor .photo-browser{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start}
+.best-editor .photo-results{max-height:300px;overflow:auto;border:1px solid #d5ddd3;border-radius:9px;padding:8px;overscroll-behavior:contain}
+.best-editor .photo-option{display:grid;grid-template-columns:64px minmax(0,1fr);gap:8px;padding:10px 5px;border-bottom:1px solid #d5ddd3}
+.best-editor .photo-option:last-child{border-bottom:0}.best-editor .photo-option-actions{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap}
+.best-editor .photo-option button{font-size:.85rem;padding:7px 10px}.best-editor [aria-pressed=true]{background:#e1efdd;border:2px solid #376b44}
+.best-editor .photo-image{display:flex;align-items:center;justify-content:center;min-height:64px;background:#f2f5ef;border-radius:8px;overflow:hidden}
+.best-editor .photo-image img{width:100%;height:70px;object-fit:contain}.best-editor .photo-details{display:grid;gap:3px;overflow-wrap:anywhere;font-size:.8rem}
+.best-editor .photo-details strong{font-size:.95rem}.best-editor .photo-details small{color:#68746b;font-size:.7rem}
+.best-editor .photo-chosen{display:grid;grid-template-columns:90px minmax(0,1fr);gap:8px;border:1px solid #b8c5b8;border-radius:8px;padding:10px;background:#f6faf4}
+.best-editor .photo-chosen>p{grid-column:1/-1;margin:0}.best-editor .photo-chosen .badge{width:fit-content}.best-editor .photo-chosen img{height:74px}
+.best-editor .photo-preview{border:1px solid #b8c5b8;border-radius:9px;padding:10px;background:#fff;position:sticky;top:0}
+.best-editor .photo-preview[hidden]{display:none}.best-editor .photo-preview h4{margin:0 0 8px;font-size:.9rem}.best-editor .photo-preview img{height:200px;max-height:32dvh;object-fit:contain}.best-editor .photo-preview .photo-details{margin:8px 0}
+.best-editor .image-failure{font-size:.8rem;padding:10px;text-align:center;color:#a32c2c}
+.best-editor .field-heading{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}.best-editor .field-heading label{margin:0}.best-editor .field-error{color:#b42318;font-size:.85rem;font-weight:600;overflow-wrap:anywhere}.best-editor .field-error:empty{display:none}
+.best-editor .order-field{margin:14px 0}.best-editor .order-controls{display:flex;gap:6px;margin-top:6px;width:115px}.best-editor .order-controls input{min-width:0;text-align:center;cursor:default}
+.best-editor .order-arrows{display:grid;gap:3px}.best-editor .order-arrows button{padding:3px 10px;font-size:.75rem}.best-editor .order-field .meta{margin:5px 0}
+.best-editor [aria-invalid=true]{border-color:#b42318}.best-editor .modal-error{background:#fff1ef;border-radius:7px;padding:10px}
+.best-editor button:focus-visible,.best-editor input:focus-visible,.best-editor textarea:focus-visible{outline:3px solid #376b44;outline-offset:2px}
+@media(max-width:600px){dialog.best-editor{padding:16px}.best-editor .photo-browser{grid-template-columns:minmax(0,1fr)}.best-editor .photo-results{max-height:220px}.best-editor .photo-preview{position:static}.best-editor menu{position:sticky;bottom:-16px;background:#fff;padding:10px 0}.best-editor .field-heading{gap:4px 10px}.best-editor .photo-option-actions button{min-height:44px}}

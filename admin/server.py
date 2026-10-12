@@ -10,6 +10,8 @@ from urllib.parse import unquote, parse_qs, urlsplit
 import urllib.request
 import webbrowser
 
+from best_shot_ui import BestShotConfigError
+
 from research_ui import build_research_cases
 from research_identifications import split_research_cases
 from .core import ChangeSet, DATA, ROOT, notice_window, read_json
@@ -173,6 +175,11 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(result)
         except Exception as error:
             code = str(error)
+            if self.path.startswith("/api/best-shot/"):
+                message = (error.user_message if isinstance(error, BestShotConfigError)
+                           else "ベストショットの保存に失敗しました。入力内容と変更予定を確認してください")
+                fields = ({error.field: message} if isinstance(error, BestShotConfigError) and error.field else {})
+                return self._json({"error": code, "message": message, "field_errors": fields}, 400)
             if self.path.startswith("/api/sync/") and not isinstance(error,(ReviewError,SyncError)):
                 code = "SYNC_OPERATION_FAILED"
             return self._json({"error": code}, 400)

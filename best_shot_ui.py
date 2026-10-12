@@ -21,6 +21,11 @@ REQUIRED_ENTRY_FIELDS = {"selection_id", "observation_id", "comment", "order"}
 class BestShotConfigError(ValueError):
     """The manually curated Best Shot configuration is invalid."""
 
+    def __init__(self, message, *, field=None, user_message=None):
+        super().__init__(message)
+        self.field = field
+        self.user_message = user_message or "ベストショットの登録内容を確認してください"
+
 
 def load_best_shot_config(path):
     """Load a version-controlled Best Shot configuration file."""
@@ -30,7 +35,10 @@ def load_best_shot_config(path):
 
 def _non_empty_string(value, field):
     if not isinstance(value, str) or not value.strip():
-        raise BestShotConfigError(f"{field} must be a non-empty string")
+        labels = {"comment": "コメント", "annual_comment": "年間コメント",
+                  "observation_id": "観察写真", "selection_id": "selection ID"}
+        raise BestShotConfigError(f"{field} must be a non-empty string", field=field,
+                                  user_message=f"{labels.get(field, field)}を入力してください")
     return value.strip()
 
 
@@ -38,13 +46,16 @@ def _capture_date(observation, selection_id):
     capture = observation.get("capture")
     raw = capture.get("date") if isinstance(capture, dict) else None
     if not isinstance(raw, str):
-        raise BestShotConfigError(f"{selection_id} requires observation.capture.date")
+        raise BestShotConfigError(f"{selection_id} requires observation.capture.date",
+                                  field="observation_id", user_message="撮影日の確認が必要な写真です")
     try:
         parsed = date.fromisoformat(raw)
     except ValueError as error:
-        raise BestShotConfigError(f"{selection_id} has invalid observation.capture.date") from error
+        raise BestShotConfigError(f"{selection_id} has invalid observation.capture.date",
+                                  field="observation_id", user_message="撮影日の確認が必要な写真です") from error
     if raw != parsed.isoformat():
-        raise BestShotConfigError(f"{selection_id} has invalid observation.capture.date")
+        raise BestShotConfigError(f"{selection_id} has invalid observation.capture.date",
+                                  field="observation_id", user_message="撮影日の確認が必要な写真です")
     return parsed
 
 
@@ -83,40 +94,50 @@ def validate_best_shot_config(config, portal_data):
         observation_id = _non_empty_string(entry.get("observation_id"), "observation_id")
         comment = _non_empty_string(entry.get("comment"), "comment")
         if len(comment) > MAX_COMMENT_LENGTH:
-            raise BestShotConfigError("comment is longer than 200 characters")
+            raise BestShotConfigError("comment is longer than 200 characters", field="comment",
+                                      user_message="コメントは200文字以内で入力してください")
         annual_comment = entry.get("annual_comment")
         if annual_comment is not None:
             annual_comment = _non_empty_string(annual_comment, "annual_comment")
             if len(annual_comment) > MAX_COMMENT_LENGTH:
-                raise BestShotConfigError("annual_comment is longer than 200 characters")
+                raise BestShotConfigError("annual_comment is longer than 200 characters", field="annual_comment",
+                                          user_message="年間コメントは200文字以内で入力してください")
         location = entry.get("location")
         if location is not None and not isinstance(location, str):
-            raise BestShotConfigError("location must be a string")
+            raise BestShotConfigError("location must be a string", field="location",
+                                      user_message="場所を文字で入力してください")
         location = location.strip() if isinstance(location, str) else None
         location = location or None
         if location and len(location) > MAX_LOCATION_LENGTH:
-            raise BestShotConfigError("location is longer than 100 characters")
+            raise BestShotConfigError("location is longer than 100 characters", field="location",
+                                      user_message="場所は100文字以内で入力してください")
         order = entry.get("order")
-        if isinstance(order, bool) or not isinstance(order, int) or order < 1:
-            raise BestShotConfigError("order must be a positive integer")
+        if isinstance(order, bool) or not isinstance(order, int) or not 1 <= order <= MAX_ENTRIES_PER_MONTH:
+            raise BestShotConfigError("order must be an integer from 1 to 3", field="order",
+                                      user_message="1〜3の番号を選択してください")
         if selection_id in selection_ids:
-            raise BestShotConfigError(f"duplicate selection_id: {selection_id}")
+            raise BestShotConfigError(f"duplicate selection_id: {selection_id}", field="selection_id",
+                                      user_message="このselection IDはすでに使用されています")
         if observation_id in observation_ids:
-            raise BestShotConfigError(f"duplicate observation_id: {observation_id}")
+            raise BestShotConfigError(f"duplicate observation_id: {observation_id}", field="observation_id",
+                                      user_message="この写真はすでにBest Shotに登録されています")
         matches = by_observation.get(observation_id, [])
         if len(matches) != 1:
             raise BestShotConfigError(
-                f"observation_id must resolve exactly once: {observation_id}"
+                f"observation_id must resolve exactly once: {observation_id}", field="observation_id",
+                user_message="観察写真を一意に確認できません。写真を選び直してください"
             )
         observation = matches[0]
         captured = _capture_date(observation, selection_id)
         month_key = (captured.year, captured.month)
         month_counts[month_key] += 1
         if month_counts[month_key] > MAX_ENTRIES_PER_MONTH:
-            raise BestShotConfigError("a month may contain at most 3 Best Shots")
+            raise BestShotConfigError("a month may contain at most 3 Best Shots", field="order",
+                                      user_message=f"{captured.year}年{captured.month}月はすでに3枚登録されています")
         order_key = (*month_key, order)
         if order_key in month_orders:
-            raise BestShotConfigError("order must be unique within a year and month")
+            raise BestShotConfigError("order must be unique within a year and month", field="order",
+                                      user_message=f"{captured.year}年{captured.month}月に順序「{order}」の写真が登録されています")
         month_orders.add(order_key)
         selection_ids.add(selection_id)
         observation_ids.add(observation_id)
@@ -151,7 +172,8 @@ def validate_best_shot_config(config, portal_data):
         if selected is None:
             raise BestShotConfigError(f"annual_best selection does not exist: {selection_id}")
         if selected["year"] != int(year_text):
-            raise BestShotConfigError("annual_best year must match capture year")
+            raise BestShotConfigError("annual_best year must match capture year", field="observation_id",
+                                      user_message="年間ベストの撮影年が変わります。同じ年の写真を選ぶか、年間ベスト設定を先に解除してください")
         selected["is_annual_best"] = True
         used_annual_selections.add(selection_id)
     return resolved
