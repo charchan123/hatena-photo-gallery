@@ -75,6 +75,11 @@ def protected_targets(previous, target_ids, directory):
         cases = build_research_cases(previous)
         if any(target_ids & {p['observation_id'] for p in case['photos']} for case in cases):
             raise ValueError()
+        target_articles = [r['article'] for r in previous['observations'] if r['observation_id'] in target_ids]
+        if any(any(row['article'].get(key) and row['article'].get(key) == article.get(key)
+                   for key in ('article_id', 'url', 'article_path') for article in target_articles)
+               for row in registry['identifications']):
+            raise ValueError()
     except (ValueError, KeyError, TypeError):
         raise SyncError('RETIREMENT_PROTECTED_REFERENCE') from None
 

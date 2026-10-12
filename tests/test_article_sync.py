@@ -508,3 +508,11 @@ def test_non_html_requires_explicitly_typed_rendered_html(monkeypatch, tmp_path,
     response = response.replace('</content>', '</content><h:formatted-content xmlns:h="http://www.hatena.ne.jp/info/xmlns#" type="text/html">'+html.escape(rendered)+'</h:formatted-content>')
     main, _ = api_fixture(monkeypatch, tmp_path, [feed(response)])
     assert Path(main.fetch_hatena_articles_api(strict=True)[0]).read_text() == rendered
+
+
+def test_non_html_formatted_plain_text_is_not_guessed_into_html(monkeypatch, tmp_path):
+    response = atom_entry().replace('type="text/html"','type="text/x-markdown"')
+    response = response.replace('</content>','</content><h:formatted-content xmlns:h="http://www.hatena.ne.jp/info/xmlns#" type="text/plain">not rendered HTML</h:formatted-content>')
+    main,_ = api_fixture(monkeypatch,tmp_path,[feed(response)])
+    with pytest.raises(sync.SyncError,match='API_RENDERED_HTML_MISSING'):
+        main.fetch_hatena_articles_api(strict=True)

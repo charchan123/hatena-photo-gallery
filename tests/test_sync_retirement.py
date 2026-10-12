@@ -178,3 +178,18 @@ def test_initial_migration_cannot_overwrite_original_checkout(tmp_path, monkeypa
     assert sync.run(root,root,report)==1
     assert sync.read_json(report)['error_code']=='RETIREMENT_ORIGINAL_OVERWRITE_FORBIDDEN'
     assert (root/'portal-data.json').read_bytes()==b'original evidence'
+
+
+def test_identification_history_explicit_target_article_reference_blocks(approved):
+    from research_ui import build_research_cases
+    m, old, _, data = approved
+    old['observations'][0]['gallery_name']='不明'
+    case=build_research_cases(old)[0]
+    # Even a row that passes the legacy URL fallback may not point its Atom ID at the retired article.
+    row={'identification_id':'history','case_id':case['case_id'],
+         'article':{'article_id':'retired-article','url':case['article']['url']},
+         'original_gallery_name':'不明','identified_name':'シイタケ',
+         'identified_at':'2026-10-12T00:00:00+00:00','mushroom_master_id':None,'status':'identified'}
+    sync.write_json(data/'research-identifications.json',{'version':1,'identifications':[row]})
+    with pytest.raises(sync.SyncError,match='RETIREMENT_PROTECTED_REFERENCE'):
+        retirement.protected_targets(old,{x['observation_id'] for x in m['observations']},data)
