@@ -1190,7 +1190,8 @@ galleries.forEach(gallery => {
       if (!gallery) return;
 
       const favs = loadFavorites();
-      const srcs = Object.keys(favs).filter(src => favs[src]);
+      const srcs = Object.keys(favs).filter(src => favs[src]
+        && Object.prototype.hasOwnProperty.call(window.SRC_TO_ALT || {}, src));
 
       gallery.innerHTML = "";
 

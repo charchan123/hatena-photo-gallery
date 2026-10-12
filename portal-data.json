@@ -3,19 +3,19 @@
   "production": {
     "mode": "phase3c_hybrid",
     "cutover_active": true,
-    "image_count": 913
+    "image_count": 906
   },
   "summary": {
-    "production_image_count": 913,
-    "observation_count": 913,
+    "production_image_count": 906,
+    "observation_count": 906,
     "subject_count": 302,
-    "article_count": 90,
-    "shadow_matched_observation_count": 913,
+    "article_count": 89,
+    "shadow_matched_observation_count": 906,
     "shadow_src_only_fallback_count": 0,
     "shadow_missing_observation_count": 0,
-    "exif_dated_observation_count": 883,
+    "exif_dated_observation_count": 876,
     "exif_undated_observation_count": 30,
-    "confirmed_named_mushroom_count": 424,
+    "confirmed_named_mushroom_count": 417,
     "confirmed_mushroom_identity_uncertain_count": 12,
     "manual_review_name_conflict_count": 6,
     "legacy_review_count": 438,
@@ -1298,10 +1298,10 @@
     },
     {
       "gallery_name": "オオシロカラカサタケ",
-      "photo_count": 14,
+      "photo_count": 13,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260622/20260622030521.jpg",
-      "article_count": 4,
-      "capture_date_count": 14,
+      "article_count": 3,
+      "capture_date_count": 13,
       "capture_months": [
         6,
         9,
@@ -1309,13 +1309,13 @@
       ],
       "capture_month_counts": {
         "6": 2,
-        "9": 8,
+        "9": 7,
         "10": 4
       },
       "first_capture_date": "2025-09-17",
       "last_capture_date": "2026-06-14",
       "classification_counts": {
-        "confirmed_named_mushroom": 14
+        "confirmed_named_mushroom": 13
       },
       "taxonomy": {
         "canonical_name": "オオシロカラカサタケ",
@@ -2045,20 +2045,20 @@
     },
     {
       "gallery_name": "キイロスッポンタケ",
-      "photo_count": 11,
+      "photo_count": 10,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260622/20260622024436.jpg",
-      "article_count": 3,
-      "capture_date_count": 11,
+      "article_count": 2,
+      "capture_date_count": 10,
       "capture_months": [
         5
       ],
       "capture_month_counts": {
-        "5": 11
+        "5": 10
       },
       "first_capture_date": "2025-05-24",
       "last_capture_date": "2026-05-23",
       "classification_counts": {
-        "confirmed_named_mushroom": 11
+        "confirmed_named_mushroom": 10
       },
       "taxonomy": {
         "canonical_name": "キイロスッポンタケ",
@@ -3697,22 +3697,22 @@
     },
     {
       "gallery_name": "セイタカイグチ",
-      "photo_count": 5,
+      "photo_count": 4,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222228.jpg",
-      "article_count": 5,
-      "capture_date_count": 5,
+      "article_count": 4,
+      "capture_date_count": 4,
       "capture_months": [
         7,
         9
       ],
       "capture_month_counts": {
         "7": 2,
-        "9": 3
+        "9": 2
       },
       "first_capture_date": "2025-09-28",
       "last_capture_date": "2026-09-17",
       "classification_counts": {
-        "confirmed_named_mushroom": 4,
+        "confirmed_named_mushroom": 3,
         "legacy_review": 1
       },
       "taxonomy": {
@@ -5398,22 +5398,22 @@
     },
     {
       "gallery_name": "ヒラタケ",
-      "photo_count": 13,
+      "photo_count": 12,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251115/20251115003320.jpg",
-      "article_count": 5,
-      "capture_date_count": 8,
+      "article_count": 4,
+      "capture_date_count": 7,
       "capture_months": [
         4,
         11
       ],
       "capture_month_counts": {
         "4": 1,
-        "11": 7
+        "11": 6
       },
       "first_capture_date": "2025-04-05",
       "last_capture_date": "2025-11-12",
       "classification_counts": {
-        "confirmed_named_mushroom": 13
+        "confirmed_named_mushroom": 12
       },
       "taxonomy": {
         "canonical_name": "ヒラタケ",
@@ -5449,20 +5449,20 @@
     },
     {
       "gallery_name": "ヒロメノトガリアミガサタケ",
-      "photo_count": 20,
+      "photo_count": 19,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260622/20260622024119.jpg",
-      "article_count": 3,
-      "capture_date_count": 20,
+      "article_count": 2,
+      "capture_date_count": 19,
       "capture_months": [
         5
       ],
       "capture_month_counts": {
-        "5": 20
+        "5": 19
       },
       "first_capture_date": "2025-05-24",
       "last_capture_date": "2026-05-23",
       "classification_counts": {
-        "confirmed_named_mushroom": 20
+        "confirmed_named_mushroom": 19
       },
       "taxonomy": {
         "canonical_name": "ヒロメノトガリアミガサタケ",
@@ -5924,22 +5924,22 @@
     },
     {
       "gallery_name": "ホテイシメジ",
-      "photo_count": 5,
+      "photo_count": 4,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012222855.jpg",
-      "article_count": 4,
-      "capture_date_count": 5,
+      "article_count": 3,
+      "capture_date_count": 4,
       "capture_months": [
         9,
         10
       ],
       "capture_month_counts": {
         "9": 2,
-        "10": 3
+        "10": 2
       },
       "first_capture_date": "2025-09-13",
       "last_capture_date": "2025-10-12",
       "classification_counts": {
-        "confirmed_named_mushroom": 5
+        "confirmed_named_mushroom": 4
       },
       "taxonomy": {
         "canonical_name": "ホテイシメジ",
@@ -6410,10 +6410,10 @@
     },
     {
       "gallery_name": "ヤマイグチ",
-      "photo_count": 9,
+      "photo_count": 8,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222643.jpg",
-      "article_count": 6,
-      "capture_date_count": 9,
+      "article_count": 5,
+      "capture_date_count": 8,
       "capture_months": [
         8,
         9,
@@ -6421,13 +6421,13 @@
       ],
       "capture_month_counts": {
         "8": 1,
-        "9": 6,
+        "9": 5,
         "10": 2
       },
       "first_capture_date": "2025-09-13",
       "last_capture_date": "2026-09-12",
       "classification_counts": {
-        "confirmed_named_mushroom": 9
+        "confirmed_named_mushroom": 8
       },
       "taxonomy": {
         "canonical_name": "ヤマイグチ",
@@ -58572,300 +58572,6 @@
         "excerpt": "静岡木の子の会の探索会が山梨県で開催されたので参加してきた。 ヤマイグチ いつも探索している場所が通行止めになっているらしく、別案として初めて訪れる場所にて探索を開始。スタート地点はかなり雑キノコが多く発生していてこの後も期待出来そう。と言う雰囲気が漂っていた…"
       },
       "mushroom_master_id": "yamaiguchi"
-    },
-    {
-      "observation_id": "obs-1606a216b6d92b088daf5fc2e613fbebd3e79afe06830ab6d2b412ffc8b4a9d0",
-      "production_index": 906,
-      "gallery_name": "ヒロメノトガリアミガサタケ",
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131043336.jpg",
-      "shadow_match_status": "exact_gallery_name",
-      "classification": {
-        "status": "confirmed_named_mushroom",
-        "subject_type": "mushroom",
-        "detected_label": "ヒロメノトガリアミガサタケ",
-        "shadow_gallery_name": "ヒロメノトガリアミガサタケ",
-        "classification_reason": "taxonomy_mushroom",
-        "classification_confidence": "high",
-        "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": "ヒロメノトガリアミガサタケ",
-        "taxonomy_match_type": "canonical_exact"
-      },
-      "capture": {
-        "date": "2025-05-24",
-        "month": 5,
-        "date_source": "exif",
-        "camera": {
-          "model": "EOS Kiss X5",
-          "lens": "EF-S18-55mm f/3.5-5.6 IS",
-          "iso": "800",
-          "f": "f/3.5",
-          "exposure": "1/200",
-          "focal": "23mm"
-        }
-      },
-      "article": {
-        "article_path": "articles/article_31.html",
-        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-17179246901345101817",
-        "title": "2025年ベストショット集",
-        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/01/31/045140",
-        "published": "2026-01-18T01:46:37+09:00",
-        "updated": "2026-01-31T04:51:40+09:00",
-        "categories": [],
-        "excerpt": "ヒロメノトガリアミガサタケ 今年も新緑のブナ林で今年も魅力的な姿を魅せてくれた。 キイロスッポンタケ ヒロメノトガリアミガサタケを発見した日と同日に発見。この日は比較的多く発生していて林内の至る所から糞臭がしていた。 ミヤママスタケ 林内は薄暗く雨が降り続く亜…"
-      },
-      "mushroom_master_id": "hiromenotogariamigasatake"
-    },
-    {
-      "observation_id": "obs-655a99526af5075cd5e6a89471023dfa95cec6e6a0d63b6883288d1b151c7eed",
-      "production_index": 907,
-      "gallery_name": "キイロスッポンタケ",
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131043307.jpg",
-      "shadow_match_status": "exact_gallery_name",
-      "classification": {
-        "status": "confirmed_named_mushroom",
-        "subject_type": "mushroom",
-        "detected_label": "キイロスッポンタケ",
-        "shadow_gallery_name": "キイロスッポンタケ",
-        "classification_reason": "taxonomy_mushroom",
-        "classification_confidence": "high",
-        "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": "キイロスッポンタケ",
-        "taxonomy_match_type": "canonical_exact"
-      },
-      "capture": {
-        "date": "2025-05-24",
-        "month": 5,
-        "date_source": "exif",
-        "camera": {
-          "model": "EOS Kiss X5",
-          "lens": "EF-S18-55mm f/3.5-5.6 IS",
-          "iso": "800",
-          "f": "f/4.5",
-          "exposure": "1/80",
-          "focal": "25mm"
-        }
-      },
-      "article": {
-        "article_path": "articles/article_31.html",
-        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-17179246901345101817",
-        "title": "2025年ベストショット集",
-        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/01/31/045140",
-        "published": "2026-01-18T01:46:37+09:00",
-        "updated": "2026-01-31T04:51:40+09:00",
-        "categories": [],
-        "excerpt": "ヒロメノトガリアミガサタケ 今年も新緑のブナ林で今年も魅力的な姿を魅せてくれた。 キイロスッポンタケ ヒロメノトガリアミガサタケを発見した日と同日に発見。この日は比較的多く発生していて林内の至る所から糞臭がしていた。 ミヤママスタケ 林内は薄暗く雨が降り続く亜…"
-      },
-      "mushroom_master_id": "kiirosuppontake"
-    },
-    {
-      "observation_id": "obs-edbc5538482ca9c4c16775541ea796098f9f10f10d6df48d0344df6345f8862e",
-      "production_index": 908,
-      "gallery_name": "ヤマイグチ",
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131043226.jpg",
-      "shadow_match_status": "exact_gallery_name",
-      "classification": {
-        "status": "confirmed_named_mushroom",
-        "subject_type": "mushroom",
-        "detected_label": "ヤマイグチ",
-        "shadow_gallery_name": "ヤマイグチ",
-        "classification_reason": "taxonomy_mushroom",
-        "classification_confidence": "high",
-        "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": "ヤマイグチ",
-        "taxonomy_match_type": "canonical_exact"
-      },
-      "capture": {
-        "date": "2025-09-13",
-        "month": 9,
-        "date_source": "exif",
-        "camera": {
-          "model": "DC-G9M2",
-          "lens": "OLYMPUS M.12-40mm F2.8",
-          "iso": "800",
-          "f": "f/7.1",
-          "exposure": "1/40",
-          "focal": "26mm"
-        }
-      },
-      "article": {
-        "article_path": "articles/article_31.html",
-        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-17179246901345101817",
-        "title": "2025年ベストショット集",
-        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/01/31/045140",
-        "published": "2026-01-18T01:46:37+09:00",
-        "updated": "2026-01-31T04:51:40+09:00",
-        "categories": [],
-        "excerpt": "ヒロメノトガリアミガサタケ 今年も新緑のブナ林で今年も魅力的な姿を魅せてくれた。 キイロスッポンタケ ヒロメノトガリアミガサタケを発見した日と同日に発見。この日は比較的多く発生していて林内の至る所から糞臭がしていた。 ミヤママスタケ 林内は薄暗く雨が降り続く亜…"
-      },
-      "mushroom_master_id": "yamaiguchi"
-    },
-    {
-      "observation_id": "obs-9a6df3f20da75f3ec768cb476c2a1ae1a9df5997a3909b8207044fbb9214559f",
-      "production_index": 909,
-      "gallery_name": "オオシロカラカサタケ",
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131043136.jpg",
-      "shadow_match_status": "exact_gallery_name",
-      "classification": {
-        "status": "confirmed_named_mushroom",
-        "subject_type": "mushroom",
-        "detected_label": "オオシロカラカサタケ",
-        "shadow_gallery_name": "オオシロカラカサタケ",
-        "classification_reason": "taxonomy_mushroom",
-        "classification_confidence": "high",
-        "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": "オオシロカラカサタケ",
-        "taxonomy_match_type": "canonical_exact"
-      },
-      "capture": {
-        "date": "2025-09-17",
-        "month": 9,
-        "date_source": "exif",
-        "camera": {
-          "model": "DC-G9M2",
-          "lens": "OLYMPUS M.12-40mm F2.8",
-          "iso": "100",
-          "f": "f/7.1",
-          "exposure": "1/60",
-          "focal": "12mm"
-        }
-      },
-      "article": {
-        "article_path": "articles/article_31.html",
-        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-17179246901345101817",
-        "title": "2025年ベストショット集",
-        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/01/31/045140",
-        "published": "2026-01-18T01:46:37+09:00",
-        "updated": "2026-01-31T04:51:40+09:00",
-        "categories": [],
-        "excerpt": "ヒロメノトガリアミガサタケ 今年も新緑のブナ林で今年も魅力的な姿を魅せてくれた。 キイロスッポンタケ ヒロメノトガリアミガサタケを発見した日と同日に発見。この日は比較的多く発生していて林内の至る所から糞臭がしていた。 ミヤママスタケ 林内は薄暗く雨が降り続く亜…"
-      },
-      "mushroom_master_id": "ooshirokarakasatake"
-    },
-    {
-      "observation_id": "obs-53eef24d4d30f049cef1de92f31ee284ae7dbadf01b82c1550aab215f9a6bea1",
-      "production_index": 910,
-      "gallery_name": "セイタカイグチ",
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131044940.jpg",
-      "shadow_match_status": "exact_gallery_name",
-      "classification": {
-        "status": "confirmed_named_mushroom",
-        "subject_type": "mushroom",
-        "detected_label": "セイタカイグチ",
-        "shadow_gallery_name": "セイタカイグチ",
-        "classification_reason": "taxonomy_mushroom",
-        "classification_confidence": "high",
-        "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": "セイタカイグチ",
-        "taxonomy_match_type": "canonical_exact"
-      },
-      "capture": {
-        "date": "2025-09-28",
-        "month": 9,
-        "date_source": "exif",
-        "camera": {
-          "model": "DC-G9M2",
-          "lens": "OLYMPUS M.12-40mm F2.8",
-          "iso": "320",
-          "f": "f/8.0",
-          "exposure": "1/6",
-          "focal": "21mm"
-        }
-      },
-      "article": {
-        "article_path": "articles/article_31.html",
-        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-17179246901345101817",
-        "title": "2025年ベストショット集",
-        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/01/31/045140",
-        "published": "2026-01-18T01:46:37+09:00",
-        "updated": "2026-01-31T04:51:40+09:00",
-        "categories": [],
-        "excerpt": "ヒロメノトガリアミガサタケ 今年も新緑のブナ林で今年も魅力的な姿を魅せてくれた。 キイロスッポンタケ ヒロメノトガリアミガサタケを発見した日と同日に発見。この日は比較的多く発生していて林内の至る所から糞臭がしていた。 ミヤママスタケ 林内は薄暗く雨が降り続く亜…"
-      },
-      "mushroom_master_id": "seitakaiguchi"
-    },
-    {
-      "observation_id": "obs-a1d82085cc1e51406e44b45c6a8a1c5592a1606a4593821d26631db08384bc68",
-      "production_index": 911,
-      "gallery_name": "ホテイシメジ",
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131042750.jpg",
-      "shadow_match_status": "exact_gallery_name",
-      "classification": {
-        "status": "confirmed_named_mushroom",
-        "subject_type": "mushroom",
-        "detected_label": "ホテイシメジ",
-        "shadow_gallery_name": "ホテイシメジ",
-        "classification_reason": "taxonomy_mushroom",
-        "classification_confidence": "high",
-        "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": "ホテイシメジ",
-        "taxonomy_match_type": "canonical_exact"
-      },
-      "capture": {
-        "date": "2025-10-12",
-        "month": 10,
-        "date_source": "exif",
-        "camera": {
-          "model": "DC-G9M2",
-          "lens": "OLYMPUS M.12-40mm F2.8",
-          "iso": "640",
-          "f": "f/16.0",
-          "exposure": "1/8",
-          "focal": "21mm"
-        }
-      },
-      "article": {
-        "article_path": "articles/article_31.html",
-        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-17179246901345101817",
-        "title": "2025年ベストショット集",
-        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/01/31/045140",
-        "published": "2026-01-18T01:46:37+09:00",
-        "updated": "2026-01-31T04:51:40+09:00",
-        "categories": [],
-        "excerpt": "ヒロメノトガリアミガサタケ 今年も新緑のブナ林で今年も魅力的な姿を魅せてくれた。 キイロスッポンタケ ヒロメノトガリアミガサタケを発見した日と同日に発見。この日は比較的多く発生していて林内の至る所から糞臭がしていた。 ミヤママスタケ 林内は薄暗く雨が降り続く亜…"
-      },
-      "mushroom_master_id": "hoteishimeji"
-    },
-    {
-      "observation_id": "obs-b48b18a8aea124a7ac0df22caa8b483c9db68a84e80c9ae151aa67852aa9b786",
-      "production_index": 912,
-      "gallery_name": "ヒラタケ",
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131044320.jpg",
-      "shadow_match_status": "exact_gallery_name",
-      "classification": {
-        "status": "confirmed_named_mushroom",
-        "subject_type": "mushroom",
-        "detected_label": "ヒラタケ",
-        "shadow_gallery_name": "ヒラタケ",
-        "classification_reason": "taxonomy_mushroom",
-        "classification_confidence": "high",
-        "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": "ヒラタケ",
-        "taxonomy_match_type": "canonical_exact"
-      },
-      "capture": {
-        "date": "2025-11-08",
-        "month": 11,
-        "date_source": "exif",
-        "camera": {
-          "model": "DC-G9M2",
-          "lens": "OLYMPUS M.12-40mm F2.8",
-          "iso": "100",
-          "f": "f/6.3",
-          "exposure": "1/50",
-          "focal": "40mm"
-        }
-      },
-      "article": {
-        "article_path": "articles/article_31.html",
-        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-17179246901345101817",
-        "title": "2025年ベストショット集",
-        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/01/31/045140",
-        "published": "2026-01-18T01:46:37+09:00",
-        "updated": "2026-01-31T04:51:40+09:00",
-        "categories": [],
-        "excerpt": "ヒロメノトガリアミガサタケ 今年も新緑のブナ林で今年も魅力的な姿を魅せてくれた。 キイロスッポンタケ ヒロメノトガリアミガサタケを発見した日と同日に発見。この日は比較的多く発生していて林内の至る所から糞臭がしていた。 ミヤママスタケ 林内は薄暗く雨が降り続く亜…"
-      },
-      "mushroom_master_id": "hiratake"
     }
   ],
   "reference_data": {

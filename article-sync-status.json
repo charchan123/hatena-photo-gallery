@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "result": "SUCCESS",
+  "comparison": "UNKNOWN",
+  "new_articles": null,
+  "deleted_articles": null,
+  "new_images": null,
+  "deleted_images": null,
+  "updated_articles": null,
+  "classification_changes": null,
+  "possible_url_changes": null,
+  "url_changes": null,
+  "last_success_at": "2026-10-12T02:52:04.689630+00:00",
+  "classification_review_count": 552,
+  "fetch_error": null,
+  "id_compatibility_error": null,
+  "fetch_audit": {
+    "pages_completed": 12,
+    "entries_received": 112,
+    "drafts_excluded": 2,
+    "published_articles": 110,
+    "html_articles": 110,
+    "pagination_complete": true,
+    "content_type_counts": {
+      "text/html": 110
+    },
+    "html_source_counts": {
+      "content_html": 110
+    },
+    "html_image_representation_difference_articles": 0
+  },
+  "published_article_count": 110,
+  "detected_image_count": 976,
+  "previous_photo_count": 913,
+  "candidate_gallery_photo_count": 906,
+  "missing_published_photo_keys": 7,
+  "missing_published_article_ids": 1,
+  "missing_photos_in_excluded_drafts": 7,
+  "missing_articles_in_excluded_drafts": 1,
+  "missing_articles_from_api_harvest": 0,
+  "classification_state_counts": {
+    "ambiguous": 481,
+    "named_mushroom": 423,
+    "unidentified_mushroom": 12,
+    "conflict": 33,
+    "non_mushroom": 7,
+    "unclassified": 20
+  },
+  "retirement": {
+    "migration_id": "hatena-draft-photo-retirement-2026-10-12",
+    "state": "APPLIED",
+    "retired_this_run": 7,
+    "retired_total": 7,
+    "manifest_sha256": "4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c"
+  },
+  "best_shot_references_preserved": 3,
+  "research_cases_preserved": 67,
+  "preserved_photo_ids": 906,
+  "gallery_photo_count": 906,
+  "retired_output_inspection": {
+    "result": "PASS",
+    "text_files_checked": 345,
+    "retired_ids_absent": 7,
+    "shared_image_urls_preserved": 0
+  },
+  "generated_html_pages": 322,
+  "bootstrap": true
+}

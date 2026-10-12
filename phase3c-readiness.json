@@ -3,26 +3,26 @@
   "summary": {
     "legacy_production_image_count": 886,
     "legacy_unique_names": 307,
-    "shadow_total_images": 991,
-    "shadow_detected_images": 938,
+    "shadow_total_images": 976,
+    "shadow_detected_images": 923,
     "shadow_undetected_images": 53,
-    "taxonomy_mushroom_images": 442,
+    "taxonomy_mushroom_images": 435,
     "taxonomy_non_mushroom_images": 7,
-    "review_images": 542,
-    "taxonomy_unmatched_review_images": 489,
+    "review_images": 534,
+    "taxonomy_unmatched_review_images": 481,
     "no_detected_label_review_images": 53,
     "taxonomy_unavailable_review_images": 0,
-    "candidate_production_image_count": 442,
+    "candidate_production_image_count": 435,
     "candidate_unique_gallery_names": 46,
     "exact_occurrence_overlap_count": 394,
     "legacy_only_occurrence_count": 492,
-    "candidate_only_occurrence_count": 48,
+    "candidate_only_occurrence_count": 41,
     "legacy_src_only_count": 471,
-    "candidate_src_only_count": 27,
+    "candidate_src_only_count": 20,
     "same_src_name_change_count": 21,
-    "blocked_review_unique_labels": 250,
-    "candidate_vs_legacy_ratio": 0.49887133182844245,
-    "taxonomy_mushroom_share_of_shadow": 0.44601412714429867
+    "blocked_review_unique_labels": 249,
+    "candidate_vs_legacy_ratio": 0.4909706546275395,
+    "taxonomy_mushroom_share_of_shadow": 0.4456967213114754
   },
   "blocked_review_labels": [
     {
@@ -279,22 +279,6 @@
       ]
     },
     {
-      "detected_label": "センニンタケ",
-      "image_count": 4,
-      "article_count": 3,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131042025.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103233126.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316130005.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_31.html",
-        "articles/article_36.html",
-        "articles/article_103.html"
-      ]
-    },
-    {
       "detected_label": "タマゴテングタケモドキ",
       "image_count": 4,
       "article_count": 3,
@@ -343,21 +327,6 @@
       ]
     },
     {
-      "detected_label": "ヌメリササタケ",
-      "image_count": 4,
-      "article_count": 2,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131042449.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131042101.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131042356.png"
-      ],
-      "sample_articles": [
-        "articles/article_31.html",
-        "articles/article_42.html"
-      ]
-    },
-    {
       "detected_label": "フキノトウ",
       "image_count": 4,
       "article_count": 2,
@@ -401,21 +370,6 @@
         "articles/article_55.html",
         "articles/article_68.html",
         "articles/article_73.html"
-      ]
-    },
-    {
-      "detected_label": "ミヤママスタケ",
-      "image_count": 4,
-      "article_count": 2,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131043402.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914212250.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914213233.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_31.html",
-        "articles/article_49.html"
       ]
     },
     {
@@ -650,6 +604,21 @@
       ]
     },
     {
+      "detected_label": "センニンタケ",
+      "image_count": 3,
+      "article_count": 2,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103233126.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316130005.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316131152.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_36.html",
+        "articles/article_103.html"
+      ]
+    },
+    {
       "detected_label": "チャナメツムタケ",
       "image_count": 3,
       "article_count": 2,
@@ -819,21 +788,6 @@
       ]
     },
     {
-      "detected_label": "フジイロタケモドキ？",
-      "image_count": 3,
-      "article_count": 2,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131043749.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251118/20251118230528.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251122/20251122120757.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_31.html",
-        "articles/article_33.html"
-      ]
-    },
-    {
       "detected_label": "ホコリタケ",
       "image_count": 3,
       "article_count": 3,
@@ -847,6 +801,20 @@
         "articles/article_43.html",
         "articles/article_49.html",
         "articles/article_55.html"
+      ]
+    },
+    {
+      "detected_label": "ミヤママスタケ",
+      "image_count": 3,
+      "article_count": 1,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914212250.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914213233.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914213524.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_49.html"
       ]
     },
     {
@@ -999,20 +967,6 @@
       "sample_articles": [
         "articles/article_3.html",
         "articles/article_13.html"
-      ]
-    },
-    {
-      "detected_label": "ウラベニホテイシメジ",
-      "image_count": 2,
-      "article_count": 2,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131041929.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103231007.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_31.html",
-        "articles/article_36.html"
       ]
     },
     {
@@ -1522,6 +1476,19 @@
       ]
     },
     {
+      "detected_label": "フジイロタケモドキ？",
+      "image_count": 2,
+      "article_count": 1,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251118/20251118230528.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251122/20251122120757.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_33.html"
+      ]
+    },
+    {
       "detected_label": "フモトニガイグチ？",
       "image_count": 2,
       "article_count": 1,
@@ -1913,6 +1880,18 @@
       ],
       "sample_articles": [
         "articles/article_4.html"
+      ]
+    },
+    {
+      "detected_label": "ウラベニホテイシメジ",
+      "image_count": 1,
+      "article_count": 1,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103231007.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_36.html"
       ]
     },
     {
@@ -2792,18 +2771,6 @@
       ]
     },
     {
-      "detected_label": "トビイロノボリリュウ",
-      "image_count": 1,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131042547.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_31.html"
-      ]
-    },
-    {
       "detected_label": "トビイロノボリリュウタケ",
       "image_count": 1,
       "article_count": 1,
@@ -2897,6 +2864,18 @@
       ],
       "sample_articles": [
         "articles/article_70.html"
+      ]
+    },
+    {
+      "detected_label": "ヌメリササタケ",
+      "image_count": 1,
+      "article_count": 1,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012224252.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_42.html"
       ]
     },
     {
@@ -9486,76 +9465,6 @@
       "article_title": "2026年4月4日　静岡県伊豆の国市〜沼津市",
       "article_path": "articles/article_23.html",
       "legacy_alt": "チャアミガサタケ？"
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131043336.jpg",
-      "gallery_name": "ヒロメノトガリアミガサタケ",
-      "detected_label": "ヒロメノトガリアミガサタケ",
-      "subject_type": "mushroom",
-      "classification_reason": "taxonomy_mushroom",
-      "article_title": "2025年ベストショット集",
-      "article_path": "articles/article_31.html",
-      "legacy_alt": ""
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131043307.jpg",
-      "gallery_name": "キイロスッポンタケ",
-      "detected_label": "キイロスッポンタケ",
-      "subject_type": "mushroom",
-      "classification_reason": "taxonomy_mushroom",
-      "article_title": "2025年ベストショット集",
-      "article_path": "articles/article_31.html",
-      "legacy_alt": ""
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131043226.jpg",
-      "gallery_name": "ヤマイグチ",
-      "detected_label": "ヤマイグチ",
-      "subject_type": "mushroom",
-      "classification_reason": "taxonomy_mushroom",
-      "article_title": "2025年ベストショット集",
-      "article_path": "articles/article_31.html",
-      "legacy_alt": ""
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131043136.jpg",
-      "gallery_name": "オオシロカラカサタケ",
-      "detected_label": "オオシロカラカサタケ",
-      "subject_type": "mushroom",
-      "classification_reason": "taxonomy_mushroom",
-      "article_title": "2025年ベストショット集",
-      "article_path": "articles/article_31.html",
-      "legacy_alt": ""
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131044940.jpg",
-      "gallery_name": "セイタカイグチ",
-      "detected_label": "セイタカイグチ",
-      "subject_type": "mushroom",
-      "classification_reason": "taxonomy_mushroom",
-      "article_title": "2025年ベストショット集",
-      "article_path": "articles/article_31.html",
-      "legacy_alt": ""
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131042750.jpg",
-      "gallery_name": "ホテイシメジ",
-      "detected_label": "ホテイシメジ",
-      "subject_type": "mushroom",
-      "classification_reason": "taxonomy_mushroom",
-      "article_title": "2025年ベストショット集",
-      "article_path": "articles/article_31.html",
-      "legacy_alt": ""
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260131/20260131044320.jpg",
-      "gallery_name": "ヒラタケ",
-      "detected_label": "ヒラタケ",
-      "subject_type": "mushroom",
-      "classification_reason": "taxonomy_mushroom",
-      "article_title": "2025年ベストショット集",
-      "article_path": "articles/article_31.html",
-      "legacy_alt": ""
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103224759.jpg",
