@@ -10,7 +10,7 @@
   "classification_changes": 0,
   "possible_url_changes": 0,
   "url_changes": 0,
-  "last_success_at": "2026-10-12T07:37:13.007006+00:00",
+  "last_success_at": "2026-10-12T11:11:16.534402+00:00",
   "classification_review_count": 552,
   "fetch_error": null,
   "id_compatibility_error": null,
@@ -67,6 +67,8 @@
   "automatic_added_at": null,
   "name_migration_count": 0,
   "name_migrations_applied_this_run": 0,
+  "manual_adoption_count": 0,
+  "manual_adoptions_applied_this_run": 0,
   "generated_html_pages": 322,
   "bootstrap": false
 }
