@@ -1,0 +1,149 @@
+{
+  "base_main_sha": "f58dcf63cce3a5a862d1acb7590bc23dc7822950",
+  "counts": {
+    "master": 141,
+    "sources": 419,
+    "assignments": 373,
+    "held": 10,
+    "feature_entries": 127,
+    "excluded": 12,
+    "overlays": 0
+  },
+  "protected_sha256": {
+    ".github/workflows/admin-validate.yml": "e408d7e92796fedc08c5bb24ac49f543d4b68fac726536a85148669127be877d",
+    ".github/workflows/generate.yml": "213f2e9cb9e3ca06805cb8dd777e90864c4a106113626d4a9be9613229876b0b",
+    "admin/__init__.py": "4d6402050574d2949b5f7b74d0f98613865151552be4d07a5b3b4d17abf0d4cc",
+    "admin/__pycache__/__init__.cpython-312.pyc": "d296c21e2fde59e7847787b83667d549c8bc1593b55f610e3e7f969dfec69305",
+    "admin/__pycache__/core.cpython-312.pyc": "fb94e83c7a749b2937a949ad33718bb940c5cb955ffa94d230a5e5e1458474f1",
+    "admin/__pycache__/git_workflow.cpython-312.pyc": "fb8c1c7486bf63b082ad94d8334e1d4453a6ce6a2303a6e7841b8cd7d73f4792",
+    "admin/__pycache__/knowledge.cpython-312.pyc": "61064fa2e0c4b292d981c4a5e3f0a66239b773940dc96e9371513974b06b8e26",
+    "admin/__pycache__/server.cpython-312.pyc": "238719626347cf2b725ff74c7c13cb6e92034422f610a0a87c4fdcc584caa859",
+    "admin/__pycache__/sync.cpython-312.pyc": "79299286c7a0e0e3dc8087c966aafc4c6961206a9ccd2d81664614e8621103d3",
+    "admin/__pycache__/sync_adoption.cpython-312.pyc": "3dd9d00d92a1b8bacd5663aa81f69c49c97adbed7f7165700c9089a13cdedcc3",
+    "admin/__pycache__/sync_exception.cpython-312.pyc": "38718d4ed4cc00432ab371e7a47f6aa5586872fbedc605473399426823f3e647",
+    "admin/core.py": "29f6ef624cef125343ea9ae1c23d49886f951f0ca991178dfc8498bfeecba186",
+    "admin/git_workflow.py": "256177d71e38164b67412e1e67c5e009cab8a6845569587343bbe4abb4010b7a",
+    "admin/knowledge.py": "af799f5624b8871ad4c7e4c3b7d31b59fafa56741595d88548f7bf4436c4da08",
+    "admin/server.py": "f0524d69cb836d19df5e202232f54053a80c8c43c2b7c465bbcf26c7ba604b59",
+    "admin/start_admin.bat": "2eb7ecc9bb71c9a5f77731be68a0638a99d64b4d2e94d8da5143e583637dff00",
+    "admin/static/admin.css": "582264d1e6bd7d90a9fb64aefee44704629929810456c6819c39d810ce9c154b",
+    "admin/static/admin.js": "19261e05a0d25a37d3abeb9a57cca822576d46ccfacb9c80684dff11a0f482de",
+    "admin/static/index.html": "000f7a25a5ca31726ec7579275410e7dbf9e5da7a99323c36881489b483318f3",
+    "admin/sync.py": "aaa8514f9d9462e5500967edd1e19c504be2fd6289583cdb99336302210a3add",
+    "admin/sync_adoption.py": "427dddc91e188ae2f2ae0055bdb6b57cba09b39af58f6c0b676b29a0b4e732bc",
+    "admin/sync_exception.py": "25f09b065a46348f067347d6fe620ead86ca6982a8f579138a4a201ca02478ce",
+    "audit/feature-overlays/index.json": "bbb311ed6ec92748fa3ed6d7648446e42db8e42dde419fe58e83ca6a439d4615",
+    "audit/phase4c9/v2/feature-facets-runtime-candidate-2026-10-03.json": "6d4d987a535dca9c1d0d3668b65de245fbdc281f56c546af436c6fb853bdd84d",
+    "audit/phase4c9/v2/mushroom-master-final-candidate-2026-10-03.json": "2ce8cfc61726ef04bb6f4bba26c42511e2c0bf1d4017b9e87e0a359d61decca4",
+    "audit/phase4c9/v2/phase4c9-feature-approval-manifest-2026-10-03.json": "2d6f21f31d7e0e33a513c02a5188f563baa4a8e8bbe1f40866501c3780521d05",
+    "audit/phase4c9/v2/phase4c9-feature-evidence-ledger-approved-2026-10-03.json": "0253787fb1bc0cea03cc5aba5759e08c2b0fcfa9fd37e194986011573c926ee7",
+    "audit/phase4c9/v2/phase4c9-feature-source-snapshots-2026-10-03.jsonl": "5583716324d8ba2600352241c47ff5b61f5f2cef0bea9180f34f4315e2ec048e",
+    "audit/phase4c9/v2/sources-final-candidate-2026-10-03.json": "d5213f1cf0881af1c60ea949c0321ae0eb854daa3f300135dae9e9f9ad2fdb66",
+    "data/best-shots.json": "f9f27aa7edf4f69c266f87aa056c54241968a524595c0db6a591aa71c55febbd",
+    "data/feature-facets.json": "6d4d987a535dca9c1d0d3668b65de245fbdc281f56c546af436c6fb853bdd84d",
+    "data/mushroom-master.json": "2ce8cfc61726ef04bb6f4bba26c42511e2c0bf1d4017b9e87e0a359d61decca4",
+    "data/research-identifications.json": "0c3a699408dacf0444e3f6e6b93e848c84fd59ef93debe7640c0d551c0ab15b1",
+    "data/sources.json": "d5213f1cf0881af1c60ea949c0321ae0eb854daa3f300135dae9e9f9ad2fdb66",
+    "data/subject-taxonomy.json": "d55241a53941da1865c76c8c7c28d750b68f3c1185128061e88449bde800875e",
+    "data/update-notices.json": "6949634eed451b203fa79feeff4135084ea3c25613752545a257dd630938e327"
+  },
+  "public_state": {
+    "gh_pages_sha": "ae3934c9a0c84670b97ae33988d62628070c37cb",
+    "portal_sha256": "7c40d91b950d66e993ab1e7856b141502575cdee7bbe734243df4c1e485a7c64",
+    "summary": {
+      "production_image_count": 906,
+      "observation_count": 906,
+      "subject_count": 302,
+      "article_count": 89,
+      "shadow_matched_observation_count": 906,
+      "shadow_src_only_fallback_count": 0,
+      "shadow_missing_observation_count": 0,
+      "exif_dated_observation_count": 876,
+      "exif_undated_observation_count": 30,
+      "confirmed_named_mushroom_count": 417,
+      "confirmed_mushroom_identity_uncertain_count": 12,
+      "manual_review_name_conflict_count": 6,
+      "legacy_review_count": 438,
+      "legacy_undetected_count": 33,
+      "legacy_shadow_missing_count": 0,
+      "human_reviewed_mushroom_count": 0,
+      "master_linked_subject_count": 41,
+      "master_unlinked_subject_count": 261,
+      "knowledge_record_count": 141,
+      "source_count": 419
+    },
+    "production": {
+      "mode": "phase3c_hybrid",
+      "cutover_active": true,
+      "image_count": 906
+    },
+    "runtime_master_equals_published": true,
+    "runtime_sources_equals_published": true,
+    "observation_id_count": 906,
+    "sorted_observation_ids_sha256": "a263bf25e8ce72baa5fe6122274f8ac5d22d48a542ea0fe70d6122792d200979"
+  },
+  "excluded": [
+    {
+      "mushroom_id": "kiirosuppontake",
+      "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+      "status": "not_in_input_assignment_scope"
+    },
+    {
+      "mushroom_id": "erimakitutiguri",
+      "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+      "status": "not_in_input_assignment_scope"
+    },
+    {
+      "mushroom_id": "onifusube",
+      "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+      "status": "not_in_input_assignment_scope"
+    },
+    {
+      "mushroom_id": "kaninotume",
+      "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+      "status": "not_in_input_assignment_scope"
+    },
+    {
+      "mushroom_id": "kutibenitake",
+      "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+      "status": "not_in_input_assignment_scope"
+    },
+    {
+      "mushroom_id": "kotubutake",
+      "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+      "status": "not_in_input_assignment_scope"
+    },
+    {
+      "mushroom_id": "sankotake",
+      "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+      "status": "not_in_input_assignment_scope"
+    },
+    {
+      "mushroom_id": "syouro",
+      "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+      "status": "not_in_input_assignment_scope"
+    },
+    {
+      "mushroom_id": "tutiguri",
+      "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+      "status": "not_in_input_assignment_scope"
+    },
+    {
+      "mushroom_id": "bunaharitake",
+      "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+      "status": "not_in_input_assignment_scope"
+    },
+    {
+      "mushroom_id": "hokoritake",
+      "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+      "status": "not_in_input_assignment_scope"
+    },
+    {
+      "mushroom_id": "yamabusitake",
+      "reason": "元candidateにassignmentなし。本監査の383件に含まれず、形態の欠如は意味しない。追加付与は行わない。",
+      "status": "not_in_input_assignment_scope"
+    }
+  ],
+  "scope": "research_only_no_promotion",
+  "status": "baseline_confirmed"
+}
