@@ -35,15 +35,15 @@ local Host/origin制限・CSRF・strict body入力・任意URL/path拒否を既�
 
 ## 検証
 
-- Python: 771 passed / 771 collected。
+- Python: 772 passed / 772 collected。
 - JavaScript: 43 passed。
-- 個別移行/管理画面/通常自動更新のfocused tests: 65ケース（内訳は全テスト収集結果）。
+- 個別移行/管理画面/通常自動更新のfocused tests: 66ケース（内訳は全テスト収集結果）。
 - compileall、JavaScript syntax、workflow YAML parse、diff-check成功。
 - 実生成fixtureで：名前変更を全出力へ反映、既存ID/URL/対象外名維持、翌日再適用、通常自動追加、旧サイト完全保持、stale/tamper/重複/参照保護/無承認変更の拒否。
 - Chromium 1440：名前提案→実生成プレビュー→旧新名再入力の承認成功。既存6タブ表示、console errorなし、横overflowなし（`browser-validation.json`）。例外操作にはfixture APIを使用。CDN画像通信はブロックし、ブラウザー上で実写真を変更承認していません。
 - 管理画面のGitHub PR書き込み操作はunitテストで検証。ブラウザーではGitHub資格情報がないため実操作しませんでした。実運用はWindowsで最新main＋gh認証＋ローカルHatena認証を設定して行います。
 
-実APIの読み取り専用事前検証はPR専用Actionsで実施予定。完了後に結果とURLを追記し、一時workflowを最終差分から除去します。実APIでの実写真名変更は人間の写真承認がないため実施しません。
+実APIの読み取り専用事前検証は [Actions 38210900321](https://github.com/charchan123/hatena-photo-gallery/actions/runs/38210900321) でSUCCESS。12ページ・112取得entry・下書き2除外・公開110記事・976画像・906ギャラリー。全906のID・名前・URL・記事対応、Best Shot3件、研究室67件、退役7枚の出力除外を検証。322 HTMLを生成し、2回目もSUCCESS・新記事/画像差分0。カウンターのみを記録（`real-api-validation.json`）。一時workflowは最終差分から除去しました。実写真の名前変更は人間の写真承認がないため実施せず、個別移行は実生成fixtureで検証しています。
 
 ## 公開と保護
 

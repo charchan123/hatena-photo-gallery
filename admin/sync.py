@@ -203,8 +203,15 @@ def candidates(publication, live=None):
     from sync_exceptions import protected_ids, load_manifests, check_target
     protected_reference_ids = protected_ids(old_portal)
     name_receipts = {r['observation_id']:r for r in snap['payload'].get('name_migrations',[])}
-    manifests = {m['migration_id']:m for m in load_manifests()}
+    # Read-only public history remains available even when a local pending
+    # manifest is corrupt. It has no publication authority; the real generator
+    # always validates every manifest. Live matching still fails closed.
+    manifests = {m['migration_id']:m for m in load_manifests()} if live and name_receipts else {}
     valid_manual = {}
+    if not live:
+        names = {r['observation_id']:r['gallery_name'] for r in old_portal['observations']}
+        valid_manual = {oid:{'migration_id':receipt['migration_id'],'proposed_name':names[oid]}
+                        for oid,receipt in name_receipts.items()}
     if live:
         for oid, receipt in name_receipts.items():
             m = manifests.get(receipt['migration_id'])

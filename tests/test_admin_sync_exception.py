@@ -138,3 +138,14 @@ def test_dedicated_pr_success_order_draft_and_single_file_staging(reviewed,monke
     pr=next(c for c in calls if c[:3]==['gh','pr','create']);assert '--draft' in pr and '--body-file' in pr
     assert sum(c[:3]==['git','fetch','origin'] for c in calls)==2
     assert not any(c[:2]==['git','merge'] or 'workflow_dispatch' in c for c in calls)
+
+
+def test_invalid_local_manifest_cannot_hide_last_successful_public_state(reviewed,monkeypatch,tmp_path):
+    import sync_exceptions as exc
+    review,row,pub,live=reviewed
+    directory=tmp_path/'corrupt';directory.mkdir();(directory/'bad.json').write_text('{}')
+    monkeypatch.setattr(exc,'DIRECTORY',directory)
+    review.install(pub,None)
+    assert review.dashboard()['available'] and not review.dashboard()['live_review_available']
+    assert review.dashboard()['summary']['gallery_photos']==2
+    with pytest.raises(sync.SyncError):exc.load_manifests()
