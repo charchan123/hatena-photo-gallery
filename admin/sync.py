@@ -25,8 +25,8 @@ from .git_workflow import run
 LOCK = threading.RLock()
 ACTION_CACHE = {'at': 0, 'value': None}
 LOCAL = ROOT / 'admin/local-state/sync'
-GROUPS = ['blocker', 'migration', 'new', 'legacy', 'auto_added', 'reviewed', 'held', 'published']
-DECISIONS = {'confirmed', 'hold', 'no_change', 'propose_name', 'exclude', 'confirm_url', 'delete', 'pending'}
+GROUPS = ['blocker', 'migration', 'new', 'unlisted', 'legacy', 'auto_added', 'reviewed', 'held', 'published', 'manual_added']
+DECISIONS = {'confirmed', 'hold', 'no_change', 'propose_name', 'exclude', 'confirm_url', 'delete', 'pending', 'classify_named', 'classify_unknown', 'classify_non_mushroom'}
 
 
 class ReviewError(ValueError):
@@ -167,6 +167,7 @@ def live_capture():
             # Build photo details from public-only Atom metadata + original DOM.
             from bs4 import BeautifulSoup
             photos = {}
+            exif = main.load_exif_cache()
             shadow_queues = {}
             for s in captured.shadows:
                 shadow_queues.setdefault((os.path.normpath(s['article_path']), s['src']), []).append(s)
@@ -182,10 +183,13 @@ def live_capture():
                     photos[(ah, digest(src), ordinal)] = {
                         'thumbnail': safe_url(src, image=True), 'article_title': meta.get('title'),
                         'article_url': safe_url(meta.get('url')), 'published': meta.get('published'),
-                        'updated': meta.get('updated'), 'detected_name': shadow.get('detected_label')}
+                        'updated': meta.get('updated'), 'detected_name': shadow.get('detected_label'),
+                        'capture_date': __import__('portal_data')._capture(exif.get(src))['date']}
             return {'articles': captured.articles, 'portal': captured.portal, 'photos': photos,
                     'excluded_draft_hashes': sorted(captured.excluded_draft_hashes),
-                    'fetch_audit': captured.status['fetch_audit']}
+                    'fetch_audit': captured.status['fetch_audit'],
+                    'source_occurrences': __import__('sync_adoptions').source_occurrences(
+                        captured.files,captured.metadata,captured.shadows,captured.articles)}
     except (ReviewError, SyncError): raise
     except Exception: raise ReviewError('LIVE_FETCH_OR_GENERATION_FAILED') from None
 
@@ -202,6 +206,17 @@ def candidates(publication, live=None):
     automatic = {r['observation_id']:r for r in snap['payload'].get('automatic_additions', [])}
     from sync_exceptions import protected_ids, load_manifests, check_target
     protected_reference_ids = protected_ids(old_portal)
+    adoption_receipts = {r['observation_id']:r for r in snap['payload'].get('manual_adoptions',[])}
+    adoption_errors = {}
+    if live and adoption_receipts:
+        import sync_adoptions
+        adoption_manifests = {m['migration_id']:m for m in sync_adoptions.load_manifests()}
+        for oid,receipt in adoption_receipts.items():
+            m = adoption_manifests.get(receipt['migration_id'])
+            try:
+                if not m or payload_hash(m)!=receipt['manifest_sha256']: raise SyncError('ADOPTION_MANIFEST_MISSING_OR_CHANGED')
+                sync_adoptions.check_target(m,current,old_portal,live.get('source_occurrences',{}),applied=True,verify_image=False)
+            except SyncError as e: adoption_errors[oid] = str(e)
     name_receipts = {r['observation_id']:r for r in snap['payload'].get('name_migrations',[])}
     # Read-only public history remains available even when a local pending
     # manifest is corrupt. It has no publication authority; the real generator
@@ -231,18 +246,24 @@ def candidates(publication, live=None):
         new = old_image is None
         changed = old_image is not None and image is not None and image != old_image
         old_change = bool(old_row_counts[key[:2]] and old_row_counts[key[:2]] != row_counts[key[:2]]) or (old is not None and (row is None or row.get('gallery_name') != old.get('gallery_name')))
+        manual_adoption = adoption_receipts.get(old.get('observation_id')) if old else None
         human_migration = valid_manual.get(old.get('observation_id')) if old else None
         if human_migration and row is not None:
             old_change = False
         state = image['state'] if image else old_image['state']
         uncertain = state in REVIEW_STATES or (row and row.get('classification', {}).get('status') not in SAFE_NEW)
         receipt = automatic.get(old.get('observation_id')) if old else None
-        if not (new or changed or removed or old_change or uncertain or receipt or old): continue
+        unlisted = bool(image is not None and row is None and old is None)
+        if not (new or changed or removed or old_change or uncertain or receipt or old or unlisted): continue
         classification = row.get('classification', {}) if row else {}
         auto_eligible = bool(ah != retired_article and live and new and row and not old and not old_row_counts[key[:2]] and
             classification.get('status') in SAFE_NEW and classification.get('subject_state_status') == 'accepted_subject'
             and classification.get('classification_confidence') == 'high')
         if ah == retired_article: group = 'migration'; kind = 'retired_article_requires_individual_review'
+        elif manual_adoption and (removed or (old and old['observation_id'] in adoption_errors)):
+            group = 'migration'; kind = 'human_adoption_requires_revalidation'
+        elif manual_adoption: group = 'manual_added'; kind = 'human_photo_adoption_applied'
+        elif unlisted: group = 'unlisted'; kind = 'unlisted_public_image'
         elif removed or old_change: group = 'migration'; kind = 'removed_or_changed_existing_photo'
         elif new: group = 'new' if auto_eligible or row is None else 'blocker'; kind = 'new_gallery_photo' if row else 'new_non_gallery_image'
         elif changed: group = 'blocker' if old_change else 'legacy'; kind = 'classification_change'
@@ -278,6 +299,12 @@ def candidates(publication, live=None):
             'name_migration_available': bool(live and old and row and old['gallery_name'] != '不明'
                 and old['observation_id'] not in protected_reference_ids and all_url_counts[uh] == 1
                 and old['observation_id'] not in name_receipts),
+            'unlisted_public_image': unlisted, 'is_new_occurrence': new,
+            'adoption_available': bool(live and unlisted and ah != retired_article and all_url_counts[uh] == 1
+                and __import__('sync_adoptions').public_image_url(detail.get('thumbnail'))
+                and not any(digest(r['src'])==uh for r in old_portal['observations'])),
+            'adoption_block_reason': adoption_errors.get(old['observation_id']) if old else ('ADOPTION_DUPLICATE_URL' if unlisted and all_url_counts[uh] != 1 else ('ADOPTION_IMAGE_HOST_UNSUPPORTED' if live and unlisted and not __import__('sync_adoptions').public_image_url(detail.get('thumbnail')) else None)),
+            'manual_adoption_receipt': manual_adoption,
             'protected_reference': bool(old and old['observation_id'] in protected_reference_ids),
             'human_name_migration': human_migration['migration_id'] if human_migration else None,
             **detail})
@@ -291,6 +318,7 @@ class SyncReview:
         self.rows = []; self.bundle_id = None; self.error = None; self.last_preview = None
         self.decisions = {}; self.audit = []
         self.exception_preview = None
+        self.adoption_preview = None
         self._load()
 
     def _check_storage(self):
@@ -342,6 +370,7 @@ class SyncReview:
     def install(self, publication, live=None):
         validate_snapshot(publication['article-sync-snapshot.json'],publication['portal-data.json'])
         self.exception_preview = None
+        self.adoption_preview = None
         self.publication, self.live = publication, live
         self.rows = candidates(publication, live)
         self.inventory_hash = payload_hash(live['articles'] if live else publication['article-sync-snapshot.json']['payload']['articles'])
@@ -359,6 +388,9 @@ class SyncReview:
         summary = {**comparison, 'last_success_jst':jst, 'published_articles':len(self.publication['article-sync-snapshot.json']['payload']['articles']),
             'gallery_photos':len(self.publication['portal-data.json']['observations']),
             'classification_review_count':status.get('classification_review_count'),
+            'unlisted_image_count':sum(r['unlisted_public_image'] for r in self.rows),
+            'new_unlisted_image_count':sum(r['unlisted_public_image'] and r['is_new_occurrence'] for r in self.rows),
+            'manual_adoption_count':len(self.publication['article-sync-snapshot.json']['payload'].get('manual_adoptions',[])),
             'retirement':status.get('retirement'), 'error':self.error,
             'name_migration_history':self.publication['article-sync-snapshot.json']['payload'].get('name_migrations',[]),
             'publication_sha':self.publication['publication_sha'], 'snapshot_sha256':self.publication['article-sync-snapshot.json']['sha256'],
@@ -368,6 +400,7 @@ class SyncReview:
         return {'available':True,'summary':summary,'bundle_id':self.bundle_id,'live_review_available':self.live is not None,
             'credentials_available':authenticated(),'notice':'公開済みデータのみ。未公開の同期候補の確認にはローカル認証GET取得が必要です。' if not self.live else '公開記事のみGET取得済み。既存名変更・削除・URL置換は要個別移行です。',
             'groups':dict(Counter(self.view(r)['group'] for r in self.rows)),
+            'taxonomy_mushroom_names': sorted(r['canonical_name'] for r in (self.live or {}).get('portal',{}).get('reference_data',{}).get('subject_taxonomy',{}).get('entries',[]) if r.get('subject_type')=='mushroom' and r['canonical_name']!='不明'),
             'stale_decisions':sum(d.get('bundle_id') != self.bundle_id for d in self.decisions.values()),
             'history':[{k:record[k] for k in ('event','candidate_id','decision','decided_at','at','application') if k in record}
                        for record in self.audit[-30:]]}
@@ -377,8 +410,8 @@ class SyncReview:
         fresh = d and d.get('bundle_id') == self.bundle_id
         result['review'] = d if fresh else None; result['stale_review'] = bool(d and not fresh)
         if fresh:
-            if d['decision'] == 'hold' or d['decision'] in {'propose_name','exclude','confirm_url','delete'}: result['group']='held'
-            elif d['decision'] in {'confirmed','no_change'}:
+            if d['decision'] == 'hold' or d['decision'] in {'propose_name','exclude','confirm_url','delete','classify_named','classify_unknown'}: result['group']='held'
+            elif d['decision'] in {'confirmed','no_change','classify_non_mushroom'}:
                 result['confirmation_only']=True
                 if row['group'] not in {'blocker','migration'}: result['group']='reviewed'
         return result
@@ -402,9 +435,18 @@ class SyncReview:
             if not isinstance(comment,str) or len(comment)>2000 or not isinstance(name,str) or len(name)>120: raise ReviewError('INVALID_DECISION_INPUT')
             if choice in {'delete','confirm_url','exclude'} and row['protected_existing']:
                 raise ReviewError('EXISTING_PHOTO_PROTECTED_USE_INDIVIDUAL_MIGRATION')
+            if choice.startswith('classify_'):
+                if not self.live or not row.get('unlisted_public_image'): raise ReviewError('UNLISTED_LIVE_REVIEW_REQUIRED')
+                if not comment.strip(): raise ReviewError('CLASSIFICATION_REASON_REQUIRED')
+                if choice=='classify_named':
+                    names={r['canonical_name'] for r in self.live['portal']['reference_data']['subject_taxonomy']['entries'] if r.get('subject_type')=='mushroom'}
+                    if name.strip() not in names or name.strip()=='不明': raise ReviewError('ADOPTION_NAME_NOT_IN_EXISTING_TAXONOMY')
+                elif name: raise ReviewError('INVALID_DECISION_INPUT')
+                if choice=='classify_unknown': name='不明'
             if choice == 'propose_name' and not name.strip(): raise ReviewError('NAME_REQUIRED')
             self.last_preview = None
             self.exception_preview = None
+            self.adoption_preview = None
             d = {'candidate_id':row['candidate_id'],'bundle_id':self.bundle_id,'decision':choice,
                 'decided_at':now(),'comment':comment,'proposed_name':name.strip(),
                 'base_snapshot_sha256':self.publication['article-sync-snapshot.json']['sha256'],
@@ -447,7 +489,7 @@ class SyncReview:
             return self.last_preview
 
 
-def validate_package(publication, manifest=None):
+def validate_package(publication, manifest=None, *, adoption=None):
     """Full, fail-closed real generator in a temporary directory, never publish."""
     from article_sync import run as generate
     with isolated_generator() as (_, temporary):
@@ -456,6 +498,8 @@ def validate_package(publication, manifest=None):
             (previous/name).write_text(json.dumps(publication[name]),encoding='utf-8')
         output=temporary/'candidate'; report=temporary/'report.json'
         import sync_exceptions
+        import sync_adoptions
+        original_adoptions = sync_adoptions.DIRECTORY
         original_directory = sync_exceptions.DIRECTORY
         try:
             if manifest is not None:
@@ -466,15 +510,52 @@ def validate_package(publication, manifest=None):
                 else: migrations.mkdir()
                 (migrations/(manifest['migration_id']+'.json')).write_text(json.dumps(manifest),encoding='utf-8')
                 sync_exceptions.DIRECTORY = migrations
+            if adoption is not None:
+                from shutil import copytree
+                sync_adoptions.load_manifests(original_adoptions)
+                migrations = temporary/'adoption-migrations'
+                if original_adoptions.exists(): copytree(original_adoptions,migrations)
+                else: migrations.mkdir()
+                (migrations/(adoption['migration_id']+'.json')).write_text(json.dumps(adoption),encoding='utf-8')
+                sync_adoptions.DIRECTORY = migrations
             code = generate(previous, output, report)
         finally:
             sync_exceptions.DIRECTORY = original_directory
+            sync_adoptions.DIRECTORY = original_adoptions
         status = read_json(report)
         if code: raise ReviewError(status.get('error_code','PREVIEW_BLOCKED'))
-        if (output/'admin').exists() or (output/'sync-reviews').exists(): raise ReviewError('PUBLIC_ISOLATION_FAILED')
+        if (output/'admin').exists() or (output/'sync-reviews').exists() or (output/'sync-migrations').exists(): raise ReviewError('PUBLIC_ISOLATION_FAILED')
         return {'ready':True, 'result':status['result'], 'added_photos':status['automatic_added_photo_count'],
                 'preserved_photo_ids':status['preserved_photo_ids'], 'gallery_photos':status['gallery_photo_count'],
                 'best_shot_references_preserved':status['best_shot_references_preserved'],
                 'research_cases_preserved':status['research_cases_preserved'], 'retirement':status['retirement'],
                 'generated_html_pages':status['generated_html_pages'],
-                'name_migration_count':status.get('name_migration_count',0)}
+                'name_migration_count':status.get('name_migration_count',0),
+                'manual_adoption_count':status.get('manual_adoption_count',0),
+                'manual_adoptions_applied_this_run':status.get('manual_adoptions_applied_this_run',0)}
+
+
+PRIVATE_VALIDATION_CODE = '''from admin.sync import isolated_generator
+from article_sync import run
+import sys
+with isolated_generator():
+    result = run(sys.argv[1], sys.argv[2], sys.argv[3])
+raise SystemExit(result)
+'''
+
+
+def generate_in_worktree(work, previous, output, report, env):
+    """Validation code/data from fresh worktree; all source bodies stay temporary.
+
+    Fixed Python code and internal argument-vector paths only; never shell input.
+    Cache is ignored from git and cannot substitute for adoption image hashes.
+    """
+    import main
+    import subprocess
+    warm = Path(main.CACHE_FILE)
+    if warm.is_file() and not warm.is_symlink() and warm.stat().st_size < 25_000_000:
+        destination = Path(work)/'cache/exif-cache.json'
+        destination.parent.mkdir(parents=True,exist_ok=True)
+        destination.write_bytes(warm.read_bytes())
+    return subprocess.run(['python','-c',PRIVATE_VALIDATION_CODE,str(previous),str(output),str(report)],
+                          cwd=work,env=env,capture_output=True,text=True)

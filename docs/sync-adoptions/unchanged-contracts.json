@@ -1,0 +1,37 @@
+[
+  {
+    "file": "article_sync.py",
+    "function": "reconcile_ids",
+    "unchanged_ast": true
+  },
+  {
+    "file": "article_sync.py",
+    "function": "validate_references",
+    "unchanged_ast": true
+  },
+  {
+    "file": "article_sync.py",
+    "function": "inventory",
+    "unchanged_ast": true
+  },
+  {
+    "file": "article_sync.py",
+    "function": "compare_inventory",
+    "unchanged_ast": true
+  },
+  {
+    "file": "main.py",
+    "function": "validate_phase3c_hybrid_cutover",
+    "unchanged_ast": true
+  },
+  {
+    "file": "main.py",
+    "function": "fetch_hatena_articles_api",
+    "unchanged_ast": true
+  },
+  {
+    "file": "admin/sync_exception.py",
+    "function": "validate_changed_paths",
+    "unchanged_ast": true
+  }
+]

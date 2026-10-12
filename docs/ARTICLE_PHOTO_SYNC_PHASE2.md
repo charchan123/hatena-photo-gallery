@@ -97,3 +97,8 @@ PR106・同一repo pull_request限定、contents:read、Hatena GETのみ。
 生成はRUNNER_TEMP、非公開本文・認証値・画像URLのログ/成果物出力なし。
 一時workflowは検証後に削除し、最終PR差分に残しません。
 実APIを取得したgeneratorのコードは最終修正と同一です。
+
+
+## Phase 2c：図鑑未収録写真の個別採用
+
+単一の公開DOM画像に限定した人間分類・採用・翌日の継続と専用Draft PRの手順は [ARTICLE_PHOTO_SYNC_MANUAL_ADOPTION.md](ARTICLE_PHOTO_SYNC_MANUAL_ADOPTION.md) を参照してください。通常の高信頼新規写真は承認不要のままです。既存の名前修正とは別の移行・台帳を使用します。

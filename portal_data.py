@@ -15,6 +15,7 @@ CLASSIFICATION_STATUSES = (
     "legacy_review",
     "legacy_undetected",
     "legacy_shadow_missing",
+    "human_reviewed_mushroom",
 )
 
 
