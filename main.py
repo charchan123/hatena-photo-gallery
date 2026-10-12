@@ -2798,19 +2798,20 @@ def generate_favorite_page(grouped):
 </main>
 """]
 
-    exif_cache = load_exif_cache()
-
-    parts.append(f"""
-<script>
-window.EXIF_CACHE = {json.dumps(exif_cache, ensure_ascii=False)};
-</script>
-""")
-
     # src → alt（キノコ名）対応表
     src_to_alt = {}
     for alt, srcs in grouped.items():
         for src in srcs:
             src_to_alt[src] = alt
+
+    # The persistent performance cache can contain removed/private photos.
+    # Export only current gallery entries; keep the private cache unchanged.
+    exif_cache = {src: meta for src, meta in load_exif_cache().items() if src in src_to_alt}
+    parts.append(f"""
+<script>
+window.EXIF_CACHE = {json.dumps(exif_cache, ensure_ascii=False)};
+</script>
+""")
 
     parts.append(f"""
 <script>

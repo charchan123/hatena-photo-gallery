@@ -58,3 +58,16 @@ def test_guide_favorite_count_uses_japanese_item_suffix():
     script = (Path(main.ASSETS_DIR) / "gallery.js").read_text(encoding="utf-8")
     assert 'count > 0 ? `（${count}件）` : ""' in script
     assert 'localStorage.getItem(LG_FAVORITES_KEY)' in script
+
+
+def test_favorite_public_exif_does_not_export_stale_private_cache_entries(monkeypatch, tmp_path):
+    output=tmp_path/'output'
+    monkeypatch.setattr(main,'OUTPUT_DIR',str(output))
+    cache={'https://public.example/current.jpg':{'date':'2025/05/01'},
+           'https://private.example/retired.jpg':{'date':'2025/05/02'}}
+    monkeypatch.setattr(main,'load_exif_cache',lambda:cache)
+    main.generate_favorite_page({'シイタケ':['https://public.example/current.jpg']})
+    page=(output/'favorite.html').read_text()
+    assert 'https://public.example/current.jpg' in page
+    assert 'https://private.example/retired.jpg' not in page
+    assert len(cache)==2  # No persistent cache edit or deletion.
