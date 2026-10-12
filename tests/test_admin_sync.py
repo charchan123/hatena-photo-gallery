@@ -224,6 +224,8 @@ def test_failed_action_preserves_public_success_and_sanitizes_report(monkeypatch
         destination=Path(args[args.index('--dir')+1]);(destination/'article-sync-report.json').write_text(json.dumps({'error_code':'NEW_PHOTO_HUMAN_APPROVAL_REQUIRED','raw_body':'PRIVATE DO NOT RETURN','url':'PRIVATE URL'}))
         return SimpleNamespace(returncode=0,stdout='')
     monkeypatch.setattr(review,'run',command);monkeypatch.setattr(review,'ACTION_CACHE',{'at':0,'value':None})
+    # A fresh runner / clock namespace can start at zero. Empty cache is NOT a hit.
+    monkeypatch.setattr(review.time,'monotonic',lambda:0)
     result=review.latest_actions()
     assert result['error_code']=='NEW_PHOTO_HUMAN_APPROVAL_REQUIRED'
     assert 'PRIVATE' not in json.dumps(result)

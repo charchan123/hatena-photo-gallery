@@ -23,7 +23,7 @@ from .core import ROOT
 from .git_workflow import run
 
 LOCK = threading.RLock()
-ACTION_CACHE = {'at': 0, 'value': None}
+ACTION_CACHE = {'at': None, 'value': None}
 LOCAL = ROOT / 'admin/local-state/sync'
 GROUPS = ['blocker', 'migration', 'new', 'unlisted', 'legacy', 'auto_added', 'reviewed', 'held', 'published', 'manual_added']
 DECISIONS = {'confirmed', 'hold', 'no_change', 'propose_name', 'exclude', 'confirm_url', 'delete', 'pending', 'classify_named', 'classify_unknown', 'classify_non_mushroom'}
@@ -104,7 +104,10 @@ def latest_actions():
     Public success data remain available even if gh/credentials/artifacts fail.
     Never echo subprocess stderr, raw artifact bodies or authentication details.
     """
-    if time.monotonic() - ACTION_CACHE['at'] < 60: return ACTION_CACHE['value']
+    cached_at = ACTION_CACHE['at']
+    if (ACTION_CACHE['value'] is not None and cached_at is not None
+            and 0 <= time.monotonic() - cached_at < 60):
+        return ACTION_CACHE['value']
     value = {'available':False, 'error_code':None, 'report_available':False}
     try:
         result = run(['gh','run','list','--workflow','generate.yml','--limit','1',
@@ -354,7 +357,7 @@ class SyncReview:
     def refresh(self, *, fetch=False, with_live=False):
         with LOCK:
             self.last_preview = None
-            ACTION_CACHE['at'] = 0
+            ACTION_CACHE['at'] = None
             try:
                 publication = public_publication(refresh=fetch)
                 live = live_capture() if with_live else None
