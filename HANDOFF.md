@@ -1297,3 +1297,22 @@ needed snapshot must be supplied exactly once by the current overlay.
 - Snapshot reuse is based on validated baseline/prior-overlay snapshot IDs rather than source IDs, with an explicit contract root for fresh-worktree validation.
 - Knowledge PR staging unions tracked and untracked paths, allow-lists and stages that exact set, checks the cached diff, and requires the running checkout to equal freshly fetched `origin/main`.
 - Candidate state and UI expose every evidence record plus canonical mushroom and facet labels, but never full snapshot text.
+
+## Phase 2 article/photo sync review (2026-10-12)
+
+Starting main `20b1a09cb8b9d7b582d02896f6d89171b3048ba4`, tree
+`a79eccbbf6e6e1e50a0bc97373a48c259ddcec9e`. Draft PR #106.
+See `docs/ARTICLE_PHOTO_SYNC_PHASE2.md` for Windows instructions and limitations.
+
+Correction: normal daily synchronization remains automatic under the unchanged
+Phase1 API/Phase3C/ID/name/URL/retirement/reference gates. The initial human-approval
+requirement was contrary to the daily-update goal and has been removed, including
+the addition-approval manifest and dedicated addition-PR route. `confirmed`/hold
+are local audit records, never publication permissions. High-confidence new photos
+are auto-added without review. Hash-only automatic-addition receipts in the public
+snapshot are read-only history, not an exception/approval list. Existing 906 IDs,
+retired7, Best Shot3 and research67 references remain protected. No new uncertain
+photo quarantine is introduced; unsupported changes retain fail-closed behavior.
+The local dashboard, paged photo review, search/filter, freshness and audit storage
+remain. Manual classification/old name/URL/deletion migration remains future work;
+existing admin knowledge/curated PR allowlists remain untouched.

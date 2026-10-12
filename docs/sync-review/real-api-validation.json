@@ -1,0 +1,47 @@
+{
+  "actions_url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/38203721560",
+  "checkpoint": "0397b358ac9e80ea14b13a649f58bd6fd78f0202",
+  "result": "SUCCESS",
+  "runs": [
+    {
+      "result": "SUCCESS",
+      "baseline_photos": 906,
+      "articles": 110,
+      "detected_images": 976,
+      "gallery_photos": 906,
+      "preserved_ids_names_urls": 906,
+      "automatic_added_photos": 0,
+      "new_articles": 0,
+      "new_images": 0,
+      "drafts_excluded": 2,
+      "pages_completed": 12,
+      "pagination_complete": true,
+      "best_shot_references": 3,
+      "research_cases": 67,
+      "retired_total": 7,
+      "retired_output": "PASS",
+      "html_pages": 322,
+      "phase3c": "PASS"
+    },
+    {
+      "result": "SUCCESS",
+      "baseline_photos": 906,
+      "articles": 110,
+      "detected_images": 976,
+      "gallery_photos": 906,
+      "preserved_ids_names_urls": 906,
+      "automatic_added_photos": 0,
+      "new_articles": 0,
+      "new_images": 0,
+      "drafts_excluded": 2,
+      "pages_completed": 12,
+      "pagination_complete": true,
+      "best_shot_references": 3,
+      "research_cases": 67,
+      "retired_total": 7,
+      "retired_output": "PASS",
+      "html_pages": 322,
+      "phase3c": "PASS"
+    }
+  ]
+}

@@ -162,11 +162,56 @@ def inventory(article_files, metadata, shadows):
     return articles
 
 
-def seal_snapshot(articles, portal, timestamp, retirement=None):
+def automatic_addition_records(portal, old_ids):
+    """Hash-only evidence receipts, not an approval list or a classification rule."""
+    records, counts = [], Counter()
+    for row in portal["observations"]:
+        key = (digest(row["article"]["article_id"]), digest(row["src"]))
+        ordinal = counts[key]; counts[key] += 1
+        if row["observation_id"] in old_ids: continue
+        c = row["classification"]
+        # reconcile_ids already enforces these conditions; receipts cannot alter them.
+        if (c.get("status") not in SAFE_NEW or c.get("classification_confidence") != "high"
+                or c.get("subject_state_status") != "accepted_subject"):
+            raise SyncError("NEW_PHOTO_CLASSIFICATION_REQUIRES_REVIEW")
+        records.append({"observation_id":row["observation_id"], "article_hash":key[0],
+            "url_hash":key[1], "ordinal":ordinal, "classification_status":c["status"],
+            "reason":c.get("classification_reason") if c.get("classification_reason") in REASONS else "unspecified"})
+    return records
+
+
+def validate_automatic_additions(records, portal):
+    """Backward-compatible optional snapshot receipts, tied to current identities."""
+    try:
+        assert isinstance(records, list)
+        current = {r["observation_id"]:r for r in portal["observations"]}
+        ordinals = {}; counts = Counter()
+        for row in portal["observations"]:
+            key = (row["article"]["article_id"], row["src"])
+            ordinals[row["observation_id"]] = counts[key]; counts[key] += 1
+        seen = set()
+        for r in records:
+            assert set(r) == {"observation_id","article_hash","url_hash","ordinal","classification_status","reason","added_at"}
+            oid = r["observation_id"]
+            assert oid in current and oid not in seen
+            seen.add(oid); row = current[oid]
+            assert r["article_hash"] == digest(row["article"]["article_id"])
+            assert r["url_hash"] == digest(row["src"])
+            assert type(r["ordinal"]) is int and r["ordinal"] == ordinals[oid]
+            assert r["classification_status"] in SAFE_NEW and r["reason"] in REASONS
+            assert datetime.fromisoformat(r["added_at"]).tzinfo is not None
+    except (AssertionError, KeyError, TypeError, ValueError):
+        raise SyncError("AUTOMATIC_ADDITION_RECEIPT_INVALID") from None
+    return records
+
+
+def seal_snapshot(articles, portal, timestamp, retirement=None, *, automatic_additions=None):
     payload = {"version": 1, "last_success_at": timestamp, "articles": articles,
                "portal_sha256": payload_hash(portal)}
     if retirement is not None:
         payload["retirement"] = retirement
+    if automatic_additions is not None:
+        payload["automatic_additions"] = automatic_additions
     return {"payload": payload, "sha256": payload_hash(payload)}
 
 
@@ -177,6 +222,7 @@ def validate_snapshot(snapshot, portal):
         assert type(payload["version"]) is int and payload["version"] == 1
         assert payload["portal_sha256"] == payload_hash(portal)
         assert datetime.fromisoformat(payload["last_success_at"]).tzinfo is not None
+        validate_automatic_additions(payload.get("automatic_additions", []), portal)
         articles = payload["articles"]
         if "retirement" in payload:
             from sync_retirement import validate_ledger
@@ -340,6 +386,10 @@ class SyncRun:
             Path(__file__).parent / "data")
         result = reconcile_ids(portal, self.effective_previous)
         self.status["retirement"] = self.retirement.status()
+        # Read-only receipt: record automatic additions AFTER unchanged Phase 1
+        # classification/identity gates. This never grants publication permission.
+        old_ids = {r["observation_id"] for r in self.effective_previous["observations"]}
+        self.automatic_additions = automatic_addition_records(result, old_ids)
         return result
 
     def finalize(self, output, flags, data_directory):
@@ -371,7 +421,14 @@ class SyncRun:
         except SyncError:
             self.status["retired_output_inspection"] = getattr(self.retirement, "inspection_failure", {"result": "BLOCKED"})
             raise
-        snapshot = seal_snapshot(self.articles, portal, now, self.retirement.ledger)
+        additions = [{**row, "added_at": now} for row in self.automatic_additions]
+        previous_receipts = self.previous_snapshot.get("automatic_additions", []) if self.previous_snapshot else []
+        history = previous_receipts + additions
+        validate_automatic_additions(history, portal)
+        self.status["automatic_added_photo_count"] = len(additions)
+        self.status["automatic_added_at"] = now if additions else None
+        snapshot = seal_snapshot(self.articles, portal, now, self.retirement.ledger,
+                                 automatic_additions=history)
         validate_snapshot(snapshot, portal)
         self.status["generated_html_pages"] = sum(1 for _ in output.rglob("*.html"))
         self.status.update(result="SUCCESS", last_success_at=now,

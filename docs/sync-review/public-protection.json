@@ -1,0 +1,10 @@
+{
+  "publication_sha": "ac1038aafb8dbedc8dc28a0e1264ef2fb500055c",
+  "snapshot_sha256": "ed7bbfe07fff35e6fd33e9ff51971b83a9b0cffd287545406d387432a1f311ea",
+  "preserved_ids_names_urls": 906,
+  "retired_absent": 7,
+  "best_shot_references_preserved": 3,
+  "research_cases_preserved": 67,
+  "normal_sync": "no human approval dependency",
+  "local_live_api": "Unavailable locally; GitHub read-only preflight SUCCESS (see real-api-validation.json)"
+}

@@ -6,7 +6,7 @@ import json
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 import secrets
-from urllib.parse import unquote
+from urllib.parse import unquote, parse_qs, urlsplit
 import urllib.request
 import webbrowser
 
@@ -17,6 +17,9 @@ from .git_workflow import (GitWorkflowError, create_pull_request,
                            create_knowledge_pull_request, repository_status, run)
 from .knowledge import (preview_promotion, reset_review_state,
                         scan_knowledge_batches, set_candidate_decision)
+
+from .sync import SyncReview, ReviewError, latest_actions
+from article_sync import SyncError
 
 BIND_ADDRESS = "127.0.0.1"
 DEFAULT_PORT = 8765
@@ -46,6 +49,7 @@ class AdminServer(ThreadingHTTPServer):
         super().__init__(address, handler)
         self.portal, self.portal_source = load_portal_data()
         self.draft = ChangeSet(self.portal)
+        self.sync_review = SyncReview()
         self.csrf_token = secrets.token_urlsafe(32)
 
 
@@ -68,12 +72,27 @@ class Handler(BaseHTTPRequestHandler):
 
     def _body(self):
         length = int(self.headers.get("Content-Length", "0"))
-        if length > 1_000_000: raise ValueError("request too large")
+        if not 0 <= length <= 1_000_000: raise ValueError("request too large")
         return json.loads(self.rfile.read(length) or b"{}")
 
     def do_GET(self):
         if not self._local_request(): return self._json({"error": "localhost only"}, 403)
         path = self.path.split("?", 1)[0]
+        if path.startswith("/api/sync/"):
+            try:
+                review = self.server.sync_review
+                if not review.publication: review.refresh()
+                if path == "/api/sync/state":
+                    value = review.dashboard()
+                    value["latest_action"] = latest_actions()
+                    return self._json(value)
+                if path == "/api/sync/candidates":
+                    query = parse_qs(urlsplit(self.path).query)
+                    if set(query) - {"q", "group", "page"}: raise ReviewError("INVALID_FILTER")
+                    return self._json(review.page(query.get("q", [""])[0], query.get("group", [""])[0], int(query.get("page", ["1"])[0])))
+                return self._json({"error":"not found"},404)
+            except Exception as error:
+                return self._json({"error": str(error) if isinstance(error,(ReviewError,SyncError)) else "SYNC_REVIEW_UNAVAILABLE"},400)
         if path == "/api/state":
             draft = self.server.draft
             open_cases, identified = split_research_cases(draft.portal, draft.identifications, draft.master)
@@ -123,7 +142,20 @@ class Handler(BaseHTTPRequestHandler):
                 "/api/identify": lambda: draft.identify(next(c for c in build_research_cases(draft.portal) if c["case_id"] == body["case_id"]), body["identified_name"], body.get("note", ""), summary=body.get("summary", "1種の正体が判明")),
                 "/api/reopen": lambda: draft.reopen(body["identification_id"]),
             }
-            if self.path == "/api/validate": result = draft.validate()
+            if self.path.startswith("/api/sync/"):
+                review = self.server.sync_review
+                if self.path == "/api/sync/refresh":
+                    if set(body) - {"live"} or type(body.get("live",False)) is not bool: raise ReviewError("INVALID_REFRESH")
+                    result = review.refresh(fetch=True, with_live=body.get("live", False))
+                elif self.path == "/api/sync/decision": result = review.decide(body)
+                elif self.path == "/api/sync/preview":
+                    if body: raise ReviewError("INVALID_INPUT")
+                    result = review.preview()
+                elif self.path == "/api/sync/pr":
+                    if body: raise ReviewError("INVALID_INPUT")
+                    raise ReviewError("INDIVIDUAL_MIGRATION_REQUIRED")
+                else: return self._json({"error":"not found"},404)
+            elif self.path == "/api/validate": result = draft.validate()
             elif self.path == "/api/pr": result = create_pull_request(draft.files(), draft.validate(), body.get("operation", "changes"))
             elif self.path == "/api/knowledge/decision": result = set_candidate_decision(body["batch_id"], body["candidate_id"], body["human_decision"], body.get("note", ""))
             elif self.path == "/api/knowledge/reset": result = reset_review_state(body["batch_id"])
@@ -133,9 +165,13 @@ class Handler(BaseHTTPRequestHandler):
             else: return self._json({"error": "not found"}, 404)
             return self._json(result)
         except Exception as error:
-            return self._json({"error": str(error)}, 400)
+            code = str(error)
+            if self.path.startswith("/api/sync/") and not isinstance(error,(ReviewError,SyncError)):
+                code = "SYNC_OPERATION_FAILED"
+            return self._json({"error": code}, 400)
 
     def log_message(self, fmt, *args):
+        if self.path.startswith("/api/sync/"): return
         print(f"[{datetime.now(timezone.utc).isoformat()}] {self.client_address[0]} {fmt % args}")
 
 

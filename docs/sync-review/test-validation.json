@@ -1,0 +1,41 @@
+{
+  "status": "LOCAL_AND_REAL_API_PASS",
+  "full_pytest": "741 passed",
+  "collected": 741,
+  "focused": "35 passed: daily generator + sync-admin; old approval-gate tests replaced",
+  "javascript": "43 passed",
+  "js_syntax": "PASS",
+  "compileall": "PASS",
+  "diff_check": "PASS",
+  "css_parse": "PASS (tinycss2, runtime-only)",
+  "protected_paths": {
+    "result": "PASS",
+    "paths": [
+      "data",
+      "audit",
+      "sync-migrations",
+      "feature_overlay.py",
+      "main.py",
+      "portal_data.py",
+      "assets",
+      "hatena",
+      "admin/core.py",
+      "admin/git_workflow.py",
+      "admin/knowledge.py",
+      ".github"
+    ]
+  },
+  "generator": "Real generator fixtures: article update, 1 + 2 automatic photos, next IDs PASS; ambiguous and destructive cases BLOCKED",
+  "live_phase2_api": "Read-only GitHub Actions full generator SUCCESS twice; 110 public articles / 976 images / 906 gallery; no actual new photo in live input",
+  "admin_pr_route": "Addition-approval PR route removed; confirmation is local audit only",
+  "production_publication": "NOT_PERFORMED",
+  "ci_checkpoint": "PASS: 38203721592",
+  "final_ci": "See latest PR checks; checkpoint CI passed before cleanup",
+  "phase1_safety_functions_unchanged": [
+    "reconcile_ids",
+    "inventory",
+    "compare_inventory",
+    "validate_references"
+  ],
+  "phase1_reconcile_gates": "AST-identical prefix; only append read-only addition receipt after all gates"
+}
