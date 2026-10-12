@@ -12,7 +12,7 @@ function renderKnowledge(){const batches=$('#knowledge-batches'),candidates=$('#
 function observation(id){return state.observations.find(o=>o.observation_id===id)||{}}
 function renderBest(){const out=$('#best-list');out.replaceChildren();state.best_shots.entries.forEach(row=>{const o=observation(row.observation_id), cap=(o.capture||{}).date||'日付不明';const [e,a,b]=item(o.gallery_name||'観察不明',`${cap} / ${row.comment}`,o.src);b.append(node('p',`selection: ${row.selection_id}`,'meta'));a.append(button('編集・写真差し替え',()=>bestDialog(row,o)),button('年間ベスト',()=>setAnnual(row,o)),button('削除',()=>confirmAction('このベストショットを削除しますか？',()=>api('/api/best-shot/delete',{selection_id:row.selection_id})),true));out.append(e)})}
 function field(label,name,value='',type='text'){const l=node('label',label),i=node(type==='textarea'?'textarea':'input');i.name=name;i.value=value;if(type!=='textarea')i.type=type;l.append(i);return l}
-function openEditor(title,fields,save){$('#dialog-title').textContent=title;const area=$('#dialog-fields');area.replaceChildren(...fields);const editor=$('#editor'),submit=ev=>{ev.preventDefault();save(new FormData($('#editor form')))};$('#dialog-save').disabled=false;$('#dialog-save').onclick=submit;$('#editor form').onsubmit=ev=>{if(ev.submitter?.value==='cancel')return;submit(ev)};editor.classList.toggle('best-editor',fields.some(e=>e.classList.contains('photo-picker')));editor.showModal()}
+function openEditor(title,fields,save){$('#dialog-title').textContent=title;const area=$('#dialog-fields');area.replaceChildren(...fields);const editor=$('#editor'),submit=ev=>{ev.preventDefault();save(new FormData($('#editor form')))};$('#dialog-save').disabled=false;editor.querySelectorAll('[value=cancel]').forEach(b=>b.onclick=()=>editor.close());$('#dialog-save').onclick=submit;$('#editor form').onsubmit=ev=>{if(ev.submitter?.value==='cancel')return;submit(ev)};editor.classList.toggle('best-editor',fields.some(e=>e.classList.contains('photo-picker')));editor.showModal()}
 // Best Shot picker: only explicit selection changes the hidden observation ID.
 function normalizeMushroomName(value){
  return String(value||'').normalize('NFKC').toLocaleLowerCase('ja').replace(/[\u3041-\u3096]/g,c=>String.fromCharCode(c.charCodeAt(0)+0x60)).trim();
@@ -36,7 +36,7 @@ function observationSelect(selected,current,onSelect){
  const chosen=node('div',undefined,'photo-chosen'),count=node('p',undefined,'meta'),list=node('div',undefined,'photo-results');
  count.setAttribute('role','status');count.setAttribute('aria-live','polite');list.setAttribute('aria-label','検索結果');
  const preview=node('section',undefined,'photo-preview');preview.hidden=true;preview.setAttribute('aria-label','写真の拡大確認');
- const previewHeading=node('h4','拡大確認（まだ選択されていません）'),previewBody=node('div');
+ const previewHeading=node('h4','拡大確認（ここでは選択は変わりません）'),previewBody=node('div');
  const previewClose=button('拡大確認を閉じる',()=>{preview.hidden=true;previewBody.replaceChildren();if(lastPreviewButton?.isConnected)lastPreviewButton.focus()});
  preview.append(previewHeading,previewBody,previewClose);
  const rows=[...state.observations].sort((a,b)=>{const score=o=>(current&&o.article?.article_id===current.article?.article_id?2:0)+(current&&o.gallery_name===current.gallery_name?1:0);return score(b)-score(a)}).map(o=>({o,key:normalizeMushroomName(o.gallery_name)}));

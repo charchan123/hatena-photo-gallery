@@ -1,0 +1,440 @@
+{
+  "base_main_sha": "0b4231b6a1c65d2237ada46e30f6c93036ac10dd",
+  "published_gh_pages_sha": "3793e38b8c2637950e55501c7c68316e8361f8e2",
+  "best_shot_count": 3,
+  "annual_best_unchanged": {
+    "2025": "best-2025-10-benitengutake-02"
+  },
+  "published_photo_count": 906,
+  "published_unique_photo_ids": 906,
+  "published_portal_sha256": "7c40d91b950d66e993ab1e7856b141502575cdee7bbe734243df4c1e485a7c64",
+  "mushroom_count": 141,
+  "source_count": 419,
+  "feature_assignment_count": 373,
+  "overlay_count": 0,
+  "feature_production_validator": "PASS",
+  "protected_file_count": 84,
+  "protected_files": [
+    {
+      "path": ".github/workflows/admin-validate.yml",
+      "sha256": "e408d7e92796fedc08c5bb24ac49f543d4b68fac726536a85148669127be877d",
+      "unchanged": true
+    },
+    {
+      "path": ".github/workflows/generate.yml",
+      "sha256": "213f2e9cb9e3ca06805cb8dd777e90864c4a106113626d4a9be9613229876b0b",
+      "unchanged": true
+    },
+    {
+      "path": "admin/git_workflow.py",
+      "sha256": "256177d71e38164b67412e1e67c5e009cab8a6845569587343bbe4abb4010b7a",
+      "unchanged": true
+    },
+    {
+      "path": "admin/knowledge.py",
+      "sha256": "af799f5624b8871ad4c7e4c3b7d31b59fafa56741595d88548f7bf4436c4da08",
+      "unchanged": true
+    },
+    {
+      "path": "admin/sync.py",
+      "sha256": "aaa8514f9d9462e5500967edd1e19c504be2fd6289583cdb99336302210a3add",
+      "unchanged": true
+    },
+    {
+      "path": "admin/sync_adoption.py",
+      "sha256": "427dddc91e188ae2f2ae0055bdb6b57cba09b39af58f6c0b676b29a0b4e732bc",
+      "unchanged": true
+    },
+    {
+      "path": "admin/sync_exception.py",
+      "sha256": "25f09b065a46348f067347d6fe620ead86ca6982a8f579138a4a201ca02478ce",
+      "unchanged": true
+    },
+    {
+      "path": "article_sync.py",
+      "sha256": "b65697af2267f2915789bdd3a3219781bc7ed664b4fff85e1a2e0ae924a79ccb",
+      "unchanged": true
+    },
+    {
+      "path": "assets/aiuo.css",
+      "sha256": "28a06770b438dd1d804273c9699ff66d09c8b03bce0d976aed4c40a2f9d7cfd5",
+      "unchanged": true
+    },
+    {
+      "path": "assets/best-shots-final.webp",
+      "sha256": "c64549b6eefed692efbd3ca7f167ea193ea55eb370f64a6c53cead08c503239a",
+      "unchanged": true
+    },
+    {
+      "path": "assets/best-shots.css",
+      "sha256": "85dfcb88594689c8c72b480c28827bc6b4b8dcf6848997b92701131c69f78804",
+      "unchanged": true
+    },
+    {
+      "path": "assets/detail.css",
+      "sha256": "796939e288865a3ec789efff3b1f439a1fb6624ccf0091125af3bb15002c383d",
+      "unchanged": true
+    },
+    {
+      "path": "assets/favorite.css",
+      "sha256": "fc1be682d38356fd1efc38e29cc7af131b14aabf27be10abae3600f3b67c59db",
+      "unchanged": true
+    },
+    {
+      "path": "assets/features.css",
+      "sha256": "308cfcb14f0ac4589bd3bda684a1af850d94bad42a0054b315b668a6eccc5b0c",
+      "unchanged": true
+    },
+    {
+      "path": "assets/features.js",
+      "sha256": "40161904c136727790e56f471187c60361dee7ededaffde5f618130f06d0e0c5",
+      "unchanged": true
+    },
+    {
+      "path": "assets/field-notes-observation-final.webp",
+      "sha256": "9492c7411add400edf9ef46c0b7910852de4171dc5862781eb4945b67bd8d0db",
+      "unchanged": true
+    },
+    {
+      "path": "assets/gallery.css",
+      "sha256": "c313ec5deeb64b835832267597ac123b672002f136b1a75cb254b3e017ac0412",
+      "unchanged": true
+    },
+    {
+      "path": "assets/gallery.js",
+      "sha256": "441e74ad8ccee57d37850e764321e1c510badb23b6c9ae0654fd2e52188154c6",
+      "unchanged": true
+    },
+    {
+      "path": "assets/guide-action-book.webp",
+      "sha256": "24f926b91e69e86ed9b2da412d9a7cfc7f5ef0f9fe3b734ef88ac1b3cb113e28",
+      "unchanged": true
+    },
+    {
+      "path": "assets/guide-action-features.webp",
+      "sha256": "f23b752a11cba42250ab8fd2131c9bcd1d42b22726dbb00824e5d3dd586da72c",
+      "unchanged": true
+    },
+    {
+      "path": "assets/guide-action-season.webp",
+      "sha256": "ff637e38587a30e9c49ba291ffa2694b42e2565cad43d0218e6b6dde2d43d160",
+      "unchanged": true
+    },
+    {
+      "path": "assets/guide.css",
+      "sha256": "abd951a435ac586d3bca3e4b5793c4626c74677ad377450c40563b267d8f5ba5",
+      "unchanged": true
+    },
+    {
+      "path": "assets/hero-amanita-background.webp",
+      "sha256": "5df0425963df0905ac3a147510a378ccfaf7c4dad8fbab4ec7a7704c80696600",
+      "unchanged": true
+    },
+    {
+      "path": "assets/hero-amanita-cutout.png",
+      "sha256": "03132bdb4c5c42c98c1fd4427608f52a273062be2c128f99d95d182c44a92d0c",
+      "unchanged": true
+    },
+    {
+      "path": "assets/mosaic-layout.js",
+      "sha256": "dafeab534534ceb2d0a767f345327d660acbb7a563369bf96ad1752dd9c89826",
+      "unchanged": true
+    },
+    {
+      "path": "assets/mushroom-guide-final.webp",
+      "sha256": "0f700e7f8427b794b2c33408f43acde2c1f7a54f4ea09ebc1bbe9e40388df7e0",
+      "unchanged": true
+    },
+    {
+      "path": "assets/new-top-best-shots-camera-mushrooms.webp",
+      "sha256": "b09e172f05354bd8eecb002010d16f194f5458e213075ffc2edacce868fb53bc",
+      "unchanged": true
+    },
+    {
+      "path": "assets/new-top-features-watercolor.webp",
+      "sha256": "55ef1d93a4c0c93b36fcb2ee04c0af85a033ab6c89ef6295ac1267c6ffba2516",
+      "unchanged": true
+    },
+    {
+      "path": "assets/new-top-guide-watercolor.webp",
+      "sha256": "37db235ae8fb26206be82ad243dcdcaa5d3b919d22efb7631bfd2abac8279378",
+      "unchanged": true
+    },
+    {
+      "path": "assets/new-top-season-watercolor.webp",
+      "sha256": "dd5a52e0e492dd0d78ca166d97cfd0c112456c23b0c4651304ceec6472bb1bfd",
+      "unchanged": true
+    },
+    {
+      "path": "assets/poison-spores.js",
+      "sha256": "b7b59668b30935ede05f328b6867b958e1db0680514d627fb0e8b885e74d2c0b",
+      "unchanged": true
+    },
+    {
+      "path": "assets/portal.css",
+      "sha256": "3593c04983eb50f3c0319d3b4192c2774e9e76835d8081b10c6251db8ff00839",
+      "unchanged": true
+    },
+    {
+      "path": "assets/records.css",
+      "sha256": "661a53ad323a8ce4226c370396b1cdefaa47fb4c44646a55ed4b10deab367e5c",
+      "unchanged": true
+    },
+    {
+      "path": "assets/research-lab-cabin.webp",
+      "sha256": "59d079fb9437b67a6086c65c5941bed07480757f142e34b1a14df9d8cdae8b2c",
+      "unchanged": true
+    },
+    {
+      "path": "assets/research-lab-final.webp",
+      "sha256": "fde50cab6a4872dde6b048e05b3e50b1532223d2f4a81a0db2fd59c97a2e910c",
+      "unchanged": true
+    },
+    {
+      "path": "assets/research.css",
+      "sha256": "cdde18efe52395d7172f53d3b7b29c7c98f3e79d3350bf7ad4c003bf1519221d",
+      "unchanged": true
+    },
+    {
+      "path": "assets/season.css",
+      "sha256": "7a04c772cfb4b1df17dbe2fc90f3a7a7c465da9f451bb51f5df3b135164aa927",
+      "unchanged": true
+    },
+    {
+      "path": "assets/season.js",
+      "sha256": "9c8a76638a1d03de8ea5210b517afa01a68dbbb42874b74caa4d2fbd0b90b34b",
+      "unchanged": true
+    },
+    {
+      "path": "assets/update-notices.css",
+      "sha256": "af24e2843ef4ddecdba3eea8db1900ee8d3d51d99526ece77884e0e26440fb78",
+      "unchanged": true
+    },
+    {
+      "path": "assets/update-notices.js",
+      "sha256": "9d4380f085b93dab450bcfb37e7172e8eb4f2cb550b4cd9bade1408cbbeedcf5",
+      "unchanged": true
+    },
+    {
+      "path": "audit/feature-overlays/index.json",
+      "sha256": "bbb311ed6ec92748fa3ed6d7648446e42db8e42dde419fe58e83ca6a439d4615",
+      "unchanged": true
+    },
+    {
+      "path": "audit/phase4c9/v2/feature-facets-runtime-candidate-2026-10-03.json",
+      "sha256": "6d4d987a535dca9c1d0d3668b65de245fbdc281f56c546af436c6fb853bdd84d",
+      "unchanged": true
+    },
+    {
+      "path": "audit/phase4c9/v2/mushroom-master-final-candidate-2026-10-03.json",
+      "sha256": "2ce8cfc61726ef04bb6f4bba26c42511e2c0bf1d4017b9e87e0a359d61decca4",
+      "unchanged": true
+    },
+    {
+      "path": "audit/phase4c9/v2/phase4c9-feature-approval-manifest-2026-10-03.json",
+      "sha256": "2d6f21f31d7e0e33a513c02a5188f563baa4a8e8bbe1f40866501c3780521d05",
+      "unchanged": true
+    },
+    {
+      "path": "audit/phase4c9/v2/phase4c9-feature-evidence-ledger-approved-2026-10-03.json",
+      "sha256": "0253787fb1bc0cea03cc5aba5759e08c2b0fcfa9fd37e194986011573c926ee7",
+      "unchanged": true
+    },
+    {
+      "path": "audit/phase4c9/v2/phase4c9-feature-source-snapshots-2026-10-03.jsonl",
+      "sha256": "5583716324d8ba2600352241c47ff5b61f5f2cef0bea9180f34f4315e2ec048e",
+      "unchanged": true
+    },
+    {
+      "path": "audit/phase4c9/v2/sources-final-candidate-2026-10-03.json",
+      "sha256": "d5213f1cf0881af1c60ea949c0321ae0eb854daa3f300135dae9e9f9ad2fdb66",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/MIGRATION_PLAN.md",
+      "sha256": "26fe21b4d1aa70f861de3f4c504dd06fd189024be32e3df90078b133f77edd22",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/README.md",
+      "sha256": "9712e794bf1716e775bc66046076e43a0f3b5e38c2f9d174be97d4ca153e97f2",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/REPORT.md",
+      "sha256": "988f18e5e7c551a2a2e7596b7fd260d9af55eaac87fef911644faa8f57abd54b",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/artifact-manifest.json",
+      "sha256": "b472fdcef227473023cb6cb44abfd48e1901efa0c6efcbe70aa72e1e69a7d0dc",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/baseline.json",
+      "sha256": "b97c3175f63a2614ce544572b0131bde004990c530819f0f287c368e14a77945",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/intake/phase4c10-batch1-2026-10-12/batch-manifest.json",
+      "sha256": "8a6a106d5bd239a1b277d5d26a4fa04aae516b3fcc9f2f430d92b5f1b3a6e29b",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/intake/phase4c10-batch1-2026-10-12/candidate-delta.json",
+      "sha256": "bc979163972f4b317f414ba1baad55a5c50c192c4d5d207867f96845df438a86",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/intake/phase4c10-batch1-2026-10-12/source-snapshots.jsonl",
+      "sha256": "f362deef6cb259e88dabf69388341ff7b3429e67e13c411a24348fa5496fa3ca",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/javascript-tests.json",
+      "sha256": "18c2c8a2922272ae6f872687cb246dc31d3235ff12d941938f39735d4c9679d9",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/master-completion-proposals.json",
+      "sha256": "9e94f1fcb832b02b26bc7009b1461bb0b5f3d22ef4911b09b7d362be200c6bed",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/partial-gap-triage.json",
+      "sha256": "04863425d2e76917bca68899c5ab23b665e990762ef6bba569a776869e8cbb07",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/prior-review-continuity.json",
+      "sha256": "a0cf65347a303b92cbf6b3766acaf01d209729fabd82c569ccd69dd1cca4ec45",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/proposals.json",
+      "sha256": "ef805a4b99534629d05c84b20c7dcb89e17867dcd264d326d4812fdd2ad9526c",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/research-source-snapshots.jsonl",
+      "sha256": "6946acbb08b8f4c8d644dcb566100681ee895081b6e2e7bb14387882da61be0d",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/retrieval-provenance.json",
+      "sha256": "bea39a7832683e967aefcb33b76281d52a54e37bc9547acb04f2e55e05eb9539",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/source-candidates.json",
+      "sha256": "2ccd73fbf5fa060d69f1bf35541429868d823766755ae7a75462ff56452d72b9",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/species-research.json",
+      "sha256": "776b45528c803eb49735e20d3e0562411f729ab79abbb20d20f6a59240070c0a",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/test-results.json",
+      "sha256": "f98132633b35cd74655d1699b0574fe42474de84211a33e47e45154a63234a1c",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/unconfirmed-materials.json",
+      "sha256": "fe59c7aaa0491c4f3cdcf698072236a82032c698da7f5a8c429241aef6f5ffff",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/validation-logs/collect-only.log",
+      "sha256": "6163f182c6dabe99567bf2d4697c0a73a95d62787bf96d0354d55ad1f0d92bf2",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/validation-logs/final-full-pytest.log",
+      "sha256": "99e4dafcbd06b73f71b7445318cedb378e170798b8b6f64f6589505286a8872d",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/validation-logs/focused-contract-pytest.log",
+      "sha256": "3bc4ad1d6ef06c60fa93ade8dca962ff5b831d9fb1caae2c2008c70981481b27",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/validation-logs/focused-sync-pytest.log",
+      "sha256": "d026893501f3f286f726c74048abf478b3813693d80b02f6b81fd98954f947bf",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/validation-logs/initial-full-pytest.log",
+      "sha256": "b5d1f2feb52d2880204fac7cfc91d7efd46c91f3ad69cef29a1c27bf43fdef1f",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/validator-report.json",
+      "sha256": "b3ca5a7df53dc93240a1cd84dfeeb18346207dc51d6aaf0d2cf29736d6d7da01",
+      "unchanged": true
+    },
+    {
+      "path": "audit/research-batches/phase4c10-batch1-2026-10-12/verify.py",
+      "sha256": "2ece29d9a63ad7cc46350683d64187ba7a7e7f34e23dd1ad3a6e018d6916b119",
+      "unchanged": true
+    },
+    {
+      "path": "data/best-shots.json",
+      "sha256": "f9f27aa7edf4f69c266f87aa056c54241968a524595c0db6a591aa71c55febbd",
+      "unchanged": true
+    },
+    {
+      "path": "data/feature-facets.json",
+      "sha256": "6d4d987a535dca9c1d0d3668b65de245fbdc281f56c546af436c6fb853bdd84d",
+      "unchanged": true
+    },
+    {
+      "path": "data/mushroom-master.json",
+      "sha256": "2ce8cfc61726ef04bb6f4bba26c42511e2c0bf1d4017b9e87e0a359d61decca4",
+      "unchanged": true
+    },
+    {
+      "path": "data/research-identifications.json",
+      "sha256": "0c3a699408dacf0444e3f6e6b93e848c84fd59ef93debe7640c0d551c0ab15b1",
+      "unchanged": true
+    },
+    {
+      "path": "data/sources.json",
+      "sha256": "d5213f1cf0881af1c60ea949c0321ae0eb854daa3f300135dae9e9f9ad2fdb66",
+      "unchanged": true
+    },
+    {
+      "path": "data/subject-taxonomy.json",
+      "sha256": "d55241a53941da1865c76c8c7c28d750b68f3c1185128061e88449bde800875e",
+      "unchanged": true
+    },
+    {
+      "path": "data/update-notices.json",
+      "sha256": "6949634eed451b203fa79feeff4135084ea3c25613752545a257dd630938e327",
+      "unchanged": true
+    },
+    {
+      "path": "feature_overlay.py",
+      "sha256": "8487b3a1ed909f94c3ce078ae30862108df5e1c8e0a05186d7b8417636566185",
+      "unchanged": true
+    },
+    {
+      "path": "feature_ui.py",
+      "sha256": "167fa741006ddf2dadbf2fe8668926663c963152e3217b92dd24fd8a67d6de5d",
+      "unchanged": true
+    },
+    {
+      "path": "main.py",
+      "sha256": "ed3c8f771518a2c085a09a63e3a8dc3c32353869e80931c761568afe81f30599",
+      "unchanged": true
+    },
+    {
+      "path": "sync-migrations/hatena-draft-photo-retirement-2026-10-12.json",
+      "sha256": "4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c",
+      "unchanged": true
+    }
+  ],
+  "hatena_live_build_credentials_available": false
+}
