@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "human_approval": null,
+  "sources": [
+    {
+      "source_id": "p4c10-kyoto-kiirosuppontake-2015",
+      "organization": "京都府 環境部自然環境保全課",
+      "title": "京都府レッドデータブック2015 キイロスッポンタケ（執筆：吉見昭一・佐久間大輔）",
+      "source_type": "government_red_data_book",
+      "url": "https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fun0004.html",
+      "record_id": null,
+      "accessed_at": "2026-10-12",
+      "notes": "本文の分類・形態・生態を確認。掲載学名Phallus flavocostatusは現masterのP. costatusと異なる。受容名・同義関係は確定しない。"
+    },
+    {
+      "source_id": "p4c10-tsukuba-kiirosuppontake-2025",
+      "organization": "筑波大学 山岳科学センター",
+      "title": "生き物写真館 キイロスッポンタケ（2025-01-29）",
+      "source_type": "university_observation_record",
+      "url": "https://msc.tsukuba.ac.jp/web_museum/00146-2/",
+      "record_id": null,
+      "accessed_at": "2026-10-12",
+      "notes": "和名・掲載学名・科と撮影日を確認。撮影日を一般的な発生時期へ拡張しない。京都府の掲載学名との競合確認用。"
+    },
+    {
+      "source_id": "p4c10-towada-bunaharitake-alias",
+      "organization": "青森県 十和田市 農林畜産課",
+      "title": "十和田市産野生きのこ類の一部（ブナハリタケ、ムキタケ）が出荷制限解除になりました",
+      "source_type": "municipal_forestry_notice",
+      "url": "https://www.city.towada.lg.jp/sangyo/nourin/ringyou/bunaharitake.html",
+      "record_id": null,
+      "accessed_at": "2026-10-12",
+      "notes": "ブナハリタケの地方名カヌカ・カヌガのみ補完根拠とする。2018年の出荷制限解除を現在の食用安全保証として用いない。"
+    }
+  ]
+}

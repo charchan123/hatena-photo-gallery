@@ -1,0 +1,901 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-12",
+  "investigated_species_count": 16,
+  "records": [
+    {
+      "mushroom_id": "kiirosuppontake",
+      "canonical_name_ja": "キイロスッポンタケ",
+      "priority": "A",
+      "existing_record_status": "partial",
+      "missing_fields": [
+        "season.summary",
+        "habitat.summary",
+        "taxonomy.kingdom",
+        "taxonomy.phylum",
+        "taxonomy.class",
+        "taxonomy.subclass",
+        "taxonomy.order",
+        "taxonomy.genus"
+      ],
+      "sufficient_existing_fields": {
+        "scientific_name": {
+          "value": "Phallus costatus",
+          "name_status": "source_reported",
+          "source_ids": [
+            "rinya-tohoku-fungi-guide"
+          ]
+        },
+        "features": {
+          "summary": "鮮黄色の子実体。頭部には通常、悪臭を放つ暗色の粘液（グレバ）がつくと記載されている。",
+          "source_ids": [
+            "research-gap-env-kiirosuppontake2005"
+          ]
+        },
+        "food_safety": {
+          "status": "unknown",
+          "source_ids": [],
+          "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。"
+        }
+      },
+      "findings": "頭部網目の1facet候補。京都府掲載P. flavocostatusと筑波大学掲載P. costatusは競合として保持。",
+      "held_and_further_investigation": "発生季節は観察日だけで補わない。グレバの粘液をcap_stickyにしない。",
+      "proposal_ids": [
+        "P4C10-P-001",
+        "P4C10-P-002",
+        "P4C10-P-003",
+        "P4C10-P-004",
+        "P4C10-P-005"
+      ],
+      "existing_source_ids": [
+        "research-gap-env-kiirosuppontake2005",
+        "rinya-tohoku-fungi-guide"
+      ],
+      "new_body_read_sources": [
+        "p4c10-kyoto-kiirosuppontake-2015"
+      ]
+    },
+    {
+      "mushroom_id": "erimakitutiguri",
+      "canonical_name_ja": "エリマキツチグリ",
+      "priority": "A",
+      "existing_record_status": "partial",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "sufficient_existing_fields": {
+        "scientific_name": {
+          "value": "Geastrum triplex",
+          "name_status": "source_reported",
+          "source_ids": [
+            "research-ishikawa-erimakitutiguri"
+          ]
+        },
+        "features": {
+          "summary": "外皮は4～7に裂ける、袋状の内皮をえりまき状に囲む。",
+          "source_ids": [
+            "research-ishikawa-erimakitutiguri"
+          ]
+        },
+        "season": {
+          "summary": "夏～秋",
+          "source_ids": [
+            "research-ishikawa-erimakitutiguri"
+          ]
+        },
+        "habitat": {
+          "summary": "林内",
+          "source_ids": [
+            "research-ishikawa-erimakitutiguri"
+          ]
+        },
+        "food_safety": {
+          "status": "unknown",
+          "source_ids": [
+            "research-ishikawa-erimakitutiguri"
+          ],
+          "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「不食」。"
+        }
+      },
+      "findings": "星状外皮・えりまき・夏秋・林内は既存資料で足りる。",
+      "held_and_further_investigation": "外皮は柄の基部のつぼではない。科の保留維持。",
+      "proposal_ids": [],
+      "existing_source_ids": [
+        "research-ishikawa-erimakitutiguri"
+      ],
+      "new_body_read_sources": [
+        "research-ishikawa-erimakitutiguri"
+      ]
+    },
+    {
+      "mushroom_id": "onifusube",
+      "canonical_name_ja": "オニフスベ",
+      "priority": "A",
+      "existing_record_status": "partial",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family",
+        "taxonomy.genus"
+      ],
+      "sufficient_existing_fields": {
+        "scientific_name": {
+          "value": "Calvatia nipponica",
+          "name_status": "source_reported",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "features": {
+          "summary": "球状で白色後褐色、内部は白色後褐色の胞子紛状塊となる。",
+          "source_ids": [
+            "research-ishikawa-onifusube"
+          ]
+        },
+        "season": {
+          "summary": "夏～秋",
+          "source_ids": [
+            "research-ishikawa-onifusube"
+          ]
+        },
+        "habitat": {
+          "summary": "竹林、庭園",
+          "source_ids": [
+            "research-ishikawa-onifusube"
+          ]
+        },
+        "food_safety": {
+          "status": "edibility_reported",
+          "source_ids": [
+            "research-ishikawa-onifusube"
+          ],
+          "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「幼時食」。幼時に限定された食利用の記録であり、時期を限定しない食用判断へ拡張しない。公的資料に食用記述があるという記録であり安全保証ではない。"
+        }
+      },
+      "findings": "既存の色・内部胞子・夏秋に加え、森林総研の大きさと発生場所を補完候補とした。",
+      "held_and_further_investigation": "内部の胞子塊を表面粉状・毛にしない。Lanopila/Calvatiaの対応と科・属は保留。",
+      "proposal_ids": [
+        "P4C10-P-006",
+        "P4C10-P-007"
+      ],
+      "existing_source_ids": [
+        "research-ishikawa-onifusube",
+        "research-kyoto-fungi-2015"
+      ],
+      "new_body_read_sources": [
+        "research-ffpri-kinoko065",
+        "research-ishikawa-onifusube"
+      ]
+    },
+    {
+      "mushroom_id": "kaninotume",
+      "canonical_name_ja": "カニノツメ",
+      "priority": "A",
+      "existing_record_status": "partial",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family",
+        "taxonomy.genus"
+      ],
+      "sufficient_existing_fields": {
+        "scientific_name": {
+          "value": "Linderia bicolumnata",
+          "name_status": "source_reported",
+          "source_ids": [
+            "research-ishikawa-kaninotume"
+          ]
+        },
+        "features": {
+          "summary": "2本の腕が頂部で結合する、暗緑色の粘液は糞臭を放つ。",
+          "source_ids": [
+            "research-ishikawa-kaninotume"
+          ]
+        },
+        "season": {
+          "summary": "秋",
+          "source_ids": [
+            "research-ishikawa-kaninotume"
+          ]
+        },
+        "habitat": {
+          "summary": "林地、庭園",
+          "source_ids": [
+            "research-ishikawa-kaninotume"
+          ]
+        },
+        "food_safety": {
+          "status": "unknown",
+          "source_ids": [
+            "research-ishikawa-kaninotume"
+          ],
+          "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「不食」。"
+        }
+      },
+      "findings": "2本の腕と暗緑色グレバ、秋、林地庭園は既存記録で足りる。",
+      "held_and_further_investigation": "腕を円柱状の子実体へ、グレバをゼラチン質へ読み替えない。属・科の保留維持。",
+      "proposal_ids": [],
+      "existing_source_ids": [
+        "research-ishikawa-kaninotume"
+      ],
+      "new_body_read_sources": [
+        "research-ishikawa-kaninotume"
+      ]
+    },
+    {
+      "mushroom_id": "kutibenitake",
+      "canonical_name_ja": "クチベニタケ",
+      "priority": "A",
+      "existing_record_status": "partial",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "sufficient_existing_fields": {
+        "scientific_name": {
+          "value": "Calostoma japonicum",
+          "name_status": "source_reported",
+          "source_ids": [
+            "research-ishikawa-kutibenitake"
+          ]
+        },
+        "features": {
+          "summary": "球形で頂部に星形に裂けた孔口がありその縁は鮮紅色である。",
+          "source_ids": [
+            "research-ishikawa-kutibenitake"
+          ]
+        },
+        "season": {
+          "summary": "夏～秋",
+          "source_ids": [
+            "research-ishikawa-kutibenitake"
+          ]
+        },
+        "habitat": {
+          "summary": "林内切通し、裸地、路傍",
+          "source_ids": [
+            "research-ishikawa-kutibenitake"
+          ]
+        },
+        "food_safety": {
+          "status": "unknown",
+          "source_ids": [
+            "research-ishikawa-kutibenitake"
+          ],
+          "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「不食」。"
+        }
+      },
+      "findings": "星形の胞子放出口、鮮紅色、夏秋、発生場所は既存記録で足りる。",
+      "held_and_further_investigation": "胞子放出口をporesにしない。ゼラチン質の種別一次根拠未確保。",
+      "proposal_ids": [],
+      "existing_source_ids": [
+        "research-ishikawa-kutibenitake"
+      ],
+      "new_body_read_sources": [
+        "research-ishikawa-kutibenitake"
+      ]
+    },
+    {
+      "mushroom_id": "kotubutake",
+      "canonical_name_ja": "コツブタケ",
+      "priority": "A",
+      "existing_record_status": "partial",
+      "missing_fields": [
+        "taxonomy.kingdom",
+        "taxonomy.class",
+        "taxonomy.subclass",
+        "taxonomy.family",
+        "taxonomy.genus"
+      ],
+      "sufficient_existing_fields": {
+        "scientific_name": {
+          "value": "Pisolithus arrhizus",
+          "name_status": "source_reported",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "features": {
+          "summary": "類球形で内部は不規則な小粒状である。",
+          "source_ids": [
+            "research-ishikawa-kotubutake"
+          ]
+        },
+        "season": {
+          "summary": "夏～秋",
+          "source_ids": [
+            "research-ishikawa-kotubutake"
+          ]
+        },
+        "habitat": {
+          "summary": "マツ林",
+          "source_ids": [
+            "research-ishikawa-kotubutake"
+          ]
+        },
+        "food_safety": {
+          "status": "unknown",
+          "source_ids": [
+            "research-ishikawa-kotubutake"
+          ],
+          "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「不食」。"
+        }
+      },
+      "findings": "内部の粒、夏秋、マツ林は既存記録で足りる。",
+      "held_and_further_investigation": "内部の小粒を表面粒状へ拡張しない。tincrorius/arrhizusの表記差・科の保留維持。",
+      "proposal_ids": [],
+      "existing_source_ids": [
+        "research-ishikawa-kotubutake",
+        "research-kyoto-fungi-2015"
+      ],
+      "new_body_read_sources": [
+        "research-ishikawa-kotubutake"
+      ]
+    },
+    {
+      "mushroom_id": "sankotake",
+      "canonical_name_ja": "サンコタケ",
+      "priority": "A",
+      "existing_record_status": "partial",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "sufficient_existing_fields": {
+        "scientific_name": {
+          "value": "Pseudocolus schellenbergiae",
+          "name_status": "source_reported",
+          "source_ids": [
+            "research-ishikawa-sankotake"
+          ]
+        },
+        "features": {
+          "summary": "3本の腕が頂部で接合する、腕の内側につく粘液物は悪臭を放つ。",
+          "source_ids": [
+            "research-ishikawa-sankotake"
+          ]
+        },
+        "season": {
+          "summary": "梅雨～秋",
+          "source_ids": [
+            "research-ishikawa-sankotake"
+          ]
+        },
+        "habitat": {
+          "summary": "林地、竹林",
+          "source_ids": [
+            "research-ishikawa-sankotake"
+          ]
+        },
+        "food_safety": {
+          "status": "unknown",
+          "source_ids": [
+            "research-ishikawa-sankotake"
+          ],
+          "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「不食」。"
+        }
+      },
+      "findings": "3本の腕と悪臭グレバ、梅雨秋、林地竹林は既存記録で足りる。",
+      "held_and_further_investigation": "腕の柱形をrod_cylindricalにしない。schellenbergiae/fusiformisと科の保留維持。",
+      "proposal_ids": [],
+      "existing_source_ids": [
+        "research-ishikawa-sankotake"
+      ],
+      "new_body_read_sources": [
+        "research-ishikawa-sankotake"
+      ]
+    },
+    {
+      "mushroom_id": "syouro",
+      "canonical_name_ja": "ショウロ",
+      "priority": "A",
+      "existing_record_status": "partial",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "sufficient_existing_fields": {
+        "scientific_name": {
+          "value": "Rhizopogon rubescens",
+          "name_status": "source_reported",
+          "source_ids": [
+            "research-ishikawa-syouro"
+          ]
+        },
+        "features": {
+          "summary": "類球形で白色後黄褐色となり傷つけると淡赤色に変化する。",
+          "source_ids": [
+            "research-ishikawa-syouro"
+          ]
+        },
+        "season": {
+          "summary": "春、秋",
+          "source_ids": [
+            "research-ishikawa-syouro"
+          ]
+        },
+        "habitat": {
+          "summary": "海岸クロマツ林",
+          "source_ids": [
+            "research-ishikawa-syouro"
+          ]
+        },
+        "food_safety": {
+          "status": "edibility_reported",
+          "source_ids": [
+            "research-ishikawa-syouro"
+          ],
+          "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。"
+        }
+      },
+      "findings": "春秋、海岸クロマツ林、淡赤色への変化は既存記録で足りる。",
+      "held_and_further_investigation": "赤変をblue_stainにしない。rubescens/roseolusの保留維持。",
+      "proposal_ids": [],
+      "existing_source_ids": [
+        "research-ishikawa-syouro"
+      ],
+      "new_body_read_sources": [
+        "research-ishikawa-syouro"
+      ]
+    },
+    {
+      "mushroom_id": "tutiguri",
+      "canonical_name_ja": "ツチグリ",
+      "priority": "A",
+      "existing_record_status": "partial",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "sufficient_existing_fields": {
+        "scientific_name": {
+          "value": "Astraeus hygrometricus",
+          "name_status": "source_reported",
+          "source_ids": [
+            "research-ishikawa-tutiguri"
+          ]
+        },
+        "features": {
+          "summary": "外皮は星形に開き、乾湿によって開閉する。",
+          "source_ids": [
+            "research-ishikawa-tutiguri"
+          ]
+        },
+        "season": {
+          "summary": "春～秋",
+          "source_ids": [
+            "research-ishikawa-tutiguri"
+          ]
+        },
+        "habitat": {
+          "summary": "林内裸地",
+          "source_ids": [
+            "research-ishikawa-tutiguri"
+          ]
+        },
+        "food_safety": {
+          "status": "unknown",
+          "source_ids": [
+            "research-ishikawa-tutiguri"
+          ],
+          "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「不食」。"
+        }
+      },
+      "findings": "星状外皮・乾湿開閉は既存資料で足りる。林縁斜面の併記を補完候補とした。",
+      "held_and_further_investigation": "春秋と夏秋の記述差は資料別に保持。外皮をvolvaにしない。",
+      "proposal_ids": [
+        "P4C10-P-010"
+      ],
+      "existing_source_ids": [
+        "research-ishikawa-tutiguri"
+      ],
+      "new_body_read_sources": [
+        "research-ffpri-kinoko063",
+        "research-ishikawa-tutiguri"
+      ]
+    },
+    {
+      "mushroom_id": "bunaharitake",
+      "canonical_name_ja": "ブナハリタケ",
+      "priority": "A",
+      "existing_record_status": "partial",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "sufficient_existing_fields": {
+        "scientific_name": {
+          "value": "Mycoleptodonoides aitchisonii",
+          "name_status": "source_reported",
+          "source_ids": [
+            "research-ishikawa-bunaharitake"
+          ]
+        },
+        "features": {
+          "summary": "傘は扇形、縁部鋸歯状。傘の下面は子実層托、針状。柄はなし。",
+          "source_ids": [
+            "research-ishikawa-bunaharitake"
+          ]
+        },
+        "season": {
+          "summary": "秋",
+          "source_ids": [
+            "research-ishikawa-bunaharitake"
+          ]
+        },
+        "habitat": {
+          "summary": "ブナ、イタヤカエデの枯幹",
+          "source_ids": [
+            "research-ishikawa-bunaharitake"
+          ]
+        },
+        "food_safety": {
+          "status": "edibility_reported",
+          "source_ids": [
+            "research-ishikawa-bunaharitake"
+          ],
+          "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。"
+        }
+      },
+      "findings": "扇形・針状子実層・無柄・秋・枯幹は既存資料で足りる。強い香りと地方名2語を補完候補とした。",
+      "held_and_further_investigation": "針状子実層をhairyにしない。科は保留。地方名だけでは同定できない。",
+      "proposal_ids": [
+        "P4C10-P-008",
+        "P4C10-P-009"
+      ],
+      "existing_source_ids": [
+        "research-ishikawa-bunaharitake"
+      ],
+      "new_body_read_sources": [
+        "research-ishikawa-bunaharitake",
+        "p4c10-towada-bunaharitake-alias"
+      ]
+    },
+    {
+      "mushroom_id": "hokoritake",
+      "canonical_name_ja": "ホコリタケ",
+      "priority": "A",
+      "existing_record_status": "partial",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "sufficient_existing_fields": {
+        "scientific_name": {
+          "value": "Lycoperdon perlatum",
+          "name_status": "source_reported",
+          "source_ids": [
+            "research-ishikawa-hokoritake"
+          ]
+        },
+        "features": {
+          "summary": "暗褐色の針でおおわれる、内部は白色後暗褐色の紛状となる。",
+          "source_ids": [
+            "research-ishikawa-hokoritake"
+          ]
+        },
+        "season": {
+          "summary": "梅雨～秋",
+          "source_ids": [
+            "research-ishikawa-hokoritake"
+          ]
+        },
+        "habitat": {
+          "summary": "林地、朽木",
+          "source_ids": [
+            "research-ishikawa-hokoritake"
+          ]
+        },
+        "food_safety": {
+          "status": "edibility_reported",
+          "source_ids": [
+            "research-ishikawa-hokoritake"
+          ],
+          "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「幼時食」。幼時に限定された食利用の記録であり、時期を限定しない食用判断へ拡張しない。公的資料に食用記述があるという記録であり安全保証ではない。"
+        }
+      },
+      "findings": "暗色針状表面・幼時食の限定・梅雨秋は既存資料を再確認。",
+      "held_and_further_investigation": "内部胞子粉をgranular_powderyにしない。頭部いぼ脱落後網目の検索PDFは本文未読で追加調査に留める。",
+      "proposal_ids": [],
+      "existing_source_ids": [
+        "research-ishikawa-hokoritake"
+      ],
+      "new_body_read_sources": [
+        "research-ishikawa-hokoritake"
+      ]
+    },
+    {
+      "mushroom_id": "yamabusitake",
+      "canonical_name_ja": "ヤマブシタケ",
+      "priority": "A",
+      "existing_record_status": "partial",
+      "missing_fields": [
+        "taxonomy.kingdom",
+        "taxonomy.phylum",
+        "taxonomy.class",
+        "taxonomy.subclass",
+        "taxonomy.order",
+        "taxonomy.genus"
+      ],
+      "sufficient_existing_fields": {
+        "scientific_name": {
+          "value": "Hericium erinaceum",
+          "name_status": "source_reported",
+          "source_ids": [
+            "research-ishikawa-yamabusitake"
+          ]
+        },
+        "features": {
+          "summary": "倒卵形で無数の針を垂下する。",
+          "source_ids": [
+            "research-ishikawa-yamabusitake"
+          ]
+        },
+        "season": {
+          "summary": "秋",
+          "source_ids": [
+            "research-ishikawa-yamabusitake"
+          ]
+        },
+        "habitat": {
+          "summary": "ブナ科樹幹",
+          "source_ids": [
+            "research-ishikawa-yamabusitake"
+          ]
+        },
+        "food_safety": {
+          "status": "edibility_reported",
+          "source_ids": [
+            "research-ishikawa-yamabusitake"
+          ],
+          "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。"
+        }
+      },
+      "findings": "垂下する針・秋・ブナ科樹幹は既存資料で足りる。",
+      "held_and_further_investigation": "針状子実層をhairyにしない。研究機関PDFの分類検索結果は本文未読なので階級を埋めない。",
+      "proposal_ids": [],
+      "existing_source_ids": [
+        "research-ishikawa-yamabusitake"
+      ],
+      "new_body_read_sources": [
+        "research-ishikawa-yamabusitake"
+      ]
+    },
+    {
+      "mushroom_id": "uraguronigaiguchi",
+      "canonical_name_ja": "ウラグロニガイグチ",
+      "priority": "B/C",
+      "existing_record_status": "partial",
+      "missing_fields": [
+        "taxonomy.kingdom",
+        "taxonomy.phylum",
+        "taxonomy.class",
+        "taxonomy.subclass",
+        "taxonomy.order",
+        "taxonomy.genus"
+      ],
+      "sufficient_existing_fields": {
+        "scientific_name": {
+          "value": "Tylopilus eximius",
+          "name_status": "source_reported",
+          "source_ids": [
+            "ishikawa-uraguronigaiguchi"
+          ]
+        },
+        "features": {
+          "summary": "傘は湿時に粘性があり、管孔の孔口は暗色。柄にワイン色の細鱗片がある。",
+          "source_ids": [
+            "ishikawa-uraguronigaiguchi"
+          ]
+        },
+        "season": {
+          "summary": "夏～秋",
+          "source_ids": [
+            "ishikawa-uraguronigaiguchi"
+          ]
+        },
+        "habitat": {
+          "summary": "針葉樹林・広葉樹林",
+          "source_ids": [
+            "ishikawa-uraguronigaiguchi"
+          ]
+        },
+        "food_safety": {
+          "status": "edibility_reported",
+          "source_ids": [
+            "ishikawa-uraguronigaiguchi",
+            "audit-shimane-caution",
+            "final-critical-kanto-2020",
+            "final-critical-das-2024",
+            "final-critical-nama-2018-2020"
+          ],
+          "notes": "石川県に「食」、関東森林管理局2020年資料に「食用」の記録があるため、edibility_reportedは資料掲載評価として保持する。現在の摂食安全性は未確定。島根県の毒・注意対象ギャラリーにも掲載されるが個別の区分理由は未確認。林野庁資料の仮称類似種と、Sutorius eximius種複合体・日本産和名との対応は未解決。北米の同学名下には加熱後の中毒報告があるが、日本産への同一性を確定していない。食用可否の自己判断に使用せず、加熱による安全も保証しない。空の毒成分欄は無毒を意味しない。"
+        }
+      },
+      "findings": "IA-019の過去の原著・症例整理を再利用。現行masterに注意注記は既にある。",
+      "held_and_further_investigation": "海外Sutorius eximius症例を日本産和名へ転用せず、食毒・学名を変更しない。",
+      "proposal_ids": [],
+      "existing_source_ids": [
+        "audit-shimane-caution",
+        "final-critical-das-2024",
+        "final-critical-kanto-2020",
+        "final-critical-nama-2018-2020",
+        "ishikawa-uraguronigaiguchi"
+      ],
+      "new_body_read_sources": [
+        "ishikawa-uraguronigaiguchi"
+      ]
+    },
+    {
+      "mushroom_id": "kiraratake",
+      "canonical_name_ja": "キララタケ",
+      "priority": "B/C",
+      "existing_record_status": "partial",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family",
+        "taxonomy.genus"
+      ],
+      "sufficient_existing_fields": {
+        "scientific_name": {
+          "value": "Coprinus micaceus",
+          "name_status": "source_reported",
+          "source_ids": [
+            "research-ishikawa-kiraratake"
+          ]
+        },
+        "features": {
+          "summary": "傘は雲母状粉散在、条線有。傘の下面はヒダ、離生、密、白色後黒色。柄は中空。",
+          "source_ids": [
+            "research-ishikawa-kiraratake"
+          ]
+        },
+        "season": {
+          "summary": "夏～秋",
+          "source_ids": [
+            "research-ishikawa-kiraratake"
+          ]
+        },
+        "habitat": {
+          "summary": "広葉樹倒木、切株",
+          "source_ids": [
+            "research-ishikawa-kiraratake"
+          ]
+        },
+        "food_safety": {
+          "status": "edibility_reported",
+          "source_ids": [
+            "research-ishikawa-kiraratake",
+            "final-critical-shimane-2025-kirara",
+            "final-critical-china-2021",
+            "final-critical-matthies-laatsch-1992"
+          ],
+          "notes": "石川県の「食」は食用記録として保持するが、島根県中山間地域研究センター2025年記事はキララタケを「毒」と明示し、資料間競合がある。中国ではCoprinellus micaceus名の消化器症状報告があるが、加熱・飲酒条件と各症例の同定根拠の細部は未確認。旧化学文献は同じクロマトグラフィー挙動の物質という留保を含み、日本産キララタケのコプリン含有や飲酒時のみの毒性は確定しない。edibility_reportedを安全保証や摂食推奨と解釈しない。食用可否の自己判断に使用せず、空の毒成分欄は無毒を意味しない。"
+        }
+      },
+      "findings": "IA-020の過去の分析・症例整理を再利用。石川県の食と島根県の毒を本文で再確認。",
+      "held_and_further_investigation": "コプリン含有・飲酒条件を確定せず、status/toxinsを変更しない。",
+      "proposal_ids": [],
+      "existing_source_ids": [
+        "final-critical-china-2021",
+        "final-critical-matthies-laatsch-1992",
+        "final-critical-shimane-2025-kirara",
+        "research-ishikawa-kiraratake"
+      ],
+      "new_body_read_sources": [
+        "final-critical-shimane-2025-kirara",
+        "research-ishikawa-kiraratake"
+      ]
+    },
+    {
+      "mushroom_id": "tamagotakemodoki",
+      "canonical_name_ja": "タマゴタケモドキ",
+      "priority": "B/C",
+      "existing_record_status": "partial",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "sufficient_existing_fields": {
+        "scientific_name": {
+          "value": "Amanita subjunquillea",
+          "name_status": "source_reported",
+          "source_ids": [
+            "research-ishikawa-tamagotakemodoki"
+          ]
+        },
+        "features": {
+          "summary": "湿時に傘に弱い粘性があり、傘下面は離生のひだでやや密と記載。1933年初記載は柄上部の持続する膜質のつばを記し、1999年の日本産標本研究も膜質で垂下する白いつばを記載する。一方、厚生労働省の対象種の形態欄には「つばはない」とあり、競合は未解消。原著はつば有を強く支持するが、ring facet追加は人手確認まで保留する。つばが見えない個体を本種から除外したり、食用判断に利用したりしない。",
+          "source_ids": [
+            "research-ishikawa-tamagotakemodoki",
+            "research-mhlw-0000143395",
+            "final-critical-imai-1933",
+            "final-critical-yang-doi-1999"
+          ]
+        },
+        "season": {
+          "summary": "夏～秋",
+          "source_ids": [
+            "research-ishikawa-tamagotakemodoki"
+          ]
+        },
+        "habitat": {
+          "summary": "針・広葉樹林",
+          "source_ids": [
+            "research-ishikawa-tamagotakemodoki"
+          ]
+        },
+        "food_safety": {
+          "status": "poisonous_confirmed",
+          "source_ids": [
+            "research-ishikawa-tamagotakemodoki",
+            "research-mhlw-0000143395"
+          ],
+          "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「毒」。 厚生労働省は中毒症状または事例を記載。"
+        }
+      },
+      "findings": "IA-029の1933/1999原著の既存整理を再利用。厚労省のつばなしを現行本文で再確認。",
+      "held_and_further_investigation": "ringは引き続き禁止。原著支持だけで公的資料の競合を解除しない。",
+      "proposal_ids": [],
+      "existing_source_ids": [
+        "final-critical-imai-1933",
+        "final-critical-yang-doi-1999",
+        "research-ishikawa-tamagotakemodoki",
+        "research-mhlw-0000143395"
+      ],
+      "new_body_read_sources": [
+        "research-mhlw-0000143395"
+      ]
+    },
+    {
+      "mushroom_id": "sugihiratake",
+      "canonical_name_ja": "スギヒラタケ",
+      "priority": "B/C",
+      "existing_record_status": "partial",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "sufficient_existing_fields": {
+        "scientific_name": {
+          "value": "Pleurocybella porrigens",
+          "name_status": "source_reported",
+          "source_ids": [
+            "research-ishikawa-sugihiratake"
+          ]
+        },
+        "features": {
+          "summary": "傘は扇形、耳形、基部に短毛を密生。傘の下面はヒダ、密。柄はなし。",
+          "source_ids": [
+            "research-ishikawa-sugihiratake"
+          ]
+        },
+        "season": {
+          "summary": "秋",
+          "source_ids": [
+            "research-ishikawa-sugihiratake"
+          ]
+        },
+        "habitat": {
+          "summary": "スギ、マツ古株、倒木",
+          "source_ids": [
+            "research-ishikawa-sugihiratake"
+          ]
+        },
+        "food_safety": {
+          "status": "poisonous_confirmed",
+          "source_ids": [
+            "research-ishikawa-sugihiratake",
+            "research-mhlw-0000143423"
+          ],
+          "notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食 (注意)」。 厚生労働省は中毒症状または事例を記載。石川県の古い「食（注意）」記述と競合。毒性本体未確定の含有成分はtoxinsへ登録しない。"
+        }
+      },
+      "findings": "公的な脳症・死亡例と毒成分未確定の記録を再確認。安全側のpoisonous_confirmedを維持。",
+      "held_and_further_investigation": "含有成分と原因毒を区別。空のtoxinsは無毒を意味しない。腎疾患のない人の安全保証にも使わない。",
+      "proposal_ids": [],
+      "existing_source_ids": [
+        "research-ishikawa-sugihiratake",
+        "research-mhlw-0000143423"
+      ],
+      "new_body_read_sources": [
+        "research-ishikawa-sugihiratake",
+        "research-mhlw-0000143423"
+      ]
+    }
+  ]
+}

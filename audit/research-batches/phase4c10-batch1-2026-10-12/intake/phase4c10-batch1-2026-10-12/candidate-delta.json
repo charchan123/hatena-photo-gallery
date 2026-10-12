@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "mushroom_additions": [],
+  "source_additions": [
+    {
+      "source_id": "p4c10-kyoto-kiirosuppontake-2015",
+      "organization": "京都府 環境部自然環境保全課",
+      "title": "京都府レッドデータブック2015 キイロスッポンタケ（執筆：吉見昭一・佐久間大輔）",
+      "source_type": "government_red_data_book",
+      "url": "https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fun0004.html",
+      "record_id": null,
+      "accessed_at": "2026-10-12",
+      "notes": "本文の分類・形態・生態を確認。掲載学名Phallus flavocostatusは現masterのP. costatusと異なる。受容名・同義関係は確定しない。"
+    }
+  ],
+  "assignment_additions": [
+    {
+      "candidate_id": "P4C10-C-001",
+      "mushroom_id": "kiirosuppontake",
+      "assignment": {
+        "facet_id": "head_reticulate",
+        "evidence_text": "基本体を洗い落とすと黄色の網目状隆起が見られ",
+        "source_ids": [
+          "p4c10-kyoto-kiirosuppontake-2015"
+        ],
+        "evidence_refs": [
+          "P4C10-E-001"
+        ],
+        "evidence_kind": "source_quote",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "P4C10-D-001",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "assistant_source_reading",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "P4C10-E-001",
+          "source_id": "p4c10-kyoto-kiirosuppontake-2015",
+          "snapshot_identity": "urn:phase4c10:bounded-service-extract:p4c10-kyoto-kiirosuppontake-2015:sha256:27e66d67a8e4e85127570f28dc2835e122824d32d84efef5661cc8c258fb83d0",
+          "quote": "基本体を洗い落とすと黄色の網目状隆起が見られ",
+          "quote_sha256": "7b511fe25ff16cb8bebb0c7312231cc6f57d1c9a879fc5dee17d6fef6fc27ff6",
+          "char_start": 0,
+          "char_end": 22,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "text_snapshot_sha256": "27e66d67a8e4e85127570f28dc2835e122824d32d84efef5661cc8c258fb83d0",
+          "original_response_sha256": "25ce5c47d94f0a399a9d589b97d885749c90f83f95076466e6ecbe17b6b0791c",
+          "decision_id": "P4C10-D-001",
+          "mushroom_id": "kiirosuppontake",
+          "facet_id": "head_reticulate",
+          "source_url": "https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fun0004.html",
+          "evidence_kind": "source_quote",
+          "evidence_text": "基本体を洗い落とすと黄色の網目状隆起が見られ",
+          "qualifiers": [],
+          "extracted_text_sha256": "27e66d67a8e4e85127570f28dc2835e122824d32d84efef5661cc8c258fb83d0",
+          "evidence_text_exact_substring_of_this_quote": true
+        }
+      ]
+    }
+  ]
+}

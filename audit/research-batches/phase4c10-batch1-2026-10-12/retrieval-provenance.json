@@ -1,0 +1,448 @@
+[
+  {
+    "source_id": "p4c10-kyoto-kiirosuppontake-2015",
+    "source_url": "https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fun0004.html",
+    "organization": "京都府 環境部自然環境保全課",
+    "title": "京都府レッドデータブック2015 キイロスッポンタケ（執筆：吉見昭一・佐久間大輔）",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn7view0",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "25ce5c47d94f0a399a9d589b97d885749c90f83f95076466e6ecbe17b6b0791c",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      55,
+      59,
+      72,
+      74
+    ]
+  },
+  {
+    "source_id": "research-ffpri-kinoko065",
+    "source_url": "https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko065.html",
+    "organization": "国立研究開発法人 森林研究・整備機構 森林総合研究所 九州支所",
+    "title": "オニフスベ",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn7view2",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "9827631f24bc5ebafec2ebe2cf369496da748d635ff7e67c81c32613ed77ad4a",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      47
+    ]
+  },
+  {
+    "source_id": "research-ishikawa-bunaharitake",
+    "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/bunaharitake.html",
+    "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+    "title": "いしかわ きのこ図鑑「ブナハリタケ」",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn5view2",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "45a31415bfc54c14045fe3fc70e1fad9a0adc22d54eab625e72627d1ecca4793",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      98,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108
+    ]
+  },
+  {
+    "source_id": "p4c10-towada-bunaharitake-alias",
+    "source_url": "https://www.city.towada.lg.jp/sangyo/nourin/ringyou/bunaharitake.html",
+    "organization": "青森県 十和田市 農林畜産課",
+    "title": "十和田市産野生きのこ類の一部（ブナハリタケ、ムキタケ）が出荷制限解除になりました",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn12view0",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "6f917f0b0881de4a4499c7cf37f0f269c4b8c4d17752129a3f407d2f8d311474",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      84
+    ]
+  },
+  {
+    "source_id": "research-ffpri-kinoko063",
+    "source_url": "https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko063.html",
+    "organization": "国立研究開発法人 森林研究・整備機構 森林総合研究所 九州支所",
+    "title": "ツチグリ",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn7view3",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "f657b132f713a8e72d3af47827df9524028034250c85db3875f1d576ae0cf911",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      47
+    ]
+  },
+  {
+    "source_id": "research-ishikawa-erimakitutiguri",
+    "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/erimakitutiguri.html",
+    "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+    "title": "いしかわ きのこ図鑑「エリマキツチグリ」",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn4view0",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "5b30f25f31319764b95381b3cbfda74203ab0b8ca3a676a55290c660ef5feff6",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      98,
+      102,
+      103,
+      104,
+      105
+    ]
+  },
+  {
+    "source_id": "research-ishikawa-onifusube",
+    "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/onifusube.html",
+    "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+    "title": "いしかわ きのこ図鑑「オニフスベ」",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn4view1",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "40053cfa3c296e2fe901b2c06a6b505e442d6eddc03af05550d557fb179bd8f7",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      98,
+      107,
+      108,
+      109,
+      110
+    ]
+  },
+  {
+    "source_id": "research-ishikawa-kaninotume",
+    "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kaninotume.html",
+    "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+    "title": "いしかわ きのこ図鑑「カニノツメ」",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn6view0",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "6780c73cf750af5a19e25738cb2e016daf6940c7ca5c3422b93e5ec43673a706",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      98,
+      102,
+      103,
+      104,
+      105
+    ]
+  },
+  {
+    "source_id": "research-ishikawa-kutibenitake",
+    "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kutibenitake.html",
+    "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+    "title": "いしかわ きのこ図鑑「クチベニタケ」",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn6view1",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "b9b020c460f7e00caa6138f708d9c2e8df5810245bc8ed197ac08b69f5dcd8aa",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      98,
+      102,
+      103,
+      104,
+      105
+    ]
+  },
+  {
+    "source_id": "research-ishikawa-kotubutake",
+    "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kotubutake.html",
+    "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+    "title": "いしかわ きのこ図鑑「コツブタケ」",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn6view2",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "9a42652bab72280e2f62925ceb491d4a98fe7fbeed667cf2b585dc662cae7ed3",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      98,
+      102,
+      103,
+      104,
+      105
+    ]
+  },
+  {
+    "source_id": "research-ishikawa-sankotake",
+    "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/sankotake.html",
+    "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+    "title": "いしかわ きのこ図鑑「サンコタケ」",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn6view3",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "f9f0a5b9085d1bd2817f4395acdfa771cfeabda3b7c35fbc359d6554fb7273c9",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      98,
+      105,
+      106,
+      107,
+      108
+    ]
+  },
+  {
+    "source_id": "research-ishikawa-syouro",
+    "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/syouro.html",
+    "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+    "title": "いしかわ きのこ図鑑「ショウロ」",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn5view0",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "9ab406366dc032b456fdf68489683f4bd06f7da5e1316978023582de9ae51a9e",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      98,
+      107,
+      108,
+      109,
+      110
+    ]
+  },
+  {
+    "source_id": "research-ishikawa-tutiguri",
+    "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/tutiguri.html",
+    "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+    "title": "いしかわ きのこ図鑑「ツチグリ」",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn5view1",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "cec9f15c3370f8fcd407fa80f67a29a1bf4693eb477fa9bbed912dc45d8c5672",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      98,
+      102,
+      103,
+      104,
+      105
+    ]
+  },
+  {
+    "source_id": "research-ishikawa-hokoritake",
+    "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/hokoritake.html",
+    "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+    "title": "いしかわ きのこ図鑑「ホコリタケ」",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn5view3",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "4e0025ec19b9f6351e76953df1290ea514b76451ac3bfa13fd2cbc1b443c9274",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      98,
+      105,
+      106,
+      107,
+      108
+    ]
+  },
+  {
+    "source_id": "research-ishikawa-yamabusitake",
+    "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/yamabusitake.html",
+    "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+    "title": "いしかわ きのこ図鑑「ヤマブシタケ」",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn5view4",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "16c5bc801ea55da061800f2b1eec95cc964e4f6bd396e7ad5b03a4ef785e1669",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      98,
+      102,
+      103,
+      104,
+      105
+    ]
+  },
+  {
+    "source_id": "p4c10-tsukuba-kiirosuppontake-2025",
+    "source_url": "https://msc.tsukuba.ac.jp/web_museum/00146-2/",
+    "organization": "筑波大学 山岳科学センター",
+    "title": "生き物写真館 キイロスッポンタケ（2025-01-29）",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn7view1",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "e5e0ce13dea95dcbcc7c72ece278f58fa259ff42349cc11eb665b6b5fe17bcde",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      52
+    ]
+  },
+  {
+    "source_id": "research-mhlw-0000143395",
+    "source_url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000143395.html",
+    "organization": "厚生労働省",
+    "title": "自然毒のリスクプロファイル：タマゴタケモドキ（Amanita subjunquillea)　テングタケ科テングタケ属",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn10view0",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "16c45963502f276a4be548106d8510f5dde845562e9964a1c05c12b4752d102d",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      265
+    ]
+  },
+  {
+    "source_id": "final-critical-shimane-2025-kirara",
+    "source_url": "https://www1.pref.shimane.lg.jp/life/region/kikan/chusankan/column/20251118.html",
+    "organization": "島根県 中山間地域研究センター",
+    "title": "「大万木山きのこ観察会」を開催しました",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn10view1",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "2788ed9c7324cacb75e9dd94bd35e377c18e81b3bc2c1b170cfdc0208790e771",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      143
+    ]
+  },
+  {
+    "source_id": "research-ishikawa-kiraratake",
+    "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kiraratake.html",
+    "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+    "title": "いしかわ きのこ図鑑「キララタケ」",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn13view1",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "e78d85b6fca7a8690f7be188cf6f6a2bc903b744472129776a1f03d892d27011",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      102
+    ]
+  },
+  {
+    "source_id": "ishikawa-uraguronigaiguchi",
+    "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/uraguronigaiguti.html",
+    "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+    "title": "いしかわ きのこ図鑑「ウラグロニガイグチ」",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn13view0",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "c9ab3dcc72ff225ba939a31865f5b5663528be01253f08d81a2a5799867a6806",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      102
+    ]
+  },
+  {
+    "source_id": "research-ishikawa-sugihiratake",
+    "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/sugihiratake.html",
+    "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+    "title": "いしかわ きのこ図鑑「スギヒラタケ」",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn13view2",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "871fc4b8dd81a26a748651e8417bca5db35defacabc918a4f7b91bb5bd620471",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      107
+    ]
+  },
+  {
+    "source_id": "research-mhlw-0000143423",
+    "source_url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000143423.html",
+    "organization": "厚生労働省",
+    "title": "自然毒のリスクプロファイル：スギヒラタケ（Pleurocybella porrigens )　キシメジ科スギヒラタケ属",
+    "checked_at": "2026-10-12",
+    "verification": "body_read_in_retrieval_service",
+    "web_source_ref": "turn8view0",
+    "snapshot_scope": "complete saved extraction of listed evidence passages only; not full website/HTML",
+    "response_hash_semantics": "SHA-256 of the exact UTF-8 source-page section returned by the web retrieval service; NOT origin HTTP HTML bytes",
+    "original_response_sha256": "8ee9d22fc8e49f6476b63bbdc0453ac753e6c9a126017731497d6a46f860c7cd",
+    "original_response_verification": "service response checksum recorded at capture; full response not republished; cannot independently recompute from bounded excerpt",
+    "origin_http_body_obtained": false,
+    "unicode_normalization": "none",
+    "retrieval_line_ranges": [
+      274
+    ]
+  }
+]
