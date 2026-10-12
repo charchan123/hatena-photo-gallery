@@ -1,0 +1,49 @@
+{
+  "mode": "read-only real Atom GET; no rename approvals or publication",
+  "previous_photo_count": 906,
+  "old_ids_names_urls_articles_preserved": 906,
+  "public_articles": 110,
+  "detected_images": 976,
+  "gallery_photos": 906,
+  "fetch_audit": {
+    "pages_completed": 12,
+    "entries_received": 112,
+    "drafts_excluded": 2,
+    "published_articles": 110,
+    "html_articles": 110,
+    "pagination_complete": true,
+    "content_type_counts": {
+      "text/html": 110
+    },
+    "html_source_counts": {
+      "content_html": 110
+    },
+    "html_image_representation_difference_articles": 0
+  },
+  "best_shots": 3,
+  "research_cases": 67,
+  "retirement": {
+    "migration_id": "hatena-draft-photo-retirement-2026-10-12",
+    "state": "ALREADY_APPLIED",
+    "retired_this_run": 0,
+    "retired_total": 7,
+    "manifest_sha256": "4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c"
+  },
+  "retired_output_inspection": {
+    "result": "PASS",
+    "text_files_checked": 345,
+    "retired_ids_absent": 7,
+    "shared_image_urls_preserved": 0
+  },
+  "generated_pages": 322,
+  "first_result": "SUCCESS",
+  "second_result": "SUCCESS",
+  "idempotent_second_new_articles": 0,
+  "idempotent_second_new_images": 0,
+  "name_migrations": 0,
+  "automatic_new_photos": 0,
+  "actions_url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/38210900321",
+  "job_id": 114684592040,
+  "verified_commit": "8e9585ed3c7c173cb9bc8f071f4892141f8ecc2f",
+  "final_generator_core": "unchanged from verified commit; final admin read-only recovery change is separately unit tested"
+}

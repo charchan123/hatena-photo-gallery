@@ -25,7 +25,7 @@ from .git_workflow import run
 LOCK = threading.RLock()
 ACTION_CACHE = {'at': 0, 'value': None}
 LOCAL = ROOT / 'admin/local-state/sync'
-GROUPS = ['blocker', 'migration', 'new', 'legacy', 'auto_added', 'reviewed', 'held']
+GROUPS = ['blocker', 'migration', 'new', 'legacy', 'auto_added', 'reviewed', 'held', 'published']
 DECISIONS = {'confirmed', 'hold', 'no_change', 'propose_name', 'exclude', 'confirm_url', 'delete', 'pending'}
 
 
@@ -200,6 +200,27 @@ def candidates(publication, live=None):
     from sync_retirement import load_manifest
     retired_article = load_manifest()['target_article_sha256']
     automatic = {r['observation_id']:r for r in snap['payload'].get('automatic_additions', [])}
+    from sync_exceptions import protected_ids, load_manifests, check_target
+    protected_reference_ids = protected_ids(old_portal)
+    name_receipts = {r['observation_id']:r for r in snap['payload'].get('name_migrations',[])}
+    # Read-only public history remains available even when a local pending
+    # manifest is corrupt. It has no publication authority; the real generator
+    # always validates every manifest. Live matching still fails closed.
+    manifests = {m['migration_id']:m for m in load_manifests()} if live and name_receipts else {}
+    valid_manual = {}
+    if not live:
+        names = {r['observation_id']:r['gallery_name'] for r in old_portal['observations']}
+        valid_manual = {oid:{'migration_id':receipt['migration_id'],'proposed_name':names[oid]}
+                        for oid,receipt in name_receipts.items()}
+    if live:
+        for oid, receipt in name_receipts.items():
+            m = manifests.get(receipt['migration_id'])
+            if m:
+                try:
+                    check_target(m,current,old_portal,articles)
+                    if payload_hash(m) == receipt['manifest_sha256']: valid_manual[oid] = m
+                except SyncError: pass
+    all_url_counts = Counter(x['url_hash'] for a in articles.values() for x in a['images'])
     result = []
     row_counts = Counter(k[:2] for k in rows)
     old_row_counts = Counter(k[:2] for k in old_rows)
@@ -210,10 +231,13 @@ def candidates(publication, live=None):
         new = old_image is None
         changed = old_image is not None and image is not None and image != old_image
         old_change = bool(old_row_counts[key[:2]] and old_row_counts[key[:2]] != row_counts[key[:2]]) or (old is not None and (row is None or row.get('gallery_name') != old.get('gallery_name')))
+        human_migration = valid_manual.get(old.get('observation_id')) if old else None
+        if human_migration and row is not None:
+            old_change = False
         state = image['state'] if image else old_image['state']
         uncertain = state in REVIEW_STATES or (row and row.get('classification', {}).get('status') not in SAFE_NEW)
         receipt = automatic.get(old.get('observation_id')) if old else None
-        if not (new or changed or removed or old_change or uncertain or receipt): continue
+        if not (new or changed or removed or old_change or uncertain or receipt or old): continue
         classification = row.get('classification', {}) if row else {}
         auto_eligible = bool(ah != retired_article and live and new and row and not old and not old_row_counts[key[:2]] and
             classification.get('status') in SAFE_NEW and classification.get('subject_state_status') == 'accepted_subject'
@@ -223,7 +247,9 @@ def candidates(publication, live=None):
         elif new: group = 'new' if auto_eligible or row is None else 'blocker'; kind = 'new_gallery_photo' if row else 'new_non_gallery_image'
         elif changed: group = 'blocker' if old_change else 'legacy'; kind = 'classification_change'
         elif receipt and classification.get('status') in SAFE_NEW: group = 'auto_added'; kind = 'automatically_added_photo'
-        else: group = 'legacy'; kind = 'legacy_classification_review'
+        elif human_migration: group = 'reviewed'; kind = 'human_name_migration_applied'
+        elif uncertain: group = 'legacy'; kind = 'legacy_classification_review'
+        else: group = 'published'; kind = 'published_photo'
         detail = (live.get('photos', {}).get(key, {}) if live else {})
         source = row or old
         if source:
@@ -241,7 +267,7 @@ def candidates(publication, live=None):
         result.append({'candidate_id': identity(*key), 'article_hash': ah, 'url_hash': uh, 'ordinal': ordinal,
             'change_type': kind, 'group': group, 'state': state, 'reason': image['reason'] if image else 'missing',
             'current_name': old.get('gallery_name') if old else None,
-            'candidate_name': row.get('gallery_name') if row else None,
+            'candidate_name': human_migration['proposed_name'] if human_migration else (row.get('gallery_name') if row else None),
             'observation_id': old.get('observation_id') if old else None,
             'capture_date': (source.get('capture') or {}).get('date') if source else None,
             'previous_state': old_image['state'] if old_image else None,
@@ -249,6 +275,11 @@ def candidates(publication, live=None):
             'fingerprint': photo_fingerprint(articles.get(ah, {}), image, row),
             'auto_eligible':auto_eligible, 'automatic_receipt':receipt,
             'individual_migration_required':group in {'migration','blocker'},
+            'name_migration_available': bool(live and old and row and old['gallery_name'] != '不明'
+                and old['observation_id'] not in protected_reference_ids and all_url_counts[uh] == 1
+                and old['observation_id'] not in name_receipts),
+            'protected_reference': bool(old and old['observation_id'] in protected_reference_ids),
+            'human_name_migration': human_migration['migration_id'] if human_migration else None,
             **detail})
     rank = {v:i for i,v in enumerate(GROUPS)}
     return sorted(result, key=lambda r:(rank[r['group']], r['candidate_id']))
@@ -259,6 +290,7 @@ class SyncReview:
         self.root = Path(root); self.publication = None; self.live = None
         self.rows = []; self.bundle_id = None; self.error = None; self.last_preview = None
         self.decisions = {}; self.audit = []
+        self.exception_preview = None
         self._load()
 
     def _check_storage(self):
@@ -309,6 +341,7 @@ class SyncReview:
 
     def install(self, publication, live=None):
         validate_snapshot(publication['article-sync-snapshot.json'],publication['portal-data.json'])
+        self.exception_preview = None
         self.publication, self.live = publication, live
         self.rows = candidates(publication, live)
         self.inventory_hash = payload_hash(live['articles'] if live else publication['article-sync-snapshot.json']['payload']['articles'])
@@ -327,6 +360,7 @@ class SyncReview:
             'gallery_photos':len(self.publication['portal-data.json']['observations']),
             'classification_review_count':status.get('classification_review_count'),
             'retirement':status.get('retirement'), 'error':self.error,
+            'name_migration_history':self.publication['article-sync-snapshot.json']['payload'].get('name_migrations',[]),
             'publication_sha':self.publication['publication_sha'], 'snapshot_sha256':self.publication['article-sync-snapshot.json']['sha256'],
             'automatic_added_photo_count':status.get('automatic_added_photo_count'),
             'automatic_added_at':status.get('automatic_added_at'),
@@ -370,6 +404,7 @@ class SyncReview:
                 raise ReviewError('EXISTING_PHOTO_PROTECTED_USE_INDIVIDUAL_MIGRATION')
             if choice == 'propose_name' and not name.strip(): raise ReviewError('NAME_REQUIRED')
             self.last_preview = None
+            self.exception_preview = None
             d = {'candidate_id':row['candidate_id'],'bundle_id':self.bundle_id,'decision':choice,
                 'decided_at':now(),'comment':comment,'proposed_name':name.strip(),
                 'base_snapshot_sha256':self.publication['article-sync-snapshot.json']['sha256'],
@@ -412,7 +447,7 @@ class SyncReview:
             return self.last_preview
 
 
-def validate_package(publication):
+def validate_package(publication, manifest=None):
     """Full, fail-closed real generator in a temporary directory, never publish."""
     from article_sync import run as generate
     with isolated_generator() as (_, temporary):
@@ -420,7 +455,20 @@ def validate_package(publication):
         for name in ('portal-data.json','article-sync-snapshot.json','phase3c-production-status.json'):
             (previous/name).write_text(json.dumps(publication[name]),encoding='utf-8')
         output=temporary/'candidate'; report=temporary/'report.json'
-        code = generate(previous, output, report)
+        import sync_exceptions
+        original_directory = sync_exceptions.DIRECTORY
+        try:
+            if manifest is not None:
+                from shutil import copytree
+                sync_exceptions.load_manifests(original_directory)
+                migrations = temporary/'name-migrations'
+                if original_directory.exists(): copytree(original_directory,migrations)
+                else: migrations.mkdir()
+                (migrations/(manifest['migration_id']+'.json')).write_text(json.dumps(manifest),encoding='utf-8')
+                sync_exceptions.DIRECTORY = migrations
+            code = generate(previous, output, report)
+        finally:
+            sync_exceptions.DIRECTORY = original_directory
         status = read_json(report)
         if code: raise ReviewError(status.get('error_code','PREVIEW_BLOCKED'))
         if (output/'admin').exists() or (output/'sync-reviews').exists(): raise ReviewError('PUBLIC_ISOLATION_FAILED')
@@ -428,4 +476,5 @@ def validate_package(publication):
                 'preserved_photo_ids':status['preserved_photo_ids'], 'gallery_photos':status['gallery_photo_count'],
                 'best_shot_references_preserved':status['best_shot_references_preserved'],
                 'research_cases_preserved':status['research_cases_preserved'], 'retirement':status['retirement'],
-                'generated_html_pages':status['generated_html_pages']}
+                'generated_html_pages':status['generated_html_pages'],
+                'name_migration_count':status.get('name_migration_count',0)}

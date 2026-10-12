@@ -177,7 +177,8 @@ def test_http_localhost_csrf_path_and_secret_errors(source,monkeypatch):
     try:
         def request(path,body=None,headers=None):
             return urllib.request.urlopen(urllib.request.Request(base+path,data=json.dumps(body).encode() if body is not None else None,headers=headers or {}))
-        with request('/api/sync/candidates') as response:assert json.load(response)['total']==1
+        with request('/api/sync/candidates') as response:assert json.load(response)['total']==2
+        with request('/api/sync/candidates?group=published') as response:assert json.load(response)['total']==1
         for headers in ({'Host':'evil.example'},{'Origin':'https://evil.example'}):
             with pytest.raises(urllib.error.HTTPError) as err:request('/api/sync/state',headers=headers)
             assert err.value.code==403

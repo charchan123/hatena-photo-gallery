@@ -38,8 +38,8 @@ async function load(){try{const r=await fetch('/api/state');state=await r.json()
 let syncState, syncPage=1, syncTotal=0;
 const syncStateNames={non_mushroom:'キノコ以外',unidentified_mushroom:'キノコと確認済み・種名不明',named_mushroom:'名前のあるキノコ',conflict:'判定の競合',unclassified:'未分類',ambiguous:'曖昧な判定'};
 const syncReasons={taxonomy_unmatched:'名前の対応が未確認',no_detected_label:'名前の記載を検出できません',taxonomy_mushroom:'既存分類でキノコと確認',taxonomy_review:'分類の確認が必要',shadow_metadata_missing:'判定情報不足',missing:'前回の写真が今回見つかりません'};
-function syncError(code){const labels={STALE_REVIEW:'取得内容が変わりました。再確認してください。',STALE_PUBLIC_SNAPSHOT:'公開状態が更新されました。再取得してください。',STALE_LIVE_REVIEW:'記事や写真が更新されました。再取得して判断し直してください。',INDIVIDUAL_MIGRATION_REQUIRED:'この変更は個別移行が必要です。この画面では適用できません。',LOCAL_HATENA_CREDENTIALS_UNAVAILABLE:'ローカルのはてな認証が未設定です。',PROTECTED_REFERENCE_ERROR:'既存の登録参照を維持できないため停止しました。',FRESH_MAIN_CHECKOUT_REQUIRED:'ローカルcheckoutを最新mainへ更新してください。',GITHUB_AUTH_REQUIRED:'GitHub CLIの認証が必要です。'};return (labels[code]||'確認・検証が完了していません。')+' ('+code+')'}
-const syncGroupNames={blocker:'要対応',new:'確認待ち（新規）',legacy:'確認待ち（以前から）',migration:'要対応・個別移行',auto_added:'自動追加済み',reviewed:'確認済み（履歴のみ）',held:'人間が保留'};
+function syncError(code){const labels={NAME_MIGRATION_PROTECTED_REFERENCE:'ベストショット・研究室・同定履歴の対象写真は変更できません。',NAME_MIGRATION_DUPLICATE_URL:'同一URLが複数あるため、写真を一意に特定できません。',NAME_MIGRATION_NAME_NOT_IN_EXISTING_TAXONOMY:'既存分類にない名前は適用できません。提案として保留してください。',NAME_MIGRATION_SOURCE_CHANGED:'取得元の名前・分類根拠が変化しています。再レビューが必要です。',CLASSIFICATION_REASON_REQUIRED:'確認メモに分類の根拠を入力してください。',EXPLICIT_NAME_CONFIRMATION_MISMATCH:'変更前・変更後の名前をプレビューどおり入力してください。',EXPLICIT_NAME_PROPOSAL_REQUIRED:'この写真は今回の個別移行に対応していません。提案・保留のみ可能です。',STALE_REVIEW:'取得内容が変わりました。再確認してください。',STALE_PUBLIC_SNAPSHOT:'公開状態が更新されました。再取得してください。',STALE_LIVE_REVIEW:'記事や写真が更新されました。再取得して判断し直してください。',INDIVIDUAL_MIGRATION_REQUIRED:'この変更は個別移行が必要です。この画面では適用できません。',LOCAL_HATENA_CREDENTIALS_UNAVAILABLE:'ローカルのはてな認証が未設定です。',PROTECTED_REFERENCE_ERROR:'既存の登録参照を維持できないため停止しました。',FRESH_MAIN_CHECKOUT_REQUIRED:'ローカルcheckoutを最新mainへ更新してください。',GITHUB_AUTH_REQUIRED:'GitHub CLIの認証が必要です。'};return (labels[code]||'確認・検証が完了していません。')+' ('+code+')'}
+const syncGroupNames={blocker:'要対応',new:'確認待ち（新規）',legacy:'確認待ち（以前から）',migration:'要対応・個別移行',auto_added:'自動追加済み',reviewed:'確認済み（履歴のみ）',held:'人間が保留',published:'既存の公開写真'};
 function syncValue(v){return v===null?'UNKNOWN':v===undefined?'未取得':String(v)}
 async function syncGet(path){const r=await fetch(path,{cache:'no-store'}),v=await r.json();if(!r.ok)throw Error(v.error);return v}
 async function loadSync(){try{
@@ -65,11 +65,14 @@ async function loadSyncRows(){const query=new URLSearchParams({q:$('#sync-search
  if(r.article_url){const link=node('a','公開記事を確認');link.href=r.article_url;link.target='_blank';link.rel='noopener noreferrer';b.append(link)}
  if(!r.thumbnail)b.append(node('p','安全な画像URLを取得できないため写真表示は利用できません。ハッシュからURLを推測しません。','meta'));
  if(r.stale_review)b.append(node('p','前の判断は古いため適用しません。再確認してください。','error'));
- if(r.protected_existing)b.append(node('p','既存写真は保護されています。名前・ID・URL・削除はこの画面で適用しません。','meta'));
+ if(r.protected_existing)b.append(node('p','既存写真は保護されています。ID・URL・削除は変更しません。参照のない単一写真の名前だけ、個別検証とDraft PRを経由して修正できます。','meta'));
+ if(r.protected_reference)b.append(node('p','ベストショット・研究室・同定履歴への参照があるため、個別の名前移行も禁止です。','error'));
+ if(r.human_name_migration)b.append(node('p','人間の承認済み名前修正: '+r.human_name_migration,'meta'));
  const comment=field('確認メモ（ローカルに保存。PRには本文ではなくハッシュのみ）','comment',r.review?.comment||'','textarea');b.append(comment);
  const choose=async(decision,proposed_name='')=>{try{await api('/api/sync/decision',{candidate_id:r.candidate_id,bundle_id:v.bundle_id,decision,comment:comment.querySelector('textarea').value,proposed_name});await loadSync();message('確認履歴をローカルに保存しました。自動公開の許可・停止条件は変わりません。')}catch(e){message(syncError(e.message),true)}};
  a.append(button('確認済み（履歴のみ）',()=>choose('confirmed')),button('保留',()=>choose('hold')),button('確認不要・現状維持',()=>choose('no_change')),button('判断取消',()=>choose('pending')));
- a.append(button('名前修正を提案（要個別移行）',()=>openEditor('名前の提案を保留として保存',[field('人間が確認した名前','name')],async f=>{await choose('propose_name',f.get('name'));$('#editor').close()})));
+ a.append(button('名前修正を提案（公開未収録・保護対象は保留のみ）',()=>openEditor('名前の提案を保留として保存',[field('人間が確認した名前','name')],async f=>{await choose('propose_name',f.get('name'));$('#editor').close()})));
+ if(r.name_migration_available && r.review?.decision==='propose_name')a.append(button('この名前修正を実生成プレビュー',async()=>{try{const p=await api('/api/sync/exception-preview',{candidate_id:r.candidate_id,bundle_id:v.bundle_id});syncException=p;$('#sync-exception-result').textContent=`変更前：${p.old_name}\n変更後：${p.proposed_name}\n対象写真ID：${p.observation_id}\n既存写真ID維持：${p.validation.preserved_photo_ids}枚\n参照保護：検証済み\n公開：まだ変更していません。承認後にDraft PRを作成します。`;$('#sync-exception-technical').textContent=JSON.stringify(p,null,2);$('#sync-exception-approve').disabled=false;$('#sync-exception-pr').disabled=true;message('実生成済み。旧名と新名を確認して明示承認してください。')}catch(e){syncException=null;$('#sync-exception-approve').disabled=true;message(syncError(e.message),true)}}));
  if(!r.protected_existing)a.append(button('対象外を提案（保留）',()=>choose('exclude')));
  out.append(e);
  });if(!v.rows.length)out.append(node('p','該当する候補はありません。','empty'));
@@ -79,3 +82,7 @@ $('#sync-live').onclick=async()=>{try{message('公開記事をGET取得・検証
 $('#sync-search-button').onclick=()=>{syncPage=1;loadSyncRows().catch(e=>message(syncError(e.message),true))};
 $('#sync-prev').onclick=()=>{syncPage--;loadSyncRows().catch(e=>message(syncError(e.message),true))};$('#sync-next').onclick=()=>{syncPage++;loadSyncRows().catch(e=>message(syncError(e.message),true))};
 $('#sync-preview').onclick=async()=>{try{const v=await api('/api/sync/preview');$('#sync-preview-result').textContent=JSON.stringify(v,null,2);message(v.ready?'実生成・参照保護の検証が成功しました。まだ公開されていません。':'検証は保留です: '+syncError(v.error_code),!v.ready)}catch(e){message(syncError(e.message),true)}};
+
+let syncException=null;
+$('#sync-exception-approve').onclick=()=>openEditor('写真名の変更を明示確認',[field('変更前の名前を再入力','old_name'),field('変更後の名前を再入力','new_name')],async f=>{try{if(!syncException)throw Error('EXCEPTION_PREVIEW_REQUIRED');await api('/api/sync/exception-approve',{migration_id:syncException.migration_id,confirm_old_name:f.get('old_name'),confirm_new_name:f.get('new_name')});$('#editor').close();$('#sync-exception-pr').disabled=!state.repo.gh_authenticated;message('明示承認を保存しました。まだ公開されていません。')}catch(e){message(syncError(e.message),true)}});
+$('#sync-exception-pr').onclick=()=>confirmAction('最新mainの隔離worktreeで実API GET取得・全テスト・鮮度確認を行い、名前変更1件だけのDraft PRを作成します。公開はしません。',async()=>{const p=await api('/api/sync/exception-pr');$('#sync-exception-pr').disabled=true;message('Draft PR: '+p.url)});
