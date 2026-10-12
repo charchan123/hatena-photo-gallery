@@ -1,0 +1,145 @@
+name: PR105 read-only Hatena sync preflight
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    if: github.event.pull_request.number == 105 && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout audited same-repository PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: Read previous publication only
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: .preflight-previous
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /portal-data.json
+            /phase3c-production-status.json
+            /article-sync-snapshot.json
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install existing production requirements
+        run: python -m pip install -r requirements.txt
+      - name: Restore EXIF performance cache (no save)
+        uses: actions/cache/restore@v4
+        with:
+          path: cache/exif-cache.json
+          key: exif-cache-v1-${{ runner.os }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            exif-cache-v1-${{ runner.os }}-
+      - name: Existing guarded sync with Hatena GET-only access
+        env:
+          HATENA_USER: ${{ secrets.HATENA_USER }}
+          HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
+          HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
+        run: |
+          if [ -z "$HATENA_USER" ] || [ -z "$HATENA_BLOG_ID" ] || [ -z "$HATENA_API_KEY" ]; then
+            echo 'PREFLIGHT_BLOCKED: SECRETS_UNAVAILABLE'
+            exit 1
+          fi
+          workdir=$(mktemp -d "${RUNNER_TEMP}/hatena-preflight.XXXXXX")
+          cp -a "$GITHUB_WORKSPACE/." "$workdir/work"
+          cd "$workdir/work"
+          python - <<'PYRUN'
+          import json, os
+          from pathlib import Path
+          import main, article_sync as sync
+          root = Path(os.environ['RUNNER_TEMP'])
+          live_get = main.requests.get
+          responses = []
+          mode, replay_index = 'live', 0
+          def observed_get(url, **kwargs):
+              global replay_index
+              if kwargs.get('auth') == main.AUTH:
+                  if mode == 'replay':
+                      assert replay_index < len(responses)
+                      prior_url, response = responses[replay_index]
+                      assert url == prior_url
+                      replay_index += 1
+                      return response
+                  response = live_get(url, **kwargs)
+                  responses.append((url, response))
+                  return response
+              return live_get(url, **kwargs)
+          main.requests.get = observed_get
+          first = root / 'hatena-preflight-site'
+          first_report = root / 'hatena-preflight-report.json'
+          if sync.run('.preflight-previous', str(first), str(first_report)) != 0:
+              raise SystemExit(1)
+          before = sync.read_json('.preflight-previous/portal-data.json')
+          after = sync.read_json(first / 'portal-data.json')
+          manifest = sync.read_json('sync-migrations/hatena-draft-photo-retirement-2026-10-12.json')
+          retired = {x['observation_id'] for x in manifest['observations']}
+          old = {x['observation_id']: x for x in before['observations'] if x['observation_id'] not in retired}
+          now = {x['observation_id']: x for x in after['observations']}
+          assert len(before['observations']) == 913 and len(retired) == 7 and len(old) == 906
+          assert all(oid in now and (x['gallery_name'],x['src'],x['article']['article_id']) ==
+              (now[oid]['gallery_name'],now[oid]['src'],now[oid]['article']['article_id']) for oid,x in old.items())
+          fixed = ['obs-e018bfa32f65a29d178ba17f24363e34935c52439a3c6369cbc3b3e36f162f0e',
+                   'obs-ffc33e1b6fe125ae714c5e13043b6165141022cba3c56b45fb9c7675eff1ce6d',
+                   'obs-12fff1209f94f45a12e686c6872c636b623a2d45ba5147161493d6fb7b8dd1d6',
+                   'obs-99df80cf75b7e5140b2e6683a46ff89d416cdbb8bad6a51c70275a78c66e55f8',
+                   'obs-616ca631d689a100d476ae13b3dc1841cdf43f8abc6476a4b3e30fe78d23638b']
+          assert all(old[oid]['gallery_name']==now[oid]['gallery_name'] for oid in fixed)
+          mode = 'replay'
+          second_report = root / 'second-sync-report.json'
+          assert sync.run(first, str(root/'second-site'), str(second_report)) == 0
+          second = sync.read_json(second_report)
+          assert replay_index == len(responses)
+          assert second['comparison'] == 'KNOWN'
+          assert all(second[key] == 0 for key in ['new_articles','deleted_articles','new_images','deleted_images','updated_articles','classification_changes','possible_url_changes','url_changes'])
+          assert second['retirement']['state'] == 'ALREADY_APPLIED' and second['retirement']['retired_this_run'] == 0
+          first_status = sync.read_json(first_report)
+          first_status['preflight_checks'] = {'all_906_ids_names_article_urls_preserved': True,
+              'individual_five_names_preserved':5,'second_same_input_zero_diff':True,
+              'second_sync_result':second['result'],'second_retirement':second['retirement'],
+              'second_output_inspection':second['retired_output_inspection'],
+              'additional_accepted_photos':len(now)-len(old), 'live_atom_pages':len(responses)}
+          sync.write_json(first_report, first_status)
+          PYRUN
+      - name: Counts and reason codes only (no source content)
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, os, pathlib, subprocess
+          root = pathlib.Path(os.environ['RUNNER_TEMP'])
+          path = root / 'hatena-preflight-report.json'
+          report = json.loads(path.read_text()) if path.exists() else {'result': 'BLOCKED', 'error_code': 'REPORT_UNAVAILABLE'}
+          keys = ('result', 'comparison', 'error_code', 'fetch_error', 'id_compatibility_error',
+                  'baseline_error', 'fetch_audit', 'published_article_count', 'detected_image_count',
+                  'previous_photo_count', 'preserved_photo_ids', 'gallery_photo_count',
+                  'best_shot_references_preserved', 'research_cases_preserved', 'generated_html_pages',
+                  'bootstrap', 'new_articles', 'deleted_articles', 'new_images', 'deleted_images',
+                  'possible_url_changes', 'url_changes', 'updated_articles', 'classification_changes',
+                  'classification_review_count', 'classification_state_counts', 'retirement', 'retired_output_inspection', 'preflight_checks')
+          safe = {key: report[key] for key in keys if key in report}
+          safe['head_sha'] = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          safe['previous_publication_sha'] = subprocess.check_output(['git', '-C', '.preflight-previous', 'rev-parse', 'HEAD'], text=True).strip()
+          safe['publication_executed'] = False
+          safe['hatena_write_executed'] = False
+          (root / 'hatena-preflight-summary.json').write_text(json.dumps(safe, indent=2) + '\n')
+          print('PREFLIGHT_SUMMARY=' + json.dumps(safe, sort_keys=True))
+          PY
+      - name: Upload sanitized counts only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr105-hatena-read-only-preflight
+          path: ${{ runner.temp }}/hatena-preflight-summary.json
+          if-no-files-found: error
+          retention-days: 7

@@ -529,16 +529,16 @@ def fetch_hatena_articles_api(*, strict=False, audit=None, excluded_draft_hashes
                     kind = content.attrib.get("type", "")
                     kind = kind if kind in {"text/html", "html", "text/x-markdown", "text/x-hatena-syntax", "text/plain"} else "other"
                     audit["content_type_counts"][kind] = audit["content_type_counts"].get(kind, 0) + 1
-                    source = "formatted" if formatted is not None else "content_html"
+                    source = "content_html" if kind in {"text/html", "html"} else "formatted"
                     audit["html_source_counts"][source] = audit["html_source_counts"].get(source, 0) + 1
                     if formatted is not None and kind in {"text/html", "html"}:
                         raw_images = [node.get("src") for node in BeautifulSoup(html_content, "html.parser").find_all("img")]
                         rendered_images = [node.get("src") for node in BeautifulSoup(formatted.text or "", "html.parser").find_all("img")]
                         audit["html_image_representation_difference_articles"] += int(raw_images != rendered_images)
-                if formatted is not None:
+                if content.attrib.get("type", "") not in {"text/html", "html"}:
+                    if formatted is None or formatted.get("type") not in {"text/html", "html"}:
+                        raise SyncError("API_RENDERED_HTML_MISSING")
                     html_content = formatted.text or ""
-                elif content.attrib.get("type", "") not in {"text/html", "html"}:
-                    raise SyncError("API_RENDERED_HTML_MISSING")
                 if not _atom_text(entry, "atom:updated", ns):
                     raise SyncError("API_UPDATED_MISSING")
             filename = f"{ARTICLES_DIR}/article_{count+i}.html"

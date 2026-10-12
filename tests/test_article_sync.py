@@ -487,3 +487,24 @@ def test_empty_live_feed_does_not_publish(tmp_path, monkeypatch):
     assert sync.run(root, output, report) == 1
     assert sync.read_json(report)["error_code"] == "EMPTY_HARVEST"
     assert (output / "index.html").read_bytes() == b"old-publication"
+
+
+def test_explicit_html_keeps_original_names_even_when_formatted_names_differ(monkeypatch, tmp_path):
+    import html
+    response = atom_entry()
+    rendered = '<p>別名</p><img src="https://images.example/A.jpg" alt="別名">'
+    response = response.replace('</content>', '</content><h:formatted-content xmlns:h="http://www.hatena.ne.jp/info/xmlns#" type="text/html">'+html.escape(rendered)+'</h:formatted-content>')
+    main, _ = api_fixture(monkeypatch, tmp_path, [feed(response)])
+    audit = {}; paths = main.fetch_hatena_articles_api(strict=True, audit=audit)
+    assert 'シイタケ' in Path(paths[0]).read_text() and '別名' not in Path(paths[0]).read_text()
+    assert audit['html_source_counts'] == {'content_html': 1}
+
+
+@pytest.mark.parametrize('kind', ['text/x-markdown', 'text/x-hatena-syntax'])
+def test_non_html_requires_explicitly_typed_rendered_html(monkeypatch, tmp_path, kind):
+    import html
+    rendered = '<p>シイタケ</p><img src="https://images.example/A.jpg">'
+    response = atom_entry().replace('type="text/html"', 'type="'+kind+'"')
+    response = response.replace('</content>', '</content><h:formatted-content xmlns:h="http://www.hatena.ne.jp/info/xmlns#" type="text/html">'+html.escape(rendered)+'</h:formatted-content>')
+    main, _ = api_fixture(monkeypatch, tmp_path, [feed(response)])
+    assert Path(main.fetch_hatena_articles_api(strict=True)[0]).read_text() == rendered

@@ -14,6 +14,10 @@ import re
 import tempfile
 import contextlib
 import io
+import sys
+
+if __name__ == "__main__":
+    sys.modules["article_sync"] = sys.modules[__name__]
 
 from bs4 import BeautifulSoup
 
@@ -158,9 +162,11 @@ def inventory(article_files, metadata, shadows):
     return articles
 
 
-def seal_snapshot(articles, portal, timestamp):
+def seal_snapshot(articles, portal, timestamp, retirement=None):
     payload = {"version": 1, "last_success_at": timestamp, "articles": articles,
                "portal_sha256": payload_hash(portal)}
+    if retirement is not None:
+        payload["retirement"] = retirement
     return {"payload": payload, "sha256": payload_hash(payload)}
 
 
@@ -172,6 +178,9 @@ def validate_snapshot(snapshot, portal):
         assert payload["portal_sha256"] == payload_hash(portal)
         assert datetime.fromisoformat(payload["last_success_at"]).tzinfo is not None
         articles = payload["articles"]
+        if "retirement" in payload:
+            from sync_retirement import validate_ledger
+            validate_ledger(payload["retirement"], portal)
         assert isinstance(articles, dict) and articles
         for aid, row in articles.items():
             assert HASH.fullmatch(aid) and HASH.fullmatch(row["updated_hash"])
@@ -270,6 +279,9 @@ class SyncRun:
         self.previous_snapshot = validate_snapshot(read_json(snapshot), self.previous) if snapshot.exists() else None
         if self.previous_snapshot:
             self.status["last_success_at"] = self.previous_snapshot["last_success_at"]
+        from sync_retirement import Retirement
+        self.retirement = Retirement(self.previous, self.previous_snapshot, self.previous_directory)
+        self.effective_previous = self.previous
         self.article_files = None
 
     def capture(self, article_files, metadata):
@@ -324,7 +336,11 @@ class SyncRun:
                 raise SyncError("ABNORMAL_ARTICLE_DECREASE")
             if differences["deleted_articles"] or differences["deleted_images"]:
                 raise SyncError("DELETION_OR_URL_CHANGE_REQUIRES_REVIEW")
-        return reconcile_ids(portal, self.previous)
+        self.effective_previous = self.retirement.prepare(portal, self.articles, self.excluded_draft_hashes,
+            Path(__file__).parent / "data")
+        result = reconcile_ids(portal, self.effective_previous)
+        self.status["retirement"] = self.retirement.status()
+        return result
 
     def finalize(self, output, flags, data_directory):
         output = Path(output)
@@ -336,13 +352,13 @@ class SyncRun:
                 or phase.get("production_image_count") != len(portal["observations"])):
             raise SyncError("OUTPUT_INTEGRITY_ERROR")
         self.status.update(validate_references(portal, self.previous, data_directory))
-        old = {row["observation_id"]: row for row in self.previous["observations"]}
+        old = {row["observation_id"]: row for row in self.effective_previous["observations"]}
         current = {row["observation_id"]: row for row in portal["observations"]}
         preserved = sum(oid in current and (row["src"], row["article"]["article_id"]) == (
             current[oid]["src"], current[oid]["article"]["article_id"]) for oid, row in old.items())
         if preserved != len(old):
             raise SyncError("ID_COMPATIBILITY_ERROR")
-        self.status.update(previous_photo_count=len(old), preserved_photo_ids=preserved,
+        self.status.update(previous_photo_count=len(self.previous["observations"]), preserved_photo_ids=preserved,
                            gallery_photo_count=len(current))
         for filename in ("index.html", "new-top.html", "records.html", "season.html", "features.html",
                          "research.html", "best-shots.html", "favorite.html"):
@@ -350,7 +366,8 @@ class SyncRun:
             if not file.is_file() or file.stat().st_size == 0:
                 raise SyncError("OUTPUT_PAGE_MISSING")
         now = datetime.now(timezone.utc).isoformat()
-        snapshot = seal_snapshot(self.articles, portal, now)
+        self.status["retired_output_inspection"] = self.retirement.inspect_output(output, portal, self.articles)
+        snapshot = seal_snapshot(self.articles, portal, now, self.retirement.ledger)
         validate_snapshot(snapshot, portal)
         self.status["generated_html_pages"] = sum(1 for _ in output.rglob("*.html"))
         self.status.update(result="SUCCESS", last_success_at=now,
@@ -369,6 +386,9 @@ def run(previous, output="output", report="cache/article-sync-report.json"):
     try:
         sync = SyncRun(previous, report)
         output_path = Path(output).resolve()
+        original_path = sync.previous_directory.resolve()
+        if sync.retirement.initial and (output_path == original_path or output_path in original_path.parents):
+            raise SyncError("RETIREMENT_ORIGINAL_OVERWRITE_FORBIDDEN")
         output_path.parent.mkdir(parents=True, exist_ok=True)
         with tempfile.TemporaryDirectory(prefix="hatena-sync-", dir=output_path.parent) as temporary:
             stage = Path(temporary) / "site"
