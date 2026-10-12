@@ -1,0 +1,157 @@
+{
+  "prior_artifact_name": "mushroom-final-critical-investigation-decisions-2026-10-03.json",
+  "library_file_id": "libfile_3532cdfc23c88191823331b56971666d",
+  "read_version_id": "1",
+  "prior_text_sha256": "1fd6341736b865f7a3c5c1fe13069d8d6abc831809500fc8e534f049cf5ab048",
+  "prior_original_audit_summary": {
+    "adopted": 26,
+    "held_taxon_issues": 9,
+    "additional_investigation": 3
+  },
+  "current_decisions": [
+    {
+      "issue_id": "IA-019",
+      "mushroom_id": "uraguronigaiguchi",
+      "prior_classification": "taxon_concept_conflict",
+      "hold_continues": true,
+      "core_value_changes": 0,
+      "status": "no_new_decisive_primary_evidence_in_this_batch",
+      "prior_unresolved_points": [
+        "島根県の無印掲載の個別区分と理由。",
+        "仮称ニセウラグロニガイグチの正式学名、標本、毒性証拠。",
+        "石川県掲載個体、日本産標本、北米症例の同じ分類群への帰属。",
+        "国内中毒報告の一次症例、人数、同定、調理条件。今回確認範囲では確保できず、不存在とはしない。"
+      ],
+      "prior_sources": [
+        "ishikawa-uraguronigaiguchi",
+        "audit-shimane-caution",
+        "final-critical-kanto-2020",
+        "final-critical-kahaku-uraguro",
+        "final-critical-halling-2012-landing",
+        "final-critical-das-2024",
+        "final-critical-nama-2006",
+        "final-critical-nama-2018-2020"
+      ],
+      "current_notes_already_contain_prior_warning": true
+    },
+    {
+      "issue_id": "IA-020",
+      "mushroom_id": "kiraratake",
+      "prior_classification": "source_conflict",
+      "hold_continues": true,
+      "core_value_changes": 0,
+      "status": "no_new_decisive_primary_evidence_in_this_batch",
+      "prior_unresolved_points": [
+        "島根県の毒評価の原症例／分析根拠と、石川県の食評価の更新・適用範囲。",
+        "国内キララタケの直接成分分析、同定標本、毒性条件。",
+        "中国の単独表示例の飲酒、調理温度時間、混合食の有無、個別同定証拠。",
+        "1978年不検出報告の原章と分析限界、1992年試料の標本情報。"
+      ],
+      "prior_sources": [
+        "research-ishikawa-kiraratake",
+        "research-ffpri-kinoko029",
+        "audit-shimane-caution",
+        "final-critical-shimane-2025-kirara",
+        "final-critical-tufc-kirara",
+        "final-critical-china-2021",
+        "final-critical-navarro-dnb",
+        "final-critical-matthies-laatsch-1992",
+        "final-critical-norway-dogs-2023"
+      ],
+      "current_notes_already_contain_prior_warning": true
+    },
+    {
+      "issue_id": "IA-029",
+      "mushroom_id": "tamagotakemodoki",
+      "prior_classification": "probable_resolution",
+      "hold_continues": true,
+      "core_value_changes": 0,
+      "status": "no_new_decisive_primary_evidence_in_this_batch",
+      "prior_unresolved_points": [
+        "厚労省記載の出典・改訂履歴・訂正の有無。",
+        "つばの脱落頻度、成長段階別の目視可否の国内標本調査。",
+        "厚労省の写真・記載に対応する標本同定資料。異なる分類群という証拠は未確認。",
+        "ring facetが典型形質だけを示すのか、検索で危険種を除外する条件になるのかの実装確認。"
+      ],
+      "prior_sources": [
+        "research-ishikawa-tamagotakemodoki",
+        "research-mhlw-0000143395",
+        "final-critical-imai-1933",
+        "final-critical-yang-doi-1999"
+      ],
+      "current_notes_already_contain_prior_warning": true
+    }
+  ],
+  "held_assignments": [
+    {
+      "decision_id": "FCR-031",
+      "mushroom_id": "yamaiguchi",
+      "facet_id": "hairy",
+      "reason": "「やや綿毛状」は質感の比喩。毛そのものの存在を明示する記載まで確認できず、hairyへの対応を保留。",
+      "action": "unchanged_not_promoted"
+    },
+    {
+      "decision_id": "FCR-049",
+      "mushroom_id": "ukonhatsu",
+      "facet_id": "cap_fibrous_felt",
+      "reason": "ビロード状のみ。繊維紋・フェルト状と同義の根拠なし",
+      "action": "unchanged_not_promoted"
+    },
+    {
+      "decision_id": "FCR-061",
+      "mushroom_id": "tamagotake",
+      "facet_id": "cap_striate_grooved",
+      "reason": "条線の記載位置が傘縁と明示されない",
+      "action": "unchanged_not_promoted"
+    },
+    {
+      "decision_id": "FCR-107",
+      "mushroom_id": "kiamiashiiguchi",
+      "facet_id": "cap_fibrous_felt",
+      "reason": "ビロード状のみ。繊維紋・フェルト状と同義の根拠なし",
+      "action": "unchanged_not_promoted"
+    },
+    {
+      "decision_id": "FCR-117",
+      "mushroom_id": "matsuouji",
+      "facet_id": "ring",
+      "reason": "つばのないものもある。現行の無条件ringチップは保留",
+      "action": "unchanged_not_promoted"
+    },
+    {
+      "decision_id": "FCR-131",
+      "mushroom_id": "awatake",
+      "facet_id": "cap_fibrous_felt",
+      "reason": "ビロード状のみ。繊維紋・フェルト状と同義の根拠なし",
+      "action": "unchanged_not_promoted"
+    },
+    {
+      "decision_id": "FCR-154",
+      "mushroom_id": "oniiguti",
+      "facet_id": "hairy",
+      "reason": "綿毛状鱗片を独立した毛の存在へ拡張しない",
+      "action": "unchanged_not_promoted"
+    },
+    {
+      "decision_id": "FCR-157",
+      "mushroom_id": "oniigutimodoki",
+      "facet_id": "ring",
+      "reason": "早落性。現行の無条件ringチップは保留",
+      "action": "unchanged_not_promoted"
+    },
+    {
+      "decision_id": "FCR-292",
+      "mushroom_id": "nigakuritake",
+      "facet_id": "ring",
+      "reason": "不完全なつば。現行ring意味との対応保留",
+      "action": "unchanged_not_promoted"
+    },
+    {
+      "decision_id": "FCR-321",
+      "mushroom_id": "hitoyotake",
+      "facet_id": "ring",
+      "reason": "不完全なつば痕跡。現行ring意味との対応保留",
+      "action": "unchanged_not_promoted"
+    }
+  ]
+}

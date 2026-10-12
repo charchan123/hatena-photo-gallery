@@ -1,0 +1,25 @@
+{
+  "materials": [
+    {
+      "mushroom_id": "kiirosuppontake",
+      "source_url": "https://kinki.env.go.jp/nature/odaigahara/fieldguide/fungi/fungi_10.html",
+      "status": "search_result_only_open_failed_twice",
+      "use_for_proposals": false,
+      "needed": "発生時期・発生環境の本文取得。検索抜粋だけでは検証済みとしない。"
+    },
+    {
+      "mushroom_id": "hokoritake",
+      "source_url": "https://taisetsu.niye.go.jp/wp-content/uploads/2018/03/seseragi_guide.pdf",
+      "status": "search_result_only_pdf_body_not_opened",
+      "use_for_proposals": false,
+      "needed": "該当ページの本文・対象種・学名対応を確認。全PDF画像化不要。"
+    },
+    {
+      "mushroom_id": "yamabusitake",
+      "source_url": "https://www.ffpri.go.jp/pubs/various/documents/chukanhoukoku_1.pdf",
+      "status": "search_result_only_pdf_body_not_opened",
+      "use_for_proposals": false,
+      "needed": "該当箇所の分類・和名・学名を確認。全PDF画像化不要。"
+    }
+  ]
+}

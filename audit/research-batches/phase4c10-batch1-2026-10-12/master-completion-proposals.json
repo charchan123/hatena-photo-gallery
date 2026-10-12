@@ -1,0 +1,386 @@
+{
+  "schema_version": 1,
+  "kind": "existing_master_replacement_requires_independent_reviewed_migration",
+  "cannot_promote_via_additive_overlay": true,
+  "human_approval": null,
+  "proposals": [
+    {
+      "proposal_id": "P4C10-P-002",
+      "mushroom_id": "kiirosuppontake",
+      "canonical_name_ja": "キイロスッポンタケ",
+      "target_field": "features",
+      "current_value": {
+        "summary": "鮮黄色の子実体。頭部には通常、悪臭を放つ暗色の粘液（グレバ）がつくと記載されている。",
+        "source_ids": [
+          "research-gap-env-kiirosuppontake2005"
+        ]
+      },
+      "proposed_value": {
+        "summary": "鮮黄色の子実体。頭部には通常、悪臭を放つ暗色の粘液（グレバ）がつくと記載されている。 京都府の同和名資料は、グレバの下の頭部に黄色い網目状隆起、柄に淡黄色から黄色の色を記載する。掲載学名はPhallus flavocostatusで、既存掲載名との対応は未解決。",
+        "source_ids": [
+          "research-gap-env-kiirosuppontake2005",
+          "p4c10-kyoto-kiirosuppontake-2015"
+        ]
+      },
+      "source_id": "p4c10-kyoto-kiirosuppontake-2015",
+      "source_url": "https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fun0004.html",
+      "organization": "京都府 環境部自然環境保全課",
+      "source_title": "京都府レッドデータブック2015 キイロスッポンタケ（執筆：吉見昭一・佐久間大輔）",
+      "checked_at": "2026-10-12",
+      "evidence_quote": "柄部は淡黄色から黄色。",
+      "judgment": "原値を残した資料別注記。学名を同義として統合しない。",
+      "confidence": "high",
+      "research_disposition": "adoption_candidate",
+      "human_decision": "pending",
+      "human_approval": null,
+      "requires_separate_master_migration": true,
+      "evidence": {
+        "evidence_id": "P4C10-E-002",
+        "source_id": "p4c10-kyoto-kiirosuppontake-2015",
+        "snapshot_identity": "urn:phase4c10:bounded-service-extract:p4c10-kyoto-kiirosuppontake-2015:sha256:27e66d67a8e4e85127570f28dc2835e122824d32d84efef5661cc8c258fb83d0",
+        "quote": "柄部は淡黄色から黄色。",
+        "quote_sha256": "81f55bc60ef4d3f22a9c1bab96ee3de38d62d9f8ebecf151b07af6d900ab25dd",
+        "char_start": 23,
+        "char_end": 34,
+        "snapshot_line_start": 2,
+        "snapshot_line_end": 2,
+        "text_snapshot_sha256": "27e66d67a8e4e85127570f28dc2835e122824d32d84efef5661cc8c258fb83d0",
+        "original_response_sha256": "25ce5c47d94f0a399a9d589b97d885749c90f83f95076466e6ecbe17b6b0791c"
+      }
+    },
+    {
+      "proposal_id": "P4C10-P-003",
+      "mushroom_id": "kiirosuppontake",
+      "canonical_name_ja": "キイロスッポンタケ",
+      "target_field": "habitat",
+      "current_value": {
+        "summary": null,
+        "source_ids": []
+      },
+      "proposed_value": {
+        "summary": "京都府の同和名資料では広葉樹の朽木から発生すると記載される（掲載学名Phallus flavocostatus）。既存Phallus costatus記録との分類群対応は未解決。",
+        "source_ids": [
+          "p4c10-kyoto-kiirosuppontake-2015"
+        ]
+      },
+      "source_id": "p4c10-kyoto-kiirosuppontake-2015",
+      "source_url": "https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fun0004.html",
+      "organization": "京都府 環境部自然環境保全課",
+      "source_title": "京都府レッドデータブック2015 キイロスッポンタケ（執筆：吉見昭一・佐久間大輔）",
+      "checked_at": "2026-10-12",
+      "evidence_quote": "生態的特性  | 広葉樹朽木より発生。",
+      "judgment": "nullを出典の和名概念に限定した記述で補完する案。全国・全分類群への一般化はしない。",
+      "confidence": "high",
+      "research_disposition": "adoption_candidate",
+      "human_decision": "pending",
+      "human_approval": null,
+      "requires_separate_master_migration": true,
+      "evidence": {
+        "evidence_id": "P4C10-E-003",
+        "source_id": "p4c10-kyoto-kiirosuppontake-2015",
+        "snapshot_identity": "urn:phase4c10:bounded-service-extract:p4c10-kyoto-kiirosuppontake-2015:sha256:27e66d67a8e4e85127570f28dc2835e122824d32d84efef5661cc8c258fb83d0",
+        "quote": "生態的特性  | 広葉樹朽木より発生。",
+        "quote_sha256": "cce26bbacd3938d19a47f2bb31f79ac19de492a6ff2ac18564e77ff01a0ababb",
+        "char_start": 35,
+        "char_end": 54,
+        "snapshot_line_start": 3,
+        "snapshot_line_end": 3,
+        "text_snapshot_sha256": "27e66d67a8e4e85127570f28dc2835e122824d32d84efef5661cc8c258fb83d0",
+        "original_response_sha256": "25ce5c47d94f0a399a9d589b97d885749c90f83f95076466e6ecbe17b6b0791c"
+      }
+    },
+    {
+      "proposal_id": "P4C10-P-004",
+      "mushroom_id": "kiirosuppontake",
+      "canonical_name_ja": "キイロスッポンタケ",
+      "target_field": "taxonomy.phylum",
+      "current_value": {
+        "value": null,
+        "source_ids": []
+      },
+      "proposed_value": {
+        "value": "担子菌門",
+        "source_ids": [
+          "p4c10-kyoto-kiirosuppontake-2015"
+        ]
+      },
+      "source_id": "p4c10-kyoto-kiirosuppontake-2015",
+      "source_url": "https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fun0004.html",
+      "organization": "京都府 環境部自然環境保全課",
+      "source_title": "京都府レッドデータブック2015 キイロスッポンタケ（執筆：吉見昭一・佐久間大輔）",
+      "checked_at": "2026-10-12",
+      "evidence_quote": "担子菌門 スッポンタケ目 スッポンタケ科",
+      "judgment": "同和名の公的資料掲載分類。属種の受容名確定とは区別する。",
+      "confidence": "high",
+      "research_disposition": "adoption_candidate",
+      "human_decision": "pending",
+      "human_approval": null,
+      "requires_separate_master_migration": true,
+      "evidence": {
+        "evidence_id": "P4C10-E-004",
+        "source_id": "p4c10-kyoto-kiirosuppontake-2015",
+        "snapshot_identity": "urn:phase4c10:bounded-service-extract:p4c10-kyoto-kiirosuppontake-2015:sha256:27e66d67a8e4e85127570f28dc2835e122824d32d84efef5661cc8c258fb83d0",
+        "quote": "担子菌門 スッポンタケ目 スッポンタケ科",
+        "quote_sha256": "86bd2999d41deae803e39a933c3cbd1e49c58e06f58456ef0d21817319e8cce2",
+        "char_start": 55,
+        "char_end": 75,
+        "snapshot_line_start": 4,
+        "snapshot_line_end": 4,
+        "text_snapshot_sha256": "27e66d67a8e4e85127570f28dc2835e122824d32d84efef5661cc8c258fb83d0",
+        "original_response_sha256": "25ce5c47d94f0a399a9d589b97d885749c90f83f95076466e6ecbe17b6b0791c"
+      }
+    },
+    {
+      "proposal_id": "P4C10-P-005",
+      "mushroom_id": "kiirosuppontake",
+      "canonical_name_ja": "キイロスッポンタケ",
+      "target_field": "taxonomy.order",
+      "current_value": {
+        "value": null,
+        "source_ids": []
+      },
+      "proposed_value": {
+        "value": "スッポンタケ目",
+        "source_ids": [
+          "p4c10-kyoto-kiirosuppontake-2015"
+        ]
+      },
+      "source_id": "p4c10-kyoto-kiirosuppontake-2015",
+      "source_url": "https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fun0004.html",
+      "organization": "京都府 環境部自然環境保全課",
+      "source_title": "京都府レッドデータブック2015 キイロスッポンタケ（執筆：吉見昭一・佐久間大輔）",
+      "checked_at": "2026-10-12",
+      "evidence_quote": "担子菌門 スッポンタケ目 スッポンタケ科",
+      "judgment": "同和名の公的資料掲載分類。属種の受容名確定とは区別する。",
+      "confidence": "high",
+      "research_disposition": "adoption_candidate",
+      "human_decision": "pending",
+      "human_approval": null,
+      "requires_separate_master_migration": true,
+      "evidence": {
+        "evidence_id": "P4C10-E-005",
+        "source_id": "p4c10-kyoto-kiirosuppontake-2015",
+        "snapshot_identity": "urn:phase4c10:bounded-service-extract:p4c10-kyoto-kiirosuppontake-2015:sha256:27e66d67a8e4e85127570f28dc2835e122824d32d84efef5661cc8c258fb83d0",
+        "quote": "担子菌門 スッポンタケ目 スッポンタケ科",
+        "quote_sha256": "86bd2999d41deae803e39a933c3cbd1e49c58e06f58456ef0d21817319e8cce2",
+        "char_start": 55,
+        "char_end": 75,
+        "snapshot_line_start": 4,
+        "snapshot_line_end": 4,
+        "text_snapshot_sha256": "27e66d67a8e4e85127570f28dc2835e122824d32d84efef5661cc8c258fb83d0",
+        "original_response_sha256": "25ce5c47d94f0a399a9d589b97d885749c90f83f95076466e6ecbe17b6b0791c"
+      }
+    },
+    {
+      "proposal_id": "P4C10-P-006",
+      "mushroom_id": "onifusube",
+      "canonical_name_ja": "オニフスベ",
+      "target_field": "features",
+      "current_value": {
+        "summary": "球状で白色後褐色、内部は白色後褐色の胞子紛状塊となる。",
+        "source_ids": [
+          "research-ishikawa-onifusube"
+        ]
+      },
+      "proposed_value": {
+        "summary": "球状で白色後褐色、内部は白色後褐色の胞子紛状塊となる。 森林総研の同和名資料（Lanopila nipponica）は直径50cmに達し、成熟時に表皮がはがれると記載する。既存Calvatia nipponicaとの分類名の対応は保留を維持する。",
+        "source_ids": [
+          "research-ishikawa-onifusube",
+          "research-ffpri-kinoko065"
+        ]
+      },
+      "source_id": "research-ffpri-kinoko065",
+      "source_url": "https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko065.html",
+      "organization": "国立研究開発法人 森林研究・整備機構 森林総合研究所 九州支所",
+      "source_title": "オニフスベ",
+      "checked_at": "2026-10-12",
+      "evidence_quote": "球形または偏球形で、直径50cmに達する。",
+      "judgment": "既存の色・内部胞子を保持し、資料掲載値として大きさを補足する。毛・粉状表面のfacetへ拡張しない。",
+      "confidence": "high",
+      "research_disposition": "adoption_candidate",
+      "human_decision": "pending",
+      "human_approval": null,
+      "requires_separate_master_migration": true,
+      "evidence": {
+        "evidence_id": "P4C10-E-006",
+        "source_id": "research-ffpri-kinoko065",
+        "snapshot_identity": "urn:phase4c10:bounded-service-extract:research-ffpri-kinoko065:sha256:d463462d4266c2f3861c9fd3a522890c085e51f95c60d7e57054f5db19d64ae1",
+        "quote": "球形または偏球形で、直径50cmに達する。",
+        "quote_sha256": "b79696478b602703daa4023d238b574138e58326ebcf2a673e4b564f25d93eb1",
+        "char_start": 0,
+        "char_end": 21,
+        "snapshot_line_start": 1,
+        "snapshot_line_end": 1,
+        "text_snapshot_sha256": "d463462d4266c2f3861c9fd3a522890c085e51f95c60d7e57054f5db19d64ae1",
+        "original_response_sha256": "9827631f24bc5ebafec2ebe2cf369496da748d635ff7e67c81c32613ed77ad4a"
+      }
+    },
+    {
+      "proposal_id": "P4C10-P-007",
+      "mushroom_id": "onifusube",
+      "canonical_name_ja": "オニフスベ",
+      "target_field": "habitat",
+      "current_value": {
+        "summary": "竹林、庭園",
+        "source_ids": [
+          "research-ishikawa-onifusube"
+        ]
+      },
+      "proposed_value": {
+        "summary": "竹林、庭園。森林総研の同和名資料（Lanopila nipponica）では草地・林内にも発生すると記載。分類群対応は未確定。",
+        "source_ids": [
+          "research-ishikawa-onifusube",
+          "research-ffpri-kinoko065"
+        ]
+      },
+      "source_id": "research-ffpri-kinoko065",
+      "source_url": "https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko065.html",
+      "organization": "国立研究開発法人 森林研究・整備機構 森林総合研究所 九州支所",
+      "source_title": "オニフスベ",
+      "checked_at": "2026-10-12",
+      "evidence_quote": "草地、林内に発生する。",
+      "judgment": "元の発生場所を残し別資料の記録を併記する。学名・科・属の保留を解除しない。",
+      "confidence": "high",
+      "research_disposition": "adoption_candidate",
+      "human_decision": "pending",
+      "human_approval": null,
+      "requires_separate_master_migration": true,
+      "evidence": {
+        "evidence_id": "P4C10-E-007",
+        "source_id": "research-ffpri-kinoko065",
+        "snapshot_identity": "urn:phase4c10:bounded-service-extract:research-ffpri-kinoko065:sha256:d463462d4266c2f3861c9fd3a522890c085e51f95c60d7e57054f5db19d64ae1",
+        "quote": "草地、林内に発生する。",
+        "quote_sha256": "118dcb1ba811f380b8528a1a1aa68058a7306f4022088e70e7fb01b485c1698e",
+        "char_start": 22,
+        "char_end": 33,
+        "snapshot_line_start": 2,
+        "snapshot_line_end": 2,
+        "text_snapshot_sha256": "d463462d4266c2f3861c9fd3a522890c085e51f95c60d7e57054f5db19d64ae1",
+        "original_response_sha256": "9827631f24bc5ebafec2ebe2cf369496da748d635ff7e67c81c32613ed77ad4a"
+      }
+    },
+    {
+      "proposal_id": "P4C10-P-008",
+      "mushroom_id": "bunaharitake",
+      "canonical_name_ja": "ブナハリタケ",
+      "target_field": "features",
+      "current_value": {
+        "summary": "傘は扇形、縁部鋸歯状。傘の下面は子実層托、針状。柄はなし。",
+        "source_ids": [
+          "research-ishikawa-bunaharitake"
+        ]
+      },
+      "proposed_value": {
+        "summary": "傘は扇形、縁部鋸歯状。傘の下面は子実層托、針状。柄はなし。 強い香りがあると記載。",
+        "source_ids": [
+          "research-ishikawa-bunaharitake"
+        ]
+      },
+      "source_id": "research-ishikawa-bunaharitake",
+      "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/bunaharitake.html",
+      "organization": "石川県 農林水産部農林総合研究センター林業試験場",
+      "source_title": "いしかわ きのこ図鑑「ブナハリタケ」",
+      "checked_at": "2026-10-12",
+      "evidence_quote": "その他：強い香りがある",
+      "judgment": "同一和名・学名の既存出典の未転記部分を補完。香りを味・安全性へ拡張しない。",
+      "confidence": "high",
+      "research_disposition": "adoption_candidate",
+      "human_decision": "pending",
+      "human_approval": null,
+      "requires_separate_master_migration": true,
+      "evidence": {
+        "evidence_id": "P4C10-E-008",
+        "source_id": "research-ishikawa-bunaharitake",
+        "snapshot_identity": "urn:phase4c10:bounded-service-extract:research-ishikawa-bunaharitake:sha256:5e0944767c7028933a65c580beb41ebb9f9d30a234f5a404b5f42eeadd3d384e",
+        "quote": "その他：強い香りがある",
+        "quote_sha256": "be2cd7b2f671105eeb4c4c2d0a26ab0d5921b7d490f3c7a297349dd3db2bcf1b",
+        "char_start": 0,
+        "char_end": 11,
+        "snapshot_line_start": 1,
+        "snapshot_line_end": 1,
+        "text_snapshot_sha256": "5e0944767c7028933a65c580beb41ebb9f9d30a234f5a404b5f42eeadd3d384e",
+        "original_response_sha256": "45a31415bfc54c14045fe3fc70e1fad9a0adc22d54eab625e72627d1ecca4793"
+      }
+    },
+    {
+      "proposal_id": "P4C10-P-009",
+      "mushroom_id": "bunaharitake",
+      "canonical_name_ja": "ブナハリタケ",
+      "target_field": "aliases_ja",
+      "current_value": [],
+      "proposed_value": [
+        "カヌカ",
+        "カヌガ"
+      ],
+      "source_id": "p4c10-towada-bunaharitake-alias",
+      "source_url": "https://www.city.towada.lg.jp/sangyo/nourin/ringyou/bunaharitake.html",
+      "organization": "青森県 十和田市 農林畜産課",
+      "source_title": "十和田市産野生きのこ類の一部（ブナハリタケ、ムキタケ）が出荷制限解除になりました",
+      "checked_at": "2026-10-12",
+      "evidence_quote": "ブナハリタケ　（カヌカ、カヌガと呼ばれたりします）",
+      "judgment": "十和田市の地方名記録。全国的な排他的別名としては扱わない。aliasの出典記録をこの候補台帳に保持する。",
+      "confidence": "high",
+      "research_disposition": "adoption_candidate",
+      "human_decision": "pending",
+      "human_approval": null,
+      "requires_separate_master_migration": true,
+      "evidence": {
+        "evidence_id": "P4C10-E-009",
+        "source_id": "p4c10-towada-bunaharitake-alias",
+        "snapshot_identity": "urn:phase4c10:bounded-service-extract:p4c10-towada-bunaharitake-alias:sha256:daebed26a8d7502060eeb4dfbc955b5022513eb02ea1a15ddeaf8a93908080a8",
+        "quote": "ブナハリタケ　（カヌカ、カヌガと呼ばれたりします）",
+        "quote_sha256": "daebed26a8d7502060eeb4dfbc955b5022513eb02ea1a15ddeaf8a93908080a8",
+        "char_start": 0,
+        "char_end": 25,
+        "snapshot_line_start": 1,
+        "snapshot_line_end": 1,
+        "text_snapshot_sha256": "daebed26a8d7502060eeb4dfbc955b5022513eb02ea1a15ddeaf8a93908080a8",
+        "original_response_sha256": "6f917f0b0881de4a4499c7cf37f0f269c4b8c4d17752129a3f407d2f8d311474"
+      }
+    },
+    {
+      "proposal_id": "P4C10-P-010",
+      "mushroom_id": "tutiguri",
+      "canonical_name_ja": "ツチグリ",
+      "target_field": "habitat",
+      "current_value": {
+        "summary": "林内裸地",
+        "source_ids": [
+          "research-ishikawa-tutiguri"
+        ]
+      },
+      "proposed_value": {
+        "summary": "林内裸地。森林総研では林縁部の斜面などにも発生すると記載。",
+        "source_ids": [
+          "research-ishikawa-tutiguri",
+          "research-ffpri-kinoko063"
+        ]
+      },
+      "source_id": "research-ffpri-kinoko063",
+      "source_url": "https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko063.html",
+      "organization": "国立研究開発法人 森林研究・整備機構 森林総合研究所 九州支所",
+      "source_title": "ツチグリ",
+      "checked_at": "2026-10-12",
+      "evidence_quote": "生態：夏～秋に林縁部の斜面などに発生する。",
+      "judgment": "既存の林内裸地と併記する。資料間の春～秋／夏～秋を平均化せずseasonは変更しない。",
+      "confidence": "high",
+      "research_disposition": "adoption_candidate",
+      "human_decision": "pending",
+      "human_approval": null,
+      "requires_separate_master_migration": true,
+      "evidence": {
+        "evidence_id": "P4C10-E-010",
+        "source_id": "research-ffpri-kinoko063",
+        "snapshot_identity": "urn:phase4c10:bounded-service-extract:research-ffpri-kinoko063:sha256:a7d83e737fcfa5eba588ad0bded03c02668f8de7962f2b2f9862cef19a593de9",
+        "quote": "生態：夏～秋に林縁部の斜面などに発生する。",
+        "quote_sha256": "a7d83e737fcfa5eba588ad0bded03c02668f8de7962f2b2f9862cef19a593de9",
+        "char_start": 0,
+        "char_end": 21,
+        "snapshot_line_start": 1,
+        "snapshot_line_end": 1,
+        "text_snapshot_sha256": "a7d83e737fcfa5eba588ad0bded03c02668f8de7962f2b2f9862cef19a593de9",
+        "original_response_sha256": "f657b132f713a8e72d3af47827df9524028034250c85db3875f1d576ae0cf911"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1519 @@
+{
+  "screened_records": 139,
+  "biological_research_scope": 16,
+  "rows": [
+    {
+      "mushroom_id": "chichiawatake",
+      "name": "チチアワタケ",
+      "missing_fields": [
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "61e992a9d5603bf1e5f195f60952d2755d0591bd4479748d90de240d06e6a2a3",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "hiratake",
+      "name": "ヒラタケ",
+      "missing_fields": [],
+      "existing_notes_sha256": "12cbd56f35f062a7907e5696c7602a2f5d13d015000ca9529047a1cbf2885a9f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "yanagimatsutake",
+      "name": "ヤナギマツタケ",
+      "missing_fields": [
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "463dfd3cd18d198f7af2ff384d024be417de7d49132c9e9c2f7b4943113caed6",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "chaamigasatake",
+      "name": "チャアミガサタケ",
+      "missing_fields": [
+        "features.summary",
+        "season.summary",
+        "habitat.summary"
+      ],
+      "existing_notes_sha256": "56650cbbefa65be62500c25f3140d6463e97a6d6cac5f1fbe53e4afead83ff36",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "ooshirokarakasatake",
+      "name": "オオシロカラカサタケ",
+      "missing_fields": [],
+      "existing_notes_sha256": "4cb9aab0ff5834fd6de5f13380ce388302f9df86ae34b1daa31803cce0741a71",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "aitake",
+      "name": "アイタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "12cbd56f35f062a7907e5696c7602a2f5d13d015000ca9529047a1cbf2885a9f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "matsuouji",
+      "name": "マツオウジ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "963fd1f88b1856d958c654d8a190cf8d0fe19ec682b3c47ec7026c1fe8f1b1ee",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "usuhiratake",
+      "name": "ウスヒラタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "12cbd56f35f062a7907e5696c7602a2f5d13d015000ca9529047a1cbf2885a9f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kiirosuppontake",
+      "name": "キイロスッポンタケ",
+      "missing_fields": [
+        "season.summary",
+        "habitat.summary",
+        "taxonomy.kingdom",
+        "taxonomy.phylum",
+        "taxonomy.class",
+        "taxonomy.subclass",
+        "taxonomy.order",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "91309130bc55ec322cc29567b4e94541e7ac1154f62a4d9dbd56721466f3f99c",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": true
+    },
+    {
+      "mushroom_id": "akayamadori",
+      "name": "アカヤマドリ",
+      "missing_fields": [
+        "taxonomy.kingdom",
+        "taxonomy.class",
+        "taxonomy.subclass",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "12cbd56f35f062a7907e5696c7602a2f5d13d015000ca9529047a1cbf2885a9f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "hiromenotogariamigasatake",
+      "name": "ヒロメノトガリアミガサタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "d7c7b0b7de7f3472841ec072ee98bad809917c6dd9f72fc7b9ab8699f2ffbc5e",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "amigasatake",
+      "name": "アミガサタケ",
+      "missing_fields": [],
+      "existing_notes_sha256": "a29e07a4df58f8e9b72a77a8b15d792ed07ef6f9fbf131d425e8d8378294bb9b",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kikurage",
+      "name": "キクラゲ",
+      "missing_fields": [],
+      "existing_notes_sha256": "70831ee544d3352e88ac735237c686643c84fded03983f9a11241e0baf66b10e",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "hebikinokomodoki",
+      "name": "ヘビキノコモドキ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "12cbd56f35f062a7907e5696c7602a2f5d13d015000ca9529047a1cbf2885a9f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "hanaiguchi",
+      "name": "ハナイグチ",
+      "missing_fields": [],
+      "existing_notes_sha256": "d529bb6691972e517026d0003d08df2673e6515c2c68aa2128a6844de529cbe1",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "karakasatake",
+      "name": "カラカサタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "4c10f58dd7a828e63bbeaf2cc501b134315e713d4e7d0e8bbdc40f4d20c56080",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "yamaiguchi",
+      "name": "ヤマイグチ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "12cbd56f35f062a7907e5696c7602a2f5d13d015000ca9529047a1cbf2885a9f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kikubanaiguchi",
+      "name": "キクバナイグチ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "40a6a97ffe0a9c429d93ece30860ff83289f104b36d9f418d38889c3428f0c38",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kurokawa",
+      "name": "クロカワ",
+      "missing_fields": [
+        "features.summary",
+        "season.summary",
+        "habitat.summary",
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "7c38c22ddf088e6da0ad32f8599952404e1e5f57ed11348f1d4328d5c16accd8",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "oowaraitake",
+      "name": "オオワライタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "e5c529fdc95ce7b4baeb65996773fc6999ea2d6193adb949f12bf656e6b5c65c",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "aorouji",
+      "name": "アオロウジ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "39e8680fe666e81b8d2639fc10140724ceb1649ab436e38c58c32eeb9c07b80d",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "urabenigasa",
+      "name": "ウラベニガサ",
+      "missing_fields": [
+        "taxonomy.kingdom",
+        "taxonomy.phylum",
+        "taxonomy.class",
+        "taxonomy.subclass",
+        "taxonomy.order"
+      ],
+      "existing_notes_sha256": "e8c36f37e6f8d6ace92da79536d8e8fd962178d096e4ac309a5625e1021f31b4",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "togariamigasatake",
+      "name": "トガリアミガサタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "f5dfa52daf43ee6a34cb6b3b21a29a01f28bcdcb196b640d6fb29205d2c63912",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "noutake",
+      "name": "ノウタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "8927833876432d7c75a36cf4562b99b1e9e648f9e6f3f103d1054d08c1b0605a",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "ukonhatsu",
+      "name": "ウコンハツ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "e8c36f37e6f8d6ace92da79536d8e8fd962178d096e4ac309a5625e1021f31b4",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "enokitake",
+      "name": "エノキタケ",
+      "missing_fields": [],
+      "existing_notes_sha256": "2b2621b5ccd1fc65e5d8e518533384ebd4fcd1a3b953ba17e2547a131d5b2bd4",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kinigaiguchi",
+      "name": "キニガイグチ",
+      "missing_fields": [
+        "taxonomy.kingdom",
+        "taxonomy.phylum",
+        "taxonomy.class",
+        "taxonomy.subclass",
+        "taxonomy.order"
+      ],
+      "existing_notes_sha256": "26a9542ff6748a280c3e0a3b74a2e6257100a998584e87dfd0855cb8fd206ca8",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kotengutakemodoki",
+      "name": "コテングタケモドキ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "e8c36f37e6f8d6ace92da79536d8e8fd962178d096e4ac309a5625e1021f31b4",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "tamagotake",
+      "name": "タマゴタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "10252de430172b866584129f4e6e68392685e85ca36bd626b628dcb8cf6c7397",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "aragekikurage",
+      "name": "アラゲキクラゲ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "c78d417fd816e169f591a759fff6703cd1deb82330f8964e2bb7e5a9eb1533bb",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "uraguronigaiguchi",
+      "name": "ウラグロニガイグチ",
+      "missing_fields": [
+        "taxonomy.kingdom",
+        "taxonomy.phylum",
+        "taxonomy.class",
+        "taxonomy.subclass",
+        "taxonomy.order",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "6bcf932ce3a2e77897706708bfc1f880e41e5fa285933845fa4179e7daf2314f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "ookitunetake",
+      "name": "オオキツネタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "7a531ffd434cfe96b8b841693e40ea9c5b48ed66c48f9410a44f637f6732b219",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kiamiashiiguchi",
+      "name": "キアミアシイグチ",
+      "missing_fields": [
+        "habitat.summary",
+        "taxonomy.subclass",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "20f0c0385a24cc28bfd706451ec0d913bf926305cc706182fd89da4213631e9e",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "seitakaiguchi",
+      "name": "セイタカイグチ",
+      "missing_fields": [
+        "taxonomy.kingdom",
+        "taxonomy.class",
+        "taxonomy.subclass",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "0057346d1f01b27ff647ada4a37ec46d7d4eed349808938db96faafc1fc0ef23",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "tamachoreitake",
+      "name": "タマチョレイタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "d11da542d098b4b7bf9195717b4465db8afce942296cb7e0547ec003adfadbb1",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "tsubaaburashimeji",
+      "name": "ツバアブラシメジ",
+      "missing_fields": [
+        "season.summary",
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "0deabf93839d1270ab03e81aa5a166e250c28621b1723d0b8119e7304b09e403",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "hoteishimeji",
+      "name": "ホテイシメジ",
+      "missing_fields": [
+        "habitat.summary",
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "d6a7e605db7572446edb69c044a4553c7f9da1e31f45ec4ab35d165b5dfaa923",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "midorinigaiguchi",
+      "name": "ミドリニガイグチ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "d55c3190161a908ee5fddcf25351c318079f43b632d1258b68c7b7e6989eecab",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "miyamatamagotake",
+      "name": "ミヤマタマゴタケ",
+      "missing_fields": [
+        "season.summary",
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "40bd0671795502882ca22aa7819341df7e915f04aec178c9442c32aabed24ef0",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "akajikou",
+      "name": "アカジコウ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "akamomitake",
+      "name": "アカモミタケ",
+      "missing_fields": [
+        "taxonomy.kingdom",
+        "taxonomy.phylum",
+        "taxonomy.class",
+        "taxonomy.subclass",
+        "taxonomy.order",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "amitake",
+      "name": "アミタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "31198fc64a3378dbb3986fb1ffb5dad69abf83e69109e6335cd8dffe7fd00eb6",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "awatake",
+      "name": "アワタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "anzutake",
+      "name": "アンズタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "5f208650e0e1d21e008026e2adfd03237c4d992a415359285fb066868c133377",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "inusenbontake",
+      "name": "イヌセンボンタケ",
+      "missing_fields": [
+        "taxonomy.kingdom",
+        "taxonomy.phylum",
+        "taxonomy.class",
+        "taxonomy.subclass",
+        "taxonomy.order",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "irogawari",
+      "name": "イロガワリ",
+      "missing_fields": [
+        "taxonomy.kingdom",
+        "taxonomy.class",
+        "taxonomy.subclass",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "usutake",
+      "name": "ウスタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "61794497f899e918fcd0e3364cfca104bda7899a3cdb81b6cfa268236de6a08e",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "urabenihoteisimeji",
+      "name": "ウラベニホテイシメジ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "erimakitutiguri",
+      "name": "エリマキツチグリ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "56e74082ac57d4a44aac7c02ef0546cafccfcd2d85b93767ed5d9d7756f09a19",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": true
+    },
+    {
+      "mushroom_id": "ooicyoutake",
+      "name": "オオイチョウタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "9d6f736c3bbb147e4d6364e0dd50ee77c783d722bc2e1e8708a64514415c2d22",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "oniiguti",
+      "name": "オニイグチ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "febbe74f8d16449f1fdb9a911d23ea34cb29e367b28d74f39a6385df291d50b2",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "oniigutimodoki",
+      "name": "オニイグチモドキ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "cd588c9da627387d43de62964ebe7c36458310405dd409965a2725166b32889c",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "onifusube",
+      "name": "オニフスベ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "dbb7fb443a717c136fe46de037134c3f8077b1c052cfc4a5e4e9b10812be0562",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": true
+    },
+    {
+      "mushroom_id": "kaigaratake",
+      "name": "カイガラタケ",
+      "missing_fields": [
+        "taxonomy.kingdom",
+        "taxonomy.phylum",
+        "taxonomy.class",
+        "taxonomy.subclass",
+        "taxonomy.order",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kakisimeji",
+      "name": "カキシメジ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "24cc53066b264638b0c163401f19341bcf6850f283bac298291c8e4b683e8014",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kaninotume",
+      "name": "カニノツメ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "a3325454fb70f2bde2190bb5f876e9902e104341a5bf9ad35003758d7d4e16a7",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": true
+    },
+    {
+      "mushroom_id": "kabairoturutake",
+      "name": "カバイロツルタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "683a425ff54993201f5f0376bdbe7c5877905afb11430546bf8da3b56a48f451",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kawaratake",
+      "name": "カワラタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "8ca69e0c095e1910cb3994c71524079b60f9d5dd199c2f95323ee38c1a988aa5",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kawarihatu",
+      "name": "カワリハツ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kanzoutake",
+      "name": "カンゾウタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "413a30136a8209a15f92229ee8adbfc5da07be915bfe918f3b1bdbcc808cd7db",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "gantake",
+      "name": "ガンタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kitunetake",
+      "name": "キツネタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "b74474e03a0d52f2d970e04aec0e31e49f233acb35a7f825c6dbee11c2eeb16a",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kinugasatake",
+      "name": "キヌガサタケ",
+      "missing_fields": [
+        "taxonomy.kingdom",
+        "taxonomy.phylum",
+        "taxonomy.class",
+        "taxonomy.subclass",
+        "taxonomy.order"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kiraratake",
+      "name": "キララタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "9dd6275799b95e9180cb02a4513a573a7b3d3bf5208aa02d34ea9be498e78162",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kusaurabenitake",
+      "name": "クサウラベニタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "d327dcfcb51dbbde904ddac1a52dda9c4518ffe6fb2a80327314d47a5a7d8d63",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kutibenitake",
+      "name": "クチベニタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": true
+    },
+    {
+      "mushroom_id": "kuritake",
+      "name": "クリタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "9224eeb917668b484a302d1096ed0c7ee1b3d8409cfd488c5c26c02f0b03a63c",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kurohatu",
+      "name": "クロハツ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "863d1708b403764ba2d7bef89facb4ddf996e0cb56c620394604a3f992035ee4",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kurohatumodoki",
+      "name": "クロハツモドキ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kurorappatake",
+      "name": "クロラッパタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "15d956a3924763bb76aef27d8e0bc4a0055fbfb16952d687424763bdc54e77bb",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "koutake",
+      "name": "コウタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "535b4061b389f6602020824e576119e609c13aabe945d3828dda406d5307750e",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "koganetake",
+      "name": "コガネタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "2c250126817328376aad2f2af5f42f26b7eccbedbdf7f3b0e6b59e2fedef3b63",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "koganenikawatake",
+      "name": "コガネニカワタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.order"
+      ],
+      "existing_notes_sha256": "0ab5acfd9e452579007243f534ee0c642458ccc1fa0f7dc5dec825e18a26a93c",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kotamagotengutake",
+      "name": "コタマゴテングタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "kotubutake",
+      "name": "コツブタケ",
+      "missing_fields": [
+        "taxonomy.kingdom",
+        "taxonomy.class",
+        "taxonomy.subclass",
+        "taxonomy.family",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "b974cbbd180f926265f813866a4ad0406bc3d85477d95610c9434988edebeaa1",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": true
+    },
+    {
+      "mushroom_id": "kofukisarunokosikake",
+      "name": "コフキサルノコシカケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.order",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "ae245238e5c04d7b4102707501550f5d193b9f30b6d801c650f2d01d4d4daa19",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "sakurasimeji",
+      "name": "サクラシメジ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "sakuratake",
+      "name": "サクラタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "657513404c9f5f886961c789e1d6928e0c1a234f00bfe1eeb1c6c7ccfa1c9962",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "saketubatake",
+      "name": "サケツバタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "sasakurehitoyotake",
+      "name": "ササクレヒトヨタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "436c5f01a22eac783e9dc6830c26c6a2176b6e64e2ef502cba39b1f489edc500",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "sanagitake",
+      "name": "サナギタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.order",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "a3f54f5c77ead8dc2031e0ef72979528be258481b146ee65aa660a99b6ba3863",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "sankotake",
+      "name": "サンコタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "8ea8802b7133cf2cb82d93a13b352a4443a0fcbf9bb1cddca53d0887ba8f51a4",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": true
+    },
+    {
+      "mushroom_id": "simofurisimeji",
+      "name": "シモフリシメジ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "syougenji",
+      "name": "ショウゲンジ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "09b235d6f72fa399dfeb5ea724d1ac921d1417a5dc785e3a00a978211e4d8c87",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "syouro",
+      "name": "ショウロ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "90bbd266589d60aee89a3610ce0b1ca76e466aac95bf62707be10d7a93e9798e",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": true
+    },
+    {
+      "mushroom_id": "siroonitake",
+      "name": "シロオニタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "sirokanosita",
+      "name": "シロカノシタ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "suehirotake",
+      "name": "スエヒロタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "sugiedatake",
+      "name": "スギエダタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "e4972011302a81b379073f35ce58e01065ae26cd8ad23f767d7f886654e163c6",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "sugitake",
+      "name": "スギタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "289aea778e04dd4c09bd7304ac0092600c63ee3b54c5738d13c806a69c2baa4a",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "sugihiratake",
+      "name": "スギヒラタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "fbe51bd7ad3d7ae3dbf46c0b6d22b702792cb0454614e106857efccc7bc54de3",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "suppontake",
+      "name": "スッポンタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "tamagotakemodoki",
+      "name": "タマゴタケモドキ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "391a706ab9b7ff3e2e67bab3f93186b246387f76b40c3967b0a10079b69e4547",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "tititake",
+      "name": "チチタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "04fc40d2756c3d4a5cb7b8d18410fec4a01d1c93962ad8051464d3451204ba86",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "cyanamemututake",
+      "name": "チャナメツムタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "tuetake",
+      "name": "ツエタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "4a6a16d173bae6a319f74c7ffd3abfabfeb27eb52fe35cf13426c1a13c971048",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "tukiyotake",
+      "name": "ツキヨタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "e7e23b2225a6bd25ebcc72eaa8fc0ed8286ce7a5a03d2381e44185ce30af4bea",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "tutiguri",
+      "name": "ツチグリ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": true
+    },
+    {
+      "mushroom_id": "turiganetake",
+      "name": "ツリガネタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "turutake",
+      "name": "ツルタケ",
+      "missing_fields": [
+        "taxonomy.kingdom",
+        "taxonomy.phylum",
+        "taxonomy.class",
+        "taxonomy.subclass",
+        "taxonomy.order",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "tengutake",
+      "name": "テングタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "tokiirohiratake",
+      "name": "トキイロヒラタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "2ee9da099999d777345b542735e6518b2e04d4ec03d35fb1b228c9bf6265d596",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "dokukarakasatake",
+      "name": "ドクカラカサタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "be124025eda6c8d8f147b2146feae4ade9d0edba122ac56be1ad4fc49ed5a821",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "dokubenitake",
+      "name": "ドクベニタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "nameko",
+      "name": "ナメコ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "naratake",
+      "name": "ナラタケ",
+      "missing_fields": [
+        "taxonomy.kingdom",
+        "taxonomy.phylum",
+        "taxonomy.class",
+        "taxonomy.subclass",
+        "taxonomy.order",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "naratakemodoki",
+      "name": "ナラタケモドキ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "f32566ec9576138395f1cc3e61f88e238f16549a3c1fc6fbe19febafb5f855bb",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "nigakuritake",
+      "name": "ニガクリタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "c56a1b9a2081195cb06612647fc8c3987d2a743747fa3e96caa2f0780cfcbbde",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "nisekurohatu",
+      "name": "ニセクロハツ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "761a216285b57cc49480d797d8093541297173ba33dd43d45000ac1a05abae10",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "numeriiguti",
+      "name": "ヌメリイグチ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "31198fc64a3378dbb3986fb1ffb5dad69abf83e69109e6335cd8dffe7fd00eb6",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "numerisugitake",
+      "name": "ヌメリスギタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "hatakesimeji",
+      "name": "ハタケシメジ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "354a75d065d5329085ef8f32411714accb897637226bc5d345b082354fe8e729",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "hatinosutake",
+      "name": "ハチノスタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "bf3dbbef2b303d821d16176d44480ab4375a76cf6ff1aa573d71a8c61a46db3f",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "hatutake",
+      "name": "ハツタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "haratake",
+      "name": "ハラタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "hidahatake",
+      "name": "ヒダハタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "hitoyotake",
+      "name": "ヒトヨタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "ba1b8e2eafadbbdec473667d40661662e7de63c71771e6dfabcc7628cd60094c",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "bunasimeji",
+      "name": "ブナシメジ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "da9bca703b490408f6e77e8a354d6e7216d39471354d4c70e126311c311c1b07",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "bunaharitake",
+      "name": "ブナハリタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "86f52bfb9d84c4cbe8841c0138438f95bccc3b0d0a2b1dead5e8e6291f2050f6",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": true
+    },
+    {
+      "mushroom_id": "hokoritake",
+      "name": "ホコリタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": true
+    },
+    {
+      "mushroom_id": "honsimeji",
+      "name": "ホンシメジ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "a5e6b565984c15c91c4eaea2494329620e06789680c8041cfb7c49aeb0cd7176",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "maitake",
+      "name": "マイタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.order",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "c27d67acbc2998fbd64252affb4a93e7d7f8931f90d565f14bedbdaeeced1d43",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "matutake",
+      "name": "マツタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "mannentake",
+      "name": "マンネンタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.order",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "d9bef3d19fc836e80e4686e22e42c06f3fb9a0a67d0e186d68a7ed26ca41a6ab",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "mukitake",
+      "name": "ムキタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "b5c1f08bdbde051c9f2773b203d9da19819c09c8f5c24a36ed87d0d70c26ad90",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "murasakisimeji",
+      "name": "ムラサキシメジ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "murasakifuusentake",
+      "name": "ムラサキフウセンタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "yakoutake",
+      "name": "ヤコウタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "657513404c9f5f886961c789e1d6928e0c1a234f00bfe1eeb1c6c7ccfa1c9962",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "yamadoritakemodoki",
+      "name": "ヤマドリタケモドキ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "yamabusitake",
+      "name": "ヤマブシタケ",
+      "missing_fields": [
+        "taxonomy.kingdom",
+        "taxonomy.phylum",
+        "taxonomy.class",
+        "taxonomy.subclass",
+        "taxonomy.order",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": true
+    },
+    {
+      "mushroom_id": "rurihatutake",
+      "name": "ルリハツタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "shirotamagotengutake",
+      "name": "シロタマゴテングタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "5f626542f0233928d2fdc60add8c91188922882ee49391450cf3f7f9f2af374f",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "benitengutake",
+      "name": "ベニテングタケ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "6c2fc574ed5382be6319b27e6bb585caff2c3b76b5e6d02a6fa4c31b792c5fe0",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "dokusasako",
+      "name": "ドクササコ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "57ef6e5ccdc463b58404ee99fb2380e05350a198a05ad5e32fcac48e47284120",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "dokuyamadori",
+      "name": "ドクヤマドリ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.genus"
+      ],
+      "existing_notes_sha256": "5260e1b428b7c2027123d0faf9b501281da69ac95ae96e3d5e028318cfd6d8f4",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "nezumishimeji",
+      "name": "ネズミシメジ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "ed66098336f4b53ff11494b5c25268dfc09abc87843b11f71464b0c8f18d6480",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "haiiroshimeji",
+      "name": "ハイイロシメジ",
+      "missing_fields": [
+        "taxonomy.subclass"
+      ],
+      "existing_notes_sha256": "ed66098336f4b53ff11494b5c25268dfc09abc87843b11f71464b0c8f18d6480",
+      "explicit_hold_in_existing_notes": false,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "hikageshibiretake",
+      "name": "ヒカゲシビレタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "2cd50d05376580a854ed228507dd3452df665298f4da37df37763c5f860e4335",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    },
+    {
+      "mushroom_id": "shiitake",
+      "name": "シイタケ",
+      "missing_fields": [
+        "taxonomy.subclass",
+        "taxonomy.family"
+      ],
+      "existing_notes_sha256": "950c42d3e2b922fa9459dc75b9f76f614a2b6527d07cf1314e5240f93ce77e06",
+      "explicit_hold_in_existing_notes": true,
+      "priority_a": false
+    }
+  ]
+}
