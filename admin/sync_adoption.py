@@ -3,7 +3,7 @@ from datetime import datetime,timezone
 from pathlib import Path
 import json
 from article_sync import digest,payload_hash,SyncError
-from sync_adoptions import validate_manifest,stable_id,check_target,image_hash
+from sync_adoptions import validate_manifest,stable_id,check_target,image_hash,pending_replacement
 from .sync import LOCK,ReviewError,public_publication,live_capture,validate_package
 
 
@@ -38,11 +38,13 @@ def preview(review,body):
         review.adoption_preview=None
         if body['bundle_id']!=review.bundle_id:raise ReviewError('STALE_REVIEW')
         pub=public_publication(refresh=True);live=live_capture();review.assert_fresh(pub,live)
-        m=build_manifest(review,body['candidate_id']);result=validate_package(pub,adoption=m)
-        review.adoption_preview={'manifest':m,'candidate_id':body['candidate_id'],'bundle_id':review.bundle_id,'validation':result,'approved':False}
+        m=build_manifest(review,body['candidate_id'])
+        replacement=pending_replacement(m,pub['portal-data.json'],pub['article-sync-snapshot.json']['payload'])
+        result=validate_package(pub,adoption=m,replacement=replacement)
+        review.adoption_preview={'manifest':m,'candidate_id':body['candidate_id'],'bundle_id':review.bundle_id,'validation':result,'approved':False,'replacement':replacement}
         return {'ready':True,'migration_id':m['migration_id'],'decision':m['decision'],
             'gallery_name':m['gallery_name'],'observation_id':m['observation_id'],
-            'validation':result,'published':False,'affected_pages':['図鑑','五十音','季節','特徴','詳細','観察記録']}
+            'validation':result,'published':False,'replaces_unapplied_instruction':replacement['migration_id'] if replacement else None,'affected_pages':['図鑑','五十音','季節','特徴','詳細','観察記録']}
 
 
 def approve(review,body):
@@ -54,6 +56,7 @@ def approve(review,body):
         if body.get('confirm_adoption') is not True or body!={'migration_id':m['migration_id'],'confirm_name':m['gallery_name'],'confirm_adoption':True}:raise ReviewError('ADOPTION_EXPLICIT_CONFIRMATION_MISMATCH')
         pub=public_publication(refresh=True);live=live_capture();review.assert_fresh(pub,live)
         if build_manifest(review,p['candidate_id'])!=m:raise ReviewError('ADOPTION_IMAGE_OR_REVIEW_CHANGED')
+        if pending_replacement(m,pub['portal-data.json'],pub['article-sync-snapshot.json']['payload'])!=p['replacement']:raise ReviewError('ADOPTION_PENDING_REPLACEMENT_CHANGED')
         p['approved']=False
         review.audit.append({'event':'manual_photo_adoption_explicitly_approved','candidate_id':p['candidate_id'],
             'migration_id':m['migration_id'],'at':datetime.now(timezone.utc).isoformat(),'application':'DRAFT_PR_REQUIRED_NOT_PUBLISHED'})
@@ -61,9 +64,14 @@ def approve(review,body):
         return {'approved':True,'published':False,'migration_id':m['migration_id']}
 
 
-def validate_changed_paths(paths,m):
+def validate_changed_paths(paths,m,replacement=None):
     path='sync-migrations/photo-adoptions/'+validate_manifest(m)['migration_id']+'.json'
-    if paths!=[path]:raise ReviewError('ADOPTION_PR_PATHS_INVALID')
+    allowed=[path]
+    if replacement is not None:
+        validate_manifest(replacement)
+        if replacement['observation_id']!=m['observation_id'] or replacement['migration_id']==m['migration_id']:raise ReviewError('ADOPTION_PR_PATHS_INVALID')
+        allowed.append('sync-migrations/photo-adoptions/'+replacement['migration_id']+'.json')
+    if sorted(paths)!=sorted(allowed):raise ReviewError('ADOPTION_PR_PATHS_INVALID')
     return path
 
 
@@ -87,11 +95,19 @@ def create_pull_request(review,body):
         if run(['git','rev-parse','HEAD']).stdout.strip()!=base: raise ReviewError('FRESH_MAIN_CHECKOUT_REQUIRED')
         pub=public_publication();live=live_capture();review.assert_fresh(pub,live)
         if build_manifest(review,package['candidate_id'])!=m: raise ReviewError('STALE_REVIEW')
+        replacement=pending_replacement(m,pub['portal-data.json'],pub['article-sync-snapshot.json']['payload'])
+        if replacement!=package['replacement']:raise ReviewError('ADOPTION_PENDING_REPLACEMENT_CHANGED')
         directory=Path(tempfile.mkdtemp(prefix='kinoko-adoption-pr-'));work=directory/'work';added=False
         branch=safe_branch_name('photo-adoption')
         try:
             run(['git','worktree','add','-b',branch,str(work),'origin/main']);added=True
-            path=validate_changed_paths(['sync-migrations/photo-adoptions/'+m['migration_id']+'.json'],m)
+            paths=['sync-migrations/photo-adoptions/'+m['migration_id']+'.json']
+            if replacement is not None: paths.append('sync-migrations/photo-adoptions/'+replacement['migration_id']+'.json')
+            path=validate_changed_paths(paths,m,replacement)
+            if replacement is not None:
+                old_file=work/('sync-migrations/photo-adoptions/'+replacement['migration_id']+'.json')
+                if json.loads(old_file.read_text(encoding='utf-8'))!=replacement:raise ReviewError('ADOPTION_PENDING_REPLACEMENT_CHANGED')
+                old_file.unlink()
             target=work/path;target.parent.mkdir(parents=True,exist_ok=True)
             target.write_text(json.dumps(m,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
             previous=directory/'previous';previous.mkdir()
@@ -116,15 +132,16 @@ def create_pull_request(review,body):
                 if file.is_file() and not file.is_symlink(): file.unlink()
             changed=sorted(set(run(['git','diff','--name-only'],cwd=work).stdout.splitlines()+
                 run(['git','ls-files','--others','--exclude-standard'],cwd=work).stdout.splitlines()))
-            validate_changed_paths(changed,m)
-            run(['git','add','--',path],cwd=work)
-            validate_changed_paths(run(['git','diff','--cached','--name-only'],cwd=work).stdout.splitlines(),m)
+            validate_changed_paths(changed,m,replacement)
+            run(['git','add','--',*paths],cwd=work)
+            validate_changed_paths(run(['git','diff','--cached','--name-only'],cwd=work).stdout.splitlines(),m,replacement)
             run(['git','diff','--cached','--check'],cwd=work)
             # Last freshness check before any write to origin.
             run(['git','fetch','origin','main','gh-pages'])
             if run(['git','rev-parse','origin/main']).stdout.strip()!=base: raise ReviewError('STALE_MAIN')
             review.assert_fresh(public_publication(),live_capture())
             if build_manifest(review,package['candidate_id'])!=m: raise ReviewError('ADOPTION_IMAGE_OR_REVIEW_CHANGED')
+            if pending_replacement(m,review.publication['portal-data.json'],review.publication['article-sync-snapshot.json']['payload'])!=replacement:raise ReviewError('ADOPTION_PENDING_REPLACEMENT_CHANGED')
             if json.loads(target.read_text(encoding='utf-8')) != m:
                 raise ReviewError('ADOPTION_PR_MANIFEST_CHANGED')
             staged_manifest = json.loads(run(['git','show',':'+path],cwd=work).stdout)
@@ -140,7 +157,7 @@ def create_pull_request(review,body):
             result=run(['gh','pr','create','--base','main','--head',branch,'--draft',
                 '--title','Adopt explicitly reviewed public mushroom photo','--body-file',str(body_file)],cwd=work)
             review.audit.append({'event':'manual_photo_adoption_draft_pr_created','migration_id':m['migration_id'],
-                'at':datetime.now(timezone.utc).isoformat(),'application':'DRAFT_PR_NOT_PUBLISHED'})
+                'at':datetime.now(timezone.utc).isoformat(),'application':'DRAFT_PR_NOT_PUBLISHED','replaced_unapplied_migration':replacement['migration_id'] if replacement else None})
             review._save();review.adoption_preview=None
             return {'branch':branch,'url':result.stdout.strip(),'draft':True,'published':False}
         except (ReviewError,SyncError): raise

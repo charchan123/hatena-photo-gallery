@@ -36,7 +36,7 @@
 - Chromium 1440：thumbnail表示、未収録フィルター、分類保存、実生成プレビュー、採用名再入力、監査保存、判断取消、既存タブ。console error/横overflowなし。写真とAPIはfixture。実写真を採用していません（`browser-validation.json`）。
 - 管理画面のPR書き込みは分離worktreeのunit transportで検証。ブラウザーでは実PR書き込みを実行していません。
 
-ローカル全pytest 808 passed / 808 collected、全JavaScript 43 passed、focused 102 passed。compileall・JS syntax・diff-check・Workflow YAMLも成功（`test-validation.json`）。実APIのGET-only事前検証はこの開発Draft PR専用の一時workflowで実施し、終了後に最終差分から除去します。最終head CIも確認します。現時点では実API/最終CIの完了待ちです。
+ローカル全pytest 812 passed / 812 collected、全JavaScript 43 passed、focused 106 passed。compileall・JS syntax・diff-check・Workflow YAMLも成功（`test-validation.json`）。実API GET-only検証は [Actions 38224423795](https://github.com/charchan123/hatena-photo-gallery/actions/runs/38224423795) でSUCCESS。12ページ/112entry/下書き2除外/公開110記事/976画像/906gallery。全906のID・名・URL・記事対応、Best Shot3件・研究室67件、退役7枚の出力検査PASS。322HTML、2回目SUCCESS・差分0。未収録70画像はすべて以前からの画像（新規0）。70は構造上の単一URL候補であり、キノコ判定や画像本体検証が済んだ採用件数ではありません。実写真の採用は未実施。一時workflowは最終差分から削除。最終の生成クラス/transportと検証commitとのAST一致を別途保存（`live-proof-continuity.json`）。最終head CIのActions URLと結果はPR本文/Checksで追跡し、最終応答前に確認します。
 
 ## 未対応・運用上の制限
 
@@ -55,3 +55,8 @@
 
 
 ![管理画面の採用プレビュー（fixture・実写真は未採用）](adoption-preview.webp)
+
+
+## 古い未適用承認の再確認
+
+初回公開前にsnapshotが更新された承認は失効します。未適用であることをsnapshot台帳と公開IDで証明でき、同一記事/URL/出現番号/新写真IDで再レビューした場合だけ、旧承認を新承認へ置換できます。previewは元ファイルを編集しません。専用PRは旧manifest削除＋新manifest追加の2パスだけを許可し、Git履歴に旧承認を保持。適用済みの承認を削除/置換することは禁止。これは写真削除の許可リストではありません。

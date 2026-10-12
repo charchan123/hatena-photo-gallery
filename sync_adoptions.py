@@ -251,3 +251,21 @@ class Adoptions:
                 'image_content_sha256':m['image_content_sha256'],'applied_at':timestamp})
         validate_ledger(self.ledger,portal)
         return self.ledger
+
+
+def pending_replacement(manifest, previous, snapshot):
+    """Refresh ONE never-published instruction; never remove an applied adoption.
+
+    The old/new image identity must be identical. Changed URL or a published ID
+    is not a refresh. The removed instruction remains auditable in git history.
+    """
+    validate_manifest(manifest)
+    ledger=validate_ledger((snapshot or {}).get('manual_adoptions',[]),previous)
+    old=next((m for m in load_manifests() if m['observation_id']==manifest['observation_id']),None)
+    if old is None:return None
+    if any(r['migration_id']==old['migration_id'] or r['observation_id']==old['observation_id'] for r in ledger):
+        fail('ADOPTION_APPLIED_REPLACEMENT_FORBIDDEN')
+    if any(r['observation_id']==old['observation_id'] for r in previous['observations']):fail('ADOPTION_TARGET_ALREADY_PUBLISHED')
+    if any(old[k]!=manifest[k] for k in ('article_hash','url_hash','ordinal','observation_id')):fail('ADOPTION_PENDING_IDENTITY_CHANGED')
+    if old['migration_id']==manifest['migration_id']:fail('ADOPTION_PENDING_ALREADY_RECORDED')
+    return old

@@ -197,3 +197,12 @@ def test_manifests_and_snapshot_ledger_reject_unknown_fields_symlinks_and_tamper
     snap=sync.read_json(first/'article-sync-snapshot.json');p=sync.read_json(first/'portal-data.json')
     snap['payload']['manual_adoptions'][0]['url_hash']='a'*64;snap['sha256']=sync.payload_hash(snap['payload'])
     with pytest.raises(sync.SyncError):sync.validate_snapshot(snap,p)
+
+
+def test_applied_adoption_cannot_be_replaced_by_pending_refresh(tmp_path,monkeypatch):
+    main,previous,directory,report=setup(monkeypatch,tmp_path);m=manifest(main,previous,directory)
+    first=tmp_path/'first';assert sync.run(previous,first,report)==0
+    pub=publication(first);new=deepcopy(m);new['approved_at']='2026-10-13T09:00:00+00:00'
+    new['migration_id']=sync.payload_hash({k:v for k,v in new.items() if k!='migration_id'})
+    with pytest.raises(sync.SyncError,match='APPLIED_REPLACEMENT_FORBIDDEN'):
+        adoption.pending_replacement(new,pub['portal-data.json'],pub['article-sync-snapshot.json']['payload'])

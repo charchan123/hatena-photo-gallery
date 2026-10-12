@@ -410,7 +410,9 @@ class SyncReview:
         fresh = d and d.get('bundle_id') == self.bundle_id
         result['review'] = d if fresh else None; result['stale_review'] = bool(d and not fresh)
         if fresh:
-            if d['decision'] == 'hold' or d['decision'] in {'propose_name','exclude','confirm_url','delete','classify_named','classify_unknown'}: result['group']='held'
+            if d['decision'] in {'classify_named','classify_unknown'}:
+                result['group']='unlisted'; result['human_classification_saved']=True
+            elif d['decision'] == 'hold' or d['decision'] in {'propose_name','exclude','confirm_url','delete'}: result['group']='held'
             elif d['decision'] in {'confirmed','no_change','classify_non_mushroom'}:
                 result['confirmation_only']=True
                 if row['group'] not in {'blocker','migration'}: result['group']='reviewed'
@@ -489,7 +491,7 @@ class SyncReview:
             return self.last_preview
 
 
-def validate_package(publication, manifest=None, *, adoption=None):
+def validate_package(publication, manifest=None, *, adoption=None, replacement=None):
     """Full, fail-closed real generator in a temporary directory, never publish."""
     from article_sync import run as generate
     with isolated_generator() as (_, temporary):
@@ -516,6 +518,10 @@ def validate_package(publication, manifest=None, *, adoption=None):
                 migrations = temporary/'adoption-migrations'
                 if original_adoptions.exists(): copytree(original_adoptions,migrations)
                 else: migrations.mkdir()
+                expected = sync_adoptions.pending_replacement(adoption,publication['portal-data.json'],publication['article-sync-snapshot.json']['payload'])
+                if expected != replacement: raise ReviewError('ADOPTION_PENDING_REPLACEMENT_CHANGED')
+                if replacement is not None:
+                    (migrations/(replacement['migration_id']+'.json')).unlink()
                 (migrations/(adoption['migration_id']+'.json')).write_text(json.dumps(adoption),encoding='utf-8')
                 sync_adoptions.DIRECTORY = migrations
             code = generate(previous, output, report)

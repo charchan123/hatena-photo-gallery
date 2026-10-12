@@ -179,3 +179,60 @@ def test_private_validation_code_uses_real_generator_but_no_source_bodies_escape
     assert main.ARTICLES_DIR==article_path and main.ARTICLE_METADATA_FILE==metadata_path
     assert original_files=={p:p.read_bytes() for p in Path(article_path).rglob('*') if p.is_file()}
     assert (candidate/'portal-data.json').exists() and not (candidate/'articles').exists()
+
+
+def test_stale_never_applied_instruction_can_be_reapproved_for_same_target_only(reviewed):
+    from sync_adoptions import pending_replacement
+    import sync_adoptions
+    r,row,pub,live=reviewed;classify(r,row)
+    old=app.build_manifest(r,row['candidate_id']);old['baseline_snapshot_sha256']='a'*64
+    old['migration_id']=sync.payload_hash({k:v for k,v in old.items() if k!='migration_id'})
+    sync.write_json(sync_adoptions.DIRECTORY/(old['migration_id']+'.json'),old)
+    p=app.preview(r,{'candidate_id':row['candidate_id'],'bundle_id':r.bundle_id})
+    assert p['ready'] and p['replaces_unapplied_instruction']==old['migration_id']
+    new=r.adoption_preview['manifest']
+    assert new['observation_id']==old['observation_id']
+    paths=['sync-migrations/photo-adoptions/'+m['migration_id']+'.json' for m in (old,new)]
+    assert app.validate_changed_paths(paths,new,old).endswith(new['migration_id']+'.json')
+    with pytest.raises(ReviewError):app.validate_changed_paths(paths+['data/best-shots.json'],new,old)
+    assert app.approve(r,{'migration_id':p['migration_id'],'confirm_name':p['gallery_name'],'confirm_adoption':True})['approved']
+    assert (sync_adoptions.DIRECTORY/(old['migration_id']+'.json')).exists()  # Preview never edits source.
+
+
+def test_classification_stays_visible_in_unlisted_filter_until_explicit_hold(reviewed):
+    r,row,pub,live=reviewed;classify(r,row)
+    assert r.page(group='unlisted')['total']==1 and r.page(group='held')['total']==0
+    classify(r,row,'hold','');assert r.page(group='held')['total']==1
+
+
+def test_refresh_pr_removes_only_same_never_applied_instruction(reviewed,monkeypatch):
+    import admin.git_workflow as workflow
+    import subprocess,json,sync_adoptions
+    from types import SimpleNamespace
+    r,row,pub,live=reviewed;classify(r,row)
+    old=app.build_manifest(r,row['candidate_id']);old['baseline_snapshot_sha256']='a'*64
+    old['migration_id']=sync.payload_hash({k:v for k,v in old.items() if k!='migration_id'})
+    sync.write_json(sync_adoptions.DIRECTORY/(old['migration_id']+'.json'),old)
+    p=app.preview(r,{'candidate_id':row['candidate_id'],'bundle_id':r.bundle_id})
+    app.approve(r,{'migration_id':p['migration_id'],'confirm_name':p['gallery_name'],'confirm_adoption':True})
+    new=deepcopy(r.adoption_preview['manifest']);paths=['sync-migrations/photo-adoptions/'+m['migration_id']+'.json' for m in (new,old)]
+    calls=[];work_holder=[];monkeypatch.setattr(workflow,'repository_status',lambda:{'gh_authenticated':True})
+    def run(args,**kw):
+        calls.append(args);out=''
+        if args[:3]==['git','worktree','add']:
+            work=Path(args[-2]);work_holder.append(work);(work/'tests').mkdir(parents=True);(work/'tests/test.js').write_text('')
+            sync.write_json(work/paths[1],old)
+        if args[:2]==['git','rev-parse']:out='a'*40
+        if args==['git','diff','--name-only']:out=paths[1]
+        if args[:2]==['git','ls-files']:out='' if '--' in args else paths[0]
+        if args==['git','diff','--cached','--name-only']:out='\n'.join(sorted(paths))
+        if args==['git','show',':'+paths[0]]:out=json.dumps(new)
+        if args[:2]==['git','push']:
+            assert not (work_holder[0]/paths[1]).exists()
+            assert json.loads((work_holder[0]/paths[0]).read_text())==new
+        if args[:3]==['gh','pr','create']:out='https://github.com/example/pull/1'
+        return SimpleNamespace(stdout=out,returncode=0)
+    monkeypatch.setattr(workflow,'run',run);monkeypatch.setattr(subprocess,'run',lambda *a,**kw:SimpleNamespace(returncode=0))
+    assert app.create_pull_request(r,{})['draft']
+    assert next(c for c in calls if c[:2]==['git','add'])==['git','add','--',*paths]
+    assert r.audit[-1]['replaced_unapplied_migration']==old['migration_id']
