@@ -1,0 +1,12 @@
+{
+  "python_passed": 771,
+  "python_collected": 771,
+  "javascript_passed": 43,
+  "focused_passed": 65,
+  "compileall": "PASS",
+  "js_syntax": "PASS",
+  "diff_check": "PASS",
+  "protected_paths_changed": [],
+  "generator": "actual generator used in fixture migrations and previews; live GET pending Actions",
+  "baseline_main": "8d8c1b87427ea73e28313e4e586a87a968291ea1"
+}

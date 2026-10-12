@@ -1,0 +1,73 @@
+name: Phase2b read-only sync preflight
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  preflight:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'phase2b-safe-sync-exceptions-2026-10-12'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: .sync-previous
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /portal-data.json
+            /article-sync-snapshot.json
+            /phase3c-production-status.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - uses: actions/cache/restore@v4
+        with:
+          path: cache/exif-cache.json
+          key: phase2b-read-only-${{ github.run_id }}
+          restore-keys: |
+            exif-cache-v1-${{ runner.os }}-
+      - name: Validate twice with real GET and unchanged references
+        env:
+          HATENA_USER: ${{ secrets.HATENA_USER }}
+          HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
+          HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          import article_sync as sync
+          from admin.sync import isolated_generator
+          previous=Path('.sync-previous').resolve()
+          old=sync.read_json(previous/'portal-data.json')
+          with isolated_generator() as (_,temp):
+              first=temp/'first';second=temp/'second'
+              report=temp/'report.json'
+              assert sync.run(previous,first,report)==0, sync.read_json(report).get('error_code')
+              one=sync.read_json(report)
+              candidate=sync.read_json(first/'portal-data.json')
+              old_by={r['observation_id']:r for r in old['observations']};new_by={r['observation_id']:r for r in candidate['observations']}
+              preserved=sum(i in new_by and (r['gallery_name'],r['src'],r['article']['article_id'])==(new_by[i]['gallery_name'],new_by[i]['src'],new_by[i]['article']['article_id']) for i,r in old_by.items())
+              assert preserved==len(old_by)
+              assert one['best_shot_references_preserved']==3 and one['research_cases_preserved']==67
+              assert one['retirement']['retired_total']==7 and one['retired_output_inspection']['result']=='PASS'
+              assert not (first/'admin').exists() and not (first/'sync-migrations').exists()
+              assert sync.run(first,second,report)==0,sync.read_json(report).get('error_code')
+              two=sync.read_json(report)
+              assert all(two[k]==0 for k in ('new_articles','new_images','deleted_articles','deleted_images','updated_articles','classification_changes','name_migrations_applied_this_run'))
+              result={'mode':'read-only real Atom GET; no rename approvals or publication',
+                  'previous_photo_count':len(old_by),'old_ids_names_urls_articles_preserved':preserved,
+                  'public_articles':one['published_article_count'],'detected_images':one['detected_image_count'],
+                  'gallery_photos':one['gallery_photo_count'],'fetch_audit':one['fetch_audit'],
+                  'best_shots':one['best_shot_references_preserved'],'research_cases':one['research_cases_preserved'],
+                  'retirement':one['retirement'],'retired_output_inspection':one['retired_output_inspection'],
+                  'generated_pages':one['generated_html_pages'],'first_result':one['result'],'second_result':two['result'],
+                  'idempotent_second_new_articles':two['new_articles'],'idempotent_second_new_images':two['new_images'],
+                  'name_migrations':one['name_migration_count'],'automatic_new_photos':one['automatic_added_photo_count']}
+              print('PHASE2B_PREFLIGHT_JSON='+json.dumps(result,separators=(',',':')))
+          PY

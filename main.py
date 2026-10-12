@@ -3139,6 +3139,17 @@ def export_portal_data(*, production_entries, shadow_metadata, article_metadata=
             cutover_active=production_mode == "phase3c_hybrid",
         )
         if sync_run:
+            if hasattr(sync_run, "project_names"):
+                # Original Phase3C has already passed. Human names are a separate,
+                # identity-bound presentation projection, not detector output.
+                projected = sync_run.project_names(data, production_entries, shadow_metadata)
+                if projected != production_entries:
+                    production_entries[:] = projected
+                    data = build_portal_data(
+                        production_entries=production_entries, shadow_metadata=shadow_metadata,
+                        article_metadata=article_metadata, exif_cache=exif_cache, taxonomy=taxonomy,
+                        mushroom_master=load_mushroom_master(), sources=load_sources(),
+                        production_mode=production_mode, cutover_active=production_mode == "phase3c_hybrid")
             data = sync_run.reconcile(data, shadow_metadata)
         save_json(PORTAL_DATA_FILE, data)
         status = success_status(data)

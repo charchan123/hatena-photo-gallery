@@ -205,13 +205,15 @@ def validate_automatic_additions(records, portal):
     return records
 
 
-def seal_snapshot(articles, portal, timestamp, retirement=None, *, automatic_additions=None):
+def seal_snapshot(articles, portal, timestamp, retirement=None, *, automatic_additions=None, name_migrations=None):
     payload = {"version": 1, "last_success_at": timestamp, "articles": articles,
                "portal_sha256": payload_hash(portal)}
     if retirement is not None:
         payload["retirement"] = retirement
     if automatic_additions is not None:
         payload["automatic_additions"] = automatic_additions
+    if name_migrations:
+        payload["name_migrations"] = name_migrations
     return {"payload": payload, "sha256": payload_hash(payload)}
 
 
@@ -223,6 +225,8 @@ def validate_snapshot(snapshot, portal):
         assert payload["portal_sha256"] == payload_hash(portal)
         assert datetime.fromisoformat(payload["last_success_at"]).tzinfo is not None
         validate_automatic_additions(payload.get("automatic_additions", []), portal)
+        from sync_exceptions import validate_ledger as validate_name_ledger
+        validate_name_ledger(payload.get("name_migrations", []), portal)
         articles = payload["articles"]
         if "retirement" in payload:
             from sync_retirement import validate_ledger
@@ -329,11 +333,17 @@ class SyncRun:
         self.retirement = Retirement(self.previous, self.previous_snapshot, self.previous_directory)
         self.effective_previous = self.previous
         self.article_files = None
+        from sync_exceptions import NameMigrations
+        self.name_migrations = NameMigrations(self.previous, self.previous_snapshot)
 
     def capture(self, article_files, metadata):
         if not article_files:
             raise SyncError("EMPTY_HARVEST")
         self.article_files, self.metadata = article_files, metadata
+
+    def project_names(self, portal, entries, shadows):
+        raw_articles = inventory(self.article_files, self.metadata, shadows)
+        return self.name_migrations.project(portal, entries, raw_articles)
 
     def reconcile(self, portal, shadows):
         if self.article_files is None:
@@ -384,6 +394,10 @@ class SyncRun:
                 raise SyncError("DELETION_OR_URL_CHANGE_REQUIRES_REVIEW")
         self.effective_previous = self.retirement.prepare(portal, self.articles, self.excluded_draft_hashes,
             Path(__file__).parent / "data")
+        if self.name_migrations.manifests:
+            # Only an independently validated unique target changes the comparison
+            # name; all original ID/URL/multiplicity/new-photo guards still run.
+            self.effective_previous = self.name_migrations.effective_previous
         result = reconcile_ids(portal, self.effective_previous)
         self.status["retirement"] = self.retirement.status()
         # Read-only receipt: record automatic additions AFTER unchanged Phase 1
@@ -428,8 +442,11 @@ class SyncRun:
         self.status["automatic_added_photo_count"] = len(additions)
         self.status["automatic_added_at"] = now if additions else None
         snapshot = seal_snapshot(self.articles, portal, now, self.retirement.ledger,
-                                 automatic_additions=history)
+                                 automatic_additions=history,
+                                 name_migrations=self.name_migrations.finish(portal, now))
         validate_snapshot(snapshot, portal)
+        self.status["name_migration_count"] = len(self.name_migrations.ledger)
+        self.status["name_migrations_applied_this_run"] = len(self.name_migrations.events)
         self.status["generated_html_pages"] = sum(1 for _ in output.rglob("*.html"))
         self.status.update(result="SUCCESS", last_success_at=now,
                            bootstrap=self.previous_snapshot is None)

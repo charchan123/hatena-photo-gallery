@@ -1,0 +1,37 @@
+{
+  "environment": "Chromium 1440px; exception source is fixture Atom GET; existing admin tabs use real published read-only portal",
+  "existing_tabs": [
+    "best",
+    "research",
+    "notices",
+    "knowledge",
+    "status",
+    "changes"
+  ],
+  "photo_proposal": "PASS",
+  "independent_real_generator_preview": {
+    "ready": true,
+    "result": "SUCCESS",
+    "added_photos": 0,
+    "preserved_photo_ids": 2,
+    "gallery_photos": 2,
+    "best_shot_references_preserved": 1,
+    "research_cases_preserved": 0,
+    "retirement": {
+      "migration_id": "hatena-draft-photo-retirement-2026-10-12",
+      "state": "NOT_APPLICABLE",
+      "retired_this_run": 0,
+      "retired_total": 0,
+      "manifest_sha256": "4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c"
+    },
+    "generated_html_pages": 13,
+    "name_migration_count": 1
+  },
+  "explicit_confirmation": "PASS",
+  "approval_message": "明示承認を保存しました。まだ公開されていません。",
+  "published": false,
+  "pr_creation": "not invoked (browser credentials unavailable; dedicated route unit tested)",
+  "console_errors": [],
+  "horizontal_overflow": false,
+  "network": "CDN requests blocked for offline fixture rendering; no Hatena write or Github push"
+}
