@@ -34,14 +34,13 @@ def validate_request(request):
         if not isinstance(source, dict) or set(source) != {
                 "main_sha", "publication_sha", "snapshot_sha256", "inventory_sha256", "bundle_sha256"}:
             raise ValueError()
-        if not all(isinstance(s, str) and DIGEST.fullmatch(s) for s in source.values()):
-            # Git revision is a 40-character SHA-1; the snapshots and inventory are SHA-256.
-            for k in ("main_sha", "publication_sha"):
-                if not isinstance(source[k], str) or not re.fullmatch(r"[0-9a-f]{40}", source[k]):
-                    raise ValueError()
-            for k in ("snapshot_sha256", "inventory_sha256", "bundle_sha256"):
-                if not isinstance(source[k], str) or not DIGEST.fullmatch(source[k]):
-                    raise ValueError()
+        # Git commit IDs are SHA-1; snapshot/bundle identifiers are SHA-256.
+        for k in ("main_sha", "publication_sha"):
+            if not isinstance(source[k], str) or not re.fullmatch(r"[0-9a-f]{40}", source[k]):
+                raise ValueError()
+        for k in ("snapshot_sha256", "inventory_sha256", "bundle_sha256"):
+            if not isinstance(source[k], str) or not DIGEST.fullmatch(source[k]):
+                raise ValueError()
         if not isinstance(identity, dict) or set(identity) != {
                 "candidate_id", "article_hash", "url_hash", "ordinal",
                 "observation_id", "old_name", "candidate_name", "fingerprint"}:
@@ -60,7 +59,8 @@ def validate_request(request):
                 not isinstance(identity["observation_id"], str)
                 or not re.fullmatch(r"obs-[0-9a-f]{64}|obs-[A-Za-z0-9_-]{1,100}", identity["observation_id"])):
             raise ValueError()
-        if not _name(identity["old_name"]) or not _name(identity["candidate_name"]):
+        if any(v is not None and not _name(v) for v in
+               (identity["old_name"], identity["candidate_name"])):
             raise ValueError()
         if not isinstance(proposal, dict) or set(proposal) != {
                 "operation", "proposed_name", "decided_at", "note_sha256", "application"}:
