@@ -110,9 +110,8 @@ def create_pull_request(review,body):
             import main
             env=os.environ.copy()
             env.update(HATENA_USER=main.HATENA_USER,HATENA_BLOG_ID=main.HATENA_BLOG_ID,HATENA_API_KEY=main.HATENA_API_KEY)
-            generated=subprocess.run(['python','-m','article_sync','--previous',str(previous),
-                '--output',str(directory/'candidate'),'--report',str(directory/'report.json')],
-                cwd=work,env=env,capture_output=True,text=True)
+            from .sync import generate_in_worktree
+            generated=generate_in_worktree(work,previous,directory/'candidate',directory/'report.json',env)
             if generated.returncode: raise ReviewError('EXCEPTION_PR_REAL_GENERATION_BLOCKED')
             for command in (['python','-m','pytest','-q'],['python','-m','compileall','-q','.']):
                 if run(command,cwd=work,check=False).returncode: raise ReviewError('EXCEPTION_PR_TEST_FAILED')

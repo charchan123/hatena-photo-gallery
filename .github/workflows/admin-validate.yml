@@ -24,6 +24,13 @@ jobs:
           HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
           HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
         run: test -n "$HATENA_USER" && test -n "$HATENA_BLOG_ID" && test -n "$HATENA_API_KEY"
+      - name: Restore EXIF cache (read-only; never used for adoption image hashes)
+        uses: actions/cache/restore@v4
+        with:
+          path: cache/exif-cache.json
+          key: admin-readonly-exif-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            exif-cache-v1-${{ runner.os }}-
       - name: Generate from latest Hatena data (validation only)
         env:
           HATENA_USER: ${{ secrets.HATENA_USER }}

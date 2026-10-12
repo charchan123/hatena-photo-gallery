@@ -20,7 +20,7 @@ from .knowledge import (preview_promotion, reset_review_state,
 
 from .sync import SyncReview, ReviewError, latest_actions
 from article_sync import SyncError
-from . import sync_exception
+from . import sync_exception, sync_adoption
 
 BIND_ADDRESS = "127.0.0.1"
 DEFAULT_PORT = 8765
@@ -152,6 +152,9 @@ class Handler(BaseHTTPRequestHandler):
                 elif self.path == "/api/sync/preview":
                     if body: raise ReviewError("INVALID_INPUT")
                     result = review.preview()
+                elif self.path == "/api/sync/adoption-preview": result = sync_adoption.preview(review,body)
+                elif self.path == "/api/sync/adoption-approve": result = sync_adoption.approve(review,body)
+                elif self.path == "/api/sync/adoption-pr": result = sync_adoption.create_pull_request(review,body)
                 elif self.path == "/api/sync/exception-preview": result = sync_exception.preview(review,body)
                 elif self.path == "/api/sync/exception-approve": result = sync_exception.approve(review,body)
                 elif self.path == "/api/sync/exception-pr": result = sync_exception.create_pull_request(review,body)

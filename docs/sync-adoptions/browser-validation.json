@@ -1,0 +1,34 @@
+{
+  "environment": "Chromium 1440px; fixture Atom and image GET, real generator and image hash verification; existing tabs use read-only real published 906 portal",
+  "existing_tabs": "PASS",
+  "unlisted_filter": "1 historical unlisted fixture, not a new blocker",
+  "thumbnail_loaded": true,
+  "human_classification": "PASS",
+  "independent_generation": {
+    "ready": true,
+    "result": "SUCCESS",
+    "added_photos": 0,
+    "preserved_photo_ids": 1,
+    "gallery_photos": 2,
+    "best_shot_references_preserved": 1,
+    "research_cases_preserved": 0,
+    "retirement": {
+      "migration_id": "hatena-draft-photo-retirement-2026-10-12",
+      "state": "NOT_APPLICABLE",
+      "retired_this_run": 0,
+      "retired_total": 0,
+      "manifest_sha256": "4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c"
+    },
+    "generated_html_pages": 13,
+    "name_migration_count": 0,
+    "manual_adoption_count": 1,
+    "manual_adoptions_applied_this_run": 1
+  },
+  "explicit_adoption_confirmation": "PASS",
+  "audit_history": "PASS",
+  "cancel": "PASS",
+  "console_errors": [],
+  "horizontal_overflow": false,
+  "publication": false,
+  "pr_write": "not invoked in browser; separately mocked worktree regression"
+}

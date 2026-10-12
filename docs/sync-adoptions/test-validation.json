@@ -1,0 +1,28 @@
+{
+  "python_passed": 812,
+  "python_collected": 812,
+  "javascript_passed": 43,
+  "focused_passed": 106,
+  "compileall": "PASS",
+  "js_syntax": "PASS",
+  "diff_check": "PASS",
+  "workflow_yaml": "PASS",
+  "protected_paths_changed": [],
+  "actual_generator_fixture": "manual single/multiple/unknown/automatic/next day/name migration; no live adoption",
+  "real_api": "SUCCESS: Actions 38224423795, no real adoption performed",
+  "final_head_ci": "See final PR Checks / PR body; final head is verified before delivery",
+  "protected_scope": [
+    "data/**",
+    "audit/**",
+    "feature_overlay.py",
+    "sync_retirement.py",
+    "sync_exceptions.py",
+    "sync-migrations/**",
+    "assets/**",
+    "hatena/**",
+    ".github/workflows/generate.yml",
+    "admin/knowledge.py",
+    "admin/git_workflow.py"
+  ],
+  "name_pr_route_change": "fixed private generation context only; exact single-manifest allow-list unchanged"
+}

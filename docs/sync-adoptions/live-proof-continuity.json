@@ -1,0 +1,32 @@
+[
+  {
+    "file": "sync_adoptions.py",
+    "object": "Adoptions",
+    "matches_live_verified_commit": true
+  },
+  {
+    "file": "sync_adoptions.py",
+    "object": "image_hash",
+    "matches_live_verified_commit": true
+  },
+  {
+    "file": "sync_adoptions.py",
+    "object": "source_occurrences",
+    "matches_live_verified_commit": true
+  },
+  {
+    "file": "article_sync.py",
+    "object": "SyncRun",
+    "matches_live_verified_commit": true
+  },
+  {
+    "file": "article_sync.py",
+    "object": "run",
+    "matches_live_verified_commit": true
+  },
+  {
+    "file": "article_sync.py",
+    "object": "reconcile_ids",
+    "matches_live_verified_commit": true
+  }
+]

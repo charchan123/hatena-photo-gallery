@@ -3150,6 +3150,20 @@ def export_portal_data(*, production_entries, shadow_metadata, article_metadata=
                         article_metadata=article_metadata, exif_cache=exif_cache, taxonomy=taxonomy,
                         mushroom_master=load_mushroom_master(), sources=load_sources(),
                         production_mode=production_mode, cutover_active=production_mode == "phase3c_hybrid")
+            if hasattr(sync_run, "project_adoptions"):
+                projected, view_shadows = sync_run.project_adoptions(data, production_entries, shadow_metadata)
+                if projected != production_entries:
+                    production_entries[:] = projected
+                    # Refresh EXIF only for these newly validated public images.
+                    fresh_exif = build_exif_cache(projected, exif_cache)
+                    exif_cache.update(fresh_exif)
+                    save_exif_cache(exif_cache)
+                    data = build_portal_data(
+                        production_entries=production_entries, shadow_metadata=view_shadows,
+                        article_metadata=article_metadata, exif_cache=exif_cache, taxonomy=taxonomy,
+                        mushroom_master=load_mushroom_master(), sources=load_sources(),
+                        production_mode=production_mode, cutover_active=production_mode == "phase3c_hybrid")
+                    data = sync_run.annotate_adoptions(data)
             data = sync_run.reconcile(data, shadow_metadata)
         save_json(PORTAL_DATA_FILE, data)
         status = success_status(data)

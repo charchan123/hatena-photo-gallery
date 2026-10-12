@@ -205,7 +205,7 @@ def validate_automatic_additions(records, portal):
     return records
 
 
-def seal_snapshot(articles, portal, timestamp, retirement=None, *, automatic_additions=None, name_migrations=None):
+def seal_snapshot(articles, portal, timestamp, retirement=None, *, automatic_additions=None, name_migrations=None, manual_adoptions=None):
     payload = {"version": 1, "last_success_at": timestamp, "articles": articles,
                "portal_sha256": payload_hash(portal)}
     if retirement is not None:
@@ -214,6 +214,8 @@ def seal_snapshot(articles, portal, timestamp, retirement=None, *, automatic_add
         payload["automatic_additions"] = automatic_additions
     if name_migrations:
         payload["name_migrations"] = name_migrations
+    if manual_adoptions:
+        payload["manual_adoptions"] = manual_adoptions
     return {"payload": payload, "sha256": payload_hash(payload)}
 
 
@@ -227,6 +229,8 @@ def validate_snapshot(snapshot, portal):
         validate_automatic_additions(payload.get("automatic_additions", []), portal)
         from sync_exceptions import validate_ledger as validate_name_ledger
         validate_name_ledger(payload.get("name_migrations", []), portal)
+        from sync_adoptions import validate_ledger as validate_adoption_ledger
+        validate_adoption_ledger(payload.get("manual_adoptions", []), portal)
         articles = payload["articles"]
         if "retirement" in payload:
             from sync_retirement import validate_ledger
@@ -335,6 +339,8 @@ class SyncRun:
         self.article_files = None
         from sync_exceptions import NameMigrations
         self.name_migrations = NameMigrations(self.previous, self.previous_snapshot)
+        from sync_adoptions import Adoptions
+        self.adoptions = Adoptions(self.previous, self.previous_snapshot)
 
     def capture(self, article_files, metadata):
         if not article_files:
@@ -344,6 +350,26 @@ class SyncRun:
     def project_names(self, portal, entries, shadows):
         raw_articles = inventory(self.article_files, self.metadata, shadows)
         return self.name_migrations.project(portal, entries, raw_articles)
+
+    def project_adoptions(self, portal, entries, shadows):
+        if not self.adoptions.manifests: return entries, shadows
+        import main
+        phase = read_json(main.PHASE3C_PRODUCTION_STATUS_FILE)
+        if phase.get("cutover_active") is not True or phase.get("validation", {}).get("valid") is not True:
+            raise SyncError("ADOPTION_RAW_PHASE3C_INVALID")
+        raw_articles = inventory(self.article_files, self.metadata, shadows)
+        from sync_adoptions import source_occurrences
+        sources = source_occurrences(self.article_files, self.metadata, shadows, raw_articles)
+        projected, view_shadows = self.adoptions.project(portal, entries, shadows, sources)
+        if phase["production_image_count"] != len(entries):
+            raise SyncError("ADOPTION_RAW_PHASE3C_INVALID")
+        phase.update(raw_phase3c_image_count=len(entries), manual_adoption_count=len(self.adoptions.targets),
+                     production_image_count=len(projected), net_image_delta_vs_legacy=len(projected)-phase["legacy_image_count"])
+        write_json(main.PHASE3C_PRODUCTION_STATUS_FILE, phase)
+        return projected, view_shadows
+
+    def annotate_adoptions(self, portal):
+        return self.adoptions.annotate(portal) if self.adoptions.manifests else portal
 
     def reconcile(self, portal, shadows):
         if self.article_files is None:
@@ -398,12 +424,25 @@ class SyncRun:
             # Only an independently validated unique target changes the comparison
             # name; all original ID/URL/multiplicity/new-photo guards still run.
             self.effective_previous = self.name_migrations.effective_previous
-        result = reconcile_ids(portal, self.effective_previous)
+        # Manual occurrences have already passed their independent exact-target
+        # proof. Run the ORIGINAL automatic gate on all other occurrences.
+        normal = self.adoptions.without_manual(portal) if self.adoptions.manifests else portal
+        normal_previous = self.adoptions.without_manual(self.effective_previous) if self.adoptions.manifests else self.effective_previous
+        normal_result = reconcile_ids(normal, normal_previous)
+        if not self.adoptions.manifests:
+            result = normal_result
+        else:
+            result = deepcopy(portal)
+        if self.adoptions.manifests:
+            normal_ids = {r["production_index"]:r["observation_id"] for r in normal_result["observations"]}
+            for row in result["observations"]:
+                if row["production_index"] in normal_ids: row["observation_id"] = normal_ids[row["production_index"]]
+        observation_groups(result)
         self.status["retirement"] = self.retirement.status()
         # Read-only receipt: record automatic additions AFTER unchanged Phase 1
         # classification/identity gates. This never grants publication permission.
         old_ids = {r["observation_id"] for r in self.effective_previous["observations"]}
-        self.automatic_additions = automatic_addition_records(result, old_ids)
+        self.automatic_additions = automatic_addition_records(normal_result, old_ids)
         return result
 
     def finalize(self, output, flags, data_directory):
@@ -415,6 +454,10 @@ class SyncRun:
                 or status.get("build_ok") is not True or not all(flags)
                 or phase.get("production_image_count") != len(portal["observations"])):
             raise SyncError("OUTPUT_INTEGRITY_ERROR")
+        if self.adoptions.manifests:
+            if (phase.get("raw_phase3c_image_count", -1) + len(self.adoptions.targets) != len(portal["observations"])
+                    or phase.get("manual_adoption_count") != len(self.adoptions.targets)):
+                raise SyncError("ADOPTION_OUTPUT_COUNT_INVALID")
         self.status.update(validate_references(portal, self.previous, data_directory))
         old = {row["observation_id"]: row for row in self.effective_previous["observations"]}
         current = {row["observation_id"]: row for row in portal["observations"]}
@@ -443,10 +486,13 @@ class SyncRun:
         self.status["automatic_added_at"] = now if additions else None
         snapshot = seal_snapshot(self.articles, portal, now, self.retirement.ledger,
                                  automatic_additions=history,
-                                 name_migrations=self.name_migrations.finish(portal, now))
+                                 name_migrations=self.name_migrations.finish(portal, now),
+                                 manual_adoptions=self.adoptions.finish(portal, now))
         validate_snapshot(snapshot, portal)
         self.status["name_migration_count"] = len(self.name_migrations.ledger)
         self.status["name_migrations_applied_this_run"] = len(self.name_migrations.events)
+        self.status["manual_adoption_count"] = len(self.adoptions.ledger)
+        self.status["manual_adoptions_applied_this_run"] = len(self.adoptions.events)
         self.status["generated_html_pages"] = sum(1 for _ in output.rglob("*.html"))
         self.status.update(result="SUCCESS", last_success_at=now,
                            bootstrap=self.previous_snapshot is None)
