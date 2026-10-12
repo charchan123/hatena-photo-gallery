@@ -6,5 +6,5 @@
   "best_shot_references_preserved": 3,
   "research_cases_preserved": 67,
   "normal_sync": "no human approval dependency",
-  "local_live_api": "NOT_AVAILABLE; runner preflight pending"
+  "local_live_api": "Unavailable locally; GitHub read-only preflight SUCCESS (see real-api-validation.json)"
 }

@@ -83,3 +83,17 @@ Phase 1の除外判定を新設の隔離や「キノコ以外」への推測変�
 管理室自体の例外移行適用は引き続きPARTIALです。今回は通常の自動更新を維持する仕様修正であり、
 未分類の手動分類・既存写真変更の移行機能を完成したとは扱いません。
 Hatena記事操作、main push、merge、deploy、workflow_dispatch、サイト公開は行いません。
+
+## 実APIの読み取り専用事前検証
+
+[Actions 38203721560](https://github.com/charchan123/hatena-photo-gallery/actions/runs/38203721560)
+で同じproduction wrapperを2回実行し、ともにSUCCESS。
+12ページ・公開110記事・976画像occurrences・906 gallery、下書き2記事除外。
+旧906枚のID/名前/URL、Best Shot3件、研究室67ケースを保持。
+retired7枚の出力検査PASS、Phase 3C PASS、322 HTML生成。2回目は新記事・新画像0。
+実APIに新規写真はなかったため、1枚/複数枚追加はfixture実生成の証拠です。
+
+PR106・同一repo pull_request限定、contents:read、Hatena GETのみ。
+生成はRUNNER_TEMP、非公開本文・認証値・画像URLのログ/成果物出力なし。
+一時workflowは検証後に削除し、最終PR差分に残しません。
+実APIを取得したgeneratorのコードは最終修正と同一です。
