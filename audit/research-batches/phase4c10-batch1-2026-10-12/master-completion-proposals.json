@@ -194,7 +194,7 @@
       "organization": "国立研究開発法人 森林研究・整備機構 森林総合研究所 九州支所",
       "source_title": "オニフスベ",
       "checked_at": "2026-10-12",
-      "evidence_quote": "球形または偏球形で、直径50cmに達する。",
+      "evidence_quote": "直径50cmに達する。表面は初め白いが、後に褐色になり、剥がれる。",
       "judgment": "既存の色・内部胞子を保持し、資料掲載値として大きさを補足する。毛・粉状表面のfacetへ拡張しない。",
       "confidence": "high",
       "research_disposition": "adoption_candidate",
@@ -204,14 +204,14 @@
       "evidence": {
         "evidence_id": "P4C10-E-006",
         "source_id": "research-ffpri-kinoko065",
-        "snapshot_identity": "urn:phase4c10:bounded-service-extract:research-ffpri-kinoko065:sha256:d463462d4266c2f3861c9fd3a522890c085e51f95c60d7e57054f5db19d64ae1",
-        "quote": "球形または偏球形で、直径50cmに達する。",
-        "quote_sha256": "b79696478b602703daa4023d238b574138e58326ebcf2a673e4b564f25d93eb1",
+        "snapshot_identity": "urn:phase4c10:bounded-service-extract:research-ffpri-kinoko065:sha256:b8c1416bad28d99139775102b8c4048fc9d0fbcf93fd92400a17dd01177bdf64",
+        "quote": "直径50cmに達する。表面は初め白いが、後に褐色になり、剥がれる。",
+        "quote_sha256": "65be13ceef05b1082a9e7a9b5a16638da7eb76f83433e3ed358cc59335319ecf",
         "char_start": 0,
-        "char_end": 21,
+        "char_end": 33,
         "snapshot_line_start": 1,
         "snapshot_line_end": 1,
-        "text_snapshot_sha256": "d463462d4266c2f3861c9fd3a522890c085e51f95c60d7e57054f5db19d64ae1",
+        "text_snapshot_sha256": "b8c1416bad28d99139775102b8c4048fc9d0fbcf93fd92400a17dd01177bdf64",
         "original_response_sha256": "9827631f24bc5ebafec2ebe2cf369496da748d635ff7e67c81c32613ed77ad4a"
       }
     },
@@ -248,14 +248,14 @@
       "evidence": {
         "evidence_id": "P4C10-E-007",
         "source_id": "research-ffpri-kinoko065",
-        "snapshot_identity": "urn:phase4c10:bounded-service-extract:research-ffpri-kinoko065:sha256:d463462d4266c2f3861c9fd3a522890c085e51f95c60d7e57054f5db19d64ae1",
+        "snapshot_identity": "urn:phase4c10:bounded-service-extract:research-ffpri-kinoko065:sha256:b8c1416bad28d99139775102b8c4048fc9d0fbcf93fd92400a17dd01177bdf64",
         "quote": "草地、林内に発生する。",
         "quote_sha256": "118dcb1ba811f380b8528a1a1aa68058a7306f4022088e70e7fb01b485c1698e",
-        "char_start": 22,
-        "char_end": 33,
+        "char_start": 34,
+        "char_end": 45,
         "snapshot_line_start": 2,
         "snapshot_line_end": 2,
-        "text_snapshot_sha256": "d463462d4266c2f3861c9fd3a522890c085e51f95c60d7e57054f5db19d64ae1",
+        "text_snapshot_sha256": "b8c1416bad28d99139775102b8c4048fc9d0fbcf93fd92400a17dd01177bdf64",
         "original_response_sha256": "9827631f24bc5ebafec2ebe2cf369496da748d635ff7e67c81c32613ed77ad4a"
       }
     },

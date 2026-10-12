@@ -1,0 +1,1143 @@
+...............................................................EEEEEEEEE [  8%]
+EEEEEEEEEEEEEEEEEEEEEE.EE............................................... [ 17%]
+........................................................................ [ 26%]
+........................................................................ [ 35%]
+........................................................................ [ 44%]
+........................................................................ [ 53%]
+........................................................................ [ 62%]
+........................................................................ [ 70%]
+........................................................................ [ 79%]
+........................................................................ [ 88%]
+........................................................................ [ 97%]
+....................                                                     [100%]
+==================================== ERRORS ====================================
+_ ERROR at setup of test_unlisted_is_distinct_from_published_unknown_and_legacy_count _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_unlisted_is_distinct_from0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae4add60>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_adoption.py:15:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae4add60>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_unlisted_is_distinct_from0')
+extra = None
+
+    def setup(monkeypatch,tmp_path,extra=None):
+        xml=feed(atom_entry()+(extra or unlisted()))
+        main,calls,previous=configure(monkeypatch,tmp_path,[xml]*60)
+        directory=tmp_path/'adoptions';directory.mkdir();monkeypatch.setattr(adoption,'DIRECTORY',directory)
+        monkeypatch.setattr(adoption,'image_hash',lambda src:sync.digest('fixture bytes '+src))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_unlisted_is_distinct_from0/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_unlisted_is_distinct_from0/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_unlisted_is_distinct_from0/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_adoptions.py:26: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_ ERROR at setup of test_human_classification_real_preview_explicit_approval_and_next_state[classify_named-\u30d2\u30e9\u30bf\u30b1] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_human_classification_real0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae510aa0>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_adoption.py:15:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae510aa0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_human_classification_real0')
+extra = None
+
+    def setup(monkeypatch,tmp_path,extra=None):
+        xml=feed(atom_entry()+(extra or unlisted()))
+        main,calls,previous=configure(monkeypatch,tmp_path,[xml]*60)
+        directory=tmp_path/'adoptions';directory.mkdir();monkeypatch.setattr(adoption,'DIRECTORY',directory)
+        monkeypatch.setattr(adoption,'image_hash',lambda src:sync.digest('fixture bytes '+src))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_human_classification_real0/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_human_classification_real0/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_human_classification_real0/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_adoptions.py:26: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_ ERROR at setup of test_human_classification_real_preview_explicit_approval_and_next_state[classify_unknown-] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_human_classification_real1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30adf3bb90>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_adoption.py:15:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30adf3bb90>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_human_classification_real1')
+extra = None
+
+    def setup(monkeypatch,tmp_path,extra=None):
+        xml=feed(atom_entry()+(extra or unlisted()))
+        main,calls,previous=configure(monkeypatch,tmp_path,[xml]*60)
+        directory=tmp_path/'adoptions';directory.mkdir();monkeypatch.setattr(adoption,'DIRECTORY',directory)
+        monkeypatch.setattr(adoption,'image_hash',lambda src:sync.digest('fixture bytes '+src))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_human_classification_real1/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_human_classification_real1/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_human_classification_real1/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_adoptions.py:26: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+__ ERROR at setup of test_non_mushroom_hold_confirmation_never_allow_adoption __
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_non_mushroom_hold_confirm0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30aea2f560>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_adoption.py:15:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30aea2f560>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_non_mushroom_hold_confirm0')
+extra = None
+
+    def setup(monkeypatch,tmp_path,extra=None):
+        xml=feed(atom_entry()+(extra or unlisted()))
+        main,calls,previous=configure(monkeypatch,tmp_path,[xml]*60)
+        directory=tmp_path/'adoptions';directory.mkdir();monkeypatch.setattr(adoption,'DIRECTORY',directory)
+        monkeypatch.setattr(adoption,'image_hash',lambda src:sync.digest('fixture bytes '+src))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_non_mushroom_hold_confirm0/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_non_mushroom_hold_confirm0/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_non_mushroom_hold_confirm0/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_adoptions.py:26: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_____ ERROR at setup of test_invalid_classification_input_is_rejected[id] ______
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae236600>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_adoption.py:15:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae236600>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in0')
+extra = None
+
+    def setup(monkeypatch,tmp_path,extra=None):
+        xml=feed(atom_entry()+(extra or unlisted()))
+        main,calls,previous=configure(monkeypatch,tmp_path,[xml]*60)
+        directory=tmp_path/'adoptions';directory.mkdir();monkeypatch.setattr(adoption,'DIRECTORY',directory)
+        monkeypatch.setattr(adoption,'image_hash',lambda src:sync.digest('fixture bytes '+src))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in0/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in0/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in0/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_adoptions.py:26: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+__ ERROR at setup of test_invalid_classification_input_is_rejected[body_path] __
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30af6d3350>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_adoption.py:15:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30af6d3350>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in1')
+extra = None
+
+    def setup(monkeypatch,tmp_path,extra=None):
+        xml=feed(atom_entry()+(extra or unlisted()))
+        main,calls,previous=configure(monkeypatch,tmp_path,[xml]*60)
+        directory=tmp_path/'adoptions';directory.mkdir();monkeypatch.setattr(adoption,'DIRECTORY',directory)
+        monkeypatch.setattr(adoption,'image_hash',lambda src:sync.digest('fixture bytes '+src))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in1/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in1/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in1/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_adoptions.py:26: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_____ ERROR at setup of test_invalid_classification_input_is_rejected[url] _____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in2')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae5119d0>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_adoption.py:15:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae5119d0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in2')
+extra = None
+
+    def setup(monkeypatch,tmp_path,extra=None):
+        xml=feed(atom_entry()+(extra or unlisted()))
+        main,calls,previous=configure(monkeypatch,tmp_path,[xml]*60)
+        directory=tmp_path/'adoptions';directory.mkdir();monkeypatch.setattr(adoption,'DIRECTORY',directory)
+        monkeypatch.setattr(adoption,'image_hash',lambda src:sync.digest('fixture bytes '+src))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in2/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in2/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in2/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_adoptions.py:26: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+__ ERROR at setup of test_invalid_classification_input_is_rejected[taxonomy] ___
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in3')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30aed0bfb0>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_adoption.py:15:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30aed0bfb0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in3')
+extra = None
+
+    def setup(monkeypatch,tmp_path,extra=None):
+        xml=feed(atom_entry()+(extra or unlisted()))
+        main,calls,previous=configure(monkeypatch,tmp_path,[xml]*60)
+        directory=tmp_path/'adoptions';directory.mkdir();monkeypatch.setattr(adoption,'DIRECTORY',directory)
+        monkeypatch.setattr(adoption,'image_hash',lambda src:sync.digest('fixture bytes '+src))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in3/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in3/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in3/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_adoptions.py:26: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+__ ERROR at setup of test_invalid_classification_input_is_rejected[no_reason] __
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in4')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ade3eb10>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_adoption.py:15:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ade3eb10>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in4')
+extra = None
+
+    def setup(monkeypatch,tmp_path,extra=None):
+        xml=feed(atom_entry()+(extra or unlisted()))
+        main,calls,previous=configure(monkeypatch,tmp_path,[xml]*60)
+        directory=tmp_path/'adoptions';directory.mkdir();monkeypatch.setattr(adoption,'DIRECTORY',directory)
+        monkeypatch.setattr(adoption,'image_hash',lambda src:sync.digest('fixture bytes '+src))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in4/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in4/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in4/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_adoptions.py:26: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_ ERROR at setup of test_invalid_classification_input_is_rejected[published_photo] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in5')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae237fb0>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_adoption.py:15:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae237fb0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in5')
+extra = None
+
+    def setup(monkeypatch,tmp_path,extra=None):
+        xml=feed(atom_entry()+(extra or unlisted()))
+        main,calls,previous=configure(monkeypatch,tmp_path,[xml]*60)
+        directory=tmp_path/'adoptions';directory.mkdir();monkeypatch.setattr(adoption,'DIRECTORY',directory)
+        monkeypatch.setattr(adoption,'image_hash',lambda src:sync.digest('fixture bytes '+src))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in5/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in5/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in5/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_adoptions.py:26: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+____ ERROR at setup of test_invalid_classification_input_is_rejected[stale] ____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in6')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30aed0a270>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_adoption.py:15:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30aed0a270>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in6')
+extra = None
+
+    def setup(monkeypatch,tmp_path,extra=None):
+        xml=feed(atom_entry()+(extra or unlisted()))
+        main,calls,previous=configure(monkeypatch,tmp_path,[xml]*60)
+        directory=tmp_path/'adoptions';directory.mkdir();monkeypatch.setattr(adoption,'DIRECTORY',directory)
+        monkeypatch.setattr(adoption,'image_hash',lambda src:sync.digest('fixture bytes '+src))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in6/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in6/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_classification_in6/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_adoptions.py:26: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_ ERROR at setup of test_stale_after_preview_and_content_change_after_review_are_rejected _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_stale_after_preview_and_c0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30aebda660>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_adoption.py:15:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30aebda660>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_stale_after_preview_and_c0')
+extra = None
+
+    def setup(monkeypatch,tmp_path,extra=None):
+        xml=feed(atom_entry()+(extra or unlisted()))
+        main,calls,previous=configure(monkeypatch,tmp_path,[xml]*60)
+        directory=tmp_path/'adoptions';directory.mkdir();monkeypatch.setattr(adoption,'DIRECTORY',directory)
+        monkeypatch.setattr(adoption,'image_hash',lambda src:sync.digest('fixture bytes '+src))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_stale_after_preview_and_c0/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_stale_after_preview_and_c0/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_stale_after_preview_and_c0/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_adoptions.py:26: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_ ERROR at setup of test_adoption_pr_one_file_path_type_and_explicit_approval_required _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_adoption_pr_one_file_path0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae5116d0>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_adoption.py:15:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae5116d0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_adoption_pr_one_file_path0')
+extra = None
+
+    def setup(monkeypatch,tmp_path,extra=None):
+        xml=feed(atom_entry()+(extra or unlisted()))
+        main,calls,previous=configure(monkeypatch,tmp_path,[xml]*60)
+        directory=tmp_path/'adoptions';directory.mkdir();monkeypatch.setattr(adoption,'DIRECTORY',directory)
+        monkeypatch.setattr(adoption,'image_hash',lambda src:sync.digest('fixture bytes '+src))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_adoption_pr_one_file_path0/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_adoption_pr_one_file_path0/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_adoption_pr_one_file_path0/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_adoptions.py:26: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_ ERROR at setup of test_dedicated_adoption_pr_stages_one_file_rechecks_and_stays_draft _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_dedicated_adoption_pr_sta0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30af0d17f0>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_adoption.py:15:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30af0d17f0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_dedicated_adoption_pr_sta0')
+extra = None
+
+    def setup(monkeypatch,tmp_path,extra=None):
+        xml=feed(atom_entry()+(extra or unlisted()))
+        main,calls,previous=configure(monkeypatch,tmp_path,[xml]*60)
+        directory=tmp_path/'adoptions';directory.mkdir();monkeypatch.setattr(adoption,'DIRECTORY',directory)
+        monkeypatch.setattr(adoption,'image_hash',lambda src:sync.digest('fixture bytes '+src))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_dedicated_adoption_pr_sta0/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_dedicated_adoption_pr_sta0/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_dedicated_adoption_pr_sta0/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_adoptions.py:26: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_ ERROR at setup of test_http_adoption_paths_reject_csrf_foreign_origin_and_arbitrary_fields _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_http_adoption_paths_rejec0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30aebd9370>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_adoption.py:15:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30aebd9370>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_http_adoption_paths_rejec0')
+extra = None
+
+    def setup(monkeypatch,tmp_path,extra=None):
+        xml=feed(atom_entry()+(extra or unlisted()))
+        main,calls,previous=configure(monkeypatch,tmp_path,[xml]*60)
+        directory=tmp_path/'adoptions';directory.mkdir();monkeypatch.setattr(adoption,'DIRECTORY',directory)
+        monkeypatch.setattr(adoption,'image_hash',lambda src:sync.digest('fixture bytes '+src))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_http_adoption_paths_rejec0/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_http_adoption_paths_rejec0/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_http_adoption_paths_rejec0/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_adoptions.py:26: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_ ERROR at setup of test_numeric_confirmation_is_not_explicit_boolean_consent __
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_numeric_confirmation_is_n0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ade3f500>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_adoption.py:15:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ade3f500>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_numeric_confirmation_is_n0')
+extra = None
+
+    def setup(monkeypatch,tmp_path,extra=None):
+        xml=feed(atom_entry()+(extra or unlisted()))
+        main,calls,previous=configure(monkeypatch,tmp_path,[xml]*60)
+        directory=tmp_path/'adoptions';directory.mkdir();monkeypatch.setattr(adoption,'DIRECTORY',directory)
+        monkeypatch.setattr(adoption,'image_hash',lambda src:sync.digest('fixture bytes '+src))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_numeric_confirmation_is_n0/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_numeric_confirmation_is_n0/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_numeric_confirmation_is_n0/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_adoptions.py:26: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_ ERROR at setup of test_private_validation_code_uses_real_generator_but_no_source_bodies_escape _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_private_validation_code_u0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae2349e0>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_adoption.py:15:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae2349e0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_private_validation_code_u0')
+extra = None
+
+    def setup(monkeypatch,tmp_path,extra=None):
+        xml=feed(atom_entry()+(extra or unlisted()))
+        main,calls,previous=configure(monkeypatch,tmp_path,[xml]*60)
+        directory=tmp_path/'adoptions';directory.mkdir();monkeypatch.setattr(adoption,'DIRECTORY',directory)
+        monkeypatch.setattr(adoption,'image_hash',lambda src:sync.digest('fixture bytes '+src))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_private_validation_code_u0/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_private_validation_code_u0/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_private_validation_code_u0/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_adoptions.py:26: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_ ERROR at setup of test_stale_never_applied_instruction_can_be_reapproved_for_same_target_only _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_stale_never_applied_instr0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30aeb05730>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_adoption.py:15:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30aeb05730>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_stale_never_applied_instr0')
+extra = None
+
+    def setup(monkeypatch,tmp_path,extra=None):
+        xml=feed(atom_entry()+(extra or unlisted()))
+        main,calls,previous=configure(monkeypatch,tmp_path,[xml]*60)
+        directory=tmp_path/'adoptions';directory.mkdir();monkeypatch.setattr(adoption,'DIRECTORY',directory)
+        monkeypatch.setattr(adoption,'image_hash',lambda src:sync.digest('fixture bytes '+src))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_stale_never_applied_instr0/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_stale_never_applied_instr0/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_stale_never_applied_instr0/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_adoptions.py:26: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_ ERROR at setup of test_classification_stays_visible_in_unlisted_filter_until_explicit_hold _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_classification_stays_visi0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ade3c470>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_adoption.py:15:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ade3c470>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_classification_stays_visi0')
+extra = None
+
+    def setup(monkeypatch,tmp_path,extra=None):
+        xml=feed(atom_entry()+(extra or unlisted()))
+        main,calls,previous=configure(monkeypatch,tmp_path,[xml]*60)
+        directory=tmp_path/'adoptions';directory.mkdir();monkeypatch.setattr(adoption,'DIRECTORY',directory)
+        monkeypatch.setattr(adoption,'image_hash',lambda src:sync.digest('fixture bytes '+src))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_classification_stays_visi0/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_classification_stays_visi0/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_classification_stays_visi0/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_adoptions.py:26: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_ ERROR at setup of test_refresh_pr_removes_only_same_never_applied_instruction _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_refresh_pr_removes_only_s0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae236d20>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_adoption.py:15:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae236d20>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_refresh_pr_removes_only_s0')
+extra = None
+
+    def setup(monkeypatch,tmp_path,extra=None):
+        xml=feed(atom_entry()+(extra or unlisted()))
+        main,calls,previous=configure(monkeypatch,tmp_path,[xml]*60)
+        directory=tmp_path/'adoptions';directory.mkdir();monkeypatch.setattr(adoption,'DIRECTORY',directory)
+        monkeypatch.setattr(adoption,'image_hash',lambda src:sync.digest('fixture bytes '+src))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_refresh_pr_removes_only_s0/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_refresh_pr_removes_only_s0/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_refresh_pr_removes_only_s0/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_adoptions.py:26: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_ ERROR at setup of test_independent_real_preview_explicit_confirmation_and_persisted_history _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_independent_real_preview_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30adf3a090>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_exception.py:17:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30adf3a090>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_independent_real_preview_0')
+changes = None
+
+    def setup(monkeypatch,tmp_path,changes=None):
+        original=atom_entry()+atom_entry('B',src='https://images.example/B.jpg')
+        responses=[feed(original)]+[feed(changes or original)]*12
+        main,calls,previous=configure(monkeypatch,tmp_path,responses)
+        directory=tmp_path/'name-migrations';directory.mkdir()
+        monkeypatch.setattr(exc,'DIRECTORY',directory)
+        protect=exc.protected_ids
+        monkeypatch.setattr(exc,'protected_ids',lambda p,data=None:protect(p,tmp_path/'data'))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_independent_real_preview_0/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_independent_real_preview_0/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_independent_real_preview_0/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_exceptions.py:22: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+__ ERROR at setup of test_approval_boundary_and_unsupported_targets[no_live] ___
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30aeb74260>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_exception.py:17:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30aeb74260>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns0')
+changes = None
+
+    def setup(monkeypatch,tmp_path,changes=None):
+        original=atom_entry()+atom_entry('B',src='https://images.example/B.jpg')
+        responses=[feed(original)]+[feed(changes or original)]*12
+        main,calls,previous=configure(monkeypatch,tmp_path,responses)
+        directory=tmp_path/'name-migrations';directory.mkdir()
+        monkeypatch.setattr(exc,'DIRECTORY',directory)
+        protect=exc.protected_ids
+        monkeypatch.setattr(exc,'protected_ids',lambda p,data=None:protect(p,tmp_path/'data'))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns0/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns0/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns0/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_exceptions.py:22: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_ ERROR at setup of test_approval_boundary_and_unsupported_targets[no_reason] __
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30af0d0da0>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_exception.py:17:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30af0d0da0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns1')
+changes = None
+
+    def setup(monkeypatch,tmp_path,changes=None):
+        original=atom_entry()+atom_entry('B',src='https://images.example/B.jpg')
+        responses=[feed(original)]+[feed(changes or original)]*12
+        main,calls,previous=configure(monkeypatch,tmp_path,responses)
+        directory=tmp_path/'name-migrations';directory.mkdir()
+        monkeypatch.setattr(exc,'DIRECTORY',directory)
+        protect=exc.protected_ids
+        monkeypatch.setattr(exc,'protected_ids',lambda p,data=None:protect(p,tmp_path/'data'))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns1/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns1/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns1/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_exceptions.py:22: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_ ERROR at setup of test_approval_boundary_and_unsupported_targets[unknown_name] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns2')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae4aca40>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_exception.py:17:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae4aca40>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns2')
+changes = None
+
+    def setup(monkeypatch,tmp_path,changes=None):
+        original=atom_entry()+atom_entry('B',src='https://images.example/B.jpg')
+        responses=[feed(original)]+[feed(changes or original)]*12
+        main,calls,previous=configure(monkeypatch,tmp_path,responses)
+        directory=tmp_path/'name-migrations';directory.mkdir()
+        monkeypatch.setattr(exc,'DIRECTORY',directory)
+        protect=exc.protected_ids
+        monkeypatch.setattr(exc,'protected_ids',lambda p,data=None:protect(p,tmp_path/'data'))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns2/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns2/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns2/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_exceptions.py:22: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+__ ERROR at setup of test_approval_boundary_and_unsupported_targets[new_auto] __
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns3')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30af0d2480>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_exception.py:17:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30af0d2480>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns3')
+changes = None
+
+    def setup(monkeypatch,tmp_path,changes=None):
+        original=atom_entry()+atom_entry('B',src='https://images.example/B.jpg')
+        responses=[feed(original)]+[feed(changes or original)]*12
+        main,calls,previous=configure(monkeypatch,tmp_path,responses)
+        directory=tmp_path/'name-migrations';directory.mkdir()
+        monkeypatch.setattr(exc,'DIRECTORY',directory)
+        protect=exc.protected_ids
+        monkeypatch.setattr(exc,'protected_ids',lambda p,data=None:protect(p,tmp_path/'data'))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns3/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns3/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns3/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_exceptions.py:22: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_ ERROR at setup of test_approval_boundary_and_unsupported_targets[arbitrary_input] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns4')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30adf38aa0>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_exception.py:17:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30adf38aa0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns4')
+changes = None
+
+    def setup(monkeypatch,tmp_path,changes=None):
+        original=atom_entry()+atom_entry('B',src='https://images.example/B.jpg')
+        responses=[feed(original)]+[feed(changes or original)]*12
+        main,calls,previous=configure(monkeypatch,tmp_path,responses)
+        directory=tmp_path/'name-migrations';directory.mkdir()
+        monkeypatch.setattr(exc,'DIRECTORY',directory)
+        protect=exc.protected_ids
+        monkeypatch.setattr(exc,'protected_ids',lambda p,data=None:protect(p,tmp_path/'data'))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns4/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns4/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns4/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_exceptions.py:22: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+___ ERROR at setup of test_approval_boundary_and_unsupported_targets[stale] ____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns5')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30add8e6c0>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_exception.py:17:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30add8e6c0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns5')
+changes = None
+
+    def setup(monkeypatch,tmp_path,changes=None):
+        original=atom_entry()+atom_entry('B',src='https://images.example/B.jpg')
+        responses=[feed(original)]+[feed(changes or original)]*12
+        main,calls,previous=configure(monkeypatch,tmp_path,responses)
+        directory=tmp_path/'name-migrations';directory.mkdir()
+        monkeypatch.setattr(exc,'DIRECTORY',directory)
+        protect=exc.protected_ids
+        monkeypatch.setattr(exc,'protected_ids',lambda p,data=None:protect(p,tmp_path/'data'))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns5/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns5/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns5/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_exceptions.py:22: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+__ ERROR at setup of test_approval_boundary_and_unsupported_targets[snapshot] __
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns6')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30af0d0560>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_exception.py:17:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30af0d0560>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns6')
+changes = None
+
+    def setup(monkeypatch,tmp_path,changes=None):
+        original=atom_entry()+atom_entry('B',src='https://images.example/B.jpg')
+        responses=[feed(original)]+[feed(changes or original)]*12
+        main,calls,previous=configure(monkeypatch,tmp_path,responses)
+        directory=tmp_path/'name-migrations';directory.mkdir()
+        monkeypatch.setattr(exc,'DIRECTORY',directory)
+        protect=exc.protected_ids
+        monkeypatch.setattr(exc,'protected_ids',lambda p,data=None:protect(p,tmp_path/'data'))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns6/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns6/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_approval_boundary_and_uns6/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_exceptions.py:22: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_ ERROR at setup of test_single_file_allow_list_and_pr_without_approval_rejected _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_single_file_allow_list_an0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ac9d1d00>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_exception.py:17:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ac9d1d00>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_single_file_allow_list_an0')
+changes = None
+
+    def setup(monkeypatch,tmp_path,changes=None):
+        original=atom_entry()+atom_entry('B',src='https://images.example/B.jpg')
+        responses=[feed(original)]+[feed(changes or original)]*12
+        main,calls,previous=configure(monkeypatch,tmp_path,responses)
+        directory=tmp_path/'name-migrations';directory.mkdir()
+        monkeypatch.setattr(exc,'DIRECTORY',directory)
+        protect=exc.protected_ids
+        monkeypatch.setattr(exc,'protected_ids',lambda p,data=None:protect(p,tmp_path/'data'))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_single_file_allow_list_an0/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_single_file_allow_list_an0/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_single_file_allow_list_an0/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_exceptions.py:22: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+________ ERROR at setup of test_stale_after_preview_cannot_be_approved _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_stale_after_preview_canno0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae013e00>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_exception.py:17:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae013e00>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_stale_after_preview_canno0')
+changes = None
+
+    def setup(monkeypatch,tmp_path,changes=None):
+        original=atom_entry()+atom_entry('B',src='https://images.example/B.jpg')
+        responses=[feed(original)]+[feed(changes or original)]*12
+        main,calls,previous=configure(monkeypatch,tmp_path,responses)
+        directory=tmp_path/'name-migrations';directory.mkdir()
+        monkeypatch.setattr(exc,'DIRECTORY',directory)
+        protect=exc.protected_ids
+        monkeypatch.setattr(exc,'protected_ids',lambda p,data=None:protect(p,tmp_path/'data'))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_stale_after_preview_canno0/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_stale_after_preview_canno0/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_stale_after_preview_canno0/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_exceptions.py:22: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_ ERROR at setup of test_separate_pr_route_requires_fresh_clean_main_and_keeps_existing_allowlist _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_separate_pr_route_require0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae990830>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_exception.py:17:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30ae990830>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_separate_pr_route_require0')
+changes = None
+
+    def setup(monkeypatch,tmp_path,changes=None):
+        original=atom_entry()+atom_entry('B',src='https://images.example/B.jpg')
+        responses=[feed(original)]+[feed(changes or original)]*12
+        main,calls,previous=configure(monkeypatch,tmp_path,responses)
+        directory=tmp_path/'name-migrations';directory.mkdir()
+        monkeypatch.setattr(exc,'DIRECTORY',directory)
+        protect=exc.protected_ids
+        monkeypatch.setattr(exc,'protected_ids',lambda p,data=None:protect(p,tmp_path/'data'))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_separate_pr_route_require0/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_separate_pr_route_require0/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_separate_pr_route_require0/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_exceptions.py:22: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_ ERROR at setup of test_dedicated_pr_success_order_draft_and_single_file_staging _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_dedicated_pr_success_orde0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30aca208c0>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_exception.py:17:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30aca208c0>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_dedicated_pr_success_orde0')
+changes = None
+
+    def setup(monkeypatch,tmp_path,changes=None):
+        original=atom_entry()+atom_entry('B',src='https://images.example/B.jpg')
+        responses=[feed(original)]+[feed(changes or original)]*12
+        main,calls,previous=configure(monkeypatch,tmp_path,responses)
+        directory=tmp_path/'name-migrations';directory.mkdir()
+        monkeypatch.setattr(exc,'DIRECTORY',directory)
+        protect=exc.protected_ids
+        monkeypatch.setattr(exc,'protected_ids',lambda p,data=None:protect(p,tmp_path/'data'))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_dedicated_pr_success_orde0/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_dedicated_pr_success_orde0/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_dedicated_pr_success_orde0/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_exceptions.py:22: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+_ ERROR at setup of test_invalid_local_manifest_cannot_hide_last_successful_public_state _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_local_manifest_ca0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30aca22390>
+
+    @pytest.fixture
+    def reviewed(tmp_path,monkeypatch):
+>       main,previous,directory,report=setup(monkeypatch,tmp_path)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_admin_sync_exception.py:17:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f30aca22390>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_local_manifest_ca0')
+changes = None
+
+    def setup(monkeypatch,tmp_path,changes=None):
+        original=atom_entry()+atom_entry('B',src='https://images.example/B.jpg')
+        responses=[feed(original)]+[feed(changes or original)]*12
+        main,calls,previous=configure(monkeypatch,tmp_path,responses)
+        directory=tmp_path/'name-migrations';directory.mkdir()
+        monkeypatch.setattr(exc,'DIRECTORY',directory)
+        protect=exc.protected_ids
+        monkeypatch.setattr(exc,'protected_ids',lambda p,data=None:protect(p,tmp_path/'data'))
+        output=tmp_path/'bootstrap';report=tmp_path/'report.json'
+>       assert sync.run(previous,output,report)==0,sync.read_json(report)
+E       AssertionError: {'version': 1, 'result': 'BLOCKED', 'comparison': 'UNKNOWN', 'new_articles': None, ...}
+E       assert 1 == 0
+E        +  where 1 = <function run at 0x7f30afde60c0>(PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_local_manifest_ca0/previous'), PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_local_manifest_ca0/bootstrap'), PosixPath('/tmp/pytest-of-root/pytest-0/test_invalid_local_manifest_ca0/report.json'))
+E        +    where <function run at 0x7f30afde60c0> = sync.run
+
+tests/test_sync_exceptions.py:22: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Article sync blocked: OUTPUT_INTEGRITY_ERROR
+=========================== short test summary info ============================
+ERROR tests/test_admin_sync_adoption.py::test_unlisted_is_distinct_from_published_unknown_and_legacy_count
+ERROR tests/test_admin_sync_adoption.py::test_human_classification_real_preview_explicit_approval_and_next_state[classify_named-\u30d2\u30e9\u30bf\u30b1]
+ERROR tests/test_admin_sync_adoption.py::test_human_classification_real_preview_explicit_approval_and_next_state[classify_unknown-]
+ERROR tests/test_admin_sync_adoption.py::test_non_mushroom_hold_confirmation_never_allow_adoption
+ERROR tests/test_admin_sync_adoption.py::test_invalid_classification_input_is_rejected[id]
+ERROR tests/test_admin_sync_adoption.py::test_invalid_classification_input_is_rejected[body_path]
+ERROR tests/test_admin_sync_adoption.py::test_invalid_classification_input_is_rejected[url]
+ERROR tests/test_admin_sync_adoption.py::test_invalid_classification_input_is_rejected[taxonomy]
+ERROR tests/test_admin_sync_adoption.py::test_invalid_classification_input_is_rejected[no_reason]
+ERROR tests/test_admin_sync_adoption.py::test_invalid_classification_input_is_rejected[published_photo]
+ERROR tests/test_admin_sync_adoption.py::test_invalid_classification_input_is_rejected[stale]
+ERROR tests/test_admin_sync_adoption.py::test_stale_after_preview_and_content_change_after_review_are_rejected
+ERROR tests/test_admin_sync_adoption.py::test_adoption_pr_one_file_path_type_and_explicit_approval_required
+ERROR tests/test_admin_sync_adoption.py::test_dedicated_adoption_pr_stages_one_file_rechecks_and_stays_draft
+ERROR tests/test_admin_sync_adoption.py::test_http_adoption_paths_reject_csrf_foreign_origin_and_arbitrary_fields
+ERROR tests/test_admin_sync_adoption.py::test_numeric_confirmation_is_not_explicit_boolean_consent
+ERROR tests/test_admin_sync_adoption.py::test_private_validation_code_uses_real_generator_but_no_source_bodies_escape
+ERROR tests/test_admin_sync_adoption.py::test_stale_never_applied_instruction_can_be_reapproved_for_same_target_only
+ERROR tests/test_admin_sync_adoption.py::test_classification_stays_visible_in_unlisted_filter_until_explicit_hold
+ERROR tests/test_admin_sync_adoption.py::test_refresh_pr_removes_only_same_never_applied_instruction
+ERROR tests/test_admin_sync_exception.py::test_independent_real_preview_explicit_confirmation_and_persisted_history
+ERROR tests/test_admin_sync_exception.py::test_approval_boundary_and_unsupported_targets[no_live]
+ERROR tests/test_admin_sync_exception.py::test_approval_boundary_and_unsupported_targets[no_reason]
+ERROR tests/test_admin_sync_exception.py::test_approval_boundary_and_unsupported_targets[unknown_name]
+ERROR tests/test_admin_sync_exception.py::test_approval_boundary_and_unsupported_targets[new_auto]
+ERROR tests/test_admin_sync_exception.py::test_approval_boundary_and_unsupported_targets[arbitrary_input]
+ERROR tests/test_admin_sync_exception.py::test_approval_boundary_and_unsupported_targets[stale]
+ERROR tests/test_admin_sync_exception.py::test_approval_boundary_and_unsupported_targets[snapshot]
+ERROR tests/test_admin_sync_exception.py::test_single_file_allow_list_and_pr_without_approval_rejected
+ERROR tests/test_admin_sync_exception.py::test_stale_after_preview_cannot_be_approved
+ERROR tests/test_admin_sync_exception.py::test_separate_pr_route_requires_fresh_clean_main_and_keeps_existing_allowlist
+ERROR tests/test_admin_sync_exception.py::test_dedicated_pr_success_order_draft_and_single_file_staging
+ERROR tests/test_admin_sync_exception.py::test_invalid_local_manifest_cannot_hide_last_successful_public_state
+779 passed, 33 errors in 61.10s (0:01:01)

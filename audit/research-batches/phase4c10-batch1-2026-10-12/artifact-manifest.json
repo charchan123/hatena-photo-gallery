@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "scope": "research_only",
+  "baseline_main_sha": "f58dcf63cce3a5a862d1acb7590bc23dc7822950",
+  "human_approved": 0,
+  "production_promotion_performed": false,
+  "files": [
+    {
+      "path": "MIGRATION_PLAN.md",
+      "bytes": 4112,
+      "sha256": "26fe21b4d1aa70f861de3f4c504dd06fd189024be32e3df90078b133f77edd22"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1898,
+      "sha256": "9712e794bf1716e775bc66046076e43a0f3b5e38c2f9d174be97d4ca153e97f2"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 12496,
+      "sha256": "988f18e5e7c551a2a2e7596b7fd260d9af55eaac87fef911644faa8f57abd54b"
+    },
+    {
+      "path": "baseline.json",
+      "bytes": 8699,
+      "sha256": "b97c3175f63a2614ce544572b0131bde004990c530819f0f287c368e14a77945"
+    },
+    {
+      "path": "intake/phase4c10-batch1-2026-10-12/batch-manifest.json",
+      "bytes": 797,
+      "sha256": "8a6a106d5bd239a1b277d5d26a4fa04aae516b3fcc9f2f430d92b5f1b3a6e29b"
+    },
+    {
+      "path": "intake/phase4c10-batch1-2026-10-12/candidate-delta.json",
+      "bytes": 2802,
+      "sha256": "bc979163972f4b317f414ba1baad55a5c50c192c4d5d207867f96845df438a86"
+    },
+    {
+      "path": "intake/phase4c10-batch1-2026-10-12/source-snapshots.jsonl",
+      "bytes": 919,
+      "sha256": "f362deef6cb259e88dabf69388341ff7b3429e67e13c411a24348fa5496fa3ca"
+    },
+    {
+      "path": "javascript-tests.json",
+      "bytes": 5178,
+      "sha256": "18c2c8a2922272ae6f872687cb246dc31d3235ff12d941938f39735d4c9679d9"
+    },
+    {
+      "path": "master-completion-proposals.json",
+      "bytes": 19455,
+      "sha256": "9e94f1fcb832b02b26bc7009b1461bb0b5f3d22ef4911b09b7d362be200c6bed"
+    },
+    {
+      "path": "partial-gap-triage.json",
+      "bytes": 48116,
+      "sha256": "04863425d2e76917bca68899c5ab23b665e990762ef6bba569a776869e8cbb07"
+    },
+    {
+      "path": "prior-review-continuity.json",
+      "bytes": 6134,
+      "sha256": "a0cf65347a303b92cbf6b3766acaf01d209729fabd82c569ccd69dd1cca4ec45"
+    },
+    {
+      "path": "proposals.json",
+      "bytes": 21403,
+      "sha256": "ef805a4b99534629d05c84b20c7dcb89e17867dcd264d326d4812fdd2ad9526c"
+    },
+    {
+      "path": "research-source-snapshots.jsonl",
+      "bytes": 17685,
+      "sha256": "6946acbb08b8f4c8d644dcb566100681ee895081b6e2e7bb14387882da61be0d"
+    },
+    {
+      "path": "retrieval-provenance.json",
+      "bytes": 24304,
+      "sha256": "bea39a7832683e967aefcb33b76281d52a54e37bc9547acb04f2e55e05eb9539"
+    },
+    {
+      "path": "source-candidates.json",
+      "bytes": 1912,
+      "sha256": "2ccd73fbf5fa060d69f1bf35541429868d823766755ae7a75462ff56452d72b9"
+    },
+    {
+      "path": "species-research.json",
+      "bytes": 32988,
+      "sha256": "776b45528c803eb49735e20d3e0562411f729ab79abbb20d20f6a59240070c0a"
+    },
+    {
+      "path": "test-results.json",
+      "bytes": 1598,
+      "sha256": "f98132633b35cd74655d1699b0574fe42474de84211a33e47e45154a63234a1c"
+    },
+    {
+      "path": "unconfirmed-materials.json",
+      "bytes": 1047,
+      "sha256": "fe59c7aaa0491c4f3cdcf698072236a82032c698da7f5a8c429241aef6f5ffff"
+    },
+    {
+      "path": "validation-logs/collect-only.log",
+      "bytes": 85342,
+      "sha256": "6163f182c6dabe99567bf2d4697c0a73a95d62787bf96d0354d55ad1f0d92bf2"
+    },
+    {
+      "path": "validation-logs/final-full-pytest.log",
+      "bytes": 991,
+      "sha256": "99e4dafcbd06b73f71b7445318cedb378e170798b8b6f64f6589505286a8872d"
+    },
+    {
+      "path": "validation-logs/focused-contract-pytest.log",
+      "bytes": 261,
+      "sha256": "3bc4ad1d6ef06c60fa93ade8dca962ff5b831d9fb1caae2c2008c70981481b27"
+    },
+    {
+      "path": "validation-logs/focused-sync-pytest.log",
+      "bytes": 100,
+      "sha256": "d026893501f3f286f726c74048abf478b3813693d80b02f6b81fd98954f947bf"
+    },
+    {
+      "path": "validation-logs/initial-full-pytest.log",
+      "bytes": 70323,
+      "sha256": "b5d1f2feb52d2880204fac7cfc91d7efd46c91f3ad69cef29a1c27bf43fdef1f"
+    },
+    {
+      "path": "validator-report.json",
+      "bytes": 38431,
+      "sha256": "b3ca5a7df53dc93240a1cd84dfeeb18346207dc51d6aaf0d2cf29736d6d7da01"
+    },
+    {
+      "path": "verify.py",
+      "bytes": 8585,
+      "sha256": "2ece29d9a63ad7cc46350683d64187ba7a7e7f34e23dd1ad3a6e018d6916b119"
+    }
+  ]
+}

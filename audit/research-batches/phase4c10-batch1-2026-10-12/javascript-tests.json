@@ -1,0 +1,56 @@
+[
+  {
+    "file": "tests/test_favorite_visibility.js",
+    "exit_code": 0,
+    "stdout": "✔ stored retired URL cannot recreate a favorite card, storage stays unchanged (3.289597ms)\n✔ current photo without EXIF remains visible and shared valid URL is retained (0.799873ms)\n✔ missing published index and inherited property cannot authorize an old URL (1.193185ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 12.305655\n",
+    "stderr": ""
+  },
+  {
+    "file": "tests/test_features_filter.js",
+    "exit_code": 0,
+    "stdout": "feature filter tests passed\n",
+    "stderr": ""
+  },
+  {
+    "file": "tests/test_gallery_height.js",
+    "exit_code": 0,
+    "stdout": "iframe content height regression checks passed\n",
+    "stderr": ""
+  },
+  {
+    "file": "tests/test_gallery_highlight.js",
+    "exit_code": 0,
+    "stdout": "4 kana-insensitive highlight cases passed\n",
+    "stderr": ""
+  },
+  {
+    "file": "tests/test_gallery_navigation.js",
+    "exit_code": 0,
+    "stdout": "✔ old-parent destination replay is consumed once and rejects stale/unrelated markers (3.124689ms)\n✔ only real same-frame internal HTML links send an intent (1.259865ms)\n✔ ACK precedes native navigation, is authenticated and cannot navigate twice (1.321047ms)\n✔ blocked storage still completes via ACK; missing parent uses one bounded fallback (1.500286ms)\n✔ repeated clicks, pagehide and changed links cannot leave duplicate navigation (2.093618ms)\n✔ destination replay remains tied to pageshow for older parent handlers (0.26598ms)\n✔ a previous child referrer is not mistaken for the parent origin (0.682346ms)\nℹ tests 7\nℹ suites 0\nℹ pass 7\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 18.18681\n",
+    "stderr": ""
+  },
+  {
+    "file": "tests/test_hatena_iframe_handler.js",
+    "exit_code": 0,
+    "stdout": "✔ height is direct, finite and authenticated; duplicates do not write (3.765143ms)\n✔ bottom collapse reserves outer space and reclaims on upward scroll (0.87755ms)\n✔ navigation, lightbox close and requestHeight remain source-bound (1.097941ms)\n✔ authenticated intent scrolls before ACK; load only reclaims short-page space (1.271262ms)\n✔ cancel clears pending intent without rollback or any additional scroll (0.926052ms)\n✔ repeated intent IDs ACK again but never scroll twice before load (0.877129ms)\n✔ window: no eager post to initial parent-origin document; initial load never scrolls (0.856048ms)\n✔ window: source/origin/path/ID validation precedes any scroll (1.164411ms)\n✔ window: in-place heights, resize and ordinary load never scroll (0.945962ms)\n✔ body: no eager post to initial parent-origin document; initial load never scrolls (1.008436ms)\n✔ body: source/origin/path/ID validation precedes any scroll (0.790719ms)\n✔ body: in-place heights, resize and ordinary load never scroll (3.187187ms)\n✔ measured Hatena BODY coordinates: 4000 → 272 before ACK, window remains 0 (0.9842ms)\n✔ BODY bottom collapse uses body viewport and reclaims on body upward scroll (0.704459ms)\n✔ BODY mode survives top/short content and transfers listeners on layout change (0.663989ms)\n✔ BODY border is excluded from content coordinates; resize uses clientHeight (0.555124ms)\n✔ BODY legacy navigation, lgClosed and bounded requestHeight retain authentication (0.769868ms)\nℹ tests 17\nℹ suites 0\nℹ pass 17\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 28.62446\n",
+    "stderr": ""
+  },
+  {
+    "file": "tests/test_mosaic_layout.js",
+    "exit_code": 0,
+    "stdout": "5 fixed-gap mosaic layout cases passed\n",
+    "stderr": ""
+  },
+  {
+    "file": "tests/test_poison_spores.js",
+    "exit_code": 0,
+    "stdout": "✔ ten bright cores retain the six green / four purple balance and soft edges (1.538804ms)\n✔ single regular Bezier curves spread in six directions with bounded arc lengths (8.538389ms)\n✔ motion has only endpoints, separate appearance, and continuously decreasing nonzero speed (2.065527ms)\n✔ six outward paths reach surrounding space without clipping or touching names (3.828888ms)\n✔ one burst per enter, no nonpoison/touch, re-enter and keyboard work (1.741709ms)\n✔ keyboard supports coarse devices, reduced motion and exclusions fail closed (0.421614ms)\n✔ filter/removal, scroll, reduced motion, timer and burst cap clean up (1.426635ms)\n✔ coarse poison tap delays native activation 600ms and double tap stays one burst (0.67835ms)\n✔ ordinary, reduced, keyboard and modified links keep native immediate behavior (0.7254ms)\n✔ touch cancellation and stale targets cannot trigger deferred navigation (0.898241ms)\n✔ color adjustment leaves every motion and appearance parameter unchanged (0.776137ms)\nℹ tests 11\nℹ suites 0\nℹ pass 11\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 30.905967\n",
+    "stderr": ""
+  },
+  {
+    "file": "tests/test_update_notices.js",
+    "exit_code": 0,
+    "stdout": "Update notices: expiry, transition, bfcache, visibility, invalid dates PASS\n",
+    "stderr": ""
+  }
+]
