@@ -9,8 +9,9 @@ Branch: `phase1-hatena-daily-sync-2026-10-12`.
 
 This adds a guarded wrapper around the existing generator, not a replacement for
 Phase 3C extraction/classification. Knowledge data, approved facets, Best Shot and
-research registries, UI styles/scripts, Hatena parent handlers and the localhost
-admin server remain unchanged. PR #103/#104 typography remains untouched.
+research registries, UI styles, Hatena parent handlers and the localhost
+admin server remain unchanged. PR #103/#104 typography remains untouched. The
+approved retirement follow-up restricts only favorite rendering to current gallery URLs.
 
 ## Daily execution and persistence
 
@@ -40,7 +41,8 @@ Its default behavior is retained for existing standalone callers/tests. The guar
 production export reconciles its candidate before any consumer page is generated:
 
 1. Match by stable Atom `article_id` and **exact** original `src`.
-2. Keep every previously published `observation_id` unchanged.
+2. Keep every retained published `observation_id` unchanged. The only retirement
+   is the explicitly approved, commit/hash-bound seven-photo event described below.
 3. Require unchanged multiplicity and ordered labels for repeated identical URLs
    within one article. A changed duplicate occurrence cannot be identified safely.
 4. New, explicitly classified photos receive a domain-separated SHA-256 ID over
@@ -81,8 +83,8 @@ state. Requests use a 10-second connection / 60-second read timeout and a 1,000-
 limit. Metadata is committed only after the pagination loop completes. API exceptions
 are reduced to fixed error codes, not response bodies or credential-bearing URLs.
 
-Drafts are excluded. Strict capture uses Hatena's rendered `formatted-content` when
-present; otherwise only explicitly HTML content is accepted. Plain source markup is
+Drafts are excluded. Strict capture preserves explicitly HTML `content`; non-HTML
+source requires explicitly typed HTML `formatted-content`. Plain source markup is
 not guessed into public HTML. See [Hatena AtomPub documentation](https://developer.hatena.ne.jp/ja/documents/blog/apis/atom/).
 
 The inventory includes all published articles returned by this feed and all DOM
@@ -110,7 +112,7 @@ the complete DOM image list.
 
 The current public site has no full Atom inventory. Its valid portal can seed a
 **compatibility bootstrap**, only if all old published photos and protected references
-remain resolvable and all other gates pass. The first full-inventory difference is
+remain resolvable (apart from the exact pinned approved retirement) and all other gates pass. The first full-inventory difference is
 UNKNOWN: new/deleted/updated counts are null, never “everything new/deleted.” The
 successfully published inventory then becomes the comparison source for the next run.
 The pre-inventory site's complete history of non-gallery images cannot be recovered
@@ -126,7 +128,7 @@ The following block publication and retain the old site:
 
 * Incomplete/failed API capture, missing baseline, invalid snapshot or empty harvest.
 * Article/photo count below 90% of the previous count (explicit abnormal-drop error).
-* Any detected article/image deletion, possible replacement, disappeared published
+* Any unapproved detected article/image deletion, possible replacement, disappeared published
   photo, changed duplicate multiplicity or published name change. Even smaller
   deletions are held rather than automatically approved in Phase 1.
 * A new ambiguous/unclassified legacy-production photo that the existing fallback
@@ -198,10 +200,11 @@ See `ARTICLE_SYNC_PHASE1_VALIDATION.json` for final executed counts.
   readiness. Failure retention is demonstrated by local fixtures and workflow gates.
 
 Only the generator entry/integration, fetch health safeguards, workflow, isolated
-sync module, regression tests, the dev-only YAML parser dependency and these review documents change. No biological,
+sync/retirement modules, regression tests, the scoped favorite visibility/export boundary,
+the dev-only YAML parser dependency and these review documents change. No biological,
 provenance, facet, toxicity, registry, Hatena, poison, CSS or typography data changes.
 
-## PR #105 read-only real API preflight — BLOCKER
+## Historical PR #105 preflight — BLOCKER before explicit retirement approval
 
 Starting main remained `df1a5dfe69a9c01b39d44ee2421fd77b3940ad7a`.
 Starting PR head was `9e3f8d2d8047767437752ec9100c96c3732cbcf9`.
@@ -259,7 +262,7 @@ bootstrap cannot determine newly changed classification counts.
 
 ### Decision and necessary follow-up
 
-**Do not merge or enable daily publication yet.** Including the draft would undo
+**Historical decision at that point: do not merge or enable daily publication.** Including the draft would undo
 privacy filtering; deleting/rebinding the seven old photo records or resetting the
 baseline would bypass preservation. Neither is authorized. A human must review
 publication intent for the affected draft and resolve the legacy-publication
@@ -284,3 +287,106 @@ blocked. Counts and all three sanitized run summaries are retained in
 
 Hatena production, gh-pages, main, knowledge/provenance, facets, Best Shot/research
 registries, UI assets and admin behavior were not modified. PR #105 remains Draft.
+
+## 承認済み7写真の移行とHTML互換性修正（2026-10-12）
+
+**Status: PASS（公開しない実API事前検証）。実際の公開・移行適用は未実施。**
+
+開始mainは `df1a5dfe69a9c01b39d44ee2421fd77b3940ad7a`、treeは
+`2697ef1cf5df4a3a8709a216726601014640d9ec`。
+開始PR headは `a818f8f7630072a5b3b0af0c2f6cf37d12134d3a`、treeは
+`d9386c680b293b4710277b775c9d04ff24dbadde`。remoteはいずれも一致した。
+
+ユーザーは「2025年ベストショット集」を下書きのままにし、指定7写真だけを
+ギャラリーから除外することを明示承認した。記事、写真ストレージ、登録Best Shot、
+同定履歴、知識データは変更しない。この判断が上の歴史的BLOCKERを解消する承認である。
+
+### 固定承認境界
+
+`sync-migrations/hatena-draft-photo-retirement-2026-10-12.json` に7 ID、旧登録名、
+記事ID／画像URL／旧記事URLのSHA-256、旧commit、portal全体のpayload hash、理由・条件を記録。
+manifest bytesのSHA-256 `4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c`
+を `sync_retirement.py` に固定した。汎用削除リストではなく、この承認だけの記録である。
+認証情報・非公開本文・生の移行対象URLはmanifestに含めない。
+
+初回のみ、read-only gh-pages checkoutのHEADが
+`f3114e2bbd367047eef04d7a9291303ae7161f4c` と一致し、原本913枚とpayload hash、7件のID・
+名前・記事・URL hashesがすべて一致することを要求する。完全API取得で対象記事が明示的な
+下書きであること、7枚だけが欠落すること、Best Shot／研究室／同定履歴に保護参照がないことを
+確認してから、**メモリ上の比較対象**を残る906枚へ限定する。原本ファイルは編集しない。
+原本checkoutやその親を出力先として上書きする操作も拒否する。
+
+通常の `reconcile_ids()` は維持し、906 ID・名前・Atom記事ID・完全一致画像URL・重複数を
+照合する。その他の1枚でも削除、名前変更、URL置換、重複不整合があればBLOCKED。
+新規写真は従来のaccepted-subject/high-confidenceゲートを通る必要がある。
+
+正常候補のchecksum付き `article-sync-snapshot.json` 内にretirement監査記録を封入する。
+記録にはmigration ID、manifest hash、原本commit/payload hash、記事hash、件数、適用時刻を含む。
+2回目はその記録を検証して新しい906枚のsnapshotを通常の比較元にし、同じ7枚を再削除しない。
+manifestや監査記録の欠落・変更は拒否。対象記事が公開状態になった場合は
+`RETIRED_ARTICLE_REVIEW_REQUIRED`。将来記事がAPIから消えて下書き状態を確認できなくなった場合も
+保守的に停止する。自動復活・恒久的な一般削除許可はない。
+
+### HTML選択と5枚の互換性
+
+Atomのcontentが明示的にHTMLなら元HTMLを採用する。Markdown／はてな記法などは、明示的に
+HTMLとされたformatted-contentを使用する。適切なHTMLがない場合は推測変換しない。
+下書き除外、page/ID/update/origin検証、Phase 3C DOM順抽出・hybrid検証は維持する。
+キノコ名の強制上書き・taxonomy変更はない。
+
+実APIで、以前名前が変化した5 IDを個別に照合し、旧名「不明」2枚と
+「ヤマドリタケモドキ」3枚がすべて一致した。906枚全件の名前も一致した。
+
+### 公開候補の残存検査と観察ノート
+
+最終検査はHTML/JSON/JS/CSS全体の7 ID、対象記事・リンク、画像URLを確認する。
+別の公開記事に正当に存在する同じ画像は削除しない（現在の公開inventoryを根拠に認める）。
+通常生成が作るJSONを再帰解析するため、JSONのescaped URLも検査する。
+
+初回検証でfavorite.htmlへの古いEXIF cache URLの露出を検出した。内部cacheを削除せず、
+公開EXIFを現galleryのsrcだけに限定した。また観察ノートの保存済みURLは現SRC_TO_ALTに
+存在する場合だけ描画する。localStorageは編集せず、正当な掲載やEXIFなし写真は維持する。
+`assets/gallery.js`の変更はこのfavorite選択条件だけ。iframe／PAGE TOP／毒胞子は変更しない。
+
+### 完了した実API検証
+
+[最終runtimeのread-only preflight](https://github.com/charchan123/hatena-photo-gallery/actions/runs/38188053970)
+はhead `2cd6764de8a91860d2c1d609308b2891f3edebc2` で成功した。
+PR105・same-repo限定のpull_request、contents:read、GET-only、runner temporary output、
+集計値と原因コードだけのartifact。デプロイ・workflow_dispatch・cache saveは含めず、
+一時workflowは終了後の最終差分から除去した。以下の数値は実測であり、固定件数へ調整していない。
+
+| 項目 | 実測 |
+| --- | --- |
+| Atom pages / entries | 12 / 112、ページネーション完了 |
+| 公開記事 / 除外下書き | 110 / 2 |
+| 公開HTML内の画像 | 976 |
+| 旧公開写真の内訳 | 913 = retired 7 + ID・名前維持906 |
+| 追加採用写真 | 0。通常の初回新規・削除差分はUNKNOWN |
+| Best Shot / 研究室 | 3 / 67、ケース・写真参照PASS |
+| 同定履歴 | 登録ファイル未変更（現在0件） |
+| HTML生成 | 322ページ。portal、図鑑、観察記録、new-topを含む |
+| 公開候補検査 | 345テキストファイル、7 ID／対象URL残存なし |
+| 初回通常比較 | UNKNOWN、null countsを保持。retirementは別イベント |
+| 同じ取得結果で2回目 | KNOWN、通常差分すべて0、retired_this_run=0 |
+
+2回目は最初の実GET応答をメモリ上で再使用し、既存runnerで再生成した。
+新たな本文公開や別の同期実装はない。実入力からの限定的なfault probesで、他の写真の
+削除・名前変更・URL置換、manifest欠落・改ざん、違うbaseline commit、対象記事再公開が
+すべて固定コードでBLOCKEDとなることも確認した。
+
+### 回帰テスト・保護範囲・リリース判断
+
+最終検証：Python 706 passed / 706 collected、focused 103 passed、Node 43 passed。
+compileall、JS syntax、workflow YAML、diff-check PASS。manifest境界、台帳継続、
+保護参照、出力残存、JSON escaped URL、正当な共有画像、古いお気に入りの非再描画をfixtureで検証。
+今回のmanifest/runtime/test/documentationと必要なfavorite公開データ境界以外は変更しない。
+`data/**`、`audit/**`、feature overlay、知識・provenance・Best Shot／同定registry、admin、
+Hatena、poison runtime、portal styles、既存generate.ymlは開始PRから差分なし。
+
+技術的なマージBLOCKERは解消した。ユーザーのレビュー後に手動マージ可能。
+既存main-push生成公開と09:00 JST相当のcronは、マージ後に初めてこのコードを使用する。
+今回の作業ではmain／gh-pages／Hatena本番を変更せず、マージ・deploy・auto-merge・dispatchを行わない。
+本番の初回実行・スケジュール実行は未実施であり、read-only candidate PASSと区別する。
+Phase 2の未分類／曖昧写真の確認・修正・承認UIは引き続き別作業。552 review signalsは
+既存分類状態を含む集計で、552件の新規問題という意味ではない。

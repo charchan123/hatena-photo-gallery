@@ -1,16 +1,17 @@
 {
-  "status": "BLOCKER",
+  "status": "PASS",
   "starting_main": "df1a5dfe69a9c01b39d44ee2421fd77b3940ad7a",
   "starting_tree": "2697ef1cf5df4a3a8709a216726601014640d9ec",
   "branch": "phase1-hatena-daily-sync-2026-10-12",
   "python": {
-    "passed": 670,
-    "collected": 670,
-    "focused_passed": 265,
-    "new_sync_tests": 64
+    "passed": 706,
+    "collected": 706,
+    "focused_passed": 103,
+    "new_sync_tests": 68,
+    "retirement_fixture_cases": 31
   },
   "javascript": {
-    "passed": 40,
+    "passed": 43,
     "failed": 0
   },
   "compileall": "PASS",
@@ -43,17 +44,22 @@
   "admin_ui_modified": false,
   "limitations": [
     "First inventory delta is UNKNOWN during trusted-portal compatibility bootstrap. Missing/corrupt portal blocks.",
-    "Any deletion/replacement or newly unsafe production label blocks the whole run until human review.",
+    "Any unapproved deletion/replacement or newly unsafe production label blocks until human review; only the pinned seven-photo event is approved.",
     "Admin read-only status data prepared; pending-photo review/approval UI belongs to Phase 2.",
-    "Read-only API completed 12 pages/112 entries; 7 published photo keys now belong to a draft article. Guarded generation blocked; no release recommendation until reviewed."
+    "Approved seven-photo candidate migration and HTML compatibility passed real read-only API preflight. No actual deploy/schedule execution performed."
   ],
   "file_sha256": {
     ".github/workflows/generate.yml": "213f2e9cb9e3ca06805cb8dd777e90864c4a106113626d4a9be9613229876b0b",
-    "main.py": "10ba7b541cf702a5d443bc8c04825b9b4bf3a6852bd0a3300a22fa1ba6b74d6a",
-    "article_sync.py": "d57d6ea65c373378f2813bdbfd0c6b1e37ec5cea581fd50571759e4fb59f0665",
+    "main.py": "a3fda3d6cc101a6de8563aec137f2363bcdf7d85dc87dd8c747a283dce902a6d",
+    "article_sync.py": "c23a1a39b24fcacc327cd4b3973a4f45e4e9beaca9cb9ee7044964d173cd4fe3",
     "requirements-dev.txt": "5301a10bc7ef795d80d03f1184eb7951e7bc73b371b20ce83549d3ed697a01db",
-    "tests/test_article_sync.py": "aeb5b1948483c83969d9f6c0171c736c6addc70cb5c8bba88e2047124d2b040a",
-    "docs/HATENA_ARTICLE_SYNC_PHASE1.md": "cf8bc2ee8a0f38ce5bad218f5c1a91ee200a19bf29679c1a2dd783433949da61"
+    "tests/test_article_sync.py": "855309ad376494f868c045c7c2da05ef7ebbb875d767f7a7cf424a550afe55de",
+    "docs/HATENA_ARTICLE_SYNC_PHASE1.md": "ef6df34be908450e7bb7a56cce9b828a13f05c955712026d2ea156442a584164",
+    "sync_retirement.py": "a9531a1d266dd4bfb5a676928f84a88b89937d5897c8b9814b427fa0203457b2",
+    "sync-migrations/hatena-draft-photo-retirement-2026-10-12.json": "4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c",
+    "tests/test_sync_retirement.py": "256774dfdd8c3991a24fa7bc859a41c2069791428bd06260ee48d81b972bbc5e",
+    "tests/test_favorite_visibility.js": "5e5812c5064f245b1d8151cbb81f4830f96c9a73e6e001f7ee2c8ca9dc133d4e",
+    "assets/gallery.js": "441e74ad8ccee57d37850e764321e1c510badb23b6c9ae0654fd2e52188154c6"
   },
   "live_api_preflight": {
     "status": "BLOCKER",
@@ -225,8 +231,10 @@
       "No complete previous Atom inventory exists, so difference counts remain UNKNOWN.",
       "Whether the affected article was historically a draft or became a draft later cannot be established from the previous portal alone.",
       "The actual guarded run did not reach Best Shot/research final reference validation or completed page generation."
-    ]
+    ],
+    "superseded_by": "explicit approved retirement; see ARTICLE_SYNC_APPROVED_RETIREMENT_VALIDATION.json"
   },
-  "operational_status": "BLOCKER",
-  "automated_regression_status": "PASS"
+  "operational_status": "READ_ONLY_PREFLIGHT_PASS",
+  "automated_regression_status": "PASS",
+  "approved_retirement_validation": "ARTICLE_SYNC_APPROVED_RETIREMENT_VALIDATION.json"
 }
