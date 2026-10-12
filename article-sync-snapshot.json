@@ -1,7 +1,7 @@
 {
   "payload": {
     "version": 1,
-    "last_success_at": "2026-10-12T11:11:16.534402+00:00",
+    "last_success_at": "2026-10-12T12:08:08.685937+00:00",
     "articles": {
       "05551d39eb36f7ef4bdd2356c6dbd569b0af6670d6bfef1fd7b9c789ba6f4c44": {
         "updated_hash": "7cb3b34f52efb94c5782fb836b9d9f04bb6472a85f6e6142a5adeddab007f9f9",
@@ -8360,5 +8360,5 @@
     },
     "automatic_additions": []
   },
-  "sha256": "52ee0ad841e4b8cb1bde178b92192b888b1b50ead06993a6ae3a0085c5963725"
+  "sha256": "754677b3ae10df1879172433abe5e54e8737b2b91ee819291db6ced464ee28fb"
 }
