@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "migration_id": "hatena-draft-photo-retirement-2026-10-12",
+  "approval_reason": "Explicitly approved retirement of seven legacy public photos from an article remaining draft",
+  "approval_provenance": "conversation explicit approval",
+  "approval_scope": "only the seven listed old observation IDs; no other deletion, rename, replacement or ID change",
+  "baseline_commit": "f3114e2bbd367047eef04d7a9291303ae7161f4c",
+  "baseline_portal_sha256": "1e47acd0ab1c8d7a1190cb68acc3df93567be1f0e1479d2ba780ee9f54493f81",
+  "baseline_photo_count": 913,
+  "target_article_sha256": "6548bd18f58533484151fab4d6212e7b165e6ba579bcb60127e4f6f2315aafe5",
+  "old_article_url_sha256": "fea73777edddc57d85fc8cb5a579118d8d7952802b3e2fee82b44101b95c2e28",
+  "target_count": 7,
+  "observations": [
+    {
+      "observation_id": "obs-1606a216b6d92b088daf5fc2e613fbebd3e79afe06830ab6d2b412ffc8b4a9d0",
+      "canonical_registered_name": "ヒロメノトガリアミガサタケ",
+      "image_url_sha256": "efb7b629b5102f09fdbc66c16e6261fe71353c09a49dd5057a2b0850098d9bb8"
+    },
+    {
+      "observation_id": "obs-655a99526af5075cd5e6a89471023dfa95cec6e6a0d63b6883288d1b151c7eed",
+      "canonical_registered_name": "キイロスッポンタケ",
+      "image_url_sha256": "a58a767b545794e8f11d706493470d39b1dcf3c436294d9b63be2c5be6748ce7"
+    },
+    {
+      "observation_id": "obs-edbc5538482ca9c4c16775541ea796098f9f10f10d6df48d0344df6345f8862e",
+      "canonical_registered_name": "ヤマイグチ",
+      "image_url_sha256": "fd0419b4d45762dd63465047b7a2e296cf71b89df083e37515aea006abce4e65"
+    },
+    {
+      "observation_id": "obs-9a6df3f20da75f3ec768cb476c2a1ae1a9df5997a3909b8207044fbb9214559f",
+      "canonical_registered_name": "オオシロカラカサタケ",
+      "image_url_sha256": "29fc5d58804917df8d24f2faad7b53068034db96be1421ed62ca2e9ffee064ec"
+    },
+    {
+      "observation_id": "obs-53eef24d4d30f049cef1de92f31ee284ae7dbadf01b82c1550aab215f9a6bea1",
+      "canonical_registered_name": "セイタカイグチ",
+      "image_url_sha256": "d19a11233ffa6a432a94767551217654fefd8d70e0e28aea09233f31318bcdde"
+    },
+    {
+      "observation_id": "obs-a1d82085cc1e51406e44b45c6a8a1c5592a1606a4593821d26631db08384bc68",
+      "canonical_registered_name": "ホテイシメジ",
+      "image_url_sha256": "d6bebbfdd538f77c17bb1e7349472acb31ad1d5fe6847b20c0760756c2089962"
+    },
+    {
+      "observation_id": "obs-b48b18a8aea124a7ac0df22caa8b483c9db68a84e80c9ae151aa67852aa9b786",
+      "canonical_registered_name": "ヒラタケ",
+      "image_url_sha256": "4573a46e54bef07ad9dbfb726a8f217b8ec63db669455b74032de822f930b987"
+    }
+  ],
+  "conditions": [
+    "pinned original baseline commit and portal payload",
+    "exact seven IDs with matching name/article/link/image hashes",
+    "target Atom article explicitly draft in complete current fetch",
+    "no other old photo missing",
+    "no protected reference to target photos",
+    "future republication requires new human review"
+  ],
+  "republication_policy": "block_pending_new_human_review"
+}

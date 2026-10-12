@@ -456,7 +456,9 @@ def build_caption_html(alt, exif: dict):
 # ===========================
 # はてなAPI 全記事取得
 # ===========================
-def fetch_hatena_articles_api():
+def fetch_hatena_articles_api(*, strict=False, audit=None, excluded_draft_hashes=None):
+    from article_sync import SyncError, digest
+    from urllib.parse import urljoin, urlsplit
     if not all([HATENA_USER, HATENA_BLOG_ID, HATENA_API_KEY]):
         raise EnvironmentError(
             "環境変数 HATENA_USER / HATENA_BLOG_ID / HATENA_API_KEY が未設定です。"
@@ -468,25 +470,84 @@ def fetch_hatena_articles_api():
     count = 0
     article_files = []
     article_metadata = {}
+    visited, article_ids = set(), set()
+    endpoint = urlsplit(ATOM_ENDPOINT)
+    if audit is not None:
+        audit.update(pages_completed=0, entries_received=0, drafts_excluded=0,
+                     published_articles=0, html_articles=0, pagination_complete=False,
+                     content_type_counts={}, html_source_counts={},
+                     html_image_representation_difference_articles=0)
     while url:
-        print(f"🔗 Fetching: {url}")
-        r = requests.get(url, auth=AUTH, headers=HEADERS)
+        target = urlsplit(url)
+        if (url in visited or len(visited) >= 1000 or target.scheme != "https"
+                or target.netloc != endpoint.netloc or target.path != endpoint.path
+                or target.username or target.password or target.fragment):
+            raise SyncError("API_PAGINATION_INVALID")
+        visited.add(url)
+        print(f"🔗 Fetching page {len(visited)}")
+        try:
+            r = requests.get(url, auth=AUTH, headers=HEADERS, timeout=(10, 60), allow_redirects=False)
+        except requests.RequestException:
+            raise SyncError("API_TRANSPORT_ERROR") from None
         if r.status_code != 200:
-            raise RuntimeError(f"❌ API取得失敗: {r.status_code} {r.text}")
-
-        root = ET.fromstring(r.text)
-        ns = {"atom": "http://www.w3.org/2005/Atom"}
+            raise SyncError("API_HTTP_ERROR")
+        try:
+            root = ET.fromstring(r.text)
+        except ET.ParseError:
+            raise SyncError("API_XML_INVALID") from None
+        if root.tag != "{http://www.w3.org/2005/Atom}feed":
+            raise SyncError("API_FEED_INVALID")
+        ns = {"atom": "http://www.w3.org/2005/Atom", "app": "http://www.w3.org/2007/app"}
         entries = root.findall("atom:entry", ns)
+        if audit is not None:
+            audit["entries_received"] += len(entries)
 
         for i, entry in enumerate(entries, 1):
+            # Atom includes drafts. Never generate public pages from private drafts.
+            draft = entry.find("app:control/app:draft", ns)
+            if draft is not None and (draft.text or "").strip() == "yes":
+                if audit is not None:
+                    audit["drafts_excluded"] += 1
+                if excluded_draft_hashes is not None:
+                    excluded_draft_hashes.add(digest(_atom_text(entry, "atom:id", ns)))
+                continue
+            if strict and (draft is None or (draft.text or "").strip() != "no"):
+                raise SyncError("API_DRAFT_STATE_INVALID")
+            article_id = _atom_text(entry, "atom:id", ns)
+            if strict and (not article_id or article_id in article_ids):
+                raise SyncError("ATOM_ID_MISSING_OR_DUPLICATE")
+            article_ids.add(article_id)
             content = entry.find("atom:content", ns)
             if content is None:
+                if strict:
+                    raise SyncError("API_CONTENT_MISSING")
                 continue
             html_content = content.text or ""
+            if strict:
+                formatted = entry.find("{http://www.hatena.ne.jp/info/xmlns#}formatted-content")
+                if audit is not None:
+                    kind = content.attrib.get("type", "")
+                    kind = kind if kind in {"text/html", "html", "text/x-markdown", "text/x-hatena-syntax", "text/plain"} else "other"
+                    audit["content_type_counts"][kind] = audit["content_type_counts"].get(kind, 0) + 1
+                    source = "content_html" if kind in {"text/html", "html"} else "formatted"
+                    audit["html_source_counts"][source] = audit["html_source_counts"].get(source, 0) + 1
+                    if formatted is not None and kind in {"text/html", "html"}:
+                        raw_images = [node.get("src") for node in BeautifulSoup(html_content, "html.parser").find_all("img")]
+                        rendered_images = [node.get("src") for node in BeautifulSoup(formatted.text or "", "html.parser").find_all("img")]
+                        audit["html_image_representation_difference_articles"] += int(raw_images != rendered_images)
+                if content.attrib.get("type", "") not in {"text/html", "html"}:
+                    if formatted is None or formatted.get("type") not in {"text/html", "html"}:
+                        raise SyncError("API_RENDERED_HTML_MISSING")
+                    html_content = formatted.text or ""
+                if not _atom_text(entry, "atom:updated", ns):
+                    raise SyncError("API_UPDATED_MISSING")
             filename = f"{ARTICLES_DIR}/article_{count+i}.html"
             with open(filename, "w", encoding="utf-8") as f:
                 f.write(html_content)
             article_files.append(filename)
+            if audit is not None:
+                audit["published_articles"] += 1
+                audit["html_articles"] += int(strict)
             article_metadata[os.path.normpath(filename)] = {
                 "article_id": _atom_text(entry, "atom:id", ns),
                 "title": _atom_text(entry, "atom:title", ns),
@@ -503,14 +564,22 @@ def fetch_hatena_articles_api():
             print(f"✅ 保存完了: {filename}")
 
         count += len(entries)
-        next_link = root.find("atom:link[@rel='next']", ns)
-        url = next_link.attrib["href"] if next_link is not None else None
+        next_links = root.findall("atom:link[@rel='next']", ns)
+        if len(next_links) > 1 or (next_links and not next_links[0].get("href")):
+            raise SyncError("API_PAGINATION_INVALID")
+        url = urljoin(url, next_links[0].get("href")) if next_links else None
+        if audit is not None:
+            audit["pages_completed"] += 1
 
     try:
         save_article_metadata(article_metadata)
     except Exception as error:
+        if strict:
+            raise SyncError("API_METADATA_WRITE_FAILED") from None
         print(f"Phase 3B article metadata capture failed: {error}")
     print(f"📦 合計 {count} 件の記事を保存しました。")
+    if audit is not None:
+        audit["pagination_complete"] = True
     return article_files
 
 
@@ -2729,19 +2798,20 @@ def generate_favorite_page(grouped):
 </main>
 """]
 
-    exif_cache = load_exif_cache()
-
-    parts.append(f"""
-<script>
-window.EXIF_CACHE = {json.dumps(exif_cache, ensure_ascii=False)};
-</script>
-""")
-
     # src → alt（キノコ名）対応表
     src_to_alt = {}
     for alt, srcs in grouped.items():
         for src in srcs:
             src_to_alt[src] = alt
+
+    # The persistent performance cache can contain removed/private photos.
+    # Export only current gallery entries; keep the private cache unchanged.
+    exif_cache = {src: meta for src, meta in load_exif_cache().items() if src in src_to_alt}
+    parts.append(f"""
+<script>
+window.EXIF_CACHE = {json.dumps(exif_cache, ensure_ascii=False)};
+</script>
+""")
 
     parts.append(f"""
 <script>
@@ -2763,9 +2833,13 @@ window.SRC_TO_ALT = {json.dumps(src_to_alt, ensure_ascii=False)};
 # ===========================
 # メイン
 # ===========================
-def build_gallery():
+def build_gallery(*, sync_run=None):
     """APIの最新取得結果からギャラリー一式を生成する。"""
-    article_files = fetch_hatena_articles_api()
+    article_files = fetch_hatena_articles_api(
+        strict=True, audit=sync_run.status["fetch_audit"],
+        excluded_draft_hashes=sync_run.excluded_draft_hashes) if sync_run else fetch_hatena_articles_api()
+    if sync_run:
+        sync_run.capture(article_files, load_article_metadata())
     if not article_files:
         raise RuntimeError(
             "Hatena APIから記事ファイルを1件も取得できなかったため、"
@@ -2895,14 +2969,16 @@ def build_gallery():
     exif_cache = build_exif_cache(production_entries, exif_cache)
     save_exif_cache(exif_cache)
 
+    sync_options = {"sync_run": sync_run} if sync_run else {}
     portal_status = export_portal_data(
+        **sync_options,
         production_entries=production_entries,
         shadow_metadata=shadow_metadata or [],
         exif_cache=exif_cache,
         taxonomy=taxonomy,
         production_mode=production_mode,
     )
-    generate_season_page_if_fresh(portal_status)
+    season_available = generate_season_page_if_fresh(portal_status)
     observation_records = generate_records_page_if_fresh(portal_status)
     detail_views = build_detail_views_if_fresh(portal_status)
     feature_search_available = generate_feature_page_if_fresh(portal_status)
@@ -2930,6 +3006,10 @@ def build_gallery():
         generate_index(grouped, exif_cache, **index_options)
     generate_new_top(grouped, exif_cache, **index_options)
     generate_favorite_page(grouped)
+    if sync_run:
+        sync_run.finalize(OUTPUT_DIR, [season_available, observation_records, detail_views,
+                          feature_search_available, research_summary, best_shot_summary],
+                          os.path.join(os.path.dirname(os.path.abspath(__file__)), "data"))
 
 
 def generate_season_page_if_fresh(portal_status):
@@ -3040,7 +3120,7 @@ def generate_best_shot_pages_if_fresh(portal_status):
 
 
 def export_portal_data(*, production_entries, shadow_metadata, article_metadata=None,
-                       exif_cache, taxonomy, production_mode):
+                       exif_cache, taxonomy, production_mode, sync_run=None):
     """Best-effort supplemental export; no error may stop gallery generation."""
     try:
         if taxonomy is None:
@@ -3058,9 +3138,13 @@ def export_portal_data(*, production_entries, shadow_metadata, article_metadata=
             production_mode=production_mode,
             cutover_active=production_mode == "phase3c_hybrid",
         )
+        if sync_run:
+            data = sync_run.reconcile(data, shadow_metadata)
         save_json(PORTAL_DATA_FILE, data)
         status = success_status(data)
     except Exception as error:
+        if sync_run:
+            raise
         print(f"Phase 4A.0 portal data export failed: {error}")
         status = failure_status(error, production_mode, len(production_entries))
     try:

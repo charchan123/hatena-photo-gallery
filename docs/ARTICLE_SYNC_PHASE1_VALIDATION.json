@@ -1,0 +1,240 @@
+{
+  "status": "PASS",
+  "starting_main": "df1a5dfe69a9c01b39d44ee2421fd77b3940ad7a",
+  "starting_tree": "2697ef1cf5df4a3a8709a216726601014640d9ec",
+  "branch": "phase1-hatena-daily-sync-2026-10-12",
+  "python": {
+    "passed": 706,
+    "collected": 706,
+    "focused_passed": 103,
+    "new_sync_tests": 68,
+    "retirement_fixture_cases": 31
+  },
+  "javascript": {
+    "passed": 43,
+    "failed": 0
+  },
+  "compileall": "PASS",
+  "diff_check": "PASS",
+  "workflow_yaml": "PyYAML BaseLoader + trigger/order/concurrency assertions PASS",
+  "idempotence": "real fixture API + real generator, second successful run: zero differences",
+  "new_article_prepend": "PASS, existing ID retained when article_1 became article_2",
+  "url_replacement": "UNKNOWN same-photo identity; rejected; prior candidate byte-for-byte preserved",
+  "failure_publication_retention": "fixture verified; deployment step success-only; no live deploy executed",
+  "published_compatibility_build": {
+    "input": "read-only origin/gh-pages portal-data.json; no live Atom API",
+    "published_snapshot_commit": "f3114e2bbd367047eef04d7a9291303ae7161f4c",
+    "observations": 913,
+    "stable_ids_preserved_after_order_and_path_changes": 913,
+    "best_shot_references": 3,
+    "research_case_ids_preserved": 67,
+    "html_pages": 322,
+    "counts": {
+      "records": 82,
+      "guide": 301,
+      "research": 67,
+      "best_shots": 3
+    },
+    "result": "PASS"
+  },
+  "protected_differences": [],
+  "live_authenticated_hatena_fetch_executed": true,
+  "workflow_dispatch_executed": false,
+  "production_deployment_executed": false,
+  "admin_ui_modified": false,
+  "limitations": [
+    "First inventory delta is UNKNOWN during trusted-portal compatibility bootstrap. Missing/corrupt portal blocks.",
+    "Any unapproved deletion/replacement or newly unsafe production label blocks until human review; only the pinned seven-photo event is approved.",
+    "Admin read-only status data prepared; pending-photo review/approval UI belongs to Phase 2.",
+    "Approved seven-photo candidate migration and HTML compatibility passed real read-only API preflight. No actual deploy/schedule execution performed."
+  ],
+  "file_sha256": {
+    ".github/workflows/generate.yml": "213f2e9cb9e3ca06805cb8dd777e90864c4a106113626d4a9be9613229876b0b",
+    "main.py": "a3fda3d6cc101a6de8563aec137f2363bcdf7d85dc87dd8c747a283dce902a6d",
+    "article_sync.py": "c23a1a39b24fcacc327cd4b3973a4f45e4e9beaca9cb9ee7044964d173cd4fe3",
+    "requirements-dev.txt": "5301a10bc7ef795d80d03f1184eb7951e7bc73b371b20ce83549d3ed697a01db",
+    "tests/test_article_sync.py": "855309ad376494f868c045c7c2da05ef7ebbb875d767f7a7cf424a550afe55de",
+    "docs/HATENA_ARTICLE_SYNC_PHASE1.md": "ef6df34be908450e7bb7a56cce9b828a13f05c955712026d2ea156442a584164",
+    "sync_retirement.py": "a9531a1d266dd4bfb5a676928f84a88b89937d5897c8b9814b427fa0203457b2",
+    "sync-migrations/hatena-draft-photo-retirement-2026-10-12.json": "4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c",
+    "tests/test_sync_retirement.py": "256774dfdd8c3991a24fa7bc859a41c2069791428bd06260ee48d81b972bbc5e",
+    "tests/test_favorite_visibility.js": "5e5812c5064f245b1d8151cbb81f4830f96c9a73e6e001f7ee2c8ca9dc133d4e",
+    "assets/gallery.js": "441e74ad8ccee57d37850e764321e1c510badb23b6c9ae0654fd2e52188154c6"
+  },
+  "live_api_preflight": {
+    "status": "BLOCKER",
+    "starting_main": "df1a5dfe69a9c01b39d44ee2421fd77b3940ad7a",
+    "starting_pr_head": "9e3f8d2d8047767437752ec9100c96c3732cbcf9",
+    "runs": [
+      {
+        "run_id": 38165841209,
+        "url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/38165841209",
+        "summary": {
+          "baseline_error": null,
+          "classification_changes": null,
+          "classification_review_count": 597,
+          "classification_state_counts": {
+            "ambiguous": 487,
+            "conflict": 33,
+            "named_mushroom": 388,
+            "non_mushroom": 4,
+            "unclassified": 54,
+            "unidentified_mushroom": 10
+          },
+          "comparison": "UNKNOWN",
+          "deleted_articles": null,
+          "deleted_images": null,
+          "detected_image_count": 976,
+          "error_code": "REMOVED_OR_REPLACED_PUBLISHED_PHOTO",
+          "fetch_audit": {
+            "drafts_excluded": 2,
+            "entries_received": 112,
+            "html_articles": 110,
+            "pages_completed": 12,
+            "pagination_complete": true,
+            "published_articles": 110
+          },
+          "fetch_error": null,
+          "hatena_write_executed": false,
+          "head_sha": "9a77a5c61edccbdb5f342dca2adb930715618871",
+          "id_compatibility_error": "REMOVED_OR_REPLACED_PUBLISHED_PHOTO",
+          "new_articles": null,
+          "new_images": null,
+          "possible_url_changes": null,
+          "previous_publication_sha": "f3114e2bbd367047eef04d7a9291303ae7161f4c",
+          "publication_executed": false,
+          "published_article_count": 110,
+          "result": "BLOCKED",
+          "updated_articles": null,
+          "url_changes": null
+        }
+      },
+      {
+        "run_id": 38166003032,
+        "url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/38166003032",
+        "summary": {
+          "baseline_error": null,
+          "candidate_gallery_photo_count": 906,
+          "classification_changes": null,
+          "classification_review_count": 597,
+          "classification_state_counts": {
+            "ambiguous": 487,
+            "conflict": 33,
+            "named_mushroom": 388,
+            "non_mushroom": 4,
+            "unclassified": 54,
+            "unidentified_mushroom": 10
+          },
+          "comparison": "UNKNOWN",
+          "deleted_articles": null,
+          "deleted_images": null,
+          "detected_image_count": 976,
+          "error_code": "REMOVED_OR_REPLACED_PUBLISHED_PHOTO",
+          "fetch_audit": {
+            "content_type_counts": {
+              "text/html": 110
+            },
+            "drafts_excluded": 2,
+            "entries_received": 112,
+            "html_articles": 110,
+            "html_image_representation_difference_articles": 0,
+            "html_source_counts": {
+              "formatted": 110
+            },
+            "pages_completed": 12,
+            "pagination_complete": true,
+            "published_articles": 110
+          },
+          "fetch_error": null,
+          "hatena_write_executed": false,
+          "head_sha": "a27367f529f46e10b2864c6f0720dbc9c50f467e",
+          "id_compatibility_error": "REMOVED_OR_REPLACED_PUBLISHED_PHOTO",
+          "missing_published_article_ids": 1,
+          "missing_published_photo_keys": 7,
+          "new_articles": null,
+          "new_images": null,
+          "possible_url_changes": null,
+          "previous_photo_count": 913,
+          "previous_publication_sha": "f3114e2bbd367047eef04d7a9291303ae7161f4c",
+          "publication_executed": false,
+          "published_article_count": 110,
+          "result": "BLOCKED",
+          "updated_articles": null,
+          "url_changes": null
+        }
+      },
+      {
+        "run_id": 38166194193,
+        "url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/38166194193",
+        "summary": {
+          "baseline_error": null,
+          "candidate_gallery_photo_count": 906,
+          "classification_changes": null,
+          "classification_review_count": 597,
+          "classification_state_counts": {
+            "ambiguous": 487,
+            "conflict": 33,
+            "named_mushroom": 388,
+            "non_mushroom": 4,
+            "unclassified": 54,
+            "unidentified_mushroom": 10
+          },
+          "comparison": "UNKNOWN",
+          "deleted_articles": null,
+          "deleted_images": null,
+          "detected_image_count": 976,
+          "error_code": "REMOVED_OR_REPLACED_PUBLISHED_PHOTO",
+          "fetch_audit": {
+            "content_type_counts": {
+              "text/html": 110
+            },
+            "drafts_excluded": 2,
+            "entries_received": 112,
+            "html_articles": 110,
+            "html_image_representation_difference_articles": 0,
+            "html_source_counts": {
+              "formatted": 110
+            },
+            "pages_completed": 12,
+            "pagination_complete": true,
+            "published_articles": 110
+          },
+          "fetch_error": null,
+          "hatena_write_executed": false,
+          "head_sha": "4770dfa38f1ac2e0910099d16db8855f2be02eb7",
+          "id_compatibility_error": "REMOVED_OR_REPLACED_PUBLISHED_PHOTO",
+          "missing_articles_from_api_harvest": 0,
+          "missing_articles_in_excluded_drafts": 1,
+          "missing_photos_in_excluded_drafts": 7,
+          "missing_published_article_ids": 1,
+          "missing_published_photo_keys": 7,
+          "new_articles": null,
+          "new_images": null,
+          "possible_url_changes": null,
+          "previous_photo_count": 913,
+          "previous_publication_sha": "f3114e2bbd367047eef04d7a9291303ae7161f4c",
+          "publication_executed": false,
+          "published_article_count": 110,
+          "result": "BLOCKED",
+          "updated_articles": null,
+          "url_changes": null
+        }
+      }
+    ],
+    "temporary_workflow_removed": true,
+    "merge_recommended": false,
+    "publication_executed": false,
+    "hatena_write_executed": false,
+    "protected_reference_validation": "NOT_REACHED: ID compatibility gate rejected draft-related disappearance before downstream generation",
+    "legacy_id_preservation": "FAILED: 7 published photo keys from one currently excluded draft article",
+    "limitations": [
+      "No complete previous Atom inventory exists, so difference counts remain UNKNOWN.",
+      "Whether the affected article was historically a draft or became a draft later cannot be established from the previous portal alone.",
+      "The actual guarded run did not reach Best Shot/research final reference validation or completed page generation."
+    ],
+    "superseded_by": "explicit approved retirement; see ARTICLE_SYNC_APPROVED_RETIREMENT_VALIDATION.json"
+  },
+  "operational_status": "READ_ONLY_PREFLIGHT_PASS",
+  "automated_regression_status": "PASS",
+  "approved_retirement_validation": "ARTICLE_SYNC_APPROVED_RETIREMENT_VALIDATION.json"
+}

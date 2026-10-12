@@ -1,0 +1,116 @@
+{
+  "status": "PASS",
+  "starting_main": "df1a5dfe69a9c01b39d44ee2421fd77b3940ad7a",
+  "starting_main_tree": "2697ef1cf5df4a3a8709a216726601014640d9ec",
+  "starting_pr_head": "a818f8f7630072a5b3b0af0c2f6cf37d12134d3a",
+  "starting_pr_tree": "d9386c680b293b4710277b775c9d04ff24dbadde",
+  "actions_url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/38188053970",
+  "tested_runtime_head": "2cd6764de8a91860d2c1d609308b2891f3edebc2",
+  "evidence": {
+    "best_shot_references_preserved": 3,
+    "bootstrap": true,
+    "classification_changes": null,
+    "classification_review_count": 552,
+    "classification_state_counts": {
+      "ambiguous": 481,
+      "conflict": 33,
+      "named_mushroom": 423,
+      "non_mushroom": 7,
+      "unclassified": 20,
+      "unidentified_mushroom": 12
+    },
+    "comparison": "UNKNOWN",
+    "deleted_articles": null,
+    "deleted_images": null,
+    "detected_image_count": 976,
+    "fetch_audit": {
+      "content_type_counts": {
+        "text/html": 110
+      },
+      "drafts_excluded": 2,
+      "entries_received": 112,
+      "html_articles": 110,
+      "html_image_representation_difference_articles": 0,
+      "html_source_counts": {
+        "content_html": 110
+      },
+      "pages_completed": 12,
+      "pagination_complete": true,
+      "published_articles": 110
+    },
+    "fetch_error": null,
+    "gallery_photo_count": 906,
+    "generated_html_pages": 322,
+    "hatena_write_executed": false,
+    "head_sha": "2cd6764de8a91860d2c1d609308b2891f3edebc2",
+    "id_compatibility_error": null,
+    "new_articles": null,
+    "new_images": null,
+    "possible_url_changes": null,
+    "preflight_checks": {
+      "additional_accepted_photos": 0,
+      "all_906_ids_names_article_urls_preserved": true,
+      "individual_five_names_preserved": 5,
+      "live_atom_pages": 12,
+      "live_input_failure_probes": {
+        "deletion": "REMOVED_OR_REPLACED_PUBLISHED_PHOTO",
+        "missing_manifest": "RETIREMENT_MANIFEST_INVALID",
+        "rename": "PUBLISHED_NAME_CHANGE_REQUIRES_REVIEW",
+        "retired_article_published": "RETIRED_ARTICLE_REVIEW_REQUIRED",
+        "tampered_manifest": "RETIREMENT_MANIFEST_INVALID",
+        "url_replacement": "REMOVED_OR_REPLACED_PUBLISHED_PHOTO",
+        "wrong_baseline_commit": "RETIREMENT_BASELINE_INVALID"
+      },
+      "second_output_inspection": {
+        "result": "PASS",
+        "retired_ids_absent": 7,
+        "shared_image_urls_preserved": 0,
+        "text_files_checked": 345
+      },
+      "second_retirement": {
+        "manifest_sha256": "4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c",
+        "migration_id": "hatena-draft-photo-retirement-2026-10-12",
+        "retired_this_run": 0,
+        "retired_total": 7,
+        "state": "ALREADY_APPLIED"
+      },
+      "second_same_input_zero_diff": true,
+      "second_sync_result": "SUCCESS"
+    },
+    "preserved_photo_ids": 906,
+    "previous_photo_count": 913,
+    "previous_publication_sha": "f3114e2bbd367047eef04d7a9291303ae7161f4c",
+    "publication_executed": false,
+    "published_article_count": 110,
+    "research_cases_preserved": 67,
+    "result": "SUCCESS",
+    "retired_output_inspection": {
+      "result": "PASS",
+      "retired_ids_absent": 7,
+      "shared_image_urls_preserved": 0,
+      "text_files_checked": 345
+    },
+    "retirement": {
+      "manifest_sha256": "4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c",
+      "migration_id": "hatena-draft-photo-retirement-2026-10-12",
+      "retired_this_run": 7,
+      "retired_total": 7,
+      "state": "APPLIED"
+    },
+    "updated_articles": null,
+    "url_changes": null
+  },
+  "tests": {
+    "python_passed": 706,
+    "collected": 706,
+    "focused": 103,
+    "node_passed": 43
+  },
+  "publication_executed": false,
+  "original_baseline_unchanged": true,
+  "temporary_workflow_removed": true,
+  "remaining_operational_checks": [
+    "No main merge, live publication or scheduled run was performed.",
+    "Phase 2 classification review UI remains separate."
+  ]
+}
