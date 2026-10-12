@@ -171,12 +171,15 @@ class Retirement:
             files += 1
             text = p.read_text(encoding='utf-8')
             if any(oid in text for oid in self.targets):
+                self.inspection_failure = {'file': p.relative_to(output).as_posix(), 'kind': 'retired_observation_id'}
                 raise SyncError('RETIRED_CONTENT_IN_OUTPUT')
             candidates = list(urls.findall(html.unescape(text)))
             if p.suffix == '.json':
                 try: candidates.extend(strings(json.loads(text)))
                 except ValueError: raise SyncError('OUTPUT_JSON_INVALID') from None
-            if any(digest(value) in blocked_strings for value in candidates):
+            matched = next((digest(value) for value in candidates if digest(value) in blocked_strings), None)
+            if matched:
+                self.inspection_failure = {'file': p.relative_to(output).as_posix(), 'kind': 'retired_url_or_article', 'value_sha256': matched}
                 raise SyncError('RETIRED_CONTENT_IN_OUTPUT')
         return {'result': 'PASS', 'text_files_checked': files,
                 'retired_ids_absent': len(self.targets),

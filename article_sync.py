@@ -366,7 +366,11 @@ class SyncRun:
             if not file.is_file() or file.stat().st_size == 0:
                 raise SyncError("OUTPUT_PAGE_MISSING")
         now = datetime.now(timezone.utc).isoformat()
-        self.status["retired_output_inspection"] = self.retirement.inspect_output(output, portal, self.articles)
+        try:
+            self.status["retired_output_inspection"] = self.retirement.inspect_output(output, portal, self.articles)
+        except SyncError:
+            self.status["retired_output_inspection"] = getattr(self.retirement, "inspection_failure", {"result": "BLOCKED"})
+            raise
         snapshot = seal_snapshot(self.articles, portal, now, self.retirement.ledger)
         validate_snapshot(snapshot, portal)
         self.status["generated_html_pages"] = sum(1 for _ in output.rglob("*.html"))
