@@ -141,8 +141,8 @@ function openBestEditor(row=null,current=null){
   else {path='/api/best-shot/add';body={entry:{selection_id:f.get('selection_id'),...common},add_notice:f.get('notice')==='true'};}
   let accepted=false;
   try{await api(path,body);accepted=true;editor.close();const refreshed=await load();message(refreshed?'変更予定に追加しました':'変更予定には追加しましたが、一覧を再取得できませんでした。再読み込みしてください。',!refreshed);}
-  catch(e){general.textContent=e.userMessage||'通信またはサーバーの確認に失敗しました。入力内容を保持しています。変更予定を確認してから再試行してください。';Object.entries(e.fieldErrors||{}).forEach(([name,text])=>error(name,text));focusError();}
-  finally{busy=false;save.textContent='変更予定に追加';editor.querySelector('form').removeAttribute('aria-busy');editor.removeEventListener('cancel',cancel);locked.forEach(([e,wasDisabled])=>e.disabled=wasDisabled);closers.forEach(b=>b.disabled=false);if(!accepted)validateButton();}
+  catch(e){general.textContent=e.userMessage||'通信またはサーバーの確認に失敗しました。入力内容を保持しています。変更予定を確認してから再試行してください。';Object.entries(e.fieldErrors||{}).forEach(([name,text])=>error(name,text));}
+  finally{busy=false;save.textContent='変更予定に追加';editor.querySelector('form').removeAttribute('aria-busy');editor.removeEventListener('cancel',cancel);locked.forEach(([e,wasDisabled])=>e.disabled=wasDisabled);closers.forEach(b=>b.disabled=false);if(!accepted){validateButton();focusError();}}
  });
  function validateButton(){const id=picker.querySelector('[name=observation_id]').value,slots=monthSlots(id,ownId);$('#dialog-save').disabled=slots.full||!slots.month||!id||state.best_shots.entries.some(e=>e.selection_id!==ownId&&e.observation_id===id);}
  function focusError(){const invalid=$('#editor [aria-invalid=true]:not([type=hidden])');if(invalid){invalid.focus();invalid.scrollIntoView({block:'center'})}else{general.tabIndex=-1;general.focus();general.scrollIntoView({block:'nearest'})}}

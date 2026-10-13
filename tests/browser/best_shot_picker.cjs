@@ -88,6 +88,8 @@ const fixtures=()=>({csrf:'fixture-only',observations:records,best_shots:{versio
  await p.click('#dialog-save');await p.waitForFunction(()=>document.querySelector('#dialog-save').textContent==='変更予定に追加');
  check(await p.locator('#editor').isVisible(),true);check(await p.locator('[name=comment]').inputValue(),'保存するコメント');check(await p.locator('[name=observation_id]').inputValue(),'obs-2');
  assert.match(await p.locator('#order-error').innerText(),/順序「2」/);assertions++;
+ check(await p.locator('[name=order]').isEnabled(),true);
+ check(await p.evaluate(()=>document.activeElement?.id),'best-order');
  const geometry=await p.locator('#order-error').evaluate(e=>{const label=e.previousElementSibling.getBoundingClientRect(),err=e.getBoundingClientRect();return {sameLine:Math.abs(label.top-err.top)<6,right:err.left>label.right,color:getComputedStyle(e).color}});
  check(geometry.sameLine,true);check(geometry.right,true);check(geometry.color,'rgb(180, 35, 24)');
  if(out){fs.mkdirSync(out,{recursive:true});await p.screenshot({path:path.join(out,'desktop-order-error.png')});}
