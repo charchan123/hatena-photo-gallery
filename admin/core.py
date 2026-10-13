@@ -67,9 +67,9 @@ class ChangeSet:
             year = str((observation.get("capture") or {}).get("date", "")[:4]) if observation else ""
             candidate["annual_best"][year] = entry.get("selection_id")
         validate_best_shot_config(candidate, self.portal)
-        self.best_shots = candidate
         if add_notice:
             self.add_notice("best-shots", "new", "ベストショットを追加", occurred_at)
+        self.best_shots = candidate
 
     def update_best_shot(self, selection_id, changes):
         allowed = {"observation_id", "comment", "annual_comment", "location", "order"}

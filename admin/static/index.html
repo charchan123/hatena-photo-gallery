@@ -25,6 +25,6 @@
 <section id="status" class="page" hidden><div id="site-status" class="panel"></div></section>
 <section id="changes" class="page" hidden><div id="preview" class="list"></div><div class="actions"><button id="validate">検証する</button><button class="primary" id="create-pr" disabled>PRを作成</button></div></section>
 </main>
-<dialog id="editor"><form method="dialog"><button class="close" value="cancel" aria-label="閉じる">×</button><h3 id="dialog-title"></h3><div id="dialog-fields"></div><menu><button value="cancel">キャンセル</button><button id="dialog-save" class="primary" value="default">変更予定に追加</button></menu></form></dialog>
+<dialog id="editor" aria-labelledby="dialog-title"><form method="dialog"><button type="button" class="close" value="cancel" aria-label="閉じる">×</button><h3 id="dialog-title"></h3><div id="dialog-fields"></div><menu><button type="button" value="cancel">キャンセル</button><button id="dialog-save" class="primary" value="default">変更予定に追加</button></menu></form></dialog>
 <dialog id="confirm"><form method="dialog"><h3>確認</h3><p id="confirm-text"></p><menu><button value="cancel">キャンセル</button><button id="confirm-ok" class="danger" value="default">実行する</button></menu></form></dialog>
 </body></html>
