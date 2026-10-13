@@ -1,4 +1,59 @@
 {
   "version": 1,
-  "events": []
+  "events": [
+    {
+      "section": "best-shots",
+      "kind": "new",
+      "summary": "ベストショットを追加",
+      "occurred_at": "2026-10-12T21:34:43+09:00"
+    },
+    {
+      "section": "best-shots",
+      "kind": "new",
+      "summary": "ベストショットを追加",
+      "occurred_at": "2026-10-12T21:39:51+09:00"
+    },
+    {
+      "section": "best-shots",
+      "kind": "new",
+      "summary": "ベストショットを追加",
+      "occurred_at": "2026-10-12T21:45:29+09:00"
+    },
+    {
+      "section": "best-shots",
+      "kind": "new",
+      "summary": "ベストショットを追加",
+      "occurred_at": "2026-10-12T21:48:04+09:00"
+    },
+    {
+      "section": "best-shots",
+      "kind": "new",
+      "summary": "ベストショットを追加",
+      "occurred_at": "2026-10-12T21:53:01+09:00"
+    },
+    {
+      "section": "best-shots",
+      "kind": "new",
+      "summary": "ベストショットを追加",
+      "occurred_at": "2026-10-12T21:54:30+09:00"
+    },
+    {
+      "section": "best-shots",
+      "kind": "new",
+      "summary": "ベストショットを追加",
+      "occurred_at": "2026-10-12T22:00:10+09:00"
+    },
+    {
+      "section": "best-shots",
+      "kind": "new",
+      "summary": "ベストショットを追加",
+      "occurred_at": "2026-10-12T22:01:23+09:00"
+    },
+    {
+      "section": "best-shots",
+      "kind": "new",
+      "summary": "ベストショットを追加",
+      "occurred_at": "2026-10-12T22:03:06+09:00"
+    }
+  ]
 }
