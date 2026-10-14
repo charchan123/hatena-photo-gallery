@@ -1,0 +1,35 @@
+{
+  "existing_python_tests": "840 passed",
+  "existing_node_scripts": "10 passed",
+  "js_syntax": "PASS",
+  "compileall": "PASS",
+  "publication_snapshot_validator": "PASS",
+  "feature_production_validator": "PASS",
+  "feature_overlay_count": 0,
+  "best_shot_main_validator": "PASS (3)",
+  "best_shot_pr111_validator": "PASS (12)",
+  "identification_registry_validator": "PASS (0)",
+  "fail_closed_simulations": [
+    {
+      "scenario": "observed_15_photo_projection",
+      "kind": "isolated evidence projection, not a live API replay",
+      "result": "PASS_EXPECTED_BLOCK",
+      "error_code": "DELETION_OR_URL_CHANGE_REQUIRES_REVIEW",
+      "candidate_count": 891
+    },
+    {
+      "scenario": "approved_article_only_projection",
+      "kind": "isolated evidence projection, not a live API replay",
+      "result": "PASS_EXPECTED_BLOCK",
+      "error_code": "DELETION_OR_URL_CHANGE_REQUIRES_REVIEW",
+      "candidate_count": 905
+    }
+  ],
+  "live_authenticated_api": {
+    "result": "NOT_RUN",
+    "reason": "LOCAL_HATENA_CREDENTIALS_UNAVAILABLE"
+  },
+  "implementation_written": false,
+  "new_approved_manifest_written": false,
+  "sync_can_resume": false
+}

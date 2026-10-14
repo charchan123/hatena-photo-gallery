@@ -1,0 +1,56 @@
+{
+  "main_sha": "4f953c7f0723f8ab44d72a12fcaf00579776ee66",
+  "publication_sha": "757cbfc868452d3bb892849fce0e2122cd8c566e",
+  "publication_snapshot_sha256": "7212389cdc412bf3577c78c3e0be5c91926ecc398930427b775f2459071adcb0",
+  "publication_portal_payload_sha256": "e129b8d4e8fade5478df8bfb0ccd49564435e28b84f4d66e0653ab0572d0a146",
+  "last_success_at": "2026-10-13T06:12:37.354712+00:00",
+  "article_count": 110,
+  "image_inventory_count": 976,
+  "gallery_photo_count": 906,
+  "artifact_run": 38405555480,
+  "artifact_id": 11819246247,
+  "artifact_zip_sha256": "19a14f7720c39fb19c88fa610774e8feb754769b9d6f80f2209275b793d99fdb",
+  "failure_at": "2026-10-13T13:31:10.114468+00:00",
+  "failure_fetch_audit": {
+    "pages_completed": 12,
+    "entries_received": 111,
+    "drafts_excluded": 2,
+    "published_articles": 109,
+    "html_articles": 109,
+    "pagination_complete": true,
+    "content_type_counts": {
+      "text/html": 109
+    },
+    "html_source_counts": {
+      "content_html": 109
+    },
+    "html_image_representation_difference_articles": 0
+  },
+  "approved_target_article_sha256": "f4c1c839abafe71eb16494d0d921cd96df6cbf32aefce8eee19a8807a90a923e",
+  "approved_target_count": 1,
+  "unapproved_count": 14,
+  "projected_inventory_comparison_matches_failed_report": true,
+  "projected_comparison": {
+    "comparison": "KNOWN",
+    "new_articles": 0,
+    "deleted_articles": 1,
+    "new_images": 0,
+    "deleted_images": 15,
+    "updated_articles": 0,
+    "classification_changes": 0,
+    "url_changes": 0,
+    "possible_url_changes": 0,
+    "pending_changes": [],
+    "deleted_article_hashes": [
+      "f4c1c839abafe71eb16494d0d921cd96df6cbf32aefce8eee19a8807a90a923e"
+    ]
+  },
+  "missing_states": {
+    "conflict": 2,
+    "named_mushroom": 5,
+    "ambiguous": 8
+  },
+  "remaining_states_match_failed_report": true,
+  "authenticated_api_fresh_fetch_completed": false,
+  "artifact_report_json_sha256": "8e46b064383aadb3d05561d1de084d9952fadc3c915fce6c4d7e1a304e0ba26a"
+}

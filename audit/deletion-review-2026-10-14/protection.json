@@ -1,0 +1,218 @@
+{
+  "main_sha": "4f953c7f0723f8ab44d72a12fcaf00579776ee66",
+  "pr111_head_sha": "4448c3431a1c275ca686e9e2a0a7736fc67f0841",
+  "main_best_shot_count": 3,
+  "pr111_best_shot_count": 12,
+  "best_shot_missing_conflicts": 0,
+  "reference_checks": [
+    {
+      "scope": "main",
+      "selection_id": "best-2025-10-benitengutake-02",
+      "observation_id": "obs-a8b693fc53149d44b115b8bdcb259b815f9378f4b455d1ff167668da434a5b04",
+      "gallery_name": "ベニテングタケ",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/10/05/231736",
+      "image_url": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261004/20261004221847.jpg",
+      "baseline_exactly_once": true,
+      "conflicts_with_missing_set": false,
+      "public_read_status": 200,
+      "present_in_successful_public_read": true
+    },
+    {
+      "scope": "main",
+      "selection_id": "best-2025-05-kiiro-suppontake-03",
+      "observation_id": "obs-50e871697b283aa5be603fd05f8e5265533c6512a835d77d684d6100c5e3c525",
+      "gallery_name": "キイロスッポンタケ",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/05/25/205946",
+      "image_url": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525195533.jpg",
+      "baseline_exactly_once": true,
+      "conflicts_with_missing_set": false,
+      "public_read_status": 200,
+      "present_in_successful_public_read": true
+    },
+    {
+      "scope": "main",
+      "selection_id": "best-2026-07-yamadoritakemodoki-01",
+      "observation_id": "obs-09a0f4d22601db11946b1b89434dae6144ba4f4cf4298925520e63d2b680472b",
+      "gallery_name": "ヤマドリタケモドキ",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/08/28/065210",
+      "image_url": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222250.jpg",
+      "baseline_exactly_once": true,
+      "conflicts_with_missing_set": false,
+      "public_read_status": 200,
+      "present_in_successful_public_read": true
+    },
+    {
+      "scope": "pr111",
+      "selection_id": "best-2025-10-benitengutake-02",
+      "observation_id": "obs-a8b693fc53149d44b115b8bdcb259b815f9378f4b455d1ff167668da434a5b04",
+      "gallery_name": "ベニテングタケ",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/10/05/231736",
+      "image_url": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261004/20261004221847.jpg",
+      "baseline_exactly_once": true,
+      "conflicts_with_missing_set": false,
+      "public_read_status": 200,
+      "present_in_successful_public_read": true
+    },
+    {
+      "scope": "pr111",
+      "selection_id": "best-2025-05-kiiro-suppontake-03",
+      "observation_id": "obs-50e871697b283aa5be603fd05f8e5265533c6512a835d77d684d6100c5e3c525",
+      "gallery_name": "キイロスッポンタケ",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/05/25/205946",
+      "image_url": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525195533.jpg",
+      "baseline_exactly_once": true,
+      "conflicts_with_missing_set": false,
+      "public_read_status": 200,
+      "present_in_successful_public_read": true
+    },
+    {
+      "scope": "pr111",
+      "selection_id": "best-2026-07-yamadoritakemodoki-01",
+      "observation_id": "obs-09a0f4d22601db11946b1b89434dae6144ba4f4cf4298925520e63d2b680472b",
+      "gallery_name": "ヤマドリタケモドキ",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/08/28/065210",
+      "image_url": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222250.jpg",
+      "baseline_exactly_once": true,
+      "conflicts_with_missing_set": false,
+      "public_read_status": 200,
+      "present_in_successful_public_read": true
+    },
+    {
+      "scope": "pr111",
+      "selection_id": "best-1791807945083",
+      "observation_id": "obs-033cdb9f4a637ae8e699966d00615cc0ca371e322678cf944b7a3c992ff78aa3",
+      "gallery_name": "ヒロメノトガリアミガサタケ",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/05/25/205946",
+      "image_url": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525203442.jpg",
+      "baseline_exactly_once": true,
+      "conflicts_with_missing_set": false,
+      "public_read_status": 200,
+      "present_in_successful_public_read": true
+    },
+    {
+      "scope": "pr111",
+      "selection_id": "best-1791808732359",
+      "observation_id": "obs-dddc25ba3cdd30113666c59dd31ced33c0bbd70723ee50e3c46530074ed9700c",
+      "gallery_name": "ミヤママスタケ",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/09/15/103432",
+      "image_url": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914212250.jpg",
+      "baseline_exactly_once": true,
+      "conflicts_with_missing_set": false,
+      "public_read_status": 200,
+      "present_in_successful_public_read": true
+    },
+    {
+      "scope": "pr111",
+      "selection_id": "best-1791809085622",
+      "observation_id": "obs-65866cedd0a5e3beeefd3a27e17562083a0abcf403e84a5120e127e0de4cffc8",
+      "gallery_name": "ヤマイグチ",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/09/15/103432",
+      "image_url": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914222118.jpg",
+      "baseline_exactly_once": true,
+      "conflicts_with_missing_set": false,
+      "public_read_status": 200,
+      "present_in_successful_public_read": true
+    },
+    {
+      "scope": "pr111",
+      "selection_id": "best-1791809225878",
+      "observation_id": "obs-8213f6da5a9774ea03e8bee2c76a2d7a23f3c95890b64ea8a3b86dcf319ce05a",
+      "gallery_name": "オオシロカラカサタケ",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/09/20/131420",
+      "image_url": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250920/20250920124732.jpg",
+      "baseline_exactly_once": true,
+      "conflicts_with_missing_set": false,
+      "public_read_status": "ReadTimeout",
+      "present_in_successful_public_read": null
+    },
+    {
+      "scope": "pr111",
+      "selection_id": "best-1791809536857",
+      "observation_id": "obs-e959d380e8e96b15cd9d0895a7bc445bf6bffe680688862b9e6f9df2ae8aed8f",
+      "gallery_name": "ホテイシメジ",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/10/13/003302",
+      "image_url": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012222855.jpg",
+      "baseline_exactly_once": true,
+      "conflicts_with_missing_set": false,
+      "public_read_status": 200,
+      "present_in_successful_public_read": true
+    },
+    {
+      "scope": "pr111",
+      "selection_id": "best-1791809625366",
+      "observation_id": "obs-1d172305fde6d5ff6639b1a73b8982415212ff466500e6ae9a8416550e442a93",
+      "gallery_name": "トビイロノボリリュウタケ",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/10/13/003302",
+      "image_url": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012223318.jpg",
+      "baseline_exactly_once": true,
+      "conflicts_with_missing_set": false,
+      "public_read_status": 200,
+      "present_in_successful_public_read": true
+    },
+    {
+      "scope": "pr111",
+      "selection_id": "best-1791809978741",
+      "observation_id": "obs-3a51c16a4dcc1cd3bd2c8a5a142f90bdf1a8cbd32a8da9b48f405180bbdef1c9",
+      "gallery_name": "センニンタケ",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/11/04/001435",
+      "image_url": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103233126.jpg",
+      "baseline_exactly_once": true,
+      "conflicts_with_missing_set": false,
+      "public_read_status": 200,
+      "present_in_successful_public_read": true
+    },
+    {
+      "scope": "pr111",
+      "selection_id": "best-1791810041879",
+      "observation_id": "obs-fd1e8788487bf7d17b445943e7ed96412daabc52d638236fb064ed5467e1e883",
+      "gallery_name": "ウラベニホテイシメジ",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/11/04/001435",
+      "image_url": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103231007.jpg",
+      "baseline_exactly_once": true,
+      "conflicts_with_missing_set": false,
+      "public_read_status": 200,
+      "present_in_successful_public_read": true
+    },
+    {
+      "scope": "pr111",
+      "selection_id": "best-1791810118964",
+      "observation_id": "obs-d0c48db66dab6a6e6c7b5a312945fcd5e2246b56bbd230b4c21023f68224a336",
+      "gallery_name": "ヒラタケ",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/11/14/230510",
+      "image_url": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251115/20251115003742.jpg",
+      "baseline_exactly_once": true,
+      "conflicts_with_missing_set": false,
+      "public_read_status": 200,
+      "present_in_successful_public_read": true
+    }
+  ],
+  "research_cases_baseline": 67,
+  "research_case_impacts": [
+    {
+      "case_id": "research-940496f1ccdb136f",
+      "gallery_name": "カワリハツ？",
+      "article": {
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565232514288",
+        "article_path": "articles/article_49.html",
+        "title": "2025年9月13日　富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/09/15/103432",
+        "published": "2025-09-15T10:34:32+09:00"
+      },
+      "missing_photo_ids": [
+        "obs-b65bc66594a331b3fb0e79f41dbfe9d2b8c5e94bdd826c49b1a6b26472f12e51"
+      ],
+      "photo_count": 1,
+      "protected": true,
+      "approval_status": "unapproved"
+    }
+  ],
+  "identification_history_count": 0,
+  "classification_data_modified": false,
+  "published_ids_modified": false,
+  "main_annual_best": {
+    "2025": "best-2025-10-benitengutake-02"
+  },
+  "pr111_annual_best": {
+    "2025": "best-2025-10-benitengutake-02"
+  }
+}

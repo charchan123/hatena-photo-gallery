@@ -1,0 +1,15 @@
+{
+  "run_id": 38413084049,
+  "job_id": 115350236371,
+  "mode": "Existing read-only CI generation log; no new authenticated API fetch in this task",
+  "lines": [
+    "##[group]Run python main.py",
+    "2026-10-13T14:24:55.7522245Z 📦 合計 111 件の記事を保存しました。",
+    "2026-10-13T14:24:55.7535354Z total_images=961",
+    "2026-10-13T14:24:55.7542443Z legacy_production_image_count=871",
+    "2026-10-13T14:24:55.9329819Z legacy_production_image_count=871",
+    "2026-10-13T14:24:55.9330252Z shadow_total_images=961",
+    "2026-10-13T14:24:55.9332419Z candidate_production_image_count=430",
+    "2026-10-13T14:24:57.0115438Z production_image_count=891"
+  ]
+}
