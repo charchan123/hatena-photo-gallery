@@ -178,7 +178,9 @@ def test_open_prs_are_dynamic_complete_and_head_bound():
     prs=[{'number':n,'head':{'sha':str(n)*40,'repo':{'full_name':'charchan123/hatena-photo-gallery'}}} for n in (1,2)]
     config={'version':1,'entries':[],'annual_best':{}}
     def api(path):
-        return prs if path.startswith('pulls?') else {'encoding':'base64','size':100,'content':base64.b64encode(json.dumps(config).encode()).decode()}
+        if path.startswith('pulls?'): return prs
+        if path.startswith('git/trees/'): return {'truncated':False,'tree':[{'path':'data/best-shots.json','type':'blob','mode':'100644','sha':'blob'}]}
+        return {'sha':'blob','encoding':'base64','size':100,'content':base64.b64encode(json.dumps(config).encode()).decode()}
     assert [x['number'] for x in open_selections(api)]==[1,2]
     with pytest.raises(sync.SyncError,match='REFERENCES_UNAVAILABLE'):open_selections(lambda path:None)
     prs[0]['head']['repo']['full_name']='someone/fork'

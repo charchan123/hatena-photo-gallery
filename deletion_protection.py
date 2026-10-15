@@ -47,7 +47,16 @@ def open_selections(api=github_get):
             if repo != REPOSITORY: raise SyncError('DELETION_PENDING_FORK_REQUIRES_REVIEW')
             sha = pr['head']['sha']
             if len(sha) != 40 or any(c not in '0123456789abcdef' for c in sha): raise ValueError()
+            tree = api('git/trees/' + sha + '?recursive=1')
+            if tree.get('truncated') is not False or not isinstance(tree.get('tree'), list):
+                raise SyncError('DELETION_REFERENCE_TREE_INCOMPLETE')
+            paths = [r for r in tree['tree'] if r['path'] == 'data/best-shots.json']
+            if not paths:
+                result.append({'number': pr['number'], 'head': sha, 'config': {'version':1, 'entries':[], 'annual_best':{}}, 'file_absent_verified': True})
+                continue
+            if len(paths) != 1 or paths[0]['type'] != 'blob' or paths[0]['mode'] not in {'100644','100755'}: raise ValueError()
             blob = api('contents/data/best-shots.json?ref=' + sha)
+            if blob.get('sha') != paths[0]['sha']: raise ValueError()
             if blob['encoding'] != 'base64' or blob.get('size', 1_000_001) > 1_000_000: raise ValueError()
             config = json.loads(base64.b64decode(blob['content'], validate=False))
             result.append({'number': pr['number'], 'head': sha, 'config': config})
@@ -66,7 +75,7 @@ def strings(value):
         for v in value: yield from strings(v)
 
 
-def collect(portal, snapshot, root, pending):
+def collect(portal, snapshot, root, pending, *, registry_before=None):
     """All curated JSON/HTML references + research + historical migration targets.
 
     Generated index pages that list *every* observation are not curated refs.
@@ -85,7 +94,7 @@ def collect(portal, snapshot, root, pending):
         annual = set(config['annual_best'].values())
         for row in config['entries']:
             protect(row['observation_id'], 'annual_best' if row['selection_id'] in annual else 'best_shot', row['selection_id'])
-        registry = read_json(root / 'data/research-identifications.json')
+        registry = registry_before if registry_before is not None else read_json(root / 'data/research-identifications.json')
         master = read_json(root / 'data/mushroom-master.json')
         validate_registry(registry, portal, master)
         for case in build_research_cases(portal):
@@ -95,14 +104,15 @@ def collect(portal, snapshot, root, pending):
             for photo in case['photos']: protect(photo['observation_id'], 'identification', row['identification_id'])
         # Future curated JSON and static page links are protected by actual IDs
         # or exact photo URLs. No matching by mushroom name.
-        files = list((root / 'data').rglob('*.json')) + list((root / 'sync-migrations').rglob('*.json'))
+        files = list((root / 'data').rglob('*.json')) + [p for p in (root / 'sync-migrations').rglob('*.json') if 'photo-deletions' not in p.parts]
         files += [p for p in root.glob('*.html') if p.is_file()]
         for file in sorted(files):
             relative = file.relative_to(root).as_posix()
             if file.is_symlink() or file.stat().st_size > 20_000_000: raise ValueError()
             text = file.read_text(encoding='utf-8')
             if file.suffix == '.json':
-                obj = json.loads(text); sources[relative] = payload_hash(obj)
+                obj = registry if relative == 'data/research-identifications.json' else json.loads(text)
+                sources[relative] = payload_hash(obj)
                 # Best/research are already assigned precise reasons. The whole
                 # registry hash still binds approvals, including empty history.
                 if relative in {'data/best-shots.json', 'data/research-identifications.json'}: continue
@@ -119,12 +129,16 @@ def collect(portal, snapshot, root, pending):
                         for oid in ids: protect(oid, 'curated_page', relative)
         # These immutable ledgers still require surviving targets. Deleting such
         # a photo needs an explicit migration of that contract, never this path.
-        for field in ('automatic_additions', 'manual_adoptions', 'name_migrations'):
+        for field in ('manual_adoptions', 'name_migrations'):
             for row in snapshot['payload'].get(field, []): protect(row['observation_id'], 'receipt', field)
         for pr in pending:
             validate_best_shot_config(pr['config'], portal)
-            sources['PR-' + str(pr['number'])] = {'head': pr['head'], 'config_sha256': payload_hash(pr['config'])}
-            for row in pr['config']['entries']: protect(row['observation_id'], 'pending_best_shot', 'PR #' + str(pr['number']) + ':' + row['selection_id'])
+            extras = [r for r in pr['config']['entries'] if r['observation_id'] not in {e['observation_id'] for e in config['entries']}]
+            # A deletion-approval PR carrying an unchanged Best Shot file must
+            # not invalidate its own approval merely by being opened.
+            if extras:
+                sources['PR-' + str(pr['number'])] = {'config_sha256': payload_hash(pr['config'])}
+            for row in extras: protect(row['observation_id'], 'pending_best_shot', 'PR #' + str(pr['number']) + ':' + row['selection_id'])
     except SyncError: raise
     except Exception: raise SyncError('DELETION_REFERENCES_UNAVAILABLE') from None
     result = {'version': 1, 'complete': True, 'sources': sources,
