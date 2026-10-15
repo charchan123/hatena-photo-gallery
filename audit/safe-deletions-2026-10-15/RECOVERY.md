@@ -124,3 +124,27 @@ Chromium以外の実ブラウザー/実機タッチ、本番への削除適用�
 本番再開は不可です。#111/#112の扱いを含めfresh main/公開snapshotで再検証し、
 運用履歴の独立確認と保護写真2件の明示判断・別Draft PRを経る必要があります。
 今回の停止は環境障害によるもので、安全条件を緩めて回避しません。
+
+## 保存後の追加ライブ確認
+
+2026-10-15 14:24 UTC の[読み取り専用run 38751071761](https://github.com/charchan123/hatena-photo-gallery/actions/runs/38751071761)も成功しました。
+欠落16件の観察ID・記事hash・URLhashは保存済みCSVとすべて一致し、件数と保護対象2件も変わっていません。
+証拠とartifact digestは [live-check-38751071761.json](live-check-38751071761.json) に保存しました。
+運用履歴を増やしたり削除を承認した確認ではありません。
+
+## このDraftに実際に保存された変更ファイル
+
+- `.github/workflows/deletion-audit.yml`
+- `deletion_history.py`
+- `deletion_protection.py`
+- `deletion_review.py`
+- `sync_deletions.py`
+- `tests/test_sync_deletions.py`
+- `audit/safe-deletions-2026-10-15/PLAN.md`
+- `audit/safe-deletions-2026-10-15/RECOVERY.md`
+- `audit/safe-deletions-2026-10-15/baseline-pytest.log`
+- `audit/safe-deletions-2026-10-15/engine-pytest.log`
+- `audit/safe-deletions-2026-10-15/failed-run-report-38678935699.json`
+- `audit/safe-deletions-2026-10-15/missing-photos-16.csv`
+- `audit/safe-deletions-2026-10-15/verified-live-summary.json`
+- `audit/safe-deletions-2026-10-15/live-check-38751071761.json`
