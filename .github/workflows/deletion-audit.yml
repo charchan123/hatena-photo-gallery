@@ -1,0 +1,43 @@
+name: Read-only deletion audit
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+  pull-requests: read
+jobs:
+  audit:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: .deletion-previous
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /portal-data.json
+            /phase3c-production-status.json
+            /article-sync-snapshot.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: Capture independent complete API inventory (no generation or publication)
+        env:
+          HATENA_USER: ${{ secrets.HATENA_USER }}
+          HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
+          HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
+          GH_TOKEN: ${{ github.token }}
+        run: python deletion_review.py --previous .deletion-previous --baseline-commit "$(git -C .deletion-previous rev-parse HEAD)"
+      - name: Save published-only evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deletion-live-audit-${{ github.run_id }}-${{ github.run_attempt }}
+          path: cache/deletion-live-audit.json
+          retention-days: 30
