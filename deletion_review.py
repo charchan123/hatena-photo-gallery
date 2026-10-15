@@ -70,6 +70,7 @@ def main():
         report = audit(args.previous, args.baseline_commit, live_capture(), Path(__file__).parent, open_selections())
         write_json(args.report, report)
         print('Read-only deletion audit: COMPLETE (no approval/publication)')
+        print('Audit evidence: '+json.dumps({'counts':report['counts'], 'removed':[{'observation_id':r['observation_id'],'article_hash':r['article_hash'],'url_hash':r['url_hash'],'kind':r['kind'],'protection':r['protection']} for r in report['removed']]},ensure_ascii=False))
         return 0
     except Exception as error:
         code = str(error) if isinstance(error, SyncError) else 'LIVE_DELETION_AUDIT_UNAVAILABLE'
