@@ -2,7 +2,7 @@
 let deletionState, deletionPreview, deletionBusy=false;
 const deletionKinds={article_deleted:'記事削除',photo_deleted:'個別写真削除'};
 const deletionStates={identity_uncertain:'取得・識別異常：削除不可',approval_pending:'管理者の承認待ち',reconfirmation_pending:'独立した再取得の確認待ち',automatic_eligible:'自動削除可能',manual_eligible:'管理者承認済み',held:'保留'};
-const deletionReasons={research:'不明キノコ研究室',identification:'同定履歴',best_shot:'Best Shot',annual_best:'年間Best Shot',pending_best_shot:'未公開のBest Shot',receipt:'個別移行履歴',curated_history:'管理者の選定・履歴',curated_page:'特集・静的ページ',pending_deletion_hold:'未マージPRの保留・代替案'};
+const deletionReasons={research:'不明キノコ研究室',identification:'同定履歴',best_shot:'Best Shot',annual_best:'年間Best Shot',pending_best_shot:'未公開のBest Shot',pending_curated_reference:'未マージPRの重要参照',receipt:'個別移行履歴',curated_history:'管理者の選定・履歴',curated_page:'特集・静的ページ',pending_deletion_hold:'未マージPRの保留・代替案'};
 async function deletionRequest(path,body){
  if(deletionBusy)return null;
  deletionBusy=true;const controls=[...$('#deletions').querySelectorAll('button,input,textarea,select')].map(e=>[e,e.disabled]);controls.forEach(([e])=>e.disabled=true);

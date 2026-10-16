@@ -10,6 +10,7 @@ import os
 import re
 from pathlib import Path
 from urllib.request import Request, urlopen
+from urllib.parse import quote
 
 from article_sync import SyncError, payload_hash, read_json, digest
 from best_shot_ui import validate_best_shot_config
@@ -17,6 +18,14 @@ from research_ui import build_research_cases
 from research_identifications import validate_registry
 
 REPOSITORY = 'charchan123/hatena-photo-gallery'
+
+
+def curated_path(path):
+    p=Path(path)
+    return ((path.startswith('data/') or path.startswith('sync-migrations/')) and
+            p.suffix=='.json' and not path.startswith('sync-migrations/photo-deletions/')) or (
+            len(p.parts)==1 and p.suffix in {'.html','.js','.py'}) or (
+            len(p.parts)==2 and p.parts[0]=='assets' and p.suffix in {'.js','.html'})
 
 
 def github_get(path):
@@ -46,7 +55,7 @@ def open_selections(api=github_get):
             if len(rows) < 100: return result
         raise SyncError('DELETION_REFERENCE_PAGINATION_INCOMPLETE')
     try:
-        before = all_prs(); result = []
+        before = all_prs(); result = []; blobs = {}
         for pr in before:
             repo = pr['head']['repo']['full_name']
             # A fork or inaccessible pending configuration cannot be assumed safe.
@@ -56,11 +65,15 @@ def open_selections(api=github_get):
             tree = api('git/trees/' + sha + '?recursive=1')
             if tree.get('truncated') is not False or not isinstance(tree.get('tree'), list):
                 raise SyncError('DELETION_REFERENCE_TREE_INCOMPLETE')
-            def content(node):
+            def text_content(node):
                 if node['type']!='blob' or node['mode'] not in {'100644','100755'}:raise ValueError()
-                blob=api('contents/'+node['path']+'?ref='+sha)
+                if node['sha'] in blobs:return blobs[node['sha']]
+                blob=api('contents/'+quote(node['path'],safe='/')+'?ref='+sha)
                 if blob.get('sha')!=node['sha'] or blob.get('encoding')!='base64' or blob.get('size',1_000_001)>1_000_000:raise ValueError()
-                return json.loads(base64.b64decode(blob['content'],validate=False))
+                text=base64.b64decode(blob['content'],validate=False).decode('utf-8')
+                blobs[node['sha']]=text
+                return text
+            def content(node):return json.loads(text_content(node))
             paths=[r for r in tree['tree'] if r['path']=='data/best-shots.json']
             if len(paths)>1:raise ValueError()
             config=content(paths[0]) if paths else {'version':1,'entries':[],'annual_best':{}}
@@ -73,8 +86,23 @@ def open_selections(api=github_get):
                 if node['path']!='sync-migrations/photo-deletions/'+m['approval_id']+'.json':raise ValueError()
                 manifests.append(m)
             holds=[m for m in latest(manifests) if m['action'] in {'hold','propose_replacement'}]
+            # Read every changed curated file at its immutable PR head. Patch
+            # excerpts are incomplete and cannot prove absence of references.
+            changed=[]
+            for page in range(1,31):
+                rows=api(f"pulls/{pr['number']}/files?per_page=100&page={page}")
+                if not isinstance(rows,list):raise ValueError()
+                changed.extend(rows)
+                if len(rows)<100:break
+            else:raise SyncError('DELETION_REFERENCE_PAGINATION_INCOMPLETE')
+            nodes={n['path']:n for n in tree['tree']};curated=[]
+            for row in changed:
+                path=row['filename']
+                if not curated_path(path) or path=='data/best-shots.json' or row['status']=='removed':continue
+                if path not in nodes:raise ValueError()
+                curated.append({'path':path,'text':text_content(nodes[path])})
             result.append({'number':pr['number'],'head':sha,'config':config,
-                'file_absent_verified':not paths,'deletion_holds':holds})
+                'file_absent_verified':not paths,'deletion_holds':holds,'curated':curated})
         signature = lambda rows: sorted((p['number'], p['head']['sha']) for p in rows)
         if signature(before) != signature(all_prs()): raise SyncError('DELETION_PENDING_REFERENCES_CHANGED')
         return result
@@ -156,6 +184,21 @@ def collect(portal, snapshot, root, pending, *, registry_before=None):
         for field in ('manual_adoptions', 'name_migrations'):
             for row in snapshot['payload'].get(field, []): protect(row['observation_id'], 'receipt', field)
         for pr in pending:
+            for file in pr.get('curated',[]):
+                identity='PR #'+str(pr['number'])+':'+file['path']
+                text=file['text']
+                if file['path'].endswith('.json'):
+                    values=set(strings(json.loads(text)))
+                    for oid in set(by_id)&values:protect(oid,'pending_curated_reference',identity)
+                    urls=values
+                else:
+                    for oid in by_id:
+                        if oid in text:protect(oid,'pending_curated_reference',identity)
+                    urls=re.findall(r'''https?://[^\s"'<>\\]+''',text)
+                for value in urls:
+                    key=value if value in known_urls else digest(value)
+                    ref={'kind':'pending_curated_reference','id':identity}
+                    if key in known_urls and ref not in image_refs[key]:image_refs[key].append(ref)
             for hold in pr.get('deletion_holds',[]):
                 if hold['baseline']==snapshot['sha256']:
                     source_refs[hold['candidate_id']].append({'kind':'pending_deletion_hold','id':'PR #'+str(pr['number'])})

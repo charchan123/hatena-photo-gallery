@@ -182,6 +182,7 @@ def test_open_prs_are_dynamic_complete_and_head_bound():
     prs=[{'number':n,'head':{'sha':str(n)*40,'repo':{'full_name':'charchan123/hatena-photo-gallery'}}} for n in (1,2)]
     config={'version':1,'entries':[],'annual_best':{}}
     def api(path):
+        if '/files?' in path:return []
         if path.startswith('pulls?'): return prs
         if path.startswith('git/trees/'): return {'truncated':False,'tree':[{'path':'data/best-shots.json','type':'blob','mode':'100644','sha':'blob'}]}
         return {'sha':'blob','encoding':'base64','size':100,'content':base64.b64encode(json.dumps(config).encode()).decode()}
@@ -208,7 +209,9 @@ def test_history_durable_on_failed_job_and_git_race(tmp_path):
 
 def test_absent_best_file_requires_complete_tree_proof():
     prs=[{'number':2,'head':{'sha':'2'*40,'repo':{'full_name':'charchan123/hatena-photo-gallery'}}}]
-    def api(path):return prs if path.startswith('pulls?') else {'truncated':False,'tree':[]}
+    def api(path):
+        if '/files?' in path:return []
+        return prs if path.startswith('pulls?') else {'truncated':False,'tree':[]}
     result=open_selections(api)
     assert result[0]['file_absent_verified'] and result[0]['config']['entries']==[]
     def truncated(path):return prs if path.startswith('pulls?') else {'truncated':True,'tree':[]}
@@ -309,3 +312,55 @@ def test_git_history_rejects_non_regular_event_blobs(tmp_path):
     git('fetch',str(work),bad,cwd=bare)
     git('update-ref','refs/heads/sync-deletion-audit',bad,original,cwd=bare)
     with pytest.raises(sync.SyncError,match='STORAGE_UNSAFE'):GitHistory(work).load()
+
+
+@pytest.mark.parametrize('reference',['observation','url','hash'])
+def test_unmerged_curated_json_references_block_automatic_deletion(tmp_path,reference):
+    from test_deletion_guard import config
+    p,s,current=fixture();config(tmp_path)
+    value={'observation':'obs-0','url':'url-0','hash':sync.digest('url-0')}[reference]
+    pending=[{'number':401,'config':{'version':1,'entries':[],'annual_best':{}},
+              'curated':[{'path':'data/future-feature.json','text':json.dumps({'cover':value})}]}]
+    prot=collect(p,s,tmp_path,pending);rows=d.plan(s,p,current,audit(current),set(),prot)
+    assert rows[0]['protection']==[{'kind':'pending_curated_reference','id':'PR #401:data/future-feature.json'}]
+
+
+def test_unmerged_static_feature_image_is_protected(tmp_path):
+    from test_deletion_guard import config
+    p,s,current=fixture();config(tmp_path)
+    src='https://photos.example/protected.jpg';p['observations'][0]['src']=src
+    s['payload']['articles'][sync.digest('article-0')]['images'][0]['url_hash']=sync.digest(src)
+    s=sync.seal_snapshot(s['payload']['articles'],p,T)
+    pending=[{'number':402,'config':{'version':1,'entries':[],'annual_best':{}},
+              'curated':[{'path':'feature.html','text':'<img src="'+src+'">'}]}]
+    prot=collect(p,s,tmp_path,pending);row=d.plan(s,p,current,audit(current),set(),prot)[0]
+    assert row['protection']==[{'kind':'pending_curated_reference','id':'PR #402:feature.html'}]
+
+
+@pytest.mark.parametrize('files',['complete','unavailable','truncated'])
+def test_open_pr_curated_content_requires_complete_changed_file_enumeration(files):
+    import base64
+    prs=[{'number':401,'head':{'sha':'1'*40,'repo':{'full_name':'charchan123/hatena-photo-gallery'}}}]
+    node={'path':'data/feature.json','type':'blob','mode':'100644','sha':'curated'}
+    text=json.dumps({'cover':'obs-0'})
+    def api(path):
+        if path.startswith('pulls?'):return prs
+        if path.startswith('git/trees/'):return {'truncated':False,'tree':[node]}
+        if '/files?' in path:
+            row={'filename':node['path'],'status':'added'}
+            return [row] if files=='complete' else [row]*100 if files=='truncated' else None
+        return {'sha':'curated','encoding':'base64','size':len(text),'content':base64.b64encode(text.encode()).decode()}
+    if files=='complete':
+        result=open_selections(api)
+        assert result[0]['curated']==[{'path':'data/feature.json','text':text}]
+    else:
+        with pytest.raises(sync.SyncError,match='REFERENCES_UNAVAILABLE|PAGINATION_INCOMPLETE'):open_selections(api)
+
+
+@pytest.mark.parametrize('hours',[6,72])
+def test_exact_confirmation_interval_limits_are_inclusive(hours):
+    p,s,current=fixture();prot=protection();rows=d.plan(s,p,current,audit(current),set(),prot);history=[]
+    for run,hour in [('first',0),('second',hours)]:
+        at=(d.instant(T)+timedelta(hours=hour)).isoformat()
+        history=d.append_event(history,d.event_for(rows,s,BASE,prot,current,run,at))
+    assert len(d.select(rows,s,history,prot,at))==1
