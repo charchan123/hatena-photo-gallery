@@ -1,27 +1,27 @@
 {
   "audited_base": "b8839dd1989500276bf4f0299c3f56094f163c4c",
-  "code_head": "a8b047d23ee5ffeec734ac059bee2ec7116f20cb",
+  "code_head": "956bc5033cda36e14a1566d11300d0c77582c9c4",
   "successor_pr": 115,
   "python": {
-    "tests": "937",
+    "tests": "946",
     "failures": "0",
     "errors": "0",
     "skipped": "0",
-    "time": "91.140"
+    "time": "87.703"
   },
   "ci": [
     {
-      "run_id": 38918855369,
+      "run_id": 38920144023,
       "name": "Validate Admin Changes",
       "result": "SUCCESS"
     },
     {
-      "run_id": 38918855388,
+      "run_id": 38920144040,
       "name": "Read-only deletion audit",
       "result": "SUCCESS"
     },
     {
-      "run_id": 38918855356,
+      "run_id": 38920144061,
       "name": "Deletion review browser regressions",
       "result": "SUCCESS"
     }
@@ -37,8 +37,8 @@
     "real_device": false
   },
   "strict_live_api": {
-    "evidence_run": 38918560238,
-    "latest_success_run": 38918855388,
+    "evidence_run": 38920144040,
+    "latest_success_run": 38920144040,
     "complete_pages": 12,
     "entries": 112,
     "drafts": 1,
@@ -47,7 +47,8 @@
     "removed": 16,
     "protected": 2,
     "exact_saved_ids_match": true,
-    "history_writes": 0
+    "history_writes": 0,
+    "open_prs_checked": 6
   },
   "regressions": {
     "contract": {
@@ -77,7 +78,11 @@
     "successful retry returns existing PR URL",
     "observation-only first two runs do not change output",
     "explicit true/unset/invalid rollout arguments",
-    "merged research archive reverted to hold keeps identification history"
+    "merged research archive reverted to hold keeps identification history",
+    "pending curated ID/URL/hash and static image reference protection",
+    "complete immutable-head PR changed-file enumeration",
+    "incomplete/truncated PR changed-file listing fails closed",
+    "exact 6h and 72h limits accepted"
   ],
   "rollout": {
     "publication_switch": "false",
@@ -93,6 +98,7 @@
     "Explicit choices for the two research photos",
     "Actual Pages deployment after release permission",
     "Actions notification delivery",
-    "Safari/Firefox and physical touch device"
+    "Safari/Firefox and physical touch device",
+    "Real administrator PC gh authentication and actual research-approval PR creation"
   ]
 }

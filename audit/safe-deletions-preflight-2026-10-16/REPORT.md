@@ -29,6 +29,7 @@ open PR #2も含む参照保護を確認。#114のREPORT/RECOVERY/VALIDATION全�
 | PF-02 | MEDIUM | per-target history_headと実履歴/候補、manual receiptと承認内容の対応検査が不足 | anchor存在/候補fingerprint/baseline/commit、承認action/日時を照合。resealされた不正receiptも停止 |
 | PF-03 | MEDIUM | 履歴Git treeのblob形式を確認せず、Git通信に時間制限がなかった | 100644 blob限定、timeout 60秒、本文を返さない固定エラー。隔離bare Gitで形式破損・競合を検証 |
 | PF-04 | MEDIUM | branch push/PR作成の応答が失われると、盲目的な再試行で別PRを作れる余地 | remote書込み前に試行をatomic/CAS保存。成功済みは同じURLを返し、結果不明は再起動後も停止。branchを管理室履歴で表示 |
+| PF-06 | HIGH | 未マージPRの保護がBest Shot/保留に限定され、別のcurated JSON・個別移行・特集HTML/JS/Pythonの写真参照を収集していなかった | 全open PRの変更ファイル一覧を完全取得し、固定headの完全blobからID/URL/hash参照を保護。ページング/取得異常・3000ファイル上限は停止。非参照変更で不必要に承認を失効させない |
 | PF-05 | 導入時の制御 | 実装マージだけで公開処理が有効になり、初回観測を公開から独立して制御する設定がなかった | checked-in公開スイッチをfalseに固定。実sourceの取得履歴は保存するが、明示的な別レビューでtrueにするまで削除/出力置換/Pages deployを禁止 |
 
 PF-01の修正前再現はfixtureのみ。実写真の削除や本番history書込みはしていない。
@@ -50,6 +51,7 @@ PF-01の修正前再現はfixtureのみ。実写真の削除や本番history書�
 
 最終の件数・head・CI・API実測は `VALIDATION.json` を参照。
 独立確認・履歴競合はfixture/隔離bare Git。本番認証APIはread-only Actionsのみで再取得した。
+管理室のPR作成経路は隔離CLI fixtureで検証した。実対象の承認PR作成や、利用者PCでのgh認証は実行していない。
 Chromiumは削除UI31項目 + Best Shot92項目。Safari/Firefox/実機タッチは未実施。
 production contract 141種/419出典/373承認特徴/overlay0、公開906写真、Best Shot3/PR #111の12、研究ケース1/1欠落と1/6欠落を保護。
 
