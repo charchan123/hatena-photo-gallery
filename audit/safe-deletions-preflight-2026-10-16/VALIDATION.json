@@ -1,0 +1,104 @@
+{
+  "audited_base": "b8839dd1989500276bf4f0299c3f56094f163c4c",
+  "code_head": "956bc5033cda36e14a1566d11300d0c77582c9c4",
+  "successor_pr": 115,
+  "python": {
+    "tests": "946",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0",
+    "time": "87.703"
+  },
+  "ci": [
+    {
+      "run_id": 38920144023,
+      "name": "Validate Admin Changes",
+      "result": "SUCCESS"
+    },
+    {
+      "run_id": 38920144040,
+      "name": "Read-only deletion audit",
+      "result": "SUCCESS"
+    },
+    {
+      "run_id": 38920144061,
+      "name": "Deletion review browser regressions",
+      "result": "SUCCESS"
+    }
+  ],
+  "javascript": "all syntax and tests/*.js PASS",
+  "chromium": {
+    "deletion": 31,
+    "best_shot": 92,
+    "total": 123,
+    "desktop": true,
+    "keyboard": true,
+    "touch_emulation": true,
+    "real_device": false
+  },
+  "strict_live_api": {
+    "evidence_run": 38920144040,
+    "latest_success_run": 38920144040,
+    "complete_pages": 12,
+    "entries": 112,
+    "drafts": 1,
+    "published": 111,
+    "source_images": 980,
+    "removed": 16,
+    "protected": 2,
+    "exact_saved_ids_match": true,
+    "history_writes": 0,
+    "open_prs_checked": 6
+  },
+  "regressions": {
+    "contract": {
+      "mushrooms": 141,
+      "sources": 419,
+      "approved_facets": 373,
+      "overlay": 0
+    },
+    "old_seven_manifest_and_validators": "BYTE_IDENTICAL",
+    "production_data": "UNCHANGED",
+    "known_critical_prs": "UNCHANGED"
+  },
+  "adversarial_tests": [
+    "retired URL reused with new Atom ID and new photograph",
+    "retired article link on subsequent generation",
+    "resealed receipt with wrong history anchor",
+    "non-regular event blob",
+    "network timeout redaction",
+    "push conflict and audit rollback/corruption",
+    "generation failure before PR",
+    "unexpected changed/staged path before PR",
+    "main changed before PR",
+    "remote push failure",
+    "PR acknowledgement lost",
+    "post-PR local disk failure",
+    "restart/blind retry blocked",
+    "successful retry returns existing PR URL",
+    "observation-only first two runs do not change output",
+    "explicit true/unset/invalid rollout arguments",
+    "merged research archive reverted to hold keeps identification history",
+    "pending curated ID/URL/hash and static image reference protection",
+    "complete immutable-head PR changed-file enumeration",
+    "incomplete/truncated PR changed-file listing fails closed",
+    "exact 6h and 72h limits accepted"
+  ],
+  "rollout": {
+    "publication_switch": "false",
+    "separate_review_required_to_enable": true,
+    "first_two_runs_observation_only": true
+  },
+  "production_history_created": false,
+  "actual_deletion_approvals_added": 0,
+  "merge_or_publication": "NOT_ATTEMPTED",
+  "unverified": [
+    "Production audit-branch write permissions and branch rules",
+    "Real operational pair 6–72h apart",
+    "Explicit choices for the two research photos",
+    "Actual Pages deployment after release permission",
+    "Actions notification delivery",
+    "Safari/Firefox and physical touch device",
+    "Real administrator PC gh authentication and actual research-approval PR creation"
+  ]
+}

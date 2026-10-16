@@ -553,7 +553,10 @@ raise SystemExit(result)
 '''
 
 
-def generate_in_worktree(work, previous, output, report, env):
+PRIVATE_DELETION_PREVIEW_CODE = 'from admin.sync import isolated_generator\nfrom article_sync import run\nimport sys\nwith isolated_generator():\n    result = run(sys.argv[1],sys.argv[2],sys.argv[3],safe_deletions=True,deletion_preview=True)\nraise SystemExit(result)\n'
+
+
+def generate_in_worktree(work, previous, output, report, env, *, deletion_preview=False):
     """Validation code/data from fresh worktree; all source bodies stay temporary.
 
     Fixed Python code and internal argument-vector paths only; never shell input.
@@ -566,5 +569,6 @@ def generate_in_worktree(work, previous, output, report, env):
         destination = Path(work)/'cache/exif-cache.json'
         destination.parent.mkdir(parents=True,exist_ok=True)
         destination.write_bytes(warm.read_bytes())
-    return subprocess.run(['python','-c',PRIVATE_VALIDATION_CODE,str(previous),str(output),str(report)],
+    code = PRIVATE_DELETION_PREVIEW_CODE if deletion_preview else PRIVATE_VALIDATION_CODE
+    return subprocess.run(['python','-c',code,str(previous),str(output),str(report)],
                           cwd=work,env=env,capture_output=True,text=True)

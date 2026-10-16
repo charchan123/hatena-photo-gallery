@@ -157,6 +157,8 @@ def inventory(article_files, metadata, shadows):
                            "name_hash": digest(shadow.get("gallery_name") or ""),
                            "label_hash": digest(shadow.get("detected_label") or "")})
         articles[key] = {"updated_hash": digest(meta.get("updated") or ""), "images": images}
+        if meta.get("url"):
+            articles[key]["article_url_hash"] = digest(meta["url"])
     if not articles or not any(row["images"] for row in articles.values()):
         raise SyncError("EMPTY_HARVEST")
     return articles
@@ -205,7 +207,7 @@ def validate_automatic_additions(records, portal):
     return records
 
 
-def seal_snapshot(articles, portal, timestamp, retirement=None, *, automatic_additions=None, name_migrations=None, manual_adoptions=None):
+def seal_snapshot(articles, portal, timestamp, retirement=None, *, automatic_additions=None, name_migrations=None, manual_adoptions=None, deletions=None, deletion_history_head=None):
     payload = {"version": 1, "last_success_at": timestamp, "articles": articles,
                "portal_sha256": payload_hash(portal)}
     if retirement is not None:
@@ -216,6 +218,9 @@ def seal_snapshot(articles, portal, timestamp, retirement=None, *, automatic_add
         payload["name_migrations"] = name_migrations
     if manual_adoptions:
         payload["manual_adoptions"] = manual_adoptions
+    if deletions is not None:
+        payload["deletions"] = deletions
+        payload["deletion_history_head"] = deletion_history_head
     return {"payload": payload, "sha256": payload_hash(payload)}
 
 
@@ -232,6 +237,10 @@ def validate_snapshot(snapshot, portal):
         from sync_adoptions import validate_ledger as validate_adoption_ledger
         validate_adoption_ledger(payload.get("manual_adoptions", []), portal)
         articles = payload["articles"]
+        if "deletions" in payload:
+            from deletion_guard import validate_ledger as validate_deletions
+            validate_deletions(payload["deletions"], portal, articles)
+            assert HASH.fullmatch(payload["deletion_history_head"])
         if "retirement" in payload:
             from sync_retirement import validate_ledger
             validate_ledger(payload["retirement"], portal)
@@ -239,6 +248,7 @@ def validate_snapshot(snapshot, portal):
         for aid, row in articles.items():
             assert HASH.fullmatch(aid) and HASH.fullmatch(row["updated_hash"])
             assert isinstance(row["images"], list)
+            if "article_url_hash" in row: assert HASH.fullmatch(row["article_url_hash"])
             counts = Counter()
             for image in row["images"]:
                 url = image["url_hash"]
@@ -315,7 +325,7 @@ def validate_references(portal, previous, data_directory):
 
 
 class SyncRun:
-    def __init__(self, previous_directory, report_path):
+    def __init__(self, previous_directory, report_path, *, safe_deletions=False, deletion_preview=False, deletion_observe_only=False):
         self.previous_directory = Path(previous_directory)
         self.report_path = Path(report_path)
         self.status = {"version": 1, "result": "BLOCKED", **compare_inventory(None, {}),
@@ -341,6 +351,27 @@ class SyncRun:
         self.name_migrations = NameMigrations(self.previous, self.previous_snapshot)
         from sync_adoptions import Adoptions
         self.adoptions = Adoptions(self.previous, self.previous_snapshot)
+        self.deletion_observe_only = deletion_observe_only
+        self.deletions = None
+        if self.previous_snapshot and "deletions" in self.previous_snapshot and not safe_deletions:
+            raise SyncError("DELETION_HISTORY_GUARD_REQUIRED")
+        if safe_deletions:
+            import subprocess
+            from deletion_guard import DeletionGuard
+            if self.previous_snapshot is None: raise SyncError("DELETION_SEALED_BASELINE_REQUIRED")
+            try:
+                commit = subprocess.check_output(["git", "-C", str(self.previous_directory), "rev-parse", "HEAD"], stderr=subprocess.DEVNULL, text=True).strip()
+                # The checked out files must be exactly those in that commit.
+                for filename in ("portal-data.json", "article-sync-snapshot.json", "phase3c-production-status.json"):
+                    recorded = subprocess.check_output(["git", "-C", str(self.previous_directory), "show", "HEAD:"+filename], stderr=subprocess.DEVNULL)
+                    if recorded != (self.previous_directory/filename).read_bytes(): raise ValueError()
+            except Exception: raise SyncError("DELETION_BASELINE_COMMIT_INVALID") from None
+            run_id = os.environ.get("GITHUB_RUN_ID")
+            if not deletion_preview and (not run_id or not run_id.isdigit()): raise SyncError("DELETION_TRUSTED_RUN_REQUIRED")
+            attempt = os.environ.get("GITHUB_RUN_ATTEMPT", "1")
+            if not attempt.isdigit() or int(attempt)<1: raise SyncError("DELETION_TRUSTED_RUN_REQUIRED")
+            evidence_run = "preview" if deletion_preview else "actions:"+run_id+":attempt:"+attempt
+            self.deletions = DeletionGuard(self.previous, read_json(snapshot), commit, Path(__file__).parent, evidence_run, preview=deletion_preview)
 
     def capture(self, article_files, metadata):
         if not article_files:
@@ -413,10 +444,17 @@ class SyncRun:
         self.status["classification_state_counts"] = dict(Counter(
             image["state"] for article in self.articles.values() for image in article["images"]))
         self.status["pending_classification"] = pending_images
+        if self.deletions:
+            try:
+                self.deletions.prepare(self.articles, self.status["fetch_audit"], self.excluded_draft_hashes)
+                if self.deletion_observe_only:
+                    raise SyncError("DELETION_OBSERVATION_ONLY")
+            finally:
+                self.status["deletions"] = self.deletions.summary()
         if before:
             if len(self.articles) < len(before) * .9:
                 raise SyncError("ABNORMAL_ARTICLE_DECREASE")
-            if differences["deleted_articles"] or differences["deleted_images"]:
+            if (differences["deleted_articles"] or differences["deleted_images"]) and not self.deletions:
                 raise SyncError("DELETION_OR_URL_CHANGE_REQUIRES_REVIEW")
         self.effective_previous = self.retirement.prepare(portal, self.articles, self.excluded_draft_hashes,
             Path(__file__).parent / "data")
@@ -424,6 +462,11 @@ class SyncRun:
             # Only an independently validated unique target changes the comparison
             # name; all original ID/URL/multiplicity/new-photo guards still run.
             self.effective_previous = self.name_migrations.effective_previous
+        if self.deletions and self.deletions.targets:
+            from sync_deletions import without_targets
+            # Compose with validated name migrations instead of resurrecting
+            # removed rows when effective_previous is projected.
+            self.effective_previous = without_targets(self.effective_previous, self.deletions.targets)
         # Manual occurrences have already passed their independent exact-target
         # proof. Run the ORIGINAL automatic gate on all other occurrences.
         normal = self.adoptions.without_manual(portal) if self.adoptions.manifests else portal
@@ -458,7 +501,12 @@ class SyncRun:
             if (phase.get("raw_phase3c_image_count", -1) + len(self.adoptions.targets) != len(portal["observations"])
                     or phase.get("manual_adoption_count") != len(self.adoptions.targets)):
                 raise SyncError("ADOPTION_OUTPUT_COUNT_INVALID")
-        self.status.update(validate_references(portal, self.previous, data_directory))
+        reference_previous = self.previous
+        if self.deletions and self.deletions.targets:
+            # prepare already proved all non-archive references remain protected;
+            # the unchanged validator now checks every remaining research photo.
+            reference_previous = self.effective_previous
+        self.status.update(validate_references(portal, reference_previous, data_directory))
         old = {row["observation_id"]: row for row in self.effective_previous["observations"]}
         current = {row["observation_id"]: row for row in portal["observations"]}
         preserved = sum(oid in current and (row["src"], row["article"]["article_id"]) == (
@@ -480,6 +528,12 @@ class SyncRun:
             raise
         additions = [{**row, "added_at": now} for row in self.automatic_additions]
         previous_receipts = self.previous_snapshot.get("automatic_additions", []) if self.previous_snapshot else []
+        deletion_receipts = None
+        if self.deletions:
+            deletion_receipts = self.deletions.finish(portal, self.articles, output, now)
+            self.status["deletions"] = self.deletions.summary()
+            retired_ids = {r["observation_id"] for r in deletion_receipts}
+            previous_receipts = [r for r in previous_receipts if r["observation_id"] not in retired_ids]
         history = previous_receipts + additions
         validate_automatic_additions(history, portal)
         self.status["automatic_added_photo_count"] = len(additions)
@@ -487,8 +541,18 @@ class SyncRun:
         snapshot = seal_snapshot(self.articles, portal, now, self.retirement.ledger,
                                  automatic_additions=history,
                                  name_migrations=self.name_migrations.finish(portal, now),
-                                 manual_adoptions=self.adoptions.finish(portal, now))
+                                 manual_adoptions=self.adoptions.finish(portal, now),
+                                 deletions=deletion_receipts,
+                                 deletion_history_head=(self.deletions.summary()["history_head"] if self.deletions else None))
         validate_snapshot(snapshot, portal)
+        if self.deletions:
+            # A durable result receipt is saved AFTER every output validator and
+            # BEFORE any candidate replaces output or reaches the deployment step.
+            self.deletions.outcome("CANDIDATE_VALIDATED", portal=portal, articles=self.articles)
+            snapshot["payload"]["deletion_history_head"] = self.deletions.summary()["history_head"]
+            snapshot["sha256"] = payload_hash(snapshot["payload"])
+            validate_snapshot(snapshot, portal)
+            self.status["deletions"] = self.deletions.summary()
         self.status["name_migration_count"] = len(self.name_migrations.ledger)
         self.status["name_migrations_applied_this_run"] = len(self.name_migrations.events)
         self.status["manual_adoption_count"] = len(self.adoptions.ledger)
@@ -503,12 +567,13 @@ class SyncRun:
         write_json(self.report_path, self.status)
 
 
-def run(previous, output="output", report="cache/article-sync-report.json"):
+def run(previous, output="output", report="cache/article-sync-report.json", *, safe_deletions=False, deletion_preview=False, deletion_observe_only=False):
     """Generate into an isolated candidate; failed builds never replace output."""
     import main
     sync = None
     try:
-        sync = SyncRun(previous, report)
+        if deletion_observe_only and (not safe_deletions or deletion_preview):raise SyncError('DELETION_MODE_INVALID')
+        sync = (SyncRun(previous, report, safe_deletions=True, deletion_preview=deletion_preview, deletion_observe_only=deletion_observe_only) if safe_deletions else SyncRun(previous, report))
         output_path = Path(output).resolve()
         original_path = sync.previous_directory.resolve()
         if sync.retirement.initial and (output_path == original_path or output_path in original_path.parents):
@@ -530,6 +595,11 @@ def run(previous, output="output", report="cache/article-sync-report.json"):
             finally:
                 for key, value in originals.items():
                     setattr(main, key, value)
+            if deletion_preview:
+                sync.status.update(result="PREVIEW", publication="NOT_ATTEMPTED")
+                write_json(report, sync.status)
+                print("Read-only deletion candidate validated: PREVIEW")
+                return 0
             # This wrapper never writes gh-pages. The existing deployment step runs
             # only after exit 0, with the approved fresh candidate directory.
             if output_path.exists():
@@ -546,6 +616,15 @@ def run(previous, output="output", report="cache/article-sync-report.json"):
         return 0
     except Exception as error:
         code = str(error) if isinstance(error, SyncError) else "FETCH_OR_GENERATION_ERROR"
+        if sync and getattr(sync, "deletions", None):
+            try:
+                if code=="DELETION_OBSERVATION_ONLY":
+                    sync.deletions.outcome("OBSERVATION_ONLY", articles=sync.articles)
+                else:
+                    sync.deletions.failure(code)
+            except Exception:
+                code = "DELETION_HISTORY_PERSISTENCE_FAILED"
+            sync.status["deletions"] = sync.deletions.summary()
         state = deepcopy(sync.status) if sync else {
             "version": 1, **compare_inventory(None, {}), "last_success_at": None,
             "classification_review_count": None}
@@ -566,5 +645,10 @@ if __name__ == "__main__":
     parser.add_argument("--previous", required=True)
     parser.add_argument("--output", default="output")
     parser.add_argument("--report", default="cache/article-sync-report.json")
+    parser.add_argument("--safe-deletions", action="store_true", help="Require durable independent evidence and protected-reference checks")
+    parser.add_argument("--deletion-observe-only", action="store_true", help="Persist real observations but forbid candidate generation and publication")
+    parser.add_argument("--deletion-preview", action="store_true", help="Validate in temporary output; never replace output or write audit refs")
     args = parser.parse_args()
-    raise SystemExit(run(args.previous, args.output, args.report))
+    if args.deletion_observe_only and (not args.safe_deletions or args.deletion_preview): parser.error("--deletion-observe-only requires --safe-deletions and cannot be a preview")
+    if args.deletion_preview and not args.safe_deletions: parser.error("--deletion-preview requires --safe-deletions")
+    raise SystemExit(run(args.previous, args.output, args.report, safe_deletions=args.safe_deletions, deletion_preview=args.deletion_preview, deletion_observe_only=args.deletion_observe_only))

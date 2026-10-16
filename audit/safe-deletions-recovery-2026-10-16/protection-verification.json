@@ -1,0 +1,113 @@
+{
+  "result": "PASS",
+  "main_sha": "4f953c7f0723f8ab44d72a12fcaf00579776ee66",
+  "publication_sha": "757cbfc868452d3bb892849fce0e2122cd8c566e",
+  "snapshot_sha256": "7212389cdc412bf3577c78c3e0be5c91926ecc398930427b775f2459071adcb0",
+  "published_photos": 906,
+  "published_articles": 110,
+  "main_best_shots": 3,
+  "pending_best_shots": 12,
+  "best_shot_missing_conflicts": [],
+  "affected_research_cases": [
+    {
+      "case_id": "research-940496f1ccdb136f",
+      "name": "カワリハツ？",
+      "photo_count": 1,
+      "missing_photo_count": 1
+    },
+    {
+      "case_id": "research-f9cb62e956fa8604",
+      "name": "Lanmaoa angustispora(和名無し)？",
+      "photo_count": 6,
+      "missing_photo_count": 1
+    }
+  ],
+  "counts": {
+    "mushrooms": 141,
+    "sources": 419,
+    "assignments": 373,
+    "overlays": 0
+  },
+  "unchanged_files": [
+    {
+      "path": "data/best-shots.json",
+      "sha256": "f9f27aa7edf4f69c266f87aa056c54241968a524595c0db6a591aa71c55febbd"
+    },
+    {
+      "path": "data/feature-facets.json",
+      "sha256": "6d4d987a535dca9c1d0d3668b65de245fbdc281f56c546af436c6fb853bdd84d"
+    },
+    {
+      "path": "data/mushroom-master.json",
+      "sha256": "2ce8cfc61726ef04bb6f4bba26c42511e2c0bf1d4017b9e87e0a359d61decca4"
+    },
+    {
+      "path": "data/research-identifications.json",
+      "sha256": "0c3a699408dacf0444e3f6e6b93e848c84fd59ef93debe7640c0d551c0ab15b1"
+    },
+    {
+      "path": "data/sources.json",
+      "sha256": "d5213f1cf0881af1c60ea949c0321ae0eb854daa3f300135dae9e9f9ad2fdb66"
+    },
+    {
+      "path": "data/subject-taxonomy.json",
+      "sha256": "d55241a53941da1865c76c8c7c28d750b68f3c1185128061e88449bde800875e"
+    },
+    {
+      "path": "data/update-notices.json",
+      "sha256": "6949634eed451b203fa79feeff4135084ea3c25613752545a257dd630938e327"
+    },
+    {
+      "path": "sync_retirement.py",
+      "sha256": "a9531a1d266dd4bfb5a676928f84a88b89937d5897c8b9814b427fa0203457b2"
+    },
+    {
+      "path": "sync_exceptions.py",
+      "sha256": "4810fdb72ffd6fe338c71759e448cd6b2d68cde256e3df81b14d6890189b155d"
+    },
+    {
+      "path": "sync_adoptions.py",
+      "sha256": "8da3ba69b66801967e3363d778612bdf062439b92d0bdb9455db7080de68b8c5"
+    },
+    {
+      "path": "main.py",
+      "sha256": "ed3c8f771518a2c085a09a63e3a8dc3c32353869e80931c761568afe81f30599"
+    },
+    {
+      "path": "best_shot_ui.py",
+      "sha256": "2ea4e725598507408cd808a4d4015df8c588240a38e3ab5d70a972a8c5f2d741"
+    },
+    {
+      "path": "research_ui.py",
+      "sha256": "33dbc6c3ba98f007c57cecd780209678060318171e487f9a2438b1c52b0e5616"
+    },
+    {
+      "path": "research_identifications.py",
+      "sha256": "82272e031d5a610a88df26b1c94d71aee11a04bcbf95bb0032f467c3da726be7"
+    },
+    {
+      "path": "admin/core.py",
+      "sha256": "2673ef8b083837fb59df98f68f7db4b4d6abfdf51aa1fc8f017c08548844fac5"
+    },
+    {
+      "path": "admin/git_workflow.py",
+      "sha256": "256177d71e38164b67412e1e67c5e009cab8a6845569587343bbe4abb4010b7a"
+    },
+    {
+      "path": "sync-migrations/hatena-draft-photo-retirement-2026-10-12.json",
+      "sha256": "4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c"
+    }
+  ],
+  "existing_retirement_receipt": {
+    "migration_id": "hatena-draft-photo-retirement-2026-10-12",
+    "manifest_sha256": "4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c",
+    "baseline_commit": "f3114e2bbd367047eef04d7a9291303ae7161f4c",
+    "baseline_portal_sha256": "1e47acd0ab1c8d7a1190cb68acc3df93567be1f0e1479d2ba780ee9f54493f81",
+    "article_sha256": "6548bd18f58533484151fab4d6212e7b165e6ba579bcb60127e4f6f2315aafe5",
+    "retired_count": 7,
+    "result": "APPLIED",
+    "applied_at": "2026-10-12T02:52:02.526242+00:00"
+  },
+  "publication": "NOT_ATTEMPTED",
+  "actual_deletion_approvals_added": 0
+}

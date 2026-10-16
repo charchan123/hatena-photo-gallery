@@ -1,0 +1,46 @@
+{
+  "verified_at": "2026-10-15T14:23:28.350Z",
+  "status": "INCOMPLETE_ENVIRONMENT_OFFLINE",
+  "main": "4f953c7f0723f8ab44d72a12fcaf00579776ee66",
+  "publication": "757cbfc868452d3bb892849fce0e2122cd8c566e",
+  "snapshot_sha256": "7212389cdc412bf3577c78c3e0be5c91926ecc398930427b775f2459071adcb0",
+  "live_run": 38742041771,
+  "source_counts": {
+    "previous_articles": 110,
+    "current_articles": 111,
+    "deleted_articles": 1,
+    "new_articles": 2,
+    "previous_dom_images": 976,
+    "current_dom_images": 980,
+    "deleted_dom_images": 16,
+    "new_dom_images": 20
+  },
+  "gallery_counts": {
+    "previous": 906,
+    "candidate": 893,
+    "missing": 16,
+    "new": 3,
+    "new_source_unlisted": 17
+  },
+  "best_shots": {
+    "published": 3,
+    "pending_pr111": 12,
+    "missing_conflicts": 0
+  },
+  "research": [
+    {
+      "case_id": "research-940496f1ccdb136f",
+      "before": 1,
+      "missing": 1,
+      "remaining": 0
+    },
+    {
+      "case_id": "research-f9cb62e956fa8604",
+      "before": 6,
+      "missing": 1,
+      "remaining": 5
+    }
+  ],
+  "publication_attempted": false,
+  "final_implementation_saved": false
+}

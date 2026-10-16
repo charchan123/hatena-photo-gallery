@@ -1,0 +1,76 @@
+Best Shot search normalization and available month slots: passed
+✔ stored retired URL cannot recreate a favorite card, storage stays unchanged (2.906173ms)
+✔ current photo without EXIF remains visible and shared valid URL is retained (0.836141ms)
+✔ missing published index and inherited property cannot authorize an old URL (1.085627ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10.417418
+feature filter tests passed
+iframe content height regression checks passed
+4 kana-insensitive highlight cases passed
+✔ old-parent destination replay is consumed once and rejects stale/unrelated markers (2.187158ms)
+✔ only real same-frame internal HTML links send an intent (1.069042ms)
+✔ ACK precedes native navigation, is authenticated and cannot navigate twice (1.635567ms)
+✔ blocked storage still completes via ACK; missing parent uses one bounded fallback (1.33267ms)
+✔ repeated clicks, pagehide and changed links cannot leave duplicate navigation (1.718301ms)
+✔ destination replay remains tied to pageshow for older parent handlers (0.254244ms)
+✔ a previous child referrer is not mistaken for the parent origin (0.820497ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15.379101
+✔ height is direct, finite and authenticated; duplicates do not write (4.620097ms)
+✔ bottom collapse reserves outer space and reclaims on upward scroll (0.681117ms)
+✔ navigation, lightbox close and requestHeight remain source-bound (0.820388ms)
+✔ authenticated intent scrolls before ACK; load only reclaims short-page space (4.308467ms)
+✔ cancel clears pending intent without rollback or any additional scroll (2.755355ms)
+✔ repeated intent IDs ACK again but never scroll twice before load (0.682159ms)
+✔ window: no eager post to initial parent-origin document; initial load never scrolls (0.655839ms)
+✔ window: source/origin/path/ID validation precedes any scroll (0.657091ms)
+✔ window: in-place heights, resize and ordinary load never scroll (0.67639ms)
+✔ body: no eager post to initial parent-origin document; initial load never scrolls (0.702188ms)
+✔ body: source/origin/path/ID validation precedes any scroll (0.549268ms)
+✔ body: in-place heights, resize and ordinary load never scroll (3.52199ms)
+✔ measured Hatena BODY coordinates: 4000 → 272 before ACK, window remains 0 (0.623921ms)
+✔ BODY bottom collapse uses body viewport and reclaims on body upward scroll (0.527485ms)
+✔ BODY mode survives top/short content and transfers listeners on layout change (2.680582ms)
+✔ BODY border is excluded from content coordinates; resize uses clientHeight (0.611692ms)
+✔ BODY legacy navigation, lgClosed and bounded requestHeight retain authentication (0.622469ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 35.990776
+5 fixed-gap mosaic layout cases passed
+✔ ten bright cores retain the six green / four purple balance and soft edges (1.199659ms)
+✔ single regular Bezier curves spread in six directions with bounded arc lengths (6.376616ms)
+✔ motion has only endpoints, separate appearance, and continuously decreasing nonzero speed (1.6977ms)
+✔ six outward paths reach surrounding space without clipping or touching names (2.565318ms)
+✔ one burst per enter, no nonpoison/touch, re-enter and keyboard work (1.695297ms)
+✔ keyboard supports coarse devices, reduced motion and exclusions fail closed (0.378781ms)
+✔ filter/removal, scroll, reduced motion, timer and burst cap clean up (1.00119ms)
+✔ coarse poison tap delays native activation 600ms and double tap stays one burst (0.513284ms)
+✔ ordinary, reduced, keyboard and modified links keep native immediate behavior (0.580906ms)
+✔ touch cancellation and stale targets cannot trigger deferred navigation (0.872436ms)
+✔ color adjustment leaves every motion and appearance parameter unchanged (0.437139ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 24.343828
+Update notices: expiry, transition, bfcache, visibility, invalid dates PASS

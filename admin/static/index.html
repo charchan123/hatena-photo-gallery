@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>きのこブログ管理室</title><link rel="stylesheet" href="admin.css"><script src="admin.js" defer></script></head>
+<title>きのこブログ管理室</title><link rel="stylesheet" href="admin.css"><script src="admin.js" defer></script><script src="deletions.js" defer></script></head>
 <body><aside><h1>🍄 きのこブログ<br>管理室</h1><nav>
 <button data-page="dashboard">ダッシュボード</button><button data-page="best">ベストショット</button>
 <button data-page="research">不明キノコ研究室</button><button data-page="notices">更新告知</button>
-<button data-page="sync">記事・写真の同期管理</button><button data-page="knowledge">情報拡充</button><button data-page="status">サイト状態</button><button data-page="changes">変更内容を確認</button>
+<button data-page="sync">記事・写真の同期管理</button><button data-page="deletions">写真の削除・承認</button><button data-page="knowledge">情報拡充</button><button data-page="status">サイト状態</button><button data-page="changes">変更内容を確認</button>
 </nav><p class="local">🔒 localhost 専用</p></aside><main>
 <header><h2 id="page-title">ダッシュボード</h2><span id="message" role="status"></span></header>
 <section id="dashboard" class="page"><div id="cards" class="cards"></div></section>
@@ -20,6 +20,14 @@
 <div class="actions"><button id="sync-prev">前の30件</button><button id="sync-next">次の30件</button></div>
 <p>高信頼の新規写真は人間の事前承認なしで自動追加されます。「確認済み」「保留」は確認履歴だけを保存し、自動公開の許可・停止を切り替えません。既存名変更・削除・URL置換は要個別移行です。</p>
 <div class="actions"><button id="sync-preview">現在の同期候補を実生成・検証</button></div><pre id="sync-preview-result"></pre><section id="sync-exception"><h3>個別の写真名修正</h3><p>単一出現の既存写真のみ。分類根拠をメモして名前を提案し、実生成プレビュー後に旧名・新名を明示確認してください。ベストショット・研究室参照は変更禁止です。URL置換・削除は未対応（保留・個別調査）です。未収録画像の採用は下の独立した手順を使用します。</p><pre id="sync-exception-result"></pre><details><summary>技術検証情報（任意）</summary><pre id="sync-exception-technical"></pre></details><button id="sync-exception-approve" disabled>この写真名変更を明示承認</button><button id="sync-exception-pr" disabled>承認済み名前変更のDraft PRを作成</button></section><section id="sync-adoption"><h3>図鑑未収録写真の個別採用</h3><p>公開記事の単一画像のみ。分類と根拠を保存し、実生成プレビュー後に名前を再入力して採用を承認します。画像の中身が変わった場合は停止します。既存写真・重複URL・下書き・退役写真は対象外です。</p><pre id="sync-adoption-result"></pre><details><summary>技術検証情報（任意）</summary><pre id="sync-adoption-technical"></pre></details><button id="sync-adoption-approve" disabled>この未収録写真の採用を明示承認</button><button id="sync-adoption-pr" disabled>採用1件だけのDraft PRを作成</button></section><p class="meta">例外案件の公開変更には個別移行のDraft PRが必要です。この画面の確認記録は公開を変更しません。</p>
+</section>
+<section id="deletions" class="page" hidden>
+<p>判断はまずローカル保存します。保留・代替案を日次処理へ共有するにはDraft PRを作成してください。削除承認の反映はマージと日次検証後です。ブログへの書込みは行いません。保護写真の未承認削除があれば公開全体を停止し、毎日の検出は継続します。</p>
+<div class="actions"><button id="deletion-refresh">保存済みの検出を再取得</button><button id="deletion-live">公開記事を取得して再照合</button></div>
+<p id="deletion-message" role="status" aria-live="polite"></p><div id="deletion-summary" class="panel"></div>
+<div id="deletion-list" class="list"></div>
+<div class="actions"><button id="deletion-preview">承認内容と変更予定の差分を確認</button><button id="deletion-pr" disabled>実生成を検証してDraft PRを作成</button></div>
+<pre id="deletion-diff"></pre><details><summary>判断とDraft PRの履歴</summary><pre id="deletion-history"></pre></details>
 </section>
 <section id="knowledge" class="page" hidden><div class="knowledge-grid"><div><h3>Local research batches</h3><div id="knowledge-batches" class="list"></div></div><div><h3>候補レビュー</h3><div id="knowledge-candidates" class="list"></div><div class="actions"><button id="knowledge-preview">Promotion preview</button><button class="primary" id="knowledge-pr" disabled>知識更新PRを作成</button></div><pre id="knowledge-preview-result"></pre></div></div></section>
 <section id="status" class="page" hidden><div id="site-status" class="panel"></div></section>

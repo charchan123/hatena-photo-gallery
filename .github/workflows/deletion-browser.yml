@@ -1,0 +1,26 @@
+name: Deletion review browser regressions
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated Chromium test runner
+        run: |
+          npm install --prefix /tmp/kinoko-browser --no-save playwright@1.62.1
+          /tmp/kinoko-browser/node_modules/.bin/playwright install --with-deps chromium
+      - name: Desktop, keyboard and touch fixture regressions
+        env:
+          PLAYWRIGHT_MODULE_PATH: /tmp/kinoko-browser/node_modules/playwright
+        run: |
+          node tests/browser/best_shot_picker.cjs
+          node tests/browser/deletion_review.cjs

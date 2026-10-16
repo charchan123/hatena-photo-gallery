@@ -18,7 +18,7 @@ const fixtures=()=>({csrf:'fixture-only',observations:records,best_shots:{versio
  counts:{best_shots:2,annual_years:1,research_open:0,research_identified:0,active_notices:0,master:0,sources:0,knowledge_batches:0},
  cases:[],identified:[],notices:[],master:[],knowledge:[],preview:{},repo:{gh_authenticated:false},feature_facets:{},portal_source:'isolated fixture',portal_observation_count:records.length});
 (async()=>{
- const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+ const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_EXECUTABLE_PATH,args:['--no-sandbox',...(process.env.CHROMIUM_SINGLE_PROCESS?['--single-process','--no-zygote','--disable-gpu']:[])]});
  let assertions=0;
  const check=(actual,expected)=>{assert.deepEqual(actual,expected);assertions++};
  async function setup(options={}){
@@ -38,7 +38,7 @@ const fixtures=()=>({csrf:'fixture-only',observations:records,best_shots:{versio
     if(url.pathname==='/api/best-shot/update')Object.assign(app.best_shots.entries.find(e=>e.selection_id===body.selection_id),body.changes);
     return route.fulfill({json:{ok:true}});
    }
-   const file={'/':'index.html','/admin.css':'admin.css','/admin.js':'admin.js'}[url.pathname];
+   const file={'/':'index.html','/admin.css':'admin.css','/admin.js':'admin.js','/deletions.js':'deletions.js'}[url.pathname];
    if(file)return route.fulfill({body:fs.readFileSync(path.join(root,'admin/static',file)),contentType:file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'text/html'});
    return route.fulfill({status:404,body:''});
   });
@@ -115,7 +115,7 @@ const fixtures=()=>({csrf:'fixture-only',observations:records,best_shots:{versio
  await p.locator('#best-list .item').nth(1).getByRole('button',{name:'編集・写真差し替え'}).click();
  await p.click('#dialog-save');await p.waitForFunction(()=>!document.querySelector('#editor').open);check(d.writes.at(-1).body.changes,{});check('location' in d.app.best_shots.entries[1],false);check('annual_comment' in d.app.best_shots.entries[1],false);
  await p.locator('#best-list .item').nth(1).getByRole('button',{name:'編集・写真差し替え'}).click();await p.fill('#photo-search','べにて');await select(p,'obs-5');await p.click('#dialog-save');await p.waitForFunction(()=>!document.querySelector('#editor').open);check(d.writes.at(-1).body.changes,{observation_id:'obs-5',order:1});
- check(d.issues,[]);await d.context.close();
+ check(d.issues,[]);if(!process.env.CHROMIUM_SINGLE_PROCESS)await d.context.close();
  const t=await setup({viewport:{width:390,height:844},hasTouch:true,isMobile:true}),mobile=t.page;
  await open(mobile);await mobile.fill('#photo-search','べにて');
  await candidate(mobile,'obs-2').getByRole('button',{name:'拡大して確認',exact:true}).tap();check(await mobile.locator('[name=observation_id]').inputValue(),'');check(t.writes.length,0);check(await mobile.locator('.photo-preview').isVisible(),true);
@@ -124,6 +124,6 @@ const fixtures=()=>({csrf:'fixture-only',observations:records,best_shots:{versio
  await mobile.getByRole('button',{name:'月内順序を1減らす',exact:true}).tap();check(await mobile.locator('#dialog-save').isDisabled(),true);
  const bounds=await mobile.locator('#editor').evaluate(e=>({fits:e.scrollWidth<=e.clientWidth,width:e.getBoundingClientRect().width}));check(bounds.fits,true);assert.ok(bounds.width<=390);assertions++;
  if(out)await mobile.screenshot({path:path.join(out,'mobile-order-error.png')});
- check(t.issues,[]);await t.context.close();await browser.close();
+ check(t.issues,[]);if(!process.env.CHROMIUM_SINGLE_PROCESS)await t.context.close();await browser.close();
  console.log(`Best Shot real Chromium browser: ${assertions} assertions passed (desktop mouse/keyboard, IME event simulation, touch emulation; isolated API/image fixtures)`);
 })().catch(e=>{console.error(e);process.exit(1)});

@@ -237,7 +237,8 @@ def test_workflow_schedule_old_triggers_and_gate_before_deploy():
     steps = workflow["jobs"]["build"]["steps"]
     build = next(i for i, x in enumerate(steps) if "python article_sync.py" in x.get("run", ""))
     deploy = next(i for i, x in enumerate(steps) if "github-pages-deploy-action" in x.get("uses", ""))
-    assert build < deploy and "continue-on-error" not in steps[build] and "if" not in steps[deploy]
+    assert build < deploy and "continue-on-error" not in steps[build]
+    assert steps[deploy]["if"] == "success() && env.SAFE_PHOTO_DELETION_PUBLISH_ENABLED == 'true'"
     assert not any("pull_request" in k for k in triggers)
     assert "--previous .sync-previous" in steps[build]["run"]
 

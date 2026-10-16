@@ -1,0 +1,1425 @@
+{
+  "version": 1,
+  "read_only": true,
+  "at": "2026-10-15T13:22:11.163298+00:00",
+  "baseline_commit": "757cbfc868452d3bb892849fce0e2122cd8c566e",
+  "snapshot_sha256": "7212389cdc412bf3577c78c3e0be5c91926ecc398930427b775f2459071adcb0",
+  "counts": {
+    "comparison": "KNOWN",
+    "new_articles": 2,
+    "deleted_articles": 1,
+    "new_images": 20,
+    "deleted_images": 16,
+    "updated_articles": 0,
+    "classification_changes": 0,
+    "url_changes": 0,
+    "possible_url_changes": 0,
+    "pending_changes": [],
+    "deleted_article_hashes": [
+      "f4c1c839abafe71eb16494d0d921cd96df6cbf32aefce8eee19a8807a90a923e"
+    ],
+    "previous_gallery": 906,
+    "candidate_gallery": 893,
+    "missing_gallery_occurrences": 16,
+    "missing_gallery_in_removed_source": 16,
+    "new_source_gallery_occurrences": 3,
+    "new_source_non_gallery_occurrences": 17,
+    "source_image_count": 980,
+    "protected_deletion_candidates": 2
+  },
+  "fetch_audit": {
+    "pages_completed": 12,
+    "entries_received": 112,
+    "drafts_excluded": 1,
+    "published_articles": 111,
+    "html_articles": 111,
+    "pagination_complete": true,
+    "content_type_counts": {
+      "text/html": 111
+    },
+    "html_source_counts": {
+      "content_html": 111
+    },
+    "html_image_representation_difference_articles": 0
+  },
+  "removed": [
+    {
+      "candidate_id": "50e7c08ad4a3f05e622f2b96831956f8d6e0b276b58fe702020e6b03cbed51ed",
+      "fingerprint": "490e7fee075b077f6269145802913dc3055fcc533007fd0e1684a1adcd4b43ef",
+      "article_hash": "34f660c5529cb5c49f6357016cd7bb360f07d02fbead08de4bd429fd6abbcca1",
+      "url_hash": "8fb8e0b823c06e18ab21b08e6ba45d2141cdff205d314e65869b57a11476e638",
+      "ordinal": 0,
+      "observation_id": "obs-535b6dd2070d2865617b1ac64a5408c1a2024b2f354fc2aa829a848eed897eb7",
+      "kind": "photo_deleted",
+      "identity_issues": [],
+      "protection": [],
+      "mass_review": false,
+      "status": "reconfirmation_pending",
+      "gallery_name": "不明アワタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250708/20250708230015.jpg",
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398505015255",
+      "article_title": "2025年7月5日　静岡県浜松市",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/07/08/230930"
+    },
+    {
+      "candidate_id": "a819f596042be35a3176a48a19b0323abcd3495a2551c3ee156ffed0d6b94ac8",
+      "fingerprint": "8bb764f96733b71bc236e0a986c780b5c8ae57627ba9219f050132797ea756d0",
+      "article_hash": "4f1f6a8af7c85cfa7b08ee3a302cea2c052107f703eefc98a696b54e25c0b8a0",
+      "url_hash": "10aa9d5a41378a56c0e33f2399f870ff43e22e69d4532d027426d1557c598ea4",
+      "ordinal": 0,
+      "observation_id": "obs-5baccf712cefbd5d87974e5f99b8973009f9c8f41583d0ce6017d0dc59270d95",
+      "kind": "photo_deleted",
+      "identity_issues": [],
+      "protection": [],
+      "mass_review": false,
+      "status": "reconfirmation_pending",
+      "gallery_name": "ミドリニガイグチ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706222109.jpg",
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398493776092",
+      "article_title": "2025年6月29日　静岡県浜松市",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/07/06/222231"
+    },
+    {
+      "candidate_id": "37671dee2f4a7450260c93add0f309629a14e68f05343e9ec6d2ff10a33e39b5",
+      "fingerprint": "8bc8dc3132efb0be5b96f58f98c432c93db0f1136e9cc71a625750747f6f45ff",
+      "article_hash": "b2356b88076d0b5820046c26080e48ea916ebc692d42ccd4fe410091425bb61b",
+      "url_hash": "e59eb2c5735bd01482cf356432aba9331f52de8fcc525085b0654c00d03f6043",
+      "ordinal": 0,
+      "observation_id": "obs-f3c6ae959dd8b9306e627a66875b63938ae4c561baf326ef973b99a6f7355b96",
+      "kind": "photo_deleted",
+      "identity_issues": [],
+      "protection": [],
+      "mass_review": false,
+      "status": "reconfirmation_pending",
+      "gallery_name": "アイタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250622/20250622122629.jpg",
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398484068611",
+      "article_title": "2025年6月21日　静岡県静岡市",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/06/22/133910"
+    },
+    {
+      "candidate_id": "5d5cfd9adf53af3fef7411b25f5ec112b6a413f82d76933f66cea28394f3693c",
+      "fingerprint": "0e0934033e8d403418b25eb510dda7f825b52c4411a1924218de5d9fc1ed7e38",
+      "article_hash": "ea4210689be612aa922d88b93f09036d18032d5a15f0a1d288e649511114bca3",
+      "url_hash": "08336a3459586e904c90d56be3dae5ee23336b40a48db0e09bee2ecabb52f384",
+      "ordinal": 0,
+      "observation_id": "obs-691d163c06e69cbaeff90f33c91db4baf56690e2142ab5570db24a1fb6f84c1c",
+      "kind": "photo_deleted",
+      "identity_issues": [],
+      "protection": [],
+      "mass_review": false,
+      "status": "reconfirmation_pending",
+      "gallery_name": "ホテイシメジ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914220051.jpg",
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565232514288",
+      "article_title": "2025年9月13日　富士山(山梨県)",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/09/15/103432"
+    },
+    {
+      "candidate_id": "2f3a7aa8c865887ab5ffcaa706ed331f29f501d2abafec701d63fca94ab3e971",
+      "fingerprint": "23c37d21a96929686b602aca51ac06092440d8563934c71a23aa3ca8f7c01f38",
+      "article_hash": "ea4210689be612aa922d88b93f09036d18032d5a15f0a1d288e649511114bca3",
+      "url_hash": "5776dd0a1da95140376f2e43af51cd82cd6dd849f341b93cc5b78c6873ba32e2",
+      "ordinal": 0,
+      "observation_id": "obs-564918b9e64db06ea3e07b1ba065d995fee6a0acb604b0b9aac0a5bbb98548bf",
+      "kind": "photo_deleted",
+      "identity_issues": [],
+      "protection": [],
+      "mass_review": false,
+      "status": "reconfirmation_pending",
+      "gallery_name": "アカツムタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914215453.jpg",
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565232514288",
+      "article_title": "2025年9月13日　富士山(山梨県)",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/09/15/103432"
+    },
+    {
+      "candidate_id": "2cb53667f20301c7b9e82fa1962b56d7ed8766fe8913457df81f6f5b79d51cfd",
+      "fingerprint": "1329cf3fe4ae06ada4477fde06c13fadf5a773732bafba7386e4313d1c005aaa",
+      "article_hash": "ea4210689be612aa922d88b93f09036d18032d5a15f0a1d288e649511114bca3",
+      "url_hash": "5b938479c0ea82db261147c09986d0043a35db2d7f188962eead9ffd30c42816",
+      "ordinal": 0,
+      "observation_id": "obs-7eff7d5705e7cc82a1ba7c539d6eea797418cf62afbe70cce1849f6e71a80368",
+      "kind": "photo_deleted",
+      "identity_issues": [],
+      "protection": [],
+      "mass_review": false,
+      "status": "reconfirmation_pending",
+      "gallery_name": "ミヤママスタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914213524.jpg",
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565232514288",
+      "article_title": "2025年9月13日　富士山(山梨県)",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/09/15/103432"
+    },
+    {
+      "candidate_id": "0402fb16d733fc080290585e6991eb1849a3179b172ec185f297a73ee4dcf8c0",
+      "fingerprint": "45314793df20c09ac9c032a053d4d7cfc37c82a5a08a75a0ee32e9ca32f3a2c5",
+      "article_hash": "ea4210689be612aa922d88b93f09036d18032d5a15f0a1d288e649511114bca3",
+      "url_hash": "657d22cd450309b1dd5c139f33a574db251bb0323557891896a1c6a0399a7235",
+      "ordinal": 0,
+      "observation_id": "obs-558e32a803b8c9b1bb42feea05988f72792b75c0844f01331e2e3ae339d787f9",
+      "kind": "photo_deleted",
+      "identity_issues": [],
+      "protection": [],
+      "mass_review": false,
+      "status": "reconfirmation_pending",
+      "gallery_name": "シロヌメリイグチ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914221517.jpg",
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565232514288",
+      "article_title": "2025年9月13日　富士山(山梨県)",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/09/15/103432"
+    },
+    {
+      "candidate_id": "d1a472bf41180d7b0297daca436e1b1c7faae4725eb8ba8d6749fba11022a9a0",
+      "fingerprint": "a37b61944ea8afc39ba6686914ee0fe26abedbd5ec9444b89dae9c92c173640d",
+      "article_hash": "ea4210689be612aa922d88b93f09036d18032d5a15f0a1d288e649511114bca3",
+      "url_hash": "6cbf02b0ba68a64444bb30262760caa9f27fec3a0f94d31dfd90600e03509d6a",
+      "ordinal": 0,
+      "observation_id": "obs-0386221fd4bd1c5a9739f917481c750c96ca727b977352f3cd4349e5dbe6a6fc",
+      "kind": "photo_deleted",
+      "identity_issues": [],
+      "protection": [],
+      "mass_review": false,
+      "status": "reconfirmation_pending",
+      "gallery_name": "コゲエノヘラタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914221417.jpg",
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565232514288",
+      "article_title": "2025年9月13日　富士山(山梨県)",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/09/15/103432"
+    },
+    {
+      "candidate_id": "195d936419465034a0f6ddbda770d59db3778f4f620896426d561300ff20a77d",
+      "fingerprint": "a28a70dc68db7383af91b408bedb7138eaf008e425443e627b352c5d4ff4bbc3",
+      "article_hash": "ea4210689be612aa922d88b93f09036d18032d5a15f0a1d288e649511114bca3",
+      "url_hash": "72f0174ad6fe3516eca8533a011e1e40e575619dd82312465686f191550955ad",
+      "ordinal": 0,
+      "observation_id": "obs-b65bc66594a331b3fb0e79f41dbfe9d2b8c5e94bdd826c49b1a6b26472f12e51",
+      "kind": "photo_deleted",
+      "identity_issues": [],
+      "protection": [
+        {
+          "kind": "research",
+          "id": "research-940496f1ccdb136f"
+        }
+      ],
+      "mass_review": false,
+      "status": "approval_pending",
+      "gallery_name": "カワリハツ？",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914214519.jpg",
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565232514288",
+      "article_title": "2025年9月13日　富士山(山梨県)",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/09/15/103432"
+    },
+    {
+      "candidate_id": "4b96f7582191a8385e4ef650e431e67007690c5fb76726f4a4029a357de01c7a",
+      "fingerprint": "60767c1355a77f0a6d940e832d99a22274ae75de2064d9276dc5ad8fa7a47e89",
+      "article_hash": "ea4210689be612aa922d88b93f09036d18032d5a15f0a1d288e649511114bca3",
+      "url_hash": "7b21ea23f60404414ffb02f60a3d7fb1e9d540c88dd861fe03c1e31a9e70aa32",
+      "ordinal": 0,
+      "observation_id": "obs-85d05036f260f6a5317b16f709dcbfef08875107ae7a86f284713b18a3059ed3",
+      "kind": "photo_deleted",
+      "identity_issues": [],
+      "protection": [],
+      "mass_review": false,
+      "status": "reconfirmation_pending",
+      "gallery_name": "キサマツモドキ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914222634.jpg",
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565232514288",
+      "article_title": "2025年9月13日　富士山(山梨県)",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/09/15/103432"
+    },
+    {
+      "candidate_id": "c03786f5ecce9fd0effeacf4f482bfd90e02dd57ded1dc7973e87ff26f9fcf47",
+      "fingerprint": "75853b35e46c9060741c8cb27e4d28c703f432b75599621db8841e0d35f332fb",
+      "article_hash": "ea4210689be612aa922d88b93f09036d18032d5a15f0a1d288e649511114bca3",
+      "url_hash": "7c20b2151dae4f18e32eb59fddda3c51d143a3aba6523cdc05bb746a8253a01e",
+      "ordinal": 0,
+      "observation_id": "obs-fbe6afeb5eadc6f4082c983320425d5e883ba6f55abafda56b6402bc8763f2b1",
+      "kind": "photo_deleted",
+      "identity_issues": [],
+      "protection": [],
+      "mass_review": false,
+      "status": "reconfirmation_pending",
+      "gallery_name": "ハナイグチ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914221734.jpg",
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565232514288",
+      "article_title": "2025年9月13日　富士山(山梨県)",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/09/15/103432"
+    },
+    {
+      "candidate_id": "7e70108a40c44eca28ace74e2b7e9837092244b16b86aaeb5f57803a1d9008a9",
+      "fingerprint": "df2b86e610e3442cb06d6612ae01c32c94642efe2caabc749d2b76c58009f6f9",
+      "article_hash": "ea4210689be612aa922d88b93f09036d18032d5a15f0a1d288e649511114bca3",
+      "url_hash": "8bc34a16d8961fb4c740b3e843be5a17c44d0f2555fa521c8eaeaf224d8d4997",
+      "ordinal": 0,
+      "observation_id": "obs-d78194f2c9d82e0ea3feb03229cc1537be4bf1644bccf48099266e20f6b02cbb",
+      "kind": "photo_deleted",
+      "identity_issues": [],
+      "protection": [],
+      "mass_review": false,
+      "status": "reconfirmation_pending",
+      "gallery_name": "スギタケモドキ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914220803.jpg",
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565232514288",
+      "article_title": "2025年9月13日　富士山(山梨県)",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/09/15/103432"
+    },
+    {
+      "candidate_id": "4a739d2bd5172811a744b993215d024f8e7314261174f88f9694c6c0d0fc4ae5",
+      "fingerprint": "c5f1388453cce8ae5ac780e32858edcb534fb5b0d28ca03b0fd5c9244eab6675",
+      "article_hash": "ea4210689be612aa922d88b93f09036d18032d5a15f0a1d288e649511114bca3",
+      "url_hash": "95d19c12e0fa0432a9d7445c2bb5d3e02223096a695a7d83cfbd1641dba085e1",
+      "ordinal": 0,
+      "observation_id": "obs-fee2f9aaa6af81ab837dc3f9c6a84085bb759e649029cf2b3c95c166a7a3160a",
+      "kind": "photo_deleted",
+      "identity_issues": [],
+      "protection": [],
+      "mass_review": false,
+      "status": "reconfirmation_pending",
+      "gallery_name": "ケシロハツ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914215936.jpg",
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565232514288",
+      "article_title": "2025年9月13日　富士山(山梨県)",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/09/15/103432"
+    },
+    {
+      "candidate_id": "98f75b394276f6a1ce07cf7de4ce4db753fa26fb6739af18e4cb57854f42bb90",
+      "fingerprint": "d700c322304d2e4d63e0fc412cf374742f21eab2aa0776dc1aa7469ccd76b836",
+      "article_hash": "ea4210689be612aa922d88b93f09036d18032d5a15f0a1d288e649511114bca3",
+      "url_hash": "cae735c493c496fb494e047c64d0aae7e3256a0d29da12173e079a93b65e736e",
+      "ordinal": 0,
+      "observation_id": "obs-203dccd8109f483ebedb07606d184817d6d7ffc4e6e7ff0641f55b345b66c7a8",
+      "kind": "photo_deleted",
+      "identity_issues": [],
+      "protection": [],
+      "mass_review": false,
+      "status": "reconfirmation_pending",
+      "gallery_name": "オオキツネタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914215813.jpg",
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565232514288",
+      "article_title": "2025年9月13日　富士山(山梨県)",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/09/15/103432"
+    },
+    {
+      "candidate_id": "64a816f2795e7781a5ac5abbb11c8e20334d03d7e24875f56d804bd49d9f2597",
+      "fingerprint": "63e10ccd260a2e339e6195f06f528074747997356e608d03eda696dd3b29c9bb",
+      "article_hash": "ee60a98b7c776f370f69b352975760e53ad910a2e3679e21431bf16a8df0dd3e",
+      "url_hash": "717c36182bc8c14d352e38cf7e9eb09bb8ae24ae1a84c122efd8599b067fd9c5",
+      "ordinal": 0,
+      "observation_id": "obs-87fa70cf88bf584c315b452899c54a1426d784d2fb6aa9beede5b38d2a98a7c6",
+      "kind": "photo_deleted",
+      "identity_issues": [],
+      "protection": [
+        {
+          "kind": "research",
+          "id": "research-f9cb62e956fa8604"
+        }
+      ],
+      "mass_review": false,
+      "status": "approval_pending",
+      "gallery_name": "Lanmaoa angustispora(和名無し)？",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250710/20250710220635.jpg",
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398505017021",
+      "article_title": "2025年7月6日　静岡県掛川市",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/07/10/222315"
+    },
+    {
+      "candidate_id": "ed37812d277386913b6318f8b34f6ca09603ca8af9e229c9839d62baf3fffe6a",
+      "fingerprint": "37e35654c7df673b793f5ba5f5f02c727338fb58a05db46fb4280e0ab6d11ef3",
+      "article_hash": "f4c1c839abafe71eb16494d0d921cd96df6cbf32aefce8eee19a8807a90a923e",
+      "url_hash": "21e6d338208797e076ceb469f158a488d716dd5d33407c1ddc84d1a13dc9b6d0",
+      "ordinal": 0,
+      "observation_id": "obs-10f29e7b04472ecb1e1d4fccfb060889cfa1dfc2012922b4c299d483a8647f01",
+      "kind": "article_deleted",
+      "identity_issues": [],
+      "protection": [],
+      "mass_review": false,
+      "status": "reconfirmation_pending",
+      "gallery_name": "Lanmaoa angustispora",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250902/20250902233255.jpg",
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398574552732",
+      "article_title": "2025年9月2日　静岡県掛川市",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/09/02/234739"
+    }
+  ],
+  "added_source": [
+    {
+      "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+      "url_hash": "06c302fafba2ee7689b010a13a1a79553edba7c8ec08c09c6f4a67f838333469",
+      "ordinal": 0,
+      "gallery_eligible": false,
+      "gallery_name": null,
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063427.jpg",
+      "article": {
+        "title": "2026年9月22日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503"
+      },
+      "classification": null
+    },
+    {
+      "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+      "url_hash": "159bd1ee00a891e8a62631041ab71d8285ee7cb254615fb3ba110b6f93601c44",
+      "ordinal": 0,
+      "gallery_eligible": false,
+      "gallery_name": null,
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063131.jpg",
+      "article": {
+        "title": "2026年9月22日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503"
+      },
+      "classification": null
+    },
+    {
+      "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+      "url_hash": "28317872f131251a4e0d30c0ef91d222cc27edd280f135fbc6dd6241f961d9f3",
+      "ordinal": 0,
+      "gallery_eligible": false,
+      "gallery_name": null,
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063158.jpg",
+      "article": {
+        "title": "2026年9月22日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503"
+      },
+      "classification": null
+    },
+    {
+      "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+      "url_hash": "36917691b5202d024f5d03acc287af7204614c65c59c49792f9c1f2a4922f51c",
+      "ordinal": 0,
+      "gallery_eligible": false,
+      "gallery_name": null,
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063046.jpg",
+      "article": {
+        "title": "2026年9月22日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503"
+      },
+      "classification": null
+    },
+    {
+      "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+      "url_hash": "376a0be77e0e9ba7196ebdda88ef0097b72a6700a41e9a6a2249d7f9949d8417",
+      "ordinal": 0,
+      "gallery_eligible": false,
+      "gallery_name": null,
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015062811.jpg",
+      "article": {
+        "title": "2026年9月22日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503"
+      },
+      "classification": null
+    },
+    {
+      "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+      "url_hash": "83d65b19049625916a04730a0a87a7b8c7158da70a7cf470eb21cab34c0039c5",
+      "ordinal": 0,
+      "gallery_eligible": false,
+      "gallery_name": null,
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063219.jpg",
+      "article": {
+        "title": "2026年9月22日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503"
+      },
+      "classification": null
+    },
+    {
+      "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+      "url_hash": "9a6f6365fff27920a8dcbc5ce7e6ab178164077a150bb790d7da0aec035eb607",
+      "ordinal": 0,
+      "gallery_eligible": false,
+      "gallery_name": null,
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063344.jpg",
+      "article": {
+        "title": "2026年9月22日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503"
+      },
+      "classification": null
+    },
+    {
+      "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+      "url_hash": "c698241902fc99d4b097bf66959fc1b95c7695029db608111dcb084c42cc2ba0",
+      "ordinal": 0,
+      "gallery_eligible": true,
+      "gallery_name": "ドクツルタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015062840.jpg",
+      "article": {
+        "article_path": "/tmp/kinoko-review-kmnoprko/articles/article_2.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032081257566",
+        "title": "2026年9月22日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503",
+        "published": "2026-10-15T06:35:03+09:00",
+        "updated": "2026-10-15T06:35:03+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "ドクツルタケ",
+          "クリフウセンタケ",
+          "ヤマドリタケ",
+          "マツタケ",
+          "フモトニガイグチ",
+          "シロオニタケ",
+          "アカジコウ"
+        ],
+        "excerpt": "山梨県側の富士山の亜高山帯を探索してきた。 フジアザミ 最初は静岡木の子の会の師匠と静岡県側を探索する予定だったのだが、色々な都合が重なり、合流が厳しくなってしまった。そのため自分だけで集合場所の静岡県側のポイントを探索したがキノコが絶望的に少なく、爆速で見き…"
+      },
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "ドクツルタケ",
+        "shadow_gallery_name": "ドクツルタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "ドクツルタケ",
+        "taxonomy_match_type": "canonical_exact"
+      }
+    },
+    {
+      "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+      "url_hash": "d1ff5a4c71f733f8e962c35cf43b05b7dc85bec538ef07e7641442878b3b03f8",
+      "ordinal": 0,
+      "gallery_eligible": false,
+      "gallery_name": null,
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063319.jpg",
+      "article": {
+        "title": "2026年9月22日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503"
+      },
+      "classification": null
+    },
+    {
+      "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+      "url_hash": "de736f797cd17ebec97815932d60ccaa897f7998973fb8af6674d66bcf10086e",
+      "ordinal": 0,
+      "gallery_eligible": false,
+      "gallery_name": null,
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063002.jpg",
+      "article": {
+        "title": "2026年9月22日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503"
+      },
+      "classification": null
+    },
+    {
+      "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+      "url_hash": "ea01f52ebab9e29c9e68ca4d727715e66aba8a095e07e3688f4db05138c5afa0",
+      "ordinal": 0,
+      "gallery_eligible": false,
+      "gallery_name": null,
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015062912.jpg",
+      "article": {
+        "title": "2026年9月22日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503"
+      },
+      "classification": null
+    },
+    {
+      "article_hash": "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7",
+      "url_hash": "02055f7d29fd937fed40cadc2dfe7f0b0906cf6fce9d3d06c9dbc3721c25bbf8",
+      "ordinal": 0,
+      "gallery_eligible": false,
+      "gallery_name": null,
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063648.jpg",
+      "article": {
+        "title": "2026年10月3日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155"
+      },
+      "classification": null
+    },
+    {
+      "article_hash": "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7",
+      "url_hash": "7afe724619625a785969068e2e5059587f22e8ea987617f68a0e55aedaec49c9",
+      "ordinal": 0,
+      "gallery_eligible": false,
+      "gallery_name": null,
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015064116.jpg",
+      "article": {
+        "title": "2026年10月3日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155"
+      },
+      "classification": null
+    },
+    {
+      "article_hash": "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7",
+      "url_hash": "845c288119d11b64c8b386e2b975ed1d481821c1294552d57d7a8a39adce7bf1",
+      "ordinal": 0,
+      "gallery_eligible": false,
+      "gallery_name": null,
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063813.jpg",
+      "article": {
+        "title": "2026年10月3日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155"
+      },
+      "classification": null
+    },
+    {
+      "article_hash": "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7",
+      "url_hash": "84753e3f445fdc87dc93ff4126050dc5ff31ee46fe48cb37f85310fef12e22f6",
+      "ordinal": 0,
+      "gallery_eligible": false,
+      "gallery_name": null,
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063946.jpg",
+      "article": {
+        "title": "2026年10月3日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155"
+      },
+      "classification": null
+    },
+    {
+      "article_hash": "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7",
+      "url_hash": "8d5f8c5a1e0414dcb3b0b67b86cf1884447db45cc3b3a2aa9f2aae19b1b7a53c",
+      "ordinal": 0,
+      "gallery_eligible": true,
+      "gallery_name": "クロカワ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063751.jpg",
+      "article": {
+        "article_path": "/tmp/kinoko-review-kmnoprko/articles/article_1.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032090025324",
+        "title": "2026年10月3日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155",
+        "published": "2026-10-15T06:41:55+09:00",
+        "updated": "2026-10-15T06:41:55+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "クリフウセンタケ",
+          "ベニテングタケ",
+          "クロカワ",
+          "オオジョウゴタケ",
+          "ベニハナイグチ"
+        ],
+        "excerpt": "富士山の山梨県側でキノコ探索を行ってきた。 クリフウセンタケ 林道の脇の辺りからも発生していた。大体はただただ引っこ抜いて捨てていく人が多いが、中にはしっかり食用と同定して採取していく人もしっかりいるようだ。 ベニテングタケ 良い感じの双子。イボもしっかり残っ…"
+      },
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "クロカワ",
+        "shadow_gallery_name": "クロカワ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "クロカワ",
+        "taxonomy_match_type": "canonical_exact"
+      }
+    },
+    {
+      "article_hash": "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7",
+      "url_hash": "99988df4cd624d0a94570f0e94e6856269c7c873277fc2331436810724270564",
+      "ordinal": 0,
+      "gallery_eligible": false,
+      "gallery_name": null,
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063534.jpg",
+      "article": {
+        "title": "2026年10月3日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155"
+      },
+      "classification": null
+    },
+    {
+      "article_hash": "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7",
+      "url_hash": "a9073ec59ff623577bdc16fd72991cbbf380847d46d67c03ce5a7de2bf232d86",
+      "ordinal": 0,
+      "gallery_eligible": true,
+      "gallery_name": "ベニテングタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063617.jpg",
+      "article": {
+        "article_path": "/tmp/kinoko-review-kmnoprko/articles/article_1.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032090025324",
+        "title": "2026年10月3日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155",
+        "published": "2026-10-15T06:41:55+09:00",
+        "updated": "2026-10-15T06:41:55+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "クリフウセンタケ",
+          "ベニテングタケ",
+          "クロカワ",
+          "オオジョウゴタケ",
+          "ベニハナイグチ"
+        ],
+        "excerpt": "富士山の山梨県側でキノコ探索を行ってきた。 クリフウセンタケ 林道の脇の辺りからも発生していた。大体はただただ引っこ抜いて捨てていく人が多いが、中にはしっかり食用と同定して採取していく人もしっかりいるようだ。 ベニテングタケ 良い感じの双子。イボもしっかり残っ…"
+      },
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "ベニテングタケ",
+        "shadow_gallery_name": "ベニテングタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "ベニテングタケ",
+        "taxonomy_match_type": "canonical_exact"
+      }
+    },
+    {
+      "article_hash": "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7",
+      "url_hash": "b35c11e099ab0adb0fd2be21fec6067ddedaea3ac461306e0f1c3d9c5b19f304",
+      "ordinal": 0,
+      "gallery_eligible": false,
+      "gallery_name": null,
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015064015.jpg",
+      "article": {
+        "title": "2026年10月3日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155"
+      },
+      "classification": null
+    },
+    {
+      "article_hash": "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7",
+      "url_hash": "e53c35e42bb5f59a321078a6df619f9d13d187910e8f0fb64d4cfc1d92d89292",
+      "ordinal": 0,
+      "gallery_eligible": false,
+      "gallery_name": null,
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015064358.jpg",
+      "article": {
+        "title": "2026年10月3日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155"
+      },
+      "classification": null
+    }
+  ],
+  "new_articles": [
+    "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+    "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7"
+  ],
+  "protection": {
+    "version": 1,
+    "complete": true,
+    "sources": {
+      "best-shots": "6cffbfb3cf0be355ba76f11751d5d52cde7d34b04ec5e46f50c925fffda73374",
+      "data/best-shots.json": "6cffbfb3cf0be355ba76f11751d5d52cde7d34b04ec5e46f50c925fffda73374",
+      "data/feature-facets.json": "3cb034f0e8ea2113dcfeb5e142a5b04531148a0bdfff496cf9ac55b21ac78a80",
+      "data/mushroom-master.json": "662bddb205fba7f8a240d2944de95e6d5e0df6ce2cf2675a198de448c4179a84",
+      "data/research-identifications.json": "9eab7bdadc7ef68b91cdb3af2f9249ba544dc8bebd952c9d5b3c0668bfd944d7",
+      "data/sources.json": "b5275d3511479963cc5ec343c8709fdf71265b784c5174817aacc6084d4aa274",
+      "data/subject-taxonomy.json": "f574b95a374537fb2c3700d4fd1cc6301d8417deca4aa942e93e740f25e9e60f",
+      "data/update-notices.json": "6c7060f2f3bd01fcfa4f3d81995c669a0c3c414ea77455e3ccb92660b67aaee5",
+      "sync-migrations/hatena-draft-photo-retirement-2026-10-12.json": "b6feaa4475ae14eab7af640afd937811dfce2a2390399e8b0a1d98a76bc34f72",
+      "test-thumbnails.html": "c5d8794be15d59064f6171c2b70d02d2bd56a48c4baa59df2501f96aa4f74eb0",
+      "PR-111": {
+        "config_sha256": "5c28bf7b1d954a6101dda24776663de19253f5e40e80dd9b3ecd0a27c5c9150c"
+      }
+    },
+    "references": {
+      "obs-00b54d625e023c8326ac07cdd87d135fbb8b9586ac469f632dc4286d5827fd10": [
+        {
+          "kind": "research",
+          "id": "research-668053b00c3a3cd4"
+        }
+      ],
+      "obs-033cdb9f4a637ae8e699966d00615cc0ca371e322678cf944b7a3c992ff78aa3": [
+        {
+          "kind": "pending_best_shot",
+          "id": "PR #111:best-1791807945083"
+        }
+      ],
+      "obs-08fdba05eef691bf61fb2cc562288eef48ddfed03e399045fcddfe8708fe885a": [
+        {
+          "kind": "research",
+          "id": "research-1474b3cbe7710440"
+        }
+      ],
+      "obs-09a0f4d22601db11946b1b89434dae6144ba4f4cf4298925520e63d2b680472b": [
+        {
+          "kind": "best_shot",
+          "id": "best-2026-07-yamadoritakemodoki-01"
+        }
+      ],
+      "obs-09fd5486a2103c22f53c2ac6209e5a75fa074630d96b0e060b637d7f2320d0ef": [
+        {
+          "kind": "research",
+          "id": "research-a5374e2993f7b5ef"
+        }
+      ],
+      "obs-0ea6d6b4f9bbf5fd909276970c27f7fbabf507bb10a0727815ea99e753eb412b": [
+        {
+          "kind": "research",
+          "id": "research-28b5c127d65b5125"
+        }
+      ],
+      "obs-138f71522676647874cfd8be87612b6d7b4e766d54507082ca0867a7b4e91d29": [
+        {
+          "kind": "research",
+          "id": "research-ba6f55c735d0f6a0"
+        }
+      ],
+      "obs-146ed68681aeda67c0eb185dff7490d333debd91f69c8ef541c49a3b0740cca3": [
+        {
+          "kind": "research",
+          "id": "research-1cf3ed7b7815550b"
+        }
+      ],
+      "obs-18c011d93f338ffdb7e2d72ddff8225ee755779416efcd97f3f26e96e0262570": [
+        {
+          "kind": "research",
+          "id": "research-49cec15302dd11db"
+        }
+      ],
+      "obs-19a0824e5104590af3885be0187c79a030de2b57dd2388feffabd720bebe860d": [
+        {
+          "kind": "curated_page",
+          "id": "test-thumbnails.html"
+        }
+      ],
+      "obs-1d172305fde6d5ff6639b1a73b8982415212ff466500e6ae9a8416550e442a93": [
+        {
+          "kind": "pending_best_shot",
+          "id": "PR #111:best-1791809625366"
+        }
+      ],
+      "obs-1e436f9f425f2c1cbe4fbb28145b6415f54411202eb65deaa395e330d96e4916": [
+        {
+          "kind": "research",
+          "id": "research-e2679bc07f6c375b"
+        }
+      ],
+      "obs-1ee7e93cf0cb4389d867bdedf05b7f661632e8d158ea53599116f1243cecaaca": [
+        {
+          "kind": "research",
+          "id": "research-c08f3c81d56d67b7"
+        }
+      ],
+      "obs-22e0f578d38be72403e57d6763117c73abe9694eba4233e476ad1fa60920d35a": [
+        {
+          "kind": "research",
+          "id": "research-ed368befa5d43a9b"
+        }
+      ],
+      "obs-25556fc61d39c9846bcb9220aab9a2a9d6d70f52923a78ba4b71c4d42d0d645b": [
+        {
+          "kind": "research",
+          "id": "research-837a57d69b0ca77c"
+        }
+      ],
+      "obs-2c0dd85157d2e9e4cec8168a4eebc9705453ed97fc070bf5a676daddc88bab95": [
+        {
+          "kind": "research",
+          "id": "research-02b5e9c9e3332791"
+        }
+      ],
+      "obs-2d5958d52432bd24f982ee1979c890f3eac12878dceb86e70e8389832dd62fcb": [
+        {
+          "kind": "research",
+          "id": "research-57635376951b1c01"
+        }
+      ],
+      "obs-2e0d01b54f2c57af009f24de63de65a1f89e2377fa0ab38d0ad2223d169c410a": [
+        {
+          "kind": "research",
+          "id": "research-367181d1c59e3e64"
+        }
+      ],
+      "obs-30a21ccf4fa8886230480ab1245b215e21ef57fcfc5da59ba0ed70297a699f2d": [
+        {
+          "kind": "research",
+          "id": "research-136b75f4c71ef208"
+        }
+      ],
+      "obs-31268677d371c35d2d0f972fbb8807ec4230b5d4cdae2087dffcf585ae3ba20b": [
+        {
+          "kind": "research",
+          "id": "research-688bec98a170d558"
+        }
+      ],
+      "obs-366a00ceb8cbf8d895ede72bd0ea98a70c42100cbe3f16868dbdd4564c78a1e1": [
+        {
+          "kind": "research",
+          "id": "research-136b75f4c71ef208"
+        }
+      ],
+      "obs-37777789191ece729fddab1060c5f56a67d42eefdd0b3f4c40063cb992685187": [
+        {
+          "kind": "research",
+          "id": "research-7c84021e1e81747c"
+        }
+      ],
+      "obs-3865ca27cb2903fc7102003402aa4012a7dda2f3426ac35bc75805157d7443b7": [
+        {
+          "kind": "research",
+          "id": "research-367181d1c59e3e64"
+        }
+      ],
+      "obs-3a51c16a4dcc1cd3bd2c8a5a142f90bdf1a8cbd32a8da9b48f405180bbdef1c9": [
+        {
+          "kind": "pending_best_shot",
+          "id": "PR #111:best-1791809978741"
+        }
+      ],
+      "obs-3bfba459c2ddaba7ccb61de960fe2ca6365fac6711299f34ddd4a5c1f2cc47ac": [
+        {
+          "kind": "research",
+          "id": "research-3a52df32a00c3332"
+        }
+      ],
+      "obs-4412a8cb88a1b73a2dcecc84054d0b9477169243641421460741af21da6744c1": [
+        {
+          "kind": "research",
+          "id": "research-2607b5e4dfa7e408"
+        }
+      ],
+      "obs-47d3666e080fa73f7ebb5d2f491e3b7b178ef426342e2876c616399730ba2724": [
+        {
+          "kind": "research",
+          "id": "research-e18acdea61874fbe"
+        }
+      ],
+      "obs-481909ad50f28b5826e2c2e39bc88ea0691c6697b486eca0621bafed6c2c6372": [
+        {
+          "kind": "research",
+          "id": "research-1ed46f56c8192c2a"
+        }
+      ],
+      "obs-48b3a7588f9367ff1ea248eb14abc76ea64b98e606b59107611b622f44fa7eb0": [
+        {
+          "kind": "research",
+          "id": "research-1698d1de140f1f05"
+        }
+      ],
+      "obs-4b3e25c595bc7ff19707f0b5436b1d6c0271e2023fe6a5055761c6ceacc3cf0e": [
+        {
+          "kind": "research",
+          "id": "research-267ebea46c42b80c"
+        }
+      ],
+      "obs-50e871697b283aa5be603fd05f8e5265533c6512a835d77d684d6100c5e3c525": [
+        {
+          "kind": "best_shot",
+          "id": "best-2025-05-kiiro-suppontake-03"
+        }
+      ],
+      "obs-51db04297f7c4ea7a331026dca964c948c395a3e7f1ff989e8745dcfec8651c2": [
+        {
+          "kind": "research",
+          "id": "research-25c508197878011e"
+        }
+      ],
+      "obs-55f365ae7c6a2fbe0f033ed2403bd9b8912edaefc48c8c1fdb271b213c62f7ea": [
+        {
+          "kind": "research",
+          "id": "research-66504f8922af6d9c"
+        }
+      ],
+      "obs-5714ca4fa1cf6c4dd5cbcfac1d4dca62bde06bfbe9fd16f1ad449eca73fb057c": [
+        {
+          "kind": "research",
+          "id": "research-c60a64ea0db967a3"
+        }
+      ],
+      "obs-5b2e4bafba25edb3f505f23c36e11ed1158856b9151f741a198b3928d7db6a5e": [
+        {
+          "kind": "research",
+          "id": "research-9b3a6182ffb1bf81"
+        }
+      ],
+      "obs-5b34444988fa1071a19095db533a3c3e93586c1570f4b38e871ad93a4ef44cd6": [
+        {
+          "kind": "research",
+          "id": "research-f9cb62e956fa8604"
+        }
+      ],
+      "obs-5c1ad0012961887a5e929a45eadb979afe1efdc2a06f417c637ce8be2f6c7a85": [
+        {
+          "kind": "research",
+          "id": "research-ae849fa829dae956"
+        }
+      ],
+      "obs-5c38c2e86109555eab6d468fb4b0785ca0a16d301086d3fa97b83843b95c37a4": [
+        {
+          "kind": "research",
+          "id": "research-63b3c10913879d6d"
+        }
+      ],
+      "obs-5cee2237e0ad9720a45902831ce734c344809e8166022cd4e405ceb4d97566b4": [
+        {
+          "kind": "research",
+          "id": "research-5f31aea2f866bbbb"
+        }
+      ],
+      "obs-5d989a7a124d493311b69ffa6d984485ab345b7a6ccf5c789b5713bd5c570079": [
+        {
+          "kind": "research",
+          "id": "research-3a307dea4589e834"
+        }
+      ],
+      "obs-5f1c0088bef2568659d8a5ba386c96f94d110568ca31f8da6256a403e4f2d233": [
+        {
+          "kind": "research",
+          "id": "research-d4db39e0799bfaa8"
+        }
+      ],
+      "obs-6089e4652c3b29d8f97e5dbd59c781a16df21926d89fd2ab3c5d7c2adf306636": [
+        {
+          "kind": "research",
+          "id": "research-13147035b777ef4a"
+        }
+      ],
+      "obs-6323f588dbdeb03b6e7ff6c63a754fbdbb152ac59550c48da07e2d8bddf2ce9f": [
+        {
+          "kind": "research",
+          "id": "research-367181d1c59e3e64"
+        }
+      ],
+      "obs-653d10f8e4758d7cd69520e459af5205e4ccc13dc299c66a72a29aab2bd44fb3": [
+        {
+          "kind": "research",
+          "id": "research-ced86c4d18215449"
+        }
+      ],
+      "obs-6572876bd86b04f37d08d321f22fa74f0269e7d50586b6710b2210c3b65de094": [
+        {
+          "kind": "research",
+          "id": "research-abb11b5e5fbfec69"
+        }
+      ],
+      "obs-65866cedd0a5e3beeefd3a27e17562083a0abcf403e84a5120e127e0de4cffc8": [
+        {
+          "kind": "pending_best_shot",
+          "id": "PR #111:best-1791809085622"
+        }
+      ],
+      "obs-65e860f40aa3ed47202742ed76d9f7171730f76e8d27e5ba4eb63b989dfb3381": [
+        {
+          "kind": "research",
+          "id": "research-02b5e9c9e3332791"
+        }
+      ],
+      "obs-67c979180ad51c2d220b9cddccf9711dd23313b4bc0e285bd10f448094d1644b": [
+        {
+          "kind": "research",
+          "id": "research-02b5e9c9e3332791"
+        }
+      ],
+      "obs-69fadb134d598d7cb8ab06b7214fac28f317880bb8f83c3912aa7b3237f65178": [
+        {
+          "kind": "research",
+          "id": "research-6cd6aee5bdb97aa1"
+        }
+      ],
+      "obs-6aabf9e66fd99dcdefe68c5378ff156d43eabec609ebaf25348bbaba62693a8e": [
+        {
+          "kind": "research",
+          "id": "research-a144e6eb8aed41a0"
+        }
+      ],
+      "obs-6dbe0cd12a2d913a73881d95a393b092c21c5af7ce31c4a083c87527f590bb45": [
+        {
+          "kind": "research",
+          "id": "research-0b06d6c3dee3592b"
+        }
+      ],
+      "obs-70691a38a1957104f82583743da4874d5c6d6221ad6b27967cbc2c54d6316494": [
+        {
+          "kind": "research",
+          "id": "research-f441dc6640bab1fc"
+        }
+      ],
+      "obs-712e8a9c21a827815c75713339c5333471cec5730ff62a5e41719ec04d7ed283": [
+        {
+          "kind": "research",
+          "id": "research-02b5e9c9e3332791"
+        }
+      ],
+      "obs-72bcf3ff66ee099748c4b9152351be7a42db20a6d8724fd045a00d5be5ff4676": [
+        {
+          "kind": "research",
+          "id": "research-96f02add14e941e9"
+        }
+      ],
+      "obs-7583c097b94bc2e5b3d9e19ec0436709751c2c23431df74e2678a7141320b7be": [
+        {
+          "kind": "research",
+          "id": "research-426017a92f952255"
+        }
+      ],
+      "obs-75b45776a01eaa906badbaf170f43b69b8465c5ff2be44fba9012f784c444d7c": [
+        {
+          "kind": "research",
+          "id": "research-367181d1c59e3e64"
+        }
+      ],
+      "obs-7aadeb03e86360498293db31b4f042810070972030bf449580fb2b1c997bfbcf": [
+        {
+          "kind": "research",
+          "id": "research-136b75f4c71ef208"
+        }
+      ],
+      "obs-7fe8b43ddf8ff131367ceec61362d98aa9fd20c49a37bb3c21c356d2555b27ab": [
+        {
+          "kind": "research",
+          "id": "research-f9cb62e956fa8604"
+        }
+      ],
+      "obs-8024a147947cc70e57af75a86260c97f0dbf8e5cb5929d2fd7c9f9c9b2450ad6": [
+        {
+          "kind": "research",
+          "id": "research-7c84021e1e81747c"
+        }
+      ],
+      "obs-806dbf6da7aeb66de1f01fb6fd4dcd65144f5e0d8d89a986fffdc322ab71feea": [
+        {
+          "kind": "research",
+          "id": "research-136b75f4c71ef208"
+        }
+      ],
+      "obs-8213f6da5a9774ea03e8bee2c76a2d7a23f3c95890b64ea8a3b86dcf319ce05a": [
+        {
+          "kind": "pending_best_shot",
+          "id": "PR #111:best-1791809225878"
+        }
+      ],
+      "obs-82b56aadf0221e8ad3c5931bc1495d850fe1de7d1b6fc951a246d08816f6131d": [
+        {
+          "kind": "research",
+          "id": "research-34838a8326096f9a"
+        }
+      ],
+      "obs-85dd48b3dcaaffc6e0c986e41c0d2cc154eff88260047a33c8cb613b774b8113": [
+        {
+          "kind": "research",
+          "id": "research-a144e6eb8aed41a0"
+        }
+      ],
+      "obs-87fa70cf88bf584c315b452899c54a1426d784d2fb6aa9beede5b38d2a98a7c6": [
+        {
+          "kind": "research",
+          "id": "research-f9cb62e956fa8604"
+        }
+      ],
+      "obs-9106586a953905b345beb41f21c10a27bbfc7214e47de888c74ecd2627ce97c1": [
+        {
+          "kind": "research",
+          "id": "research-5f31aea2f866bbbb"
+        }
+      ],
+      "obs-936d9ce6cbffefed1c1a76917b6008dfecf16402c16712859f44f67229844196": [
+        {
+          "kind": "research",
+          "id": "research-e5099589af4ffca9"
+        }
+      ],
+      "obs-9495ad04755d49abe5ee78e2628218cb4b3a6139eb9edb77b371b91073e5a169": [
+        {
+          "kind": "research",
+          "id": "research-1eb36b647ced8c3b"
+        }
+      ],
+      "obs-971704fd4e17f27f2225a7d3c7d1d0385956745d9a14003f2451ab6ac678800c": [
+        {
+          "kind": "research",
+          "id": "research-19de152f1e7b1d28"
+        }
+      ],
+      "obs-9e96d0b646575b730cbf513f9d53da026ada6649bba4537e1a53da1184631f08": [
+        {
+          "kind": "research",
+          "id": "research-7c20e18edeb8b4f5"
+        }
+      ],
+      "obs-a0a86422a46b20a3332ea5675dff0429a0d9243ed0795123b726d41fe582a56c": [
+        {
+          "kind": "research",
+          "id": "research-13147035b777ef4a"
+        }
+      ],
+      "obs-a4bedaf5153723ce3685d0aec26fa1437cc6c52cb83dfdea01b6c2a0df5235ae": [
+        {
+          "kind": "research",
+          "id": "research-a144e6eb8aed41a0"
+        }
+      ],
+      "obs-a78e9165529912bb1f6b835bced7427c51b7dca2fcc085afc6ca5459f7578d98": [
+        {
+          "kind": "research",
+          "id": "research-a144e6eb8aed41a0"
+        }
+      ],
+      "obs-a7c9e61142d96724f7c656fea0fdc8a03c444180bfa249b250cf2e602b3cb435": [
+        {
+          "kind": "research",
+          "id": "research-735d7503a028f0d3"
+        }
+      ],
+      "obs-a8b693fc53149d44b115b8bdcb259b815f9378f4b455d1ff167668da434a5b04": [
+        {
+          "kind": "annual_best",
+          "id": "best-2025-10-benitengutake-02"
+        }
+      ],
+      "obs-ac3a2cbf8c2b557ad238357a53706d1c750b7bcc1018351ab24847149bf7f3e5": [
+        {
+          "kind": "research",
+          "id": "research-b310988766fcf048"
+        }
+      ],
+      "obs-ad82c7298796185294fb2d8e5c6f51d378e37875d94cf70c96f1a05c5b0c689a": [
+        {
+          "kind": "research",
+          "id": "research-8a636af14b645408"
+        }
+      ],
+      "obs-aee3a3ab873ba824fa31256e39f1327ceb996c3e9a616f5394f206bfb0819737": [
+        {
+          "kind": "research",
+          "id": "research-a7fd6f724a0ac5cc"
+        }
+      ],
+      "obs-b65bc66594a331b3fb0e79f41dbfe9d2b8c5e94bdd826c49b1a6b26472f12e51": [
+        {
+          "kind": "research",
+          "id": "research-940496f1ccdb136f"
+        }
+      ],
+      "obs-b7770e5b1d681f50daed740c75f8a0cb9812559296da3827d8ab4e86e4158bdf": [
+        {
+          "kind": "research",
+          "id": "research-ed368befa5d43a9b"
+        }
+      ],
+      "obs-b873bc5f004f1964c46c81b39fe6adc4d9e01150c920654acf8ae549200ff0f0": [
+        {
+          "kind": "research",
+          "id": "research-02b5e9c9e3332791"
+        }
+      ],
+      "obs-bb37eda04fdfd467722529ea075ea289b448356d904c787ae971b189daa22500": [
+        {
+          "kind": "curated_page",
+          "id": "test-thumbnails.html"
+        }
+      ],
+      "obs-bcae3eaca4a841940965ab9a60227ea8e7fcc8992ebe0032de2e6d5b020cf765": [
+        {
+          "kind": "research",
+          "id": "research-66504f8922af6d9c"
+        }
+      ],
+      "obs-c4a1fe32d4edc3e165d5f655cc548def26be706bb8829e6255dd51ea85bdd673": [
+        {
+          "kind": "research",
+          "id": "research-8ade349609689d38"
+        }
+      ],
+      "obs-c547e1cdd6c9640e0e14c471441fca88d6563afccedcc3a50c5463de1d53a764": [
+        {
+          "kind": "research",
+          "id": "research-4bb986c28e6942da"
+        }
+      ],
+      "obs-c717f626d4267062d0c07a063bac5fa3e52c5f99098473ef1690b32faa558b21": [
+        {
+          "kind": "research",
+          "id": "research-9b3a6182ffb1bf81"
+        }
+      ],
+      "obs-c723221868e34a4fde86d02efd34f0770738f6682aa50351c64c8d2f095c4a65": [
+        {
+          "kind": "research",
+          "id": "research-034f45a913064038"
+        }
+      ],
+      "obs-c7921bf9bf46d26bd448bec57b35d9307b4354fe1942150fff480d4f0928b983": [
+        {
+          "kind": "curated_page",
+          "id": "test-thumbnails.html"
+        }
+      ],
+      "obs-cac8862e07d75a9885b8d727a7ae9a309e91c33e3039592f60d1f32787e0402e": [
+        {
+          "kind": "research",
+          "id": "research-a144e6eb8aed41a0"
+        }
+      ],
+      "obs-cce46f71a161b8b930493b0ea14dc50b312702a7d7762a559f0b6b4ef33969c0": [
+        {
+          "kind": "research",
+          "id": "research-367181d1c59e3e64"
+        }
+      ],
+      "obs-ce559c0a0a6470380afdcb792ab2ed5d7af264ce9e445b8fd37fff8826638b2b": [
+        {
+          "kind": "research",
+          "id": "research-f9cb62e956fa8604"
+        }
+      ],
+      "obs-cf996ad9ea66c83471e31ab8a3f46e240165e31deee1079656f59c849baaa212": [
+        {
+          "kind": "research",
+          "id": "research-ba6f55c735d0f6a0"
+        }
+      ],
+      "obs-d0c48db66dab6a6e6c7b5a312945fcd5e2246b56bbd230b4c21023f68224a336": [
+        {
+          "kind": "pending_best_shot",
+          "id": "PR #111:best-1791810118964"
+        }
+      ],
+      "obs-d403154a067d3253fe62d01eb2b496075a95a08e0af911b09b7cf6aaf9bb2acb": [
+        {
+          "kind": "research",
+          "id": "research-66504f8922af6d9c"
+        }
+      ],
+      "obs-d77f9fa1ff24c205a1fc7c7724984d3dd369da98b0f14cf6cd2eaf7cce565762": [
+        {
+          "kind": "research",
+          "id": "research-9b3a6182ffb1bf81"
+        }
+      ],
+      "obs-dddc25ba3cdd30113666c59dd31ced33c0bbd70723ee50e3c46530074ed9700c": [
+        {
+          "kind": "pending_best_shot",
+          "id": "PR #111:best-1791808732359"
+        }
+      ],
+      "obs-e018bfa32f65a29d178ba17f24363e34935c52439a3c6369cbc3b3e36f162f0e": [
+        {
+          "kind": "research",
+          "id": "research-97ddafc64c8cffcc"
+        }
+      ],
+      "obs-e0b80f8ee3d20af2073767d2e85bd720882595a48423778a59eee3162562d4f7": [
+        {
+          "kind": "research",
+          "id": "research-16842217afcce574"
+        }
+      ],
+      "obs-e4cfbce22e4228b502a5b735846461052e257469fc3e5cc83c59a17318487455": [
+        {
+          "kind": "research",
+          "id": "research-7161236cd5d72c4f"
+        }
+      ],
+      "obs-e4dde03fe6c2ca2275e654f82fe45098de926c832f0ae548036e99586dcb696e": [
+        {
+          "kind": "research",
+          "id": "research-cc0f8267ce2af5b2"
+        }
+      ],
+      "obs-e57e6ba0aec3b60a9adf843c580ba74ec34f1c8d6b2cbc20fa1f9470e13d6f43": [
+        {
+          "kind": "research",
+          "id": "research-f96fb935dd4b5540"
+        }
+      ],
+      "obs-e69dea18f57a2898bc782dc39208505d272b931c8648504c0813af29a60173c1": [
+        {
+          "kind": "research",
+          "id": "research-136b75f4c71ef208"
+        }
+      ],
+      "obs-e959d380e8e96b15cd9d0895a7bc445bf6bffe680688862b9e6f9df2ae8aed8f": [
+        {
+          "kind": "pending_best_shot",
+          "id": "PR #111:best-1791809536857"
+        }
+      ],
+      "obs-ec80ea8823c0795b24eafd4443ae3bc4df582d781ee0168e73b709c09fbde800": [
+        {
+          "kind": "research",
+          "id": "research-f9cb62e956fa8604"
+        }
+      ],
+      "obs-ee5da0df242e5f3e1138562191678315ad424561f6e5e5fc7b04578451e17166": [
+        {
+          "kind": "research",
+          "id": "research-1dfe93422c63837f"
+        }
+      ],
+      "obs-ef05bee972226bb5936d935d7379d98cdd25de9e83fe1450c9027392b6d29fb3": [
+        {
+          "kind": "research",
+          "id": "research-b3240df0f68131b0"
+        }
+      ],
+      "obs-ef8264b79eaec38e349fb15274283dcc21698b7dae79edf9ff8bc42542ea074b": [
+        {
+          "kind": "research",
+          "id": "research-96f02add14e941e9"
+        }
+      ],
+      "obs-ef9da065b98003441075e44e6dca83adb4dba1ab428be07e6ac4b7c44494c989": [
+        {
+          "kind": "research",
+          "id": "research-d4206232dc160fdd"
+        }
+      ],
+      "obs-f04b61c10b376535a82a57133a58cb49efe5509a187ff1e20ed3405448860c0a": [
+        {
+          "kind": "research",
+          "id": "research-f9cb62e956fa8604"
+        }
+      ],
+      "obs-f061adaf23d6b78a11dd6be983f2c25aac0a001891534800635b98c068d66545": [
+        {
+          "kind": "research",
+          "id": "research-727dbbbbd63c322f"
+        }
+      ],
+      "obs-f15be13088e0cb1a624e1518ce20a33443e77b3e77a3d6d3f8fa4d3fae12c8fe": [
+        {
+          "kind": "research",
+          "id": "research-15153300844d02a7"
+        }
+      ],
+      "obs-f1bfbf197f845d2a78241178049816ab9fbf96d2c7ac55168881136cfb8a61ff": [
+        {
+          "kind": "research",
+          "id": "research-a144e6eb8aed41a0"
+        }
+      ],
+      "obs-f39857a61bd75b2a09625cc7d17d3b03f150c60d1e94ff407dddbb2a35a1c5f6": [
+        {
+          "kind": "research",
+          "id": "research-3a52df32a00c3332"
+        }
+      ],
+      "obs-f4a3e1da4cd93252af7196d8d363c6d8dc4f743a4a24a1b983297757ed082970": [
+        {
+          "kind": "research",
+          "id": "research-3d251e332673710a"
+        }
+      ],
+      "obs-f4c961540a962ba28eb5863e8a7f763c14466dd0e34d7f8281e0618086b7f489": [
+        {
+          "kind": "research",
+          "id": "research-9b3a6182ffb1bf81"
+        }
+      ],
+      "obs-f5108863100f7627ccbb8d194572b553a0a6fdd4812266daec5566f205be8d3e": [
+        {
+          "kind": "research",
+          "id": "research-c60a64ea0db967a3"
+        }
+      ],
+      "obs-f5ac8bb059099caa71ef8000fb6eb715bc443220d33b2a5ffe171e908cd0c5fb": [
+        {
+          "kind": "research",
+          "id": "research-b310988766fcf048"
+        }
+      ],
+      "obs-f5f9eee9d72bcee0d985f670ea9332901fa5eb03b8c00f73af1ee5a246169c31": [
+        {
+          "kind": "research",
+          "id": "research-34838a8326096f9a"
+        }
+      ],
+      "obs-fb95de2d8edda899d3c6b699e79f0980f6b2b99d352f2476ec8468cc47f6539d": [
+        {
+          "kind": "research",
+          "id": "research-4d1dbf0021730989"
+        }
+      ],
+      "obs-fd1e8788487bf7d17b445943e7ed96412daabc52d638236fb064ed5467e1e883": [
+        {
+          "kind": "pending_best_shot",
+          "id": "PR #111:best-1791810041879"
+        }
+      ],
+      "obs-ffc33e1b6fe125ae714c5e13043b6165141022cba3c56b45fb9c7675eff1ce6d": [
+        {
+          "kind": "research",
+          "id": "research-97ddafc64c8cffcc"
+        }
+      ]
+    },
+    "sha256": "0ab1b1b777af03e061f1f6d1faa7dd1af7b1a74f6f4f17e7ae22caebdffea364"
+  },
+  "publication": "NOT_ATTEMPTED"
+}
