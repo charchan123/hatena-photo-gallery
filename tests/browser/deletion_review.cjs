@@ -61,5 +61,5 @@ function fixtures(){return {csrf:'fixture-token',observations:[],best_shots:{ver
  await mp.reload();await mp.waitForSelector('#cards .card');await mp.click('[data-page=deletions]');await mp.waitForSelector('.deletion-card');
  check(await mp.inputValue('[name=deletion-reason]'),'管理者の判断を待つ');check(m.writes.length,1);check(m.issues,[]);
  if(out)await mp.screenshot({path:path.join(out,'mobile-research-approval.png'),fullPage:true});
- await d.context.close();await m.context.close();await browser.close();console.log(`PASS: ${assertions} Chromium deletion-review assertions (desktop, keyboard, touch; isolated fixtures)`);
+ if(!process.env.CHROMIUM_SINGLE_PROCESS)await d.context.close();if(!process.env.CHROMIUM_SINGLE_PROCESS)await m.context.close();await browser.close();console.log(`PASS: ${assertions} Chromium deletion-review assertions (desktop, keyboard, touch; isolated fixtures)`);
 })().catch(e=>{console.error(e);process.exitCode=1});

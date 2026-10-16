@@ -115,7 +115,7 @@ const fixtures=()=>({csrf:'fixture-only',observations:records,best_shots:{versio
  await p.locator('#best-list .item').nth(1).getByRole('button',{name:'編集・写真差し替え'}).click();
  await p.click('#dialog-save');await p.waitForFunction(()=>!document.querySelector('#editor').open);check(d.writes.at(-1).body.changes,{});check('location' in d.app.best_shots.entries[1],false);check('annual_comment' in d.app.best_shots.entries[1],false);
  await p.locator('#best-list .item').nth(1).getByRole('button',{name:'編集・写真差し替え'}).click();await p.fill('#photo-search','べにて');await select(p,'obs-5');await p.click('#dialog-save');await p.waitForFunction(()=>!document.querySelector('#editor').open);check(d.writes.at(-1).body.changes,{observation_id:'obs-5',order:1});
- check(d.issues,[]);await d.context.close();
+ check(d.issues,[]);if(!process.env.CHROMIUM_SINGLE_PROCESS)await d.context.close();
  const t=await setup({viewport:{width:390,height:844},hasTouch:true,isMobile:true}),mobile=t.page;
  await open(mobile);await mobile.fill('#photo-search','べにて');
  await candidate(mobile,'obs-2').getByRole('button',{name:'拡大して確認',exact:true}).tap();check(await mobile.locator('[name=observation_id]').inputValue(),'');check(t.writes.length,0);check(await mobile.locator('.photo-preview').isVisible(),true);
@@ -124,6 +124,6 @@ const fixtures=()=>({csrf:'fixture-only',observations:records,best_shots:{versio
  await mobile.getByRole('button',{name:'月内順序を1減らす',exact:true}).tap();check(await mobile.locator('#dialog-save').isDisabled(),true);
  const bounds=await mobile.locator('#editor').evaluate(e=>({fits:e.scrollWidth<=e.clientWidth,width:e.getBoundingClientRect().width}));check(bounds.fits,true);assert.ok(bounds.width<=390);assertions++;
  if(out)await mobile.screenshot({path:path.join(out,'mobile-order-error.png')});
- check(t.issues,[]);await t.context.close();await browser.close();
+ check(t.issues,[]);if(!process.env.CHROMIUM_SINGLE_PROCESS)await t.context.close();await browser.close();
  console.log(`Best Shot real Chromium browser: ${assertions} assertions passed (desktop mouse/keyboard, IME event simulation, touch emulation; isolated API/image fixtures)`);
 })().catch(e=>{console.error(e);process.exit(1)});
