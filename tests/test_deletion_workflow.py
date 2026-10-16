@@ -8,12 +8,15 @@ def test_daily_keeps_atomic_deploy_after_durable_guard():
     workflow=yaml.safe_load((ROOT/'.github/workflows/generate.yml').read_text())
     assert workflow['concurrency']=={'group':'hatena-gallery-publication','cancel-in-progress':False}
     assert workflow['jobs']['build']['if']=="github.ref == 'refs/heads/main'"
+    assert workflow['env']['SAFE_PHOTO_DELETION_PUBLISH_ENABLED']=='false'
     steps=workflow['jobs']['build']['steps']
     generation=next(s for s in steps if '--safe-deletions' in s.get('run',''))
     assert generation['if']=='always()'
     assert '--deletion-preview' not in generation['run']
     deployment=next(s for s in steps if s.get('uses','').startswith('JamesIves/'))
-    assert 'if' not in deployment # GitHub's default success() gating remains.
+    assert deployment['if']=="success() && env.SAFE_PHOTO_DELETION_PUBLISH_ENABLED == 'true'"
+    assert '--deletion-observe-only' in generation['run']
+    assert 'SAFE_PHOTO_DELETION_PUBLISH_ENABLED' in generation['run']
     assert steps.index(generation)<steps.index(deployment)
     assert deployment['with']['branch']=='gh-pages'
     assert workflow['permissions']['pull-requests']=='read'

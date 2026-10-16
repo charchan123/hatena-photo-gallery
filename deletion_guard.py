@@ -19,13 +19,14 @@ def validate_ledger(records, portal, articles=None):
         ids={r['observation_id'] for r in portal['observations']};seen=set()
         for r in records:
             assert set(r)=={'candidate_id','observation_id','article_hash','url_hash','ordinal','kind','mode',
-                'baseline','baseline_commit','detected_at','applied_at','fingerprint','approval_id','history_head','sha256','automatic_addition_receipt'}
+                'article_url_hash','baseline','baseline_commit','detected_at','applied_at','fingerprint','approval_id','history_head','sha256','automatic_addition_receipt'}
             assert r['sha256']==payload_hash({k:v for k,v in r.items() if k!='sha256'})
             assert r['candidate_id'] not in seen;seen.add(r['candidate_id'])
-            for k in ('candidate_id','article_hash','url_hash','baseline','fingerprint','history_head'):
+            for k in ('candidate_id','article_hash','article_url_hash','url_hash','baseline','fingerprint','history_head'):
                 assert re.fullmatch('[0-9a-f]{64}',r[k])
             assert re.fullmatch('[0-9a-f]{40}',r['baseline_commit'])
             assert type(r['ordinal']) is int and r['ordinal']==0
+            assert r['candidate_id']==payload_hash({'baseline':r['baseline'],'key':[r['article_hash'],r['url_hash'],r['ordinal']]})
             assert r['kind'] in {'article_deleted','photo_deleted'} and r['mode'] in {'automatic','manual'}
             assert r['observation_id'] is None or (r['observation_id'] not in ids and re.fullmatch('obs-[A-Za-z0-9_-]{1,100}',r['observation_id']))
             assert r['approval_id'] is None if r['mode']=='automatic' else re.fullmatch('[0-9a-f]{64}',r['approval_id'])
@@ -38,7 +39,9 @@ def validate_ledger(records, portal, articles=None):
                 # Any reappearance, including an article with different images,
                 # or the same photo URL in a different article, needs review.
                 assert not any(im['url_hash']==r['url_hash'] for a in articles.values() for im in a['images'])
-                if r['kind']=='article_deleted':assert r['article_hash'] not in articles
+                if r['kind']=='article_deleted':
+                    assert r['article_hash'] not in articles
+                    assert all(a.get('article_url_hash')!=r['article_url_hash'] for a in articles.values())
     except (AssertionError,KeyError,TypeError,ValueError):raise SyncError('DELETION_RECEIPT_INVALID_OR_REAPPEARED') from None
     return records
 
@@ -51,12 +54,24 @@ class DeletionGuard:
         if not re.fullmatch('[0-9a-f]{40}',baseline_commit):raise SyncError('DELETION_BASELINE_COMMIT_INVALID')
         self.history=self.store.load(snapshot['payload'].get('deletion_history_head'))
         self.ledger=deepcopy(snapshot['payload'].get('deletions',[]));validate_ledger(self.ledger,previous,snapshot['payload']['articles'])
+        anchors={row['sha256']:i for i,row in enumerate(self.history)}
+        for receipt in self.ledger:
+            index=anchors.get(receipt['history_head'])
+            if index is None:raise SyncError('DELETION_RECEIPT_HISTORY_MISMATCH')
+            if not any(item['event']['kind']=='fetch' and item['event']['healthy'] and
+                item['event']['baseline']==receipt['baseline'] and
+                item['event']['baseline_commit']==receipt['baseline_commit'] and
+                item['event']['candidates'].get(receipt['candidate_id'])==receipt['fingerprint']
+                for item in self.history[:index+1]):raise SyncError('DELETION_RECEIPT_HISTORY_MISMATCH')
         self.manifests=load_approvals(root);self.pending=pending;self.recorded=False;self.targets=[];self.rows=[];self.results=set()
         carried={r['approval_id'] for r in self.ledger if r['approval_id']}
         self.active=[m for m in latest(self.manifests) if m['approval_id'] not in carried and m['baseline']==snapshot['sha256']]
         for m in self.manifests:
             for receipt in self.ledger:
-                if receipt['approval_id']==m['approval_id'] and receipt['candidate_id']!=m['candidate_id']:raise SyncError('DELETION_APPROVAL_RECEIPT_CHANGED')
+                if receipt['approval_id']==m['approval_id'] and (
+                    any(receipt[k]!=m[k] for k in ('candidate_id','fingerprint','baseline')) or
+                    m['action'] not in {'approve','archive_research','retire_research','approve_research_photo'} or
+                    instant(m['approved_at'])>instant(receipt['applied_at'])):raise SyncError('DELETION_APPROVAL_RECEIPT_CHANGED')
         if carried-{m['approval_id'] for m in self.manifests}:raise SyncError('DELETION_APPROVAL_HISTORY_MISSING')
 
     def prepare(self, articles, audit, excluded):
@@ -124,9 +139,11 @@ class DeletionGuard:
         # image references. Receipts themselves live only in snapshot metadata.
         removed_ids={r['observation_id'] for r in self.ledger+self.targets if r['observation_id']}
         removed_urls={r['url_hash'] for r in self.ledger+self.targets}
-        removed_urls.update(self.snapshot['payload']['articles'][r['article_hash']]['article_url_hash']
-            for r in self.targets if r['kind']=='article_deleted' and
-            self.snapshot['payload']['articles'][r['article_hash']].get('article_url_hash'))
+        removed_urls.update(r['article_url_hash'] for r in self.ledger if r['kind']=='article_deleted')
+        locations={digest(r['article']['article_id']):digest(r['article']['url'])
+            for r in self.previous['observations'] if r['article'].get('url')}
+        locations.update({aid:a['article_url_hash'] for aid,a in self.snapshot['payload']['articles'].items() if a.get('article_url_hash')})
+        removed_urls.update(locations[r['article_hash']] for r in self.targets if r['kind']=='article_deleted')
         urls=re.compile(r'https?://[^\s"\'<>\\]+')
         for path in Path(output).rglob('*'):
             if not path.is_file() or path.suffix not in {'.html','.json','.js','.css'}:continue
@@ -140,7 +157,7 @@ class DeletionGuard:
             first=next(e['event']['at'] for e in self.history if e['event']['candidates'].get(target['candidate_id'])==target['fingerprint'])
             m=approvals.get(target['candidate_id'])
             row={k:target[k] for k in ('candidate_id','observation_id','article_hash','url_hash','ordinal','kind','mode','fingerprint')}
-            row.update(baseline=self.snapshot['sha256'],baseline_commit=self.baseline_commit,detected_at=first,
+            row.update(article_url_hash=locations[target['article_hash']],baseline=self.snapshot['sha256'],baseline_commit=self.baseline_commit,detected_at=first,
                 applied_at=now,approval_id=m['approval_id'] if target['mode']=='manual' else None,
                 history_head=validate_history(self.history),automatic_addition_receipt=additions.get(target['observation_id']))
             row['sha256']=payload_hash(row);self.ledger.append(row)

@@ -19,7 +19,7 @@ async function loadDeletions(){
 function renderDeletions(){
  const s=deletionState;if(!s)return;
  const out=$('#deletion-list');out.replaceChildren();
- $('#deletion-summary').replaceChildren(node('p',`検出 ${s.rows.length}件 / 永続確認履歴 ${s.history_count}回`),node('p',`最終巡回 ${s.last_checked_at||'まだありません'} / 最終同期成功 ${s.last_success_at||'未確認'}`),node('p',s.live?'最新の公開記事と照合済み':'保存済みの検出です。承認には「公開記事を取得して再照合」が必要です。'),node('p','保護参照が残る写真の通常承認はできません。代替案は参照を自動変更しません。研究履歴は内部に保存し、非公開アーカイブと退役を区別します。'));
+ $('#deletion-summary').replaceChildren(node('p',`検出 ${s.rows.length}件 / 永続確認履歴 ${s.history_count}回`),node('p',`最終巡回 ${s.last_checked_at||'まだありません'} / 最終同期成功 ${s.last_success_at||'未確認'}`),node('p',s.live?'最新の公開記事と照合済み':'保存済みの検出です。承認には「公開記事を取得して再照合」が必要です。'),node('p','保護参照が残る写真の通常承認はできません。代替案は参照を自動変更しません。研究履歴は承認記録に保持します。アーカイブは公開ページから非表示にする操作で、公開GitHubの履歴には残ります。'));
  if(s.blocker_code){const alert=node('p',s.blocker_message,'error');alert.setAttribute('role','alert');$('#deletion-summary').append(alert);if(s.retired_review_ids?.length)$('#deletion-summary').append(node('p','再照合する退役ID：'+s.retired_review_ids.join('、'),'meta'));}
  if(!s.rows.length&&s.last_fetch_healthy===false)out.append(node('p','直近の取得・照合が安全停止しています。削除候補がないとは判断できません。保存された履歴を確認してください。','error'));
  else if(!s.rows.length)out.append(node('p','現在のsnapshotに対応する削除検出はありません。巡回履歴がない場合は、ライブ再照合で確認してください。'));
@@ -48,7 +48,7 @@ function renderDeletions(){
    if(value&&!value.failed){deletionPreview=null;$('#deletion-pr').disabled=true;await loadDeletions()}
   }));out.append(card);
  });
- $('#deletion-history').textContent=JSON.stringify(s.audit,null,2);
+ $('#deletion-history').textContent=JSON.stringify({decisions:s.audit,pr_attempts:s.pr_attempts||[]},null,2);
 }
 $('#deletion-refresh').onclick=async()=>{const value=await deletionRequest('/api/deletions/refresh',{live:false});if(value&&!value.failed){deletionState=value;deletionPreview=null;$('#deletion-pr').disabled=true;renderDeletions()}};
 $('#deletion-live').onclick=async()=>{const value=await deletionRequest('/api/deletions/refresh',{live:true});if(value&&!value.failed){deletionState=value;deletionPreview=null;$('#deletion-pr').disabled=true;renderDeletions()}};

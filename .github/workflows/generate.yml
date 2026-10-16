@@ -13,6 +13,11 @@ permissions:
   contents: write # Existing Pages deploy plus hash-only audit branch; no source writes.
   pull-requests: read
 
+# Reviewed rollout switch. Keep false during the first two observations.
+# Enable only in a separate reviewed change after explicit release approval.
+env:
+  SAFE_PHOTO_DELETION_PUBLISH_ENABLED: 'false'
+
 # Compare against the last publication, never two concurrent stale baselines.
 concurrency:
   group: hatena-gallery-publication
@@ -78,7 +83,11 @@ jobs:
           HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
           HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
         run: |
-          python article_sync.py --previous .sync-previous --safe-deletions
+          extra=()
+          if [ "$SAFE_PHOTO_DELETION_PUBLISH_ENABLED" != "true" ]; then
+            extra+=(--deletion-observe-only)
+          fi
+          python article_sync.py --previous .sync-previous --safe-deletions "${extra[@]}"
 
       - name: Save sanitized read-only sync report (including failures)
         if: always()
@@ -101,6 +110,7 @@ jobs:
           cp -r lightgallery/* output/lightgallery/
 
       - name: 📤 GitHub Pages にデプロイ
+        if: success() && env.SAFE_PHOTO_DELETION_PUBLISH_ENABLED == 'true'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: output

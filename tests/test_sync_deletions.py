@@ -282,3 +282,30 @@ def test_shared_url_deleted_from_every_article_is_still_ambiguous():
     rows=d.plan(s,p,current,audit(current),set(),protection())
     assert len(rows)==2
     assert all('URL_MOVED_OR_SHARED' in r['identity_issues'] for r in rows)
+
+
+def test_git_history_network_timeout_is_bounded_and_sanitized(tmp_path,monkeypatch):
+    import deletion_history
+    def timeout(*args,**kwargs):
+        assert kwargs['timeout']==60
+        raise subprocess.TimeoutExpired(args[0],60,stderr='PRIVATE_TRANSPORT_BODY')
+    monkeypatch.setattr(deletion_history.subprocess,'run',timeout)
+    with pytest.raises(sync.SyncError,match='^DELETION_HISTORY_STORAGE_UNAVAILABLE$'):GitHistory(tmp_path).load()
+
+
+def test_git_history_rejects_non_regular_event_blobs(tmp_path):
+    def git(*args,cwd=None,data=None):
+        return subprocess.check_output(['git',*args],cwd=cwd or tmp_path,text=True,input=data,stderr=subprocess.DEVNULL).strip()
+    bare=tmp_path/'remote.git';git('init','--bare',str(bare))
+    work=tmp_path/'work';git('init',str(work));git('remote','add','origin',str(bare),cwd=work)
+    p,s,current=fixture();rows,h,prot,at=ready(p,s,current)
+    store=GitHistory(work);store.load();store.save(h[:1])
+    event='events/00000001-'+h[0]['sha256']+'.json'
+    original=store.commit;git('read-tree',original,cwd=work)
+    blob=git('rev-parse',original+':'+event,cwd=work)
+    git('update-index','--cacheinfo','120000',blob,event,cwd=work)
+    tree=git('write-tree',cwd=work)
+    bad=git('-c','user.name=fixture','-c','user.email=fixture@example.test','commit-tree',tree,cwd=work,data='Fixture storage mode corruption\n')
+    git('fetch',str(work),bad,cwd=bare)
+    git('update-ref','refs/heads/sync-deletion-audit',bad,original,cwd=bare)
+    with pytest.raises(sync.SyncError,match='STORAGE_UNSAFE'):GitHistory(work).load()

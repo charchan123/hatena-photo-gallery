@@ -10,7 +10,7 @@ function fixtures(){return {csrf:'fixture-token',observations:[],best_shots:{ver
  const check=(actual,expected)=>{assert.deepEqual(actual,expected);assertions++};
  async function setup(options={}){
   const context=await browser.newContext(options),page=await context.newPage(),writes=[],issues=[];let failure=null;
-  const state={rows:[{candidate_id:cid,fingerprint:fp,observation_id:oid,gallery_name:'カワリハツ？',src:'https://photos.example.test/old.svg',article_title:'隔離fixtureの観察記事',article_url:'https://example.test/entry/1',kind:'photo_deleted',status:'approval_pending',identity_issues:[],mass_review:false,protection:[{kind:'research',id:'research-940496f1ccdb136f'}]}],live:true,history_count:2,audit:[],last_checked_at:'2026-10-15T00:00:00Z',last_success_at:'2026-10-13T00:00:00Z'};
+  const state={rows:[{candidate_id:cid,fingerprint:fp,observation_id:oid,gallery_name:'カワリハツ？',src:'https://photos.example.test/old.svg',article_title:'隔離fixtureの観察記事',article_url:'https://example.test/entry/1',kind:'photo_deleted',status:'approval_pending',identity_issues:[],mass_review:false,protection:[{kind:'research',id:'research-940496f1ccdb136f'}]}],live:true,history_count:2,audit:[],pr_attempts:[{branch:'admin/photo-deletion-fixture',status:'pending_remote'}],last_checked_at:'2026-10-15T00:00:00Z',last_success_at:'2026-10-13T00:00:00Z'};
   page.on('pageerror',e=>issues.push(e.message));
   await page.route('**/*',async route=>{
    const req=route.request(),url=new URL(req.url());
@@ -35,6 +35,7 @@ function fixtures(){return {csrf:'fixture-token',observations:[],best_shots:{ver
   return {context,page,state,writes,issues,fail:v=>failure=v};
  }
  const d=await setup({viewport:{width:1280,height:1000}}),p=d.page;
+ check(await p.locator('#deletion-history').textContent().then(s=>s.includes('admin/photo-deletion-fixture')),true);check(await p.locator('#deletion-summary').innerText().then(s=>s.includes('GitHub')),true);
  check(await p.locator('.deletion-card').count(),1);assert.match(await p.locator('.deletion-card').innerText(),/カワリハツ？[\s\S]*research-940496f1ccdb136f/);assertions++;
  await p.getByText('元画像を読み込めませんでした',{exact:true}).waitFor();check(d.writes.length,0);check(await p.locator('.deletion-body').evaluate(e=>e.getBoundingClientRect().width>500),true);
  await p.selectOption('[name=deletion-action]','archive_research');await p.fill('[name=deletion-reason]','研究履歴を残して非公開にする');await p.fill('[name=deletion-confirm]',oid);

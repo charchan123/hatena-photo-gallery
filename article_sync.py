@@ -325,7 +325,7 @@ def validate_references(portal, previous, data_directory):
 
 
 class SyncRun:
-    def __init__(self, previous_directory, report_path, *, safe_deletions=False, deletion_preview=False):
+    def __init__(self, previous_directory, report_path, *, safe_deletions=False, deletion_preview=False, deletion_observe_only=False):
         self.previous_directory = Path(previous_directory)
         self.report_path = Path(report_path)
         self.status = {"version": 1, "result": "BLOCKED", **compare_inventory(None, {}),
@@ -351,6 +351,7 @@ class SyncRun:
         self.name_migrations = NameMigrations(self.previous, self.previous_snapshot)
         from sync_adoptions import Adoptions
         self.adoptions = Adoptions(self.previous, self.previous_snapshot)
+        self.deletion_observe_only = deletion_observe_only
         self.deletions = None
         if self.previous_snapshot and "deletions" in self.previous_snapshot and not safe_deletions:
             raise SyncError("DELETION_HISTORY_GUARD_REQUIRED")
@@ -446,6 +447,8 @@ class SyncRun:
         if self.deletions:
             try:
                 self.deletions.prepare(self.articles, self.status["fetch_audit"], self.excluded_draft_hashes)
+                if self.deletion_observe_only:
+                    raise SyncError("DELETION_OBSERVATION_ONLY")
             finally:
                 self.status["deletions"] = self.deletions.summary()
         if before:
@@ -564,12 +567,13 @@ class SyncRun:
         write_json(self.report_path, self.status)
 
 
-def run(previous, output="output", report="cache/article-sync-report.json", *, safe_deletions=False, deletion_preview=False):
+def run(previous, output="output", report="cache/article-sync-report.json", *, safe_deletions=False, deletion_preview=False, deletion_observe_only=False):
     """Generate into an isolated candidate; failed builds never replace output."""
     import main
     sync = None
     try:
-        sync = (SyncRun(previous, report, safe_deletions=True, deletion_preview=deletion_preview) if safe_deletions else SyncRun(previous, report))
+        if deletion_observe_only and (not safe_deletions or deletion_preview):raise SyncError('DELETION_MODE_INVALID')
+        sync = (SyncRun(previous, report, safe_deletions=True, deletion_preview=deletion_preview, deletion_observe_only=deletion_observe_only) if safe_deletions else SyncRun(previous, report))
         output_path = Path(output).resolve()
         original_path = sync.previous_directory.resolve()
         if sync.retirement.initial and (output_path == original_path or output_path in original_path.parents):
@@ -614,7 +618,10 @@ def run(previous, output="output", report="cache/article-sync-report.json", *, s
         code = str(error) if isinstance(error, SyncError) else "FETCH_OR_GENERATION_ERROR"
         if sync and getattr(sync, "deletions", None):
             try:
-                sync.deletions.failure(code)
+                if code=="DELETION_OBSERVATION_ONLY":
+                    sync.deletions.outcome("OBSERVATION_ONLY", articles=sync.articles)
+                else:
+                    sync.deletions.failure(code)
             except Exception:
                 code = "DELETION_HISTORY_PERSISTENCE_FAILED"
             sync.status["deletions"] = sync.deletions.summary()
@@ -639,7 +646,9 @@ if __name__ == "__main__":
     parser.add_argument("--output", default="output")
     parser.add_argument("--report", default="cache/article-sync-report.json")
     parser.add_argument("--safe-deletions", action="store_true", help="Require durable independent evidence and protected-reference checks")
+    parser.add_argument("--deletion-observe-only", action="store_true", help="Persist real observations but forbid candidate generation and publication")
     parser.add_argument("--deletion-preview", action="store_true", help="Validate in temporary output; never replace output or write audit refs")
     args = parser.parse_args()
+    if args.deletion_observe_only and (not args.safe_deletions or args.deletion_preview): parser.error("--deletion-observe-only requires --safe-deletions and cannot be a preview")
     if args.deletion_preview and not args.safe_deletions: parser.error("--deletion-preview requires --safe-deletions")
-    raise SystemExit(run(args.previous, args.output, args.report, safe_deletions=args.safe_deletions, deletion_preview=args.deletion_preview))
+    raise SystemExit(run(args.previous, args.output, args.report, safe_deletions=args.safe_deletions, deletion_preview=args.deletion_preview, deletion_observe_only=args.deletion_observe_only))

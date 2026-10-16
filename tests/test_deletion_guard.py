@@ -280,3 +280,44 @@ def test_generated_tree_cannot_retain_deleted_article_or_escaped_photo_url(tmp_p
     value=old['article']['url'] if leak=='article' else old['src'].replace('/','\\/')
     (output/'old.json').write_text('"'+value+'"')
     with pytest.raises(sync.SyncError,match='RETIRED_REFERENCE_IN_OUTPUT'):guard.finish(effective,current,output,T)
+
+
+def test_retired_article_url_reuse_under_new_atom_id_is_blocked(tmp_path,monkeypatch):
+    p,s,current,prot,rows,h=setup(tmp_path,monkeypatch)
+    guard=g.DeletionGuard(p,s,BASE,tmp_path,'three',store=Store(h),pending=[])
+    effective=guard.prepare(current,audit(current),set());output=tmp_path/'out';output.mkdir()
+    ledger=guard.finish(effective,current,output,(d.instant(T)+timedelta(hours=8)).isoformat())
+    sealed=sync.seal_snapshot(current,effective,T,deletions=ledger,deletion_history_head=d.validate_history(guard.history))
+    reappeared=deepcopy(current)
+    # Different Atom ID and different photograph, but the same retired article URL.
+    reappeared[sync.digest('replacement-atom')]=entry('different-image')
+    reappeared[sync.digest('replacement-atom')]['article_url_hash']=s['payload']['articles'][sync.digest('article-0')]['article_url_hash']
+    again=g.DeletionGuard(effective,sealed,BASE,tmp_path,'four',store=Store(guard.history),pending=[])
+    with pytest.raises(sync.SyncError,match='REAPPEARED'):
+        again.prepare(reappeared,audit(reappeared),set())
+
+
+def test_retired_article_link_is_still_rejected_on_later_publication(tmp_path,monkeypatch):
+    p,s,current,prot,rows,h=setup(tmp_path,monkeypatch)
+    guard=g.DeletionGuard(p,s,BASE,tmp_path,'three',store=Store(h),pending=[])
+    effective=guard.prepare(current,audit(current),set());output=tmp_path/'out';output.mkdir()
+    ledger=guard.finish(effective,current,output,(d.instant(T)+timedelta(hours=8)).isoformat())
+    sealed=sync.seal_snapshot(current,effective,T,deletions=ledger,deletion_history_head=d.validate_history(guard.history))
+    again=g.DeletionGuard(effective,sealed,BASE,tmp_path,'four',store=Store(guard.history),pending=[])
+    again.prepare(current,audit(current),set())
+    (output/'stale.html').write_text('<a href="'+p['observations'][0]['article']['url']+'">old</a>')
+    with pytest.raises(sync.SyncError,match='RETIRED_REFERENCE_IN_OUTPUT'):
+        again.finish(effective,current,output,(d.instant(T)+timedelta(hours=8)).isoformat())
+
+
+def test_each_receipt_must_anchor_its_actual_candidate_in_persisted_history(tmp_path,monkeypatch):
+    p,s,current,prot,rows,h=setup(tmp_path,monkeypatch)
+    guard=g.DeletionGuard(p,s,BASE,tmp_path,'three',store=Store(h),pending=[])
+    effective=guard.prepare(current,audit(current),set());output=tmp_path/'out';output.mkdir()
+    ledger=guard.finish(effective,current,output,(d.instant(T)+timedelta(hours=8)).isoformat())
+    # Even a freshly resealed snapshot cannot excuse a bogus per-target anchor.
+    ledger[0]['history_head']='f'*64
+    ledger[0]['sha256']=sync.payload_hash({k:v for k,v in ledger[0].items() if k!='sha256'})
+    sealed=sync.seal_snapshot(current,effective,T,deletions=ledger,deletion_history_head=d.validate_history(guard.history))
+    with pytest.raises(sync.SyncError,match='RECEIPT_HISTORY_MISMATCH'):
+        g.DeletionGuard(effective,sealed,BASE,tmp_path,'four',store=Store(guard.history),pending=[])

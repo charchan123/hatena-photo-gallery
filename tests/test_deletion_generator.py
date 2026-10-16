@@ -3,6 +3,7 @@ from copy import deepcopy
 from datetime import timedelta
 from pathlib import Path
 import subprocess
+import pytest
 
 import article_sync as sync
 import deletion_guard as guard_module
@@ -19,12 +20,13 @@ def pin(directory):
     git('-c','user.name=fixture','-c','user.email=fixture@example.test','commit','-m','Pin fixture publication')
 
 
-def test_real_daily_generator_confirms_deletion_preserves_survivors_and_replays(tmp_path,monkeypatch):
+@pytest.mark.parametrize('observe_only',[False,True])
+def test_real_daily_generator_confirms_deletion_preserves_survivors_and_replays(tmp_path,monkeypatch,observe_only):
     ids=['A']+['B'+str(i) for i in range(11)]
     old=''.join(atom_entry(aid,src='https://images.example/'+aid+'.jpg') for aid in ids)
     changed=''.join(atom_entry(aid,src='https://images.example/'+aid+'.jpg') for aid in ids if aid!='B0')+atom_entry('NEW',src='https://images.example/NEW.jpg')
     draft=atom_entry('retired-fixture',draft='yes')
-    main,calls,previous=configure(monkeypatch,tmp_path,[feed(old+draft)]+[feed(changed+draft)]*3)
+    main,calls,previous=configure(monkeypatch,tmp_path,[feed(old+draft)]+[feed(changed+draft)]*4)
     report=tmp_path/'report.json';baseline=tmp_path/'baseline'
     assert sync.run(previous,baseline,report)==0,sync.read_json(report)
     # Exercise the seven-photo validator with a synthetic excluded draft ID.
@@ -52,10 +54,17 @@ def test_real_daily_generator_confirms_deletion_preserves_survivors_and_replays(
     monkeypatch.setattr(guard_module,'DeletionGuard',FixtureGuard)
     monkeypatch.setenv('GITHUB_RUN_ID','123');monkeypatch.setenv('GITHUB_RUN_ATTEMPT','1')
     output=tmp_path/'candidate'
-    assert sync.run(baseline,output,report,safe_deletions=True)==1
+    assert sync.run(baseline,output,report,safe_deletions=True,deletion_observe_only=observe_only)==1
     assert sync.read_json(report)['error_code']=='DELETION_CONFIRMATION_OR_APPROVAL_PENDING'
     assert not output.exists() and len(store.history)==2
     hour[0]=7;monkeypatch.setenv('GITHUB_RUN_ID','456')
+    if observe_only:
+        assert sync.run(baseline,output,report,safe_deletions=True,deletion_observe_only=True)==1
+        assert sync.read_json(report)['error_code']=='DELETION_OBSERVATION_ONLY'
+        assert not output.exists()
+        assert sync.read_json(baseline/'portal-data.json')==before
+        assert store.history[-1]['event']['outcome']=='OBSERVATION_ONLY'
+        hour[0]=8;monkeypatch.setenv('GITHUB_RUN_ID','789')
     assert sync.run(baseline,output,report,safe_deletions=True)==0,sync.read_json(report)
     current=sync.read_json(output/'portal-data.json');sealed=sync.read_json(output/'article-sync-snapshot.json')
     sync.validate_snapshot(sealed,current)
@@ -67,9 +76,9 @@ def test_real_daily_generator_confirms_deletion_preserves_survivors_and_replays(
     for name in ('index','new-top','records','season','features','research','best-shots','favorite'):
         assert (output/(name+'.html')).is_file()
     assert not (output/'admin').exists() and not (output/'sync-migrations').exists()
-    pin(output);hour[0]=8;monkeypatch.setenv('GITHUB_RUN_ID','789')
+    pin(output);hour[0]=9;monkeypatch.setenv('GITHUB_RUN_ID','999')
     again=tmp_path/'again'
     assert sync.run(output,again,report,safe_deletions=True)==0,sync.read_json(report)
     assert sync.read_json(again/'article-sync-snapshot.json')['payload']['deletions']==[receipt]
     assert {r['observation_id'] for r in sync.read_json(again/'portal-data.json')['observations']}==new_ids
-    assert len(calls)==4
+    assert len(calls)==(5 if observe_only else 4)

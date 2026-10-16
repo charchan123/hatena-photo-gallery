@@ -16,8 +16,11 @@ BRANCH = 'sync-deletion-audit'
 
 
 def git(*args, cwd=None, data=None, check=True):
-    p = subprocess.run(['git', *args], cwd=cwd, input=data, text=True,
-        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    try:
+        p = subprocess.run(['git', *args], cwd=cwd, input=data, text=True,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=60)
+    except (OSError,subprocess.TimeoutExpired):
+        raise SyncError('DELETION_HISTORY_STORAGE_UNAVAILABLE') from None
     if check and p.returncode: raise SyncError('DELETION_HISTORY_STORAGE_UNAVAILABLE')
     return p
 
@@ -38,7 +41,9 @@ class GitHistory:
             try:return json.loads(git('show',sha+':'+path,cwd=self.root).stdout)
             except (ValueError,TypeError):raise SyncError('DELETION_HISTORY_CORRUPT') from None
         index=read('head.json')
-        paths=git('ls-tree','-r','--name-only',sha,cwd=self.root).stdout.splitlines()
+        nodes=git('ls-tree','-r',sha,cwd=self.root).stdout.splitlines()
+        if any(not n.startswith('100644 blob ') for n in nodes):raise SyncError('DELETION_HISTORY_STORAGE_UNSAFE')
+        paths=[n.split('\t',1)[1] for n in nodes]
         event_paths=sorted(p for p in paths if p.startswith('events/'))
         if set(paths)!=set(event_paths)|{'head.json'}:raise SyncError('DELETION_HISTORY_STORAGE_UNSAFE')
         self.rows=[read(path) for path in event_paths]
@@ -63,8 +68,11 @@ class GitHistory:
         env.update(GIT_AUTHOR_NAME='kinoko sync audit', GIT_AUTHOR_EMAIL='audit@users.noreply.github.com',
                    GIT_COMMITTER_NAME='kinoko sync audit', GIT_COMMITTER_EMAIL='audit@users.noreply.github.com')
         def plumbing(*args, data=None):
-            p = subprocess.run(['git', *args], cwd=self.root, env=env, input=data,
-                text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            try:
+                p = subprocess.run(['git', *args], cwd=self.root, env=env, input=data,
+                    text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=60)
+            except (OSError,subprocess.TimeoutExpired):
+                raise SyncError('DELETION_HISTORY_STORAGE_UNAVAILABLE') from None
             if p.returncode: raise SyncError('DELETION_HISTORY_STORAGE_UNAVAILABLE')
             return p.stdout.strip()
         # One immutable event blob per run: avoid quadratic full-history files.

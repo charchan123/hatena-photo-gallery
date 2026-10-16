@@ -33,6 +33,8 @@ MESSAGES = {
     'DELETION_HISTORY_STORAGE_UNAVAILABLE':'確認履歴を取得できませんでした。削除は許可されていません。',
     'DELETION_LIVE_REVIEW_REQUIRED':'最新の公開記事を取得してから承認内容を確認してください。',
     'DELETION_EXPLICIT_CONFIRMATION_REQUIRED':'対象の観察写真IDを入力して、1件ずつ明示確認してください。',
+    'DELETION_OBSERVATION_ONLY':'導入確認モードです。取得履歴を保存しましたが、写真の削除と公開は実行していません。',
+    'DELETION_PR_RECOVERY_REQUIRED':'前回のDraft PR作成は結果が未確認です。履歴の専用ブランチをGitHubで確認してください。重複作成は停止しています。',
     'DELETION_PR_VALIDATION_BLOCKED':'実生成の安全検証が停止しました。他の承認待ちも含めて確認してください。',
 }
 
@@ -75,6 +77,8 @@ class DeletionReview:
 
     def protection_context(self, publication, source, pending):
         snapshot=publication['article-sync-snapshot.json'];portal=publication['portal-data.json']
+        from deletion_guard import validate_ledger
+        validate_ledger(snapshot['payload'].get('deletions',[]),portal,source['articles'])
         applied={r['approval_id'] for r in snapshot['payload'].get('deletions',[]) if r['approval_id']}
         active=[m for m in latest(load_approvals(self.root)) if m['baseline']==snapshot['sha256'] and m['approval_id'] not in applied]
         missing=[{'observation_id':r['observation_id']} for key,r in photo_keys(portal).items() if key not in occurrences(source['articles'])]
@@ -117,6 +121,7 @@ class DeletionReview:
         return {'rows':[{**r,'decision':self.state['decisions'].get(r['candidate_id'])} for r in self.rows],
             'live':self.live is not None,'history_count':sum(item['event']['kind']=='fetch' for item in self.history),'audit_record_count':len(self.history),
             'history_head':validate_history(self.history),'audit':self.state['audit'][-50:],
+            'pr_attempts':list(self.state.get('pr_attempts',{}).values()),
             'baseline':self.publication['article-sync-snapshot.json']['sha256'] if self.publication else None,
             'last_checked_at':last_fetch['at'] if last_fetch else None,
             'last_fetch_healthy':last_fetch['healthy'] if last_fetch else None,
@@ -239,6 +244,12 @@ class DeletionReview:
         import shutil
         import subprocess
         with LOCK:
+            persisted=read_json(self.path) if self.path.exists() else self.state
+            attempt=persisted.get('pr_attempts',{}).get(body['fingerprint'])
+            if attempt:
+                if attempt['status']=='created':
+                    return {'url':attempt['url'],'branch':attempt['branch'],'draft':True,'published':False,'local_audit_saved':True,'already_created':True}
+                raise SyncError('DELETION_PR_RECOVERY_REQUIRED')
             if not self.preview or not self.preview['ready'] or body['fingerprint']!=self.preview['fingerprint']:raise SyncError('DELETION_REVIEW_STALE')
             if not repository_status()['gh_authenticated']:raise SyncError('GITHUB_AUTH_REQUIRED')
             if run(['git','status','--porcelain']).stdout.strip():raise SyncError('CLEAN_CHECKOUT_REQUIRED')
@@ -284,6 +295,11 @@ class DeletionReview:
                 run(['git','fetch','origin','main','gh-pages']);self.assert_fresh()
                 if run(['git','rev-parse','origin/main']).stdout.strip()!=base:raise SyncError('DELETION_REVIEW_STALE')
                 run(['git','commit','-m','Review exact photo deletion and retain internal research history'],cwd=work)
+                # Reserve before the first remote write. An uncertain CLI/network
+                # outcome must never create another branch/PR on blind retry.
+                self.state.setdefault('pr_attempts',{})[body['fingerprint']]={'fingerprint':body['fingerprint'],
+                    'branch':branch,'status':'pending_remote','url':None}
+                self.save()
                 run(['git','push','-u','origin',branch],cwd=work)
                 body_file=directory/'body.md'
                 body_file.write_text('写真単位の明示承認です。保留と代替案は削除権限を与えません。\n\n'
@@ -293,6 +309,7 @@ class DeletionReview:
                     '\nDraft PRのみ。マージ・本番公開・ブログへの書込みは実行していません。\n',encoding='utf-8')
                 result=run(['gh','pr','create','--base','main','--head',branch,'--draft','--title','写真の個別削除承認と研究履歴の保持','--body-file',str(body_file)],cwd=work)
                 self.state['audit'].append({'at':datetime.now(timezone.utc).isoformat(),'event':'draft_pr_created','fingerprint':body['fingerprint']})
+                self.state['pr_attempts'][body['fingerprint']].update(status='created',url=result.stdout.strip())
                 self.preview=None
                 try:self.save();saved=True
                 except Exception:saved=False
