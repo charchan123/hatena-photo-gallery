@@ -11,7 +11,7 @@ from pathlib import Path
 import tempfile
 
 from article_sync import SyncError, payload_hash, read_json
-from sync_deletions import plan, select, validate_history
+from sync_deletions import plan, select, validate_history, occurrences, photo_keys
 from deletion_protection import collect, open_selections
 from deletion_history import GitHistory
 from deletion_approvals import validate, ACTIONS, archive_context, load as load_approvals, latest
@@ -73,6 +73,15 @@ class DeletionReview:
             connection.commit()
         finally:connection.close()
 
+    def protection_context(self, publication, source, pending):
+        snapshot=publication['article-sync-snapshot.json'];portal=publication['portal-data.json']
+        applied={r['approval_id'] for r in snapshot['payload'].get('deletions',[]) if r['approval_id']}
+        active=[m for m in latest(load_approvals(self.root)) if m['baseline']==snapshot['sha256'] and m['approval_id'] not in applied]
+        missing=[{'observation_id':r['observation_id']} for key,r in photo_keys(portal).items() if key not in occurrences(source['articles'])]
+        registry_before=archive_context(active,portal,read_json(self.root/'data/research-identifications.json'),
+            read_json(self.root/'data/mushroom-master.json'),missing)
+        return collect(portal,snapshot,self.root,pending,registry_before=registry_before),registry_before,active
+
     def refresh(self, live=False):
         with LOCK:
             if self.path.exists():
@@ -82,7 +91,7 @@ class DeletionReview:
             snapshot=self.publication['article-sync-snapshot.json'];portal=self.publication['portal-data.json']
             self.history=GitHistory(self.root).load(snapshot['payload'].get('deletion_history_head'))
             if live:
-                source=live_capture();protection=collect(portal,snapshot,self.root,open_selections())
+                source=live_capture();protection,self.registry_before,self.active=self.protection_context(self.publication,source,open_selections())
                 rows=plan(snapshot,portal,source['articles'],source['fetch_audit'],set(source['excluded_draft_hashes']),protection)
                 select(rows,snapshot,self.history,protection,datetime.now(timezone.utc).isoformat(),[m for m in latest(load_approvals(self.root)) if m['baseline']==snapshot['sha256']])
                 self.live=source;self.protection=protection
@@ -152,7 +161,7 @@ class DeletionReview:
                 if action=='approve_research_photo':
                     if not ids-missing:raise SyncError('DELETION_RESEARCH_CASE_WOULD_DISAPPEAR')
                 elif not ids<=missing:raise SyncError('DELETION_ARCHIVE_CASE_STILL_HAS_LIVE_PHOTOS')
-                registry=read_json(self.root/'data/research-identifications.json')
+                registry=self.registry_before or read_json(self.root/'data/research-identifications.json')
                 by_id={r['observation_id']:r for r in self.publication['portal-data.json']['observations']}
                 m.update(case_ids=refs,registry_before=registry,archives=[{'case':case,
                     'observations':[by_id[p['observation_id']] for p in case['photos']],
@@ -176,20 +185,36 @@ class DeletionReview:
         fresh=public_publication(refresh=True);source=live_capture()
         if fresh['publication_sha']!=self.publication['publication_sha'] or source['articles']!=self.live['articles']:
             raise SyncError('DELETION_REVIEW_STALE')
-        protection=collect(fresh['portal-data.json'],fresh['article-sync-snapshot.json'],self.root,open_selections())
+        protection,_,_=self.protection_context(fresh,source,open_selections())
         if protection['sha256']!=self.protection['sha256']:raise SyncError('DELETION_REVIEW_STALE')
 
     def files(self):
         if not self.live:raise SyncError('DELETION_LIVE_REVIEW_REQUIRED')
         decisions=[{k:v for k,v in d.items() if k not in {'note','stale'}} for d in self.state['decisions'].values() if not d.get('stale')]
         for d in decisions:validate(d)
-        files={'sync-migrations/photo-deletions/'+d['approval_id']+'.json':d for d in decisions}
-        archives=[d for d in decisions if d['archives']]
-        if archives:
-            before=archives[0]['registry_before'];ids={cid for d in archives if d['action']!='approve_research_photo' for cid in d['case_ids']}
+        existing=load_approvals(self.root)
+        files={}
+        for decision in decisions:
+            path='sync-migrations/photo-deletions/'+decision['approval_id']+'.json'
+            if (self.root/path).exists():
+                if read_json(self.root/path)!=decision:raise SyncError('DELETION_APPROVAL_HISTORY_EXISTS')
+            else:files[path]=decision
+        # A merged archive may still be awaiting publication. Replacing it with
+        # a hold must restore the active registry while retaining both capsules.
+        combined=latest(existing+[d for d in decisions if d['approval_id'] not in {m['approval_id'] for m in existing}])
+        snapshot=self.publication['article-sync-snapshot.json']
+        applied={r['approval_id'] for r in snapshot['payload'].get('deletions',[]) if r['approval_id']}
+        combined=[m for m in combined if m['baseline']==snapshot['sha256'] and m['approval_id'] not in applied]
+        capsules=[m for m in getattr(self,'active',[])+decisions if m['archives']]
+        if capsules:
+            before=capsules[0]['registry_before']
+            if any(m['registry_before']!=before for m in capsules):raise SyncError('DELETION_ARCHIVE_HISTORY_CHANGED')
+            ids={cid for m in combined if m['action'] in {'archive_research','retire_research'} for cid in m['case_ids']}
             after={**before,'identifications':[r for r in before['identifications'] if r['case_id'] not in ids]}
-            archive_context(archives,self.publication['portal-data.json'],after,read_json(self.root/'data/mushroom-master.json'),self.rows)
-            if before!=after:files['data/research-identifications.json']=after
+            archive_context(combined,self.publication['portal-data.json'],after,read_json(self.root/'data/mushroom-master.json'),self.rows)
+            from research_identifications import validate_registry
+            validate_registry(after,self.publication['portal-data.json'],read_json(self.root/'data/mushroom-master.json'))
+            if read_json(self.root/'data/research-identifications.json')!=after:files['data/research-identifications.json']=after
         return files
 
     def preview_changes(self):
@@ -197,7 +222,9 @@ class DeletionReview:
             self.assert_fresh();files=self.files()
             if not files:raise SyncError('DELETION_APPROVAL_INVALID')
             decisions=[v for k,v in files.items() if k.startswith('sync-migrations/')]
-            selected=select(deepcopy(self.rows),self.publication['article-sync-snapshot.json'],self.history,self.protection,datetime.now(timezone.utc).isoformat(),decisions)
+            merged=load_approvals(self.root)
+            effective=latest(merged+[m for m in decisions if m['approval_id'] not in {d['approval_id'] for d in merged}])
+            selected=select(deepcopy(self.rows),self.publication['article-sync-snapshot.json'],self.history,self.protection,datetime.now(timezone.utc).isoformat(),effective)
             negative_only=all(m['action'] in {'hold','propose_replacement'} for m in decisions)
             ready=len(selected)==len(self.rows) or negative_only
             self.preview={'fingerprint':payload_hash(files),'files':files,'published':False,'ready':ready,'negative_only':negative_only}

@@ -270,3 +270,15 @@ def test_curated_id_mapping_keys_and_unlisted_image_urls_are_protected(tmp_path,
     prot=collect(p,s,tmp_path,[]);row=d.plan(s,p,current,audit(current),set(),prot)[0]
     assert row['protection']==[{'kind':'curated_history','id':'data/curated.json'}]
     assert row['observation_id']==('obs-0' if by_key else None)
+
+
+def test_shared_url_deleted_from_every_article_is_still_ambiguous():
+    p,s,current=fixture()
+    # Both occurrences disappear together; the URL still cannot identify a
+    # unique source photograph or prove that it was not moved/replaced.
+    s['payload']['articles'][sync.digest('article-1')]['images']=deepcopy(s['payload']['articles'][sync.digest('article-0')]['images'])
+    p['observations'][1]['src']='url-0'
+    s=sync.seal_snapshot(s['payload']['articles'],p,T);current.pop(sync.digest('article-1'))
+    rows=d.plan(s,p,current,audit(current),set(),protection())
+    assert len(rows)==2
+    assert all('URL_MOVED_OR_SHARED' in r['identity_issues'] for r in rows)

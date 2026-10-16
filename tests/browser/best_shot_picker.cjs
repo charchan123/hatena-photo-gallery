@@ -18,7 +18,7 @@ const fixtures=()=>({csrf:'fixture-only',observations:records,best_shots:{versio
  counts:{best_shots:2,annual_years:1,research_open:0,research_identified:0,active_notices:0,master:0,sources:0,knowledge_batches:0},
  cases:[],identified:[],notices:[],master:[],knowledge:[],preview:{},repo:{gh_authenticated:false},feature_facets:{},portal_source:'isolated fixture',portal_observation_count:records.length});
 (async()=>{
- const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+ const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_EXECUTABLE_PATH,args:['--no-sandbox',...(process.env.CHROMIUM_SINGLE_PROCESS?['--single-process','--no-zygote','--disable-gpu']:[])]});
  let assertions=0;
  const check=(actual,expected)=>{assert.deepEqual(actual,expected);assertions++};
  async function setup(options={}){

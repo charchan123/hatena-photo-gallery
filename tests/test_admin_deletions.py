@@ -156,3 +156,31 @@ def test_http_routes_keep_origin_csrf_and_japanese_failure_contract(tmp_path,mon
         assert request('/deletions.js').headers['Content-Type'].startswith('text/javascript')
         assert len(server.draft.best_shots['entries'])==3
     finally:server.shutdown();server.server_close();thread.join()
+
+
+def test_merged_unpublished_archive_can_be_reviewed_and_replaced_with_hold(tmp_path,monkeypatch):
+    r,pub,live=review(tmp_path,monkeypatch,research=True,history_rows=True)
+    original=sync.read_json(tmp_path/'data/research-identifications.json')
+    r.decide(body(r.rows[0],'archive_research'))
+    files=r.files();manifest=next(v for k,v in files.items() if k.startswith('sync-migrations/'))
+    for path,value in files.items():sync.write_json(tmp_path/path,value)
+    # Simulate a reviewed merge while publication is still blocked. The old
+    # publication's identification reference must still bind every decision.
+    again=a.DeletionReview(tmp_path);again.refresh(live=True)
+    assert again.protection==r.protection
+    assert again.rows[0]['status']=='manual_eligible'
+    class Later:
+        @staticmethod
+        def now(tz=None):return d.instant(T)+timedelta(hours=9)
+    monkeypatch.setattr(a,'datetime',Later)
+    again.decide(body(again.rows[0],'hold'));proposed=again.files()
+    assert proposed['data/research-identifications.json']==original
+    hold=next(v for k,v in proposed.items() if k.startswith('sync-migrations/'))
+    assert hold['supersedes']==manifest['approval_id']
+    assert sync.read_json(tmp_path/'sync-migrations/photo-deletions'/(manifest['approval_id']+'.json'))==manifest
+    assert len(proposed)==2
+    for path,value in proposed.items():sync.write_json(tmp_path/path,value)
+    guard=__import__('deletion_guard').DeletionGuard(pub['portal-data.json'],pub['article-sync-snapshot.json'],BASE,tmp_path,'three',store=Store(r.history),pending=[])
+    with pytest.raises(sync.SyncError,match='CONFIRMATION_OR_APPROVAL_PENDING'):
+        guard.prepare(live['articles'],live['fetch_audit'],set())
+    assert sync.read_json(tmp_path/'data/research-identifications.json')==original

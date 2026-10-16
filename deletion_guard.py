@@ -124,11 +124,14 @@ class DeletionGuard:
         # image references. Receipts themselves live only in snapshot metadata.
         removed_ids={r['observation_id'] for r in self.ledger+self.targets if r['observation_id']}
         removed_urls={r['url_hash'] for r in self.ledger+self.targets}
+        removed_urls.update(self.snapshot['payload']['articles'][r['article_hash']]['article_url_hash']
+            for r in self.targets if r['kind']=='article_deleted' and
+            self.snapshot['payload']['articles'][r['article_hash']].get('article_url_hash'))
         urls=re.compile(r'https?://[^\s"\'<>\\]+')
         for path in Path(output).rglob('*'):
             if not path.is_file() or path.suffix not in {'.html','.json','.js','.css'}:continue
             if path.name in {'article-sync-snapshot.json','article-sync-status.json'}:continue
-            text=html.unescape(path.read_text(encoding='utf-8'))
+            text=html.unescape(path.read_text(encoding='utf-8')).replace('\\/','/')
             if any(oid in text for oid in removed_ids) or any(digest(u) in removed_urls for u in urls.findall(text)):
                 raise SyncError('DELETION_RETIRED_REFERENCE_IN_OUTPUT')
         approvals={m['candidate_id']:m for m in self.active}

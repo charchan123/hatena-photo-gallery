@@ -263,3 +263,20 @@ def test_case_continuation_cannot_remove_the_only_research_photo(tmp_path,monkey
     sync.write_json(tmp_path/'sync-migrations/photo-deletions'/(m['approval_id']+'.json'),m)
     guard=g.DeletionGuard(p,s,BASE,tmp_path,'three',store=Store(h),pending=[])
     with pytest.raises(sync.SyncError,match='CASE_WOULD_DISAPPEAR'):guard.prepare(current,audit(current),set())
+
+
+@pytest.mark.parametrize('leak',['article','escaped_image'])
+def test_generated_tree_cannot_retain_deleted_article_or_escaped_photo_url(tmp_path,monkeypatch,leak):
+    p,s,current,prot,rows,h=setup(tmp_path,monkeypatch)
+    # Use real URLs, as a generated public page would.
+    old=p['observations'][0];old['src']='https://photos.example/deleted.jpg'
+    aid=sync.digest(old['article']['article_id'])
+    s['payload']['articles'][aid]['images'][0]['url_hash']=sync.digest(old['src'])
+    s=sync.seal_snapshot(s['payload']['articles'],p,T)
+    prot=collect(p,s,tmp_path,[]);rows=d.plan(s,p,current,audit(current),set(),prot);h=[]
+    for run,hour in [('one',0),('two',7)]:h=d.append_event(h,d.event_for(rows,s,BASE,prot,current,run,(d.instant(T)+timedelta(hours=hour)).isoformat()))
+    guard=g.DeletionGuard(p,s,BASE,tmp_path,'three',store=Store(h),pending=[])
+    effective=guard.prepare(current,audit(current),set());output=tmp_path/'out';output.mkdir()
+    value=old['article']['url'] if leak=='article' else old['src'].replace('/','\\/')
+    (output/'old.json').write_text('"'+value+'"')
+    with pytest.raises(sync.SyncError,match='RETIRED_REFERENCE_IN_OUTPUT'):guard.finish(effective,current,output,T)

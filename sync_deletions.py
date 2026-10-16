@@ -145,6 +145,7 @@ def plan(snapshot, portal, articles, audit, excluded, protection):
     # publications are capped by BOTH 20 images and 3% of all source occurrences.
     mass = (len(deleted) > min(MAX_AUTO_IMAGES, max(1, int(len(old) * MAX_AUTO_FRACTION)))
             or len(removed_articles) > min(MAX_AUTO_ARTICLES, max(1, int(len(before) * .05))))
+    old_url_counts = Counter(k[1] for k in old)
     old_counts = Counter(k[:2] for k in old); new_counts = Counter(k[:2] for k in new)
     rows = []
     for key in sorted(deleted):
@@ -158,7 +159,7 @@ def plan(snapshot, portal, articles, audit, excluded, protection):
             issues.append('ARTICLE_URL_MOVED_OR_CHANGED')
         # Same URL appearing in another article may be an article move, even if
         # that new article has a different Atom ID. Never match by title/name.
-        if any(k[1] == url for k in new): issues.append('URL_MOVED_OR_SHARED')
+        if old_url_counts[url] != 1 or any(k[1] == url for k in new): issues.append('URL_MOVED_OR_SHARED')
         if old_counts[key[:2]] != 1 or new_counts[key[:2]]: issues.append('DUPLICATE_OCCURRENCE_AMBIGUOUS')
         if aid in excluded: issues.append('DRAFT_TRANSITION_REQUIRES_MIGRATION')
         if aid in articles:

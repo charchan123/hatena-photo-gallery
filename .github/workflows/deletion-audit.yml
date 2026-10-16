@@ -2,12 +2,15 @@ name: Read-only deletion audit
 on:
   pull_request:
     branches: [main]
+  schedule:
+    # Independent read-only monitoring continues even if deploy/history storage fails.
+    - cron: '30 1 * * *'
 permissions:
   contents: read
   pull-requests: read
 jobs:
   audit:
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    if: github.event_name == 'schedule' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -73,3 +76,8 @@ jobs:
             cache/deletion-live-audit.json
             cache/deletion-preview.json
           retention-days: 30
+      - name: Summarize pending review and notify through scheduled Actions failures
+        if: always()
+        env:
+          DELETION_MONITOR_EVENT: ${{ github.event_name }}
+        run: python deletion_monitor.py

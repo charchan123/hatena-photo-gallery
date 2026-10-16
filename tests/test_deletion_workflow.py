@@ -27,4 +27,21 @@ def test_live_audit_workflow_cannot_publish_or_persist_confirmation():
     assert '--safe-deletions' in text and '--deletion-preview' in text
     assert 'history_persisted' in text and 'never-published-deletion-preview' in text
     assert 'git push' not in text and 'JamesIves/' not in text and 'workflow_dispatch:' not in text
-    assert 'pull_request:' in text and 'schedule:' not in text
+    assert 'pull_request:' in text and 'schedule:' in text
+    assert "github.event_name == 'schedule'" in workflow['jobs']['audit']['if']
+    summary=next(s for s in workflow['jobs']['audit']['steps'] if s.get('run')=='python deletion_monitor.py')
+    assert summary['if']=='always()'
+
+
+def test_monitor_reports_only_counts_and_missing_evidence_fails_closed(tmp_path):
+    import json
+    from deletion_monitor import summarize
+    text,pending=summarize(tmp_path)
+    assert pending and '不足' in text
+    (tmp_path/'deletion-live-audit.json').write_text(json.dumps({'read_only':True,'publication':'NOT_ATTEMPTED',
+        'counts':{'deleted_images':16,'protected_deletion_candidates':2},'private_note':'DO_NOT_PRINT'}))
+    (tmp_path/'deletion-preview.json').write_text(json.dumps({'result':'BLOCKED','raw_body':'DO_NOT_PRINT'}))
+    text,pending=summarize(tmp_path)
+    assert pending and '16件' in text and '2件' in text and 'DO_NOT_PRINT' not in text
+    (tmp_path/'deletion-preview.json').write_text(json.dumps({'result':'PREVIEW'}))
+    assert summarize(tmp_path)[1] is False

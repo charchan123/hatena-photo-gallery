@@ -6,7 +6,7 @@ const root=path.resolve(__dirname,'../..'),out=process.env.DELETION_SCREENSHOTS;
 const oid='obs-'+ 'a'.repeat(64),cid='b'.repeat(64),fp='c'.repeat(64);
 function fixtures(){return {csrf:'fixture-token',observations:[],best_shots:{version:1,entries:[],annual_best:{}},cases:[],identified:[],notices:[],master:[],knowledge:[],preview:{},repo:{gh_authenticated:false},feature_facets:{},counts:{best_shots:0,annual_years:0,research_open:0,research_identified:0,active_notices:0,master:0,sources:0,knowledge_batches:0},portal_source:'fixture',portal_observation_count:0}}
 (async()=>{
- const browser=await chromium.launch({headless:true,args:['--no-sandbox']});let assertions=0;
+ const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_EXECUTABLE_PATH,args:['--no-sandbox',...(process.env.CHROMIUM_SINGLE_PROCESS?['--single-process','--no-zygote','--disable-gpu']:[])]});let assertions=0;
  const check=(actual,expected)=>{assert.deepEqual(actual,expected);assertions++};
  async function setup(options={}){
   const context=await browser.newContext(options),page=await context.newPage(),writes=[],issues=[];let failure=null;
