@@ -1,0 +1,74 @@
+{
+  "code_head": "7f174c52d556cfbb3bef987a92951fe5e3849de5",
+  "python": {
+    "passed": 920,
+    "run_id": 38914042389,
+    "job_id": 117016815359,
+    "result": "SUCCESS",
+    "local_junit": {
+      "tests": "920",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "93.050"
+    }
+  },
+  "javascript": {
+    "result": "PASS",
+    "coverage": "all tests/*.js and syntax in assets/tests/gallery/admin"
+  },
+  "chromium": {
+    "result": "SUCCESS",
+    "run_id": 38914043167,
+    "deletion_assertions": 29,
+    "best_shot_assertions": 92,
+    "desktop": true,
+    "keyboard": true,
+    "touch_emulation": true,
+    "real_device": false
+  },
+  "authenticated_read_only_api": {
+    "result": "SUCCESS",
+    "run_id": 38914042493,
+    "previous_evidence_run": 38913573487,
+    "complete_pages": 12,
+    "published_articles": 111,
+    "source_images": 980,
+    "deleted_images": 16,
+    "protected_photos": 2,
+    "operational_confirmation_count": 0
+  },
+  "production_contract": {
+    "mushrooms": 141,
+    "sources": 419,
+    "approved_assignments": 373,
+    "overlays": 0,
+    "protected_data_byte_comparison": "PASS",
+    "old_seven_retirement_contract": "UNCHANGED"
+  },
+  "real_generator_fixture": {
+    "result": "PASS",
+    "strict_api_transport": "fixture",
+    "initial_pending_blocks_output": true,
+    "independent_runs_seven_hours_apart": true,
+    "simultaneous_addition_and_deletion": true,
+    "remaining_ids_preserved": true,
+    "next_run_receipt_idempotent": true,
+    "old_retirement_validator_exercised": true
+  },
+  "git_history_fixture": {
+    "result": "PASS",
+    "append_only": true,
+    "non_force_race_rejected": true,
+    "no_main_or_pages_created": true
+  },
+  "actual_approvals_added": 0,
+  "publication": "NOT_ATTEMPTED",
+  "production_history_writes": 0,
+  "limits": [
+    "Actual operational independent history branch has not been created or populated.",
+    "Protected research cases require explicit human choices.",
+    "Raw main.py generation bypasses identity reconciliation and can log Best Shot resolution failures; only the guarded article_sync wrapper authorizes a publication candidate. CI success alone is not publication approval.",
+    "Actions notification delivery depends on user account settings."
+  ]
+}
