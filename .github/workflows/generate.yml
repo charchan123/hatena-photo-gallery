@@ -9,6 +9,10 @@ on:
     # 00:00 UTC = 09:00 JST. GitHub may delay scheduled runs.
     - cron: '0 0 * * *'
 
+permissions:
+  contents: write # Existing Pages deploy plus hash-only audit branch; no source writes.
+  pull-requests: read
+
 # Compare against the last publication, never two concurrent stale baselines.
 concurrency:
   group: hatena-gallery-publication
@@ -16,6 +20,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
@@ -66,12 +71,14 @@ jobs:
             exif-cache-v1-${{ runner.os }}-
 
       - name: 🏗 main.py 実行（HTML生成）
+        if: always() # Record failed fetches even after a credential precheck failure.
         env:
+          GH_TOKEN: ${{ github.token }}
           HATENA_USER: ${{ secrets.HATENA_USER }}
           HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
           HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
         run: |
-          python article_sync.py --previous .sync-previous
+          python article_sync.py --previous .sync-previous --safe-deletions
 
       - name: Save sanitized read-only sync report (including failures)
         if: always()

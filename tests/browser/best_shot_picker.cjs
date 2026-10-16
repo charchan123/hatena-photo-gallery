@@ -38,7 +38,7 @@ const fixtures=()=>({csrf:'fixture-only',observations:records,best_shots:{versio
     if(url.pathname==='/api/best-shot/update')Object.assign(app.best_shots.entries.find(e=>e.selection_id===body.selection_id),body.changes);
     return route.fulfill({json:{ok:true}});
    }
-   const file={'/':'index.html','/admin.css':'admin.css','/admin.js':'admin.js'}[url.pathname];
+   const file={'/':'index.html','/admin.css':'admin.css','/admin.js':'admin.js','/deletions.js':'deletions.js'}[url.pathname];
    if(file)return route.fulfill({body:fs.readFileSync(path.join(root,'admin/static',file)),contentType:file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'text/html'});
    return route.fulfill({status:404,body:''});
   });

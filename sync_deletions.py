@@ -69,7 +69,7 @@ def validate_history(history, anchor=None):
             assert last is None or at >= last
             assert event['run_id'] not in seen
             assert re.fullmatch(r'[a-zA-Z0-9:._-]{1,100}', event['run_id'])
-            assert event['kind'] == 'fetch' and type(event['healthy']) is bool
+            assert event['kind'] in {'fetch','result'} and type(event['healthy']) is bool
             assert re.fullmatch(r'[0-9a-f]{64}', event['baseline'])
             assert re.fullmatch(r'[0-9a-f]{40}', event['baseline_commit'])
             assert isinstance(event['candidates'], dict)
@@ -82,7 +82,7 @@ def validate_history(history, anchor=None):
 
 def append_event(history, event):
     head = validate_history(history)
-    # A retry of a workflow is not an independent observation. Identical writes
+    # A retry of the same attempt is not another observation. Identical writes
     # are idempotent; a changed fetch with the same run must invalidate it.
     same = [r for r in history if r['event']['run_id'] == event['run_id']]
     if same:
@@ -102,14 +102,17 @@ def confirmed(history, candidate, baseline, protection, at):
     """
     now = instant(at); matches = []
     for item in reversed(history):
-        ev = item['event']; elapsed = now - instant(ev['at'])
+        ev = item['event']
+        if ev['kind'] != 'fetch': continue
+        elapsed = now - instant(ev['at'])
         if elapsed < timedelta(0): raise SyncError('DELETION_HISTORY_IN_FUTURE')
         if elapsed > MAX_INTERVAL: break
         if (not ev['healthy'] or ev['baseline'] != baseline
                 or ev['protection'] != protection
                 or ev['candidates'].get(candidate['candidate_id']) != candidate['fingerprint']): break
         matches.append(ev)
-    return len(matches) >= 2 and instant(matches[0]['at']) - instant(matches[-1]['at']) >= MIN_INTERVAL
+    return any(a.get('independent_id',a['run_id']) != b.get('independent_id',b['run_id'])
+        and instant(a['at'])-instant(b['at']) >= MIN_INTERVAL for a in matches for b in matches)
 
 
 def plan(snapshot, portal, articles, audit, excluded, protection):
@@ -126,6 +129,18 @@ def plan(snapshot, portal, articles, audit, excluded, protection):
     old, new = occurrences(before), occurrences(articles); photos = photo_keys(portal)
     deleted = old.keys() - new.keys(); added = new.keys() - old.keys()
     removed_articles = before.keys() - articles.keys()
+    old_locations = {}
+    for row in portal['observations']:
+        if row['article'].get('url'):
+            old_locations[digest(row['article']['article_id'])] = digest(row['article']['url'])
+    old_locations.update({aid: a['article_url_hash'] for aid,a in before.items() if a.get('article_url_hash')})
+    if any(aid not in old_locations or not before[aid]['images'] for aid in removed_articles):
+        raise SyncError('DELETION_ARTICLE_IDENTITY_UNAVAILABLE')
+    current_locations = {aid:a.get('article_url_hash') for aid,a in articles.items()}
+    if any(not isinstance(v,str) or not re.fullmatch('[0-9a-f]{64}',v) for v in current_locations.values()):
+        raise SyncError('DELETION_ARTICLE_LOCATIONS_UNAVAILABLE')
+    if len(set(current_locations.values())) != len(current_locations):
+        raise SyncError('DELETION_ARTICLE_URL_DUPLICATE')
     # A single image can exceed 3% on a tiny gallery; allow one. Large real
     # publications are capped by BOTH 20 images and 3% of all source occurrences.
     mass = (len(deleted) > min(MAX_AUTO_IMAGES, max(1, int(len(old) * MAX_AUTO_FRACTION)))
@@ -137,6 +152,10 @@ def plan(snapshot, portal, articles, audit, excluded, protection):
         removed_here = [k for k in deleted if k[0] == aid]
         added_here = [k for k in added if k[0] == aid]
         if added_here: issues.append('POSSIBLE_URL_REPLACEMENT')
+        if aid not in old_locations: issues.append('ARTICLE_URL_IDENTITY_UNAVAILABLE')
+        elif (aid in current_locations and current_locations[aid] != old_locations[aid]) or any(
+                other != aid and loc == old_locations[aid] for other,loc in current_locations.items()):
+            issues.append('ARTICLE_URL_MOVED_OR_CHANGED')
         # Same URL appearing in another article may be an article move, even if
         # that new article has a different Atom ID. Never match by title/name.
         if any(k[1] == url for k in new): issues.append('URL_MOVED_OR_SHARED')
@@ -149,7 +168,11 @@ def plan(snapshot, portal, articles, audit, excluded, protection):
             if expected != articles[aid]['images']: issues.append('SURVIVOR_SEQUENCE_OR_LABEL_CHANGED')
         if len(articles) < len(before) * .9: issues.append('ABNORMAL_ARTICLE_DECREASE')
         oid = source['observation_id'] if source else None
-        refs = protection['references'].get(oid, []) if oid else []
+        cid = payload_hash({'baseline': snapshot['sha256'], 'key': list(key)})
+        refs = list(protection['references'].get(oid, [])) if oid else []
+        refs += protection.get('source_references',{}).get(cid,[])
+        for ref in protection.get('image_references',{}).get(url,[]):
+            if ref not in refs:refs.append(ref)
         core = {'baseline': snapshot['sha256'], 'article_hash': aid, 'url_hash': url, 'ordinal': ordinal,
                 'observation_id': oid, 'before_image': old[key],
                 'after_article': articles.get(aid), 'references': refs}
@@ -163,10 +186,11 @@ def plan(snapshot, portal, articles, audit, excluded, protection):
 
 
 def event_for(rows, snapshot, baseline_commit, protection, articles, run_id, at, *, healthy=True, error=None):
-    return {'kind': 'fetch', 'at': at, 'run_id': run_id, 'baseline': snapshot['sha256'],
+    return {'kind': 'fetch', 'at': at, 'run_id': run_id, 'independent_id':run_id.split(':attempt:')[0], 'baseline': snapshot['sha256'],
         'baseline_commit': baseline_commit, 'protection': protection.get('sha256'),
         'source_sha256': payload_hash(articles), 'healthy': healthy, 'error_code': error,
-        'candidates': {r['candidate_id']: r['fingerprint'] for r in rows} if healthy else {}}
+        'candidates': {r['candidate_id']: r['fingerprint'] for r in rows} if healthy else {},
+        'findings': deepcopy(rows) if healthy else []}
 
 
 def select(rows, snapshot, history, protection, at, decisions=()):
@@ -187,9 +211,10 @@ def select(rows, snapshot, history, protection, at, decisions=()):
             row['status'] = 'approval_pending'
             # Ordinary approval cannot sever any important reference. Only a
             # separately validated archive transaction can clear research refs.
-            if not d or d.get('action') not in {'approve', 'archive_research', 'retire_research'}: continue
-            unresolved = [r for r in row['protection'] if not (r['kind'] == 'research' and
-                d['action'] in {'archive_research', 'retire_research'} and r['id'] in d.get('case_ids', []))]
+            if not d or d.get('action') not in {'approve', 'archive_research', 'retire_research', 'approve_research_photo'}: continue
+            unresolved = [r for r in row['protection'] if not (d['action'] in {'archive_research', 'retire_research', 'approve_research_photo'} and (
+                (r['kind'] == 'research' and r['id'] in d.get('case_ids', [])) or
+                (r['kind'] == 'identification' and r['id'] in {i['identification_id'] for a in d.get('archives', []) for i in a['identifications']})))]
             if unresolved: continue
             mode = 'manual'
         else:

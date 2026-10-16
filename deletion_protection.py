@@ -7,10 +7,11 @@ import base64
 from collections import defaultdict
 import json
 import os
+import re
 from pathlib import Path
 from urllib.request import Request, urlopen
 
-from article_sync import SyncError, payload_hash, read_json
+from article_sync import SyncError, payload_hash, read_json, digest
 from best_shot_ui import validate_best_shot_config
 from research_ui import build_research_cases
 from research_identifications import validate_registry
@@ -20,6 +21,11 @@ REPOSITORY = 'charchan123/hatena-photo-gallery'
 
 def github_get(path):
     token = os.environ.get('GH_TOKEN') or os.environ.get('GITHUB_TOKEN')
+    if not token:
+        import shutil, subprocess
+        if shutil.which('gh'):
+            result=subprocess.run(['gh','auth','token'],stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,text=True)
+            if result.returncode==0:token=result.stdout.strip()
     headers = {'Accept': 'application/vnd.github+json', 'User-Agent': 'kinoko-deletion-review'}
     if token: headers['Authorization'] = 'Bearer ' + token
     # Host fixed; repository/path is not user input. Never log HTTP error bodies.
@@ -50,16 +56,25 @@ def open_selections(api=github_get):
             tree = api('git/trees/' + sha + '?recursive=1')
             if tree.get('truncated') is not False or not isinstance(tree.get('tree'), list):
                 raise SyncError('DELETION_REFERENCE_TREE_INCOMPLETE')
-            paths = [r for r in tree['tree'] if r['path'] == 'data/best-shots.json']
-            if not paths:
-                result.append({'number': pr['number'], 'head': sha, 'config': {'version':1, 'entries':[], 'annual_best':{}}, 'file_absent_verified': True})
-                continue
-            if len(paths) != 1 or paths[0]['type'] != 'blob' or paths[0]['mode'] not in {'100644','100755'}: raise ValueError()
-            blob = api('contents/data/best-shots.json?ref=' + sha)
-            if blob.get('sha') != paths[0]['sha']: raise ValueError()
-            if blob['encoding'] != 'base64' or blob.get('size', 1_000_001) > 1_000_000: raise ValueError()
-            config = json.loads(base64.b64decode(blob['content'], validate=False))
-            result.append({'number': pr['number'], 'head': sha, 'config': config})
+            def content(node):
+                if node['type']!='blob' or node['mode'] not in {'100644','100755'}:raise ValueError()
+                blob=api('contents/'+node['path']+'?ref='+sha)
+                if blob.get('sha')!=node['sha'] or blob.get('encoding')!='base64' or blob.get('size',1_000_001)>1_000_000:raise ValueError()
+                return json.loads(base64.b64decode(blob['content'],validate=False))
+            paths=[r for r in tree['tree'] if r['path']=='data/best-shots.json']
+            if len(paths)>1:raise ValueError()
+            config=content(paths[0]) if paths else {'version':1,'entries':[],'annual_best':{}}
+            from deletion_approvals import validate as validate_approval, latest
+            manifests=[]
+            for node in tree['tree']:
+                if not node['path'].startswith('sync-migrations/photo-deletions/'):continue
+                if node['type']=='tree':continue
+                m=validate_approval(content(node))
+                if node['path']!='sync-migrations/photo-deletions/'+m['approval_id']+'.json':raise ValueError()
+                manifests.append(m)
+            holds=[m for m in latest(manifests) if m['action'] in {'hold','propose_replacement'}]
+            result.append({'number':pr['number'],'head':sha,'config':config,
+                'file_absent_verified':not paths,'deletion_holds':holds})
         signature = lambda rows: sorted((p['number'], p['head']['sha']) for p in rows)
         if signature(before) != signature(all_prs()): raise SyncError('DELETION_PENDING_REFERENCES_CHANGED')
         return result
@@ -70,7 +85,9 @@ def open_selections(api=github_get):
 def strings(value):
     if isinstance(value, str): yield value
     elif isinstance(value, dict):
-        for v in value.values(): yield from strings(v)
+        for k,v in value.items():
+            if isinstance(k,str):yield k
+            yield from strings(v)
     elif isinstance(value, list):
         for v in value: yield from strings(v)
 
@@ -81,7 +98,8 @@ def collect(portal, snapshot, root, pending, *, registry_before=None):
     Generated index pages that list *every* observation are not curated refs.
     Authenticated PR enumeration must succeed before this function is called.
     """
-    root = Path(root); refs = defaultdict(list); sources = {}
+    root = Path(root); refs = defaultdict(list); sources = {}; source_refs=defaultdict(list); image_refs=defaultdict(list)
+    known_urls={im['url_hash'] for article in snapshot['payload']['articles'].values() for im in article['images']}
     by_id = {r['observation_id']: r for r in portal['observations']}
     by_src = defaultdict(list)
     for row in by_id.values(): by_src[row['src']].append(row['observation_id'])
@@ -105,7 +123,7 @@ def collect(portal, snapshot, root, pending, *, registry_before=None):
         # Future curated JSON and static page links are protected by actual IDs
         # or exact photo URLs. No matching by mushroom name.
         files = list((root / 'data').rglob('*.json')) + [p for p in (root / 'sync-migrations').rglob('*.json') if 'photo-deletions' not in p.parts]
-        files += [p for p in root.glob('*.html') if p.is_file()]
+        files += [p for pattern in ('*.html','*.js','*.py','assets/*.js','assets/*.html') for p in root.glob(pattern) if p.is_file()]
         for file in sorted(files):
             relative = file.relative_to(root).as_posix()
             if file.is_symlink() or file.stat().st_size > 20_000_000: raise ValueError()
@@ -117,11 +135,17 @@ def collect(portal, snapshot, root, pending, *, registry_before=None):
                 # registry hash still binds approvals, including empty history.
                 if relative in {'data/best-shots.json', 'data/research-identifications.json'}: continue
                 values = set(strings(obj))
+                for value in values:
+                    key=value if value in known_urls else digest(value)
+                    if key in known_urls and {'kind':'curated_history','id':relative} not in image_refs[key]:
+                        image_refs[key].append({'kind':'curated_history','id':relative})
                 for oid in set(by_id) & values: protect(oid, 'curated_history', relative)
                 for src in set(by_src) & values:
                     for oid in by_src[src]: protect(oid, 'curated_history', relative)
             else:
-                sources[relative] = payload_hash(text)
+                for value in re.findall(r'''https?://[^\s"'<>\\]+''',text):
+                    key=digest(value)
+                    if key in known_urls:image_refs[key].append({'kind':'curated_page','id':relative})
                 for oid in by_id:
                     if oid in text: protect(oid, 'curated_page', relative)
                 for src, ids in by_src.items():
@@ -132,6 +156,9 @@ def collect(portal, snapshot, root, pending, *, registry_before=None):
         for field in ('manual_adoptions', 'name_migrations'):
             for row in snapshot['payload'].get(field, []): protect(row['observation_id'], 'receipt', field)
         for pr in pending:
+            for hold in pr.get('deletion_holds',[]):
+                if hold['baseline']==snapshot['sha256']:
+                    source_refs[hold['candidate_id']].append({'kind':'pending_deletion_hold','id':'PR #'+str(pr['number'])})
             validate_best_shot_config(pr['config'], portal)
             extras = [r for r in pr['config']['entries'] if r['observation_id'] not in {e['observation_id'] for e in config['entries']}]
             # A deletion-approval PR carrying an unchanged Best Shot file must
@@ -141,6 +168,6 @@ def collect(portal, snapshot, root, pending, *, registry_before=None):
             for row in extras: protect(row['observation_id'], 'pending_best_shot', 'PR #' + str(pr['number']) + ':' + row['selection_id'])
     except SyncError: raise
     except Exception: raise SyncError('DELETION_REFERENCES_UNAVAILABLE') from None
-    result = {'version': 1, 'complete': True, 'sources': sources,
+    result = {'version': 1, 'complete': True, 'sources': sources, 'source_references': dict(sorted(source_refs.items())), 'image_references':dict(sorted(image_refs.items())),
               'references': {oid: sorted(v, key=lambda r: (r['kind'], r['id'])) for oid, v in sorted(refs.items())}}
     return {**result, 'sha256': payload_hash(result)}

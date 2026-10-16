@@ -23,6 +23,7 @@ from .knowledge import (preview_promotion, reset_review_state,
 from .sync import SyncReview, ReviewError, latest_actions
 from article_sync import SyncError
 from . import sync_exception, sync_adoption
+from .deletions import DeletionReview, MESSAGES as DELETION_MESSAGES
 
 BIND_ADDRESS = "127.0.0.1"
 DEFAULT_PORT = 8765
@@ -53,6 +54,7 @@ class AdminServer(ThreadingHTTPServer):
         self.portal, self.portal_source = load_portal_data()
         self.draft = ChangeSet(self.portal)
         self.sync_review = SyncReview()
+        self.deletion_review = DeletionReview()
         self.csrf_token = secrets.token_urlsafe(32)
 
 
@@ -81,6 +83,13 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         if not self._local_request(): return self._json({"error": "localhost only"}, 403)
         path = self.path.split("?", 1)[0]
+        if path == "/api/deletions/state":
+            try:
+                review = self.server.deletion_review
+                return self._json(review.dashboard() if review.publication else review.refresh())
+            except Exception as error:
+                code = str(error) if isinstance(error, (SyncError, ReviewError)) else "DELETION_REVIEW_UNAVAILABLE"
+                return self._json({"error": code, "message": DELETION_MESSAGES.get(code, "削除の検出結果を取得できませんでした。承認は行っていません。")}, 400)
         if path.startswith("/api/sync/"):
             try:
                 review = self.server.sync_review
@@ -122,7 +131,7 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(state)
         if path == "/": path = "/index.html"
         relative = unquote(path).lstrip("/")
-        if "/" in relative or ".." in relative or relative not in {"index.html", "admin.css", "admin.js"}:
+        if "/" in relative or ".." in relative or relative not in {"index.html", "admin.css", "admin.js", "deletions.js"}:
             return self._json({"error": "not found"}, 404)
         data = (STATIC / relative).read_bytes(); mime = {"html":"text/html", "css":"text/css", "js":"text/javascript"}[relative.rsplit(".",1)[1]]
         self.send_response(200); self.send_header("Content-Type", mime + "; charset=utf-8"); self.send_header("Content-Length", str(len(data)))
@@ -145,7 +154,18 @@ class Handler(BaseHTTPRequestHandler):
                 "/api/identify": lambda: draft.identify(next(c for c in build_research_cases(draft.portal) if c["case_id"] == body["case_id"]), body["identified_name"], body.get("note", ""), summary=body.get("summary", "1種の正体が判明")),
                 "/api/reopen": lambda: draft.reopen(body["identification_id"]),
             }
-            if self.path.startswith("/api/sync/"):
+            if self.path.startswith("/api/deletions/"):
+                review = self.server.deletion_review
+                if self.path == "/api/deletions/refresh":
+                    if set(body) != {"live"} or type(body["live"]) is not bool: raise SyncError("DELETION_APPROVAL_INVALID")
+                    result = review.refresh(live=body["live"])
+                elif self.path == "/api/deletions/decision": result = review.decide(body)
+                elif self.path == "/api/deletions/preview":
+                    if body: raise SyncError("DELETION_APPROVAL_INVALID")
+                    result = review.preview_changes()
+                elif self.path == "/api/deletions/pr": result = review.create_pr(body)
+                else: return self._json({"error":"not found"},404)
+            elif self.path.startswith("/api/sync/"):
                 review = self.server.sync_review
                 if self.path == "/api/sync/refresh":
                     if set(body) - {"live"} or type(body.get("live",False)) is not bool: raise ReviewError("INVALID_REFRESH")
@@ -175,6 +195,9 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(result)
         except Exception as error:
             code = str(error)
+            if self.path.startswith("/api/deletions/"):
+                code = str(error) if isinstance(error, (SyncError, ReviewError)) else "DELETION_OPERATION_FAILED"
+                return self._json({"error":code,"message":DELETION_MESSAGES.get(code,"削除操作に失敗しました。入力内容と保存済みの判断は保持しています。再取得して確認してください。")},400)
             if self.path.startswith("/api/best-shot/"):
                 message = (error.user_message if isinstance(error, BestShotConfigError)
                            else "ベストショットの保存に失敗しました。入力内容と変更予定を確認してください")
@@ -185,7 +208,7 @@ class Handler(BaseHTTPRequestHandler):
             return self._json({"error": code}, 400)
 
     def log_message(self, fmt, *args):
-        if self.path.startswith("/api/sync/"): return
+        if self.path.startswith(("/api/sync/", "/api/deletions/")): return
         print(f"[{datetime.now(timezone.utc).isoformat()}] {self.client_address[0]} {fmt % args}")
 
 

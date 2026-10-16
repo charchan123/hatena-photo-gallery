@@ -25,6 +25,8 @@ def protection(refs=None):
 def fixture():
     p = portal(*(photo('article-' + str(i), 'url-' + str(i), 'obs-' + str(i)) for i in range(100)))
     articles = {sync.digest('article-' + str(i)): entry('url-' + str(i)) for i in range(100)}
+    for row in p['observations']: row['article']['url']='https://blog.example/'+sync.digest(row['article']['article_id'])
+    for ah,a in articles.items(): a['article_url_hash']=sync.digest('https://blog.example/'+ah)
     snapshot = sync.seal_snapshot(articles, p, T)
     current = deepcopy(articles); current.pop(sync.digest('article-0'))
     return p, snapshot, current
@@ -38,6 +40,7 @@ def audit(articles):
 
 
 def ready(p, s, current, refs=None):
+    for ah,a in current.items(): a.setdefault('article_url_hash',sync.digest('https://blog.example/'+ah))
     prot = protection(refs); rows = d.plan(s, p, current, audit(current), set(), prot)
     history = []
     for run, hour in [('run-1', 0), ('run-2', 7)]:
@@ -133,6 +136,7 @@ def test_uncertain_identity_is_not_approvable(scenario):
         if scenario=='reordered':current[ah]['images'].reverse()
         else:current[ah]['images'][0]['label_hash']='f'*64
     elif scenario=='draft':excluded={ah}
+    for key,a in current.items(): a.setdefault('article_url_hash',sync.digest('https://blog.example/'+key))
     s['sha256']=sync.payload_hash(s['payload']);a=audit(current)
     if excluded:a.update(entries_received=len(current)+1,drafts_excluded=1)
     prot=protection();rows=d.plan(s,p,current,a,excluded,prot)
@@ -200,3 +204,69 @@ def test_history_durable_on_failed_job_and_git_race(tmp_path):
     assert GitHistory(work).load(h[-1]['sha256'])==h
     # No publication/main branch was created in the audit-only repository.
     assert git('for-each-ref','--format=%(refname)',cwd=bare)=='refs/heads/sync-deletion-audit'
+
+
+def test_absent_best_file_requires_complete_tree_proof():
+    prs=[{'number':2,'head':{'sha':'2'*40,'repo':{'full_name':'charchan123/hatena-photo-gallery'}}}]
+    def api(path):return prs if path.startswith('pulls?') else {'truncated':False,'tree':[]}
+    result=open_selections(api)
+    assert result[0]['file_absent_verified'] and result[0]['config']['entries']==[]
+    def truncated(path):return prs if path.startswith('pulls?') else {'truncated':True,'tree':[]}
+    with pytest.raises(sync.SyncError,match='TREE_INCOMPLETE'):open_selections(truncated)
+
+
+def test_old_hold_is_superseded_without_overwriting_history():
+    from deletion_approvals import validate,latest
+    m={'version':1,'candidate_id':'a'*64,'fingerprint':'b'*64,'baseline':'c'*64,'protection':'d'*64,
+        'action':'hold','approved_at':T,'reason_sha256':'e'*64,'case_ids':[],'archives':[],
+        'registry_before':None,'replacement_id':None,'supersedes':None}
+    m['approval_id']=sync.payload_hash(m);validate(m)
+    changed={**m,'action':'approve','approved_at':(d.instant(T)+timedelta(hours=1)).isoformat(),'supersedes':m['approval_id']}
+    changed['approval_id']=sync.payload_hash({k:v for k,v in changed.items() if k!='approval_id'});validate(changed)
+    assert latest([m,changed])==[changed] and m['action']=='hold'
+    fork={**changed,'reason_sha256':'f'*64};fork['approval_id']=sync.payload_hash({k:v for k,v in fork.items() if k!='approval_id'})
+    with pytest.raises(sync.SyncError,match='CHAIN_INVALID'):latest([m,changed,fork])
+
+
+def test_unmerged_hold_protects_source_occurrence(tmp_path):
+    from test_deletion_guard import config
+    p,s,current=fixture();config(tmp_path)
+    basic=protection();rows=d.plan(s,p,current,audit(current),set(),basic)
+    hold={'candidate_id':rows[0]['candidate_id'],'baseline':s['sha256']}
+    pending=[{'number':400,'head':'4'*40,'config':{'version':1,'entries':[],'annual_best':{}},'deletion_holds':[hold]}]
+    prot=collect(p,s,tmp_path,pending);row=d.plan(s,p,current,audit(current),set(),prot)[0]
+    assert row['protection']==[{'kind':'pending_deletion_hold','id':'PR #400'}]
+
+
+def test_workflow_retry_is_recordable_but_not_independent_confirmation():
+    p,s,current=fixture();prot=protection();rows=d.plan(s,p,current,audit(current),set(),prot)
+    h=[]
+    for run,hour in [('actions:123:attempt:1',0),('actions:123:attempt:2',8)]:
+        at=(d.instant(T)+timedelta(hours=hour)).isoformat();h=d.append_event(h,d.event_for(rows,s,BASE,prot,current,run,at))
+    assert len(h)==2 and not d.select(rows,s,h,prot,at)
+    at=(d.instant(T)+timedelta(hours=15)).isoformat()
+    h=d.append_event(h,d.event_for(rows,s,BASE,prot,current,'actions:456:attempt:1',at))
+    assert len(d.select(rows,s,h,prot,at))==1
+
+
+def test_retry_cannot_erase_an_already_independent_confirmation_pair():
+    p,s,current=fixture();prot=protection();rows=d.plan(s,p,current,audit(current),set(),prot);h=[]
+    for run,hour in [('actions:123:attempt:1',0),('actions:456:attempt:1',7),('actions:123:attempt:2',8)]:
+        at=(d.instant(T)+timedelta(hours=hour)).isoformat();h=d.append_event(h,d.event_for(rows,s,BASE,prot,current,run,at))
+    assert len(d.select(rows,s,h,prot,at))==1
+
+
+@pytest.mark.parametrize('by_key',[True,False])
+def test_curated_id_mapping_keys_and_unlisted_image_urls_are_protected(tmp_path,by_key):
+    from test_deletion_guard import config
+    p,s,current=fixture();config(tmp_path)
+    if by_key:sync.write_json(tmp_path/'data/curated.json',{'obs-0':{'caption':'重要な参照'}})
+    else:
+        # An old DOM image need not have a gallery observation. URL/hash refs
+        # still protect it, even though by-observation lookup is impossible.
+        p['observations']=p['observations'][1:];p['summary']['observation_count']-=1
+        s=sync.seal_snapshot(s['payload']['articles'],p,T)
+        sync.write_json(tmp_path/'data/curated.json',{'feature_photo':'url-0'})
+    prot=collect(p,s,tmp_path,[]);row=d.plan(s,p,current,audit(current),set(),prot)[0]
+    assert row['protection']==[{'kind':'curated_history','id':'data/curated.json'}]
+    assert row['observation_id']==('obs-0' if by_key else None)

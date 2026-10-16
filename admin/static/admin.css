@@ -25,3 +25,27 @@ dialog.best-editor{width:min(980px,calc(100% - 24px));max-height:calc(100dvh - 2
 .best-editor [aria-invalid=true]{border-color:#b42318}.best-editor .modal-error{background:#fff1ef;border-radius:7px;padding:10px}
 .best-editor button:focus-visible,.best-editor input:focus-visible,.best-editor textarea:focus-visible{outline:3px solid #376b44;outline-offset:2px}
 @media(max-width:600px){dialog.best-editor{padding:16px}.best-editor .photo-browser{grid-template-columns:minmax(0,1fr)}.best-editor .photo-results{max-height:220px}.best-editor .photo-preview{position:static}.best-editor menu{background:#fff;padding:10px 0}.best-editor .field-heading{gap:4px 10px}.best-editor .photo-option-actions button,.best-editor .order-arrows button{min-height:44px;min-width:44px}}
+
+/* Individual deletion review: independent of the Best Shot modal layout. */
+.deletion-card{grid-template-columns:100px minmax(0,1fr);align-items:start}
+.deletion-card .deletion-body{grid-column:2;min-width:0}
+.deletion-card .item-actions{grid-column:2}
+.deletion-card .meta,.deletion-card .error{overflow-wrap:anywhere}
+.deletion-card label{display:block;margin:.65rem 0}
+.deletion-card textarea,.deletion-card input,.deletion-card select{width:100%;box-sizing:border-box}
+#deletion-diff,#deletion-history{white-space:pre-wrap;overflow-wrap:anywhere;max-height:28rem;overflow:auto}
+#deletion-message{position:sticky;top:0;z-index:2;background:#fff;padding:.7rem;min-height:2rem}
+.deletion-card img{object-fit:contain}
+@media(max-width:640px){
+ body[data-admin-page=deletions]{display:block}
+ body[data-admin-page=deletions] aside{position:static;height:auto;padding:12px}
+ body[data-admin-page=deletions] aside h1{font-size:1rem;margin:0 0 10px}
+ body[data-admin-page=deletions] nav{display:flex;overflow-x:auto}
+ body[data-admin-page=deletions] nav button{flex:0 0 auto;white-space:nowrap;min-height:44px}
+ body[data-admin-page=deletions] .local{position:static;margin:8px 0 0}
+ body[data-admin-page=deletions] main{padding:16px}
+ .deletion-card{grid-template-columns:minmax(0,1fr)}
+ .deletion-card img{width:100%;max-height:14rem}
+ .deletion-card .deletion-body,.deletion-card .item-actions{grid-column:1}
+ #deletions .actions{flex-wrap:wrap}
+}

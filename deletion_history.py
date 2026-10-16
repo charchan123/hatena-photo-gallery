@@ -34,19 +34,25 @@ class GitHistory:
         if lookup.returncode: raise SyncError('DELETION_HISTORY_STORAGE_UNAVAILABLE')
         sha = lookup.stdout.split()[0]
         git('fetch', '--no-tags', 'origin', sha, cwd=self.root)
-        self.rows = json.loads(git('show', sha + ':history.json', cwd=self.root).stdout)
-        validate_history(self.rows, anchor); self.commit = sha
-        # Every earlier event in the Git branch must be a prefix. A rewritten
-        # index cannot silently discard confirmations even before first publish.
-        parents = git('rev-list', '--first-parent', sha, cwd=self.root).stdout.splitlines()
-        previous = self.rows
-        for parent in parents[1:]:
-            old = json.loads(git('show', parent + ':history.json', cwd=self.root).stdout)
-            validate_history(old)
-            if previous[:len(old)] != old or len(previous) != len(old) + 1:
+        def read(path):
+            try:return json.loads(git('show',sha+':'+path,cwd=self.root).stdout)
+            except (ValueError,TypeError):raise SyncError('DELETION_HISTORY_CORRUPT') from None
+        index=read('head.json')
+        paths=git('ls-tree','-r','--name-only',sha,cwd=self.root).stdout.splitlines()
+        event_paths=sorted(p for p in paths if p.startswith('events/'))
+        if set(paths)!=set(event_paths)|{'head.json'}:raise SyncError('DELETION_HISTORY_STORAGE_UNSAFE')
+        self.rows=[read(path) for path in event_paths]
+        head=validate_history(self.rows,anchor)
+        if index!={'version':1,'head':head,'count':len(self.rows)}:raise SyncError('DELETION_HISTORY_CORRUPT')
+        self.commit=sha
+        commits=git('rev-list','--reverse','--first-parent',sha,cwd=self.root).stdout.splitlines()
+        if len(commits)!=len(self.rows):raise SyncError('DELETION_HISTORY_REWRITTEN')
+        for i,(commit,row,path) in enumerate(zip(commits,self.rows,event_paths)):
+            expected=f"events/{i+1:08d}-{row['sha256']}.json"
+            if path!=expected:raise SyncError('DELETION_HISTORY_CORRUPT')
+            changes=git('diff-tree','--root','--no-commit-id','--name-status','-r',commit,cwd=self.root).stdout.splitlines()
+            if set(changes)!={('A' if i==0 else 'M')+'\thead.json','A\t'+path}:
                 raise SyncError('DELETION_HISTORY_REWRITTEN')
-            previous = old
-        if previous and len(previous) != 1: raise SyncError('DELETION_HISTORY_ROOT_INVALID')
         return self.rows
 
     def save(self, rows):
@@ -61,8 +67,18 @@ class GitHistory:
                 text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             if p.returncode: raise SyncError('DELETION_HISTORY_STORAGE_UNAVAILABLE')
             return p.stdout.strip()
-        blob = plumbing('hash-object', '-w', '--stdin', data=json.dumps(rows, ensure_ascii=False, indent=2) + '\n')
-        tree = plumbing('mktree', data='100644 blob ' + blob + '\thistory.json\n')
+        # One immutable event blob per run: avoid quadratic full-history files.
+        # A private index leaves the caller's working tree and index untouched.
+        with tempfile.TemporaryDirectory(prefix='kinoko-history-index-') as temporary:
+            env['GIT_INDEX_FILE']=str(Path(temporary)/'index')
+            plumbing('read-tree',self.commit) if self.commit else plumbing('read-tree','--empty')
+            head={'version':1,'head':validate_history(rows),'count':len(rows)}
+            row=rows[-1]
+            for path,value in [('head.json',head),(f"events/{len(rows):08d}-{row['sha256']}.json",row)]:
+                blob=plumbing('hash-object','-w','--stdin',data=json.dumps(value,ensure_ascii=False,indent=2)+'\n')
+                plumbing('update-index','--add','--cacheinfo','100644',blob,path)
+            tree=plumbing('write-tree')
+        env.pop('GIT_INDEX_FILE',None)
         args = ['commit-tree', tree]
         if self.commit: args += ['-p', self.commit]
         commit = plumbing(*args, data='Persist independent deletion observation\n')

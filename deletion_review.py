@@ -8,19 +8,27 @@ import subprocess
 
 from article_sync import (SyncError, read_json, write_json, validate_snapshot,
                           compare_inventory, digest)
-from sync_deletions import plan, occurrences, photo_keys
+from sync_deletions import plan, occurrences, photo_keys, without_targets
 from deletion_protection import collect, open_selections
 
 
 def details(rows, portal):
     photos = photo_keys(portal)
+    from research_ui import build_research_cases
+    cases={c['case_id']:c for c in build_research_cases(portal)}
+    missing={r['observation_id'] for r in rows if r['observation_id']}
     result = []
     for row in rows:
         photo = photos.get((row['article_hash'], row['url_hash'], row['ordinal']), {})
         article = photo.get('article', {})
+        if not article:
+            article=next((p['article'] for p in portal['observations'] if digest(p['article']['article_id'])==row['article_hash']),{})
         result.append({**row, 'gallery_name': photo.get('gallery_name'), 'src': photo.get('src'),
             'article_id': article.get('article_id'), 'article_title': article.get('title'),
-            'article_url': article.get('url')})
+            'article_url': article.get('url'), 'related_research_cases':[{'case_id':ref['id'],
+                'photo_count':len(cases[ref['id']]['photos']),
+                'remaining_photo_count':sum(p['observation_id'] not in missing for p in cases[ref['id']]['photos'])}
+                for ref in row['protection'] if ref['kind']=='research' and ref['id'] in cases]})
     return result
 
 
@@ -40,10 +48,22 @@ def audit(previous, baseline_commit, live, root, pending):
     for key in sorted(added_source):
         p = live.get('photos', {}).get(key, {}); row = new_keys.get(key, {})
         added.append({'article_hash': key[0], 'url_hash': key[1], 'ordinal': key[2],
-            'gallery_eligible': key in new_keys, 'gallery_name': row.get('gallery_name'),
-            'src': row.get('src') or p.get('thumbnail'), 'article': row.get('article') or {
+            'gallery_eligible': key in new_keys, 'gallery_name': row.get('gallery_name'), 'detected_name': p.get('detected_name'),
+            'src': row.get('src') or p.get('thumbnail'), 'article': {k:v for k,v in row.get('article',{}).items() if k in {'article_id','title','url','published','updated'}} or {
                 'title': p.get('article_title'), 'url': p.get('article_url')},
             'classification': row.get('classification')})
+    # Pure identity simulation, NEVER a publication/deletion permission. The
+    # real adapter still rejects every unapproved protected target above/below.
+    from article_sync import reconcile_ids
+    from best_shot_ui import validate_best_shot_config
+    comparison=without_targets(portal,rows) if rows else portal
+    simulated=reconcile_ids(live['portal'],comparison)
+    validate_best_shot_config(read_json(Path(root)/'data/best-shots.json'),simulated)
+    for pr in pending:validate_best_shot_config(pr['config'],simulated)
+    preserved={r['observation_id'] for r in comparison['observations']}
+    identity_simulation={'purpose':'READ_ONLY_IDENTITY_CHECK_NOT_DELETION_APPROVAL',
+        'remaining_existing_ids':len(preserved),'new_gallery_ids':[r['observation_id'] for r in simulated['observations'] if r['observation_id'] not in preserved],
+        'main_best_shots_valid':True,'pending_best_shots_valid':True,'publication':'NOT_ATTEMPTED'}
     return {'version': 1, 'read_only': True, 'at': datetime.now(timezone.utc).isoformat(),
         'baseline_commit': baseline_commit, 'snapshot_sha256': snapshot['sha256'],
         'counts': {**compare_inventory(snapshot['payload']['articles'], live['articles']),
@@ -54,9 +74,9 @@ def audit(previous, baseline_commit, live, root, pending):
             'new_source_non_gallery_occurrences': len(added_source - set(new_keys)),
             'source_image_count': len(occurrences(live['articles'])),
             'protected_deletion_candidates': sum(bool(r['protection']) for r in rows)},
-        'fetch_audit': live['fetch_audit'], 'removed': details(rows, portal), 'added_source': added,
+        'identity_simulation':identity_simulation, 'fetch_audit': live['fetch_audit'], 'removed': details(rows, portal), 'added_source': added,
         'new_articles': sorted(live['articles'].keys() - snapshot['payload']['articles'].keys()),
-        'protection': protection, 'publication': 'NOT_ATTEMPTED'}
+        'protection': protection, 'pending_selections_checked': [{'number':p['number'],'head':p['head'],'entry_count':len(p['config']['entries']),'file_absent_verified':p.get('file_absent_verified',False)} for p in pending], 'publication': 'NOT_ATTEMPTED'}
 
 
 def main():
