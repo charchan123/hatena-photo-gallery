@@ -8,7 +8,7 @@ def test_daily_keeps_atomic_deploy_after_durable_guard():
     workflow=yaml.safe_load((ROOT/'.github/workflows/generate.yml').read_text())
     assert workflow['concurrency']=={'group':'hatena-gallery-publication','cancel-in-progress':False}
     assert workflow['jobs']['build']['if']=="github.ref == 'refs/heads/main'"
-    assert workflow['env']['SAFE_PHOTO_DELETION_PUBLISH_ENABLED']=='false'
+    assert workflow['env']['SAFE_PHOTO_DELETION_PUBLISH_ENABLED'] in {'false','true'}
     steps=workflow['jobs']['build']['steps']
     generation=next(s for s in steps if '--safe-deletions' in s.get('run',''))
     assert generation['if']=='always()'
@@ -48,3 +48,18 @@ def test_monitor_reports_only_counts_and_missing_evidence_fails_closed(tmp_path)
     assert pending and '16件' in text and '2件' in text and 'DO_NOT_PRINT' not in text
     (tmp_path/'deletion-preview.json').write_text(json.dumps({'result':'PREVIEW'}))
     assert summarize(tmp_path)[1] is False
+
+
+def test_rollout_command_requires_exact_true_to_stop_observing(tmp_path):
+    import os,subprocess
+    workflow=yaml.safe_load((ROOT/'.github/workflows/generate.yml').read_text())
+    script=next(s['run'] for s in workflow['jobs']['build']['steps'] if '--safe-deletions' in s.get('run',''))
+    shim=tmp_path/'python';args=tmp_path/'args'
+    shim.write_text("""#!/bin/sh
+printf '%s\\n' "$@" > "$KINOKO_CAPTURE_ARGS"
+""");shim.chmod(0o755)
+    for value in ('','false','TRUE','true'):
+        env={**os.environ,'PATH':str(tmp_path)+os.pathsep+os.environ['PATH'],
+             'KINOKO_CAPTURE_ARGS':str(args),'SAFE_PHOTO_DELETION_PUBLISH_ENABLED':value}
+        subprocess.run(['bash','-e','-c',script],env=env,check=True,capture_output=True)
+        assert ('--deletion-observe-only' in args.read_text().splitlines()) is (value!='true')
