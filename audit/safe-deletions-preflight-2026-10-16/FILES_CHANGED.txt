@@ -1,0 +1,13 @@
+.github/workflows/generate.yml
+admin/deletions.py
+admin/static/deletions.js
+article_sync.py
+deletion_guard.py
+deletion_history.py
+tests/browser/deletion_review.cjs
+tests/test_article_sync.py
+tests/test_deletion_generator.py
+tests/test_deletion_guard.py
+tests/test_deletion_pr_workflow.py
+tests/test_deletion_workflow.py
+tests/test_sync_deletions.py
