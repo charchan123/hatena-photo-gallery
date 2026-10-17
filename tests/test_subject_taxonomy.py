@@ -31,7 +31,7 @@ def entry_without(field):
     return value
 
 
-def test_repository_master_has_eight_preserved_seeds_and_forty_verified_entries():
+def test_repository_master_has_eight_preserved_seeds_and_forty_two_verified_entries():
     taxonomy = main.load_subject_taxonomy()
     actual = {(row["canonical_name"], row["subject_type"]) for row in taxonomy["entries"]}
     seeds = {
@@ -51,12 +51,12 @@ def test_repository_master_has_eight_preserved_seeds_and_forty_verified_entries(
             "オオワライタケ", "アオロウジ", "ウラベニガサ", "トガリアミガサタケ", "ノウタケ",
             "ウコンハツ", "エノキタケ", "キニガイグチ", "コテングタケモドキ", "タマゴタケ",
             "アラゲキクラゲ", "ウラグロニガイグチ", "オオキツネタケ", "キアミアシイグチ", "セイタカイグチ",
-            "タマチョレイタケ", "ツバアブラシメジ", "ホテイシメジ", "ミドリニガイグチ", "ミヤマタマゴタケ",
+            "タマチョレイタケ", "ツバアブラシメジ", "ホテイシメジ", "ミドリニガイグチ", "ミヤマタマゴタケ", "ブドウニガイグチ", "マツタケ",
         )
     }
     assert actual == seeds | verified
     assert sum(row["verification_status"] == "project_seed" for row in taxonomy["entries"]) == 8
-    assert sum(row["verification_status"] == "externally_verified" for row in taxonomy["entries"]) == 40
+    assert sum(row["verification_status"] == "externally_verified" for row in taxonomy["entries"]) == 42
 
 
 @pytest.mark.parametrize("bad_entry", [
@@ -161,6 +161,8 @@ def test_match_priority_and_conservative_normalization(tmp_path):
     ("ホテイシメジ", "mushroom", "taxonomy_mushroom"),
     ("ミドリニガイグチ", "mushroom", "taxonomy_mushroom"),
     ("ミヤマタマゴタケ", "mushroom", "taxonomy_mushroom"),
+    ("ブドウニガイグチ", "mushroom", "taxonomy_mushroom"),
+    ("マツタケ", "mushroom", "taxonomy_mushroom"),
     ("コブハクチョウ", "non_mushroom", "taxonomy_non_mushroom"),
     ("ヨシガモ", "non_mushroom", "taxonomy_non_mushroom"),
     ("ミツバアケビ", "non_mushroom", "taxonomy_non_mushroom"),
@@ -285,3 +287,55 @@ def test_audit_and_candidate_export_failures_do_not_block_legacy_generation(monk
     monkeypatch.setattr(main, "generate_favorite_page", lambda grouped: None)
     main.build_gallery()
     assert generated[0] is entries
+
+
+
+def test_alt_free_article_headings_promote_only_two_verified_mushrooms(tmp_path):
+    """Promote independently labeled mushrooms without manual image alt text."""
+    article = tmp_path / "article.html"
+    article.write_text(
+        '<div class="entry-body">'
+        '<p>ブドウニガイグチ</p>'
+        '<p><img src="budou-1.jpg" alt=""></p>'
+        '<p>別の双子。</p>'
+        '<p><img src="budou-2.jpg" alt=""></p>'
+        '<p>マツタケ</p>'
+        '<p><img src="matsu-1.jpg" alt=""></p>'
+        '<p>上記の写真を撮影した後。</p>'
+        '<p><img src="matsu-2.jpg" alt=""></p>'
+        '</div>', encoding="utf-8")
+    taxonomy = main.load_subject_taxonomy()
+    assert main.fetch_images([article]) == []
+    rows = main.extract_shadow_metadata(
+        [article],
+        {str(article): {"categories": ["キノコ探索日記", "ブドウニガイグチ", "マツタケ"]}},
+        taxonomy=taxonomy,
+    )
+    assert [row["detected_label"] for row in rows] == [
+        "ブドウニガイグチ", "ブドウニガイグチ", "マツタケ", "マツタケ"
+    ]
+    assert all(row["legacy_alt"] == "" for row in rows)
+    assert all(row["subject_type"] == "mushroom" for row in rows)
+    assert all(row["classification_reason"] == "taxonomy_mushroom" for row in rows)
+    assert all(row["subject_state_status"] == "accepted_subject" for row in rows)
+    assert all(row["taxonomy_match_type"] == "canonical_exact" for row in rows)
+
+    hybrid, report = main.build_phase3c_hybrid_preview([], rows)
+    assert hybrid == [
+        {"alt": "ブドウニガイグチ", "src": "budou-1.jpg"},
+        {"alt": "ブドウニガイグチ", "src": "budou-2.jpg"},
+        {"alt": "マツタケ", "src": "matsu-1.jpg"},
+        {"alt": "マツタケ", "src": "matsu-2.jpg"},
+    ]
+    assert report["summary"]["confirmed_new_mushroom_added_count"] == 4
+    assert not report["new_review_excluded"]
+    assert not report["renamed_occurrences"]
+    assert not report["removed_non_mushroom"]
+    assert main.validate_phase3c_hybrid_cutover([], hybrid, report)["valid"]
+
+    for other in ("ヤナギマツタケ", "ブドウニガイグチモドキ", "マツタケモドキ"):
+        kind, reason, _ = main.classify_subject_type(other, taxonomy)
+        assert (kind, reason) == (
+            ("mushroom", "taxonomy_mushroom") if other == "ヤナギマツタケ"
+            else ("review", "taxonomy_unmatched")
+        )
