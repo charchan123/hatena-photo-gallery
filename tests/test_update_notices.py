@@ -147,3 +147,65 @@ def test_best_shot_notice_shares_description_row_with_research_card(monkeypatch,
     assert best.select_one(".portal-eyebrow").get_text() == "BEST SHOTS"
     assert best.select_one("strong").get_text(" ", strip=True).startswith("ベストショット")
     assert best["href"] == "best-shots.html"
+
+
+def test_guide_section_notices_stay_in_same_description_area(monkeypatch, tmp_path):
+    current = datetime.now().astimezone()
+    sections = ("guide", "season", "features")
+    active_events = [{"section": name, "kind": "new", "summary": f"{name}の候補を追加",
+                      "occurred_at": current.isoformat()} for name in sections]
+    monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
+    for events in ([], active_events):
+        monkeypatch.setattr(main, "load_notice_events", lambda events=events: events)
+        main.generate_new_top({}, {}, feature_search_available=True)
+        soup = BeautifulSoup((tmp_path / "new-top.html").read_text(encoding="utf-8"),
+                             "html.parser")
+        for name in sections:
+            card = soup.select_one(f".portal-guide-row .portal-card--{name}")
+            row = card.find_parent(class_="portal-guide-row")
+            note = row.select_one(".portal-guide-note")
+            details = note.select_one(".portal-guide-note__details")
+            assert len(note.find_all("strong", recursive=False)) == 1
+            assert details is not None
+            assert note.select_one("strong").get_text(strip=True)
+            assert details.find("small", recursive=False).get_text(strip=True)
+            assert not note.find("small", recursive=False)
+            linked = details.select_one(".portal-update-note")
+            if events:
+                assert linked is not None
+                assert linked.name == "a" and linked["href"] == card["href"]
+                assert [child.get_text(strip=True)
+                        for child in linked.find_all(recursive=False)] == [
+                            "NEW!", f"{name}の候補を追加",
+                        ]
+                assert int(linked["data-notice-end"]) - int(
+                    linked["data-notice-start"]) == 7 * 86400 * 1000
+            else:
+                assert linked is None
+        assert not soup.select("a a")
+
+
+def test_research_identified_notice_uses_best_shot_details_without_shifting_title(
+        monkeypatch, tmp_path):
+    now = datetime.now().astimezone()
+    events = [{"section": "research", "kind": "identified",
+               "summary": "長い研究結果の報告" * 8, "occurred_at": now.isoformat()}]
+    monkeypatch.setattr(main, "load_notice_events", lambda: events)
+    monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
+    main.generate_new_top({}, {}, research_summary={"case_count": 66},
+                          best_shot_summary={"entry_count": 12})
+    soup = BeautifulSoup((tmp_path / "new-top.html").read_text(encoding="utf-8"),
+                         "html.parser")
+    card = soup.select_one(".portal-card--research")
+    details = card.select_one("strong + .portal-card__details")
+    assert details.find("small", recursive=False).get_text(strip=True) == "正体を調べているキノコを見る"
+    note = details.select_one(".portal-update-note")
+    assert [item.get_text(strip=True) for item in note.find_all(recursive=False)] == [
+        "IDENTIFIED!", "長い研究結果の報告" * 8,
+    ]
+    assert int(note["data-notice-end"]) - int(
+        note["data-notice-start"]) == 14 * 86400 * 1000
+    assert not soup.select("a a")
+    best = soup.select_one(".portal-card--best-shots")
+    assert best.select_one(".portal-card__details > small")
+    assert not best.select_one(".portal-update-note")

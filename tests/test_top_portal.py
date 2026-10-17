@@ -647,7 +647,7 @@ def test_typography_overlay_and_independent_card_spacing_polish():
     assert ".portal-independent-links .portal-eyebrow { margin-bottom:6px;" in portal_css
     # Both feature cards now reserve one common description row for the inline notice.
     assert ".portal-independent-links .portal-card__details { display:flex;" in portal_css
-    assert "min-height:38px; margin-top:5px;" in portal_css
+    assert "min-height:46px; margin-top:5px;" in portal_css
     assert ".portal-independent-links .portal-card__details .portal-update-note {" in portal_css
 
 
@@ -681,5 +681,18 @@ def test_portal_notice_animation_is_subtle_and_motion_safe():
     assert ".update-badge--new::after { animation:none; display:none; }" in notice
     assert "[data-notice-start][hidden] { display:none !important; }" in notice
     assert ".portal-independent-links .portal-card__details" in portal
-    assert "min-height:38px" in portal
+    assert "min-height:46px" in portal
     assert ".portal-independent-links .portal-card__details .portal-update-note" in portal
+
+
+def test_conditional_notice_description_styles_prevent_header_jump():
+    from pathlib import Path
+    css = (Path(main.ASSETS_DIR) / "portal.css").read_text(encoding="utf-8")
+    assert ".portal-guide-note__details { display:flex;" in css
+    assert "min-width:0; min-height:46px; gap:3px 8px;" in css
+    assert ".portal-guide-note__details:has(> .portal-update-note:not([hidden])) > small" in css
+    assert ".portal-guide-note__details > .portal-update-note { display:inline-flex;" in css
+    assert ".portal-guide-note__details .portal-update-summary" in css
+    assert ".portal-independent-links .portal-card__details .portal-update-note" in css
+    assert "flex:1 1 auto; min-width:0; max-width:100%;" in css
+    assert "text-overflow:ellipsis; white-space:nowrap;" in css
