@@ -31,7 +31,18 @@ Open PRは #111/#112/#2。いずれも変更していない。#113/#114/#115はo
 | 保存済み契約 | 導入前mainとの `data/`、旧7枚manifest、`sync_retirement.py` 差分なし。実削除承認manifest 0件 |
 | 今回の限定再検証 | `test_sync_deletions.py` / `test_deletion_guard.py` / `test_deletion_workflow.py`: 82 PASS |
 
-原API本文・認証情報は保存しない。今回は新しい認証付き完全API取得ができていないため、「16枚が今も欠落している」という新しい実証とは区別する。
+原API本文・認証情報は保存しない。PR作成後の読み取り専用監査で、新しい認証付き完全API取得も成功した（下記）。ただし本番履歴に保存される第二観測とは区別する。
+
+## 最新の読み取り専用API監査
+
+PR #116に伴う [run 38988628365](https://github.com/charchan123/hatena-photo-gallery/actions/runs/38988628365) は成功。
+取得時刻 `2026-10-17T00:56:32.162085+00:00`（09:56:32 JST）、初回から9時間43分27.341361秒。12ページ/112 entries/公開111/下書き1除外/完全取得/表現差0。
+欠落16枚のID・candidate fingerprint・保護sha256 `66995ea14ae7c242b49bbdab6d8d275fd89f49e9b8b987305b37aed1e2925e1a` は初回と完全一致。研究2件は引き続き保護、残0/残5。
+main Best Shotおよび未マージPR #111/#112/#2/#116の参照検証成功。IDの読み取り専用シミュレーションは既存890 ID保持＋新規3 ID、公開未実行。全削除の承認ではない。
+実guarded previewも成功し、安全停止 `DELETION_CONFIRMATION_OR_APPROVAL_PENDING`、eligible0/pending16/applied0、`history_persisted=false` を確認した。
+Artifact `12083849224` のZIP SHA256 `8d1de465fdb7905c910d598c46cda9b2f6cb3ebdf831cd546af42760c6375ea0` を照合済み。
+**このrunは異なるIDで時間差も範囲内だが、本番履歴へ記録しない監査なので2回目成立とは扱わない。履歴への手動転記もしない。**
+同じ文書headのChromium CIも成功。次の文書追記では製品コードを変更していない。
 
 ## 2回目の実行・照合
 
