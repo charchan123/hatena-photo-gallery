@@ -2626,7 +2626,7 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
     </header>
   </div>
   <div class="record-preview-list">{render_record_preview_rows(observation_records, limit=3)}</div>
-  <a class="portal-more-link" href="records.html">観察記録をもっと見る <span aria-hidden="true">→</span></a>
+  <a class="portal-more-link" href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E3%82%AD%E3%83%8E%E3%82%B3%E6%8E%A2%E7%B4%A2%E6%97%A5%E8%A8%98" target="_top">観察記録をもっと見る <span aria-hidden="true">→</span></a>
 </section>
 <section class="portal-explore" aria-labelledby="explore-heading">
   <div class="portal-section-visual portal-section-visual--explore">
