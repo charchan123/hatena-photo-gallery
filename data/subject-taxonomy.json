@@ -532,6 +532,27 @@
       ],
       "notes": "Evidence-backed gallery taxonomy entry; food safety is defined only in the linked master record.",
       "mushroom_master_id": "miyamatamagotake"
+    },
+    {
+      "canonical_name": "マツタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "research-ishikawa-matutake"
+      ],
+      "notes": "Gallery subject-name evidence from the already reviewed Ishikawa forestry source; this is not verification of photographed specimen identity or a food-safety claim.",
+      "mushroom_master_id": "matutake"
+    },
+    {
+      "canonical_name": "ブドウニガイグチ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://i-zukan.jp/category/syu?category_id=22027"
+      ],
+      "notes": "Japanese mushroom name listed in Zukan.jp as Tylopilus vinosobrunneus. The entry corroborates the subject category only; it does not identify the photographed specimen, claim edibility, or create an unreviewed knowledge-master record."
     }
   ]
 }
