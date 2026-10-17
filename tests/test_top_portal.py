@@ -55,7 +55,8 @@ def test_new_top_counts_follow_build_inputs_and_update(monkeypatch, tmp_path):
         assert "opacity:1" in declarations
         assert "margin-left" not in declarations
         assert len(soup.select(".record-preview-row")) == 3
-        assert soup.select_one(".portal-more-link")["href"] == "records.html"
+        assert soup.select_one(".portal-more-link")["href"] == "https://exsudoporus-ruber.hatenablog.jp/archive/category/%E3%82%AD%E3%83%8E%E3%82%B3%E6%8E%A2%E7%B4%A2%E6%97%A5%E8%A8%98"
+        assert soup.select_one(".portal-more-link")["target"] == "_top"
         for modifier, href, description in (
             ("research", "research.html", "正体を調べているキノコを見る"),
             ("best-shots", "best-shots.html", "とっておきの一枚を集めた写真館"),
@@ -65,6 +66,19 @@ def test_new_top_counts_follow_build_inputs_and_update(monkeypatch, tmp_path):
             assert card.select_one("small").get_text() == description
         assert soup.select_one(".portal-records-heading > p:last-child").get_text() == "キノコ探索のブログ記事を、新しい順に紹介します。"
         assert soup.select_one(".portal-section-heading > p:last-child").get_text() == "名前や季節、見た目の特徴からキノコを探せます。"
+
+
+def test_observation_more_uses_native_hatena_archive_for_sidebar_and_stars(monkeypatch, tmp_path):
+    """Do not imitate interactive Hatena widgets inside GitHub Pages."""
+    soup = BeautifulSoup(render(monkeypatch, tmp_path, observation_records=[record(0)]),
+                         "html.parser")
+    more = soup.select_one(".portal-more-link")
+    assert more is not None
+    assert more["href"] == "https://exsudoporus-ruber.hatenablog.jp/archive/category/%E3%82%AD%E3%83%8E%E3%82%B3%E6%8E%A2%E7%B4%A2%E6%97%A5%E8%A8%98"
+    assert more["target"] == "_top"
+    assert more.get_text(" ", strip=True).startswith("観察記録をもっと見る")
+    assert not soup.select_one('.portal-more-link[href="records.html"]')
+    assert soup.select_one(".record-preview-row")["target"] == "_top"
 
 
 def test_new_top_guide_count_excludes_only_exact_unknown_and_empty_names(monkeypatch, tmp_path):
@@ -235,7 +249,7 @@ def test_records_first_information_architecture(monkeypatch, tmp_path):
     assert '<body class="portal-index">' in page and 'href="assets/portal.css"' in page
     assert 'class="portal-records-hero"' in page and page.index("観察記録") < page.index("キノコを探す")
     assert 'class="portal-card portal-card--guide" href="index.html"' in page and "図鑑を見る" in page
-    assert "季節から探す" in page and 'href="records.html"' in page
+    assert "季節から探す" in page and 'href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E3%82%AD%E3%83%8E%E3%82%B3%E6%8E%A2%E7%B4%A2%E6%97%A5%E8%A8%98" target="_top"' in page
     for i in range(3):
         assert f"photo{i}.jpg?width=500" in page and f"記事{i}" in page and f"本文{i}" in page
     assert "記事3" not in page
