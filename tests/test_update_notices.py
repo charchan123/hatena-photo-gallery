@@ -100,3 +100,50 @@ def test_portal_events_require_editorial_history_not_counts(monkeypatch, tmp_pat
     soup = BeautifulSoup((tmp_path / "new-top.html").read_text(), "html.parser")
     assert soup.select_one(".portal-card--research .portal-update-summary").get_text() == "1種の正体が判明<&"
     assert not soup.select("a a")
+
+
+def test_best_shot_notice_may_lead_with_badge_without_changing_expiry():
+    events = [{"section": "best-shots", "kind": "new",
+               "summary": "ベストショットを追加", "occurred_at": NOW.isoformat()}]
+    default = BeautifulSoup(render_section_notice("best-shots", events, now=NOW), "html.parser")
+    badge_first = BeautifulSoup(render_section_notice("best-shots", events, now=NOW,
+                                                       badge_first=True), "html.parser")
+    notice = badge_first.select_one(".portal-update-note")
+    assert [node.get_text(strip=True) for node in notice.find_all(recursive=False)] == [
+        "NEW!", "ベストショットを追加",
+    ]
+    assert [node.get_text(strip=True) for node in default.select_one(
+        ".portal-update-note").find_all(recursive=False)] == ["ベストショットを追加", "NEW!"]
+    assert notice["data-notice-start"] == default.select_one(".portal-update-note")["data-notice-start"]
+    assert notice["data-notice-end"] == default.select_one(".portal-update-note")["data-notice-end"]
+    assert int(notice["data-notice-end"]) - int(notice["data-notice-start"]) == 7 * 86400 * 1000
+    assert not render_section_notice("best-shots", events, now=NOW + timedelta(days=7),
+                                     badge_first=True)
+
+
+def test_best_shot_notice_shares_description_row_with_research_card(monkeypatch, tmp_path):
+    now = datetime.now().astimezone()
+    events = [{"section": "best-shots", "kind": "new",
+               "summary": "ベストショットを追加", "occurred_at": now.isoformat()}]
+    monkeypatch.setattr(main, "load_notice_events", lambda: events)
+    monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
+    main.generate_new_top({}, {}, research_summary={"case_count": 66},
+                          best_shot_summary={"entry_count": 12})
+    soup = BeautifulSoup((tmp_path / "new-top.html").read_text(encoding="utf-8"), "html.parser")
+    research = soup.select_one(".portal-card--research")
+    best = soup.select_one(".portal-card--best-shots")
+    assert research.select_one("strong + .portal-card__details > small").get_text() == "正体を調べているキノコを見る"
+    assert best.select_one("strong + .portal-card__details > small").get_text() == "とっておきの一枚を集めた写真館"
+    assert not research.select_one(".portal-update-note")
+    note = best.select_one(".portal-card__details > .portal-update-note")
+    assert note is not None
+    assert [child.get_text(strip=True) for child in note.find_all(recursive=False)] == [
+        "NEW!", "ベストショットを追加",
+    ]
+    assert not best.select_one(".portal-card__copy > .portal-update-note")
+    assert not soup.select("a a")
+    # No NEW! changes a card's eyebrow, title, destination or image asset.
+    assert research.select_one(".portal-eyebrow").get_text() == "RESEARCH LAB"
+    assert best.select_one(".portal-eyebrow").get_text() == "BEST SHOTS"
+    assert best.select_one("strong").get_text(" ", strip=True).startswith("ベストショット")
+    assert best["href"] == "best-shots.html"
