@@ -1,0 +1,111 @@
+{
+  "checked_at": "2026-10-17T00:55:00Z",
+  "main": "4b95bd9e9e44f225027858c5dd4fd4b7cd865f59",
+  "publish_enabled": false,
+  "gh_pages": "757cbfc868452d3bb892849fce0e2122cd8c566e",
+  "history_branch": "sync-deletion-audit",
+  "history_commit": "7d31346fddd1b01b0515614cd24128be3947c1bd",
+  "history_validated_by": "GitHistory.load",
+  "history_event_count": 2,
+  "history_head": "553a251041add4eae2b31a6adacbd4381c0f486faae6423ba5a162d6d569aa67",
+  "first_fetch": {
+    "kind": "fetch",
+    "at": "2026-10-16T15:13:04.820724+00:00",
+    "run_id": "actions:38922030976:attempt:1",
+    "independent_id": "actions:38922030976",
+    "baseline": "7212389cdc412bf3577c78c3e0be5c91926ecc398930427b775f2459071adcb0",
+    "baseline_commit": "757cbfc868452d3bb892849fce0e2122cd8c566e",
+    "protection": "66995ea14ae7c242b49bbdab6d8d275fd89f49e9b8b987305b37aed1e2925e1a",
+    "source_sha256": "f37b5d26cf29ec37bd3176ffa618e631caf5b10dda93fb914d83edf84639a799",
+    "healthy": true,
+    "error_code": null
+  },
+  "first_fetch_event_sha256": "c949591fb222ca9a103fb40873a5ff4519f7998610a81c24df4671ebf186ba76",
+  "first_report": {
+    "fetch_audit": {
+      "pages_completed": 12,
+      "entries_received": 112,
+      "drafts_excluded": 1,
+      "published_articles": 111,
+      "html_articles": 111,
+      "pagination_complete": true,
+      "content_type_counts": {
+        "text/html": 111
+      },
+      "html_source_counts": {
+        "content_html": 111
+      },
+      "html_image_representation_difference_articles": 0
+    },
+    "deletions": {
+      "candidate_count": 16,
+      "automatic_deletion_eligible": 0,
+      "manual_deletion_eligible": 0,
+      "protected_pending": 2,
+      "applied_automatic": 0,
+      "applied_manual": 0,
+      "pending": 16,
+      "states": {
+        "reconfirmation_pending": 16
+      },
+      "history_persisted": true,
+      "history_head": "553a251041add4eae2b31a6adacbd4381c0f486faae6423ba5a162d6d569aa67"
+    },
+    "error_code": "DELETION_CONFIRMATION_OR_APPROVAL_PENDING",
+    "attempted_at": "2026-10-16T15:13:08.311532+00:00",
+    "deleted_images": 16,
+    "new_images": 20,
+    "possible_url_changes": 0,
+    "classification_changes": 0
+  },
+  "second_observation": {
+    "status": "NOT_EXECUTED",
+    "run_id": null,
+    "blocker": "GitHub connector has no workflow_dispatch capability; browser sign-in rejected credentials",
+    "scheduled_after_0900_seen": false,
+    "minimum_fetch_at": "2026-10-16T21:13:04.820724+00:00",
+    "maximum_fetch_at": "2026-10-19T15:13:04.820724+00:00"
+  },
+  "artifact": {
+    "id": 12054976764,
+    "zip_sha256": "b2e80e3b8405d1e7ae3dfa25353d49b0e80dfb5b705ee2e067ec31c9fd3c0aa3",
+    "digest_verified": true
+  },
+  "candidate_count": 16,
+  "unprotected_first_fetch": 14,
+  "protected_first_fetch": 2,
+  "missing_ids_match_previous_csv": true,
+  "targeted_tests": {
+    "passed": 82,
+    "command": "python -m pytest -q tests/test_sync_deletions.py tests/test_deletion_guard.py tests/test_deletion_workflow.py"
+  },
+  "production_changes": {
+    "applied": 0,
+    "approvals_created": 0,
+    "publication_attempted": false
+  },
+  "research": [
+    {
+      "observation_id": "obs-b65bc66594a331b3fb0e79f41dbfe9d2b8c5e94bdd826c49b1a6b26472f12e51",
+      "name": "カワリハツ？",
+      "cases": [
+        {
+          "case_id": "research-940496f1ccdb136f",
+          "photo_count": 1,
+          "remaining_photo_count": 0
+        }
+      ]
+    },
+    {
+      "observation_id": "obs-87fa70cf88bf584c315b452899c54a1426d784d2fb6aa9beede5b38d2a98a7c6",
+      "name": "Lanmaoa angustispora(和名無し)？",
+      "cases": [
+        {
+          "case_id": "research-f9cb62e956fa8604",
+          "photo_count": 6,
+          "remaining_photo_count": 5
+        }
+      ]
+    }
+  ]
+}
