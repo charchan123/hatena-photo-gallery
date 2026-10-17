@@ -47,7 +47,13 @@ PRの保存にはGitHub連携を使用し、管理室のgh依存create_prによ�
 
 ## 回帰試験
 
-公式manifestを適用したPython全946件PASS（80.32秒）。compileall、JavaScript全syntax/回帰試験PASS。保存済み承認headのChromium/読み取りAPI/生成CIは確認後VALIDATION.jsonへ記録する。
+公式manifestを適用したPython全946件PASS（80.32秒）。compileall、JavaScript全syntax/回帰試験PASS。承認ファイルを保存したhead `86d4583b37612bf99c2a0c03f8bef97d70312be3` のCIも全3種類成功：
+
+- [Validate Admin Changes 38992708265](https://github.com/charchan123/hatena-photo-gallery/actions/runs/38992708265)：Python全試験・compileall・全JavaScript・生成と公開分離。
+- [Chromium 38992708276](https://github.com/charchan123/hatena-photo-gallery/actions/runs/38992708276)：Best Shot92＋削除承認31＝123項目PASS。
+- [Read-only API audit 38992708348](https://github.com/charchan123/hatena-photo-gallery/actions/runs/38992708348)：新しい完全取得とguarded PREVIEWで自動14/手動2/pending0、history書込み0を再確認。artifact 12086230105 のZIP SHA256 `3be38b58a7ad65181a04e16fb3add1b32c0126443ad2a312e1a296f0cd3df114` を照合。
+
+以降の差分は監査報告のみで、承認manifestと製品コードはこの検証済みheadから不変。詳細はVALIDATION.json。
 製品コード、既存data全体、旧7枚manifest、公開workflowは変更していない。原API本文、下書き本文、認証情報、生成サイト、ローカル管理室状態はPRに含めていない。
 
 ## 残る管理者判断・制約

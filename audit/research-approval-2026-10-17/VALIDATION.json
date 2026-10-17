@@ -11,7 +11,13 @@
     "regression_files": 10,
     "status": "PASS"
   },
-  "chromium": "CI_PENDING_ON_SAVED_APPROVAL_HEAD",
+  "chromium": {
+    "passed": 123,
+    "best_shot": 92,
+    "deletion_review": 31,
+    "run_id": 38992708276,
+    "status": "success"
+  },
   "official_admin_preview": {
     "run_id": 38992403765,
     "status": "success",
@@ -42,5 +48,118 @@
   "limits": [
     "Capsules preserve complete original published observation records and URLs, not independent copies of image binary files",
     "pending=0 is isolated preview only; main still has no approval manifests"
-  ]
+  ],
+  "ci": {
+    "tested_approval_commit": "86d4583b37612bf99c2a0c03f8bef97d70312be3",
+    "runs": [
+      {
+        "id": 38992708265,
+        "name": "Validate Admin Changes",
+        "status": "success"
+      },
+      {
+        "id": 38992708276,
+        "name": "Deletion review browser regressions",
+        "status": "success"
+      },
+      {
+        "id": 38992708348,
+        "name": "Read-only deletion audit",
+        "status": "success"
+      }
+    ]
+  },
+  "committed_live_audit": {
+    "at": "2026-10-17T01:53:33.623164+00:00",
+    "fetch_audit": {
+      "pages_completed": 12,
+      "entries_received": 112,
+      "drafts_excluded": 1,
+      "published_articles": 111,
+      "html_articles": 111,
+      "pagination_complete": true,
+      "content_type_counts": {
+        "text/html": 111
+      },
+      "html_source_counts": {
+        "content_html": 111
+      },
+      "html_image_representation_difference_articles": 0
+    },
+    "counts": {
+      "comparison": "KNOWN",
+      "new_articles": 2,
+      "deleted_articles": 1,
+      "new_images": 20,
+      "deleted_images": 16,
+      "updated_articles": 0,
+      "classification_changes": 0,
+      "url_changes": 0,
+      "possible_url_changes": 0,
+      "pending_changes": [],
+      "deleted_article_hashes": [
+        "f4c1c839abafe71eb16494d0d921cd96df6cbf32aefce8eee19a8807a90a923e"
+      ],
+      "previous_gallery": 906,
+      "candidate_gallery": 893,
+      "missing_gallery_occurrences": 16,
+      "missing_gallery_in_removed_source": 16,
+      "new_source_gallery_occurrences": 3,
+      "new_source_non_gallery_occurrences": 17,
+      "source_image_count": 980,
+      "protected_deletion_candidates": 2
+    },
+    "protection": "66995ea14ae7c242b49bbdab6d8d275fd89f49e9b8b987305b37aed1e2925e1a",
+    "pending_selections_checked": [
+      {
+        "number": 117,
+        "head": "86d4583b37612bf99c2a0c03f8bef97d70312be3",
+        "entry_count": 3,
+        "file_absent_verified": false
+      },
+      {
+        "number": 116,
+        "head": "e8cedc394cdfb0dd40d74c96bae46a90b46ac168",
+        "entry_count": 3,
+        "file_absent_verified": false
+      },
+      {
+        "number": 112,
+        "head": "a8d5792ec2e62e3a630124743c0bffc1d8fa48a6",
+        "entry_count": 3,
+        "file_absent_verified": false
+      },
+      {
+        "number": 111,
+        "head": "4448c3431a1c275ca686e9e2a0a7736fc67f0841",
+        "entry_count": 12,
+        "file_absent_verified": false
+      },
+      {
+        "number": 2,
+        "head": "c947f61d628c9aff5e4a1aacc1881e957e5eaf0b",
+        "entry_count": 0,
+        "file_absent_verified": true
+      }
+    ],
+    "result": "PREVIEW",
+    "deletions": {
+      "candidate_count": 16,
+      "automatic_deletion_eligible": 14,
+      "manual_deletion_eligible": 2,
+      "protected_pending": 0,
+      "applied_automatic": 14,
+      "applied_manual": 2,
+      "pending": 0,
+      "states": {
+        "automatic_eligible": 14,
+        "manual_eligible": 2
+      },
+      "history_persisted": false,
+      "history_head": "3690dadc96705b78fbd2ff63d104be191eae71ab03a0ce4ce47b2d889b2fe0fd"
+    },
+    "artifact_id": 12086230105,
+    "zip_sha256": "3be38b58a7ad65181a04e16fb3add1b32c0126443ad2a312e1a296f0cd3df114",
+    "digest_verified": true
+  }
 }
