@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "seq": 4,
+  "previous": "130681f8b128f61bef24071b8f27ab6481870ca0f80d645e2dad08b0c5154d41",
+  "event": {
+    "kind": "result",
+    "at": "2026-10-17T01:20:59.197934+00:00",
+    "run_id": "actions:38990433068:attempt:1:BLOCKED",
+    "independent_id": "actions:38990433068",
+    "baseline": "7212389cdc412bf3577c78c3e0be5c91926ecc398930427b775f2459071adcb0",
+    "baseline_commit": "757cbfc868452d3bb892849fce0e2122cd8c566e",
+    "protection": "66995ea14ae7c242b49bbdab6d8d275fd89f49e9b8b987305b37aed1e2925e1a",
+    "source_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "healthy": false,
+    "error_code": "DELETION_CONFIRMATION_OR_APPROVAL_PENDING",
+    "candidates": {},
+    "findings": [],
+    "outcome": "BLOCKED",
+    "receipt_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "output_portal_sha256": null
+  },
+  "sha256": "3690dadc96705b78fbd2ff63d104be191eae71ab03a0ce4ce47b2d889b2fe0fd"
+}
