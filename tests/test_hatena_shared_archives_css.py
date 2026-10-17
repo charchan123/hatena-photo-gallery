@@ -13,14 +13,16 @@ EYEBROW = ('\n/* Mushroom observation archive shares Daily Notes layout; only it
 
 
 def test_shared_archive_css_exactly_preserves_baseline_and_existing_declarations():
-    original = SOURCE.read_text(encoding="utf-8")
-    proposed = CANDIDATE.read_text(encoding="utf-8")
+    original_bytes = SOURCE.read_bytes()
+    proposed_bytes = CANDIDATE.read_bytes()
+    original = original_bytes.decode("utf-8")
+    proposed = proposed_bytes.decode("utf-8")
     baseline = BASE.read_bytes()
-    assert original.encode("utf-8").startswith(baseline)
-    assert proposed.encode("utf-8").startswith(baseline)
+    assert original_bytes.startswith(baseline)
+    assert proposed_bytes.startswith(baseline)
     assert original.count(OLD) == 73
     assert proposed == original.replace(OLD, SHARED) + EYEBROW
-    assert len(proposed.encode("utf-8")) < 65536
+    assert len(proposed_bytes) < 65536
 
 
 def test_scope_keeps_daily_and_observation_categories_only():
