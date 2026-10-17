@@ -6,19 +6,96 @@
       "observation_id": "obs-a8b693fc53149d44b115b8bdcb259b815f9378f4b455d1ff167668da434a5b04",
       "comment": "ブログのトップページにも選ばれた最高の1枚",
       "annual_comment": "記念すべき初の年間ベストショットはやはりこの1枚",
-      "order": 1
+      "order": 1,
+      "location": "富士山(山梨県)"
     },
     {
       "selection_id": "best-2025-05-kiiro-suppontake-03",
       "observation_id": "obs-50e871697b283aa5be603fd05f8e5265533c6512a835d77d684d6100c5e3c525",
       "comment": "色がとても鮮やかで見ていて楽しいキノコ",
-      "order": 1
+      "order": 2,
+      "annual_comment": "ヒロメノトガリアミガサタケを発見した日と同日に発見。この日は比較的多く発生していて林内の至る所から糞臭がしていた。",
+      "location": "富士山(静岡県)"
     },
     {
       "selection_id": "best-2026-07-yamadoritakemodoki-01",
       "observation_id": "obs-09a0f4d22601db11946b1b89434dae6144ba4f4cf4298925520e63d2b680472b",
       "comment": "過去最高と言ってもいいくらいの完成度",
-      "order": 1
+      "order": 1,
+      "annual_comment": null,
+      "location": "静岡県掛川市"
+    },
+    {
+      "selection_id": "best-1791807945083",
+      "observation_id": "obs-033cdb9f4a637ae8e699966d00615cc0ca371e322678cf944b7a3c992ff78aa3",
+      "comment": "今年も新緑のブナ林で魅力的な姿を魅せてくれた。",
+      "order": 1,
+      "annual_comment": null,
+      "location": "富士山(静岡県)"
+    },
+    {
+      "selection_id": "best-1791808732359",
+      "observation_id": "obs-dddc25ba3cdd30113666c59dd31ced33c0bbd70723ee50e3c46530074ed9700c",
+      "comment": "林内は薄暗く雨が降り続く亜高山帯に夏らしい色のオレンジは非常に目立っていた。",
+      "order": 1,
+      "annual_comment": null,
+      "location": "富士山(山梨県)"
+    },
+    {
+      "selection_id": "best-1791809085622",
+      "observation_id": "obs-65866cedd0a5e3beeefd3a27e17562083a0abcf403e84a5120e127e0de4cffc8",
+      "comment": "この日は木の子の会の最若手と言ってもいいファミリーを自分のシロへ案内したのだが、そのお父さんがこのヤマイグチを発見してくれた。",
+      "order": 2,
+      "annual_comment": null,
+      "location": "富士山(山梨県)"
+    },
+    {
+      "selection_id": "best-1791809225878",
+      "observation_id": "obs-8213f6da5a9774ea03e8bee2c76a2d7a23f3c95890b64ea8a3b86dcf319ce05a",
+      "comment": "田んぼ脇に発生。少々不気味な雰囲気を醸し出す容姿は写真では伝わりにくい。",
+      "order": 3,
+      "annual_comment": null,
+      "location": "静岡県掛川市"
+    },
+    {
+      "selection_id": "best-1791809536857",
+      "observation_id": "obs-e959d380e8e96b15cd9d0895a7bc445bf6bffe680688862b9e6f9df2ae8aed8f",
+      "comment": "この日は大量に発生していた。一体何人のお酒を飲む人の体調を崩させる気なのだろうか？",
+      "order": 2,
+      "annual_comment": null,
+      "location": "富士山(山梨県)"
+    },
+    {
+      "selection_id": "best-1791809625366",
+      "observation_id": "obs-1d172305fde6d5ff6639b1a73b8982415212ff466500e6ae9a8416550e442a93",
+      "comment": "キノコを知らない人が見ると逃げ出しそうな見た目をしている。",
+      "order": 3,
+      "annual_comment": null,
+      "location": "富士山(山梨県)"
+    },
+    {
+      "selection_id": "best-1791809978741",
+      "observation_id": "obs-3a51c16a4dcc1cd3bd2c8a5a142f90bdf1a8cbd32a8da9b48f405180bbdef1c9",
+      "comment": "撮影当初は、上手くアングルが決められず苦労したが開き直って適当に横にあった倒木をまたいで三脚をセットした所、良い感じのアングルになってくれた。",
+      "order": 1,
+      "annual_comment": null,
+      "location": "静岡県沼津市"
+    },
+    {
+      "selection_id": "best-1791810041879",
+      "observation_id": "obs-fd1e8788487bf7d17b445943e7ed96412daabc52d638236fb064ed5467e1e883",
+      "comment": "11月初めという時期に9月の末から発生する本種がいい状態でまだ発生していた。",
+      "order": 2,
+      "annual_comment": null,
+      "location": "静岡県沼津市"
+    },
+    {
+      "selection_id": "best-1791810118964",
+      "observation_id": "obs-d0c48db66dab6a6e6c7b5a312945fcd5e2246b56bbd230b4c21023f68224a336",
+      "comment": "11月上旬というキノコシーズン終了間近に歴代で1、2位を争う(とは言っても写真歴1年)最高の被写体がボコボコと切り株に株を成していた。",
+      "order": 3,
+      "annual_comment": null,
+      "location": "静岡県掛川市"
     }
   ],
   "annual_best": {
