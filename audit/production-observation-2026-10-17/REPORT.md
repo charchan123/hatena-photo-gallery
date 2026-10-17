@@ -24,7 +24,7 @@ Open PRは #111/#112/#2。いずれも変更していない。#113/#114/#115はo
 | 候補 | 前回CSVと16 observation_idが完全一致。識別異常0、一括大量削除判定0 |
 | 履歴 | `sync-deletion-audit` head `7d31346fddd1b01b0515614cd24128be3947c1bd`、fetch/resultの2イベント・2コミット |
 | 完全性 | 本番の `GitHistory.load` でhash連鎖、seq、head index、tree mode、1イベント1コミット・追加専用差分を検証 |
-| fetch event seal | `553a251041add4eae2b31a6adacbd4381c0f486faae6423ba5a162d6d569aa67` |
+| fetch event seal | `c949591fb222ca9a103fb40873a5ff4519f7998610a81c24df4671ebf186ba76` |
 | 結果 | `DELETION_CONFIRMATION_OR_APPROVAL_PENDING`、pending16、eligible0、applied0 |
 | 公開 | Pages deploy SKIPPED。初回runのfailureは安全停止 |
 | Artifact | `12054976764`、ZIP SHA256 `b2e80e3b8405d1e7ae3dfa25353d49b0e80dfb5b705ee2e067ec31c9fd3c0aa3` と照合済み |
