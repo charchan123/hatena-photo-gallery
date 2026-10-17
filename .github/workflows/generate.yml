@@ -16,7 +16,7 @@ permissions:
 # Reviewed rollout switch. Keep false during the first two observations.
 # Enable only in a separate reviewed change after explicit release approval.
 env:
-  SAFE_PHOTO_DELETION_PUBLISH_ENABLED: 'false'
+  SAFE_PHOTO_DELETION_PUBLISH_ENABLED: 'true'
 
 # Compare against the last publication, never two concurrent stale baselines.
 concurrency:
