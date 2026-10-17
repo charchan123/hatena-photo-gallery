@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "candidate_id": "195d936419465034a0f6ddbda770d59db3778f4f620896426d561300ff20a77d",
+  "fingerprint": "3ca58b81a53560287c1f22287bcf1858b21e10fcb6eb93e23a70b634ca5e780e",
+  "baseline": "7212389cdc412bf3577c78c3e0be5c91926ecc398930427b775f2459071adcb0",
+  "protection": "66995ea14ae7c242b49bbdab6d8d275fd89f49e9b8b987305b37aed1e2925e1a",
+  "action": "archive_research",
+  "approved_at": "2026-10-17T01:49:20.421131+00:00",
+  "reason_sha256": "3983a2aed7d4ffed30513be34d0f0921a88571354837fbc5d4ed92b76566abfc",
+  "case_ids": [
+    "research-940496f1ccdb136f"
+  ],
+  "archives": [
+    {
+      "case": {
+        "case_id": "research-940496f1ccdb136f",
+        "gallery_name": "カワリハツ？",
+        "photos": [
+          {
+            "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914214519.jpg",
+            "capture_date": "2025-09-13",
+            "production_index": 422,
+            "observation_id": "obs-b65bc66594a331b3fb0e79f41dbfe9d2b8c5e94bdd826c49b1a6b26472f12e51"
+          }
+        ],
+        "article": {
+          "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565232514288",
+          "article_path": "articles/article_49.html",
+          "title": "2025年9月13日　富士山(山梨県)",
+          "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/09/15/103432",
+          "published": "2025-09-15T10:34:32+09:00"
+        },
+        "capture_dates": [
+          "2025-09-13"
+        ],
+        "latest_capture_date": "2025-09-13",
+        "photo_count": 1,
+        "status": "候補名あり"
+      },
+      "observations": [
+        {
+          "observation_id": "obs-b65bc66594a331b3fb0e79f41dbfe9d2b8c5e94bdd826c49b1a6b26472f12e51",
+          "production_index": 422,
+          "gallery_name": "カワリハツ？",
+          "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914214519.jpg",
+          "shadow_match_status": "exact_legacy_alt",
+          "classification": {
+            "status": "legacy_undetected",
+            "subject_type": "review",
+            "detected_label": null,
+            "shadow_gallery_name": null,
+            "classification_reason": "no_detected_label",
+            "classification_confidence": "low",
+            "subject_state_status": "reset_by_rejected_boundary",
+            "taxonomy_canonical_name": null,
+            "taxonomy_match_type": "none"
+          },
+          "capture": {
+            "date": "2025-09-13",
+            "month": 9,
+            "date_source": "exif",
+            "camera": {
+              "model": "DC-G9M2",
+              "lens": "OLYMPUS M.12-40mm F2.8",
+              "iso": "200",
+              "f": "f/11.0",
+              "exposure": "16/10",
+              "focal": "30mm"
+            }
+          },
+          "article": {
+            "article_path": "articles/article_49.html",
+            "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565232514288",
+            "title": "2025年9月13日　富士山(山梨県)",
+            "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/09/15/103432",
+            "published": "2025-09-15T10:34:32+09:00",
+            "updated": "2025-09-15T10:34:32+09:00",
+            "categories": [
+              "ミネシメジ",
+              "ミヤママスタケ",
+              "不明種",
+              "ケシロハツ",
+              "ウラグロニガイグチ",
+              "ドクヤマドリ",
+              "オオキツネタケ",
+              "アケボノアワタケ",
+              "ベニタケ科不明種",
+              "ニシキタケ",
+              "ヤマイグチ",
+              "アカツムタケ",
+              "ショウゲンジ",
+              "ホテイシメジ",
+              "クリカワヤシャイグチ",
+              "キノボリイグチ",
+              "スギタケモドキ",
+              "ドクツルタケ",
+              "コゲエノヘラタケ",
+              "ハナイグチ",
+              "シロヌメリイグチ",
+              "ホコリタケ",
+              "ミヤマミドリニガイグチ",
+              "キサマツモドキ",
+              "コガネヤマドリ",
+              "キノコ探索日記"
+            ],
+            "excerpt": "待ちに待った静岡木の子の会の東部地区探索会が富士五湖周辺の民宿で行われたので富士山の亜高山帯を探索してきた。 追記 ブログ投稿後、タブレットにて再確認したところ雨の影響で水滴が付いていたり、低ISOで撮影したこともあり、思いのほかブレた写真などを量産してしまっ…"
+          },
+          "mushroom_master_id": null
+        }
+      ],
+      "identifications": []
+    }
+  ],
+  "registry_before": {
+    "version": 1,
+    "identifications": []
+  },
+  "replacement_id": null,
+  "supersedes": null,
+  "approval_id": "5f32b7cac402a67fd52ec373a98ec85393e7dfb3617197884c3d10a8027736e4"
+}

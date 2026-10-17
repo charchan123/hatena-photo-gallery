@@ -1,0 +1,364 @@
+{
+  "version": 1,
+  "candidate_id": "64a816f2795e7781a5ac5abbb11c8e20334d03d7e24875f56d804bd49d9f2597",
+  "fingerprint": "1ae9e936ffc2921b4e3bfc53b2d93f9dec02e63108bf39b2d2d81698e2a2f0d1",
+  "baseline": "7212389cdc412bf3577c78c3e0be5c91926ecc398930427b775f2459071adcb0",
+  "protection": "66995ea14ae7c242b49bbdab6d8d275fd89f49e9b8b987305b37aed1e2925e1a",
+  "action": "approve_research_photo",
+  "approved_at": "2026-10-17T01:49:36.036719+00:00",
+  "reason_sha256": "3983a2aed7d4ffed30513be34d0f0921a88571354837fbc5d4ed92b76566abfc",
+  "case_ids": [
+    "research-f9cb62e956fa8604"
+  ],
+  "archives": [
+    {
+      "case": {
+        "case_id": "research-f9cb62e956fa8604",
+        "gallery_name": "Lanmaoa angustispora(和名無し)？",
+        "photos": [
+          {
+            "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250710/20250710215613.jpg",
+            "capture_date": "2025-07-06",
+            "production_index": 573,
+            "observation_id": "obs-7fe8b43ddf8ff131367ceec61362d98aa9fd20c49a37bb3c21c356d2555b27ab"
+          },
+          {
+            "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250710/20250710220319.jpg",
+            "capture_date": "2025-07-06",
+            "production_index": 574,
+            "observation_id": "obs-5b34444988fa1071a19095db533a3c3e93586c1570f4b38e871ad93a4ef44cd6"
+          },
+          {
+            "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250710/20250710220356.jpg",
+            "capture_date": "2025-07-06",
+            "production_index": 575,
+            "observation_id": "obs-f04b61c10b376535a82a57133a58cb49efe5509a187ff1e20ed3405448860c0a"
+          },
+          {
+            "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250710/20250710220511.jpg",
+            "capture_date": "2025-07-06",
+            "production_index": 576,
+            "observation_id": "obs-ec80ea8823c0795b24eafd4443ae3bc4df582d781ee0168e73b709c09fbde800"
+          },
+          {
+            "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250710/20250710220635.jpg",
+            "capture_date": "2025-07-06",
+            "production_index": 577,
+            "observation_id": "obs-87fa70cf88bf584c315b452899c54a1426d784d2fb6aa9beede5b38d2a98a7c6"
+          },
+          {
+            "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250710/20250710220812.jpg",
+            "capture_date": "2025-07-06",
+            "production_index": 578,
+            "observation_id": "obs-ce559c0a0a6470380afdcb792ab2ed5d7af264ce9e445b8fd37fff8826638b2b"
+          }
+        ],
+        "article": {
+          "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398505017021",
+          "article_path": "articles/article_62.html",
+          "title": "2025年7月6日　静岡県掛川市",
+          "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/07/10/222315",
+          "published": "2025-07-10T22:23:15+09:00"
+        },
+        "capture_dates": [
+          "2025-07-06"
+        ],
+        "latest_capture_date": "2025-07-06",
+        "photo_count": 6,
+        "status": "候補名あり"
+      },
+      "observations": [
+        {
+          "observation_id": "obs-7fe8b43ddf8ff131367ceec61362d98aa9fd20c49a37bb3c21c356d2555b27ab",
+          "production_index": 573,
+          "gallery_name": "Lanmaoa angustispora(和名無し)？",
+          "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250710/20250710215613.jpg",
+          "shadow_match_status": "exact_legacy_alt",
+          "classification": {
+            "status": "legacy_review",
+            "subject_type": "review",
+            "detected_label": "Lanmaoa angustispora？",
+            "shadow_gallery_name": null,
+            "classification_reason": "taxonomy_unmatched",
+            "classification_confidence": "low",
+            "subject_state_status": "accepted_subject",
+            "taxonomy_canonical_name": null,
+            "taxonomy_match_type": "none"
+          },
+          "capture": {
+            "date": "2025-07-06",
+            "month": 7,
+            "date_source": "exif",
+            "camera": {
+              "model": "EOS Kiss X5",
+              "lens": "EF-S18-55mm f/3.5-5.6 IS",
+              "iso": "1600",
+              "f": "f/22.0",
+              "exposure": "1/15",
+              "focal": "40mm"
+            }
+          },
+          "article": {
+            "article_path": "articles/article_62.html",
+            "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398505017021",
+            "title": "2025年7月6日　静岡県掛川市",
+            "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/07/10/222315",
+            "published": "2025-07-10T22:23:15+09:00",
+            "updated": "2025-07-10T22:23:15+09:00",
+            "categories": [
+              "ヘビキノコモドキ",
+              "ヨゴレキアミアシイグチ？",
+              "キノコ探索日記",
+              "Lanmaoa angustispora"
+            ],
+            "excerpt": "ヤマドリタケモドキやサトタマゴタケの発生を期待して近所の緑地へ行ってきた Lanmaoa angustispora(和名無し)？ 以前からこの場所で状態が悪くなった成菌は見ているのだが、ここまでどっしりとした固体は見たことが無かった。 この場所は本種？が多く発…"
+          },
+          "mushroom_master_id": null
+        },
+        {
+          "observation_id": "obs-5b34444988fa1071a19095db533a3c3e93586c1570f4b38e871ad93a4ef44cd6",
+          "production_index": 574,
+          "gallery_name": "Lanmaoa angustispora(和名無し)？",
+          "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250710/20250710220319.jpg",
+          "shadow_match_status": "exact_legacy_alt",
+          "classification": {
+            "status": "legacy_review",
+            "subject_type": "review",
+            "detected_label": "Lanmaoa angustispora？",
+            "shadow_gallery_name": null,
+            "classification_reason": "taxonomy_unmatched",
+            "classification_confidence": "low",
+            "subject_state_status": "accepted_subject",
+            "taxonomy_canonical_name": null,
+            "taxonomy_match_type": "none"
+          },
+          "capture": {
+            "date": "2025-07-06",
+            "month": 7,
+            "date_source": "exif",
+            "camera": {
+              "model": "EOS Kiss X5",
+              "lens": "EF-S18-55mm f/3.5-5.6 IS",
+              "iso": "1600",
+              "f": "f/22.0",
+              "exposure": "1/10",
+              "focal": "40mm"
+            }
+          },
+          "article": {
+            "article_path": "articles/article_62.html",
+            "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398505017021",
+            "title": "2025年7月6日　静岡県掛川市",
+            "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/07/10/222315",
+            "published": "2025-07-10T22:23:15+09:00",
+            "updated": "2025-07-10T22:23:15+09:00",
+            "categories": [
+              "ヘビキノコモドキ",
+              "ヨゴレキアミアシイグチ？",
+              "キノコ探索日記",
+              "Lanmaoa angustispora"
+            ],
+            "excerpt": "ヤマドリタケモドキやサトタマゴタケの発生を期待して近所の緑地へ行ってきた Lanmaoa angustispora(和名無し)？ 以前からこの場所で状態が悪くなった成菌は見ているのだが、ここまでどっしりとした固体は見たことが無かった。 この場所は本種？が多く発…"
+          },
+          "mushroom_master_id": null
+        },
+        {
+          "observation_id": "obs-f04b61c10b376535a82a57133a58cb49efe5509a187ff1e20ed3405448860c0a",
+          "production_index": 575,
+          "gallery_name": "Lanmaoa angustispora(和名無し)？",
+          "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250710/20250710220356.jpg",
+          "shadow_match_status": "exact_legacy_alt",
+          "classification": {
+            "status": "legacy_review",
+            "subject_type": "review",
+            "detected_label": "Lanmaoa angustispora？",
+            "shadow_gallery_name": null,
+            "classification_reason": "taxonomy_unmatched",
+            "classification_confidence": "low",
+            "subject_state_status": "accepted_subject",
+            "taxonomy_canonical_name": null,
+            "taxonomy_match_type": "none"
+          },
+          "capture": {
+            "date": "2025-07-06",
+            "month": 7,
+            "date_source": "exif",
+            "camera": {
+              "model": "EOS Kiss X5",
+              "lens": "EF-S18-55mm f/3.5-5.6 IS",
+              "iso": "1600",
+              "f": "f/25.0",
+              "exposure": "1/10",
+              "focal": "27mm"
+            }
+          },
+          "article": {
+            "article_path": "articles/article_62.html",
+            "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398505017021",
+            "title": "2025年7月6日　静岡県掛川市",
+            "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/07/10/222315",
+            "published": "2025-07-10T22:23:15+09:00",
+            "updated": "2025-07-10T22:23:15+09:00",
+            "categories": [
+              "ヘビキノコモドキ",
+              "ヨゴレキアミアシイグチ？",
+              "キノコ探索日記",
+              "Lanmaoa angustispora"
+            ],
+            "excerpt": "ヤマドリタケモドキやサトタマゴタケの発生を期待して近所の緑地へ行ってきた Lanmaoa angustispora(和名無し)？ 以前からこの場所で状態が悪くなった成菌は見ているのだが、ここまでどっしりとした固体は見たことが無かった。 この場所は本種？が多く発…"
+          },
+          "mushroom_master_id": null
+        },
+        {
+          "observation_id": "obs-ec80ea8823c0795b24eafd4443ae3bc4df582d781ee0168e73b709c09fbde800",
+          "production_index": 576,
+          "gallery_name": "Lanmaoa angustispora(和名無し)？",
+          "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250710/20250710220511.jpg",
+          "shadow_match_status": "exact_legacy_alt",
+          "classification": {
+            "status": "legacy_review",
+            "subject_type": "review",
+            "detected_label": "Lanmaoa angustispora？",
+            "shadow_gallery_name": null,
+            "classification_reason": "taxonomy_unmatched",
+            "classification_confidence": "low",
+            "subject_state_status": "accepted_subject",
+            "taxonomy_canonical_name": null,
+            "taxonomy_match_type": "none"
+          },
+          "capture": {
+            "date": "2025-07-06",
+            "month": 7,
+            "date_source": "exif",
+            "camera": {
+              "model": "EOS Kiss X5",
+              "lens": "EF-S18-55mm f/3.5-5.6 IS",
+              "iso": "1600",
+              "f": "f/25.0",
+              "exposure": "3/10",
+              "focal": "32mm"
+            }
+          },
+          "article": {
+            "article_path": "articles/article_62.html",
+            "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398505017021",
+            "title": "2025年7月6日　静岡県掛川市",
+            "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/07/10/222315",
+            "published": "2025-07-10T22:23:15+09:00",
+            "updated": "2025-07-10T22:23:15+09:00",
+            "categories": [
+              "ヘビキノコモドキ",
+              "ヨゴレキアミアシイグチ？",
+              "キノコ探索日記",
+              "Lanmaoa angustispora"
+            ],
+            "excerpt": "ヤマドリタケモドキやサトタマゴタケの発生を期待して近所の緑地へ行ってきた Lanmaoa angustispora(和名無し)？ 以前からこの場所で状態が悪くなった成菌は見ているのだが、ここまでどっしりとした固体は見たことが無かった。 この場所は本種？が多く発…"
+          },
+          "mushroom_master_id": null
+        },
+        {
+          "observation_id": "obs-87fa70cf88bf584c315b452899c54a1426d784d2fb6aa9beede5b38d2a98a7c6",
+          "production_index": 577,
+          "gallery_name": "Lanmaoa angustispora(和名無し)？",
+          "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250710/20250710220635.jpg",
+          "shadow_match_status": "exact_legacy_alt",
+          "classification": {
+            "status": "legacy_review",
+            "subject_type": "review",
+            "detected_label": "Lanmaoa angustispora？",
+            "shadow_gallery_name": null,
+            "classification_reason": "taxonomy_unmatched",
+            "classification_confidence": "low",
+            "subject_state_status": "accepted_subject",
+            "taxonomy_canonical_name": null,
+            "taxonomy_match_type": "none"
+          },
+          "capture": {
+            "date": "2025-07-06",
+            "month": 7,
+            "date_source": "exif",
+            "camera": {
+              "model": "EOS Kiss X5",
+              "lens": "EF-S18-55mm f/3.5-5.6 IS",
+              "iso": "1600",
+              "f": "f/25.0",
+              "exposure": "3/10",
+              "focal": "37mm"
+            }
+          },
+          "article": {
+            "article_path": "articles/article_62.html",
+            "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398505017021",
+            "title": "2025年7月6日　静岡県掛川市",
+            "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/07/10/222315",
+            "published": "2025-07-10T22:23:15+09:00",
+            "updated": "2025-07-10T22:23:15+09:00",
+            "categories": [
+              "ヘビキノコモドキ",
+              "ヨゴレキアミアシイグチ？",
+              "キノコ探索日記",
+              "Lanmaoa angustispora"
+            ],
+            "excerpt": "ヤマドリタケモドキやサトタマゴタケの発生を期待して近所の緑地へ行ってきた Lanmaoa angustispora(和名無し)？ 以前からこの場所で状態が悪くなった成菌は見ているのだが、ここまでどっしりとした固体は見たことが無かった。 この場所は本種？が多く発…"
+          },
+          "mushroom_master_id": null
+        },
+        {
+          "observation_id": "obs-ce559c0a0a6470380afdcb792ab2ed5d7af264ce9e445b8fd37fff8826638b2b",
+          "production_index": 578,
+          "gallery_name": "Lanmaoa angustispora(和名無し)？",
+          "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250710/20250710220812.jpg",
+          "shadow_match_status": "exact_legacy_alt",
+          "classification": {
+            "status": "legacy_review",
+            "subject_type": "review",
+            "detected_label": "Lanmaoa angustispora？",
+            "shadow_gallery_name": null,
+            "classification_reason": "taxonomy_unmatched",
+            "classification_confidence": "low",
+            "subject_state_status": "accepted_subject",
+            "taxonomy_canonical_name": null,
+            "taxonomy_match_type": "none"
+          },
+          "capture": {
+            "date": "2025-07-06",
+            "month": 7,
+            "date_source": "exif",
+            "camera": {
+              "model": "EOS Kiss X5",
+              "lens": "EF-S18-55mm f/3.5-5.6 IS",
+              "iso": "1600",
+              "f": "f/22.0",
+              "exposure": "1/8",
+              "focal": "33mm"
+            }
+          },
+          "article": {
+            "article_path": "articles/article_62.html",
+            "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398505017021",
+            "title": "2025年7月6日　静岡県掛川市",
+            "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/07/10/222315",
+            "published": "2025-07-10T22:23:15+09:00",
+            "updated": "2025-07-10T22:23:15+09:00",
+            "categories": [
+              "ヘビキノコモドキ",
+              "ヨゴレキアミアシイグチ？",
+              "キノコ探索日記",
+              "Lanmaoa angustispora"
+            ],
+            "excerpt": "ヤマドリタケモドキやサトタマゴタケの発生を期待して近所の緑地へ行ってきた Lanmaoa angustispora(和名無し)？ 以前からこの場所で状態が悪くなった成菌は見ているのだが、ここまでどっしりとした固体は見たことが無かった。 この場所は本種？が多く発…"
+          },
+          "mushroom_master_id": null
+        }
+      ],
+      "identifications": []
+    }
+  ],
+  "registry_before": {
+    "version": 1,
+    "identifications": []
+  },
+  "replacement_id": null,
+  "supersedes": null,
+  "approval_id": "f272a6ef45f86f6faf587e18dc49204b2667dbecdc2519ca06cc3751ebcff6e9"
+}
