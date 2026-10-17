@@ -154,7 +154,7 @@ def test_http_routes_keep_origin_csrf_and_japanese_failure_contract(tmp_path,mon
         assert error['error']=='DELETION_PROTECTED_REFERENCE_REMAINS'
         assert '参照' in error['message'] and not r.state['decisions']
         assert request('/deletions.js').headers['Content-Type'].startswith('text/javascript')
-        assert len(server.draft.best_shots['entries'])==3
+        assert server.draft.best_shots == web.read_json(web.DATA / 'best-shots.json')
     finally:server.shutdown();server.server_close();thread.join()
 
 
