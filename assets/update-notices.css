@@ -20,6 +20,27 @@
 }
 .update-badge--update { background:#e0efbc; border-color:#b0ca7d; color:#294c2f; }
 .update-badge--identified { background:#e9def8; border-color:#c6ade4; color:#523477; }
+/* A quiet, periodic sweep: the badge itself never blinks or changes size. */
+.update-badge--new { position:relative; overflow:hidden; isolation:isolate; }
+.update-badge--new::after {
+  content:"";
+  position:absolute;
+  top:-30%; bottom:-30%; left:-55%; width:38%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.72),transparent);
+  opacity:0; transform:translateX(0) skewX(-19deg);
+  pointer-events:none;
+  animation:update-badge-sheen 5.4s linear infinite;
+}
+@keyframes update-badge-sheen {
+  0%,73% { opacity:0; transform:translateX(0) skewX(-19deg); }
+  74% { opacity:.8; }
+  88% { opacity:.8; transform:translateX(480%) skewX(-19deg); }
+  89%,100% { opacity:0; transform:translateX(480%) skewX(-19deg); }
+}
+/* Avoid synchronizing several NEW! stamps in the observation list. */
+.record-preview-row:nth-child(2) .update-badge--new::after { animation-delay:-1.8s; }
+.record-preview-row:nth-child(3) .update-badge--new::after { animation-delay:-3.6s; }
+.portal-card--best-shots .update-badge--new::after { animation-delay:-2.7s; }
 .portal-update-note { display:flex; flex-wrap:wrap; align-items:center; gap:5px 7px; margin-top:7px; font-size:.78rem; line-height:1.5; }
 .portal-update-summary { min-width:0; overflow-wrap:anywhere; }
 .portal-guide-note .portal-update-note { color:#365b3f; }
@@ -27,4 +48,7 @@
 .portal-update-link:hover .portal-update-summary { text-decoration:underline; }
 .portal-update-link:focus-visible { outline:3px solid #eeb947; outline-offset:3px; }
 [data-notice-start][hidden] { display:none !important; }
-@media (prefers-reduced-motion:reduce) { .update-badge { transform:none; } }
+@media (prefers-reduced-motion:reduce) {
+  .update-badge { transform:none; }
+  .update-badge--new::after { animation:none; display:none; }
+}

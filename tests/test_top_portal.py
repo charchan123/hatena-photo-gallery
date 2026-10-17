@@ -667,3 +667,16 @@ def test_new_top_four_titles_share_responsive_sizes_and_keep_count_typography():
         "display": "inline-block", "font-size": ".55em", "font-weight": "500",
         "opacity": "1", "white-space": "nowrap",
     }
+
+
+def test_portal_notice_animation_is_subtle_and_motion_safe():
+    from pathlib import Path
+    notice = (Path(main.ASSETS_DIR) / "update-notices.css").read_text(encoding="utf-8")
+    portal = (Path(main.ASSETS_DIR) / "portal.css").read_text(encoding="utf-8")
+    assert "@keyframes update-badge-sheen" in notice
+    assert "5.4s linear infinite" in notice
+    assert ".update-badge--new::after { animation:none; display:none; }" in notice
+    assert "[data-notice-start][hidden] { display:none !important; }" in notice
+    assert ".portal-independent-links .portal-card__details" in portal
+    assert "min-height:38px" in portal
+    assert ".portal-independent-links .portal-card__details .portal-update-note" in portal

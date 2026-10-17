@@ -2592,8 +2592,9 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
     observation_records = observation_records or []
     notice_events = load_notice_events()
 
-    def section_notice(section, href=None):
-        return render_section_notice(section, notice_events, href=href)
+    def section_notice(section, href=None, *, badge_first=False):
+        return render_section_notice(section, notice_events, href=href,
+                                     badge_first=badge_first)
 
     def content_count(count, unit):
         if count is None:
@@ -2643,13 +2644,18 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
     def append_card(modifier, href, title, description, eyebrow=None,
                     count=None, count_unit=None):
         eyebrow_html = f'<span class="portal-eyebrow">{eyebrow}</span>' if eyebrow else ""
+        # Keep both independent cards' title rows aligned, whether a notice is active or not.
+        # In Best Shot, the notice follows the description visually and its badge comes first.
+        notice_html = section_notice(modifier, badge_first=(modifier == "best-shots"))
+        details_html = (f'<span class="portal-card__details">'
+                        f'<small>{description}</small>{notice_html}</span>')
         parts.append(
             f'    <a class="portal-card portal-card--{modifier}" href="{href}">\n'
             '      <span class="portal-card__visual" aria-hidden="true"></span>\n'
             f'      <span class="portal-card__content"><span class="portal-card__copy">'
             f'{eyebrow_html}'
-            f'<strong>{portal_icon(modifier)}<span>{title}{content_count(count, count_unit)}</span></strong><small>{description}</small>'
-            f'{section_notice(modifier)}</span></span>\n'
+            f'<strong>{portal_icon(modifier)}<span>{title}{content_count(count, count_unit)}</span></strong>'
+            f'{details_html}</span></span>\n'
             '    </a>\n'
         )
 

@@ -90,8 +90,8 @@ def load_notice_events(path=None):
         return []
 
 
-def render_section_notice(section, events, now=None, *, href=None):
-    """Display the latest active editorial event, including its specific change."""
+def render_section_notice(section, events, now=None, *, href=None, badge_first=False):
+    """Display the latest active editorial event; optionally lead with the badge."""
     current = current_timestamp(now)
     active = []
     for event in events:
@@ -107,6 +107,8 @@ def render_section_notice(section, events, now=None, *, href=None):
     tag = "a" if href else "span"
     link = f' href="{html.escape(href, quote=True)}"' if href else ""
     classes = "portal-update-note portal-update-link" if href else "portal-update-note"
+    summary = f'<span class="portal-update-summary">{html.escape(event["summary"])}</span>'
+    badge = _badge(event["kind"])
+    content = badge + summary if badge_first else summary + badge
     return (f'<{tag} class="{classes}"{link}{_window_attributes(start, end, current)}>'
-            f'<span class="portal-update-summary">{html.escape(event["summary"])}</span>'
-            f'{_badge(event["kind"])}</{tag}>')
+            f'{content}</{tag}>')
