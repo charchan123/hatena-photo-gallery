@@ -3,10 +3,10 @@
   "production_mode": "phase3c_hybrid",
   "cutover_active": true,
   "fallback_reason": null,
-  "legacy_image_count": 886,
-  "production_image_count": 906,
-  "hybrid_candidate_image_count": 906,
-  "net_image_delta_vs_legacy": 20,
+  "legacy_image_count": 870,
+  "production_image_count": 893,
+  "hybrid_candidate_image_count": 893,
+  "net_image_delta_vs_legacy": 23,
   "validation": {
     "valid": true,
     "checks": {

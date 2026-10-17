@@ -1,28 +1,28 @@
 {
   "version": 1,
   "summary": {
-    "legacy_production_image_count": 886,
-    "legacy_unique_names": 307,
-    "shadow_total_images": 976,
-    "shadow_detected_images": 923,
-    "shadow_undetected_images": 53,
-    "taxonomy_mushroom_images": 435,
+    "legacy_production_image_count": 870,
+    "legacy_unique_names": 302,
+    "shadow_total_images": 980,
+    "shadow_detected_images": 929,
+    "shadow_undetected_images": 51,
+    "taxonomy_mushroom_images": 433,
     "taxonomy_non_mushroom_images": 7,
-    "review_images": 534,
-    "taxonomy_unmatched_review_images": 481,
-    "no_detected_label_review_images": 53,
+    "review_images": 540,
+    "taxonomy_unmatched_review_images": 489,
+    "no_detected_label_review_images": 51,
     "taxonomy_unavailable_review_images": 0,
-    "candidate_production_image_count": 435,
+    "candidate_production_image_count": 433,
     "candidate_unique_gallery_names": 46,
-    "exact_occurrence_overlap_count": 394,
-    "legacy_only_occurrence_count": 492,
-    "candidate_only_occurrence_count": 41,
-    "legacy_src_only_count": 471,
-    "candidate_src_only_count": 20,
+    "exact_occurrence_overlap_count": 389,
+    "legacy_only_occurrence_count": 481,
+    "candidate_only_occurrence_count": 44,
+    "legacy_src_only_count": 460,
+    "candidate_src_only_count": 23,
     "same_src_name_change_count": 21,
-    "blocked_review_unique_labels": 249,
-    "candidate_vs_legacy_ratio": 0.4909706546275395,
-    "taxonomy_mushroom_share_of_shadow": 0.4456967213114754
+    "blocked_review_unique_labels": 256,
+    "candidate_vs_legacy_ratio": 0.49770114942528737,
+    "taxonomy_mushroom_share_of_shadow": 0.4418367346938776
   },
   "blocked_review_labels": [
     {
@@ -36,14 +36,14 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260622/20260622030002.jpg"
       ],
       "sample_articles": [
-        "articles/article_11.html",
-        "articles/article_17.html",
-        "articles/article_24.html"
+        "articles/article_12.html",
+        "articles/article_18.html",
+        "articles/article_25.html"
       ]
     },
     {
       "detected_label": "Lanmaoa angustispora？",
-      "image_count": 18,
+      "image_count": 17,
       "article_count": 5,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
@@ -52,7 +52,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250803/20250803230349.jpg"
       ],
       "sample_articles": [
-        "articles/article_7.html",
+        "articles/article_8.html",
         "articles/article_57.html",
         "articles/article_58.html"
       ]
@@ -68,9 +68,9 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222354.jpg"
       ],
       "sample_articles": [
-        "articles/article_11.html",
-        "articles/article_14.html",
-        "articles/article_15.html"
+        "articles/article_12.html",
+        "articles/article_15.html",
+        "articles/article_16.html"
       ]
     },
     {
@@ -84,9 +84,25 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929214606.jpg"
       ],
       "sample_articles": [
-        "articles/article_1.html",
         "articles/article_3.html",
-        "articles/article_44.html"
+        "articles/article_5.html",
+        "articles/article_45.html"
+      ]
+    },
+    {
+      "detected_label": "シロオニタケ",
+      "image_count": 5,
+      "article_count": 4,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063344.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925225116.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222529.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_2.html",
+        "articles/article_3.html",
+        "articles/article_11.html"
       ]
     },
     {
@@ -100,8 +116,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250907/20250907120817.jpg"
       ],
       "sample_articles": [
-        "articles/article_44.html",
-        "articles/article_52.html"
+        "articles/article_45.html",
+        "articles/article_53.html"
       ]
     },
     {
@@ -115,9 +131,9 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222458.jpg"
       ],
       "sample_articles": [
-        "articles/article_1.html",
-        "articles/article_2.html",
-        "articles/article_9.html"
+        "articles/article_3.html",
+        "articles/article_4.html",
+        "articles/article_10.html"
       ]
     },
     {
@@ -131,9 +147,9 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222239.jpg"
       ],
       "sample_articles": [
-        "articles/article_3.html",
-        "articles/article_9.html",
-        "articles/article_13.html"
+        "articles/article_5.html",
+        "articles/article_10.html",
+        "articles/article_14.html"
       ]
     },
     {
@@ -147,8 +163,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251115/20251115010104.jpg"
       ],
       "sample_articles": [
-        "articles/article_16.html",
-        "articles/article_35.html",
+        "articles/article_17.html",
+        "articles/article_36.html",
         "articles/article_72.html"
       ]
     },
@@ -163,8 +179,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250713/20250713111725.jpg"
       ],
       "sample_articles": [
-        "articles/article_51.html",
         "articles/article_52.html",
+        "articles/article_53.html",
         "articles/article_61.html"
       ]
     },
@@ -194,9 +210,9 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018234443.jpg"
       ],
       "sample_articles": [
-        "articles/article_14.html",
-        "articles/article_35.html",
-        "articles/article_40.html"
+        "articles/article_15.html",
+        "articles/article_36.html",
+        "articles/article_41.html"
       ]
     },
     {
@@ -210,8 +226,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260308/20260308011022.jpg"
       ],
       "sample_articles": [
-        "articles/article_27.html",
-        "articles/article_32.html"
+        "articles/article_28.html",
+        "articles/article_33.html"
       ]
     },
     {
@@ -231,6 +247,21 @@
       ]
     },
     {
+      "detected_label": "クリフウセンタケ",
+      "image_count": 4,
+      "article_count": 2,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063534.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015062912.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063002.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_1.html",
+        "articles/article_2.html"
+      ]
+    },
+    {
       "detected_label": "サザナミイグチ",
       "image_count": 4,
       "article_count": 4,
@@ -241,9 +272,9 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018234636.jpg"
       ],
       "sample_articles": [
-        "articles/article_2.html",
-        "articles/article_10.html",
-        "articles/article_40.html"
+        "articles/article_4.html",
+        "articles/article_11.html",
+        "articles/article_41.html"
       ]
     },
     {
@@ -257,25 +288,9 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005200039.jpg"
       ],
       "sample_articles": [
-        "articles/article_5.html",
-        "articles/article_43.html",
-        "articles/article_49.html"
-      ]
-    },
-    {
-      "detected_label": "シロオニタケ",
-      "image_count": 4,
-      "article_count": 3,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925225116.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222529.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929215354.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_1.html",
-        "articles/article_10.html",
-        "articles/article_44.html"
+        "articles/article_7.html",
+        "articles/article_44.html",
+        "articles/article_50.html"
       ]
     },
     {
@@ -289,8 +304,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706221510.jpg"
       ],
       "sample_articles": [
-        "articles/article_1.html",
-        "articles/article_44.html",
+        "articles/article_3.html",
+        "articles/article_45.html",
         "articles/article_64.html"
       ]
     },
@@ -305,8 +320,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250708/20250708225836.jpg"
       ],
       "sample_articles": [
-        "articles/article_14.html",
-        "articles/article_44.html",
+        "articles/article_15.html",
+        "articles/article_45.html",
         "articles/article_63.html"
       ]
     },
@@ -321,8 +336,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250824/20250824111613.jpg"
       ],
       "sample_articles": [
-        "articles/article_13.html",
         "articles/article_14.html",
+        "articles/article_15.html",
         "articles/article_54.html"
       ]
     },
@@ -352,8 +367,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250922/20250922202048.jpg"
       ],
       "sample_articles": [
-        "articles/article_1.html",
-        "articles/article_45.html"
+        "articles/article_3.html",
+        "articles/article_46.html"
       ]
     },
     {
@@ -383,7 +398,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250521/20250521183330.jpg"
       ],
       "sample_articles": [
-        "articles/article_51.html",
+        "articles/article_52.html",
         "articles/article_73.html"
       ]
     },
@@ -398,8 +413,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914230759.jpg"
       ],
       "sample_articles": [
-        "articles/article_42.html",
-        "articles/article_48.html"
+        "articles/article_43.html",
+        "articles/article_49.html"
       ]
     },
     {
@@ -427,9 +442,9 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929215952.jpg"
       ],
       "sample_articles": [
-        "articles/article_16.html",
-        "articles/article_35.html",
-        "articles/article_44.html"
+        "articles/article_17.html",
+        "articles/article_36.html",
+        "articles/article_45.html"
       ]
     },
     {
@@ -443,8 +458,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250816/20250816140316.jpg"
       ],
       "sample_articles": [
-        "articles/article_5.html",
-        "articles/article_42.html",
+        "articles/article_7.html",
+        "articles/article_43.html",
         "articles/article_55.html"
       ]
     },
@@ -459,7 +474,21 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251013/20251013131357.jpg"
       ],
       "sample_articles": [
-        "articles/article_42.html"
+        "articles/article_43.html"
+      ]
+    },
+    {
+      "detected_label": "オオジョウゴタケ？",
+      "image_count": 3,
+      "article_count": 1,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063946.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015064015.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015064116.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_1.html"
       ]
     },
     {
@@ -473,9 +502,9 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222324.jpg"
       ],
       "sample_articles": [
-        "articles/article_10.html",
         "articles/article_11.html",
-        "articles/article_12.html"
+        "articles/article_12.html",
+        "articles/article_13.html"
       ]
     },
     {
@@ -489,8 +518,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525201005.jpg"
       ],
       "sample_articles": [
-        "articles/article_18.html",
-        "articles/article_26.html",
+        "articles/article_19.html",
+        "articles/article_27.html",
         "articles/article_71.html"
       ]
     },
@@ -505,7 +534,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260125/20260125144940.jpg"
       ],
       "sample_articles": [
-        "articles/article_29.html"
+        "articles/article_30.html"
       ]
     },
     {
@@ -519,8 +548,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250622/20250622130030.jpg"
       ],
       "sample_articles": [
-        "articles/article_14.html",
-        "articles/article_35.html",
+        "articles/article_15.html",
+        "articles/article_36.html",
         "articles/article_66.html"
       ]
     },
@@ -535,25 +564,9 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250713/20250713104345.jpg"
       ],
       "sample_articles": [
-        "articles/article_1.html",
-        "articles/article_44.html",
+        "articles/article_3.html",
+        "articles/article_45.html",
         "articles/article_61.html"
-      ]
-    },
-    {
-      "detected_label": "キサマツモドキ",
-      "image_count": 3,
-      "article_count": 3,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005194538.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914222634.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250816/20250816142205.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_43.html",
-        "articles/article_49.html",
-        "articles/article_55.html"
       ]
     },
     {
@@ -567,9 +580,9 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914220913.jpg"
       ],
       "sample_articles": [
-        "articles/article_42.html",
         "articles/article_43.html",
-        "articles/article_49.html"
+        "articles/article_44.html",
+        "articles/article_50.html"
       ]
     },
     {
@@ -583,9 +596,9 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250907/20250907120629.jpg"
       ],
       "sample_articles": [
-        "articles/article_36.html",
-        "articles/article_40.html",
-        "articles/article_52.html"
+        "articles/article_37.html",
+        "articles/article_41.html",
+        "articles/article_53.html"
       ]
     },
     {
@@ -614,7 +627,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316131152.jpg"
       ],
       "sample_articles": [
-        "articles/article_36.html",
+        "articles/article_37.html",
         "articles/article_103.html"
       ]
     },
@@ -629,8 +642,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005200815.jpg"
       ],
       "sample_articles": [
-        "articles/article_42.html",
-        "articles/article_43.html"
+        "articles/article_43.html",
+        "articles/article_44.html"
       ]
     },
     {
@@ -659,8 +672,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525190338.jpg"
       ],
       "sample_articles": [
-        "articles/article_33.html",
-        "articles/article_42.html",
+        "articles/article_34.html",
+        "articles/article_43.html",
         "articles/article_71.html"
       ]
     },
@@ -675,7 +688,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706220544.jpg"
       ],
       "sample_articles": [
-        "articles/article_16.html",
+        "articles/article_17.html",
         "articles/article_64.html"
       ]
     },
@@ -690,7 +703,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316131621.jpg"
       ],
       "sample_articles": [
-        "articles/article_36.html",
+        "articles/article_37.html",
         "articles/article_78.html",
         "articles/article_103.html"
       ]
@@ -706,7 +719,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406163534.jpg"
       ],
       "sample_articles": [
-        "articles/article_23.html",
+        "articles/article_24.html",
         "articles/article_80.html"
       ]
     },
@@ -721,7 +734,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706221824.jpg"
       ],
       "sample_articles": [
-        "articles/article_52.html",
+        "articles/article_53.html",
         "articles/article_64.html"
       ]
     },
@@ -736,7 +749,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250320/20250320124123.jpg"
       ],
       "sample_articles": [
-        "articles/article_28.html",
+        "articles/article_29.html",
         "articles/article_86.html"
       ]
     },
@@ -751,7 +764,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316132051.jpg"
       ],
       "sample_articles": [
-        "articles/article_40.html",
+        "articles/article_41.html",
         "articles/article_68.html",
         "articles/article_103.html"
       ]
@@ -767,7 +780,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250615/20250615185914.jpg"
       ],
       "sample_articles": [
-        "articles/article_45.html",
+        "articles/article_46.html",
         "articles/article_67.html"
       ]
     },
@@ -782,7 +795,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250404/20250404231618.jpg"
       ],
       "sample_articles": [
-        "articles/article_23.html",
+        "articles/article_24.html",
         "articles/article_78.html",
         "articles/article_81.html"
       ]
@@ -798,23 +811,9 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250816/20250816140702.jpg"
       ],
       "sample_articles": [
-        "articles/article_43.html",
-        "articles/article_49.html",
+        "articles/article_44.html",
+        "articles/article_50.html",
         "articles/article_55.html"
-      ]
-    },
-    {
-      "detected_label": "ミヤママスタケ",
-      "image_count": 3,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914212250.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914213233.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914213524.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_49.html"
       ]
     },
     {
@@ -829,22 +828,6 @@
       ],
       "sample_articles": [
         "articles/article_73.html"
-      ]
-    },
-    {
-      "detected_label": "不明アワタケ",
-      "image_count": 3,
-      "article_count": 3,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250824/20250824103827.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250708/20250708230015.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250622/20250622122148.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_54.html",
-        "articles/article_63.html",
-        "articles/article_66.html"
       ]
     },
     {
@@ -884,8 +867,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005210625.jpg"
       ],
       "sample_articles": [
-        "articles/article_42.html",
-        "articles/article_43.html"
+        "articles/article_43.html",
+        "articles/article_44.html"
       ]
     },
     {
@@ -939,7 +922,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260330/20260330215940.jpg"
       ],
       "sample_articles": [
-        "articles/article_24.html"
+        "articles/article_25.html"
       ]
     },
     {
@@ -965,8 +948,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222233.jpg"
       ],
       "sample_articles": [
-        "articles/article_3.html",
-        "articles/article_13.html"
+        "articles/article_5.html",
+        "articles/article_14.html"
       ]
     },
     {
@@ -1007,7 +990,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706221544.jpg"
       ],
       "sample_articles": [
-        "articles/article_44.html",
+        "articles/article_45.html",
         "articles/article_64.html"
       ]
     },
@@ -1021,8 +1004,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005201039.jpg"
       ],
       "sample_articles": [
-        "articles/article_42.html",
-        "articles/article_43.html"
+        "articles/article_43.html",
+        "articles/article_44.html"
       ]
     },
     {
@@ -1035,8 +1018,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018232226.jpg"
       ],
       "sample_articles": [
-        "articles/article_16.html",
-        "articles/article_40.html"
+        "articles/article_17.html",
+        "articles/article_41.html"
       ]
     },
     {
@@ -1049,7 +1032,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929215048.jpg"
       ],
       "sample_articles": [
-        "articles/article_44.html"
+        "articles/article_45.html"
       ]
     },
     {
@@ -1062,7 +1045,21 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103224719.jpg"
       ],
       "sample_articles": [
-        "articles/article_37.html"
+        "articles/article_38.html"
+      ]
+    },
+    {
+      "detected_label": "キサマツモドキ",
+      "image_count": 2,
+      "article_count": 2,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005194538.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250816/20250816142205.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_44.html",
+        "articles/article_55.html"
       ]
     },
     {
@@ -1089,7 +1086,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250816/20250816140918.jpg"
       ],
       "sample_articles": [
-        "articles/article_52.html",
+        "articles/article_53.html",
         "articles/article_55.html"
       ]
     },
@@ -1116,7 +1113,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250406/20250406161134.jpg"
       ],
       "sample_articles": [
-        "articles/article_23.html",
+        "articles/article_24.html",
         "articles/article_80.html"
       ]
     },
@@ -1130,7 +1127,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250922/20250922201434.jpg"
       ],
       "sample_articles": [
-        "articles/article_45.html"
+        "articles/article_46.html"
       ]
     },
     {
@@ -1143,22 +1140,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525182935.jpg"
       ],
       "sample_articles": [
-        "articles/article_18.html",
+        "articles/article_19.html",
         "articles/article_71.html"
-      ]
-    },
-    {
-      "detected_label": "コゲエノヘラタケ",
-      "image_count": 2,
-      "article_count": 2,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005213740.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914221417.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_43.html",
-        "articles/article_49.html"
       ]
     },
     {
@@ -1188,20 +1171,6 @@
       ]
     },
     {
-      "detected_label": "シロヌメリイグチ",
-      "image_count": 2,
-      "article_count": 2,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005191022.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914221517.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_43.html",
-        "articles/article_49.html"
-      ]
-    },
-    {
       "detected_label": "スギカワタケ",
       "image_count": 2,
       "article_count": 1,
@@ -1211,7 +1180,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260301/20260301014506.jpg"
       ],
       "sample_articles": [
-        "articles/article_28.html"
+        "articles/article_29.html"
       ]
     },
     {
@@ -1237,7 +1206,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706221721.jpg"
       ],
       "sample_articles": [
-        "articles/article_52.html",
+        "articles/article_53.html",
         "articles/article_64.html"
       ]
     },
@@ -1251,8 +1220,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250916/20250916002923.jpg"
       ],
       "sample_articles": [
-        "articles/article_43.html",
-        "articles/article_48.html"
+        "articles/article_44.html",
+        "articles/article_49.html"
       ]
     },
     {
@@ -1265,8 +1234,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222439.jpg"
       ],
       "sample_articles": [
-        "articles/article_2.html",
-        "articles/article_9.html"
+        "articles/article_4.html",
+        "articles/article_10.html"
       ]
     },
     {
@@ -1293,8 +1262,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929221733.jpg"
       ],
       "sample_articles": [
-        "articles/article_1.html",
-        "articles/article_44.html"
+        "articles/article_3.html",
+        "articles/article_45.html"
       ]
     },
     {
@@ -1307,8 +1276,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232201.jpg"
       ],
       "sample_articles": [
-        "articles/article_1.html",
-        "articles/article_4.html"
+        "articles/article_3.html",
+        "articles/article_6.html"
       ]
     },
     {
@@ -1321,7 +1290,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706220442.jpg"
       ],
       "sample_articles": [
-        "articles/article_45.html",
+        "articles/article_46.html",
         "articles/article_64.html"
       ]
     },
@@ -1335,7 +1304,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316115719.jpg"
       ],
       "sample_articles": [
-        "articles/article_30.html",
+        "articles/article_31.html",
         "articles/article_106.html"
       ]
     },
@@ -1349,8 +1318,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250911/20250911235739.jpg"
       ],
       "sample_articles": [
-        "articles/article_9.html",
-        "articles/article_51.html"
+        "articles/article_10.html",
+        "articles/article_52.html"
       ]
     },
     {
@@ -1363,7 +1332,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251115/20251115005043.jpg"
       ],
       "sample_articles": [
-        "articles/article_35.html"
+        "articles/article_36.html"
       ]
     },
     {
@@ -1415,8 +1384,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914210728.jpg"
       ],
       "sample_articles": [
-        "articles/article_46.html",
-        "articles/article_50.html"
+        "articles/article_47.html",
+        "articles/article_51.html"
       ]
     },
     {
@@ -1443,7 +1412,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250816/20250816142825.jpg"
       ],
       "sample_articles": [
-        "articles/article_17.html",
+        "articles/article_18.html",
         "articles/article_55.html"
       ]
     },
@@ -1471,7 +1440,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525170716.jpg"
       ],
       "sample_articles": [
-        "articles/article_13.html",
+        "articles/article_14.html",
         "articles/article_71.html"
       ]
     },
@@ -1485,7 +1454,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251122/20251122120757.jpg"
       ],
       "sample_articles": [
-        "articles/article_33.html"
+        "articles/article_34.html"
       ]
     },
     {
@@ -1498,7 +1467,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250922/20250922200341.jpg"
       ],
       "sample_articles": [
-        "articles/article_45.html"
+        "articles/article_46.html"
       ]
     },
     {
@@ -1511,7 +1480,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224343.jpg"
       ],
       "sample_articles": [
-        "articles/article_3.html"
+        "articles/article_5.html"
       ]
     },
     {
@@ -1541,6 +1510,19 @@
       ]
     },
     {
+      "detected_label": "マツタケ",
+      "image_count": 2,
+      "article_count": 1,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063158.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063219.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_2.html"
+      ]
+    },
+    {
       "detected_label": "マンネンタケ",
       "image_count": 2,
       "article_count": 2,
@@ -1555,6 +1537,19 @@
       ]
     },
     {
+      "detected_label": "ミヤママスタケ",
+      "image_count": 2,
+      "article_count": 1,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914212250.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914213233.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_50.html"
+      ]
+    },
+    {
       "detected_label": "ミヤマミドリニガイグチ",
       "image_count": 2,
       "article_count": 2,
@@ -1564,8 +1559,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914222401.jpg"
       ],
       "sample_articles": [
-        "articles/article_7.html",
-        "articles/article_49.html"
+        "articles/article_8.html",
+        "articles/article_50.html"
       ]
     },
     {
@@ -1578,8 +1573,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018231134.jpg"
       ],
       "sample_articles": [
-        "articles/article_36.html",
-        "articles/article_40.html"
+        "articles/article_37.html",
+        "articles/article_41.html"
       ]
     },
     {
@@ -1605,7 +1600,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222228.jpg"
       ],
       "sample_articles": [
-        "articles/article_13.html"
+        "articles/article_14.html"
       ]
     },
     {
@@ -1618,7 +1613,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224223.jpg"
       ],
       "sample_articles": [
-        "articles/article_3.html"
+        "articles/article_5.html"
       ]
     },
     {
@@ -1631,8 +1626,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018231834.jpg"
       ],
       "sample_articles": [
-        "articles/article_35.html",
-        "articles/article_40.html"
+        "articles/article_36.html",
+        "articles/article_41.html"
       ]
     },
     {
@@ -1649,6 +1644,20 @@
       ]
     },
     {
+      "detected_label": "不明アワタケ",
+      "image_count": 2,
+      "article_count": 2,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250824/20250824103827.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250622/20250622122148.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_54.html",
+        "articles/article_66.html"
+      ]
+    },
+    {
       "detected_label": "不明ニガイグチ",
       "image_count": 2,
       "article_count": 2,
@@ -1658,8 +1667,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250907/20250907105136.jpg"
       ],
       "sample_articles": [
-        "articles/article_35.html",
-        "articles/article_52.html"
+        "articles/article_36.html",
+        "articles/article_53.html"
       ]
     },
     {
@@ -1672,7 +1681,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250713/20250713102820.jpg"
       ],
       "sample_articles": [
-        "articles/article_51.html",
+        "articles/article_52.html",
         "articles/article_61.html"
       ]
     },
@@ -1686,8 +1695,8 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012221358.jpg"
       ],
       "sample_articles": [
-        "articles/article_33.html",
-        "articles/article_42.html"
+        "articles/article_34.html",
+        "articles/article_43.html"
       ]
     },
     {
@@ -1699,7 +1708,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222300.jpg"
       ],
       "sample_articles": [
-        "articles/article_13.html"
+        "articles/article_14.html"
       ]
     },
     {
@@ -1711,7 +1720,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005214422.jpg"
       ],
       "sample_articles": [
-        "articles/article_43.html"
+        "articles/article_44.html"
       ]
     },
     {
@@ -1747,19 +1756,19 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251026/20251026201932.jpg"
       ],
       "sample_articles": [
-        "articles/article_38.html"
+        "articles/article_39.html"
       ]
     },
     {
-      "detected_label": "アカツムタケ",
+      "detected_label": "アカジコウ",
       "image_count": 1,
       "article_count": 1,
       "classification_reason": "taxonomy_unmatched",
       "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914215453.jpg"
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063427.jpg"
       ],
       "sample_articles": [
-        "articles/article_49.html"
+        "articles/article_2.html"
       ]
     },
     {
@@ -1771,7 +1780,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914215304.jpg"
       ],
       "sample_articles": [
-        "articles/article_49.html"
+        "articles/article_50.html"
       ]
     },
     {
@@ -1795,7 +1804,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923225004.jpg"
       ],
       "sample_articles": [
-        "articles/article_5.html"
+        "articles/article_7.html"
       ]
     },
     {
@@ -1807,7 +1816,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925225221.jpg"
       ],
       "sample_articles": [
-        "articles/article_1.html"
+        "articles/article_3.html"
       ]
     },
     {
@@ -1831,7 +1840,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232241.jpg"
       ],
       "sample_articles": [
-        "articles/article_4.html"
+        "articles/article_6.html"
       ]
     },
     {
@@ -1843,7 +1852,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012221648.jpg"
       ],
       "sample_articles": [
-        "articles/article_42.html"
+        "articles/article_43.html"
       ]
     },
     {
@@ -1855,7 +1864,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222210.jpg"
       ],
       "sample_articles": [
-        "articles/article_13.html"
+        "articles/article_14.html"
       ]
     },
     {
@@ -1867,7 +1876,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012221217.jpg"
       ],
       "sample_articles": [
-        "articles/article_42.html"
+        "articles/article_43.html"
       ]
     },
     {
@@ -1879,7 +1888,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232050.jpg"
       ],
       "sample_articles": [
-        "articles/article_4.html"
+        "articles/article_6.html"
       ]
     },
     {
@@ -1891,7 +1900,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103231007.jpg"
       ],
       "sample_articles": [
-        "articles/article_36.html"
+        "articles/article_37.html"
       ]
     },
     {
@@ -1927,7 +1936,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260328/20260328213637.jpg"
       ],
       "sample_articles": [
-        "articles/article_25.html"
+        "articles/article_26.html"
       ]
     },
     {
@@ -1939,7 +1948,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005211929.jpg"
       ],
       "sample_articles": [
-        "articles/article_43.html"
+        "articles/article_44.html"
       ]
     },
     {
@@ -1951,7 +1960,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224231.jpg"
       ],
       "sample_articles": [
-        "articles/article_1.html"
+        "articles/article_3.html"
       ]
     },
     {
@@ -1963,7 +1972,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929214422.jpg"
       ],
       "sample_articles": [
-        "articles/article_44.html"
+        "articles/article_45.html"
       ]
     },
     {
@@ -1975,7 +1984,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929220733.jpg"
       ],
       "sample_articles": [
-        "articles/article_44.html"
+        "articles/article_45.html"
       ]
     },
     {
@@ -1999,7 +2008,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018232056.jpg"
       ],
       "sample_articles": [
-        "articles/article_40.html"
+        "articles/article_41.html"
       ]
     },
     {
@@ -2011,7 +2020,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103235135.jpg"
       ],
       "sample_articles": [
-        "articles/article_36.html"
+        "articles/article_37.html"
       ]
     },
     {
@@ -2023,7 +2032,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250907/20250907105810.jpg"
       ],
       "sample_articles": [
-        "articles/article_52.html"
+        "articles/article_53.html"
       ]
     },
     {
@@ -2035,7 +2044,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005211014.jpg"
       ],
       "sample_articles": [
-        "articles/article_43.html"
+        "articles/article_44.html"
       ]
     },
     {
@@ -2047,7 +2056,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012223021.jpg"
       ],
       "sample_articles": [
-        "articles/article_42.html"
+        "articles/article_43.html"
       ]
     },
     {
@@ -2059,7 +2068,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250907/20250907105719.jpg"
       ],
       "sample_articles": [
-        "articles/article_52.html"
+        "articles/article_53.html"
       ]
     },
     {
@@ -2071,7 +2080,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005231527.jpg"
       ],
       "sample_articles": [
-        "articles/article_43.html"
+        "articles/article_44.html"
       ]
     },
     {
@@ -2107,7 +2116,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222411.jpg"
       ],
       "sample_articles": [
-        "articles/article_11.html"
+        "articles/article_12.html"
       ]
     },
     {
@@ -2119,7 +2128,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222216.jpg"
       ],
       "sample_articles": [
-        "articles/article_13.html"
+        "articles/article_14.html"
       ]
     },
     {
@@ -2131,7 +2140,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222554.jpg"
       ],
       "sample_articles": [
-        "articles/article_8.html"
+        "articles/article_9.html"
       ]
     },
     {
@@ -2179,7 +2188,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018232650.jpg"
       ],
       "sample_articles": [
-        "articles/article_40.html"
+        "articles/article_41.html"
       ]
     },
     {
@@ -2191,7 +2200,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260622/20260622024034.jpg"
       ],
       "sample_articles": [
-        "articles/article_18.html"
+        "articles/article_19.html"
       ]
     },
     {
@@ -2203,7 +2212,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012224126.jpg"
       ],
       "sample_articles": [
-        "articles/article_42.html"
+        "articles/article_43.html"
       ]
     },
     {
@@ -2227,7 +2236,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012212108.jpg"
       ],
       "sample_articles": [
-        "articles/article_42.html"
+        "articles/article_43.html"
       ]
     },
     {
@@ -2239,7 +2248,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924103925.jpg"
       ],
       "sample_articles": [
-        "articles/article_4.html"
+        "articles/article_6.html"
       ]
     },
     {
@@ -2251,7 +2260,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251118/20251118231818.jpg"
       ],
       "sample_articles": [
-        "articles/article_33.html"
+        "articles/article_34.html"
       ]
     },
     {
@@ -2279,6 +2288,18 @@
       ]
     },
     {
+      "detected_label": "キンチャワンタケ",
+      "image_count": 1,
+      "article_count": 1,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063813.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_1.html"
+      ]
+    },
+    {
       "detected_label": "クサイロハツ",
       "image_count": 1,
       "article_count": 1,
@@ -2299,7 +2320,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005194935.jpg"
       ],
       "sample_articles": [
-        "articles/article_43.html"
+        "articles/article_44.html"
       ]
     },
     {
@@ -2323,7 +2344,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012213817.jpg"
       ],
       "sample_articles": [
-        "articles/article_42.html"
+        "articles/article_43.html"
       ]
     },
     {
@@ -2347,7 +2368,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914220449.jpg"
       ],
       "sample_articles": [
-        "articles/article_49.html"
+        "articles/article_50.html"
       ]
     },
     {
@@ -2359,7 +2380,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103234501.jpg"
       ],
       "sample_articles": [
-        "articles/article_36.html"
+        "articles/article_37.html"
       ]
     },
     {
@@ -2371,7 +2392,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018235620.jpg"
       ],
       "sample_articles": [
-        "articles/article_40.html"
+        "articles/article_41.html"
       ]
     },
     {
@@ -2399,18 +2420,6 @@
       ]
     },
     {
-      "detected_label": "ケシロハツ",
-      "image_count": 1,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914215936.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_49.html"
-      ]
-    },
-    {
       "detected_label": "コイヌノエフデ",
       "image_count": 1,
       "article_count": 1,
@@ -2419,7 +2428,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018234943.jpg"
       ],
       "sample_articles": [
-        "articles/article_40.html"
+        "articles/article_41.html"
       ]
     },
     {
@@ -2443,7 +2452,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222111.jpg"
       ],
       "sample_articles": [
-        "articles/article_14.html"
+        "articles/article_15.html"
       ]
     },
     {
@@ -2455,7 +2464,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914223737.jpg"
       ],
       "sample_articles": [
-        "articles/article_49.html"
+        "articles/article_50.html"
       ]
     },
     {
@@ -2467,7 +2476,19 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260329/20260329230840.jpg"
       ],
       "sample_articles": [
-        "articles/article_24.html"
+        "articles/article_25.html"
+      ]
+    },
+    {
+      "detected_label": "コゲエノヘラタケ",
+      "image_count": 1,
+      "article_count": 1,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005213740.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_44.html"
       ]
     },
     {
@@ -2515,7 +2536,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103232359.jpg"
       ],
       "sample_articles": [
-        "articles/article_36.html"
+        "articles/article_37.html"
       ]
     },
     {
@@ -2551,7 +2572,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222720.jpg"
       ],
       "sample_articles": [
-        "articles/article_7.html"
+        "articles/article_8.html"
       ]
     },
     {
@@ -2587,7 +2608,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261001/20261001000912.jpg"
       ],
       "sample_articles": [
-        "articles/article_5.html"
+        "articles/article_7.html"
       ]
     },
     {
@@ -2635,7 +2656,19 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012194728.jpg"
       ],
       "sample_articles": [
-        "articles/article_42.html"
+        "articles/article_43.html"
+      ]
+    },
+    {
+      "detected_label": "シロヌメリイグチ",
+      "image_count": 1,
+      "article_count": 1,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005191022.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_44.html"
       ]
     },
     {
@@ -2663,18 +2696,6 @@
       ]
     },
     {
-      "detected_label": "スギタケモドキ",
-      "image_count": 1,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914220803.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_49.html"
-      ]
-    },
-    {
       "detected_label": "ズキンタケ",
       "image_count": 1,
       "article_count": 1,
@@ -2683,7 +2704,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103234340.jpg"
       ],
       "sample_articles": [
-        "articles/article_36.html"
+        "articles/article_37.html"
       ]
     },
     {
@@ -2707,7 +2728,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250907/20250907105616.jpg"
       ],
       "sample_articles": [
-        "articles/article_52.html"
+        "articles/article_53.html"
       ]
     },
     {
@@ -2719,7 +2740,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250907/20250907110037.jpg"
       ],
       "sample_articles": [
-        "articles/article_52.html"
+        "articles/article_53.html"
       ]
     },
     {
@@ -2731,7 +2752,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103234657.jpg"
       ],
       "sample_articles": [
-        "articles/article_36.html"
+        "articles/article_37.html"
       ]
     },
     {
@@ -2767,7 +2788,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260425/20260425134940.jpg"
       ],
       "sample_articles": [
-        "articles/article_23.html"
+        "articles/article_24.html"
       ]
     },
     {
@@ -2779,7 +2800,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012223318.jpg"
       ],
       "sample_articles": [
-        "articles/article_42.html"
+        "articles/article_43.html"
       ]
     },
     {
@@ -2791,7 +2812,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005190514.jpg"
       ],
       "sample_articles": [
-        "articles/article_43.html"
+        "articles/article_44.html"
       ]
     },
     {
@@ -2803,7 +2824,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251013/20251013003003.jpg"
       ],
       "sample_articles": [
-        "articles/article_42.html"
+        "articles/article_43.html"
       ]
     },
     {
@@ -2827,7 +2848,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914214927.jpg"
       ],
       "sample_articles": [
-        "articles/article_49.html"
+        "articles/article_50.html"
       ]
     },
     {
@@ -2839,7 +2860,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250911/20250911235845.jpg"
       ],
       "sample_articles": [
-        "articles/article_51.html"
+        "articles/article_52.html"
       ]
     },
     {
@@ -2875,7 +2896,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012224252.jpg"
       ],
       "sample_articles": [
-        "articles/article_42.html"
+        "articles/article_43.html"
       ]
     },
     {
@@ -2887,7 +2908,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251013/20251013131458.jpg"
       ],
       "sample_articles": [
-        "articles/article_42.html"
+        "articles/article_43.html"
       ]
     },
     {
@@ -2899,7 +2920,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103233601.jpg"
       ],
       "sample_articles": [
-        "articles/article_36.html"
+        "articles/article_37.html"
       ]
     },
     {
@@ -2911,7 +2932,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260622/20260622024955.jpg"
       ],
       "sample_articles": [
-        "articles/article_17.html"
+        "articles/article_18.html"
       ]
     },
     {
@@ -2923,7 +2944,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251115/20251115005727.jpg"
       ],
       "sample_articles": [
-        "articles/article_35.html"
+        "articles/article_36.html"
       ]
     },
     {
@@ -2959,7 +2980,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914230628.jpg"
       ],
       "sample_articles": [
-        "articles/article_48.html"
+        "articles/article_49.html"
       ]
     },
     {
@@ -2971,7 +2992,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103231705.jpg"
       ],
       "sample_articles": [
-        "articles/article_36.html"
+        "articles/article_37.html"
       ]
     },
     {
@@ -2995,7 +3016,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260330/20260330211616.jpg"
       ],
       "sample_articles": [
-        "articles/article_24.html"
+        "articles/article_25.html"
       ]
     },
     {
@@ -3007,7 +3028,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222637.jpg"
       ],
       "sample_articles": [
-        "articles/article_7.html"
+        "articles/article_8.html"
       ]
     },
     {
@@ -3019,7 +3040,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914225743.jpg"
       ],
       "sample_articles": [
-        "articles/article_48.html"
+        "articles/article_49.html"
       ]
     },
     {
@@ -3031,7 +3052,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250920/20250920130730.jpg"
       ],
       "sample_articles": [
-        "articles/article_46.html"
+        "articles/article_47.html"
       ]
     },
     {
@@ -3043,7 +3064,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250907/20250907121049.jpg"
       ],
       "sample_articles": [
-        "articles/article_52.html"
+        "articles/article_53.html"
       ]
     },
     {
@@ -3055,7 +3076,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260301/20260301013808.jpg"
       ],
       "sample_articles": [
-        "articles/article_28.html"
+        "articles/article_29.html"
       ]
     },
     {
@@ -3067,7 +3088,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260425/20260425150950.jpg"
       ],
       "sample_articles": [
-        "articles/article_20.html"
+        "articles/article_21.html"
       ]
     },
     {
@@ -3079,7 +3100,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929220053.jpg"
       ],
       "sample_articles": [
-        "articles/article_44.html"
+        "articles/article_45.html"
       ]
     },
     {
@@ -3091,7 +3112,19 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005212906.jpg"
       ],
       "sample_articles": [
-        "articles/article_43.html"
+        "articles/article_44.html"
+      ]
+    },
+    {
+      "detected_label": "フジアザミ",
+      "image_count": 1,
+      "article_count": 1,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015062811.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_2.html"
       ]
     },
     {
@@ -3115,7 +3148,31 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005195632.jpg"
       ],
       "sample_articles": [
-        "articles/article_43.html"
+        "articles/article_44.html"
+      ]
+    },
+    {
+      "detected_label": "フモトニガイグチ",
+      "image_count": 1,
+      "article_count": 1,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063319.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_2.html"
+      ]
+    },
+    {
+      "detected_label": "ベニハナイグチ",
+      "image_count": 1,
+      "article_count": 1,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015064358.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_1.html"
       ]
     },
     {
@@ -3127,7 +3184,19 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222135.jpg"
       ],
       "sample_articles": [
-        "articles/article_14.html"
+        "articles/article_15.html"
+      ]
+    },
+    {
+      "detected_label": "マクキヌガサタケ",
+      "image_count": 1,
+      "article_count": 1,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063648.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_1.html"
       ]
     },
     {
@@ -3139,7 +3208,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018234823.jpg"
       ],
       "sample_articles": [
-        "articles/article_40.html"
+        "articles/article_41.html"
       ]
     },
     {
@@ -3151,7 +3220,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929215646.jpg"
       ],
       "sample_articles": [
-        "articles/article_44.html"
+        "articles/article_45.html"
       ]
     },
     {
@@ -3163,7 +3232,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012194239.jpg"
       ],
       "sample_articles": [
-        "articles/article_42.html"
+        "articles/article_43.html"
       ]
     },
     {
@@ -3187,7 +3256,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103234023.jpg"
       ],
       "sample_articles": [
-        "articles/article_36.html"
+        "articles/article_37.html"
       ]
     },
     {
@@ -3211,7 +3280,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232033.jpg"
       ],
       "sample_articles": [
-        "articles/article_4.html"
+        "articles/article_6.html"
       ]
     },
     {
@@ -3223,7 +3292,19 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222607.jpg"
       ],
       "sample_articles": [
-        "articles/article_7.html"
+        "articles/article_8.html"
+      ]
+    },
+    {
+      "detected_label": "ヤマドリタケ",
+      "image_count": 1,
+      "article_count": 1,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063131.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_2.html"
       ]
     },
     {
@@ -3235,7 +3316,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018230856.jpg"
       ],
       "sample_articles": [
-        "articles/article_40.html"
+        "articles/article_41.html"
       ]
     },
     {
@@ -3247,7 +3328,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222417.jpg"
       ],
       "sample_articles": [
-        "articles/article_11.html"
+        "articles/article_12.html"
       ]
     },
     {
@@ -3271,7 +3352,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222318.jpg"
       ],
       "sample_articles": [
-        "articles/article_12.html"
+        "articles/article_13.html"
       ]
     },
     {
@@ -3283,7 +3364,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005201456.jpg"
       ],
       "sample_articles": [
-        "articles/article_43.html"
+        "articles/article_44.html"
       ]
     },
     {
@@ -3309,7 +3390,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年8月1日富士山(山梨県)",
-      "article_path": "articles/article_7.html",
+      "article_path": "articles/article_8.html",
       "shadow_metadata_present": true
     },
     {
@@ -3321,7 +3402,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年8月1日富士山(山梨県)",
-      "article_path": "articles/article_7.html",
+      "article_path": "articles/article_8.html",
       "shadow_metadata_present": true
     },
     {
@@ -3333,7 +3414,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年8月1日富士山(山梨県)",
-      "article_path": "articles/article_7.html",
+      "article_path": "articles/article_8.html",
       "shadow_metadata_present": true
     },
     {
@@ -3345,7 +3426,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年8月1日富士山(山梨県)",
-      "article_path": "articles/article_7.html",
+      "article_path": "articles/article_8.html",
       "shadow_metadata_present": true
     },
     {
@@ -3357,7 +3438,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年8月1日富士山(山梨県)",
-      "article_path": "articles/article_7.html",
+      "article_path": "articles/article_8.html",
       "shadow_metadata_present": true
     },
     {
@@ -3369,7 +3450,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月25日静岡県伊豆の国市",
-      "article_path": "articles/article_8.html",
+      "article_path": "articles/article_9.html",
       "shadow_metadata_present": true
     },
     {
@@ -3381,7 +3462,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月11日静岡県静岡市",
-      "article_path": "articles/article_9.html",
+      "article_path": "articles/article_10.html",
       "shadow_metadata_present": true
     },
     {
@@ -3393,7 +3474,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月11日静岡県静岡市",
-      "article_path": "articles/article_9.html",
+      "article_path": "articles/article_10.html",
       "shadow_metadata_present": true
     },
     {
@@ -3405,7 +3486,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月11日静岡県静岡市",
-      "article_path": "articles/article_9.html",
+      "article_path": "articles/article_10.html",
       "shadow_metadata_present": true
     },
     {
@@ -3417,7 +3498,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月11日静岡県静岡市",
-      "article_path": "articles/article_9.html",
+      "article_path": "articles/article_10.html",
       "shadow_metadata_present": true
     },
     {
@@ -3429,7 +3510,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月11日静岡県静岡市",
-      "article_path": "articles/article_9.html",
+      "article_path": "articles/article_10.html",
       "shadow_metadata_present": true
     },
     {
@@ -3441,7 +3522,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月19日静岡県磐田市",
-      "article_path": "articles/article_10.html",
+      "article_path": "articles/article_11.html",
       "shadow_metadata_present": true
     },
     {
@@ -3453,7 +3534,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月19日静岡県磐田市",
-      "article_path": "articles/article_10.html",
+      "article_path": "articles/article_11.html",
       "shadow_metadata_present": true
     },
     {
@@ -3465,7 +3546,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月19日静岡県磐田市",
-      "article_path": "articles/article_10.html",
+      "article_path": "articles/article_11.html",
       "shadow_metadata_present": true
     },
     {
@@ -3477,7 +3558,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月8日静岡県掛川市",
-      "article_path": "articles/article_11.html",
+      "article_path": "articles/article_12.html",
       "shadow_metadata_present": true
     },
     {
@@ -3489,7 +3570,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月8日静岡県掛川市",
-      "article_path": "articles/article_11.html",
+      "article_path": "articles/article_12.html",
       "shadow_metadata_present": true
     },
     {
@@ -3501,7 +3582,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月8日静岡県掛川市",
-      "article_path": "articles/article_11.html",
+      "article_path": "articles/article_12.html",
       "shadow_metadata_present": true
     },
     {
@@ -3513,7 +3594,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月8日静岡県掛川市",
-      "article_path": "articles/article_11.html",
+      "article_path": "articles/article_12.html",
       "shadow_metadata_present": true
     },
     {
@@ -3525,7 +3606,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月8日静岡県掛川市",
-      "article_path": "articles/article_11.html",
+      "article_path": "articles/article_12.html",
       "shadow_metadata_present": true
     },
     {
@@ -3537,7 +3618,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月8日静岡県掛川市",
-      "article_path": "articles/article_11.html",
+      "article_path": "articles/article_12.html",
       "shadow_metadata_present": true
     },
     {
@@ -3549,7 +3630,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月8日静岡県掛川市",
-      "article_path": "articles/article_11.html",
+      "article_path": "articles/article_12.html",
       "shadow_metadata_present": true
     },
     {
@@ -3561,7 +3642,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月8日静岡県掛川市",
-      "article_path": "articles/article_11.html",
+      "article_path": "articles/article_12.html",
       "shadow_metadata_present": true
     },
     {
@@ -3573,7 +3654,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月5日静岡県掛川市(後編)",
-      "article_path": "articles/article_12.html",
+      "article_path": "articles/article_13.html",
       "shadow_metadata_present": true
     },
     {
@@ -3585,7 +3666,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月5日静岡県掛川市(後編)",
-      "article_path": "articles/article_12.html",
+      "article_path": "articles/article_13.html",
       "shadow_metadata_present": true
     },
     {
@@ -3597,7 +3678,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月5日静岡県掛川市(前編)",
-      "article_path": "articles/article_13.html",
+      "article_path": "articles/article_14.html",
       "shadow_metadata_present": true
     },
     {
@@ -3609,7 +3690,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月5日静岡県掛川市(前編)",
-      "article_path": "articles/article_13.html",
+      "article_path": "articles/article_14.html",
       "shadow_metadata_present": true
     },
     {
@@ -3621,7 +3702,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月5日静岡県掛川市(前編)",
-      "article_path": "articles/article_13.html",
+      "article_path": "articles/article_14.html",
       "shadow_metadata_present": true
     },
     {
@@ -3633,7 +3714,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月5日静岡県掛川市(前編)",
-      "article_path": "articles/article_13.html",
+      "article_path": "articles/article_14.html",
       "shadow_metadata_present": true
     },
     {
@@ -3645,7 +3726,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月5日静岡県掛川市(前編)",
-      "article_path": "articles/article_13.html",
+      "article_path": "articles/article_14.html",
       "shadow_metadata_present": true
     },
     {
@@ -3657,7 +3738,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月5日静岡県掛川市(前編)",
-      "article_path": "articles/article_13.html",
+      "article_path": "articles/article_14.html",
       "shadow_metadata_present": true
     },
     {
@@ -3669,7 +3750,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月5日静岡県掛川市(前編)",
-      "article_path": "articles/article_13.html",
+      "article_path": "articles/article_14.html",
       "shadow_metadata_present": true
     },
     {
@@ -3681,7 +3762,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月5日静岡県掛川市(前編)",
-      "article_path": "articles/article_13.html",
+      "article_path": "articles/article_14.html",
       "shadow_metadata_present": true
     },
     {
@@ -3693,7 +3774,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月5日静岡県掛川市(前編)",
-      "article_path": "articles/article_13.html",
+      "article_path": "articles/article_14.html",
       "shadow_metadata_present": true
     },
     {
@@ -3705,7 +3786,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月5日静岡県掛川市(前編)",
-      "article_path": "articles/article_13.html",
+      "article_path": "articles/article_14.html",
       "shadow_metadata_present": true
     },
     {
@@ -3717,7 +3798,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月4日静岡県浜松市",
-      "article_path": "articles/article_14.html",
+      "article_path": "articles/article_15.html",
       "shadow_metadata_present": true
     },
     {
@@ -3729,7 +3810,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月4日静岡県浜松市",
-      "article_path": "articles/article_14.html",
+      "article_path": "articles/article_15.html",
       "shadow_metadata_present": true
     },
     {
@@ -3741,7 +3822,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月4日静岡県浜松市",
-      "article_path": "articles/article_14.html",
+      "article_path": "articles/article_15.html",
       "shadow_metadata_present": true
     },
     {
@@ -3753,7 +3834,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月4日静岡県浜松市",
-      "article_path": "articles/article_14.html",
+      "article_path": "articles/article_15.html",
       "shadow_metadata_present": true
     },
     {
@@ -3765,7 +3846,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月4日静岡県浜松市",
-      "article_path": "articles/article_14.html",
+      "article_path": "articles/article_15.html",
       "shadow_metadata_present": true
     },
     {
@@ -3777,7 +3858,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月4日静岡県浜松市",
-      "article_path": "articles/article_14.html",
+      "article_path": "articles/article_15.html",
       "shadow_metadata_present": true
     },
     {
@@ -3789,7 +3870,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年7月4日静岡県浜松市",
-      "article_path": "articles/article_14.html",
+      "article_path": "articles/article_15.html",
       "shadow_metadata_present": true
     },
     {
@@ -3801,7 +3882,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年6月22日静岡県浜松市",
-      "article_path": "articles/article_15.html",
+      "article_path": "articles/article_16.html",
       "shadow_metadata_present": true
     },
     {
@@ -3813,7 +3894,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年6月17日 静岡県浜松市",
-      "article_path": "articles/article_16.html",
+      "article_path": "articles/article_17.html",
       "shadow_metadata_present": true
     },
     {
@@ -3825,7 +3906,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年6月17日 静岡県浜松市",
-      "article_path": "articles/article_16.html",
+      "article_path": "articles/article_17.html",
       "shadow_metadata_present": true
     },
     {
@@ -3837,7 +3918,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年6月17日 静岡県浜松市",
-      "article_path": "articles/article_16.html",
+      "article_path": "articles/article_17.html",
       "shadow_metadata_present": true
     },
     {
@@ -3849,7 +3930,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年6月17日 静岡県浜松市",
-      "article_path": "articles/article_16.html",
+      "article_path": "articles/article_17.html",
       "shadow_metadata_present": true
     },
     {
@@ -3861,7 +3942,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年6月17日 静岡県浜松市",
-      "article_path": "articles/article_16.html",
+      "article_path": "articles/article_17.html",
       "shadow_metadata_present": true
     },
     {
@@ -3873,7 +3954,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年6月14日静岡県浜松市",
-      "article_path": "articles/article_17.html",
+      "article_path": "articles/article_18.html",
       "shadow_metadata_present": true
     },
     {
@@ -3885,7 +3966,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年6月14日静岡県浜松市",
-      "article_path": "articles/article_17.html",
+      "article_path": "articles/article_18.html",
       "shadow_metadata_present": true
     },
     {
@@ -3897,7 +3978,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年6月14日静岡県浜松市",
-      "article_path": "articles/article_17.html",
+      "article_path": "articles/article_18.html",
       "shadow_metadata_present": true
     },
     {
@@ -3909,7 +3990,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年6月14日静岡県浜松市",
-      "article_path": "articles/article_17.html",
+      "article_path": "articles/article_18.html",
       "shadow_metadata_present": true
     },
     {
@@ -3921,7 +4002,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年5月23日 富士山(静岡県)",
-      "article_path": "articles/article_18.html",
+      "article_path": "articles/article_19.html",
       "shadow_metadata_present": true
     },
     {
@@ -3933,7 +4014,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年5月23日 富士山(静岡県)",
-      "article_path": "articles/article_18.html",
+      "article_path": "articles/article_19.html",
       "shadow_metadata_present": true
     },
     {
@@ -3945,7 +4026,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年5月23日 富士山(静岡県)",
-      "article_path": "articles/article_18.html",
+      "article_path": "articles/article_19.html",
       "shadow_metadata_present": true
     },
     {
@@ -3957,7 +4038,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年4月18日山梨県山中湖町",
-      "article_path": "articles/article_20.html",
+      "article_path": "articles/article_21.html",
       "shadow_metadata_present": true
     },
     {
@@ -3969,7 +4050,7 @@
       "classification_reason": "taxonomy_mushroom",
       "taxonomy_match_type": "normalized",
       "article_title": "2026年4月9日　静岡県掛川市",
-      "article_path": "articles/article_21.html",
+      "article_path": "articles/article_22.html",
       "shadow_metadata_present": true
     },
     {
@@ -3981,7 +4062,7 @@
       "classification_reason": "taxonomy_mushroom",
       "taxonomy_match_type": "normalized",
       "article_title": "2026年4月9日　静岡県掛川市",
-      "article_path": "articles/article_21.html",
+      "article_path": "articles/article_22.html",
       "shadow_metadata_present": true
     },
     {
@@ -3993,7 +4074,7 @@
       "classification_reason": "taxonomy_mushroom",
       "taxonomy_match_type": "normalized",
       "article_title": "2026年4月7日　静岡県掛川市&静岡県浜松市",
-      "article_path": "articles/article_22.html",
+      "article_path": "articles/article_23.html",
       "shadow_metadata_present": true
     },
     {
@@ -4005,7 +4086,7 @@
       "classification_reason": "taxonomy_mushroom",
       "taxonomy_match_type": "normalized",
       "article_title": "2026年4月7日　静岡県掛川市&静岡県浜松市",
-      "article_path": "articles/article_22.html",
+      "article_path": "articles/article_23.html",
       "shadow_metadata_present": true
     },
     {
@@ -4017,7 +4098,7 @@
       "classification_reason": "taxonomy_mushroom",
       "taxonomy_match_type": "normalized",
       "article_title": "2026年4月7日　静岡県掛川市&静岡県浜松市",
-      "article_path": "articles/article_22.html",
+      "article_path": "articles/article_23.html",
       "shadow_metadata_present": true
     },
     {
@@ -4029,7 +4110,7 @@
       "classification_reason": "taxonomy_mushroom",
       "taxonomy_match_type": "normalized",
       "article_title": "2026年4月4日　静岡県伊豆の国市〜沼津市",
-      "article_path": "articles/article_23.html",
+      "article_path": "articles/article_24.html",
       "shadow_metadata_present": true
     },
     {
@@ -4041,7 +4122,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年4月4日　静岡県伊豆の国市〜沼津市",
-      "article_path": "articles/article_23.html",
+      "article_path": "articles/article_24.html",
       "shadow_metadata_present": true
     },
     {
@@ -4053,7 +4134,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年4月4日　静岡県伊豆の国市〜沼津市",
-      "article_path": "articles/article_23.html",
+      "article_path": "articles/article_24.html",
       "shadow_metadata_present": true
     },
     {
@@ -4065,7 +4146,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年4月4日　静岡県伊豆の国市〜沼津市",
-      "article_path": "articles/article_23.html",
+      "article_path": "articles/article_24.html",
       "shadow_metadata_present": true
     },
     {
@@ -4077,7 +4158,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年4月4日　静岡県伊豆の国市〜沼津市",
-      "article_path": "articles/article_23.html",
+      "article_path": "articles/article_24.html",
       "shadow_metadata_present": true
     },
     {
@@ -4089,7 +4170,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年3月29日　静岡県浜松市",
-      "article_path": "articles/article_24.html",
+      "article_path": "articles/article_25.html",
       "shadow_metadata_present": true
     },
     {
@@ -4101,7 +4182,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年3月29日　静岡県浜松市",
-      "article_path": "articles/article_24.html",
+      "article_path": "articles/article_25.html",
       "shadow_metadata_present": true
     },
     {
@@ -4113,7 +4194,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年3月29日　静岡県浜松市",
-      "article_path": "articles/article_24.html",
+      "article_path": "articles/article_25.html",
       "shadow_metadata_present": true
     },
     {
@@ -4125,7 +4206,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年3月29日　静岡県浜松市",
-      "article_path": "articles/article_24.html",
+      "article_path": "articles/article_25.html",
       "shadow_metadata_present": true
     },
     {
@@ -4137,7 +4218,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年3月29日　静岡県浜松市",
-      "article_path": "articles/article_24.html",
+      "article_path": "articles/article_25.html",
       "shadow_metadata_present": true
     },
     {
@@ -4149,7 +4230,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年3月21日　静岡県磐田市",
-      "article_path": "articles/article_25.html",
+      "article_path": "articles/article_26.html",
       "shadow_metadata_present": true
     },
     {
@@ -4161,7 +4242,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年3月14日　静岡県富士市・静岡市",
-      "article_path": "articles/article_26.html",
+      "article_path": "articles/article_27.html",
       "shadow_metadata_present": true
     },
     {
@@ -4173,7 +4254,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年2月28日　静岡県沼津市",
-      "article_path": "articles/article_28.html",
+      "article_path": "articles/article_29.html",
       "shadow_metadata_present": true
     },
     {
@@ -4185,7 +4266,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年2月28日　静岡県沼津市",
-      "article_path": "articles/article_28.html",
+      "article_path": "articles/article_29.html",
       "shadow_metadata_present": true
     },
     {
@@ -4197,7 +4278,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年2月28日　静岡県沼津市",
-      "article_path": "articles/article_28.html",
+      "article_path": "articles/article_29.html",
       "shadow_metadata_present": true
     },
     {
@@ -4209,7 +4290,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年2月28日　静岡県沼津市",
-      "article_path": "articles/article_28.html",
+      "article_path": "articles/article_29.html",
       "shadow_metadata_present": true
     },
     {
@@ -4221,7 +4302,7 @@
       "classification_reason": "no_detected_label",
       "taxonomy_match_type": "none",
       "article_title": "2026年2月28日　静岡県沼津市",
-      "article_path": "articles/article_28.html",
+      "article_path": "articles/article_29.html",
       "shadow_metadata_present": true
     },
     {
@@ -4233,7 +4314,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年1月3日　静岡県浜松市　",
-      "article_path": "articles/article_30.html",
+      "article_path": "articles/article_31.html",
       "shadow_metadata_present": true
     },
     {
@@ -4245,7 +4326,7 @@
       "classification_reason": "no_detected_label",
       "taxonomy_match_type": "none",
       "article_title": "2026年1月3日　静岡県浜松市　",
-      "article_path": "articles/article_30.html",
+      "article_path": "articles/article_31.html",
       "shadow_metadata_present": true
     },
     {
@@ -4257,7 +4338,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2026年1月3日　静岡県浜松市　",
-      "article_path": "articles/article_30.html",
+      "article_path": "articles/article_31.html",
       "shadow_metadata_present": true
     },
     {
@@ -4269,7 +4350,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月16日　静岡県浜松市",
-      "article_path": "articles/article_33.html",
+      "article_path": "articles/article_34.html",
       "shadow_metadata_present": true
     },
     {
@@ -4281,7 +4362,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月16日　静岡県浜松市",
-      "article_path": "articles/article_33.html",
+      "article_path": "articles/article_34.html",
       "shadow_metadata_present": true
     },
     {
@@ -4293,7 +4374,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月16日　静岡県浜松市",
-      "article_path": "articles/article_33.html",
+      "article_path": "articles/article_34.html",
       "shadow_metadata_present": true
     },
     {
@@ -4305,7 +4386,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月16日　静岡県浜松市",
-      "article_path": "articles/article_33.html",
+      "article_path": "articles/article_34.html",
       "shadow_metadata_present": true
     },
     {
@@ -4317,7 +4398,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月16日　静岡県浜松市",
-      "article_path": "articles/article_33.html",
+      "article_path": "articles/article_34.html",
       "shadow_metadata_present": true
     },
     {
@@ -4329,7 +4410,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月8日　静岡県掛川市〜浜松市",
-      "article_path": "articles/article_35.html",
+      "article_path": "articles/article_36.html",
       "shadow_metadata_present": true
     },
     {
@@ -4341,7 +4422,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月8日　静岡県掛川市〜浜松市",
-      "article_path": "articles/article_35.html",
+      "article_path": "articles/article_36.html",
       "shadow_metadata_present": true
     },
     {
@@ -4353,7 +4434,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月8日　静岡県掛川市〜浜松市",
-      "article_path": "articles/article_35.html",
+      "article_path": "articles/article_36.html",
       "shadow_metadata_present": true
     },
     {
@@ -4365,7 +4446,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月8日　静岡県掛川市〜浜松市",
-      "article_path": "articles/article_35.html",
+      "article_path": "articles/article_36.html",
       "shadow_metadata_present": true
     },
     {
@@ -4377,7 +4458,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月8日　静岡県掛川市〜浜松市",
-      "article_path": "articles/article_35.html",
+      "article_path": "articles/article_36.html",
       "shadow_metadata_present": true
     },
     {
@@ -4389,7 +4470,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月8日　静岡県掛川市〜浜松市",
-      "article_path": "articles/article_35.html",
+      "article_path": "articles/article_36.html",
       "shadow_metadata_present": true
     },
     {
@@ -4401,7 +4482,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月8日　静岡県掛川市〜浜松市",
-      "article_path": "articles/article_35.html",
+      "article_path": "articles/article_36.html",
       "shadow_metadata_present": true
     },
     {
@@ -4413,7 +4494,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月8日　静岡県掛川市〜浜松市",
-      "article_path": "articles/article_35.html",
+      "article_path": "articles/article_36.html",
       "shadow_metadata_present": true
     },
     {
@@ -4425,7 +4506,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月8日　静岡県掛川市〜浜松市",
-      "article_path": "articles/article_35.html",
+      "article_path": "articles/article_36.html",
       "shadow_metadata_present": true
     },
     {
@@ -4437,7 +4518,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月8日　静岡県掛川市〜浜松市",
-      "article_path": "articles/article_35.html",
+      "article_path": "articles/article_36.html",
       "shadow_metadata_present": true
     },
     {
@@ -4449,7 +4530,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月1日　静岡県沼津市",
-      "article_path": "articles/article_36.html",
+      "article_path": "articles/article_37.html",
       "shadow_metadata_present": true
     },
     {
@@ -4461,7 +4542,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月1日　静岡県沼津市",
-      "article_path": "articles/article_36.html",
+      "article_path": "articles/article_37.html",
       "shadow_metadata_present": true
     },
     {
@@ -4473,7 +4554,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月1日　静岡県沼津市",
-      "article_path": "articles/article_36.html",
+      "article_path": "articles/article_37.html",
       "shadow_metadata_present": true
     },
     {
@@ -4485,7 +4566,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月1日　静岡県沼津市",
-      "article_path": "articles/article_36.html",
+      "article_path": "articles/article_37.html",
       "shadow_metadata_present": true
     },
     {
@@ -4497,7 +4578,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月1日　静岡県沼津市",
-      "article_path": "articles/article_36.html",
+      "article_path": "articles/article_37.html",
       "shadow_metadata_present": true
     },
     {
@@ -4509,7 +4590,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月1日　静岡県沼津市",
-      "article_path": "articles/article_36.html",
+      "article_path": "articles/article_37.html",
       "shadow_metadata_present": true
     },
     {
@@ -4521,7 +4602,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月1日　静岡県沼津市",
-      "article_path": "articles/article_36.html",
+      "article_path": "articles/article_37.html",
       "shadow_metadata_present": true
     },
     {
@@ -4533,7 +4614,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月1日　静岡県沼津市",
-      "article_path": "articles/article_36.html",
+      "article_path": "articles/article_37.html",
       "shadow_metadata_present": true
     },
     {
@@ -4545,7 +4626,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月1日　静岡県沼津市",
-      "article_path": "articles/article_36.html",
+      "article_path": "articles/article_37.html",
       "shadow_metadata_present": true
     },
     {
@@ -4557,7 +4638,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月1日　静岡県沼津市",
-      "article_path": "articles/article_36.html",
+      "article_path": "articles/article_37.html",
       "shadow_metadata_present": true
     },
     {
@@ -4569,7 +4650,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月1日　静岡県沼津市",
-      "article_path": "articles/article_36.html",
+      "article_path": "articles/article_37.html",
       "shadow_metadata_present": true
     },
     {
@@ -4581,7 +4662,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月1日　静岡県沼津市",
-      "article_path": "articles/article_36.html",
+      "article_path": "articles/article_37.html",
       "shadow_metadata_present": true
     },
     {
@@ -4593,7 +4674,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月1日　静岡県沼津市",
-      "article_path": "articles/article_36.html",
+      "article_path": "articles/article_37.html",
       "shadow_metadata_present": true
     },
     {
@@ -4605,7 +4686,7 @@
       "classification_reason": "no_detected_label",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月1日　静岡県沼津市",
-      "article_path": "articles/article_36.html",
+      "article_path": "articles/article_37.html",
       "shadow_metadata_present": true
     },
     {
@@ -4617,7 +4698,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年11月1日　静岡県沼津市",
-      "article_path": "articles/article_36.html",
+      "article_path": "articles/article_37.html",
       "shadow_metadata_present": true
     },
     {
@@ -4629,7 +4710,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月26〜29日　静岡県掛川市",
-      "article_path": "articles/article_37.html",
+      "article_path": "articles/article_38.html",
       "shadow_metadata_present": true
     },
     {
@@ -4641,7 +4722,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月26〜29日　静岡県掛川市",
-      "article_path": "articles/article_37.html",
+      "article_path": "articles/article_38.html",
       "shadow_metadata_present": true
     },
     {
@@ -4653,7 +4734,7 @@
       "classification_reason": "taxonomy_mushroom",
       "taxonomy_match_type": "normalized",
       "article_title": "2025年10月26〜29日　静岡県掛川市",
-      "article_path": "articles/article_37.html",
+      "article_path": "articles/article_38.html",
       "shadow_metadata_present": true
     },
     {
@@ -4665,7 +4746,7 @@
       "classification_reason": "taxonomy_mushroom",
       "taxonomy_match_type": "normalized",
       "article_title": "2025年10月26〜29日　静岡県掛川市",
-      "article_path": "articles/article_37.html",
+      "article_path": "articles/article_38.html",
       "shadow_metadata_present": true
     },
     {
@@ -4677,7 +4758,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月20〜25日　静岡県掛川市",
-      "article_path": "articles/article_38.html",
+      "article_path": "articles/article_39.html",
       "shadow_metadata_present": true
     },
     {
@@ -4689,7 +4770,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月18日　静岡県浜松市",
-      "article_path": "articles/article_40.html",
+      "article_path": "articles/article_41.html",
       "shadow_metadata_present": true
     },
     {
@@ -4701,7 +4782,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月18日　静岡県浜松市",
-      "article_path": "articles/article_40.html",
+      "article_path": "articles/article_41.html",
       "shadow_metadata_present": true
     },
     {
@@ -4713,7 +4794,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月18日　静岡県浜松市",
-      "article_path": "articles/article_40.html",
+      "article_path": "articles/article_41.html",
       "shadow_metadata_present": true
     },
     {
@@ -4725,7 +4806,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月18日　静岡県浜松市",
-      "article_path": "articles/article_40.html",
+      "article_path": "articles/article_41.html",
       "shadow_metadata_present": true
     },
     {
@@ -4737,7 +4818,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月18日　静岡県浜松市",
-      "article_path": "articles/article_40.html",
+      "article_path": "articles/article_41.html",
       "shadow_metadata_present": true
     },
     {
@@ -4749,7 +4830,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月18日　静岡県浜松市",
-      "article_path": "articles/article_40.html",
+      "article_path": "articles/article_41.html",
       "shadow_metadata_present": true
     },
     {
@@ -4761,7 +4842,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月18日　静岡県浜松市",
-      "article_path": "articles/article_40.html",
+      "article_path": "articles/article_41.html",
       "shadow_metadata_present": true
     },
     {
@@ -4773,7 +4854,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月18日　静岡県浜松市",
-      "article_path": "articles/article_40.html",
+      "article_path": "articles/article_41.html",
       "shadow_metadata_present": true
     },
     {
@@ -4785,7 +4866,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月18日　静岡県浜松市",
-      "article_path": "articles/article_40.html",
+      "article_path": "articles/article_41.html",
       "shadow_metadata_present": true
     },
     {
@@ -4797,7 +4878,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月18日　静岡県浜松市",
-      "article_path": "articles/article_40.html",
+      "article_path": "articles/article_41.html",
       "shadow_metadata_present": true
     },
     {
@@ -4809,7 +4890,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月18日　静岡県浜松市",
-      "article_path": "articles/article_40.html",
+      "article_path": "articles/article_41.html",
       "shadow_metadata_present": true
     },
     {
@@ -4821,7 +4902,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月18日　静岡県浜松市",
-      "article_path": "articles/article_40.html",
+      "article_path": "articles/article_41.html",
       "shadow_metadata_present": true
     },
     {
@@ -4833,7 +4914,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月18日　静岡県浜松市",
-      "article_path": "articles/article_40.html",
+      "article_path": "articles/article_41.html",
       "shadow_metadata_present": true
     },
     {
@@ -4845,7 +4926,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月18日　静岡県浜松市",
-      "article_path": "articles/article_40.html",
+      "article_path": "articles/article_41.html",
       "shadow_metadata_present": true
     },
     {
@@ -4857,7 +4938,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -4869,7 +4950,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -4881,7 +4962,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -4893,7 +4974,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -4905,7 +4986,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -4917,7 +4998,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -4929,7 +5010,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -4941,7 +5022,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -4953,7 +5034,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -4965,7 +5046,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -4977,7 +5058,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -4989,7 +5070,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -5001,7 +5082,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -5013,7 +5094,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -5025,7 +5106,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -5037,7 +5118,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -5049,7 +5130,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -5061,7 +5142,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -5073,7 +5154,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -5085,7 +5166,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -5097,7 +5178,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -5109,7 +5190,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -5121,7 +5202,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -5133,7 +5214,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -5145,7 +5226,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_42.html",
+      "article_path": "articles/article_43.html",
       "shadow_metadata_present": true
     },
     {
@@ -5157,7 +5238,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5169,7 +5250,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5181,7 +5262,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5193,7 +5274,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5205,7 +5286,7 @@
       "classification_reason": "no_detected_label",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5217,7 +5298,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5229,7 +5310,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5241,7 +5322,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5253,7 +5334,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5265,7 +5346,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5277,7 +5358,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5289,7 +5370,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5301,7 +5382,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5313,7 +5394,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5325,7 +5406,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5337,7 +5418,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5349,7 +5430,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5361,7 +5442,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5373,7 +5454,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5385,7 +5466,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5397,7 +5478,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5409,7 +5490,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "shadow_metadata_present": true
     },
     {
@@ -5421,7 +5502,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5433,7 +5514,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5445,7 +5526,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5457,7 +5538,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5469,7 +5550,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5481,7 +5562,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5493,7 +5574,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5505,7 +5586,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5517,7 +5598,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5529,7 +5610,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5541,7 +5622,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5553,7 +5634,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5565,7 +5646,7 @@
       "classification_reason": "no_detected_label",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5577,7 +5658,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5589,7 +5670,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5601,7 +5682,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5613,7 +5694,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5625,7 +5706,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5637,7 +5718,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5649,7 +5730,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5661,7 +5742,7 @@
       "classification_reason": "no_detected_label",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5673,7 +5754,7 @@
       "classification_reason": "taxonomy_mushroom",
       "taxonomy_match_type": "normalized",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5685,7 +5766,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5697,7 +5778,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
     },
     {
@@ -5709,7 +5790,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月21日　静岡県掛川市",
-      "article_path": "articles/article_45.html",
+      "article_path": "articles/article_46.html",
       "shadow_metadata_present": true
     },
     {
@@ -5721,7 +5802,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月21日　静岡県掛川市",
-      "article_path": "articles/article_45.html",
+      "article_path": "articles/article_46.html",
       "shadow_metadata_present": true
     },
     {
@@ -5733,7 +5814,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月21日　静岡県掛川市",
-      "article_path": "articles/article_45.html",
+      "article_path": "articles/article_46.html",
       "shadow_metadata_present": true
     },
     {
@@ -5745,7 +5826,7 @@
       "classification_reason": "taxonomy_mushroom",
       "taxonomy_match_type": "normalized",
       "article_title": "2025年9月21日　静岡県掛川市",
-      "article_path": "articles/article_45.html",
+      "article_path": "articles/article_46.html",
       "shadow_metadata_present": true
     },
     {
@@ -5757,7 +5838,7 @@
       "classification_reason": "taxonomy_mushroom",
       "taxonomy_match_type": "normalized",
       "article_title": "2025年9月21日　静岡県掛川市",
-      "article_path": "articles/article_45.html",
+      "article_path": "articles/article_46.html",
       "shadow_metadata_present": true
     },
     {
@@ -5769,7 +5850,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月21日　静岡県掛川市",
-      "article_path": "articles/article_45.html",
+      "article_path": "articles/article_46.html",
       "shadow_metadata_present": true
     },
     {
@@ -5781,7 +5862,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月21日　静岡県掛川市",
-      "article_path": "articles/article_45.html",
+      "article_path": "articles/article_46.html",
       "shadow_metadata_present": true
     },
     {
@@ -5793,7 +5874,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月21日　静岡県掛川市",
-      "article_path": "articles/article_45.html",
+      "article_path": "articles/article_46.html",
       "shadow_metadata_present": true
     },
     {
@@ -5805,7 +5886,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月21日　静岡県掛川市",
-      "article_path": "articles/article_45.html",
+      "article_path": "articles/article_46.html",
       "shadow_metadata_present": true
     },
     {
@@ -5817,7 +5898,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月21日　静岡県掛川市",
-      "article_path": "articles/article_45.html",
+      "article_path": "articles/article_46.html",
       "shadow_metadata_present": true
     },
     {
@@ -5829,7 +5910,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月21日　静岡県掛川市",
-      "article_path": "articles/article_45.html",
+      "article_path": "articles/article_46.html",
       "shadow_metadata_present": true
     },
     {
@@ -5841,7 +5922,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月17日　静岡県掛川市",
-      "article_path": "articles/article_46.html",
+      "article_path": "articles/article_47.html",
       "shadow_metadata_present": true
     },
     {
@@ -5853,7 +5934,7 @@
       "classification_reason": "no_detected_label",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月14日　静岡県掛川市",
-      "article_path": "articles/article_47.html",
+      "article_path": "articles/article_48.html",
       "shadow_metadata_present": true
     },
     {
@@ -5865,7 +5946,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月14日　山梨県笛吹市",
-      "article_path": "articles/article_48.html",
+      "article_path": "articles/article_49.html",
       "shadow_metadata_present": true
     },
     {
@@ -5877,7 +5958,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月14日　山梨県笛吹市",
-      "article_path": "articles/article_48.html",
+      "article_path": "articles/article_49.html",
       "shadow_metadata_present": true
     },
     {
@@ -5889,7 +5970,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月14日　山梨県笛吹市",
-      "article_path": "articles/article_48.html",
+      "article_path": "articles/article_49.html",
       "shadow_metadata_present": true
     },
     {
@@ -5901,7 +5982,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月14日　山梨県笛吹市",
-      "article_path": "articles/article_48.html",
+      "article_path": "articles/article_49.html",
       "shadow_metadata_present": true
     },
     {
@@ -5913,7 +5994,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月14日　山梨県笛吹市",
-      "article_path": "articles/article_48.html",
+      "article_path": "articles/article_49.html",
       "shadow_metadata_present": true
     },
     {
@@ -5925,7 +6006,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月14日　山梨県笛吹市",
-      "article_path": "articles/article_48.html",
+      "article_path": "articles/article_49.html",
       "shadow_metadata_present": true
     },
     {
@@ -5937,7 +6018,7 @@
       "classification_reason": "no_detected_label",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
+      "article_path": "articles/article_50.html",
       "shadow_metadata_present": true
     },
     {
@@ -5949,7 +6030,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
+      "article_path": "articles/article_50.html",
       "shadow_metadata_present": true
     },
     {
@@ -5961,19 +6042,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914213524.jpg",
-      "legacy_alt": "ミヤママスタケ",
-      "detected_label": "ミヤママスタケ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
+      "article_path": "articles/article_50.html",
       "shadow_metadata_present": true
     },
     {
@@ -5985,19 +6054,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914214519.jpg",
-      "legacy_alt": "カワリハツ？",
-      "detected_label": null,
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "no_detected_label",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
+      "article_path": "articles/article_50.html",
       "shadow_metadata_present": true
     },
     {
@@ -6009,7 +6066,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
+      "article_path": "articles/article_50.html",
       "shadow_metadata_present": true
     },
     {
@@ -6021,19 +6078,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914215453.jpg",
-      "legacy_alt": "アカツムタケ",
-      "detected_label": "アカツムタケ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
+      "article_path": "articles/article_50.html",
       "shadow_metadata_present": true
     },
     {
@@ -6045,19 +6090,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914215936.jpg",
-      "legacy_alt": "ケシロハツ",
-      "detected_label": "ケシロハツ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
+      "article_path": "articles/article_50.html",
       "shadow_metadata_present": true
     },
     {
@@ -6069,19 +6102,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914220803.jpg",
-      "legacy_alt": "スギタケモドキ",
-      "detected_label": "スギタケモドキ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
+      "article_path": "articles/article_50.html",
       "shadow_metadata_present": true
     },
     {
@@ -6093,31 +6114,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914221417.jpg",
-      "legacy_alt": "コゲエノヘラタケ",
-      "detected_label": "コゲエノヘラタケ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914221517.jpg",
-      "legacy_alt": "シロヌメリイグチ",
-      "detected_label": "シロヌメリイグチ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
+      "article_path": "articles/article_50.html",
       "shadow_metadata_present": true
     },
     {
@@ -6129,7 +6126,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
+      "article_path": "articles/article_50.html",
       "shadow_metadata_present": true
     },
     {
@@ -6141,19 +6138,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914222634.jpg",
-      "legacy_alt": "キサマツモドキ",
-      "detected_label": "キサマツモドキ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
+      "article_path": "articles/article_50.html",
       "shadow_metadata_present": true
     },
     {
@@ -6165,7 +6150,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
+      "article_path": "articles/article_50.html",
       "shadow_metadata_present": true
     },
     {
@@ -6177,7 +6162,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月12日　静岡県掛川市",
-      "article_path": "articles/article_50.html",
+      "article_path": "articles/article_51.html",
       "shadow_metadata_present": true
     },
     {
@@ -6189,7 +6174,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月10日　静岡県浜松市",
-      "article_path": "articles/article_51.html",
+      "article_path": "articles/article_52.html",
       "shadow_metadata_present": true
     },
     {
@@ -6201,7 +6186,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月10日　静岡県浜松市",
-      "article_path": "articles/article_51.html",
+      "article_path": "articles/article_52.html",
       "shadow_metadata_present": true
     },
     {
@@ -6213,7 +6198,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月10日　静岡県浜松市",
-      "article_path": "articles/article_51.html",
+      "article_path": "articles/article_52.html",
       "shadow_metadata_present": true
     },
     {
@@ -6225,7 +6210,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月10日　静岡県浜松市",
-      "article_path": "articles/article_51.html",
+      "article_path": "articles/article_52.html",
       "shadow_metadata_present": true
     },
     {
@@ -6237,7 +6222,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月10日　静岡県浜松市",
-      "article_path": "articles/article_51.html",
+      "article_path": "articles/article_52.html",
       "shadow_metadata_present": true
     },
     {
@@ -6249,7 +6234,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月6日　静岡県浜松市",
-      "article_path": "articles/article_52.html",
+      "article_path": "articles/article_53.html",
       "shadow_metadata_present": true
     },
     {
@@ -6261,7 +6246,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月6日　静岡県浜松市",
-      "article_path": "articles/article_52.html",
+      "article_path": "articles/article_53.html",
       "shadow_metadata_present": true
     },
     {
@@ -6273,7 +6258,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月6日　静岡県浜松市",
-      "article_path": "articles/article_52.html",
+      "article_path": "articles/article_53.html",
       "shadow_metadata_present": true
     },
     {
@@ -6285,7 +6270,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月6日　静岡県浜松市",
-      "article_path": "articles/article_52.html",
+      "article_path": "articles/article_53.html",
       "shadow_metadata_present": true
     },
     {
@@ -6297,7 +6282,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月6日　静岡県浜松市",
-      "article_path": "articles/article_52.html",
+      "article_path": "articles/article_53.html",
       "shadow_metadata_present": true
     },
     {
@@ -6309,7 +6294,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月6日　静岡県浜松市",
-      "article_path": "articles/article_52.html",
+      "article_path": "articles/article_53.html",
       "shadow_metadata_present": true
     },
     {
@@ -6321,7 +6306,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月6日　静岡県浜松市",
-      "article_path": "articles/article_52.html",
+      "article_path": "articles/article_53.html",
       "shadow_metadata_present": true
     },
     {
@@ -6333,7 +6318,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月6日　静岡県浜松市",
-      "article_path": "articles/article_52.html",
+      "article_path": "articles/article_53.html",
       "shadow_metadata_present": true
     },
     {
@@ -6345,7 +6330,7 @@
       "classification_reason": "no_detected_label",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月6日　静岡県浜松市",
-      "article_path": "articles/article_52.html",
+      "article_path": "articles/article_53.html",
       "shadow_metadata_present": true
     },
     {
@@ -6357,7 +6342,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月6日　静岡県浜松市",
-      "article_path": "articles/article_52.html",
+      "article_path": "articles/article_53.html",
       "shadow_metadata_present": true
     },
     {
@@ -6369,7 +6354,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月6日　静岡県浜松市",
-      "article_path": "articles/article_52.html",
+      "article_path": "articles/article_53.html",
       "shadow_metadata_present": true
     },
     {
@@ -6381,7 +6366,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月6日　静岡県浜松市",
-      "article_path": "articles/article_52.html",
+      "article_path": "articles/article_53.html",
       "shadow_metadata_present": true
     },
     {
@@ -6393,7 +6378,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月6日　静岡県浜松市",
-      "article_path": "articles/article_52.html",
+      "article_path": "articles/article_53.html",
       "shadow_metadata_present": true
     },
     {
@@ -6405,7 +6390,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月6日　静岡県浜松市",
-      "article_path": "articles/article_52.html",
+      "article_path": "articles/article_53.html",
       "shadow_metadata_present": true
     },
     {
@@ -6417,7 +6402,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月6日　静岡県浜松市",
-      "article_path": "articles/article_52.html",
+      "article_path": "articles/article_53.html",
       "shadow_metadata_present": true
     },
     {
@@ -6429,7 +6414,7 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月6日　静岡県浜松市",
-      "article_path": "articles/article_52.html",
+      "article_path": "articles/article_53.html",
       "shadow_metadata_present": true
     },
     {
@@ -6441,18 +6426,6 @@
       "classification_reason": "taxonomy_unmatched",
       "taxonomy_match_type": "none",
       "article_title": "2025年9月6日　静岡県浜松市",
-      "article_path": "articles/article_52.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250902/20250902233255.jpg",
-      "legacy_alt": "Lanmaoa angustispora",
-      "detected_label": null,
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "no_detected_label",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月2日　静岡県掛川市",
       "article_path": "articles/article_53.html",
       "shadow_metadata_present": true
     },
@@ -7141,18 +7114,6 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250710/20250710220635.jpg",
-      "legacy_alt": "Lanmaoa angustispora(和名無し)？",
-      "detected_label": "Lanmaoa angustispora？",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年7月6日　静岡県掛川市",
-      "article_path": "articles/article_62.html",
-      "shadow_metadata_present": true
-    },
-    {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250710/20250710220812.jpg",
       "legacy_alt": "Lanmaoa angustispora(和名無し)？",
       "detected_label": "Lanmaoa angustispora？",
@@ -7180,18 +7141,6 @@
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250708/20250708225836.jpg",
       "legacy_alt": "ダイダイイグチ",
       "detected_label": "ダイダイイグチ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年7月5日　静岡県浜松市",
-      "article_path": "articles/article_63.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250708/20250708230015.jpg",
-      "legacy_alt": "不明アワタケ",
-      "detected_label": "不明アワタケ",
       "subject_type": "review",
       "gallery_name": null,
       "classification_reason": "taxonomy_unmatched",
@@ -9207,13 +9156,43 @@
   ],
   "candidate_only": [
     {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063617.jpg",
+      "gallery_name": "ベニテングタケ",
+      "detected_label": "ベニテングタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年10月3日富士山(山梨県)",
+      "article_path": "articles/article_1.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063751.jpg",
+      "gallery_name": "クロカワ",
+      "detected_label": "クロカワ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年10月3日富士山(山梨県)",
+      "article_path": "articles/article_1.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015062840.jpg",
+      "gallery_name": "ドクツルタケ",
+      "detected_label": "ドクツルタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月22日富士山(山梨県)",
+      "article_path": "articles/article_2.html",
+      "legacy_alt": ""
+    },
+    {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224333.jpg",
       "gallery_name": "アカヤマドリ",
       "detected_label": "アカヤマドリ",
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月19日静岡県浜松市",
-      "article_path": "articles/article_1.html",
+      "article_path": "articles/article_3.html",
       "legacy_alt": ""
     },
     {
@@ -9223,7 +9202,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月19日静岡県浜松市",
-      "article_path": "articles/article_1.html",
+      "article_path": "articles/article_3.html",
       "legacy_alt": ""
     },
     {
@@ -9233,7 +9212,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月19日静岡県浜松市",
-      "article_path": "articles/article_1.html",
+      "article_path": "articles/article_3.html",
       "legacy_alt": ""
     },
     {
@@ -9243,7 +9222,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月19日静岡県浜松市",
-      "article_path": "articles/article_1.html",
+      "article_path": "articles/article_3.html",
       "legacy_alt": ""
     },
     {
@@ -9253,7 +9232,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月19日静岡県浜松市",
-      "article_path": "articles/article_1.html",
+      "article_path": "articles/article_3.html",
       "legacy_alt": ""
     },
     {
@@ -9263,7 +9242,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月19日静岡県浜松市",
-      "article_path": "articles/article_1.html",
+      "article_path": "articles/article_3.html",
       "legacy_alt": ""
     },
     {
@@ -9273,7 +9252,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月19日静岡県浜松市",
-      "article_path": "articles/article_1.html",
+      "article_path": "articles/article_3.html",
       "legacy_alt": ""
     },
     {
@@ -9283,7 +9262,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月19日静岡県浜松市",
-      "article_path": "articles/article_1.html",
+      "article_path": "articles/article_3.html",
       "legacy_alt": ""
     },
     {
@@ -9293,7 +9272,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月19日静岡県浜松市",
-      "article_path": "articles/article_1.html",
+      "article_path": "articles/article_3.html",
       "legacy_alt": ""
     },
     {
@@ -9303,7 +9282,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月19日静岡県浜松市",
-      "article_path": "articles/article_1.html",
+      "article_path": "articles/article_3.html",
       "legacy_alt": ""
     },
     {
@@ -9313,7 +9292,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月18日静岡県浜松市",
-      "article_path": "articles/article_2.html",
+      "article_path": "articles/article_4.html",
       "legacy_alt": ""
     },
     {
@@ -9323,7 +9302,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月17日静岡県浜松市",
-      "article_path": "articles/article_3.html",
+      "article_path": "articles/article_5.html",
       "legacy_alt": ""
     },
     {
@@ -9333,7 +9312,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月17日静岡県浜松市",
-      "article_path": "articles/article_3.html",
+      "article_path": "articles/article_5.html",
       "legacy_alt": ""
     },
     {
@@ -9343,7 +9322,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月17日静岡県浜松市",
-      "article_path": "articles/article_3.html",
+      "article_path": "articles/article_5.html",
       "legacy_alt": ""
     },
     {
@@ -9353,7 +9332,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月17日静岡県浜松市",
-      "article_path": "articles/article_3.html",
+      "article_path": "articles/article_5.html",
       "legacy_alt": ""
     },
     {
@@ -9363,7 +9342,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月17日静岡県浜松市",
-      "article_path": "articles/article_3.html",
+      "article_path": "articles/article_5.html",
       "legacy_alt": ""
     },
     {
@@ -9373,7 +9352,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月17日静岡県浜松市",
-      "article_path": "articles/article_3.html",
+      "article_path": "articles/article_5.html",
       "legacy_alt": ""
     },
     {
@@ -9383,7 +9362,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月13日山梨県笛吹市",
-      "article_path": "articles/article_4.html",
+      "article_path": "articles/article_6.html",
       "legacy_alt": ""
     },
     {
@@ -9393,7 +9372,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月13日山梨県笛吹市",
-      "article_path": "articles/article_4.html",
+      "article_path": "articles/article_6.html",
       "legacy_alt": ""
     },
     {
@@ -9403,7 +9382,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月12日富士山(山梨県)",
-      "article_path": "articles/article_5.html",
+      "article_path": "articles/article_7.html",
       "legacy_alt": ""
     },
     {
@@ -9413,7 +9392,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年4月9日　静岡県掛川市",
-      "article_path": "articles/article_21.html",
+      "article_path": "articles/article_22.html",
       "legacy_alt": "チャアミガサタケ？"
     },
     {
@@ -9423,7 +9402,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年4月9日　静岡県掛川市",
-      "article_path": "articles/article_21.html",
+      "article_path": "articles/article_22.html",
       "legacy_alt": "チャアミガサタケ？"
     },
     {
@@ -9433,7 +9412,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年4月7日　静岡県掛川市&静岡県浜松市",
-      "article_path": "articles/article_22.html",
+      "article_path": "articles/article_23.html",
       "legacy_alt": "チャアミガサタケ？"
     },
     {
@@ -9443,7 +9422,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年4月7日　静岡県掛川市&静岡県浜松市",
-      "article_path": "articles/article_22.html",
+      "article_path": "articles/article_23.html",
       "legacy_alt": "チャアミガサタケ？"
     },
     {
@@ -9453,7 +9432,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年4月7日　静岡県掛川市&静岡県浜松市",
-      "article_path": "articles/article_22.html",
+      "article_path": "articles/article_23.html",
       "legacy_alt": "チャアミガサタケ？"
     },
     {
@@ -9463,7 +9442,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年4月4日　静岡県伊豆の国市〜沼津市",
-      "article_path": "articles/article_23.html",
+      "article_path": "articles/article_24.html",
       "legacy_alt": "チャアミガサタケ？"
     },
     {
@@ -9473,7 +9452,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2025年10月26〜29日　静岡県掛川市",
-      "article_path": "articles/article_37.html",
+      "article_path": "articles/article_38.html",
       "legacy_alt": "ヤナギマツタケ？"
     },
     {
@@ -9483,7 +9462,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2025年10月26〜29日　静岡県掛川市",
-      "article_path": "articles/article_37.html",
+      "article_path": "articles/article_38.html",
       "legacy_alt": "ヤナギマツタケ？"
     },
     {
@@ -9493,7 +9472,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "legacy_alt": "ヤマドリタケモドキ(広義)"
     },
     {
@@ -9503,7 +9482,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2025年9月21日　静岡県掛川市",
-      "article_path": "articles/article_45.html",
+      "article_path": "articles/article_46.html",
       "legacy_alt": "ヤマドリタケモドキ(広義)"
     },
     {
@@ -9513,7 +9492,7 @@
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2025年9月21日　静岡県掛川市",
-      "article_path": "articles/article_45.html",
+      "article_path": "articles/article_46.html",
       "legacy_alt": "ヤマドリタケモドキ(広義)"
     },
     {
@@ -9904,7 +9883,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260511/20260511182423.jpg"
       ],
       "sample_articles": [
-        "articles/article_20.html"
+        "articles/article_21.html"
       ]
     },
     {
@@ -9918,7 +9897,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103230609.jpg"
       ],
       "sample_articles": [
-        "articles/article_37.html"
+        "articles/article_38.html"
       ]
     },
     {
@@ -9930,7 +9909,7 @@
         "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260425/20260425145608.jpg"
       ],
       "sample_articles": [
-        "articles/article_20.html"
+        "articles/article_21.html"
       ]
     }
   ],
@@ -9939,167 +9918,153 @@
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224934.jpg",
       "legacy_alt": "",
       "article_title": "2026年9月19日静岡県浜松市",
-      "article_path": "articles/article_1.html",
+      "article_path": "articles/article_3.html",
       "classification_reason": "no_detected_label"
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152246.jpg",
       "legacy_alt": "",
       "article_title": "2026年9月18日静岡県浜松市",
-      "article_path": "articles/article_2.html",
+      "article_path": "articles/article_4.html",
       "classification_reason": "no_detected_label"
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152338.jpg",
       "legacy_alt": "",
       "article_title": "2026年9月18日静岡県浜松市",
-      "article_path": "articles/article_2.html",
+      "article_path": "articles/article_4.html",
       "classification_reason": "no_detected_label"
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224503.jpg",
       "legacy_alt": "",
       "article_title": "2026年9月17日静岡県浜松市",
-      "article_path": "articles/article_3.html",
+      "article_path": "articles/article_5.html",
       "classification_reason": "no_detected_label"
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260321/20260321021206.jpg",
       "legacy_alt": "",
       "article_title": "2026年3月14日　静岡県富士市・静岡市",
-      "article_path": "articles/article_26.html",
+      "article_path": "articles/article_27.html",
       "classification_reason": "no_detected_label"
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260321/20260321021713.jpg",
       "legacy_alt": "",
       "article_title": "2026年3月14日　静岡県富士市・静岡市",
-      "article_path": "articles/article_26.html",
+      "article_path": "articles/article_27.html",
       "classification_reason": "no_detected_label"
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260321/20260321022130.jpg",
       "legacy_alt": "",
       "article_title": "2026年3月14日　静岡県富士市・静岡市",
-      "article_path": "articles/article_26.html",
+      "article_path": "articles/article_27.html",
       "classification_reason": "no_detected_label"
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260321/20260321022039.jpg",
       "legacy_alt": "",
       "article_title": "2026年3月14日　静岡県富士市・静岡市",
-      "article_path": "articles/article_26.html",
+      "article_path": "articles/article_27.html",
       "classification_reason": "no_detected_label"
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260321/20260321023802.jpg",
       "legacy_alt": "",
       "article_title": "2026年3月14日　静岡県富士市・静岡市",
-      "article_path": "articles/article_26.html",
+      "article_path": "articles/article_27.html",
       "classification_reason": "no_detected_label"
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260321/20260321024146.jpg",
       "legacy_alt": "",
       "article_title": "2026年3月14日　静岡県富士市・静岡市",
-      "article_path": "articles/article_26.html",
+      "article_path": "articles/article_27.html",
       "classification_reason": "no_detected_label"
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260321/20260321024524.jpg",
       "legacy_alt": "",
       "article_title": "2026年3月14日　静岡県富士市・静岡市",
-      "article_path": "articles/article_26.html",
+      "article_path": "articles/article_27.html",
       "classification_reason": "no_detected_label"
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260301/20260301020137.jpg",
       "legacy_alt": "エノキタケ＆アラゲキクラゲ",
       "article_title": "2026年2月28日　静岡県沼津市",
-      "article_path": "articles/article_28.html",
+      "article_path": "articles/article_29.html",
       "classification_reason": "no_detected_label"
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260125/20260125142923.jpg",
       "legacy_alt": "ホコリタケの仲間",
       "article_title": "2026年1月3日　静岡県浜松市　",
-      "article_path": "articles/article_30.html",
+      "article_path": "articles/article_31.html",
       "classification_reason": "no_detected_label"
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251214/20251214234056.jpg",
       "legacy_alt": "",
       "article_title": "2025年12月10日　静岡県富士宮市",
-      "article_path": "articles/article_32.html",
+      "article_path": "articles/article_33.html",
       "classification_reason": "no_detected_label"
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251214/20251214234510.jpg",
       "legacy_alt": "",
       "article_title": "2025年12月10日　静岡県富士宮市",
-      "article_path": "articles/article_32.html",
+      "article_path": "articles/article_33.html",
       "classification_reason": "no_detected_label"
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251104/20251104000309.jpg",
       "legacy_alt": "ホコリタケの仲間",
       "article_title": "2025年11月1日　静岡県沼津市",
-      "article_path": "articles/article_36.html",
+      "article_path": "articles/article_37.html",
       "classification_reason": "no_detected_label"
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005191417.jpg",
       "legacy_alt": "ベニタケの仲間",
       "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
+      "article_path": "articles/article_44.html",
       "classification_reason": "no_detected_label"
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929215611.jpg",
       "legacy_alt": "ヤマイグチの仲間？",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "classification_reason": "no_detected_label"
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929221147.jpg",
       "legacy_alt": "クロアワタケの仲間？",
       "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_44.html",
+      "article_path": "articles/article_45.html",
       "classification_reason": "no_detected_label"
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914231922.jpg",
       "legacy_alt": "Butyriboletus roseogriseus？",
       "article_title": "2025年9月14日　静岡県掛川市",
-      "article_path": "articles/article_47.html",
+      "article_path": "articles/article_48.html",
       "classification_reason": "no_detected_label"
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914212342.jpg",
       "legacy_alt": "ミネシメジの仲間",
       "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
-      "classification_reason": "no_detected_label"
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914214519.jpg",
-      "legacy_alt": "カワリハツ？",
-      "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_49.html",
+      "article_path": "articles/article_50.html",
       "classification_reason": "no_detected_label"
     },
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250907/20250907110102.jpg",
       "legacy_alt": "ベニタケの仲間",
       "article_title": "2025年9月6日　静岡県浜松市",
-      "article_path": "articles/article_52.html",
-      "classification_reason": "no_detected_label"
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250902/20250902233255.jpg",
-      "legacy_alt": "Lanmaoa angustispora",
-      "article_title": "2025年9月2日　静岡県掛川市",
       "article_path": "articles/article_53.html",
       "classification_reason": "no_detected_label"
     },
