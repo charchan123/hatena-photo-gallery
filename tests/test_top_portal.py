@@ -645,7 +645,10 @@ def test_typography_overlay_and_independent_card_spacing_polish():
     assert ".portal-eyebrow { margin:0 0 6px;" in portal_css
     assert ".portal-independent-links .portal-card__copy { gap:0; }" in portal_css
     assert ".portal-independent-links .portal-eyebrow { margin-bottom:6px;" in portal_css
-    assert ".portal-independent-links .portal-card__copy strong + small { margin-top:5px; }" in portal_css
+    # Both feature cards now reserve one common description row for the inline notice.
+    assert ".portal-independent-links .portal-card__details { display:flex;" in portal_css
+    assert "min-height:38px; margin-top:5px;" in portal_css
+    assert ".portal-independent-links .portal-card__details .portal-update-note {" in portal_css
 
 
 def test_new_top_four_titles_share_responsive_sizes_and_keep_count_typography():
