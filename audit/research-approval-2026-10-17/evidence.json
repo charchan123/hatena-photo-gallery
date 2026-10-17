@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "at": "2026-10-17T01:50:30.645107+00:00",
+  "run_id": "38992403765",
+  "source_commit": "2cc73bad8a830839f0b659365a1fffa3f2ba116e",
+  "authorization": {
+    "url": "https://github.com/charchan123/hatena-photo-gallery/pull/116#issuecomment-6228088094",
+    "body_sha256": "dc580b456284e621d96d15e2026eec3f968e1f2b4a21fe130237f0a7720d09ca"
+  },
+  "production_refs_before": {
+    "refs/heads/gh-pages": "757cbfc868452d3bb892849fce0e2122cd8c566e",
+    "refs/heads/main": "4b95bd9e9e44f225027858c5dd4fd4b7cd865f59",
+    "refs/heads/sync-deletion-audit": "88bb6447cd07dbb012e145d2144af202b25a2be0"
+  },
+  "production_refs_after": {
+    "refs/heads/gh-pages": "757cbfc868452d3bb892849fce0e2122cd8c566e",
+    "refs/heads/main": "4b95bd9e9e44f225027858c5dd4fd4b7cd865f59",
+    "refs/heads/sync-deletion-audit": "88bb6447cd07dbb012e145d2144af202b25a2be0"
+  },
+  "history_event_count": 4,
+  "independent_fetches": [
+    {
+      "run_id": "actions:38922030976:attempt:1",
+      "at": "2026-10-16T15:13:04.820724+00:00",
+      "healthy": true
+    },
+    {
+      "run_id": "actions:38990433068:attempt:1",
+      "at": "2026-10-17T01:20:57.840121+00:00",
+      "healthy": true
+    }
+  ],
+  "interval_seconds": 36473.019397,
+  "fetch_audit": {
+    "pages_completed": 12,
+    "entries_received": 112,
+    "drafts_excluded": 1,
+    "published_articles": 111,
+    "html_articles": 111,
+    "pagination_complete": true,
+    "content_type_counts": {
+      "text/html": 111
+    },
+    "html_source_counts": {
+      "content_html": 111
+    },
+    "html_image_representation_difference_articles": 0
+  },
+  "baseline": "7212389cdc412bf3577c78c3e0be5c91926ecc398930427b775f2459071adcb0",
+  "protection": "66995ea14ae7c242b49bbdab6d8d275fd89f49e9b8b987305b37aed1e2925e1a",
+  "preview_fingerprint": "4f7df330d6e7dc9e5c3c655ad8ef4c38680722207a5501566eaa95ba7285afbd",
+  "formal_admin_methods": [
+    "refresh(live=True)",
+    "decide(each full confirm_id)",
+    "preview_changes()",
+    "assert_fresh()"
+  ],
+  "individual_decisions": [
+    {
+      "observation_id": "obs-b65bc66594a331b3fb0e79f41dbfe9d2b8c5e94bdd826c49b1a6b26472f12e51",
+      "action": "archive_research",
+      "approval_id": "5f32b7cac402a67fd52ec373a98ec85393e7dfb3617197884c3d10a8027736e4"
+    },
+    {
+      "observation_id": "obs-87fa70cf88bf584c315b452899c54a1426d784d2fb6aa9beede5b38d2a98a7c6",
+      "action": "approve_research_photo",
+      "approval_id": "f272a6ef45f86f6faf587e18dc49204b2667dbecdc2519ca06cc3751ebcff6e9"
+    }
+  ],
+  "manifest_count": 2,
+  "automatic_manifest_count": 0,
+  "selected_modes": {
+    "automatic": 14,
+    "manual": 2
+  },
+  "research_after": {
+    "kawarihatsu": "archived_with_full_original_capsule",
+    "lanmaoa_remaining_photos": 5
+  },
+  "publication": "NOT_ATTEMPTED",
+  "production_deletions_applied": 0,
+  "history_writes": 0
+}

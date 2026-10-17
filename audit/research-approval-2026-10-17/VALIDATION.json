@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "python": {
+    "passed": 946,
+    "command": "python -m pytest -q",
+    "duration_seconds": 80.32
+  },
+  "compileall": "PASS",
+  "javascript": {
+    "syntax": "PASS",
+    "regression_files": 10,
+    "status": "PASS"
+  },
+  "chromium": "CI_PENDING_ON_SAVED_APPROVAL_HEAD",
+  "official_admin_preview": {
+    "run_id": 38992403765,
+    "status": "success",
+    "artifact_id": 12085313025,
+    "zip_sha256": "a70a067ae9bc120b62b603c5162a7a426e19a837ef9a241af8663cf8d526ad7d",
+    "result": "PREVIEW",
+    "automatic": 14,
+    "manual": 2,
+    "pending": 0,
+    "production_applied": 0
+  },
+  "approval_manifest_count": 2,
+  "ordinary_photo_manifest_count": 0,
+  "preserved_source_hashes": {
+    ".github/workflows/generate.yml": "4b28e9dfff0534ffa02579c76dc25ad00a09750369180aeec61a4669b6cb0e5a",
+    "data/best-shots.json": "f9f27aa7edf4f69c266f87aa056c54241968a524595c0db6a591aa71c55febbd",
+    "data/feature-facets.json": "6d4d987a535dca9c1d0d3668b65de245fbdc281f56c546af436c6fb853bdd84d",
+    "data/mushroom-master.json": "2ce8cfc61726ef04bb6f4bba26c42511e2c0bf1d4017b9e87e0a359d61decca4",
+    "data/research-identifications.json": "0c3a699408dacf0444e3f6e6b93e848c84fd59ef93debe7640c0d551c0ab15b1",
+    "data/sources.json": "d5213f1cf0881af1c60ea949c0321ae0eb854daa3f300135dae9e9f9ad2fdb66",
+    "data/subject-taxonomy.json": "d55241a53941da1865c76c8c7c28d750b68f3c1185128061e88449bde800875e",
+    "data/update-notices.json": "6949634eed451b203fa79feeff4135084ea3c25613752545a257dd630938e327",
+    "sync-migrations/hatena-draft-photo-retirement-2026-10-12.json": "4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c",
+    "sync_retirement.py": "a9531a1d266dd4bfb5a676928f84a88b89937d5897c8b9814b427fa0203457b2"
+  },
+  "publish_enabled": false,
+  "main_gh_pages_and_audit_writes": false,
+  "limits": [
+    "Capsules preserve complete original published observation records and URLs, not independent copies of image binary files",
+    "pending=0 is isolated preview only; main still has no approval manifests"
+  ]
+}
