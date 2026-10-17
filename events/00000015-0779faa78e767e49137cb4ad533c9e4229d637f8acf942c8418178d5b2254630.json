@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "seq": 15,
+  "previous": "bb41f98cfe2bccb54d2d0632067e9e52e7e3d9fe06122a4d8676f5286782c63f",
+  "event": {
+    "kind": "fetch",
+    "at": "2026-10-17T12:30:04.639397+00:00",
+    "run_id": "actions:39032728110:attempt:1",
+    "independent_id": "actions:39032728110",
+    "baseline": "f022bff921dbabe328da8cf8d0e72b3cb1f597886960bd6d01b66793e7e85fe9",
+    "baseline_commit": "2511dc30ce2a6945184cd72fe0b4ebae042c1070",
+    "protection": "c4630305006a44b82d9163ffcf0966f6a7602eaa9b91dada840c4c2788dbc69c",
+    "source_sha256": "f37b5d26cf29ec37bd3176ffa618e631caf5b10dda93fb914d83edf84639a799",
+    "healthy": true,
+    "error_code": null,
+    "candidates": {},
+    "findings": []
+  },
+  "sha256": "0779faa78e767e49137cb4ad533c9e4229d637f8acf942c8418178d5b2254630"
+}
