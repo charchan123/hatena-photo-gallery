@@ -47768,12 +47768,12 @@
           },
           {
             "tag": "p",
-            "text": "アンズアケ(広義)",
+            "text": "アンズタケ(広義)",
             "contains_image": false,
             "candidate": true,
             "candidate_reason": "accepted_kana_label",
             "effective_candidate": true,
-            "effective_label": "アンズアケ(広義)"
+            "effective_label": "アンズタケ(広義)"
           },
           {
             "tag": "p",
@@ -47797,12 +47797,12 @@
     {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925225221.jpg",
       "subject_type": "review",
-      "detected_label": "アンズアケ(広義)",
+      "detected_label": "アンズタケ(広義)",
       "gallery_name": null,
       "taxonomy_match_type": "none",
       "taxonomy_canonical_name": null,
       "classification_reason": "taxonomy_unmatched",
-      "subject_source_block_text": "アンズアケ(広義)",
+      "subject_source_block_text": "アンズタケ(広義)",
       "subject_source_candidate_reason": "accepted_kana_label",
       "subject_state_status": "accepted_subject",
       "last_rejected_boundary_text": null,
@@ -47829,12 +47829,12 @@
           },
           {
             "tag": "p",
-            "text": "アンズアケ(広義)",
+            "text": "アンズタケ(広義)",
             "contains_image": false,
             "candidate": true,
             "candidate_reason": "accepted_kana_label",
             "effective_candidate": true,
-            "effective_label": "アンズアケ(広義)"
+            "effective_label": "アンズタケ(広義)"
           },
           {
             "tag": "p",

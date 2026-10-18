@@ -20,7 +20,7 @@
     "legacy_src_only_count": 460,
     "candidate_src_only_count": 23,
     "same_src_name_change_count": 21,
-    "blocked_review_unique_labels": 256,
+    "blocked_review_unique_labels": 255,
     "candidate_vs_legacy_ratio": 0.49770114942528737,
     "taxonomy_mushroom_share_of_shadow": 0.4418367346938776
   },
@@ -445,6 +445,22 @@
         "articles/article_17.html",
         "articles/article_36.html",
         "articles/article_45.html"
+      ]
+    },
+    {
+      "detected_label": "アンズタケ(広義)",
+      "image_count": 3,
+      "article_count": 3,
+      "classification_reason": "taxonomy_unmatched",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925225221.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224630.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222233.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_3.html",
+        "articles/article_5.html",
+        "articles/article_14.html"
       ]
     },
     {
@@ -936,20 +952,6 @@
       ],
       "sample_articles": [
         "articles/article_66.html"
-      ]
-    },
-    {
-      "detected_label": "アンズタケ(広義)",
-      "image_count": 2,
-      "article_count": 2,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224630.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222233.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_5.html",
-        "articles/article_14.html"
       ]
     },
     {
@@ -1805,18 +1807,6 @@
       ],
       "sample_articles": [
         "articles/article_7.html"
-      ]
-    },
-    {
-      "detected_label": "アンズアケ(広義)",
-      "image_count": 1,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925225221.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_3.html"
       ]
     },
     {

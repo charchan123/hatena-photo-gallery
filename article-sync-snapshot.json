@@ -1,7 +1,7 @@
 {
   "payload": {
     "version": 1,
-    "last_success_at": "2026-10-17T12:30:07.120872+00:00",
+    "last_success_at": "2026-10-18T03:50:27.830897+00:00",
     "articles": {
       "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7": {
         "updated_hash": "e41fa42267b5d0f3b00dc5872ff08a0b762b07495f9188f6f7379d712d4bca86",
@@ -312,7 +312,7 @@
             "state": "ambiguous",
             "reason": "taxonomy_unmatched",
             "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "label_hash": "31394f093036a65d98d5d67158225e05ab6438ebd5d18609f7dde6adb3182df4"
+            "label_hash": "3418ff87d80ec5e68093d43eaa35467f18932354c05921ffd4d956582ddd2108"
           },
           {
             "url_hash": "bc978471b5d74fd62b834122fa649028d43f8734632de58cd710ed2970dac601",
@@ -8841,7 +8841,7 @@
         "sha256": "1767879599368ac0d6795cc38c38b3c4c19c591c5c66a4094afb367ba2474ce3"
       }
     ],
-    "deletion_history_head": "b7af1664b9f7b4a6982d204e7d7b4e375b4fc274c69b0f0981d2218fa6eebf70"
+    "deletion_history_head": "80f636906bd36301574eb2fbc5d6dd92ae52d05c6d15bace7c31e0b7efa9a348"
   },
-  "sha256": "7d0118e3ad4f875c4493c653f01c8e3f57c881a20c893dd4f1179e266e0101d6"
+  "sha256": "02ae44e5b57b1bfb0b8bc253e803b7c6036d5855ec8df8ec9e6212a700077190"
 }
