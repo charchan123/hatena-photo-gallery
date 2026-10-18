@@ -1,0 +1,12 @@
+{
+  "main": "edb77003fb6f648979a10df9efe1e8e010a15e9f",
+  "gh_pages": "225064d4ecea3a87dd1e25a5cd9b9a87d299919a",
+  "photos": 933,
+  "unique_urls": 933,
+  "best_shot_resolves_exactly_once": 12,
+  "research_open_cases": 66,
+  "retired_absent": 7,
+  "deleted_article_absent": true,
+  "protected_source_files_unchanged": true,
+  "production_notices_sha256": "33e70703b4d84fac5764dc3b201a61e64cf09547374391f543e9c638414146e4"
+}
