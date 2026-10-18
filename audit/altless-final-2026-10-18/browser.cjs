@@ -7,6 +7,9 @@ const root=path.resolve(process.argv[2]),site=path.join(root,'site');
 const photos=JSON.parse(fs.readFileSync(path.join(root,'recent-public-photos.json')));
 const portal=JSON.parse(fs.readFileSync(path.join(site,'portal-data.json')));
 const config=JSON.parse(fs.readFileSync(path.resolve(__dirname,'../../data/best-shots.json')));
+const summary=JSON.parse(fs.readFileSync(path.join(root,'summary.json')));
+const additions=JSON.parse(fs.readFileSync(path.join(root,'new-registered-photos.json')));
+const research=JSON.parse(fs.readFileSync(path.join(root,'research-public.json')));
 const pairs=photos.filter(r=>r.last_rejected_boundary_reason==='multiple_subject_separator');
 let assertions=0;function check(a,b){assert.deepEqual(a,b);assertions++}
 const server=http.createServer((req,res)=>{
@@ -21,9 +24,22 @@ const server=http.createServer((req,res)=>{
  const issues=[],writes=[];page.on('pageerror',e=>issues.push(e.message));
  page.on('request',r=>{if(r.method()!=='GET')writes.push(r.method()+' '+r.url())});
  check(pairs.length,3);check(portal.observations.length,933);check(new Set(portal.observations.map(r=>r.src)).size,933);
+ check(additions.length,36);check(summary.guarded_status.retired_output_inspection.retired_ids_absent,7);
  const screenshots=path.join(root,'screenshots');fs.mkdirSync(screenshots,{recursive:true});
  for(const width of [1280,390]){
   await page.setViewportSize({width,height:width===390?844:1000});
+  // All 36 newly registered source photographs, not selected fixtures.
+  for(const name of [...new Set(additions.map(r=>r.gallery_name))]){
+   await page.goto(base+'/'+encodeURIComponent(name)+'.html',{waitUntil:'domcontentloaded'});
+   await page.waitForFunction(()=>getComputedStyle(document.querySelector('.gallery')).visibility==='visible',null,{timeout:60000});
+   for(const row of additions.filter(r=>r.gallery_name===name)){
+    const anchor=page.locator('a.gallery-item').filter({has:page.locator('img[src='+JSON.stringify(row.src)+']')});
+    check(await anchor.count(),1);check(await anchor.locator('.thumb-fav').count(),1);
+    await anchor.scrollIntoViewIfNeeded();await anchor.locator('img').evaluate(i=>i.decode());
+    check(await anchor.locator('img').evaluate(i=>i.naturalWidth>0),true);
+   }
+   check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+  }
   for(const name of ['ニガイグチモドキ','ヤマドリタケモドキ','ムラサキヤマドリタケ','アカヤマドリ']){
    await page.goto(base+'/'+encodeURIComponent(name)+'.html',{waitUntil:'domcontentloaded'});
    await page.locator('.shared-subject-note').waitFor();
@@ -63,9 +79,33 @@ const server=http.createServer((req,res)=>{
   check([...seen].sort(),config.entries.map(e=>e.selection_id).sort());
   await page.goto(base+'/best-shots-2025.html',{waitUntil:'domcontentloaded'});
   await page.locator('.annual-best img').evaluate(i=>i.decode());
+  await page.waitForFunction(()=>parseFloat(getComputedStyle(document.body).opacity)>.99);
   await page.screenshot({path:path.join(screenshots,width+'-best-shots.png')});
   await page.goto(base+'/'+encodeURIComponent('ブドウニガイグチ')+'.html',{waitUntil:'domcontentloaded'});
   check((await page.locator('body').innerText()).includes('図鑑情報は現在整理中です'),true);
+  await page.goto(base+'/research.html',{waitUntil:'domcontentloaded'});
+  check(await page.locator('.research-case:not(.research-case--identified)').count(),66);
+  check(await page.locator('.research-photos img').evaluateAll(es=>es.map(e=>e.getAttribute('src')).sort()),research.flatMap(c=>c.photos.map(p=>p.src)).sort());
+  check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+ }
+ // Both older registered shared photographs retain their normal favorite action.
+ const older=Object.entries(summary.mixed_species_overlays).flatMap(([name,urls])=>urls.map(src=>({name,src})))
+  .filter(r=>portal.observations.some(p=>p.src===r.src));
+ check(older.length,2);
+ for(const row of older){
+  await page.goto(base+'/'+encodeURIComponent(row.name)+'.html',{waitUntil:'domcontentloaded'});
+  await page.waitForFunction(()=>getComputedStyle(document.querySelector('.gallery')).visibility==='visible',null,{timeout:60000});
+  const anchor=page.locator('a.gallery-item').filter({has:page.locator('img[src='+JSON.stringify(row.src)+']')});
+  check(await anchor.count(),1);check(await anchor.locator('.thumb-fav').count(),1);
+  await anchor.click();await page.waitForSelector('.lg-current .lg-object');await page.waitForSelector('.lg-fav-btn',{state:'visible'});
+  check(await page.locator('.lg-fav-btn').isEnabled(),true);
+  await page.locator('.lg-fav-btn').click();
+  check(await page.evaluate(src=>JSON.parse(localStorage.getItem('lg_favorites'))[src],row.src),true);
+  await page.locator('.lg-close').click();await page.waitForSelector('.lg-outer',{state:'hidden'});
+  await page.goto(base+'/favorite.html',{waitUntil:'domcontentloaded'});
+  await page.waitForSelector('a.gallery-item[href='+JSON.stringify(row.src)+']');
+  check(await page.locator('a.gallery-item[href='+JSON.stringify(row.src)+']').count(),1);
+  await page.evaluate(()=>localStorage.removeItem('lg_favorites'));
  }
  await page.goto(base+'/index.html',{waitUntil:'domcontentloaded'});
  for(const name of ['ニガイグチモドキ','ヤマドリタケモドキ','ムラサキヤマドリタケ','アカヤマドリ']){

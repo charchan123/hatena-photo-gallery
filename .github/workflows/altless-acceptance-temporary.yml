@@ -1,0 +1,62 @@
+name: Temporary published-only altless acceptance
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+  pull-requests: read
+jobs:
+  acceptance:
+    if: github.event.pull_request.number == 125 && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: .acceptance-previous
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /portal-data.json
+            /phase3c-production-status.json
+            /article-sync-snapshot.json
+            /article-sync-status.json
+            /favorite.html
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - uses: actions/cache/restore@v4
+        with:
+          path: cache/exif-cache.json
+          key: altless-acceptance-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            exif-cache-v1-${{ runner.os }}-
+      - name: Authenticated full capture and guarded isolated generation
+        env:
+          HATENA_USER: ${{ secrets.HATENA_USER }}
+          HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
+          HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
+          GH_TOKEN: ${{ github.token }}
+        run: python audit/altless-final-2026-10-18/capture.py .acceptance-previous cache/altless-acceptance
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install real page browser runner
+        run: |
+          npm install --prefix /tmp/kinoko-browser --no-save playwright@1.62.1
+          /tmp/kinoko-browser/node_modules/.bin/playwright install --with-deps chromium
+      - name: Real generated pages on desktop and mobile (no API writes)
+        env:
+          PLAYWRIGHT_MODULE_PATH: /tmp/kinoko-browser/node_modules/playwright
+        run: node audit/altless-final-2026-10-18/browser.cjs cache/altless-acceptance
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: altless-acceptance-${{ github.run_id }}
+          path: cache/altless-acceptance
+          retention-days: 14
