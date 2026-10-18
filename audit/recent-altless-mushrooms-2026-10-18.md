@@ -43,3 +43,7 @@
 
 - 最新Hatena APIからアンズタケ(広義)の本文修正を取得、公開HTML側の残存旧表記を再確認する。
 - CIの独立API PREVIEW/保護写真/Chromium回帰を確認する。PR #124との差分を分離する。
+
+## CI 実行方針
+
+GitHub Actionsは `pull_request: branches: [main]` に限定されるため、PR #125はCI検証時にbaseをmainへ設定する。PR #124の変更を含む合算差分となるが、先にPR #124を承認・マージしてからこのPRを扱う。マージ・gh-pages公開は承認まで行わない。
