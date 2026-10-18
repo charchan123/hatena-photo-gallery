@@ -1,7 +1,7 @@
 {
   "payload": {
     "version": 1,
-    "last_success_at": "2026-10-18T12:19:35.917075+00:00",
+    "last_success_at": "2026-10-18T12:52:48.499237+00:00",
     "articles": {
       "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7": {
         "updated_hash": "e41fa42267b5d0f3b00dc5872ff08a0b762b07495f9188f6f7379d712d4bca86",
@@ -135,17 +135,17 @@
           {
             "url_hash": "28317872f131251a4e0d30c0ef91d222cc27edd280f135fbc6dd6241f961d9f3",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "7a7771c33cbbc39085a77f271608b7aba14f85f4919dfa6cc614a4cc4ea9cc33",
             "label_hash": "7a7771c33cbbc39085a77f271608b7aba14f85f4919dfa6cc614a4cc4ea9cc33"
           },
           {
             "url_hash": "83d65b19049625916a04730a0a87a7b8c7158da70a7cf470eb21cab34c0039c5",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "7a7771c33cbbc39085a77f271608b7aba14f85f4919dfa6cc614a4cc4ea9cc33",
             "label_hash": "7a7771c33cbbc39085a77f271608b7aba14f85f4919dfa6cc614a4cc4ea9cc33"
           },
           {
@@ -441,17 +441,17 @@
           {
             "url_hash": "e48c22bab859d52196f35dcf7a497ecb7309ff38f2bee46c46a352eb6f40ff75",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "b01153505bf539cd999043e6cd93fdaf833c7410c123216ddfad2e72912f9a47",
             "label_hash": "b01153505bf539cd999043e6cd93fdaf833c7410c123216ddfad2e72912f9a47"
           },
           {
             "url_hash": "21fa941839ed872e4b74c9fa647f08283c0b7849a667f3e564e25ad54e084166",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "b01153505bf539cd999043e6cd93fdaf833c7410c123216ddfad2e72912f9a47",
             "label_hash": "b01153505bf539cd999043e6cd93fdaf833c7410c123216ddfad2e72912f9a47"
           },
           {
@@ -8495,7 +8495,7 @@
         "article_url_hash": "f1471e35ea6be58d844ff49ac663903337393c8fb60cbae5f4dd890e3e880bf6"
       }
     },
-    "portal_sha256": "dc8247cdfc39182b30b04d7fbc1eec56ceda561bdcd43911c6b79aebc158e540",
+    "portal_sha256": "7eefb9f3186da526fe576358f736721981d4249681dc8c08a9c84b00a33f3690",
     "retirement": {
       "migration_id": "hatena-draft-photo-retirement-2026-10-12",
       "manifest_sha256": "4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c",
@@ -8533,6 +8533,42 @@
         "classification_status": "confirmed_named_mushroom",
         "reason": "taxonomy_mushroom",
         "added_at": "2026-10-17T02:39:10.928636+00:00"
+      },
+      {
+        "observation_id": "obs-75ccc9b2ee882885c7c31d18aaa48aa24353f78df2545309dd92a431e40e60f3",
+        "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+        "url_hash": "28317872f131251a4e0d30c0ef91d222cc27edd280f135fbc6dd6241f961d9f3",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T12:52:48.499237+00:00"
+      },
+      {
+        "observation_id": "obs-18bac32a79874c13405e549f04b03a8881f373046c92caa6047133a2e683456a",
+        "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+        "url_hash": "83d65b19049625916a04730a0a87a7b8c7158da70a7cf470eb21cab34c0039c5",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T12:52:48.499237+00:00"
+      },
+      {
+        "observation_id": "obs-b9d64772defc50e9565c1101d0bd7ade3085c05a90e23d93154da3f6a6b65fa1",
+        "article_hash": "753dd3c8164e71dd4f987032958a74a54d4e41c025467d0f81e3b6832ab01065",
+        "url_hash": "e48c22bab859d52196f35dcf7a497ecb7309ff38f2bee46c46a352eb6f40ff75",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T12:52:48.499237+00:00"
+      },
+      {
+        "observation_id": "obs-bf741bd37de4df8ae7dca7d7c1264d3a272f03464ee9ce09a09be51ab9f40b36",
+        "article_hash": "753dd3c8164e71dd4f987032958a74a54d4e41c025467d0f81e3b6832ab01065",
+        "url_hash": "21fa941839ed872e4b74c9fa647f08283c0b7849a667f3e564e25ad54e084166",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T12:52:48.499237+00:00"
       }
     ],
     "deletions": [
@@ -8841,7 +8877,7 @@
         "sha256": "1767879599368ac0d6795cc38c38b3c4c19c591c5c66a4094afb367ba2474ce3"
       }
     ],
-    "deletion_history_head": "3775f53e57bc856c5764284af35af99e028a9355f1b115641e96989aa54c07bc"
+    "deletion_history_head": "2f636bbe3f98822ed3b372e9eb36c892b8e66cc69eb816d6275e096dae7976e4"
   },
-  "sha256": "6d20a3ac9a36041a75a3c0a24e4152e1f9f4c0a60006b35966e98ef6e0358065"
+  "sha256": "d8abc738496735c7e4ffa86de8398c83c2e46200c6533d713342f9937db104f4"
 }

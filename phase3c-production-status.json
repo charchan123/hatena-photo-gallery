@@ -4,9 +4,9 @@
   "cutover_active": true,
   "fallback_reason": null,
   "legacy_image_count": 870,
-  "production_image_count": 893,
-  "hybrid_candidate_image_count": 893,
-  "net_image_delta_vs_legacy": 23,
+  "production_image_count": 897,
+  "hybrid_candidate_image_count": 897,
+  "net_image_delta_vs_legacy": 27,
   "validation": {
     "valid": true,
     "checks": {

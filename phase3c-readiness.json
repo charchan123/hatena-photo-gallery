@@ -6,23 +6,23 @@
     "shadow_total_images": 980,
     "shadow_detected_images": 929,
     "shadow_undetected_images": 51,
-    "taxonomy_mushroom_images": 433,
+    "taxonomy_mushroom_images": 437,
     "taxonomy_non_mushroom_images": 7,
-    "review_images": 540,
-    "taxonomy_unmatched_review_images": 489,
+    "review_images": 536,
+    "taxonomy_unmatched_review_images": 485,
     "no_detected_label_review_images": 51,
     "taxonomy_unavailable_review_images": 0,
-    "candidate_production_image_count": 433,
-    "candidate_unique_gallery_names": 46,
+    "candidate_production_image_count": 437,
+    "candidate_unique_gallery_names": 48,
     "exact_occurrence_overlap_count": 389,
     "legacy_only_occurrence_count": 481,
-    "candidate_only_occurrence_count": 44,
+    "candidate_only_occurrence_count": 48,
     "legacy_src_only_count": 460,
-    "candidate_src_only_count": 23,
+    "candidate_src_only_count": 27,
     "same_src_name_change_count": 21,
-    "blocked_review_unique_labels": 255,
-    "candidate_vs_legacy_ratio": 0.49770114942528737,
-    "taxonomy_mushroom_share_of_shadow": 0.4418367346938776
+    "blocked_review_unique_labels": 253,
+    "candidate_vs_legacy_ratio": 0.5022988505747127,
+    "taxonomy_mushroom_share_of_shadow": 0.4459183673469388
   },
   "blocked_review_labels": [
     {
@@ -1473,19 +1473,6 @@
       ]
     },
     {
-      "detected_label": "ブドウニガイグチ",
-      "image_count": 2,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224325.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224343.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_5.html"
-      ]
-    },
-    {
       "detected_label": "ブナノシロハツ(仮称)",
       "image_count": 2,
       "article_count": 1,
@@ -1509,19 +1496,6 @@
       ],
       "sample_articles": [
         "articles/article_93.html"
-      ]
-    },
-    {
-      "detected_label": "マツタケ",
-      "image_count": 2,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063158.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063219.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_2.html"
       ]
     },
     {
@@ -9176,6 +9150,26 @@
       "legacy_alt": ""
     },
     {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063158.jpg",
+      "gallery_name": "マツタケ",
+      "detected_label": "マツタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月22日富士山(山梨県)",
+      "article_path": "articles/article_2.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063219.jpg",
+      "gallery_name": "マツタケ",
+      "detected_label": "マツタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月22日富士山(山梨県)",
+      "article_path": "articles/article_2.html",
+      "legacy_alt": ""
+    },
+    {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224333.jpg",
       "gallery_name": "アカヤマドリ",
       "detected_label": "アカヤマドリ",
@@ -9289,6 +9283,26 @@
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224252.jpg",
       "gallery_name": "キアミアシイグチ",
       "detected_label": "キアミアシイグチ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月17日静岡県浜松市",
+      "article_path": "articles/article_5.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224325.jpg",
+      "gallery_name": "ブドウニガイグチ",
+      "detected_label": "ブドウニガイグチ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月17日静岡県浜松市",
+      "article_path": "articles/article_5.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224343.jpg",
+      "gallery_name": "ブドウニガイグチ",
+      "detected_label": "ブドウニガイグチ",
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月17日静岡県浜松市",
