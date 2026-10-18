@@ -17,7 +17,7 @@ const server=http.createServer((req,res)=>{
 (async()=>{
  await new Promise(r=>server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+server.address().port;
  const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_EXECUTABLE_PATH,args:['--no-sandbox',...(process.env.CHROMIUM_SINGLE_PROCESS?['--single-process','--no-zygote','--disable-gpu']:[])]});
- const context=await browser.newContext({viewport:{width:1280,height:1000}});const page=await context.newPage();
+ const context=await browser.newContext({viewport:{width:1280,height:1000},reducedMotion:'reduce'});const page=await context.newPage();
  const issues=[],writes=[];page.on('pageerror',e=>issues.push(e.message));
  page.on('request',r=>{if(r.method()!=='GET')writes.push(r.method()+' '+r.url())});
  check(pairs.length,3);check(portal.observations.length,933);check(new Set(portal.observations.map(r=>r.src)).size,933);
@@ -53,17 +53,36 @@ const server=http.createServer((req,res)=>{
   for(const filename of fs.readdirSync(site).filter(f=>/^best-shots(?:-\d{4})?\.html$/.test(f))){
    await page.goto(base+'/'+filename,{waitUntil:'domcontentloaded'});
    for(const id of await page.locator('[data-selection-id]').evaluateAll(es=>es.map(e=>e.dataset.selectionId)))seen.add(id);
+   for(const img of await page.locator('.best-shot-photo img').all()){
+    await img.scrollIntoViewIfNeeded();
+    await img.evaluate(i=>i.decode());
+    check(await img.evaluate(i=>i.complete&&i.naturalWidth>0),true);
+   }
    check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
   }
   check([...seen].sort(),config.entries.map(e=>e.selection_id).sort());
   await page.goto(base+'/best-shots-2025.html',{waitUntil:'domcontentloaded'});
+  await page.locator('.annual-best img').evaluate(i=>i.decode());
   await page.screenshot({path:path.join(screenshots,width+'-best-shots.png')});
   await page.goto(base+'/'+encodeURIComponent('ブドウニガイグチ')+'.html',{waitUntil:'domcontentloaded'});
   check((await page.locator('body').innerText()).includes('図鑑情報は現在整理中です'),true);
  }
+ await page.goto(base+'/index.html',{waitUntil:'domcontentloaded'});
+ for(const name of ['ニガイグチモドキ','ヤマドリタケモドキ','ムラサキヤマドリタケ','アカヤマドリ']){
+  await page.fill('.index-search-input',name);
+  await page.waitForFunction(name=>document.querySelector('.index-search-results').textContent.includes(name),name);
+  check(await page.locator('.index-search-results a').evaluateAll((links,n)=>links.filter(a=>decodeURIComponent(a.getAttribute('href').split('?')[0])===n+'.html').length,name),1);
+ }
+ await page.goto(base+'/records.html',{waitUntil:'domcontentloaded'});
+ const counts=new Map();for(const row of portal.observations){const url=row.article.url;const c=counts.get(url)||{photos:0,names:new Set()};c.photos++;c.names.add(row.gallery_name);counts.set(url,c)}
+ for(const card of await page.locator('a.record-card').all()){
+  const c=counts.get(await card.getAttribute('href'));check(!!c,true);
+  const text=await card.locator('.record-card-meta').innerText();check(text.includes(c.photos+'枚')&&text.includes(c.names.size+'種類'),true);
+ }
  // Actual read-only management rows from the same authenticated capture; route
  // only GET endpoints. Any accidental decision/save request fails this audit.
  const admin=JSON.parse(fs.readFileSync(path.join(root,'admin-readonly.json')));
+ await page.setViewportSize({width:1280,height:1000});
  const app={csrf:'readonly-audit',observations:portal.observations,best_shots:config,cases:[],identified:[],notices:[],master:[],knowledge:[],preview:{},repo:{gh_authenticated:false},feature_facets:{},counts:{best_shots:12,annual_years:2,research_open:66,research_identified:0,active_notices:0,master:141,sources:419,knowledge_batches:0},portal_source:'actual published-only acceptance capture',portal_observation_count:933};
  await page.route('http://admin-audit.test/**',route=>{
   const req=route.request(),url=new URL(req.url());
@@ -88,7 +107,7 @@ const server=http.createServer((req,res)=>{
   if(name==='フジアザミ')check(text.includes('キノコ以外')||text.includes('キノコではない'),true);
  }
  await page.fill('#sync-search','');await page.click('#sync-search-button');
- await page.screenshot({path:path.join(screenshots,'390-admin-unlisted.png')});
+ await page.screenshot({path:path.join(screenshots,'1280-admin-unlisted.png')});
  check(issues,[]);check(writes,[]);
  fs.writeFileSync(path.join(root,'browser-result.json'),JSON.stringify({result:'PASS',assertions,viewports:[1280,390],actual_cdn_decoding:true,publication:'NOT_ATTEMPTED'},null,2)+'\n');
  await browser.close();server.close();console.log('PASS: '+assertions+' real generated-page Chromium assertions');
