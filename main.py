@@ -1004,6 +1004,15 @@ def match_subject_taxonomy(detected_label, taxonomy):
     if detected_label in taxonomy["exact_alias"]:
         return taxonomy["exact_alias"][detected_label], "alias_exact"
     entry = taxonomy["normalized"].get(normalize_taxonomy_key(detected_label))
+    # Broad-sense and narrow-sense names must not silently collapse. In
+    # particular, preserve already published アンズタケ photographs while
+    # accepting exact アンズタケ(広義) and its explicit author-corrected alias.
+    if entry is not None:
+        canonical = entry.get("canonical_name", "")
+        has_broad = "(広義)" in canonical or "（広義）" in canonical
+        detected_broad = "(広義)" in detected_label or "（広義）" in detected_label
+        if has_broad and not detected_broad:
+            return None, "none"
     return (entry, "normalized") if entry else (None, "none")
 
 
@@ -3012,7 +3021,7 @@ def build_gallery(*, sync_run=None):
     multi_overlays = (
         build_multi_subject_photo_overlays(
             shadow_metadata or [], taxonomy, production_entries, match_subject_taxonomy
-        ) if production_mode == "phase3c_hybrid" and portal_status.get("build_ok") else {}
+        ) if production_mode == "phase3c_hybrid" and isinstance(portal_status, dict) and portal_status.get("build_ok") else {}
     )
     if multi_overlays:
         print("Verified mixed-species HTML references: " + json.dumps(
