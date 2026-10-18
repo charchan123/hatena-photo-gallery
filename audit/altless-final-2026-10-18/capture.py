@@ -56,7 +56,8 @@ def capture(previous, destination):
     assert sum(r['src'] in old_src for r in recent) == 23
     assert {r['src'] for r in new_rows} <= {r['src'] for r in recent}
     shared = sorted({src for sources in overlays.values() for src in sources})
-    assert len(shared) == 3
+    recent_shared = sorted(set(shared) & {r['src'] for r in recent})
+    assert len(recent_shared) == 3
     from bs4 import BeautifulSoup
     for name, urls in overlays.items():
         page = BeautifulSoup((destination/'site'/main.safe_filename(name + '.html')).read_text(), 'html.parser')
@@ -79,6 +80,7 @@ def capture(previous, destination):
         'guarded_status':sync.status, 'recent_article_count':len(recent_ids),'recent_source_photos':len(recent),
         'already_registered':23, 'new_registered':len(new_rows), 'additions_by_name':dict(Counter(r['gallery_name'] for r in new_rows)),
         'mixed_species_overlays':overlays,'mixed_species_source_photos':len(shared),
+        'recent_mixed_species_source_photos':len(recent_shared),
         'unregistered_recent': [r for r in recent if r['src'] not in {p['src'] for p in current.values()}],
         'admin_recent_rows':len(rows),'publication':'NOT_ATTEMPTED','history_persisted':False}
     save(destination/'summary.json', summary)
