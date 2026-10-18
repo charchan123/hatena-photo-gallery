@@ -690,7 +690,7 @@ def test_conditional_notice_description_styles_prevent_header_jump():
     css = (Path(main.ASSETS_DIR) / "portal.css").read_text(encoding="utf-8")
     assert ".portal-guide-note__details { display:flex;" in css
     assert "min-width:0; min-height:46px; gap:3px 8px;" in css
-    assert ".portal-guide-note__details:has(> .portal-update-note:not([hidden])) > small" in css
+    assert ".portal-guide-note__details > small { flex:1 1 100%;" in css
     assert ".portal-guide-note__details > .portal-update-note { display:inline-flex;" in css
     assert ".portal-guide-note__details .portal-update-summary" in css
     assert ".portal-independent-links .portal-card__details .portal-update-note" in css
