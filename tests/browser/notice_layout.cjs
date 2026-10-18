@@ -38,6 +38,7 @@ const server=http.createServer((req,res)=>{
     check(found[name].titleY,baseline[name].titleY);check(found[name].descriptionY,baseline[name].descriptionY);check(found[name].cardHeight,baseline[name].cardHeight);
    }
    check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+   check(await page.locator('.portal-update-note:not([hidden])').count(),fixture.notice_counts[state]);
    for(const badge of await page.locator('.portal-update-note:not([hidden]) .update-badge').all()){
     const style=await badge.evaluate(e=>({height:e.getBoundingClientRect().height,weight:getComputedStyle(e).fontWeight,transform:getComputedStyle(e).transform}));
     check(style.height,22);check(style.weight,'700');check(style.transform,'none');
