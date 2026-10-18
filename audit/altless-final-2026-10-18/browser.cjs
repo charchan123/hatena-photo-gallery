@@ -27,6 +27,7 @@ const server=http.createServer((req,res)=>{
   for(const name of ['ニガイグチモドキ','ヤマドリタケモドキ','ムラサキヤマドリタケ','アカヤマドリ']){
    await page.goto(base+'/'+encodeURIComponent(name)+'.html',{waitUntil:'domcontentloaded'});
    await page.locator('.shared-subject-note').waitFor();
+   await page.waitForFunction(()=>getComputedStyle(document.querySelector('.gallery')).visibility==='visible',null,{timeout:60000});
    for(const row of pairs.filter(r=>r.last_rejected_boundary_text.split(/[&＆]/).includes(name))){
     const anchor=page.locator('a.gallery-item').filter({has:page.locator('img[src='+JSON.stringify(row.src)+']')});
     check(await anchor.count(),1);check(await anchor.locator('.shared-subject-indicator').innerText(),'複数種が写る写真');
@@ -38,7 +39,7 @@ const server=http.createServer((req,res)=>{
     check(await anchor.locator('img').evaluate(i=>i.naturalWidth>0),true);
    }
    check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
-   await page.locator('h1').scrollIntoViewIfNeeded();await page.screenshot({path:path.join(screenshots,width+'-'+name+'.png')});
+   await page.locator('#detail-title').scrollIntoViewIfNeeded();await page.screenshot({path:path.join(screenshots,width+'-'+name+'.png')});
   }
   const seen=new Set();
   for(const filename of fs.readdirSync(site).filter(f=>/^best-shots(?:-\d{4})?\.html$/.test(f))){
