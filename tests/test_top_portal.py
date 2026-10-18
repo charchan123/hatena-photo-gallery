@@ -643,12 +643,12 @@ def test_typography_overlay_and_independent_card_spacing_polish():
     assert "linear-gradient(120deg,rgba(24,62,37,.93),rgba(41,83,50,.80))" not in guide_css
 
     assert ".portal-eyebrow { margin:0 0 6px;" in portal_css
-    assert ".portal-independent-links .portal-card__copy { min-width:0; grid-template-columns:minmax(0,1fr); gap:0; }" in portal_css
+    assert ".portal-independent-links .portal-card__copy { position:relative; min-width:0; grid-template-columns:minmax(0,1fr); gap:0; }" in portal_css
     assert ".portal-independent-links .portal-eyebrow { margin-bottom:6px;" in portal_css
-    # Both feature cards now reserve one common description row for the inline notice.
+    # Both feature cards keep only their description in flow; notices float above the eyebrow.
     assert ".portal-independent-links .portal-card__details { display:flex;" in portal_css
-    assert "min-height:46px; margin-top:5px;" in portal_css
-    assert ".portal-independent-links .portal-card__details .portal-update-note {" in portal_css
+    assert "min-height:0; margin-top:5px;" in portal_css
+    assert ".portal-independent-links .portal-card__copy > .portal-update-note {" in portal_css
 
 
 def test_new_top_four_titles_share_responsive_sizes_and_keep_count_typography():
@@ -682,7 +682,7 @@ def test_portal_notice_animation_is_subtle_and_motion_safe():
     assert "[data-notice-start][hidden] { display:none !important; }" in notice
     assert ".portal-independent-links .portal-card__details" in portal
     assert "min-height:46px" in portal
-    assert ".portal-independent-links .portal-card__details .portal-update-note" in portal
+    assert ".portal-independent-links .portal-card__copy > .portal-update-note" in portal
 
 
 def test_conditional_notice_description_styles_prevent_header_jump():
@@ -693,6 +693,8 @@ def test_conditional_notice_description_styles_prevent_header_jump():
     assert ".portal-guide-note__details > small { flex:1 1 100%;" in css
     assert ".portal-guide-note__details > .portal-update-note { display:inline-flex;" in css
     assert ".portal-guide-note__details .portal-update-summary" in css
-    assert ".portal-independent-links .portal-card__details .portal-update-note" in css
-    assert "flex:1 1 auto; min-width:0; max-width:100%;" in css
+    assert ".portal-independent-links .portal-card__copy > .portal-update-note" in css
+    assert "position:absolute; bottom:calc(100% + 6px); left:0; right:0;" in css
+    assert "padding-top:calc(88px - 1.188rem)" in css
+    assert "padding-top:calc(80px - 1.188rem)" in css
     assert "text-overflow:ellipsis; white-space:nowrap;" in css

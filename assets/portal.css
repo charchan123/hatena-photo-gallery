@@ -61,14 +61,16 @@
 .portal-card__copy small { color:rgba(255,255,255,.84); line-height:1.4; font-size:.82rem; }
 .portal-independent-links { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:24px; }
 .portal-independent-links .portal-card { min-height:160px; }
-.portal-independent-links .portal-card__content { min-width:0; }
-.portal-independent-links .portal-card__copy { min-width:0; grid-template-columns:minmax(0,1fr); gap:0; }
+/* Transfer the old 46px details surplus above the copy, preserving card/gradient height.
+   Description line height is .88rem * 1.35 = 1.188rem; no notice space remains below it. */
+.portal-independent-links .portal-card__content { min-width:0; padding-top:calc(88px - 1.188rem); }
+.portal-independent-links .portal-card__copy { position:relative; min-width:0; grid-template-columns:minmax(0,1fr); gap:0; }
 .portal-independent-links .portal-eyebrow { margin-bottom:6px; color:rgba(255,255,255,.9); }
 .portal-independent-links .portal-card__copy strong { font-size:clamp(1.4rem,3vw,1.65rem); }
-.portal-independent-links .portal-card__details { display:flex; flex-wrap:wrap; align-content:center; align-items:center; gap:3px 9px; min-width:0; min-height:46px; margin-top:5px; align-content:flex-start; }
+.portal-independent-links .portal-card__details { display:flex; flex-wrap:wrap; align-content:center; align-items:center; min-width:0; min-height:0; margin-top:5px; }
 .portal-independent-links .portal-card__details > small { flex:1 1 100%; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:.88rem; line-height:1.35; }
-.portal-independent-links .portal-card__details .portal-update-note { display:inline-flex; flex:1 1 auto; min-width:0; max-width:100%; align-items:center; flex-wrap:nowrap; gap:6px; margin:0; color:rgba(255,255,255,.95); font-size:.75rem; line-height:1.35; }
-.portal-independent-links .portal-card__details .portal-update-summary { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.portal-independent-links .portal-card__copy > .portal-update-note { position:absolute; bottom:calc(100% + 6px); left:0; right:0; display:flex; min-width:0; max-width:100%; align-items:center; flex-wrap:nowrap; gap:6px; margin:0; color:rgba(255,255,255,.95); font-size:.75rem; line-height:1.35; }
+.portal-independent-links .portal-card__copy > .portal-update-note .portal-update-summary { flex:1 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .portal-about { margin-top:34px; padding-top:20px; border-top:1px solid rgba(53,78,58,.22); }
 .portal-about h2 { margin:0 0 15px; color:#526255; font-size:1rem; }
 .portal-about-grid { display:grid; grid-template-columns:280px minmax(0,540px); gap:60px; align-items:start; width:min(100%,880px); margin-inline:auto; }
@@ -126,6 +128,7 @@
   .portal-independent-links { margin-top:20px; gap:18px; }
   .portal-independent-links .portal-card { min-height:155px; }
   .portal-card__content { padding:34px 15px 14px; }
+  .portal-independent-links .portal-card__content { padding-top:calc(80px - 1.188rem); }
   .portal-about { margin-top:26px; padding:17px 4px 0; }
   .portal-request p { font-size:.8rem; line-height:1.8; }
 }

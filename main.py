@@ -2677,16 +2677,15 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
     def append_card(modifier, href, title, description, eyebrow=None,
                     count=None, count_unit=None):
         eyebrow_html = f'<span class="portal-eyebrow">{eyebrow}</span>' if eyebrow else ""
-        # Keep both independent cards' title rows aligned, whether a notice is active or not.
-        # In Best Shot, the notice follows the description visually and its badge comes first.
+        # Float notices above the eyebrow; they never occupy the description row.
         notice_html = section_notice(modifier, badge_first=True)
         details_html = (f'<span class="portal-card__details">'
-                        f'<small>{description}</small>{notice_html}</span>')
+                        f'<small>{description}</small></span>')
         parts.append(
             f'    <a class="portal-card portal-card--{modifier}" href="{href}">\n'
             '      <span class="portal-card__visual" aria-hidden="true"></span>\n'
             f'      <span class="portal-card__content"><span class="portal-card__copy">'
-            f'{eyebrow_html}'
+            f'{notice_html}{eyebrow_html}'
             f'<strong>{portal_icon(modifier)}<span>{title}{content_count(count, count_unit)}</span></strong>'
             f'{details_html}</span></span>\n'
             '    </a>\n'

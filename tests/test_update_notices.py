@@ -121,7 +121,7 @@ def test_best_shot_notice_may_lead_with_badge_without_changing_expiry():
                                      badge_first=True)
 
 
-def test_best_shot_notice_shares_description_row_with_research_card(monkeypatch, tmp_path):
+def test_best_shot_notice_precedes_eyebrow_outside_description(monkeypatch, tmp_path):
     now = datetime.now().astimezone()
     events = [{"section": "best-shots", "kind": "new",
                "summary": "ベストショットを追加", "occurred_at": now.isoformat()}]
@@ -135,12 +135,13 @@ def test_best_shot_notice_shares_description_row_with_research_card(monkeypatch,
     assert research.select_one("strong + .portal-card__details > small").get_text() == "正体を調べているキノコを見る"
     assert best.select_one("strong + .portal-card__details > small").get_text() == "とっておきの一枚を集めた写真館"
     assert not research.select_one(".portal-update-note")
-    note = best.select_one(".portal-card__details > .portal-update-note")
+    note = best.select_one(".portal-card__copy > .portal-update-note")
     assert note is not None
     assert [child.get_text(strip=True) for child in note.find_all(recursive=False)] == [
         "NEW!", "ベストショットを追加",
     ]
-    assert not best.select_one(".portal-card__copy > .portal-update-note")
+    assert not best.select_one(".portal-card__details .portal-update-note")
+    assert note.find_next_sibling()["class"] == ["portal-eyebrow"]
     assert not soup.select("a a")
     # No NEW! changes a card's eyebrow, title, destination or image asset.
     assert research.select_one(".portal-eyebrow").get_text() == "RESEARCH LAB"
@@ -185,7 +186,7 @@ def test_guide_section_notices_stay_in_same_description_area(monkeypatch, tmp_pa
         assert not soup.select("a a")
 
 
-def test_research_identified_notice_uses_best_shot_details_without_shifting_title(
+def test_research_identified_notice_precedes_label_without_reserving_details(
         monkeypatch, tmp_path):
     now = datetime.now().astimezone()
     events = [{"section": "research", "kind": "identified",
@@ -199,7 +200,9 @@ def test_research_identified_notice_uses_best_shot_details_without_shifting_titl
     card = soup.select_one(".portal-card--research")
     details = card.select_one("strong + .portal-card__details")
     assert details.find("small", recursive=False).get_text(strip=True) == "正体を調べているキノコを見る"
-    note = details.select_one(".portal-update-note")
+    assert not details.select_one(".portal-update-note")
+    note = card.select_one(".portal-card__copy > .portal-update-note")
+    assert note.find_next_sibling()["class"] == ["portal-eyebrow"]
     assert [item.get_text(strip=True) for item in note.find_all(recursive=False)] == [
         "IDENTIFIED!", "長い研究結果の報告" * 8,
     ]
