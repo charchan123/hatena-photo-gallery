@@ -29,6 +29,8 @@ BATCH_4_LABELS = (
     "タマチョレイタケ", "ツバアブラシメジ", "ホテイシメジ", "ミドリニガイグチ", "ミヤマタマゴタケ",
 )
 
+NEW_SUBJECT_LABELS = ("マツタケ", "ブドウニガイグチ")
+
 
 def write_json(tmp_path, name, value):
     path = tmp_path / name
@@ -47,10 +49,10 @@ def test_repository_counts_policies_and_links():
     sources, master, taxonomy = repository_data()
     assert len(sources["sources"]) == 419
     assert len(master["entries"]) == 141
-    assert len(taxonomy["entries"]) == 48
-    assert sum(row["subject_type"] == "mushroom" for row in taxonomy["entries"]) == 45
+    assert len(taxonomy["entries"]) == 50
+    assert sum(row["subject_type"] == "mushroom" for row in taxonomy["entries"]) == 47
     assert sum(row["subject_type"] == "non_mushroom" for row in taxonomy["entries"]) == 3
-    assert {row["canonical_name"] for row in taxonomy["entries"] if row["verification_status"] == "externally_verified"} == set(BATCH_1_LABELS + BATCH_2_LABELS + BATCH_3_LABELS + BATCH_4_LABELS)
+    assert {row["canonical_name"] for row in taxonomy["entries"] if row["verification_status"] == "externally_verified"} == set(BATCH_1_LABELS + BATCH_2_LABELS + BATCH_3_LABELS + BATCH_4_LABELS + NEW_SUBJECT_LABELS)
     assert all(row["scientific_name"]["name_status"] == "source_reported" for row in master["entries"])
     food_counts = {}
     for row in master["entries"]:
