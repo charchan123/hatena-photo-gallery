@@ -30,6 +30,7 @@ jobs:
           pip install -r requirements.txt
           python tests/browser/notice_layout_fixture.py /tmp/notice-layout
       - name: Notification positions, pill badges and unchanged sheen
+        timeout-minutes: 3
         env:
           PLAYWRIGHT_MODULE_PATH: /tmp/kinoko-browser/node_modules/playwright
         run: node tests/browser/notice_layout.cjs /tmp/notice-layout

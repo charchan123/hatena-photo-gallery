@@ -14,6 +14,7 @@ const server=http.createServer((req,res)=>{
  await new Promise(r=>server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+server.address().port;
  const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_EXECUTABLE_PATH,args:['--no-sandbox']});
  const context=await browser.newContext({viewport:{width:1280,height:1000}}),page=await context.newPage();
+ page.setDefaultTimeout(10000);
  await page.clock.install({time:new Date(fixture.now)});
  await page.route('**/*',route=>new URL(route.request().url()).hostname==='127.0.0.1'?route.continue():route.abort());
  let assertions=0;const check=(a,b)=>{assert.deepEqual(a,b);assertions++};const metrics=[],issues=[];
@@ -32,7 +33,7 @@ const server=http.createServer((req,res)=>{
   await page.setViewportSize({width,height:1000});let baseline;
   for(const state of fixture.states){
    await page.goto(base+'/'+state+'/new-top.html');await page.evaluate(()=>document.fonts.ready);
-   const found=await positions();if(state==='off')baseline=found;
+   const found=await positions();console.log('Layout',width,state,JSON.stringify(found));if(state==='off')baseline=found;
    for(const name of Object.keys(found)){
     check(found[name].titleY,baseline[name].titleY);check(found[name].descriptionY,baseline[name].descriptionY);check(found[name].cardHeight,baseline[name].cardHeight);
    }
@@ -86,4 +87,4 @@ const server=http.createServer((req,res)=>{
  check(issues,[]);await browser.close();server.close();
  const result={assertions,fixture,widths:[1280,768,390],max_title_delta_px:0,max_description_delta_px:0,metrics,sheen_samples:samples,placement_delays:delays,issues};
  fs.writeFileSync(path.join(root,'result.json'),JSON.stringify(result,null,2));console.log(`PASS: ${assertions} Chromium notice layout / pill / sheen assertions`);
-})().catch(e=>{console.error(e);server.close();process.exitCode=1});
+})().catch(e=>{console.error(e);server.close();process.exit(1)});
