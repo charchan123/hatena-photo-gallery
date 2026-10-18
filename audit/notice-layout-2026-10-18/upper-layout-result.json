@@ -1,0 +1,5080 @@
+{
+  "assertions": 1791,
+  "fixture": {
+    "baseline": "edb77003fb6f648979a10df9efe1e8e010a15e9f",
+    "layout_baseline": "9296710aa12053f50c911a9797900eaf35046155",
+    "now": "2026-10-18T15:07:18.580983+00:00",
+    "states": [
+      "off",
+      "new",
+      "identified",
+      "long",
+      "both",
+      "research-only",
+      "best-only",
+      "expired"
+    ],
+    "notice_counts": {
+      "off": 0,
+      "new": 5,
+      "identified": 1,
+      "long": 5,
+      "both": 2,
+      "research-only": 1,
+      "best-only": 1,
+      "expired": 0
+    },
+    "public_photos": 933,
+    "badge_css_sha256": "0401c52c4774db5d612a0b8a4deb9a4f5cca8c790fa19240f28c242560de4c4b",
+    "protected_css_sha256": "6346de63c0f6606d6d2d6c318d9e4372733dc58d5bbc96c84d99db5255cb9115"
+  },
+  "widths": [
+    1280,
+    768,
+    390,
+    320
+  ],
+  "max_label_delta_px": 0,
+  "max_title_delta_px": 0,
+  "max_description_delta_px": 0,
+  "metrics": [
+    {
+      "width": 1280,
+      "state": "off",
+      "positions": {
+        "research": {
+          "labelY": 696.984375,
+          "titleY": 714.984375,
+          "descriptionY": 754.984375,
+          "cardHeight": 164.984375,
+          "cardWidth": 558
+        },
+        "best-shots": {
+          "labelY": 696.984375,
+          "titleY": 714.984375,
+          "descriptionY": 754.984375,
+          "cardHeight": 164.984375,
+          "cardWidth": 558
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 236,
+          "descriptionY": 262,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 349,
+          "descriptionY": 375,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 462,
+          "descriptionY": 488,
+          "cardHeight": 96,
+          "cardWidth": 176
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 72,
+            "y": 627,
+            "right": 630,
+            "bottom": 791.984375,
+            "width": 558,
+            "height": 164.984375
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 650,
+            "y": 627,
+            "right": 1208,
+            "bottom": 791.984375,
+            "width": 558,
+            "height": 164.984375
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "state": "new",
+      "positions": {
+        "research": {
+          "labelY": 696.984375,
+          "titleY": 714.984375,
+          "descriptionY": 754.984375,
+          "cardHeight": 164.984375,
+          "cardWidth": 558
+        },
+        "best-shots": {
+          "labelY": 696.984375,
+          "titleY": 714.984375,
+          "descriptionY": 754.984375,
+          "cardHeight": 164.984375,
+          "cardWidth": 558
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 236,
+          "descriptionY": 262,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 349,
+          "descriptionY": 375,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 462,
+          "descriptionY": 488,
+          "cardHeight": 96,
+          "cardWidth": 176
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 72,
+            "y": 627,
+            "right": 630,
+            "bottom": 791.984375,
+            "width": 558,
+            "height": 164.984375
+          },
+          "notice": {
+            "x": 91,
+            "y": 668.984375,
+            "right": 611,
+            "bottom": 690.984375,
+            "width": 520,
+            "height": 22
+          },
+          "badge": {
+            "x": 91,
+            "y": 668.984375,
+            "right": 139.84375,
+            "bottom": 690.984375,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 650,
+            "y": 627,
+            "right": 1208,
+            "bottom": 791.984375,
+            "width": 558,
+            "height": 164.984375
+          },
+          "notice": {
+            "x": 669,
+            "y": 668.984375,
+            "right": 1189,
+            "bottom": 690.984375,
+            "width": 520,
+            "height": 22
+          },
+          "badge": {
+            "x": 669,
+            "y": 668.984375,
+            "right": 717.84375,
+            "bottom": 690.984375,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "state": "identified",
+      "positions": {
+        "research": {
+          "labelY": 696.984375,
+          "titleY": 714.984375,
+          "descriptionY": 754.984375,
+          "cardHeight": 164.984375,
+          "cardWidth": 558
+        },
+        "best-shots": {
+          "labelY": 696.984375,
+          "titleY": 714.984375,
+          "descriptionY": 754.984375,
+          "cardHeight": 164.984375,
+          "cardWidth": 558
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 236,
+          "descriptionY": 262,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 349,
+          "descriptionY": 375,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 462,
+          "descriptionY": 488,
+          "cardHeight": 96,
+          "cardWidth": 176
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 72,
+            "y": 627,
+            "right": 630,
+            "bottom": 791.984375,
+            "width": 558,
+            "height": 164.984375
+          },
+          "notice": {
+            "x": 91,
+            "y": 668.984375,
+            "right": 611,
+            "bottom": 690.984375,
+            "width": 520,
+            "height": 22
+          },
+          "badge": {
+            "x": 91,
+            "y": 668.984375,
+            "right": 175.15625,
+            "bottom": 690.984375,
+            "width": 84.15625,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 650,
+            "y": 627,
+            "right": 1208,
+            "bottom": 791.984375,
+            "width": 558,
+            "height": 164.984375
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "state": "long",
+      "positions": {
+        "research": {
+          "labelY": 696.984375,
+          "titleY": 714.984375,
+          "descriptionY": 754.984375,
+          "cardHeight": 164.984375,
+          "cardWidth": 558
+        },
+        "best-shots": {
+          "labelY": 696.984375,
+          "titleY": 714.984375,
+          "descriptionY": 754.984375,
+          "cardHeight": 164.984375,
+          "cardWidth": 558
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 236,
+          "descriptionY": 262,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 349,
+          "descriptionY": 375,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 462,
+          "descriptionY": 488,
+          "cardHeight": 96,
+          "cardWidth": 176
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 72,
+            "y": 627,
+            "right": 630,
+            "bottom": 791.984375,
+            "width": 558,
+            "height": 164.984375
+          },
+          "notice": {
+            "x": 91,
+            "y": 668.984375,
+            "right": 611,
+            "bottom": 690.984375,
+            "width": 520,
+            "height": 22
+          },
+          "badge": {
+            "x": 91,
+            "y": 668.984375,
+            "right": 139.84375,
+            "bottom": 690.984375,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 650,
+            "y": 627,
+            "right": 1208,
+            "bottom": 791.984375,
+            "width": 558,
+            "height": 164.984375
+          },
+          "notice": {
+            "x": 669,
+            "y": 668.984375,
+            "right": 1189,
+            "bottom": 690.984375,
+            "width": 520,
+            "height": 22
+          },
+          "badge": {
+            "x": 669,
+            "y": 668.984375,
+            "right": 717.84375,
+            "bottom": 690.984375,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "state": "both",
+      "positions": {
+        "research": {
+          "labelY": 696.984375,
+          "titleY": 714.984375,
+          "descriptionY": 754.984375,
+          "cardHeight": 164.984375,
+          "cardWidth": 558
+        },
+        "best-shots": {
+          "labelY": 696.984375,
+          "titleY": 714.984375,
+          "descriptionY": 754.984375,
+          "cardHeight": 164.984375,
+          "cardWidth": 558
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 236,
+          "descriptionY": 262,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 349,
+          "descriptionY": 375,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 462,
+          "descriptionY": 488,
+          "cardHeight": 96,
+          "cardWidth": 176
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 72,
+            "y": 627,
+            "right": 630,
+            "bottom": 791.984375,
+            "width": 558,
+            "height": 164.984375
+          },
+          "notice": {
+            "x": 91,
+            "y": 668.984375,
+            "right": 611,
+            "bottom": 690.984375,
+            "width": 520,
+            "height": 22
+          },
+          "badge": {
+            "x": 91,
+            "y": 668.984375,
+            "right": 175.15625,
+            "bottom": 690.984375,
+            "width": 84.15625,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 650,
+            "y": 627,
+            "right": 1208,
+            "bottom": 791.984375,
+            "width": 558,
+            "height": 164.984375
+          },
+          "notice": {
+            "x": 669,
+            "y": 668.984375,
+            "right": 1189,
+            "bottom": 690.984375,
+            "width": 520,
+            "height": 22
+          },
+          "badge": {
+            "x": 669,
+            "y": 668.984375,
+            "right": 717.84375,
+            "bottom": 690.984375,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "state": "research-only",
+      "positions": {
+        "research": {
+          "labelY": 696.984375,
+          "titleY": 714.984375,
+          "descriptionY": 754.984375,
+          "cardHeight": 164.984375,
+          "cardWidth": 558
+        },
+        "best-shots": {
+          "labelY": 696.984375,
+          "titleY": 714.984375,
+          "descriptionY": 754.984375,
+          "cardHeight": 164.984375,
+          "cardWidth": 558
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 236,
+          "descriptionY": 262,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 349,
+          "descriptionY": 375,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 462,
+          "descriptionY": 488,
+          "cardHeight": 96,
+          "cardWidth": 176
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 72,
+            "y": 627,
+            "right": 630,
+            "bottom": 791.984375,
+            "width": 558,
+            "height": 164.984375
+          },
+          "notice": {
+            "x": 91,
+            "y": 668.984375,
+            "right": 611,
+            "bottom": 690.984375,
+            "width": 520,
+            "height": 22
+          },
+          "badge": {
+            "x": 91,
+            "y": 668.984375,
+            "right": 139.84375,
+            "bottom": 690.984375,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 650,
+            "y": 627,
+            "right": 1208,
+            "bottom": 791.984375,
+            "width": 558,
+            "height": 164.984375
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "state": "best-only",
+      "positions": {
+        "research": {
+          "labelY": 696.984375,
+          "titleY": 714.984375,
+          "descriptionY": 754.984375,
+          "cardHeight": 164.984375,
+          "cardWidth": 558
+        },
+        "best-shots": {
+          "labelY": 696.984375,
+          "titleY": 714.984375,
+          "descriptionY": 754.984375,
+          "cardHeight": 164.984375,
+          "cardWidth": 558
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 236,
+          "descriptionY": 262,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 349,
+          "descriptionY": 375,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 462,
+          "descriptionY": 488,
+          "cardHeight": 96,
+          "cardWidth": 176
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 72,
+            "y": 627,
+            "right": 630,
+            "bottom": 791.984375,
+            "width": 558,
+            "height": 164.984375
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 650,
+            "y": 627,
+            "right": 1208,
+            "bottom": 791.984375,
+            "width": 558,
+            "height": 164.984375
+          },
+          "notice": {
+            "x": 669,
+            "y": 668.984375,
+            "right": 1189,
+            "bottom": 690.984375,
+            "width": 520,
+            "height": 22
+          },
+          "badge": {
+            "x": 669,
+            "y": 668.984375,
+            "right": 717.84375,
+            "bottom": 690.984375,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "state": "expired",
+      "positions": {
+        "research": {
+          "labelY": 696.984375,
+          "titleY": 714.984375,
+          "descriptionY": 754.984375,
+          "cardHeight": 164.984375,
+          "cardWidth": 558
+        },
+        "best-shots": {
+          "labelY": 696.984375,
+          "titleY": 714.984375,
+          "descriptionY": 754.984375,
+          "cardHeight": 164.984375,
+          "cardWidth": 558
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 236,
+          "descriptionY": 262,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 349,
+          "descriptionY": 375,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 462,
+          "descriptionY": 488,
+          "cardHeight": 96,
+          "cardWidth": 176
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 72,
+            "y": 627,
+            "right": 630,
+            "bottom": 791.984375,
+            "width": 558,
+            "height": 164.984375
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 650,
+            "y": 627,
+            "right": 1208,
+            "bottom": 791.984375,
+            "width": 558,
+            "height": 164.984375
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "state": "off",
+      "positions": {
+        "research": {
+          "labelY": 1206,
+          "titleY": 1224,
+          "descriptionY": 1260,
+          "cardHeight": 162,
+          "cardWidth": 724
+        },
+        "best-shots": {
+          "labelY": 1382,
+          "titleY": 1400,
+          "descriptionY": 1436,
+          "cardHeight": 162,
+          "cardWidth": 724
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 773,
+          "descriptionY": 799,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 886,
+          "descriptionY": 912,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 999,
+          "descriptionY": 1025,
+          "cardHeight": 96,
+          "cardWidth": 176
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 22,
+            "y": 1135,
+            "right": 746,
+            "bottom": 1297,
+            "width": 724,
+            "height": 162
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 22,
+            "y": 1311,
+            "right": 746,
+            "bottom": 1473,
+            "width": 724,
+            "height": 162
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "state": "new",
+      "positions": {
+        "research": {
+          "labelY": 1206,
+          "titleY": 1224,
+          "descriptionY": 1260,
+          "cardHeight": 162,
+          "cardWidth": 724
+        },
+        "best-shots": {
+          "labelY": 1382,
+          "titleY": 1400,
+          "descriptionY": 1436,
+          "cardHeight": 162,
+          "cardWidth": 724
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 773,
+          "descriptionY": 799,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 886,
+          "descriptionY": 912,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 999,
+          "descriptionY": 1025,
+          "cardHeight": 96,
+          "cardWidth": 176
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 22,
+            "y": 1135,
+            "right": 746,
+            "bottom": 1297,
+            "width": 724,
+            "height": 162
+          },
+          "notice": {
+            "x": 41,
+            "y": 1178,
+            "right": 727,
+            "bottom": 1200,
+            "width": 686,
+            "height": 22
+          },
+          "badge": {
+            "x": 41,
+            "y": 1178,
+            "right": 89.84375,
+            "bottom": 1200,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 22,
+            "y": 1311,
+            "right": 746,
+            "bottom": 1473,
+            "width": 724,
+            "height": 162
+          },
+          "notice": {
+            "x": 41,
+            "y": 1354,
+            "right": 727,
+            "bottom": 1376,
+            "width": 686,
+            "height": 22
+          },
+          "badge": {
+            "x": 41,
+            "y": 1354,
+            "right": 89.84375,
+            "bottom": 1376,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "state": "identified",
+      "positions": {
+        "research": {
+          "labelY": 1206,
+          "titleY": 1224,
+          "descriptionY": 1260,
+          "cardHeight": 162,
+          "cardWidth": 724
+        },
+        "best-shots": {
+          "labelY": 1382,
+          "titleY": 1400,
+          "descriptionY": 1436,
+          "cardHeight": 162,
+          "cardWidth": 724
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 773,
+          "descriptionY": 799,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 886,
+          "descriptionY": 912,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 999,
+          "descriptionY": 1025,
+          "cardHeight": 96,
+          "cardWidth": 176
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 22,
+            "y": 1135,
+            "right": 746,
+            "bottom": 1297,
+            "width": 724,
+            "height": 162
+          },
+          "notice": {
+            "x": 41,
+            "y": 1178,
+            "right": 727,
+            "bottom": 1200,
+            "width": 686,
+            "height": 22
+          },
+          "badge": {
+            "x": 41,
+            "y": 1178,
+            "right": 125.15625,
+            "bottom": 1200,
+            "width": 84.15625,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 22,
+            "y": 1311,
+            "right": 746,
+            "bottom": 1473,
+            "width": 724,
+            "height": 162
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "state": "long",
+      "positions": {
+        "research": {
+          "labelY": 1206,
+          "titleY": 1224,
+          "descriptionY": 1260,
+          "cardHeight": 162,
+          "cardWidth": 724
+        },
+        "best-shots": {
+          "labelY": 1382,
+          "titleY": 1400,
+          "descriptionY": 1436,
+          "cardHeight": 162,
+          "cardWidth": 724
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 773,
+          "descriptionY": 799,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 886,
+          "descriptionY": 912,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 999,
+          "descriptionY": 1025,
+          "cardHeight": 96,
+          "cardWidth": 176
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 22,
+            "y": 1135,
+            "right": 746,
+            "bottom": 1297,
+            "width": 724,
+            "height": 162
+          },
+          "notice": {
+            "x": 41,
+            "y": 1178,
+            "right": 727,
+            "bottom": 1200,
+            "width": 686,
+            "height": 22
+          },
+          "badge": {
+            "x": 41,
+            "y": 1178,
+            "right": 89.84375,
+            "bottom": 1200,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 22,
+            "y": 1311,
+            "right": 746,
+            "bottom": 1473,
+            "width": 724,
+            "height": 162
+          },
+          "notice": {
+            "x": 41,
+            "y": 1354,
+            "right": 727,
+            "bottom": 1376,
+            "width": 686,
+            "height": 22
+          },
+          "badge": {
+            "x": 41,
+            "y": 1354,
+            "right": 89.84375,
+            "bottom": 1376,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "state": "both",
+      "positions": {
+        "research": {
+          "labelY": 1206,
+          "titleY": 1224,
+          "descriptionY": 1260,
+          "cardHeight": 162,
+          "cardWidth": 724
+        },
+        "best-shots": {
+          "labelY": 1382,
+          "titleY": 1400,
+          "descriptionY": 1436,
+          "cardHeight": 162,
+          "cardWidth": 724
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 773,
+          "descriptionY": 799,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 886,
+          "descriptionY": 912,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 999,
+          "descriptionY": 1025,
+          "cardHeight": 96,
+          "cardWidth": 176
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 22,
+            "y": 1135,
+            "right": 746,
+            "bottom": 1297,
+            "width": 724,
+            "height": 162
+          },
+          "notice": {
+            "x": 41,
+            "y": 1178,
+            "right": 727,
+            "bottom": 1200,
+            "width": 686,
+            "height": 22
+          },
+          "badge": {
+            "x": 41,
+            "y": 1178,
+            "right": 125.15625,
+            "bottom": 1200,
+            "width": 84.15625,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 22,
+            "y": 1311,
+            "right": 746,
+            "bottom": 1473,
+            "width": 724,
+            "height": 162
+          },
+          "notice": {
+            "x": 41,
+            "y": 1354,
+            "right": 727,
+            "bottom": 1376,
+            "width": 686,
+            "height": 22
+          },
+          "badge": {
+            "x": 41,
+            "y": 1354,
+            "right": 89.84375,
+            "bottom": 1376,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "state": "research-only",
+      "positions": {
+        "research": {
+          "labelY": 1206,
+          "titleY": 1224,
+          "descriptionY": 1260,
+          "cardHeight": 162,
+          "cardWidth": 724
+        },
+        "best-shots": {
+          "labelY": 1382,
+          "titleY": 1400,
+          "descriptionY": 1436,
+          "cardHeight": 162,
+          "cardWidth": 724
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 773,
+          "descriptionY": 799,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 886,
+          "descriptionY": 912,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 999,
+          "descriptionY": 1025,
+          "cardHeight": 96,
+          "cardWidth": 176
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 22,
+            "y": 1135,
+            "right": 746,
+            "bottom": 1297,
+            "width": 724,
+            "height": 162
+          },
+          "notice": {
+            "x": 41,
+            "y": 1178,
+            "right": 727,
+            "bottom": 1200,
+            "width": 686,
+            "height": 22
+          },
+          "badge": {
+            "x": 41,
+            "y": 1178,
+            "right": 89.84375,
+            "bottom": 1200,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 22,
+            "y": 1311,
+            "right": 746,
+            "bottom": 1473,
+            "width": 724,
+            "height": 162
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "state": "best-only",
+      "positions": {
+        "research": {
+          "labelY": 1206,
+          "titleY": 1224,
+          "descriptionY": 1260,
+          "cardHeight": 162,
+          "cardWidth": 724
+        },
+        "best-shots": {
+          "labelY": 1382,
+          "titleY": 1400,
+          "descriptionY": 1436,
+          "cardHeight": 162,
+          "cardWidth": 724
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 773,
+          "descriptionY": 799,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 886,
+          "descriptionY": 912,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 999,
+          "descriptionY": 1025,
+          "cardHeight": 96,
+          "cardWidth": 176
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 22,
+            "y": 1135,
+            "right": 746,
+            "bottom": 1297,
+            "width": 724,
+            "height": 162
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 22,
+            "y": 1311,
+            "right": 746,
+            "bottom": 1473,
+            "width": 724,
+            "height": 162
+          },
+          "notice": {
+            "x": 41,
+            "y": 1354,
+            "right": 727,
+            "bottom": 1376,
+            "width": 686,
+            "height": 22
+          },
+          "badge": {
+            "x": 41,
+            "y": 1354,
+            "right": 89.84375,
+            "bottom": 1376,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "state": "expired",
+      "positions": {
+        "research": {
+          "labelY": 1206,
+          "titleY": 1224,
+          "descriptionY": 1260,
+          "cardHeight": 162,
+          "cardWidth": 724
+        },
+        "best-shots": {
+          "labelY": 1382,
+          "titleY": 1400,
+          "descriptionY": 1436,
+          "cardHeight": 162,
+          "cardWidth": 724
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 773,
+          "descriptionY": 799,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 886,
+          "descriptionY": 912,
+          "cardHeight": 96,
+          "cardWidth": 176
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 999,
+          "descriptionY": 1025,
+          "cardHeight": 96,
+          "cardWidth": 176
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 22,
+            "y": 1135,
+            "right": 746,
+            "bottom": 1297,
+            "width": 724,
+            "height": 162
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 22,
+            "y": 1311,
+            "right": 746,
+            "bottom": 1473,
+            "width": 724,
+            "height": 162
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "state": "off",
+      "positions": {
+        "research": {
+          "labelY": 1481.5625,
+          "titleY": 1499.5625,
+          "descriptionY": 1535.5625,
+          "cardHeight": 157,
+          "cardWidth": 370
+        },
+        "best-shots": {
+          "labelY": 1656.5625,
+          "titleY": 1674.5625,
+          "descriptionY": 1710.5625,
+          "cardHeight": 157,
+          "cardWidth": 370
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 877.5625,
+          "descriptionY": 903.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 1082.5625,
+          "descriptionY": 1108.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 1287.5625,
+          "descriptionY": 1313.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1412.5625,
+            "right": 380,
+            "bottom": 1569.5625,
+            "width": 370,
+            "height": 157
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1587.5625,
+            "right": 380,
+            "bottom": 1744.5625,
+            "width": 370,
+            "height": 157
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "state": "new",
+      "positions": {
+        "research": {
+          "labelY": 1481.5625,
+          "titleY": 1499.5625,
+          "descriptionY": 1535.5625,
+          "cardHeight": 157,
+          "cardWidth": 370
+        },
+        "best-shots": {
+          "labelY": 1656.5625,
+          "titleY": 1674.5625,
+          "descriptionY": 1710.5625,
+          "cardHeight": 157,
+          "cardWidth": 370
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 877.5625,
+          "descriptionY": 903.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 1082.5625,
+          "descriptionY": 1108.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 1287.5625,
+          "descriptionY": 1313.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1412.5625,
+            "right": 380,
+            "bottom": 1569.5625,
+            "width": 370,
+            "height": 157
+          },
+          "notice": {
+            "x": 26,
+            "y": 1453.5625,
+            "right": 364,
+            "bottom": 1475.5625,
+            "width": 338,
+            "height": 22
+          },
+          "badge": {
+            "x": 26,
+            "y": 1453.5625,
+            "right": 74.84375,
+            "bottom": 1475.5625,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1587.5625,
+            "right": 380,
+            "bottom": 1744.5625,
+            "width": 370,
+            "height": 157
+          },
+          "notice": {
+            "x": 26,
+            "y": 1628.5625,
+            "right": 364,
+            "bottom": 1650.5625,
+            "width": 338,
+            "height": 22
+          },
+          "badge": {
+            "x": 26,
+            "y": 1628.5625,
+            "right": 74.84375,
+            "bottom": 1650.5625,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "state": "identified",
+      "positions": {
+        "research": {
+          "labelY": 1481.5625,
+          "titleY": 1499.5625,
+          "descriptionY": 1535.5625,
+          "cardHeight": 157,
+          "cardWidth": 370
+        },
+        "best-shots": {
+          "labelY": 1656.5625,
+          "titleY": 1674.5625,
+          "descriptionY": 1710.5625,
+          "cardHeight": 157,
+          "cardWidth": 370
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 877.5625,
+          "descriptionY": 903.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 1082.5625,
+          "descriptionY": 1108.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 1287.5625,
+          "descriptionY": 1313.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1412.5625,
+            "right": 380,
+            "bottom": 1569.5625,
+            "width": 370,
+            "height": 157
+          },
+          "notice": {
+            "x": 26,
+            "y": 1453.5625,
+            "right": 364,
+            "bottom": 1475.5625,
+            "width": 338,
+            "height": 22
+          },
+          "badge": {
+            "x": 26,
+            "y": 1453.5625,
+            "right": 110.15625,
+            "bottom": 1475.5625,
+            "width": 84.15625,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1587.5625,
+            "right": 380,
+            "bottom": 1744.5625,
+            "width": 370,
+            "height": 157
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "state": "long",
+      "positions": {
+        "research": {
+          "labelY": 1481.5625,
+          "titleY": 1499.5625,
+          "descriptionY": 1535.5625,
+          "cardHeight": 157,
+          "cardWidth": 370
+        },
+        "best-shots": {
+          "labelY": 1656.5625,
+          "titleY": 1674.5625,
+          "descriptionY": 1710.5625,
+          "cardHeight": 157,
+          "cardWidth": 370
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 877.5625,
+          "descriptionY": 903.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 1082.5625,
+          "descriptionY": 1108.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 1287.5625,
+          "descriptionY": 1313.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1412.5625,
+            "right": 380,
+            "bottom": 1569.5625,
+            "width": 370,
+            "height": 157
+          },
+          "notice": {
+            "x": 26,
+            "y": 1453.5625,
+            "right": 364,
+            "bottom": 1475.5625,
+            "width": 338,
+            "height": 22
+          },
+          "badge": {
+            "x": 26,
+            "y": 1453.5625,
+            "right": 74.84375,
+            "bottom": 1475.5625,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1587.5625,
+            "right": 380,
+            "bottom": 1744.5625,
+            "width": 370,
+            "height": 157
+          },
+          "notice": {
+            "x": 26,
+            "y": 1628.5625,
+            "right": 364,
+            "bottom": 1650.5625,
+            "width": 338,
+            "height": 22
+          },
+          "badge": {
+            "x": 26,
+            "y": 1628.5625,
+            "right": 74.84375,
+            "bottom": 1650.5625,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "state": "both",
+      "positions": {
+        "research": {
+          "labelY": 1481.5625,
+          "titleY": 1499.5625,
+          "descriptionY": 1535.5625,
+          "cardHeight": 157,
+          "cardWidth": 370
+        },
+        "best-shots": {
+          "labelY": 1656.5625,
+          "titleY": 1674.5625,
+          "descriptionY": 1710.5625,
+          "cardHeight": 157,
+          "cardWidth": 370
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 877.5625,
+          "descriptionY": 903.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 1082.5625,
+          "descriptionY": 1108.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 1287.5625,
+          "descriptionY": 1313.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1412.5625,
+            "right": 380,
+            "bottom": 1569.5625,
+            "width": 370,
+            "height": 157
+          },
+          "notice": {
+            "x": 26,
+            "y": 1453.5625,
+            "right": 364,
+            "bottom": 1475.5625,
+            "width": 338,
+            "height": 22
+          },
+          "badge": {
+            "x": 26,
+            "y": 1453.5625,
+            "right": 110.15625,
+            "bottom": 1475.5625,
+            "width": 84.15625,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1587.5625,
+            "right": 380,
+            "bottom": 1744.5625,
+            "width": 370,
+            "height": 157
+          },
+          "notice": {
+            "x": 26,
+            "y": 1628.5625,
+            "right": 364,
+            "bottom": 1650.5625,
+            "width": 338,
+            "height": 22
+          },
+          "badge": {
+            "x": 26,
+            "y": 1628.5625,
+            "right": 74.84375,
+            "bottom": 1650.5625,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "state": "research-only",
+      "positions": {
+        "research": {
+          "labelY": 1481.5625,
+          "titleY": 1499.5625,
+          "descriptionY": 1535.5625,
+          "cardHeight": 157,
+          "cardWidth": 370
+        },
+        "best-shots": {
+          "labelY": 1656.5625,
+          "titleY": 1674.5625,
+          "descriptionY": 1710.5625,
+          "cardHeight": 157,
+          "cardWidth": 370
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 877.5625,
+          "descriptionY": 903.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 1082.5625,
+          "descriptionY": 1108.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 1287.5625,
+          "descriptionY": 1313.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1412.5625,
+            "right": 380,
+            "bottom": 1569.5625,
+            "width": 370,
+            "height": 157
+          },
+          "notice": {
+            "x": 26,
+            "y": 1453.5625,
+            "right": 364,
+            "bottom": 1475.5625,
+            "width": 338,
+            "height": 22
+          },
+          "badge": {
+            "x": 26,
+            "y": 1453.5625,
+            "right": 74.84375,
+            "bottom": 1475.5625,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1587.5625,
+            "right": 380,
+            "bottom": 1744.5625,
+            "width": 370,
+            "height": 157
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "state": "best-only",
+      "positions": {
+        "research": {
+          "labelY": 1481.5625,
+          "titleY": 1499.5625,
+          "descriptionY": 1535.5625,
+          "cardHeight": 157,
+          "cardWidth": 370
+        },
+        "best-shots": {
+          "labelY": 1656.5625,
+          "titleY": 1674.5625,
+          "descriptionY": 1710.5625,
+          "cardHeight": 157,
+          "cardWidth": 370
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 877.5625,
+          "descriptionY": 903.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 1082.5625,
+          "descriptionY": 1108.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 1287.5625,
+          "descriptionY": 1313.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1412.5625,
+            "right": 380,
+            "bottom": 1569.5625,
+            "width": 370,
+            "height": 157
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1587.5625,
+            "right": 380,
+            "bottom": 1744.5625,
+            "width": 370,
+            "height": 157
+          },
+          "notice": {
+            "x": 26,
+            "y": 1628.5625,
+            "right": 364,
+            "bottom": 1650.5625,
+            "width": 338,
+            "height": 22
+          },
+          "badge": {
+            "x": 26,
+            "y": 1628.5625,
+            "right": 74.84375,
+            "bottom": 1650.5625,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "state": "expired",
+      "positions": {
+        "research": {
+          "labelY": 1481.5625,
+          "titleY": 1499.5625,
+          "descriptionY": 1535.5625,
+          "cardHeight": 157,
+          "cardWidth": 370
+        },
+        "best-shots": {
+          "labelY": 1656.5625,
+          "titleY": 1674.5625,
+          "descriptionY": 1710.5625,
+          "cardHeight": 157,
+          "cardWidth": 370
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 877.5625,
+          "descriptionY": 903.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 1082.5625,
+          "descriptionY": 1108.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 1287.5625,
+          "descriptionY": 1313.5625,
+          "cardHeight": 98,
+          "cardWidth": 340
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1412.5625,
+            "right": 380,
+            "bottom": 1569.5625,
+            "width": 370,
+            "height": 157
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1587.5625,
+            "right": 380,
+            "bottom": 1744.5625,
+            "width": 370,
+            "height": 157
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "state": "off",
+      "positions": {
+        "research": {
+          "labelY": 1541.125,
+          "titleY": 1559.125,
+          "descriptionY": 1592.125,
+          "cardHeight": 157,
+          "cardWidth": 300
+        },
+        "best-shots": {
+          "labelY": 1716.125,
+          "titleY": 1734.125,
+          "descriptionY": 1767.125,
+          "cardHeight": 157,
+          "cardWidth": 300
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 934.125,
+          "descriptionY": 960.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 1139.125,
+          "descriptionY": 1165.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 1344.125,
+          "descriptionY": 1370.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1469.125,
+            "right": 310,
+            "bottom": 1626.125,
+            "width": 300,
+            "height": 157
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1644.125,
+            "right": 310,
+            "bottom": 1801.125,
+            "width": 300,
+            "height": 157
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "state": "new",
+      "positions": {
+        "research": {
+          "labelY": 1541.125,
+          "titleY": 1559.125,
+          "descriptionY": 1592.125,
+          "cardHeight": 157,
+          "cardWidth": 300
+        },
+        "best-shots": {
+          "labelY": 1716.125,
+          "titleY": 1734.125,
+          "descriptionY": 1767.125,
+          "cardHeight": 157,
+          "cardWidth": 300
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 934.125,
+          "descriptionY": 960.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 1139.125,
+          "descriptionY": 1165.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 1344.125,
+          "descriptionY": 1370.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1469.125,
+            "right": 310,
+            "bottom": 1626.125,
+            "width": 300,
+            "height": 157
+          },
+          "notice": {
+            "x": 26,
+            "y": 1513.125,
+            "right": 294,
+            "bottom": 1535.125,
+            "width": 268,
+            "height": 22
+          },
+          "badge": {
+            "x": 26,
+            "y": 1513.125,
+            "right": 74.84375,
+            "bottom": 1535.125,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1644.125,
+            "right": 310,
+            "bottom": 1801.125,
+            "width": 300,
+            "height": 157
+          },
+          "notice": {
+            "x": 26,
+            "y": 1688.125,
+            "right": 294,
+            "bottom": 1710.125,
+            "width": 268,
+            "height": 22
+          },
+          "badge": {
+            "x": 26,
+            "y": 1688.125,
+            "right": 74.84375,
+            "bottom": 1710.125,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "state": "identified",
+      "positions": {
+        "research": {
+          "labelY": 1541.125,
+          "titleY": 1559.125,
+          "descriptionY": 1592.125,
+          "cardHeight": 157,
+          "cardWidth": 300
+        },
+        "best-shots": {
+          "labelY": 1716.125,
+          "titleY": 1734.125,
+          "descriptionY": 1767.125,
+          "cardHeight": 157,
+          "cardWidth": 300
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 934.125,
+          "descriptionY": 960.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 1139.125,
+          "descriptionY": 1165.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 1344.125,
+          "descriptionY": 1370.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1469.125,
+            "right": 310,
+            "bottom": 1626.125,
+            "width": 300,
+            "height": 157
+          },
+          "notice": {
+            "x": 26,
+            "y": 1513.125,
+            "right": 294,
+            "bottom": 1535.125,
+            "width": 268,
+            "height": 22
+          },
+          "badge": {
+            "x": 26,
+            "y": 1513.125,
+            "right": 110.15625,
+            "bottom": 1535.125,
+            "width": 84.15625,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1644.125,
+            "right": 310,
+            "bottom": 1801.125,
+            "width": 300,
+            "height": 157
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "state": "long",
+      "positions": {
+        "research": {
+          "labelY": 1541.125,
+          "titleY": 1559.125,
+          "descriptionY": 1592.125,
+          "cardHeight": 157,
+          "cardWidth": 300
+        },
+        "best-shots": {
+          "labelY": 1716.125,
+          "titleY": 1734.125,
+          "descriptionY": 1767.125,
+          "cardHeight": 157,
+          "cardWidth": 300
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 934.125,
+          "descriptionY": 960.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 1139.125,
+          "descriptionY": 1165.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 1344.125,
+          "descriptionY": 1370.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1469.125,
+            "right": 310,
+            "bottom": 1626.125,
+            "width": 300,
+            "height": 157
+          },
+          "notice": {
+            "x": 26,
+            "y": 1513.125,
+            "right": 294,
+            "bottom": 1535.125,
+            "width": 268,
+            "height": 22
+          },
+          "badge": {
+            "x": 26,
+            "y": 1513.125,
+            "right": 74.84375,
+            "bottom": 1535.125,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1644.125,
+            "right": 310,
+            "bottom": 1801.125,
+            "width": 300,
+            "height": 157
+          },
+          "notice": {
+            "x": 26,
+            "y": 1688.125,
+            "right": 294,
+            "bottom": 1710.125,
+            "width": 268,
+            "height": 22
+          },
+          "badge": {
+            "x": 26,
+            "y": 1688.125,
+            "right": 74.84375,
+            "bottom": 1710.125,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "state": "both",
+      "positions": {
+        "research": {
+          "labelY": 1541.125,
+          "titleY": 1559.125,
+          "descriptionY": 1592.125,
+          "cardHeight": 157,
+          "cardWidth": 300
+        },
+        "best-shots": {
+          "labelY": 1716.125,
+          "titleY": 1734.125,
+          "descriptionY": 1767.125,
+          "cardHeight": 157,
+          "cardWidth": 300
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 934.125,
+          "descriptionY": 960.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 1139.125,
+          "descriptionY": 1165.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 1344.125,
+          "descriptionY": 1370.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1469.125,
+            "right": 310,
+            "bottom": 1626.125,
+            "width": 300,
+            "height": 157
+          },
+          "notice": {
+            "x": 26,
+            "y": 1513.125,
+            "right": 294,
+            "bottom": 1535.125,
+            "width": 268,
+            "height": 22
+          },
+          "badge": {
+            "x": 26,
+            "y": 1513.125,
+            "right": 110.15625,
+            "bottom": 1535.125,
+            "width": 84.15625,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1644.125,
+            "right": 310,
+            "bottom": 1801.125,
+            "width": 300,
+            "height": 157
+          },
+          "notice": {
+            "x": 26,
+            "y": 1688.125,
+            "right": 294,
+            "bottom": 1710.125,
+            "width": 268,
+            "height": 22
+          },
+          "badge": {
+            "x": 26,
+            "y": 1688.125,
+            "right": 74.84375,
+            "bottom": 1710.125,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "state": "research-only",
+      "positions": {
+        "research": {
+          "labelY": 1541.125,
+          "titleY": 1559.125,
+          "descriptionY": 1592.125,
+          "cardHeight": 157,
+          "cardWidth": 300
+        },
+        "best-shots": {
+          "labelY": 1716.125,
+          "titleY": 1734.125,
+          "descriptionY": 1767.125,
+          "cardHeight": 157,
+          "cardWidth": 300
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 934.125,
+          "descriptionY": 960.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 1139.125,
+          "descriptionY": 1165.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 1344.125,
+          "descriptionY": 1370.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1469.125,
+            "right": 310,
+            "bottom": 1626.125,
+            "width": 300,
+            "height": 157
+          },
+          "notice": {
+            "x": 26,
+            "y": 1513.125,
+            "right": 294,
+            "bottom": 1535.125,
+            "width": 268,
+            "height": 22
+          },
+          "badge": {
+            "x": 26,
+            "y": 1513.125,
+            "right": 74.84375,
+            "bottom": 1535.125,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1644.125,
+            "right": 310,
+            "bottom": 1801.125,
+            "width": 300,
+            "height": 157
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "state": "best-only",
+      "positions": {
+        "research": {
+          "labelY": 1541.125,
+          "titleY": 1559.125,
+          "descriptionY": 1592.125,
+          "cardHeight": 157,
+          "cardWidth": 300
+        },
+        "best-shots": {
+          "labelY": 1716.125,
+          "titleY": 1734.125,
+          "descriptionY": 1767.125,
+          "cardHeight": 157,
+          "cardWidth": 300
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 934.125,
+          "descriptionY": 960.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 1139.125,
+          "descriptionY": 1165.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 1344.125,
+          "descriptionY": 1370.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1469.125,
+            "right": 310,
+            "bottom": 1626.125,
+            "width": 300,
+            "height": 157
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1644.125,
+            "right": 310,
+            "bottom": 1801.125,
+            "width": 300,
+            "height": 157
+          },
+          "notice": {
+            "x": 26,
+            "y": 1688.125,
+            "right": 294,
+            "bottom": 1710.125,
+            "width": 268,
+            "height": 22
+          },
+          "badge": {
+            "x": 26,
+            "y": 1688.125,
+            "right": 74.84375,
+            "bottom": 1710.125,
+            "width": 48.84375,
+            "height": 22
+          },
+          "noticePosition": "absolute",
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "state": "expired",
+      "positions": {
+        "research": {
+          "labelY": 1541.125,
+          "titleY": 1559.125,
+          "descriptionY": 1592.125,
+          "cardHeight": 157,
+          "cardWidth": 300
+        },
+        "best-shots": {
+          "labelY": 1716.125,
+          "titleY": 1734.125,
+          "descriptionY": 1767.125,
+          "cardHeight": 157,
+          "cardWidth": 300
+        },
+        "guide": {
+          "labelY": null,
+          "titleY": 934.125,
+          "descriptionY": 960.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        },
+        "season": {
+          "labelY": null,
+          "titleY": 1139.125,
+          "descriptionY": 1165.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        },
+        "features": {
+          "labelY": null,
+          "titleY": 1344.125,
+          "descriptionY": 1370.125,
+          "cardHeight": 98,
+          "cardWidth": 270
+        }
+      },
+      "geometry": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1469.125,
+            "right": 310,
+            "bottom": 1626.125,
+            "width": 300,
+            "height": 157
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1644.125,
+            "right": 310,
+            "bottom": 1801.125,
+            "width": 300,
+            "height": 157
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15
+        }
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "width": 1280,
+      "before": [
+        {
+          "name": "research",
+          "card": {
+            "x": 72,
+            "y": 627,
+            "right": 630,
+            "bottom": 792,
+            "width": 558,
+            "height": 165
+          },
+          "label": {
+            "x": 91,
+            "y": 670,
+            "right": 611,
+            "bottom": 682,
+            "width": 520,
+            "height": 12
+          },
+          "title": {
+            "x": 91,
+            "y": 688,
+            "right": 611,
+            "bottom": 723,
+            "width": 520,
+            "height": 35
+          },
+          "description": {
+            "x": 91,
+            "y": 728,
+            "right": 611,
+            "bottom": 747,
+            "width": 520,
+            "height": 19
+          },
+          "content": {
+            "x": 73,
+            "y": 628,
+            "right": 629,
+            "bottom": 791,
+            "width": 556,
+            "height": 163
+          },
+          "details": {
+            "x": 91,
+            "y": 728,
+            "right": 611,
+            "bottom": 774,
+            "width": 520,
+            "height": 46
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "static",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 27,
+          "belowDescription": 45,
+          "signature": {
+            "href": "research.html",
+            "background": "url(\"assets/research-lab-cabin.webp\")",
+            "backgroundPosition": "78% 50%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 26.4px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 650,
+            "y": 627,
+            "right": 1208,
+            "bottom": 792,
+            "width": 558,
+            "height": 165
+          },
+          "label": {
+            "x": 669,
+            "y": 670,
+            "right": 1189,
+            "bottom": 682,
+            "width": 520,
+            "height": 12
+          },
+          "title": {
+            "x": 669,
+            "y": 688,
+            "right": 1189,
+            "bottom": 723,
+            "width": 520,
+            "height": 35
+          },
+          "description": {
+            "x": 669,
+            "y": 728,
+            "right": 1189,
+            "bottom": 747,
+            "width": 520,
+            "height": 19
+          },
+          "content": {
+            "x": 651,
+            "y": 628,
+            "right": 1207,
+            "bottom": 791,
+            "width": 556,
+            "height": 163
+          },
+          "details": {
+            "x": 669,
+            "y": 728,
+            "right": 1189,
+            "bottom": 774,
+            "width": 520,
+            "height": 46
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "static",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 27,
+          "belowDescription": 45,
+          "signature": {
+            "href": "best-shots.html",
+            "background": "url(\"assets/new-top-best-shots-camera-mushrooms.webp\")",
+            "backgroundPosition": "50% 58%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 26.4px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        }
+      ],
+      "published": [
+        {
+          "name": "research",
+          "card": {
+            "x": 72,
+            "y": 627,
+            "right": 630,
+            "bottom": 784,
+            "width": 558,
+            "height": 157
+          },
+          "label": {
+            "x": 91,
+            "y": 670,
+            "right": 611,
+            "bottom": 682,
+            "width": 520,
+            "height": 12
+          },
+          "title": {
+            "x": 91,
+            "y": 688,
+            "right": 611,
+            "bottom": 723,
+            "width": 520,
+            "height": 35
+          },
+          "description": {
+            "x": 91,
+            "y": 737.5,
+            "right": 287,
+            "bottom": 756.5,
+            "width": 196,
+            "height": 19
+          },
+          "content": {
+            "x": 73,
+            "y": 628,
+            "right": 629,
+            "bottom": 783,
+            "width": 556,
+            "height": 155
+          },
+          "details": {
+            "x": 91,
+            "y": 728,
+            "right": 611,
+            "bottom": 766,
+            "width": 520,
+            "height": 38
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "static",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 19,
+          "belowDescription": 27.5,
+          "signature": {
+            "href": "research.html",
+            "background": "url(\"assets/research-lab-cabin.webp\")",
+            "backgroundPosition": "78% 50%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 26.4px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 650,
+            "y": 627,
+            "right": 1208,
+            "bottom": 784,
+            "width": 558,
+            "height": 157
+          },
+          "label": {
+            "x": 669,
+            "y": 670,
+            "right": 1189,
+            "bottom": 682,
+            "width": 520,
+            "height": 12
+          },
+          "title": {
+            "x": 669,
+            "y": 688,
+            "right": 1189,
+            "bottom": 723,
+            "width": 520,
+            "height": 35
+          },
+          "description": {
+            "x": 669,
+            "y": 737.5,
+            "right": 879,
+            "bottom": 756.5,
+            "width": 210,
+            "height": 19
+          },
+          "content": {
+            "x": 651,
+            "y": 628,
+            "right": 1207,
+            "bottom": 783,
+            "width": 556,
+            "height": 155
+          },
+          "details": {
+            "x": 669,
+            "y": 728,
+            "right": 1189,
+            "bottom": 766,
+            "width": 520,
+            "height": 38
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "static",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 19,
+          "belowDescription": 27.5,
+          "signature": {
+            "href": "best-shots.html",
+            "background": "url(\"assets/new-top-best-shots-camera-mushrooms.webp\")",
+            "backgroundPosition": "50% 58%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 26.4px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        }
+      ],
+      "after": [
+        {
+          "name": "research",
+          "card": {
+            "x": 72,
+            "y": 627,
+            "right": 630,
+            "bottom": 791.984375,
+            "width": 558,
+            "height": 164.984375
+          },
+          "label": {
+            "x": 91,
+            "y": 696.984375,
+            "right": 611,
+            "bottom": 708.984375,
+            "width": 520,
+            "height": 12
+          },
+          "title": {
+            "x": 91,
+            "y": 714.984375,
+            "right": 611,
+            "bottom": 749.984375,
+            "width": 520,
+            "height": 35
+          },
+          "description": {
+            "x": 91,
+            "y": 754.984375,
+            "right": 611,
+            "bottom": 773.984375,
+            "width": 520,
+            "height": 19
+          },
+          "content": {
+            "x": 73,
+            "y": 628,
+            "right": 629,
+            "bottom": 790.984375,
+            "width": 556,
+            "height": 162.984375
+          },
+          "details": {
+            "x": 91,
+            "y": 754.984375,
+            "right": 611,
+            "bottom": 773.984375,
+            "width": 520,
+            "height": 19
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18,
+          "signature": {
+            "href": "research.html",
+            "background": "url(\"assets/research-lab-cabin.webp\")",
+            "backgroundPosition": "78% 50%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 26.4px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 650,
+            "y": 627,
+            "right": 1208,
+            "bottom": 791.984375,
+            "width": 558,
+            "height": 164.984375
+          },
+          "label": {
+            "x": 669,
+            "y": 696.984375,
+            "right": 1189,
+            "bottom": 708.984375,
+            "width": 520,
+            "height": 12
+          },
+          "title": {
+            "x": 669,
+            "y": 714.984375,
+            "right": 1189,
+            "bottom": 749.984375,
+            "width": 520,
+            "height": 35
+          },
+          "description": {
+            "x": 669,
+            "y": 754.984375,
+            "right": 1189,
+            "bottom": 773.984375,
+            "width": 520,
+            "height": 19
+          },
+          "content": {
+            "x": 651,
+            "y": 628,
+            "right": 1207,
+            "bottom": 790.984375,
+            "width": 556,
+            "height": 162.984375
+          },
+          "details": {
+            "x": 669,
+            "y": 754.984375,
+            "right": 1189,
+            "bottom": 773.984375,
+            "width": 520,
+            "height": 19
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18,
+          "signature": {
+            "href": "best-shots.html",
+            "background": "url(\"assets/new-top-best-shots-camera-mushrooms.webp\")",
+            "backgroundPosition": "50% 58%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 26.4px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "before": [
+        {
+          "name": "research",
+          "card": {
+            "x": 22,
+            "y": 1135,
+            "right": 746,
+            "bottom": 1297,
+            "width": 724,
+            "height": 162
+          },
+          "label": {
+            "x": 41,
+            "y": 1179,
+            "right": 727,
+            "bottom": 1191,
+            "width": 686,
+            "height": 12
+          },
+          "title": {
+            "x": 41,
+            "y": 1197,
+            "right": 727,
+            "bottom": 1228,
+            "width": 686,
+            "height": 31
+          },
+          "description": {
+            "x": 41,
+            "y": 1233,
+            "right": 727,
+            "bottom": 1252,
+            "width": 686,
+            "height": 19
+          },
+          "content": {
+            "x": 23,
+            "y": 1137,
+            "right": 745,
+            "bottom": 1296,
+            "width": 722,
+            "height": 159
+          },
+          "details": {
+            "x": 41,
+            "y": 1233,
+            "right": 727,
+            "bottom": 1279,
+            "width": 686,
+            "height": 46
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "static",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 27,
+          "belowDescription": 45,
+          "signature": {
+            "href": "research.html",
+            "background": "url(\"assets/research-lab-cabin.webp\")",
+            "backgroundPosition": "78% 50%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 23.04px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 22,
+            "y": 1311,
+            "right": 746,
+            "bottom": 1473,
+            "width": 724,
+            "height": 162
+          },
+          "label": {
+            "x": 41,
+            "y": 1355,
+            "right": 727,
+            "bottom": 1367,
+            "width": 686,
+            "height": 12
+          },
+          "title": {
+            "x": 41,
+            "y": 1373,
+            "right": 727,
+            "bottom": 1404,
+            "width": 686,
+            "height": 31
+          },
+          "description": {
+            "x": 41,
+            "y": 1409,
+            "right": 727,
+            "bottom": 1428,
+            "width": 686,
+            "height": 19
+          },
+          "content": {
+            "x": 23,
+            "y": 1313,
+            "right": 745,
+            "bottom": 1472,
+            "width": 722,
+            "height": 159
+          },
+          "details": {
+            "x": 41,
+            "y": 1409,
+            "right": 727,
+            "bottom": 1455,
+            "width": 686,
+            "height": 46
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "static",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 27,
+          "belowDescription": 45,
+          "signature": {
+            "href": "best-shots.html",
+            "background": "url(\"assets/new-top-best-shots-camera-mushrooms.webp\")",
+            "backgroundPosition": "50% 58%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 23.04px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        }
+      ],
+      "published": [
+        {
+          "name": "research",
+          "card": {
+            "x": 22,
+            "y": 1135,
+            "right": 746,
+            "bottom": 1297,
+            "width": 724,
+            "height": 162
+          },
+          "label": {
+            "x": 41,
+            "y": 1187,
+            "right": 727,
+            "bottom": 1199,
+            "width": 686,
+            "height": 12
+          },
+          "title": {
+            "x": 41,
+            "y": 1205,
+            "right": 727,
+            "bottom": 1236,
+            "width": 686,
+            "height": 31
+          },
+          "description": {
+            "x": 41,
+            "y": 1250.5,
+            "right": 237,
+            "bottom": 1269.5,
+            "width": 196,
+            "height": 19
+          },
+          "content": {
+            "x": 23,
+            "y": 1145,
+            "right": 745,
+            "bottom": 1296,
+            "width": 722,
+            "height": 151
+          },
+          "details": {
+            "x": 41,
+            "y": 1241,
+            "right": 727,
+            "bottom": 1279,
+            "width": 686,
+            "height": 38
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "static",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 19,
+          "belowDescription": 27.5,
+          "signature": {
+            "href": "research.html",
+            "background": "url(\"assets/research-lab-cabin.webp\")",
+            "backgroundPosition": "78% 50%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 23.04px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 22,
+            "y": 1311,
+            "right": 746,
+            "bottom": 1473,
+            "width": 724,
+            "height": 162
+          },
+          "label": {
+            "x": 41,
+            "y": 1363,
+            "right": 727,
+            "bottom": 1375,
+            "width": 686,
+            "height": 12
+          },
+          "title": {
+            "x": 41,
+            "y": 1381,
+            "right": 727,
+            "bottom": 1412,
+            "width": 686,
+            "height": 31
+          },
+          "description": {
+            "x": 41,
+            "y": 1426.5,
+            "right": 251,
+            "bottom": 1445.5,
+            "width": 210,
+            "height": 19
+          },
+          "content": {
+            "x": 23,
+            "y": 1321,
+            "right": 745,
+            "bottom": 1472,
+            "width": 722,
+            "height": 151
+          },
+          "details": {
+            "x": 41,
+            "y": 1417,
+            "right": 727,
+            "bottom": 1455,
+            "width": 686,
+            "height": 38
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "static",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 19,
+          "belowDescription": 27.5,
+          "signature": {
+            "href": "best-shots.html",
+            "background": "url(\"assets/new-top-best-shots-camera-mushrooms.webp\")",
+            "backgroundPosition": "50% 58%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 23.04px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        }
+      ],
+      "after": [
+        {
+          "name": "research",
+          "card": {
+            "x": 22,
+            "y": 1135,
+            "right": 746,
+            "bottom": 1297,
+            "width": 724,
+            "height": 162
+          },
+          "label": {
+            "x": 41,
+            "y": 1206,
+            "right": 727,
+            "bottom": 1218,
+            "width": 686,
+            "height": 12
+          },
+          "title": {
+            "x": 41,
+            "y": 1224,
+            "right": 727,
+            "bottom": 1255,
+            "width": 686,
+            "height": 31
+          },
+          "description": {
+            "x": 41,
+            "y": 1260,
+            "right": 727,
+            "bottom": 1279,
+            "width": 686,
+            "height": 19
+          },
+          "content": {
+            "x": 23,
+            "y": 1137.015625,
+            "right": 745,
+            "bottom": 1296,
+            "width": 722,
+            "height": 158.984375
+          },
+          "details": {
+            "x": 41,
+            "y": 1260,
+            "right": 727,
+            "bottom": 1279,
+            "width": 686,
+            "height": 19
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18,
+          "signature": {
+            "href": "research.html",
+            "background": "url(\"assets/research-lab-cabin.webp\")",
+            "backgroundPosition": "78% 50%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 23.04px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 22,
+            "y": 1311,
+            "right": 746,
+            "bottom": 1473,
+            "width": 724,
+            "height": 162
+          },
+          "label": {
+            "x": 41,
+            "y": 1382,
+            "right": 727,
+            "bottom": 1394,
+            "width": 686,
+            "height": 12
+          },
+          "title": {
+            "x": 41,
+            "y": 1400,
+            "right": 727,
+            "bottom": 1431,
+            "width": 686,
+            "height": 31
+          },
+          "description": {
+            "x": 41,
+            "y": 1436,
+            "right": 727,
+            "bottom": 1455,
+            "width": 686,
+            "height": 19
+          },
+          "content": {
+            "x": 23,
+            "y": 1313.015625,
+            "right": 745,
+            "bottom": 1472,
+            "width": 722,
+            "height": 158.984375
+          },
+          "details": {
+            "x": 41,
+            "y": 1436,
+            "right": 727,
+            "bottom": 1455,
+            "width": 686,
+            "height": 19
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 17,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 18,
+          "signature": {
+            "href": "best-shots.html",
+            "background": "url(\"assets/new-top-best-shots-camera-mushrooms.webp\")",
+            "backgroundPosition": "50% 58%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 23.04px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "before": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1412.5625,
+            "right": 380,
+            "bottom": 1569.5625,
+            "width": 370,
+            "height": 157
+          },
+          "label": {
+            "x": 26,
+            "y": 1454.5625,
+            "right": 364,
+            "bottom": 1466.5625,
+            "width": 338,
+            "height": 12
+          },
+          "title": {
+            "x": 26,
+            "y": 1472.5625,
+            "right": 364,
+            "bottom": 1503.5625,
+            "width": 338,
+            "height": 31
+          },
+          "description": {
+            "x": 26,
+            "y": 1508.5625,
+            "right": 364,
+            "bottom": 1527.5625,
+            "width": 338,
+            "height": 19
+          },
+          "content": {
+            "x": 11,
+            "y": 1420.5625,
+            "right": 379,
+            "bottom": 1568.5625,
+            "width": 368,
+            "height": 148
+          },
+          "details": {
+            "x": 26,
+            "y": 1508.5625,
+            "right": 364,
+            "bottom": 1554.5625,
+            "width": 338,
+            "height": 46
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "static",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 27,
+          "belowDescription": 42,
+          "signature": {
+            "href": "research.html",
+            "background": "url(\"assets/research-lab-cabin.webp\")",
+            "backgroundPosition": "78% 50%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 22.72px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1587.5625,
+            "right": 380,
+            "bottom": 1744.5625,
+            "width": 370,
+            "height": 157
+          },
+          "label": {
+            "x": 26,
+            "y": 1629.5625,
+            "right": 364,
+            "bottom": 1641.5625,
+            "width": 338,
+            "height": 12
+          },
+          "title": {
+            "x": 26,
+            "y": 1647.5625,
+            "right": 364,
+            "bottom": 1678.5625,
+            "width": 338,
+            "height": 31
+          },
+          "description": {
+            "x": 26,
+            "y": 1683.5625,
+            "right": 364,
+            "bottom": 1702.5625,
+            "width": 338,
+            "height": 19
+          },
+          "content": {
+            "x": 11,
+            "y": 1595.5625,
+            "right": 379,
+            "bottom": 1743.5625,
+            "width": 368,
+            "height": 148
+          },
+          "details": {
+            "x": 26,
+            "y": 1683.5625,
+            "right": 364,
+            "bottom": 1729.5625,
+            "width": 338,
+            "height": 46
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "static",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 27,
+          "belowDescription": 42,
+          "signature": {
+            "href": "best-shots.html",
+            "background": "url(\"assets/new-top-best-shots-camera-mushrooms.webp\")",
+            "backgroundPosition": "50% 58%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 22.72px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        }
+      ],
+      "published": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1335.78125,
+            "right": 380,
+            "bottom": 1492.78125,
+            "width": 370,
+            "height": 157
+          },
+          "label": {
+            "x": 26,
+            "y": 1385.78125,
+            "right": 364,
+            "bottom": 1397.78125,
+            "width": 338,
+            "height": 12
+          },
+          "title": {
+            "x": 26,
+            "y": 1403.78125,
+            "right": 364,
+            "bottom": 1434.78125,
+            "width": 338,
+            "height": 31
+          },
+          "description": {
+            "x": 26,
+            "y": 1449.28125,
+            "right": 222,
+            "bottom": 1468.28125,
+            "width": 196,
+            "height": 19
+          },
+          "content": {
+            "x": 11,
+            "y": 1351.78125,
+            "right": 379,
+            "bottom": 1491.78125,
+            "width": 368,
+            "height": 140
+          },
+          "details": {
+            "x": 26,
+            "y": 1439.78125,
+            "right": 364,
+            "bottom": 1477.78125,
+            "width": 338,
+            "height": 38
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "static",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 19,
+          "belowDescription": 24.5,
+          "signature": {
+            "href": "research.html",
+            "background": "url(\"assets/research-lab-cabin.webp\")",
+            "backgroundPosition": "78% 50%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 22.72px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1510.78125,
+            "right": 380,
+            "bottom": 1667.78125,
+            "width": 370,
+            "height": 157
+          },
+          "label": {
+            "x": 26,
+            "y": 1560.78125,
+            "right": 364,
+            "bottom": 1572.78125,
+            "width": 338,
+            "height": 12
+          },
+          "title": {
+            "x": 26,
+            "y": 1578.78125,
+            "right": 364,
+            "bottom": 1609.78125,
+            "width": 338,
+            "height": 31
+          },
+          "description": {
+            "x": 26,
+            "y": 1624.28125,
+            "right": 236,
+            "bottom": 1643.28125,
+            "width": 210,
+            "height": 19
+          },
+          "content": {
+            "x": 11,
+            "y": 1526.78125,
+            "right": 379,
+            "bottom": 1666.78125,
+            "width": 368,
+            "height": 140
+          },
+          "details": {
+            "x": 26,
+            "y": 1614.78125,
+            "right": 364,
+            "bottom": 1652.78125,
+            "width": 338,
+            "height": 38
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "static",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 19,
+          "belowDescription": 24.5,
+          "signature": {
+            "href": "best-shots.html",
+            "background": "url(\"assets/new-top-best-shots-camera-mushrooms.webp\")",
+            "backgroundPosition": "50% 58%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 22.72px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        }
+      ],
+      "after": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1412.5625,
+            "right": 380,
+            "bottom": 1569.5625,
+            "width": 370,
+            "height": 157
+          },
+          "label": {
+            "x": 26,
+            "y": 1481.5625,
+            "right": 364,
+            "bottom": 1493.5625,
+            "width": 338,
+            "height": 12
+          },
+          "title": {
+            "x": 26,
+            "y": 1499.5625,
+            "right": 364,
+            "bottom": 1530.5625,
+            "width": 338,
+            "height": 31
+          },
+          "description": {
+            "x": 26,
+            "y": 1535.5625,
+            "right": 364,
+            "bottom": 1554.5625,
+            "width": 338,
+            "height": 19
+          },
+          "content": {
+            "x": 11,
+            "y": 1420.578125,
+            "right": 379,
+            "bottom": 1568.5625,
+            "width": 368,
+            "height": 147.984375
+          },
+          "details": {
+            "x": 26,
+            "y": 1535.5625,
+            "right": 364,
+            "bottom": 1554.5625,
+            "width": 338,
+            "height": 19
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15,
+          "signature": {
+            "href": "research.html",
+            "background": "url(\"assets/research-lab-cabin.webp\")",
+            "backgroundPosition": "78% 50%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 22.72px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1587.5625,
+            "right": 380,
+            "bottom": 1744.5625,
+            "width": 370,
+            "height": 157
+          },
+          "label": {
+            "x": 26,
+            "y": 1656.5625,
+            "right": 364,
+            "bottom": 1668.5625,
+            "width": 338,
+            "height": 12
+          },
+          "title": {
+            "x": 26,
+            "y": 1674.5625,
+            "right": 364,
+            "bottom": 1705.5625,
+            "width": 338,
+            "height": 31
+          },
+          "description": {
+            "x": 26,
+            "y": 1710.5625,
+            "right": 364,
+            "bottom": 1729.5625,
+            "width": 338,
+            "height": 19
+          },
+          "content": {
+            "x": 11,
+            "y": 1595.578125,
+            "right": 379,
+            "bottom": 1743.5625,
+            "width": 368,
+            "height": 147.984375
+          },
+          "details": {
+            "x": 26,
+            "y": 1710.5625,
+            "right": 364,
+            "bottom": 1729.5625,
+            "width": 338,
+            "height": 19
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15,
+          "signature": {
+            "href": "best-shots.html",
+            "background": "url(\"assets/new-top-best-shots-camera-mushrooms.webp\")",
+            "backgroundPosition": "50% 58%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 22.72px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "before": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1469.125,
+            "right": 310,
+            "bottom": 1626.125,
+            "width": 300,
+            "height": 157
+          },
+          "label": {
+            "x": 26,
+            "y": 1514.125,
+            "right": 294,
+            "bottom": 1526.125,
+            "width": 268,
+            "height": 12
+          },
+          "title": {
+            "x": 26,
+            "y": 1532.125,
+            "right": 294,
+            "bottom": 1560.125,
+            "width": 268,
+            "height": 28
+          },
+          "description": {
+            "x": 26,
+            "y": 1565.125,
+            "right": 294,
+            "bottom": 1584.125,
+            "width": 268,
+            "height": 19
+          },
+          "content": {
+            "x": 11,
+            "y": 1480.125,
+            "right": 309,
+            "bottom": 1625.125,
+            "width": 298,
+            "height": 145
+          },
+          "details": {
+            "x": 26,
+            "y": 1565.125,
+            "right": 294,
+            "bottom": 1611.125,
+            "width": 268,
+            "height": 46
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "static",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 27,
+          "belowDescription": 42,
+          "signature": {
+            "href": "research.html",
+            "background": "url(\"assets/research-lab-cabin.webp\")",
+            "backgroundPosition": "78% 50%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 20.8px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1644.125,
+            "right": 310,
+            "bottom": 1801.125,
+            "width": 300,
+            "height": 157
+          },
+          "label": {
+            "x": 26,
+            "y": 1689.125,
+            "right": 294,
+            "bottom": 1701.125,
+            "width": 268,
+            "height": 12
+          },
+          "title": {
+            "x": 26,
+            "y": 1707.125,
+            "right": 294,
+            "bottom": 1735.125,
+            "width": 268,
+            "height": 28
+          },
+          "description": {
+            "x": 26,
+            "y": 1740.125,
+            "right": 294,
+            "bottom": 1759.125,
+            "width": 268,
+            "height": 19
+          },
+          "content": {
+            "x": 11,
+            "y": 1655.125,
+            "right": 309,
+            "bottom": 1800.125,
+            "width": 298,
+            "height": 145
+          },
+          "details": {
+            "x": 26,
+            "y": 1740.125,
+            "right": 294,
+            "bottom": 1786.125,
+            "width": 268,
+            "height": 46
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "static",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 27,
+          "belowDescription": 42,
+          "signature": {
+            "href": "best-shots.html",
+            "background": "url(\"assets/new-top-best-shots-camera-mushrooms.webp\")",
+            "backgroundPosition": "50% 58%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 20.8px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        }
+      ],
+      "published": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1412.75,
+            "right": 310,
+            "bottom": 1569.75,
+            "width": 300,
+            "height": 157
+          },
+          "label": {
+            "x": 26,
+            "y": 1465.75,
+            "right": 294,
+            "bottom": 1477.75,
+            "width": 268,
+            "height": 12
+          },
+          "title": {
+            "x": 26,
+            "y": 1483.75,
+            "right": 294,
+            "bottom": 1511.75,
+            "width": 268,
+            "height": 28
+          },
+          "description": {
+            "x": 26,
+            "y": 1526.25,
+            "right": 222,
+            "bottom": 1545.25,
+            "width": 196,
+            "height": 19
+          },
+          "content": {
+            "x": 11,
+            "y": 1431.75,
+            "right": 309,
+            "bottom": 1568.75,
+            "width": 298,
+            "height": 137
+          },
+          "details": {
+            "x": 26,
+            "y": 1516.75,
+            "right": 294,
+            "bottom": 1554.75,
+            "width": 268,
+            "height": 38
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "static",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 19,
+          "belowDescription": 24.5,
+          "signature": {
+            "href": "research.html",
+            "background": "url(\"assets/research-lab-cabin.webp\")",
+            "backgroundPosition": "78% 50%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 20.8px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1587.75,
+            "right": 310,
+            "bottom": 1744.75,
+            "width": 300,
+            "height": 157
+          },
+          "label": {
+            "x": 26,
+            "y": 1640.75,
+            "right": 294,
+            "bottom": 1652.75,
+            "width": 268,
+            "height": 12
+          },
+          "title": {
+            "x": 26,
+            "y": 1658.75,
+            "right": 294,
+            "bottom": 1686.75,
+            "width": 268,
+            "height": 28
+          },
+          "description": {
+            "x": 26,
+            "y": 1701.25,
+            "right": 236,
+            "bottom": 1720.25,
+            "width": 210,
+            "height": 19
+          },
+          "content": {
+            "x": 11,
+            "y": 1606.75,
+            "right": 309,
+            "bottom": 1743.75,
+            "width": 298,
+            "height": 137
+          },
+          "details": {
+            "x": 26,
+            "y": 1691.75,
+            "right": 294,
+            "bottom": 1729.75,
+            "width": 268,
+            "height": 38
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "static",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 19,
+          "belowDescription": 24.5,
+          "signature": {
+            "href": "best-shots.html",
+            "background": "url(\"assets/new-top-best-shots-camera-mushrooms.webp\")",
+            "backgroundPosition": "50% 58%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 20.8px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        }
+      ],
+      "after": [
+        {
+          "name": "research",
+          "card": {
+            "x": 10,
+            "y": 1469.125,
+            "right": 310,
+            "bottom": 1626.125,
+            "width": 300,
+            "height": 157
+          },
+          "label": {
+            "x": 26,
+            "y": 1541.125,
+            "right": 294,
+            "bottom": 1553.125,
+            "width": 268,
+            "height": 12
+          },
+          "title": {
+            "x": 26,
+            "y": 1559.125,
+            "right": 294,
+            "bottom": 1587.125,
+            "width": 268,
+            "height": 28
+          },
+          "description": {
+            "x": 26,
+            "y": 1592.125,
+            "right": 294,
+            "bottom": 1611.125,
+            "width": 268,
+            "height": 19
+          },
+          "content": {
+            "x": 11,
+            "y": 1480.140625,
+            "right": 309,
+            "bottom": 1625.125,
+            "width": 298,
+            "height": 144.984375
+          },
+          "details": {
+            "x": 26,
+            "y": 1592.125,
+            "right": 294,
+            "bottom": 1611.125,
+            "width": 268,
+            "height": 19
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15,
+          "signature": {
+            "href": "research.html",
+            "background": "url(\"assets/research-lab-cabin.webp\")",
+            "backgroundPosition": "78% 50%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 20.8px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        },
+        {
+          "name": "best-shots",
+          "card": {
+            "x": 10,
+            "y": 1644.125,
+            "right": 310,
+            "bottom": 1801.125,
+            "width": 300,
+            "height": 157
+          },
+          "label": {
+            "x": 26,
+            "y": 1716.125,
+            "right": 294,
+            "bottom": 1728.125,
+            "width": 268,
+            "height": 12
+          },
+          "title": {
+            "x": 26,
+            "y": 1734.125,
+            "right": 294,
+            "bottom": 1762.125,
+            "width": 268,
+            "height": 28
+          },
+          "description": {
+            "x": 26,
+            "y": 1767.125,
+            "right": 294,
+            "bottom": 1786.125,
+            "width": 268,
+            "height": 19
+          },
+          "content": {
+            "x": 11,
+            "y": 1655.140625,
+            "right": 309,
+            "bottom": 1800.125,
+            "width": 298,
+            "height": 144.984375
+          },
+          "details": {
+            "x": 26,
+            "y": 1767.125,
+            "right": 294,
+            "bottom": 1786.125,
+            "width": 268,
+            "height": 19
+          },
+          "notice": null,
+          "badge": null,
+          "noticePosition": null,
+          "copyPosition": "relative",
+          "paddingBottom": 14,
+          "bottomBorder": 1,
+          "detailsReservation": 0,
+          "belowDescription": 15,
+          "signature": {
+            "href": "best-shots.html",
+            "background": "url(\"assets/new-top-best-shots-camera-mushrooms.webp\")",
+            "backgroundPosition": "50% 58%",
+            "filter": "brightness(1.1) saturate(1.02)",
+            "shade": "linear-gradient(to top, rgba(10, 25, 16, 0.82), rgba(10, 25, 16, 0.22) 72%, rgba(0, 0, 0, 0))",
+            "titleFont": "650 20.8px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "titleLineHeight": "normal",
+            "descriptionFont": "14.08px / 19.008px -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+            "descriptionLineHeight": "19.008px"
+          }
+        }
+      ]
+    }
+  ],
+  "sheen_samples": {
+    "before": [
+      {
+        "time": 0,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0",
+        "transform": "matrix(1, 0, -0.344328, 1, 0, 0)",
+        "width": "17.7969px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "999px"
+      },
+      {
+        "time": 3942,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0",
+        "transform": "matrix(1, 0, -0.344328, 1, 0, 0)",
+        "width": "17.7969px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "999px"
+      },
+      {
+        "time": 3996,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0.8",
+        "transform": "matrix(1, 0, -0.344328, 1, 5.695, 0)",
+        "width": "17.7969px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "999px"
+      },
+      {
+        "time": 4320,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0.8",
+        "transform": "matrix(1, 0, -0.344328, 1, 39.865, 0)",
+        "width": "17.7969px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "999px"
+      },
+      {
+        "time": 4752,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0.8",
+        "transform": "matrix(1, 0, -0.344328, 1, 85.425, 0)",
+        "width": "17.7969px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "999px"
+      },
+      {
+        "time": 4860,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0",
+        "transform": "matrix(1, 0, -0.344328, 1, 85.425, 0)",
+        "width": "17.7969px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "999px"
+      },
+      {
+        "time": 5400,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0",
+        "transform": "matrix(1, 0, -0.344328, 1, 0, 0)",
+        "width": "17.7969px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "999px"
+      }
+    ],
+    "after": [
+      {
+        "time": 0,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0",
+        "transform": "matrix(1, 0, -0.344328, 1, 0, 0)",
+        "width": "17.7969px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "999px"
+      },
+      {
+        "time": 3942,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0",
+        "transform": "matrix(1, 0, -0.344328, 1, 0, 0)",
+        "width": "17.7969px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "999px"
+      },
+      {
+        "time": 3996,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0.8",
+        "transform": "matrix(1, 0, -0.344328, 1, 5.695, 0)",
+        "width": "17.7969px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "999px"
+      },
+      {
+        "time": 4320,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0.8",
+        "transform": "matrix(1, 0, -0.344328, 1, 39.865, 0)",
+        "width": "17.7969px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "999px"
+      },
+      {
+        "time": 4752,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0.8",
+        "transform": "matrix(1, 0, -0.344328, 1, 85.425, 0)",
+        "width": "17.7969px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "999px"
+      },
+      {
+        "time": 4860,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0",
+        "transform": "matrix(1, 0, -0.344328, 1, 85.425, 0)",
+        "width": "17.7969px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "999px"
+      },
+      {
+        "time": 5400,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0",
+        "transform": "matrix(1, 0, -0.344328, 1, 0, 0)",
+        "width": "17.7969px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "999px"
+      }
+    ]
+  },
+  "placement_delays": [
+    {
+      "card": "guide",
+      "delay": "0s"
+    },
+    {
+      "card": "guide",
+      "delay": "0s"
+    },
+    {
+      "card": "guide",
+      "delay": "0s"
+    },
+    {
+      "card": "portal-card portal-card--research",
+      "delay": "0s"
+    },
+    {
+      "card": "portal-card portal-card--best-shots",
+      "delay": "-2.7s"
+    }
+  ],
+  "issues": [],
+  "tested_code_head": "83db412c1812c80eeec3e4b5ce6d8db64de4f43a",
+  "actions_run": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/39138979165",
+  "artifact_sha256": "12bb3960d66b9aeef7d6a6bb21e750294e136e83634bd9674a19e446f80337c2",
+  "summary": {
+    "max_label_delta_px": 0,
+    "max_title_delta_px": 0,
+    "max_description_delta_px": 0,
+    "details_reservation_px": 0,
+    "max_card_height_change_from_previous_px": 0.015625,
+    "below_description_px": {
+      "1280": 18,
+      "768": 18,
+      "390": 15,
+      "320": 15
+    }
+  },
+  "protection": {
+    "photos": 933,
+    "unique_ids": 933,
+    "unique_urls": 933,
+    "best_shot_resolves_exactly_once": 12,
+    "research_open_cases": 66,
+    "retired_absent": 7,
+    "deleted_article_absent": true,
+    "protected_sources_unchanged": true,
+    "whole_badge_css_unchanged_from_start": true
+  }
+}
