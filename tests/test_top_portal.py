@@ -643,7 +643,7 @@ def test_typography_overlay_and_independent_card_spacing_polish():
     assert "linear-gradient(120deg,rgba(24,62,37,.93),rgba(41,83,50,.80))" not in guide_css
 
     assert ".portal-eyebrow { margin:0 0 6px;" in portal_css
-    assert ".portal-independent-links .portal-card__copy { gap:0; }" in portal_css
+    assert ".portal-independent-links .portal-card__copy { min-width:0; grid-template-columns:minmax(0,1fr); gap:0; }" in portal_css
     assert ".portal-independent-links .portal-eyebrow { margin-bottom:6px;" in portal_css
     # Both feature cards now reserve one common description row for the inline notice.
     assert ".portal-independent-links .portal-card__details { display:flex;" in portal_css

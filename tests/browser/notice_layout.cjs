@@ -44,6 +44,11 @@ const server=http.createServer((req,res)=>{
     check(style.height,22);check(style.weight,'700');check(style.transform,'none');
    }
    if(state==='long'){const summaries=await page.locator('.portal-update-summary').evaluateAll(es=>es.map(e=>({overflow:getComputedStyle(e).textOverflow,scroll:e.scrollWidth,client:e.clientWidth,visible:!!e.getClientRects().length})));console.log('Long summaries',JSON.stringify(summaries));check(summaries.filter(e=>e.visible).every(e=>e.overflow==='ellipsis'&&e.scroll>e.client),true);}
+   if(state==='new'){
+    const recordBadges=page.locator('.record-preview-heading .update-badge--new:not([hidden])');check(await recordBadges.count()>0,true);
+    for(const badge of await recordBadges.all())check(await badge.evaluate(e=>e.getBoundingClientRect().height),22);
+    await page.locator('.portal-records-hero').screenshot({path:path.join(shots,`${width}-records-new.png`),animations:'disabled'});
+   }
    if(['off','both','long'].includes(state)){
     await page.locator('.portal-independent-links').screenshot({path:path.join(shots,`${width}-${state}-cards.png`),animations:'disabled'});
     await page.locator('.portal-guide-list').screenshot({path:path.join(shots,`${width}-${state}-guide.png`),animations:'disabled'});
