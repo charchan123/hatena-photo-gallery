@@ -1316,3 +1316,13 @@ photo quarantine is introduced; unsupported changes retain fail-closed behavior.
 The local dashboard, paged photo review, search/filter, freshness and audit storage
 remain. Manual classification/old name/URL/deletion migration remains future work;
 existing admin knowledge/curated PR allowlists remain untouched.
+
+## PR #125 latest-main integration / pre-merge audit (2026-10-18 JST)
+
+- #126 and #124 are now merged/published. Verified main `bc9e3d4e7adb62b8e8da8e26a9009f07db5fb5a2`, gh-pages `b265b70b8ba872751d26dd38201d91fbe023f90e`, production897 / Best Shot12 / research66 / retired7.
+- Existing Draft #125 old head `1a28fb326fdc7f0d801263af341ce9748e5f0d23` integrated latest main with two-parent merge `3dfd883a1c8b98263018078f9ffd24800bab7d06`; no force push, rebase, or new PR. Squash-duplicate conflicts resolved after exact-content checks; main taxonomy50 is preserved in combined79.
+- Remaining36 additions yield933; existing897 ID/name/src/capture/EXIF/article metadata, previous7 automatic receipts, retirement/deletion receipts and research case/photo projections preserved. Old40 includes4 already published by #124; do not add them again.
+- Latest authenticated full API111 published articles /980 images, no source identity/updated-hash changes. Raw classification changes71 = new36 + existing classification metadata34 + plant exclusion1; no existing gallery-name changes.
+- Python963 + JS20 syntax/11 suites + guarded CI3 systems PASS. Reused real-page browser acceptance expanded310→599 at1280/390, including all36 new images, shared references, registered/unregistered favorites, Best Shot12, research66 and record counts.
+- Current evidence is appended to `audit/altless-final-2026-10-18/REPORT.md` and the JSON `main_integration_2026_10_18` keys. Prior audits remain historical. Temporary acceptance workflow is removed from final diff; production workflows/flags/protected data/PR123 unchanged.
+- STOP: Draft #125 awaits explicit user approval for merge AND resulting production regeneration/Pages publication. Do not mark ready, merge, dispatch production, or change public flags. Recheck current main/gh-pages/API before any separately authorized release.

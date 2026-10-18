@@ -24,6 +24,7 @@ from feature_ui import (_write_feature_page, generate_feature_page, load_feature
 from feature_overlay import validate_feature_production_state
 from research_ui import generate_research_page
 from best_shot_ui import generate_best_shot_pages
+from multi_subject import build_multi_subject_photo_overlays
 
 # ===========================
 # 珍しい / 人気キノコリスト（手動）
@@ -1003,6 +1004,15 @@ def match_subject_taxonomy(detected_label, taxonomy):
     if detected_label in taxonomy["exact_alias"]:
         return taxonomy["exact_alias"][detected_label], "alias_exact"
     entry = taxonomy["normalized"].get(normalize_taxonomy_key(detected_label))
+    # Broad-sense and narrow-sense names must not silently collapse. In
+    # particular, preserve already published アンズタケ photographs while
+    # accepting exact アンズタケ(広義) and its explicit author-corrected alias.
+    if entry is not None:
+        canonical = entry.get("canonical_name", "")
+        has_broad = "(広義)" in canonical or "（広義）" in canonical
+        detected_broad = "(広義)" in detected_label or "（広義）" in detected_label
+        if has_broad and not detected_broad:
+            return None, "none"
     return (entry, "normalized") if entry else (None, "none")
 
 
@@ -2171,7 +2181,7 @@ def get_aiuo_group(name):
 # ===========================
 # ギャラリー生成（キノコページ & 五十音ページ）
 # ===========================
-def generate_gallery(entries, exif_cache, detail_views=None):
+def generate_gallery(entries, exif_cache, detail_views=None, multi_subject_overlays=None):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     copy_shared_assets()
     detail_views = detail_views or {}
@@ -2181,6 +2191,18 @@ def generate_gallery(entries, exif_cache, detail_views=None):
     for e in entries:
         grouped.setdefault(e["alt"], []).append(e["src"])
 
+    # Additional references are HTML-only: never duplicate production photo identities.
+    display_grouped = {name: list(urls) for name, urls in grouped.items()}
+    registered_urls = {src for urls in grouped.values() for src in urls}
+    display_only = {}
+    for name, urls in (multi_subject_overlays or {}).items():
+        if not isinstance(name, str) or not isinstance(urls, list):
+            continue
+        for url in urls:
+            if isinstance(url, str) and url not in display_grouped.setdefault(name, []):
+                display_grouped[name].append(url)
+                display_only.setdefault(name, set()).add(url)
+
     # index & 各ページ共通：五十音タイル HTML
     group_links_html = '<div class="aiuo-links detail-aiuo-links">'
     for g in AIUO_GROUPS.keys():
@@ -2188,7 +2210,7 @@ def generate_gallery(entries, exif_cache, detail_views=None):
     group_links_html += "</div>"
 
     # ① 各キノコページ
-    for alt, imgs in grouped.items():
+    for alt, imgs in display_grouped.items():
         escaped_alt = html.escape(alt)
         html_parts = [f"""<!doctype html>
 <html lang="ja">
@@ -2218,21 +2240,32 @@ def generate_gallery(entries, exif_cache, detail_views=None):
         <h3>観察写真</h3>
         <p>{len(imgs)}枚の写真があります。写真をクリックすると大きく表示できます。</p>
       </div>
-      <div class='gallery'>
 """]
+
+        if display_only.get(alt):
+            html_parts.append('<p class="shared-subject-note">「複数種が写る写真」は元記事の記載に基づく参照表示です。'
+                              '図鑑トップ・観察記録の登録件数には加算しません。未登録の参照写真にはお気に入りの星を表示しません。</p>')
+        html_parts.append("<div class='gallery'>")
 
         for src in imgs:
             thumb = src + "?width=300"
             exif = exif_cache.get(src, {}) or {}
             caption_attr = build_caption_html(alt, exif)
 
+            is_shared = src in display_only.get(alt, set())
+            shared_label = '<span class="shared-subject-indicator">複数種が写る写真</span>' if is_shared else ''
+            display_alt = escaped_alt + ("などが写る複数種写真" if is_shared else "")
+            favorite_star = '<span class="thumb-fav">☆</span>' if src in registered_urls else ''
+            favorite_guard = 'data-favorite-eligible="false" ' if src not in registered_urls else ''
             html_parts.append(
                 f'<a class="gallery-item" href="{src}" '
+                f'{favorite_guard}'
                 f'data-exthumbimage="{thumb}" '
                 f'data-sub-html="{caption_attr}">'
-                f'<span class="thumb-fav">☆</span>'
+                f'{favorite_star}'
                 f'<span class="spores"></span>'
-                f'<img src="{src}" alt="{escaped_alt}" loading="lazy">'
+                f'{shared_label}'
+                f'<img src="{src}" alt="{display_alt}" loading="lazy">'
                 f'</a>'
             )
 
@@ -2992,11 +3025,26 @@ def build_gallery(*, sync_run=None):
     research_summary = generate_research_page_if_fresh(portal_status)
     best_shot_summary = generate_best_shot_pages_if_fresh(portal_status)
 
-    # Keep test/extension callables with the historical two-argument signature usable.
-    if "detail_views" in inspect.signature(generate_gallery).parameters:
-        grouped = generate_gallery(production_entries, exif_cache, detail_views=detail_views)
-    else:
-        grouped = generate_gallery(production_entries, exif_cache)
+    # Cross-links only on current, fully validated source content. The photo registry,
+    # observation IDs, sync deletion rules, Best Shot and research case data stay unchanged.
+    multi_overlays = (
+        build_multi_subject_photo_overlays(
+            shadow_metadata or [], taxonomy, production_entries, match_subject_taxonomy
+        ) if production_mode == "phase3c_hybrid" and isinstance(portal_status, dict) and portal_status.get("build_ok") else {}
+    )
+    if multi_overlays:
+        print("Verified mixed-species HTML references: " + json.dumps(
+            {name: len(urls) for name, urls in multi_overlays.items()}, ensure_ascii=False
+        ))
+
+    # Preserve historical extension/test call signatures.
+    gallery_parameters = inspect.signature(generate_gallery).parameters
+    gallery_options = {}
+    if "detail_views" in gallery_parameters:
+        gallery_options["detail_views"] = detail_views
+    if "multi_subject_overlays" in gallery_parameters:
+        gallery_options["multi_subject_overlays"] = multi_overlays
+    grouped = generate_gallery(production_entries, exif_cache, **gallery_options)
     index_parameters = inspect.signature(generate_index).parameters
     index_options = {}
     if "observation_records" in index_parameters:

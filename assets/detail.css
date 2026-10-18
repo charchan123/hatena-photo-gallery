@@ -397,3 +397,13 @@ body.detail-page {
 @media (max-width: 600px) {
   .detail-page .knowledge-row { grid-template-columns:1fr; gap:5px; }
 }
+
+/* Display-only pointers for two explicitly labeled mushroom species. */
+.detail-page .shared-subject-note {
+  margin: 0 0 14px; color: #53665a; font-size: .8rem; line-height: 1.7;
+}
+.detail-page .gallery a.gallery-item .shared-subject-indicator {
+  position:absolute; z-index:3; bottom:5px; right:5px; pointer-events:none;
+  padding:3px 6px; max-width:calc(100% - 10px); border-radius:5px;
+  background:rgba(12,34,20,.78); color:#fff; font-size:.66rem; line-height:1.35;
+}
