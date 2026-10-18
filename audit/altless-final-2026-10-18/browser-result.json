@@ -6,5 +6,20 @@
     390
   ],
   "actual_cdn_decoding": true,
-  "publication": "NOT_ATTEMPTED"
+  "publication": "NOT_ATTEMPTED",
+  "latest_validation_key": "main_integration_2026_10_18",
+  "main_integration_2026_10_18": {
+    "result": "PASS",
+    "assertions": 599,
+    "viewports": [
+      1280,
+      390
+    ],
+    "actual_cdn_decoding": true,
+    "publication": "NOT_ATTEMPTED",
+    "run_id": 39131628945,
+    "new_photos_decoded_per_viewport": 36,
+    "registered_shared_favorites_verified": 2,
+    "research_cases_verified_per_viewport": 66
+  }
 }

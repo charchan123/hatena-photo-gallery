@@ -64,5 +64,69 @@
     "Six uncertain/source-review photos remain excluded from automatic registration.",
     "Public switch value could not be read through permitted connector endpoints; verify before any approved main merge."
   ],
-  "final_head_checks": "After audit-only commit/removal of temporary workflow, see final PR Checks; production code is unchanged."
+  "final_head_checks": "After audit-only commit/removal of temporary workflow, see final PR Checks; production code is unchanged.",
+  "latest_validation_key": "main_integration_2026_10_18",
+  "main_integration_2026_10_18": {
+    "result": "PASS",
+    "previous_pr_head": "1a28fb326fdc7f0d801263af341ce9748e5f0d23",
+    "main_sha": "bc9e3d4e7adb62b8e8da8e26a9009f07db5fb5a2",
+    "publication_sha": "b265b70b8ba872751d26dd38201d91fbe023f90e",
+    "history_branch_sha": "9b53922a4c265a3436b6556f0596a0fa60dc0962",
+    "merge_commit": "3dfd883a1c8b98263018078f9ffd24800bab7d06",
+    "reviewed_head": "329c45ef0cbea2dc5e2c616781b89a3a4f9bd360",
+    "python": {
+      "passed": 963,
+      "run_id": 39131628953
+    },
+    "javascript": {
+      "syntax_files": 20,
+      "regression_suites": 11,
+      "result": "PASS"
+    },
+    "chromium_fixture_run": 39131628970,
+    "readonly_api_run": 39131628956,
+    "real_acceptance": {
+      "result": "PASS",
+      "assertions": 599,
+      "viewports": [
+        1280,
+        390
+      ],
+      "actual_cdn_decoding": true,
+      "publication": "NOT_ATTEMPTED",
+      "run_id": 39131628945,
+      "artifact_id": 12138431646,
+      "artifact_sha256": "9f6b5b0b8c030ad10e1953325ea32d51b303b0b914eea1f2789ab617aa3d2244"
+    },
+    "published_photos": 897,
+    "new_photos": 36,
+    "candidate_photos": 933,
+    "preserved_capture_exif_article_metadata": 897,
+    "best_shot": 12,
+    "research_cases": 66,
+    "retired": 7,
+    "master": 141,
+    "sources": 419,
+    "new_names": 27,
+    "new_ids_match_previous_saved_candidate": true,
+    "best_shot_warning_present": false,
+    "source_inventory_comparison": {
+      "articles": 111,
+      "images": 980,
+      "source_identity_or_updated_hash_changes": 0,
+      "classification_changes": 71,
+      "group_counts": {
+        "new_registration": 36,
+        "unregistered": 1,
+        "existing_registered": 34
+      }
+    },
+    "publication": "NOT_ATTEMPTED",
+    "history_persisted": false,
+    "status": "MERGE_APPROVAL_PENDING",
+    "final_head_checks": "Final audit-only commit removes temporary workflow; final CI links are recorded in the PR body.",
+    "article_metadata_comparison_excluded_fields": [
+      "article_path"
+    ]
+  }
 }

@@ -261,5 +261,2036 @@
   "admin_recent_rows": 73,
   "publication": "NOT_ATTEMPTED",
   "history_persisted": false,
-  "evidence_note": "Published-only aggregate evidence; full generated site and detailed hashes are in the verified Actions artifact. Internal SUCCESS means isolated candidate validation, not publication."
+  "evidence_note": "Published-only aggregate evidence; full generated site and detailed hashes are in the verified Actions artifact. Internal SUCCESS means isolated candidate validation, not publication.",
+  "latest_validation_key": "main_integration_2026_10_18",
+  "main_integration_2026_10_18": {
+    "result": "PASS",
+    "source_commit": "684004ead7beb734fe88dadd0c91e6892690f7a0",
+    "baseline_commit": "b265b70b8ba872751d26dd38201d91fbe023f90e",
+    "run_id": "39131628945",
+    "guarded_status": {
+      "version": 1,
+      "result": "SUCCESS",
+      "comparison": "KNOWN",
+      "new_articles": 0,
+      "deleted_articles": 0,
+      "new_images": 0,
+      "deleted_images": 0,
+      "updated_articles": 0,
+      "classification_changes": 71,
+      "possible_url_changes": 0,
+      "url_changes": 0,
+      "last_success_at": "2026-10-18T13:28:12.905878+00:00",
+      "classification_review_count": 483,
+      "fetch_error": null,
+      "id_compatibility_error": null,
+      "fetch_audit": {
+        "pages_completed": 12,
+        "entries_received": 112,
+        "drafts_excluded": 1,
+        "published_articles": 111,
+        "html_articles": 111,
+        "pagination_complete": true,
+        "content_type_counts": {
+          "text/html": 111
+        },
+        "html_source_counts": {
+          "content_html": 111
+        },
+        "html_image_representation_difference_articles": 0
+      },
+      "published_article_count": 111,
+      "detected_image_count": 980,
+      "previous_photo_count": 897,
+      "candidate_gallery_photo_count": 933,
+      "missing_published_photo_keys": 0,
+      "missing_published_article_ids": 0,
+      "missing_photos_in_excluded_drafts": 0,
+      "missing_articles_in_excluded_drafts": 0,
+      "missing_articles_from_api_harvest": 0,
+      "classification_state_counts": {
+        "named_mushroom": 495,
+        "ambiguous": 414,
+        "non_mushroom": 8,
+        "unidentified_mushroom": 12,
+        "conflict": 31,
+        "unclassified": 20
+      },
+      "deletions": {
+        "candidate_count": 0,
+        "automatic_deletion_eligible": 0,
+        "manual_deletion_eligible": 0,
+        "protected_pending": 0,
+        "applied_automatic": 0,
+        "applied_manual": 0,
+        "pending": 0,
+        "states": {},
+        "history_persisted": false,
+        "history_head": "2f636bbe3f98822ed3b372e9eb36c892b8e66cc69eb816d6275e096dae7976e4"
+      },
+      "retirement": {
+        "migration_id": "hatena-draft-photo-retirement-2026-10-12",
+        "state": "ALREADY_APPLIED",
+        "retired_this_run": 0,
+        "retired_total": 7,
+        "manifest_sha256": "4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c"
+      },
+      "best_shot_references_preserved": 12,
+      "research_cases_preserved": 66,
+      "preserved_photo_ids": 897,
+      "gallery_photo_count": 933,
+      "retired_output_inspection": {
+        "result": "PASS",
+        "text_files_checked": 356,
+        "retired_ids_absent": 7,
+        "shared_image_urls_preserved": 0
+      },
+      "automatic_added_photo_count": 36,
+      "automatic_added_at": "2026-10-18T13:28:12.905878+00:00",
+      "name_migration_count": 0,
+      "name_migrations_applied_this_run": 0,
+      "manual_adoption_count": 0,
+      "manual_adoptions_applied_this_run": 0,
+      "generated_html_pages": 333,
+      "bootstrap": false
+    },
+    "recent_article_count": 7,
+    "recent_source_photos": 73,
+    "already_registered": 27,
+    "new_registered": 36,
+    "additions_by_name": {
+      "クリフウセンタケ": 4,
+      "マクキヌガサタケ": 1,
+      "キンチャワンタケ": 1,
+      "ベニハナイグチ": 1,
+      "ヤマドリタケ": 1,
+      "シロオニタケ": 2,
+      "アカジコウ": 1,
+      "オオノウタケ": 1,
+      "キイロイグチ": 1,
+      "テングタケダマシ": 1,
+      "ナカグロモリノカサ": 2,
+      "ムラサキヤマドリタケ": 2,
+      "タマゴテングタケモドキ": 1,
+      "ベニイグチ": 1,
+      "アンズタケ(広義)": 2,
+      "キタマゴタケ": 2,
+      "チチタケ": 1,
+      "サザナミイグチ": 1,
+      "ヤシャイグチ": 2,
+      "アシナガイグチ": 1,
+      "ムレオオフウセンタケ": 1,
+      "ウスムラサキシメジ": 1,
+      "キホウキタケ": 1,
+      "イボセイヨウショウロ": 1,
+      "ウスタケ": 1,
+      "サクラシメジモドキ": 1,
+      "ショウゲンジ": 1
+    },
+    "preserved_capture_exif_article_metadata": 897,
+    "research_case_photo_projection_unchanged": true,
+    "prior_automatic_receipts_preserved": 7,
+    "new_automatic_receipts": 36,
+    "mixed_species_overlays": {
+      "ニガイグチモドキ": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224934.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224503.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706220754.jpg"
+      ],
+      "ヤマドリタケモドキ": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224934.jpg",
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224503.jpg"
+      ],
+      "ムラサキヤマドリタケ": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152338.jpg"
+      ],
+      "アカヤマドリ": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152338.jpg"
+      ],
+      "ヘビキノコモドキ": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706220931.jpg"
+      ]
+    },
+    "mixed_species_source_photos": 5,
+    "recent_mixed_species_source_photos": 3,
+    "unregistered_recent": [
+      {
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032090025324",
+        "article_title": "2026年10月3日富士山(山梨県)",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063946.jpg",
+        "detected_label": "オオジョウゴタケ？",
+        "gallery_name": null,
+        "subject_state_status": "accepted_subject",
+        "last_rejected_boundary_text": null,
+        "last_rejected_boundary_reason": null,
+        "taxonomy_match_type": "none"
+      },
+      {
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032090025324",
+        "article_title": "2026年10月3日富士山(山梨県)",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015064015.jpg",
+        "detected_label": "オオジョウゴタケ？",
+        "gallery_name": null,
+        "subject_state_status": "accepted_subject",
+        "last_rejected_boundary_text": null,
+        "last_rejected_boundary_reason": null,
+        "taxonomy_match_type": "none"
+      },
+      {
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032090025324",
+        "article_title": "2026年10月3日富士山(山梨県)",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015064116.jpg",
+        "detected_label": "オオジョウゴタケ？",
+        "gallery_name": null,
+        "subject_state_status": "accepted_subject",
+        "last_rejected_boundary_text": null,
+        "last_rejected_boundary_reason": null,
+        "taxonomy_match_type": "none"
+      },
+      {
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032081257566",
+        "article_title": "2026年9月22日富士山(山梨県)",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015062811.jpg",
+        "detected_label": "フジアザミ",
+        "gallery_name": null,
+        "subject_state_status": "accepted_subject",
+        "last_rejected_boundary_text": null,
+        "last_rejected_boundary_reason": null,
+        "taxonomy_match_type": "canonical_exact"
+      },
+      {
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032081257566",
+        "article_title": "2026年9月22日富士山(山梨県)",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063319.jpg",
+        "detected_label": "フモトニガイグチ",
+        "gallery_name": null,
+        "subject_state_status": "accepted_subject",
+        "last_rejected_boundary_text": null,
+        "last_rejected_boundary_reason": null,
+        "taxonomy_match_type": "none"
+      },
+      {
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+        "article_title": "2026年9月19日静岡県浜松市",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224934.jpg",
+        "detected_label": null,
+        "gallery_name": null,
+        "subject_state_status": "reset_by_rejected_boundary",
+        "last_rejected_boundary_text": "ニガイグチモドキ&ヤマドリタケモドキ",
+        "last_rejected_boundary_reason": "multiple_subject_separator",
+        "taxonomy_match_type": "none"
+      },
+      {
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080300484",
+        "article_title": "2026年9月18日静岡県浜松市",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152246.jpg",
+        "detected_label": null,
+        "gallery_name": null,
+        "subject_state_status": "reset_by_rejected_boundary",
+        "last_rejected_boundary_text": "ニガイグチの仲間",
+        "last_rejected_boundary_reason": "family_or_group_heading",
+        "taxonomy_match_type": "none"
+      },
+      {
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080300484",
+        "article_title": "2026年9月18日静岡県浜松市",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152338.jpg",
+        "detected_label": null,
+        "gallery_name": null,
+        "subject_state_status": "reset_by_rejected_boundary",
+        "last_rejected_boundary_text": "ムラサキヤマドリタケ&アカヤマドリ",
+        "last_rejected_boundary_reason": "multiple_subject_separator",
+        "taxonomy_match_type": "none"
+      },
+      {
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080294735",
+        "article_title": "2026年9月17日静岡県浜松市",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224503.jpg",
+        "detected_label": null,
+        "gallery_name": null,
+        "subject_state_status": "reset_by_rejected_boundary",
+        "last_rejected_boundary_text": "ニガイグチモドキ&ヤマドリタケモドキ",
+        "last_rejected_boundary_reason": "multiple_subject_separator",
+        "taxonomy_match_type": "none"
+      },
+      {
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032077756378",
+        "article_title": "2026年9月12日富士山(山梨県)",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923225004.jpg",
+        "detected_label": "アブラシメジモドキ",
+        "gallery_name": null,
+        "subject_state_status": "accepted_subject",
+        "last_rejected_boundary_text": null,
+        "last_rejected_boundary_reason": null,
+        "taxonomy_match_type": "none"
+      }
+    ],
+    "admin_recent_rows": 73,
+    "publication": "NOT_ATTEMPTED",
+    "history_persisted": false,
+    "new_photos": [
+      {
+        "observation_id": "obs-adf1ea6bb8c66ab3327f85b0017e7c5442a7b1a3742dc82626971fce2aba3495",
+        "gallery_name": "クリフウセンタケ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063534.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032090025324",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155",
+        "article_title": "2026年10月3日富士山(山梨県)",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "クリフウセンタケ",
+          "shadow_gallery_name": "クリフウセンタケ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "クリフウセンタケ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-9eb5079621bc207b307a90356570725148f170b8d70a33f803520acef403d143",
+        "gallery_name": "マクキヌガサタケ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063648.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032090025324",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155",
+        "article_title": "2026年10月3日富士山(山梨県)",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "マクキヌガサタケ",
+          "shadow_gallery_name": "マクキヌガサタケ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "マクキヌガサタケ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-3351a54c9eeec5c6c98dca5513eabc5df111e6310db178a00efc8c814af63cf8",
+        "gallery_name": "キンチャワンタケ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063813.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032090025324",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155",
+        "article_title": "2026年10月3日富士山(山梨県)",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "キンチャワンタケ",
+          "shadow_gallery_name": "キンチャワンタケ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "キンチャワンタケ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-48bfe4e8986638ed92db905126fb2bb890cd50ca9e926a73d2b488f595556275",
+        "gallery_name": "ベニハナイグチ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015064358.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032090025324",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155",
+        "article_title": "2026年10月3日富士山(山梨県)",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "ベニハナイグチ",
+          "shadow_gallery_name": "ベニハナイグチ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "ベニハナイグチ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-294a3d46d484acfe5b08be8a93b8177d7984628a6cc7ab205472b60a4aee062b",
+        "gallery_name": "クリフウセンタケ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015062912.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032081257566",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503",
+        "article_title": "2026年9月22日富士山(山梨県)",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "クリフウセンタケ",
+          "shadow_gallery_name": "クリフウセンタケ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "クリフウセンタケ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-ecb6f94b8bc9a72c2a654b4707d194720ad9ae4dd4ce1a7eb422247f495f14b0",
+        "gallery_name": "クリフウセンタケ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063002.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032081257566",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503",
+        "article_title": "2026年9月22日富士山(山梨県)",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "クリフウセンタケ",
+          "shadow_gallery_name": "クリフウセンタケ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "クリフウセンタケ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-b59e4eb528aefe25d8c0b4cb4c57cea2ea2d4afec01dd9f4cdfc123837d8e6d6",
+        "gallery_name": "クリフウセンタケ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063046.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032081257566",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503",
+        "article_title": "2026年9月22日富士山(山梨県)",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "クリフウセンタケ",
+          "shadow_gallery_name": "クリフウセンタケ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "クリフウセンタケ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-99dce279282896bb35a281890166eba51f8b2dec3fc044ae9c7790a356df3933",
+        "gallery_name": "ヤマドリタケ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063131.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032081257566",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503",
+        "article_title": "2026年9月22日富士山(山梨県)",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "ヤマドリタケ",
+          "shadow_gallery_name": "ヤマドリタケ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "ヤマドリタケ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-ae868462919d011bc4a9f56a64f69cca9a5b84233f8849586a4b56e3d544ad21",
+        "gallery_name": "シロオニタケ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063344.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032081257566",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503",
+        "article_title": "2026年9月22日富士山(山梨県)",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "シロオニタケ",
+          "shadow_gallery_name": "シロオニタケ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "シロオニタケ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-d063dde2db0d423e9762850296cdb6f8a422c84f1587707e70203b03d97592f1",
+        "gallery_name": "アカジコウ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063427.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032081257566",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503",
+        "article_title": "2026年9月22日富士山(山梨県)",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "アカジコウ",
+          "shadow_gallery_name": "アカジコウ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "アカジコウ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-efe7d156fe8800403af24d47dd882f3e72b574c4aba4c16591fa19a73e3cd593",
+        "gallery_name": "オオノウタケ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224231.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+        "article_title": "2026年9月19日静岡県浜松市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "オオノウタケ",
+          "shadow_gallery_name": "オオノウタケ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "オオノウタケ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-b7cf68070c532151aaecc3b14c2f395bad23eb7c409f95139b30883dff5ac4b8",
+        "gallery_name": "キイロイグチ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224250.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+        "article_title": "2026年9月19日静岡県浜松市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "キイロイグチ",
+          "shadow_gallery_name": "キイロイグチ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "キイロイグチ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-1783d5c4dacc267097bab3a787e4d062e9833038996eb7de62237676d2fd4270",
+        "gallery_name": "テングタケダマシ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224313.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+        "article_title": "2026年9月19日静岡県浜松市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "テングタケダマシ",
+          "shadow_gallery_name": "テングタケダマシ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "テングタケダマシ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-e09e71f5414d85be793eea3c7a61465bc2eed1fa4ddf3c88df7377d84bf67a8b",
+        "gallery_name": "ナカグロモリノカサ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224702.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+        "article_title": "2026年9月19日静岡県浜松市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "ナカグロモリノカサ",
+          "shadow_gallery_name": "ナカグロモリノカサ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "ナカグロモリノカサ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-72def8c88473e575bd6ba6040a406bd3976f73d9cb77ac31203ab284372e66d0",
+        "gallery_name": "ムラサキヤマドリタケ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224719.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+        "article_title": "2026年9月19日静岡県浜松市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "ムラサキヤマドリタケ",
+          "shadow_gallery_name": "ムラサキヤマドリタケ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "ムラサキヤマドリタケ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-744d3a6ef85104841e1617717a9ce8988e948ed4fdff4b1fdaa54779bc40c8fe",
+        "gallery_name": "タマゴテングタケモドキ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261001/20261001001532.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+        "article_title": "2026年9月19日静岡県浜松市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "タマゴテングタケモドキ",
+          "shadow_gallery_name": "タマゴテングタケモドキ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "タマゴテングタケモドキ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-da1f7e5ea72e09f7d4ba4a2717b7eb6afe77a4500a5a67673cb31143c4d8cfc5",
+        "gallery_name": "ベニイグチ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224739.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+        "article_title": "2026年9月19日静岡県浜松市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "ベニイグチ",
+          "shadow_gallery_name": "ベニイグチ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "ベニイグチ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-f3ca7903d56977ed544bac5cb22fc6a69988c32a8d9be12fb76e9dba85db9215",
+        "gallery_name": "シロオニタケ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925225116.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+        "article_title": "2026年9月19日静岡県浜松市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "シロオニタケ",
+          "shadow_gallery_name": "シロオニタケ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "シロオニタケ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-d2ab46b9a448f103375c8decb8087c43d43f3a348d5e87169644839f1f65b668",
+        "gallery_name": "アンズタケ(広義)",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925225221.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+        "article_title": "2026年9月19日静岡県浜松市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "アンズタケ(広義)",
+          "shadow_gallery_name": "アンズタケ(広義)",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "アンズタケ(広義)",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-b7c012d58f949571dc40b6fe00343f6563d80c15178cd8b2105205daca2585e8",
+        "gallery_name": "キタマゴタケ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224826.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+        "article_title": "2026年9月19日静岡県浜松市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "キタマゴタケ",
+          "shadow_gallery_name": "キタマゴタケ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "キタマゴタケ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-1e30679af0865ca8079f76084d67407c01d5d2b94f122c6ccbc3e4a7bdc8a3f6",
+        "gallery_name": "チチタケ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152015.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080300484",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/152831",
+        "article_title": "2026年9月18日静岡県浜松市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "チチタケ",
+          "shadow_gallery_name": "チチタケ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "チチタケ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-430646a148e3a905f84feababb2368021bfe6dc5325930ffad024daa206f9501",
+        "gallery_name": "サザナミイグチ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152030.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080300484",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/152831",
+        "article_title": "2026年9月18日静岡県浜松市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "サザナミイグチ",
+          "shadow_gallery_name": "サザナミイグチ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "サザナミイグチ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-1ce7036f7ec1e2e527aefd89036bf5fbe13388ec426e787d25403bb127699baa",
+        "gallery_name": "ムラサキヤマドリタケ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152302.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080300484",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/152831",
+        "article_title": "2026年9月18日静岡県浜松市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "ムラサキヤマドリタケ",
+          "shadow_gallery_name": "ムラサキヤマドリタケ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "ムラサキヤマドリタケ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-5dc1080a9df393e7a570b9811c514994ebb97c6f995e98aa9072b5e2a5d36d53",
+        "gallery_name": "ヤシャイグチ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925200415.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080294735",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/24/224759",
+        "article_title": "2026年9月17日静岡県浜松市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "ヤシャイグチ",
+          "shadow_gallery_name": "ヤシャイグチ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "ヤシャイグチ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-02d640e667e53312ce9069aeac75e021d6b2e009b53c6cdf6ea7aac930ea3e99",
+        "gallery_name": "ヤシャイグチ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224223.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080294735",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/24/224759",
+        "article_title": "2026年9月17日静岡県浜松市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "ヤシャイグチ",
+          "shadow_gallery_name": "ヤシャイグチ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "ヤシャイグチ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-79ceef95b86b8221163d07a17cb011de5ec288a8ba7645d26bce05ebc8c25a80",
+        "gallery_name": "キタマゴタケ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224236.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080294735",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/24/224759",
+        "article_title": "2026年9月17日静岡県浜松市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "キタマゴタケ",
+          "shadow_gallery_name": "キタマゴタケ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "キタマゴタケ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-675def59390b2216e49f0025baf37fda5e3473b71dd0d05ad0d0030fa94d7fb1",
+        "gallery_name": "アシナガイグチ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224358.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080294735",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/24/224759",
+        "article_title": "2026年9月17日静岡県浜松市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "アシナガイグチ",
+          "shadow_gallery_name": "アシナガイグチ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "アシナガイグチ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-73e6ed81119a8e0dfdfbd3a8e485755cd3b0a28cbcd073916a6bba62e920e822",
+        "gallery_name": "アンズタケ(広義)",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224630.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080294735",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/24/224759",
+        "article_title": "2026年9月17日静岡県浜松市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "アンズタケ(広義)",
+          "shadow_gallery_name": "アンズタケ(広義)",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "アンズタケ(広義)",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-db0226082a6e172d84e85a740d2f3c5d56f4b0ff83283ead520af681ee101989",
+        "gallery_name": "ムレオオフウセンタケ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232033.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032077792371",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/23/232319",
+        "article_title": "2026年9月13日山梨県笛吹市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "ムレオオフウセンタケ",
+          "shadow_gallery_name": "ムレオオフウセンタケ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "ムレオオフウセンタケ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-a5048138f43c9b97c5f408e7d24103ada886727e7e560300458c0fc86292530c",
+        "gallery_name": "ウスムラサキシメジ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232050.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032077792371",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/23/232319",
+        "article_title": "2026年9月13日山梨県笛吹市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "ウスムラサキシメジ",
+          "shadow_gallery_name": "ウスムラサキシメジ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "ウスムラサキシメジ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-d386eb789d5a8f960abe513c7ce2f856c3e93f519a62188e8cb16b67776dde9f",
+        "gallery_name": "キホウキタケ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924103925.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032077792371",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/23/232319",
+        "article_title": "2026年9月13日山梨県笛吹市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "キホウキタケ",
+          "shadow_gallery_name": "キホウキタケ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "キホウキタケ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-c97ecf02d440ea9e30116c097067a3e1ebcba2b4b6afc2d1db19f6840d1306a2",
+        "gallery_name": "ナカグロモリノカサ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232201.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032077792371",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/23/232319",
+        "article_title": "2026年9月13日山梨県笛吹市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "ナカグロモリノカサ",
+          "shadow_gallery_name": "ナカグロモリノカサ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "ナカグロモリノカサ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-24e1bd05ee444f09d8fa0277c27b70282885d0620ba9a320841c4ebb7a1a71c9",
+        "gallery_name": "イボセイヨウショウロ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232241.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032077792371",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/23/232319",
+        "article_title": "2026年9月13日山梨県笛吹市",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "イボセイヨウショウロ",
+          "shadow_gallery_name": "イボセイヨウショウロ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "イボセイヨウショウロ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-9fe49d5605067495eef4a4f26b89158ae298c550df6bac19dc622f6d1a4f0bfc",
+        "gallery_name": "ウスタケ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923225040.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032077756378",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/23/225259",
+        "article_title": "2026年9月12日富士山(山梨県)",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "ウスタケ",
+          "shadow_gallery_name": "ウスタケ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "ウスタケ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-91af45fd43811973f61bcb19a23f24cbcdbcfb01e6e5ad015a393ba4105d2cb1",
+        "gallery_name": "サクラシメジモドキ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261001/20261001000912.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032077756378",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/23/225259",
+        "article_title": "2026年9月12日富士山(山梨県)",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "サクラシメジモドキ",
+          "shadow_gallery_name": "サクラシメジモドキ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "サクラシメジモドキ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      },
+      {
+        "observation_id": "obs-86e21c85b24053cae559daaf2d76fb7474c4bb0c017e070c16797d8e034d436a",
+        "gallery_name": "ショウゲンジ",
+        "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923225243.jpg",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032077756378",
+        "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/23/225259",
+        "article_title": "2026年9月12日富士山(山梨県)",
+        "classification": {
+          "status": "confirmed_named_mushroom",
+          "subject_type": "mushroom",
+          "detected_label": "ショウゲンジ",
+          "shadow_gallery_name": "ショウゲンジ",
+          "classification_reason": "taxonomy_mushroom",
+          "classification_confidence": "high",
+          "subject_state_status": "accepted_subject",
+          "taxonomy_canonical_name": "ショウゲンジ",
+          "taxonomy_match_type": "canonical_exact"
+        }
+      }
+    ],
+    "snapshot_comparison": {
+      "articles": 111,
+      "images": 980,
+      "source_identity_or_updated_hash_changes": 0,
+      "classification_changes": 71,
+      "group_counts": {
+        "new_registration": 36,
+        "unregistered": 1,
+        "existing_registered": 34
+      },
+      "rows": [
+        {
+          "article_hash": "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7",
+          "url_hash": "99988df4cd624d0a94570f0e94e6856269c7c873277fc2331436810724270564",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7",
+          "url_hash": "02055f7d29fd937fed40cadc2dfe7f0b0906cf6fce9d3d06c9dbc3721c25bbf8",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7",
+          "url_hash": "845c288119d11b64c8b386e2b975ed1d481821c1294552d57d7a8a39adce7bf1",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7",
+          "url_hash": "e53c35e42bb5f59a321078a6df619f9d13d187910e8f0fb64d4cfc1d92d89292",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+          "url_hash": "376a0be77e0e9ba7196ebdda88ef0097b72a6700a41e9a6a2249d7f9949d8417",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "non_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_non_mushroom",
+          "changed_fields": [
+            "state",
+            "reason"
+          ],
+          "group": "unregistered"
+        },
+        {
+          "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+          "url_hash": "ea01f52ebab9e29c9e68ca4d727715e66aba8a095e07e3688f4db05138c5afa0",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+          "url_hash": "de736f797cd17ebec97815932d60ccaa897f7998973fb8af6674d66bcf10086e",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+          "url_hash": "36917691b5202d024f5d03acc287af7204614c65c59c49792f9c1f2a4922f51c",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+          "url_hash": "159bd1ee00a891e8a62631041ab71d8285ee7cb254615fb3ba110b6f93601c44",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+          "url_hash": "9a6f6365fff27920a8dcbc5ce7e6ab178164077a150bb790d7da0aec035eb607",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+          "url_hash": "06c302fafba2ee7689b010a13a1a79553edba7c8ec08c09c6f4a67f838333469",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "05551d39eb36f7ef4bdd2356c6dbd569b0af6670d6bfef1fd7b9c789ba6f4c44",
+          "url_hash": "dc8673b903474b1a9b261fd80188b233bffbcb548a8b840ca2e08d9d205c9caa",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "05551d39eb36f7ef4bdd2356c6dbd569b0af6670d6bfef1fd7b9c789ba6f4c44",
+          "url_hash": "ddc722eff416e24f5a1f0e11a97d2251fd326a3a647568bd7209de1f0e01db8f",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "05551d39eb36f7ef4bdd2356c6dbd569b0af6670d6bfef1fd7b9c789ba6f4c44",
+          "url_hash": "81cb00fa2e11c3ee88025361a4223d76be00710cebe0da4396b3be36859963ed",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "05551d39eb36f7ef4bdd2356c6dbd569b0af6670d6bfef1fd7b9c789ba6f4c44",
+          "url_hash": "6e52c48db3a6da518df7b789f2180187340c829c38930e054be2cbd766674fb6",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "05551d39eb36f7ef4bdd2356c6dbd569b0af6670d6bfef1fd7b9c789ba6f4c44",
+          "url_hash": "cbf059f2596e069f26cc45ea4fa12035d39630fd4c4b63936f182c6180bdea1d",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "05551d39eb36f7ef4bdd2356c6dbd569b0af6670d6bfef1fd7b9c789ba6f4c44",
+          "url_hash": "ccf41b7119fd2d857b8d9e45738413984603babf2dbd6c5992888bd444989d55",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "05551d39eb36f7ef4bdd2356c6dbd569b0af6670d6bfef1fd7b9c789ba6f4c44",
+          "url_hash": "e3ac1c3775a0eb93be3352b9db0feb9ddeb26780e48ff718166d7af9058fd5a3",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "05551d39eb36f7ef4bdd2356c6dbd569b0af6670d6bfef1fd7b9c789ba6f4c44",
+          "url_hash": "a1564edc1a746329467dcfc69cfb39dc32254d76ac3d215cf2099a5d6acd4106",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "05551d39eb36f7ef4bdd2356c6dbd569b0af6670d6bfef1fd7b9c789ba6f4c44",
+          "url_hash": "b881173750b8fc2c99dfc14e005684a5d5f4e2c67e2e4af8023a46d4efe30e56",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "05551d39eb36f7ef4bdd2356c6dbd569b0af6670d6bfef1fd7b9c789ba6f4c44",
+          "url_hash": "bc978471b5d74fd62b834122fa649028d43f8734632de58cd710ed2970dac601",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "a3854a76bc8deeb3ecfcc7e868e79bc0a4f5b6908f7122cbf4fdf97ce9adc5f6",
+          "url_hash": "16613b1441d4330cdfc52d7272031156e976990fdd6eb80ee38f836fbde3f990",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "a3854a76bc8deeb3ecfcc7e868e79bc0a4f5b6908f7122cbf4fdf97ce9adc5f6",
+          "url_hash": "75f4dbd92c5d6a2a8e957900094b29c4117c66de0a140221c7cb991e59c82efd",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "a3854a76bc8deeb3ecfcc7e868e79bc0a4f5b6908f7122cbf4fdf97ce9adc5f6",
+          "url_hash": "180c22fda3770bb13a2881f7fbfcef5669cbcd39254c651701081e8199e101f4",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "753dd3c8164e71dd4f987032958a74a54d4e41c025467d0f81e3b6832ab01065",
+          "url_hash": "ec4c363a8a81c392a4c0575932f7de52bcc925713c647de8f4edc2b2fcd48468",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "753dd3c8164e71dd4f987032958a74a54d4e41c025467d0f81e3b6832ab01065",
+          "url_hash": "d91b5cb6fdc3badd172175cb153702c70440b1e5c22a56663bd84e7d8a4b8f5d",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "753dd3c8164e71dd4f987032958a74a54d4e41c025467d0f81e3b6832ab01065",
+          "url_hash": "fd331f8dcd5ea44a1fd2bd574f5ade26e2a0992c8d540b8745c8189a85675844",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "753dd3c8164e71dd4f987032958a74a54d4e41c025467d0f81e3b6832ab01065",
+          "url_hash": "6056e6316aa876987d2ba37311764805947e800740d3ca1fb0a2bdea0c32d153",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "753dd3c8164e71dd4f987032958a74a54d4e41c025467d0f81e3b6832ab01065",
+          "url_hash": "6b1bb75b20371c0d9663a82a3128c1797e915fa3e03fe5bd02fe1c521a28efd2",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "2bcaabbbf2bfe083785a069d821a5546f794edec71ed215adfae18532a7f107b",
+          "url_hash": "5d67ddf5db3b65242b9291ea0b23b2c43669cd90f70e492ef621ab4cfa487ba8",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "2bcaabbbf2bfe083785a069d821a5546f794edec71ed215adfae18532a7f107b",
+          "url_hash": "de794b97719836b3316a93e63e6fd4f6c15105622a7a2c12bd38429f6d7450b9",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "2bcaabbbf2bfe083785a069d821a5546f794edec71ed215adfae18532a7f107b",
+          "url_hash": "4f7d425451226e487d7186b5801e2ae63e6224ccb4f275f83b7fceab35ccb22f",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "2bcaabbbf2bfe083785a069d821a5546f794edec71ed215adfae18532a7f107b",
+          "url_hash": "a9443040f9d61ea43dbacac19ceb280edcdf83abbbe446bcb2350e544677a3a6",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "2bcaabbbf2bfe083785a069d821a5546f794edec71ed215adfae18532a7f107b",
+          "url_hash": "4ad5a6e9ff43dcaa27963162a14a904ad5c3702b19309d1b1e4fb2db87e482c7",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "c57ae6e35967d88a9e89588b3989871d8721a495a5b0f73b5d520611d467224d",
+          "url_hash": "11d529140e8e564c5b8f936fbac711523c557654126b0dcbdab0c8b1c85f80f5",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "c57ae6e35967d88a9e89588b3989871d8721a495a5b0f73b5d520611d467224d",
+          "url_hash": "8c4a3482b1a1d4e4643f6b254302e2336947735462ac04c1ef40c07bd311be9b",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "c57ae6e35967d88a9e89588b3989871d8721a495a5b0f73b5d520611d467224d",
+          "url_hash": "ace96b49cde3d103c30c4a51b39cfcc72c96d42f1943ec344d1103357f74ed79",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "new_registration"
+        },
+        {
+          "article_hash": "55ccea18a73b842a62c47b72caab6fa92b7d232396095c403c3a48ec096d6099",
+          "url_hash": "cb683df20a9826755ac6b565b622b4f6dc7078d7aad1e2ed7f86b185d9412749",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "55ccea18a73b842a62c47b72caab6fa92b7d232396095c403c3a48ec096d6099",
+          "url_hash": "930dfcb86816be5f016c49dd58c3d60091d3254abcbedc633e10b91fcbba3ebb",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "55ccea18a73b842a62c47b72caab6fa92b7d232396095c403c3a48ec096d6099",
+          "url_hash": "dae071a21fa96fcaa4715ba8b0f02a142e61569f03541b83c0ea9624086e5862",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "55ccea18a73b842a62c47b72caab6fa92b7d232396095c403c3a48ec096d6099",
+          "url_hash": "12f5c191c6d2de248eea42abfedd1ed13b79d5a3a79ad0295848e29eec1545c3",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "8ae3e73fcff83f073e35757c305401e55b2d125b07eb0bcaa53d7a620bcf923a",
+          "url_hash": "d55712819d264cd548b77f271884674ea3101ed4edaa29b170de6de37fb98785",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "8ae3e73fcff83f073e35757c305401e55b2d125b07eb0bcaa53d7a620bcf923a",
+          "url_hash": "e57a51a624f40aa33d064ec987243d6223347c139accf5632b19ce4a32812ade",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "574b75a9312b4054ccbe7563ab653df850ee55c29ad1524a746a99cbeddcaa6c",
+          "url_hash": "2bf9894ff66a1f0135790718e1e6fe3a2353c9d9fd9d4b61f7072f236226b35e",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "574b75a9312b4054ccbe7563ab653df850ee55c29ad1524a746a99cbeddcaa6c",
+          "url_hash": "668ed713855ec643d64f6f7df3044aeb7895c19cf98652531e3956aacda95df9",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "574b75a9312b4054ccbe7563ab653df850ee55c29ad1524a746a99cbeddcaa6c",
+          "url_hash": "1d87938c2b306d95c2ef58bccad43e5651bafd4790aa842b3c498f80f529694c",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "b9ed708df26653910bebf764e5aedb5662c266bf67dad5586e7ae16ee76442c8",
+          "url_hash": "d395bfdadde26e38b0ab2fcce81dcd7f5a2868a705fe0135b5c6189883fd5097",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "b9ed708df26653910bebf764e5aedb5662c266bf67dad5586e7ae16ee76442c8",
+          "url_hash": "f102e764c727491384265b0287d55fec375553fe76ce0ba1f45567809422a061",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "4ad248ae7a8f3f487eed1939ec7bb3d691d32658c0fbfebf58010f13c10487df",
+          "url_hash": "982308f7bf7669d7e16e2fbb3e4d6e0baee9ba2c5a22471a2b83b49b0064aa66",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "8b29bb9c96e4f071acb3ed44c500035e93521cad32a8ba9f70bc7b460adbff3a",
+          "url_hash": "39efc552d9a444b3ed0e646fcd997a9ce0e5d4caf0fdbcbb0b898d94cf7dc4b3",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "73711798d8fc0d7d63eedf31d3107c9cdba9df524d1929501f0cbb3b39c50ba9",
+          "url_hash": "78d618811d60e857aa6e5a411b5f537ad5e9d2a11efbb42e452be0659ca37d85",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "73711798d8fc0d7d63eedf31d3107c9cdba9df524d1929501f0cbb3b39c50ba9",
+          "url_hash": "02eaf7c1d294d70bedb13e31bbf6c01502ba47742b0941da463c3497fa706abe",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "ecd6b3a903c913fb884057aa56110bdf618191f9cccc5ef6979f30645fbe174e",
+          "url_hash": "27841018d5699c79f57818ebcee3bde79964e3fa63d503107caeb4d972cce520",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "ecd6b3a903c913fb884057aa56110bdf618191f9cccc5ef6979f30645fbe174e",
+          "url_hash": "7a18c8031ed34c1464cf693bb4287c102d4ebb248ed8903d19c3dc6670312dd5",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "ecd6b3a903c913fb884057aa56110bdf618191f9cccc5ef6979f30645fbe174e",
+          "url_hash": "b57a9735b1973316ac6a1e4f2103c4ebdff49ff6b4882e289ecf4068c1894357",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "ecd6b3a903c913fb884057aa56110bdf618191f9cccc5ef6979f30645fbe174e",
+          "url_hash": "93f35ba8e0669bbc54cf7bd25d9ff834271acd67cf2318392dda491c5cfcf144",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "ecd6b3a903c913fb884057aa56110bdf618191f9cccc5ef6979f30645fbe174e",
+          "url_hash": "730aab11275cc0d96d132946d2bb76174ac18f0fe1cd16ba833e54f9e0c215bf",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "ecd6b3a903c913fb884057aa56110bdf618191f9cccc5ef6979f30645fbe174e",
+          "url_hash": "a709e2010852811347ff08b55d11cf8d5d18b1a19ac4c57196db2965a4589105",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "ecd6b3a903c913fb884057aa56110bdf618191f9cccc5ef6979f30645fbe174e",
+          "url_hash": "4a6e54e4f4f3b0f4177f522476ce5af9d98d50a0ceea1b717972aadb5e88aef0",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "ecd6b3a903c913fb884057aa56110bdf618191f9cccc5ef6979f30645fbe174e",
+          "url_hash": "3d311f513e5cfa6ddef3dbec514708c43da15bc193dc63b20e9b5dc40dea8b8d",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "ecd6b3a903c913fb884057aa56110bdf618191f9cccc5ef6979f30645fbe174e",
+          "url_hash": "b5398e4d10b7ebaadd60fda9192f8dd75600053c7c8f9440872ea811aeecdd1e",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "ecd6b3a903c913fb884057aa56110bdf618191f9cccc5ef6979f30645fbe174e",
+          "url_hash": "6b44622067ff7979a6a21ecd200e0bff2e59b1d653478fb9aa791600d79c4ef6",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "81d8c3fe82ae4fe8bd8e0886c4c1fdccf04d824f708f3deee55010949a33972e",
+          "url_hash": "39c77f40105a82cfadd63a363763e7874899f3851207f53b6e43c1704d39cc26",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "81d8c3fe82ae4fe8bd8e0886c4c1fdccf04d824f708f3deee55010949a33972e",
+          "url_hash": "e953e3e99010db5cc7a9163fc115cd3909167a05d10d28b91e29e8255ebc68a6",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "81d8c3fe82ae4fe8bd8e0886c4c1fdccf04d824f708f3deee55010949a33972e",
+          "url_hash": "bb8f5d70f0c84d93f4ef61cc73840de63499a72f4ab4440718eb2edbb2016650",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "ea4210689be612aa922d88b93f09036d18032d5a15f0a1d288e649511114bca3",
+          "url_hash": "8eba5d38598d0178d94dcc6b1ff09fb8943d57853513fa26bad4eb79b21ce78c",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "4dc5686c6c4b0eee0c79e4e7b14510884352564b6813288c7a7b31758f5530a0",
+          "url_hash": "e2b49b993e34f9c88ce3b0245da7f77e62bb7c1f10be7654b28334d591ef4955",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "3c9686a4f1eee352753befdc09ffa096393f0ba120d7068c9982cc513341ac1a",
+          "url_hash": "dddd831496844c3d025e6208f64ebc20e762c10138c99ce6f8f198aac8b69908",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "4f1f6a8af7c85cfa7b08ee3a302cea2c052107f703eefc98a696b54e25c0b8a0",
+          "url_hash": "0557ab46cde953741f0ecc52f58e43648cb83370a931325a5672df02df31f383",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "4f1f6a8af7c85cfa7b08ee3a302cea2c052107f703eefc98a696b54e25c0b8a0",
+          "url_hash": "0ce6222656cb4ac2e4c02f9d31813e460cde3042a3c24bf1923f8b7b2e6415a0",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        },
+        {
+          "article_hash": "4f1f6a8af7c85cfa7b08ee3a302cea2c052107f703eefc98a696b54e25c0b8a0",
+          "url_hash": "78a4c934f598260b14e29a67cf9fc8aff4be85f1f803c50c3beebb8f9e540585",
+          "ordinal": 0,
+          "before_state": "ambiguous",
+          "after_state": "named_mushroom",
+          "before_reason": "taxonomy_unmatched",
+          "after_reason": "taxonomy_mushroom",
+          "changed_fields": [
+            "state",
+            "reason",
+            "name_hash"
+          ],
+          "group": "existing_registered"
+        }
+      ]
+    },
+    "new_ids_match_previous_saved_candidate": true
+  }
 }
