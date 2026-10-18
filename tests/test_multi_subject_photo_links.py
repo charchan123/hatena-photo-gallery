@@ -69,3 +69,28 @@ def test_html_only_addition_does_not_change_gallery_index_or_photo_identity(tmp_
     assert src in left and src in right
     assert "複数種が写る写真" not in left
     assert "複数種が写る写真" in right
+
+
+def test_unregistered_reference_cannot_offer_an_unresolvable_favorite(tmp_path, monkeypatch):
+    from bs4 import BeautifulSoup
+    monkeypatch.setattr(main, 'OUTPUT_DIR', str(tmp_path))
+    monkeypatch.setattr(main, 'copy_shared_assets', lambda: None)
+    src = 'https://cdn.test/unregistered.jpg'
+    main.generate_gallery([], {}, multi_subject_overlays={'アカヤマドリ': [src]})
+    soup = BeautifulSoup((tmp_path/'アカヤマドリ.html').read_text(), 'html.parser')
+    assert soup.select_one('.shared-subject-note')
+    assert not soup.select('.thumb-fav')
+    assert '登録件数には加算しません' in soup.get_text()
+
+
+def test_source_disappearance_removes_both_display_pointers_in_fresh_generation(tmp_path, monkeypatch):
+    monkeypatch.setattr(main, 'copy_shared_assets', lambda: None)
+    rows = _rows(tmp_path, 'ニガイグチモドキ&ヤマドリタケモドキ', ['ニガイグチモドキ', 'ヤマドリタケモドキ'])
+    before, after = tmp_path/'before', tmp_path/'after'
+    monkeypatch.setattr(main, 'OUTPUT_DIR', str(before))
+    main.generate_gallery([], {}, multi_subject_overlays=_links(rows))
+    assert all(rows[0]['src'] in p.read_text() for p in before.glob('*.html') if p.stem in ['ニガイグチモドキ','ヤマドリタケモドキ'])
+    monkeypatch.setattr(main, 'OUTPUT_DIR', str(after))
+    main.generate_gallery([], {}, multi_subject_overlays=_links([]))
+    assert not list(after.glob('*.html'))
+    assert _links(rows, [{'alt': 'シイタケ', 'src': rows[0]['src']}]) == {}

@@ -2193,6 +2193,7 @@ def generate_gallery(entries, exif_cache, detail_views=None, multi_subject_overl
 
     # Additional references are HTML-only: never duplicate production photo identities.
     display_grouped = {name: list(urls) for name, urls in grouped.items()}
+    registered_urls = {src for urls in grouped.values() for src in urls}
     display_only = {}
     for name, urls in (multi_subject_overlays or {}).items():
         if not isinstance(name, str) or not isinstance(urls, list):
@@ -2239,8 +2240,12 @@ def generate_gallery(entries, exif_cache, detail_views=None, multi_subject_overl
         <h3>観察写真</h3>
         <p>{len(imgs)}枚の写真があります。写真をクリックすると大きく表示できます。</p>
       </div>
-      <div class='gallery'>
 """]
+
+        if display_only.get(alt):
+            html_parts.append('<p class="shared-subject-note">「複数種が写る写真」は元記事の記載に基づく参照表示です。'
+                              '図鑑トップ・観察記録の登録件数には加算しません。未登録の参照写真にはお気に入りの星を表示しません。</p>')
+        html_parts.append("<div class='gallery'>")
 
         for src in imgs:
             thumb = src + "?width=300"
@@ -2250,11 +2255,12 @@ def generate_gallery(entries, exif_cache, detail_views=None, multi_subject_overl
             is_shared = src in display_only.get(alt, set())
             shared_label = '<span class="shared-subject-indicator">複数種が写る写真</span>' if is_shared else ''
             display_alt = escaped_alt + ("などが写る複数種写真" if is_shared else "")
+            favorite_star = '<span class="thumb-fav">☆</span>' if src in registered_urls else ''
             html_parts.append(
                 f'<a class="gallery-item" href="{src}" '
                 f'data-exthumbimage="{thumb}" '
                 f'data-sub-html="{caption_attr}">'
-                f'<span class="thumb-fav">☆</span>'
+                f'{favorite_star}'
                 f'<span class="spores"></span>'
                 f'{shared_label}'
                 f'<img src="{src}" alt="{display_alt}" loading="lazy">'
