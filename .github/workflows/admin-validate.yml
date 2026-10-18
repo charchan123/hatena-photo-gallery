@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: read
 
 jobs:
   validate:
@@ -13,6 +14,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: .validation-previous
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /portal-data.json
+            /phase3c-production-status.json
+            /article-sync-snapshot.json
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -36,7 +49,32 @@ jobs:
           HATENA_USER: ${{ secrets.HATENA_USER }}
           HATENA_BLOG_ID: ${{ secrets.HATENA_BLOG_ID }}
           HATENA_API_KEY: ${{ secrets.HATENA_API_KEY }}
-        run: python main.py
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python article_sync.py --previous .validation-previous
+          --safe-deletions --deletion-preview
+          --output cache/never-published-admin-validation
+          --report cache/admin-validation.json
+      - name: Require complete guarded preview with stable protected IDs
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('cache/admin-validation.json').read_text())
+          selections = json.loads(Path('data/best-shots.json').read_text())['entries']
+          assert report['result'] == 'PREVIEW'
+          assert report['best_shot_references_preserved'] == len(selections)
+          assert report['deletions']['history_persisted'] is False
+          assert not Path('cache/never-published-admin-validation').exists()
+          print('PASS: guarded generation validated protected IDs; no publication/history writes')
+          PY
+      - name: Save read-only guarded validation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: admin-validation-${{ github.run_id }}-${{ github.run_attempt }}
+          path: cache/admin-validation.json
+          retention-days: 30
       - name: Python tests and compilation
         run: |
           python -m pytest -q
@@ -45,8 +83,3 @@ jobs:
         run: |
           for f in assets/*.js tests/*.js gallery.js admin/static/*.js; do node --check "$f"; done
           for f in tests/*.js; do node "$f"; done
-      - name: Validate generated tree and public isolation
-        run: |
-          test -f output/portal-data.json
-          test ! -e output/admin
-          ! find output -type f -print0 | xargs -0 grep -l 'きのこブログ管理室'
