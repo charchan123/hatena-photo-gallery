@@ -2256,8 +2256,10 @@ def generate_gallery(entries, exif_cache, detail_views=None, multi_subject_overl
             shared_label = '<span class="shared-subject-indicator">複数種が写る写真</span>' if is_shared else ''
             display_alt = escaped_alt + ("などが写る複数種写真" if is_shared else "")
             favorite_star = '<span class="thumb-fav">☆</span>' if src in registered_urls else ''
+            favorite_guard = 'data-favorite-eligible="false" ' if src not in registered_urls else ''
             html_parts.append(
                 f'<a class="gallery-item" href="{src}" '
+                f'{favorite_guard}'
                 f'data-exthumbimage="{thumb}" '
                 f'data-sub-html="{caption_attr}">'
                 f'{favorite_star}'

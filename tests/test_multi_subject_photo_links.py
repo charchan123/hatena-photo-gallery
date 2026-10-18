@@ -80,6 +80,7 @@ def test_unregistered_reference_cannot_offer_an_unresolvable_favorite(tmp_path, 
     soup = BeautifulSoup((tmp_path/'アカヤマドリ.html').read_text(), 'html.parser')
     assert soup.select_one('.shared-subject-note')
     assert not soup.select('.thumb-fav')
+    assert soup.select_one('.gallery-item')['data-favorite-eligible'] == 'false'
     assert '登録件数には加算しません' in soup.get_text()
 
 

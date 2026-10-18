@@ -37,6 +37,14 @@ const server=http.createServer((req,res)=>{
     // Natural image decoding exercises the real public CDN, not a substituted fixture.
     await page.waitForFunction(src=>{const i=[...document.images].find(i=>i.getAttribute('src')===src);return i&&i.complete&&i.naturalWidth>0},row.src,{timeout:30000});
     check(await anchor.locator('img').evaluate(i=>i.naturalWidth>0),true);
+    await anchor.click();await page.waitForSelector('.lg-current .lg-object');
+    await page.waitForSelector('.lg-fav-btn',{state:'attached'});
+    if(!portal.observations.some(r=>r.src===row.src)){
+     await page.waitForFunction(()=>document.querySelector('.lg-fav-btn').disabled);
+     check(await page.locator('.lg-fav-btn').isVisible(),false);
+     check(await page.locator('.lg-fav-btn').isDisabled(),true);
+    }
+    await page.locator('.lg-close').click();await page.waitForSelector('.lg-outer',{state:'hidden'});
    }
    check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
    await page.locator('#detail-title').scrollIntoViewIfNeeded();await page.screenshot({path:path.join(screenshots,width+'-'+name+'.png')});
