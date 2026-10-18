@@ -532,6 +532,326 @@
       ],
       "notes": "Evidence-backed gallery taxonomy entry; food safety is defined only in the linked master record.",
       "mushroom_master_id": "miyamatamagotake"
+    },
+    {
+      "canonical_name": "マツタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "research-ishikawa-matutake"
+      ],
+      "notes": "Gallery subject-name evidence from the already reviewed Ishikawa forestry source; this is not verification of photographed specimen identity or a food-safety claim.",
+      "mushroom_master_id": "matutake"
+    },
+    {
+      "canonical_name": "ブドウニガイグチ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://i-zukan.jp/category/syu?category_id=22027"
+      ],
+      "notes": "Japanese mushroom name listed in Zukan.jp as Tylopilus vinosobrunneus. The entry corroborates the subject category only; it does not identify the photographed specimen, claim edibility, or create an unreviewed knowledge-master record."
+    },
+    {
+      "canonical_name": "アカジコウ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified.",
+      "mushroom_master_id": "akajikou"
+    },
+    {
+      "canonical_name": "アシナガイグチ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+    },
+    {
+      "canonical_name": "ウスタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified.",
+      "mushroom_master_id": "usutake"
+    },
+    {
+      "canonical_name": "キイロイグチ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+    },
+    {
+      "canonical_name": "クリフウセンタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+    },
+    {
+      "canonical_name": "シロオニタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified.",
+      "mushroom_master_id": "siroonitake"
+    },
+    {
+      "canonical_name": "タマゴテングタケモドキ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+    },
+    {
+      "canonical_name": "チチタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified.",
+      "mushroom_master_id": "tititake"
+    },
+    {
+      "canonical_name": "テングタケダマシ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+    },
+    {
+      "canonical_name": "ナカグロモリノカサ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+    },
+    {
+      "canonical_name": "ニガイグチモドキ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+    },
+    {
+      "canonical_name": "ベニイグチ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+    },
+    {
+      "canonical_name": "ベニハナイグチ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+    },
+    {
+      "canonical_name": "ムラサキヤマドリタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+    },
+    {
+      "canonical_name": "イボセイヨウショウロ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://i-zukan.jp/category/syu?category_id=24553"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+    },
+    {
+      "canonical_name": "ウスムラサキシメジ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://fukushimakinoko.sakura.ne.jp/kinoko/usumurasakisimeji1.html"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+    },
+    {
+      "canonical_name": "オオノウタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://i-zukan.jp/category/syu?category_id=18675"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+    },
+    {
+      "canonical_name": "キタマゴタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://i-zukan.jp/category/ka?category_id=480&order=0&per=100"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+    },
+    {
+      "canonical_name": "キホウキタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://i-zukan.jp/category/syu?category_id=22236"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+    },
+    {
+      "canonical_name": "キンチャワンタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://i-zukan.jp/category/syu?category_id=24440"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+    },
+    {
+      "canonical_name": "サクラシメジモドキ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://s-kinokonokai.sakura.ne.jp/kinoko/common/sakurasimezimodoki.htm"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+    },
+    {
+      "canonical_name": "ショウゲンジ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified.",
+      "mushroom_master_id": "syougenji"
+    },
+    {
+      "canonical_name": "マクキヌガサタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://www.rinya.maff.go.jp/hokkaido/square/photo/mushroom.html"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+    },
+    {
+      "canonical_name": "ムレオオフウセンタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://i-zukan.jp/category/syu?category_id=19351"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+    },
+    {
+      "canonical_name": "ヤシャイグチ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://i-zukan.jp/category/ka?category_id=510&order=0&per=50"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+    },
+    {
+      "canonical_name": "ヤマドリタケ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://ikilog.biodic.go.jp/rl_rdb/a/130.html"
+      ],
+      "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+    },
+    {
+      "canonical_name": "アンズタケ(広義)",
+      "subject_type": "mushroom",
+      "aliases": [
+        "アンズアケ(広義)"
+      ],
+      "verification_status": "project_seed",
+      "sources": [
+        "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html",
+        "author correction on 2026-10-18"
+      ],
+      "notes": "Author-confirmed spelling fix for the broad-sense gallery subject; typo is an exact alias only and not a new taxon."
+    },
+    {
+      "canonical_name": "サザナミイグチ",
+      "subject_type": "mushroom",
+      "aliases": [],
+      "verification_status": "project_seed",
+      "sources": [
+        "previously published gallery subject",
+        "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/152831"
+      ],
+      "notes": "Previously used gallery name and new article heading; provisional gallery taxonomy seed, not an independent specimen identification."
+    },
+    {
+      "canonical_name": "フジアザミ",
+      "subject_type": "non_mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://www.env.go.jp/nature/nationalparks/list/fuji-hakone-izu/feature/"
+      ],
+      "notes": "Confirmed plant, not fungus. Explicitly excluded from the mushroom gallery at author request (2026-10-18); no manual Alt is needed."
     }
   ]
 }

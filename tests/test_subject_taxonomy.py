@@ -31,7 +31,7 @@ def entry_without(field):
     return value
 
 
-def test_repository_master_has_eight_preserved_seeds_and_forty_verified_entries():
+def test_repository_master_preserves_seed_and_verified_entries():
     taxonomy = main.load_subject_taxonomy()
     actual = {(row["canonical_name"], row["subject_type"]) for row in taxonomy["entries"]}
     seeds = {
@@ -39,6 +39,7 @@ def test_repository_master_has_eight_preserved_seeds_and_forty_verified_entries(
         ("ベニテングタケ", "mushroom"), ("ドクヤマドリ", "mushroom"),
         ("カエンタケ", "mushroom"), ("コブハクチョウ", "non_mushroom"),
         ("ヨシガモ", "non_mushroom"), ("ミツバアケビ", "non_mushroom"),
+        ("アンズタケ(広義)", "mushroom"), ("サザナミイグチ", "mushroom"),
     }
     verified = {
         (name, "mushroom") for name in (
@@ -51,12 +52,38 @@ def test_repository_master_has_eight_preserved_seeds_and_forty_verified_entries(
             "オオワライタケ", "アオロウジ", "ウラベニガサ", "トガリアミガサタケ", "ノウタケ",
             "ウコンハツ", "エノキタケ", "キニガイグチ", "コテングタケモドキ", "タマゴタケ",
             "アラゲキクラゲ", "ウラグロニガイグチ", "オオキツネタケ", "キアミアシイグチ", "セイタカイグチ",
-            "タマチョレイタケ", "ツバアブラシメジ", "ホテイシメジ", "ミドリニガイグチ", "ミヤマタマゴタケ",
+            "タマチョレイタケ", "ツバアブラシメジ", "ホテイシメジ", "ミドリニガイグチ", "ミヤマタマゴタケ", "ブドウニガイグチ", "マツタケ",
+            "アカジコウ",
+            "アシナガイグチ",
+            "ウスタケ",
+            "キイロイグチ",
+            "クリフウセンタケ",
+            "シロオニタケ",
+            "タマゴテングタケモドキ",
+            "チチタケ",
+            "テングタケダマシ",
+            "ナカグロモリノカサ",
+            "ニガイグチモドキ",
+            "ベニイグチ",
+            "ベニハナイグチ",
+            "ムラサキヤマドリタケ",
+            "イボセイヨウショウロ",
+            "ウスムラサキシメジ",
+            "オオノウタケ",
+            "キタマゴタケ",
+            "キホウキタケ",
+            "キンチャワンタケ",
+            "サクラシメジモドキ",
+            "ショウゲンジ",
+            "マクキヌガサタケ",
+            "ムレオオフウセンタケ",
+            "ヤシャイグチ",
+            "ヤマドリタケ",
         )
     }
-    assert actual == seeds | verified
-    assert sum(row["verification_status"] == "project_seed" for row in taxonomy["entries"]) == 8
-    assert sum(row["verification_status"] == "externally_verified" for row in taxonomy["entries"]) == 40
+    assert actual == seeds | verified | {("フジアザミ", "non_mushroom")}
+    assert sum(row["verification_status"] == "project_seed" for row in taxonomy["entries"]) == 10
+    assert sum(row["verification_status"] == "externally_verified" for row in taxonomy["entries"]) == 69
 
 
 @pytest.mark.parametrize("bad_entry", [
@@ -161,9 +188,12 @@ def test_match_priority_and_conservative_normalization(tmp_path):
     ("ホテイシメジ", "mushroom", "taxonomy_mushroom"),
     ("ミドリニガイグチ", "mushroom", "taxonomy_mushroom"),
     ("ミヤマタマゴタケ", "mushroom", "taxonomy_mushroom"),
+    ("ブドウニガイグチ", "mushroom", "taxonomy_mushroom"),
+    ("マツタケ", "mushroom", "taxonomy_mushroom"),
     ("コブハクチョウ", "non_mushroom", "taxonomy_non_mushroom"),
     ("ヨシガモ", "non_mushroom", "taxonomy_non_mushroom"),
     ("ミツバアケビ", "non_mushroom", "taxonomy_non_mushroom"),
+    ("フジアザミ", "non_mushroom", "taxonomy_non_mushroom"),
 ])
 def test_repository_seed_classification(label, kind, reason):
     assert main.classify_subject_type(label, main.load_subject_taxonomy()) == (kind, reason, "high")
@@ -285,3 +315,91 @@ def test_audit_and_candidate_export_failures_do_not_block_legacy_generation(monk
     monkeypatch.setattr(main, "generate_favorite_page", lambda grouped: None)
     main.build_gallery()
     assert generated[0] is entries
+
+
+
+def test_alt_free_article_headings_promote_only_two_verified_mushrooms(tmp_path):
+    """Promote independently labeled mushrooms without manual image alt text."""
+    article = tmp_path / "article.html"
+    article.write_text(
+        '<div class="entry-body">'
+        '<p>ブドウニガイグチ</p>'
+        '<p><img src="budou-1.jpg" alt=""></p>'
+        '<p>別の双子。</p>'
+        '<p><img src="budou-2.jpg" alt=""></p>'
+        '<p>マツタケ</p>'
+        '<p><img src="matsu-1.jpg" alt=""></p>'
+        '<p>上記の写真を撮影した後。</p>'
+        '<p><img src="matsu-2.jpg" alt=""></p>'
+        '</div>', encoding="utf-8")
+    taxonomy = main.load_subject_taxonomy()
+    assert main.fetch_images([article]) == []
+    rows = main.extract_shadow_metadata(
+        [article],
+        {str(article): {"categories": ["キノコ探索日記", "ブドウニガイグチ", "マツタケ"]}},
+        taxonomy=taxonomy,
+    )
+    assert [row["detected_label"] for row in rows] == [
+        "ブドウニガイグチ", "ブドウニガイグチ", "マツタケ", "マツタケ"
+    ]
+    assert all(row["legacy_alt"] == "" for row in rows)
+    assert all(row["subject_type"] == "mushroom" for row in rows)
+    assert all(row["classification_reason"] == "taxonomy_mushroom" for row in rows)
+    assert all(row["subject_state_status"] == "accepted_subject" for row in rows)
+    assert all(row["taxonomy_match_type"] == "canonical_exact" for row in rows)
+
+    hybrid, report = main.build_phase3c_hybrid_preview([], rows)
+    assert hybrid == [
+        {"alt": "ブドウニガイグチ", "src": "budou-1.jpg"},
+        {"alt": "ブドウニガイグチ", "src": "budou-2.jpg"},
+        {"alt": "マツタケ", "src": "matsu-1.jpg"},
+        {"alt": "マツタケ", "src": "matsu-2.jpg"},
+    ]
+    assert report["summary"]["confirmed_new_mushroom_added_count"] == 4
+    assert not report["new_review_excluded"]
+    assert not report["renamed_occurrences"]
+    assert not report["removed_non_mushroom"]
+    assert main.validate_phase3c_hybrid_cutover([], hybrid, report)["valid"]
+
+    for other in ("ヤナギマツタケ", "ブドウニガイグチモドキ", "マツタケモドキ"):
+        kind, reason, _ = main.classify_subject_type(other, taxonomy)
+        assert (kind, reason) == (
+            ("mushroom", "taxonomy_mushroom") if other == "ヤナギマツタケ"
+            else ("review", "taxonomy_unmatched")
+        )
+
+
+def test_recent_altless_species_and_article_spelling_correction(tmp_path):
+    taxonomy = main.load_subject_taxonomy()
+    assert main.classify_subject_type("フジアザミ", taxonomy)[0] == "non_mushroom"
+    assert main.classify_subject_type("オオジョウゴタケ？", taxonomy)[0] == "review"
+    for label in ["アカジコウ","アシナガイグチ","ウスタケ","キイロイグチ","クリフウセンタケ","シロオニタケ","タマゴテングタケモドキ","チチタケ","テングタケダマシ","ナカグロモリノカサ","ニガイグチモドキ","ベニイグチ","ベニハナイグチ","ムラサキヤマドリタケ","イボセイヨウショウロ","ウスムラサキシメジ","オオノウタケ","キタマゴタケ","キホウキタケ","キンチャワンタケ","サクラシメジモドキ","ショウゲンジ","マクキヌガサタケ","ムレオオフウセンタケ","ヤシャイグチ","ヤマドリタケ","アンズタケ(広義)","サザナミイグチ"]:
+        assert main.classify_subject_type(label, taxonomy)[:2] == ("mushroom", "taxonomy_mushroom")
+    row = shadow_record(tmp_path, "アンズアケ(広義)", ["キノコ探索日記", "アンズタケ(広義)"], alt="", taxonomy=taxonomy)
+    assert row["gallery_name"] == "アンズタケ(広義)"
+    assert row["taxonomy_match_type"] == "alias_exact"
+
+
+def test_broad_sense_name_never_renames_existing_narrow_subject(tmp_path):
+    taxonomy = main.load_subject_taxonomy()
+    # Four previously published アンズタケ images are explicitly protected.
+    assert main.match_subject_taxonomy("アンズタケ", taxonomy) == (None, "none")
+    assert main.classify_subject_type("アンズタケ", taxonomy) == (
+        "review", "taxonomy_unmatched", "low"
+    )
+    assert main.match_subject_taxonomy("アンズタケ(広義)", taxonomy)[1] == "canonical_exact"
+    assert main.match_subject_taxonomy("アンズアケ(広義)", taxonomy)[1] == "alias_exact"
+    article = tmp_path / "article.html"
+    article.write_text(
+        '<div class="entry-body"><p>アンズタケ</p><img src="existing.jpg" alt="アンズタケ"></div>',
+        encoding="utf-8",
+    )
+    rows = main.extract_shadow_metadata(
+        [article], {str(article): {"categories": ["アンズタケ"]}}, taxonomy=taxonomy
+    )
+    candidate, report = main.build_phase3c_hybrid_preview(
+        [{"alt": "アンズタケ", "src": "existing.jpg"}], rows
+    )
+    assert candidate == [{"alt": "アンズタケ", "src": "existing.jpg"}]
+    assert not report["renamed_occurrences"]
+    assert not report["added_occurrences"]
