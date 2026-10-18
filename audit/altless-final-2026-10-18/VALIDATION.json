@@ -1,0 +1,68 @@
+{
+  "result": "PASS",
+  "reviewed_code_head": "74cb259c2f4197cca19632ee8a16ad04fc9914a0",
+  "python": {
+    "passed": 962,
+    "run_id": 39110875937
+  },
+  "javascript": "all syntax and regression tests PASS",
+  "existing_chromium_run_id": 39110875948,
+  "live_deletion_audit_run_id": 39110875932,
+  "real_acceptance": {
+    "result": "PASS",
+    "assertions": 310,
+    "viewports": [
+      1280,
+      390
+    ],
+    "actual_cdn_decoding": true,
+    "publication": "NOT_ATTEMPTED",
+    "run_id": 39110875955,
+    "artifact_id": 12130112264,
+    "artifact_sha256": "6ef2ce3f7723867b95e555c841fb739ce8a4a63cb55c09b1df3c8baef6c09bf2"
+  },
+  "baseline_commit": "3e6d278b877e8e153dc25a8753505eddeb96a5ce",
+  "source_api": {
+    "pages_completed": 12,
+    "entries_received": 112,
+    "drafts_excluded": 1,
+    "published_articles": 111,
+    "html_articles": 111,
+    "pagination_complete": true,
+    "content_type_counts": {
+      "text/html": 111
+    },
+    "html_source_counts": {
+      "content_html": 111
+    },
+    "html_image_representation_difference_articles": 0
+  },
+  "protected": {
+    "existing_ids_name_src_preserved": 893,
+    "existing_projection_sha256": "3ad060eef342bdc9aa6b8c6f3971ff3b54886e6be87a5a000a9165a01318123c",
+    "best_shot_selections": 12,
+    "research_cases": 66,
+    "retired_ids_absent": 7,
+    "master_unchanged": 141,
+    "sources_unchanged": 419
+  },
+  "record_counts_verified_articles": 83,
+  "corrected_alias_page_absent": true,
+  "plant_page_absent": true,
+  "publication": "NOT_ATTEMPTED",
+  "history_persisted": false,
+  "best_shot_ci_fix_pr": 126,
+  "best_shot_fix_final_head": "c208edec1df0439d80eb9766ce97df78532493cb",
+  "best_shot_fix_final_ci": [
+    39110435385,
+    39110435477,
+    39110435314
+  ],
+  "known_limitations": [
+    "Legacy Validate on PR125 still uses raw main.py until independent PR126 merges; guarded preview and real pages resolve all selected IDs.",
+    "Local management sync list is cramped on mobile; use desktop.",
+    "Six uncertain/source-review photos remain excluded from automatic registration.",
+    "Public switch value could not be read through permitted connector endpoints; verify before any approved main merge."
+  ],
+  "final_head_checks": "After audit-only commit/removal of temporary workflow, see final PR Checks; production code is unchanged."
+}

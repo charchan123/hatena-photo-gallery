@@ -1,6 +1,6 @@
 # 直近7記事からの図鑑未収録画像監査（2026-10-18）
 
-基準公開 gh-pages f29e3557865bfdfa5964bbabc64c7673bf28520d。記事7件・画像73件、既収録23件、未収録50件（名前taxonomy未照合46、明示的複数種等の境界保留4）。本番公開図鑑893枚。
+初回監査時の基準公開 gh-pages f29e3557865bfdfa5964bbabc64c7673bf28520d。記事7件・画像73件、既収録23件、未収録50件（名前taxonomy未照合46、明示的複数種等の境界保留4）。本番公開図鑑893枚。
 
 - 前提：Draft PR #124（ブドウニガイグチ2＋マツタケ2）は未マージ。本PRはそのブランチ上の積み上げであり先に単独マージ不可。
 - 新規taxonomy: 外部名称資料が確認できた26種類・既存図鑑または執筆者修正に基づくproject_seed 2種類。名称根拠のみで写真個体の独立同定、食毒・摂食可否は主張しない。
@@ -39,16 +39,15 @@
 - ヤシャイグチ: https://i-zukan.jp/category/ka?category_id=510&order=0&per=50
 - ヤマドリタケ: https://ikilog.biodic.go.jp/rl_rdb/a/130.html
 
-## 未着手・確認予定
+## 引き継ぎ後の最終確認
 
-- 最新Hatena APIからアンズタケ(広義)の本文修正を取得、公開HTML側の残存旧表記を再確認する。
-- CIの独立API PREVIEW/保護写真/Chromium回帰を確認する。PR #124との差分を分離する。
+最新API・保護写真・実ページ・管理室の受入確認は [最終監査](altless-final-2026-10-18/REPORT.md) に保存する。初回の数値と旧CIは以下の履歴として保持する。
 
 ## CI 実行方針
 
 GitHub Actionsは `pull_request: branches: [main]` に限定されるため、PR #125はCI検証時にbaseをmainへ設定する。PR #124の変更を含む合算差分となるが、先にPR #124を承認・マージしてからこのPRを扱う。マージ・gh-pages公開は承認まで行わない。
 
-## 最終検証（head: 1dbe912c198498d18b2fab9aa1a80562514c2a60）
+## 初回実装の検証履歴（head: 1dbe912c198498d18b2fab9aa1a80562514c2a60）
 
 - Python 959 passed（Actions 39083984005）
 - Chromium SUCCESS（Actions 39083983872）

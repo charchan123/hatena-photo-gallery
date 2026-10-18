@@ -1,0 +1,265 @@
+{
+  "result": "PASS",
+  "source_commit": "66b46e37bdc86e4fafc5bc743ef634f0edc378e1",
+  "baseline_commit": "3e6d278b877e8e153dc25a8753505eddeb96a5ce",
+  "run_id": "39110875955",
+  "guarded_status": {
+    "version": 1,
+    "result": "SUCCESS",
+    "comparison": "KNOWN",
+    "new_articles": 0,
+    "deleted_articles": 0,
+    "new_images": 0,
+    "deleted_images": 0,
+    "updated_articles": 0,
+    "classification_changes": 75,
+    "possible_url_changes": 0,
+    "url_changes": 0,
+    "last_success_at": "2026-10-18T08:18:08.143276+00:00",
+    "classification_review_count": 483,
+    "fetch_error": null,
+    "id_compatibility_error": null,
+    "fetch_audit": {
+      "pages_completed": 12,
+      "entries_received": 112,
+      "drafts_excluded": 1,
+      "published_articles": 111,
+      "html_articles": 111,
+      "pagination_complete": true,
+      "content_type_counts": {
+        "text/html": 111
+      },
+      "html_source_counts": {
+        "content_html": 111
+      },
+      "html_image_representation_difference_articles": 0
+    },
+    "published_article_count": 111,
+    "detected_image_count": 980,
+    "previous_photo_count": 893,
+    "candidate_gallery_photo_count": 933,
+    "missing_published_photo_keys": 0,
+    "missing_published_article_ids": 0,
+    "missing_photos_in_excluded_drafts": 0,
+    "missing_articles_in_excluded_drafts": 0,
+    "missing_articles_from_api_harvest": 0,
+    "classification_state_counts": {
+      "named_mushroom": 495,
+      "ambiguous": 414,
+      "non_mushroom": 8,
+      "unidentified_mushroom": 12,
+      "conflict": 31,
+      "unclassified": 20
+    },
+    "deletions": {
+      "candidate_count": 0,
+      "automatic_deletion_eligible": 0,
+      "manual_deletion_eligible": 0,
+      "protected_pending": 0,
+      "applied_automatic": 0,
+      "applied_manual": 0,
+      "pending": 0,
+      "states": {},
+      "history_persisted": false,
+      "history_head": "80f636906bd36301574eb2fbc5d6dd92ae52d05c6d15bace7c31e0b7efa9a348"
+    },
+    "retirement": {
+      "migration_id": "hatena-draft-photo-retirement-2026-10-12",
+      "state": "ALREADY_APPLIED",
+      "retired_this_run": 0,
+      "retired_total": 7,
+      "manifest_sha256": "4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c"
+    },
+    "best_shot_references_preserved": 12,
+    "research_cases_preserved": 66,
+    "preserved_photo_ids": 893,
+    "gallery_photo_count": 933,
+    "retired_output_inspection": {
+      "result": "PASS",
+      "text_files_checked": 356,
+      "retired_ids_absent": 7,
+      "shared_image_urls_preserved": 0
+    },
+    "automatic_added_photo_count": 40,
+    "automatic_added_at": "2026-10-18T08:18:08.143276+00:00",
+    "name_migration_count": 0,
+    "name_migrations_applied_this_run": 0,
+    "manual_adoption_count": 0,
+    "manual_adoptions_applied_this_run": 0,
+    "generated_html_pages": 333,
+    "bootstrap": false
+  },
+  "recent_article_count": 7,
+  "recent_source_photos": 73,
+  "already_registered": 23,
+  "new_registered": 40,
+  "additions_by_name": {
+    "クリフウセンタケ": 4,
+    "マクキヌガサタケ": 1,
+    "キンチャワンタケ": 1,
+    "ベニハナイグチ": 1,
+    "ヤマドリタケ": 1,
+    "マツタケ": 2,
+    "シロオニタケ": 2,
+    "アカジコウ": 1,
+    "オオノウタケ": 1,
+    "キイロイグチ": 1,
+    "テングタケダマシ": 1,
+    "ナカグロモリノカサ": 2,
+    "ムラサキヤマドリタケ": 2,
+    "タマゴテングタケモドキ": 1,
+    "ベニイグチ": 1,
+    "アンズタケ(広義)": 2,
+    "キタマゴタケ": 2,
+    "チチタケ": 1,
+    "サザナミイグチ": 1,
+    "ヤシャイグチ": 2,
+    "ブドウニガイグチ": 2,
+    "アシナガイグチ": 1,
+    "ムレオオフウセンタケ": 1,
+    "ウスムラサキシメジ": 1,
+    "キホウキタケ": 1,
+    "イボセイヨウショウロ": 1,
+    "ウスタケ": 1,
+    "サクラシメジモドキ": 1,
+    "ショウゲンジ": 1
+  },
+  "mixed_species_overlays": {
+    "ニガイグチモドキ": [
+      "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224934.jpg",
+      "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224503.jpg",
+      "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706220754.jpg"
+    ],
+    "ヤマドリタケモドキ": [
+      "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224934.jpg",
+      "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224503.jpg"
+    ],
+    "ムラサキヤマドリタケ": [
+      "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152338.jpg"
+    ],
+    "アカヤマドリ": [
+      "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152338.jpg"
+    ],
+    "ヘビキノコモドキ": [
+      "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706220931.jpg"
+    ]
+  },
+  "mixed_species_source_photos": 5,
+  "recent_mixed_species_source_photos": 3,
+  "unregistered_recent": [
+    {
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032090025324",
+      "article_title": "2026年10月3日富士山(山梨県)",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063946.jpg",
+      "detected_label": "オオジョウゴタケ？",
+      "gallery_name": null,
+      "subject_state_status": "accepted_subject",
+      "last_rejected_boundary_text": null,
+      "last_rejected_boundary_reason": null,
+      "taxonomy_match_type": "none"
+    },
+    {
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032090025324",
+      "article_title": "2026年10月3日富士山(山梨県)",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015064015.jpg",
+      "detected_label": "オオジョウゴタケ？",
+      "gallery_name": null,
+      "subject_state_status": "accepted_subject",
+      "last_rejected_boundary_text": null,
+      "last_rejected_boundary_reason": null,
+      "taxonomy_match_type": "none"
+    },
+    {
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032090025324",
+      "article_title": "2026年10月3日富士山(山梨県)",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015064116.jpg",
+      "detected_label": "オオジョウゴタケ？",
+      "gallery_name": null,
+      "subject_state_status": "accepted_subject",
+      "last_rejected_boundary_text": null,
+      "last_rejected_boundary_reason": null,
+      "taxonomy_match_type": "none"
+    },
+    {
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032081257566",
+      "article_title": "2026年9月22日富士山(山梨県)",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015062811.jpg",
+      "detected_label": "フジアザミ",
+      "gallery_name": null,
+      "subject_state_status": "accepted_subject",
+      "last_rejected_boundary_text": null,
+      "last_rejected_boundary_reason": null,
+      "taxonomy_match_type": "canonical_exact"
+    },
+    {
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032081257566",
+      "article_title": "2026年9月22日富士山(山梨県)",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063319.jpg",
+      "detected_label": "フモトニガイグチ",
+      "gallery_name": null,
+      "subject_state_status": "accepted_subject",
+      "last_rejected_boundary_text": null,
+      "last_rejected_boundary_reason": null,
+      "taxonomy_match_type": "none"
+    },
+    {
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+      "article_title": "2026年9月19日静岡県浜松市",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224934.jpg",
+      "detected_label": null,
+      "gallery_name": null,
+      "subject_state_status": "reset_by_rejected_boundary",
+      "last_rejected_boundary_text": "ニガイグチモドキ&ヤマドリタケモドキ",
+      "last_rejected_boundary_reason": "multiple_subject_separator",
+      "taxonomy_match_type": "none"
+    },
+    {
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080300484",
+      "article_title": "2026年9月18日静岡県浜松市",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152246.jpg",
+      "detected_label": null,
+      "gallery_name": null,
+      "subject_state_status": "reset_by_rejected_boundary",
+      "last_rejected_boundary_text": "ニガイグチの仲間",
+      "last_rejected_boundary_reason": "family_or_group_heading",
+      "taxonomy_match_type": "none"
+    },
+    {
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080300484",
+      "article_title": "2026年9月18日静岡県浜松市",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152338.jpg",
+      "detected_label": null,
+      "gallery_name": null,
+      "subject_state_status": "reset_by_rejected_boundary",
+      "last_rejected_boundary_text": "ムラサキヤマドリタケ&アカヤマドリ",
+      "last_rejected_boundary_reason": "multiple_subject_separator",
+      "taxonomy_match_type": "none"
+    },
+    {
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080294735",
+      "article_title": "2026年9月17日静岡県浜松市",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224503.jpg",
+      "detected_label": null,
+      "gallery_name": null,
+      "subject_state_status": "reset_by_rejected_boundary",
+      "last_rejected_boundary_text": "ニガイグチモドキ&ヤマドリタケモドキ",
+      "last_rejected_boundary_reason": "multiple_subject_separator",
+      "taxonomy_match_type": "none"
+    },
+    {
+      "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032077756378",
+      "article_title": "2026年9月12日富士山(山梨県)",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923225004.jpg",
+      "detected_label": "アブラシメジモドキ",
+      "gallery_name": null,
+      "subject_state_status": "accepted_subject",
+      "last_rejected_boundary_text": null,
+      "last_rejected_boundary_reason": null,
+      "taxonomy_match_type": "none"
+    }
+  ],
+  "admin_recent_rows": 73,
+  "publication": "NOT_ATTEMPTED",
+  "history_persisted": false,
+  "evidence_note": "Published-only aggregate evidence; full generated site and detailed hashes are in the verified Actions artifact. Internal SUCCESS means isolated candidate validation, not publication."
+}

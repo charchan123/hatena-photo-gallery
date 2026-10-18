@@ -69,6 +69,8 @@ def test_html_only_addition_does_not_change_gallery_index_or_photo_identity(tmp_
     assert src in left and src in right
     assert "複数種が写る写真" not in left
     assert "複数種が写る写真" in right
+    assert 'class="thumb-fav"' in left and 'class="thumb-fav"' in right
+    assert 'data-favorite-eligible="false"' not in left + right
 
 
 def test_unregistered_reference_cannot_offer_an_unresolvable_favorite(tmp_path, monkeypatch):
