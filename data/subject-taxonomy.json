@@ -842,6 +842,16 @@
         "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/152831"
       ],
       "notes": "Previously used gallery name and new article heading; provisional gallery taxonomy seed, not an independent specimen identification."
+    },
+    {
+      "canonical_name": "フジアザミ",
+      "subject_type": "non_mushroom",
+      "aliases": [],
+      "verification_status": "externally_verified",
+      "sources": [
+        "https://www.env.go.jp/nature/nationalparks/list/fuji-hakone-izu/feature/"
+      ],
+      "notes": "Confirmed plant, not fungus. Explicitly excluded from the mushroom gallery at author request (2026-10-18); no manual Alt is needed."
     }
   ]
 }

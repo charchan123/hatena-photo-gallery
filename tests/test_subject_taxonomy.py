@@ -81,9 +81,9 @@ def test_repository_master_preserves_seed_and_verified_entries():
             "ヤマドリタケ",
         )
     }
-    assert actual == seeds | verified
+    assert actual == seeds | verified | {("フジアザミ", "non_mushroom")}
     assert sum(row["verification_status"] == "project_seed" for row in taxonomy["entries"]) == 10
-    assert sum(row["verification_status"] == "externally_verified" for row in taxonomy["entries"]) == 68
+    assert sum(row["verification_status"] == "externally_verified" for row in taxonomy["entries"]) == 69
 
 
 @pytest.mark.parametrize("bad_entry", [
@@ -193,6 +193,7 @@ def test_match_priority_and_conservative_normalization(tmp_path):
     ("コブハクチョウ", "non_mushroom", "taxonomy_non_mushroom"),
     ("ヨシガモ", "non_mushroom", "taxonomy_non_mushroom"),
     ("ミツバアケビ", "non_mushroom", "taxonomy_non_mushroom"),
+    ("フジアザミ", "non_mushroom", "taxonomy_non_mushroom"),
 ])
 def test_repository_seed_classification(label, kind, reason):
     assert main.classify_subject_type(label, main.load_subject_taxonomy()) == (kind, reason, "high")
@@ -370,7 +371,7 @@ def test_alt_free_article_headings_promote_only_two_verified_mushrooms(tmp_path)
 
 def test_recent_altless_species_and_article_spelling_correction(tmp_path):
     taxonomy = main.load_subject_taxonomy()
-    assert main.classify_subject_type("フジアザミ", taxonomy)[0] == "review"
+    assert main.classify_subject_type("フジアザミ", taxonomy)[0] == "non_mushroom"
     assert main.classify_subject_type("オオジョウゴタケ？", taxonomy)[0] == "review"
     for label in ["アカジコウ","アシナガイグチ","ウスタケ","キイロイグチ","クリフウセンタケ","シロオニタケ","タマゴテングタケモドキ","チチタケ","テングタケダマシ","ナカグロモリノカサ","ニガイグチモドキ","ベニイグチ","ベニハナイグチ","ムラサキヤマドリタケ","イボセイヨウショウロ","ウスムラサキシメジ","オオノウタケ","キタマゴタケ","キホウキタケ","キンチャワンタケ","サクラシメジモドキ","ショウゲンジ","マクキヌガサタケ","ムレオオフウセンタケ","ヤシャイグチ","ヤマドリタケ","アンズタケ(広義)","サザナミイグチ"]:
         assert main.classify_subject_type(label, taxonomy)[:2] == ("mushroom", "taxonomy_mushroom")
