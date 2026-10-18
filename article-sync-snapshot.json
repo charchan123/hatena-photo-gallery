@@ -1,7 +1,7 @@
 {
   "payload": {
     "version": 1,
-    "last_success_at": "2026-10-18T12:52:48.499237+00:00",
+    "last_success_at": "2026-10-18T13:47:14.674761+00:00",
     "articles": {
       "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7": {
         "updated_hash": "e41fa42267b5d0f3b00dc5872ff08a0b762b07495f9188f6f7379d712d4bca86",
@@ -9,9 +9,9 @@
           {
             "url_hash": "99988df4cd624d0a94570f0e94e6856269c7c873277fc2331436810724270564",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "f3745684b79e8f6e807b24efb777d5b311338336da344816e4e5b9051fca65b8",
             "label_hash": "f3745684b79e8f6e807b24efb777d5b311338336da344816e4e5b9051fca65b8"
           },
           {
@@ -25,9 +25,9 @@
           {
             "url_hash": "02055f7d29fd937fed40cadc2dfe7f0b0906cf6fce9d3d06c9dbc3721c25bbf8",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "562805b926d59599579637d02318ef52db98510cc9a8a9b994832224bb6c76a6",
             "label_hash": "562805b926d59599579637d02318ef52db98510cc9a8a9b994832224bb6c76a6"
           },
           {
@@ -41,9 +41,9 @@
           {
             "url_hash": "845c288119d11b64c8b386e2b975ed1d481821c1294552d57d7a8a39adce7bf1",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "014f16774f804a2f2f2f8fe135fc846bc2c4b718f2462c7d5acf39fa1eca9ef3",
             "label_hash": "014f16774f804a2f2f2f8fe135fc846bc2c4b718f2462c7d5acf39fa1eca9ef3"
           },
           {
@@ -73,9 +73,9 @@
           {
             "url_hash": "e53c35e42bb5f59a321078a6df619f9d13d187910e8f0fb64d4cfc1d92d89292",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "8f6c2939fa0cca8e01a6521458b45da7523b18b3cd7c49c6923ce9141af1077c",
             "label_hash": "8f6c2939fa0cca8e01a6521458b45da7523b18b3cd7c49c6923ce9141af1077c"
           }
         ],
@@ -87,8 +87,8 @@
           {
             "url_hash": "376a0be77e0e9ba7196ebdda88ef0097b72a6700a41e9a6a2249d7f9949d8417",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
+            "state": "non_mushroom",
+            "reason": "taxonomy_non_mushroom",
             "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "label_hash": "1cb4008c917f111a2a02dfd1a21cdb39f7fc8677921fd096363459a7205ad136"
           },
@@ -103,33 +103,33 @@
           {
             "url_hash": "ea01f52ebab9e29c9e68ca4d727715e66aba8a095e07e3688f4db05138c5afa0",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "f3745684b79e8f6e807b24efb777d5b311338336da344816e4e5b9051fca65b8",
             "label_hash": "f3745684b79e8f6e807b24efb777d5b311338336da344816e4e5b9051fca65b8"
           },
           {
             "url_hash": "de736f797cd17ebec97815932d60ccaa897f7998973fb8af6674d66bcf10086e",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "f3745684b79e8f6e807b24efb777d5b311338336da344816e4e5b9051fca65b8",
             "label_hash": "f3745684b79e8f6e807b24efb777d5b311338336da344816e4e5b9051fca65b8"
           },
           {
             "url_hash": "36917691b5202d024f5d03acc287af7204614c65c59c49792f9c1f2a4922f51c",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "f3745684b79e8f6e807b24efb777d5b311338336da344816e4e5b9051fca65b8",
             "label_hash": "f3745684b79e8f6e807b24efb777d5b311338336da344816e4e5b9051fca65b8"
           },
           {
             "url_hash": "159bd1ee00a891e8a62631041ab71d8285ee7cb254615fb3ba110b6f93601c44",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "07ab53617e3d4fbddd4c3cd772862f64d5e3d0921b67f2a655c80e2144afe017",
             "label_hash": "07ab53617e3d4fbddd4c3cd772862f64d5e3d0921b67f2a655c80e2144afe017"
           },
           {
@@ -159,17 +159,17 @@
           {
             "url_hash": "9a6f6365fff27920a8dcbc5ce7e6ab178164077a150bb790d7da0aec035eb607",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "328bdce4b66cd052816705291a045ac6f9bb9393430c15aa5dfa3868c87ce905",
             "label_hash": "328bdce4b66cd052816705291a045ac6f9bb9393430c15aa5dfa3868c87ce905"
           },
           {
             "url_hash": "06c302fafba2ee7689b010a13a1a79553edba7c8ec08c09c6f4a67f838333469",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "cb3900a39ca500d8242ecb57d8039750ade006fe0ad8b14304ce795bc0384816",
             "label_hash": "cb3900a39ca500d8242ecb57d8039750ade006fe0ad8b14304ce795bc0384816"
           }
         ],
@@ -181,25 +181,25 @@
           {
             "url_hash": "dc8673b903474b1a9b261fd80188b233bffbcb548a8b840ca2e08d9d205c9caa",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "6395f4c7ce9ea3b6553be27b8e8e5426ff3afd080422f45337a3925dc0c688c4",
             "label_hash": "6395f4c7ce9ea3b6553be27b8e8e5426ff3afd080422f45337a3925dc0c688c4"
           },
           {
             "url_hash": "ddc722eff416e24f5a1f0e11a97d2251fd326a3a647568bd7209de1f0e01db8f",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "f4826835cd0219af8539dc6667407279f33bb9c3090e273650f34ca43060106b",
             "label_hash": "f4826835cd0219af8539dc6667407279f33bb9c3090e273650f34ca43060106b"
           },
           {
             "url_hash": "81cb00fa2e11c3ee88025361a4223d76be00710cebe0da4396b3be36859963ed",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "6615b7daede66cf2f51c33c2e6bcd80204042869ecc83b0cc68e850a7368ca62",
             "label_hash": "6615b7daede66cf2f51c33c2e6bcd80204042869ecc83b0cc68e850a7368ca62"
           },
           {
@@ -261,25 +261,25 @@
           {
             "url_hash": "6e52c48db3a6da518df7b789f2180187340c829c38930e054be2cbd766674fb6",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "c9dd1f4b2b79ff1729f51b7e46e05e6c350a0e301f69ec05af0840cb6eba5e4d",
             "label_hash": "c9dd1f4b2b79ff1729f51b7e46e05e6c350a0e301f69ec05af0840cb6eba5e4d"
           },
           {
             "url_hash": "cbf059f2596e069f26cc45ea4fa12035d39630fd4c4b63936f182c6180bdea1d",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "c495df9114ee42952bdddd533e395f90d7822e36e65901933f3417e377080661",
             "label_hash": "c495df9114ee42952bdddd533e395f90d7822e36e65901933f3417e377080661"
           },
           {
             "url_hash": "ccf41b7119fd2d857b8d9e45738413984603babf2dbd6c5992888bd444989d55",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "62a835a0380a45e605acc378b2b54d81c40713a108be092d5b18b295ced5a972",
             "label_hash": "62a835a0380a45e605acc378b2b54d81c40713a108be092d5b18b295ced5a972"
           },
           {
@@ -293,33 +293,33 @@
           {
             "url_hash": "e3ac1c3775a0eb93be3352b9db0feb9ddeb26780e48ff718166d7af9058fd5a3",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "109b930a14e054a32122d2d04693bdf1ead0db8e1dad5e8250ed9826cdf0c5d2",
             "label_hash": "109b930a14e054a32122d2d04693bdf1ead0db8e1dad5e8250ed9826cdf0c5d2"
           },
           {
             "url_hash": "a1564edc1a746329467dcfc69cfb39dc32254d76ac3d215cf2099a5d6acd4106",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "328bdce4b66cd052816705291a045ac6f9bb9393430c15aa5dfa3868c87ce905",
             "label_hash": "328bdce4b66cd052816705291a045ac6f9bb9393430c15aa5dfa3868c87ce905"
           },
           {
             "url_hash": "b881173750b8fc2c99dfc14e005684a5d5f4e2c67e2e4af8023a46d4efe30e56",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "3418ff87d80ec5e68093d43eaa35467f18932354c05921ffd4d956582ddd2108",
             "label_hash": "3418ff87d80ec5e68093d43eaa35467f18932354c05921ffd4d956582ddd2108"
           },
           {
             "url_hash": "bc978471b5d74fd62b834122fa649028d43f8734632de58cd710ed2970dac601",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "a25de2c69df6da1c70c1b1f1f5d164787f67569691f927a89d22bc26789cc1c2",
             "label_hash": "a25de2c69df6da1c70c1b1f1f5d164787f67569691f927a89d22bc26789cc1c2"
           },
           {
@@ -355,17 +355,17 @@
           {
             "url_hash": "16613b1441d4330cdfc52d7272031156e976990fdd6eb80ee38f836fbde3f990",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "c39996b0aaf2807e1b27e8617baa527560c2605fc0e130c880a537a5c7ea21b5",
             "label_hash": "c39996b0aaf2807e1b27e8617baa527560c2605fc0e130c880a537a5c7ea21b5"
           },
           {
             "url_hash": "75f4dbd92c5d6a2a8e957900094b29c4117c66de0a140221c7cb991e59c82efd",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "ba1c4f6f566b51d554d9793df955dfada6eaff71eabf66af4cc2eeb125e6c2ad",
             "label_hash": "ba1c4f6f566b51d554d9793df955dfada6eaff71eabf66af4cc2eeb125e6c2ad"
           },
           {
@@ -379,9 +379,9 @@
           {
             "url_hash": "180c22fda3770bb13a2881f7fbfcef5669cbcd39254c651701081e8199e101f4",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "c495df9114ee42952bdddd533e395f90d7822e36e65901933f3417e377080661",
             "label_hash": "c495df9114ee42952bdddd533e395f90d7822e36e65901933f3417e377080661"
           },
           {
@@ -409,25 +409,25 @@
           {
             "url_hash": "ec4c363a8a81c392a4c0575932f7de52bcc925713c647de8f4edc2b2fcd48468",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "1de05b7e9e9966b3d97f51990af4cb6ab7da28b11a8c9f93294d46d0683b3951",
             "label_hash": "1de05b7e9e9966b3d97f51990af4cb6ab7da28b11a8c9f93294d46d0683b3951"
           },
           {
             "url_hash": "d91b5cb6fdc3badd172175cb153702c70440b1e5c22a56663bd84e7d8a4b8f5d",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "1de05b7e9e9966b3d97f51990af4cb6ab7da28b11a8c9f93294d46d0683b3951",
             "label_hash": "1de05b7e9e9966b3d97f51990af4cb6ab7da28b11a8c9f93294d46d0683b3951"
           },
           {
             "url_hash": "fd331f8dcd5ea44a1fd2bd574f5ade26e2a0992c8d540b8745c8189a85675844",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "a25de2c69df6da1c70c1b1f1f5d164787f67569691f927a89d22bc26789cc1c2",
             "label_hash": "a25de2c69df6da1c70c1b1f1f5d164787f67569691f927a89d22bc26789cc1c2"
           },
           {
@@ -457,9 +457,9 @@
           {
             "url_hash": "6056e6316aa876987d2ba37311764805947e800740d3ca1fb0a2bdea0c32d153",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "eeddd810f4b7dd4d1e1711971ee2f31ca77fc52a3e077e7df23d51f273acf10b",
             "label_hash": "eeddd810f4b7dd4d1e1711971ee2f31ca77fc52a3e077e7df23d51f273acf10b"
           },
           {
@@ -513,9 +513,9 @@
           {
             "url_hash": "6b1bb75b20371c0d9663a82a3128c1797e915fa3e03fe5bd02fe1c521a28efd2",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "3418ff87d80ec5e68093d43eaa35467f18932354c05921ffd4d956582ddd2108",
             "label_hash": "3418ff87d80ec5e68093d43eaa35467f18932354c05921ffd4d956582ddd2108"
           }
         ],
@@ -527,25 +527,25 @@
           {
             "url_hash": "5d67ddf5db3b65242b9291ea0b23b2c43669cd90f70e492ef621ab4cfa487ba8",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "3e25a3f60ef00aee46c329e1fdfd6646cbca9b4577a6ed52764d404ede07d9f1",
             "label_hash": "3e25a3f60ef00aee46c329e1fdfd6646cbca9b4577a6ed52764d404ede07d9f1"
           },
           {
             "url_hash": "de794b97719836b3316a93e63e6fd4f6c15105622a7a2c12bd38429f6d7450b9",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "efa488ec7ad5849fed4cdabdc31b3b453cff91ebe3f2a311dc10ba61693c3b66",
             "label_hash": "efa488ec7ad5849fed4cdabdc31b3b453cff91ebe3f2a311dc10ba61693c3b66"
           },
           {
             "url_hash": "4f7d425451226e487d7186b5801e2ae63e6224ccb4f275f83b7fceab35ccb22f",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "1597de01dcbe7068bbf601a527df08f7ee907e3f99c78971376d056d94c387b4",
             "label_hash": "1597de01dcbe7068bbf601a527df08f7ee907e3f99c78971376d056d94c387b4"
           },
           {
@@ -559,9 +559,9 @@
           {
             "url_hash": "a9443040f9d61ea43dbacac19ceb280edcdf83abbbe446bcb2350e544677a3a6",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "c9dd1f4b2b79ff1729f51b7e46e05e6c350a0e301f69ec05af0840cb6eba5e4d",
             "label_hash": "c9dd1f4b2b79ff1729f51b7e46e05e6c350a0e301f69ec05af0840cb6eba5e4d"
           },
           {
@@ -575,9 +575,9 @@
           {
             "url_hash": "4ad5a6e9ff43dcaa27963162a14a904ad5c3702b19309d1b1e4fb2db87e482c7",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "840581001bea12e5c8f67ccfd607a56f893cae28c176e0cc13afb9596474b1d6",
             "label_hash": "840581001bea12e5c8f67ccfd607a56f893cae28c176e0cc13afb9596474b1d6"
           }
         ],
@@ -605,25 +605,25 @@
           {
             "url_hash": "11d529140e8e564c5b8f936fbac711523c557654126b0dcbdab0c8b1c85f80f5",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "b88705ad5ec29c14111a8b994c0d1b457aefa11f09d90f998c2783620b7122ff",
             "label_hash": "b88705ad5ec29c14111a8b994c0d1b457aefa11f09d90f998c2783620b7122ff"
           },
           {
             "url_hash": "8c4a3482b1a1d4e4643f6b254302e2336947735462ac04c1ef40c07bd311be9b",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "310a02bb5b18b7b86eb50c6acd093fd87040d1f14edd4007cc97005fc3834157",
             "label_hash": "310a02bb5b18b7b86eb50c6acd093fd87040d1f14edd4007cc97005fc3834157"
           },
           {
             "url_hash": "ace96b49cde3d103c30c4a51b39cfcc72c96d42f1943ec344d1103357f74ed79",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "bdb297ee2c9ba5e4d68c01d4c44ff860bc297469580656d3d801d29f71825e21",
             "label_hash": "bdb297ee2c9ba5e4d68c01d4c44ff860bc297469580656d3d801d29f71825e21"
           }
         ],
@@ -775,17 +775,17 @@
           {
             "url_hash": "cb683df20a9826755ac6b565b622b4f6dc7078d7aad1e2ed7f86b185d9412749",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "eeddd810f4b7dd4d1e1711971ee2f31ca77fc52a3e077e7df23d51f273acf10b",
             "label_hash": "eeddd810f4b7dd4d1e1711971ee2f31ca77fc52a3e077e7df23d51f273acf10b"
           },
           {
             "url_hash": "930dfcb86816be5f016c49dd58c3d60091d3254abcbedc633e10b91fcbba3ebb",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "c39996b0aaf2807e1b27e8617baa527560c2605fc0e130c880a537a5c7ea21b5",
             "label_hash": "c39996b0aaf2807e1b27e8617baa527560c2605fc0e130c880a537a5c7ea21b5"
           },
           {
@@ -807,17 +807,17 @@
           {
             "url_hash": "dae071a21fa96fcaa4715ba8b0f02a142e61569f03541b83c0ea9624086e5862",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "c495df9114ee42952bdddd533e395f90d7822e36e65901933f3417e377080661",
             "label_hash": "c495df9114ee42952bdddd533e395f90d7822e36e65901933f3417e377080661"
           },
           {
             "url_hash": "12f5c191c6d2de248eea42abfedd1ed13b79d5a3a79ad0295848e29eec1545c3",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "c495df9114ee42952bdddd533e395f90d7822e36e65901933f3417e377080661",
             "label_hash": "c495df9114ee42952bdddd533e395f90d7822e36e65901933f3417e377080661"
           }
         ],
@@ -829,9 +829,9 @@
           {
             "url_hash": "d55712819d264cd548b77f271884674ea3101ed4edaa29b170de6de37fb98785",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "ba1c4f6f566b51d554d9793df955dfada6eaff71eabf66af4cc2eeb125e6c2ad",
             "label_hash": "ba1c4f6f566b51d554d9793df955dfada6eaff71eabf66af4cc2eeb125e6c2ad"
           },
           {
@@ -845,9 +845,9 @@
           {
             "url_hash": "e57a51a624f40aa33d064ec987243d6223347c139accf5632b19ce4a32812ade",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "328bdce4b66cd052816705291a045ac6f9bb9393430c15aa5dfa3868c87ce905",
             "label_hash": "328bdce4b66cd052816705291a045ac6f9bb9393430c15aa5dfa3868c87ce905"
           },
           {
@@ -1015,25 +1015,25 @@
           {
             "url_hash": "2bf9894ff66a1f0135790718e1e6fe3a2353c9d9fd9d4b61f7072f236226b35e",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "3418ff87d80ec5e68093d43eaa35467f18932354c05921ffd4d956582ddd2108",
             "label_hash": "3418ff87d80ec5e68093d43eaa35467f18932354c05921ffd4d956582ddd2108"
           },
           {
             "url_hash": "668ed713855ec643d64f6f7df3044aeb7895c19cf98652531e3956aacda95df9",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "eeddd810f4b7dd4d1e1711971ee2f31ca77fc52a3e077e7df23d51f273acf10b",
             "label_hash": "eeddd810f4b7dd4d1e1711971ee2f31ca77fc52a3e077e7df23d51f273acf10b"
           },
           {
             "url_hash": "1d87938c2b306d95c2ef58bccad43e5651bafd4790aa842b3c498f80f529694c",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "eeddd810f4b7dd4d1e1711971ee2f31ca77fc52a3e077e7df23d51f273acf10b",
             "label_hash": "eeddd810f4b7dd4d1e1711971ee2f31ca77fc52a3e077e7df23d51f273acf10b"
           },
           {
@@ -1257,17 +1257,17 @@
           {
             "url_hash": "d395bfdadde26e38b0ab2fcce81dcd7f5a2868a705fe0135b5c6189883fd5097",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "1213b0591bca0f7dfd7bf6038955869483e2babc76bb851e95d6480092f77949",
             "label_hash": "1213b0591bca0f7dfd7bf6038955869483e2babc76bb851e95d6480092f77949"
           },
           {
             "url_hash": "f102e764c727491384265b0287d55fec375553fe76ce0ba1f45567809422a061",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "1213b0591bca0f7dfd7bf6038955869483e2babc76bb851e95d6480092f77949",
             "label_hash": "1213b0591bca0f7dfd7bf6038955869483e2babc76bb851e95d6480092f77949"
           },
           {
@@ -2849,9 +2849,9 @@
           {
             "url_hash": "982308f7bf7669d7e16e2fbb3e4d6e0baee9ba2c5a22471a2b83b49b0064aa66",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "ba1c4f6f566b51d554d9793df955dfada6eaff71eabf66af4cc2eeb125e6c2ad",
             "label_hash": "ba1c4f6f566b51d554d9793df955dfada6eaff71eabf66af4cc2eeb125e6c2ad"
           },
           {
@@ -3100,9 +3100,9 @@
           {
             "url_hash": "39efc552d9a444b3ed0e646fcd997a9ce0e5d4caf0fdbcbb0b898d94cf7dc4b3",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "b88705ad5ec29c14111a8b994c0d1b457aefa11f09d90f998c2783620b7122ff",
             "label_hash": "b88705ad5ec29c14111a8b994c0d1b457aefa11f09d90f998c2783620b7122ff"
           },
           {
@@ -3434,17 +3434,17 @@
           {
             "url_hash": "78d618811d60e857aa6e5a411b5f537ad5e9d2a11efbb42e452be0659ca37d85",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "bdb297ee2c9ba5e4d68c01d4c44ff860bc297469580656d3d801d29f71825e21",
             "label_hash": "bdb297ee2c9ba5e4d68c01d4c44ff860bc297469580656d3d801d29f71825e21"
           },
           {
             "url_hash": "02eaf7c1d294d70bedb13e31bbf6c01502ba47742b0941da463c3497fa706abe",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "bdb297ee2c9ba5e4d68c01d4c44ff860bc297469580656d3d801d29f71825e21",
             "label_hash": "bdb297ee2c9ba5e4d68c01d4c44ff860bc297469580656d3d801d29f71825e21"
           },
           {
@@ -3672,33 +3672,33 @@
           {
             "url_hash": "27841018d5699c79f57818ebcee3bde79964e3fa63d503107caeb4d972cce520",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "f4826835cd0219af8539dc6667407279f33bb9c3090e273650f34ca43060106b",
             "label_hash": "f4826835cd0219af8539dc6667407279f33bb9c3090e273650f34ca43060106b"
           },
           {
             "url_hash": "7a18c8031ed34c1464cf693bb4287c102d4ebb248ed8903d19c3dc6670312dd5",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "a25de2c69df6da1c70c1b1f1f5d164787f67569691f927a89d22bc26789cc1c2",
             "label_hash": "a25de2c69df6da1c70c1b1f1f5d164787f67569691f927a89d22bc26789cc1c2"
           },
           {
             "url_hash": "b57a9735b1973316ac6a1e4f2103c4ebdff49ff6b4882e289ecf4068c1894357",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "a25de2c69df6da1c70c1b1f1f5d164787f67569691f927a89d22bc26789cc1c2",
             "label_hash": "a25de2c69df6da1c70c1b1f1f5d164787f67569691f927a89d22bc26789cc1c2"
           },
           {
             "url_hash": "93f35ba8e0669bbc54cf7bd25d9ff834271acd67cf2318392dda491c5cfcf144",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "a25de2c69df6da1c70c1b1f1f5d164787f67569691f927a89d22bc26789cc1c2",
             "label_hash": "a25de2c69df6da1c70c1b1f1f5d164787f67569691f927a89d22bc26789cc1c2"
           },
           {
@@ -3752,17 +3752,17 @@
           {
             "url_hash": "730aab11275cc0d96d132946d2bb76174ac18f0fe1cd16ba833e54f9e0c215bf",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "ba1c4f6f566b51d554d9793df955dfada6eaff71eabf66af4cc2eeb125e6c2ad",
             "label_hash": "ba1c4f6f566b51d554d9793df955dfada6eaff71eabf66af4cc2eeb125e6c2ad"
           },
           {
             "url_hash": "a709e2010852811347ff08b55d11cf8d5d18b1a19ac4c57196db2965a4589105",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "328bdce4b66cd052816705291a045ac6f9bb9393430c15aa5dfa3868c87ce905",
             "label_hash": "328bdce4b66cd052816705291a045ac6f9bb9393430c15aa5dfa3868c87ce905"
           },
           {
@@ -3904,17 +3904,17 @@
           {
             "url_hash": "4a6e54e4f4f3b0f4177f522476ce5af9d98d50a0ceea1b717972aadb5e88aef0",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "c495df9114ee42952bdddd533e395f90d7822e36e65901933f3417e377080661",
             "label_hash": "c495df9114ee42952bdddd533e395f90d7822e36e65901933f3417e377080661"
           },
           {
             "url_hash": "3d311f513e5cfa6ddef3dbec514708c43da15bc193dc63b20e9b5dc40dea8b8d",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "62a835a0380a45e605acc378b2b54d81c40713a108be092d5b18b295ced5a972",
             "label_hash": "62a835a0380a45e605acc378b2b54d81c40713a108be092d5b18b295ced5a972"
           },
           {
@@ -3976,17 +3976,17 @@
           {
             "url_hash": "b5398e4d10b7ebaadd60fda9192f8dd75600053c7c8f9440872ea811aeecdd1e",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "6615b7daede66cf2f51c33c2e6bcd80204042869ecc83b0cc68e850a7368ca62",
             "label_hash": "6615b7daede66cf2f51c33c2e6bcd80204042869ecc83b0cc68e850a7368ca62"
           },
           {
             "url_hash": "6b44622067ff7979a6a21ecd200e0bff2e59b1d653478fb9aa791600d79c4ef6",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "328bdce4b66cd052816705291a045ac6f9bb9393430c15aa5dfa3868c87ce905",
             "label_hash": "328bdce4b66cd052816705291a045ac6f9bb9393430c15aa5dfa3868c87ce905"
           },
           {
@@ -4134,25 +4134,25 @@
           {
             "url_hash": "39c77f40105a82cfadd63a363763e7874899f3851207f53b6e43c1704d39cc26",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "109b930a14e054a32122d2d04693bdf1ead0db8e1dad5e8250ed9826cdf0c5d2",
             "label_hash": "109b930a14e054a32122d2d04693bdf1ead0db8e1dad5e8250ed9826cdf0c5d2"
           },
           {
             "url_hash": "e953e3e99010db5cc7a9163fc115cd3909167a05d10d28b91e29e8255ebc68a6",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "109b930a14e054a32122d2d04693bdf1ead0db8e1dad5e8250ed9826cdf0c5d2",
             "label_hash": "109b930a14e054a32122d2d04693bdf1ead0db8e1dad5e8250ed9826cdf0c5d2"
           },
           {
             "url_hash": "bb8f5d70f0c84d93f4ef61cc73840de63499a72f4ab4440718eb2edbb2016650",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "109b930a14e054a32122d2d04693bdf1ead0db8e1dad5e8250ed9826cdf0c5d2",
             "label_hash": "109b930a14e054a32122d2d04693bdf1ead0db8e1dad5e8250ed9826cdf0c5d2"
           }
         ],
@@ -4470,9 +4470,9 @@
           {
             "url_hash": "8eba5d38598d0178d94dcc6b1ff09fb8943d57853513fa26bad4eb79b21ce78c",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "bdb297ee2c9ba5e4d68c01d4c44ff860bc297469580656d3d801d29f71825e21",
             "label_hash": "bdb297ee2c9ba5e4d68c01d4c44ff860bc297469580656d3d801d29f71825e21"
           },
           {
@@ -5004,9 +5004,9 @@
           {
             "url_hash": "e2b49b993e34f9c88ce3b0245da7f77e62bb7c1f10be7654b28334d591ef4955",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "b88705ad5ec29c14111a8b994c0d1b457aefa11f09d90f998c2783620b7122ff",
             "label_hash": "b88705ad5ec29c14111a8b994c0d1b457aefa11f09d90f998c2783620b7122ff"
           },
           {
@@ -5535,9 +5535,9 @@
           {
             "url_hash": "dddd831496844c3d025e6208f64ebc20e762c10138c99ce6f8f198aac8b69908",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "f4826835cd0219af8539dc6667407279f33bb9c3090e273650f34ca43060106b",
             "label_hash": "f4826835cd0219af8539dc6667407279f33bb9c3090e273650f34ca43060106b"
           },
           {
@@ -5785,9 +5785,9 @@
           {
             "url_hash": "0557ab46cde953741f0ecc52f58e43648cb83370a931325a5672df02df31f383",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "1213b0591bca0f7dfd7bf6038955869483e2babc76bb851e95d6480092f77949",
             "label_hash": "1213b0591bca0f7dfd7bf6038955869483e2babc76bb851e95d6480092f77949"
           },
           {
@@ -5873,9 +5873,9 @@
           {
             "url_hash": "0ce6222656cb4ac2e4c02f9d31813e460cde3042a3c24bf1923f8b7b2e6415a0",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "62a835a0380a45e605acc378b2b54d81c40713a108be092d5b18b295ced5a972",
             "label_hash": "62a835a0380a45e605acc378b2b54d81c40713a108be092d5b18b295ced5a972"
           },
           {
@@ -5937,9 +5937,9 @@
           {
             "url_hash": "78a4c934f598260b14e29a67cf9fc8aff4be85f1f803c50c3beebb8f9e540585",
             "ordinal": 0,
-            "state": "ambiguous",
-            "reason": "taxonomy_unmatched",
-            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "62a835a0380a45e605acc378b2b54d81c40713a108be092d5b18b295ced5a972",
             "label_hash": "62a835a0380a45e605acc378b2b54d81c40713a108be092d5b18b295ced5a972"
           }
         ],
@@ -8495,7 +8495,7 @@
         "article_url_hash": "f1471e35ea6be58d844ff49ac663903337393c8fb60cbae5f4dd890e3e880bf6"
       }
     },
-    "portal_sha256": "7eefb9f3186da526fe576358f736721981d4249681dc8c08a9c84b00a33f3690",
+    "portal_sha256": "47ff4644962f66287339b3a49a34df110fcea310bf4be2c34d9a171264833efc",
     "retirement": {
       "migration_id": "hatena-draft-photo-retirement-2026-10-12",
       "manifest_sha256": "4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c",
@@ -8569,6 +8569,330 @@
         "classification_status": "confirmed_named_mushroom",
         "reason": "taxonomy_mushroom",
         "added_at": "2026-10-18T12:52:48.499237+00:00"
+      },
+      {
+        "observation_id": "obs-adf1ea6bb8c66ab3327f85b0017e7c5442a7b1a3742dc82626971fce2aba3495",
+        "article_hash": "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7",
+        "url_hash": "99988df4cd624d0a94570f0e94e6856269c7c873277fc2331436810724270564",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-9eb5079621bc207b307a90356570725148f170b8d70a33f803520acef403d143",
+        "article_hash": "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7",
+        "url_hash": "02055f7d29fd937fed40cadc2dfe7f0b0906cf6fce9d3d06c9dbc3721c25bbf8",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-3351a54c9eeec5c6c98dca5513eabc5df111e6310db178a00efc8c814af63cf8",
+        "article_hash": "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7",
+        "url_hash": "845c288119d11b64c8b386e2b975ed1d481821c1294552d57d7a8a39adce7bf1",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-48bfe4e8986638ed92db905126fb2bb890cd50ca9e926a73d2b488f595556275",
+        "article_hash": "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7",
+        "url_hash": "e53c35e42bb5f59a321078a6df619f9d13d187910e8f0fb64d4cfc1d92d89292",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-294a3d46d484acfe5b08be8a93b8177d7984628a6cc7ab205472b60a4aee062b",
+        "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+        "url_hash": "ea01f52ebab9e29c9e68ca4d727715e66aba8a095e07e3688f4db05138c5afa0",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-ecb6f94b8bc9a72c2a654b4707d194720ad9ae4dd4ce1a7eb422247f495f14b0",
+        "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+        "url_hash": "de736f797cd17ebec97815932d60ccaa897f7998973fb8af6674d66bcf10086e",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-b59e4eb528aefe25d8c0b4cb4c57cea2ea2d4afec01dd9f4cdfc123837d8e6d6",
+        "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+        "url_hash": "36917691b5202d024f5d03acc287af7204614c65c59c49792f9c1f2a4922f51c",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-99dce279282896bb35a281890166eba51f8b2dec3fc044ae9c7790a356df3933",
+        "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+        "url_hash": "159bd1ee00a891e8a62631041ab71d8285ee7cb254615fb3ba110b6f93601c44",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-ae868462919d011bc4a9f56a64f69cca9a5b84233f8849586a4b56e3d544ad21",
+        "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+        "url_hash": "9a6f6365fff27920a8dcbc5ce7e6ab178164077a150bb790d7da0aec035eb607",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-d063dde2db0d423e9762850296cdb6f8a422c84f1587707e70203b03d97592f1",
+        "article_hash": "3cbea74e6027996629f5b2d11ec60964c911f63cc86616d0d06330c4e2972e86",
+        "url_hash": "06c302fafba2ee7689b010a13a1a79553edba7c8ec08c09c6f4a67f838333469",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-efe7d156fe8800403af24d47dd882f3e72b574c4aba4c16591fa19a73e3cd593",
+        "article_hash": "05551d39eb36f7ef4bdd2356c6dbd569b0af6670d6bfef1fd7b9c789ba6f4c44",
+        "url_hash": "dc8673b903474b1a9b261fd80188b233bffbcb548a8b840ca2e08d9d205c9caa",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-b7cf68070c532151aaecc3b14c2f395bad23eb7c409f95139b30883dff5ac4b8",
+        "article_hash": "05551d39eb36f7ef4bdd2356c6dbd569b0af6670d6bfef1fd7b9c789ba6f4c44",
+        "url_hash": "ddc722eff416e24f5a1f0e11a97d2251fd326a3a647568bd7209de1f0e01db8f",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-1783d5c4dacc267097bab3a787e4d062e9833038996eb7de62237676d2fd4270",
+        "article_hash": "05551d39eb36f7ef4bdd2356c6dbd569b0af6670d6bfef1fd7b9c789ba6f4c44",
+        "url_hash": "81cb00fa2e11c3ee88025361a4223d76be00710cebe0da4396b3be36859963ed",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-e09e71f5414d85be793eea3c7a61465bc2eed1fa4ddf3c88df7377d84bf67a8b",
+        "article_hash": "05551d39eb36f7ef4bdd2356c6dbd569b0af6670d6bfef1fd7b9c789ba6f4c44",
+        "url_hash": "6e52c48db3a6da518df7b789f2180187340c829c38930e054be2cbd766674fb6",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-72def8c88473e575bd6ba6040a406bd3976f73d9cb77ac31203ab284372e66d0",
+        "article_hash": "05551d39eb36f7ef4bdd2356c6dbd569b0af6670d6bfef1fd7b9c789ba6f4c44",
+        "url_hash": "cbf059f2596e069f26cc45ea4fa12035d39630fd4c4b63936f182c6180bdea1d",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-744d3a6ef85104841e1617717a9ce8988e948ed4fdff4b1fdaa54779bc40c8fe",
+        "article_hash": "05551d39eb36f7ef4bdd2356c6dbd569b0af6670d6bfef1fd7b9c789ba6f4c44",
+        "url_hash": "ccf41b7119fd2d857b8d9e45738413984603babf2dbd6c5992888bd444989d55",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-da1f7e5ea72e09f7d4ba4a2717b7eb6afe77a4500a5a67673cb31143c4d8cfc5",
+        "article_hash": "05551d39eb36f7ef4bdd2356c6dbd569b0af6670d6bfef1fd7b9c789ba6f4c44",
+        "url_hash": "e3ac1c3775a0eb93be3352b9db0feb9ddeb26780e48ff718166d7af9058fd5a3",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-f3ca7903d56977ed544bac5cb22fc6a69988c32a8d9be12fb76e9dba85db9215",
+        "article_hash": "05551d39eb36f7ef4bdd2356c6dbd569b0af6670d6bfef1fd7b9c789ba6f4c44",
+        "url_hash": "a1564edc1a746329467dcfc69cfb39dc32254d76ac3d215cf2099a5d6acd4106",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-d2ab46b9a448f103375c8decb8087c43d43f3a348d5e87169644839f1f65b668",
+        "article_hash": "05551d39eb36f7ef4bdd2356c6dbd569b0af6670d6bfef1fd7b9c789ba6f4c44",
+        "url_hash": "b881173750b8fc2c99dfc14e005684a5d5f4e2c67e2e4af8023a46d4efe30e56",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-b7c012d58f949571dc40b6fe00343f6563d80c15178cd8b2105205daca2585e8",
+        "article_hash": "05551d39eb36f7ef4bdd2356c6dbd569b0af6670d6bfef1fd7b9c789ba6f4c44",
+        "url_hash": "bc978471b5d74fd62b834122fa649028d43f8734632de58cd710ed2970dac601",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-1e30679af0865ca8079f76084d67407c01d5d2b94f122c6ccbc3e4a7bdc8a3f6",
+        "article_hash": "a3854a76bc8deeb3ecfcc7e868e79bc0a4f5b6908f7122cbf4fdf97ce9adc5f6",
+        "url_hash": "16613b1441d4330cdfc52d7272031156e976990fdd6eb80ee38f836fbde3f990",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-430646a148e3a905f84feababb2368021bfe6dc5325930ffad024daa206f9501",
+        "article_hash": "a3854a76bc8deeb3ecfcc7e868e79bc0a4f5b6908f7122cbf4fdf97ce9adc5f6",
+        "url_hash": "75f4dbd92c5d6a2a8e957900094b29c4117c66de0a140221c7cb991e59c82efd",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-1ce7036f7ec1e2e527aefd89036bf5fbe13388ec426e787d25403bb127699baa",
+        "article_hash": "a3854a76bc8deeb3ecfcc7e868e79bc0a4f5b6908f7122cbf4fdf97ce9adc5f6",
+        "url_hash": "180c22fda3770bb13a2881f7fbfcef5669cbcd39254c651701081e8199e101f4",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-5dc1080a9df393e7a570b9811c514994ebb97c6f995e98aa9072b5e2a5d36d53",
+        "article_hash": "753dd3c8164e71dd4f987032958a74a54d4e41c025467d0f81e3b6832ab01065",
+        "url_hash": "ec4c363a8a81c392a4c0575932f7de52bcc925713c647de8f4edc2b2fcd48468",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-02d640e667e53312ce9069aeac75e021d6b2e009b53c6cdf6ea7aac930ea3e99",
+        "article_hash": "753dd3c8164e71dd4f987032958a74a54d4e41c025467d0f81e3b6832ab01065",
+        "url_hash": "d91b5cb6fdc3badd172175cb153702c70440b1e5c22a56663bd84e7d8a4b8f5d",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-79ceef95b86b8221163d07a17cb011de5ec288a8ba7645d26bce05ebc8c25a80",
+        "article_hash": "753dd3c8164e71dd4f987032958a74a54d4e41c025467d0f81e3b6832ab01065",
+        "url_hash": "fd331f8dcd5ea44a1fd2bd574f5ade26e2a0992c8d540b8745c8189a85675844",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-675def59390b2216e49f0025baf37fda5e3473b71dd0d05ad0d0030fa94d7fb1",
+        "article_hash": "753dd3c8164e71dd4f987032958a74a54d4e41c025467d0f81e3b6832ab01065",
+        "url_hash": "6056e6316aa876987d2ba37311764805947e800740d3ca1fb0a2bdea0c32d153",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-73e6ed81119a8e0dfdfbd3a8e485755cd3b0a28cbcd073916a6bba62e920e822",
+        "article_hash": "753dd3c8164e71dd4f987032958a74a54d4e41c025467d0f81e3b6832ab01065",
+        "url_hash": "6b1bb75b20371c0d9663a82a3128c1797e915fa3e03fe5bd02fe1c521a28efd2",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-db0226082a6e172d84e85a740d2f3c5d56f4b0ff83283ead520af681ee101989",
+        "article_hash": "2bcaabbbf2bfe083785a069d821a5546f794edec71ed215adfae18532a7f107b",
+        "url_hash": "5d67ddf5db3b65242b9291ea0b23b2c43669cd90f70e492ef621ab4cfa487ba8",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-a5048138f43c9b97c5f408e7d24103ada886727e7e560300458c0fc86292530c",
+        "article_hash": "2bcaabbbf2bfe083785a069d821a5546f794edec71ed215adfae18532a7f107b",
+        "url_hash": "de794b97719836b3316a93e63e6fd4f6c15105622a7a2c12bd38429f6d7450b9",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-d386eb789d5a8f960abe513c7ce2f856c3e93f519a62188e8cb16b67776dde9f",
+        "article_hash": "2bcaabbbf2bfe083785a069d821a5546f794edec71ed215adfae18532a7f107b",
+        "url_hash": "4f7d425451226e487d7186b5801e2ae63e6224ccb4f275f83b7fceab35ccb22f",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-c97ecf02d440ea9e30116c097067a3e1ebcba2b4b6afc2d1db19f6840d1306a2",
+        "article_hash": "2bcaabbbf2bfe083785a069d821a5546f794edec71ed215adfae18532a7f107b",
+        "url_hash": "a9443040f9d61ea43dbacac19ceb280edcdf83abbbe446bcb2350e544677a3a6",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-24e1bd05ee444f09d8fa0277c27b70282885d0620ba9a320841c4ebb7a1a71c9",
+        "article_hash": "2bcaabbbf2bfe083785a069d821a5546f794edec71ed215adfae18532a7f107b",
+        "url_hash": "4ad5a6e9ff43dcaa27963162a14a904ad5c3702b19309d1b1e4fb2db87e482c7",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-9fe49d5605067495eef4a4f26b89158ae298c550df6bac19dc622f6d1a4f0bfc",
+        "article_hash": "c57ae6e35967d88a9e89588b3989871d8721a495a5b0f73b5d520611d467224d",
+        "url_hash": "11d529140e8e564c5b8f936fbac711523c557654126b0dcbdab0c8b1c85f80f5",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-91af45fd43811973f61bcb19a23f24cbcdbcfb01e6e5ad015a393ba4105d2cb1",
+        "article_hash": "c57ae6e35967d88a9e89588b3989871d8721a495a5b0f73b5d520611d467224d",
+        "url_hash": "8c4a3482b1a1d4e4643f6b254302e2336947735462ac04c1ef40c07bd311be9b",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-86e21c85b24053cae559daaf2d76fb7474c4bb0c017e070c16797d8e034d436a",
+        "article_hash": "c57ae6e35967d88a9e89588b3989871d8721a495a5b0f73b5d520611d467224d",
+        "url_hash": "ace96b49cde3d103c30c4a51b39cfcc72c96d42f1943ec344d1103357f74ed79",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-10-18T13:47:14.674761+00:00"
       }
     ],
     "deletions": [
@@ -8877,7 +9201,7 @@
         "sha256": "1767879599368ac0d6795cc38c38b3c4c19c591c5c66a4094afb367ba2474ce3"
       }
     ],
-    "deletion_history_head": "2f636bbe3f98822ed3b372e9eb36c892b8e66cc69eb816d6275e096dae7976e4"
+    "deletion_history_head": "a9c6664d0fe5ee0966c9d850280c238082750d7066b2041e2739d44cb3abf44c"
   },
-  "sha256": "d8abc738496735c7e4ffa86de8398c83c2e46200c6533d713342f9937db104f4"
+  "sha256": "e6b0634277b897808f14252b8e6ec2753e0734dba86aec2c9b3c09fa10845071"
 }

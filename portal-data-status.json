@@ -3,9 +3,9 @@
   "build_ok": true,
   "error": null,
   "production_mode": "phase3c_hybrid",
-  "production_image_count": 897,
-  "portal_observation_count": 897,
-  "portal_subject_count": 299,
+  "production_image_count": 933,
+  "portal_observation_count": 933,
+  "portal_subject_count": 313,
   "shadow_missing_observation_count": 0,
-  "master_linked_subject_count": 42
+  "master_linked_subject_count": 47
 }

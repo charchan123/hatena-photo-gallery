@@ -6,23 +6,23 @@
     "shadow_total_images": 980,
     "shadow_detected_images": 929,
     "shadow_undetected_images": 51,
-    "taxonomy_mushroom_images": 437,
-    "taxonomy_non_mushroom_images": 7,
-    "review_images": 536,
-    "taxonomy_unmatched_review_images": 485,
+    "taxonomy_mushroom_images": 507,
+    "taxonomy_non_mushroom_images": 8,
+    "review_images": 465,
+    "taxonomy_unmatched_review_images": 414,
     "no_detected_label_review_images": 51,
     "taxonomy_unavailable_review_images": 0,
-    "candidate_production_image_count": 437,
-    "candidate_unique_gallery_names": 48,
-    "exact_occurrence_overlap_count": 389,
-    "legacy_only_occurrence_count": 481,
-    "candidate_only_occurrence_count": 48,
-    "legacy_src_only_count": 460,
-    "candidate_src_only_count": 27,
+    "candidate_production_image_count": 507,
+    "candidate_unique_gallery_names": 76,
+    "exact_occurrence_overlap_count": 423,
+    "legacy_only_occurrence_count": 447,
+    "candidate_only_occurrence_count": 84,
+    "legacy_src_only_count": 426,
+    "candidate_src_only_count": 63,
     "same_src_name_change_count": 21,
-    "blocked_review_unique_labels": 253,
-    "candidate_vs_legacy_ratio": 0.5022988505747127,
-    "taxonomy_mushroom_share_of_shadow": 0.4459183673469388
+    "blocked_review_unique_labels": 224,
+    "candidate_vs_legacy_ratio": 0.5827586206896552,
+    "taxonomy_mushroom_share_of_shadow": 0.5173469387755102
   },
   "blocked_review_labels": [
     {
@@ -74,38 +74,6 @@
       ]
     },
     {
-      "detected_label": "キタマゴタケ",
-      "image_count": 5,
-      "article_count": 3,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224826.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224236.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929214606.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_3.html",
-        "articles/article_5.html",
-        "articles/article_45.html"
-      ]
-    },
-    {
-      "detected_label": "シロオニタケ",
-      "image_count": 5,
-      "article_count": 4,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063344.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925225116.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222529.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_2.html",
-        "articles/article_3.html",
-        "articles/article_11.html"
-      ]
-    },
-    {
       "detected_label": "フリルイグチ(仮称)",
       "image_count": 5,
       "article_count": 2,
@@ -118,38 +86,6 @@
       "sample_articles": [
         "articles/article_45.html",
         "articles/article_53.html"
-      ]
-    },
-    {
-      "detected_label": "ムラサキヤマドリタケ",
-      "image_count": 5,
-      "article_count": 4,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224719.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152302.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222458.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_3.html",
-        "articles/article_4.html",
-        "articles/article_10.html"
-      ]
-    },
-    {
-      "detected_label": "アシナガイグチ",
-      "image_count": 4,
-      "article_count": 3,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224358.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222434.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222239.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_5.html",
-        "articles/article_10.html",
-        "articles/article_14.html"
       ]
     },
     {
@@ -247,69 +183,6 @@
       ]
     },
     {
-      "detected_label": "クリフウセンタケ",
-      "image_count": 4,
-      "article_count": 2,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063534.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015062912.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063002.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_1.html",
-        "articles/article_2.html"
-      ]
-    },
-    {
-      "detected_label": "サザナミイグチ",
-      "image_count": 4,
-      "article_count": 4,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152030.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222510.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018234636.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_4.html",
-        "articles/article_11.html",
-        "articles/article_41.html"
-      ]
-    },
-    {
-      "detected_label": "ショウゲンジ",
-      "image_count": 4,
-      "article_count": 3,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923225243.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005195853.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005200039.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_7.html",
-        "articles/article_44.html",
-        "articles/article_50.html"
-      ]
-    },
-    {
-      "detected_label": "タマゴテングタケモドキ",
-      "image_count": 4,
-      "article_count": 3,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261001/20261001001532.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929220918.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706221510.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_3.html",
-        "articles/article_45.html",
-        "articles/article_64.html"
-      ]
-    },
-    {
       "detected_label": "ダイダイイグチ",
       "image_count": 4,
       "article_count": 4,
@@ -354,21 +227,6 @@
       "sample_articles": [
         "articles/article_87.html",
         "articles/article_88.html"
-      ]
-    },
-    {
-      "detected_label": "ベニイグチ",
-      "image_count": 4,
-      "article_count": 2,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224739.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250922/20250922201844.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250922/20250922202048.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_3.html",
-        "articles/article_46.html"
       ]
     },
     {
@@ -445,38 +303,6 @@
         "articles/article_17.html",
         "articles/article_36.html",
         "articles/article_45.html"
-      ]
-    },
-    {
-      "detected_label": "アンズタケ(広義)",
-      "image_count": 3,
-      "article_count": 3,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925225221.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224630.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222233.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_3.html",
-        "articles/article_5.html",
-        "articles/article_14.html"
-      ]
-    },
-    {
-      "detected_label": "ウスタケ",
-      "image_count": 3,
-      "article_count": 3,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923225040.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012221748.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250816/20250816140316.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_7.html",
-        "articles/article_43.html",
-        "articles/article_55.html"
       ]
     },
     {
@@ -567,22 +393,6 @@
         "articles/article_15.html",
         "articles/article_36.html",
         "articles/article_66.html"
-      ]
-    },
-    {
-      "detected_label": "キイロイグチ",
-      "image_count": 3,
-      "article_count": 3,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224250.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929214500.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250713/20250713104345.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_3.html",
-        "articles/article_45.html",
-        "articles/article_61.html"
       ]
     },
     {
@@ -691,21 +501,6 @@
         "articles/article_34.html",
         "articles/article_43.html",
         "articles/article_71.html"
-      ]
-    },
-    {
-      "detected_label": "ニガイグチモドキ",
-      "image_count": 3,
-      "article_count": 2,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260625/20260625214405.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260625/20260625215709.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706220544.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_17.html",
-        "articles/article_64.html"
       ]
     },
     {
@@ -1227,20 +1022,6 @@
       ]
     },
     {
-      "detected_label": "チチタケ",
-      "image_count": 2,
-      "article_count": 2,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152015.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222439.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_4.html",
-        "articles/article_10.html"
-      ]
-    },
-    {
       "detected_label": "チャコブタケ",
       "image_count": 2,
       "article_count": 2,
@@ -1252,34 +1033,6 @@
       "sample_articles": [
         "articles/article_78.html",
         "articles/article_79.html"
-      ]
-    },
-    {
-      "detected_label": "テングタケダマシ",
-      "image_count": 2,
-      "article_count": 2,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224313.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929221733.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_3.html",
-        "articles/article_45.html"
-      ]
-    },
-    {
-      "detected_label": "ナカグロモリノカサ",
-      "image_count": 2,
-      "article_count": 2,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224702.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232201.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_3.html",
-        "articles/article_6.html"
       ]
     },
     {
@@ -1580,19 +1333,6 @@
       ]
     },
     {
-      "detected_label": "ヤシャイグチ",
-      "image_count": 2,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925200415.jpg",
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224223.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_5.html"
-      ]
-    },
-    {
       "detected_label": "ルリハツタケ",
       "image_count": 2,
       "article_count": 2,
@@ -1736,18 +1476,6 @@
       ]
     },
     {
-      "detected_label": "アカジコウ",
-      "image_count": 1,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063427.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_2.html"
-      ]
-    },
-    {
       "detected_label": "アケボノアワタケ",
       "image_count": 1,
       "article_count": 1,
@@ -1796,18 +1524,6 @@
       ]
     },
     {
-      "detected_label": "イボセイヨウショウロ",
-      "image_count": 1,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232241.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_6.html"
-      ]
-    },
-    {
       "detected_label": "ウコンガサ",
       "image_count": 1,
       "article_count": 1,
@@ -1841,18 +1557,6 @@
       ],
       "sample_articles": [
         "articles/article_43.html"
-      ]
-    },
-    {
-      "detected_label": "ウスムラサキシメジ",
-      "image_count": 1,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232050.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_6.html"
       ]
     },
     {
@@ -1913,18 +1617,6 @@
       ],
       "sample_articles": [
         "articles/article_44.html"
-      ]
-    },
-    {
-      "detected_label": "オオノウタケ",
-      "image_count": 1,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224231.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_3.html"
       ]
     },
     {
@@ -2204,18 +1896,6 @@
       ]
     },
     {
-      "detected_label": "キホウキタケ",
-      "image_count": 1,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924103925.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_6.html"
-      ]
-    },
-    {
       "detected_label": "キヤマタケ？",
       "image_count": 1,
       "article_count": 1,
@@ -2249,18 +1929,6 @@
       ],
       "sample_articles": [
         "articles/article_71.html"
-      ]
-    },
-    {
-      "detected_label": "キンチャワンタケ",
-      "image_count": 1,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063813.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_1.html"
       ]
     },
     {
@@ -2561,18 +2229,6 @@
       ],
       "sample_articles": [
         "articles/article_81.html"
-      ]
-    },
-    {
-      "detected_label": "サクラシメジモドキ",
-      "image_count": 1,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261001/20261001000912.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_7.html"
       ]
     },
     {
@@ -3080,18 +2736,6 @@
       ]
     },
     {
-      "detected_label": "フジアザミ",
-      "image_count": 1,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015062811.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_2.html"
-      ]
-    },
-    {
       "detected_label": "フジイロチャワンタケモドキ",
       "image_count": 1,
       "article_count": 1,
@@ -3128,18 +2772,6 @@
       ]
     },
     {
-      "detected_label": "ベニハナイグチ",
-      "image_count": 1,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015064358.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_1.html"
-      ]
-    },
-    {
       "detected_label": "ベニヒガサ",
       "image_count": 1,
       "article_count": 1,
@@ -3149,18 +2781,6 @@
       ],
       "sample_articles": [
         "articles/article_15.html"
-      ]
-    },
-    {
-      "detected_label": "マクキヌガサタケ",
-      "image_count": 1,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063648.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_1.html"
       ]
     },
     {
@@ -3236,18 +2856,6 @@
       ]
     },
     {
-      "detected_label": "ムレオオフウセンタケ",
-      "image_count": 1,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232033.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_6.html"
-      ]
-    },
-    {
       "detected_label": "モウセンアシベニイグチ",
       "image_count": 1,
       "article_count": 1,
@@ -3257,18 +2865,6 @@
       ],
       "sample_articles": [
         "articles/article_8.html"
-      ]
-    },
-    {
-      "detected_label": "ヤマドリタケ",
-      "image_count": 1,
-      "article_count": 1,
-      "classification_reason": "taxonomy_unmatched",
-      "sample_srcs": [
-        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063131.jpg"
-      ],
-      "sample_articles": [
-        "articles/article_2.html"
       ]
     },
     {
@@ -3418,30 +3014,6 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222434.jpg",
-      "legacy_alt": "アシナガイグチ",
-      "detected_label": "アシナガイグチ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2026年7月11日静岡県静岡市",
-      "article_path": "articles/article_10.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222439.jpg",
-      "legacy_alt": "チチタケ",
-      "detected_label": "チチタケ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2026年7月11日静岡県静岡市",
-      "article_path": "articles/article_10.html",
-      "shadow_metadata_present": true
-    },
-    {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222452.jpg",
       "legacy_alt": "ニワタケ",
       "detected_label": "ニワタケ",
@@ -3454,57 +3026,9 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222458.jpg",
-      "legacy_alt": "ムラサキヤマドリタケ",
-      "detected_label": "ムラサキヤマドリタケ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2026年7月11日静岡県静岡市",
-      "article_path": "articles/article_10.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222504.jpg",
-      "legacy_alt": "ムラサキヤマドリタケ",
-      "detected_label": "ムラサキヤマドリタケ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2026年7月11日静岡県静岡市",
-      "article_path": "articles/article_10.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222510.jpg",
-      "legacy_alt": "サザナミイグチ",
-      "detected_label": "サザナミイグチ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2026年7月19日静岡県磐田市",
-      "article_path": "articles/article_11.html",
-      "shadow_metadata_present": true
-    },
-    {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222523.jpg",
       "legacy_alt": "オニテングタケ",
       "detected_label": "オニテングタケ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2026年7月19日静岡県磐田市",
-      "article_path": "articles/article_11.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222529.jpg",
-      "legacy_alt": "シロオニタケ",
-      "detected_label": "シロオニタケ",
       "subject_type": "review",
       "gallery_name": null,
       "classification_reason": "taxonomy_unmatched",
@@ -3682,42 +3206,6 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222233.jpg",
-      "legacy_alt": "アンズタケ(広義)",
-      "detected_label": "アンズタケ(広義)",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2026年7月5日静岡県掛川市(前編)",
-      "article_path": "articles/article_14.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222239.jpg",
-      "legacy_alt": "アシナガイグチ",
-      "detected_label": "アシナガイグチ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2026年7月5日静岡県掛川市(前編)",
-      "article_path": "articles/article_14.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222244.jpg",
-      "legacy_alt": "アシナガイグチ",
-      "detected_label": "アシナガイグチ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2026年7月5日静岡県掛川市(前編)",
-      "article_path": "articles/article_14.html",
-      "shadow_metadata_present": true
-    },
-    {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222255.jpg",
       "legacy_alt": "テングタケ",
       "detected_label": "テングタケ",
@@ -3847,30 +3335,6 @@
       "taxonomy_match_type": "none",
       "article_title": "2026年6月22日静岡県浜松市",
       "article_path": "articles/article_16.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260625/20260625214405.jpg",
-      "legacy_alt": "ニガイグチモドキ",
-      "detected_label": "ニガイグチモドキ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2026年6月17日 静岡県浜松市",
-      "article_path": "articles/article_17.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260625/20260625215709.jpg",
-      "legacy_alt": "ニガイグチモドキ",
-      "detected_label": "ニガイグチモドキ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2026年6月17日 静岡県浜松市",
-      "article_path": "articles/article_17.html",
       "shadow_metadata_present": true
     },
     {
@@ -4858,18 +4322,6 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018234636.jpg",
-      "legacy_alt": "サザナミイグチ",
-      "detected_label": "サザナミイグチ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年10月18日　静岡県浜松市",
-      "article_path": "articles/article_41.html",
-      "shadow_metadata_present": true
-    },
-    {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018234823.jpg",
       "legacy_alt": "ミネシメジ？",
       "detected_label": "ミネシメジ？",
@@ -5017,18 +4469,6 @@
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012221648.jpg",
       "legacy_alt": "ウコンガサ",
       "detected_label": "ウコンガサ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年10月12日　富士山(山梨県)",
-      "article_path": "articles/article_43.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012221748.jpg",
-      "legacy_alt": "ウスタケ",
-      "detected_label": "ウスタケ",
       "subject_type": "review",
       "gallery_name": null,
       "classification_reason": "taxonomy_unmatched",
@@ -5314,30 +4754,6 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005195853.jpg",
-      "legacy_alt": "ショウゲンジ",
-      "detected_label": "ショウゲンジ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_44.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005200039.jpg",
-      "legacy_alt": "ショウゲンジ",
-      "detected_label": "ショウゲンジ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年10月5日　富士山(山梨県)",
-      "article_path": "articles/article_44.html",
-      "shadow_metadata_present": true
-    },
-    {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005200815.jpg",
       "legacy_alt": "チャナメツムタケ",
       "detected_label": "チャナメツムタケ",
@@ -5470,54 +4886,6 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929214500.jpg",
-      "legacy_alt": "キイロイグチ",
-      "detected_label": "キイロイグチ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_45.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929214606.jpg",
-      "legacy_alt": "キタマゴタケ",
-      "detected_label": "キタマゴタケ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_45.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929214657.jpg",
-      "legacy_alt": "キタマゴタケ",
-      "detected_label": "キタマゴタケ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_45.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929214905.jpg",
-      "legacy_alt": "キタマゴタケ",
-      "detected_label": "キタマゴタケ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_45.html",
-      "shadow_metadata_present": true
-    },
-    {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929214951.jpg",
       "legacy_alt": "カバイロコナテングタケ",
       "detected_label": "カバイロコナテングタケ",
@@ -5557,30 +4925,6 @@
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929215152.jpg",
       "legacy_alt": "フリルイグチ(仮称)",
       "detected_label": "フリルイグチ(仮称)",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_45.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929215320.jpg",
-      "legacy_alt": "サザナミイグチ",
-      "detected_label": "サザナミイグチ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_45.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929215354.jpg",
-      "legacy_alt": "シロオニタケ",
-      "detected_label": "シロオニタケ",
       "subject_type": "review",
       "gallery_name": null,
       "classification_reason": "taxonomy_unmatched",
@@ -5662,30 +5006,6 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929220827.jpg",
-      "legacy_alt": "ムラサキヤマドリタケ",
-      "detected_label": "ムラサキヤマドリタケ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_45.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929220918.jpg",
-      "legacy_alt": "タマゴテングタケモドキ",
-      "detected_label": "タマゴテングタケモドキ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_45.html",
-      "shadow_metadata_present": true
-    },
-    {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929221027.jpg",
       "legacy_alt": "オニイグチモドキ",
       "detected_label": "オニイグチモドキ",
@@ -5717,30 +5037,6 @@
       "gallery_name": "ヤマドリタケモドキ",
       "classification_reason": "taxonomy_mushroom",
       "taxonomy_match_type": "normalized",
-      "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_45.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929221733.jpg",
-      "legacy_alt": "テングタケダマシ",
-      "detected_label": "テングタケダマシ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月27、28日　静岡県浜松市",
-      "article_path": "articles/article_45.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929221840.jpg",
-      "legacy_alt": "シロオニタケ",
-      "detected_label": "シロオニタケ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
       "article_title": "2025年9月27、28日　静岡県浜松市",
       "article_path": "articles/article_45.html",
       "shadow_metadata_present": true
@@ -5833,42 +5129,6 @@
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250922/20250922201434.jpg",
       "legacy_alt": "コガネキクバナイグチ",
       "detected_label": "コガネキクバナイグチ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月21日　静岡県掛川市",
-      "article_path": "articles/article_46.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250922/20250922201844.jpg",
-      "legacy_alt": "ベニイグチ",
-      "detected_label": "ベニイグチ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月21日　静岡県掛川市",
-      "article_path": "articles/article_46.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250922/20250922202048.jpg",
-      "legacy_alt": "ベニイグチ",
-      "detected_label": "ベニイグチ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月21日　静岡県掛川市",
-      "article_path": "articles/article_46.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250922/20250922202153.jpg",
-      "legacy_alt": "ベニイグチ",
-      "detected_label": "ベニイグチ",
       "subject_type": "review",
       "gallery_name": null,
       "classification_reason": "taxonomy_unmatched",
@@ -6037,18 +5297,6 @@
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914215304.jpg",
       "legacy_alt": "アケボノアワタケ",
       "detected_label": "アケボノアワタケ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年9月13日　富士山(山梨県)",
-      "article_path": "articles/article_50.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914215618.jpg",
-      "legacy_alt": "ショウゲンジ",
-      "detected_label": "ショウゲンジ",
       "subject_type": "review",
       "gallery_name": null,
       "classification_reason": "taxonomy_unmatched",
@@ -6514,18 +5762,6 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250816/20250816140316.jpg",
-      "legacy_alt": "ウスタケ",
-      "detected_label": "ウスタケ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年8月15日　山梨県北杜市",
-      "article_path": "articles/article_55.html",
-      "shadow_metadata_present": true
-    },
-    {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250816/20250816140538.jpg",
       "legacy_alt": "不明",
       "detected_label": "不明",
@@ -6886,18 +6122,6 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250713/20250713104345.jpg",
-      "legacy_alt": "キイロイグチ",
-      "detected_label": "キイロイグチ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年7月12日　静岡県浜松市",
-      "article_path": "articles/article_61.html",
-      "shadow_metadata_present": true
-    },
-    {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250713/20250713104541.jpg",
       "legacy_alt": "シロウロコツルタケ",
       "detected_label": "シロウロコツルタケ",
@@ -7150,18 +6374,6 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706220544.jpg",
-      "legacy_alt": "ニガイグチモドキ",
-      "detected_label": "ニガイグチモドキ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年6月29日　静岡県浜松市",
-      "article_path": "articles/article_64.html",
-      "shadow_metadata_present": true
-    },
-    {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706220621.jpg",
       "legacy_alt": "オオキイロフウセンタケ(仮称)",
       "detected_label": "オオキイロフウセンタケ(仮称)",
@@ -7234,18 +6446,6 @@
       "shadow_metadata_present": true
     },
     {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706221510.jpg",
-      "legacy_alt": "タマゴテングタケモドキ",
-      "detected_label": "タマゴテングタケモドキ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年6月29日　静岡県浜松市",
-      "article_path": "articles/article_64.html",
-      "shadow_metadata_present": true
-    },
-    {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706221544.jpg",
       "legacy_alt": "オニイグチモドキ",
       "detected_label": "オニイグチモドキ",
@@ -7285,18 +6485,6 @@
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706221858.jpg",
       "legacy_alt": "ダイダイイグチ",
       "detected_label": "ダイダイイグチ",
-      "subject_type": "review",
-      "gallery_name": null,
-      "classification_reason": "taxonomy_unmatched",
-      "taxonomy_match_type": "none",
-      "article_title": "2025年6月29日　静岡県浜松市",
-      "article_path": "articles/article_64.html",
-      "shadow_metadata_present": true
-    },
-    {
-      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706222155.jpg",
-      "legacy_alt": "タマゴテングタケモドキ",
-      "detected_label": "タマゴテングタケモドキ",
       "subject_type": "review",
       "gallery_name": null,
       "classification_reason": "taxonomy_unmatched",
@@ -9120,9 +8308,29 @@
   ],
   "candidate_only": [
     {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063534.jpg",
+      "gallery_name": "クリフウセンタケ",
+      "detected_label": "クリフウセンタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年10月3日富士山(山梨県)",
+      "article_path": "articles/article_1.html",
+      "legacy_alt": ""
+    },
+    {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063617.jpg",
       "gallery_name": "ベニテングタケ",
       "detected_label": "ベニテングタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年10月3日富士山(山梨県)",
+      "article_path": "articles/article_1.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063648.jpg",
+      "gallery_name": "マクキヌガサタケ",
+      "detected_label": "マクキヌガサタケ",
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年10月3日富士山(山梨県)",
@@ -9140,9 +8348,69 @@
       "legacy_alt": ""
     },
     {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063813.jpg",
+      "gallery_name": "キンチャワンタケ",
+      "detected_label": "キンチャワンタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年10月3日富士山(山梨県)",
+      "article_path": "articles/article_1.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015064358.jpg",
+      "gallery_name": "ベニハナイグチ",
+      "detected_label": "ベニハナイグチ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年10月3日富士山(山梨県)",
+      "article_path": "articles/article_1.html",
+      "legacy_alt": ""
+    },
+    {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015062840.jpg",
       "gallery_name": "ドクツルタケ",
       "detected_label": "ドクツルタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月22日富士山(山梨県)",
+      "article_path": "articles/article_2.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015062912.jpg",
+      "gallery_name": "クリフウセンタケ",
+      "detected_label": "クリフウセンタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月22日富士山(山梨県)",
+      "article_path": "articles/article_2.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063002.jpg",
+      "gallery_name": "クリフウセンタケ",
+      "detected_label": "クリフウセンタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月22日富士山(山梨県)",
+      "article_path": "articles/article_2.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063046.jpg",
+      "gallery_name": "クリフウセンタケ",
+      "detected_label": "クリフウセンタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月22日富士山(山梨県)",
+      "article_path": "articles/article_2.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063131.jpg",
+      "gallery_name": "ヤマドリタケ",
+      "detected_label": "ヤマドリタケ",
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月22日富士山(山梨県)",
@@ -9167,6 +8435,56 @@
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月22日富士山(山梨県)",
       "article_path": "articles/article_2.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063344.jpg",
+      "gallery_name": "シロオニタケ",
+      "detected_label": "シロオニタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月22日富士山(山梨県)",
+      "article_path": "articles/article_2.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063427.jpg",
+      "gallery_name": "アカジコウ",
+      "detected_label": "アカジコウ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月22日富士山(山梨県)",
+      "article_path": "articles/article_2.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224231.jpg",
+      "gallery_name": "オオノウタケ",
+      "detected_label": "オオノウタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月19日静岡県浜松市",
+      "article_path": "articles/article_3.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224250.jpg",
+      "gallery_name": "キイロイグチ",
+      "detected_label": "キイロイグチ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月19日静岡県浜松市",
+      "article_path": "articles/article_3.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224313.jpg",
+      "gallery_name": "テングタケダマシ",
+      "detected_label": "テングタケダマシ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月19日静岡県浜松市",
+      "article_path": "articles/article_3.html",
       "legacy_alt": ""
     },
     {
@@ -9240,9 +8558,79 @@
       "legacy_alt": ""
     },
     {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224702.jpg",
+      "gallery_name": "ナカグロモリノカサ",
+      "detected_label": "ナカグロモリノカサ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月19日静岡県浜松市",
+      "article_path": "articles/article_3.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224719.jpg",
+      "gallery_name": "ムラサキヤマドリタケ",
+      "detected_label": "ムラサキヤマドリタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月19日静岡県浜松市",
+      "article_path": "articles/article_3.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261001/20261001001532.jpg",
+      "gallery_name": "タマゴテングタケモドキ",
+      "detected_label": "タマゴテングタケモドキ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月19日静岡県浜松市",
+      "article_path": "articles/article_3.html",
+      "legacy_alt": ""
+    },
+    {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925225041.jpg",
       "gallery_name": "ミドリニガイグチ",
       "detected_label": "ミドリニガイグチ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月19日静岡県浜松市",
+      "article_path": "articles/article_3.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224739.jpg",
+      "gallery_name": "ベニイグチ",
+      "detected_label": "ベニイグチ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月19日静岡県浜松市",
+      "article_path": "articles/article_3.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925225116.jpg",
+      "gallery_name": "シロオニタケ",
+      "detected_label": "シロオニタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月19日静岡県浜松市",
+      "article_path": "articles/article_3.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925225221.jpg",
+      "gallery_name": "アンズタケ(広義)",
+      "detected_label": "アンズタケ(広義)",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月19日静岡県浜松市",
+      "article_path": "articles/article_3.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224826.jpg",
+      "gallery_name": "キタマゴタケ",
+      "detected_label": "キタマゴタケ",
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月19日静岡県浜松市",
@@ -9270,6 +8658,36 @@
       "legacy_alt": ""
     },
     {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152015.jpg",
+      "gallery_name": "チチタケ",
+      "detected_label": "チチタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月18日静岡県浜松市",
+      "article_path": "articles/article_4.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152030.jpg",
+      "gallery_name": "サザナミイグチ",
+      "detected_label": "サザナミイグチ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月18日静岡県浜松市",
+      "article_path": "articles/article_4.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152302.jpg",
+      "gallery_name": "ムラサキヤマドリタケ",
+      "detected_label": "ムラサキヤマドリタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月18日静岡県浜松市",
+      "article_path": "articles/article_4.html",
+      "legacy_alt": ""
+    },
+    {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152816.jpg",
       "gallery_name": "アカヤマドリ",
       "detected_label": "アカヤマドリ",
@@ -9277,6 +8695,36 @@
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月18日静岡県浜松市",
       "article_path": "articles/article_4.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925200415.jpg",
+      "gallery_name": "ヤシャイグチ",
+      "detected_label": "ヤシャイグチ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月17日静岡県浜松市",
+      "article_path": "articles/article_5.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224223.jpg",
+      "gallery_name": "ヤシャイグチ",
+      "detected_label": "ヤシャイグチ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月17日静岡県浜松市",
+      "article_path": "articles/article_5.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224236.jpg",
+      "gallery_name": "キタマゴタケ",
+      "detected_label": "キタマゴタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月17日静岡県浜松市",
+      "article_path": "articles/article_5.html",
       "legacy_alt": ""
     },
     {
@@ -9303,6 +8751,16 @@
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224343.jpg",
       "gallery_name": "ブドウニガイグチ",
       "detected_label": "ブドウニガイグチ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月17日静岡県浜松市",
+      "article_path": "articles/article_5.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224358.jpg",
+      "gallery_name": "アシナガイグチ",
+      "detected_label": "アシナガイグチ",
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月17日静岡県浜松市",
@@ -9360,9 +8818,59 @@
       "legacy_alt": ""
     },
     {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224630.jpg",
+      "gallery_name": "アンズタケ(広義)",
+      "detected_label": "アンズタケ(広義)",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月17日静岡県浜松市",
+      "article_path": "articles/article_5.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232033.jpg",
+      "gallery_name": "ムレオオフウセンタケ",
+      "detected_label": "ムレオオフウセンタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月13日山梨県笛吹市",
+      "article_path": "articles/article_6.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232050.jpg",
+      "gallery_name": "ウスムラサキシメジ",
+      "detected_label": "ウスムラサキシメジ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月13日山梨県笛吹市",
+      "article_path": "articles/article_6.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924103925.jpg",
+      "gallery_name": "キホウキタケ",
+      "detected_label": "キホウキタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月13日山梨県笛吹市",
+      "article_path": "articles/article_6.html",
+      "legacy_alt": ""
+    },
+    {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261001/20261001001557.jpg",
       "gallery_name": "タマゴタケ",
       "detected_label": "タマゴタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月13日山梨県笛吹市",
+      "article_path": "articles/article_6.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232201.jpg",
+      "gallery_name": "ナカグロモリノカサ",
+      "detected_label": "ナカグロモリノカサ",
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月13日山梨県笛吹市",
@@ -9380,9 +8888,49 @@
       "legacy_alt": ""
     },
     {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232241.jpg",
+      "gallery_name": "イボセイヨウショウロ",
+      "detected_label": "イボセイヨウショウロ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月13日山梨県笛吹市",
+      "article_path": "articles/article_6.html",
+      "legacy_alt": ""
+    },
+    {
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923224858.jpg",
       "gallery_name": "ヤマイグチ",
       "detected_label": "ヤマイグチ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月12日富士山(山梨県)",
+      "article_path": "articles/article_7.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923225040.jpg",
+      "gallery_name": "ウスタケ",
+      "detected_label": "ウスタケ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月12日富士山(山梨県)",
+      "article_path": "articles/article_7.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261001/20261001000912.jpg",
+      "gallery_name": "サクラシメジモドキ",
+      "detected_label": "サクラシメジモドキ",
+      "subject_type": "mushroom",
+      "classification_reason": "taxonomy_mushroom",
+      "article_title": "2026年9月12日富士山(山梨県)",
+      "article_path": "articles/article_7.html",
+      "legacy_alt": ""
+    },
+    {
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923225243.jpg",
+      "gallery_name": "ショウゲンジ",
+      "detected_label": "ショウゲンジ",
       "subject_type": "mushroom",
       "classification_reason": "taxonomy_mushroom",
       "article_title": "2026年9月12日富士山(山梨県)",
@@ -9902,6 +9450,18 @@
       ],
       "sample_articles": [
         "articles/article_38.html"
+      ]
+    },
+    {
+      "detected_label": "フジアザミ",
+      "image_count": 1,
+      "article_count": 1,
+      "classification_reason": "taxonomy_non_mushroom",
+      "sample_srcs": [
+        "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015062811.jpg"
+      ],
+      "sample_articles": [
+        "articles/article_2.html"
       ]
     },
     {

@@ -405,6 +405,12 @@ document.addEventListener("DOMContentLoaded", () => {
     return img ? normalizeSrc(img.getAttribute("src")) : null;
   }
 
+  function isUnregisteredSharedPhoto(src) {
+    if (!src) return false;
+    return Array.from(document.querySelectorAll('.gallery-item[data-favorite-eligible="false"]'))
+      .some(link => normalizeSrc(link.getAttribute('href')) === normalizeSrc(src));
+  }
+
   // =========================
   // Toast
   // =========================
@@ -665,6 +671,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const src = getCurrentSlideSrc();
 
+      const unavailable = isUnregisteredSharedPhoto(src);
+      btn.hidden = unavailable;
+      btn.disabled = unavailable;
+      btn.style.display = unavailable ? 'none' : '';
+
       if (src && isFavorite(src)) {
         btn.textContent = "★";
 
@@ -692,7 +703,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     btn.addEventListener("click", () => {
       const src = getCurrentSlideSrc();
-      if (!src) return;
+      if (!src || isUnregisteredSharedPhoto(src)) return;
 
       const favs = loadFavorites();
       favs[src] = !favs[src];
@@ -713,6 +724,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     toolbar.appendChild(btn);
+    updateFavoriteIcon();
     return true;
   }
 

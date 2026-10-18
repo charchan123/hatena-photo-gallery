@@ -3,27 +3,27 @@
   "production": {
     "mode": "phase3c_hybrid",
     "cutover_active": true,
-    "image_count": 897
+    "image_count": 933
   },
   "summary": {
-    "production_image_count": 897,
-    "observation_count": 897,
-    "subject_count": 299,
+    "production_image_count": 933,
+    "observation_count": 933,
+    "subject_count": 313,
     "article_count": 90,
-    "shadow_matched_observation_count": 897,
+    "shadow_matched_observation_count": 933,
     "shadow_src_only_fallback_count": 0,
     "shadow_missing_observation_count": 0,
-    "exif_dated_observation_count": 867,
+    "exif_dated_observation_count": 903,
     "exif_undated_observation_count": 30,
-    "confirmed_named_mushroom_count": 419,
+    "confirmed_named_mushroom_count": 489,
     "confirmed_mushroom_identity_uncertain_count": 12,
     "manual_review_name_conflict_count": 6,
-    "legacy_review_count": 429,
+    "legacy_review_count": 395,
     "legacy_undetected_count": 31,
     "legacy_shadow_missing_count": 0,
     "human_reviewed_mushroom_count": 0,
-    "master_linked_subject_count": 42,
-    "master_unlinked_subject_count": 257,
+    "master_linked_subject_count": 47,
+    "master_unlinked_subject_count": 266,
     "knowledge_record_count": 141,
     "source_count": 419
   },
@@ -346,6 +346,32 @@
       "knowledge_available": false
     },
     {
+      "gallery_name": "アカジコウ",
+      "photo_count": 1,
+      "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063427.jpg",
+      "article_count": 1,
+      "capture_date_count": 1,
+      "capture_months": [
+        9
+      ],
+      "capture_month_counts": {
+        "9": 1
+      },
+      "first_capture_date": "2026-09-27",
+      "last_capture_date": "2026-09-27",
+      "classification_counts": {
+        "confirmed_named_mushroom": 1
+      },
+      "taxonomy": {
+        "canonical_name": "アカジコウ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": "akajikou"
+      },
+      "mushroom_master_id": "akajikou",
+      "knowledge_available": true
+    },
+    {
       "gallery_name": "アカハツ",
       "photo_count": 3,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260625/20260625214851.jpg",
@@ -467,22 +493,29 @@
     },
     {
       "gallery_name": "アシナガイグチ",
-      "photo_count": 3,
+      "photo_count": 4,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222434.jpg",
-      "article_count": 2,
-      "capture_date_count": 3,
+      "article_count": 3,
+      "capture_date_count": 4,
       "capture_months": [
-        7
+        7,
+        9
       ],
       "capture_month_counts": {
-        "7": 3
+        "7": 3,
+        "9": 1
       },
       "first_capture_date": "2026-07-05",
-      "last_capture_date": "2026-07-11",
+      "last_capture_date": "2026-09-17",
       "classification_counts": {
-        "legacy_review": 3
+        "confirmed_named_mushroom": 4
       },
-      "taxonomy": null,
+      "taxonomy": {
+        "canonical_name": "アシナガイグチ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": null
+      },
       "mushroom_master_id": null,
       "knowledge_available": false
     },
@@ -758,22 +791,29 @@
     },
     {
       "gallery_name": "アンズタケ(広義)",
-      "photo_count": 1,
+      "photo_count": 3,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222233.jpg",
-      "article_count": 1,
-      "capture_date_count": 1,
+      "article_count": 3,
+      "capture_date_count": 3,
       "capture_months": [
-        7
+        7,
+        9
       ],
       "capture_month_counts": {
-        "7": 1
+        "7": 1,
+        "9": 2
       },
       "first_capture_date": "2026-07-05",
-      "last_capture_date": "2026-07-05",
+      "last_capture_date": "2026-09-19",
       "classification_counts": {
-        "legacy_review": 1
+        "confirmed_named_mushroom": 3
       },
-      "taxonomy": null,
+      "taxonomy": {
+        "canonical_name": "アンズタケ(広義)",
+        "subject_type": "mushroom",
+        "verification_status": "project_seed",
+        "mushroom_master_id": null
+      },
       "mushroom_master_id": null,
       "knowledge_available": false
     },
@@ -795,6 +835,32 @@
         "legacy_review": 1
       },
       "taxonomy": null,
+      "mushroom_master_id": null,
+      "knowledge_available": false
+    },
+    {
+      "gallery_name": "イボセイヨウショウロ",
+      "photo_count": 1,
+      "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232241.jpg",
+      "article_count": 1,
+      "capture_date_count": 1,
+      "capture_months": [
+        9
+      ],
+      "capture_month_counts": {
+        "9": 1
+      },
+      "first_capture_date": "2026-09-13",
+      "last_capture_date": "2026-09-13",
+      "classification_counts": {
+        "confirmed_named_mushroom": 1
+      },
+      "taxonomy": {
+        "canonical_name": "イボセイヨウショウロ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": null
+      },
       "mushroom_master_id": null,
       "knowledge_available": false
     },
@@ -893,26 +959,33 @@
     },
     {
       "gallery_name": "ウスタケ",
-      "photo_count": 2,
+      "photo_count": 3,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012221748.jpg",
-      "article_count": 2,
-      "capture_date_count": 2,
+      "article_count": 3,
+      "capture_date_count": 3,
       "capture_months": [
         8,
+        9,
         10
       ],
       "capture_month_counts": {
         "8": 1,
+        "9": 1,
         "10": 1
       },
       "first_capture_date": "2025-08-15",
-      "last_capture_date": "2025-10-12",
+      "last_capture_date": "2026-09-12",
       "classification_counts": {
-        "legacy_review": 2
+        "confirmed_named_mushroom": 3
       },
-      "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "taxonomy": {
+        "canonical_name": "ウスタケ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": "usutake"
+      },
+      "mushroom_master_id": "usutake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "ウスヒラタケ",
@@ -964,6 +1037,32 @@
         "legacy_review": 1
       },
       "taxonomy": null,
+      "mushroom_master_id": null,
+      "knowledge_available": false
+    },
+    {
+      "gallery_name": "ウスムラサキシメジ",
+      "photo_count": 1,
+      "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232050.jpg",
+      "article_count": 1,
+      "capture_date_count": 1,
+      "capture_months": [
+        9
+      ],
+      "capture_month_counts": {
+        "9": 1
+      },
+      "first_capture_date": "2026-09-13",
+      "last_capture_date": "2026-09-13",
+      "classification_counts": {
+        "confirmed_named_mushroom": 1
+      },
+      "taxonomy": {
+        "canonical_name": "ウスムラサキシメジ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": null
+      },
       "mushroom_master_id": null,
       "knowledge_available": false
     },
@@ -1301,6 +1400,32 @@
         "legacy_review": 1
       },
       "taxonomy": null,
+      "mushroom_master_id": null,
+      "knowledge_available": false
+    },
+    {
+      "gallery_name": "オオノウタケ",
+      "photo_count": 1,
+      "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224231.jpg",
+      "article_count": 1,
+      "capture_date_count": 1,
+      "capture_months": [
+        9
+      ],
+      "capture_month_counts": {
+        "9": 1
+      },
+      "first_capture_date": "2026-09-19",
+      "last_capture_date": "2026-09-19",
+      "classification_counts": {
+        "confirmed_named_mushroom": 1
+      },
+      "taxonomy": {
+        "canonical_name": "オオノウタケ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": null
+      },
       "mushroom_master_id": null,
       "knowledge_available": false
     },
@@ -1935,24 +2060,29 @@
     },
     {
       "gallery_name": "キイロイグチ",
-      "photo_count": 2,
+      "photo_count": 3,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929214500.jpg",
-      "article_count": 2,
-      "capture_date_count": 2,
+      "article_count": 3,
+      "capture_date_count": 3,
       "capture_months": [
         1,
         9
       ],
       "capture_month_counts": {
         "1": 1,
-        "9": 1
+        "9": 2
       },
       "first_capture_date": "2000-01-01",
-      "last_capture_date": "2025-09-27",
+      "last_capture_date": "2026-09-19",
       "classification_counts": {
-        "legacy_review": 2
+        "confirmed_named_mushroom": 3
       },
-      "taxonomy": null,
+      "taxonomy": {
+        "canonical_name": "キイロイグチ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": null
+      },
       "mushroom_master_id": null,
       "knowledge_available": false
     },
@@ -2128,22 +2258,27 @@
     },
     {
       "gallery_name": "キタマゴタケ",
-      "photo_count": 3,
+      "photo_count": 5,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929214606.jpg",
-      "article_count": 1,
-      "capture_date_count": 3,
+      "article_count": 3,
+      "capture_date_count": 5,
       "capture_months": [
         9
       ],
       "capture_month_counts": {
-        "9": 3
+        "9": 5
       },
       "first_capture_date": "2025-09-28",
-      "last_capture_date": "2025-09-28",
+      "last_capture_date": "2026-09-19",
       "classification_counts": {
-        "legacy_review": 3
+        "confirmed_named_mushroom": 5
       },
-      "taxonomy": null,
+      "taxonomy": {
+        "canonical_name": "キタマゴタケ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": null
+      },
       "mushroom_master_id": null,
       "knowledge_available": false
     },
@@ -2392,6 +2527,32 @@
       "knowledge_available": false
     },
     {
+      "gallery_name": "キホウキタケ",
+      "photo_count": 1,
+      "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924103925.jpg",
+      "article_count": 1,
+      "capture_date_count": 1,
+      "capture_months": [
+        9
+      ],
+      "capture_month_counts": {
+        "9": 1
+      },
+      "first_capture_date": "2026-09-13",
+      "last_capture_date": "2026-09-13",
+      "classification_counts": {
+        "confirmed_named_mushroom": 1
+      },
+      "taxonomy": {
+        "canonical_name": "キホウキタケ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": null
+      },
+      "mushroom_master_id": null,
+      "knowledge_available": false
+    },
+    {
       "gallery_name": "キヤマタケ？",
       "photo_count": 1,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251118/20251118231818.jpg",
@@ -2447,6 +2608,32 @@
         "legacy_review": 1
       },
       "taxonomy": null,
+      "mushroom_master_id": null,
+      "knowledge_available": false
+    },
+    {
+      "gallery_name": "キンチャワンタケ",
+      "photo_count": 1,
+      "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063813.jpg",
+      "article_count": 1,
+      "capture_date_count": 1,
+      "capture_months": [
+        10
+      ],
+      "capture_month_counts": {
+        "10": 1
+      },
+      "first_capture_date": "2026-10-03",
+      "last_capture_date": "2026-10-03",
+      "classification_counts": {
+        "confirmed_named_mushroom": 1
+      },
+      "taxonomy": {
+        "canonical_name": "キンチャワンタケ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": null
+      },
       "mushroom_master_id": null,
       "knowledge_available": false
     },
@@ -2684,6 +2871,34 @@
         "legacy_review": 1
       },
       "taxonomy": null,
+      "mushroom_master_id": null,
+      "knowledge_available": false
+    },
+    {
+      "gallery_name": "クリフウセンタケ",
+      "photo_count": 4,
+      "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063534.jpg",
+      "article_count": 2,
+      "capture_date_count": 4,
+      "capture_months": [
+        9,
+        10
+      ],
+      "capture_month_counts": {
+        "9": 3,
+        "10": 1
+      },
+      "first_capture_date": "2026-09-22",
+      "last_capture_date": "2026-10-03",
+      "classification_counts": {
+        "confirmed_named_mushroom": 4
+      },
+      "taxonomy": {
+        "canonical_name": "クリフウセンタケ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": null
+      },
       "mushroom_master_id": null,
       "knowledge_available": false
     },
@@ -3271,11 +3486,37 @@
       "knowledge_available": false
     },
     {
+      "gallery_name": "サクラシメジモドキ",
+      "photo_count": 1,
+      "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261001/20261001000912.jpg",
+      "article_count": 1,
+      "capture_date_count": 1,
+      "capture_months": [
+        9
+      ],
+      "capture_month_counts": {
+        "9": 1
+      },
+      "first_capture_date": "2026-09-12",
+      "last_capture_date": "2026-09-12",
+      "classification_counts": {
+        "confirmed_named_mushroom": 1
+      },
+      "taxonomy": {
+        "canonical_name": "サクラシメジモドキ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": null
+      },
+      "mushroom_master_id": null,
+      "knowledge_available": false
+    },
+    {
       "gallery_name": "サザナミイグチ",
-      "photo_count": 3,
+      "photo_count": 4,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222510.jpg",
-      "article_count": 3,
-      "capture_date_count": 3,
+      "article_count": 4,
+      "capture_date_count": 4,
       "capture_months": [
         7,
         9,
@@ -3283,15 +3524,20 @@
       ],
       "capture_month_counts": {
         "7": 1,
-        "9": 1,
+        "9": 2,
         "10": 1
       },
       "first_capture_date": "2025-09-28",
-      "last_capture_date": "2026-07-19",
+      "last_capture_date": "2026-09-18",
       "classification_counts": {
-        "legacy_review": 3
+        "confirmed_named_mushroom": 4
       },
-      "taxonomy": null,
+      "taxonomy": {
+        "canonical_name": "サザナミイグチ",
+        "subject_type": "mushroom",
+        "verification_status": "project_seed",
+        "mushroom_master_id": null
+      },
       "mushroom_master_id": null,
       "knowledge_available": false
     },
@@ -3371,26 +3617,31 @@
     },
     {
       "gallery_name": "ショウゲンジ",
-      "photo_count": 3,
+      "photo_count": 4,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005195853.jpg",
-      "article_count": 2,
-      "capture_date_count": 3,
+      "article_count": 3,
+      "capture_date_count": 4,
       "capture_months": [
         9,
         10
       ],
       "capture_month_counts": {
-        "9": 1,
+        "9": 2,
         "10": 2
       },
       "first_capture_date": "2025-09-13",
-      "last_capture_date": "2025-10-05",
+      "last_capture_date": "2026-09-12",
       "classification_counts": {
-        "legacy_review": 3
+        "confirmed_named_mushroom": 4
       },
-      "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "taxonomy": {
+        "canonical_name": "ショウゲンジ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": "syougenji"
+      },
+      "mushroom_master_id": "syougenji",
+      "knowledge_available": true
     },
     {
       "gallery_name": "シロウロコツルタケ",
@@ -3415,26 +3666,31 @@
     },
     {
       "gallery_name": "シロオニタケ",
-      "photo_count": 3,
+      "photo_count": 5,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222529.jpg",
-      "article_count": 2,
-      "capture_date_count": 3,
+      "article_count": 4,
+      "capture_date_count": 5,
       "capture_months": [
         7,
         9
       ],
       "capture_month_counts": {
         "7": 1,
-        "9": 2
+        "9": 4
       },
       "first_capture_date": "2025-09-28",
-      "last_capture_date": "2026-07-19",
+      "last_capture_date": "2026-09-27",
       "classification_counts": {
-        "legacy_review": 3
+        "confirmed_named_mushroom": 5
       },
-      "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "taxonomy": {
+        "canonical_name": "シロオニタケ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": "siroonitake"
+      },
+      "mushroom_master_id": "siroonitake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "シロキクラゲ",
@@ -3712,24 +3968,29 @@
     },
     {
       "gallery_name": "タマゴテングタケモドキ",
-      "photo_count": 3,
+      "photo_count": 4,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929220918.jpg",
-      "article_count": 2,
-      "capture_date_count": 3,
+      "article_count": 3,
+      "capture_date_count": 4,
       "capture_months": [
         6,
         9
       ],
       "capture_month_counts": {
         "6": 2,
-        "9": 1
+        "9": 2
       },
       "first_capture_date": "2025-06-29",
-      "last_capture_date": "2025-09-28",
+      "last_capture_date": "2026-09-19",
       "classification_counts": {
-        "legacy_review": 3
+        "confirmed_named_mushroom": 4
       },
-      "taxonomy": null,
+      "taxonomy": {
+        "canonical_name": "タマゴテングタケモドキ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": null
+      },
       "mushroom_master_id": null,
       "knowledge_available": false
     },
@@ -3847,24 +4108,31 @@
     },
     {
       "gallery_name": "チチタケ",
-      "photo_count": 1,
+      "photo_count": 2,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222439.jpg",
-      "article_count": 1,
-      "capture_date_count": 1,
+      "article_count": 2,
+      "capture_date_count": 2,
       "capture_months": [
-        7
+        7,
+        9
       ],
       "capture_month_counts": {
-        "7": 1
+        "7": 1,
+        "9": 1
       },
       "first_capture_date": "2026-07-11",
-      "last_capture_date": "2026-07-11",
+      "last_capture_date": "2026-09-18",
       "classification_counts": {
-        "legacy_review": 1
+        "confirmed_named_mushroom": 2
       },
-      "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "taxonomy": {
+        "canonical_name": "チチタケ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": "tititake"
+      },
+      "mushroom_master_id": "tititake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "チャアミガサタケ",
@@ -4132,22 +4400,27 @@
     },
     {
       "gallery_name": "テングタケダマシ",
-      "photo_count": 1,
+      "photo_count": 2,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929221733.jpg",
-      "article_count": 1,
-      "capture_date_count": 1,
+      "article_count": 2,
+      "capture_date_count": 2,
       "capture_months": [
         9
       ],
       "capture_month_counts": {
-        "9": 1
+        "9": 2
       },
       "first_capture_date": "2025-09-28",
-      "last_capture_date": "2025-09-28",
+      "last_capture_date": "2026-09-19",
       "classification_counts": {
-        "legacy_review": 1
+        "confirmed_named_mushroom": 2
       },
-      "taxonomy": null,
+      "taxonomy": {
+        "canonical_name": "テングタケダマシ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": null
+      },
       "mushroom_master_id": null,
       "knowledge_available": false
     },
@@ -4301,6 +4574,32 @@
       "knowledge_available": false
     },
     {
+      "gallery_name": "ナカグロモリノカサ",
+      "photo_count": 2,
+      "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224702.jpg",
+      "article_count": 2,
+      "capture_date_count": 2,
+      "capture_months": [
+        9
+      ],
+      "capture_month_counts": {
+        "9": 2
+      },
+      "first_capture_date": "2026-09-13",
+      "last_capture_date": "2026-09-19",
+      "classification_counts": {
+        "confirmed_named_mushroom": 2
+      },
+      "taxonomy": {
+        "canonical_name": "ナカグロモリノカサ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": null
+      },
+      "mushroom_master_id": null,
+      "knowledge_available": false
+    },
+    {
       "gallery_name": "ナラタケ",
       "photo_count": 3,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251122/20251122115843.jpg",
@@ -4447,10 +4746,15 @@
       "first_capture_date": "2025-06-29",
       "last_capture_date": "2026-06-17",
       "classification_counts": {
-        "legacy_review": 3,
+        "confirmed_named_mushroom": 3,
         "legacy_undetected": 1
       },
-      "taxonomy": null,
+      "taxonomy": {
+        "canonical_name": "ニガイグチモドキ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": null
+      },
       "mushroom_master_id": null,
       "knowledge_available": false
     },
@@ -5632,22 +5936,27 @@
     },
     {
       "gallery_name": "ベニイグチ",
-      "photo_count": 3,
+      "photo_count": 4,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250922/20250922201844.jpg",
-      "article_count": 1,
-      "capture_date_count": 3,
+      "article_count": 2,
+      "capture_date_count": 4,
       "capture_months": [
         9
       ],
       "capture_month_counts": {
-        "9": 3
+        "9": 4
       },
       "first_capture_date": "2025-09-21",
-      "last_capture_date": "2025-09-21",
+      "last_capture_date": "2026-09-19",
       "classification_counts": {
-        "legacy_review": 3
+        "confirmed_named_mushroom": 4
       },
-      "taxonomy": null,
+      "taxonomy": {
+        "canonical_name": "ベニイグチ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": null
+      },
       "mushroom_master_id": null,
       "knowledge_available": false
     },
@@ -5739,6 +6048,32 @@
         "canonical_name": "ベニテングタケ",
         "subject_type": "mushroom",
         "verification_status": "project_seed",
+        "mushroom_master_id": null
+      },
+      "mushroom_master_id": null,
+      "knowledge_available": false
+    },
+    {
+      "gallery_name": "ベニハナイグチ",
+      "photo_count": 1,
+      "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015064358.jpg",
+      "article_count": 1,
+      "capture_date_count": 1,
+      "capture_months": [
+        10
+      ],
+      "capture_month_counts": {
+        "10": 1
+      },
+      "first_capture_date": "2026-10-03",
+      "last_capture_date": "2026-10-03",
+      "classification_counts": {
+        "confirmed_named_mushroom": 1
+      },
+      "taxonomy": {
+        "canonical_name": "ベニハナイグチ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
         "mushroom_master_id": null
       },
       "mushroom_master_id": null,
@@ -5861,6 +6196,32 @@
       },
       "mushroom_master_id": "hoteishimeji",
       "knowledge_available": true
+    },
+    {
+      "gallery_name": "マクキヌガサタケ",
+      "photo_count": 1,
+      "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063648.jpg",
+      "article_count": 1,
+      "capture_date_count": 1,
+      "capture_months": [
+        10
+      ],
+      "capture_month_counts": {
+        "10": 1
+      },
+      "first_capture_date": "2026-10-03",
+      "last_capture_date": "2026-10-03",
+      "classification_counts": {
+        "confirmed_named_mushroom": 1
+      },
+      "taxonomy": {
+        "canonical_name": "マクキヌガサタケ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": null
+      },
+      "mushroom_master_id": null,
+      "knowledge_available": false
     },
     {
       "gallery_name": "マツオウジ",
@@ -6213,24 +6574,55 @@
     },
     {
       "gallery_name": "ムラサキヤマドリタケ",
-      "photo_count": 3,
+      "photo_count": 5,
       "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222458.jpg",
-      "article_count": 2,
-      "capture_date_count": 3,
+      "article_count": 4,
+      "capture_date_count": 5,
       "capture_months": [
         7,
         9
       ],
       "capture_month_counts": {
         "7": 2,
-        "9": 1
+        "9": 3
       },
       "first_capture_date": "2025-09-28",
-      "last_capture_date": "2026-07-11",
+      "last_capture_date": "2026-09-19",
       "classification_counts": {
-        "legacy_review": 3
+        "confirmed_named_mushroom": 5
       },
-      "taxonomy": null,
+      "taxonomy": {
+        "canonical_name": "ムラサキヤマドリタケ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": null
+      },
+      "mushroom_master_id": null,
+      "knowledge_available": false
+    },
+    {
+      "gallery_name": "ムレオオフウセンタケ",
+      "photo_count": 1,
+      "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232033.jpg",
+      "article_count": 1,
+      "capture_date_count": 1,
+      "capture_months": [
+        9
+      ],
+      "capture_month_counts": {
+        "9": 1
+      },
+      "first_capture_date": "2026-09-13",
+      "last_capture_date": "2026-09-13",
+      "classification_counts": {
+        "confirmed_named_mushroom": 1
+      },
+      "taxonomy": {
+        "canonical_name": "ムレオオフウセンタケ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": null
+      },
       "mushroom_master_id": null,
       "knowledge_available": false
     },
@@ -6294,6 +6686,32 @@
         "legacy_review": 1
       },
       "taxonomy": null,
+      "mushroom_master_id": null,
+      "knowledge_available": false
+    },
+    {
+      "gallery_name": "ヤシャイグチ",
+      "photo_count": 2,
+      "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925200415.jpg",
+      "article_count": 1,
+      "capture_date_count": 2,
+      "capture_months": [
+        9
+      ],
+      "capture_month_counts": {
+        "9": 2
+      },
+      "first_capture_date": "2026-09-17",
+      "last_capture_date": "2026-09-17",
+      "classification_counts": {
+        "confirmed_named_mushroom": 2
+      },
+      "taxonomy": {
+        "canonical_name": "ヤシャイグチ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": null
+      },
       "mushroom_master_id": null,
       "knowledge_available": false
     },
@@ -6394,6 +6812,32 @@
         "legacy_undetected": 1
       },
       "taxonomy": null,
+      "mushroom_master_id": null,
+      "knowledge_available": false
+    },
+    {
+      "gallery_name": "ヤマドリタケ",
+      "photo_count": 1,
+      "cover_src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063131.jpg",
+      "article_count": 1,
+      "capture_date_count": 1,
+      "capture_months": [
+        9
+      ],
+      "capture_month_counts": {
+        "9": 1
+      },
+      "first_capture_date": "2026-09-22",
+      "last_capture_date": "2026-09-22",
+      "classification_counts": {
+        "confirmed_named_mushroom": 1
+      },
+      "taxonomy": {
+        "canonical_name": "ヤマドリタケ",
+        "subject_type": "mushroom",
+        "verification_status": "externally_verified",
+        "mushroom_master_id": null
+      },
       "mushroom_master_id": null,
       "knowledge_available": false
     },
@@ -7648,17 +8092,17 @@
       "production_index": 16,
       "gallery_name": "アシナガイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222434.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "アシナガイグチ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "アシナガイグチ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "アシナガイグチ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2026-07-11",
@@ -7697,17 +8141,17 @@
       "production_index": 17,
       "gallery_name": "チチタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222439.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "チチタケ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "チチタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "チチタケ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2026-07-11",
@@ -7739,7 +8183,7 @@
         ],
         "excerpt": "6月に台風で中止になってしまった静岡市の里山での静岡木の子の会の観察会が再び7月のこの日に開催されたので参加してきた。 アシナガイグチ 斜面の下の方に発生してたのを参加者のお子さんが発見。自分は歳を取るごとに段々キノコが見つけられなくなっている。 チチタケ(編…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "tititake"
     },
     {
       "observation_id": "obs-587d7f7bb32398a065503a6d04542ae12f2f72c6def4bafea9a93f6eda68c046",
@@ -7844,17 +8288,17 @@
       "production_index": 20,
       "gallery_name": "ムラサキヤマドリタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222458.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "ムラサキヤマドリタケ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "ムラサキヤマドリタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "ムラサキヤマドリタケ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2026-07-11",
@@ -7893,17 +8337,17 @@
       "production_index": 21,
       "gallery_name": "ムラサキヤマドリタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222504.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "ムラサキヤマドリタケ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "ムラサキヤマドリタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "ムラサキヤマドリタケ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2026-07-11",
@@ -7942,17 +8386,17 @@
       "production_index": 22,
       "gallery_name": "サザナミイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222510.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "サザナミイグチ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "サザナミイグチ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "サザナミイグチ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2026-07-19",
@@ -8042,17 +8486,17 @@
       "production_index": 24,
       "gallery_name": "シロオニタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222529.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "シロオニタケ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "シロオニタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "シロオニタケ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2026-07-19",
@@ -8085,7 +8529,7 @@
         ],
         "excerpt": "ミカワクロアミアシイグチが発生しそうな場所を探索してきた。 サザナミイグチ 歩き始めたは良いものの、とにかく暑い。途中でドクツルタケやオニテングタケ、チチアワタケを見つけたがすべて状態は悪く、そんな中で被写体として良さそうな本種をようやく見つけた。 オニテング…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "siroonitake"
     },
     {
       "observation_id": "obs-06ca1e54962df01c225a7a269f875b07b9ccd65f1f83e618ba1018126fc47d84",
@@ -8982,17 +9426,17 @@
       "production_index": 43,
       "gallery_name": "アンズタケ(広義)",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222233.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "アンズタケ(広義)",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "アンズタケ(広義)",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "アンズタケ(広義)",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2026-07-05",
@@ -9036,17 +9480,17 @@
       "production_index": 44,
       "gallery_name": "アシナガイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222239.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "アシナガイグチ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "アシナガイグチ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "アシナガイグチ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2026-07-05",
@@ -9090,17 +9534,17 @@
       "production_index": 45,
       "gallery_name": "アシナガイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260926/20260926222244.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "アシナガイグチ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "アシナガイグチ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "アシナガイグチ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2026-07-05",
@@ -10473,17 +10917,17 @@
       "production_index": 71,
       "gallery_name": "ニガイグチモドキ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260625/20260625214405.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "ニガイグチモドキ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "ニガイグチモドキ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "ニガイグチモドキ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2026-06-17",
@@ -10523,17 +10967,17 @@
       "production_index": 72,
       "gallery_name": "ニガイグチモドキ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260625/20260625215709.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "ニガイグチモドキ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "ニガイグチモドキ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "ニガイグチモドキ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2026-06-17",
@@ -18747,17 +19191,17 @@
       "production_index": 230,
       "gallery_name": "サザナミイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251018/20251018234636.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "サザナミイグチ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "サザナミイグチ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "サザナミイグチ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-10-18",
@@ -20923,17 +21367,17 @@
       "production_index": 260,
       "gallery_name": "ウスタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251012/20251012221748.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "ウスタケ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "ウスタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "ウスタケ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-10-12",
@@ -20990,7 +21434,7 @@
         ],
         "excerpt": "時期的におそらく今年最後となるキノコの発生がピークを迎えた富士山へ遠征してきた。 ムキタケ ポイントを向かう途中に高速道路で強い雨が降り続き、霧が濃くで始めたので探索が出来るか心配になったが、山梨県に入った途端に青空が広がり一安心。ポイントについてすぐの歩道脇…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "usutake"
     },
     {
       "observation_id": "obs-5b288dfce7fff060b4c9c5d9d147bcc3dcc59de17dc55833f85ce61826f32ff2",
@@ -23957,17 +24401,17 @@
       "production_index": 301,
       "gallery_name": "ショウゲンジ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005195853.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "ショウゲンジ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "ショウゲンジ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "ショウゲンジ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-10-05",
@@ -24024,24 +24468,24 @@
         ],
         "excerpt": "ネット情報や師匠の富士山の近況情報を聞き、そろそろ高級キノコが狙える時期になったので今まで行ったことのない標高帯を歩いて来た。 ※今回は霧が良く出ていたので水滴が付いた写真が多くなっています。 追記 どうやらブログの不具合？で縦位置の写真が中央からバッサリ切ら…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "syougenji"
     },
     {
       "observation_id": "obs-9799394309bc471ce0a691df88eda533e2286a7e0b0c7bf8a3ab18381b11b443",
       "production_index": 302,
       "gallery_name": "ショウゲンジ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251005/20251005200039.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "ショウゲンジ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "ショウゲンジ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "ショウゲンジ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-10-05",
@@ -24098,7 +24542,7 @@
         ],
         "excerpt": "ネット情報や師匠の富士山の近況情報を聞き、そろそろ高級キノコが狙える時期になったので今まで行ったことのない標高帯を歩いて来た。 ※今回は霧が良く出ていたので水滴が付いた写真が多くなっています。 追記 どうやらブログの不具合？で縦位置の写真が中央からバッサリ切ら…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "syougenji"
     },
     {
       "observation_id": "obs-11e5e63e4dedf90dfc48ef562233d623e05e40883653a97890c8b7250a81de31",
@@ -26101,17 +26545,17 @@
       "production_index": 330,
       "gallery_name": "キイロイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929214500.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "キイロイグチ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "キイロイグチ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "キイロイグチ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-09-27",
@@ -26173,17 +26617,17 @@
       "production_index": 331,
       "gallery_name": "キタマゴタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929214606.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "キタマゴタケ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "キタマゴタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "キタマゴタケ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-09-28",
@@ -26245,17 +26689,17 @@
       "production_index": 332,
       "gallery_name": "キタマゴタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929214657.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "キタマゴタケ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "キタマゴタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "キタマゴタケ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-09-28",
@@ -26317,17 +26761,17 @@
       "production_index": 333,
       "gallery_name": "キタマゴタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929214905.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "キタマゴタケ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "キタマゴタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "キタマゴタケ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-09-28",
@@ -26821,17 +27265,17 @@
       "production_index": 340,
       "gallery_name": "サザナミイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929215320.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "サザナミイグチ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "サザナミイグチ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "サザナミイグチ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-09-28",
@@ -26893,17 +27337,17 @@
       "production_index": 341,
       "gallery_name": "シロオニタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929215354.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "シロオニタケ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "シロオニタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "シロオニタケ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-09-28",
@@ -26958,7 +27402,7 @@
         ],
         "excerpt": "日本菌学会が開催する静岡フォーレが静岡県立森林公園で開催されたので、探索コースの案内役として参加してきた。 ※探索時間に限りがあり、さらに案内役ということもあり、雑な写真を量産してしまった。 ※森林公園内での動植物(キノコを含む)の採集は禁止されています。 2…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "siroonitake"
     },
     {
       "observation_id": "obs-4065fe667bee7398dafebf72598f4db27fb46da134cee526b4522072a1f504f3",
@@ -28189,17 +28633,17 @@
       "production_index": 359,
       "gallery_name": "ムラサキヤマドリタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929220827.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "ムラサキヤマドリタケ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "ムラサキヤマドリタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "ムラサキヤマドリタケ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-09-28",
@@ -28261,17 +28705,17 @@
       "production_index": 360,
       "gallery_name": "タマゴテングタケモドキ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929220918.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "タマゴテングタケモドキ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "タマゴテングタケモドキ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "タマゴテングタケモドキ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-09-28",
@@ -28837,17 +29281,17 @@
       "production_index": 368,
       "gallery_name": "テングタケダマシ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929221733.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "テングタケダマシ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "テングタケダマシ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "テングタケダマシ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-09-28",
@@ -28909,17 +29353,17 @@
       "production_index": 369,
       "gallery_name": "シロオニタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250929/20250929221840.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "シロオニタケ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "シロオニタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "シロオニタケ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-09-28",
@@ -28974,7 +29418,7 @@
         ],
         "excerpt": "日本菌学会が開催する静岡フォーレが静岡県立森林公園で開催されたので、探索コースの案内役として参加してきた。 ※探索時間に限りがあり、さらに案内役ということもあり、雑な写真を量産してしまった。 ※森林公園内での動植物(キノコを含む)の採集は禁止されています。 2…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "siroonitake"
     },
     {
       "observation_id": "obs-d1ca6ad98331d4d67559e0a3fc6d243cd928af9e7ee0ab297a1cb8d7e029bf68",
@@ -29901,17 +30345,17 @@
       "production_index": 387,
       "gallery_name": "ベニイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250922/20250922201844.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "ベニイグチ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "ベニイグチ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "ベニイグチ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-09-21",
@@ -29954,17 +30398,17 @@
       "production_index": 388,
       "gallery_name": "ベニイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250922/20250922202048.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "ベニイグチ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "ベニイグチ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "ベニイグチ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-09-21",
@@ -30007,17 +30451,17 @@
       "production_index": 389,
       "gallery_name": "ベニイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250922/20250922202153.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "ベニイグチ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "ベニイグチ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "ベニイグチ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-09-21",
@@ -31929,17 +32373,17 @@
       "production_index": 425,
       "gallery_name": "ショウゲンジ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250914/20250914215618.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "ショウゲンジ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "ショウゲンジ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "ショウゲンジ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-09-13",
@@ -31982,7 +32426,7 @@
         ],
         "excerpt": "待ちに待った静岡木の子の会の東部地区探索会が富士五湖周辺の民宿で行われたので富士山の亜高山帯を探索してきた。 追記 ブログ投稿後、タブレットにて再確認したところ雨の影響で水滴が付いていたり、低ISOで撮影したこともあり、思いのほかブレた写真などを量産してしまっ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "syougenji"
     },
     {
       "observation_id": "obs-b1e0f694bcd054fefad8b5746f6c25774c4258f45e5f7a3146e6dc0bb44e0cc2",
@@ -35678,17 +36122,17 @@
       "production_index": 488,
       "gallery_name": "ウスタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250816/20250816140316.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "ウスタケ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "ウスタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "ウスタケ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-08-15",
@@ -35730,7 +36174,7 @@
         ],
         "excerpt": "旅行のついでに北杜市の亜高山帯を2時間程探索してきた。 ウスタケ 駐車場に植えられたモミに発生。時期的にはもう発生していてもおかしく無いがこの個体以外は発生していなかった。 不明 こちらも駐車場に発生。テングタケ科なのは分かるが種名までは分からない。 ホコリタ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "usutake"
     },
     {
       "observation_id": "obs-6dbe0cd12a2d913a73881d95a393b092c21c5af7ce31c4a083c87527f590bb45",
@@ -38630,17 +39074,17 @@
       "production_index": 545,
       "gallery_name": "キイロイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250713/20250713104345.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "キイロイグチ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "キイロイグチ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "キイロイグチ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2000-01-01",
@@ -40195,17 +40639,17 @@
       "production_index": 574,
       "gallery_name": "ニガイグチモドキ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706220544.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "ニガイグチモドキ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "ニガイグチモドキ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "ニガイグチモドキ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-06-29",
@@ -40866,17 +41310,17 @@
       "production_index": 585,
       "gallery_name": "タマゴテングタケモドキ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706221510.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "タマゴテングタケモドキ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "タマゴテングタケモドキ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "タマゴテングタケモドキ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-06-29",
@@ -41354,17 +41798,17 @@
       "production_index": 593,
       "gallery_name": "タマゴテングタケモドキ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250706/20250706222155.jpg",
-      "shadow_match_status": "exact_legacy_alt",
+      "shadow_match_status": "exact_gallery_name",
       "classification": {
-        "status": "legacy_review",
-        "subject_type": "review",
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
         "detected_label": "タマゴテングタケモドキ",
-        "shadow_gallery_name": null,
-        "classification_reason": "taxonomy_unmatched",
-        "classification_confidence": "low",
+        "shadow_gallery_name": "タマゴテングタケモドキ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
         "subject_state_status": "accepted_subject",
-        "taxonomy_canonical_name": null,
-        "taxonomy_match_type": "none"
+        "taxonomy_canonical_name": "タマゴテングタケモドキ",
+        "taxonomy_match_type": "canonical_exact"
       },
       "capture": {
         "date": "2025-06-29",
@@ -56160,8 +56604,57 @@
       "mushroom_master_id": null
     },
     {
-      "observation_id": "obs-50a4be2e79b4cb2f2c199aa04fe6343c113b6cd5cd55f004858f4c10bd1c65e0",
+      "observation_id": "obs-adf1ea6bb8c66ab3327f85b0017e7c5442a7b1a3742dc82626971fce2aba3495",
       "production_index": 870,
+      "gallery_name": "クリフウセンタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063534.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "クリフウセンタケ",
+        "shadow_gallery_name": "クリフウセンタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "クリフウセンタケ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-10-03",
+        "month": 10,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "400",
+          "f": "f/7.1",
+          "exposure": "10/200",
+          "focal": "38mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_1.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032090025324",
+        "title": "2026年10月3日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155",
+        "published": "2026-10-15T06:41:55+09:00",
+        "updated": "2026-10-15T06:41:55+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "クリフウセンタケ",
+          "ベニテングタケ",
+          "クロカワ",
+          "オオジョウゴタケ",
+          "ベニハナイグチ"
+        ],
+        "excerpt": "富士山の山梨県側でキノコ探索を行ってきた。 クリフウセンタケ 林道の脇の辺りからも発生していた。大体はただただ引っこ抜いて捨てていく人が多いが、中にはしっかり食用と同定して採取していく人もしっかりいるようだ。 ベニテングタケ 良い感じの双子。イボもしっかり残っ…"
+      },
+      "mushroom_master_id": null
+    },
+    {
+      "observation_id": "obs-50a4be2e79b4cb2f2c199aa04fe6343c113b6cd5cd55f004858f4c10bd1c65e0",
+      "production_index": 871,
       "gallery_name": "ベニテングタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063617.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56209,8 +56702,57 @@
       "mushroom_master_id": null
     },
     {
+      "observation_id": "obs-9eb5079621bc207b307a90356570725148f170b8d70a33f803520acef403d143",
+      "production_index": 872,
+      "gallery_name": "マクキヌガサタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063648.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "マクキヌガサタケ",
+        "shadow_gallery_name": "マクキヌガサタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "マクキヌガサタケ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-10-03",
+        "month": 10,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "400",
+          "f": "f/5.6",
+          "exposure": "10/300",
+          "focal": "29mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_1.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032090025324",
+        "title": "2026年10月3日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155",
+        "published": "2026-10-15T06:41:55+09:00",
+        "updated": "2026-10-15T06:41:55+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "クリフウセンタケ",
+          "ベニテングタケ",
+          "クロカワ",
+          "オオジョウゴタケ",
+          "ベニハナイグチ"
+        ],
+        "excerpt": "富士山の山梨県側でキノコ探索を行ってきた。 クリフウセンタケ 林道の脇の辺りからも発生していた。大体はただただ引っこ抜いて捨てていく人が多いが、中にはしっかり食用と同定して採取していく人もしっかりいるようだ。 ベニテングタケ 良い感じの双子。イボもしっかり残っ…"
+      },
+      "mushroom_master_id": null
+    },
+    {
       "observation_id": "obs-5232f7e263712490eb78779737ec177fd16dcb637c7065c835ab1f9c87da640d",
-      "production_index": 871,
+      "production_index": 873,
       "gallery_name": "クロカワ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063751.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56258,8 +56800,106 @@
       "mushroom_master_id": "kurokawa"
     },
     {
+      "observation_id": "obs-3351a54c9eeec5c6c98dca5513eabc5df111e6310db178a00efc8c814af63cf8",
+      "production_index": 874,
+      "gallery_name": "キンチャワンタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063813.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "キンチャワンタケ",
+        "shadow_gallery_name": "キンチャワンタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "キンチャワンタケ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-10-03",
+        "month": 10,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "800",
+          "f": "f/5.6",
+          "exposure": "10/200",
+          "focal": "40mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_1.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032090025324",
+        "title": "2026年10月3日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155",
+        "published": "2026-10-15T06:41:55+09:00",
+        "updated": "2026-10-15T06:41:55+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "クリフウセンタケ",
+          "ベニテングタケ",
+          "クロカワ",
+          "オオジョウゴタケ",
+          "ベニハナイグチ"
+        ],
+        "excerpt": "富士山の山梨県側でキノコ探索を行ってきた。 クリフウセンタケ 林道の脇の辺りからも発生していた。大体はただただ引っこ抜いて捨てていく人が多いが、中にはしっかり食用と同定して採取していく人もしっかりいるようだ。 ベニテングタケ 良い感じの双子。イボもしっかり残っ…"
+      },
+      "mushroom_master_id": null
+    },
+    {
+      "observation_id": "obs-48bfe4e8986638ed92db905126fb2bb890cd50ca9e926a73d2b488f595556275",
+      "production_index": 875,
+      "gallery_name": "ベニハナイグチ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015064358.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "ベニハナイグチ",
+        "shadow_gallery_name": "ベニハナイグチ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "ベニハナイグチ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-10-03",
+        "month": 10,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "800",
+          "f": "f/6.3",
+          "exposure": "10/400",
+          "focal": "28mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_1.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032090025324",
+        "title": "2026年10月3日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155",
+        "published": "2026-10-15T06:41:55+09:00",
+        "updated": "2026-10-15T06:41:55+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "クリフウセンタケ",
+          "ベニテングタケ",
+          "クロカワ",
+          "オオジョウゴタケ",
+          "ベニハナイグチ"
+        ],
+        "excerpt": "富士山の山梨県側でキノコ探索を行ってきた。 クリフウセンタケ 林道の脇の辺りからも発生していた。大体はただただ引っこ抜いて捨てていく人が多いが、中にはしっかり食用と同定して採取していく人もしっかりいるようだ。 ベニテングタケ 良い感じの双子。イボもしっかり残っ…"
+      },
+      "mushroom_master_id": null
+    },
+    {
       "observation_id": "obs-c5aa8e35e6205a59cd32520701d9ef7d122d8bc73cfc21b7dbcf6600d44ce1d6",
-      "production_index": 872,
+      "production_index": 876,
       "gallery_name": "ドクツルタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015062840.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56309,8 +56949,212 @@
       "mushroom_master_id": "dokutsurutake"
     },
     {
+      "observation_id": "obs-294a3d46d484acfe5b08be8a93b8177d7984628a6cc7ab205472b60a4aee062b",
+      "production_index": 877,
+      "gallery_name": "クリフウセンタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015062912.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "クリフウセンタケ",
+        "shadow_gallery_name": "クリフウセンタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "クリフウセンタケ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-22",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "800",
+          "f": "f/8.0",
+          "exposure": "10/500",
+          "focal": "31mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_2.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032081257566",
+        "title": "2026年9月22日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503",
+        "published": "2026-10-15T06:35:03+09:00",
+        "updated": "2026-10-15T06:35:03+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "ドクツルタケ",
+          "クリフウセンタケ",
+          "ヤマドリタケ",
+          "マツタケ",
+          "フモトニガイグチ",
+          "シロオニタケ",
+          "アカジコウ"
+        ],
+        "excerpt": "山梨県側の富士山の亜高山帯を探索してきた。 フジアザミ 最初は静岡木の子の会の師匠と静岡県側を探索する予定だったのだが、色々な都合が重なり、合流が厳しくなってしまった。そのため自分だけで集合場所の静岡県側のポイントを探索したがキノコが絶望的に少なく、爆速で見き…"
+      },
+      "mushroom_master_id": null
+    },
+    {
+      "observation_id": "obs-ecb6f94b8bc9a72c2a654b4707d194720ad9ae4dd4ce1a7eb422247f495f14b0",
+      "production_index": 878,
+      "gallery_name": "クリフウセンタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063002.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "クリフウセンタケ",
+        "shadow_gallery_name": "クリフウセンタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "クリフウセンタケ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-22",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "800",
+          "f": "f/8.0",
+          "exposure": "10/500",
+          "focal": "30mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_2.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032081257566",
+        "title": "2026年9月22日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503",
+        "published": "2026-10-15T06:35:03+09:00",
+        "updated": "2026-10-15T06:35:03+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "ドクツルタケ",
+          "クリフウセンタケ",
+          "ヤマドリタケ",
+          "マツタケ",
+          "フモトニガイグチ",
+          "シロオニタケ",
+          "アカジコウ"
+        ],
+        "excerpt": "山梨県側の富士山の亜高山帯を探索してきた。 フジアザミ 最初は静岡木の子の会の師匠と静岡県側を探索する予定だったのだが、色々な都合が重なり、合流が厳しくなってしまった。そのため自分だけで集合場所の静岡県側のポイントを探索したがキノコが絶望的に少なく、爆速で見き…"
+      },
+      "mushroom_master_id": null
+    },
+    {
+      "observation_id": "obs-b59e4eb528aefe25d8c0b4cb4c57cea2ea2d4afec01dd9f4cdfc123837d8e6d6",
+      "production_index": 879,
+      "gallery_name": "クリフウセンタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063046.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "クリフウセンタケ",
+        "shadow_gallery_name": "クリフウセンタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "クリフウセンタケ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-22",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "800",
+          "f": "f/4.5",
+          "exposure": "10/3200",
+          "focal": "24mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_2.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032081257566",
+        "title": "2026年9月22日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503",
+        "published": "2026-10-15T06:35:03+09:00",
+        "updated": "2026-10-15T06:35:03+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "ドクツルタケ",
+          "クリフウセンタケ",
+          "ヤマドリタケ",
+          "マツタケ",
+          "フモトニガイグチ",
+          "シロオニタケ",
+          "アカジコウ"
+        ],
+        "excerpt": "山梨県側の富士山の亜高山帯を探索してきた。 フジアザミ 最初は静岡木の子の会の師匠と静岡県側を探索する予定だったのだが、色々な都合が重なり、合流が厳しくなってしまった。そのため自分だけで集合場所の静岡県側のポイントを探索したがキノコが絶望的に少なく、爆速で見き…"
+      },
+      "mushroom_master_id": null
+    },
+    {
+      "observation_id": "obs-99dce279282896bb35a281890166eba51f8b2dec3fc044ae9c7790a356df3933",
+      "production_index": 880,
+      "gallery_name": "ヤマドリタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063131.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "ヤマドリタケ",
+        "shadow_gallery_name": "ヤマドリタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "ヤマドリタケ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-22",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "800",
+          "f": "f/7.1",
+          "exposure": "10/300",
+          "focal": "27mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_2.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032081257566",
+        "title": "2026年9月22日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503",
+        "published": "2026-10-15T06:35:03+09:00",
+        "updated": "2026-10-15T06:35:03+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "ドクツルタケ",
+          "クリフウセンタケ",
+          "ヤマドリタケ",
+          "マツタケ",
+          "フモトニガイグチ",
+          "シロオニタケ",
+          "アカジコウ"
+        ],
+        "excerpt": "山梨県側の富士山の亜高山帯を探索してきた。 フジアザミ 最初は静岡木の子の会の師匠と静岡県側を探索する予定だったのだが、色々な都合が重なり、合流が厳しくなってしまった。そのため自分だけで集合場所の静岡県側のポイントを探索したがキノコが絶望的に少なく、爆速で見き…"
+      },
+      "mushroom_master_id": null
+    },
+    {
       "observation_id": "obs-75ccc9b2ee882885c7c31d18aaa48aa24353f78df2545309dd92a431e40e60f3",
-      "production_index": 873,
+      "production_index": 881,
       "gallery_name": "マツタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063158.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56361,7 +57205,7 @@
     },
     {
       "observation_id": "obs-18bac32a79874c13405e549f04b03a8881f373046c92caa6047133a2e683456a",
-      "production_index": 874,
+      "production_index": 882,
       "gallery_name": "マツタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063219.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56411,8 +57255,284 @@
       "mushroom_master_id": "matutake"
     },
     {
+      "observation_id": "obs-ae868462919d011bc4a9f56a64f69cca9a5b84233f8849586a4b56e3d544ad21",
+      "production_index": 883,
+      "gallery_name": "シロオニタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063344.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "シロオニタケ",
+        "shadow_gallery_name": "シロオニタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "シロオニタケ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-27",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "1250",
+          "f": "f/4.0",
+          "exposure": "10/300",
+          "focal": "16mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_2.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032081257566",
+        "title": "2026年9月22日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503",
+        "published": "2026-10-15T06:35:03+09:00",
+        "updated": "2026-10-15T06:35:03+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "ドクツルタケ",
+          "クリフウセンタケ",
+          "ヤマドリタケ",
+          "マツタケ",
+          "フモトニガイグチ",
+          "シロオニタケ",
+          "アカジコウ"
+        ],
+        "excerpt": "山梨県側の富士山の亜高山帯を探索してきた。 フジアザミ 最初は静岡木の子の会の師匠と静岡県側を探索する予定だったのだが、色々な都合が重なり、合流が厳しくなってしまった。そのため自分だけで集合場所の静岡県側のポイントを探索したがキノコが絶望的に少なく、爆速で見き…"
+      },
+      "mushroom_master_id": "siroonitake"
+    },
+    {
+      "observation_id": "obs-d063dde2db0d423e9762850296cdb6f8a422c84f1587707e70203b03d97592f1",
+      "production_index": 884,
+      "gallery_name": "アカジコウ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063427.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "アカジコウ",
+        "shadow_gallery_name": "アカジコウ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "アカジコウ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-27",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "1250",
+          "f": "f/4.0",
+          "exposure": "10/300",
+          "focal": "27mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_2.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032081257566",
+        "title": "2026年9月22日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503",
+        "published": "2026-10-15T06:35:03+09:00",
+        "updated": "2026-10-15T06:35:03+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "ドクツルタケ",
+          "クリフウセンタケ",
+          "ヤマドリタケ",
+          "マツタケ",
+          "フモトニガイグチ",
+          "シロオニタケ",
+          "アカジコウ"
+        ],
+        "excerpt": "山梨県側の富士山の亜高山帯を探索してきた。 フジアザミ 最初は静岡木の子の会の師匠と静岡県側を探索する予定だったのだが、色々な都合が重なり、合流が厳しくなってしまった。そのため自分だけで集合場所の静岡県側のポイントを探索したがキノコが絶望的に少なく、爆速で見き…"
+      },
+      "mushroom_master_id": "akajikou"
+    },
+    {
+      "observation_id": "obs-efe7d156fe8800403af24d47dd882f3e72b574c4aba4c16591fa19a73e3cd593",
+      "production_index": 885,
+      "gallery_name": "オオノウタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224231.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "オオノウタケ",
+        "shadow_gallery_name": "オオノウタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "オオノウタケ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-19",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "400",
+          "f": "f/8.0",
+          "exposure": "10/80",
+          "focal": "20mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_3.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+        "title": "2026年9月19日静岡県浜松市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+        "published": "2026-09-25T22:53:27+09:00",
+        "updated": "2026-09-25T22:53:27+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "オオノウタケ",
+          "キイロイグチ",
+          "テングタケダマシ",
+          "アカヤマドリ",
+          "ムラサキヤマドリタケ",
+          "タマゴテングタケモドキ",
+          "ミドリニガイグチ",
+          "ベニイグチ",
+          "シロオニタケ",
+          "アンズタケ(広義)",
+          "オオワライタケ",
+          "ヤマドリタケモドキ",
+          "ニガイグチモドキ",
+          "キタマゴタケ"
+        ],
+        "excerpt": "前日時間が無くて探索出来なかったポイントを1日費やして探索してきた。 オオノウタケ 写真で伝わるか分からないが、あまりに巨大だった。サイズとしては胴回り61センチ、幅32センチの横長な個体だった。まるでオニフスベを彷彿とさせる。 キイロイグチ 本種は比較的どこ…"
+      },
+      "mushroom_master_id": null
+    },
+    {
+      "observation_id": "obs-b7cf68070c532151aaecc3b14c2f395bad23eb7c409f95139b30883dff5ac4b8",
+      "production_index": 886,
+      "gallery_name": "キイロイグチ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224250.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "キイロイグチ",
+        "shadow_gallery_name": "キイロイグチ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "キイロイグチ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-19",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "400",
+          "f": "f/5.6",
+          "exposure": "10/130",
+          "focal": "40mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_3.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+        "title": "2026年9月19日静岡県浜松市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+        "published": "2026-09-25T22:53:27+09:00",
+        "updated": "2026-09-25T22:53:27+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "オオノウタケ",
+          "キイロイグチ",
+          "テングタケダマシ",
+          "アカヤマドリ",
+          "ムラサキヤマドリタケ",
+          "タマゴテングタケモドキ",
+          "ミドリニガイグチ",
+          "ベニイグチ",
+          "シロオニタケ",
+          "アンズタケ(広義)",
+          "オオワライタケ",
+          "ヤマドリタケモドキ",
+          "ニガイグチモドキ",
+          "キタマゴタケ"
+        ],
+        "excerpt": "前日時間が無くて探索出来なかったポイントを1日費やして探索してきた。 オオノウタケ 写真で伝わるか分からないが、あまりに巨大だった。サイズとしては胴回り61センチ、幅32センチの横長な個体だった。まるでオニフスベを彷彿とさせる。 キイロイグチ 本種は比較的どこ…"
+      },
+      "mushroom_master_id": null
+    },
+    {
+      "observation_id": "obs-1783d5c4dacc267097bab3a787e4d062e9833038996eb7de62237676d2fd4270",
+      "production_index": 887,
+      "gallery_name": "テングタケダマシ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224313.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "テングタケダマシ",
+        "shadow_gallery_name": "テングタケダマシ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "テングタケダマシ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-19",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "400",
+          "f": "f/5.6",
+          "exposure": "10/150",
+          "focal": "18mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_3.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+        "title": "2026年9月19日静岡県浜松市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+        "published": "2026-09-25T22:53:27+09:00",
+        "updated": "2026-09-25T22:53:27+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "オオノウタケ",
+          "キイロイグチ",
+          "テングタケダマシ",
+          "アカヤマドリ",
+          "ムラサキヤマドリタケ",
+          "タマゴテングタケモドキ",
+          "ミドリニガイグチ",
+          "ベニイグチ",
+          "シロオニタケ",
+          "アンズタケ(広義)",
+          "オオワライタケ",
+          "ヤマドリタケモドキ",
+          "ニガイグチモドキ",
+          "キタマゴタケ"
+        ],
+        "excerpt": "前日時間が無くて探索出来なかったポイントを1日費やして探索してきた。 オオノウタケ 写真で伝わるか分からないが、あまりに巨大だった。サイズとしては胴回り61センチ、幅32センチの横長な個体だった。まるでオニフスベを彷彿とさせる。 キイロイグチ 本種は比較的どこ…"
+      },
+      "mushroom_master_id": null
+    },
+    {
       "observation_id": "obs-673e7be6219affee0542ea08c57222940f47308607ac63385b18f39d3de269ce",
-      "production_index": 875,
+      "production_index": 888,
       "gallery_name": "アカヤマドリ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224333.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56470,7 +57590,7 @@
     },
     {
       "observation_id": "obs-3ff0cc1743cda9f33e90bbb5326cc8f1883cdb5b0852a31a4d5b112c36832110",
-      "production_index": 876,
+      "production_index": 889,
       "gallery_name": "アカヤマドリ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224355.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56528,7 +57648,7 @@
     },
     {
       "observation_id": "obs-b9426daec360f8ef2e20bb6f770e8a55e582ff923965d1a3d9402d04a1408a77",
-      "production_index": 877,
+      "production_index": 890,
       "gallery_name": "アカヤマドリ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224411.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56586,7 +57706,7 @@
     },
     {
       "observation_id": "obs-dc00ae270e90d5e3fef122d35cfba50ff0e91d9b434cc2d86f8bea878d71e2ba",
-      "production_index": 878,
+      "production_index": 891,
       "gallery_name": "アカヤマドリ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224431.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56644,7 +57764,7 @@
     },
     {
       "observation_id": "obs-57560deedf42e9fb298c5a1fe2938a3c30577744d248ddbbf2665529a0a9d9f5",
-      "production_index": 879,
+      "production_index": 892,
       "gallery_name": "アカヤマドリ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224610.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56702,7 +57822,7 @@
     },
     {
       "observation_id": "obs-89a4a045798af2122f8c1ad304f2c20990eb24b74433b4678952762608029a40",
-      "production_index": 880,
+      "production_index": 893,
       "gallery_name": "アカヤマドリ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925225551.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56760,7 +57880,7 @@
     },
     {
       "observation_id": "obs-fd455a16abd04413e78a9e51f0285b0618c3997e804928ed81b5cdd62a88811a",
-      "production_index": 881,
+      "production_index": 894,
       "gallery_name": "アカヤマドリ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224525.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56817,8 +57937,182 @@
       "mushroom_master_id": "akayamadori"
     },
     {
+      "observation_id": "obs-e09e71f5414d85be793eea3c7a61465bc2eed1fa4ddf3c88df7377d84bf67a8b",
+      "production_index": 895,
+      "gallery_name": "ナカグロモリノカサ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224702.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "ナカグロモリノカサ",
+        "shadow_gallery_name": "ナカグロモリノカサ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "ナカグロモリノカサ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-19",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "400",
+          "f": "f/5.6",
+          "exposure": "10/600",
+          "focal": "23mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_3.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+        "title": "2026年9月19日静岡県浜松市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+        "published": "2026-09-25T22:53:27+09:00",
+        "updated": "2026-09-25T22:53:27+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "オオノウタケ",
+          "キイロイグチ",
+          "テングタケダマシ",
+          "アカヤマドリ",
+          "ムラサキヤマドリタケ",
+          "タマゴテングタケモドキ",
+          "ミドリニガイグチ",
+          "ベニイグチ",
+          "シロオニタケ",
+          "アンズタケ(広義)",
+          "オオワライタケ",
+          "ヤマドリタケモドキ",
+          "ニガイグチモドキ",
+          "キタマゴタケ"
+        ],
+        "excerpt": "前日時間が無くて探索出来なかったポイントを1日費やして探索してきた。 オオノウタケ 写真で伝わるか分からないが、あまりに巨大だった。サイズとしては胴回り61センチ、幅32センチの横長な個体だった。まるでオニフスベを彷彿とさせる。 キイロイグチ 本種は比較的どこ…"
+      },
+      "mushroom_master_id": null
+    },
+    {
+      "observation_id": "obs-72def8c88473e575bd6ba6040a406bd3976f73d9cb77ac31203ab284372e66d0",
+      "production_index": 896,
+      "gallery_name": "ムラサキヤマドリタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224719.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "ムラサキヤマドリタケ",
+        "shadow_gallery_name": "ムラサキヤマドリタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "ムラサキヤマドリタケ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-19",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "400",
+          "f": "f/6.3",
+          "exposure": "10/600",
+          "focal": "32mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_3.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+        "title": "2026年9月19日静岡県浜松市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+        "published": "2026-09-25T22:53:27+09:00",
+        "updated": "2026-09-25T22:53:27+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "オオノウタケ",
+          "キイロイグチ",
+          "テングタケダマシ",
+          "アカヤマドリ",
+          "ムラサキヤマドリタケ",
+          "タマゴテングタケモドキ",
+          "ミドリニガイグチ",
+          "ベニイグチ",
+          "シロオニタケ",
+          "アンズタケ(広義)",
+          "オオワライタケ",
+          "ヤマドリタケモドキ",
+          "ニガイグチモドキ",
+          "キタマゴタケ"
+        ],
+        "excerpt": "前日時間が無くて探索出来なかったポイントを1日費やして探索してきた。 オオノウタケ 写真で伝わるか分からないが、あまりに巨大だった。サイズとしては胴回り61センチ、幅32センチの横長な個体だった。まるでオニフスベを彷彿とさせる。 キイロイグチ 本種は比較的どこ…"
+      },
+      "mushroom_master_id": null
+    },
+    {
+      "observation_id": "obs-744d3a6ef85104841e1617717a9ce8988e948ed4fdff4b1fdaa54779bc40c8fe",
+      "production_index": 897,
+      "gallery_name": "タマゴテングタケモドキ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261001/20261001001532.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "タマゴテングタケモドキ",
+        "shadow_gallery_name": "タマゴテングタケモドキ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "タマゴテングタケモドキ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-19",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "400",
+          "f": "f/6.3",
+          "exposure": "10/600",
+          "focal": "21mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_3.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+        "title": "2026年9月19日静岡県浜松市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+        "published": "2026-09-25T22:53:27+09:00",
+        "updated": "2026-09-25T22:53:27+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "オオノウタケ",
+          "キイロイグチ",
+          "テングタケダマシ",
+          "アカヤマドリ",
+          "ムラサキヤマドリタケ",
+          "タマゴテングタケモドキ",
+          "ミドリニガイグチ",
+          "ベニイグチ",
+          "シロオニタケ",
+          "アンズタケ(広義)",
+          "オオワライタケ",
+          "ヤマドリタケモドキ",
+          "ニガイグチモドキ",
+          "キタマゴタケ"
+        ],
+        "excerpt": "前日時間が無くて探索出来なかったポイントを1日費やして探索してきた。 オオノウタケ 写真で伝わるか分からないが、あまりに巨大だった。サイズとしては胴回り61センチ、幅32センチの横長な個体だった。まるでオニフスベを彷彿とさせる。 キイロイグチ 本種は比較的どこ…"
+      },
+      "mushroom_master_id": null
+    },
+    {
       "observation_id": "obs-f4f5f9739210e6837fd7ff64a9e6ada7bfdd590dac01bc0409c53e52eea12d82",
-      "production_index": 882,
+      "production_index": 898,
       "gallery_name": "ミドリニガイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925225041.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56875,8 +58169,240 @@
       "mushroom_master_id": "midorinigaiguchi"
     },
     {
+      "observation_id": "obs-da1f7e5ea72e09f7d4ba4a2717b7eb6afe77a4500a5a67673cb31143c4d8cfc5",
+      "production_index": 899,
+      "gallery_name": "ベニイグチ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224739.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "ベニイグチ",
+        "shadow_gallery_name": "ベニイグチ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "ベニイグチ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-19",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "800",
+          "f": "f/4.5",
+          "exposure": "10/400",
+          "focal": "30mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_3.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+        "title": "2026年9月19日静岡県浜松市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+        "published": "2026-09-25T22:53:27+09:00",
+        "updated": "2026-09-25T22:53:27+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "オオノウタケ",
+          "キイロイグチ",
+          "テングタケダマシ",
+          "アカヤマドリ",
+          "ムラサキヤマドリタケ",
+          "タマゴテングタケモドキ",
+          "ミドリニガイグチ",
+          "ベニイグチ",
+          "シロオニタケ",
+          "アンズタケ(広義)",
+          "オオワライタケ",
+          "ヤマドリタケモドキ",
+          "ニガイグチモドキ",
+          "キタマゴタケ"
+        ],
+        "excerpt": "前日時間が無くて探索出来なかったポイントを1日費やして探索してきた。 オオノウタケ 写真で伝わるか分からないが、あまりに巨大だった。サイズとしては胴回り61センチ、幅32センチの横長な個体だった。まるでオニフスベを彷彿とさせる。 キイロイグチ 本種は比較的どこ…"
+      },
+      "mushroom_master_id": null
+    },
+    {
+      "observation_id": "obs-f3ca7903d56977ed544bac5cb22fc6a69988c32a8d9be12fb76e9dba85db9215",
+      "production_index": 900,
+      "gallery_name": "シロオニタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925225116.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "シロオニタケ",
+        "shadow_gallery_name": "シロオニタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "シロオニタケ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-19",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "800",
+          "f": "f/6.3",
+          "exposure": "10/300",
+          "focal": "18mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_3.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+        "title": "2026年9月19日静岡県浜松市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+        "published": "2026-09-25T22:53:27+09:00",
+        "updated": "2026-09-25T22:53:27+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "オオノウタケ",
+          "キイロイグチ",
+          "テングタケダマシ",
+          "アカヤマドリ",
+          "ムラサキヤマドリタケ",
+          "タマゴテングタケモドキ",
+          "ミドリニガイグチ",
+          "ベニイグチ",
+          "シロオニタケ",
+          "アンズタケ(広義)",
+          "オオワライタケ",
+          "ヤマドリタケモドキ",
+          "ニガイグチモドキ",
+          "キタマゴタケ"
+        ],
+        "excerpt": "前日時間が無くて探索出来なかったポイントを1日費やして探索してきた。 オオノウタケ 写真で伝わるか分からないが、あまりに巨大だった。サイズとしては胴回り61センチ、幅32センチの横長な個体だった。まるでオニフスベを彷彿とさせる。 キイロイグチ 本種は比較的どこ…"
+      },
+      "mushroom_master_id": "siroonitake"
+    },
+    {
+      "observation_id": "obs-d2ab46b9a448f103375c8decb8087c43d43f3a348d5e87169644839f1f65b668",
+      "production_index": 901,
+      "gallery_name": "アンズタケ(広義)",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925225221.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "アンズタケ(広義)",
+        "shadow_gallery_name": "アンズタケ(広義)",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "アンズタケ(広義)",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-19",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "800",
+          "f": "f/8.0",
+          "exposure": "10/1250",
+          "focal": "24mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_3.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+        "title": "2026年9月19日静岡県浜松市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+        "published": "2026-09-25T22:53:27+09:00",
+        "updated": "2026-09-25T22:53:27+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "オオノウタケ",
+          "キイロイグチ",
+          "テングタケダマシ",
+          "アカヤマドリ",
+          "ムラサキヤマドリタケ",
+          "タマゴテングタケモドキ",
+          "ミドリニガイグチ",
+          "ベニイグチ",
+          "シロオニタケ",
+          "アンズタケ(広義)",
+          "オオワライタケ",
+          "ヤマドリタケモドキ",
+          "ニガイグチモドキ",
+          "キタマゴタケ"
+        ],
+        "excerpt": "前日時間が無くて探索出来なかったポイントを1日費やして探索してきた。 オオノウタケ 写真で伝わるか分からないが、あまりに巨大だった。サイズとしては胴回り61センチ、幅32センチの横長な個体だった。まるでオニフスベを彷彿とさせる。 キイロイグチ 本種は比較的どこ…"
+      },
+      "mushroom_master_id": null
+    },
+    {
+      "observation_id": "obs-b7c012d58f949571dc40b6fe00343f6563d80c15178cd8b2105205daca2585e8",
+      "production_index": 902,
+      "gallery_name": "キタマゴタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224826.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "キタマゴタケ",
+        "shadow_gallery_name": "キタマゴタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "キタマゴタケ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-19",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "800",
+          "f": "f/6.3",
+          "exposure": "10/1000",
+          "focal": "19mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_3.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559",
+        "title": "2026年9月19日静岡県浜松市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+        "published": "2026-09-25T22:53:27+09:00",
+        "updated": "2026-09-25T22:53:27+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "オオノウタケ",
+          "キイロイグチ",
+          "テングタケダマシ",
+          "アカヤマドリ",
+          "ムラサキヤマドリタケ",
+          "タマゴテングタケモドキ",
+          "ミドリニガイグチ",
+          "ベニイグチ",
+          "シロオニタケ",
+          "アンズタケ(広義)",
+          "オオワライタケ",
+          "ヤマドリタケモドキ",
+          "ニガイグチモドキ",
+          "キタマゴタケ"
+        ],
+        "excerpt": "前日時間が無くて探索出来なかったポイントを1日費やして探索してきた。 オオノウタケ 写真で伝わるか分からないが、あまりに巨大だった。サイズとしては胴回り61センチ、幅32センチの横長な個体だった。まるでオニフスベを彷彿とさせる。 キイロイグチ 本種は比較的どこ…"
+      },
+      "mushroom_master_id": null
+    },
+    {
       "observation_id": "obs-4b3e25c595bc7ff19707f0b5436b1d6c0271e2023fe6a5055761c6ceacc3cf0e",
-      "production_index": 883,
+      "production_index": 903,
       "gallery_name": "不明",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224838.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56934,7 +58460,7 @@
     },
     {
       "observation_id": "obs-6bca3ed373e55261b75b74c7f2e0611548f8626c9eb9d15251be9114cd135e72",
-      "production_index": 884,
+      "production_index": 904,
       "gallery_name": "ヤマドリタケモドキ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224854.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -56991,8 +58517,161 @@
       "mushroom_master_id": null
     },
     {
+      "observation_id": "obs-1e30679af0865ca8079f76084d67407c01d5d2b94f122c6ccbc3e4a7bdc8a3f6",
+      "production_index": 905,
+      "gallery_name": "チチタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152015.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "チチタケ",
+        "shadow_gallery_name": "チチタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "チチタケ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-18",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "800",
+          "f": "f/6.3",
+          "exposure": "10/25",
+          "focal": "17mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_4.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080300484",
+        "title": "2026年9月18日静岡県浜松市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/152831",
+        "published": "2026-09-25T15:28:31+09:00",
+        "updated": "2026-09-25T15:28:31+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "テングタケ",
+          "フリルイグチ(仮称)",
+          "ヤマドリタケモドキ",
+          "チチタケ",
+          "サザナミイグチ",
+          "ムラサキヤマドリタケ",
+          "アカヤマドリ"
+        ],
+        "excerpt": "前回の探索で回れなかった場所を探索してきた。 チチタケ 状態は悪いが、個人的に県西部では初の発見。 サザナミイグチ 本種も比較的多く発生していた。 ニガイグチの仲間 撮影当初はニガイグチモドキだと思ったが、写真を見返すと柄の様子が違う気がする。 ムラサキヤマド…"
+      },
+      "mushroom_master_id": "tititake"
+    },
+    {
+      "observation_id": "obs-430646a148e3a905f84feababb2368021bfe6dc5325930ffad024daa206f9501",
+      "production_index": 906,
+      "gallery_name": "サザナミイグチ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152030.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "サザナミイグチ",
+        "shadow_gallery_name": "サザナミイグチ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "サザナミイグチ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-18",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "1000",
+          "f": "f/7.1",
+          "exposure": "10/32",
+          "focal": "35mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_4.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080300484",
+        "title": "2026年9月18日静岡県浜松市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/152831",
+        "published": "2026-09-25T15:28:31+09:00",
+        "updated": "2026-09-25T15:28:31+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "テングタケ",
+          "フリルイグチ(仮称)",
+          "ヤマドリタケモドキ",
+          "チチタケ",
+          "サザナミイグチ",
+          "ムラサキヤマドリタケ",
+          "アカヤマドリ"
+        ],
+        "excerpt": "前回の探索で回れなかった場所を探索してきた。 チチタケ 状態は悪いが、個人的に県西部では初の発見。 サザナミイグチ 本種も比較的多く発生していた。 ニガイグチの仲間 撮影当初はニガイグチモドキだと思ったが、写真を見返すと柄の様子が違う気がする。 ムラサキヤマド…"
+      },
+      "mushroom_master_id": null
+    },
+    {
+      "observation_id": "obs-1ce7036f7ec1e2e527aefd89036bf5fbe13388ec426e787d25403bb127699baa",
+      "production_index": 907,
+      "gallery_name": "ムラサキヤマドリタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152302.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "ムラサキヤマドリタケ",
+        "shadow_gallery_name": "ムラサキヤマドリタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "ムラサキヤマドリタケ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-18",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "800",
+          "f": "f/6.3",
+          "exposure": "10/300",
+          "focal": "32mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_4.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080300484",
+        "title": "2026年9月18日静岡県浜松市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/152831",
+        "published": "2026-09-25T15:28:31+09:00",
+        "updated": "2026-09-25T15:28:31+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "テングタケ",
+          "フリルイグチ(仮称)",
+          "ヤマドリタケモドキ",
+          "チチタケ",
+          "サザナミイグチ",
+          "ムラサキヤマドリタケ",
+          "アカヤマドリ"
+        ],
+        "excerpt": "前回の探索で回れなかった場所を探索してきた。 チチタケ 状態は悪いが、個人的に県西部では初の発見。 サザナミイグチ 本種も比較的多く発生していた。 ニガイグチの仲間 撮影当初はニガイグチモドキだと思ったが、写真を見返すと柄の様子が違う気がする。 ムラサキヤマド…"
+      },
+      "mushroom_master_id": null
+    },
+    {
       "observation_id": "obs-0d185b272f8e2d822efead02ec066060d58d8cd0a181c118f515283619bf2c54",
-      "production_index": 885,
+      "production_index": 908,
       "gallery_name": "アカヤマドリ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925152816.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -57042,8 +58721,170 @@
       "mushroom_master_id": "akayamadori"
     },
     {
+      "observation_id": "obs-5dc1080a9df393e7a570b9811c514994ebb97c6f995e98aa9072b5e2a5d36d53",
+      "production_index": 909,
+      "gallery_name": "ヤシャイグチ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925200415.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "ヤシャイグチ",
+        "shadow_gallery_name": "ヤシャイグチ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "ヤシャイグチ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-17",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "500",
+          "f": "f/6.3",
+          "exposure": "10/130",
+          "focal": "40mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_5.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080294735",
+        "title": "2026年9月17日静岡県浜松市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/24/224759",
+        "published": "2026-09-24T22:47:59+09:00",
+        "updated": "2026-09-24T22:47:59+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "ヤシャイグチ",
+          "キタマゴタケ",
+          "キアミアシイグチ",
+          "ブドウニガイグチ",
+          "アシナガイグチ",
+          "アカヤマドリ",
+          "ニガイグチモドキ",
+          "セイタカイグチ",
+          "ヤマドリタケモドキ",
+          "アンズタケ(広義)"
+        ],
+        "excerpt": "時間が取れたため、いつもの浜松市の里山を探索してきた。 ヤシャイグチ すでにこのポイントに来るまでの道中にも大量のキノコが発生しているのが車からでも見えた。スタート地点もキノコがかなり多い印象。早速見つかったこの双子もなかなかに良い感じだ。 1本だけだったが状…"
+      },
+      "mushroom_master_id": null
+    },
+    {
+      "observation_id": "obs-02d640e667e53312ce9069aeac75e021d6b2e009b53c6cdf6ea7aac930ea3e99",
+      "production_index": 910,
+      "gallery_name": "ヤシャイグチ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224223.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "ヤシャイグチ",
+        "shadow_gallery_name": "ヤシャイグチ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "ヤシャイグチ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-17",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "500",
+          "f": "f/4.5",
+          "exposure": "10/500",
+          "focal": "30mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_5.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080294735",
+        "title": "2026年9月17日静岡県浜松市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/24/224759",
+        "published": "2026-09-24T22:47:59+09:00",
+        "updated": "2026-09-24T22:47:59+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "ヤシャイグチ",
+          "キタマゴタケ",
+          "キアミアシイグチ",
+          "ブドウニガイグチ",
+          "アシナガイグチ",
+          "アカヤマドリ",
+          "ニガイグチモドキ",
+          "セイタカイグチ",
+          "ヤマドリタケモドキ",
+          "アンズタケ(広義)"
+        ],
+        "excerpt": "時間が取れたため、いつもの浜松市の里山を探索してきた。 ヤシャイグチ すでにこのポイントに来るまでの道中にも大量のキノコが発生しているのが車からでも見えた。スタート地点もキノコがかなり多い印象。早速見つかったこの双子もなかなかに良い感じだ。 1本だけだったが状…"
+      },
+      "mushroom_master_id": null
+    },
+    {
+      "observation_id": "obs-79ceef95b86b8221163d07a17cb011de5ec288a8ba7645d26bce05ebc8c25a80",
+      "production_index": 911,
+      "gallery_name": "キタマゴタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224236.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "キタマゴタケ",
+        "shadow_gallery_name": "キタマゴタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "キタマゴタケ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-17",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "500",
+          "f": "f/4.5",
+          "exposure": "10/1000",
+          "focal": "19mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_5.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080294735",
+        "title": "2026年9月17日静岡県浜松市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/24/224759",
+        "published": "2026-09-24T22:47:59+09:00",
+        "updated": "2026-09-24T22:47:59+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "ヤシャイグチ",
+          "キタマゴタケ",
+          "キアミアシイグチ",
+          "ブドウニガイグチ",
+          "アシナガイグチ",
+          "アカヤマドリ",
+          "ニガイグチモドキ",
+          "セイタカイグチ",
+          "ヤマドリタケモドキ",
+          "アンズタケ(広義)"
+        ],
+        "excerpt": "時間が取れたため、いつもの浜松市の里山を探索してきた。 ヤシャイグチ すでにこのポイントに来るまでの道中にも大量のキノコが発生しているのが車からでも見えた。スタート地点もキノコがかなり多い印象。早速見つかったこの双子もなかなかに良い感じだ。 1本だけだったが状…"
+      },
+      "mushroom_master_id": null
+    },
+    {
       "observation_id": "obs-fc7a89a7056aa24ecf51f8fb44d3cb32161845315658268a7c5be32545f18ad4",
-      "production_index": 886,
+      "production_index": 912,
       "gallery_name": "キアミアシイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224252.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -57097,7 +58938,7 @@
     },
     {
       "observation_id": "obs-b9d64772defc50e9565c1101d0bd7ade3085c05a90e23d93154da3f6a6b65fa1",
-      "production_index": 887,
+      "production_index": 913,
       "gallery_name": "ブドウニガイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224325.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -57151,7 +58992,7 @@
     },
     {
       "observation_id": "obs-bf741bd37de4df8ae7dca7d7c1264d3a272f03464ee9ce09a09be51ab9f40b36",
-      "production_index": 888,
+      "production_index": 914,
       "gallery_name": "ブドウニガイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224343.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -57204,8 +59045,62 @@
       "mushroom_master_id": null
     },
     {
+      "observation_id": "obs-675def59390b2216e49f0025baf37fda5e3473b71dd0d05ad0d0030fa94d7fb1",
+      "production_index": 915,
+      "gallery_name": "アシナガイグチ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224358.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "アシナガイグチ",
+        "shadow_gallery_name": "アシナガイグチ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "アシナガイグチ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-17",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "500",
+          "f": "f/4.5",
+          "exposure": "10/130",
+          "focal": "23mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_5.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080294735",
+        "title": "2026年9月17日静岡県浜松市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/24/224759",
+        "published": "2026-09-24T22:47:59+09:00",
+        "updated": "2026-09-24T22:47:59+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "ヤシャイグチ",
+          "キタマゴタケ",
+          "キアミアシイグチ",
+          "ブドウニガイグチ",
+          "アシナガイグチ",
+          "アカヤマドリ",
+          "ニガイグチモドキ",
+          "セイタカイグチ",
+          "ヤマドリタケモドキ",
+          "アンズタケ(広義)"
+        ],
+        "excerpt": "時間が取れたため、いつもの浜松市の里山を探索してきた。 ヤシャイグチ すでにこのポイントに来るまでの道中にも大量のキノコが発生しているのが車からでも見えた。スタート地点もキノコがかなり多い印象。早速見つかったこの双子もなかなかに良い感じだ。 1本だけだったが状…"
+      },
+      "mushroom_master_id": null
+    },
+    {
       "observation_id": "obs-dbf5de25224ee0db8295fea9c8793785838ea575979d829ca26e96ac15947350",
-      "production_index": 889,
+      "production_index": 916,
       "gallery_name": "アカヤマドリ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224412.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -57259,7 +59154,7 @@
     },
     {
       "observation_id": "obs-7e978259f7cc503c3421f77e8d690c15be9997526b4a37043b0381779ca9a512",
-      "production_index": 890,
+      "production_index": 917,
       "gallery_name": "アカヤマドリ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224430.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -57313,7 +59208,7 @@
     },
     {
       "observation_id": "obs-b6d9ff88ee6e2c3ff9542877dece0a029ac512738847f8ee15b47a26ec0e235e",
-      "production_index": 891,
+      "production_index": 918,
       "gallery_name": "セイタカイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224518.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -57367,7 +59262,7 @@
     },
     {
       "observation_id": "obs-65da6a1d67d4faa27163392fc3a7f85d0e4beb684650b22361de2e228ba5d7e3",
-      "production_index": 892,
+      "production_index": 919,
       "gallery_name": "ヤマドリタケモドキ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224537.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -57421,7 +59316,7 @@
     },
     {
       "observation_id": "obs-0d92d5e0d64019ff457b1f5b89f13240d51adacfa928c7faef207ce38a0f05e4",
-      "production_index": 893,
+      "production_index": 920,
       "gallery_name": "ヤマドリタケモドキ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224922.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -57474,8 +59369,224 @@
       "mushroom_master_id": null
     },
     {
+      "observation_id": "obs-73e6ed81119a8e0dfdfbd3a8e485755cd3b0a28cbcd073916a6bba62e920e822",
+      "production_index": 921,
+      "gallery_name": "アンズタケ(広義)",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924224630.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "アンズタケ(広義)",
+        "shadow_gallery_name": "アンズタケ(広義)",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "アンズタケ(広義)",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-17",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "1000",
+          "f": "f/3.5",
+          "exposure": "10/600",
+          "focal": "30mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_5.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080294735",
+        "title": "2026年9月17日静岡県浜松市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/24/224759",
+        "published": "2026-09-24T22:47:59+09:00",
+        "updated": "2026-09-24T22:47:59+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "ヤシャイグチ",
+          "キタマゴタケ",
+          "キアミアシイグチ",
+          "ブドウニガイグチ",
+          "アシナガイグチ",
+          "アカヤマドリ",
+          "ニガイグチモドキ",
+          "セイタカイグチ",
+          "ヤマドリタケモドキ",
+          "アンズタケ(広義)"
+        ],
+        "excerpt": "時間が取れたため、いつもの浜松市の里山を探索してきた。 ヤシャイグチ すでにこのポイントに来るまでの道中にも大量のキノコが発生しているのが車からでも見えた。スタート地点もキノコがかなり多い印象。早速見つかったこの双子もなかなかに良い感じだ。 1本だけだったが状…"
+      },
+      "mushroom_master_id": null
+    },
+    {
+      "observation_id": "obs-db0226082a6e172d84e85a740d2f3c5d56f4b0ff83283ead520af681ee101989",
+      "production_index": 922,
+      "gallery_name": "ムレオオフウセンタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232033.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "ムレオオフウセンタケ",
+        "shadow_gallery_name": "ムレオオフウセンタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "ムレオオフウセンタケ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-13",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "800",
+          "f": "f/4.0",
+          "exposure": "10/1600",
+          "focal": "24mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_6.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032077792371",
+        "title": "2026年9月13日山梨県笛吹市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/23/232319",
+        "published": "2026-09-23T23:23:19+09:00",
+        "updated": "2026-09-23T23:23:19+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "ムレオオフウセンタケ",
+          "ウスムラサキシメジ",
+          "キホウキタケ",
+          "ドクツルタケ",
+          "ウラベニホテイシメジ",
+          "アイタケ",
+          "ナカグロモリノカサ",
+          "アメリカウラベニイロガワリ",
+          "カラカサタケ",
+          "イボセイヨウショウロ"
+        ],
+        "excerpt": "静岡木の子の会の探索会の2日目。 ムレオオフウセンタケ 前回も探索した山へ再び師匠に案内して頂けた。そのポイントに着くまでの道のりでも結構な数のキノコが見つかったため期待度Max。本種が見つかったら良いね。と皆で話していたが、この山に訪れていた内の1人が本当に…"
+      },
+      "mushroom_master_id": null
+    },
+    {
+      "observation_id": "obs-a5048138f43c9b97c5f408e7d24103ada886727e7e560300458c0fc86292530c",
+      "production_index": 923,
+      "gallery_name": "ウスムラサキシメジ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232050.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "ウスムラサキシメジ",
+        "shadow_gallery_name": "ウスムラサキシメジ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "ウスムラサキシメジ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-13",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "800",
+          "f": "f/7.1",
+          "exposure": "10/250",
+          "focal": "23mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_6.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032077792371",
+        "title": "2026年9月13日山梨県笛吹市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/23/232319",
+        "published": "2026-09-23T23:23:19+09:00",
+        "updated": "2026-09-23T23:23:19+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "ムレオオフウセンタケ",
+          "ウスムラサキシメジ",
+          "キホウキタケ",
+          "ドクツルタケ",
+          "ウラベニホテイシメジ",
+          "アイタケ",
+          "ナカグロモリノカサ",
+          "アメリカウラベニイロガワリ",
+          "カラカサタケ",
+          "イボセイヨウショウロ"
+        ],
+        "excerpt": "静岡木の子の会の探索会の2日目。 ムレオオフウセンタケ 前回も探索した山へ再び師匠に案内して頂けた。そのポイントに着くまでの道のりでも結構な数のキノコが見つかったため期待度Max。本種が見つかったら良いね。と皆で話していたが、この山に訪れていた内の1人が本当に…"
+      },
+      "mushroom_master_id": null
+    },
+    {
+      "observation_id": "obs-d386eb789d5a8f960abe513c7ce2f856c3e93f519a62188e8cb16b67776dde9f",
+      "production_index": 924,
+      "gallery_name": "キホウキタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260924/20260924103925.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "キホウキタケ",
+        "shadow_gallery_name": "キホウキタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "キホウキタケ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-13",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "800",
+          "f": "f/5.0",
+          "exposure": "10/800",
+          "focal": "27mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_6.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032077792371",
+        "title": "2026年9月13日山梨県笛吹市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/23/232319",
+        "published": "2026-09-23T23:23:19+09:00",
+        "updated": "2026-09-23T23:23:19+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "ムレオオフウセンタケ",
+          "ウスムラサキシメジ",
+          "キホウキタケ",
+          "ドクツルタケ",
+          "ウラベニホテイシメジ",
+          "アイタケ",
+          "ナカグロモリノカサ",
+          "アメリカウラベニイロガワリ",
+          "カラカサタケ",
+          "イボセイヨウショウロ"
+        ],
+        "excerpt": "静岡木の子の会の探索会の2日目。 ムレオオフウセンタケ 前回も探索した山へ再び師匠に案内して頂けた。そのポイントに着くまでの道のりでも結構な数のキノコが見つかったため期待度Max。本種が見つかったら良いね。と皆で話していたが、この山に訪れていた内の1人が本当に…"
+      },
+      "mushroom_master_id": null
+    },
+    {
       "observation_id": "obs-b9b4c45e8425add39d9c79885a933965d1c84ca44e890a447b6b687c99f7ad30",
-      "production_index": 894,
+      "production_index": 925,
       "gallery_name": "タマゴタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261001/20261001001557.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -57528,8 +59639,62 @@
       "mushroom_master_id": "tamagotake"
     },
     {
+      "observation_id": "obs-c97ecf02d440ea9e30116c097067a3e1ebcba2b4b6afc2d1db19f6840d1306a2",
+      "production_index": 926,
+      "gallery_name": "ナカグロモリノカサ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232201.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "ナカグロモリノカサ",
+        "shadow_gallery_name": "ナカグロモリノカサ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "ナカグロモリノカサ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-13",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "800",
+          "f": "f/8.0",
+          "exposure": "10/150",
+          "focal": "24mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_6.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032077792371",
+        "title": "2026年9月13日山梨県笛吹市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/23/232319",
+        "published": "2026-09-23T23:23:19+09:00",
+        "updated": "2026-09-23T23:23:19+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "ムレオオフウセンタケ",
+          "ウスムラサキシメジ",
+          "キホウキタケ",
+          "ドクツルタケ",
+          "ウラベニホテイシメジ",
+          "アイタケ",
+          "ナカグロモリノカサ",
+          "アメリカウラベニイロガワリ",
+          "カラカサタケ",
+          "イボセイヨウショウロ"
+        ],
+        "excerpt": "静岡木の子の会の探索会の2日目。 ムレオオフウセンタケ 前回も探索した山へ再び師匠に案内して頂けた。そのポイントに着くまでの道のりでも結構な数のキノコが見つかったため期待度Max。本種が見つかったら良いね。と皆で話していたが、この山に訪れていた内の1人が本当に…"
+      },
+      "mushroom_master_id": null
+    },
+    {
       "observation_id": "obs-90963a4a7bb62c3c704ad0a74e3238bd840ef2ca771a16de0cf4b9df86fbf88a",
-      "production_index": 895,
+      "production_index": 927,
       "gallery_name": "カラカサタケ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232221.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -57582,8 +59747,62 @@
       "mushroom_master_id": "karakasatake"
     },
     {
+      "observation_id": "obs-24e1bd05ee444f09d8fa0277c27b70282885d0620ba9a320841c4ebb7a1a71c9",
+      "production_index": 928,
+      "gallery_name": "イボセイヨウショウロ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923232241.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "イボセイヨウショウロ",
+        "shadow_gallery_name": "イボセイヨウショウロ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "イボセイヨウショウロ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-13",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "800",
+          "f": "f/8.0",
+          "exposure": "10/500",
+          "focal": "40mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_6.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032077792371",
+        "title": "2026年9月13日山梨県笛吹市",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/23/232319",
+        "published": "2026-09-23T23:23:19+09:00",
+        "updated": "2026-09-23T23:23:19+09:00",
+        "categories": [
+          "キノコ探索日記",
+          "ムレオオフウセンタケ",
+          "ウスムラサキシメジ",
+          "キホウキタケ",
+          "ドクツルタケ",
+          "ウラベニホテイシメジ",
+          "アイタケ",
+          "ナカグロモリノカサ",
+          "アメリカウラベニイロガワリ",
+          "カラカサタケ",
+          "イボセイヨウショウロ"
+        ],
+        "excerpt": "静岡木の子の会の探索会の2日目。 ムレオオフウセンタケ 前回も探索した山へ再び師匠に案内して頂けた。そのポイントに着くまでの道のりでも結構な数のキノコが見つかったため期待度Max。本種が見つかったら良いね。と皆で話していたが、この山に訪れていた内の1人が本当に…"
+      },
+      "mushroom_master_id": null
+    },
+    {
       "observation_id": "obs-22d4f31584f60b50dbb9db8e57b24d4863a4f0ece0a45f347095e02d300c8340",
-      "production_index": 896,
+      "production_index": 929,
       "gallery_name": "ヤマイグチ",
       "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923224858.jpg",
       "shadow_match_status": "exact_gallery_name",
@@ -57630,6 +59849,156 @@
         "excerpt": "静岡木の子の会の探索会が山梨県で開催されたので参加してきた。 ヤマイグチ いつも探索している場所が通行止めになっているらしく、別案として初めて訪れる場所にて探索を開始。スタート地点はかなり雑キノコが多く発生していてこの後も期待出来そう。と言う雰囲気が漂っていた…"
       },
       "mushroom_master_id": "yamaiguchi"
+    },
+    {
+      "observation_id": "obs-9fe49d5605067495eef4a4f26b89158ae298c550df6bac19dc622f6d1a4f0bfc",
+      "production_index": 930,
+      "gallery_name": "ウスタケ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923225040.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "ウスタケ",
+        "shadow_gallery_name": "ウスタケ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "ウスタケ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-12",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "800",
+          "f": "f/5.0",
+          "exposure": "10/150",
+          "focal": "17mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_7.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032077756378",
+        "title": "2026年9月12日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/23/225259",
+        "published": "2026-09-23T22:52:59+09:00",
+        "updated": "2026-09-23T22:52:59+09:00",
+        "categories": [
+          "ヤマイグチ",
+          "アブラシメジモドキ",
+          "ウスタケ",
+          "サクラシメジモドキ",
+          "カキシメジ(広義)",
+          "ショウゲンジ",
+          "キノコ探索日記"
+        ],
+        "excerpt": "静岡木の子の会の探索会が山梨県で開催されたので参加してきた。 ヤマイグチ いつも探索している場所が通行止めになっているらしく、別案として初めて訪れる場所にて探索を開始。スタート地点はかなり雑キノコが多く発生していてこの後も期待出来そう。と言う雰囲気が漂っていた…"
+      },
+      "mushroom_master_id": "usutake"
+    },
+    {
+      "observation_id": "obs-91af45fd43811973f61bcb19a23f24cbcdbcfb01e6e5ad015a393ba4105d2cb1",
+      "production_index": 931,
+      "gallery_name": "サクラシメジモドキ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261001/20261001000912.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "サクラシメジモドキ",
+        "shadow_gallery_name": "サクラシメジモドキ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "サクラシメジモドキ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-12",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "800",
+          "f": "f/5.6",
+          "exposure": "10/2000",
+          "focal": "40mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_7.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032077756378",
+        "title": "2026年9月12日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/23/225259",
+        "published": "2026-09-23T22:52:59+09:00",
+        "updated": "2026-09-23T22:52:59+09:00",
+        "categories": [
+          "ヤマイグチ",
+          "アブラシメジモドキ",
+          "ウスタケ",
+          "サクラシメジモドキ",
+          "カキシメジ(広義)",
+          "ショウゲンジ",
+          "キノコ探索日記"
+        ],
+        "excerpt": "静岡木の子の会の探索会が山梨県で開催されたので参加してきた。 ヤマイグチ いつも探索している場所が通行止めになっているらしく、別案として初めて訪れる場所にて探索を開始。スタート地点はかなり雑キノコが多く発生していてこの後も期待出来そう。と言う雰囲気が漂っていた…"
+      },
+      "mushroom_master_id": null
+    },
+    {
+      "observation_id": "obs-86e21c85b24053cae559daaf2d76fb7474c4bb0c017e070c16797d8e034d436a",
+      "production_index": 932,
+      "gallery_name": "ショウゲンジ",
+      "src": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260923/20260923225243.jpg",
+      "shadow_match_status": "exact_gallery_name",
+      "classification": {
+        "status": "confirmed_named_mushroom",
+        "subject_type": "mushroom",
+        "detected_label": "ショウゲンジ",
+        "shadow_gallery_name": "ショウゲンジ",
+        "classification_reason": "taxonomy_mushroom",
+        "classification_confidence": "high",
+        "subject_state_status": "accepted_subject",
+        "taxonomy_canonical_name": "ショウゲンジ",
+        "taxonomy_match_type": "canonical_exact"
+      },
+      "capture": {
+        "date": "2026-09-12",
+        "month": 9,
+        "date_source": "exif",
+        "camera": {
+          "model": "DC-G9M2",
+          "lens": "OLYMPUS M.12-40mm F2.8",
+          "iso": "800",
+          "f": "f/5.0",
+          "exposure": "10/130",
+          "focal": "22mm"
+        }
+      },
+      "article": {
+        "article_path": "articles/article_7.html",
+        "article_id": "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032077756378",
+        "title": "2026年9月12日富士山(山梨県)",
+        "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/23/225259",
+        "published": "2026-09-23T22:52:59+09:00",
+        "updated": "2026-09-23T22:52:59+09:00",
+        "categories": [
+          "ヤマイグチ",
+          "アブラシメジモドキ",
+          "ウスタケ",
+          "サクラシメジモドキ",
+          "カキシメジ(広義)",
+          "ショウゲンジ",
+          "キノコ探索日記"
+        ],
+        "excerpt": "静岡木の子の会の探索会が山梨県で開催されたので参加してきた。 ヤマイグチ いつも探索している場所が通行止めになっているらしく、別案として初めて訪れる場所にて探索を開始。スタート地点はかなり雑キノコが多く発生していてこの後も期待出来そう。と言う雰囲気が漂っていた…"
+      },
+      "mushroom_master_id": "syougenji"
     }
   ],
   "reference_data": {
@@ -58188,6 +60557,305 @@
             "https://i-zukan.jp/category/syu?category_id=22027"
           ],
           "notes": "Japanese mushroom name listed in Zukan.jp as Tylopilus vinosobrunneus. The entry corroborates the subject category only; it does not identify the photographed specimen, claim edibility, or create an unreviewed knowledge-master record."
+        },
+        {
+          "canonical_name": "アカジコウ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified.",
+          "mushroom_master_id": "akajikou"
+        },
+        {
+          "canonical_name": "アシナガイグチ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        {
+          "canonical_name": "ウスタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified.",
+          "mushroom_master_id": "usutake"
+        },
+        {
+          "canonical_name": "キイロイグチ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        {
+          "canonical_name": "クリフウセンタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        {
+          "canonical_name": "シロオニタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified.",
+          "mushroom_master_id": "siroonitake"
+        },
+        {
+          "canonical_name": "タマゴテングタケモドキ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        {
+          "canonical_name": "チチタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified.",
+          "mushroom_master_id": "tititake"
+        },
+        {
+          "canonical_name": "テングタケダマシ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        {
+          "canonical_name": "ナカグロモリノカサ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        {
+          "canonical_name": "ニガイグチモドキ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        {
+          "canonical_name": "ベニイグチ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        {
+          "canonical_name": "ベニハナイグチ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        {
+          "canonical_name": "ムラサキヤマドリタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        {
+          "canonical_name": "イボセイヨウショウロ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://i-zukan.jp/category/syu?category_id=24553"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        {
+          "canonical_name": "ウスムラサキシメジ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://fukushimakinoko.sakura.ne.jp/kinoko/usumurasakisimeji1.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        {
+          "canonical_name": "オオノウタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://i-zukan.jp/category/syu?category_id=18675"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        {
+          "canonical_name": "キタマゴタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://i-zukan.jp/category/ka?category_id=480&order=0&per=100"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        {
+          "canonical_name": "キホウキタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://i-zukan.jp/category/syu?category_id=22236"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        {
+          "canonical_name": "キンチャワンタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://i-zukan.jp/category/syu?category_id=24440"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        {
+          "canonical_name": "サクラシメジモドキ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://s-kinokonokai.sakura.ne.jp/kinoko/common/sakurasimezimodoki.htm"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        {
+          "canonical_name": "ショウゲンジ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified.",
+          "mushroom_master_id": "syougenji"
+        },
+        {
+          "canonical_name": "マクキヌガサタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.rinya.maff.go.jp/hokkaido/square/photo/mushroom.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        {
+          "canonical_name": "ムレオオフウセンタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://i-zukan.jp/category/syu?category_id=19351"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        {
+          "canonical_name": "ヤシャイグチ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://i-zukan.jp/category/ka?category_id=510&order=0&per=50"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        {
+          "canonical_name": "ヤマドリタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://ikilog.biodic.go.jp/rl_rdb/a/130.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        {
+          "canonical_name": "アンズタケ(広義)",
+          "subject_type": "mushroom",
+          "aliases": [
+            "アンズアケ(広義)"
+          ],
+          "verification_status": "project_seed",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html",
+            "author correction on 2026-10-18"
+          ],
+          "notes": "Author-confirmed spelling fix for the broad-sense gallery subject; typo is an exact alias only and not a new taxon."
+        },
+        {
+          "canonical_name": "サザナミイグチ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "project_seed",
+          "sources": [
+            "previously published gallery subject",
+            "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/152831"
+          ],
+          "notes": "Previously used gallery name and new article heading; provisional gallery taxonomy seed, not an independent specimen identification."
+        },
+        {
+          "canonical_name": "フジアザミ",
+          "subject_type": "non_mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.env.go.jp/nature/nationalparks/list/fuji-hakone-izu/feature/"
+          ],
+          "notes": "Confirmed plant, not fungus. Explicitly excluded from the mushroom gallery at author request (2026-10-18); no manual Alt is needed."
         }
       ],
       "exact_canonical": {
@@ -58743,9 +61411,322 @@
             "https://i-zukan.jp/category/syu?category_id=22027"
           ],
           "notes": "Japanese mushroom name listed in Zukan.jp as Tylopilus vinosobrunneus. The entry corroborates the subject category only; it does not identify the photographed specimen, claim edibility, or create an unreviewed knowledge-master record."
+        },
+        "アカジコウ": {
+          "canonical_name": "アカジコウ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified.",
+          "mushroom_master_id": "akajikou"
+        },
+        "アシナガイグチ": {
+          "canonical_name": "アシナガイグチ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ウスタケ": {
+          "canonical_name": "ウスタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified.",
+          "mushroom_master_id": "usutake"
+        },
+        "キイロイグチ": {
+          "canonical_name": "キイロイグチ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "クリフウセンタケ": {
+          "canonical_name": "クリフウセンタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "シロオニタケ": {
+          "canonical_name": "シロオニタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified.",
+          "mushroom_master_id": "siroonitake"
+        },
+        "タマゴテングタケモドキ": {
+          "canonical_name": "タマゴテングタケモドキ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "チチタケ": {
+          "canonical_name": "チチタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified.",
+          "mushroom_master_id": "tititake"
+        },
+        "テングタケダマシ": {
+          "canonical_name": "テングタケダマシ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ナカグロモリノカサ": {
+          "canonical_name": "ナカグロモリノカサ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ニガイグチモドキ": {
+          "canonical_name": "ニガイグチモドキ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ベニイグチ": {
+          "canonical_name": "ベニイグチ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ベニハナイグチ": {
+          "canonical_name": "ベニハナイグチ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ムラサキヤマドリタケ": {
+          "canonical_name": "ムラサキヤマドリタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "イボセイヨウショウロ": {
+          "canonical_name": "イボセイヨウショウロ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://i-zukan.jp/category/syu?category_id=24553"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ウスムラサキシメジ": {
+          "canonical_name": "ウスムラサキシメジ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://fukushimakinoko.sakura.ne.jp/kinoko/usumurasakisimeji1.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "オオノウタケ": {
+          "canonical_name": "オオノウタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://i-zukan.jp/category/syu?category_id=18675"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "キタマゴタケ": {
+          "canonical_name": "キタマゴタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://i-zukan.jp/category/ka?category_id=480&order=0&per=100"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "キホウキタケ": {
+          "canonical_name": "キホウキタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://i-zukan.jp/category/syu?category_id=22236"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "キンチャワンタケ": {
+          "canonical_name": "キンチャワンタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://i-zukan.jp/category/syu?category_id=24440"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "サクラシメジモドキ": {
+          "canonical_name": "サクラシメジモドキ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://s-kinokonokai.sakura.ne.jp/kinoko/common/sakurasimezimodoki.htm"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ショウゲンジ": {
+          "canonical_name": "ショウゲンジ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified.",
+          "mushroom_master_id": "syougenji"
+        },
+        "マクキヌガサタケ": {
+          "canonical_name": "マクキヌガサタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.rinya.maff.go.jp/hokkaido/square/photo/mushroom.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ムレオオフウセンタケ": {
+          "canonical_name": "ムレオオフウセンタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://i-zukan.jp/category/syu?category_id=19351"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ヤシャイグチ": {
+          "canonical_name": "ヤシャイグチ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://i-zukan.jp/category/ka?category_id=510&order=0&per=50"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ヤマドリタケ": {
+          "canonical_name": "ヤマドリタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://ikilog.biodic.go.jp/rl_rdb/a/130.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "アンズタケ(広義)": {
+          "canonical_name": "アンズタケ(広義)",
+          "subject_type": "mushroom",
+          "aliases": [
+            "アンズアケ(広義)"
+          ],
+          "verification_status": "project_seed",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html",
+            "author correction on 2026-10-18"
+          ],
+          "notes": "Author-confirmed spelling fix for the broad-sense gallery subject; typo is an exact alias only and not a new taxon."
+        },
+        "サザナミイグチ": {
+          "canonical_name": "サザナミイグチ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "project_seed",
+          "sources": [
+            "previously published gallery subject",
+            "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/152831"
+          ],
+          "notes": "Previously used gallery name and new article heading; provisional gallery taxonomy seed, not an independent specimen identification."
+        },
+        "フジアザミ": {
+          "canonical_name": "フジアザミ",
+          "subject_type": "non_mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.env.go.jp/nature/nationalparks/list/fuji-hakone-izu/feature/"
+          ],
+          "notes": "Confirmed plant, not fungus. Explicitly excluded from the mushroom gallery at author request (2026-10-18); no manual Alt is needed."
         }
       },
-      "exact_alias": {},
+      "exact_alias": {
+        "アンズアケ(広義)": {
+          "canonical_name": "アンズタケ(広義)",
+          "subject_type": "mushroom",
+          "aliases": [
+            "アンズアケ(広義)"
+          ],
+          "verification_status": "project_seed",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html",
+            "author correction on 2026-10-18"
+          ],
+          "notes": "Author-confirmed spelling fix for the broad-sense gallery subject; typo is an exact alias only and not a new taxon."
+        }
+      },
       "normalized": {
         "ヤマドリタケモドキ": {
           "canonical_name": "ヤマドリタケモドキ",
@@ -59299,6 +62280,318 @@
             "https://i-zukan.jp/category/syu?category_id=22027"
           ],
           "notes": "Japanese mushroom name listed in Zukan.jp as Tylopilus vinosobrunneus. The entry corroborates the subject category only; it does not identify the photographed specimen, claim edibility, or create an unreviewed knowledge-master record."
+        },
+        "アカジコウ": {
+          "canonical_name": "アカジコウ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified.",
+          "mushroom_master_id": "akajikou"
+        },
+        "アシナガイグチ": {
+          "canonical_name": "アシナガイグチ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ウスタケ": {
+          "canonical_name": "ウスタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified.",
+          "mushroom_master_id": "usutake"
+        },
+        "キイロイグチ": {
+          "canonical_name": "キイロイグチ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "クリフウセンタケ": {
+          "canonical_name": "クリフウセンタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "シロオニタケ": {
+          "canonical_name": "シロオニタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified.",
+          "mushroom_master_id": "siroonitake"
+        },
+        "タマゴテングタケモドキ": {
+          "canonical_name": "タマゴテングタケモドキ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "チチタケ": {
+          "canonical_name": "チチタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified.",
+          "mushroom_master_id": "tititake"
+        },
+        "テングタケダマシ": {
+          "canonical_name": "テングタケダマシ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ナカグロモリノカサ": {
+          "canonical_name": "ナカグロモリノカサ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ニガイグチモドキ": {
+          "canonical_name": "ニガイグチモドキ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ベニイグチ": {
+          "canonical_name": "ベニイグチ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ベニハナイグチ": {
+          "canonical_name": "ベニハナイグチ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ムラサキヤマドリタケ": {
+          "canonical_name": "ムラサキヤマドリタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "イボセイヨウショウロ": {
+          "canonical_name": "イボセイヨウショウロ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://i-zukan.jp/category/syu?category_id=24553"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ウスムラサキシメジ": {
+          "canonical_name": "ウスムラサキシメジ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://fukushimakinoko.sakura.ne.jp/kinoko/usumurasakisimeji1.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "オオノウタケ": {
+          "canonical_name": "オオノウタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://i-zukan.jp/category/syu?category_id=18675"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "キタマゴタケ": {
+          "canonical_name": "キタマゴタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://i-zukan.jp/category/ka?category_id=480&order=0&per=100"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "キホウキタケ": {
+          "canonical_name": "キホウキタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://i-zukan.jp/category/syu?category_id=22236"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "キンチャワンタケ": {
+          "canonical_name": "キンチャワンタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://i-zukan.jp/category/syu?category_id=24440"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "サクラシメジモドキ": {
+          "canonical_name": "サクラシメジモドキ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://s-kinokonokai.sakura.ne.jp/kinoko/common/sakurasimezimodoki.htm"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ショウゲンジ": {
+          "canonical_name": "ショウゲンジ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified.",
+          "mushroom_master_id": "syougenji"
+        },
+        "マクキヌガサタケ": {
+          "canonical_name": "マクキヌガサタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.rinya.maff.go.jp/hokkaido/square/photo/mushroom.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ムレオオフウセンタケ": {
+          "canonical_name": "ムレオオフウセンタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://i-zukan.jp/category/syu?category_id=19351"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ヤシャイグチ": {
+          "canonical_name": "ヤシャイグチ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://i-zukan.jp/category/ka?category_id=510&order=0&per=50"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "ヤマドリタケ": {
+          "canonical_name": "ヤマドリタケ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://ikilog.biodic.go.jp/rl_rdb/a/130.html"
+          ],
+          "notes": "Evidence for Japanese mushroom name only. Neither the photographed individual identification nor food safety is verified."
+        },
+        "アンズタケ": {
+          "canonical_name": "アンズタケ(広義)",
+          "subject_type": "mushroom",
+          "aliases": [
+            "アンズアケ(広義)"
+          ],
+          "verification_status": "project_seed",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html",
+            "author correction on 2026-10-18"
+          ],
+          "notes": "Author-confirmed spelling fix for the broad-sense gallery subject; typo is an exact alias only and not a new taxon."
+        },
+        "アンズアケ": {
+          "canonical_name": "アンズタケ(広義)",
+          "subject_type": "mushroom",
+          "aliases": [
+            "アンズアケ(広義)"
+          ],
+          "verification_status": "project_seed",
+          "sources": [
+            "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html",
+            "author correction on 2026-10-18"
+          ],
+          "notes": "Author-confirmed spelling fix for the broad-sense gallery subject; typo is an exact alias only and not a new taxon."
+        },
+        "サザナミイグチ": {
+          "canonical_name": "サザナミイグチ",
+          "subject_type": "mushroom",
+          "aliases": [],
+          "verification_status": "project_seed",
+          "sources": [
+            "previously published gallery subject",
+            "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/152831"
+          ],
+          "notes": "Previously used gallery name and new article heading; provisional gallery taxonomy seed, not an independent specimen identification."
+        },
+        "フジアザミ": {
+          "canonical_name": "フジアザミ",
+          "subject_type": "non_mushroom",
+          "aliases": [],
+          "verification_status": "externally_verified",
+          "sources": [
+            "https://www.env.go.jp/nature/nationalparks/list/fuji-hakone-izu/feature/"
+          ],
+          "notes": "Confirmed plant, not fungus. Explicitly excluded from the mushroom gallery at author request (2026-10-18); no manual Alt is needed."
         }
       }
     },
