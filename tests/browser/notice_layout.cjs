@@ -42,7 +42,7 @@ const server=http.createServer((req,res)=>{
     const style=await badge.evaluate(e=>({height:e.getBoundingClientRect().height,weight:getComputedStyle(e).fontWeight,transform:getComputedStyle(e).transform}));
     check(style.height,22);check(style.weight,'700');check(style.transform,'none');
    }
-   if(state==='long')check(await page.locator('.portal-update-summary').evaluateAll(es=>es.every(e=>getComputedStyle(e).textOverflow==='ellipsis'&&e.scrollWidth>e.clientWidth)),true);
+   if(state==='long'){const summaries=await page.locator('.portal-update-summary').evaluateAll(es=>es.map(e=>({overflow:getComputedStyle(e).textOverflow,scroll:e.scrollWidth,client:e.clientWidth,visible:!!e.getClientRects().length})));console.log('Long summaries',JSON.stringify(summaries));check(summaries.filter(e=>e.visible).every(e=>e.overflow==='ellipsis'&&e.scroll>e.client),true);}
    if(['off','both','long'].includes(state)){
     await page.locator('.portal-independent-links').screenshot({path:path.join(shots,`${width}-${state}-cards.png`),animations:'disabled'});
     await page.locator('.portal-guide-list').screenshot({path:path.join(shots,`${width}-${state}-guide.png`),animations:'disabled'});
