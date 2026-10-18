@@ -27,17 +27,17 @@
 - ベニハナイグチ: https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html
 - ムラサキヤマドリタケ: https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html
 - イボセイヨウショウロ: https://i-zukan.jp/category/syu?category_id=24553
-- ウスムラサキシメジ: https://www.city.niigata.lg.jp/iryo/shoku/syokuei/shokucyudokuinfo/kinokoitiran.html
+- ウスムラサキシメジ: https://fukushimakinoko.sakura.ne.jp/kinoko/usumurasakisimeji1.html
 - オオノウタケ: https://i-zukan.jp/category/syu?category_id=18675
-- キタマゴタケ: https://www.pref.kyoto.jp/kankyo_red/2026/static/02_plants-fungi/06_fungi.html
-- キホウキタケ: https://crd.ndl.go.jp/reference/detail?page=ref_view&id=1000093336
+- キタマゴタケ: https://i-zukan.jp/category/ka?category_id=480&order=0&per=100
+- キホウキタケ: https://i-zukan.jp/category/syu?category_id=22236
 - キンチャワンタケ: https://i-zukan.jp/category/syu?category_id=24440
 - サクラシメジモドキ: https://s-kinokonokai.sakura.ne.jp/kinoko/common/sakurasimezimodoki.htm
-- ショウゲンジ: https://www.hokeniryo1.metro.tokyo.lg.jp/shokuhin/foods_archives/publications/foodDygiene/pdf/foodDygiene_h03/foodDygiene_h03-03-2.pdf
+- ショウゲンジ: https://www.pref.ishikawa.lg.jp/ringyo/kinoko/index50.html
 - マクキヌガサタケ: https://www.rinya.maff.go.jp/hokkaido/square/photo/mushroom.html
-- ムレオオフウセンタケ: https://www.hokeniryo1.metro.tokyo.lg.jp/shokuhin/foods_archives/publications/foodDygiene/pdf/foodDygiene_h03/foodDygiene_h03-03-2.pdf
+- ムレオオフウセンタケ: https://i-zukan.jp/category/syu?category_id=19351
 - ヤシャイグチ: https://i-zukan.jp/category/ka?category_id=510&order=0&per=50
-- ヤマドリタケ: https://www.pref.kyoto.jp/kankyo_red/2026/static/02_plants-fungi/06_fungi.html
+- ヤマドリタケ: https://ikilog.biodic.go.jp/rl_rdb/a/130.html
 
 ## 未着手・確認予定
 
@@ -47,3 +47,12 @@
 ## CI 実行方針
 
 GitHub Actionsは `pull_request: branches: [main]` に限定されるため、PR #125はCI検証時にbaseをmainへ設定する。PR #124の変更を含む合算差分となるが、先にPR #124を承認・マージしてからこのPRを扱う。マージ・gh-pages公開は承認まで行わない。
+
+## 最終検証（head: 1dbe912c198498d18b2fab9aa1a80562514c2a60）
+
+- Python 959 passed（Actions 39083984005）
+- Chromium SUCCESS（Actions 39083983872）
+- Hatena GET read-only deletion audit SUCCESS（Actions 39083983926）
+- 本番893 → 追加候補40 → 候補933、公開画像の欠落0、削除0、protected candidate0。
+- 以前のPUBLISHED_NAME_CHANGE_REQUIRES_REVIEWは既存「アンズタケ」4枚と「アンズタケ(広義)」の広義名を誤統合しそうになったため。安全に区別する改修・回帰テストで解消。
+- 先行PR #124でも起きていたBest Shotページ生成ログのID未解決は未解決。サイトへの本番公開前に表示と保護継続の最終確認必須。
