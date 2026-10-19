@@ -29,6 +29,15 @@ const server=http.createServer((req,res)=>{
    if(variant==='before')original={ids,hrefs};else check({ids,hrefs},original);
    check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:path.join(shots,`${width}-${variant}-public.png`),animations:'disabled'});
   }
+  // Verify the submitted selections separately from the historical comparison.
+  const selected=[];
+  for(const year of summary.selected_years){
+   await page.goto(`${base}/current-public/best-shots-${year}.html`);await ready();
+   selected.push(...await page.locator('.best-shot-month .best-shot-card').evaluateAll(es=>es.map(e=>e.dataset.selectionId)));
+   check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+  }
+  check(selected.length,summary.best_shots);
+  check(selected.slice().sort(),summary.selection_ids.slice().sort());
   for(const c of summary.cases){
    await page.goto(`${base}/month-${c.count}/best-shots.html`);await ready();
    const month=page.locator('.best-shot-month').first(),cards=month.locator('.best-shot-card');
