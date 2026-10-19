@@ -1,6 +1,6 @@
 """Manual, owner-curated Best Shot collection built from fresh portal observations."""
 
-from collections import Counter, defaultdict
+from collections import defaultdict
 from datetime import date
 import html
 import json
@@ -13,7 +13,6 @@ from urllib.parse import urlparse
 SCHEMA_VERSION = 1
 MAX_COMMENT_LENGTH = 200
 MAX_LOCATION_LENGTH = 100
-MAX_ENTRIES_PER_MONTH = 3
 ENTRY_FIELDS = {"selection_id", "observation_id", "comment", "annual_comment", "location", "order"}
 REQUIRED_ENTRY_FIELDS = {"selection_id", "observation_id", "comment", "order"}
 
@@ -81,7 +80,6 @@ def validate_best_shot_config(config, portal_data):
     resolved = []
     selection_ids = set()
     observation_ids = set()
-    month_counts = Counter()
     month_orders = set()
     for index, entry in enumerate(config["entries"]):
         if not isinstance(entry, dict):
@@ -112,9 +110,9 @@ def validate_best_shot_config(config, portal_data):
             raise BestShotConfigError("location is longer than 100 characters", field="location",
                                       user_message="場所は100文字以内で入力してください")
         order = entry.get("order")
-        if isinstance(order, bool) or not isinstance(order, int) or not 1 <= order <= MAX_ENTRIES_PER_MONTH:
-            raise BestShotConfigError("order must be an integer from 1 to 3", field="order",
-                                      user_message="1〜3の番号を選択してください")
+        if isinstance(order, bool) or not isinstance(order, int) or order < 1:
+            raise BestShotConfigError("order must be a positive integer", field="order",
+                                      user_message="1以上の整数を入力してください")
         if selection_id in selection_ids:
             raise BestShotConfigError(f"duplicate selection_id: {selection_id}", field="selection_id",
                                       user_message="このselection IDはすでに使用されています")
@@ -130,10 +128,6 @@ def validate_best_shot_config(config, portal_data):
         observation = matches[0]
         captured = _capture_date(observation, selection_id)
         month_key = (captured.year, captured.month)
-        month_counts[month_key] += 1
-        if month_counts[month_key] > MAX_ENTRIES_PER_MONTH:
-            raise BestShotConfigError("a month may contain at most 3 Best Shots", field="order",
-                                      user_message=f"{captured.year}年{captured.month}月はすでに3枚登録されています")
         order_key = (*month_key, order)
         if order_key in month_orders:
             raise BestShotConfigError("order must be unique within a year and month", field="order",

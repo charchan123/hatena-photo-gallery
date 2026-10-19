@@ -23,10 +23,15 @@ function captureMonth(o){
  const d=new Date(raw+'T00:00:00Z');
  return Number.isNaN(d.getTime())||d.toISOString().slice(0,10)!==raw?'':raw.slice(0,7);
 }
+function bestShotOrder(value){
+ const text=String(value??'').trim(),n=Number(text);
+ return /^[0-9]+$/.test(text)&&Number.isSafeInteger(n)&&n>=1?n:null;
+}
 function monthSlots(id,ownId){
  const month=captureMonth(observation(id));
  const others=state.best_shots.entries.filter(e=>e.selection_id!==ownId&&captureMonth(observation(e.observation_id))===month);
- return {month,full:others.length>=3,free:[1,2,3].filter(n=>!others.some(e=>e.order===n)),others};
+ const used=new Set(others.map(e=>e.order));let next=1;while(used.has(next))next++;
+ return {month,next,others};
 }
 function observationSelect(selected,current,onSelect){
  const root=node('section',undefined,'photo-picker');root.setAttribute('aria-label','観察写真の選択');
@@ -90,22 +95,25 @@ function bestField(label,name,value='',type='text'){
 function orderControl(value,onChange){
  const root=node('div',undefined,'order-field'),heading=node('div',undefined,'field-heading'),label=node('label','月内順序');label.htmlFor='best-order';
  const error=node('span',undefined,'field-error');error.id='order-error';error.setAttribute('role','status');error.setAttribute('aria-live','polite');heading.append(label,error);
- const input=node('input');input.id='best-order';input.name='order';input.type='text';input.readOnly=true;input.inputMode='numeric';input.setAttribute('aria-describedby','order-error order-help');input.setAttribute('role','spinbutton');input.setAttribute('aria-valuemin','1');input.setAttribute('aria-valuemax','3');
- const up=button('▲',()=>set(Number(input.value)+1,true)),down=button('▼',()=>set(Number(input.value)-1,true));up.setAttribute('aria-label','月内順序を1増やす');down.setAttribute('aria-label','月内順序を1減らす');
- function set(n,manual=false){input.value=String(Math.max(1,Math.min(3,n)));input.setAttribute('aria-valuenow',input.value);up.disabled=n>=3;down.disabled=n<=1;if(manual)onChange()}
- input.addEventListener('keydown',ev=>{if(['ArrowUp','ArrowDown','Home','End'].includes(ev.key)){ev.preventDefault();set(ev.key==='Home'?1:ev.key==='End'?3:Number(input.value)+(ev.key==='ArrowUp'?1:-1),true)}});
+ const input=node('input');input.id='best-order';input.name='order';input.type='text';input.inputMode='numeric';input.pattern='[0-9]+';input.setAttribute('aria-describedby','order-error order-help');input.setAttribute('role','spinbutton');input.setAttribute('aria-valuemin','1');
+ const up=button('▲',()=>step(1)),down=button('▼',()=>step(-1));up.setAttribute('aria-label','月内順序を1増やす');down.setAttribute('aria-label','月内順序を1減らす');
+ function refresh(){const n=bestShotOrder(input.value);if(n===null)input.removeAttribute('aria-valuenow');else input.setAttribute('aria-valuenow',String(n));down.disabled=n===1;up.disabled=n!==null&&!Number.isSafeInteger(n+1)}
+ function set(n,manual=false){input.value=String(n);refresh();if(manual)onChange()}
+ function step(delta){const n=bestShotOrder(input.value)??1;set(Math.max(1,n+delta),true)}
+ input.addEventListener('input',()=>{refresh();onChange()});
+ input.addEventListener('keydown',ev=>{if(['ArrowUp','ArrowDown','Home'].includes(ev.key)){ev.preventDefault();if(ev.key==='Home')set(1,true);else step(ev.key==='ArrowUp'?1:-1)}});
  const controls=node('div',undefined,'order-controls'),arrows=node('div',undefined,'order-arrows');arrows.append(up,down);controls.append(input,arrows);
- const help=node('p','▲▼または上下キーで1〜3を選択','meta');help.id='order-help';root.append(heading,controls,help);set(value);root.setOrder=set;return root;
+ const help=node('p','1以上の整数を入力（▲▼・上下キーでも変更可）。登録枚数の月上限はありません。','meta');help.id='order-help';root.append(heading,controls,help);set(value);root.setOrder=set;return root;
 }
 function openBestEditor(row=null,current=null){
  let picker,order,busy=false;
  const fields={},ownId=row?.selection_id;
  function error(name,text){const e=$('#'+name+'-error');if(e)e.textContent=text||'';const control=$(`[name="${name}"]`);if(control)control.setAttribute('aria-invalid',String(Boolean(text)));if(name==='observation_id')$('#photo-search').setAttribute('aria-invalid',String(Boolean(text)))}
  function validate(){
-  const id=picker.querySelector('[name=observation_id]').value,slots=monthSlots(id,ownId),n=Number(order.querySelector('input').value);
+  const id=picker.querySelector('[name=observation_id]').value,slots=monthSlots(id,ownId),n=bestShotOrder(order.querySelector('input').value);
   const duplicate=state.best_shots.entries.some(e=>e.selection_id!==ownId&&e.observation_id===id);
   const obsError=!id?'観察写真を選択してください':duplicate?'この写真はすでにBest Shotに登録されています':!slots.month?'撮影日を確認できない写真です。撮影日の確認が必要です':'';
-  const orderError=!Number.isInteger(n)||n<1||n>3?'1〜3の番号を選択してください':slots.month&&slots.full?`${slots.month.replace('-','年')}月はすでに3枚登録されています`:slots.others.some(e=>e.order===n)?`${slots.month.replace('-','年')}月に順序「${n}」の写真が登録されています`:'';
+  const orderError=n===null?'1以上の整数を入力してください':slots.others.some(e=>e.order===n)?`${slots.month.replace('-','年')}月に順序「${n}」の写真が登録されています`:'';
   error('observation_id',obsError);error('order',orderError);
   const comment=fields.comment.querySelector('textarea').value.trim();error('comment',!comment?'コメントを入力してください':Array.from(comment).length>200?'コメントは200文字以内で入力してください':'');
   let invalid=Boolean(obsError||orderError||!comment||Array.from(comment).length>200);
@@ -113,7 +121,7 @@ function openBestEditor(row=null,current=null){
   if(fields.selection_id){const id=fields.selection_id.querySelector('input').value.trim(),bad=!id||state.best_shots.entries.some(e=>e.selection_id===id);error('selection_id',bad?'重複しないselection IDを入力してください':'');invalid=invalid||bad;}
   $('#dialog-save').disabled=busy||Boolean(obsError||orderError);return !invalid;
  }
- function autoOrder(o){const slots=monthSlots(o.observation_id,ownId);order.setOrder(slots.free[0]||1);validate();$('#best-modal-error').textContent='';}
+ function autoOrder(o){const slots=monthSlots(o.observation_id,ownId);order.setOrder(slots.next);validate();$('#best-modal-error').textContent='';}
  picker=observationSelect(row?.observation_id||'',current,autoOrder);
  order=orderControl(row?.order||1,()=>{validate();$('#best-modal-error').textContent=''});
  fields.comment=bestField('コメント','comment',row?.comment||'','textarea');
@@ -144,7 +152,7 @@ function openBestEditor(row=null,current=null){
   catch(e){general.textContent=e.userMessage||'通信またはサーバーの確認に失敗しました。入力内容を保持しています。変更予定を確認してから再試行してください。';Object.entries(e.fieldErrors||{}).forEach(([name,text])=>error(name,text));}
   finally{busy=false;save.textContent='変更予定に追加';editor.querySelector('form').removeAttribute('aria-busy');editor.removeEventListener('cancel',cancel);locked.forEach(([e,wasDisabled])=>e.disabled=wasDisabled);closers.forEach(b=>b.disabled=false);if(!accepted){validateButton();focusError();}}
  });
- function validateButton(){const id=picker.querySelector('[name=observation_id]').value,slots=monthSlots(id,ownId);$('#dialog-save').disabled=slots.full||!slots.month||!id||state.best_shots.entries.some(e=>e.selection_id!==ownId&&e.observation_id===id);}
+ function validateButton(){const id=picker.querySelector('[name=observation_id]').value,slots=monthSlots(id,ownId),n=bestShotOrder(order.querySelector('input').value);$('#dialog-save').disabled=busy||!slots.month||!id||n===null||slots.others.some(e=>e.order===n)||state.best_shots.entries.some(e=>e.selection_id!==ownId&&e.observation_id===id);}
  function focusError(){const invalid=$('#editor [aria-invalid=true]:not([type=hidden])');if(invalid){invalid.focus();invalid.scrollIntoView({block:'center'})}else{general.tabIndex=-1;general.focus();general.scrollIntoView({block:'nearest'})}}
  if(row)validate();else validateButton();
 }
