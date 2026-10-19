@@ -1345,3 +1345,10 @@ existing admin knowledge/curated PR allowlists remain untouched.
 - 実APIと公式表示14/0/0一致。Python1002、JS12ファイル、既存Chromium4630、本機能402合格。認証付き完全取得・隔離生成も合格。写真933/Best12/研究66/退役7保持。
 - 証跡・比較画像・CI URL・制約は `audit/record-stars-2026-10-19/REPORT.md`。実スター追加・削除は未実施。ログイン済み本番追加は未確認。公開前の必要確認を同レポートに記載。
 - Draft維持。マージ・本番再生成・Pages公開・実スター操作には別途明示承認が必要。
+
+## 2026-10-20 PR #128 profile-icon追補
+
+- 最新main `38c2e3886d5f1e6ecd0f37aba83c8d29f832ca74` を親2つの通常マージで統合済み。Best Shot16・通知13・PR130管理室保存機能を保持。他の未マージPRは変更しない。
+- 元ブログ自身の公式 `widget/star.js` と `profile-icon` 属性で投稿者画像＋色別スターを描画。HatenaStar.js / 元記事SiteConfigを残しprofile版失敗時はcompactへ退避。別のスターや独自投稿APIは作らない。
+- `audit/record-stars-2026-10-19/REPORT.md`末尾に今回の追補。写真933 / Best16 / 研究66 / 退役7、通知13、既存ID・安全ゲート・管理室保存機能は保護。
+- Draft維持。実スター追加/削除は未実施、認証済み本番追加は未確認。マージ・公開・実操作は別途明示承認を待つ。

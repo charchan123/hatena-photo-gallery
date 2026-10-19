@@ -1,0 +1,36 @@
+{
+  "url": "https://exsudoporus-ruber.hatenablog.jp/",
+  "configs": [
+    {
+      "class": [
+        "hatena-star-container"
+      ],
+      "data-hatena-star-container": "",
+      "data-hatena-star-url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155",
+      "data-hatena-star-title": "2026年10月3日富士山(山梨県)",
+      "data-hatena-star-variant": "profile-icon",
+      "data-hatena-star-profile-url-template": "https://blog.hatena.ne.jp/{username}/"
+    },
+    {
+      "class": [
+        "hatena-star-container"
+      ],
+      "data-hatena-star-container": "",
+      "data-hatena-star-url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503",
+      "data-hatena-star-title": "2026年9月22日富士山(山梨県)",
+      "data-hatena-star-variant": "profile-icon",
+      "data-hatena-star-profile-url-template": "https://blog.hatena.ne.jp/{username}/"
+    },
+    {
+      "class": [
+        "hatena-star-container"
+      ],
+      "data-hatena-star-container": "",
+      "data-hatena-star-url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+      "data-hatena-star-title": "2026年9月19日静岡県浜松市",
+      "data-hatena-star-variant": "profile-icon",
+      "data-hatena-star-profile-url-template": "https://blog.hatena.ne.jp/{username}/"
+    }
+  ],
+  "official_widget_script": true
+}

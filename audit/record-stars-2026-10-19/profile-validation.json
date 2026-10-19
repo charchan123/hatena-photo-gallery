@@ -1,0 +1,79 @@
+{
+  "implementation_head": "fd02036b51c27e1dd29f5ab933cc11100c800058",
+  "main": "38c2e3886d5f1e6ecd0f37aba83c8d29f832ca74",
+  "gh_pages": "201348f6d2f96e92c3b692303c9064b947c9ae36",
+  "merge_head": "709737cea70e8f53c70077000473bcad342bce73",
+  "python": {
+    "passed": 1011,
+    "local_seconds": 95.26
+  },
+  "javascript": {
+    "regression_files": 12,
+    "syntax": "PASS"
+  },
+  "chromium": {
+    "existing_assertions": 4672,
+    "star_assertions": 601,
+    "native_profile_probe": "PASS on isolated and actual blog pages",
+    "widths": [
+      1280,
+      768,
+      390,
+      320
+    ],
+    "zoom_equivalent_css_widths": [
+      1024,
+      640
+    ],
+    "date_y_delta_px": [
+      0,
+      0,
+      0
+    ],
+    "overflow": false
+  },
+  "github_actions": [
+    {
+      "name": "Read-only deletion audit",
+      "result": "success",
+      "url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/39331494347"
+    },
+    {
+      "name": "Read-only Hatena Star preview",
+      "result": "success",
+      "url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/39331494333"
+    },
+    {
+      "name": "Deletion review browser regressions",
+      "result": "success",
+      "url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/39331494438"
+    },
+    {
+      "name": "Validate Admin Changes",
+      "result": "success",
+      "url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/39331494341"
+    }
+  ],
+  "star_totals": [
+    14,
+    0,
+    0
+  ],
+  "public_counts": {
+    "photos": 933,
+    "best_shots": 16,
+    "research": 66,
+    "retired": 7,
+    "notice_events": 13
+  },
+  "real_star_addition": "NOT_ATTEMPTED",
+  "authenticated_addition": "UNVERIFIED",
+  "reference_attachment": "file import failed; used the image visibly included in the message and independently verified original blog",
+  "writes": [],
+  "artifact": {
+    "id": 12224353153,
+    "digest": "sha256:cdfa3174421200f7d5dbfb438380e8fb53e70ecfe40b09c16034da4e2f9db8b0"
+  },
+  "final_head_and_ci": "Recorded in PR #128 description after evidence commit checks complete",
+  "decision": "DRAFT_REVIEW_READY; no merge/deploy/add/delete permission"
+}
