@@ -67,4 +67,5 @@ jobs:
             /tmp/best-shot-unlimited/screenshots/
             /tmp/best-shot-unlimited/summary.json
             /tmp/best-shot-unlimited/result.json
+            /tmp/best-shot-unlimited/admin-result.json
           retention-days: 30

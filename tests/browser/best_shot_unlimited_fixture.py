@@ -19,7 +19,8 @@ main.OUTPUT_DIR = str(root)
 main.copy_shared_assets()
 (root / 'screenshots').mkdir(exist_ok=True)
 (root / 'photos').mkdir(exist_ok=True)
-(root / 'before-admin.js').write_bytes(subprocess.check_output(['git', 'show', f'{BASELINE}:admin/static/admin.js']))
+for filename in ['admin.js', 'admin.css']:
+    (root / ('before-' + filename)).write_bytes(subprocess.check_output(['git', 'show', f'{BASELINE}:admin/static/{filename}']))
 before = types.ModuleType('before_best_shot')
 before.__file__ = current.__file__
 exec(compile(subprocess.check_output(['git', 'show', f'{BASELINE}:best_shot_ui.py']).decode(), current.__file__, 'exec'), before.__dict__)

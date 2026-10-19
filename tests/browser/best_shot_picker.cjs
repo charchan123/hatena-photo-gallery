@@ -44,7 +44,7 @@ const fixtures=()=>({csrf:'fixture-only',observations:records,best_shots:{versio
     return route.fulfill({json:{ok:true}});
    }
    const file={'/':'index.html','/admin.css':'admin.css','/admin.js':'admin.js','/deletions.js':'deletions.js'}[url.pathname];
-   if(file)return route.fulfill({body:fs.readFileSync(before&&file==='admin.js'?path.join(fixtureRoot,'before-admin.js'):path.join(root,'admin/static',file)),contentType:file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'text/html'});
+   if(file)return route.fulfill({body:fs.readFileSync(before&&['admin.js','admin.css'].includes(file)?path.join(fixtureRoot,'before-'+file):path.join(root,'admin/static',file)),contentType:file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'text/html'});
    return route.fulfill({status:404,body:''});
   });
   await page.goto('http://127.0.0.1:8765/');await page.waitForSelector('#cards .card');await page.click('[data-page=best]');
@@ -172,6 +172,7 @@ const fixtures=()=>({csrf:'fixture-only',observations:records,best_shots:{versio
   }
   check(x.issues,[]);await x.context.close();
  }
+ if(out)fs.writeFileSync(path.join(path.dirname(out),'admin-result.json'),JSON.stringify({assertions,widths:[1280,390],monthly_counts:[1,3,4,10,30,35],operations:['add','edit','replace','move_month','order','reuse_gap','delete','reject_duplicate','annual','search','preview','network_failure','server_error'],production_writes:false},null,2));
  await browser.close();
  console.log(`Best Shot real Chromium browser: ${assertions} assertions passed (desktop mouse/keyboard, IME event simulation, touch emulation; isolated API/image fixtures)`);
 })().catch(async e=>{
