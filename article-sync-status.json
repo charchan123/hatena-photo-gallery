@@ -7,10 +7,10 @@
   "new_images": 0,
   "deleted_images": 0,
   "updated_articles": 0,
-  "classification_changes": 71,
+  "classification_changes": 0,
   "possible_url_changes": 0,
   "url_changes": 0,
-  "last_success_at": "2026-10-18T13:47:14.674761+00:00",
+  "last_success_at": "2026-10-19T03:59:48.559757+00:00",
   "classification_review_count": 483,
   "fetch_error": null,
   "id_compatibility_error": null,
@@ -31,7 +31,7 @@
   },
   "published_article_count": 111,
   "detected_image_count": 980,
-  "previous_photo_count": 897,
+  "previous_photo_count": 933,
   "candidate_gallery_photo_count": 933,
   "missing_published_photo_keys": 0,
   "missing_published_article_ids": 0,
@@ -56,7 +56,7 @@
     "pending": 0,
     "states": {},
     "history_persisted": true,
-    "history_head": "a9c6664d0fe5ee0966c9d850280c238082750d7066b2041e2739d44cb3abf44c"
+    "history_head": "1a8fa3132c9249088771266773b0d16df10d2f9b7b2f375dbcb6a3134d186e82"
   },
   "retirement": {
     "migration_id": "hatena-draft-photo-retirement-2026-10-12",
@@ -67,7 +67,7 @@
   },
   "best_shot_references_preserved": 12,
   "research_cases_preserved": 66,
-  "preserved_photo_ids": 897,
+  "preserved_photo_ids": 933,
   "gallery_photo_count": 933,
   "retired_output_inspection": {
     "result": "PASS",
@@ -75,8 +75,8 @@
     "retired_ids_absent": 7,
     "shared_image_urls_preserved": 0
   },
-  "automatic_added_photo_count": 36,
-  "automatic_added_at": "2026-10-18T13:47:14.674761+00:00",
+  "automatic_added_photo_count": 0,
+  "automatic_added_at": null,
   "name_migration_count": 0,
   "name_migrations_applied_this_run": 0,
   "manual_adoption_count": 0,
