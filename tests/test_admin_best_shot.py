@@ -29,6 +29,7 @@ def draft_fixture():
     draft.portal = {"version": 1, "observations": [observation(i) for i in range(1, 6)] + [observation(6, None), observation(7, "2025-10-01")]}
     draft.best_shots = {"version": 1, "entries": [], "annual_best": {}}
     draft.notices = {"version": 1, "events": []}
+    draft.identifications = {"version": 1, "identifications": []}
     return draft
 
 
