@@ -110,8 +110,10 @@ const server=http.createServer((req,res)=>{
    const expected={zero:null,few:5,many:130,collapsed:130,anonymous:3,unknown:null,error:null}[mode];
    if(expected!==null)await q.waitForFunction(n=>[...document.querySelectorAll('.record-stars')].every(e=>e.dataset.total===String(n)),expected);
    else await q.waitForFunction(()=>[...document.querySelectorAll('.record-stars-total')].every(e=>e.textContent==='スター'));
+   if(mode==='zero')await q.waitForFunction(()=>document.querySelectorAll('.record-stars-native[data-ready]').length===3);
    await bounds(q);const rows=q.locator('.record-star-entry');check(await rows.count(),3);
-   if(['many','collapsed'].includes(mode))check(await rows.first().locator('.record-stars-ellipsis').isVisible(),true);
+   if(mode==='many')check(await rows.first().locator('.record-stars-ellipsis').isVisible(),true);
+   if(mode==='collapsed')check(await rows.first().locator('.record-stars-ellipsis').isVisible(),await rows.first().locator('[data-record-star-hidden]').count()>0);
    if(mode==='unknown'||mode==='error')check(await q.locator('.record-stars-native[data-ready]').count(),0);
    if(width===390&&mode==='many'){await q.locator('.record-preview-list').scrollIntoViewIfNeeded();await q.screenshot({path:path.join(shots,'390-many-130.png'),animations:'disabled'});}
    metrics.push({phase:mode,width,total:expected,no_overflow:true});
