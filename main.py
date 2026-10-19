@@ -2649,10 +2649,11 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
 {STYLE_TAG}
 <link rel="stylesheet" href="assets/portal.css">
 <link rel="stylesheet" href="assets/record-stars.css">
+<script>window.Hatena=window.Hatena||{{}};window.Hatena.Star=window.Hatena.Star||{{}};window.Hatena.Star.SiteConfig={{entryNodes:{{}}}};</script>
 <script src="assets/record-stars.js" defer></script>
-<script src="https://s.hatena.ne.jp/js/HatenaStar.js" defer></script>
 <link rel="stylesheet" href="assets/update-notices.css">
 <script src="assets/update-notices.js" defer></script>
+<script src="https://s.hatena.ne.jp/js/HatenaStar.js" defer></script>
 </head><body class="portal-index">
 <main class="portal-shell">
 <section class="portal-records-hero" aria-labelledby="records-heading">

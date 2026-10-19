@@ -13,6 +13,11 @@
  }
  if(typeof module==='object'&&module.exports){module.exports={total};return;}
  const doc=root.document;if(!doc)return;
+ // A stalled third-party deferred script must not leave the portal's existing fade-in at opacity 0.
+ // Keep normal gallery initialization intact; only reveal already-rendered HTML after three seconds.
+ root.setTimeout(()=>{if(doc.body?.classList.contains('portal-index')&&getComputedStyle(doc.body).opacity==='0'){
+  doc.body.style.opacity='1';doc.body.dataset.recordStarsLoadingFallback='';
+ }},3000);
  root.Hatena=root.Hatena||{};root.Hatena.Star=root.Hatena.Star||{};
  root.Hatena.Star.SiteConfig={entryNodes:{'article.record-star-entry':{
   uri:'a.record-star-permalink',title:'strong.record-preview-title',container:'div.record-stars-native'

@@ -35,13 +35,14 @@ const server=http.createServer((req,res)=>{
   const c=await browser.newContext(options);await c.route('**/*',async route=>{
    const req=route.request(),u=new URL(req.url());
    if(req.method()!=='GET'||/(?:star\.add|star\.delete|\/stars?\/(?:add|delete|remove))/.test(u.pathname)){writes.push({method:req.method(),host:u.host,path:u.pathname});return route.abort()}
+   if(mode==='missing-adapter'&&u.pathname.endsWith('/assets/record-stars.js'))return route.abort();
    if(u.hostname==='127.0.0.1')return route.continue();
    if(u.origin==='https://charchan123.github.io'&&u.pathname.startsWith('/hatena-photo-gallery/')){
     const relative=u.pathname.slice('/hatena-photo-gallery/'.length),file=path.resolve(root,'after',relative);
     if(!file.startsWith(path.join(root,'after')+path.sep)||!fs.existsSync(file))return route.abort();
     return route.fulfill({body:fs.readFileSync(file),contentType:({'.html':'text/html','.js':'text/javascript','.css':'text/css','.webp':'image/webp','.png':'image/png'})[path.extname(file)]||'application/octet-stream'});
    }
-   if(u.href==='https://s.hatena.ne.jp/js/HatenaStar.js'&&mode!=='live')return mode==='error'?route.abort():route.fulfill({body:mockSource(mode),contentType:'text/javascript'});
+   if(u.href==='https://s.hatena.ne.jp/js/HatenaStar.js'&&!['live','missing-adapter'].includes(mode)){if(mode==='slow'){await new Promise(r=>setTimeout(r,6000));return route.abort();}return mode==='error'?route.abort():route.fulfill({body:mockSource(mode),contentType:'text/javascript'});}
    if(fixture.photos[u.href]){const p=fixture.photos[u.href];return route.fulfill({body:fs.readFileSync(path.join(root,p.file)),contentType:p.mime});}
    if(u.hostname==='s.hatena.ne.jp'){
     if(u.pathname.startsWith('/js/')&&/\.(?:js|css|svg)$/.test(u.pathname)){
@@ -136,6 +137,16 @@ const server=http.createServer((req,res)=>{
   if(mode==='few'){const url=q.url();await q.frameLocator('iframe').first().getByRole('button',{name:'スター追加（隔離）'}).tap();await q.waitForFunction(()=>document.querySelector('.record-stars').dataset.total==='6');check(q.url(),url);}
   metrics.push({phase:'touch-'+mode,width:390,no_overflow:true});await c.close();
  }
+ const missingContext=await context('missing-adapter'),missing=await missingContext.newPage();
+ await missing.goto(base+'/after/new-top.html');check(await missing.locator('[data-hatena-star]').count(),0);
+ check(await missing.evaluate(()=>window.Hatena.Star.SiteConfig),{entryNodes:{}});check(network.filter(r=>r.mode==='missing-adapter'&&r.path.includes('siteconfig')).length,0);
+ metrics.push({phase:'adapter-script-blocked',no_auto_registration:true,only_original_article_links:true});await missingContext.close();
+ const slowContext=await context('slow'),slow=await slowContext.newPage();
+ await slow.goto(base+'/after/new-top.html',{waitUntil:'commit'});
+ await slow.waitForFunction(()=>document.body?.hasAttribute('data-record-stars-loading-fallback')&&parseFloat(getComputedStyle(document.body).opacity)>.99,{},{timeout:5000});
+ check(await slow.evaluate(()=>document.readyState==='interactive'),true);
+ check(await slow.locator('.record-stars-total').allTextContents(),['スター','スター','スター']);metrics.push({phase:'stalled-vendor',html_visible_before_vendor_finishes:true,no_guessed_total:true});
+ await slow.waitForLoadState('domcontentloaded');await slowContext.close();
  check(writes,[]);check(errors,[]);await browser.close();server.close();
  fs.writeFileSync(path.join(root,'result.json'),JSON.stringify({assertions,fixture,metrics,nativeButtons,network,writes,errors,real_star_addition:'NOT_ATTEMPTED',authenticated_addition:'UNVERIFIED',zero_total:'Empty native DOM has no ready marker: no inferred zero is displayed',native_template_sha256:crypto.createHash('sha256').update(liveTemplate||'').digest('hex')},null,2));
  console.log(`PASS: ${assertions} Hatena Star assertions; original permalinks, native colours/counts, four widths and zoom-equivalent widths; no live star writes`);
