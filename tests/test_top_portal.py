@@ -69,7 +69,7 @@ def test_new_top_counts_follow_build_inputs_and_update(monkeypatch, tmp_path):
 
 
 def test_observation_more_uses_native_hatena_archive_for_sidebar_and_stars(monkeypatch, tmp_path):
-    """Do not imitate interactive Hatena widgets inside GitHub Pages."""
+    """The archive and each article link keep native Hatena navigation."""
     soup = BeautifulSoup(render(monkeypatch, tmp_path, observation_records=[record(0)]),
                          "html.parser")
     more = soup.select_one(".portal-more-link")
@@ -78,7 +78,7 @@ def test_observation_more_uses_native_hatena_archive_for_sidebar_and_stars(monke
     assert more["target"] == "_top"
     assert more.get_text(" ", strip=True).startswith("観察記録をもっと見る")
     assert not soup.select_one('.portal-more-link[href="records.html"]')
-    assert soup.select_one(".record-preview-row")["target"] == "_top"
+    assert soup.select_one(".record-preview-row a.record-star-permalink")["target"] == "_top"
 
 
 def test_new_top_guide_count_excludes_only_exact_unknown_and_empty_names(monkeypatch, tmp_path):
@@ -268,7 +268,7 @@ def test_new_top_observation_notice_is_beside_title_not_on_artwork(monkeypatch, 
     assert not soup.select(".portal-records-visual .update-badge")
     assert not soup.select(".portal-new-update")
     row = soup.select_one(".record-preview-row")
-    assert row["href"] == latest["url"] and row["target"] == "_top"
+    assert row.select_one("a.record-star-permalink")["href"] == latest["url"] and row.select_one("a.record-star-permalink")["target"] == "_top"
     heading = row.select_one(".record-preview-heading")
     assert heading.strong.get_text() == latest["title"]
     assert heading.select_one(".update-badge").get_text() == "NEW!"

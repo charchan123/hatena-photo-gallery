@@ -114,27 +114,41 @@ def render_record_cards(records, limit=None, *, now=None):
 
 
 def render_record_preview_rows(records, limit=3, *, now=None):
-    """Render compact new-top previews without records-page statistics."""
+    """Separate article navigation from the official Star interaction region."""
+    from urllib.parse import urlsplit
     rows = []
-    for record in records[:limit]:
+    for index, record in enumerate(records[:limit]):
         title = html.escape(str(record.get("title") or "無題"))
         badge = render_record_notice(record, now=now)
         date = html.escape(_format_published(record.get("published")))
-        excerpt = str(record.get("excerpt") or "").strip()
-        excerpt_html = (f'<p class="record-preview-excerpt">{html.escape(excerpt)}</p>'
-                        if excerpt else "")
+        excerpt = html.escape(str(record.get("excerpt") or "").strip())
         cover = html.escape(str(record.get("cover_src") or ""), quote=True)
         image = f'<img src="{cover}?width=500" alt="" loading="lazy">' if cover else ""
-        body = (f'<span class="record-preview-thumb">{image}</span>'
-                f'<span class="record-preview-body"><span class="record-preview-heading">'
-                f'<strong class="record-preview-title">{title}</strong>{badge}</span>'
-                f'<time class="record-preview-date">{date}</time>{excerpt_html}</span>')
-        url = record.get("url")
-        if url:
-            safe_url = html.escape(str(url), quote=True)
-            rows.append(f'<a class="record-preview-row record-external-link" href="{safe_url}" target="_top">{body}</a>')
-        else:
-            rows.append(f'<article class="record-preview-row">{body}</article>')
+        url = str(record.get("url") or "")
+        try:
+            parsed = urlsplit(url)
+            valid = parsed.scheme in {"https", "http"} and bool(parsed.hostname) and not parsed.username and not parsed.password
+            native = valid and parsed.scheme == "https" and parsed.netloc == "exsudoporus-ruber.hatenablog.jp" and parsed.path.startswith("/entry/") and not parsed.query and not parsed.fragment
+        except ValueError:
+            valid = native = False
+        safe_url = html.escape(url, quote=True)
+        def link(content, classes, *, label=None):
+            if not valid:
+                return f'<span class="{classes}">{content}</span>'
+            aria = f' aria-label="{html.escape(label, quote=True)}"' if label else ""
+            return (f'<a class="{classes} record-external-link" href="{safe_url}" '
+                    f'target="_top" rel="noopener noreferrer"{aria}>{content}</a>')
+        heading = link(f'<strong class="record-preview-title" id="record-preview-title-{index}">{title}</strong>{badge}',
+                       'record-preview-heading record-star-permalink')
+        thumb = link(image, 'record-preview-thumb', label=str(record.get("title") or "無題") + 'の記事を見る')
+        stars = (f'<div class="record-stars" role="group" aria-label="はてなスター">'
+                 '<div class="record-stars-native"></div><span class="record-stars-ellipsis" aria-hidden="true" hidden>…</span>'
+                 + link('スター', 'record-stars-total', label='元記事ではてなスターを見る・追加する') + '</div>') if native else ''
+        text = link(excerpt, 'record-preview-excerpt') if excerpt else ''
+        body = (f'{thumb}<div class="record-preview-body">{heading}'
+                f'<div class="record-preview-meta"><time class="record-preview-date">{date}</time>{stars}</div>{text}</div>')
+        cls = 'record-preview-row record-star-entry' if native else 'record-preview-row'
+        rows.append(f'<article class="{cls}" aria-labelledby="record-preview-title-{index}">{body}</article>')
     return "".join(rows)
 
 

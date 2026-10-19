@@ -1,0 +1,16 @@
+/* Only the three new-top observation previews. Official stars retain their images/colours. */
+.portal-index .record-preview-row a{color:inherit;text-decoration:none}
+.portal-index .record-preview-row .record-preview-excerpt{color:#526056}
+.portal-index .record-preview-row .record-preview-heading{color:#24472f}
+.portal-index .record-preview-row a:focus-visible,.portal-index .record-stars-total:focus-visible{outline:3px solid #eeb947;outline-offset:3px;border-radius:3px}
+.portal-index .record-preview-meta{display:flex;align-items:center;flex-wrap:wrap;gap:2px 8px;width:300px;max-width:100%;min-width:0}
+.portal-index .record-preview-meta .record-preview-date{margin:0;flex:0 0 auto}
+.portal-index .record-stars{position:relative;display:flex;align-items:center;gap:2px;flex:1 1 112px;min-width:min(112px,100%);max-width:100%;min-height:28px;color:#758077;font-size:.74rem}
+.portal-index .record-stars-native{flex:1 1 auto;min-width:72px;max-width:100%;white-space:nowrap;line-height:28px}
+.portal-index .record-stars-native:not([data-ready]){position:absolute;visibility:hidden;width:72px;height:28px;overflow:hidden;pointer-events:none}
+.portal-index .record-stars-native>[data-hatena-star]{display:inline-block;max-width:100%;white-space:nowrap}
+.portal-index .record-stars-total{display:inline-flex;align-items:center;flex:0 0 auto;min-height:28px;white-space:nowrap;text-decoration:none;font-variant-numeric:tabular-nums}
+.portal-index .record-stars-ellipsis{flex:0 0 auto}
+.portal-index .record-stars-ellipsis[hidden]{display:none}
+@media(max-width:900px){.portal-index .record-preview-meta{margin-top:3px}}
+@media(hover:hover){.portal-index .record-preview-row .record-preview-excerpt:hover,.portal-index .record-stars-total:hover{text-decoration:underline}}

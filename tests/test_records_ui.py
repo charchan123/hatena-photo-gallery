@@ -3,6 +3,7 @@ import copy
 from pathlib import Path
 import main
 import pytest
+from bs4 import BeautifulSoup
 from records_ui import build_observation_records, render_record_preview_rows, render_records_page
 
 
@@ -133,3 +134,34 @@ def test_records_page_matches_new_top_field_notes_visual_contract():
     assert "grid-template-columns:190px minmax(0,1fr)" in css
     assert ".records-index .records-footer .back-btn" in css
     assert "@media (max-width:760px)" in css
+
+
+def test_native_star_previews_separate_links_and_bind_only_original_permalinks():
+    rows = [{"title": f"写真のタイトル {i}<&", "url": f"https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/{i}",
+             "published": "2026-10-15T00:00:00Z", "cover_src": f"https://example.test/{i}.jpg", "excerpt": "本文<&"}
+            for i in range(4)]
+    soup = BeautifulSoup(render_record_preview_rows(rows), "html.parser")
+    assert len(soup.select("article.record-star-entry")) == 3
+    assert not soup.select("a a, a button, a iframe, a .record-stars")
+    for i, row in enumerate(soup.select("article.record-star-entry")):
+        links = row.select("a")
+        assert len(links) == 4
+        assert all(a["href"] == rows[i]["url"] and a["target"] == "_top" for a in links)
+        assert all(a.get("rel") == ["noopener", "noreferrer"] for a in links)
+        assert row.select_one(".record-preview-meta time").get_text() == "2026年10月15日 公開"
+        assert row.select_one(".record-stars-native").parent.get("role") == "group"
+        assert row.select_one(".record-stars-total").get_text() == "スター"  # No guessed count or synthetic stars.
+        assert row.select_one(".record-preview-title").get_text() == rows[i]["title"]
+
+
+@pytest.mark.parametrize("url", ["javascript:alert(1)", "data:text/html,hello", "https://user:password@example.test/x", "//example.test/entry/x"])
+def test_preview_rejects_unsafe_navigation_without_star_registration(url):
+    soup = BeautifulSoup(render_record_preview_rows([{"title": "安全確認", "url": url}]), "html.parser")
+    assert not soup.select("a, .record-stars, .record-star-entry")
+
+
+@pytest.mark.parametrize("url", ["https://example.test/entry/x", "https://exsudoporus-ruber.hatenablog.jp.evil.test/entry/x", "https://exsudoporus-ruber.hatenablog.jp/entry/x?x=1", "http://exsudoporus-ruber.hatenablog.jp/entry/x"])
+def test_star_is_not_attached_to_guess_or_alternate_uri(url):
+    soup = BeautifulSoup(render_record_preview_rows([{"title": "対応付け", "url": url}]), "html.parser")
+    assert soup.select_one("a.record-star-permalink")["href"] == url
+    assert not soup.select(".record-stars, .record-star-entry")

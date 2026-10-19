@@ -204,6 +204,8 @@ def copy_shared_assets():
         "detail.css",
         "favorite.css",
         "portal.css",
+        "record-stars.css",
+        "record-stars.js",
         "update-notices.css",
         "update-notices.js",
         "guide.css",
@@ -2646,6 +2648,9 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
 <title>キノコ図鑑</title>
 {STYLE_TAG}
 <link rel="stylesheet" href="assets/portal.css">
+<link rel="stylesheet" href="assets/record-stars.css">
+<script src="assets/record-stars.js" defer></script>
+<script src="https://s.hatena.ne.jp/js/HatenaStar.js" defer></script>
 <link rel="stylesheet" href="assets/update-notices.css">
 <script src="assets/update-notices.js" defer></script>
 </head><body class="portal-index">
