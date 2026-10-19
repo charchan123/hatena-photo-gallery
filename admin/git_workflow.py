@@ -1,6 +1,7 @@
 """Safe git worktree and pull-request workflow (never merge or deploy)."""
 
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -13,12 +14,36 @@ class GitWorkflowError(RuntimeError):
     pass
 
 
+def locate_gh():
+    """Resolve GitHub CLI even if admin started before Windows PATH updated."""
+    discovered = shutil.which("gh")
+    if discovered:
+        return discovered
+    for variable, parts in (
+        ("ProgramFiles", ("GitHub CLI", "gh.exe")),
+        ("ProgramW6432", ("GitHub CLI", "gh.exe")),
+        ("ProgramFiles(x86)", ("GitHub CLI", "gh.exe")),
+        ("LOCALAPPDATA", ("Programs", "GitHub CLI", "gh.exe")),
+    ):
+        folder = os.environ.get(variable)
+        if folder:
+            candidate = Path(folder).joinpath(*parts)
+            if candidate.is_file():
+                return str(candidate)
+    return None
+
+
 def run(args, *, cwd=ROOT, check=True):
     """Run only an argument vector; callers cannot provide a shell string."""
     if not isinstance(args, (list, tuple)) or not args or not all(isinstance(v, str) for v in args):
         raise GitWorkflowError("subprocess command must be a non-empty string list")
+    command = list(args)
+    if command[0] == "gh":
+        command[0] = locate_gh()
+        if command[0] is None:
+            raise GitWorkflowError("GitHub CLIが見つかりません。インストールを確認してください")
     try:
-        return subprocess.run(list(args), cwd=cwd, check=check, text=True,
+        return subprocess.run(command, cwd=cwd, check=check, text=True,
                               capture_output=True, shell=False)
     except (OSError, subprocess.CalledProcessError) as error:
         detail = getattr(error, "stderr", "") or str(error)
@@ -28,11 +53,13 @@ def run(args, *, cwd=ROOT, check=True):
 def repository_status():
     branch = run(["git", "branch", "--show-current"]).stdout.strip()
     dirty = bool(run(["git", "status", "--porcelain"]).stdout.strip())
-    auth = shutil.which("gh") is not None and run(["gh", "auth", "status"], check=False).returncode == 0
+    gh_available = locate_gh() is not None
+    auth = gh_available and run(["gh", "auth", "status"], check=False).returncode == 0
     def revision(ref):
         result = run(["git", "rev-parse", "--verify", ref], check=False)
         return result.stdout.strip() if result.returncode == 0 else None
-    status = {"branch": branch, "dirty": dirty, "gh_authenticated": auth,
+    status = {"branch": branch, "dirty": dirty, "gh_available": gh_available,
+              "gh_authenticated": auth,
               "head_sha": revision("HEAD"), "origin_main_sha": revision("origin/main"),
               "gh_pages_sha": revision("origin/gh-pages"), "latest_action": None}
     if auth:
@@ -50,7 +77,7 @@ def repository_status():
 def create_pull_request(files, validation, operation="changes"):
     """Apply reviewed JSON in an isolated origin/main worktree and open a PR."""
     if not repository_status()["gh_authenticated"]:
-        raise GitWorkflowError("GitHub認証が必要です（gh auth login）")
+        raise GitWorkflowError("GitHub CLI未検出または認証切れです。初回のみgh auth loginを実行してください")
     run(["git", "fetch", "origin", "main"])
     branch = safe_branch_name(operation)
     directory = Path(tempfile.mkdtemp(prefix="kinoko-admin-"))
@@ -111,7 +138,7 @@ def create_knowledge_pull_request(batch_id):
     from feature_overlay import reconstruct_feature_production_state, validate_feature_production_state
     from .knowledge import load_batch, materialize_promotion_package, _dump, _hash
     if not repository_status()["gh_authenticated"]:
-        raise GitWorkflowError("GitHub認証が必要です（gh auth login）")
+        raise GitWorkflowError("GitHub CLI未検出または認証切れです。初回のみgh auth loginを実行してください")
     if run(["git", "status", "--porcelain"]).stdout.strip():
         raise GitWorkflowError("管理画面の実行checkoutに未保存の変更があります")
     run(["git", "fetch", "origin", "main"])
