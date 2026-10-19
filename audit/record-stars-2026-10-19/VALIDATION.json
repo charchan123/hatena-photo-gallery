@@ -1,0 +1,74 @@
+{
+  "implementation_head": "824a33ba4db6c8f90ed6839d1a63176c9c71a97a",
+  "main": "4c6b978aebe3ab3e580025b36f74a158c08acb11",
+  "gh_pages": "9b31736fa18c5e8e69769ca1e675f596001f6bae",
+  "python": {
+    "passed": 1002,
+    "ci_seconds": 138.19
+  },
+  "javascript": {
+    "regression_files": 12,
+    "syntax": "PASS"
+  },
+  "chromium": {
+    "existing_assertions": 4630,
+    "star_assertions": 402,
+    "widths": [
+      1280,
+      768,
+      390,
+      320
+    ],
+    "zoom_equivalent_css_widths": [
+      1024,
+      640
+    ],
+    "live_dates_y_delta_px": [
+      0,
+      0,
+      0
+    ],
+    "overflow": false
+  },
+  "github_actions": [
+    {
+      "name": "Validate Admin Changes",
+      "result": "success",
+      "url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/39261445958"
+    },
+    {
+      "name": "Deletion review browser regressions",
+      "result": "success",
+      "url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/39261445859"
+    },
+    {
+      "name": "Read-only deletion audit",
+      "result": "success",
+      "url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/39261445769"
+    },
+    {
+      "name": "Read-only Hatena Star preview",
+      "result": "success",
+      "url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/39261445917"
+    }
+  ],
+  "live_totals": [
+    14,
+    0,
+    0
+  ],
+  "actual_authenticated_addition": "UNVERIFIED",
+  "real_star_addition": "NOT_ATTEMPTED",
+  "writes": [],
+  "decision": "DRAFT_REVIEW_READY; authenticated cross-site addition requires separately authorized verification",
+  "artifacts": [
+    {
+      "id": 12191486595,
+      "sha256": "855f271eadc519c671fa5cb99fdb73449a4e1ee0565c7eef6222eac7220fa2e1"
+    },
+    {
+      "id": 12191736653,
+      "sha256": "c6024b8c8ed27f976e4bebc5936efdee48fe49b650129be75e55cc7a03cc1791"
+    }
+  ]
+}

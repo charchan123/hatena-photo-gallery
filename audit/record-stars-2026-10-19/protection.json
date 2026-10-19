@@ -1,0 +1,30 @@
+{
+  "base": "4c6b978aebe3ab3e580025b36f74a158c08acb11",
+  "published_ref": "9b31736fa18c5e8e69769ca1e675f596001f6bae",
+  "photo_count": 933,
+  "best_shots": 12,
+  "research_cases": 66,
+  "unchanged_sha256": {
+    ".github/workflows/generate.yml": "b19d57dcde77855f588c8f6225a6e7a628ee138c968128bc6777da842bcdd78e",
+    "admin/core.py": "2673ef8b083837fb59df98f68f7db4b4d6abfdf51aa1fc8f017c08548844fac5",
+    "article_sync.py": "bbdd690abf86573da83635240246b676711c458bf442558b69b3f765aa40fdd2",
+    "assets/update-notices.css": "0401c52c4774db5d612a0b8a4deb9a4f5cca8c790fa19240f28c242560de4c4b",
+    "assets/update-notices.js": "9d4380f085b93dab450bcfb37e7172e8eb4f2cb550b4cd9bade1408cbbeedcf5",
+    "best_shot_ui.py": "e0dad58daa2b414b3d68762cea4024d9188dadb6296ab7d845d1d893dd4b71ee",
+    "data/best-shots.json": "3a0d506da283f7ba540fcae57f0d9610393c4d618bd0c8392adca6349107b803",
+    "data/feature-facets.json": "6d4d987a535dca9c1d0d3668b65de245fbdc281f56c546af436c6fb853bdd84d",
+    "data/mushroom-master.json": "2ce8cfc61726ef04bb6f4bba26c42511e2c0bf1d4017b9e87e0a359d61decca4",
+    "data/research-identifications.json": "0c3a699408dacf0444e3f6e6b93e848c84fd59ef93debe7640c0d551c0ab15b1",
+    "data/sources.json": "d5213f1cf0881af1c60ea949c0321ae0eb854daa3f300135dae9e9f9ad2fdb66",
+    "data/subject-taxonomy.json": "c2afcd79e2de028fd164c073472d2452c68361007ac06a20f9fd31ae67f47f97",
+    "data/update-notices.json": "33e70703b4d84fac5764dc3b201a61e64cf09547374391f543e9c638414146e4",
+    "deletion_guard.py": "c89f37e907d849cabfc6146a714590d9e0ebb02a4d5935f318ec3818966e889f",
+    "deletion_history.py": "281494b564df66e05d1c1fd832c20ccf80695b840befb3e1782c22f8597a2a9a",
+    "deletion_protection.py": "444dd04be57e7a796731877a5a88005833070c1eab6d364cbba94a21da82bf49",
+    "research_ui.py": "33dbc6c3ba98f007c57cecd780209678060318171e487f9a2438b1c52b0e5616",
+    "sync-migrations/hatena-draft-photo-retirement-2026-10-12.json": "4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c",
+    "sync-migrations/photo-deletions/5f32b7cac402a67fd52ec373a98ec85393e7dfb3617197884c3d10a8027736e4.json": "c3677a399b7873a12c99b90562437584493734ca14b50193760cead4d2447dbd",
+    "sync-migrations/photo-deletions/f272a6ef45f86f6faf587e18dc49204b2667dbecdc2519ca06cc3751ebcff6e9.json": "4156b7aa5c5e651ec8887652700c26237e2f459a9c5833b65b571ca44859d7d2",
+    "sync_deletions.py": "f0c3a71f7e9fe3b9e3acc8b2a653b1480b5b6e6f51c10beefe4ea7a75f6b6072"
+  }
+}

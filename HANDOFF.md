@@ -1337,3 +1337,11 @@ existing admin knowledge/curated PR allowlists remain untouched.
 - Regression cases cover 1/3/4/10/30/35 entries through the real local HTTP handler and isolated Chromium API fixtures at 1280px/390px. Real generated public HTML uses the same cases plus month/year archives, annual selection, long comments and varied image aspect ratios.
 - Review evidence and Before/After comparisons: [audit/best-shot-unlimited-2026-10-19/REPORT.md](audit/best-shot-unlimited-2026-10-19/REPORT.md).
 - Draft remains pending explicit merge approval. No merge, public regeneration, Pages publication or real selection edits are performed by this task.
+
+## 2026-10-19 観察記録のはてなスター（Draft PR #128）
+
+- 専用ブランチ `feature/record-hatena-stars-20261019`、main `4c6b978aebe3ab3e580025b36f74a158c08acb11` 基点。他PRは変更しない。
+- 最新3記事だけ公式 HatenaStar.js / SiteConfig を使用し、元記事permalinkのスターを表示。行全体リンクを分離。正確な総数とレスポンシブ省略、異常時は元記事リンク。
+- 実APIと公式表示14/0/0一致。Python1002、JS12ファイル、既存Chromium4630、本機能402合格。認証付き完全取得・隔離生成も合格。写真933/Best12/研究66/退役7保持。
+- 証跡・比較画像・CI URL・制約は `audit/record-stars-2026-10-19/REPORT.md`。実スター追加・削除は未実施。ログイン済み本番追加は未確認。公開前の必要確認を同レポートに記載。
+- Draft維持。マージ・本番再生成・Pages公開・実スター操作には別途明示承認が必要。
