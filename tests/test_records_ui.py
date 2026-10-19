@@ -165,3 +165,16 @@ def test_star_is_not_attached_to_guess_or_alternate_uri(url):
     soup = BeautifulSoup(render_record_preview_rows([{"title": "対応付け", "url": url}]), "html.parser")
     assert soup.select_one("a.record-star-permalink")["href"] == url
     assert not soup.select(".record-stars, .record-star-entry")
+
+
+@pytest.mark.parametrize('published, expected', [
+    ('2026-10-15T06:41:55+09:00', '2026年10月15日 公開'),
+    ('2026-10-14T21:41:55Z', '2026年10月15日 公開'),
+    ('invalid', '公開日不明'),
+])
+def test_top_preview_published_date_uses_jst_without_changing_stored_timestamp(published, expected):
+    rows = [{'url': 'https://example.test/article', 'published': published}]
+    before = copy.deepcopy(rows)
+    soup = BeautifulSoup(render_record_preview_rows(rows), 'html.parser')
+    assert soup.select_one('time').get_text() == expected
+    assert rows == before

@@ -66,7 +66,16 @@ for row in records[:3]:
     mime = r.headers['content-type'].split(';')[0]; assert mime.startswith('image/')
     name = hashlib.sha256(url.encode()).hexdigest() + '.img'; (root / name).write_bytes(r.content)
     photos[url] = {'file': name, 'mime': mime}
-summary = {'baseline': BASELINE, 'published_ref': subprocess.check_output(['git', 'rev-parse', 'origin/gh-pages'], text=True).strip(),
+public_url = 'https://charchan123.github.io/hatena-photo-gallery/new-top.html'
+public = requests.get(public_url, timeout=20); public.raise_for_status()
+home = requests.get('https://exsudoporus-ruber.hatenablog.jp/', timeout=20); home.raise_for_status()
+home_soup = BeautifulSoup(home.text, 'html.parser')
+live_site = {'new_top_url': public.url, 'new_top_status': public.status_code,
+             'new_top_csp': public.headers.get('Content-Security-Policy'),
+             'new_top_x_frame_options': public.headers.get('X-Frame-Options'),
+             'home_has_new_top_iframe': any('new-top.html' in (f.get('src') or '') for f in home_soup.select('iframe')),
+             'public_new_top_has_star_script': 'record-stars.js' in public.text}
+summary = {'live_site': live_site, 'baseline': BASELINE, 'published_ref': subprocess.check_output(['git', 'rev-parse', 'origin/gh-pages'], text=True).strip(),
     'records': [{'uri': r['url'], 'title': r['title'], **counts(by_uri[r['url']]), **canonical[r['url']]} for r in records[:3]],
     'photos': photos, 'api_cors_allow_origin': response.headers.get('Access-Control-Allow-Origin'),
     'reference_fetch': 'Public documented entry.json GET; no credentials; total includes repeated names and all colour counts',

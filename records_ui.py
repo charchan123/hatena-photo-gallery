@@ -1,6 +1,6 @@
 """Build and render article-level observation records from portal schema v1."""
 
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import html
 import os
 import shutil
@@ -84,11 +84,11 @@ def build_observation_records(portal_data):
     return result
 
 
-def _format_published(value):
+def _format_published(value, *, tz=timezone.utc):
     timestamp = _published_timestamp(value)
     if timestamp is None:
         return "公開日不明"
-    published = datetime.fromtimestamp(timestamp, timezone.utc)
+    published = datetime.fromtimestamp(timestamp, tz)
     return f"{published.year}年{published.month}月{published.day}日 公開"
 
 
@@ -120,7 +120,7 @@ def render_record_preview_rows(records, limit=3, *, now=None):
     for index, record in enumerate(records[:limit]):
         title = html.escape(str(record.get("title") or "無題"))
         badge = render_record_notice(record, now=now)
-        date = html.escape(_format_published(record.get("published")))
+        date = html.escape(_format_published(record.get("published"), tz=timezone(timedelta(hours=9))))
         excerpt = html.escape(str(record.get("excerpt") or "").strip())
         cover = html.escape(str(record.get("cover_src") or ""), quote=True)
         image = f'<img src="{cover}?width=500" alt="" loading="lazy">' if cover else ""

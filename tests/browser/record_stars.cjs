@@ -36,6 +36,11 @@ const server=http.createServer((req,res)=>{
    const req=route.request(),u=new URL(req.url());
    if(req.method()!=='GET'||/(?:star\.add|star\.delete|\/stars?\/(?:add|delete|remove))/.test(u.pathname)){writes.push({method:req.method(),host:u.host,path:u.pathname});return route.abort()}
    if(u.hostname==='127.0.0.1')return route.continue();
+   if(u.origin==='https://charchan123.github.io'&&u.pathname.startsWith('/hatena-photo-gallery/')){
+    const relative=u.pathname.slice('/hatena-photo-gallery/'.length),file=path.resolve(root,'after',relative);
+    if(!file.startsWith(path.join(root,'after')+path.sep)||!fs.existsSync(file))return route.abort();
+    return route.fulfill({body:fs.readFileSync(file),contentType:({'.html':'text/html','.js':'text/javascript','.css':'text/css','.webp':'image/webp','.png':'image/png'})[path.extname(file)]||'application/octet-stream'});
+   }
    if(u.href==='https://s.hatena.ne.jp/js/HatenaStar.js'&&mode!=='live')return mode==='error'?route.abort():route.fulfill({body:mockSource(mode),contentType:'text/javascript'});
    if(fixture.photos[u.href]){const p=fixture.photos[u.href];return route.fulfill({body:fs.readFileSync(path.join(root,p.file)),contentType:p.mime});}
    if(u.hostname==='s.hatena.ne.jp'){
@@ -69,7 +74,7 @@ const server=http.createServer((req,res)=>{
    const row=p.locator('.record-star-entry').nth(i),f=fixture.records[i];check(await row.locator('a.record-star-permalink').getAttribute('href'),f.uri);
    const iframe=row.locator('iframe');check(new URL(await iframe.getAttribute('src')).searchParams.get('url'),f.uri);
    const native=await row.locator('[data-hatena-star]').evaluate(e=>Array.from(e.shadowRoot.children).filter(c=>!c.matches('style,[part~=star-button-container]')).map(c=>({kind:c.tagName==='A'?'star':c.tagName==='BUTTON'?'count':'unknown',count:c.tagName==='BUTTON'?Number(c.textContent):1,color:c.querySelector('img')?.title})));
-   check(native.reduce((n,e)=>n+e.count,0),f.total);
+   check(native.reduce((n,e)=>n+e.count,0),f.total);check(await row.locator('.record-stars-ellipsis').isVisible(),await row.locator('[data-record-star-hidden]').count()>0);
    if(f.total>0){check(await row.locator('.record-stars-total').innerText(),'（'+f.total+'）');liveTemplate=await row.locator('[data-hatena-star]').evaluate(e=>e.shadowRoot.innerHTML);}
    else check(await row.locator('.record-stars-total').innerText(),'スター'); // Do not invent an empty-DOM count.
   }
@@ -79,6 +84,22 @@ const server=http.createServer((req,res)=>{
   if(width===390)for(const frame of p.frames().filter(f=>f.url().includes('/add_star_iframe.html')))nativeButtons.push({uri:new URL(frame.url()).searchParams.get('url'),controls:await frame.locator('button,a').evaluateAll(es=>es.map(e=>({tag:e.tagName,label:e.getAttribute('aria-label')||e.getAttribute('title')||e.textContent})).slice(0,8))});
   await live.close();
  }
+ // A real Pages origin and a cross-origin blog embed are simulated by browser-only fulfilment.
+ // Real Star endpoints remain read-only; third-party cookies are explicitly restricted when CDP supports it.
+ const embedContext=await context('live',{viewport:{width:390,height:1000},hasTouch:true,isMobile:true}),embed=await embedContext.newPage();
+ let cookieRestriction=false;
+ try{const cdp=await embedContext.newCDPSession(embed);await cdp.send('Network.enable');await cdp.send('Network.setCookieControls',{enableThirdPartyCookieRestriction:true,disableThirdPartyCookieMetadata:true,disableThirdPartyCookieHeuristics:true});cookieRestriction=true;}catch{}
+ const publicURL=fixture.live_site.new_top_url;
+ await embed.goto(publicURL,{waitUntil:'domcontentloaded'});await embed.waitForFunction(n=>document.querySelector('.record-stars')?.dataset.total===String(n),fixture.records[0].total);await bounds(embed);
+ const parentURL='https://exsudoporus-ruber.hatenablog.jp/__isolated_record_star_preview__';
+ await embed.route(parentURL,r=>r.fulfill({contentType:'text/html',body:'<!doctype html><meta name="viewport" content="width=device-width"><style>body{margin:0}iframe{width:100%;height:1200px;border:0}</style><script>window.Hatena={Star:{SiteConfig:{parentUnchanged:true}}}</script><iframe title="隔離した新トップページ" src="'+publicURL+'"></iframe>'}));
+ await embed.goto(parentURL,{waitUntil:'domcontentloaded'});await embed.locator('iframe').waitFor({state:'attached'});
+ let pageFrame;for(let i=0;i<100;i++){pageFrame=embed.frames().find(f=>f.url()===publicURL);if(pageFrame)break;await embed.waitForTimeout(50)}
+ assert.ok(pageFrame);await pageFrame.waitForFunction(n=>document.querySelector('.record-stars')?.dataset.total===String(n),fixture.records[0].total);
+ check(await embed.evaluate(()=>window.Hatena.Star.SiteConfig),{parentUnchanged:true});
+ const embeddedURIs=await pageFrame.locator('.record-star-permalink').evaluateAll(es=>es.map(e=>e.href));check(embeddedURIs,fixture.records.map(r=>r.uri));
+ check(await pageFrame.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+ metrics.push({phase:'Pages-origin-and-cross-origin-embed',width:390,third_party_cookies_restricted:cookieRestriction,uris:embeddedURIs,read_only:true});await embedContext.close();
  for(const mode of ['zero','few','many','collapsed','anonymous','unknown','error']){
   const c=await context(mode),q=await c.newPage();q.on('pageerror',e=>errors.push(e.message));
   for(const width of [1280,768,390,320,1024,640]){
