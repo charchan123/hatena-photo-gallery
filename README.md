@@ -10,8 +10,17 @@
 
 Windowsでは `admin/start_admin.bat` をダブルクリックすると、標準ライブラリだけで
 `http://127.0.0.1:8765/` に「きのこブログ管理室」が起動します。公開サイトには生成・配布
-されません。PR作成には別途 `gh auth login` が必要です。変更はメモリ上の「変更予定」として
-保持され、検証後に一時git worktreeからbranch・commit・push・PRを作成します。
+されません。GitHub CLIを一度インストールし、`gh auth login` と
+`gh auth setup-git` を初回だけ実行すると、以降は認証済み環境からPRを作成できます。
+CLIをあとからインストールした場合はWindows標準インストール先も検出します。
+管理室でのBest Shot・通知・研究室の変更予定は操作のたびに
+`admin/local-state/admin-draft.json` へ原子的に保存され、再起動後に自動復元します。
+保存先はGitの追跡対象外で、サイト・外部サーバー・GitHubには自動送信しません。
+保存ファイルが破損した場合や、未公開の編集を保持したままmainの元データが
+変わった場合は、下書きを削除・上書きせず起動を停止します。
+元データに戻す前にファイルをバックアップして差分を確認してください。
+管理室のローカル下書きは、データの検証後に一時git worktreeから
+branch・commit・push・PRを作成します。自動マージ・公開は行いません。
 
 ## Admin Console v2: Knowledge Expansion
 
