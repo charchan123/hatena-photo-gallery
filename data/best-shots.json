@@ -4,8 +4,8 @@
     {
       "selection_id": "best-2025-10-benitengutake-02",
       "observation_id": "obs-a8b693fc53149d44b115b8bdcb259b815f9378f4b455d1ff167668da434a5b04",
-      "comment": "ブログのトップページにも選ばれた最高の1枚",
-      "annual_comment": "記念すべき初の年間ベストショットはやはりこの1枚",
+      "comment": "新規開拓をしたところ、富士山では貴重な赤色がメインの傘をしたこの個体を発見。これだから新規開拓はやめられない。",
+      "annual_comment": "新規開拓をしたところ、富士山では貴重な赤色がメインの傘をしたこの個体を発見。これだから新規開拓はやめられない。",
       "order": 1,
       "location": "富士山(山梨県)"
     },
@@ -96,6 +96,30 @@
       "order": 3,
       "annual_comment": null,
       "location": "静岡県掛川市"
+    },
+    {
+      "selection_id": "best-1792415463223",
+      "observation_id": "obs-9090bfe45a156cb66349f960d3ae80019c7b015aa092aab9bc1da151e1836242",
+      "comment": "非常に綺麗な個体だが、傘は真っ白で残念ながら白飛びしてしまった。",
+      "order": 4
+    },
+    {
+      "selection_id": "best-1792415592833",
+      "observation_id": "obs-f544815e7d4dc32c845dd4f3769a8158c72d80245f73ef0fde8d9398887fdd66",
+      "comment": "この日マツタケのポイントを訪れたが、目的のマツタケは無く、ファミリーの本種が佇んでいた。",
+      "order": 4
+    },
+    {
+      "selection_id": "best-1792415650003",
+      "observation_id": "obs-d47753a92cf2efe6613d47132c58e4fe18fcec28defd469f2ac46689199d8794",
+      "comment": "写真で伝わるかは分からないが、かなりの大物だった。",
+      "order": 5
+    },
+    {
+      "selection_id": "best-1792415826968",
+      "observation_id": "obs-04009ef57d37ee2901feec5cfabcd147e91e13406b4534b14524837fc3d172d8",
+      "comment": "数日後の姿。",
+      "order": 6
     }
   ],
   "annual_best": {
