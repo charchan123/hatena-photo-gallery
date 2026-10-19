@@ -25,13 +25,20 @@ before = types.ModuleType('before_best_shot')
 before.__file__ = current.__file__
 exec(compile(subprocess.check_output(['git', 'show', f'{BASELINE}:best_shot_ui.py']).decode(), current.__file__, 'exec'), before.__dict__)
 portal = json.loads(subprocess.check_output(['git', 'show', 'origin/gh-pages:portal-data.json']))
-config = json.loads(Path('data/best-shots.json').read_text())
-old_model = before.build_best_shot_model(config, portal)
-new_model = current.build_best_shot_model(config, portal)
-assert old_model == new_model
-assert before.render_best_shot_page(old_model) == current.render_best_shot_page(new_model)
-for old, new in zip(old_model['years'], new_model['years']):
+# The historical renderer permits only 1–3 selections per month. Compare
+# against the same historical configuration, not the admin's newer selections.
+baseline_config = json.loads(subprocess.check_output(['git', 'show', f'{BASELINE}:data/best-shots.json']))
+old_model = before.build_best_shot_model(baseline_config, portal)
+baseline_model = current.build_best_shot_model(baseline_config, portal)
+assert old_model == baseline_model
+assert before.render_best_shot_page(old_model) == current.render_best_shot_page(baseline_model)
+for old, new in zip(old_model['years'], baseline_model['years']):
     assert before.render_best_shot_year_page(old) == current.render_best_shot_year_page(new)
+
+# Independently validate the actual PR configuration with the current code.
+config = json.loads(Path('data/best-shots.json').read_text())
+new_model = current.build_best_shot_model(config, portal)
+assert new_model['entry_count'] == len(config['entries'])
 
 
 def site(module, name, cfg, observations):
@@ -45,8 +52,9 @@ def site(module, name, cfg, observations):
     return module.generate_best_shot_pages(observations, path, output, Path('assets'))
 
 
-site(before, 'before-public', config, portal)
-site(current, 'after-public', config, portal)
+site(before, 'before-public', baseline_config, portal)
+site(current, 'after-public', baseline_config, portal)
+site(current, 'current-public', config, portal)
 photo_urls = sorted({r['src'] for y in new_model['years'] for m in y['months'] for r in m['entries']})
 
 
@@ -91,7 +99,8 @@ for count in [1, 3, 4, 10, 30, 35]:
 summary = {'baseline': BASELINE, 'published_ref': subprocess.check_output(['git', 'rev-parse', 'origin/gh-pages'], text=True).strip(),
            'published_photos': len(portal['observations']), 'best_shots': len(config['entries']),
            'selection_ids': [e['selection_id'] for e in config['entries']], 'annual_best': config['annual_best'],
+           'selected_years': [y['year'] for y in new_model['years']],
            'config_sha256': hashlib.sha256(Path('data/best-shots.json').read_bytes()).hexdigest(),
            'published_model_identical': True, 'published_html_identical': True, 'cached_public_thumbnails': len(photos), 'cases': cases}
 (root / 'summary.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2))
-print('PASS: existing public Best Shot model/HTML unchanged; isolated month cases 1/3/4/10/30/35 generated')
+print('PASS: historical Best Shot model/HTML unchanged; current selections and isolated month cases 1/3/4/10/30/35 generated')
