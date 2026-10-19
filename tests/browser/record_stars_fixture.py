@@ -2,6 +2,7 @@
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 import hashlib
+import html
 import json
 import subprocess
 import sys
@@ -14,7 +15,7 @@ from bs4 import BeautifulSoup
 import main
 from records_ui import build_observation_records
 
-BASELINE = '4c6b978aebe3ab3e580025b36f74a158c08acb11'
+BASELINE = '978ec61c34420ddcb01dfb3d4a6315ea7c03548c'
 root = Path(sys.argv[1]).resolve()
 root.mkdir(parents=True, exist_ok=True)
 (root / 'screenshots').mkdir(exist_ok=True)
@@ -37,7 +38,7 @@ def counts(entry):
     for color in entry.get('colored_stars', []):
         assert color['color'] not in colors
         colors[color['color']] = amount(color['stars'])
-    return {'colors': colors, 'total': sum(colors.values())}
+    return {'colors': colors, 'total': sum(colors.values()), 'stars': [dict(name=s['name'], color=color, count=s.get('count', 1)) for color, stars in [('yellow', entry['stars']), *[(c['color'], c['stars']) for c in entry.get('colored_stars', [])]] for s in stars]}
 
 canonical = {}
 def fetch_article(url):
@@ -54,11 +55,13 @@ exec(compile(subprocess.check_output(['git', 'show', BASELINE + ':records_ui.py'
 before_main = types.ModuleType('before_main'); before_main.__file__ = main.__file__; sys.modules['before_main'] = before_main
 exec(compile(subprocess.check_output(['git', 'show', BASELINE + ':main.py']), main.__file__, 'exec'), before_main.__dict__)
 before_main.render_record_preview_rows = before_records.render_record_preview_rows
+best_count = len(json.loads(Path('data/best-shots.json').read_text())['entries'])
+research_count = 66
 for variant, module in [('before', before_main), ('after', main)]:
     output = root / variant; output.mkdir(exist_ok=True)
     module.OUTPUT_DIR = str(output)
     module.generate_new_top({r['gallery_name']: [] for r in portal['observations']}, {},
-        observation_records=records, research_summary={'case_count': 66}, best_shot_summary={'entry_count': 12})
+        observation_records=records, research_summary={'case_count': research_count}, best_shot_summary={'entry_count': best_count})
 photos = {}
 for row in records[:3]:
     url = row['cover_src'] + '?width=500'
@@ -82,3 +85,10 @@ summary = {'live_site': live_site, 'baseline': BASELINE, 'published_ref': subpro
     'production_photos': len(portal['observations']), 'data_hashes': {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(Path('data').glob('*.json'))}}
 (root / 'fixture.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2))
 print('PASS: isolated original-permalink pages, canonical article URLs, public API counts and thumbnail GET cache')
+
+# Exact same public, declarative profile-icon interface observed in the original blog HTML.
+probe = '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Isolated native profile-icon probe</title><script>window.Hatena={Star:{SiteConfig:{entryNodes:{}}}}</script>'
+for row in records[:3]:
+    probe += ('<article><h2>' + html.escape(row['title']) + '</h2><div class="native-probe" data-hatena-star-container data-hatena-star-url="' + html.escape(row['url'], quote=True) + '" data-hatena-star-title="' + html.escape(row['title'], quote=True) + '" data-hatena-star-variant="profile-icon" data-hatena-star-profile-url-template="https://blog.hatena.ne.jp/{username}/"></div></article>')
+probe += '<script src="https://s.hatena.ne.jp/js/widget/star.js" defer></script><script src="https://s.hatena.ne.jp/js/HatenaStar.js" defer></script>'
+(root / 'profile-probe.html').write_text(probe)

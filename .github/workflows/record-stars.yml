@@ -24,6 +24,10 @@ jobs:
         run: |
           pip install -r requirements.txt
           python tests/browser/record_stars_fixture.py /tmp/record-stars
+      - name: Read-only native profile-icon feasibility
+        env:
+          PLAYWRIGHT_MODULE_PATH: /tmp/record-star-browser/node_modules/playwright
+        run: node tests/browser/record_stars_profile_probe.cjs /tmp/record-stars
       - name: Read-only native widget and isolated interaction regressions
         env:
           PLAYWRIGHT_MODULE_PATH: /tmp/record-star-browser/node_modules/playwright
@@ -37,4 +41,5 @@ jobs:
             /tmp/record-stars/screenshots/
             /tmp/record-stars/fixture.json
             /tmp/record-stars/result.json
+            /tmp/record-stars/profile-probe-result.json
           retention-days: 30
