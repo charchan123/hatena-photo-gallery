@@ -13,7 +13,7 @@ function mockSource(mode){return `(${function(mode,icons){
    const control=document.createElement('span');control.setAttribute('part','star-button-container');control.style.cssText='display:inline-flex;position:relative;width:32px;height:16px;margin:0 -4px';const frame=document.createElement('iframe');frame.src='/mock-control?uri='+encodeURIComponent(uri)+'&anonymous='+(mode==='anonymous');frame.style.cssText='border:0;width:32px;height:24px';control.append(frame);s.append(control);
    const count={zero:0,few:5,many:130,collapsed:4,anonymous:3,unknown:0}[mode]??1;
    for(let i=0;i<count;i++)s.append(makeStar(['green','red','blue','purple','yellow'][i%5]));
-   if(mode==='collapsed'){const b=document.createElement('button');b.type='button';b.textContent='126';s.append(b);}
+   if(mode==='collapsed'){const b=document.createElement('button');b.type='button';b.textContent='126';b.style.color='#ffb400';s.append(b);}
    if(mode==='unknown')s.append(document.createElement('aside'));
    window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==frame.contentWindow||e.data?.type!=='ISOLATED_ADD')return;s.append(makeStar('yellow'))});
   }
@@ -73,8 +73,10 @@ const server=http.createServer((req,res)=>{
   for(let i=0;i<fixture.records.length;i++){
    const row=p.locator('.record-star-entry').nth(i),f=fixture.records[i];check(await row.locator('a.record-star-permalink').getAttribute('href'),f.uri);
    const iframe=row.locator('iframe');check(new URL(await iframe.getAttribute('src')).searchParams.get('url'),f.uri);
-   const native=await row.locator('[data-hatena-star]').evaluate(e=>Array.from(e.shadowRoot.children).filter(c=>!c.matches('style,[part~=star-button-container]')).map(c=>({kind:c.tagName==='A'?'star':c.tagName==='BUTTON'?'count':'unknown',count:c.tagName==='BUTTON'?Number(c.textContent):1,color:c.querySelector('img')?.title})));
-   check(native.reduce((n,e)=>n+e.count,0),f.total);check(await row.locator('.record-stars-ellipsis').isVisible(),await row.locator('[data-record-star-hidden]').count()>0);
+   const native=await row.locator('[data-hatena-star]').evaluate(e=>Array.from(e.shadowRoot.children).filter(c=>!c.matches('style,[part~=star-button-container]')).map(c=>({kind:c.tagName==='A'?'star':c.tagName==='BUTTON'?'count':'unknown',count:c.tagName==='BUTTON'?Number(c.textContent):1,color:c.querySelector('img')?.title||getComputedStyle(c).color})));
+   check(native.reduce((n,e)=>n+e.count,0),f.total);
+   const colors={};for(const item of native){const color=/★\(([^)]+)\)/.exec(item.color||'')?.[1]||({'rgb(255, 180, 0)':'yellow','rgb(0, 211, 0)':'green','rgb(255, 0, 62)':'red','rgb(0, 161, 222)':'blue','rgb(180, 0, 192)':'purple'})[item.color];assert.ok(color);colors[color]=(colors[color]||0)+item.count;}
+   check(colors,Object.fromEntries(Object.entries(f.colors).filter(([,n])=>n>0)));check(await row.locator('.record-stars-ellipsis').isVisible(),await row.locator('[data-record-star-hidden]').count()>0);
    if(f.total>0){check(await row.locator('.record-stars-total').innerText(),'（'+f.total+'）');liveTemplate=await row.locator('[data-hatena-star]').evaluate(e=>e.shadowRoot.innerHTML);}
    else check(await row.locator('.record-stars-total').innerText(),'スター'); // Do not invent an empty-DOM count.
   }
@@ -122,6 +124,7 @@ const server=http.createServer((req,res)=>{
    // The distinct title link remains keyboard-operable; fulfil only this navigation.
    await q.route(fixture.records[0].uri,r=>r.fulfill({body:'<!doctype html><title>Isolated article destination</title>',contentType:'text/html'}));
    await row.locator('a.record-star-permalink').press('Enter');await q.waitForURL(fixture.records[0].uri);check(q.url(),fixture.records[0].uri);
+   await q.goto(base+'/after/new-top.html');await q.locator('.record-preview-thumb').first().click();await q.waitForURL(fixture.records[0].uri);check(q.url(),fixture.records[0].uri);
   }
   await c.close();
  }
