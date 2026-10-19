@@ -1,8 +1,10 @@
 """127.0.0.1-only HTTP server for きのこブログ管理室."""
 
 import argparse
+from copy import deepcopy
 from datetime import datetime, timezone
 import json
+import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 import secrets
@@ -15,6 +17,7 @@ from best_shot_ui import BestShotConfigError
 from research_ui import build_research_cases
 from research_identifications import split_research_cases
 from .core import ChangeSet, DATA, ROOT, notice_window, read_json
+from .draft_store import DraftStore
 from .git_workflow import (GitWorkflowError, create_pull_request,
                            create_knowledge_pull_request, repository_status, run)
 from .knowledge import (preview_promotion, reset_review_state,
@@ -52,7 +55,9 @@ class AdminServer(ThreadingHTTPServer):
             raise ValueError("Admin Console may bind only to 127.0.0.1")
         super().__init__(address, handler)
         self.portal, self.portal_source = load_portal_data()
-        self.draft = ChangeSet(self.portal)
+        self.draft_store = DraftStore()
+        self.draft = self.draft_store.recover(ChangeSet(self.portal))
+        self.draft_lock = threading.RLock()
         self.sync_review = SyncReview()
         self.deletion_review = DeletionReview()
         self.csrf_token = secrets.token_urlsafe(32)
@@ -114,6 +119,8 @@ class Handler(BaseHTTPRequestHandler):
             knowledge = scan_knowledge_batches(origin_main_sha=repo.get("origin_main_sha"))
             state = {"csrf": self.server.csrf_token, "portal_source": self.server.portal_source,
                      "best_shots": draft.best_shots, "notices": [{**e, **notice_window(e)} for e in draft.notices["events"]],
+                     "draft_saved": self.server.draft_store.saved,
+                     "draft_restored": self.server.draft_store.restored,
                      "cases": open_cases, "identified": identified, "observations": observations,
                      "master": draft.master.get("entries", []), "preview": draft.preview(), "repo": repo,
                      "production_mode": draft.portal.get("production_mode", "取得できませんでした"),
@@ -190,7 +197,19 @@ class Handler(BaseHTTPRequestHandler):
             elif self.path == "/api/knowledge/reset": result = reset_review_state(body["batch_id"])
             elif self.path == "/api/knowledge/preview": result = preview_promotion(body["batch_id"], origin_main_sha=repository_status().get("origin_main_sha"))
             elif self.path == "/api/knowledge/pr": result = create_knowledge_pull_request(body["batch_id"])
-            elif self.path in actions: result = actions[self.path]() or {"ok": True}
+            elif self.path in actions:
+                # A single durable transaction across compound Best Shot / notice
+                # operations. A failed disk write must not acknowledge the edit.
+                with self.server.draft_lock:
+                    original = deepcopy(draft.files())
+                    try:
+                        result = actions[self.path]() or {"ok": True}
+                        self.server.draft_store.save(draft)
+                    except Exception:
+                        draft.best_shots = original["data/best-shots.json"]
+                        draft.notices = original["data/update-notices.json"]
+                        draft.identifications = original["data/research-identifications.json"]
+                        raise
             else: return self._json({"error": "not found"}, 404)
             return self._json(result)
         except Exception as error:
