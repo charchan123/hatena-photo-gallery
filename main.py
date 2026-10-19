@@ -2653,6 +2653,7 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
 <script src="assets/record-stars.js" defer></script>
 <link rel="stylesheet" href="assets/update-notices.css">
 <script src="assets/update-notices.js" defer></script>
+<script src="https://s.hatena.ne.jp/js/widget/star.js" defer></script>
 <script src="https://s.hatena.ne.jp/js/HatenaStar.js" defer></script>
 </head><body class="portal-index">
 <main class="portal-shell">

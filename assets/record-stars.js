@@ -22,6 +22,16 @@
  root.Hatena.Star.SiteConfig={entryNodes:{'article.record-star-entry':{
   uri:'a.record-star-permalink',title:'strong.record-preview-title',container:'div.record-stars-native'
  }}};
+ // The blog's official renderer consumes these declarative attributes. Its DOMContentLoaded
+ // registration runs before the generic SiteConfig renderer, which skips an existing native host.
+ for(const row of doc.querySelectorAll('article.record-star-entry')){
+  const mount=row.querySelector('.record-stars-native'),permalink=row.querySelector('a.record-star-permalink');
+  if(!mount||!permalink)continue;
+  mount.dataset.hatenaStarContainer='';mount.dataset.hatenaStarUrl=permalink.href;
+  mount.dataset.hatenaStarTitle=row.querySelector('.record-preview-title').textContent;
+  mount.dataset.hatenaStarVariant='profile-icon';
+  mount.dataset.hatenaStarProfileUrlTemplate='https://blog.hatena.ne.jp/{username}/';
+ }
  const shadowCSS=':host{display:inline-block;white-space:nowrap;max-width:100%;vertical-align:middle}'+
   ':host>[data-record-star-hidden]{display:none!important}'+
   ':host>a,:host>button{min-width:20px;min-height:28px;justify-content:center}'+
