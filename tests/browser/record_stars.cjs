@@ -1,0 +1,15 @@
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE_PATH||'playwright');
+const http=require('http'),fs=require('fs'),path=require('path'),assert=require('assert/strict');
+const out=path.resolve(process.argv[2]||'/tmp/record-stars');fs.mkdirSync(out,{recursive:true});
+const urls=['https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155','https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503','https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327'];
+const html=`<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width"><script>window.Hatena={Star:{SiteConfig:{entryNodes:{'article.record':{uri:'a.permalink',title:'a.permalink',container:'div.stars'}}}}};</script><script src="https://s.hatena.ne.jp/js/HatenaStar.js" defer></script>${urls.map(u=>`<article class=record><a class=permalink href="${u}">${u}</a><div class=stars></div></article>`).join('')}`;
+const server=http.createServer((req,res)=>{res.setHeader('Content-Type','text/html');res.end(html)});
+(async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const proxy=process.env.HTTPS_PROXY?{server:process.env.HTTPS_PROXY}:undefined;
+ const b=await chromium.launch({headless:true,proxy,args:['--no-sandbox']});const c=await b.newContext();const p=await c.newPage();const network=[],blocked=[],errors=[];
+ await p.route('**/*',async r=>{const u=new URL(r.request().url()),method=r.request().method();if(method!=='GET'||(/(?:star\.add|star\.delete|\/stars?\/(?:add|delete|remove))/.test(u.pathname))){blocked.push({host:u.host,path:u.pathname,method});return r.abort()}return r.continue()});
+ p.on('response',r=>{const u=new URL(r.url());if(u.hostname.includes('hatena'))network.push({host:u.host,path:u.pathname,status:r.status()})});p.on('pageerror',e=>errors.push(e.message));
+ await p.goto('http://127.0.0.1:'+server.address().port,{waitUntil:'domcontentloaded',timeout:30000});
+ await p.waitForTimeout(15000);
+ const state=await p.locator('.stars').evaluateAll(es=>es.map(e=>({html:e.innerHTML,shadow:e.querySelector('[data-hatena-star]')?.shadowRoot?.innerHTML})));
+ fs.writeFileSync(path.join(out,'feasibility-result.json'),JSON.stringify({state,network,blocked,errors},null,2));console.log(JSON.stringify({native_hosts:state.filter(x=>x.shadow).length,network,blocked,errors},null,2));assert.equal(state.filter(x=>x.shadow).length,3);assert.equal(blocked.length,0);await b.close();server.close();
+})().catch(e=>{console.error(e);server.close();process.exit(1)});
