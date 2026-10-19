@@ -1,25 +1,25 @@
-/* Small field-note stamps shared by the portal and observation archive. */
+/* Compact pills shared by the portal and observation archive. */
 .update-badge {
   display:inline-flex;
   flex:0 0 auto;
   align-items:center;
   justify-content:center;
   box-sizing:border-box;
-  min-height:21px;
-  padding:1px 8px;
-  border:1px solid #e0bb53;
-  border-radius:7px;
-  background:#ffe293;
-  color:#3e4524;
-  font:800 10px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  letter-spacing:.035em;
+  min-height:22px;
+  padding:2px 9px;
+  border:1px solid #ead59c;
+  border-radius:999px;
+  background:#fff0c2;
+  color:#68491e;
+  font:700 10.5px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  letter-spacing:.02em;
   white-space:nowrap;
   text-shadow:none;
-  transform:rotate(-1.5deg);
+  transform:none;
   vertical-align:middle;
 }
 .update-badge--update { background:#e0efbc; border-color:#b0ca7d; color:#294c2f; }
-.update-badge--identified { background:#e9def8; border-color:#c6ade4; color:#523477; }
+.update-badge--identified { background:#eee5fa; border-color:#d8c6ee; color:#603b87; }
 /* A quiet, periodic sweep: the badge itself never blinks or changes size. */
 .update-badge--new { position:relative; overflow:hidden; isolation:isolate; }
 .update-badge--new::after {
