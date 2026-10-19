@@ -8,6 +8,7 @@ import urllib.request
 import pytest
 
 from admin.core import ChangeSet
+from admin.draft_store import DraftStore
 from admin.server import AdminServer, Handler
 from best_shot_ui import BestShotConfigError, validate_best_shot_config
 
@@ -28,6 +29,7 @@ def draft_fixture():
     draft.portal = {"version": 1, "observations": [observation(i) for i in range(1, 6)] + [observation(6, None), observation(7, "2025-10-01")]}
     draft.best_shots = {"version": 1, "entries": [], "annual_best": {}}
     draft.notices = {"version": 1, "events": []}
+    draft.identifications = {"version": 1, "identifications": []}
     return draft
 
 
@@ -36,6 +38,7 @@ def api(monkeypatch, tmp_path):
     draft = draft_fixture()
     monkeypatch.setattr("admin.server.load_portal_data", lambda: (draft.portal, "isolated fixture"))
     monkeypatch.setattr("admin.server.ChangeSet", lambda portal: draft)
+    monkeypatch.setattr("admin.server.DraftStore", lambda: DraftStore(tmp_path))
     monkeypatch.setattr("admin.server.SyncReview", lambda: object())
     server = AdminServer(("127.0.0.1", 0), Handler)
     thread = threading.Thread(target=server.serve_forever, daemon=True)
@@ -153,3 +156,13 @@ def test_api_many_monthly_adds_edits_replacements_deletes_and_annual(api, count)
         assert draft.best_shots["annual_best"] == {"2026": "best-1"}
     assert post("/api/best-shot/delete", {"selection_id": "best-1"})[0] == 200
     assert draft.best_shots["annual_best"] == {}
+
+def test_failed_atomic_save_rolls_back_compound_best_shot_and_notice(api, monkeypatch):
+    post, draft = api
+    before = deepcopy(draft.files())
+    monkeypatch.setattr("admin.draft_store.os.replace",
+                        lambda *args: (_ for _ in ()).throw(OSError("simulated disk failure")))
+    code, message = post("/api/best-shot/add", {"entry": entry(1), "add_notice": True})
+    assert code == 400
+    assert "error" in message
+    assert draft.files() == before
