@@ -77,7 +77,7 @@ def repository_status():
 def create_pull_request(files, validation, operation="changes"):
     """Apply reviewed JSON in an isolated origin/main worktree and open a PR."""
     if not repository_status()["gh_authenticated"]:
-        raise GitWorkflowError("GitHub CLI未検出または認証切れです。初回のみgh auth loginを実行してください")
+        raise GitWorkflowError("GitHub認証が必要です（CLI未検出または認証切れ。初回のみ gh auth login）")
     run(["git", "fetch", "origin", "main"])
     branch = safe_branch_name(operation)
     directory = Path(tempfile.mkdtemp(prefix="kinoko-admin-"))
@@ -138,7 +138,7 @@ def create_knowledge_pull_request(batch_id):
     from feature_overlay import reconstruct_feature_production_state, validate_feature_production_state
     from .knowledge import load_batch, materialize_promotion_package, _dump, _hash
     if not repository_status()["gh_authenticated"]:
-        raise GitWorkflowError("GitHub CLI未検出または認証切れです。初回のみgh auth loginを実行してください")
+        raise GitWorkflowError("GitHub認証が必要です（CLI未検出または認証切れ。初回のみ gh auth login）")
     if run(["git", "status", "--porcelain"]).stdout.strip():
         raise GitWorkflowError("管理画面の実行checkoutに未保存の変更があります")
     run(["git", "fetch", "origin", "main"])
