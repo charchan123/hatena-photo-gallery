@@ -53,6 +53,7 @@ jobs:
             /tmp/notice-layout/fixture.json
           retention-days: 30
       - name: Best Shot public grids with unlimited monthly entries
+        if: ${{ !cancelled() }}
         timeout-minutes: 4
         env:
           PLAYWRIGHT_MODULE_PATH: /tmp/kinoko-browser/node_modules/playwright

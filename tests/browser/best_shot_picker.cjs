@@ -15,11 +15,13 @@ const records=[
 ].map(([observation_id,gallery_name,date])=>({observation_id,gallery_name,src:'https://photos.example.test/'+observation_id+'.svg',capture:{date},article:{title:'観察記事 '+observation_id,article_id:'article-'+observation_id}}));
 const initial=[{selection_id:'best-1',observation_id:'obs-1',comment:'残すコメント',order:1,annual_comment:'年間の記録',location:'静岡'},
  {selection_id:'best-3',observation_id:'obs-3',comment:'もう一枚',order:3}];
+let activeBrowser;
 const fixtures=()=>({csrf:'fixture-only',observations:records,best_shots:{version:1,entries:structuredClone(initial),annual_best:{'2026':'best-1'}},
  counts:{best_shots:2,annual_years:1,research_open:0,research_identified:0,active_notices:0,master:0,sources:0,knowledge_batches:0},
  cases:[],identified:[],notices:[],master:[],knowledge:[],preview:{},repo:{gh_authenticated:false},feature_facets:{},portal_source:'isolated fixture',portal_observation_count:records.length});
 (async()=>{
  const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_EXECUTABLE_PATH,args:['--no-sandbox',...(process.env.CHROMIUM_SINGLE_PROCESS?['--single-process','--no-zygote','--disable-gpu']:[])]});
+ activeBrowser=browser;
  let assertions=0;
  const check=(actual,expected)=>{assert.deepEqual(actual,expected);assertions++};
  async function setup(options={},before=false){
@@ -148,6 +150,7 @@ const fixtures=()=>({csrf:'fixture-only',observations:records,best_shots:{versio
  for(const width of [1280,390]){
   const x=await setup({viewport:{width,height:1000},hasTouch:width===390,isMobile:width===390}),q=x.page;
   for(const count of [1,3,4,10,30,35]){
+   console.log('Best Shot monthly operations',JSON.stringify({width,count}));
    x.app.best_shots.entries=Array.from({length:count-1},(_,i)=>({selection_id:'fixture-'+i,observation_id:'bulk-'+i,comment:'保存済み '+i,order:i+1,annual_comment:'年間メモ',location:'静岡'}));x.app.best_shots.annual_best={};x.app.counts.best_shots=count-1;
    await q.reload();await q.click('[data-page=best]');await open(q);await q.fill('#photo-search','キノコ写真 '+(count-1));await select(q,'bulk-'+(count-1));check(await q.inputValue('[name=order]'),String(count));
    await q.fill('[name=comment]','月 '+count+' 枚のテスト');
@@ -171,4 +174,10 @@ const fixtures=()=>({csrf:'fixture-only',observations:records,best_shots:{versio
  }
  await browser.close();
  console.log(`Best Shot real Chromium browser: ${assertions} assertions passed (desktop mouse/keyboard, IME event simulation, touch emulation; isolated API/image fixtures)`);
-})().catch(e=>{console.error(e);process.exit(1)});
+})().catch(async e=>{
+ console.error(e);
+ if(activeBrowser)for(const context of activeBrowser.contexts())for(const page of context.pages()){
+  try{console.error('Failure geometry',await page.evaluate(()=>Object.fromEntries(['#editor','#editor form','#dialog-fields','.order-field','#editor menu','#dialog-save'].map(s=>{const e=document.querySelector(s),r=e.getBoundingClientRect();return [s,{x:r.x,y:r.y,width:r.width,height:r.height,scrollTop:e.scrollTop,scrollHeight:e.scrollHeight,hit:document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)?.outerHTML.slice(0,200)}]}))));if(out)await page.screenshot({path:path.join(out,'failure-'+page.viewportSize().width+'.png')});}catch{}
+ }
+ if(activeBrowser)await activeBrowser.close();process.exit(1);
+});
