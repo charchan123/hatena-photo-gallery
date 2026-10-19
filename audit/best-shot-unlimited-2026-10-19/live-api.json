@@ -1,0 +1,113 @@
+{
+  "read_only_audit_run": 39251373180,
+  "artifact_id": 12185966660,
+  "artifact_zip_sha256": "5b3e999106cef0117c76ec0ecc00b55ab38ed0560d5d708c6b1e3958e22c4ef4",
+  "audit": {
+    "read_only": true,
+    "at": "2026-10-19T12:21:31.564072+00:00",
+    "baseline_commit": "060f09c6ab9374f9cb38e8c46b6c2f29f1a1ab29",
+    "snapshot_sha256": "4368110e5eaea665fa595da0e027114bf217d4b5063fff8f24252735f700f663",
+    "counts": {
+      "comparison": "KNOWN",
+      "new_articles": 0,
+      "deleted_articles": 0,
+      "new_images": 0,
+      "deleted_images": 0,
+      "updated_articles": 0,
+      "classification_changes": 0,
+      "url_changes": 0,
+      "possible_url_changes": 0,
+      "pending_changes": [],
+      "deleted_article_hashes": [],
+      "previous_gallery": 933,
+      "candidate_gallery": 933,
+      "missing_gallery_occurrences": 0,
+      "missing_gallery_in_removed_source": 0,
+      "new_source_gallery_occurrences": 0,
+      "new_source_non_gallery_occurrences": 0,
+      "source_image_count": 980,
+      "protected_deletion_candidates": 0
+    },
+    "identity_simulation": {
+      "purpose": "READ_ONLY_IDENTITY_CHECK_NOT_DELETION_APPROVAL",
+      "remaining_existing_ids": 933,
+      "new_gallery_ids": [],
+      "main_best_shots_valid": true,
+      "pending_best_shots_valid": true,
+      "publication": "NOT_ATTEMPTED"
+    },
+    "fetch_audit": {
+      "pages_completed": 12,
+      "entries_received": 112,
+      "drafts_excluded": 1,
+      "published_articles": 111,
+      "html_articles": 111,
+      "pagination_complete": true,
+      "content_type_counts": {
+        "text/html": 111
+      },
+      "html_source_counts": {
+        "content_html": 111
+      },
+      "html_image_representation_difference_articles": 0
+    },
+    "publication": "NOT_ATTEMPTED"
+  },
+  "protection_complete": true,
+  "guarded_preview": {
+    "result": "PREVIEW",
+    "comparison": "KNOWN",
+    "fetch_audit": {
+      "pages_completed": 12,
+      "entries_received": 112,
+      "drafts_excluded": 1,
+      "published_articles": 111,
+      "html_articles": 111,
+      "pagination_complete": true,
+      "content_type_counts": {
+        "text/html": 111
+      },
+      "html_source_counts": {
+        "content_html": 111
+      },
+      "html_image_representation_difference_articles": 0
+    },
+    "published_article_count": 111,
+    "detected_image_count": 980,
+    "previous_photo_count": 933,
+    "candidate_gallery_photo_count": 933,
+    "missing_published_photo_keys": 0,
+    "url_changes": 0,
+    "classification_changes": 0,
+    "deletions": {
+      "candidate_count": 0,
+      "automatic_deletion_eligible": 0,
+      "manual_deletion_eligible": 0,
+      "protected_pending": 0,
+      "applied_automatic": 0,
+      "applied_manual": 0,
+      "pending": 0,
+      "states": {},
+      "history_persisted": false,
+      "history_head": "388e74cbc4bf53a283479eb2f1ae965d3975270fe8c78b32371f1d5787ae4c48"
+    },
+    "retirement": {
+      "migration_id": "hatena-draft-photo-retirement-2026-10-12",
+      "state": "ALREADY_APPLIED",
+      "retired_this_run": 0,
+      "retired_total": 7,
+      "manifest_sha256": "4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c"
+    },
+    "best_shot_references_preserved": 12,
+    "research_cases_preserved": 66,
+    "preserved_photo_ids": 933,
+    "gallery_photo_count": 933,
+    "retired_output_inspection": {
+      "result": "PASS",
+      "text_files_checked": 356,
+      "retired_ids_absent": 7,
+      "shared_image_urls_preserved": 0
+    },
+    "publication": "NOT_ATTEMPTED"
+  }
+}

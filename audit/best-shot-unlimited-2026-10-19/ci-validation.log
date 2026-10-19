@@ -1,0 +1,17 @@
+2026-10-19T12:21:44.0821676Z [36;1mprint('PASS: guarded generation validated protected IDs; no publication/history writes')[0m
+2026-10-19T12:21:44.1092127Z PASS: guarded generation validated protected IDs; no publication/history writes
+2026-10-19T12:21:45.0918730Z [36;1mpython -m compileall -q .[0m
+2026-10-19T12:23:31.3345045Z 990 passed in 105.93s (0:01:45)
+2026-10-19T12:23:31.4869195Z ##[group]Run for f in assets/*.js tests/*.js gallery.js admin/static/*.js; do node --check "$f"; done
+2026-10-19T12:23:31.4869574Z [36;1mfor f in assets/*.js tests/*.js gallery.js admin/static/*.js; do node --check "$f"; done[0m
+2026-10-19T12:23:31.4869843Z [36;1mfor f in tests/*.js; do node "$f"; done[0m
+2026-10-19T12:23:31.9562295Z Best Shot search, unbounded month counts, smallest missing order and integer input: passed
+2026-10-19T12:23:31.9909210Z # fail 0
+2026-10-19T12:23:32.0102750Z feature filter tests passed
+2026-10-19T12:23:32.0302980Z iframe content height regression checks passed
+2026-10-19T12:23:32.0481007Z 4 kana-insensitive highlight cases passed
+2026-10-19T12:23:32.0814639Z # fail 0
+2026-10-19T12:23:32.1502414Z # fail 0
+2026-10-19T12:23:32.1730516Z 5 fixed-gap mosaic layout cases passed
+2026-10-19T12:23:32.2217024Z # fail 0
+2026-10-19T12:23:32.2529449Z # fail 0

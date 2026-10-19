@@ -745,7 +745,7 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 
 - **Starting point / baseline:** clean branch `work` at required SHA `d5012e5d809c85570db2afb18ac5de0f5c5e81f7`; baseline was **341 passed / 341 collected**.
 - **Manual official Best Shot concept:** Best Shot is the photographer's own official, wholly manual curation. It is separate from visitor ⭐ 観察ノート favorites and from おすすめ・新着・珍しい・人気キノコ. Nothing is automatically selected or ranked from favorites, `POPULAR_LIST`, `RARITY_LIST`, recency, AI/photo quality, EXIF, taxonomy, mushroom master, or identification status.
-- **Year/month architecture:** entries reference stable `observation_id`; year and month are derived only from the fresh portal observation's `capture.date`. Years and populated months are descending, entries within a month use ascending manual `order`, zero-entry months do not exist in the model/UI, and schema v1 permits at most three selections per year/month. The landing page uses the latest year actually present in selected capture data—not the system year.
+- **Year/month architecture:** entries reference stable `observation_id`; year and month are derived only from the fresh portal observation's `capture.date`. Years and populated months are descending, entries within a month use ascending manual `order`, zero-entry months do not exist in the model/UI, and schema v1 retains positive, unique month-local order values (the original three-per-month cap is removed by the 2026-10-19 unlimited-month change below). The landing page uses the latest year actually present in selected capture data—not the system year.
 - **Data and manual metadata:** `data/best-shots.json` schema v1 stores only stable `selection_id`, `observation_id`, plain-text manual `comment`, optional explicit `location`, and positive manual `order`. It does not duplicate year/month/name/src/capture/article data and never infers location from an article. Production begins deliberately empty; no fictional Best Shot was added.
 - **Annual Best:** optional `annual_best` maps a `YYYY` key to one existing `selection_id` from that same capture year. A selection cannot be reused for multiple years. When configured it renders once as a large hero and remains in its normal monthly list with a badge; no empty annual section is rendered.
 - **Fresh portal resolution / safety:** resolution requires exactly one matching observation and a valid ISO `observation.capture.date`; gallery name, image source, capture date, and article title/URL all come from the fresh portal object. Display strings and attributes are escaped, comments remain plain text, optional location rows are omitted when absent, and article navigation is emitted only for HTTP(S) URLs with `target="_top"`.
@@ -798,7 +798,7 @@ For アミガサタケ, TUFC 100721 reports *Morchella esculenta*, while TUFC 10
 
 - Added three owner-provided preview selections to `data/best-shots.json`: 2025 Benitengutake #2, 2025 Kiiro-suppontake #3, and 2026 Yamadoritakemodoki #1, all resolved against the current production portal observations before commit.
 - The 2025 Benitengutake selection is also the 2025 annual Best Shot. Schema v1 now accepts optional `annual_comment` so the monthly selection comment and annual-hero comment can differ without duplicating an observation.
-- Existing manual-selection rules remain unchanged: stable observation references, capture-date grouping, maximum three entries per month, and optional annual selection by `selection_id`.
+- Existing manual-selection rules remain unchanged: stable observation references, capture-date grouping, positive unique monthly ordering, and optional annual selection by `selection_id`. The original three-entry cap is superseded by the 2026-10-19 change below.
 - These are explicitly temporary preview selections while the final Best Shot curation is still in progress.
 
 ## Best Shot visibility hotfix — 2026-09-28
@@ -1326,3 +1326,14 @@ existing admin knowledge/curated PR allowlists remain untouched.
 - Python963 + JS20 syntax/11 suites + guarded CI3 systems PASS. Reused real-page browser acceptance expanded310→599 at1280/390, including all36 new images, shared references, registered/unregistered favorites, Best Shot12, research66 and record counts.
 - Current evidence is appended to `audit/altless-final-2026-10-18/REPORT.md` and the JSON `main_integration_2026_10_18` keys. Prior audits remain historical. Temporary acceptance workflow is removed from final diff; production workflows/flags/protected data/PR123 unchanged.
 - STOP: Draft #125 awaits explicit user approval for merge AND resulting production regeneration/Pages publication. Do not mark ready, merge, dispatch production, or change public flags. Recheck current main/gh-pages/API before any separately authorized release.
+
+
+## 2026-10-19 — Best Shot monthly cap removal (Draft PR #127)
+
+- Based on latest main `c3a0420e01a24afe0b86b4eb6c6ee0999c93ad11`, after PR #123 was independently merged. Its branch was not edited.
+- Schema v1 has no per-month count cap. `order` remains a positive integer, unique within the capture year/month; duplicate observation and selection IDs still fail validation. Existing config is not migrated or renumbered.
+- The editor permits direct numeric input, buttons and arrow keys above 3. Selecting a new photo calculates the smallest unused positive order in that capture month, excluding the edited selection. Gaps are reused; existing entries are never renumbered. Inputs outside JavaScript's exact safe integer range fail closed rather than lose precision.
+- Capture-date grouping, descending years/months, ascending month order, annual Best rules, selection IDs, optional fields, notices, photo protection, daily sync and deployment gates are retained. Existing public grids already support arbitrary card counts; public CSS/model/rendering are unchanged.
+- Regression cases cover 1/3/4/10/30/35 entries through the real local HTTP handler and isolated Chromium API fixtures at 1280px/390px. Real generated public HTML uses the same cases plus month/year archives, annual selection, long comments and varied image aspect ratios.
+- Review evidence and Before/After comparisons: [audit/best-shot-unlimited-2026-10-19/REPORT.md](audit/best-shot-unlimited-2026-10-19/REPORT.md).
+- Draft remains pending explicit merge approval. No merge, public regeneration, Pages publication or real selection edits are performed by this task.

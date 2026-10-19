@@ -1,0 +1,18 @@
+2026-10-19T12:21:44.0244487Z PASS: existing public Best Shot model/HTML unchanged; isolated month cases 1/3/4/10/30/35 generated
+2026-10-19T12:21:50.3245032Z Best Shot monthly operations {"width":1280,"count":1}
+2026-10-19T12:21:51.7669167Z Best Shot monthly operations {"width":1280,"count":3}
+2026-10-19T12:21:53.3154420Z Best Shot monthly operations {"width":1280,"count":4}
+2026-10-19T12:21:55.3844853Z Best Shot monthly operations {"width":1280,"count":10}
+2026-10-19T12:21:57.5183242Z Best Shot monthly operations {"width":1280,"count":30}
+2026-10-19T12:21:59.7980951Z Best Shot monthly operations {"width":1280,"count":35}
+2026-10-19T12:22:02.2574670Z Best Shot monthly operations {"width":390,"count":1}
+2026-10-19T12:22:03.6658985Z Best Shot monthly operations {"width":390,"count":3}
+2026-10-19T12:22:05.1496257Z Best Shot monthly operations {"width":390,"count":4}
+2026-10-19T12:22:07.1995136Z Best Shot monthly operations {"width":390,"count":10}
+2026-10-19T12:22:09.2811882Z Best Shot monthly operations {"width":390,"count":30}
+2026-10-19T12:22:11.5482052Z Best Shot monthly operations {"width":390,"count":35}
+2026-10-19T12:22:13.8662076Z Best Shot real Chromium browser: 295 assertions passed (desktop mouse/keyboard, IME event simulation, touch emulation; isolated API/image fixtures)
+2026-10-19T12:22:16.7116744Z PASS: 31 Chromium deletion-review assertions (desktop, keyboard, touch; isolated fixtures)
+2026-10-19T12:22:17.9741392Z PASS: actual previous/current portal generators; byte-identical entire badge stylesheet
+2026-10-19T12:22:39.1953353Z PASS: 1791 Chromium notice layout / pill / sheen assertions
+2026-10-19T12:22:57.2338320Z PASS: 2513 Chromium Best Shot public-page assertions (1/3/4/10/30/35; desktop and mobile)
