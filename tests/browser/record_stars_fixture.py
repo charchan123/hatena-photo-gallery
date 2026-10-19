@@ -62,6 +62,9 @@ for variant, module in [('before', before_main), ('after', main)]:
     module.OUTPUT_DIR = str(output)
     module.generate_new_top({r['gallery_name']: [] for r in portal['observations']}, {},
         observation_records=records, research_summary={'case_count': research_count}, best_shot_summary={'entry_count': best_count})
+# Preserve the actual previous adapter as well as its generator for an honest visual comparison.
+for filename in ['record-stars.js', 'record-stars.css']:
+    (root / 'before' / 'assets' / filename).write_bytes(subprocess.check_output(['git', 'show', BASELINE + ':assets/' + filename]))
 photos = {}
 for row in records[:3]:
     url = row['cover_src'] + '?width=500'
