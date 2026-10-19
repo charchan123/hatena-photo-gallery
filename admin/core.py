@@ -50,7 +50,7 @@ def master_name_index(master):
 
 
 class ChangeSet:
-    """An in-memory draft. Disk is touched only by the reviewed PR workflow."""
+    """Validated in-memory edits; AdminServer saves approved changes locally."""
     def __init__(self, portal_data):
         self.portal = portal_data
         self.best_shots = read_json(DATA / "best-shots.json")
