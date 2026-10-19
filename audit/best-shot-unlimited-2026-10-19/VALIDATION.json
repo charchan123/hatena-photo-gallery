@@ -1,0 +1,40 @@
+{
+  "code_head": "682d4efc48a50f3a6ffba301688725349dcfb78e",
+  "python_passed": 990,
+  "javascript_regression_files": 11,
+  "chromium_assertions": {
+    "admin": 295,
+    "public": 2513,
+    "deletions": 31,
+    "notices": 1791,
+    "total": 4630
+  },
+  "workflows": [
+    {
+      "name": "Validate Admin Changes",
+      "id": 39251373272,
+      "conclusion": "success"
+    },
+    {
+      "name": "Deletion review browser regressions",
+      "id": 39251373289,
+      "conclusion": "success"
+    },
+    {
+      "name": "Read-only deletion audit",
+      "id": 39251373180,
+      "conclusion": "success"
+    }
+  ],
+  "browser_artifact": {
+    "id": 12185093637,
+    "sha256": "3ba8e26ea2ac6230343901921a722f832dfc6f2dd54fa6e0391cbc1bcba6647f"
+  },
+  "public_comparison_images_source_run": 39250582399,
+  "public_comparison_note": "The public generator, model and stylesheet are identical across the subsequent code heads; final code was separately revalidated at run 39251373289.",
+  "admin_comparison_source_run": 39251373289,
+  "data_changed": false,
+  "publication": "NOT_ATTEMPTED",
+  "draft": true,
+  "merge_approval": "PENDING"
+}

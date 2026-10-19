@@ -88,14 +88,28 @@ def test_missing_or_nonunique_observation_and_capture_date_rejected():
         best_shot_ui.build_best_shot_model(config(), portal(observation(captured=None)))
 
 
-def test_month_limit_and_unique_order():
-    rows = [observation(f"obs-{i}") for i in range(1, 5)]
-    three = [entry(f"best-{i}", f"obs-{i}", i) for i in range(1, 4)]
-    assert best_shot_ui.build_best_shot_model(config(three), portal(*rows))["entry_count"] == 3
-    with pytest.raises(best_shot_ui.BestShotConfigError):
-        best_shot_ui.build_best_shot_model(config(three + [entry("best-4", "obs-4", 4)]), portal(*rows))
-    with pytest.raises(best_shot_ui.BestShotConfigError):
-        best_shot_ui.build_best_shot_model(config([entry(), entry("best-2", "obs-2")]), portal(*rows))
+@pytest.mark.parametrize("count", [1, 3, 4, 10, 30, 35])
+def test_unlimited_monthly_entries_render_in_manual_order(count):
+    from bs4 import BeautifulSoup
+    rows = [observation(f"obs-{i}") for i in range(1, count + 1)]
+    entries = [entry(f"best-{i}", f"obs-{i}", i) for i in range(1, count + 1)]
+    cfg = config(list(reversed(entries)), annual={"2025": f"best-{count}"})
+    original = copy.deepcopy(cfg)
+    model = best_shot_ui.build_best_shot_model(cfg, portal(*rows))
+    assert cfg == original and model["entry_count"] == count
+    assert len(model["years"][0]["months"]) == 1
+    assert model["years"][0]["annual_best"]["selection_id"] == f"best-{count}"
+    page = BeautifulSoup(best_shot_ui.render_best_shot_page(model), "html.parser")
+    assert [c["data-selection-id"] for c in page.select(".best-shot-month .best-shot-card")] == [e["selection_id"] for e in entries]
+    assert len(page.select(".annual-best .best-shot-card")) == 1
+
+
+def test_duplicate_order_remains_rejected_without_monthly_limit():
+    rows = [observation(f"obs-{i}") for i in range(1, 36)]
+    entries = [entry(f"best-{i}", f"obs-{i}", i) for i in range(1, 36)]
+    entries[-1]["order"] = 30
+    with pytest.raises(best_shot_ui.BestShotConfigError, match="order must be unique within a year and month"):
+        best_shot_ui.build_best_shot_model(config(entries), portal(*rows))
 
 
 def test_descending_year_month_and_ascending_manual_order_without_zero_months():

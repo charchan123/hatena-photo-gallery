@@ -54,7 +54,7 @@ def api(monkeypatch, tmp_path):
         server.shutdown(); server.server_close(); thread.join()
 
 
-@pytest.mark.parametrize("bad", [0, 4, -1, 1.5, "", None, True, "2", 2.0])
+@pytest.mark.parametrize("bad", [0, -1, 1.5, "", None, True, "2", 2.0, []])
 @pytest.mark.parametrize("operation", ["add", "update"])
 def test_direct_api_order_rejection_preserves_draft(api, bad, operation):
     post, draft = api
@@ -63,7 +63,7 @@ def test_direct_api_order_rejection_preserves_draft(api, bad, operation):
     body = {"entry": entry(2, bad)} if operation == "add" else {"selection_id": "best-1", "changes": {"order": bad}}
     status, result = post("/api/best-shot/" + operation, body)
     assert status == 400
-    assert result["field_errors"] == {"order": "1〜3の番号を選択してください"}
+    assert result["field_errors"] == {"order": "1以上の整数を入力してください"}
     assert (draft.best_shots, draft.notices) == before
 
 
@@ -81,12 +81,11 @@ def test_duplicate_month_is_japanese_and_correction_succeeds(api):
     assert status == 400 and "順序「2」" in result["field_errors"]["order"]
 
 
-def test_full_month_duplicate_photo_and_missing_date(api):
+def test_fourth_photo_allowed_duplicate_photo_and_missing_date(api):
     post, draft = api
     for i in (1, 2, 3): assert post("/api/best-shot/add", {"entry": entry(i, i)})[0] == 200
+    assert post("/api/best-shot/add", {"entry": entry(4, 4)})[0] == 200
     before = deepcopy(draft.best_shots)
-    status, result = post("/api/best-shot/add", {"entry": entry(4)})
-    assert status == 400 and "すでに3枚" in result["field_errors"]["order"]
     status, result = post("/api/best-shot/add", {"entry": entry(1) | {"selection_id": "other"}})
     assert status == 400 and "すでにBest Shot" in result["field_errors"]["observation_id"]
     status, result = post("/api/best-shot/add", {"entry": entry(6)})
@@ -123,7 +122,34 @@ def test_noop_edit_preserves_optional_fields_and_annual(api):
     assert draft.best_shots == before
 
 
-@pytest.mark.parametrize("n", [1, 2, 3])
-def test_shared_validator_accepts_only_valid_slots(n):
+@pytest.mark.parametrize("n", [1, 2, 3, 4, 10, 30, 999])
+def test_shared_validator_accepts_positive_orders_without_month_cap(n):
     draft = draft_fixture()
     assert validate_best_shot_config({"version": 1, "entries": [entry(1, n)]}, draft.portal)[0]["order"] == n
+
+
+@pytest.mark.parametrize("count", [1, 3, 4, 10, 30, 35])
+def test_api_many_monthly_adds_edits_replacements_deletes_and_annual(api, count):
+    post, draft = api
+    draft.portal["observations"] = [observation(i) for i in range(1, count + 4)] + [observation(100, "2026-09-01")]
+    for i in range(1, count + 1):
+        assert post("/api/best-shot/add", {"entry": entry(i, i) | {"location": "静岡", "annual_comment": "年間メモ"}})[0] == 200
+    assert len(draft.best_shots["entries"]) == count
+    assert post("/api/best-shot/annual", {"year": "2026", "selection_id": "best-1"})[0] == 200
+    original = deepcopy(draft.best_shots)
+    # A genuine duplicate still fails, even after the former monthly cap is exceeded.
+    status, result = post("/api/best-shot/add", {"entry": entry(count + 1, count)})
+    assert status == 400 and result["error"] == "order must be unique within a year and month"
+    assert draft.best_shots == original
+    assert post("/api/best-shot/update", {"selection_id": "best-1", "changes": {"order": count + 10}})[0] == 200
+    assert post("/api/best-shot/update", {"selection_id": "best-1", "changes": {"observation_id": f"obs-{count + 1}"}})[0] == 200
+    # Moving into a different capture month keeps the selection/annual IDs and comments.
+    assert post("/api/best-shot/update", {"selection_id": "best-1", "changes": {"observation_id": "obs-100", "order": 1}})[0] == 200
+    selected = draft.best_shots["entries"][0]
+    assert selected == original["entries"][0] | {"observation_id": "obs-100", "order": 1}
+    assert draft.best_shots["annual_best"] == {"2026": "best-1"}
+    if count > 1:
+        assert post("/api/best-shot/delete", {"selection_id": f"best-{count}"})[0] == 200
+        assert draft.best_shots["annual_best"] == {"2026": "best-1"}
+    assert post("/api/best-shot/delete", {"selection_id": "best-1"})[0] == 200
+    assert draft.best_shots["annual_best"] == {}

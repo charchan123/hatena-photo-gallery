@@ -20,11 +20,15 @@ dialog.best-editor{width:min(980px,calc(100% - 24px));max-height:calc(100dvh - 2
 .best-editor .photo-preview[hidden]{display:none}.best-editor .photo-preview h4{margin:0 0 8px;font-size:.9rem}.best-editor .photo-preview img{height:200px;max-height:32dvh;object-fit:contain}.best-editor .photo-preview .photo-details{margin:8px 0}
 .best-editor .image-failure{font-size:.8rem;padding:10px;text-align:center;color:#a32c2c}
 .best-editor .field-heading{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}.best-editor .field-heading label{margin:0}.best-editor .field-error{color:#b42318;font-size:.85rem;font-weight:600;overflow-wrap:anywhere}.best-editor .field-error:empty{display:none}
-.best-editor .order-field{margin:14px 0}.best-editor .order-controls{display:flex;gap:6px;margin-top:6px;width:115px}.best-editor .order-controls input{min-width:0;text-align:center;cursor:default}
+.best-editor .order-field{margin:14px 0}.best-editor .order-controls{display:flex;gap:6px;margin-top:6px;width:115px}.best-editor .order-controls input{min-width:0;text-align:center;cursor:text}
 .best-editor .order-arrows{display:grid;gap:3px}.best-editor .order-arrows button{padding:3px 10px;font-size:.75rem}.best-editor .order-field .meta{margin:5px 0}
 .best-editor [aria-invalid=true]{border-color:#b42318}.best-editor .modal-error{background:#fff1ef;border-radius:7px;padding:10px}
 .best-editor button:focus-visible,.best-editor input:focus-visible,.best-editor textarea:focus-visible{outline:3px solid #376b44;outline-offset:2px}
 @media(max-width:600px){dialog.best-editor{padding:16px}.best-editor .photo-browser{grid-template-columns:minmax(0,1fr)}.best-editor .photo-results{max-height:220px}.best-editor .photo-preview{position:static}.best-editor menu{background:#fff;padding:10px 0}.best-editor .field-heading{gap:4px 10px}.best-editor .photo-option-actions button,.best-editor .order-arrows button{min-height:44px;min-width:44px}}
+
+/* Long selection IDs must not widen the mobile Best Shot page or its modal viewport. */
+#best-list .meta{overflow-wrap:anywhere}
+@media(max-width:900px){#best-list .item{grid-template-columns:80px minmax(0,1fr)}}
 
 /* Individual deletion review: independent of the Best Shot modal layout. */
 .deletion-card{grid-template-columns:100px minmax(0,1fr);align-items:start}

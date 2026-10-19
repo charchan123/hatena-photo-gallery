@@ -321,3 +321,37 @@ def test_each_receipt_must_anchor_its_actual_candidate_in_persisted_history(tmp_
     sealed=sync.seal_snapshot(current,effective,T,deletions=ledger,deletion_history_head=d.validate_history(guard.history))
     with pytest.raises(sync.SyncError,match='RECEIPT_HISTORY_MISMATCH'):
         g.DeletionGuard(effective,sealed,BASE,tmp_path,'four',store=Store(guard.history),pending=[])
+
+
+@pytest.mark.parametrize('count', [4, 10, 30, 35])
+@pytest.mark.parametrize('pending', [False, True])
+def test_unlimited_month_keeps_all_selections_protected(tmp_path, monkeypatch, count, pending):
+    p, s, current = fixture()
+    config(tmp_path)
+    # The missing target is the highest-order selection, well beyond the old cap.
+    order_ids = [f'obs-{i}' for i in range(1, count)] + ['obs-0']
+    cfg = {'version': 1, 'entries': [{'selection_id': f'best-{i}', 'observation_id': oid,
+            'comment': '人間が選んだ写真', 'order': i + 1} for i, oid in enumerate(order_ids)],
+           'annual_best': {'2025': 'best-0'}}
+    prs = [{'number': 999, 'config': cfg}] if pending else []
+    if not pending:
+        sync.write_json(tmp_path / 'data/best-shots.json', cfg)
+    prot = collect(p, s, tmp_path, prs)
+    for oid in order_ids:
+        assert oid in prot['references']
+    expected = 'pending_best_shot' if pending else 'best_shot'
+    assert prot['references']['obs-0'] == [{'kind': expected,
+        'id': f'PR #999:best-{count - 1}' if pending else f'best-{count - 1}'}]
+    rows = d.plan(s, p, current, audit(current), set(), prot)
+    history = []
+    for run, hour in [('one', 0), ('two', 7)]:
+        history = d.append_event(history, d.event_for(rows, s, BASE, prot, current, run,
+            (d.instant(T) + timedelta(hours=hour)).isoformat()))
+    class Clock:
+        @staticmethod
+        def now(tz=None): return d.instant(T) + timedelta(hours=8)
+    monkeypatch.setattr(g, 'datetime', Clock)
+    guard = g.DeletionGuard(p, s, BASE, tmp_path, 'three', store=Store(history), pending=prs)
+    with pytest.raises(sync.SyncError, match='CONFIRMATION_OR_APPROVAL_PENDING'):
+        guard.prepare(current, audit(current), set())
+    assert guard.targets == []

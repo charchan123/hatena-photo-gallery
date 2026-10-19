@@ -19,9 +19,17 @@ jobs:
         run: |
           npm install --prefix /tmp/kinoko-browser --no-save playwright@1.62.1
           /tmp/kinoko-browser/node_modules/.bin/playwright install --with-deps chromium
+      - name: Generate isolated Best Shot month cases and read-only public baseline
+        timeout-minutes: 3
+        run: |
+          pip install -r requirements.txt
+          python tests/browser/best_shot_unlimited_fixture.py /tmp/best-shot-unlimited
       - name: Desktop, keyboard and touch fixture regressions
+        timeout-minutes: 5
         env:
           PLAYWRIGHT_MODULE_PATH: /tmp/kinoko-browser/node_modules/playwright
+          BEST_SHOT_FIXTURES: /tmp/best-shot-unlimited
+          BEST_SHOT_SCREENSHOTS: /tmp/best-shot-unlimited/screenshots
         run: |
           node tests/browser/best_shot_picker.cjs
           node tests/browser/deletion_review.cjs
@@ -43,4 +51,21 @@ jobs:
             /tmp/notice-layout/screenshots/
             /tmp/notice-layout/result.json
             /tmp/notice-layout/fixture.json
+          retention-days: 30
+      - name: Best Shot public grids with unlimited monthly entries
+        if: ${{ !cancelled() }}
+        timeout-minutes: 4
+        env:
+          PLAYWRIGHT_MODULE_PATH: /tmp/kinoko-browser/node_modules/playwright
+        run: node tests/browser/best_shot_public.cjs /tmp/best-shot-unlimited
+      - name: Save Best Shot comparisons and measurements
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: best-shot-unlimited-${{ github.run_id }}
+          path: |
+            /tmp/best-shot-unlimited/screenshots/
+            /tmp/best-shot-unlimited/summary.json
+            /tmp/best-shot-unlimited/result.json
+            /tmp/best-shot-unlimited/admin-result.json
           retention-days: 30
