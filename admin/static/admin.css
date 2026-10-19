@@ -26,6 +26,10 @@ dialog.best-editor{width:min(980px,calc(100% - 24px));max-height:calc(100dvh - 2
 .best-editor button:focus-visible,.best-editor input:focus-visible,.best-editor textarea:focus-visible{outline:3px solid #376b44;outline-offset:2px}
 @media(max-width:600px){dialog.best-editor{padding:16px}.best-editor .photo-browser{grid-template-columns:minmax(0,1fr)}.best-editor .photo-results{max-height:220px}.best-editor .photo-preview{position:static}.best-editor menu{background:#fff;padding:10px 0}.best-editor .field-heading{gap:4px 10px}.best-editor .photo-option-actions button,.best-editor .order-arrows button{min-height:44px;min-width:44px}}
 
+/* Long selection IDs must not widen the mobile Best Shot page or its modal viewport. */
+#best-list .meta{overflow-wrap:anywhere}
+@media(max-width:900px){#best-list .item{grid-template-columns:80px minmax(0,1fr)}}
+
 /* Individual deletion review: independent of the Best Shot modal layout. */
 .deletion-card{grid-template-columns:100px minmax(0,1fr);align-items:start}
 .deletion-card .deletion-body{grid-column:2;min-width:0}

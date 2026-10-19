@@ -152,7 +152,7 @@ const fixtures=()=>({csrf:'fixture-only',observations:records,best_shots:{versio
   for(const count of [1,3,4,10,30,35]){
    console.log('Best Shot monthly operations',JSON.stringify({width,count}));
    x.app.best_shots.entries=Array.from({length:count-1},(_,i)=>({selection_id:'fixture-'+i,observation_id:'bulk-'+i,comment:'保存済み '+i,order:i+1,annual_comment:'年間メモ',location:'静岡'}));x.app.best_shots.annual_best={};x.app.counts.best_shots=count-1;
-   await q.reload();await q.click('[data-page=best]');await open(q);await q.fill('#photo-search','キノコ写真 '+(count-1));await select(q,'bulk-'+(count-1));check(await q.inputValue('[name=order]'),String(count));
+   await q.reload();await q.click('[data-page=best]');check(await q.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);await open(q);await q.fill('#photo-search','キノコ写真 '+(count-1));await select(q,'bulk-'+(count-1));check(await q.inputValue('[name=order]'),String(count));
    await q.fill('[name=comment]','月 '+count+' 枚のテスト');
    if(out&&count===30){await q.locator('.order-field').scrollIntoViewIfNeeded();await q.screenshot({path:path.join(out,`${width}-month-30-editor.png`)});}
    await q.click('#dialog-save');await q.waitForFunction(()=>!document.querySelector('#editor').open);check(x.app.best_shots.entries.length,count);const sid=x.writes.at(-1).body.entry.selection_id;
@@ -162,7 +162,7 @@ const fixtures=()=>({csrf:'fixture-only',observations:records,best_shots:{versio
     await q.locator('#best-list .item').filter({has:q.getByText('selection: fixture-1',{exact:true})}).getByRole('button',{name:'削除',exact:true}).click();await q.click('#confirm-ok');await q.waitForFunction(()=>!document.querySelector('#confirm').open);
     await open(q);await q.fill('#photo-search','キノコ写真 '+count);await select(q,'bulk-'+count);check(await q.inputValue('[name=order]'),'2');await q.fill('[name=comment]','空き番号2を再利用');await q.click('#dialog-save');await q.waitForFunction(()=>!document.querySelector('#editor').open);check(x.app.best_shots.entries.length,count);
    }
-   await item().getByRole('button',{name:'編集・写真差し替え',exact:true}).click();await q.fill('[name=order]',String(count+10));await q.click('#dialog-save');await q.waitForFunction(()=>!document.querySelector('#editor').open);check(x.app.best_shots.entries.find(e=>e.selection_id===sid).order,count+10);
+   await item().getByRole('button',{name:'編集・写真差し替え',exact:true}).click();await q.fill('[name=order]',String(count+10));check(await q.locator('#editor').evaluate(e=>e.getBoundingClientRect().right<=innerWidth&&e.scrollWidth<=e.clientWidth),true);await q.click('#dialog-save');await q.waitForFunction(()=>!document.querySelector('#editor').open);check(x.app.best_shots.entries.find(e=>e.selection_id===sid).order,count+10);
    if(count>1){
     await open(q);await q.fill('#photo-search','キノコ写真 0');await select(q,'bulk-0');check(await q.locator('#dialog-save').isDisabled(),true);assert.match(await q.locator('#observation_id-error').innerText(),/すでにBest Shot/);assertions++;await close(q);
    }
