@@ -1,0 +1,887 @@
+{
+  "assertions": 669,
+  "fixture": {
+    "baseline": "edb77003fb6f648979a10df9efe1e8e010a15e9f",
+    "now": "2026-10-18T14:37:14.195287+00:00",
+    "states": [
+      "off",
+      "new",
+      "identified",
+      "long",
+      "both",
+      "research-only",
+      "best-only"
+    ],
+    "notice_counts": {
+      "off": 0,
+      "new": 5,
+      "identified": 5,
+      "long": 5,
+      "both": 2,
+      "research-only": 1,
+      "best-only": 1
+    },
+    "public_photos": 933,
+    "protected_css_sha256": "6346de63c0f6606d6d2d6c318d9e4372733dc58d5bbc96c84d99db5255cb9115"
+  },
+  "widths": [
+    1280,
+    768,
+    390
+  ],
+  "max_title_delta_px": 0,
+  "max_description_delta_px": 0,
+  "metrics": [
+    {
+      "width": 1280,
+      "state": "off",
+      "positions": {
+        "research": {
+          "titleY": 688,
+          "descriptionY": 728,
+          "cardHeight": 165
+        },
+        "best-shots": {
+          "titleY": 688,
+          "descriptionY": 728,
+          "cardHeight": 165
+        },
+        "guide": {
+          "titleY": 236,
+          "descriptionY": 262,
+          "cardHeight": 96
+        },
+        "season": {
+          "titleY": 349,
+          "descriptionY": 375,
+          "cardHeight": 96
+        },
+        "features": {
+          "titleY": 462,
+          "descriptionY": 488,
+          "cardHeight": 96
+        }
+      }
+    },
+    {
+      "width": 1280,
+      "state": "new",
+      "positions": {
+        "research": {
+          "titleY": 688,
+          "descriptionY": 728,
+          "cardHeight": 165
+        },
+        "best-shots": {
+          "titleY": 688,
+          "descriptionY": 728,
+          "cardHeight": 165
+        },
+        "guide": {
+          "titleY": 236,
+          "descriptionY": 262,
+          "cardHeight": 96
+        },
+        "season": {
+          "titleY": 349,
+          "descriptionY": 375,
+          "cardHeight": 96
+        },
+        "features": {
+          "titleY": 462,
+          "descriptionY": 488,
+          "cardHeight": 96
+        }
+      }
+    },
+    {
+      "width": 1280,
+      "state": "identified",
+      "positions": {
+        "research": {
+          "titleY": 688,
+          "descriptionY": 728,
+          "cardHeight": 165
+        },
+        "best-shots": {
+          "titleY": 688,
+          "descriptionY": 728,
+          "cardHeight": 165
+        },
+        "guide": {
+          "titleY": 236,
+          "descriptionY": 262,
+          "cardHeight": 96
+        },
+        "season": {
+          "titleY": 349,
+          "descriptionY": 375,
+          "cardHeight": 96
+        },
+        "features": {
+          "titleY": 462,
+          "descriptionY": 488,
+          "cardHeight": 96
+        }
+      }
+    },
+    {
+      "width": 1280,
+      "state": "long",
+      "positions": {
+        "research": {
+          "titleY": 688,
+          "descriptionY": 728,
+          "cardHeight": 165
+        },
+        "best-shots": {
+          "titleY": 688,
+          "descriptionY": 728,
+          "cardHeight": 165
+        },
+        "guide": {
+          "titleY": 236,
+          "descriptionY": 262,
+          "cardHeight": 96
+        },
+        "season": {
+          "titleY": 349,
+          "descriptionY": 375,
+          "cardHeight": 96
+        },
+        "features": {
+          "titleY": 462,
+          "descriptionY": 488,
+          "cardHeight": 96
+        }
+      }
+    },
+    {
+      "width": 1280,
+      "state": "both",
+      "positions": {
+        "research": {
+          "titleY": 688,
+          "descriptionY": 728,
+          "cardHeight": 165
+        },
+        "best-shots": {
+          "titleY": 688,
+          "descriptionY": 728,
+          "cardHeight": 165
+        },
+        "guide": {
+          "titleY": 236,
+          "descriptionY": 262,
+          "cardHeight": 96
+        },
+        "season": {
+          "titleY": 349,
+          "descriptionY": 375,
+          "cardHeight": 96
+        },
+        "features": {
+          "titleY": 462,
+          "descriptionY": 488,
+          "cardHeight": 96
+        }
+      }
+    },
+    {
+      "width": 1280,
+      "state": "research-only",
+      "positions": {
+        "research": {
+          "titleY": 688,
+          "descriptionY": 728,
+          "cardHeight": 165
+        },
+        "best-shots": {
+          "titleY": 688,
+          "descriptionY": 728,
+          "cardHeight": 165
+        },
+        "guide": {
+          "titleY": 236,
+          "descriptionY": 262,
+          "cardHeight": 96
+        },
+        "season": {
+          "titleY": 349,
+          "descriptionY": 375,
+          "cardHeight": 96
+        },
+        "features": {
+          "titleY": 462,
+          "descriptionY": 488,
+          "cardHeight": 96
+        }
+      }
+    },
+    {
+      "width": 1280,
+      "state": "best-only",
+      "positions": {
+        "research": {
+          "titleY": 688,
+          "descriptionY": 728,
+          "cardHeight": 165
+        },
+        "best-shots": {
+          "titleY": 688,
+          "descriptionY": 728,
+          "cardHeight": 165
+        },
+        "guide": {
+          "titleY": 236,
+          "descriptionY": 262,
+          "cardHeight": 96
+        },
+        "season": {
+          "titleY": 349,
+          "descriptionY": 375,
+          "cardHeight": 96
+        },
+        "features": {
+          "titleY": 462,
+          "descriptionY": 488,
+          "cardHeight": 96
+        }
+      }
+    },
+    {
+      "width": 768,
+      "state": "off",
+      "positions": {
+        "research": {
+          "titleY": 1197,
+          "descriptionY": 1233,
+          "cardHeight": 162
+        },
+        "best-shots": {
+          "titleY": 1373,
+          "descriptionY": 1409,
+          "cardHeight": 162
+        },
+        "guide": {
+          "titleY": 773,
+          "descriptionY": 799,
+          "cardHeight": 96
+        },
+        "season": {
+          "titleY": 886,
+          "descriptionY": 912,
+          "cardHeight": 96
+        },
+        "features": {
+          "titleY": 999,
+          "descriptionY": 1025,
+          "cardHeight": 96
+        }
+      }
+    },
+    {
+      "width": 768,
+      "state": "new",
+      "positions": {
+        "research": {
+          "titleY": 1197,
+          "descriptionY": 1233,
+          "cardHeight": 162
+        },
+        "best-shots": {
+          "titleY": 1373,
+          "descriptionY": 1409,
+          "cardHeight": 162
+        },
+        "guide": {
+          "titleY": 773,
+          "descriptionY": 799,
+          "cardHeight": 96
+        },
+        "season": {
+          "titleY": 886,
+          "descriptionY": 912,
+          "cardHeight": 96
+        },
+        "features": {
+          "titleY": 999,
+          "descriptionY": 1025,
+          "cardHeight": 96
+        }
+      }
+    },
+    {
+      "width": 768,
+      "state": "identified",
+      "positions": {
+        "research": {
+          "titleY": 1197,
+          "descriptionY": 1233,
+          "cardHeight": 162
+        },
+        "best-shots": {
+          "titleY": 1373,
+          "descriptionY": 1409,
+          "cardHeight": 162
+        },
+        "guide": {
+          "titleY": 773,
+          "descriptionY": 799,
+          "cardHeight": 96
+        },
+        "season": {
+          "titleY": 886,
+          "descriptionY": 912,
+          "cardHeight": 96
+        },
+        "features": {
+          "titleY": 999,
+          "descriptionY": 1025,
+          "cardHeight": 96
+        }
+      }
+    },
+    {
+      "width": 768,
+      "state": "long",
+      "positions": {
+        "research": {
+          "titleY": 1197,
+          "descriptionY": 1233,
+          "cardHeight": 162
+        },
+        "best-shots": {
+          "titleY": 1373,
+          "descriptionY": 1409,
+          "cardHeight": 162
+        },
+        "guide": {
+          "titleY": 773,
+          "descriptionY": 799,
+          "cardHeight": 96
+        },
+        "season": {
+          "titleY": 886,
+          "descriptionY": 912,
+          "cardHeight": 96
+        },
+        "features": {
+          "titleY": 999,
+          "descriptionY": 1025,
+          "cardHeight": 96
+        }
+      }
+    },
+    {
+      "width": 768,
+      "state": "both",
+      "positions": {
+        "research": {
+          "titleY": 1197,
+          "descriptionY": 1233,
+          "cardHeight": 162
+        },
+        "best-shots": {
+          "titleY": 1373,
+          "descriptionY": 1409,
+          "cardHeight": 162
+        },
+        "guide": {
+          "titleY": 773,
+          "descriptionY": 799,
+          "cardHeight": 96
+        },
+        "season": {
+          "titleY": 886,
+          "descriptionY": 912,
+          "cardHeight": 96
+        },
+        "features": {
+          "titleY": 999,
+          "descriptionY": 1025,
+          "cardHeight": 96
+        }
+      }
+    },
+    {
+      "width": 768,
+      "state": "research-only",
+      "positions": {
+        "research": {
+          "titleY": 1197,
+          "descriptionY": 1233,
+          "cardHeight": 162
+        },
+        "best-shots": {
+          "titleY": 1373,
+          "descriptionY": 1409,
+          "cardHeight": 162
+        },
+        "guide": {
+          "titleY": 773,
+          "descriptionY": 799,
+          "cardHeight": 96
+        },
+        "season": {
+          "titleY": 886,
+          "descriptionY": 912,
+          "cardHeight": 96
+        },
+        "features": {
+          "titleY": 999,
+          "descriptionY": 1025,
+          "cardHeight": 96
+        }
+      }
+    },
+    {
+      "width": 768,
+      "state": "best-only",
+      "positions": {
+        "research": {
+          "titleY": 1197,
+          "descriptionY": 1233,
+          "cardHeight": 162
+        },
+        "best-shots": {
+          "titleY": 1373,
+          "descriptionY": 1409,
+          "cardHeight": 162
+        },
+        "guide": {
+          "titleY": 773,
+          "descriptionY": 799,
+          "cardHeight": 96
+        },
+        "season": {
+          "titleY": 886,
+          "descriptionY": 912,
+          "cardHeight": 96
+        },
+        "features": {
+          "titleY": 999,
+          "descriptionY": 1025,
+          "cardHeight": 96
+        }
+      }
+    },
+    {
+      "width": 390,
+      "state": "off",
+      "positions": {
+        "research": {
+          "titleY": 1472.5625,
+          "descriptionY": 1508.5625,
+          "cardHeight": 157
+        },
+        "best-shots": {
+          "titleY": 1647.5625,
+          "descriptionY": 1683.5625,
+          "cardHeight": 157
+        },
+        "guide": {
+          "titleY": 877.5625,
+          "descriptionY": 903.5625,
+          "cardHeight": 98
+        },
+        "season": {
+          "titleY": 1082.5625,
+          "descriptionY": 1108.5625,
+          "cardHeight": 98
+        },
+        "features": {
+          "titleY": 1287.5625,
+          "descriptionY": 1313.5625,
+          "cardHeight": 98
+        }
+      }
+    },
+    {
+      "width": 390,
+      "state": "new",
+      "positions": {
+        "research": {
+          "titleY": 1472.5625,
+          "descriptionY": 1508.5625,
+          "cardHeight": 157
+        },
+        "best-shots": {
+          "titleY": 1647.5625,
+          "descriptionY": 1683.5625,
+          "cardHeight": 157
+        },
+        "guide": {
+          "titleY": 877.5625,
+          "descriptionY": 903.5625,
+          "cardHeight": 98
+        },
+        "season": {
+          "titleY": 1082.5625,
+          "descriptionY": 1108.5625,
+          "cardHeight": 98
+        },
+        "features": {
+          "titleY": 1287.5625,
+          "descriptionY": 1313.5625,
+          "cardHeight": 98
+        }
+      }
+    },
+    {
+      "width": 390,
+      "state": "identified",
+      "positions": {
+        "research": {
+          "titleY": 1472.5625,
+          "descriptionY": 1508.5625,
+          "cardHeight": 157
+        },
+        "best-shots": {
+          "titleY": 1647.5625,
+          "descriptionY": 1683.5625,
+          "cardHeight": 157
+        },
+        "guide": {
+          "titleY": 877.5625,
+          "descriptionY": 903.5625,
+          "cardHeight": 98
+        },
+        "season": {
+          "titleY": 1082.5625,
+          "descriptionY": 1108.5625,
+          "cardHeight": 98
+        },
+        "features": {
+          "titleY": 1287.5625,
+          "descriptionY": 1313.5625,
+          "cardHeight": 98
+        }
+      }
+    },
+    {
+      "width": 390,
+      "state": "long",
+      "positions": {
+        "research": {
+          "titleY": 1472.5625,
+          "descriptionY": 1508.5625,
+          "cardHeight": 157
+        },
+        "best-shots": {
+          "titleY": 1647.5625,
+          "descriptionY": 1683.5625,
+          "cardHeight": 157
+        },
+        "guide": {
+          "titleY": 877.5625,
+          "descriptionY": 903.5625,
+          "cardHeight": 98
+        },
+        "season": {
+          "titleY": 1082.5625,
+          "descriptionY": 1108.5625,
+          "cardHeight": 98
+        },
+        "features": {
+          "titleY": 1287.5625,
+          "descriptionY": 1313.5625,
+          "cardHeight": 98
+        }
+      }
+    },
+    {
+      "width": 390,
+      "state": "both",
+      "positions": {
+        "research": {
+          "titleY": 1472.5625,
+          "descriptionY": 1508.5625,
+          "cardHeight": 157
+        },
+        "best-shots": {
+          "titleY": 1647.5625,
+          "descriptionY": 1683.5625,
+          "cardHeight": 157
+        },
+        "guide": {
+          "titleY": 877.5625,
+          "descriptionY": 903.5625,
+          "cardHeight": 98
+        },
+        "season": {
+          "titleY": 1082.5625,
+          "descriptionY": 1108.5625,
+          "cardHeight": 98
+        },
+        "features": {
+          "titleY": 1287.5625,
+          "descriptionY": 1313.5625,
+          "cardHeight": 98
+        }
+      }
+    },
+    {
+      "width": 390,
+      "state": "research-only",
+      "positions": {
+        "research": {
+          "titleY": 1472.5625,
+          "descriptionY": 1508.5625,
+          "cardHeight": 157
+        },
+        "best-shots": {
+          "titleY": 1647.5625,
+          "descriptionY": 1683.5625,
+          "cardHeight": 157
+        },
+        "guide": {
+          "titleY": 877.5625,
+          "descriptionY": 903.5625,
+          "cardHeight": 98
+        },
+        "season": {
+          "titleY": 1082.5625,
+          "descriptionY": 1108.5625,
+          "cardHeight": 98
+        },
+        "features": {
+          "titleY": 1287.5625,
+          "descriptionY": 1313.5625,
+          "cardHeight": 98
+        }
+      }
+    },
+    {
+      "width": 390,
+      "state": "best-only",
+      "positions": {
+        "research": {
+          "titleY": 1472.5625,
+          "descriptionY": 1508.5625,
+          "cardHeight": 157
+        },
+        "best-shots": {
+          "titleY": 1647.5625,
+          "descriptionY": 1683.5625,
+          "cardHeight": 157
+        },
+        "guide": {
+          "titleY": 877.5625,
+          "descriptionY": 903.5625,
+          "cardHeight": 98
+        },
+        "season": {
+          "titleY": 1082.5625,
+          "descriptionY": 1108.5625,
+          "cardHeight": 98
+        },
+        "features": {
+          "titleY": 1287.5625,
+          "descriptionY": 1313.5625,
+          "cardHeight": 98
+        }
+      }
+    }
+  ],
+  "sheen_samples": {
+    "before": [
+      {
+        "time": 0,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0",
+        "transform": "matrix(1, 0, -0.344328, 1, 0, 0)",
+        "width": "16.7344px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "7px"
+      },
+      {
+        "time": 3942,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0",
+        "transform": "matrix(1, 0, -0.344328, 1, 0, 0)",
+        "width": "16.7344px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "7px"
+      },
+      {
+        "time": 3996,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0.8",
+        "transform": "matrix(1, 0, -0.344328, 1, 5.355, 0)",
+        "width": "16.7344px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "7px"
+      },
+      {
+        "time": 4320,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0.8",
+        "transform": "matrix(1, 0, -0.344328, 1, 37.485, 0)",
+        "width": "16.7344px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "7px"
+      },
+      {
+        "time": 4752,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0.8",
+        "transform": "matrix(1, 0, -0.344328, 1, 80.325, 0)",
+        "width": "16.7344px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "7px"
+      },
+      {
+        "time": 4860,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0",
+        "transform": "matrix(1, 0, -0.344328, 1, 80.325, 0)",
+        "width": "16.7344px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "7px"
+      },
+      {
+        "time": 5400,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0",
+        "transform": "matrix(1, 0, -0.344328, 1, 0, 0)",
+        "width": "16.7344px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "7px"
+      }
+    ],
+    "after": [
+      {
+        "time": 0,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0",
+        "transform": "matrix(1, 0, -0.344328, 1, 0, 0)",
+        "width": "17.7969px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "999px"
+      },
+      {
+        "time": 3942,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0",
+        "transform": "matrix(1, 0, -0.344328, 1, 0, 0)",
+        "width": "17.7969px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "999px"
+      },
+      {
+        "time": 3996,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0.8",
+        "transform": "matrix(1, 0, -0.344328, 1, 5.695, 0)",
+        "width": "17.7969px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "999px"
+      },
+      {
+        "time": 4320,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0.8",
+        "transform": "matrix(1, 0, -0.344328, 1, 39.865, 0)",
+        "width": "17.7969px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "999px"
+      },
+      {
+        "time": 4752,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0.8",
+        "transform": "matrix(1, 0, -0.344328, 1, 85.425, 0)",
+        "width": "17.7969px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "999px"
+      },
+      {
+        "time": 4860,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0",
+        "transform": "matrix(1, 0, -0.344328, 1, 85.425, 0)",
+        "width": "17.7969px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "999px"
+      },
+      {
+        "time": 5400,
+        "duration": "5.4s",
+        "delay": "0s",
+        "timing": "linear",
+        "opacity": "0",
+        "transform": "matrix(1, 0, -0.344328, 1, 0, 0)",
+        "width": "17.7969px",
+        "background": "linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.72), rgba(0, 0, 0, 0))",
+        "overflow": "hidden",
+        "borderRadius": "999px"
+      }
+    ]
+  },
+  "placement_delays": [
+    {
+      "card": "guide",
+      "delay": "0s"
+    },
+    {
+      "card": "guide",
+      "delay": "0s"
+    },
+    {
+      "card": "guide",
+      "delay": "0s"
+    },
+    {
+      "card": "portal-card portal-card--research",
+      "delay": "0s"
+    },
+    {
+      "card": "portal-card portal-card--best-shots",
+      "delay": "-2.7s"
+    }
+  ],
+  "issues": [],
+  "tested_code_head": "379bbfd8bdab7b54aae53d83a3cb3da80cfcb1ad",
+  "actions_run": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/39136762635",
+  "artifact_sha256": "732764a292f59b1b061bc8ecad7cd105ab45615d32f412c9c3696c2224e2c2d9"
+}

@@ -11,6 +11,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -24,3 +25,22 @@ jobs:
         run: |
           node tests/browser/best_shot_picker.cjs
           node tests/browser/deletion_review.cjs
+      - name: Generate isolated notification layout fixtures
+        run: |
+          pip install -r requirements.txt
+          python tests/browser/notice_layout_fixture.py /tmp/notice-layout
+      - name: Notification positions, pill badges and unchanged sheen
+        timeout-minutes: 3
+        env:
+          PLAYWRIGHT_MODULE_PATH: /tmp/kinoko-browser/node_modules/playwright
+        run: node tests/browser/notice_layout.cjs /tmp/notice-layout
+      - name: Save notification comparison screenshots and measurements
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: notice-layout-${{ github.run_id }}
+          path: |
+            /tmp/notice-layout/screenshots/
+            /tmp/notice-layout/result.json
+            /tmp/notice-layout/fixture.json
+          retention-days: 30

@@ -2677,16 +2677,15 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
     def append_card(modifier, href, title, description, eyebrow=None,
                     count=None, count_unit=None):
         eyebrow_html = f'<span class="portal-eyebrow">{eyebrow}</span>' if eyebrow else ""
-        # Keep both independent cards' title rows aligned, whether a notice is active or not.
-        # In Best Shot, the notice follows the description visually and its badge comes first.
-        notice_html = section_notice(modifier, badge_first=(modifier == "best-shots"))
+        # Float notices above the eyebrow; they never occupy the description row.
+        notice_html = section_notice(modifier, badge_first=True)
         details_html = (f'<span class="portal-card__details">'
-                        f'<small>{description}</small>{notice_html}</span>')
+                        f'<small>{description}</small></span>')
         parts.append(
             f'    <a class="portal-card portal-card--{modifier}" href="{href}">\n'
             '      <span class="portal-card__visual" aria-hidden="true"></span>\n'
             f'      <span class="portal-card__content"><span class="portal-card__copy">'
-            f'{eyebrow_html}'
+            f'{notice_html}{eyebrow_html}'
             f'<strong>{portal_icon(modifier)}<span>{title}{content_count(count, count_unit)}</span></strong>'
             f'{details_html}</span></span>\n'
             '    </a>\n'
@@ -2727,7 +2726,7 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
         'aria-label="キノコを探す入口">\n'
     )
     for modifier, href, title, description, help_title, help_text in guide_rows:
-        linked_notice = section_notice(modifier, href=href)
+        linked_notice = section_notice(modifier, href=href, badge_first=True)
         parts.append(
             '    <div class="portal-guide-row">\n'
             f'      <a class="portal-card portal-card--{modifier}" href="{href}">\n'
@@ -2737,8 +2736,9 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
             f'<small>{description}</small></span></span>\n'
             '      </a>\n'
             '      <span class="portal-guide-note">'
-            f'<strong>{help_title}</strong><small>{help_text}</small>'
-            f'{linked_notice}</span>\n'
+            f'<strong>{help_title}</strong>'
+            f'<span class="portal-guide-note__details"><small>{help_text}</small>'
+            f'{linked_notice}</span></span>\n'
             '    </div>\n'
         )
     parts.append('  </nav>\n  </div>\n</section>\n')

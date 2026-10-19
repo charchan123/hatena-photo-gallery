@@ -1,0 +1,39 @@
+{
+  "tested_code_head": "379bbfd8bdab7b54aae53d83a3cb3da80cfcb1ad",
+  "python": {
+    "passed": 966,
+    "compilation": "PASS"
+  },
+  "javascript": {
+    "syntax": "PASS",
+    "regression_scripts": 11,
+    "result": "PASS"
+  },
+  "chromium": {
+    "notice_assertions": 669,
+    "best_shot_assertions": 92,
+    "deletion_assertions": 31,
+    "total_assertions": 792,
+    "result": "PASS"
+  },
+  "api": {
+    "previous_gallery": 933,
+    "candidate_gallery": 933,
+    "missing_gallery_occurrences": 0,
+    "classification_changes": 0,
+    "url_changes": 0,
+    "deleted_images": 0,
+    "protected_deletion_candidates": 0,
+    "guarded_result": "PREVIEW",
+    "history_writes": false,
+    "publication_writes": false
+  },
+  "actions": {
+    "validate": 39136762776,
+    "browser": 39136762635,
+    "api_audit": 39136762691
+  },
+  "effect_css_sha256": "6346de63c0f6606d6d2d6c318d9e4372733dc58d5bbc96c84d99db5255cb9115",
+  "draft": true,
+  "merge_or_publish_authorized": false
+}
