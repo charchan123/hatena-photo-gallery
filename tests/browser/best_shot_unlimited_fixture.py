@@ -11,6 +11,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 import main
 import best_shot_ui as current
 import requests
+from bs4 import BeautifulSoup
 
 BASELINE = 'c3a0420e01a24afe0b86b4eb6c6ee0999c93ad11'
 root = Path(sys.argv[1]).resolve()
@@ -31,9 +32,17 @@ baseline_config = json.loads(subprocess.check_output(['git', 'show', f'{BASELINE
 old_model = before.build_best_shot_model(baseline_config, portal)
 baseline_model = current.build_best_shot_model(baseline_config, portal)
 assert old_model == baseline_model
-assert before.render_best_shot_page(old_model) == current.render_best_shot_page(baseline_model)
+def move_monthly_badges_only(document):
+    soup = BeautifulSoup(document, 'html.parser')
+    for card in soup.select('.best-shot-grid .best-shot-card'):
+        badge = card.select_one('.best-shot-card__body .best-shot-badge')
+        if badge:
+            card.select_one('.best-shot-photo').insert(0, badge.extract())
+    return str(soup)
+
+assert move_monthly_badges_only(before.render_best_shot_page(old_model)) == str(BeautifulSoup(current.render_best_shot_page(baseline_model), 'html.parser'))
 for old, new in zip(old_model['years'], baseline_model['years']):
-    assert before.render_best_shot_year_page(old) == current.render_best_shot_year_page(new)
+    assert move_monthly_badges_only(before.render_best_shot_year_page(old)) == str(BeautifulSoup(current.render_best_shot_year_page(new), 'html.parser'))
 
 # Independently validate the actual PR configuration with the current code.
 config = json.loads(Path('data/best-shots.json').read_text())
@@ -101,6 +110,6 @@ summary = {'baseline': BASELINE, 'published_ref': subprocess.check_output(['git'
            'selection_ids': [e['selection_id'] for e in config['entries']], 'annual_best': config['annual_best'],
            'selected_years': [y['year'] for y in new_model['years']],
            'config_sha256': hashlib.sha256(Path('data/best-shots.json').read_bytes()).hexdigest(),
-           'published_model_identical': True, 'published_html_identical': True, 'cached_public_thumbnails': len(photos), 'cases': cases}
+           'published_model_identical': True, 'published_html_change_only': 'monthly_badge_moved_into_photo_link', 'cached_public_thumbnails': len(photos), 'cases': cases}
 (root / 'summary.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2))
 print('PASS: historical Best Shot model/HTML unchanged; current selections and isolated month cases 1/3/4/10/30/35 generated')
