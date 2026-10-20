@@ -98,13 +98,13 @@ const server=http.createServer((req,res)=>{
    results.push({option:o.name,visible,visual_width:avatar.width,touch,targets});await p.screenshot({path:path.join(shots,`size-${width}-${o.name}.png`),animations:'disabled'});
   }
   check(results[2].visible>=results[0].visible,true);check(Math.abs(results[2].visual_width-18)<.1,true);
-  metrics.push({phase:'icon-options',width,results,selected:'dense-18-20',coarse_target_min_width:width<=768?28:20});
+  metrics.push({phase:'icon-options',width,results,selected:'dense-18-20',target_min_width:results[0].touch?28:20});
   await p.locator('.record-stars').evaluateAll(es=>{for(const e of es){e.style.removeProperty('--record-star-cell');e.style.removeProperty('--record-star-scale')}window.dispatchEvent(new Event('resize'))});
  }
  const nativeButtons=[];
  for(const width of [1280,1024,900,899,768,680,390,320]){
-  const live=await context('live',{hasTouch:width<=768,isMobile:width<=390}),p=await live.newPage();p.on('pageerror',e=>errors.push(e.message));p.setDefaultTimeout(20000);
-  await p.setViewportSize({width,height:1000});await p.goto(base+'/before/new-top.html',{waitUntil:'domcontentloaded'});await p.waitForFunction(expected=>[...document.querySelectorAll('.record-star-entry')].every((r,i)=>r.querySelector('.record-stars-native[data-ready]')&&(expected[i]===0||r.querySelector('.record-stars').dataset.total===String(expected[i]))),fixture.records.map(r=>r.total));await p.waitForFunction(()=>[...document.querySelectorAll('.record-stars-native [data-hatena-star]')].every(h=>[...h.shadowRoot.querySelectorAll('img')].every(i=>i.complete&&i.naturalWidth>0)));await p.evaluate(()=>document.fonts.ready);await p.locator('.record-preview-list').scrollIntoViewIfNeeded();await p.screenshot({path:path.join(shots,`${width}-before.png`),animations:'disabled',fullPage:true});
+  const live=await context('live',{viewport:{width,height:1000},hasTouch:width<=768,isMobile:width<=390}),p=await live.newPage();p.on('pageerror',e=>errors.push(e.message));p.setDefaultTimeout(20000);
+  check(await p.evaluate(()=>navigator.maxTouchPoints>0),width<=768);await p.goto(base+'/before/new-top.html',{waitUntil:'domcontentloaded'});await p.waitForFunction(expected=>[...document.querySelectorAll('.record-star-entry')].every((r,i)=>r.querySelector('.record-stars-native[data-ready]')&&(expected[i]===0||r.querySelector('.record-stars').dataset.total===String(expected[i]))),fixture.records.map(r=>r.total));await p.waitForFunction(()=>[...document.querySelectorAll('.record-stars-native [data-hatena-star]')].every(h=>[...h.shadowRoot.querySelectorAll('img')].every(i=>i.complete&&i.naturalWidth>0)));await p.evaluate(()=>document.fonts.ready);await p.locator('.record-preview-list').scrollIntoViewIfNeeded();await p.screenshot({path:path.join(shots,`${width}-before.png`),animations:'disabled',fullPage:true});
   await p.goto(base+'/after/new-top.html',{waitUntil:'domcontentloaded'});await p.evaluate(()=>document.fonts.ready);const initial=await dates(p);
   await p.waitForFunction(expected=>{const rows=[...document.querySelectorAll('.record-star-entry')];return rows.length===expected.length&&rows.every((r,i)=>r.querySelector('.record-stars-native[data-ready]')&&(expected[i]===0||r.querySelector('.record-stars').dataset.total===String(expected[i])))},fixture.records.map(r=>r.total));
   for(let i=0;i<fixture.records.length;i++){
@@ -179,8 +179,10 @@ const server=http.createServer((req,res)=>{
   await q.goto(base+'/after/new-top.html');await q.waitForFunction(n=>document.querySelector('.record-stars').dataset.total===String(n),mode==='few'?5:130);await bounds(q);
   if(mode==='zero'){const original=q.url(),link=q.locator('.record-stars-total').first();await link.focus();check(await link.evaluate(e=>getComputedStyle(e).clipPath),'none');check(await link.getAttribute('href'),fixture.records[0].uri);check(q.url(),original);await q.locator('body').evaluate(e=>e.focus());}
   if(mode==='few'){const url=q.url();await q.frameLocator('iframe').first().getByRole('button',{name:'スター追加（隔離）'}).tap();await q.waitForFunction(()=>document.querySelector('.record-stars').dataset.total==='6');check(q.url(),url);}
+  check(await q.locator('[data-record-star-profile]:not([data-record-star-hidden])').count()>0,true);
+  check(await q.evaluate(()=>navigator.maxTouchPoints>0),true);
   check(await q.locator('[data-record-star-profile]:not([data-record-star-hidden])').evaluateAll(es=>es.every(e=>{const r=e.getBoundingClientRect();return r.width>=28&&r.height>=28})),true);
-  metrics.push({phase:'touch-'+mode,width:390,no_overflow:true});await c.close();
+  metrics.push({phase:'touch-'+mode,width:390,no_overflow:true,targets:await q.locator('[data-record-star-profile]:not([data-record-star-hidden])').evaluateAll(es=>es.map(e=>{const r=e.getBoundingClientRect();return {width:r.width,height:r.height}}))});await c.close();
  }
  // If the blog-specific renderer is unavailable, the original official SiteConfig path is retained.
  const fallbackContext=await context('profile-failure'),fallback=await fallbackContext.newPage();await fallback.goto(base+'/after/new-top.html');
