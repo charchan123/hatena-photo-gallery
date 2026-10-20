@@ -150,7 +150,9 @@ def test_native_star_previews_separate_links_and_bind_only_original_permalinks()
         assert all(a.get("rel") == ["noopener", "noreferrer"] for a in links)
         assert row.select_one(".record-preview-meta time").get_text() == "2026年10月15日 公開"
         assert row.select_one(".record-stars-native").parent.get("role") == "group"
-        assert row.select_one(".record-stars-total").get_text() == "スター"  # No guessed count or synthetic stars.
+        assert 'record-stars-unconfirmed' in row.select_one('.record-stars-total')['class']
+        assert row.select_one('.record-stars-total').get_text() == '元記事でスターを見る・追加する'
+        assert '未確定' in row.select_one('.record-stars-total')['aria-label']
         assert row.select_one(".record-preview-title").get_text() == rows[i]["title"]
 
 

@@ -3,14 +3,18 @@
 .portal-index .record-preview-row .record-preview-excerpt{color:#526056}
 .portal-index .record-preview-row .record-preview-heading{color:#24472f}
 .portal-index .record-preview-row a:focus-visible,.portal-index .record-stars-total:focus-visible{outline:3px solid #eeb947;outline-offset:3px;border-radius:3px}
-.portal-index .record-preview-meta{display:flex;align-items:center;flex-wrap:wrap;gap:2px 8px;width:300px;max-width:100%;min-width:0}
+.portal-index .record-preview-body{display:block}
+.portal-index .record-preview-meta{display:flex;flex-direction:column;align-items:flex-start;gap:0;width:100%;max-width:100%;min-width:0;margin-top:2px}
 .portal-index .record-preview-meta .record-preview-date{margin:0;flex:0 0 auto}
-.portal-index .record-stars{position:relative;display:flex;align-items:center;flex-wrap:wrap;gap:2px;flex:1 1 112px;min-width:min(112px,100%);max-width:100%;min-height:28px;color:#758077;font-size:.74rem}
+.portal-index .record-stars{position:relative;display:flex;align-items:center;flex-wrap:wrap;gap:2px;flex:0 0 auto;width:100%;min-width:0;max-width:100%;min-height:28px;color:#758077;font-size:.74rem}
 .portal-index .record-stars-native{flex:1 1 36px;min-width:36px;max-width:100%;white-space:nowrap;line-height:28px}
 .portal-index .record-stars-native:not([data-ready]){position:absolute;visibility:hidden;width:72px;height:28px;overflow:hidden;pointer-events:none}
 .portal-index .record-stars-native>[data-hatena-star]{display:inline-block;max-width:100%;white-space:nowrap}
 .portal-index .record-stars-total{display:inline-flex;align-items:center;flex:0 0 auto;min-height:28px;white-space:nowrap;text-decoration:none;font-variant-numeric:tabular-nums}
 .portal-index .record-stars-ellipsis{flex:0 0 auto}
 .portal-index .record-stars-ellipsis[hidden]{display:none}
-@media(max-width:900px){.portal-index .record-preview-meta{margin-top:3px}}
+/* The fallback remains a real, focusable original-article link without a misleading count label. */
+.portal-index .record-stars-unconfirmed{position:absolute;left:0;top:100%;z-index:12;width:1px;height:1px;min-height:0;clip-path:inset(50%);overflow:hidden}
+.portal-index .record-stars-unconfirmed:focus{width:max-content;max-width:100%;height:auto;min-height:28px;clip-path:none;white-space:normal;padding:4px 6px;box-sizing:border-box;background:#fff;border-radius:4px;box-shadow:0 1px 6px #26352b33}
+@media(min-width:900px){.portal-index .portal-guide-list--3{grid-template-rows:repeat(3,minmax(min-content,1fr));align-content:stretch}}
 @media(hover:hover){.portal-index .record-preview-row .record-preview-excerpt:hover,.portal-index .record-stars-total:hover{text-decoration:underline}}

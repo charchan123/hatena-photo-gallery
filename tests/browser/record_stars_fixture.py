@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 import main
 from records_ui import build_observation_records
 
-BASELINE = '978ec61c34420ddcb01dfb3d4a6315ea7c03548c'
+BASELINE = '62210444476a035f975f00317bff03ab310d4317'
 root = Path(sys.argv[1]).resolve()
 root.mkdir(parents=True, exist_ok=True)
 (root / 'screenshots').mkdir(exist_ok=True)
@@ -57,13 +57,34 @@ exec(compile(subprocess.check_output(['git', 'show', BASELINE + ':main.py']), ma
 before_main.render_record_preview_rows = before_records.render_record_preview_rows
 best_count = len(json.loads(Path('data/best-shots.json').read_text())['entries'])
 research_count = 66
+# Reuse the exact production approval/hash validator; no unconditional feature gate.
+feature_state = main.validate_feature_production_state()
+assert portal['reference_data']['mushroom_master'] == feature_state['mushroom_master']
+published_top = BeautifulSoup(subprocess.check_output(['git', 'show', 'origin/gh-pages:new-top.html']), 'html.parser')
+public_entrances = [a['href'] for a in published_top.select('.portal-guide-list a.portal-card')]
+feature_evidence = {}
 for variant, module in [('before', before_main), ('after', main)]:
     output = root / variant; output.mkdir(exist_ok=True)
     module.OUTPUT_DIR = str(output)
+    main._write_feature_page(portal, feature_state['feature_facets'], str(output), main.ASSETS_DIR, main.safe_filename)
+    feature_available = (output / 'features.html').is_file()
     module.generate_new_top({r['gallery_name']: [] for r in portal['observations']}, {},
-        observation_records=records, research_summary={'case_count': research_count}, best_shot_summary={'entry_count': best_count})
+        observation_records=records, feature_search_available=feature_available, research_summary={'case_count': research_count}, best_shot_summary={'entry_count': best_count})
+    generated = BeautifulSoup((output / 'new-top.html').read_text(), 'html.parser')
+    entrances = [a['href'] for a in generated.select('.portal-guide-list a.portal-card')]
+    assert entrances == public_entrances == ['index.html', 'season.html', 'features.html']
+    feature_evidence[variant] = {'validator': 'validate_feature_production_state', 'features_html': feature_available, 'entrances': entrances}
+    if variant == 'before':
+        # Reproduce the previous omitted argument independently for the explicit 2→3 comparison.
+        correct = (output / 'new-top.html').read_text()
+        module.generate_new_top({r['gallery_name']: [] for r in portal['observations']}, {}, observation_records=records,
+            research_summary={'case_count': research_count}, best_shot_summary={'entry_count': best_count})
+        wrong = (output / 'new-top.html').read_text()
+        assert len(BeautifulSoup(wrong, 'html.parser').select('.portal-guide-row')) == 2
+        (output / 'missing-feature.html').write_text(wrong)
+        (output / 'new-top.html').write_text(correct)
 # Preserve the actual previous adapter as well as its generator for an honest visual comparison.
-for filename in ['record-stars.js', 'record-stars.css']:
+for filename in ['record-stars.js', 'record-stars.css', 'portal.css']:
     (root / 'before' / 'assets' / filename).write_bytes(subprocess.check_output(['git', 'show', BASELINE + ':assets/' + filename]))
 photos = {}
 for row in records[:3]:
@@ -80,8 +101,10 @@ live_site = {'new_top_url': public.url, 'new_top_status': public.status_code,
              'new_top_csp': public.headers.get('Content-Security-Policy'),
              'new_top_x_frame_options': public.headers.get('X-Frame-Options'),
              'home_has_new_top_iframe': any('new-top.html' in (f.get('src') or '') for f in home_soup.select('iframe')),
-             'public_new_top_has_star_script': 'record-stars.js' in public.text}
-summary = {'live_site': live_site, 'baseline': BASELINE, 'published_ref': subprocess.check_output(['git', 'rev-parse', 'origin/gh-pages'], text=True).strip(),
+             'public_new_top_has_star_script': 'record-stars.js' in public.text,
+             'public_entrances': [a['href'] for a in BeautifulSoup(public.text, 'html.parser').select('.portal-guide-list a.portal-card')]}
+assert live_site['public_entrances'] == public_entrances
+summary = {'feature_validation': feature_evidence, 'live_site': live_site, 'baseline': BASELINE, 'published_ref': subprocess.check_output(['git', 'rev-parse', 'origin/gh-pages'], text=True).strip(),
     'records': [{'uri': r['url'], 'title': r['title'], **counts(by_uri[r['url']]), **canonical[r['url']]} for r in records[:3]],
     'photos': photos, 'api_cors_allow_origin': response.headers.get('Access-Control-Allow-Origin'),
     'reference_fetch': 'Public documented entry.json GET; no credentials; total includes repeated names and all colour counts',

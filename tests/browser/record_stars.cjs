@@ -11,7 +11,7 @@ function mockSource(mode){return `(${function(mode,icons){
   for(const row of document.querySelectorAll('article.record-star-entry')){
    const uri=row.querySelector('a.record-star-permalink').href,mount=row.querySelector('.record-stars-native'),host=document.createElement('span');host.dataset.hatenaStar='';mount.append(host);const s=host.attachShadow({mode:'open'});
    const control=document.createElement('span');control.setAttribute('part','star-button-container');control.style.cssText='display:inline-flex;position:relative;width:32px;height:16px;margin:0 -4px';const frame=document.createElement('iframe');frame.src='/mock-control?uri='+encodeURIComponent(uri)+'&anonymous='+(mode==='anonymous');frame.style.cssText='border:0;width:32px;height:24px';control.append(frame);s.append(control);
-   const count={zero:0,few:5,many:130,collapsed:4,anonymous:3,unknown:0}[mode]??1;
+   const count={zero:0,one:1,fourteen:14,few:5,many:130,collapsed:4,anonymous:3,unknown:0}[mode]??1;
    for(let i=0;i<count;i++)s.append(makeStar(['green','red','blue','purple','yellow'][i%5]));
    if(mode==='collapsed'){const b=document.createElement('button');b.type='button';b.textContent='126';b.style.color='#ffb400';s.append(b);}
    if(mode==='unknown')s.append(document.createElement('aside'));
@@ -68,10 +68,40 @@ const server=http.createServer((req,res)=>{
   for(const row of await p.locator('.record-preview-row').all())check(await row.evaluate(e=>{const r=e.getBoundingClientRect();return Array.from(e.querySelectorAll('.record-preview-date,.record-stars,.record-stars-total')).every(n=>{const x=n.getBoundingClientRect();return x.left>=r.left-.5&&x.right<=r.right+.5})}),true);
   check(await p.locator('a a, a .record-stars, a iframe').count(),0);
  }
+ async function layout(p,width){
+  check(await p.locator('.portal-guide-row').count(),fixture.live_site.public_entrances.length);
+  check(await p.locator('.portal-guide-list a.portal-card').evaluateAll(es=>es.map(e=>e.getAttribute('href'))),fixture.live_site.public_entrances);
+  const geometry=await p.locator('.record-preview-row').evaluateAll(es=>es.map(e=>{const rect=s=>{const r=e.querySelector(s).getBoundingClientRect();return {y:r.y,bottom:r.bottom,height:r.height}};return {title:rect('.record-preview-heading'),date:rect('.record-preview-date'),stars:rect('.record-stars'),excerpt:rect('.record-preview-excerpt')}}));
+  for(const g of geometry){check(g.title.bottom<=g.date.y+.5,true);check(g.date.bottom<=g.stars.y+.5,true);check(g.stars.bottom<=g.excerpt.y+.5,true);}
+  const panels=await p.locator('.portal-records-hero,.portal-explore').evaluateAll(es=>es.map(e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,bottom:r.bottom}}));
+  if(width>=900){check(Math.abs(panels[0].y-panels[1].y)<.5,true);check(Math.abs(panels[0].height-panels[1].height)<.5,true);const rows=await p.locator('.portal-guide-row').evaluateAll(es=>es.map(e=>e.getBoundingClientRect().height));check(Math.max(...rows)-Math.min(...rows)<1,true);}
+  else check(panels[1].y>=panels[0].bottom,true);
+  metrics.push({phase:'vertical-layout',width,geometry,panels,entrances:3});
+ }
+ async function emptyCount(p){
+  for(const e of await p.locator('.record-stars-total').all()){
+   check(await e.evaluate(e=>getComputedStyle(e).clipPath==='inset(50%)'&&e.getBoundingClientRect().width===1),true);
+   check(await e.getAttribute('aria-label').then(s=>s.includes('未確定')),true);
+  }
+  check(await p.locator('.record-stars[data-total="0"]').count(),0);
+ }
+ async function sizeExamples(p,width){
+  const options=[{name:'original-20-24',scale:'1',cell:'24px'},{name:'balanced-18-22',scale:'.9',cell:'22px'},{name:'dense-18-20',scale:'.9',cell:'20px'}],results=[];
+  for(const o of options){
+   await p.locator('.record-stars').evaluateAll((es,o)=>{for(const e of es){e.style.setProperty('--record-star-cell',o.cell);e.style.setProperty('--record-star-scale',o.scale)}window.dispatchEvent(new Event('resize'))},o);
+   await p.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+   const visible=await p.locator('.record-star-entry').first().locator('[data-record-star-profile]:not([data-record-star-hidden])').count();
+   const avatar=await p.locator('.record-star-entry').first().locator('[data-record-star-profile]:not([data-record-star-hidden]) picture img').first().boundingBox();
+   results.push({option:o.name,visible,visual_width:avatar.width});await p.screenshot({path:path.join(shots,`size-${width}-${o.name}.png`),animations:'disabled'});
+  }
+  check(results[2].visible>=results[0].visible,true);check(Math.abs(results[2].visual_width-18)<.1,true);
+  metrics.push({phase:'icon-options',width,results,selected:'dense-18-20',coarse_target_min_width:width<=768?28:20});
+  await p.locator('.record-stars').evaluateAll(es=>{for(const e of es){e.style.removeProperty('--record-star-cell');e.style.removeProperty('--record-star-scale')}window.dispatchEvent(new Event('resize'))});
+ }
  const nativeButtons=[];
- for(const width of [1280,768,390,320]){
+ for(const width of [1280,1024,900,899,768,680,390,320]){
   const live=await context('live',{hasTouch:width<=768,isMobile:width<=390}),p=await live.newPage();p.on('pageerror',e=>errors.push(e.message));p.setDefaultTimeout(20000);
-  await p.setViewportSize({width,height:1000});await p.goto(base+'/before/new-top.html',{waitUntil:'domcontentloaded'});await p.waitForFunction(expected=>[...document.querySelectorAll('.record-star-entry')].every((r,i)=>r.querySelector('.record-stars-native[data-ready]')&&(expected[i]===0||r.querySelector('.record-stars').dataset.total===String(expected[i]))),fixture.records.map(r=>r.total));await p.waitForFunction(()=>[...document.querySelectorAll('.record-stars-native [data-hatena-star]')].every(h=>[...h.shadowRoot.querySelectorAll('img')].every(i=>i.complete&&i.naturalWidth>0)));await p.evaluate(()=>document.fonts.ready);await p.locator('.record-preview-list').scrollIntoViewIfNeeded();await p.screenshot({path:path.join(shots,`${width}-before.png`),animations:'disabled'});
+  await p.setViewportSize({width,height:1000});await p.goto(base+'/before/new-top.html',{waitUntil:'domcontentloaded'});await p.waitForFunction(expected=>[...document.querySelectorAll('.record-star-entry')].every((r,i)=>r.querySelector('.record-stars-native[data-ready]')&&(expected[i]===0||r.querySelector('.record-stars').dataset.total===String(expected[i]))),fixture.records.map(r=>r.total));await p.waitForFunction(()=>[...document.querySelectorAll('.record-stars-native [data-hatena-star]')].every(h=>[...h.shadowRoot.querySelectorAll('img')].every(i=>i.complete&&i.naturalWidth>0)));await p.evaluate(()=>document.fonts.ready);await p.locator('.record-preview-list').scrollIntoViewIfNeeded();await p.screenshot({path:path.join(shots,`${width}-before.png`),animations:'disabled',fullPage:true});
   await p.goto(base+'/after/new-top.html',{waitUntil:'domcontentloaded'});await p.evaluate(()=>document.fonts.ready);const initial=await dates(p);
   await p.waitForFunction(expected=>{const rows=[...document.querySelectorAll('.record-star-entry')];return rows.length===expected.length&&rows.every((r,i)=>r.querySelector('.record-stars-native[data-ready]')&&(expected[i]===0||r.querySelector('.record-stars').dataset.total===String(expected[i])))},fixture.records.map(r=>r.total));
   for(let i=0;i<fixture.records.length;i++){
@@ -84,13 +114,15 @@ const server=http.createServer((req,res)=>{
    const colors={};for(const item of native){const color=/★\(([^)]+)\)/.exec(item.color||'')?.[1]||({'rgb(255, 180, 0)':'yellow','rgb(0, 211, 0)':'green','rgb(255, 0, 62)':'red','rgb(0, 161, 222)':'blue','rgb(180, 0, 192)':'purple'})[item.color];assert.ok(color);colors[color]=(colors[color]||0)+item.count;}
    check(colors,Object.fromEntries(Object.entries(f.colors).filter(([,n])=>n>0)));check(await row.locator('.record-stars-ellipsis').isVisible(),await row.locator('[data-record-star-hidden]').count()>0);
    if(f.total>0){check(await row.locator('.record-stars-total').innerText(),'（'+f.total+'）');liveTemplate=await row.locator('[data-hatena-star]').evaluate(e=>e.shadowRoot.innerHTML);}
-   else check(await row.locator('.record-stars-total').innerText(),'スター'); // Do not invent an empty-DOM count.
+   else {check(await row.locator('.record-stars-total').getAttribute('class').then(s=>s.includes('record-stars-unconfirmed')),true);check(await row.locator('.record-stars').getAttribute('data-total'),null);}
   }
   await p.waitForFunction(()=>[...document.querySelectorAll('.record-stars-native [data-hatena-star]')].every(h=>[...h.shadowRoot.querySelectorAll('picture img')].every(i=>i.complete&&i.naturalWidth>0)));
-  const after=await dates(p);check(after.map((r,i)=>Math.abs(r.y-initial[i].y)),[0,0,0]);await bounds(p);
-  await p.locator('.record-preview-list').scrollIntoViewIfNeeded();await p.screenshot({path:path.join(shots,`${width}-after.png`),animations:'disabled'});metrics.push({phase:'live',width,totals:fixture.records.map(r=>r.total),date_shift:after.map((r,i)=>r.y-initial[i].y),no_overflow:true});
+  const after=await dates(p);check(after.map((r,i)=>Math.abs(r.y-initial[i].y)),[0,0,0]);await bounds(p);await layout(p,width);
+  await p.locator('.record-preview-list').scrollIntoViewIfNeeded();await p.screenshot({path:path.join(shots,`${width}-after.png`),animations:'disabled',fullPage:true});metrics.push({phase:'live',width,totals:fixture.records.map(r=>r.total),date_shift:after.map((r,i)=>r.y-initial[i].y),no_overflow:true});
+  if(width===1280||width===390)await sizeExamples(p,width);
   // Inspect native controls, never click real add buttons.
   if(width===390)for(const frame of p.frames().filter(f=>f.url().includes('/add_star_iframe.html')))nativeButtons.push({uri:new URL(frame.url()).searchParams.get('url'),controls:await frame.locator('button,a').evaluateAll(es=>es.map(e=>({tag:e.tagName,label:e.getAttribute('aria-label')||e.getAttribute('title')||e.textContent})).slice(0,8))});
+  if(width===1280){await p.goto(base+'/before/missing-feature.html');check(await p.locator('.portal-guide-row').count(),2);await p.screenshot({path:path.join(shots,'1280-missing-feature-before.png'),fullPage:true,animations:'disabled'});}
   await live.close();
  }
  // A real Pages origin and a cross-origin blog embed are simulated by browser-only fulfilment.
@@ -109,22 +141,24 @@ const server=http.createServer((req,res)=>{
  const embeddedURIs=await pageFrame.locator('.record-star-permalink').evaluateAll(es=>es.map(e=>e.href));check(embeddedURIs,fixture.records.map(r=>r.uri));
  check(await pageFrame.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
  metrics.push({phase:'Pages-origin-and-cross-origin-embed',width:390,third_party_cookies_restricted:cookieRestriction,uris:embeddedURIs,read_only:true});await embedContext.close();
- for(const mode of ['zero','few','many','collapsed','anonymous','unknown','error']){
+ for(const mode of ['zero','one','fourteen','few','many','collapsed','anonymous','unknown','error']){
   const c=await context(mode),q=await c.newPage();q.on('pageerror',e=>errors.push(e.message));
-  for(const width of [1280,768,390,320,1024,640]){
+  for(const width of [1280,1024,900,899,768,680,390,320,640]){
    await q.setViewportSize({width,height:1000});await q.goto(base+'/after/new-top.html',{waitUntil:'domcontentloaded'});await q.evaluate(()=>{document.querySelectorAll('.record-preview-title').forEach(e=>e.textContent+=' 長い記事タイトル'.repeat(35));});
    if(mode==='error')await q.waitForTimeout(150);else await q.waitForSelector('.record-stars-native [data-hatena-star]',{state:'attached'});
-   const expected={zero:null,few:5,many:130,collapsed:130,anonymous:3,unknown:null,error:null}[mode];
+   const expected={zero:null,one:1,fourteen:14,few:5,many:130,collapsed:130,anonymous:3,unknown:null,error:null}[mode];
    if(expected!==null)await q.waitForFunction(n=>[...document.querySelectorAll('.record-stars')].every(e=>e.dataset.total===String(n)),expected);
-   else await q.waitForFunction(()=>[...document.querySelectorAll('.record-stars-total')].every(e=>e.textContent==='スター'));
+   else await q.waitForFunction(()=>[...document.querySelectorAll('.record-stars-total')].every(e=>e.classList.contains('record-stars-unconfirmed')));
    if(mode==='zero')await q.waitForFunction(()=>document.querySelectorAll('.record-stars-native[data-ready]').length===3);
-   await bounds(q);const rows=q.locator('.record-star-entry');check(await rows.count(),3);
+   await bounds(q);await layout(q,width);if(expected===null)await emptyCount(q);const rows=q.locator('.record-star-entry');check(await rows.count(),3);
    if(mode==='many')check(await rows.first().locator('.record-stars-ellipsis').isVisible(),true);
    if(mode==='collapsed')check(await rows.first().locator('.record-stars-ellipsis').isVisible(),await rows.first().locator('[data-record-star-hidden]').count()>0);
    if(mode==='unknown'||mode==='error')check(await q.locator('.record-stars-native[data-ready]').count(),0);
    if(width===390&&mode==='many'){await q.locator('.record-preview-list').scrollIntoViewIfNeeded();await q.screenshot({path:path.join(shots,'390-many-130.png'),animations:'disabled'});}
+   if(width===768&&['zero','one','fourteen','error'].includes(mode))await q.screenshot({path:path.join(shots,`768-${mode}.png`),fullPage:true,animations:'disabled'});
    metrics.push({phase:mode,width,total:expected,no_overflow:true});
   }
+  if(mode==='zero'){const original=q.url(),link=q.locator('.record-stars-total').first();await link.focus();check(await link.evaluate(e=>getComputedStyle(e).clipPath),'none');check(await link.getAttribute('href'),fixture.records[0].uri);check(q.url(),original);await q.locator('body').evaluate(e=>e.focus());}
   if(mode==='few'){
    const row=q.locator('.record-star-entry').first(),frame=q.frameLocator('iframe').first();
    const start=q.url();await frame.getByRole('button',{name:'スター追加（隔離）'}).click();await q.waitForFunction(()=>document.querySelector('.record-stars').dataset.total==='6');check(q.url(),start);
@@ -140,6 +174,7 @@ const server=http.createServer((req,res)=>{
  for(const mode of ['few','many']){
   const c=await context(mode,{viewport:{width:390,height:844},hasTouch:true,isMobile:true}),q=await c.newPage();
   await q.goto(base+'/after/new-top.html');await q.waitForFunction(n=>document.querySelector('.record-stars').dataset.total===String(n),mode==='few'?5:130);await bounds(q);
+  if(mode==='zero'){const original=q.url(),link=q.locator('.record-stars-total').first();await link.focus();check(await link.evaluate(e=>getComputedStyle(e).clipPath),'none');check(await link.getAttribute('href'),fixture.records[0].uri);check(q.url(),original);await q.locator('body').evaluate(e=>e.focus());}
   if(mode==='few'){const url=q.url();await q.frameLocator('iframe').first().getByRole('button',{name:'スター追加（隔離）'}).tap();await q.waitForFunction(()=>document.querySelector('.record-stars').dataset.total==='6');check(q.url(),url);}
   metrics.push({phase:'touch-'+mode,width:390,no_overflow:true});await c.close();
  }
@@ -156,9 +191,9 @@ const server=http.createServer((req,res)=>{
  await slow.goto(base+'/after/new-top.html',{waitUntil:'commit'});
  await slow.waitForFunction(()=>document.body?.hasAttribute('data-record-stars-loading-fallback')&&parseFloat(getComputedStyle(document.body).opacity)>.99,{},{timeout:5000});
  check(await slow.evaluate(()=>document.readyState==='interactive'),true);
- check(await slow.locator('.record-stars-total').allTextContents(),['スター','スター','スター']);metrics.push({phase:'stalled-vendor',html_visible_before_vendor_finishes:true,no_guessed_total:true});
+ check(await slow.locator('.record-stars-total').allTextContents(),Array(3).fill('元記事でスターを見る・追加する'));metrics.push({phase:'stalled-vendor',html_visible_before_vendor_finishes:true,no_guessed_total:true});
  await slow.waitForLoadState('domcontentloaded');await slowContext.close();
  check(writes,[]);check(errors,[]);await browser.close();server.close();
- fs.writeFileSync(path.join(root,'result.json'),JSON.stringify({assertions,fixture,metrics,nativeButtons,network,writes,errors,real_star_addition:'NOT_ATTEMPTED',authenticated_addition:'UNVERIFIED',zero_total:'Empty native DOM has no ready marker: no inferred zero is displayed',native_template_sha256:crypto.createHash('sha256').update(liveTemplate||'').digest('hex')},null,2));
+ fs.writeFileSync(path.join(root,'result.json'),JSON.stringify({assertions,fixture,metrics,nativeButtons,network,writes,errors,real_star_addition:'NOT_ATTEMPTED',authenticated_addition:'UNVERIFIED',zero_total:'No inferred zero; empty or unavailable native data keeps a focus-revealed original-article link and a blank visible count slot',native_template_sha256:crypto.createHash('sha256').update(liveTemplate||'').digest('hex')},null,2));
  console.log(`PASS: ${assertions} Hatena Star assertions; original permalinks, native colours/counts, four widths and zoom-equivalent widths; no live star writes`);
 })().catch(async e=>{console.error(e);if(activeBrowser){for(const c of activeBrowser.contexts())for(const p of c.pages())try{await p.screenshot({path:path.join(shots,'failure-'+p.viewportSize().width+'.png')});console.error('Failure geometry',await p.locator('.record-preview-row').evaluateAll(es=>es.map(e=>({width:e.getBoundingClientRect().width,meta:e.querySelector('.record-preview-meta')?.getBoundingClientRect().width,stars:e.querySelector('.record-stars')?.getBoundingClientRect().width,html:e.querySelector('.record-stars')?.innerHTML}))));}catch{}await activeBrowser.close()}server.close();process.exit(1)});

@@ -143,7 +143,7 @@ def render_record_preview_rows(records, limit=3, *, now=None):
         thumb = link(image, 'record-preview-thumb', label=str(record.get("title") or "無題") + 'の記事を見る')
         stars = (f'<div class="record-stars" role="group" aria-label="はてなスター">'
                  '<div class="record-stars-native"></div><span class="record-stars-ellipsis" aria-hidden="true" hidden>…</span>'
-                 + link('スター', 'record-stars-total', label='元記事ではてなスターを見る・追加する') + '</div>') if native else ''
+                 + link('元記事でスターを見る・追加する', 'record-stars-total record-stars-unconfirmed', label='元記事ではてなスターを見る・追加する。件数は未確定') + '</div>') if native else ''
         text = link(excerpt, 'record-preview-excerpt') if excerpt else ''
         body = (f'{thumb}<div class="record-preview-body">{heading}'
                 f'<div class="record-preview-meta"><time class="record-preview-date">{date}</time>{stars}</div>{text}</div>')

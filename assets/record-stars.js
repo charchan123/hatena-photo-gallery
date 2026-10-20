@@ -35,6 +35,8 @@
  const shadowCSS=':host{display:inline-block;white-space:nowrap;max-width:100%;vertical-align:middle}'+
   ':host>[data-record-star-hidden]{display:none!important}'+
   ':host>a,:host>button{min-width:20px;min-height:28px;justify-content:center}'+
+  ':host>a[data-record-star-profile]{width:var(--record-star-cell,20px)!important;margin:0!important}'+
+  '[data-record-star-avatar]{transform:scale(var(--record-star-scale,.9));transform-origin:center;margin:0!important}'+
   '[part~=star-button-container]{min-width:36px;min-height:28px;margin:0!important}'+
   '@media(pointer:coarse){:host>a,:host>button{min-width:28px;min-height:28px}}';
  function start(){
@@ -42,7 +44,8 @@
    const mount=group.querySelector('.record-stars-native'),link=group.querySelector('.record-stars-total'),dots=group.querySelector('.record-stars-ellipsis');
    if(!mount||!link||!dots)continue;
    let shadow,observer,frame=0;
-   function unknown(){mount.removeAttribute('data-ready');link.textContent='スター';link.setAttribute('aria-label','元記事ではてなスターを見る・追加する');dots.hidden=true;delete group.dataset.total;}
+   function unconfirmed(){link.textContent='元記事でスターを見る・追加する';link.classList.add('record-stars-unconfirmed');link.setAttribute('aria-label','元記事ではてなスターを見る・追加する。件数は未確定');group.dataset.countState='unconfirmed';delete group.dataset.total;}
+   function unknown(){mount.removeAttribute('data-ready');unconfirmed();dots.hidden=true;}
    function schedule(){if(!frame)frame=root.requestAnimationFrame(()=>{frame=0;render()});}
    function render(){
     const host=mount.querySelector('[data-hatena-star]');
@@ -62,9 +65,11 @@
     // An unexpected vendor structure fails closed; original article link remains available.
     if(!control||nodes.filter(e=>e.matches('[part~=star-button-container]')).length!==1||parsed.some(i=>i.kind==='unknown')){unknown();return;}
     const n=total(parsed);
-    if(n===null){link.textContent='スター';link.setAttribute('aria-label','元記事ではてなスターを見る・追加する');delete group.dataset.total;}
-    else{link.textContent='（'+n+'）';link.setAttribute('aria-label','はてなスター合計'+n+'個。元記事で見る・追加する');group.dataset.total=String(n);}
+    if(n===null||n===0){unconfirmed();}
+    else{link.classList.remove('record-stars-unconfirmed');group.dataset.countState='positive';link.textContent='（'+n+'）';link.setAttribute('aria-label','はてなスター合計'+n+'個。元記事で見る・追加する');group.dataset.total=String(n);}
     for(const iframe of control.querySelectorAll('iframe'))iframe.title='元記事のはてなスターを追加：'+group.closest('.record-preview-row').querySelector('.record-preview-title').textContent;
+    // Scale only the official composite image; keep its URLs, overlay and native hit target.
+    for(const e of items){const pic=e.querySelector('picture');if(e.matches('a[href]')&&pic){e.dataset.recordStarProfile='';const avatar=pic.parentElement;if(avatar?.tagName==='SPAN')avatar.dataset.recordStarAvatar='';}}
     // Preserve the native iframe, event handlers and image URLs; hide only excess siblings.
     mount.dataset.ready='';dots.hidden=true;
     for(const e of items)e.removeAttribute('data-record-star-hidden');
