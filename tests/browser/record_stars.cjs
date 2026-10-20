@@ -95,16 +95,26 @@ const server=http.createServer((req,res)=>{
    const targets=await p.locator('.record-star-entry').first().locator('[data-record-star-profile]:not([data-record-star-hidden])').evaluateAll(es=>es.map(e=>{const r=e.getBoundingClientRect();return {width:r.width,height:r.height}}));
    const touch=await p.evaluate(()=>navigator.maxTouchPoints>0||matchMedia('(any-pointer:coarse)').matches);
    check(targets.every(t=>t.width>=(touch?28:20)&&t.height>=28),true);
-   results.push({option:o.name,visible,visual_width:avatar.width,touch,targets});await p.screenshot({path:path.join(shots,`size-${width}-${o.name}.png`),animations:'disabled'});
+   results.push({option:o.name,visible,visual_width:avatar.width,touch,targets});await capture(p,{path:path.join(shots,`size-${width}-${o.name}.png`),animations:'disabled'});
   }
   check(results[2].visible>=results[0].visible,true);check(Math.abs(results[2].visual_width-18)<.1,true);
   metrics.push({phase:'icon-options',width,results,selected:'dense-18-20',target_min_width:results[0].touch?28:20});
   await p.locator('.record-stars').evaluateAll(es=>{for(const e of es){e.style.removeProperty('--record-star-cell');e.style.removeProperty('--record-star-scale')}window.dispatchEvent(new Event('resize'))});
  }
+ async function capture(p,options){
+  // Chromium full-page screenshots can reset touch emulation while restoring the viewport.
+  // Restore the context's measured capability so later cases retain their intended input mode.
+  const points=await p.evaluate(()=>navigator.maxTouchPoints);await p.screenshot(options);
+  if(await p.evaluate(()=>navigator.maxTouchPoints)!==points){
+   const session=await p.context().newCDPSession(p);
+   await session.send('Emulation.setTouchEmulationEnabled',{enabled:points>0,maxTouchPoints:Math.max(points,1)});await session.detach();
+  }
+  check(await p.evaluate(()=>navigator.maxTouchPoints),points);
+ }
  const nativeButtons=[];
  for(const width of [1280,1024,900,899,768,680,390,320]){
   const live=await context('live',{viewport:{width,height:1000},hasTouch:width<=768,isMobile:width<=390}),p=await live.newPage();p.on('pageerror',e=>errors.push(e.message));p.setDefaultTimeout(20000);
-  check(await p.evaluate(()=>navigator.maxTouchPoints>0),width<=768);await p.goto(base+'/before/new-top.html',{waitUntil:'domcontentloaded'});await p.waitForFunction(expected=>[...document.querySelectorAll('.record-star-entry')].every((r,i)=>r.querySelector('.record-stars-native[data-ready]')&&(expected[i]===0||r.querySelector('.record-stars').dataset.total===String(expected[i]))),fixture.records.map(r=>r.total));await p.waitForFunction(()=>[...document.querySelectorAll('.record-stars-native [data-hatena-star]')].every(h=>[...h.shadowRoot.querySelectorAll('img')].every(i=>i.complete&&i.naturalWidth>0)));await p.evaluate(()=>document.fonts.ready);await p.locator('.record-preview-list').scrollIntoViewIfNeeded();await p.screenshot({path:path.join(shots,`${width}-before.png`),animations:'disabled',fullPage:true});
+  check(await p.evaluate(()=>navigator.maxTouchPoints>0),width<=768);await p.goto(base+'/before/new-top.html',{waitUntil:'domcontentloaded'});await p.waitForFunction(expected=>[...document.querySelectorAll('.record-star-entry')].every((r,i)=>r.querySelector('.record-stars-native[data-ready]')&&(expected[i]===0||r.querySelector('.record-stars').dataset.total===String(expected[i]))),fixture.records.map(r=>r.total));await p.waitForFunction(()=>[...document.querySelectorAll('.record-stars-native [data-hatena-star]')].every(h=>[...h.shadowRoot.querySelectorAll('img')].every(i=>i.complete&&i.naturalWidth>0)));await p.evaluate(()=>document.fonts.ready);await p.locator('.record-preview-list').scrollIntoViewIfNeeded();await capture(p,{path:path.join(shots,`${width}-before.png`),animations:'disabled',fullPage:true});
   await p.goto(base+'/after/new-top.html',{waitUntil:'domcontentloaded'});await p.evaluate(()=>document.fonts.ready);const initial=await dates(p);
   await p.waitForFunction(expected=>{const rows=[...document.querySelectorAll('.record-star-entry')];return rows.length===expected.length&&rows.every((r,i)=>r.querySelector('.record-stars-native[data-ready]')&&(expected[i]===0||r.querySelector('.record-stars').dataset.total===String(expected[i])))},fixture.records.map(r=>r.total));
   for(let i=0;i<fixture.records.length;i++){
@@ -121,11 +131,11 @@ const server=http.createServer((req,res)=>{
   }
   await p.waitForFunction(()=>[...document.querySelectorAll('.record-stars-native [data-hatena-star]')].every(h=>[...h.shadowRoot.querySelectorAll('picture img')].every(i=>i.complete&&i.naturalWidth>0)));
   const after=await dates(p);check(after.map((r,i)=>Math.abs(r.y-initial[i].y)),[0,0,0]);await bounds(p);await layout(p,width);
-  await p.locator('.record-preview-list').scrollIntoViewIfNeeded();await p.screenshot({path:path.join(shots,`${width}-after.png`),animations:'disabled',fullPage:true});metrics.push({phase:'live',width,totals:fixture.records.map(r=>r.total),date_shift:after.map((r,i)=>r.y-initial[i].y),no_overflow:true});
+  await p.locator('.record-preview-list').scrollIntoViewIfNeeded();await capture(p,{path:path.join(shots,`${width}-after.png`),animations:'disabled',fullPage:true});metrics.push({phase:'live',width,totals:fixture.records.map(r=>r.total),date_shift:after.map((r,i)=>r.y-initial[i].y),no_overflow:true});
   if(width===1280||width===390)await sizeExamples(p,width);
   // Inspect native controls, never click real add buttons.
   if(width===390)for(const frame of p.frames().filter(f=>f.url().includes('/add_star_iframe.html')))nativeButtons.push({uri:new URL(frame.url()).searchParams.get('url'),controls:await frame.locator('button,a').evaluateAll(es=>es.map(e=>({tag:e.tagName,label:e.getAttribute('aria-label')||e.getAttribute('title')||e.textContent})).slice(0,8))});
-  if(width===1280){await p.goto(base+'/before/missing-feature.html');check(await p.locator('.portal-guide-row').count(),2);await p.screenshot({path:path.join(shots,'1280-missing-feature-before.png'),fullPage:true,animations:'disabled'});}
+  if(width===1280){await p.goto(base+'/before/missing-feature.html');check(await p.locator('.portal-guide-row').count(),2);await capture(p,{path:path.join(shots,'1280-missing-feature-before.png'),fullPage:true,animations:'disabled'});}
   await live.close();
  }
  // A real Pages origin and a cross-origin blog embed are simulated by browser-only fulfilment.
@@ -202,4 +212,4 @@ const server=http.createServer((req,res)=>{
  check(writes,[]);check(errors,[]);await browser.close();server.close();
  fs.writeFileSync(path.join(root,'result.json'),JSON.stringify({assertions,fixture,metrics,nativeButtons,network,writes,errors,real_star_addition:'NOT_ATTEMPTED',authenticated_addition:'UNVERIFIED',zero_total:'No inferred zero; empty or unavailable native data keeps a focus-revealed original-article link and a blank visible count slot',native_template_sha256:crypto.createHash('sha256').update(liveTemplate||'').digest('hex')},null,2));
  console.log(`PASS: ${assertions} Hatena Star assertions; original permalinks, native colours/counts, four widths and zoom-equivalent widths; no live star writes`);
-})().catch(async e=>{console.error(e);if(activeBrowser){for(const c of activeBrowser.contexts())for(const p of c.pages())try{await p.screenshot({path:path.join(shots,'failure-'+p.viewportSize().width+'.png')});console.error('Failure geometry',await p.locator('.record-preview-row').evaluateAll(es=>es.map(e=>({width:e.getBoundingClientRect().width,meta:e.querySelector('.record-preview-meta')?.getBoundingClientRect().width,stars:e.querySelector('.record-stars')?.getBoundingClientRect().width,html:e.querySelector('.record-stars')?.innerHTML}))));}catch{}await activeBrowser.close()}server.close();process.exit(1)});
+})().catch(async e=>{console.error(e);if(activeBrowser){for(const c of activeBrowser.contexts())for(const p of c.pages())try{await capture(p,{path:path.join(shots,'failure-'+p.viewportSize().width+'.png')});console.error('Failure geometry',await p.locator('.record-preview-row').evaluateAll(es=>es.map(e=>({width:e.getBoundingClientRect().width,meta:e.querySelector('.record-preview-meta')?.getBoundingClientRect().width,stars:e.querySelector('.record-stars')?.getBoundingClientRect().width,html:e.querySelector('.record-stars')?.innerHTML}))));}catch{}await activeBrowser.close()}server.close();process.exit(1)});
