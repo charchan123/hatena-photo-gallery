@@ -9,8 +9,9 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 import requests
 import main
-from best_shot_ui import generate_best_shot_pages
+from best_shot_ui import build_best_shot_model, generate_best_shot_pages
 from records_ui import build_observation_records
+from research_identifications import split_research_cases
 
 root = Path(sys.argv[1]).resolve()
 root.mkdir(parents=True, exist_ok=True)
@@ -20,6 +21,9 @@ portal = json.loads(git('origin/gh-pages', 'portal-data.json'))
 records = build_observation_records(portal)
 feature = main.validate_feature_production_state()
 assert portal['reference_data']['mushroom_master'] == feature['mushroom_master']
+read = lambda name: json.loads(Path(name).read_text())
+best_count = build_best_shot_model(read('data/best-shots.json'), portal)['entry_count']
+open_cases, _ = split_research_cases(portal, read('data/research-identifications.json'), read('data/mushroom-master.json'))
 for variant in ('before', 'after'):
     output = root / variant
     main.OUTPUT_DIR = str(output)
@@ -27,7 +31,7 @@ for variant in ('before', 'after'):
     assert (output / 'features.html').is_file()
     main.generate_new_top({p['gallery_name']: [] for p in portal['observations']}, {},
         observation_records=records, feature_search_available=True,
-        research_summary={'case_count': 66}, best_shot_summary={'entry_count': 16})
+        research_summary={'case_count': len(open_cases)}, best_shot_summary={'entry_count': best_count})
     generate_best_shot_pages(portal, 'data/best-shots.json', output, Path('assets'))
     if variant == 'before':
         for name in ('portal.css', 'best-shots.css'):

@@ -1,0 +1,29 @@
+{
+  "counts": {
+    "comparison": "KNOWN",
+    "new_articles": 0,
+    "deleted_articles": 0,
+    "new_images": 0,
+    "deleted_images": 0,
+    "updated_articles": 0,
+    "classification_changes": 0,
+    "url_changes": 0,
+    "possible_url_changes": 0,
+    "pending_changes": [],
+    "deleted_article_hashes": [],
+    "previous_gallery": 933,
+    "candidate_gallery": 933,
+    "missing_gallery_occurrences": 0,
+    "missing_gallery_in_removed_source": 0,
+    "new_source_gallery_occurrences": 0,
+    "new_source_non_gallery_occurrences": 0,
+    "source_image_count": 980,
+    "protected_deletion_candidates": 0
+  },
+  "removed": [],
+  "run_id": 39440035065,
+  "head_sha": "918a22c617871e07b8826738cc36feba65d19bc8",
+  "job_url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/39440035065",
+  "guarded_preview": true,
+  "production_writes": false
+}
