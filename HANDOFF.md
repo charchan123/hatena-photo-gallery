@@ -1352,3 +1352,15 @@ existing admin knowledge/curated PR allowlists remain untouched.
 - 元ブログ自身の公式 `widget/star.js` と `profile-icon` 属性で投稿者画像＋色別スターを描画。HatenaStar.js / 元記事SiteConfigを残しprofile版失敗時はcompactへ退避。別のスターや独自投稿APIは作らない。
 - `audit/record-stars-2026-10-19/REPORT.md`末尾に今回の追補。写真933 / Best16 / 研究66 / 退役7、通知13、既存ID・安全ゲート・管理室保存機能は保護。
 - Draft維持。実スター追加/削除は未実施、認証済み本番追加は未確認。マージ・公開・実操作は別途明示承認を待つ。
+
+
+## 2026-10-20 PR #128 layout追補
+
+- 前回HEAD6221044を再利用。main38c2e388は既に統合済み。既存Draftブランチだけを非forceで更新。
+- 空DOMを0件と推測せず件数欄は空白、元記事リンクは読み上げとフォーカス時に利用可能。正数の総数・省略と公式追加ボタン維持。
+- 新トップ最新3記事を全幅でタイトル→公開日→スター→抜粋へ統一。デスクトップ3入口の空間を配分、画像と通知は変更なし。
+- 公式画像18px・マウスセル20px採用。タッチは28×28px以上の実操作領域を維持。公式URL/投稿者/色/ネイティブ操作と元記事登録先は変更しない。
+- Feature欠落は旧フィクスチャの引数省略。実承認検証とfeatures.html生成を通して3入口を照合。本番Featureゲート変更なし。
+- Python1011 / JS12ファイル / 既存Chromium4672 / スターChromium2519、4CI成功。8幅比較、実API933→933、写真ID933・Best16・研究66・退役7・通知13・master141・sources419保持。
+- audit/record-stars-2026-10-19/REPORT.md末尾とlayout-validation.json、layout-画像を参照。旧証跡を保持。最終保存HEAD/CIはPR説明欄。
+- 認証済み本番の実スター追加は未確認、実追加/削除なし。Ready化・マージ・再生成・Pages公開をせずDraftで承認待ち。
