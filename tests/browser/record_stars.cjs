@@ -107,7 +107,7 @@ const server=http.createServer((req,res)=>{
   const points=await p.evaluate(()=>navigator.maxTouchPoints);await p.screenshot(options);
   if(await p.evaluate(()=>navigator.maxTouchPoints)!==points){
    const session=await p.context().newCDPSession(p);
-   await session.send('Emulation.setTouchEmulationEnabled',{enabled:points>0,maxTouchPoints:Math.max(points,1)});await session.detach();
+   await session.send('Emulation.setTouchEmulationEnabled',{enabled:points>0,maxTouchPoints:Math.max(points,1)}); // Keep session attached until the context closes; detach resets emulation.
   }
   check(await p.evaluate(()=>navigator.maxTouchPoints),points);
  }
