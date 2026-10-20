@@ -5,6 +5,7 @@ import hashlib
 import json
 import subprocess
 import sys
+import types
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 import requests
@@ -24,6 +25,8 @@ assert portal['reference_data']['mushroom_master'] == feature['mushroom_master']
 read = lambda name: json.loads(Path(name).read_text())
 best_count = build_best_shot_model(read('data/best-shots.json'), portal)['entry_count']
 open_cases, _ = split_research_cases(portal, read('data/research-identifications.json'), read('data/mushroom-master.json'))
+before_renderer = types.ModuleType('baseline_best_shot')
+exec(compile(git(baseline, 'best_shot_ui.py'), 'baseline_best_shot.py', 'exec'), before_renderer.__dict__)
 for variant in ('before', 'after'):
     output = root / variant
     main.OUTPUT_DIR = str(output)
@@ -32,7 +35,8 @@ for variant in ('before', 'after'):
     main.generate_new_top({p['gallery_name']: [] for p in portal['observations']}, {},
         observation_records=records, feature_search_available=True,
         research_summary={'case_count': len(open_cases)}, best_shot_summary={'entry_count': best_count})
-    generate_best_shot_pages(portal, 'data/best-shots.json', output, Path('assets'))
+    renderer = before_renderer.generate_best_shot_pages if variant == 'before' else generate_best_shot_pages
+    renderer(portal, 'data/best-shots.json', output, Path('assets'))
     if variant == 'before':
         for name in ('portal.css', 'best-shots.css'):
             (output / 'assets' / name).write_bytes(git(baseline, 'assets/' + name))

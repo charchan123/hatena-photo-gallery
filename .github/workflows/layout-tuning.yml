@@ -6,6 +6,7 @@ on:
       - 'assets/best-shots.css'
       - 'assets/portal.css'
       - 'tests/browser/layout_tuning*'
+      - 'tests/browser/layout_followup.cjs'
       - 'audit/best-shot-layout-top-thumbs-2026-10-20/**'
       - '.github/workflows/layout-tuning.yml'
 permissions:
@@ -38,7 +39,9 @@ jobs:
           PLAYWRIGHT_MODULE_PATH: /tmp/layout-browser/node_modules/playwright
           LAYOUT_ASSERT_FINAL: '1'
           LAYOUT_LIVE_STARS: '1'
-        run: node tests/browser/layout_tuning.cjs /tmp/layout-tuning /tmp/layout-results
+        run: |
+          node tests/browser/layout_tuning.cjs /tmp/layout-tuning /tmp/layout-results
+          node tests/browser/layout_followup.cjs /tmp/layout-tuning /tmp/layout-followup
       - name: Official read-only stars and isolated add controls
         env:
           PLAYWRIGHT_MODULE_PATH: /tmp/layout-browser/node_modules/playwright
@@ -52,6 +55,7 @@ jobs:
           name: layout-tuning-${{ github.event.pull_request.head.sha }}
           path: |
             /tmp/layout-results/
+            /tmp/layout-followup/
             /tmp/layout-tuning/fixture.json
             /tmp/layout-stars/result.json
             /tmp/layout-stars/screenshots/

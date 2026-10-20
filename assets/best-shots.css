@@ -28,11 +28,11 @@ body.best-shots-index { max-width:none; margin:0; padding:0; background:#f7fcf4;
 .best-shots-index .best-shot-card:hover .best-shot-photo img { transform:scale(1.015); }
 /* A shared mount aligns monthly captions without cropping portrait photographs.
    The annual hero retains its original, full-width natural aspect ratio. */
-.best-shots-index .best-shot-grid .best-shot-photo { aspect-ratio:4/3; }
+.best-shots-index .best-shot-grid .best-shot-photo { position:relative; aspect-ratio:4/3; }
 .best-shots-index .best-shot-grid .best-shot-photo img { width:100%; height:100%; object-fit:contain; }
 .best-shots-index .best-shot-grid .best-shot-card:hover .best-shot-photo img { transform:none; }
 .best-shots-index .best-shot-grid .best-shot-card__body { display:flex; flex-direction:column; align-items:flex-start; overflow-wrap:anywhere; }
-.best-shots-index .best-shot-grid .best-shot-badge { order:1; margin-top:10px; }
+.best-shots-index .best-shot-grid .best-shot-badge { position:absolute; z-index:1; top:12px; left:12px; margin:0; pointer-events:none; box-shadow:0 1px 5px rgba(0,0,0,.24); }
 .best-shots-index .best-shot-card__body { padding:16px; }
 .best-shots-index .best-shot-card__body h3 { margin:7px 0 9px; color:#294a32; font-size:1rem; }
 .best-shots-index .best-shot-meta { margin:4px 0; color:#718078; font-size:.76rem; }
@@ -53,3 +53,10 @@ body.best-shots-index { max-width:none; margin:0; padding:0; background:#f7fcf4;
 @media (max-width:899px) { .best-shots-index .best-shots-page { padding:18px 16px 40px; } .best-shots-index .best-shots-hero { min-height:205px; } .best-shots-index .best-shots-hero-copy { left:30px; width:70%; } }
 @media (max-width:680px) { .best-shots-index .best-shots-page { padding:12px 10px 32px; } .best-shots-index .best-shots-hub,.best-shots-index .best-shots-content { border-radius:16px; } .best-shots-index .best-shots-hero { display:flow-root; min-height:180px; background-position:68% 50%; } .best-shots-index .best-shots-back-link { top:12px; left:12px; min-height:30px; } .best-shots-index .best-shots-hero-copy { position:relative; left:auto; top:auto; width:auto; margin:56px 20px 0; padding-bottom:18px; transform:none; } .best-shots-index .best-shots-hero h1 { font-size:clamp(1.5rem,6.4vw,1.75rem); line-height:1.25; } .best-shots-index .best-shots-title-year,.best-shots-index .best-shots-title-subject { display:inline-block; white-space:nowrap; } .best-shots-index .best-shots-content { padding:16px; } .best-shots-index .best-shot-grid { grid-template-columns:1fr; } }
 @media (prefers-reduced-motion:reduce) { .best-shots-index *, .best-shots-index *::before, .best-shots-index *::after { transition:none!important; animation:none!important; } }
+@media (max-width:680px) {
+  .best-shots-index .best-shot-grid .best-shot-photo { aspect-ratio:auto; }
+  /* Ordinary portraits fill the width. Only exceptional, very tall images
+     reach this generous guard; contain preserves their complete content. */
+  .best-shots-index .best-shot-grid .best-shot-photo img { height:auto; max-height:max(1400px,200svh); }
+  .best-shots-index .best-shot-grid .best-shot-badge { top:10px; left:10px; }
+}

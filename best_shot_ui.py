@@ -222,9 +222,11 @@ def _card(entry, hero=False):
                    f'target="_top" title="{title}">この日の観察記録を見る</a>')
     classes = "best-shot-card best-shot-card--hero" if hero else "best-shot-card"
     comment = entry["annual_comment"] if hero and entry.get("annual_comment") else entry["comment"]
+    photo_badge = badge if not hero else ""
+    body_badge = badge if hero else ""
     return f'''<article class="{classes}" data-selection-id="{esc(entry['selection_id'], True)}">
-  <a class="best-shot-photo" href="{src}" target="_top"><img src="{src}" alt="{name}" loading="lazy"></a>
-  <div class="best-shot-card__body">{badge}<h3>{name}</h3>
+  <a class="best-shot-photo" href="{src}" target="_top">{photo_badge}<img src="{src}" alt="{name}" loading="lazy"></a>
+  <div class="best-shot-card__body">{body_badge}<h3>{name}</h3>
     <p class="best-shot-meta">撮影日：{captured.year}年{captured.month}月{captured.day}日</p>{location}
     <p class="best-shot-comment">{esc(comment)}</p>{article}
   </div>

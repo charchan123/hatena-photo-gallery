@@ -28,6 +28,14 @@ for(const width of [1280,1024,900,899,768,680,390,320]){
    const cards=await page.locator('.best-shot-grid .best-shot-card').evaluateAll(es=>es.map(e=>{const rect=n=>{const r=n.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,bottom:r.bottom}};const im=e.querySelector('img');return {id:e.dataset.selectionId,card:rect(e),frame:rect(e.querySelector('.best-shot-photo')),body:rect(e.querySelector('.best-shot-card__body')),name:rect(e.querySelector('h3')),image:rect(im),natural:[im.naturalWidth,im.naturalHeight],fit:getComputedStyle(im).objectFit,transform:getComputedStyle(im).transform};}));
    check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${name} overflow ${width}`);
    if(variant==='after'&&process.env.LAYOUT_ASSERT_FINAL){for(const c of cards){check(c.fit==='contain','whole image contain');check(c.image.width>0&&c.image.height>0,'visible photo');}for(let i=1;i<cards.length;i++)if(Math.abs(cards[i].card.y-cards[i-1].card.y)<1){check(Math.abs(cards[i].body.y-cards[i-1].body.y)<1,'aligned body');check(Math.abs(cards[i].name.y-cards[i-1].name.y)<1,'aligned names including annual selection');}}
+   if(variant==='after'){
+    for(const card of await page.locator('.best-shot-grid .best-shot-card').all()){
+     const im=card.locator('.best-shot-photo img'),natural=await im.evaluate(i=>({w:i.naturalWidth,h:i.naturalHeight})),box=await im.boundingBox();
+     if(width<=680&&natural.h/natural.w<3)check(Math.abs(box.height/box.width-natural.h/natural.w)<.01,'one-column natural image ratio');
+     const badge=card.locator('.best-shot-badge');
+     if(await badge.count()){check(await card.locator('.best-shot-photo .best-shot-badge').count()===1,'monthly badge inside photo link');check(await badge.evaluate(e=>getComputedStyle(e).pointerEvents==='none'),'badge does not intercept clicks');const b=await badge.boundingBox(),f=await card.locator('.best-shot-photo').boundingBox();check(b.x>=f.x+9&&b.y>=f.y+9&&b.x+b.width<=f.x+f.width,'badge top-left within mount');}
+    }
+   }
    measurements.push({width,variant,page:name,cards});
    if([1280,390].includes(width)){await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:path.join(out,`${name}-${width}-${variant}.png`),fullPage:true,animations:'disabled'});}
   }
