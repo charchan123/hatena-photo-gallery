@@ -92,7 +92,10 @@ const server=http.createServer((req,res)=>{
    await p.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
    const visible=await p.locator('.record-star-entry').first().locator('[data-record-star-profile]:not([data-record-star-hidden])').count();
    const avatar=await p.locator('.record-star-entry').first().locator('[data-record-star-profile]:not([data-record-star-hidden]) picture img').first().boundingBox();
-   results.push({option:o.name,visible,visual_width:avatar.width});await p.screenshot({path:path.join(shots,`size-${width}-${o.name}.png`),animations:'disabled'});
+   const targets=await p.locator('.record-star-entry').first().locator('[data-record-star-profile]:not([data-record-star-hidden])').evaluateAll(es=>es.map(e=>{const r=e.getBoundingClientRect();return {width:r.width,height:r.height}}));
+   const touch=await p.evaluate(()=>navigator.maxTouchPoints>0||matchMedia('(any-pointer:coarse)').matches);
+   check(targets.every(t=>t.width>=(touch?28:20)&&t.height>=28),true);
+   results.push({option:o.name,visible,visual_width:avatar.width,touch,targets});await p.screenshot({path:path.join(shots,`size-${width}-${o.name}.png`),animations:'disabled'});
   }
   check(results[2].visible>=results[0].visible,true);check(Math.abs(results[2].visual_width-18)<.1,true);
   metrics.push({phase:'icon-options',width,results,selected:'dense-18-20',coarse_target_min_width:width<=768?28:20});
@@ -176,6 +179,7 @@ const server=http.createServer((req,res)=>{
   await q.goto(base+'/after/new-top.html');await q.waitForFunction(n=>document.querySelector('.record-stars').dataset.total===String(n),mode==='few'?5:130);await bounds(q);
   if(mode==='zero'){const original=q.url(),link=q.locator('.record-stars-total').first();await link.focus();check(await link.evaluate(e=>getComputedStyle(e).clipPath),'none');check(await link.getAttribute('href'),fixture.records[0].uri);check(q.url(),original);await q.locator('body').evaluate(e=>e.focus());}
   if(mode==='few'){const url=q.url();await q.frameLocator('iframe').first().getByRole('button',{name:'スター追加（隔離）'}).tap();await q.waitForFunction(()=>document.querySelector('.record-stars').dataset.total==='6');check(q.url(),url);}
+  check(await q.locator('[data-record-star-profile]:not([data-record-star-hidden])').evaluateAll(es=>es.every(e=>{const r=e.getBoundingClientRect();return r.width>=28&&r.height>=28})),true);
   metrics.push({phase:'touch-'+mode,width:390,no_overflow:true});await c.close();
  }
  // If the blog-specific renderer is unavailable, the original official SiteConfig path is retained.

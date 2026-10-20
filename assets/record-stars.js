@@ -38,7 +38,7 @@
   ':host>a[data-record-star-profile]{width:var(--record-star-cell,20px)!important;margin:0!important}'+
   '[data-record-star-avatar]{transform:scale(var(--record-star-scale,.9));transform-origin:center;margin:0!important}'+
   '[part~=star-button-container]{min-width:36px;min-height:28px;margin:0!important}'+
-  '@media(pointer:coarse){:host>a,:host>button{min-width:28px;min-height:28px}}';
+  ':host([data-record-star-touch])>a,:host([data-record-star-touch])>button{min-width:28px!important;min-height:28px!important}';
  function start(){
   for(const group of doc.querySelectorAll('.record-stars')){
    const mount=group.querySelector('.record-stars-native'),link=group.querySelector('.record-stars-total'),dots=group.querySelector('.record-stars-ellipsis');
@@ -50,6 +50,7 @@
    function render(){
     const host=mount.querySelector('[data-hatena-star]');
     if(!host?.shadowRoot){unknown();return;}
+    host.toggleAttribute('data-record-star-touch',Boolean(root.navigator?.maxTouchPoints>0||root.matchMedia('(any-pointer:coarse)').matches));
     if(shadow!==host.shadowRoot){
      observer?.disconnect();shadow=host.shadowRoot;
      observer=new MutationObserver(schedule);observer.observe(shadow,{childList:true,subtree:true,characterData:true});
