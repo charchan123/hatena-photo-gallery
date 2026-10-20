@@ -1,0 +1,39 @@
+name: Read-only manual capture date regressions
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  manual-date:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          pip install -r requirements.txt -r requirements-dev.txt
+          npm install --prefix /tmp/manual-browser --no-save playwright@1.62.1
+          /tmp/manual-browser/node_modules/.bin/playwright install --with-deps chromium
+      - name: Manual calendar, provenance, source conflicts and durable PR payload
+        run: |
+          python -m pytest -q tests/test_manual_capture_date.py
+          node tests/test_manual_capture_date.js
+      - name: Real isolated localhost admin input, errors, restart and source warning
+        env:
+          PLAYWRIGHT_MODULE_PATH: /tmp/manual-browser/node_modules/playwright
+        run: node tests/browser/manual_capture_date.cjs /tmp/manual-date-evidence
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: manual-capture-date-${{ github.event.pull_request.head.sha }}
+          path: /tmp/manual-date-evidence/
+          retention-days: 30

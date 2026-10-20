@@ -10,26 +10,27 @@ function render(){const c=state.counts;const cards=[['ベストショット',c.b
 
 function renderKnowledge(){const batches=$('#knowledge-batches'),candidates=$('#knowledge-candidates');batches.replaceChildren();candidates.replaceChildren();const rows=state.knowledge||[];if(!rows.length){batches.append(node('p','0 batch','meta'));$('#knowledge-pr').disabled=true;return}if(!rows.some(r=>r.batch_id===selectedKnowledge))selectedKnowledge=rows[0].batch_id;rows.forEach(r=>{const e=node('article',undefined,'item knowledge-batch'),body=node('div');body.append(node('h3',r.batch_id),node('p',`${r.status} / ${r.created_at||'-'} / ${r.generator||'-'} / ${r.origin||'-'}`,'badge'),node('p',`base: ${r.base_main_sha||'-'} / ${r.base_matches?'origin/main一致':'不一致'}`,'meta'),node('p',`${r.candidate_count}候補 / 採用 ${r.approved_count} / 保留 ${r.held_count} / 未決 ${r.pending_count}`,'meta'));if((r.blockers||[]).length)body.append(node('p',r.blockers.join(' / '),'error'));const actions=node('div',undefined,'item-actions');actions.append(button('選択',()=>{selectedKnowledge=r.batch_id;renderKnowledge()}));if(r.review_changed)actions.append(button('レビューをリセット',()=>confirmAction('batch内容が変更されたため、全候補を未決へリセットします。',()=>api('/api/knowledge/reset',{batch_id:r.batch_id})),true));e.append(body,actions);batches.append(e)});const batch=rows.find(r=>r.batch_id===selectedKnowledge);(batch.candidates||[]).forEach(c=>{const e=node('article',undefined,'item'),body=node('div'),actions=node('div',undefined,'item-actions');body.append(node('h3',`${c.mushroom_name} / ${c.mushroom_id}`),node('p',`${c.facet_label} / ${c.facet_id}`,'badge'));(c.evidence_records||[]).forEach((v,i)=>{const evidence=node('section',undefined,'knowledge-evidence');evidence.append(node('h4',`根拠 ${i+1}: ${v.evidence_id}`),node('p',`${v.evidence_kind} / source: ${v.source_id}`,'meta'),node('p',v.evidence_text),node('p',`qualifiers: ${(v.qualifiers||[]).join(', ')||'-'}`,'meta'),node('p',`quote: ${v.quote}`));if(/^https?:\/\//.test(v.source_url)){const a=node('a',v.source_url);a.href=v.source_url;a.target='_blank';a.rel='noopener noreferrer';evidence.append(a)}body.append(evidence)});body.append(node('p',`decision: ${c.decision_id} / 現在 ${c.human_decision}`,'meta'));const note=field('review note','note',c.note||'','textarea');body.append(note);['approved','held','pending'].forEach((v,i)=>actions.append(button(['採用','保留','未決に戻す'][i],async()=>{await api('/api/knowledge/decision',{batch_id:batch.batch_id,candidate_id:c.candidate_id,human_decision:v,note:note.querySelector('textarea').value});await load()})));e.append(body,actions);candidates.append(e)});$('#knowledge-pr').disabled=!(batch.status==='PASS'&&batch.base_matches&&batch.pending_count===0&&batch.approved_count>0&&state.repo.gh_authenticated)}
 function observation(id){return state.observations.find(o=>o.observation_id===id)||{}}
-function renderBest(){const out=$('#best-list');out.replaceChildren();state.best_shots.entries.forEach(row=>{const o=observation(row.observation_id), cap=(o.capture||{}).date||'日付不明';const [e,a,b]=item(o.gallery_name||'観察不明',`${cap} / ${row.comment}`,o.src);b.append(node('p',`selection: ${row.selection_id}`,'meta'));a.append(button('編集・写真差し替え',()=>bestDialog(row,o)),button('年間ベスト',()=>setAnnual(row,o)),button('削除',()=>confirmAction('このベストショットを削除しますか？',()=>api('/api/best-shot/delete',{selection_id:row.selection_id})),true));out.append(e)})}
+function renderBest(){const out=$('#best-list');out.replaceChildren();state.best_shots.entries.forEach(row=>{const o=observation(row.observation_id), cap=row.manual_capture_date?row.manual_capture_date+'（管理人が手動設定）':(o.capture||{}).date||'日付不明';const [e,a,b]=item(o.gallery_name||'観察不明',`${cap} / ${row.comment}`,o.src);b.append(node('p',`selection: ${row.selection_id}`,'meta'));a.append(button('編集・写真差し替え',()=>bestDialog(row,o)),button('年間ベスト',()=>setAnnual(row,o)),button('削除',()=>confirmAction('このベストショットを削除しますか？',()=>api('/api/best-shot/delete',{selection_id:row.selection_id})),true));if(row.manual_capture_date&&captureMonth(o)&&row.manual_capture_source_ack!==o.capture.date){b.append(node('p',`元写真の撮影日が新たに確認されました。手動：${row.manual_capture_date}／元写真：${o.capture.date}。確認するまで手動日付を維持します。`,'error'));a.append(button('元写真の日付を採用',()=>confirmManualDate('撮影日と年月分類を元写真の日付へ変更します。年間Bestや順序の競合がある場合は保存できません。',{selection_id:row.selection_id,changes:{manual_capture_date:null}})),button('手動日付を維持（確認済み）',()=>confirmManualDate('今回確認された元写真の日付との差を確認し、手動日付を維持します。',{selection_id:row.selection_id,changes:{manual_capture_source_ack:o.capture.date}})));}out.append(e)})}
 function field(label,name,value='',type='text'){const l=node('label',label),i=node(type==='textarea'?'textarea':'input');i.name=name;i.value=value;if(type!=='textarea')i.type=type;l.append(i);return l}
 function openEditor(title,fields,save){$('#dialog-title').textContent=title;const area=$('#dialog-fields');area.replaceChildren(...fields);const editor=$('#editor'),submit=ev=>{ev.preventDefault();save(new FormData($('#editor form')))};$('#dialog-save').disabled=false;editor.querySelectorAll('[value=cancel]').forEach(b=>b.onclick=()=>editor.close());$('#dialog-save').onclick=submit;$('#editor form').onsubmit=ev=>{if(ev.submitter?.value==='cancel')return;submit(ev)};editor.classList.toggle('best-editor',fields.some(e=>e.classList.contains('photo-picker')));editor.showModal()}
 // Best Shot picker: only explicit selection changes the hidden observation ID.
 function normalizeMushroomName(value){
  return String(value||'').normalize('NFKC').toLocaleLowerCase('ja').replace(/[\u3041-\u3096]/g,c=>String.fromCharCode(c.charCodeAt(0)+0x60)).trim();
 }
-function captureMonth(o){
- const raw=o?.capture?.date;
- if(typeof raw!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(raw))return '';
+function captureMonth(o,manual){
+ const raw=manual===undefined?o?.capture?.date:manual;
+ if(typeof raw!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(raw)||raw.startsWith('0000-'))return '';
  const d=new Date(raw+'T00:00:00Z');
- return Number.isNaN(d.getTime())||d.toISOString().slice(0,10)!==raw?'':raw.slice(0,7);
+ const future=manual!==undefined&&raw>new Date(Date.now()+9*3600000).toISOString().slice(0,10);
+ return future||Number.isNaN(d.getTime())||d.toISOString().slice(0,10)!==raw?'':raw.slice(0,7);
 }
 function bestShotOrder(value){
  const text=String(value??'').trim(),n=Number(text);
  return /^[0-9]+$/.test(text)&&Number.isSafeInteger(n)&&n>=1?n:null;
 }
-function monthSlots(id,ownId){
- const month=captureMonth(observation(id));
- const others=state.best_shots.entries.filter(e=>e.selection_id!==ownId&&captureMonth(observation(e.observation_id))===month);
+function monthSlots(id,ownId,manual){
+ const month=captureMonth(observation(id),manual);
+ const others=state.best_shots.entries.filter(e=>e.selection_id!==ownId&&captureMonth(observation(e.observation_id),e.manual_capture_date)===month);
  const used=new Set(others.map(e=>e.order));let next=1;while(used.has(next))next++;
  return {month,next,others};
 }
@@ -107,25 +108,34 @@ function orderControl(value,onChange){
 }
 function openBestEditor(row=null,current=null){
  let picker,order,busy=false;
+ const dateField=bestField('撮影日（手動入力）','manual_capture_date',row?.manual_capture_date||'','date'),dateInput=dateField.querySelector('input');dateField.classList.add('manual-date-field');
+ dateInput.max=new Date(Date.now()+9*3600000).toISOString().slice(0,10);
+ dateField.append(node('p','撮影日が確認できません。実際の撮影日がわかる場合だけ入力してください。元写真やEXIFは変更しません。','meta'));
+ function chosenManual(){const id=picker.querySelector('[name=observation_id]').value;return !dateField.hidden?dateInput.value:undefined;}
+ function dateVisibility(o){const hasSource=Boolean(captureMonth(o)),existing=row?.observation_id===o.observation_id&&row?.manual_capture_date;dateField.hidden=hasSource&&!existing;dateInput.readOnly=hasSource&&Boolean(existing);dateField.querySelector('p').textContent=hasSource&&existing?`撮影日：${existing}（管理人が手動設定）。元写真の日付：${o.capture.date}。一覧で採用／維持を確認してください。`:'撮影日が確認できません。実際の撮影日がわかる場合だけ入力してください。元写真やEXIFは変更しません。';}
+
  const fields={},ownId=row?.selection_id;
  function error(name,text){const e=$('#'+name+'-error');if(e)e.textContent=text||'';const control=$(`[name="${name}"]`);if(control)control.setAttribute('aria-invalid',String(Boolean(text)));if(name==='observation_id')$('#photo-search').setAttribute('aria-invalid',String(Boolean(text)))}
  function validate(){
-  const id=picker.querySelector('[name=observation_id]').value,slots=monthSlots(id,ownId),n=bestShotOrder(order.querySelector('input').value);
+  const id=picker.querySelector('[name=observation_id]').value,slots=monthSlots(id,ownId,chosenManual()),n=bestShotOrder(order.querySelector('input').value);
   const duplicate=state.best_shots.entries.some(e=>e.selection_id!==ownId&&e.observation_id===id);
   const obsError=!id?'観察写真を選択してください':duplicate?'この写真はすでにBest Shotに登録されています':!slots.month?'撮影日を確認できない写真です。撮影日の確認が必要です':'';
   const orderError=n===null?'1以上の整数を入力してください':slots.others.some(e=>e.order===n)?`${slots.month.replace('-','年')}月に順序「${n}」の写真が登録されています`:'';
   error('observation_id',obsError);error('order',orderError);
+  error('manual_capture_date',!dateField.hidden&&!slots.month?'実在する撮影日をYYYY-MM-DDで入力してください。未来の日付は登録できません':'');
   const comment=fields.comment.querySelector('textarea').value.trim();error('comment',!comment?'コメントを入力してください':Array.from(comment).length>200?'コメントは200文字以内で入力してください':'');
   let invalid=Boolean(obsError||orderError||!comment||Array.from(comment).length>200);
   for(const [name,max] of [['annual_comment',200],['location',100]])if(fields[name]){const value=fields[name].querySelector('input,textarea').value.trim(),bad=Array.from(value).length>max;error(name,bad?`${name==='location'?'場所':'年間コメント'}は${max}文字以内で入力してください`:'');invalid=invalid||bad;}
   if(fields.selection_id){const id=fields.selection_id.querySelector('input').value.trim(),bad=!id||state.best_shots.entries.some(e=>e.selection_id===id);error('selection_id',bad?'重複しないselection IDを入力してください':'');invalid=invalid||bad;}
   $('#dialog-save').disabled=busy||Boolean(obsError||orderError);return !invalid;
  }
- function autoOrder(o){const slots=monthSlots(o.observation_id,ownId);order.setOrder(slots.next);validate();$('#best-modal-error').textContent='';}
+ function autoOrder(o){dateInput.value='';dateVisibility(o);const slots=monthSlots(o.observation_id,ownId,chosenManual());order.setOrder(slots.next);validate();$('#best-modal-error').textContent='';}
  picker=observationSelect(row?.observation_id||'',current,autoOrder);
  order=orderControl(row?.order||1,()=>{validate();$('#best-modal-error').textContent=''});
  fields.comment=bestField('コメント','comment',row?.comment||'','textarea');
- const inputs=[picker];
+ dateVisibility(current||observation(row?.observation_id));
+ dateInput.addEventListener('input',()=>{const id=picker.querySelector('[name=observation_id]').value,slots=monthSlots(id,ownId,chosenManual());order.setOrder(slots.next);validate();});
+ const inputs=[picker,dateField];
  if(row){fields.annual_comment=bestField('年間コメント','annual_comment',row.annual_comment||'','textarea');fields.location=bestField('場所','location',row.location||'');}
  else {fields.selection_id=bestField('selection ID','selection_id','best-'+Date.now());inputs.push(fields.selection_id);}
  inputs.push(fields.comment,...(row?[fields.annual_comment,fields.location]:[]),order);
@@ -140,6 +150,7 @@ function openBestEditor(row=null,current=null){
   const editor=$('#editor'),cancel=ev=>ev.preventDefault();editor.addEventListener('cancel',cancel);const closers=[...editor.querySelectorAll('[value=cancel]')];closers.forEach(b=>b.disabled=true);
   const locked=[...editor.querySelectorAll('input,textarea,select,button')].map(e=>[e,e.disabled]);locked.forEach(([e])=>e.disabled=true);
   const common={observation_id:f.get('observation_id'),comment:f.get('comment'),order:Number(f.get('order'))};
+  if(!dateField.hidden)common.manual_capture_date=f.get('manual_capture_date');
   let body,path;
   if(row){const changes={};const values={...common,annual_comment:f.get('annual_comment'),location:f.get('location')};for(const [key,value] of Object.entries(values)){
    // Preserve absent/null/empty optional fields on an unchanged edit.
@@ -152,13 +163,14 @@ function openBestEditor(row=null,current=null){
   catch(e){general.textContent=e.userMessage||'通信またはサーバーの確認に失敗しました。入力内容を保持しています。変更予定を確認してから再試行してください。';Object.entries(e.fieldErrors||{}).forEach(([name,text])=>error(name,text));}
   finally{busy=false;save.textContent='変更予定に追加';editor.querySelector('form').removeAttribute('aria-busy');editor.removeEventListener('cancel',cancel);locked.forEach(([e,wasDisabled])=>e.disabled=wasDisabled);closers.forEach(b=>b.disabled=false);if(!accepted){validateButton();focusError();}}
  });
- function validateButton(){const id=picker.querySelector('[name=observation_id]').value,slots=monthSlots(id,ownId),n=bestShotOrder(order.querySelector('input').value);$('#dialog-save').disabled=busy||!slots.month||!id||n===null||slots.others.some(e=>e.order===n)||state.best_shots.entries.some(e=>e.selection_id!==ownId&&e.observation_id===id);}
+ function validateButton(){const id=picker.querySelector('[name=observation_id]').value,slots=monthSlots(id,ownId,chosenManual()),n=bestShotOrder(order.querySelector('input').value);$('#dialog-save').disabled=busy||!slots.month||!id||n===null||slots.others.some(e=>e.order===n)||state.best_shots.entries.some(e=>e.selection_id!==ownId&&e.observation_id===id);}
  function focusError(){const invalid=$('#editor [aria-invalid=true]:not([type=hidden])');if(invalid){invalid.focus();invalid.scrollIntoView({block:'center'})}else{general.tabIndex=-1;general.focus();general.scrollIntoView({block:'nearest'})}}
  if(row)validate();else validateButton();
 }
 function bestDialog(row,current){openBestEditor(row,current)}
 $('#add-best').onclick=()=>openBestEditor();
-function setAnnual(row,o){confirmAction(`${(o.capture||{}).date?.slice(0,4)}年の年間ベストに指定しますか？`,()=>api('/api/best-shot/annual',{year:(o.capture||{}).date.slice(0,4),selection_id:row.selection_id}))}
+function confirmManualDate(text,body){confirmAction(text,async()=>{try{return await api('/api/best-shot/update',body)}catch(e){$('#confirm-text').textContent=text+'\n\n'+(e.userMessage||e.message);throw e}})}
+function setAnnual(row,o){const date=row.manual_capture_date||o.capture?.date;if(!date){message('撮影日の確認が必要です',true);return;}confirmAction(`${date.slice(0,4)}年の年間ベストに指定しますか？`,()=>api('/api/best-shot/annual',{year:date.slice(0,4),selection_id:row.selection_id}))}
 function renderResearch(){const open=$('#case-list'),done=$('#identified-list');open.replaceChildren();done.replaceChildren();state.cases.forEach(c=>{const [e,a]=item(c.gallery_name,`${c.status} / ${(c.capture_dates||[]).join('、')}`,c.photos[0]?.src);a.append(button('正体が判明',()=>identifyDialog(c)));open.append(e)});state.identified.forEach(x=>{const [e,a]=item(`${x.case.gallery_name} → ${x.identification.identified_name}`,x.identification.identified_at,x.case.photos[0]?.src);a.append(button('判明を取り消す',()=>confirmAction('調査中に戻します。履歴はreopenedとして保持します。',()=>api('/api/reopen',{identification_id:x.identification.identification_id})),true));done.append(e)})}
 function identifyDialog(c){const names=node('datalist');names.id='master-names';state.master.forEach(m=>{const o=node('option');o.value=m.canonical_name_ja;names.append(o)});const name=field('判明した名前','identified_name');name.querySelector('input').setAttribute('list','master-names');openEditor('正体が判明',[name,names,field('メモ（任意）','note','', 'textarea'),field('IDENTIFIED! summary','summary','1種の正体が判明')],async f=>change('/api/identify',{case_id:c.case_id,identified_name:f.get('identified_name'),note:f.get('note'),summary:f.get('summary')}))}
 function renderNotices(){const out=$('#notice-list');out.replaceChildren();state.notices.forEach((n,i)=>{const [e,a,b]=item(`${n.kind.toUpperCase()} / ${n.section}`,n.summary);b.append(node('p',`${n.occurred_at} / ${n.active?'表示中':'非表示'} / 残り ${Math.ceil(n.remaining_seconds/3600)}時間`,'meta'));a.append(button('編集',()=>noticeDialog(n,i)),button('削除',()=>confirmAction('この告知を削除しますか？',()=>api('/api/notice/delete',{index:i})),true));out.append(e)})}

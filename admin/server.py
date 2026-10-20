@@ -12,7 +12,7 @@ from urllib.parse import unquote, parse_qs, urlsplit
 import urllib.request
 import webbrowser
 
-from best_shot_ui import BestShotConfigError
+from best_shot_ui import BestShotConfigError, validate_best_shot_config
 
 from research_ui import build_research_cases
 from research_identifications import split_research_cases
@@ -118,7 +118,9 @@ class Handler(BaseHTTPRequestHandler):
             except GitWorkflowError: repo = {"branch": "取得できませんでした", "dirty": None, "gh_authenticated": False}
             knowledge = scan_knowledge_batches(origin_main_sha=repo.get("origin_main_sha"))
             state = {"csrf": self.server.csrf_token, "portal_source": self.server.portal_source,
-                     "best_shots": draft.best_shots, "notices": [{**e, **notice_window(e)} for e in draft.notices["events"]],
+                     "best_shots": draft.best_shots,
+                     "best_shot_dates": validate_best_shot_config(draft.best_shots, draft.portal),
+                     "notices": [{**e, **notice_window(e)} for e in draft.notices["events"]],
                      "draft_saved": self.server.draft_store.saved,
                      "draft_restored": self.server.draft_store.restored,
                      "cases": open_cases, "identified": identified, "observations": observations,
