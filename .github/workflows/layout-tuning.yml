@@ -1,0 +1,51 @@
+name: Read-only layout tuning regressions
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  layout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated test dependencies
+        run: |
+          pip install -r requirements.txt
+          npm install --prefix /tmp/layout-browser --no-save playwright@1.62.1
+          /tmp/layout-browser/node_modules/.bin/playwright install --with-deps chromium
+      - name: Identical production photographs and approved features
+        run: python tests/browser/layout_tuning_fixture.py /tmp/layout-tuning "${{ github.event.pull_request.base.sha }}"
+      - name: Eight widths, full photo mounts, captions and unchanged panel heights
+        env:
+          PLAYWRIGHT_MODULE_PATH: /tmp/layout-browser/node_modules/playwright
+          LAYOUT_ASSERT_FINAL: '1'
+          LAYOUT_LIVE_STARS: '1'
+        run: node tests/browser/layout_tuning.cjs /tmp/layout-tuning /tmp/layout-results
+      - name: Official read-only stars and isolated add controls
+        env:
+          PLAYWRIGHT_MODULE_PATH: /tmp/layout-browser/node_modules/playwright
+        run: |
+          python tests/browser/record_stars_fixture.py /tmp/layout-stars
+          node tests/browser/record_stars.cjs /tmp/layout-stars
+      - name: Save exact-HEAD measurements and renderings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: layout-tuning-${{ github.sha }}
+          path: |
+            /tmp/layout-results/
+            /tmp/layout-tuning/fixture.json
+            /tmp/layout-stars/result.json
+            /tmp/layout-stars/screenshots/
+          retention-days: 30
