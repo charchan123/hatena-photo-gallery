@@ -1,0 +1,45 @@
+name: Read-only Hatena Star preview
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  stars:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated Chromium
+        run: |
+          npm install --prefix /tmp/record-star-browser --no-save playwright@1.62.1
+          /tmp/record-star-browser/node_modules/.bin/playwright install --with-deps chromium
+      - name: Generate isolated previews from current published data
+        run: |
+          pip install -r requirements.txt
+          python tests/browser/record_stars_fixture.py /tmp/record-stars
+      - name: Read-only native profile-icon feasibility
+        env:
+          PLAYWRIGHT_MODULE_PATH: /tmp/record-star-browser/node_modules/playwright
+        run: node tests/browser/record_stars_profile_probe.cjs /tmp/record-stars
+      - name: Read-only native widget and isolated interaction regressions
+        env:
+          PLAYWRIGHT_MODULE_PATH: /tmp/record-star-browser/node_modules/playwright
+        run: node tests/browser/record_stars.cjs /tmp/record-stars
+      - name: Save isolated Star evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: record-stars-${{ github.run_id }}
+          path: |
+            /tmp/record-stars/screenshots/
+            /tmp/record-stars/fixture.json
+            /tmp/record-stars/result.json
+            /tmp/record-stars/profile-probe-result.json
+          retention-days: 30

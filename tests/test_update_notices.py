@@ -85,7 +85,7 @@ def test_all_recent_rows_badged_without_changing_order_or_links():
     soup = BeautifulSoup(render_record_preview_rows(rows, now=NOW), "html.parser")
     assert [node.get_text() for node in soup.select(".record-preview-title")] == [r["title"] for r in rows]
     assert len(soup.select(".record-preview-heading .update-badge--new")) == 2
-    assert [a["href"] for a in soup.select("a")] == [r["url"] for r in rows]
+    assert [a["href"] for a in soup.select("a.record-star-permalink")] == [r["url"] for r in rows]
 
 
 def test_portal_events_require_editorial_history_not_counts(monkeypatch, tmp_path):

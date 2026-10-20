@@ -1,0 +1,131 @@
+{
+  "result": "PASS",
+  "renderer": "official widget/star.js profile-icon",
+  "generic_companion": "official HatenaStar.js with empty SiteConfig; no duplicate hosts",
+  "hover": "native id tooltip observed on isolated and real blog pages",
+  "original_blog": {
+    "uri": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155",
+    "exact_native_items_match": true,
+    "profile_avatars_loaded": true,
+    "unrelated_scripts_blocked": true
+  },
+  "evidence": [
+    {
+      "uri": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155",
+      "total": 14,
+      "stars": [
+        {
+          "count": 1,
+          "avatar": "https://cdn.profile-image.st-hatena.com/users/kumakumakoara/profile.png",
+          "name": "kumakumakoara",
+          "color": "★(yellow)",
+          "href": "https://blog.hatena.ne.jp/kumakumakoara/"
+        },
+        {
+          "count": 1,
+          "avatar": "https://cdn.profile-image.st-hatena.com/users/kumakumakoara/profile.png",
+          "name": "kumakumakoara",
+          "color": "★(yellow)",
+          "href": "https://blog.hatena.ne.jp/kumakumakoara/"
+        },
+        {
+          "count": 1,
+          "avatar": "https://cdn.profile-image.st-hatena.com/users/kumakumakoara/profile.png",
+          "name": "kumakumakoara",
+          "color": "★(yellow)",
+          "href": "https://blog.hatena.ne.jp/kumakumakoara/"
+        },
+        {
+          "count": 1,
+          "avatar": "https://cdn.profile-image.st-hatena.com/users/kumakumakoara/profile.png",
+          "name": "kumakumakoara",
+          "color": "★(yellow)",
+          "href": "https://blog.hatena.ne.jp/kumakumakoara/"
+        },
+        {
+          "count": 1,
+          "avatar": "https://cdn.profile-image.st-hatena.com/users/k10no3/profile.png",
+          "name": "k10no3",
+          "color": "★(yellow)",
+          "href": "https://blog.hatena.ne.jp/k10no3/"
+        },
+        {
+          "count": 1,
+          "avatar": "https://cdn.profile-image.st-hatena.com/users/k10no3/profile.png",
+          "name": "k10no3",
+          "color": "★(yellow)",
+          "href": "https://blog.hatena.ne.jp/k10no3/"
+        },
+        {
+          "count": 1,
+          "avatar": "https://cdn.profile-image.st-hatena.com/users/k10no3/profile.png",
+          "name": "k10no3",
+          "color": "★(yellow)",
+          "href": "https://blog.hatena.ne.jp/k10no3/"
+        },
+        {
+          "count": 1,
+          "avatar": "https://cdn.profile-image.st-hatena.com/users/catpower/profile.png",
+          "name": "catpower",
+          "color": "★(yellow)",
+          "href": "https://blog.hatena.ne.jp/catpower/"
+        },
+        {
+          "count": 1,
+          "avatar": "https://cdn.profile-image.st-hatena.com/users/catpower/profile.png",
+          "name": "catpower",
+          "color": "★(yellow)",
+          "href": "https://blog.hatena.ne.jp/catpower/"
+        },
+        {
+          "count": 1,
+          "avatar": "https://cdn.profile-image.st-hatena.com/users/catpower/profile.png",
+          "name": "catpower",
+          "color": "★(yellow)",
+          "href": "https://blog.hatena.ne.jp/catpower/"
+        },
+        {
+          "count": 1,
+          "avatar": "https://cdn.profile-image.st-hatena.com/users/catpower/profile.png",
+          "name": "catpower",
+          "color": "★(yellow)",
+          "href": "https://blog.hatena.ne.jp/catpower/"
+        },
+        {
+          "count": 1,
+          "avatar": "https://cdn.profile-image.st-hatena.com/users/catpower/profile.png",
+          "name": "catpower",
+          "color": "★(yellow)",
+          "href": "https://blog.hatena.ne.jp/catpower/"
+        },
+        {
+          "count": 1,
+          "avatar": "https://cdn.profile-image.st-hatena.com/users/catpower/profile.png",
+          "name": "catpower",
+          "color": "★(yellow)",
+          "href": "https://blog.hatena.ne.jp/catpower/"
+        },
+        {
+          "count": 1,
+          "avatar": "https://cdn.profile-image.st-hatena.com/users/kikutokoro/profile.png",
+          "name": "kikutokoro",
+          "color": "★(yellow)",
+          "href": "https://blog.hatena.ne.jp/kikutokoro/"
+        }
+      ]
+    },
+    {
+      "uri": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503",
+      "total": 0,
+      "stars": []
+    },
+    {
+      "uri": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+      "total": 0,
+      "stars": []
+    }
+  ],
+  "writes": [],
+  "real_star_addition": "NOT_ATTEMPTED",
+  "authenticated_addition": "UNVERIFIED"
+}

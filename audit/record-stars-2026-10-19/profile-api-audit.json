@@ -1,0 +1,85 @@
+{
+  "read_only": true,
+  "at": "2026-10-19T21:52:40.582354+00:00",
+  "baseline_commit": "201348f6d2f96e92c3b692303c9064b947c9ae36",
+  "snapshot_sha256": "a4c9914d5eaf4a94169e2c224ff33d80425e7a96d90f1671cd6c2aa343cd6f9a",
+  "counts": {
+    "comparison": "KNOWN",
+    "new_articles": 0,
+    "deleted_articles": 0,
+    "new_images": 0,
+    "deleted_images": 0,
+    "updated_articles": 0,
+    "classification_changes": 0,
+    "url_changes": 0,
+    "possible_url_changes": 0,
+    "pending_changes": [],
+    "deleted_article_hashes": [],
+    "previous_gallery": 933,
+    "candidate_gallery": 933,
+    "missing_gallery_occurrences": 0,
+    "missing_gallery_in_removed_source": 0,
+    "new_source_gallery_occurrences": 0,
+    "new_source_non_gallery_occurrences": 0,
+    "source_image_count": 980,
+    "protected_deletion_candidates": 0
+  },
+  "identity_simulation": {
+    "purpose": "READ_ONLY_IDENTITY_CHECK_NOT_DELETION_APPROVAL",
+    "remaining_existing_ids": 933,
+    "new_gallery_ids": [],
+    "main_best_shots_valid": true,
+    "pending_best_shots_valid": true,
+    "publication": "NOT_ATTEMPTED"
+  },
+  "fetch_audit": {
+    "pages_completed": 12,
+    "entries_received": 112,
+    "drafts_excluded": 1,
+    "published_articles": 111,
+    "html_articles": 111,
+    "pagination_complete": true,
+    "content_type_counts": {
+      "text/html": 111
+    },
+    "html_source_counts": {
+      "content_html": 111
+    },
+    "html_image_representation_difference_articles": 0
+  },
+  "publication": "NOT_ATTEMPTED",
+  "generated": {
+    "result": "PREVIEW",
+    "deletions": {
+      "candidate_count": 0,
+      "automatic_deletion_eligible": 0,
+      "manual_deletion_eligible": 0,
+      "protected_pending": 0,
+      "applied_automatic": 0,
+      "applied_manual": 0,
+      "pending": 0,
+      "states": {},
+      "history_persisted": false,
+      "history_head": "aca34c43b6fc05a36791e4b57f9b8b8291e7d711b2c457ac086fa0662c3f9475"
+    },
+    "retirement": {
+      "migration_id": "hatena-draft-photo-retirement-2026-10-12",
+      "state": "ALREADY_APPLIED",
+      "retired_this_run": 0,
+      "retired_total": 7,
+      "manifest_sha256": "4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c"
+    },
+    "best_shot_references_preserved": 16,
+    "research_cases_preserved": 66,
+    "preserved_photo_ids": 933,
+    "gallery_photo_count": 933,
+    "retired_output_inspection": {
+      "result": "PASS",
+      "text_files_checked": 358,
+      "retired_ids_absent": 7,
+      "shared_image_urls_preserved": 0
+    },
+    "generated_html_pages": 333,
+    "publication": "NOT_ATTEMPTED"
+  }
+}

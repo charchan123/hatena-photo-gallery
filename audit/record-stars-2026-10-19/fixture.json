@@ -1,0 +1,73 @@
+{
+  "live_site": {
+    "new_top_url": "https://charchan123.github.io/hatena-photo-gallery/new-top.html",
+    "new_top_status": 200,
+    "new_top_csp": null,
+    "new_top_x_frame_options": null,
+    "home_has_new_top_iframe": false,
+    "public_new_top_has_star_script": false
+  },
+  "baseline": "4c6b978aebe3ab3e580025b36f74a158c08acb11",
+  "published_ref": "9b31736fa18c5e8e69769ca1e675f596001f6bae",
+  "records": [
+    {
+      "uri": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155",
+      "title": "2026年10月3日富士山(山梨県)",
+      "colors": {
+        "yellow": 14
+      },
+      "total": 14,
+      "canonical": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/064155",
+      "star_container_present": true,
+      "status": 200
+    },
+    {
+      "uri": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503",
+      "title": "2026年9月22日富士山(山梨県)",
+      "colors": {
+        "yellow": 0
+      },
+      "total": 0,
+      "canonical": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/10/15/063503",
+      "star_container_present": true,
+      "status": 200
+    },
+    {
+      "uri": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+      "title": "2026年9月19日静岡県浜松市",
+      "colors": {
+        "yellow": 0
+      },
+      "total": 0,
+      "canonical": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+      "star_container_present": true,
+      "status": 200
+    }
+  ],
+  "photos": {
+    "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015063534.jpg?width=500": {
+      "file": "7bd5bb4f4b7bc9b8a2f710973698ea328a50be495acda31f35b85691342403bb.img",
+      "mime": "image/jpeg"
+    },
+    "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261015/20261015062840.jpg?width=500": {
+      "file": "663d8a798ef91b8e73559589a4abbaa9b55a9ba6f3018732f96557a4c8e65427.img",
+      "mime": "image/jpeg"
+    },
+    "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20260925/20260925224231.jpg?width=500": {
+      "file": "dbceafb8fe9c72b54b894cc32e788db2725b6f032939c49f54dbdf682b42b45f.img",
+      "mime": "image/jpeg"
+    }
+  },
+  "api_cors_allow_origin": null,
+  "reference_fetch": "Public documented entry.json GET; no credentials; total includes repeated names and all colour counts",
+  "production_photos": 933,
+  "data_hashes": {
+    "data/best-shots.json": "3a0d506da283f7ba540fcae57f0d9610393c4d618bd0c8392adca6349107b803",
+    "data/feature-facets.json": "6d4d987a535dca9c1d0d3668b65de245fbdc281f56c546af436c6fb853bdd84d",
+    "data/mushroom-master.json": "2ce8cfc61726ef04bb6f4bba26c42511e2c0bf1d4017b9e87e0a359d61decca4",
+    "data/research-identifications.json": "0c3a699408dacf0444e3f6e6b93e848c84fd59ef93debe7640c0d551c0ab15b1",
+    "data/sources.json": "d5213f1cf0881af1c60ea949c0321ae0eb854daa3f300135dae9e9f9ad2fdb66",
+    "data/subject-taxonomy.json": "c2afcd79e2de028fd164c073472d2452c68361007ac06a20f9fd31ae67f47f97",
+    "data/update-notices.json": "33e70703b4d84fac5764dc3b201a61e64cf09547374391f543e9c638414146e4"
+  }
+}

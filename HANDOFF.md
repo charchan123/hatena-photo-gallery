@@ -1337,3 +1337,30 @@ existing admin knowledge/curated PR allowlists remain untouched.
 - Regression cases cover 1/3/4/10/30/35 entries through the real local HTTP handler and isolated Chromium API fixtures at 1280px/390px. Real generated public HTML uses the same cases plus month/year archives, annual selection, long comments and varied image aspect ratios.
 - Review evidence and Before/After comparisons: [audit/best-shot-unlimited-2026-10-19/REPORT.md](audit/best-shot-unlimited-2026-10-19/REPORT.md).
 - Draft remains pending explicit merge approval. No merge, public regeneration, Pages publication or real selection edits are performed by this task.
+
+## 2026-10-19 観察記録のはてなスター（Draft PR #128）
+
+- 専用ブランチ `feature/record-hatena-stars-20261019`、main `4c6b978aebe3ab3e580025b36f74a158c08acb11` 基点。他PRは変更しない。
+- 最新3記事だけ公式 HatenaStar.js / SiteConfig を使用し、元記事permalinkのスターを表示。行全体リンクを分離。正確な総数とレスポンシブ省略、異常時は元記事リンク。
+- 実APIと公式表示14/0/0一致。Python1002、JS12ファイル、既存Chromium4630、本機能402合格。認証付き完全取得・隔離生成も合格。写真933/Best12/研究66/退役7保持。
+- 証跡・比較画像・CI URL・制約は `audit/record-stars-2026-10-19/REPORT.md`。実スター追加・削除は未実施。ログイン済み本番追加は未確認。公開前の必要確認を同レポートに記載。
+- Draft維持。マージ・本番再生成・Pages公開・実スター操作には別途明示承認が必要。
+
+## 2026-10-20 PR #128 profile-icon追補
+
+- 最新main `38c2e3886d5f1e6ecd0f37aba83c8d29f832ca74` を親2つの通常マージで統合済み。Best Shot16・通知13・PR130管理室保存機能を保持。他の未マージPRは変更しない。
+- 元ブログ自身の公式 `widget/star.js` と `profile-icon` 属性で投稿者画像＋色別スターを描画。HatenaStar.js / 元記事SiteConfigを残しprofile版失敗時はcompactへ退避。別のスターや独自投稿APIは作らない。
+- `audit/record-stars-2026-10-19/REPORT.md`末尾に今回の追補。写真933 / Best16 / 研究66 / 退役7、通知13、既存ID・安全ゲート・管理室保存機能は保護。
+- Draft維持。実スター追加/削除は未実施、認証済み本番追加は未確認。マージ・公開・実操作は別途明示承認を待つ。
+
+
+## 2026-10-20 PR #128 layout追補
+
+- 前回HEAD6221044を再利用。main38c2e388は既に統合済み。既存Draftブランチだけを非forceで更新。
+- 空DOMを0件と推測せず件数欄は空白、元記事リンクは読み上げとフォーカス時に利用可能。正数の総数・省略と公式追加ボタン維持。
+- 新トップ最新3記事を全幅でタイトル→公開日→スター→抜粋へ統一。デスクトップ3入口の空間を配分、画像と通知は変更なし。
+- 公式画像18px・マウスセル20px採用。タッチは28×28px以上の実操作領域を維持。公式URL/投稿者/色/ネイティブ操作と元記事登録先は変更しない。
+- Feature欠落は旧フィクスチャの引数省略。実承認検証とfeatures.html生成を通して3入口を照合。本番Featureゲート変更なし。
+- Python1011 / JS12ファイル / 既存Chromium4672 / スターChromium2519、4CI成功。8幅比較、実API933→933、写真ID933・Best16・研究66・退役7・通知13・master141・sources419保持。
+- audit/record-stars-2026-10-19/REPORT.md末尾とlayout-validation.json、layout-画像を参照。旧証跡を保持。最終保存HEAD/CIはPR説明欄。
+- 認証済み本番の実スター追加は未確認、実追加/削除なし。Ready化・マージ・再生成・Pages公開をせずDraftで承認待ち。
