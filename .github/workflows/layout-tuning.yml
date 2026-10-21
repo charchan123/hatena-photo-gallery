@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'assets/best-shots.css'
+      - 'best_shot_ui.py'
       - 'assets/portal.css'
       - 'tests/browser/layout_tuning*'
       - 'tests/browser/layout_followup.cjs'
@@ -34,8 +35,19 @@ jobs:
           /tmp/layout-browser/node_modules/.bin/playwright install --with-deps chromium
       - name: Identical production photographs and approved features
         run: python tests/browser/layout_tuning_fixture.py /tmp/layout-tuning "${{ github.event.pull_request.base.sha }}"
+      - name: Detect whether thumbnail CSS has changed from main
+        id: thumbnail-scope
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          if git diff --quiet "$BASE_SHA" HEAD -- assets/best-shots.css assets/portal.css; then
+            echo 'unchanged=1' >> "$GITHUB_OUTPUT"
+          else
+            echo 'unchanged=0' >> "$GITHUB_OUTPUT"
+          fi
       - name: Eight widths, full photo mounts, captions and unchanged panel heights
         env:
+          LAYOUT_EXPECT_UNCHANGED: ${{ steps.thumbnail-scope.outputs.unchanged }}
           PLAYWRIGHT_MODULE_PATH: /tmp/layout-browser/node_modules/playwright
           LAYOUT_ASSERT_FINAL: '1'
           LAYOUT_LIVE_STARS: '1'

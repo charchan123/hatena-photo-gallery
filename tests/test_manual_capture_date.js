@@ -1,0 +1,13 @@
+'use strict';
+const assert=require('assert/strict'),fs=require('fs'),vm=require('vm');
+const source=fs.readFileSync('admin/static/admin.js','utf8'),observations=[{observation_id:'a',capture:{date:null}},{observation_id:'b',capture:{date:'2025-10-01'}}],state={best_shots:{entries:[{selection_id:'one',observation_id:'a',manual_capture_date:'2025-10-02',order:1}]}};
+const ctx=vm.createContext({state,observation:id=>observations.find(o=>o.observation_id===id)||{}});
+vm.runInContext(source.slice(source.indexOf('function normalizeMushroomName'),source.indexOf('function observationSelect')),ctx);
+assert.equal(ctx.captureMonth(observations[0],'2024-02-29'),'2024-02');
+for(const d of ['','2025-02-29','1900-02-29','2024-02-30','2099-01-01','2025-1-01',null,2])assert.equal(ctx.captureMonth(observations[0],d),'');
+assert.equal(ctx.captureMonth(observations[1]),'2025-10');
+assert.equal(ctx.monthSlots('b').next,2);
+assert.equal(ctx.monthSlots('a','new','2025-10-03').next,2);
+assert.equal(ctx.monthSlots('a','one','2025-10-03').next,1);
+assert.equal(ctx.monthSlots('a','new','2024-10-03').next,1);
+console.log('PASS: manual date calendar, leap, future, month and order helpers');

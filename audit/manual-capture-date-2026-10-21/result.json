@@ -1,0 +1,7 @@
+{
+  "assertions": 21,
+  "invalid_status": 400,
+  "manual_date": "2024-02-29",
+  "restart_restored": true,
+  "source_conflict_preserved": true
+}

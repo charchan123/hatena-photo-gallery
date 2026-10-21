@@ -1,0 +1,10 @@
+{
+  "status": 400,
+  "data": {
+    "error": "invalid manual capture date",
+    "message": "撮影日は実在する日付をYYYY-MM-DDで入力してください。未来の日付は登録できません",
+    "field_errors": {
+      "manual_capture_date": "撮影日は実在する日付をYYYY-MM-DDで入力してください。未来の日付は登録できません"
+    }
+  }
+}

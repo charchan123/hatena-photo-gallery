@@ -53,3 +53,6 @@ dialog.best-editor{width:min(980px,calc(100% - 24px));max-height:calc(100dvh - 2
  .deletion-card .deletion-body,.deletion-card .item-actions{grid-column:1}
  #deletions .actions{flex-wrap:wrap}
 }
+
+/* The manual date editor is absent for an already dated source photo. */
+.best-editor .manual-date-field[hidden]{display:none}

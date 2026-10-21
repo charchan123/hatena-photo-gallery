@@ -242,6 +242,6 @@ def test_fresh_gate_and_failure_isolation(monkeypatch):
 
 
 def test_config_contract_contains_only_manual_metadata_and_reference():
-    allowed = {"selection_id", "observation_id", "comment", "annual_comment", "location", "order"}
+    allowed = {"selection_id", "observation_id", "comment", "annual_comment", "location", "order", "manual_capture_date", "manual_capture_date_origin", "manual_capture_source_ack"}
     assert best_shot_ui.ENTRY_FIELDS == allowed
     assert config(annual={"2025": "best-1"})["annual_best"]["2025"] == "best-1"

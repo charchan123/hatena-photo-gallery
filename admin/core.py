@@ -7,7 +7,7 @@ from pathlib import Path
 import re
 import uuid
 
-from best_shot_ui import validate_best_shot_config
+from best_shot_ui import BestShotConfigError, source_capture_date, validate_best_shot_config
 from research_identifications import validate_registry
 from update_notices import NOTICE_DAYS, timestamp, validate_notice_config
 
@@ -59,12 +59,13 @@ class ChangeSet:
         self.master = read_json(DATA / "mushroom-master.json")
 
     def add_best_shot(self, entry, *, annual=False, add_notice=False, occurred_at=None):
+        entry = deepcopy(entry)
+        self._manual_date_change(entry, {}, creating=True)
         candidate = deepcopy(self.best_shots)
         candidate["entries"].append(entry)
         if annual:
-            observation = next((o for o in self.portal.get("observations", [])
-                                if o.get("observation_id") == entry.get("observation_id")), None)
-            year = str((observation.get("capture") or {}).get("date", "")[:4]) if observation else ""
+            resolved = validate_best_shot_config(candidate, self.portal)
+            year = str(next(r["year"] for r in resolved if r["selection_id"] == entry.get("selection_id")))
             candidate["annual_best"][year] = entry.get("selection_id")
         validate_best_shot_config(candidate, self.portal)
         if add_notice:
@@ -72,14 +73,47 @@ class ChangeSet:
         self.best_shots = candidate
 
     def update_best_shot(self, selection_id, changes):
-        allowed = {"observation_id", "comment", "annual_comment", "location", "order"}
+        allowed = {"observation_id", "comment", "annual_comment", "location", "order",
+                   "manual_capture_date", "manual_capture_source_ack"}
         candidate = deepcopy(self.best_shots)
         row = next((r for r in candidate["entries"] if r.get("selection_id") == selection_id), None)
         if row is None or set(changes) - allowed:
             raise AdminError("Best Shot or editable field is invalid")
+        previous = deepcopy(row)
+        # A date belongs to one selected photo, never to its replacement.
+        if changes.get("observation_id", row["observation_id"]) != row["observation_id"]:
+            for key in ("manual_capture_date", "manual_capture_date_origin", "manual_capture_source_ack"):
+                row.pop(key, None)
         row.update(changes)
+        self._manual_date_change(row, previous)
         validate_best_shot_config(candidate, self.portal)
         self.best_shots = candidate
+
+    def _manual_date_change(self, row, previous, creating=False):
+        observation = next((o for o in self.portal.get("observations", [])
+                            if o.get("observation_id") == row.get("observation_id")), {})
+        same = previous.get("observation_id") == row.get("observation_id")
+        source = source_capture_date(observation)
+        if not creating and row.get("manual_capture_date", False) is None:
+            if not source:
+                raise BestShotConfigError("source date unavailable", field="manual_capture_date",
+                                          user_message="元写真の有効な撮影日を確認できません")
+            for key in ("manual_capture_date", "manual_capture_date_origin", "manual_capture_source_ack"):
+                row.pop(key, None)
+            return
+        if "manual_capture_date" in row:
+            if source and (creating or not same or "manual_capture_date" not in previous
+                           or row["manual_capture_date"] != previous["manual_capture_date"]):
+                raise BestShotConfigError("source date cannot be manually overridden", field="manual_capture_date",
+                                          user_message="元写真に撮影日があります。不要な手動上書きはできません")
+            if not source:
+                row["manual_capture_date_origin"] = "owner_confirmed_undated_source"
+            elif same:
+                row["manual_capture_date_origin"] = previous.get("manual_capture_date_origin")
+        if "manual_capture_source_ack" in row and row.get("manual_capture_source_ack") != previous.get("manual_capture_source_ack"):
+            if not source or row["manual_capture_source_ack"] != source.isoformat():
+                raise BestShotConfigError("stale source date confirmation", field="manual_capture_date",
+                                          user_message="元写真の撮影日が変わりました。再確認してください")
 
     def delete_best_shot(self, selection_id):
         candidate = deepcopy(self.best_shots)

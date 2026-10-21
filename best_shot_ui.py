@@ -1,19 +1,21 @@
 """Manual, owner-curated Best Shot collection built from fresh portal observations."""
 
 from collections import defaultdict
-from datetime import date
+from datetime import date, datetime
 import html
 import json
 import os
 import re
 import shutil
 from urllib.parse import urlparse
+from zoneinfo import ZoneInfo
 
 
 SCHEMA_VERSION = 1
 MAX_COMMENT_LENGTH = 200
 MAX_LOCATION_LENGTH = 100
 ENTRY_FIELDS = {"selection_id", "observation_id", "comment", "annual_comment", "location", "order"}
+ENTRY_FIELDS |= {"manual_capture_date", "manual_capture_date_origin", "manual_capture_source_ack"}
 REQUIRED_ENTRY_FIELDS = {"selection_id", "observation_id", "comment", "order"}
 
 
@@ -56,6 +58,50 @@ def _capture_date(observation, selection_id):
         raise BestShotConfigError(f"{selection_id} has invalid observation.capture.date",
                                   field="observation_id", user_message="撮影日の確認が必要な写真です")
     return parsed
+
+
+def source_capture_date(observation):
+    """A valid source date is authoritative regardless of EXIF availability."""
+    try:
+        return _capture_date(observation, observation.get("observation_id", ""))
+    except BestShotConfigError:
+        return None
+
+
+def _manual_date(value, field="manual_capture_date"):
+    try:
+        if not isinstance(value, str) or not re.fullmatch(r"[0-9]{4}-[0-9]{2}-[0-9]{2}", value):
+            raise ValueError("date format")
+        parsed = date.fromisoformat(value)
+        if parsed.isoformat() != value or parsed > datetime.now(ZoneInfo("Asia/Tokyo")).date():
+            raise ValueError("future date")
+        return parsed
+    except ValueError as error:
+        raise BestShotConfigError("invalid manual capture date", field=field,
+            user_message="撮影日は実在する日付をYYYY-MM-DDで入力してください。未来の日付は登録できません") from error
+
+
+def resolve_capture_date(entry, observation):
+    """Keep an owner-confirmed date stable if the source date later appears.
+
+    The origin marker is issued only by ChangeSet when the source is undated.
+    A later source date is reported, never silently adopted during generation.
+    """
+    if "manual_capture_date" not in entry:
+        if "manual_capture_date_origin" in entry or "manual_capture_source_ack" in entry:
+            raise BestShotConfigError("manual provenance requires a date", field="manual_capture_date")
+        return _capture_date(observation, entry["selection_id"]), {}
+    captured = _manual_date(entry["manual_capture_date"])
+    if entry.get("manual_capture_date_origin") != "owner_confirmed_undated_source":
+        raise BestShotConfigError("manual date requires confirmed undated-source origin", field="manual_capture_date",
+            user_message="手動日付は撮影日未確認の写真を管理室で確認して登録してください")
+    source = source_capture_date(observation)
+    if "manual_capture_source_ack" in entry:
+        _manual_date(entry["manual_capture_source_ack"], "manual_capture_source_ack")
+    return captured, {"capture_date_source": "owner_manual",
+        "source_capture_date": source.isoformat() if source else None,
+        "capture_date_conflict": bool(source and source != captured),
+        "capture_date_review_required": bool(source and entry.get("manual_capture_source_ack") != source.isoformat())}
 
 
 def validate_best_shot_config(config, portal_data):
@@ -126,7 +172,7 @@ def validate_best_shot_config(config, portal_data):
                 user_message="観察写真を一意に確認できません。写真を選び直してください"
             )
         observation = matches[0]
-        captured = _capture_date(observation, selection_id)
+        captured, date_details = resolve_capture_date(entry, observation)
         month_key = (captured.year, captured.month)
         order_key = (*month_key, order)
         if order_key in month_orders:
@@ -152,6 +198,7 @@ def validate_best_shot_config(config, portal_data):
             "article_title": str(article.get("title") or ""),
             "article_url": str(article.get("url") or ""),
             "is_annual_best": False,
+            **date_details,
         })
 
     resolved_by_selection = {entry["selection_id"]: entry for entry in resolved}
