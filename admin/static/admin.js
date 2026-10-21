@@ -179,10 +179,29 @@ $('#add-notice').onclick=()=>{const section=node('label','section'),ss=node('sel
 function renderStatus(){const r=state.repo,f=state.feature_facets||{};$('#site-status').replaceChildren(node('h3','ローカル / GitHub状態'),node('p',`branch: ${r.branch}`),node('p',`working tree: ${r.dirty===null?'取得できませんでした':r.dirty?'dirty':'clean'}`),node('p',`local HEAD: ${r.head_sha||'取得できませんでした'}`),node('p',`origin/main: ${r.origin_main_sha||'取得できませんでした'}`),node('p',`gh-pages: ${r.gh_pages_sha||'取得できませんでした'}`),node('p',`最新Build & Deploy: ${r.latest_action?`${r.latest_action.status} / ${r.latest_action.conclusion||'-'}`:'取得できませんでした'}`),node('p',`gh CLI: ${r.gh_authenticated?'認証済み':r.gh_available?'GitHub認証が必要（初回のみ gh auth login）':'GitHub CLIが見つかりません'}`),node('p',`変更予定: ${state.draft_saved?(state.draft_restored?'ローカルから復元済み・自動保存中':'ローカルに自動保存済み'):'現在ローカル下書きなし'}`),node('p',`portal-data: ${state.portal_source} / observations: ${state.portal_observation_count}`),node('p',`production_mode: ${state.production_mode}`),node('p',`feature facets: v${f.version||'?'} / assignments: ${(f.entries||[]).length}`))}
 function renderPreview(){const out=$('#preview');out.replaceChildren();Object.entries(state.preview).forEach(([name,p])=>{const e=node('article',undefined,'item');const b=node('div');b.append(node('h3',name),node('p',p.changed?'変更あり':'変更なし','badge '+(p.changed?'active':'')));const pre=node('pre',JSON.stringify(p.after,null,2));b.append(pre);e.append(node('div'),b);out.append(e)})}
 async function change(path,body){try{await api(path,body);$('#editor').close();await load();message('変更予定に追加しました')}catch(e){message(e.message,true)}}
-function confirmAction(text,fn){$('#confirm-text').textContent=text;pendingConfirm=fn;$('#confirm').showModal()}
-$('#confirm-ok').onclick=async ev=>{ev.preventDefault();try{await pendingConfirm();$('#confirm').close();await load();message('変更しました')}catch(e){message(e.message,true)}};
+let confirmBusy=false;
+function confirmError(){let e=$('#confirm-error');if(!e){e=node('p',undefined,'error');e.id='confirm-error';e.setAttribute('role','alert');e.tabIndex=-1;$('#confirm-text').after(e)}return e}
+function confirmAction(text,fn){if(confirmBusy)return;$('#confirm-text').textContent=text;confirmError().textContent='';pendingConfirm=fn;$('#confirm').showModal()}
+$('#confirm').addEventListener('cancel',ev=>{if(confirmBusy)ev.preventDefault()});
+function showPrResult(result){
+ const url=result?.url;if(typeof url!=='string'||!/^https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+\/pull\/[1-9][0-9]*$/.test(url))return false;
+ const area=$('#message');area.className='';area.replaceChildren(node('span','Draft PRを作成しました。CIの成功と管理者の明示承認を確認するまでマージしないでください。 '));
+ const a=node('a',url);a.href=url;a.target='_blank';a.rel='noopener noreferrer';area.append(a);return true;
+}
+$('#confirm-ok').onclick=async ev=>{
+ ev.preventDefault();if(confirmBusy||!pendingConfirm)return;confirmBusy=true;confirmError().textContent='';
+ const controls=[...$('#confirm').querySelectorAll('button')],disabled=controls.map(b=>b.disabled),ok=$('#confirm-ok'),label=ok.textContent;
+ controls.forEach(b=>b.disabled=true);ok.textContent='処理中…';
+ try{
+  const result=await pendingConfirm();$('#confirm').close();
+  // A refresh failure after PR creation must not hide its successful URL.
+  try{await load()}catch(e){if(!showPrResult(result))throw e}
+  if(!showPrResult(result))message('変更しました');
+ }catch(e){const text=e.userMessage||e.message;confirmError().textContent=text;confirmError().focus();message(text,true)}
+ finally{confirmBusy=false;controls.forEach((b,i)=>b.disabled=disabled[i]);ok.textContent=label}
+};
 $('#validate').onclick=async()=>{try{const v=await api('/api/validate');message('検証成功: '+JSON.stringify(v));$('#create-pr').disabled=!state.repo.gh_authenticated}catch(e){message(e.message,true)}};
-$('#create-pr').onclick=()=>confirmAction('origin/mainから一時worktreeを作成し、commit・push・PR作成します。mergeやdeployはしません。',async()=>{const v=await api('/api/pr',{operation:'admin-console'});message('PR: '+v.url)});
+$('#create-pr').onclick=()=>confirmAction('最新mainと変更前データを照合し、安全ならDraft PRを作成します。全テストと公開データ保護の検証はGitHub Actionsで行います。merge・deployはしません。',async()=>api('/api/pr',{operation:'admin-console'}));
 $('#knowledge-preview').onclick=async()=>{try{const v=await api('/api/knowledge/preview',{batch_id:selectedKnowledge});$('#knowledge-preview-result').textContent=JSON.stringify(v,null,2);$('#knowledge-pr').disabled=!(v.ready&&state.repo.gh_authenticated)}catch(e){message(e.message,true)}};
 $('#knowledge-pr').onclick=()=>confirmAction('承認済み候補のみをpromotionし、origin/mainから一時worktreeを作ってPRを作成します。merge・deployは行いません。',async()=>{const v=await api('/api/knowledge/pr',{batch_id:selectedKnowledge});message('PR: '+v.url)});
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>show(b.dataset.page));

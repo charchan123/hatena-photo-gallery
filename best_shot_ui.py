@@ -1,14 +1,13 @@
 """Manual, owner-curated Best Shot collection built from fresh portal observations."""
 
 from collections import defaultdict
-from datetime import date, datetime
+from datetime import date, datetime, timedelta, timezone
 import html
 import json
 import os
 import re
 import shutil
 from urllib.parse import urlparse
-from zoneinfo import ZoneInfo
 
 
 SCHEMA_VERSION = 1
@@ -73,7 +72,7 @@ def _manual_date(value, field="manual_capture_date"):
         if not isinstance(value, str) or not re.fullmatch(r"[0-9]{4}-[0-9]{2}-[0-9]{2}", value):
             raise ValueError("date format")
         parsed = date.fromisoformat(value)
-        if parsed.isoformat() != value or parsed > datetime.now(ZoneInfo("Asia/Tokyo")).date():
+        if parsed.isoformat() != value or parsed > datetime.now(timezone(timedelta(hours=9))).date():
             raise ValueError("future date")
         return parsed
     except ValueError as error:

@@ -56,3 +56,6 @@ dialog.best-editor{width:min(980px,calc(100% - 24px));max-height:calc(100dvh - 2
 
 /* The manual date editor is absent for an already dated source photo. */
 .best-editor .manual-date-field[hidden]{display:none}
+
+/* Keep PR failures readable inside the modal and long URLs within the page. */
+#confirm-error,#message{overflow-wrap:anywhere;white-space:pre-wrap}#confirm-error:empty{display:none}

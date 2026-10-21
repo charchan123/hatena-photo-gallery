@@ -98,6 +98,25 @@ class DraftStore:
         self.saved = True
         return draft
 
+    def verify_saved(self, draft):
+        """Read-only PR gate: never refresh, overwrite, or discard a local draft."""
+        self._check_path()
+        try:
+            if not self.saved or self.path.stat().st_size > MAX_BYTES:
+                raise ValueError("no durable draft")
+            snapshot = json.loads(self.path.read_text(encoding="utf-8"))
+            files = draft.files()
+            if (snapshot.get("version") != SCHEMA
+                    or snapshot.get("base") != self.base_hashes
+                    or set(snapshot.get("files", {})) != set(FILES)
+                    or any(_fingerprint(snapshot["files"][name]) != _fingerprint(files[name])
+                           for name in FILES)):
+                raise ValueError("saved draft differs from reviewed changes")
+        except (OSError, ValueError, TypeError, KeyError, AttributeError) as error:
+            raise DraftRecoveryError(
+                "保存済み下書きと変更予定を安全に照合できません。ファイルは上書き・削除していません。"
+                "バックアップを取り、保存先の権限と変更内容を確認してください") from error
+
     def save(self, draft):
         """Atomic replace; retain the old snapshot on a failed write."""
         if self.baseline is None:
