@@ -19,8 +19,16 @@ CLIをあとからインストールした場合はWindows標準インストー�
 保存ファイルが破損した場合や、未公開の編集を保持したままmainの元データが
 変わった場合は、下書きを削除・上書きせず起動を停止します。
 元データに戻す前にファイルをバックアップして差分を確認してください。
-管理室のローカル下書きは、データの検証後に一時git worktreeから
-branch・commit・push・PRを作成します。自動マージ・公開は行いません。
+管理室のローカル下書きは、検証後、最新origin/mainの元データと完全照合します。
+差分があれば安全停止し、ローカル下書きは削除・自動rebaseしません。
+照合に成功した場合のみ、一時git worktreeから変更した管理JSONだけを
+commit・pushして**Draft PR**を作成します。自動マージ・公開は行いません。
+Windows上では全pytestやcompileallを実行せず、GitHub Actionsの
+Validate Admin Changes等で全テスト・最新はてなAPIでの保護検証を行います。
+PRが作成されてもCIが成功するまで、また管理者の明示承認なしにはマージしません。
+GitHubで公開後、PC側の管理室は自動更新されません。既存下書きは事前に
+`admin/local-state/admin-draft.json` をバックアップして手動照合し、
+`git reset --hard`や下書き削除で解決しないでください。
 
 ## Admin Console v2: Knowledge Expansion
 
