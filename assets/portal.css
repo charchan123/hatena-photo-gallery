@@ -133,3 +133,20 @@
   .portal-request p { font-size:.8rem; line-height:1.8; }
 }
 @media (prefers-reduced-motion:reduce) { .portal-card,.record-preview-thumb img { transition:none; }.portal-card:hover,.record-preview-row:hover .record-preview-thumb img { transform:none; } }
+/* Use the space introduced by the star row; do not enlarge the panels.
+   Keep the notification reservation so arrival/expiry cannot move the copy.
+   Half its unused line space offsets the visible heading + description to centre. */
+.portal-index .record-preview-thumb { height:112px; }
+.portal-index .portal-guide-row .portal-card { height:120px; min-height:120px; }
+.portal-index .portal-guide-note { position:relative; top:calc((46px - 1.276rem)/2); }
+@media (min-width:681px) and (max-width:899px) {
+  .portal-index .portal-guide-row { padding-block:2px; }
+  .portal-index .portal-guide-row .portal-card { height:108px; min-height:108px; }
+}
+@media (max-width:680px) {
+  .portal-index .record-preview-thumb { height:100px; }
+  .portal-index .portal-guide-row { padding-block:4px; }
+  .portal-index .portal-guide-row .portal-card { height:114px; min-height:114px; }
+  /* Stacked copy follows its image at narrow widths, with no visual offset. */
+  .portal-index .portal-guide-note { top:0; }
+}

@@ -1,0 +1,86 @@
+Best Shot search, unbounded month counts, smallest missing order and integer input: passed
+✔ stored retired URL cannot recreate a favorite card, storage stays unchanged (3.605451ms)
+✔ current photo without EXIF remains visible and shared valid URL is retained (3.592626ms)
+✔ missing published index and inherited property cannot authorize an old URL (2.512067ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 24.110247
+feature filter tests passed
+iframe content height regression checks passed
+4 kana-insensitive highlight cases passed
+✔ old-parent destination replay is consumed once and rejects stale/unrelated markers (4.60712ms)
+✔ only real same-frame internal HTML links send an intent (1.415227ms)
+✔ ACK precedes native navigation, is authenticated and cannot navigate twice (2.733299ms)
+✔ blocked storage still completes via ACK; missing parent uses one bounded fallback (3.246018ms)
+✔ repeated clicks, pagehide and changed links cannot leave duplicate navigation (7.695398ms)
+✔ destination replay remains tied to pageshow for older parent handlers (0.420443ms)
+✔ a previous child referrer is not mistaken for the parent origin (1.927353ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 36.955715
+✔ height is direct, finite and authenticated; duplicates do not write (4.906755ms)
+✔ bottom collapse reserves outer space and reclaims on upward scroll (1.228951ms)
+✔ navigation, lightbox close and requestHeight remain source-bound (1.407327ms)
+✔ authenticated intent scrolls before ACK; load only reclaims short-page space (1.295932ms)
+✔ cancel clears pending intent without rollback or any additional scroll (1.071412ms)
+✔ repeated intent IDs ACK again but never scroll twice before load (1.434491ms)
+✔ window: no eager post to initial parent-origin document; initial load never scrolls (0.867806ms)
+✔ window: source/origin/path/ID validation precedes any scroll (1.067835ms)
+✔ window: in-place heights, resize and ordinary load never scroll (0.951757ms)
+✔ body: no eager post to initial parent-origin document; initial load never scrolls (1.26802ms)
+✔ body: source/origin/path/ID validation precedes any scroll (4.956158ms)
+✔ body: in-place heights, resize and ordinary load never scroll (6.979779ms)
+✔ measured Hatena BODY coordinates: 4000 → 272 before ACK, window remains 0 (4.933077ms)
+✔ BODY bottom collapse uses body viewport and reclaims on body upward scroll (1.111174ms)
+✔ BODY mode survives top/short content and transfers listeners on layout change (1.775132ms)
+✔ BODY border is excluded from content coordinates; resize uses clientHeight (0.803049ms)
+✔ BODY legacy navigation, lgClosed and bounded requestHeight retain authentication (3.036378ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 198.185784
+5 fixed-gap mosaic layout cases passed
+✔ ten bright cores retain the six green / four purple balance and soft edges (2.756296ms)
+✔ single regular Bezier curves spread in six directions with bounded arc lengths (18.574604ms)
+✔ motion has only endpoints, separate appearance, and continuously decreasing nonzero speed (6.596075ms)
+✔ six outward paths reach surrounding space without clipping or touching names (8.669486ms)
+✔ one burst per enter, no nonpoison/touch, re-enter and keyboard work (5.775437ms)
+✔ keyboard supports coarse devices, reduced motion and exclusions fail closed (1.809534ms)
+✔ filter/removal, scroll, reduced motion, timer and burst cap clean up (5.87249ms)
+✔ coarse poison tap delays native activation 600ms and double tap stays one burst (2.406437ms)
+✔ ordinary, reduced, keyboard and modified links keep native immediate behavior (3.539723ms)
+✔ touch cancellation and stale targets cannot trigger deferred navigation (3.075846ms)
+✔ color adjustment leaves every motion and appearance parameter unchanged (0.629414ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 88.262351
+Hatena Star totals: repeated users, colours, collapsed counts, unknown/failure and integer integrity PASS
+✔ HTML-only photo cannot be favorited from enlarged view; registered photos remain usable (6.488245ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17.270014
+Update notices: expiry, transition, bfcache, visibility, invalid dates PASS
