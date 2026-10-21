@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'assets/best-shots.css'
+      - 'best_shot_ui.py'
       - 'assets/portal.css'
       - 'tests/browser/layout_tuning*'
       - 'tests/browser/layout_followup.cjs'
