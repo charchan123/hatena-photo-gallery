@@ -59,3 +59,8 @@ dialog.best-editor{width:min(980px,calc(100% - 24px));max-height:calc(100dvh - 2
 
 /* Keep PR failures readable inside the modal and long URLs within the page. */
 #confirm-error,#message{overflow-wrap:anywhere;white-space:pre-wrap}#confirm-error:empty{display:none}
+#comments .toolbar{flex-wrap:wrap;align-items:end;justify-content:flex-start}#comments-search{min-width:200px}#comments-list .panel>p{white-space:pre-wrap;overflow-wrap:anywhere}#comments-list button{margin:5px}#comments-list textarea{min-height:100px}#comments-feedback a{display:block}
+
+.comments-workspace{display:grid;grid-template-columns:minmax(220px,280px) minmax(0,1fr);gap:18px;align-items:start}#comments-cases{max-height:70vh;overflow:auto}.comments-thread{min-width:0}#comments-cases .panel{padding:12px}#comments-cases small{display:block;overflow-wrap:anywhere}#comments-feedback{overflow-wrap:anywhere}#comments-unread{width:auto}@media(max-width:1000px){.comments-workspace{grid-template-columns:1fr}#comments-cases{max-height:280px}}
+
+.comments-thread>label{display:flex;align-items:center;gap:8px}#comments-unread{flex:none}.comments-history{background:#f5f8f2;border-radius:8px;padding:12px;max-height:320px;overflow:auto}.comments-history p{font-size:.85rem;white-space:pre-wrap}

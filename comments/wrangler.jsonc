@@ -1,0 +1,15 @@
+{
+  "name": "kinoko-research-comments",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": {"enabled": false},
+  "triggers": {"crons": ["17 4 * * *"]},
+  "vars": {
+    "PUBLIC_READ_ENABLED": "false", "PUBLIC_WRITE_ENABLED": "false",
+    "RELEASE_APPROVAL": "not-approved", "ALLOWED_ORIGINS": "",
+    "TURNSTILE_HOSTNAME": "", "MANIFEST_URL": "", "REGISTRY_SHA256": ""
+  },
+  "d1_databases": [{"binding": "DB", "database_name": "REQUIRES_APPROVAL", "database_id": "00000000-0000-0000-0000-000000000000", "remote": false, "migrations_dir": "migrations"}]
+}

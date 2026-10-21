@@ -134,7 +134,8 @@ def _safe_web_url(value):
     return value if parsed.scheme in {"http", "https"} and parsed.netloc else None
 
 
-def render_research_page(model, identified=None):
+def render_research_page(model, identified=None, comments=None):
+    from research_comments import mount, thread_mount
     status_classes = {
         "未同定": "is-unidentified",
         "候補名あり": "is-candidate",
@@ -173,6 +174,7 @@ def render_research_page(model, identified=None):
 <div><dt>写真枚数</dt><dd>{case["photo_count"]}枚</dd></div></dl>
 <div class="research-photos">{''.join(photos)}</div>
 <div class="research-article"><span class="research-label">観察記録</span>{article_text}</div>
+{mount(case['case_id'], comments) if comments else ''}
 </article>''')
     archives = []
     for item in identified or []:
@@ -185,11 +187,17 @@ def render_research_page(model, identified=None):
 <img src="{html.escape(str(photo['src']), quote=True)}" alt="{html.escape(case['gallery_name'])}" loading="lazy">
 <div><span class="research-status is-identified">判明済み</span>
 <h3>{html.escape(case['gallery_name'])} <span aria-hidden="true">→</span> {html.escape(identification['identified_name'])}</h3>
-<p>{html.escape(str(identification.get('note') or ''))}</p>{article_link}</div></article>''')
+<p>{html.escape(str(identification.get('note') or ''))}</p>{article_link}</div>{mount(case['case_id'], comments) if comments else ''}</article>''')
     archive_html = (f'''<section class="research-cases-wrap" aria-labelledby="identified-title">
 <header class="research-cases-heading"><div><span class="research-eyebrow">IDENTIFIED</span>
 <h2 id="identified-title">正体が判明したキノコ</h2></div><span>{len(archives)}件</span></header>
 <div class="research-cases">{''.join(archives)}</div></section>''' if archives else "")
+    comment_archive = ''
+    if comments and comments['archived']:
+        comment_archive = '<section class="research-comment-archive"><h2>過去の研究ケースのコメント</h2><p>元のケースの履歴を保管しています。別のキノコへ自動で付け替えることはありません。</p>' + ''.join(
+            '<article><h3>'+html.escape(row['label'])+'</h3>'+thread_mount(row['id'], True)+'</article>' for row in comments['archived'])+'</section>'
+    comment_notice = ('<strong>同定のヒントや感想を各ケースのコメント欄へ。</strong><br>受付開始までは準備中と表示します。' if comments else '<strong>コメント・返信機能は今後追加予定です。</strong><br>同定のヒントや情報を寄せられるようにする予定です。')
+    scripts = '<script src="assets/research-comments.js" defer></script>' if comments else ''
     return f'''<!doctype html>
 <html lang="ja">
 <head>
@@ -199,6 +207,7 @@ def render_research_page(model, identified=None):
 <link rel="stylesheet" href="assets/gallery.css">
 <link rel="stylesheet" href="assets/research.css">
 <script src="assets/gallery.js" defer></script>
+{scripts}
 </head>
 <body class="research-index">
 <main id="gallery-content-root" class="research-page">
@@ -223,7 +232,7 @@ def render_research_page(model, identified=None):
       </div>
       <div class="research-notices">
         <p class="research-warning">「？」付きの名前は候補であり、同定が確定していることを意味しません。</p>
-        <p class="research-coming-soon"><strong>コメント・返信機能は今後追加予定です。</strong><br>同定のヒントや情報を寄せられるようにする予定です。</p>
+        <p class="research-coming-soon">{comment_notice}</p>
       </div>
     </div>
   </section>
@@ -235,6 +244,7 @@ def render_research_page(model, identified=None):
     </header>
     <div class="research-cases">{''.join(cards)}</div>
   </section>
+  {comment_archive}
   <footer class="research-footer"><a href="index.html">← キノコ図鑑へ戻る</a></footer>
 </main>
 </body>
@@ -252,9 +262,17 @@ def generate_research_page(portal_data, output_dir, assets_dir, registry=None, m
                  "multi_photo_count": sum(c["photo_count"] > 1 for c in open_cases)}
     else:
         model = build_research_model(portal_data)
+    from research_comments import prepare, public_config
+    prepared = prepare(model['cases'] + [item['case'] for item in identified])
+    config = public_config()
     os.makedirs(os.path.join(output_dir, "assets"), exist_ok=True)
+    for name,value in [('research-comments-config.json',config),
+                       ('research-comment-cases.json',{'version':1,'registry_sha256':prepared['registry_sha256'],'active_ids':prepared['active_ids']})]:
+        with open(os.path.join(output_dir,name),'w',encoding='utf-8') as stream:
+            json.dump(value,stream,ensure_ascii=False)
+    shutil.copy2(os.path.join(assets_dir,'research-comments.js'),os.path.join(output_dir,'assets','research-comments.js'))
     with open(os.path.join(output_dir, "research.html"), "w", encoding="utf-8") as stream:
-        stream.write(render_research_page(model, identified))
+        stream.write(render_research_page(model, identified, prepared))
     shutil.copy2(os.path.join(assets_dir, "research.css"),
                  os.path.join(output_dir, "assets", "research.css"))
     return model

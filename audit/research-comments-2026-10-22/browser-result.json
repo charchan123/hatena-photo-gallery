@@ -1,0 +1,6 @@
+{
+  "assertions": 21,
+  "local_only": true,
+  "production_writes": false,
+  "seed_cases": 66
+}
