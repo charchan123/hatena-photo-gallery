@@ -1,0 +1,966 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "research-267ebea46c42b80c",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032080309559"
+      ],
+      "observation_ids": [
+        "obs-4b3e25c595bc7ff19707f0b5436b1d6c0271e2023fe6a5055761c6ceacc3cf0e"
+      ],
+      "render_ids": [
+        "research-267ebea46c42b80c"
+      ]
+    },
+    {
+      "id": "research-1eb36b647ced8c3b",
+      "label": "Lanmaoa angustispora？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032069970406"
+      ],
+      "observation_ids": [
+        "obs-9495ad04755d49abe5ee78e2628218cb4b3a6139eb9edb77b371b91073e5a169"
+      ],
+      "render_ids": [
+        "research-1eb36b647ced8c3b"
+      ]
+    },
+    {
+      "id": "research-4bb986c28e6942da",
+      "label": "キアシヤマドリタケ(仮称)？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032069702588"
+      ],
+      "observation_ids": [
+        "obs-c547e1cdd6c9640e0e14c471441fca88d6563afccedcc3a50c5463de1d53a764"
+      ],
+      "render_ids": [
+        "research-4bb986c28e6942da"
+      ]
+    },
+    {
+      "id": "research-7c84021e1e81747c",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032069691139"
+      ],
+      "observation_ids": [
+        "obs-37777789191ece729fddab1060c5f56a67d42eefdd0b3f4c40063cb992685187",
+        "obs-8024a147947cc70e57af75a86260c97f0dbf8e5cb5929d2fd7c9f9c9b2450ad6"
+      ],
+      "render_ids": [
+        "research-7c84021e1e81747c"
+      ]
+    },
+    {
+      "id": "research-8ade349609689d38",
+      "label": "ヨゴレキアミアシイグチ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032069691139"
+      ],
+      "observation_ids": [
+        "obs-c4a1fe32d4edc3e165d5f655cc548def26be706bb8829e6255dd51ea85bdd673"
+      ],
+      "render_ids": [
+        "research-8ade349609689d38"
+      ]
+    },
+    {
+      "id": "research-034f45a913064038",
+      "label": "コガネフウセンタケ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032069677698"
+      ],
+      "observation_ids": [
+        "obs-c723221868e34a4fde86d02efd34f0770738f6682aa50351c64c8d2f095c4a65"
+      ],
+      "render_ids": [
+        "research-034f45a913064038"
+      ]
+    },
+    {
+      "id": "research-3a52df32a00c3332",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-14945776032043896364"
+      ],
+      "observation_ids": [
+        "obs-3bfba459c2ddaba7ccb61de960fe2ca6365fac6711299f34ddd4a5c1f2cc47ac",
+        "obs-f39857a61bd75b2a09625cc7d17d3b03f150c60d1e94ff407dddbb2a35a1c5f6"
+      ],
+      "render_ids": [
+        "research-3a52df32a00c3332"
+      ]
+    },
+    {
+      "id": "research-ed368befa5d43a9b",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-17179246901380420763"
+      ],
+      "observation_ids": [
+        "obs-22e0f578d38be72403e57d6763117c73abe9694eba4233e476ad1fa60920d35a",
+        "obs-b7770e5b1d681f50daed740c75f8a0cb9812559296da3827d8ab4e86e4158bdf"
+      ],
+      "render_ids": [
+        "research-ed368befa5d43a9b"
+      ]
+    },
+    {
+      "id": "research-66504f8922af6d9c",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-17179246901380419038"
+      ],
+      "observation_ids": [
+        "obs-55f365ae7c6a2fbe0f033ed2403bd9b8912edaefc48c8c1fdb271b213c62f7ea",
+        "obs-bcae3eaca4a841940965ab9a60227ea8e7fcc8992ebe0032de2e6d5b020cf765",
+        "obs-d403154a067d3253fe62d01eb2b496075a95a08e0af911b09b7cf6aaf9bb2acb"
+      ],
+      "render_ids": [
+        "research-66504f8922af6d9c"
+      ]
+    },
+    {
+      "id": "research-8a636af14b645408",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-17179246901376267315"
+      ],
+      "observation_ids": [
+        "obs-ad82c7298796185294fb2d8e5c6f51d378e37875d94cf70c96f1a05c5b0c689a"
+      ],
+      "render_ids": [
+        "research-8a636af14b645408"
+      ]
+    },
+    {
+      "id": "research-2607b5e4dfa7e408",
+      "label": "ハルハラタケ(仮称)？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-17179246901370648851"
+      ],
+      "observation_ids": [
+        "obs-4412a8cb88a1b73a2dcecc84054d0b9477169243641421460741af21da6744c1"
+      ],
+      "render_ids": [
+        "research-2607b5e4dfa7e408"
+      ]
+    },
+    {
+      "id": "research-34838a8326096f9a",
+      "label": "アラゲキクラゲ(アルビノ)？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-17179246901370648851"
+      ],
+      "observation_ids": [
+        "obs-82b56aadf0221e8ad3c5931bc1495d850fe1de7d1b6fc951a246d08816f6131d",
+        "obs-f5f9eee9d72bcee0d985f670ea9332901fa5eb03b8c00f73af1ee5a246169c31"
+      ],
+      "render_ids": [
+        "research-34838a8326096f9a"
+      ]
+    },
+    {
+      "id": "research-f441dc6640bab1fc",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-17179246901370648851"
+      ],
+      "observation_ids": [
+        "obs-70691a38a1957104f82583743da4874d5c6d6221ad6b27967cbc2c54d6316494"
+      ],
+      "render_ids": [
+        "research-f441dc6640bab1fc"
+      ]
+    },
+    {
+      "id": "research-1dfe93422c63837f",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-17179246901340268489"
+      ],
+      "observation_ids": [
+        "obs-ee5da0df242e5f3e1138562191678315ad424561f6e5e5fc7b04578451e17166"
+      ],
+      "render_ids": [
+        "research-1dfe93422c63837f"
+      ]
+    },
+    {
+      "id": "research-c60a64ea0db967a3",
+      "label": "フジイロタケモドキ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-17179246901322841238"
+      ],
+      "observation_ids": [
+        "obs-5714ca4fa1cf6c4dd5cbcfac1d4dca62bde06bfbe9fd16f1ad449eca73fb057c",
+        "obs-f5108863100f7627ccbb8d194572b553a0a6fdd4812266daec5566f205be8d3e"
+      ],
+      "render_ids": [
+        "research-c60a64ea0db967a3"
+      ]
+    },
+    {
+      "id": "research-3a307dea4589e834",
+      "label": "ハダイロニガシメジ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-17179246901319050277"
+      ],
+      "observation_ids": [
+        "obs-5d989a7a124d493311b69ffa6d984485ab345b7a6ccf5c789b5713bd5c570079"
+      ],
+      "render_ids": [
+        "research-3a307dea4589e834"
+      ]
+    },
+    {
+      "id": "research-f96fb935dd4b5540",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-17179246901311398602"
+      ],
+      "observation_ids": [
+        "obs-e57e6ba0aec3b60a9adf843c580ba74ec34f1c8d6b2cbc20fa1f9470e13d6f43"
+      ],
+      "render_ids": [
+        "research-f96fb935dd4b5540"
+      ]
+    },
+    {
+      "id": "research-5f31aea2f866bbbb",
+      "label": "キサケツバタケ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-17179246901310790703"
+      ],
+      "observation_ids": [
+        "obs-5cee2237e0ad9720a45902831ce734c344809e8166022cd4e405ceb4d97566b4",
+        "obs-9106586a953905b345beb41f21c10a27bbfc7214e47de888c74ecd2627ce97c1"
+      ],
+      "render_ids": [
+        "research-5f31aea2f866bbbb"
+      ]
+    },
+    {
+      "id": "research-97ddafc64c8cffcc",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-17179246901310790703"
+      ],
+      "observation_ids": [
+        "obs-e018bfa32f65a29d178ba17f24363e34935c52439a3c6369cbc3b3e36f162f0e",
+        "obs-ffc33e1b6fe125ae714c5e13043b6165141022cba3c56b45fb9c7675eff1ce6d"
+      ],
+      "render_ids": [
+        "research-97ddafc64c8cffcc"
+      ]
+    },
+    {
+      "id": "research-3d251e332673710a",
+      "label": "ミネシメジ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565291601870"
+      ],
+      "observation_ids": [
+        "obs-f4a3e1da4cd93252af7196d8d363c6d8dc4f743a4a24a1b983297757ed082970"
+      ],
+      "render_ids": [
+        "research-3d251e332673710a"
+      ]
+    },
+    {
+      "id": "research-ced86c4d18215449",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565291601870"
+      ],
+      "observation_ids": [
+        "obs-653d10f8e4758d7cd69520e459af5205e4ccc13dc299c66a72a29aab2bd44fb3"
+      ],
+      "render_ids": [
+        "research-ced86c4d18215449"
+      ]
+    },
+    {
+      "id": "research-1474b3cbe7710440",
+      "label": "ウスフジフウセンタケ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565285067217"
+      ],
+      "observation_ids": [
+        "obs-08fdba05eef691bf61fb2cc562288eef48ddfed03e399045fcddfe8708fe885a"
+      ],
+      "render_ids": [
+        "research-1474b3cbe7710440"
+      ]
+    },
+    {
+      "id": "research-d4206232dc160fdd",
+      "label": "クダアカゲシメジ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565285067217"
+      ],
+      "observation_ids": [
+        "obs-ef9da065b98003441075e44e6dca83adb4dba1ab428be07e6ac4b7c44494c989"
+      ],
+      "render_ids": [
+        "research-d4206232dc160fdd"
+      ]
+    },
+    {
+      "id": "research-727dbbbbd63c322f",
+      "label": "カラハツタケ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565275408562"
+      ],
+      "observation_ids": [
+        "obs-f061adaf23d6b78a11dd6be983f2c25aac0a001891534800635b98c068d66545"
+      ],
+      "render_ids": [
+        "research-727dbbbbd63c322f"
+      ]
+    },
+    {
+      "id": "research-a5374e2993f7b5ef",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565275408562"
+      ],
+      "observation_ids": [
+        "obs-09fd5486a2103c22f53c2ac6209e5a75fa074630d96b0e060b637d7f2320d0ef"
+      ],
+      "render_ids": [
+        "research-a5374e2993f7b5ef"
+      ]
+    },
+    {
+      "id": "research-ae849fa829dae956",
+      "label": "カバイロツルタケ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565275408562"
+      ],
+      "observation_ids": [
+        "obs-5c1ad0012961887a5e929a45eadb979afe1efdc2a06f417c637ce8be2f6c7a85"
+      ],
+      "render_ids": [
+        "research-ae849fa829dae956"
+      ]
+    },
+    {
+      "id": "research-4d1dbf0021730989",
+      "label": "クロアワタケの仲間？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565262061114"
+      ],
+      "observation_ids": [
+        "obs-fb95de2d8edda899d3c6b699e79f0980f6b2b99d352f2476ec8468cc47f6539d"
+      ],
+      "render_ids": [
+        "research-4d1dbf0021730989"
+      ]
+    },
+    {
+      "id": "research-668053b00c3a3cd4",
+      "label": "オニタケ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565262061114"
+      ],
+      "observation_ids": [
+        "obs-00b54d625e023c8326ac07cdd87d135fbb8b9586ac469f632dc4286d5827fd10"
+      ],
+      "render_ids": [
+        "research-668053b00c3a3cd4"
+      ]
+    },
+    {
+      "id": "research-6cd6aee5bdb97aa1",
+      "label": "ヤマイグチの仲間？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565262061114"
+      ],
+      "observation_ids": [
+        "obs-69fadb134d598d7cb8ab06b7214fac28f317880bb8f83c3912aa7b3237f65178"
+      ],
+      "render_ids": [
+        "research-6cd6aee5bdb97aa1"
+      ]
+    },
+    {
+      "id": "research-c08f3c81d56d67b7",
+      "label": "オオミノクロアワタケ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565262061114"
+      ],
+      "observation_ids": [
+        "obs-1ee7e93cf0cb4389d867bdedf05b7f661632e8d158ea53599116f1243cecaaca"
+      ],
+      "render_ids": [
+        "research-c08f3c81d56d67b7"
+      ]
+    },
+    {
+      "id": "research-b310988766fcf048",
+      "label": "フモトニガイグチ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565248579074"
+      ],
+      "observation_ids": [
+        "obs-ac3a2cbf8c2b557ad238357a53706d1c750b7bcc1018351ab24847149bf7f3e5",
+        "obs-f5ac8bb059099caa71ef8000fb6eb715bc443220d33b2a5ffe171e908cd0c5fb"
+      ],
+      "render_ids": [
+        "research-b310988766fcf048"
+      ]
+    },
+    {
+      "id": "research-abb11b5e5fbfec69",
+      "label": "Butyriboletus roseogriseus？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565232745004"
+      ],
+      "observation_ids": [
+        "obs-6572876bd86b04f37d08d321f22fa74f0269e7d50586b6710b2210c3b65de094"
+      ],
+      "render_ids": [
+        "research-abb11b5e5fbfec69"
+      ]
+    },
+    {
+      "id": "research-7161236cd5d72c4f",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565232628044"
+      ],
+      "observation_ids": [
+        "obs-e4cfbce22e4228b502a5b735846461052e257469fc3e5cc83c59a17318487455"
+      ],
+      "render_ids": [
+        "research-7161236cd5d72c4f"
+      ]
+    },
+    {
+      "id": "research-d4db39e0799bfaa8",
+      "label": "ブチリボレトゥス・ロゼオグリセウス？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565232628044"
+      ],
+      "observation_ids": [
+        "obs-5f1c0088bef2568659d8a5ba386c96f94d110568ca31f8da6256a403e4f2d233"
+      ],
+      "render_ids": [
+        "research-d4db39e0799bfaa8"
+      ]
+    },
+    {
+      "id": "research-28b5c127d65b5125",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565232514288"
+      ],
+      "observation_ids": [
+        "obs-0ea6d6b4f9bbf5fd909276970c27f7fbabf507bb10a0727815ea99e753eb412b"
+      ],
+      "render_ids": [
+        "research-28b5c127d65b5125"
+      ]
+    },
+    {
+      "id": "research-16842217afcce574",
+      "label": "ニセアシベニイグチ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565227545614"
+      ],
+      "observation_ids": [
+        "obs-e0b80f8ee3d20af2073767d2e85bd720882595a48423778a59eee3162562d4f7"
+      ],
+      "render_ids": [
+        "research-16842217afcce574"
+      ]
+    },
+    {
+      "id": "research-63b3c10913879d6d",
+      "label": "カバイロコナテングタケ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565219329724"
+      ],
+      "observation_ids": [
+        "obs-5c38c2e86109555eab6d468fb4b0785ca0a16d301086d3fa97b83843b95c37a4"
+      ],
+      "render_ids": [
+        "research-63b3c10913879d6d"
+      ]
+    },
+    {
+      "id": "research-837a57d69b0ca77c",
+      "label": "ツチカブリ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802888565219329724"
+      ],
+      "observation_ids": [
+        "obs-25556fc61d39c9846bcb9220aab9a2a9d6d70f52923a78ba4b71c4d42d0d645b"
+      ],
+      "render_ids": [
+        "research-837a57d69b0ca77c"
+      ]
+    },
+    {
+      "id": "research-688bec98a170d558",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398560181843"
+      ],
+      "observation_ids": [
+        "obs-31268677d371c35d2d0f972fbb8807ec4230b5d4cdae2087dffcf585ae3ba20b"
+      ],
+      "render_ids": [
+        "research-688bec98a170d558"
+      ]
+    },
+    {
+      "id": "research-0b06d6c3dee3592b",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398548767320"
+      ],
+      "observation_ids": [
+        "obs-6dbe0cd12a2d913a73881d95a393b092c21c5af7ce31c4a083c87527f590bb45"
+      ],
+      "render_ids": [
+        "research-0b06d6c3dee3592b"
+      ]
+    },
+    {
+      "id": "research-426017a92f952255",
+      "label": "ハナガサタケ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398548767320"
+      ],
+      "observation_ids": [
+        "obs-7583c097b94bc2e5b3d9e19ec0436709751c2c23431df74e2678a7141320b7be"
+      ],
+      "render_ids": [
+        "research-426017a92f952255"
+      ]
+    },
+    {
+      "id": "research-25c508197878011e",
+      "label": "Lanmaoa angustispora(和名無し)？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398528332482"
+      ],
+      "observation_ids": [
+        "obs-51db04297f7c4ea7a331026dca964c948c395a3e7f1ff989e8745dcfec8651c2"
+      ],
+      "render_ids": [
+        "research-25c508197878011e"
+      ]
+    },
+    {
+      "id": "research-9b3a6182ffb1bf81",
+      "label": "Lanmaoa angustispora(和名無し)？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398524821356"
+      ],
+      "observation_ids": [
+        "obs-5b2e4bafba25edb3f505f23c36e11ed1158856b9151f741a198b3928d7db6a5e",
+        "obs-c717f626d4267062d0c07a063bac5fa3e52c5f99098473ef1690b32faa558b21",
+        "obs-d77f9fa1ff24c205a1fc7c7724984d3dd369da98b0f14cf6cd2eaf7cce565762",
+        "obs-f4c961540a962ba28eb5863e8a7f763c14466dd0e34d7f8281e0618086b7f489"
+      ],
+      "render_ids": [
+        "research-9b3a6182ffb1bf81"
+      ]
+    },
+    {
+      "id": "research-f9cb62e956fa8604",
+      "label": "Lanmaoa angustispora(和名無し)？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398505017021"
+      ],
+      "observation_ids": [
+        "obs-5b34444988fa1071a19095db533a3c3e93586c1570f4b38e871ad93a4ef44cd6",
+        "obs-7fe8b43ddf8ff131367ceec61362d98aa9fd20c49a37bb3c21c356d2555b27ab",
+        "obs-ce559c0a0a6470380afdcb792ab2ed5d7af264ce9e445b8fd37fff8826638b2b",
+        "obs-ec80ea8823c0795b24eafd4443ae3bc4df582d781ee0168e73b709c09fbde800",
+        "obs-f04b61c10b376535a82a57133a58cb49efe5509a187ff1e20ed3405448860c0a"
+      ],
+      "render_ids": [
+        "research-f9cb62e956fa8604"
+      ]
+    },
+    {
+      "id": "research-1cf3ed7b7815550b",
+      "label": "サザナミイグチorフリルイグチ(仮称)？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398493776092"
+      ],
+      "observation_ids": [
+        "obs-146ed68681aeda67c0eb185dff7490d333debd91f69c8ef541c49a3b0740cca3"
+      ],
+      "render_ids": [
+        "research-1cf3ed7b7815550b"
+      ]
+    },
+    {
+      "id": "research-a7fd6f724a0ac5cc",
+      "label": "クラガタノボリリュウorナガエノチャワンタケ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398484068611"
+      ],
+      "observation_ids": [
+        "obs-aee3a3ab873ba824fa31256e39f1327ceb996c3e9a616f5394f206bfb0819737"
+      ],
+      "render_ids": [
+        "research-a7fd6f724a0ac5cc"
+      ]
+    },
+    {
+      "id": "research-57635376951b1c01",
+      "label": "コナカブリテングタケ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398475663624"
+      ],
+      "observation_ids": [
+        "obs-2d5958d52432bd24f982ee1979c890f3eac12878dceb86e70e8389832dd62fcb"
+      ],
+      "render_ids": [
+        "research-57635376951b1c01"
+      ]
+    },
+    {
+      "id": "research-ba6f55c735d0f6a0",
+      "label": "ハナオチバタケ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398475663624"
+      ],
+      "observation_ids": [
+        "obs-138f71522676647874cfd8be87612b6d7b4e766d54507082ca0867a7b4e91d29",
+        "obs-cf996ad9ea66c83471e31ab8a3f46e240165e31deee1079656f59c849baaa212"
+      ],
+      "render_ids": [
+        "research-ba6f55c735d0f6a0"
+      ]
+    },
+    {
+      "id": "research-e18acdea61874fbe",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398475663624"
+      ],
+      "observation_ids": [
+        "obs-47d3666e080fa73f7ebb5d2f491e3b7b178ef426342e2876c616399730ba2724"
+      ],
+      "render_ids": [
+        "research-e18acdea61874fbe"
+      ]
+    },
+    {
+      "id": "research-1698d1de140f1f05",
+      "label": "コショウイグチ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398459984714"
+      ],
+      "observation_ids": [
+        "obs-48b3a7588f9367ff1ea248eb14abc76ea64b98e606b59107611b622f44fa7eb0"
+      ],
+      "render_ids": [
+        "research-1698d1de140f1f05"
+      ]
+    },
+    {
+      "id": "research-367181d1c59e3e64",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398459984714"
+      ],
+      "observation_ids": [
+        "obs-2e0d01b54f2c57af009f24de63de65a1f89e2377fa0ab38d0ad2223d169c410a",
+        "obs-3865ca27cb2903fc7102003402aa4012a7dda2f3426ac35bc75805157d7443b7",
+        "obs-6323f588dbdeb03b6e7ff6c63a754fbdbb152ac59550c48da07e2d8bddf2ce9f",
+        "obs-75b45776a01eaa906badbaf170f43b69b8465c5ff2be44fba9012f784c444d7c",
+        "obs-cce46f71a161b8b930493b0ea14dc50b312702a7d7762a559f0b6b4ef33969c0"
+      ],
+      "render_ids": [
+        "research-367181d1c59e3e64"
+      ]
+    },
+    {
+      "id": "research-1ed46f56c8192c2a",
+      "label": "アミヒラタケ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398444758929"
+      ],
+      "observation_ids": [
+        "obs-481909ad50f28b5826e2c2e39bc88ea0691c6697b486eca0621bafed6c2c6372"
+      ],
+      "render_ids": [
+        "research-1ed46f56c8192c2a"
+      ]
+    },
+    {
+      "id": "research-96f02add14e941e9",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398444758929"
+      ],
+      "observation_ids": [
+        "obs-72bcf3ff66ee099748c4b9152351be7a42db20a6d8724fd045a00d5be5ff4676",
+        "obs-ef8264b79eaec38e349fb15274283dcc21698b7dae79edf9ff8bc42542ea074b"
+      ],
+      "render_ids": [
+        "research-96f02add14e941e9"
+      ]
+    },
+    {
+      "id": "research-136b75f4c71ef208",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398439435822"
+      ],
+      "observation_ids": [
+        "obs-30a21ccf4fa8886230480ab1245b215e21ef57fcfc5da59ba0ed70297a699f2d",
+        "obs-366a00ceb8cbf8d895ede72bd0ea98a70c42100cbe3f16868dbdd4564c78a1e1",
+        "obs-7aadeb03e86360498293db31b4f042810070972030bf449580fb2b1c997bfbcf",
+        "obs-806dbf6da7aeb66de1f01fb6fd4dcd65144f5e0d8d89a986fffdc322ab71feea",
+        "obs-e69dea18f57a2898bc782dc39208505d272b931c8648504c0813af29a60173c1"
+      ],
+      "render_ids": [
+        "research-136b75f4c71ef208"
+      ]
+    },
+    {
+      "id": "research-02b5e9c9e3332791",
+      "label": "アシボソアミガサタケ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398342372775"
+      ],
+      "observation_ids": [
+        "obs-2c0dd85157d2e9e4cec8168a4eebc9705453ed97fc070bf5a676daddc88bab95",
+        "obs-65e860f40aa3ed47202742ed76d9f7171730f76e8d27e5ba4eb63b989dfb3381",
+        "obs-67c979180ad51c2d220b9cddccf9711dd23313b4bc0e285bd10f448094d1644b",
+        "obs-712e8a9c21a827815c75713339c5333471cec5730ff62a5e41719ec04d7ed283",
+        "obs-b873bc5f004f1964c46c81b39fe6adc4d9e01150c920654acf8ae549200ff0f0"
+      ],
+      "render_ids": [
+        "research-02b5e9c9e3332791"
+      ]
+    },
+    {
+      "id": "research-7c20e18edeb8b4f5",
+      "label": "コナエカレバタケ(仮称)？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398341965994"
+      ],
+      "observation_ids": [
+        "obs-9e96d0b646575b730cbf513f9d53da026ada6649bba4537e1a53da1184631f08"
+      ],
+      "render_ids": [
+        "research-7c20e18edeb8b4f5"
+      ]
+    },
+    {
+      "id": "research-19de152f1e7b1d28",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398339118334"
+      ],
+      "observation_ids": [
+        "obs-971704fd4e17f27f2225a7d3c7d1d0385956745d9a14003f2451ab6ac678800c"
+      ],
+      "render_ids": [
+        "research-19de152f1e7b1d28"
+      ]
+    },
+    {
+      "id": "research-cc0f8267ce2af5b2",
+      "label": "クズヒトヨタケ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398338689175"
+      ],
+      "observation_ids": [
+        "obs-e4dde03fe6c2ca2275e654f82fe45098de926c832f0ae548036e99586dcb696e"
+      ],
+      "render_ids": [
+        "research-cc0f8267ce2af5b2"
+      ]
+    },
+    {
+      "id": "research-15153300844d02a7",
+      "label": "カワムラフウセンタケ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398336921147"
+      ],
+      "observation_ids": [
+        "obs-f15be13088e0cb1a624e1518ce20a33443e77b3e77a3d6d3f8fa4d3fae12c8fe"
+      ],
+      "render_ids": [
+        "research-15153300844d02a7"
+      ]
+    },
+    {
+      "id": "research-e2679bc07f6c375b",
+      "label": "オチバタケの仲間？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398474349308"
+      ],
+      "observation_ids": [
+        "obs-1e436f9f425f2c1cbe4fbb28145b6415f54411202eb65deaa395e330d96e4916"
+      ],
+      "render_ids": [
+        "research-e2679bc07f6c375b"
+      ]
+    },
+    {
+      "id": "research-a144e6eb8aed41a0",
+      "label": "Lanmaoa angustispora(和名無し)？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398533248512"
+      ],
+      "observation_ids": [
+        "obs-6aabf9e66fd99dcdefe68c5378ff156d43eabec609ebaf25348bbaba62693a8e",
+        "obs-85dd48b3dcaaffc6e0c986e41c0d2cc154eff88260047a33c8cb613b774b8113",
+        "obs-a4bedaf5153723ce3685d0aec26fa1437cc6c52cb83dfdea01b6c2a0df5235ae",
+        "obs-a78e9165529912bb1f6b835bced7427c51b7dca2fcc085afc6ca5459f7578d98",
+        "obs-cac8862e07d75a9885b8d727a7ae9a309e91c33e3039592f60d1f32787e0402e",
+        "obs-f1bfbf197f845d2a78241178049816ab9fbf96d2c7ac55168881136cfb8a61ff"
+      ],
+      "render_ids": [
+        "research-a144e6eb8aed41a0"
+      ]
+    },
+    {
+      "id": "research-13147035b777ef4a",
+      "label": "不明",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398491944310"
+      ],
+      "observation_ids": [
+        "obs-6089e4652c3b29d8f97e5dbd59c781a16df21926d89fd2ab3c5d7c2adf306636",
+        "obs-a0a86422a46b20a3332ea5675dff0429a0d9243ed0795123b726d41fe582a56c"
+      ],
+      "render_ids": [
+        "research-13147035b777ef4a"
+      ]
+    },
+    {
+      "id": "research-e5099589af4ffca9",
+      "label": "ニセショウロ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398459984714"
+      ],
+      "observation_ids": [
+        "obs-936d9ce6cbffefed1c1a76917b6008dfecf16402c16712859f44f67229844196"
+      ],
+      "render_ids": [
+        "research-e5099589af4ffca9"
+      ]
+    },
+    {
+      "id": "research-49cec15302dd11db",
+      "label": "コツブタケ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398439435822"
+      ],
+      "observation_ids": [
+        "obs-18c011d93f338ffdb7e2d72ddff8225ee755779416efcd97f3f26e96e0262570"
+      ],
+      "render_ids": [
+        "research-49cec15302dd11db"
+      ]
+    },
+    {
+      "id": "research-735d7503a028f0d3",
+      "label": "クサハツの仲間？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-6802418398439435822"
+      ],
+      "observation_ids": [
+        "obs-a7c9e61142d96724f7c656fea0fdc8a03c444180bfa249b250cf2e602b3cb435"
+      ],
+      "render_ids": [
+        "research-735d7503a028f0d3"
+      ]
+    },
+    {
+      "id": "research-b3240df0f68131b0",
+      "label": "キヤマタケ？",
+      "article_identity": [
+        "article_id",
+        "tag:blog.hatena.ne.jp,2013:blog-exsudoporus_ruber-6802418398336734667-17179246901322841238"
+      ],
+      "observation_ids": [
+        "obs-ef05bee972226bb5936d935d7379d98cdd25de9e83fe1450c9027392b6d29fb3"
+      ],
+      "render_ids": [
+        "research-b3240df0f68131b0"
+      ]
+    }
+  ]
+}

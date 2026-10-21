@@ -1,0 +1,1 @@
+{"name":"kinoko-research-comments","private":true,"type":"module","scripts":{"test":"node --test tests/api.test.mjs"},"engines":{"node":">=24"}}

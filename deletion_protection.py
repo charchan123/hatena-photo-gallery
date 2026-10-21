@@ -22,6 +22,7 @@ REPOSITORY = 'charchan123/hatena-photo-gallery'
 
 def curated_path(path):
     p=Path(path)
+    if path == 'comments/cases.json': return True
     return ((path.startswith('data/') or path.startswith('sync-migrations/')) and
             p.suffix=='.json' and not path.startswith('sync-migrations/photo-deletions/')) or (
             len(p.parts)==1 and p.suffix in {'.html','.js','.py'}) or (
@@ -151,6 +152,11 @@ def collect(portal, snapshot, root, pending, *, registry_before=None):
         # Future curated JSON and static page links are protected by actual IDs
         # or exact photo URLs. No matching by mushroom name.
         files = list((root / 'data').rglob('*.json')) + [p for p in (root / 'sync-migrations').rglob('*.json') if 'photo-deletions' not in p.parts]
+        comment_bindings = root / 'comments/cases.json'
+        if comment_bindings.exists():
+            from research_comments import validate_bindings
+            validate_bindings(read_json(comment_bindings))
+            files.append(comment_bindings)
         files += [p for pattern in ('*.html','*.js','*.py','assets/*.js','assets/*.html') for p in root.glob(pattern) if p.is_file()]
         for file in sorted(files):
             relative = file.relative_to(root).as_posix()

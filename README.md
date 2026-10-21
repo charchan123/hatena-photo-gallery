@@ -39,3 +39,9 @@ GitHubで公開後、PC側の管理室は自動更新されません。既存下
 Work 等が生成した batch は local-only の `admin/inbox/<batch-id>/` に、`batch-manifest.json`、`candidate-delta.json`、`source-snapshots.jsonl` の3ファイルで配置します。管理画面は hash・provenance・既存 Phase 4C.9 overlay contract を fail-closed に検証し、候補ごとに人間が「採用 / 保留 / 未決」を明示します。レビュー状態は `admin/local-state/knowledge/` のみに atomic 保存され、validator や AI が採用を自動設定することはありません。
 
 未決がなく採用が1件以上あり、batch base SHA が fresh `origin/main` と一致する場合だけ、採用候補を一時 worktree で overlay audit package に変換し、production JSON を既存 contract から再構築して PR を作成できます。保留候補は production artifact に入りません。管理画面は PR 作成までで、自動 merge / deploy は行いません。
+
+## 不明キノコ研究室のコメント（初期無効）
+
+Workers＋D1の非公開実装・管理室操作・ID保護・バックアップ・費用・承認後の導入は
+[研究室コメント導入手順](docs/research-comments-workers-d1.md)を参照してください。
+このコードのマージだけではコメント受付は始まりません。本番CloudflareとPagesの公開には別途明示承認が必要です。

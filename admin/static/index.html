@@ -1,14 +1,15 @@
 <!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>きのこブログ管理室</title><link rel="stylesheet" href="admin.css"><script src="admin.js" defer></script><script src="deletions.js" defer></script></head>
+<title>きのこブログ管理室</title><link rel="stylesheet" href="admin.css"><script src="admin.js" defer></script><script src="deletions.js" defer></script><script src="comments.js" defer></script></head>
 <body><aside><h1>🍄 きのこブログ<br>管理室</h1><nav>
 <button data-page="dashboard">ダッシュボード</button><button data-page="best">ベストショット</button>
-<button data-page="research">不明キノコ研究室</button><button data-page="notices">更新告知</button>
+<button data-page="research">不明キノコ研究室</button><button data-page="comments">研究室のコメント</button><button data-page="notices">更新告知</button>
 <button data-page="sync">記事・写真の同期管理</button><button data-page="deletions">写真の削除・承認</button><button data-page="knowledge">情報拡充</button><button data-page="status">サイト状態</button><button data-page="changes">変更内容を確認</button>
 </nav><p class="local">🔒 localhost 専用</p></aside><main>
 <header><h2 id="page-title">ダッシュボード</h2><span id="message" role="status"></span></header>
 <section id="dashboard" class="page"><div id="cards" class="cards"></div></section>
 <section id="best" class="page" hidden><div class="toolbar"><button class="primary" id="add-best">＋ 新規追加</button></div><div id="best-list" class="list"></div></section>
+<section id="comments" class="page" hidden><h3>研究室のコメント管理</h3><p id="comments-connection" role="status"></p><div class="toolbar"><label>ケース名で検索<input id="comments-search" type="search"></label><button id="comments-refresh">一覧を更新</button><button id="comments-backup">JSONバックアップを取得</button></div><p id="comments-feedback" role="status"></p><div class="comments-workspace"><div id="comments-cases" class="list"></div><div class="comments-thread"><h3 id="comments-case-title"></h3><label><input id="comments-unread" type="checkbox" checked>未確認コメントのみ</label><div id="comments-list" class="list"></div><button id="comments-more" hidden>続きのコメント</button></div></div></section>
 <section id="research" class="page" hidden><h3>調査中</h3><div id="case-list" class="list"></div><h3>正体が判明したキノコ</h3><div id="identified-list" class="list"></div></section>
 <section id="notices" class="page" hidden><div class="toolbar"><button class="primary" id="add-notice">＋ 告知を追加</button></div><div id="notice-list" class="list"></div></section>
 <section id="sync" class="page" hidden>

@@ -1,0 +1,49 @@
+name: Read-only research comments regressions
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  comments:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install isolated local test dependencies
+        run: |
+          pip install -r requirements.txt -r requirements-dev.txt
+          npm install --prefix "${{ runner.temp }}/comments-browser" --no-save playwright@1.62.1
+          node "${{ runner.temp }}/comments-browser/node_modules/playwright/cli.js" install --with-deps chromium
+          git fetch origin gh-pages
+      - name: Identity, D1 SQL migrations, API security, signed backup and restoration
+        run: |
+          python -m pytest -q tests/test_research_comments.py
+          python comments/tools/seed.py
+          git diff --exit-code -- comments/migrations/0003_reviewed_cases.sql
+          node --test comments/tests/api.test.mjs
+      - name: Real isolated public UI, local Worker-SQLite and Windows-compatible admin
+        env:
+          PLAYWRIGHT_MODULE_PATH: ${{ runner.temp }}/comments-browser/node_modules/playwright
+          COMMENTS_EVIDENCE: ${{ runner.temp }}/research-comments-evidence
+        run: node tests/browser/research_comments.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: research-comments-${{ matrix.os }}-${{ github.event.pull_request.head.sha }}
+          path: ${{ runner.temp }}/research-comments-evidence/
+          retention-days: 30

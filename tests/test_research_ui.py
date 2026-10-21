@@ -172,6 +172,7 @@ def test_research_cards_keep_candidate_slot_and_pc_rows_aligned():
 def test_generated_counts_are_derived_and_assets_copied(tmp_path):
     assets = tmp_path / "source-assets"; assets.mkdir()
     (assets / "research.css").write_text("mobile")
+    (assets / "research-comments.js").write_text("// optional comments")
     model = generate_research_page(portal(observation(0), observation(1)), tmp_path, assets)
     assert model["case_count"] == 1 and model["photo_count"] == 2
     assert "調査中 <strong>1</strong>件" in (tmp_path / "research.html").read_text()

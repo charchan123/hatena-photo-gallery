@@ -16,6 +16,7 @@ from best_shot_ui import BestShotConfigError, validate_best_shot_config
 
 from research_ui import build_research_cases
 from research_identifications import split_research_cases
+from . import comments_client
 from .core import ChangeSet, DATA, ROOT, notice_window, read_json
 from .draft_store import DraftRecoveryError, DraftStore
 from .git_workflow import (GitWorkflowError, create_pull_request,
@@ -110,6 +111,15 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json({"error":"not found"},404)
             except Exception as error:
                 return self._json({"error": str(error) if isinstance(error,(ReviewError,SyncError)) else "SYNC_REVIEW_UNAVAILABLE"},400)
+        if path == "/api/comments/status":
+            from research_comments import prepare
+            from research_ui import build_research_cases
+            value = comments_client.status()
+            binding = prepare(build_research_cases(self.server.portal))
+            value.update(pending_cases=binding['pending'], archived_threads=len(binding['archived']))
+            if binding['pending'] or binding['archived']:
+                value['message'] += f" 紐付け確認待ち{len(binding['pending'])}件・履歴保管{len(binding['archived'])}件。対応表を手動確認してください。"
+            return self._json(value)
         if path == "/api/state":
             draft = self.server.draft
             open_cases, identified = split_research_cases(draft.portal, draft.identifications, draft.master)
@@ -140,7 +150,7 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(state)
         if path == "/": path = "/index.html"
         relative = unquote(path).lstrip("/")
-        if "/" in relative or ".." in relative or relative not in {"index.html", "admin.css", "admin.js", "deletions.js"}:
+        if "/" in relative or ".." in relative or relative not in {"index.html", "admin.css", "admin.js", "deletions.js", "comments.js"}:
             return self._json({"error": "not found"}, 404)
         data = (STATIC / relative).read_bytes(); mime = {"html":"text/html", "css":"text/css", "js":"text/javascript"}[relative.rsplit(".",1)[1]]
         self.send_response(200); self.send_header("Content-Type", mime + "; charset=utf-8"); self.send_header("Content-Length", str(len(data)))
@@ -193,6 +203,10 @@ class Handler(BaseHTTPRequestHandler):
                     if body: raise ReviewError("INVALID_INPUT")
                     raise ReviewError("INDIVIDUAL_MIGRATION_REQUIRED")
                 else: return self._json({"error":"not found"},404)
+            elif self.path == "/api/comments/request":
+                if not isinstance(body, dict) or set(body) != {"action", "values"}:
+                    raise comments_client.CommentsError("コメント操作の入力が不正です")
+                result = comments_client.request(body["action"], body["values"])
             elif self.path == "/api/validate": result = draft.validate()
             elif self.path == "/api/pr":
                 # Serialize publication with edits; publish precisely the durable,
@@ -226,6 +240,9 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(result)
         except Exception as error:
             code = str(error)
+            if self.path == "/api/comments/request":
+                message = str(error) if isinstance(error, comments_client.CommentsError) else "コメント操作に失敗しました。入力を保持して再確認してください"
+                return self._json({"error":"COMMENTS_OPERATION_FAILED","message":message},400)
             if self.path.startswith("/api/deletions/"):
                 code = str(error) if isinstance(error, (SyncError, ReviewError)) else "DELETION_OPERATION_FAILED"
                 return self._json({"error":code,"message":DELETION_MESSAGES.get(code,"削除操作に失敗しました。入力内容と保存済みの判断は保持しています。再取得して確認してください。")},400)
