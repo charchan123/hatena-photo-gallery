@@ -78,6 +78,12 @@
       "kind": "new",
       "summary": "ベストショットを追加",
       "occurred_at": "2026-10-19T22:17:45+09:00"
+    },
+    {
+      "section": "best-shots",
+      "kind": "new",
+      "summary": "ベストショットを追加",
+      "occurred_at": "2026-10-21T22:12:03+09:00"
     }
   ]
 }

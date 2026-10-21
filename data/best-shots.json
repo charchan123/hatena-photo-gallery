@@ -120,6 +120,14 @@
       "observation_id": "obs-04009ef57d37ee2901feec5cfabcd147e91e13406b4534b14524837fc3d172d8",
       "comment": "数日後の姿。",
       "order": 6
+    },
+    {
+      "selection_id": "best-1792588277977",
+      "observation_id": "obs-5714ca4fa1cf6c4dd5cbcfac1d4dca62bde06bfbe9fd16f1ad449eca73fb057c",
+      "comment": "晩秋のフウセンタケの仲間は訳の分からない種が多いが、綺麗な容姿をしていることも少なくない。",
+      "order": 4,
+      "manual_capture_date": "2025-11-16",
+      "manual_capture_date_origin": "owner_confirmed_undated_source"
     }
   ],
   "annual_best": {
