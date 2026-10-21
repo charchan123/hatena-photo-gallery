@@ -1,8 +1,10 @@
 """Safe git worktree and pull-request workflow (never merge or deploy)."""
 
+from copy import deepcopy
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import tempfile
@@ -44,7 +46,7 @@ def run(args, *, cwd=ROOT, check=True):
             raise GitWorkflowError("GitHub CLIが見つかりません。インストールを確認してください")
     try:
         return subprocess.run(command, cwd=cwd, check=check, text=True,
-                              capture_output=True, shell=False)
+                              capture_output=True, shell=False, encoding="utf-8", errors="replace")
     except subprocess.CalledProcessError as error:
         # Show a bounded, actionable error rather than only the exit status.
         detail = (error.stderr or error.stdout or "").strip()
@@ -86,84 +88,143 @@ ADMIN_DATA_FILES = (
 )
 
 
+def _json_identity(value):
+    # Ignore platform line endings/formatting, but retain JSON types and list order.
+    return json.dumps(value, ensure_ascii=False, sort_keys=True,
+                      separators=(",", ":"), allow_nan=False)
+
+
+def _read_admin_json(path):
+    def unique_keys(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError("duplicate JSON key")
+            result[key] = value
+        return result
+    value = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=unique_keys)
+    _json_identity(value)
+    return value
+
+
 def create_pull_request(files, validation, operation="changes", *, baseline=None):
-    """Create a Draft PR from reviewed data; GitHub Actions performs all full tests.
+    """Publish only a validated, durable snapshot as a Draft; full tests run in CI.
 
-    The server's original baseline must match *fresh origin/main* for all protected
-    admin JSON. A stale or incompatible local draft is never silently rebased.
+    No checkout/reset/rebase of the administrator's checkout or draft is allowed.
+    Both the executing code and all original admin data must match fresh main.
     """
+    files, baseline = deepcopy(files), deepcopy(baseline)
     if not repository_status()["gh_authenticated"]:
-        raise GitWorkflowError("GitHub認証が必要です（初回のみ gh auth login）")
-    if not isinstance(files, dict) or set(files) != set(ADMIN_DATA_FILES):
-        raise GitWorkflowError("管理室の変更対象ファイルが想定と異なります。安全のため停止しました")
-    if not isinstance(baseline, dict) or set(baseline) != set(ADMIN_DATA_FILES):
-        raise GitWorkflowError("元データの照合情報がありません。管理室を安全に再起動して確認してください")
-    if not all(isinstance(files[p], dict) and isinstance(baseline[p], dict) for p in ADMIN_DATA_FILES):
-        raise GitWorkflowError("変更データまたは元データが不正です")
-
-    run(["git", "fetch", "origin", "main"])
-    branch = safe_branch_name(operation)
-    directory = Path(tempfile.mkdtemp(prefix="kinoko-admin-"))
-    added = False
+        raise GitWorkflowError("GitHub認証が必要です。GitHub CLIを確認し、gh auth loginで再認証してください。下書きは保持しています")
+    for value in (files, baseline):
+        if (not isinstance(value, dict) or set(value) != set(ADMIN_DATA_FILES)
+                or not all(isinstance(value[p], dict) for p in ADMIN_DATA_FILES)):
+            raise GitWorkflowError("変更データまたは元データの照合情報が不正です。下書きを保持し、管理室の起動元を確認してください")
+    if (not isinstance(validation, dict)
+            or set(validation) != {"best_shots", "notices", "identifications"}
+            or any(type(n) is not int or n < 0 for n in validation.values())):
+        raise GitWorkflowError("管理室の入力検証が完了していません。変更内容を確認して検証し直してください")
     try:
-        run(["git", "worktree", "add", "-b", branch, str(directory), "origin/main"])
+        identities = {p: _json_identity(baseline[p]) for p in ADMIN_DATA_FILES}
+        proposed = {p: _json_identity(files[p]) for p in ADMIN_DATA_FILES}
+    except (TypeError, ValueError) as error:
+        raise GitWorkflowError("管理データをJSONとして安全に保存できません。入力内容を確認してください") from error
+
+    directory = None
+    added = False
+    branch = None
+    pushed = False
+    phase = "最新mainの取得（ネットワークとGit認証を確認してください）"
+    try:
+        run(["git", "fetch", "origin", "main"])
+        fresh = run(["git", "rev-parse", "--verify", "origin/main"]).stdout.strip()
+        current = run(["git", "rev-parse", "--verify", "HEAD"]).stdout.strip()
+        if not re.fullmatch(r"[0-9a-f]{40}", fresh) or current != fresh:
+            raise GitWorkflowError("実行中のコードが最新mainと一致しません。下書きをバックアップし、差分を手動照合してから管理室を更新・再起動してください。自動rebaseは行いません")
+        phase = "最新mainの元データ照合"
+        branch = safe_branch_name(operation)
+        directory = Path(tempfile.mkdtemp(prefix="kinoko-admin-"))
+        run(["git", "worktree", "add", "-b", branch, str(directory), fresh])
         added = True
-        changed = []
+        # Check every original before writing even one proposed document.
         for relative in ADMIN_DATA_FILES:
             destination = directory / relative
             if not destination.is_file() or destination.is_symlink():
-                raise GitWorkflowError("最新mainの管理データを安全に取得できませんでした")
-            try:
-                current = json.loads(destination.read_text(encoding="utf-8"))
-            except (OSError, ValueError) as error:
-                raise GitWorkflowError("最新mainの管理データを検証できません") from error
-            if current != baseline[relative]:
+                raise GitWorkflowError("最新mainの管理データを安全に取得できません。Gitの状態を確認してください")
+            if _json_identity(_read_admin_json(destination)) != identities[relative]:
                 raise GitWorkflowError(
-                    f"最新mainで {relative} が変更されています。"
-                    "下書きを保持して停止しました。GitHubの公開済み変更と手動照合してください"
+                    f"最新mainで {relative} が変更されています。下書きを保持して停止しました。"
+                    "バックアップを取り、GitHubの変更と手動照合してください"
                 )
-            if current != files[relative]:
-                changed.append(relative)
-                destination.write_text(
-                    json.dumps(files[relative], ensure_ascii=False, indent=2) + "\n",
-                    encoding="utf-8"
-                )
+        changed = [p for p in ADMIN_DATA_FILES if identities[p] != proposed[p]]
         if not changed:
-            raise GitWorkflowError("変更がありません。公開済みの内容を再度確認してください")
-
-        # Stage only the three reviewed JSON files; disallow unexpected staged paths.
+            raise GitWorkflowError("変更がありません。公開済みの内容と変更予定を確認してください")
+        phase = "一時worktreeへの保存（空き容量と書き込み権限を確認してください）"
+        for relative in changed:
+            (directory / relative).write_text(
+                json.dumps(files[relative], ensure_ascii=False, indent=2, allow_nan=False) + "\n",
+                encoding="utf-8"
+            )
         run(["git", "add", "--", *changed], cwd=directory)
         staged = sorted(run(["git", "diff", "--cached", "--name-only"], cwd=directory).stdout.splitlines())
         if staged != sorted(changed):
             raise GitWorkflowError("Gitのステージ対象が変更予定と一致しません。安全のため停止しました")
         run(["git", "diff", "--cached", "--check"], cwd=directory)
+        phase = "コミット（gitのuser.name・user.email設定を確認してください）"
         run(["git", "commit", "-m", f"Apply admin {operation} changes"], cwd=directory)
+        # Refuse a main advance during preparation, rather than silently rebase.
+        phase = "push直前の最新main再照合（通信状態を確認してください）"
+        remote = run(["git", "ls-remote", "--exit-code", "origin", "refs/heads/main"]).stdout.split()
+        if remote != [fresh, "refs/heads/main"]:
+            raise GitWorkflowError("作成中にmainが更新されました。下書きを保持しました。最新mainとの差分を手動確認してから再実行してください")
+        phase = "ブランチのpush（GitHub認証・ネットワーク・書き込み権限を確認してください）"
         run(["git", "push", "-u", "origin", branch], cwd=directory)
-        changed_text = "\n".join(f"- \`{name}\`" for name in changed)
+        pushed = True
+        changed_text = "\n".join(f"- `{name}`" for name in changed)
         body = (
             "## 管理室で確認したデータ変更\n" + changed_text
             + "\n\n## ローカル安全確認\n"
-            + "- 最新origin/mainと管理室の元データが全3ファイル一致\n"
-            + "- 変更ファイルの許可リスト・ステージ済み差分を検査済み\n"
+            + f"- 照合したmain: `{fresh}`\n"
+            + "- 実行コードと最新main、元データ全3ファイルが一致\n"
+            + "- 許可リスト・ステージ済み差分を検査済み\n"
             + "- 管理室の入力検証済み: " + json.dumps(validation, ensure_ascii=False)
             + "\n\n## CI\n"
-            + "- 全Python/JavaScriptテスト、最新はてなデータの保護検証はGitHub Actionsで実施\n"
-            + "- CI成功・人間による差分確認の前にはマージしない\n"
-            + "- ローカルで全pytestを実行しない（Windows依存エラー回避）\n"
+            + "- 全Python/JavaScriptテスト・保護参照・非公開の生成検証はGitHub Actionsで実施\n"
+            + "- ローカルで全pytestを実行しない。CI失敗時はDraftのまま修正・再検証\n"
+            + "- CI成功だけではマージしない。人間の差分確認と管理者の明示承認が必要\n"
             + "\nDraft PRのみ。自動merge・deploy・公開は行いません。"
         )
-        result = run([
-            "gh", "pr", "create", "--draft", "--base", "main", "--head", branch,
-            "--title", "Update mushroom blog from admin console", "--body", body
-        ], cwd=directory)
+        # A UTF-8 file preserves real newlines and Japanese on Windows, and avoids
+        # command-line length limits for descriptions. No shell interpolation.
+        body_path = directory.parent / (directory.name + "-pr-body.md")
+        phase = "Draft PR作成（GitHub CLIの認証・PR作成権限を確認してください）"
+        try:
+            body_path.write_text(body, encoding="utf-8")
+            result = run([
+                "gh", "pr", "create", "--draft", "--base", "main", "--head", branch,
+                "--title", "Update mushroom blog from admin console", "--body-file", str(body_path)
+            ], cwd=directory)
+        finally:
+            try:
+                body_path.unlink(missing_ok=True)
+            except OSError:
+                pass
         url = result.stdout.strip()
-        if not url.startswith("https://github.com/"):
-            raise GitWorkflowError("Draft PRのURLを確認できません。GitHubのブランチを確認してください")
-        return {"branch": branch, "url": url, "ci_status": "pending"}
+        if not re.fullmatch(r"https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/pull/[1-9][0-9]*", url):
+            raise GitWorkflowError("Draft PRのURLを確認できません。GitHubでPRの作成状況を確認してください")
+        return {"branch": branch, "url": url, "ci_status": "pending", "draft": True}
+    except (GitWorkflowError, OSError, ValueError) as error:
+        recovery = f" GitHubのブランチ {branch} と既存PRを確認してから再試行してください。" if pushed else ""
+        raise GitWorkflowError(f"{phase}で停止しました: {error}。下書きは保持しています。{recovery}") from error
     finally:
+        # Cleanup must never mask a successful PR URL or the original error.
         if added:
-            run(["git", "worktree", "remove", "--force", str(directory)], check=False)
-        shutil.rmtree(directory, ignore_errors=True)
+            try:
+                run(["git", "worktree", "remove", "--force", str(directory)], check=False)
+            except GitWorkflowError:
+                pass
+        if directory is not None:
+            shutil.rmtree(directory, ignore_errors=True)
 
 
 def validate_knowledge_changed_paths(paths, batch_id):

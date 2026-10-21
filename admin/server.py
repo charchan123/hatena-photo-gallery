@@ -17,7 +17,7 @@ from best_shot_ui import BestShotConfigError, validate_best_shot_config
 from research_ui import build_research_cases
 from research_identifications import split_research_cases
 from .core import ChangeSet, DATA, ROOT, notice_window, read_json
-from .draft_store import DraftStore
+from .draft_store import DraftRecoveryError, DraftStore
 from .git_workflow import (GitWorkflowError, create_pull_request,
                            create_knowledge_pull_request, repository_status, run)
 from .knowledge import (preview_promotion, reset_review_state,
@@ -194,9 +194,17 @@ class Handler(BaseHTTPRequestHandler):
                     raise ReviewError("INDIVIDUAL_MIGRATION_REQUIRED")
                 else: return self._json({"error":"not found"},404)
             elif self.path == "/api/validate": result = draft.validate()
-            elif self.path == "/api/pr": result = create_pull_request(
-                draft.files(), draft.validate(), body.get("operation", "changes"),
-                baseline=self.server.draft_store.baseline)
+            elif self.path == "/api/pr":
+                # Serialize publication with edits; publish precisely the durable,
+                # validated snapshot, never an edit that failed to autosave.
+                with self.server.draft_lock:
+                    validation = draft.validate()
+                    if draft.files() == self.server.draft_store.baseline:
+                        raise GitWorkflowError("変更がありません。変更予定を確認してください")
+                    self.server.draft_store.verify_saved(draft)
+                    result = create_pull_request(
+                        draft.files(), validation, body.get("operation", "changes"),
+                        baseline=self.server.draft_store.baseline)
             elif self.path == "/api/knowledge/decision": result = set_candidate_decision(body["batch_id"], body["candidate_id"], body["human_decision"], body.get("note", ""))
             elif self.path == "/api/knowledge/reset": result = reset_review_state(body["batch_id"])
             elif self.path == "/api/knowledge/preview": result = preview_promotion(body["batch_id"], origin_main_sha=repository_status().get("origin_main_sha"))
@@ -224,9 +232,18 @@ class Handler(BaseHTTPRequestHandler):
             if self.path == "/api/pr":
                 # Do not pretend a failed git/gh operation succeeded.
                 # The local autosaved draft is unchanged and may be retried.
-                message = str(error) if isinstance(error, GitWorkflowError) else (
-                    "Draft PRを作成できませんでした。下書きは保持しています。GitHubの状態を確認してください"
-                )
+                if isinstance(error, GitWorkflowError):
+                    message = str(error)
+                elif isinstance(error, BestShotConfigError):
+                    message = error.user_message
+                elif isinstance(error, DraftRecoveryError):
+                    message = str(error)
+                elif isinstance(error, OSError):
+                    message = (f"下書きの保存状態を確認できません: {error}。保存済み下書きは保持しています。"
+                               "空き容量・書き込み権限を確認してから再実行してください")
+                else:
+                    message = (f"変更内容の検証に失敗しました: {error}。下書きは保持しています。"
+                               "入力内容を確認して再検証してください")
                 return self._json({"error": "PR_CREATION_FAILED", "message": message}, 400)
             if self.path.startswith("/api/best-shot/"):
                 message = (error.user_message if isinstance(error, BestShotConfigError)

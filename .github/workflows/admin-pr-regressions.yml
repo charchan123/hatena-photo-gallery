@@ -1,0 +1,43 @@
+name: Read-only admin Draft PR regressions
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  admin-pr:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated test requirements
+        run: |
+          pip install -r requirements.txt -r requirements-dev.txt
+          npm install --prefix "${{ runner.temp }}/admin-pr-browser" --no-save playwright@1.62.1
+          node "${{ runner.temp }}/admin-pr-browser/node_modules/playwright/cli.js" install --with-deps chromium
+      - name: Real isolated Git, stale main, save and auth failures, JST and draft restoration
+        run: python -m pytest -q tests/test_admin_pr_workflow.py tests/test_admin_pr_api.py tests/test_admin_draft_store.py tests/test_manual_capture_date.py
+      - name: Real localhost PR success, visible errors, operation lock and retained draft
+        env:
+          PLAYWRIGHT_MODULE_PATH: ${{ runner.temp }}/admin-pr-browser/node_modules/playwright
+          ADMIN_PR_EVIDENCE: ${{ runner.temp }}/admin-pr-evidence
+        run: node tests/browser/admin_pr.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: admin-pr-${{ matrix.os }}-${{ github.event.pull_request.head.sha }}
+          path: ${{ runner.temp }}/admin-pr-evidence/
+          retention-days: 30

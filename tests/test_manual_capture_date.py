@@ -120,17 +120,29 @@ def test_pr_writer_serializes_manual_fields_without_touching_source_data(sandbox
     from types import SimpleNamespace
     from admin import git_workflow
     root,p,d=sandbox
+    baseline=deepcopy(d.files())
     d.add_best_shot(entry(manual_capture_date='2024-02-29'),add_notice=True)
     monkeypatch.setattr(git_workflow,'repository_status',lambda:{'gh_authenticated':True})
-    captured={}
+    captured={};sha='a'*40
+    changed=[name for name in baseline if baseline[name]!=d.files()[name]]
     def run(args,**kwargs):
+        assert args[0] in {'git','gh'}
+        stdout=''
         if args[:3]==['git','worktree','add']:
-            (Path(args[5])/'data').mkdir()
-        if args[:2]==['python','-m']:
-            captured.update(json.loads((Path(kwargs['cwd'])/'data/best-shots.json').read_text()))
-        return SimpleNamespace(returncode=1 if args[:3]==['git','diff','--cached']else 0,stdout='https://example.test/isolated-pr')
+            directory=Path(args[5]);(directory/'data').mkdir()
+            for name,value in baseline.items():
+                (directory/name).write_text(json.dumps(value),encoding='utf-8')
+        if args[:2]==['git','rev-parse']:stdout=sha
+        if args[:2]==['git','ls-remote']:stdout=sha+'\trefs/heads/main\n'
+        if args[:4]==['git','diff','--cached','--name-only']:stdout='\n'.join(changed)
+        if args[:2]==['git','commit']:
+            captured.update(json.loads((Path(kwargs['cwd'])/'data/best-shots.json').read_text(encoding='utf-8')))
+        if args[:3]==['gh','pr','create']:
+            assert '--draft' in args
+            stdout='https://github.com/fixture/test/pull/1'
+        return SimpleNamespace(returncode=0,stdout=stdout)
     monkeypatch.setattr(git_workflow,'run',run)
-    git_workflow.create_pull_request(d.files(),d.validate())
+    git_workflow.create_pull_request(d.files(),d.validate(),baseline=baseline)
     assert captured['entries'][0]['manual_capture_date']=='2024-02-29'
     assert captured['entries'][0]['manual_capture_date_origin']=='owner_confirmed_undated_source'
     assert json.loads((root/'data/best-shots.json').read_text())['entries']==[]
