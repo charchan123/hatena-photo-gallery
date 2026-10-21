@@ -180,9 +180,9 @@ function renderStatus(){const r=state.repo,f=state.feature_facets||{};$('#site-s
 function renderPreview(){const out=$('#preview');out.replaceChildren();Object.entries(state.preview).forEach(([name,p])=>{const e=node('article',undefined,'item');const b=node('div');b.append(node('h3',name),node('p',p.changed?'変更あり':'変更なし','badge '+(p.changed?'active':'')));const pre=node('pre',JSON.stringify(p.after,null,2));b.append(pre);e.append(node('div'),b);out.append(e)})}
 async function change(path,body){try{await api(path,body);$('#editor').close();await load();message('変更予定に追加しました')}catch(e){message(e.message,true)}}
 function confirmAction(text,fn){$('#confirm-text').textContent=text;pendingConfirm=fn;$('#confirm').showModal()}
-$('#confirm-ok').onclick=async ev=>{ev.preventDefault();try{await pendingConfirm();$('#confirm').close();await load();message('変更しました')}catch(e){message(e.message,true)}};
+$('#confirm-ok').onclick=async ev=>{ev.preventDefault();try{const result=await pendingConfirm();$('#confirm').close();await load();message(result?.url?'Draft PRを作成しました。CIの成功を確認するまでマージしないでください: '+result.url:'変更しました')}catch(e){message(e.userMessage||e.message,true)}};
 $('#validate').onclick=async()=>{try{const v=await api('/api/validate');message('検証成功: '+JSON.stringify(v));$('#create-pr').disabled=!state.repo.gh_authenticated}catch(e){message(e.message,true)}};
-$('#create-pr').onclick=()=>confirmAction('origin/mainから一時worktreeを作成し、commit・push・PR作成します。mergeやdeployはしません。',async()=>{const v=await api('/api/pr',{operation:'admin-console'});message('PR: '+v.url)});
+$('#create-pr').onclick=()=>confirmAction('最新mainと変更前データを照合し、安全ならDraft PRを作成します。全テストと公開データ保護の検証はGitHub Actionsで行います。merge・deployはしません。',async()=>api('/api/pr',{operation:'admin-console'}));
 $('#knowledge-preview').onclick=async()=>{try{const v=await api('/api/knowledge/preview',{batch_id:selectedKnowledge});$('#knowledge-preview-result').textContent=JSON.stringify(v,null,2);$('#knowledge-pr').disabled=!(v.ready&&state.repo.gh_authenticated)}catch(e){message(e.message,true)}};
 $('#knowledge-pr').onclick=()=>confirmAction('承認済み候補のみをpromotionし、origin/mainから一時worktreeを作ってPRを作成します。merge・deployは行いません。',async()=>{const v=await api('/api/knowledge/pr',{batch_id:selectedKnowledge});message('PR: '+v.url)});
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>show(b.dataset.page));
