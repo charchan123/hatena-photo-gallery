@@ -194,7 +194,9 @@ class Handler(BaseHTTPRequestHandler):
                     raise ReviewError("INDIVIDUAL_MIGRATION_REQUIRED")
                 else: return self._json({"error":"not found"},404)
             elif self.path == "/api/validate": result = draft.validate()
-            elif self.path == "/api/pr": result = create_pull_request(draft.files(), draft.validate(), body.get("operation", "changes"))
+            elif self.path == "/api/pr": result = create_pull_request(
+                draft.files(), draft.validate(), body.get("operation", "changes"),
+                baseline=self.server.draft_store.baseline)
             elif self.path == "/api/knowledge/decision": result = set_candidate_decision(body["batch_id"], body["candidate_id"], body["human_decision"], body.get("note", ""))
             elif self.path == "/api/knowledge/reset": result = reset_review_state(body["batch_id"])
             elif self.path == "/api/knowledge/preview": result = preview_promotion(body["batch_id"], origin_main_sha=repository_status().get("origin_main_sha"))
@@ -219,6 +221,13 @@ class Handler(BaseHTTPRequestHandler):
             if self.path.startswith("/api/deletions/"):
                 code = str(error) if isinstance(error, (SyncError, ReviewError)) else "DELETION_OPERATION_FAILED"
                 return self._json({"error":code,"message":DELETION_MESSAGES.get(code,"削除操作に失敗しました。入力内容と保存済みの判断は保持しています。再取得して確認してください。")},400)
+            if self.path == "/api/pr":
+                # Do not pretend a failed git/gh operation succeeded.
+                # The local autosaved draft is unchanged and may be retried.
+                message = str(error) if isinstance(error, GitWorkflowError) else (
+                    "Draft PRを作成できませんでした。下書きは保持しています。GitHubの状態を確認してください"
+                )
+                return self._json({"error": "PR_CREATION_FAILED", "message": message}, 400)
             if self.path.startswith("/api/best-shot/"):
                 message = (error.user_message if isinstance(error, BestShotConfigError)
                            else "ベストショットの保存に失敗しました。入力内容と変更予定を確認してください")
