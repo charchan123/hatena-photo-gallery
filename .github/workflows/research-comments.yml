@@ -11,6 +11,9 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
@@ -27,20 +30,24 @@ jobs:
       - name: Install isolated local test dependencies
         run: |
           pip install -r requirements.txt -r requirements-dev.txt
+          npm ci --prefix comments --ignore-scripts --no-audit --no-fund
           npm install --prefix "${{ runner.temp }}/comments-browser" --no-save playwright@1.62.1
           node "${{ runner.temp }}/comments-browser/node_modules/playwright/cli.js" install --with-deps chromium
           git fetch origin gh-pages
       - name: Identity, D1 SQL migrations, API security, signed backup and restoration
         run: |
-          python -m pytest -q tests/test_research_comments.py
+          python -m pytest -q tests/test_research_comments.py tests/test_comments_staging.py
           python comments/tools/seed.py
           git diff --exit-code -- comments/migrations/0003_reviewed_cases.sql
-          node --test comments/tests/api.test.mjs
+          node --test comments/tests/api.test.mjs comments/tests/staging.test.mjs
+          python comments/staging/build.py
       - name: Real isolated public UI, local Worker-SQLite and Windows-compatible admin
         env:
           PLAYWRIGHT_MODULE_PATH: ${{ runner.temp }}/comments-browser/node_modules/playwright
           COMMENTS_EVIDENCE: ${{ runner.temp }}/research-comments-evidence
-        run: node tests/browser/research_comments.cjs
+        run: |
+          node tests/browser/research_comments.cjs
+          node tests/browser/comments_staging.cjs "${{ runner.temp }}/research-comments-evidence/staging"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
