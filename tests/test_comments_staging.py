@@ -97,21 +97,21 @@ def test_offline_build_only_changes_staging_transport(tmp_path):
     before=(ROOT/'assets/research-comments.js').read_bytes()
     build=runpy.run_path(str(ROOT/'comments/staging/build.py'))['build']
     build(tmp_path)
-    js=(tmp_path/'assets/research-comments.js').read_text()
+    js=(tmp_path/'assets/research-comments.js').read_text(encoding="utf-8")
     assert 'credentials: "same-origin"' in js and 'redirect: "error"' in js
     assert 'config.api_url !== location.origin' in js
     assert 'location.protocol !== "https:"' in js
     assert before==(ROOT/'assets/research-comments.js').read_bytes()
     assert 'credentials: "omit"' in before.decode()
-    assert (tmp_path/'research.html').read_text().count('data-research-thread=')==66
-    assert json.loads((ROOT/'comments/public-config.json').read_text())=={'version':1,'enabled':False,'api_url':'','turnstile_site_key':'','release_approval':None}
-    for name,sha in json.loads((tmp_path/'build-hashes.json').read_text()).items():
+    assert (tmp_path/'research.html').read_text(encoding="utf-8").count('data-research-thread=')==66
+    assert json.loads((ROOT/'comments/public-config.json').read_text(encoding="utf-8"))=={'version':1,'enabled':False,'api_url':'','turnstile_site_key':'','release_approval':None}
+    for name,sha in json.loads((tmp_path/'build-hashes.json').read_text(encoding="utf-8")).items():
         assert hashlib.sha256((tmp_path/name).read_bytes()).hexdigest()==sha
 
 
 def test_disabled_deployment_templates_have_separate_entry_and_db():
-    staging=json.loads((ROOT/'comments/staging/wrangler.example.jsonc').read_text())
-    prod=json.loads((ROOT/'comments/wrangler.jsonc').read_text())
+    staging=json.loads((ROOT/'comments/staging/wrangler.example.jsonc').read_text(encoding="utf-8"))
+    prod=json.loads((ROOT/'comments/wrangler.jsonc').read_text(encoding="utf-8"))
     assert staging['main']=='worker.mjs' and staging['assets']['run_worker_first'] is True
     assert staging['name']!=prod['name'] and staging['d1_databases'][0]['database_name']!=prod['d1_databases'][0]['database_name']
     for c in [staging,prod]:
