@@ -327,5 +327,22 @@
         "form[role=search]": 0
       }
     }
+  },
+  "independent_reference_checks": {
+    "17_best_observation_ids_exist": true,
+    "7_retired_ids_absent": true,
+    "66_case_ids_unique": true
+  },
+  "feed_validation": {
+    "feed": {
+      "well_formed": true,
+      "root": "{http://www.w3.org/2005/Atom}feed",
+      "items": 30
+    },
+    "rss": {
+      "well_formed": true,
+      "root": "rss",
+      "items": 30
+    }
   }
 }

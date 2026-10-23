@@ -41,7 +41,7 @@ portalのarticle_count=90は写真の出典記事、トップの観察記録83�
 
 過去CSSは完全置換候補と追加パッチを区別しました。PR #121の両カテゴリCSSファイルだけをレビューして再利用し、そのコミットは取り込みません。#121との将来統合ではこの後継候補を重複適用しないでください。
 
-最終候補design.cssは**56,303 bytes**、64KiBより9,233 bytes小さく、CSS parserにエラーなし。system sectionを保持。320/360pxの通常記事Heroタイトルが説明へ重なる問題を小画面の1行タイトルで改善しました。
+最終候補design.cssは**56,344 bytes**、64KiBより9,192 bytes小さく、CSS parserにエラーなし。system sectionを保持。320/360pxの通常記事Heroタイトルが説明へ重なる問題を小画面の1行タイトルで改善しました。正式rootのiframeに外側paddingを重ねると900px境界がずれることも実測で発見し、子ページ自身の余白を再利用する全幅iframeに修正しました。900pxの親からは900pxの子、899pxなら899pxの子になります。
 
 フッターはmainの最新内容を再利用（ファイル名の日付で過去版へ戻さない）。配布するfooter-managed.htmlは管理対象scriptだけであり、現行Footer全文の代用品ではありません。PAGE TOP/MENU/解析など既存の他処理は照合後に保持します。
 
@@ -49,13 +49,20 @@ portalのarticle_count=90は写真の出典記事、トップの観察記録83�
 
 ## 検証
 
-- Python：**1,086 passed**。初回baseline実行では既存同期fixtureのOUTPUT_INTEGRITY_ERRORが33件発生。安全条件は変更せず、該当2ファイル34件合格後に全件を再実行して成功。初回失敗をなかった扱いにしません。
-- JavaScript：**14ファイルの構文・回帰合格**。新しい起動テスト12件と既存iframe親テスト17件も合格。
+- Python：**1,088 passed**。初回baseline実行では既存同期fixtureのOUTPUT_INTEGRITY_ERRORが33件発生。安全条件は変更せず、該当2ファイル34件合格後に全件を再実行して成功。初回失敗をなかった扱いにしません。
+- JavaScript：**14ファイルの構文・回帰合格**。新しい起動テスト12件と既存iframe親テスト17件も合格。オフライン組立てはWindows CRLF保持・旧形式の競合script拒否を含む9件合格。
 - 配布Footer中の各script：node --check合格。CSS UTF-8サイズ/構文確認合格。
-- Chromium：最終結果と比較画像は追補予定。ローカルreplayを実はてなStaging合格とは扱いません。
-- GitHub Actions：Draft PR最終HEADの結果を確認後、PR本文に確定記録を追補します。
+- Chromium 138.0.7204.94：**1,384 checks PASS**。7親ページ×8幅×前後=112描画、公開済み子6ページ×8幅=48描画、root/固定ページ×Window/BODYの4組で実リンク40遷移。検索・絞り込み・詳細・写真拡大/閉じる・ページ末尾からの遷移・戻る進む・回転、偽source/origin拒否を確認。Best ShotのPC 4:3/contain・本文整列、1列の自然比率も維持。外部変更リクエスト0。ローカルreplayを実はてなStaging合格とは扱いません。
+- [ブラウザ実測JSON](browser-results.json)と[比較画像](comparisons/README.md)、[試験ログ](browser-tests.log)を保存。全160描画の原寸画像はGitHub Actions artifactでも保存（30日）。
+- GitHub Actions：Draft PR #138の最終HEADの結果を確認後、PR本文に確定記録を追補します。初回の新設workflowはPython版に存在しないPlaywright 1.62.1指定でinstall失敗。PyPIで存在を確認した1.64.1へ修正（判定条件の緩和なし）。既存7系統の初回結果は成功。
 
 再現試験は公開HTMLのsnapshotを元originのURLでrouteし、公開済み子HTMLを別originとして実Chromiumで描画します。外部トラッキング・認証・social操作scriptは試験fixtureから除外し、GET以外を拒否します。外部プロフィール等の一部画像/スターはこの試験で欠ける場合があり、本番サービスの完全表示保証には使いません。公開用payloadにこの除外処理は含みません。
+
+## サムネイルの維持
+
+[thumbnail-regression.json](thumbnail-regression.json)に8幅×3条件（/new-top前後・root候補）の24組を保存。左右各3枚は同じ高さで、横並び時の見出し＋説明文の可視範囲の中心を計測します。狭い幅では説明が画像の下に続く既存仕様なので、垂直中央寄せとは混同しません。
+
+1280pxの/new-top前後およびroot候補で左画像112px・右画像120px、両パネル650.4375pxで維持。横並び説明文の可視中心の差は最大0.016px。320pxでは左100px・右114pxを維持。各条件の行高・上余白・下余白もJSONに記録。図鑑・Best Shot等のassetsは全てmainとbyte一致です。
 
 ## セキュリティと運用レビュー
 
@@ -69,6 +76,7 @@ portalのarticle_count=90は写真の出典記事、トップの観察記録83�
 - [初心者向け公開・復元手順書](../../hatena/release-2026-10-24/RUNBOOK.md)
 - [読者・通知・RSS等12項目の保護/未検証一覧](../../hatena/release-2026-10-24/FUNCTIONS.md)
 - [配布物サイズ/sha](release-manifest.json)
+- [Draft PR #138](https://github.com/charchan123/hatena-photo-gallery/pull/138)
 
 現行公式UIは「保存する」=未公開保存、「プレビュー」=確認、「変更を公開する」=本番公開。Staging保存にも別途承認が必要です。実UIやpreview originが異なれば停止し、ガードを緩めません。
 

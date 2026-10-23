@@ -36,12 +36,12 @@ def prepare(source, review_file, target):
     oldcss=(source/'DesignCSS.txt').read_text(encoding='utf-8')
     if len(css)>65536 or len(sections(oldcss))!=2 or sections(oldcss)!=sections(css.decode('utf-8')):
         raise ValueError('Theme/system sections differ or CSS exceeds 64KiB; reconciliation required.')
-    oldfooter=(source/'Footer.html').read_text(encoding='utf-8')
+    oldfooter=(source/'Footer.html').read_bytes().decode('utf-8')
     blocks=[m for m in re.finditer(r'<script\b[^>]*>[\s\S]*?</script\s*>',oldfooter,re.I)
-            if 'photoGallery' in m.group() and 'navigationIntentAck' in m.group()]
-    if len(blocks)!=1 or sha(blocks[0].group().encode())!=review.get('managed_script_sha256'):
+            if 'photoGallery' in m.group()]
+    if len(blocks)!=1 or 'navigationIntentAck' not in blocks[0].group() or sha(blocks[0].group().encode())!=review.get('managed_script_sha256'):
         raise ValueError('The old communication script was not uniquely identified and reviewed.')
-    header=(source/'Header.html').read_text(encoding='utf-8')
+    header=(source/'Header.html').read_bytes().decode('utf-8')
     if 'kinoko-home-release' in header or 'kinoko-home-portal' in oldfooter:
         raise ValueError('Release marker/managed payload already present; do not append twice.')
     b=blocks[0]

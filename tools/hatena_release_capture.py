@@ -1,11 +1,11 @@
 """Read-only public snapshots for local replay. Never accesses Hatena admin.
-Usage: python tools/hatena_release_capture.py OUTPUT_DIR
+Usage: python tools/hatena_release_capture.py OUTPUT_DIR [PUBLISHED_DIR]
 """
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 import requests, json, hashlib, re, sys
 from bs4 import BeautifulSoup
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlsplit
 
 ROOT=Path(sys.argv[1]).resolve(); ROOT.mkdir(parents=True,exist_ok=True)
 CACHE=ROOT/'cache'; CACHE.mkdir(exist_ok=True)
@@ -42,18 +42,20 @@ for name,info in pages.items():
 for css in [Path('hatena/hatena-design-css-daily-archive-2026-10-11.css'), Path('hatena/release-2026-10-24/design.css')]:
  resources.update(re.findall(r'https://[^\s\"\)]+',css.read_text()))
 if len(sys.argv)>2:
- for pagefile in Path(sys.argv[2]).glob('best-shots*.html'):
+ childroot=Path(sys.argv[2])
+ childpages=list(childroot.glob('best-shots*.html'))+[childroot/(n+'.html') for n in ['new-top','index','research','features','あ行','アイタケ']]
+ for pagefile in childpages:
   s=BeautifulSoup(pagefile.read_text(),'html.parser')
-  resources.update(i['src'] for i in s.select('img[src]') if i['src'].startswith('https://cdn'))
-allow=('usercss.blog.st-hatena.com','cdn.blog.st-hatena.com','cdn-ak.f.st-hatena.com','code.jquery.com','ajax.googleapis.com','charchan123.github.io','fonts.googleapis.com','fonts.gstatic.com')
+  resources.update(i.get('src') or i.get('href') for i in s.select('img[src],script[src],link[rel=stylesheet]') if (i.get('src') or i.get('href','')).startswith('https://'))
+allow=('usercss.blog.st-hatena.com','cdn.blog.st-hatena.com','cdn-ak.f.st-hatena.com','code.jquery.com','ajax.googleapis.com','charchan123.github.io','fonts.googleapis.com','fonts.gstatic.com','cdn.jsdelivr.net','unpkg.com')
 def resource(u):
  try:return fetch(u)
  except Exception as e:return {'url':u,'error':type(e).__name__}
-with ThreadPoolExecutor(max_workers=6) as p: results=list(p.map(resource,sorted(u for u in resources if any(h in u for h in allow))))
+with ThreadPoolExecutor(max_workers=6) as p: results=list(p.map(resource,sorted(u for u in resources if urlsplit(u).hostname in allow)))
 for i in list(results):
  if 'css' in i.get('type',''):
   text=(CACHE/i['file']).read_text()
   for u in re.findall(r'(?:url\([\"\']?|@import [\"\'])([^\"\'\)\s]+)',text):
-   if not u.startswith('data:'):results.append(resource(urljoin(i['final_url'],u)))
+   if not u.startswith('data:'):results.append(resource(urljoin(i.get('final_url',i['url']),u)))
 (ROOT/'capture.json').write_text(json.dumps({'pages':pages,'resources':results},ensure_ascii=False,indent=2))
 print(json.dumps({'pages':{k:{'status':v['status'],'bytes':v['bytes'],'body':v['body_class']} for k,v in pages.items()},'resources':len(results),'failures':[v for v in results if 'error'in v]},ensure_ascii=False))

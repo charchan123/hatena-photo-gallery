@@ -38,7 +38,22 @@ def test_preparation_retains_other_footer_header_and_newtop(inputs):
     assert footer.count('kinokoHeightBound')==2
     assert package.inventory(backup)==json.loads((backup/'SHA256.json').read_text())
 
-@pytest.mark.parametrize('change',['backup','review','handler','theme','duplicate'])
+def test_windows_crlf_outside_reviewed_script_is_byte_preserved(inputs):
+    _,backup,review,out=inputs
+    header=b'<div>Windows header</div>\r\n'
+    block=b'<script>\r\nconst iframe="photoGallery";\r\nconst ack="navigationIntentAck";\r\n</script>'
+    prefix=b'<p>keep</p>\r\n';suffix=b'\r\n<script>/* PAGE TOP */</script>\r\n'
+    (backup/'Header.html').write_bytes(header)
+    (backup/'Footer.html').write_bytes(prefix+block+suffix)
+    hashes=package.inventory(backup)
+    (backup/'SHA256.json').write_text(json.dumps(hashes))
+    r=json.loads(review.read_text());r.update(files=hashes,managed_script_sha256=package.sha(block))
+    review.write_text(json.dumps(r));package.prepare(backup,review,out)
+    assert (out/'Header.html').read_bytes().startswith(header)
+    assert (out/'Footer.html').read_bytes().startswith(prefix)
+    assert (out/'Footer.html').read_bytes().endswith(suffix)
+
+@pytest.mark.parametrize('change',['backup','review','handler','theme','duplicate','legacy_handler'])
 def test_unsafe_or_stale_inputs_stop_before_output(inputs,change):
     _,backup,review,out=inputs;r=json.loads(review.read_text())
     if change=='backup':(backup/'Header.html').write_text('stale')
@@ -48,7 +63,8 @@ def test_unsafe_or_stale_inputs_stop_before_output(inputs,change):
         p=backup/'DesignCSS.txt';p.write_text(p.read_text().replace('8599973812333959601','999'))
         (backup/'SHA256.json').write_text(json.dumps(package.inventory(backup)));r['files']=package.inventory(backup)
     else:
-        p=backup/'Footer.html';p.write_text(p.read_text()*2)
+        p=backup/'Footer.html'
+        p.write_text(p.read_text()*2 if change=='duplicate' else p.read_text()+'<script>/* old photoGallery handler */</script>')
         (backup/'SHA256.json').write_text(json.dumps(package.inventory(backup)));r['files']=package.inventory(backup)
     review.write_text(json.dumps(r))
     with pytest.raises(ValueError):package.prepare(backup,review,out)

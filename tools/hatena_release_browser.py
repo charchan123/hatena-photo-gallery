@@ -86,6 +86,13 @@ def measure(page):
       title:document.title,og:[...document.querySelectorAll('meta[property^="og:"]')].map(m=>[m.getAttribute('property'),m.content]),
       root:!!document.querySelector('#kinoko-home-portal'),iframeCount:document.querySelectorAll('#photoGallery').length})''')
 
+def compact(measurement):
+    # Full native href arrays are compared above before storing this digest.
+    value=dict(measurement);links=value.pop('links')
+    value['native_link_count']=len(links)
+    value['native_links_sha256']=hashlib.sha256(json.dumps(links,ensure_ascii=False).encode()).hexdigest()
+    return value
+
 with sync_playwright() as pw:
     launch={'headless':True,'args':['--no-sandbox','--disable-dev-shm-usage']}
     if os.getenv('HATENA_CHROMIUM'):launch['executable_path']=os.environ['HATENA_CHROMIUM']
@@ -101,6 +108,17 @@ with sync_playwright() as pw:
                     page.wait_for_function("document.querySelector('#photoGallery')?.style.height.endsWith('px')",timeout=15000)
                 page.wait_for_timeout(250)
                 m=measure(page);variants[variant]=m
+                frames=[f for f in page.frames if f.url.startswith('https://charchan123.github.io/hatena-photo-gallery/new-top.html')]
+                if frames:
+                    portal=frames[0].evaluate('''() => ({width:innerWidth,
+                      panels:[...document.querySelectorAll('.portal-records-hero,.portal-explore')].map(e=>e.getBoundingClientRect().height),
+                      left:[...document.querySelectorAll('.record-preview-thumb')].map(e=>e.getBoundingClientRect().height),
+                      right:[...document.querySelectorAll('.portal-guide-row .portal-card')].map(e=>e.getBoundingClientRect().height)})''')
+                    m['portal']=portal
+                    check(len(portal['left'])==3 and len(portal['right'])==3,'six portal image mounts')
+                    for heights in [portal['left'],portal['right']]:check(max(heights)-min(heights)<1,'equal heights within each thumbnail column')
+                    if portal['width']>=900:check(abs(portal['panels'][0]-portal['panels'][1])<1,'desktop equal portal panels')
+                    if name=='home' and variant=='after':check(portal['width']==width,'root iframe retains viewport breakpoints')
                 check(not m['overflow'],f'{name} {variant} {width}: horizontal overflow')
                 if variant=='after':
                     check(m['native']==variants['before']['native'],f'{name}: native controls')
@@ -115,7 +133,7 @@ with sync_playwright() as pw:
                         check(not page.locator('#menu-content a').first.is_visible(),f'{name}: menu closes after animation')
                 page.screenshot(path=str(evidence/f'{name}-{width}-{variant}.jpg'),type='jpeg',quality=65)
                 context.close()
-            results.append({'page':name,'width':width,'before':variants['before'],'after':variants['after']})
+            results.append({'page':name,'width':width,'before':compact(variants['before']),'after':compact(variants['after'])})
             (evidence/'progress.json').write_text(json.dumps(results,ensure_ascii=False,indent=2))
     # Query bypass, missing activation, and all non-root pages keep native markup.
     for path,marker in [('/',False),('/?kinoko-native=1',True),('/?page=2',True)]:
@@ -125,6 +143,8 @@ with sync_playwright() as pw:
     # child links, filter and details actions exercise the existing ACK protocol.
     protocol=[]
     for parent,mode in [('home','window'),('home','body'),('new-top','window'),('new-top','body')]:
+        print('Protocol:',parent,mode,flush=True)
+        steps=[]
         c=browser.new_context(viewport={'width':390,'height':900});c.route('**/*',route_for('after',body_scroll=mode=='body'))
         p=c.new_page();p.goto(data['pages'][parent]['url']);p.wait_for_function("parseFloat(document.querySelector('#photoGallery').style.height)>600")
         f=next(f for f in p.frames if f.url.startswith('https://charchan123.github.io/'))
@@ -133,16 +153,19 @@ with sync_playwright() as pw:
         p.evaluate("window.postMessage({type:'setHeight',height:999999},location.origin)")
         p.wait_for_timeout(100);check(p.locator('#photoGallery').get_attribute('style')==old,'invalid source/origin ignored')
         for target in ['features.html','index.html','season.html','index.html','best-shots.html','index.html','research.html','index.html','あ行.html','アイタケ.html']:
+            print('Navigate:',target,flush=True)
             # A user activation in the real child, not a fabricated parent ACK.
             hrefs=f.locator('a[href]').evaluate_all('(links)=>links.map(a=>a.getAttribute("href"))')
             matches=[h for h in hrefs if unquote(urlsplit(h).path).split('/')[-1]==target]
             check(bool(matches),'published navigation link '+target)
-            link=f.locator('a[href='+json.dumps(matches[-1])+']').last
+            link=f.locator('a[href='+json.dumps(matches[-1],ensure_ascii=False)+']').last
+            p.evaluate('(mode)=>{const e=mode==="body"?document.body:document.scrollingElement;e.scrollTop=e.scrollHeight}',mode)
             link.click();p.wait_for_timeout(350);f=next(f for f in p.frames if f.url.startswith('https://charchan123.github.io/'))
             check(unquote(f.url.split('?')[0]).endswith('/'+target),'actual child navigation '+target)
             p.wait_for_function("parseFloat(document.querySelector('#photoGallery').style.height)>0")
             check(p.evaluate("document.getElementById('photoGallery').getBoundingClientRect().top")>=-3,'navigation reaches frame top '+mode)
             check(not p.evaluate("document.documentElement.scrollWidth>innerWidth+1"),'parent overflow '+mode)
+            steps.append({'target':target,**p.locator('#photoGallery').evaluate('(e)=>({frame_height:e.offsetHeight,frame_top:e.getBoundingClientRect().top,reserved_min_height:e.closest(".new-top-embed, #galleryWrapper")?.style.minHeight})')})
             if target=='features.html':
                 initial=float(p.locator('#photoGallery').evaluate('(e)=>e.offsetHeight'))
                 f.locator('.feature-filter').first.click();p.wait_for_timeout(700)
@@ -168,15 +191,32 @@ with sync_playwright() as pw:
         p.set_viewport_size({'width':900,'height':390});p.wait_for_timeout(700)
         check(not p.evaluate('document.documentElement.scrollWidth>innerWidth+1'),'rotation overflow')
         # Browser history traverses the actual iframe session history.
-        p.go_back();p.wait_for_timeout(500);p.go_forward();p.wait_for_timeout(500)
+        p.evaluate('history.back()')
+        f.wait_for_url(lambda u:unquote(urlsplit(str(u)).path).endswith('/あ行.html'))
+        p.evaluate('history.forward()')
+        f.wait_for_url(lambda u:unquote(urlsplit(str(u)).path).endswith('/アイタケ.html'))
         check(any('アイタケ' in unquote(x.url) for x in p.frames),'child back/forward history')
-        protocol.append({'parent':parent,'scroll_host':mode,'navigation_filter_search_details_rotation_history':'PASS'})
+        protocol.append({'parent':parent,'scroll_host':mode,'navigation_filter_search_details_rotation_history':'PASS','steps':steps})
         c.close()
     # Published responsive pages, unchanged generated bytes; collect screenshots.
     for name in ['index.html','best-shots.html','best-shots-2025.html','best-shots-2026.html','research.html','features.html']:
         for width in [320,360,390,430,768,900,1280,1440]:
             c=browser.new_context(viewport={'width':width,'height':960});c.route('**/*',route_for('after'));p=c.new_page();p.goto('https://charchan123.github.io/hatena-photo-gallery/'+name,wait_until='load')
+            p.wait_for_function('''[...document.querySelectorAll('main img')].filter(e=>{
+              const r=e.getBoundingClientRect();return r.top<innerHeight&&r.bottom>0;
+            }).every(e=>e.complete&&e.naturalWidth>0)''')
             check(not p.evaluate("document.documentElement.scrollWidth>innerWidth+1"),name+str(width))
+            if name.startswith('best-shots'):
+                mounts=p.locator('.best-shot-grid .best-shot-photo').evaluate_all('els=>els.map(e=>{const r=e.getBoundingClientRect();return {width:r.width,height:r.height,ratio:getComputedStyle(e).aspectRatio,fit:getComputedStyle(e.querySelector("img")).objectFit}})')
+                for mount in mounts:
+                    check(mount['fit']=='contain','Best Shot whole photograph retained')
+                    if width>680:check(abs(mount['width']/mount['height']-4/3)<.01,'Best Shot desktop shared 4:3 mount')
+                    else:check(mount['ratio']=='auto','Best Shot mobile intrinsic ratio')
+                if width>680:
+                    for grid in p.locator('.best-shot-grid').all():
+                        titles=grid.locator('.best-shot-card__body h3')
+                        if titles.count()>1:
+                            check(abs(titles.nth(0).bounding_box()['y']-titles.nth(1).bounding_box()['y'])<1,'Best Shot first-row captions aligned')
             p.screenshot(path=str(evidence/f'child-{name[:-5]}-{width}.jpg'),type='jpeg',quality=65);c.close()
     check(not blocked,'no external mutation attempted')
     browser.close()

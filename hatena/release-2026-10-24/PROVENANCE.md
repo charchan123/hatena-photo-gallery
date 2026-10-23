@@ -13,7 +13,7 @@
 
 PR #121の入力commitは `2329fdf1c906189139147ba619c26c9365f66c6d`。ファイル `hatena/hatena-design-css-shared-daily-field-archives-2026-10-17.css` のGit blobは `ab36e0961dd40633080bdbd6cce49d8fecb61fd4`、実取得bytesのSHA-256は `2c2ce8cbee92a86c2dcf5e249749a4b0d0b1d2afaefabd2b0e664c22ab837e68`。過去文書に記載された別段階のhashと混同しない。
 
-今回の変換は `body.static-page-new-top .header…` のprefixだけを `body:is(.static-page-new-top, .kinoko-home-ready) .header…` へ広げ、rootに同じHeroを再利用します。固定ページのタイトル非表示、sidebar非表示、記事カード透明化等のルールをrootへ広げません。後ろに `home.css` を追加します。320/360pxの通常記事で旧候補のタイトルが説明文へ重なったため、記事と2カテゴリのHeroタイトルを1行に収める小画面調整も追加します。画像・文言は同じです。
+今回の変換は `body.static-page-new-top .header…` のprefixだけを `body:is(.static-page-new-top, .kinoko-home-ready) .header…` へ広げ、rootに同じHeroを再利用します。固定ページのタイトル非表示、sidebar非表示、記事カード透明化等のルールをrootへ広げません。後ろに `home.css` を追加します。rootのiframeは全幅にして、子ページの900px/899px切替を親側の余白でずらしません。320/360pxの通常記事で旧候補のタイトルが説明文へ重なったため、記事と2カテゴリのHeroタイトルを1行に収める小画面調整も追加します。画像・文言は同じです。
 
 元のテーマimportとbackgroundのsystem sectionは元bytesのまま保持。CSSサイズと全配布物hashは監査のmanifestに記録します。64KiB（65,536 bytes）以内であることを実測します。管理画面に保存されたsystem sectionが違えば、組立てツールは停止します。
 

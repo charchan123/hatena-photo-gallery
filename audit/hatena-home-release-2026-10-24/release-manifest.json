@@ -4,20 +4,20 @@
     "sha256": "35313abcc1287950c0d671e32ba84bece12ebde74139984d68bc615284d95b21"
   },
   "PROVENANCE.md": {
-    "bytes": 4765,
-    "sha256": "ef38aedacf263e5a9d6c77ba08b5b6ccf8e1fc21ef210931560d5623f489ba19"
+    "bytes": 4873,
+    "sha256": "e793981bf8c1c1cf456136de2759be658ecf14d90d028bc533ea56dc0cc793bc"
   },
   "README.md": {
     "bytes": 4203,
     "sha256": "b6bf77c03882507bf54d237035e35940c1a0ce836ec466446725b44bae0cb008"
   },
   "RUNBOOK.md": {
-    "bytes": 11839,
-    "sha256": "274709ae4345f29ec51bbcdafc57f5cf912ba76ee134232db161d9367202cb80"
+    "bytes": 12276,
+    "sha256": "2d304364a147c3485394d982c549947e82d902fe6ed8d19c0892f8f32db2aa17"
   },
   "design.css": {
-    "bytes": 56303,
-    "sha256": "4b1eb28ea6cce2c4bb785aa14a8e38411109c3210c9b1d9d20f03da9acb7f352"
+    "bytes": 56344,
+    "sha256": "fd6a3687c489432fb160828e7e8a0647f3e86c23d87f75e2ec31f45c6a37cb29"
   },
   "footer-managed.html": {
     "bytes": 9972,
@@ -32,8 +32,8 @@
     "sha256": "8de4613270b1de22cea97c539c30c6418b298ea1dbcfab77241965a2999acbb5"
   },
   "home.css": {
-    "bytes": 2366,
-    "sha256": "bb79d29e1e7e3af1dc8f4b781d7f335285614cdaacf23e9ae5aa4a4c2cf03207"
+    "bytes": 2407,
+    "sha256": "3c1561a1cf38a35981b5a9fd9d45315c3cb0be6e450065a2c5802ad1aa448067"
   },
   "review.example.json": {
     "bytes": 126,
