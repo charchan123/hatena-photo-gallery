@@ -1,0 +1,42 @@
+{
+  "FUNCTIONS.md": {
+    "bytes": 3234,
+    "sha256": "35313abcc1287950c0d671e32ba84bece12ebde74139984d68bc615284d95b21"
+  },
+  "PROVENANCE.md": {
+    "bytes": 4765,
+    "sha256": "ef38aedacf263e5a9d6c77ba08b5b6ccf8e1fc21ef210931560d5623f489ba19"
+  },
+  "README.md": {
+    "bytes": 4203,
+    "sha256": "b6bf77c03882507bf54d237035e35940c1a0ce836ec466446725b44bae0cb008"
+  },
+  "RUNBOOK.md": {
+    "bytes": 11839,
+    "sha256": "274709ae4345f29ec51bbcdafc57f5cf912ba76ee134232db161d9367202cb80"
+  },
+  "design.css": {
+    "bytes": 56303,
+    "sha256": "4b1eb28ea6cce2c4bb785aa14a8e38411109c3210c9b1d9d20f03da9acb7f352"
+  },
+  "footer-managed.html": {
+    "bytes": 9972,
+    "sha256": "84412144f5eadfd3d58d521bfe425032016f2689afcd68f81c1915a7237d9d81"
+  },
+  "header-activation.html": {
+    "bytes": 232,
+    "sha256": "d95214106288e9f77969fe52693c19b582b20e71c9aff19770375fad5c7f112e"
+  },
+  "home-bootstrap.js": {
+    "bytes": 3124,
+    "sha256": "8de4613270b1de22cea97c539c30c6418b298ea1dbcfab77241965a2999acbb5"
+  },
+  "home.css": {
+    "bytes": 2366,
+    "sha256": "bb79d29e1e7e3af1dc8f4b781d7f335285614cdaacf23e9ae5aa4a4c2cf03207"
+  },
+  "review.example.json": {
+    "bytes": 126,
+    "sha256": "f0722ed702c5ca69c3224aa17ec74f3c5532961ee4667e89ec21a90738d1567b"
+  }
+}

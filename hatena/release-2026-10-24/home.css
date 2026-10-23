@@ -1,0 +1,50 @@
+/* Root-only additions. Native articles, sidebar, ads and Hatena footer remain. */
+body.kinoko-home-ready { background: #f7fcf4; }
+body.kinoko-home-ready #container,
+body.kinoko-home-ready #container-inner {
+  width: 100%; max-width: none; min-width: 0; overflow: visible;
+}
+body.kinoko-home-ready #top-editarea { overflow: visible; }
+body.kinoko-home-ready #kinoko-home-portal {
+  width: 100%; max-width: 1180px; margin: 20px auto 32px;
+  padding: 0 20px; box-sizing: border-box; min-width: 0;
+}
+body.kinoko-home-ready #photoGallery {
+  display: block; width: 100%; border: 0; border-radius: 12px;
+}
+.kinoko-home-fallback {
+  display: flex; flex-wrap: wrap; gap: 8px 20px;
+  padding: 10px 0 16px; font-size: 14px; line-height: 1.7;
+}
+.kinoko-home-fallback a { color: #28563b; text-decoration: underline; }
+.kinoko-home-status { font-size: 14px; color: #38513e; }
+body.kinoko-home-ready #content { max-width: 1180px; margin: 20px auto; }
+body.kinoko-home-ready #main-inner > article.entry {
+  background: white; border-radius: 16px; padding: 24px;
+  border: 1px solid #d9e5d6; overflow-wrap: anywhere;
+}
+body.kinoko-home-ready .entry-content img { max-width: 100%; height: auto; }
+body.kinoko-home-ready #menu,
+body.kinoko-home-ready #menu-inner,
+body.kinoko-home-ready #menu-content > li > a { background: #edf5e8; }
+@media (max-width: 960px) {
+  body.kinoko-home-ready #content,
+  body.kinoko-home-ready #content-inner { width: auto; margin: 16px 10px; }
+  body.kinoko-home-ready #wrapper,
+  body.kinoko-home-ready #box2 { float: none; width: 100%; margin: 0; }
+  body.kinoko-home-ready #main { margin: 0; }
+  body.kinoko-home-ready #menu-content::after { content: ''; display: block; clear: both; }
+}
+@media (max-width: 680px) {
+  body.kinoko-home-ready #kinoko-home-portal { padding: 0 10px; }
+  body.kinoko-home-ready #main-inner > article.entry { padding: 16px; }
+}
+/* The earlier article patch allowed its title to wrap into the subtitle at
+   320/360px. Keep the approved wording and image; fit one line on small screens. */
+@media (max-width: 680px) {
+  body.page-entry:not(.static-page-new-top) :is(.header1, .header2)::before,
+  body.page-archive-category:is(.category-日常の記録, .category-キノコ探索日記) :is(.header1, .header2)::before {
+    max-width: calc(100% - 30px); white-space: nowrap;
+    font-size: clamp(24px, 7.2vw, 30px);
+  }
+}
