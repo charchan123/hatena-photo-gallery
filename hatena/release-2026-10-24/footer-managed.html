@@ -1,0 +1,209 @@
+<!-- MANAGED BLOCK ONLY: replace the verified old photoGallery script, not the entire footer. -->
+<script>
+/* Install only after the exported current footer has been reconciled.
+ * The separate header marker is the last, explicit activation step.
+ */
+(() => {
+  'use strict';
+  const marker = document.getElementById('kinoko-home-release');
+  const query = new URLSearchParams(location.search);
+  if (location.origin !== 'https://exsudoporus-ruber.hatenablog.jp' ||
+      location.pathname !== '/' || query.has('page') || query.has('kinoko-native') ||
+      !document.body.classList.contains('page-index') ||
+      marker?.dataset.release !== '2026-10-24' ||
+      document.getElementById('kinoko-home-portal') ||
+      document.getElementById('photoGallery')) return;
+  const content = document.getElementById('content');
+  const container = document.getElementById('container-inner');
+  if (!content || content.parentElement !== container ||
+      !document.querySelector('#main-inner article.entry')) return;
+
+  const portal = document.createElement('section');
+  portal.id = 'kinoko-home-portal';
+  portal.className = 'new-top-embed';
+  portal.setAttribute('aria-label', 'キノコと田舎遊び・新トップ');
+  const navigation = document.createElement('nav');
+  navigation.className = 'kinoko-home-fallback';
+  navigation.setAttribute('aria-label', '記事一覧と表示の切替');
+  for (const [text, href] of [
+    ['最新記事・過去の記事一覧', '/archive'],
+    ['新トップを別画面で開く', 'https://charchan123.github.io/hatena-photo-gallery/new-top.html'],
+    ['従来の記事表示', '/?kinoko-native=1'],
+    ['RSS', '/rss'],
+  ]) {
+    const link = document.createElement('a');
+    link.textContent = text;
+    link.href = href;
+    navigation.append(link);
+  }
+  const status = document.createElement('p');
+  status.className = 'kinoko-home-status';
+  status.setAttribute('role', 'status');
+  status.textContent = '新トップを読み込んでいます。下には、はてなブログの記事一覧があります。';
+  const frame = document.createElement('iframe');
+  frame.id = 'photoGallery';
+  frame.title = 'キノコ図鑑・Best Shot・不明キノコ研究室への入口';
+  frame.src = 'https://charchan123.github.io/hatena-photo-gallery/new-top.html';
+  frame.width = '100%';
+  frame.height = '600';
+  frame.setAttribute('allowfullscreen', '');
+  frame.setAttribute('scrolling', 'no');
+  // Exactly the permissions observed on the existing /new-top embed; no expansion.
+  frame.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-downloads allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation allow-presentation allow-orientation-lock allow-modals');
+  frame.addEventListener('kinoko:height-ready', () => { status.hidden = true; });
+  portal.append(navigation, status, frame);
+  container.insertBefore(portal, content);
+  document.body.classList.add('kinoko-home-ready');
+  setTimeout(() => {
+    if (!status.hidden) status.textContent =
+      '新トップの高さを確認できません。上の記事一覧リンク、または下の通常記事をご利用ください。';
+  }, 8000);
+})();
+
+</script>
+<!-- Manual Hatena footer replacement: photoGallery communication block only. -->
+<script>
+(function() {
+  "use strict";
+  const iframe = document.getElementById("photoGallery");
+  if (!iframe || iframe.dataset.kinokoHeightBound) return;
+  iframe.dataset.kinokoHeightBound = "2026-10-24";
+  const galleryURL = new URL(iframe.src, location.href);
+  const galleryOrigin = galleryURL.origin;
+  const galleryPath = galleryURL.pathname.slice(0, galleryURL.pathname.lastIndexOf("/") + 1);
+  const wrapper = iframe.closest('.new-top-embed, #galleryWrapper') || iframe.parentElement;
+  const originalMinHeight = wrapper.style.minHeight;
+  const originalAnchor = wrapper.style.overflowAnchor;
+  const baseMinHeight = parseFloat(getComputedStyle(wrapper).minHeight) || 0;
+  let lastHeight = -1, reserved = false, previousY = 0;
+  let scrollTarget = null, galleryReady = false;
+  let navigationPending = null;
+
+  function getScrollContext() {
+    const root = document.documentElement, body = document.body;
+    // Hatena Staging locks HTML and scrolls an independently sized BODY.
+    // Detect the layout even at scrollTop=0 or after content becomes short.
+    const bodyScrolls = body && /^(auto|scroll)$/.test(getComputedStyle(body).overflowY) &&
+      body.clientHeight > 0 && body.clientHeight <= window.innerHeight &&
+      (/^(hidden|clip)$/.test(getComputedStyle(root).overflowY) ||
+       root.scrollHeight <= root.clientHeight + 1);
+    const element = bodyScrolls ? body : null;
+    const context = {
+      mode: element ? 'element' : 'window', element,
+      scrollTop: element ? element.scrollTop : window.scrollY,
+      viewportHeight: element ? element.clientHeight : window.innerHeight,
+      viewportTop: element ? element.getBoundingClientRect().top + element.clientTop : 0
+    };
+    const target = element || window;
+    if (target !== scrollTarget) {
+      scrollTarget?.removeEventListener('scroll', onScroll);
+      scrollTarget = target;
+      previousY = context.scrollTop;
+      target.addEventListener('scroll', onScroll, { passive:true });
+    }
+    return context;
+  }
+  function contentTop(element, context) {
+    return element.getBoundingClientRect().top - context.viewportTop + context.scrollTop;
+  }
+  function onScroll() {
+    const context = getScrollContext();
+    // Reclaim only during upward scrolling, without programmatically moving it.
+    if (reserved && context.scrollTop < previousY) preserveViewport(lastHeight);
+    previousY = context.scrollTop;
+  }
+  function requestHeight() {
+    // Initial about:blank still belongs to Hatena; wait for load or an
+    // authenticated child message before posting to the exact gallery origin.
+    if (!galleryReady) return;
+    iframe.contentWindow?.postMessage({ type:"requestHeight" }, galleryOrigin);
+  }
+  function releaseSpace() {
+    wrapper.style.minHeight = originalMinHeight;
+    wrapper.style.overflowAnchor = originalAnchor;
+    reserved = false;
+  }
+  function preserveViewport(height) {
+    const context = getScrollContext();
+    const top = contentTop(wrapper, context);
+    // Keep the actual iframe height accurate. Reserve space outside the iframe
+    // so an in-place collapse cannot clamp the parent's scroll position.
+    const floor = Math.max(baseMinHeight, Math.ceil(context.scrollTop + context.viewportHeight - top));
+    if (floor > height) {
+      wrapper.style.minHeight = floor + 'px';
+      wrapper.style.overflowAnchor = 'none';
+      reserved = true;
+    } else if (reserved) releaseSpace();
+  }
+  function applyHeight(value) {
+    if (typeof value !== 'number' || !Number.isFinite(value) || value < 0) return;
+    const height = Math.ceil(value);
+    if (height === lastHeight) return;
+    preserveViewport(height);
+    lastHeight = height;
+    iframe.style.height = height + 'px';
+    iframe.style.opacity = '1';
+    iframe.dispatchEvent(new Event("kinoko:height-ready"));
+  }
+  function scrollToTitle() {
+    const context = getScrollContext();
+    const top = Math.max(0, contentTop(iframe, context) - 20);
+    (context.element || window).scrollTo({ top, behavior:'instant' });
+  }
+  iframe.addEventListener('load', () => {
+    // Ignore the initial parent-origin document, if its load is observable.
+    try {
+      if (iframe.contentWindow.location.origin !== galleryOrigin) return;
+    } catch (_) { /* Cross-origin gallery document: location is inaccessible. */ }
+    galleryReady = true;
+    // Navigation has already scrolled before ACK; load only fits the new page.
+    navigationPending = null;
+    releaseSpace();
+    lastHeight = -1;
+    previousY = getScrollContext().scrollTop;
+    requestHeight();
+    [200, 800, 2000].forEach(delay => setTimeout(requestHeight, delay));
+  });
+  window.addEventListener('message', event => {
+    if (event.source !== iframe.contentWindow || event.origin !== galleryOrigin) return;
+    galleryReady = true;
+    const data = event.data || {};
+    if (data.type === 'navigationIntent') {
+      if (typeof data.id !== 'string' || !data.id || data.id.length > 80 ||
+          typeof data.destination !== 'string') return;
+      let destination;
+      try { destination = new URL(data.destination, galleryURL); } catch (_) { return; }
+      if (destination.origin !== galleryOrigin || !destination.pathname.startsWith(galleryPath) ||
+          !destination.pathname.endsWith('.html')) return;
+      if (navigationPending?.id !== data.id) {
+        // Settle while the long departing page still exists, before child ACK.
+        scrollToTitle();
+        navigationPending = { id:data.id, scrolled:true };
+        previousY = getScrollContext().scrollTop;
+      }
+      // The child waits for this source/origin-bound ACK before replacing itself.
+      iframe.contentWindow.postMessage({ type:'navigationIntentAck', id:data.id }, galleryOrigin);
+    } else if (data.type === 'navigationIntentCancel') {
+      if (data.id === navigationPending?.id) navigationPending = null;
+    } else if (data.type === 'setHeight') {
+      applyHeight(data.height);
+    } else if (data.type === 'scrollToTitle') {
+      // Navigation is explicit; settle immediately, independently of height updates.
+      scrollToTitle();
+      setTimeout(requestHeight, 200);
+    } else if (data.type === 'lgClosed') {
+      if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+      [80, 250, 800].forEach(delay => setTimeout(requestHeight, delay));
+    }
+  });
+  window.addEventListener('resize', () => {
+    getScrollContext();
+    if (lastHeight >= 0) preserveViewport(lastHeight);
+    requestHeight();
+  });
+  window.addEventListener('click', event => {
+    if (event.target.closest?.('#galleryWrapper a')) setTimeout(requestHeight, 100);
+  });
+  getScrollContext();
+})();
+</script>
