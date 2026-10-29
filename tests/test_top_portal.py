@@ -362,7 +362,7 @@ def test_portal_styles_are_compact_and_scoped(monkeypatch, tmp_path):
         "column-gap:20px",
         "row-gap:18px",
         "align-items:stretch",
-        ".portal-records-visual,.portal-section-visual { height:190px; }",
+        ":root:not([data-portal-columns=\"1\"]) .portal-records-visual,:root:not([data-portal-columns=\"1\"]) .portal-section-visual { height:190px; }",
         ".portal-explore { margin-top:0; }",
         ".portal-independent-links { grid-column:1/-1; width:100%; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px;",
         ".portal-independent-links .portal-card { min-height:155px; }",
@@ -485,7 +485,7 @@ def test_portal_artwork_assets_are_deployed_verbatim(monkeypatch, tmp_path):
     css = (assets / "portal.css").read_text()
     assert 'background-image:url("mushroom-guide-final.webp")' in css
     assert 'background-image:url("new-top-best-shots-camera-mushrooms.webp")' in css
-    assert ".portal-records-visual,.portal-section-visual { height:190px; }" in css
+    assert ":root:not([data-portal-columns=\"1\"]) .portal-records-visual,:root:not([data-portal-columns=\"1\"]) .portal-section-visual { height:190px; }" in css
 
 def test_reference_portal_card_proportions_and_lower_artwork_assignment():
     css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
@@ -494,7 +494,7 @@ def test_reference_portal_card_proportions_and_lower_artwork_assignment():
     assert '.portal-index .portal-card--best-shots .portal-card__visual { background-image:url("new-top-best-shots-camera-mushrooms.webp"); background-position:50% 58%;' in css
 
     desktop = css[css.index("@media (min-width:900px)"):css.index("@media (max-width:680px)")]
-    assert ".portal-records-visual,.portal-section-visual { height:190px; }" in desktop
+    assert ":root:not([data-portal-columns=\"1\"]) .portal-records-visual,:root:not([data-portal-columns=\"1\"]) .portal-section-visual { height:190px; }" in desktop
     assert "column-gap:20px" in desktop
     assert "row-gap:18px" in desktop
     assert "align-items:stretch" in desktop
@@ -531,7 +531,7 @@ def test_guide_rows_use_record_style_separators_and_plain_notes(monkeypatch, tmp
     css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
     desktop = css[css.index("@media (min-width:900px)"):css.index("@media (max-width:680px)")]
     assert "align-items:stretch" in desktop
-    assert ".portal-records-visual,.portal-section-visual { height:190px; }" in desktop
+    assert ":root:not([data-portal-columns=\"1\"]) .portal-records-visual,:root:not([data-portal-columns=\"1\"]) .portal-section-visual { height:190px; }" in desktop
     assert ".portal-guide-row { display:grid;" in css
     assert "grid-template-columns:150px minmax(0,1fr)" in css
     assert ".portal-guide-list { display:grid; flex:1 1 auto; min-height:0; align-content:start; border-top:1px solid #d9ddcf; }" in css
