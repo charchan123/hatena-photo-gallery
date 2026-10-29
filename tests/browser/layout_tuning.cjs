@@ -4,6 +4,12 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE_PATH||'playwright');
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
 const root=path.resolve(process.argv[2]),fixture=JSON.parse(fs.readFileSync(path.join(root,'fixture.json')));
 const out=path.resolve(process.argv[3]||path.join(root,'results'));fs.mkdirSync(out,{recursive:true});
+const {standalonePortalCSS}=require('./standalone_portal_css.cjs');
+const standaloneUnchanged=standalonePortalCSS(fs.readFileSync(path.join(root,'before/assets/portal.css'),'utf8'))===standalonePortalCSS(fs.readFileSync(path.join(root,'after/assets/portal.css'),'utf8'));
+// A host-breakpoint change alone is not a request to enlarge thumbnails again.
+// Keep the stricter equal-height/whitespace assertions for unchanged standalone CSS.
+if(standaloneUnchanged)process.env.LAYOUT_EXPECT_UNCHANGED='1';
+console.log(JSON.stringify({standalonePortalCSSUnchanged:standaloneUnchanged,expectUnchanged:process.env.LAYOUT_EXPECT_UNCHANGED}));
 const server=http.createServer((req,res)=>{const f=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname));if(!f.startsWith(root+path.sep)||!fs.existsSync(f)||!fs.statSync(f).isFile()){res.writeHead(404);return res.end();}res.setHeader('Content-Type',({'.html':'text/html','.css':'text/css','.js':'text/javascript','.webp':'image/webp','.png':'image/png'})[path.extname(f)]||'application/octet-stream');res.end(fs.readFileSync(f));});
 let browser,assertions=0;const check=(v,message)=>{assert.ok(v,message);assertions++};
 (async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+server.address().port;browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-gpu']});

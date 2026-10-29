@@ -1,0 +1,94 @@
+{
+  "head_sha": "29e82ce1d1a0d15066f030215c1caccecd5988ab",
+  "note": "Initial head; the release workflow dependency version was subsequently corrected. Not final-head CI evidence.",
+  "runs": [
+    {
+      "id": 39990321740,
+      "name": "Read-only manual capture date regressions",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 13,
+      "jobs_url": "https://api.github.com/repos/charchan123/hatena-photo-gallery/actions/runs/39990321740/jobs",
+      "logs_url": "https://api.github.com/repos/charchan123/hatena-photo-gallery/actions/runs/39990321740/logs",
+      "workflow_id": 390739329,
+      "url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/39990321740"
+    },
+    {
+      "id": 39990319733,
+      "name": "Deletion review browser regressions",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 100,
+      "jobs_url": "https://api.github.com/repos/charchan123/hatena-photo-gallery/actions/runs/39990319733/jobs",
+      "logs_url": "https://api.github.com/repos/charchan123/hatena-photo-gallery/actions/runs/39990319733/logs",
+      "workflow_id": 386764800,
+      "url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/39990319733"
+    },
+    {
+      "id": 39990320177,
+      "name": "Read-only Hatena release preparation",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_number": 1,
+      "jobs_url": "https://api.github.com/repos/charchan123/hatena-photo-gallery/actions/runs/39990320177/jobs",
+      "logs_url": "https://api.github.com/repos/charchan123/hatena-photo-gallery/actions/runs/39990320177/logs",
+      "workflow_id": 394300726,
+      "url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/39990320177"
+    },
+    {
+      "id": 39990319741,
+      "name": "Read-only deletion audit",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 113,
+      "jobs_url": "https://api.github.com/repos/charchan123/hatena-photo-gallery/actions/runs/39990319741/jobs",
+      "logs_url": "https://api.github.com/repos/charchan123/hatena-photo-gallery/actions/runs/39990319741/logs",
+      "workflow_id": 385562528,
+      "url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/39990319741"
+    },
+    {
+      "id": 39990319783,
+      "name": "Validate Admin Changes",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 156,
+      "jobs_url": "https://api.github.com/repos/charchan123/hatena-photo-gallery/actions/runs/39990319783/jobs",
+      "logs_url": "https://api.github.com/repos/charchan123/hatena-photo-gallery/actions/runs/39990319783/logs",
+      "workflow_id": 374895219,
+      "url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/39990319783"
+    },
+    {
+      "id": 39990319730,
+      "name": "Read-only Hatena Star preview",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 36,
+      "jobs_url": "https://api.github.com/repos/charchan123/hatena-photo-gallery/actions/runs/39990319730/jobs",
+      "logs_url": "https://api.github.com/repos/charchan123/hatena-photo-gallery/actions/runs/39990319730/logs",
+      "workflow_id": 389423748,
+      "url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/39990319730"
+    },
+    {
+      "id": 39990319870,
+      "name": "Read-only research comments regressions",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 6,
+      "jobs_url": "https://api.github.com/repos/charchan123/hatena-photo-gallery/actions/runs/39990319870/jobs",
+      "logs_url": "https://api.github.com/repos/charchan123/hatena-photo-gallery/actions/runs/39990319870/logs",
+      "workflow_id": 391900486,
+      "url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/39990319870"
+    },
+    {
+      "id": 39990320584,
+      "name": "Read-only admin Draft PR regressions",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 7,
+      "jobs_url": "https://api.github.com/repos/charchan123/hatena-photo-gallery/actions/runs/39990320584/jobs",
+      "logs_url": "https://api.github.com/repos/charchan123/hatena-photo-gallery/actions/runs/39990320584/logs",
+      "workflow_id": 391802500,
+      "url": "https://github.com/charchan123/hatena-photo-gallery/actions/runs/39990320584"
+    }
+  ]
+}

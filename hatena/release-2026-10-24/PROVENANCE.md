@@ -1,0 +1,13 @@
+# 合格候補から公開用ソースへの系譜
+
+2026-10-29。起点PR138 HEAD51fc76319cb53af71f105b33bde2e56955123e1c。受入れ一式pr138-gate2-4ad6c856f59528cc、子pr138-photo-opening-814c98410887594f。
+
+公開用コードは合格済みの親CSS、起動前Header断片、Footer管理スクリプト2個から組立て。CSS画像URL9か所とFooter子URL2か所をGitHub Pagesへ置換し、Git上の管理HTMLをLF正規化。実行ロジックは変更していない。raw/正規化後SHAはgate2-accepted.jsonで区別。完全なHeader/Footerと原本はGitに含めない。
+
+子gallery.js SHA25623e8bb1abd04b5f0c034fd6dc84aee5bd72611474d34b312f08e1536e603d734、portal.css SHA2562eff9ed126bc16447b42b63ff9ccb51065619784d28eb31d285df3aaccf0e13a。private配信で照合・実機受入れした内容と同じバイト列。写真/記事/図鑑/BestShotデータは変更しない。
+
+親幅の認証済み列通知、起動後の旧一覧非表示、写真opening ACK、バナー/読者ボタン、通常時退避案内非表示を含む。postMessage source/origin/path/ID検証、sandbox、CSPは維持。旧親と子の混在時の従来経路を保持。
+
+旧監査audit/hatena-home-release-2026-10-24は当時のローカル試験記録として維持する。当時の「記事を常時表示」「子変更なし」「Gate2未実施」は現在の状態を表さない。管理者の実はてな/Android結果はREADMEを参照。
+
+CIは配布各部品のハッシュ・断片整合、起動/失敗退避、既存17通信回帰、新opening21モデル、最新公開データと候補2資産によるブラウザ回帰を検証。モデル/ローカルブラウザは実はてな受入れと混同しない。

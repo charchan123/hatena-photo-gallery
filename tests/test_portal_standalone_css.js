@@ -1,0 +1,11 @@
+'use strict';
+const {test} = require('node:test');
+const assert = require('node:assert/strict');
+const {standalonePortalCSS: normalize} = require('./browser/standalone_portal_css.cjs');
+const base = '@media (min-width:900px) { .a,.b {height:190px;} } .thumb {height:112px;}';
+const host = '@media (min-width:900px) { :root:not([data-portal-columns="1"]) .a,:root:not([data-portal-columns="1"]) .b {height:190px;} } .thumb {height:112px;} :root[data-portal-columns="2"] .a,:root[data-portal-columns="2"] .b {height:190px;}';
+test('host guards leave standalone geometry unchanged', () => assert.equal(normalize(host), normalize(base)));
+test('changed thumbnail sizes cannot be classified unchanged', () => assert.notEqual(normalize(host.replace('112px', '100px')), normalize(base)));
+test('changed media boundary cannot be classified unchanged', () => assert.notEqual(normalize(host.replace('900px', '915px')), normalize(base)));
+test('mixed host and standalone selectors remain checked', () => assert.notEqual(normalize(host + ':root[data-portal-columns="2"] .a,.thumb{height:99px;}'), normalize(base)));
+test('other root attributes remain checked', () => assert.notEqual(normalize(host + ':root[data-other="2"] .a{height:99px;}'), normalize(base)));

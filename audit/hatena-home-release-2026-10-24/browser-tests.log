@@ -1,0 +1,45 @@
+Protocol: home window
+Navigate: features.html
+Navigate: index.html
+Navigate: season.html
+Navigate: index.html
+Navigate: best-shots.html
+Navigate: index.html
+Navigate: research.html
+Navigate: index.html
+Navigate: あ行.html
+Navigate: アイタケ.html
+Protocol: home body
+Navigate: features.html
+Navigate: index.html
+Navigate: season.html
+Navigate: index.html
+Navigate: best-shots.html
+Navigate: index.html
+Navigate: research.html
+Navigate: index.html
+Navigate: あ行.html
+Navigate: アイタケ.html
+Protocol: new-top window
+Navigate: features.html
+Navigate: index.html
+Navigate: season.html
+Navigate: index.html
+Navigate: best-shots.html
+Navigate: index.html
+Navigate: research.html
+Navigate: index.html
+Navigate: あ行.html
+Navigate: アイタケ.html
+Protocol: new-top body
+Navigate: features.html
+Navigate: index.html
+Navigate: season.html
+Navigate: index.html
+Navigate: best-shots.html
+Navigate: index.html
+Navigate: research.html
+Navigate: index.html
+Navigate: あ行.html
+Navigate: アイタケ.html
+PASS: 1384 real Chromium release checks; no external writes

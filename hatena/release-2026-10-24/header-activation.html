@@ -1,0 +1,14 @@
+<!-- LOCAL CANDIDATE ONLY. PREPEND before the unchanged existing Header. -->
+<span id="kinoko-home-release" data-release="2026-10-24" hidden></span>
+<script>
+(() => {
+  const q = new URLSearchParams(location.search);
+  if (location.origin !== 'https://exsudoporus-ruber.hatenablog.jp' || location.pathname !== '/' ||
+      q.has('page') || q.has('kinoko-native') || !document.body.classList.contains('page-index')) return;
+  document.body.classList.add('kinoko-home-pending');
+  setTimeout(() => {
+    if (!document.body.classList.contains('kinoko-home-active')) document.body.classList.remove('kinoko-home-pending');
+  }, 3000);
+})();
+</script>
+<style>body.kinoko-home-pending:not(.kinoko-home-active) #menu,body.kinoko-home-pending:not(.kinoko-home-active) #content{visibility:hidden}</style>
