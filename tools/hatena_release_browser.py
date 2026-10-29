@@ -1,6 +1,6 @@
 """Real Chromium over public snapshots + the unchanged published child pages.
 
-Only intercepted GETs are served. No Hatena editor, Cloudflare, comments or stars
+Only intercepted GETs are served. Published data are preserved; two candidate assets are overlaid. No Hatena editor, Cloudflare, comments or stars
 are written. This is LOCAL REPLAY, never an authenticated Hatena Staging result.
 Usage: python tools/hatena_release_browser.py CAPTURE_DIR PUBLISHED_DIR EVIDENCE_DIR
 """
@@ -65,6 +65,9 @@ def route_for(variant, marker=True, body_scroll=False):
             if key:route.fulfill(status=200,content_type='text/html',body=prepared(key,variant,marker,body_scroll));return
         if u.hostname=='charchan123.github.io' and u.path.startswith('/hatena-photo-gallery/'):
             rel=unquote(u.path.removeprefix('/hatena-photo-gallery/'));p=published/(rel or 'index.html')
+            if rel in ('assets/gallery.js','assets/portal.css'):
+                p=root/rel
+                route.fulfill(status=200,content_type='text/javascript' if rel.endswith('.js') else 'text/css',body=p.read_bytes());return
             if p.is_file() and p.resolve().is_relative_to(published):
                 import mimetypes
                 route.fulfill(status=200,content_type=mimetypes.guess_type(p.name)[0] or 'application/octet-stream',body=p.read_bytes());return
@@ -126,7 +129,11 @@ with sync_playwright() as pw:
                         check(m[key]==variants['before'][key],f'{name}: unchanged {key}')
                     check(m['root']==(name=='home'),f'{name}: exact root activation')
                     check(m['iframeCount']==(1 if name in ['home','new-top'] else 0),f'{name}: no duplicate frame')
-                    if width<=900 and name in ['article','field','daily','home']:
+                    if name=='home':
+                        check(not page.locator('#menu').is_visible(),'root hides old menu after activation')
+                        check(not page.locator('#content').is_visible(),'root hides old article list after activation')
+                        check(not page.locator('.kinoko-home-navigation').is_visible(),'normal root hides fallback navigation')
+                    if width<=900 and name in ['article','field','daily']:
                         btn=page.locator('#menu-btn');btn.click();page.wait_for_timeout(450)
                         check(page.locator('#menu-content a').first.is_visible(),f'{name}: menu open')
                         btn.click();page.wait_for_timeout(450)

@@ -47,7 +47,7 @@ def prepare(source, review_file, target):
     b=blocks[0]
     newfooter=oldfooter[:b.start()]+(RELEASE/'footer-managed.html').read_text(encoding='utf-8')+oldfooter[b.end():]
     generated={'DesignCSS.txt':css,
-      'Header.html':(header+'\n'+(RELEASE/'header-activation.html').read_text(encoding='utf-8')).encode(),
+      'Header.html':((RELEASE/'header-activation.html').read_text(encoding='utf-8')+'\n'+header).encode(),
       'Footer.html':newfooter.encode(),
       'NewTop.html':(source/'NewTop.html').read_bytes(),
       'Settings.json':(source/'Settings.json').read_bytes()}

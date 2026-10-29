@@ -37,7 +37,7 @@
   const status = document.createElement('p');
   status.className = 'kinoko-home-status';
   status.setAttribute('role', 'status');
-  status.textContent = '新トップを読み込んでいます。下には、はてなブログの記事一覧があります。';
+  status.textContent = '新トップを読み込んでいます。表示されない場合は記事一覧をご利用ください。';
   const frame = document.createElement('iframe');
   frame.id = 'photoGallery';
   frame.title = 'キノコ図鑑・Best Shot・不明キノコ研究室への入口';
@@ -48,12 +48,30 @@
   frame.setAttribute('scrolling', 'no');
   // Exactly the permissions observed on the existing /new-top embed; no expansion.
   frame.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-downloads allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation allow-presentation allow-orientation-lock allow-modals');
-  frame.addEventListener('kinoko:height-ready', () => { status.hidden = true; });
-  portal.append(navigation, status, frame);
+  const menu = document.createElement('details');
+  menu.className = 'kinoko-home-navigation';
+  menu.hidden = true;
+  const menuTitle = document.createElement('summary');
+  menuTitle.textContent = 'MENU · 記事一覧と表示の切替';
+  menu.append(menuTitle, navigation);
+  let failed = false;
+  frame.addEventListener('kinoko:height-ready', () => {
+    if (failed || frame.getBoundingClientRect().height <= 0) return;
+    status.hidden = true;
+    document.body.classList.remove('kinoko-home-pending');
+    document.body.classList.add('kinoko-home-active');
+  });
+  portal.append(status, frame, menu);
   container.insertBefore(portal, content);
   document.body.classList.add('kinoko-home-ready');
   setTimeout(() => {
-    if (!status.hidden) status.textContent =
-      '新トップの高さを確認できません。上の記事一覧リンク、または下の通常記事をご利用ください。';
+    if (!status.hidden) {
+      failed = true;
+      menu.hidden = false;
+      menu.open = true;
+      frame.hidden = true;
+      document.body.classList.remove('kinoko-home-pending', 'kinoko-home-ready', 'kinoko-home-active');
+      status.textContent = '新トップを確認できません。記事一覧・従来表示のリンクをご利用ください。';
+    }
   }, 8000);
 })();

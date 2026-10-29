@@ -1,0 +1,37 @@
+{
+  "gate2_accepted_pair": "pr138-gate2-4ad6c856f59528cc",
+  "child": "pr138-photo-opening-814c98410887594f",
+  "scope": "Approved normal Chrome/Android focused Gate2; known DevTools75% limitation retained",
+  "binding_origin": "https://charchan123.github.io",
+  "candidate_files": {
+    "assets/gallery.js": "23e8bb1abd04b5f0c034fd6dc84aee5bd72611474d34b312f08e1536e603d734",
+    "assets/portal.css": "2eff9ed126bc16447b42b63ff9ccb51065619784d28eb31d285df3aaccf0e13a",
+    "hatena/release-2026-10-24/design.css": "191a9699d9827584ad755955924358551ab46707754d9815007da777796c2405",
+    "hatena/release-2026-10-24/footer-managed.html": "60c08e60007b8f31a5dac61510a1a6d7bbeae51251c98aa519b5b71c93c2d3d3",
+    "hatena/release-2026-10-24/header-activation.html": "3ab8ae55ded16859682985becae95ccd64c8e27b21f176c36260c7c98c9b5743",
+    "hatena/release-2026-10-24/home-bootstrap.js": "a655f4c076dc4e6d60327b9bf4408f337e46dc2fdba74329746843b61ad423ad",
+    "hatena/release-2026-10-24/home.css": "1e7a19f01d26b89f517385a0908ea4415a3339fcc77613e4ca3a0e815af856e7"
+  },
+  "rebinding": [
+    {
+      "component": "design.css",
+      "private_source_raw_sha256": "b2526cde65c9d0f5f1ae800ce2d2cb57a5074c3fd35bca28ef87bef0da146d08",
+      "private_source_LF_sha256": "b2526cde65c9d0f5f1ae800ce2d2cb57a5074c3fd35bca28ef87bef0da146d08",
+      "public_raw_sha256": "191a9699d9827584ad755955924358551ab46707754d9815007da777796c2405",
+      "public_LF_sha256": "191a9699d9827584ad755955924358551ab46707754d9815007da777796c2405",
+      "URL_replacements": 9
+    },
+    {
+      "component": "footer-managed.html",
+      "private_source_raw_sha256": "aacf656f208b3fecc8e05dab00cd77ddfc0fca8d0be9bc7e7e14d5bf91b9132e",
+      "private_source_LF_sha256": "010d087b4a03cb07afcebea6c2a7edb8e133f50c0f69ccecfab5be8081f85795",
+      "public_raw_sha256": "60c08e60007b8f31a5dac61510a1a6d7bbeae51251c98aa519b5b71c93c2d3d3",
+      "public_LF_sha256": "60c08e60007b8f31a5dac61510a1a6d7bbeae51251c98aa519b5b71c93c2d3d3",
+      "URL_replacements": 2
+    }
+  ],
+  "privacy": "Raw editor backups and complete Header/Footer are not included in Git",
+  "changes_to_articles_photos_selection_data": false,
+  "Hatena_production_publication": false,
+  "source_format": "Public managed components use LF; complete private editor backups retain original byte format. Only URL rebind and LF normalization; no code logic changes from accepted candidate."
+}

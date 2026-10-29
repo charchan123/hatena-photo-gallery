@@ -39,7 +39,7 @@
   const status = document.createElement('p');
   status.className = 'kinoko-home-status';
   status.setAttribute('role', 'status');
-  status.textContent = '新トップを読み込んでいます。下には、はてなブログの記事一覧があります。';
+  status.textContent = '新トップを読み込んでいます。表示されない場合は記事一覧をご利用ください。';
   const frame = document.createElement('iframe');
   frame.id = 'photoGallery';
   frame.title = 'キノコ図鑑・Best Shot・不明キノコ研究室への入口';
@@ -50,18 +50,35 @@
   frame.setAttribute('scrolling', 'no');
   // Exactly the permissions observed on the existing /new-top embed; no expansion.
   frame.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-downloads allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation allow-presentation allow-orientation-lock allow-modals');
-  frame.addEventListener('kinoko:height-ready', () => { status.hidden = true; });
-  portal.append(navigation, status, frame);
+  const menu = document.createElement('details');
+  menu.className = 'kinoko-home-navigation';
+  menu.hidden = true;
+  const menuTitle = document.createElement('summary');
+  menuTitle.textContent = 'MENU · 記事一覧と表示の切替';
+  menu.append(menuTitle, navigation);
+  let failed = false;
+  frame.addEventListener('kinoko:height-ready', () => {
+    if (failed || frame.getBoundingClientRect().height <= 0) return;
+    status.hidden = true;
+    document.body.classList.remove('kinoko-home-pending');
+    document.body.classList.add('kinoko-home-active');
+  });
+  portal.append(status, frame, menu);
   container.insertBefore(portal, content);
   document.body.classList.add('kinoko-home-ready');
   setTimeout(() => {
-    if (!status.hidden) status.textContent =
-      '新トップの高さを確認できません。上の記事一覧リンク、または下の通常記事をご利用ください。';
+    if (!status.hidden) {
+      failed = true;
+      menu.hidden = false;
+      menu.open = true;
+      frame.hidden = true;
+      document.body.classList.remove('kinoko-home-pending', 'kinoko-home-ready', 'kinoko-home-active');
+      status.textContent = '新トップを確認できません。記事一覧・従来表示のリンクをご利用ください。';
+    }
   }, 8000);
 })();
 
 </script>
-<!-- Manual Hatena footer replacement: photoGallery communication block only. -->
 <script>
 (function() {
   "use strict";
@@ -78,6 +95,47 @@
   let lastHeight = -1, reserved = false, previousY = 0;
   let scrollTarget = null, galleryReady = false;
   let navigationPending = null;
+  let previousWidth = iframe.getBoundingClientRect().width, widthResizePending = false;
+  let lightboxOverlay = null;
+  let photoOpeningId = null;
+  const supportsOverlay = typeof wrapper.showPopover === 'function';
+  function openLightboxOverlay() {
+    if (!supportsOverlay || lightboxOverlay) return;
+    const context = getScrollContext();
+    const placeholder = document.createElement('div');
+    const cs = getComputedStyle(wrapper);
+    placeholder.setAttribute('aria-hidden', 'true');
+    Object.assign(placeholder.style, {height:wrapper.getBoundingClientRect().height+'px', marginTop:cs.marginTop, marginBottom:cs.marginBottom});
+    wrapper.before(placeholder);
+    lightboxOverlay = {placeholder, context, openingWidth:iframe.getBoundingClientRect().width, wrapperStyle:wrapper.getAttribute('style'), frameStyle:iframe.getAttribute('style'), popover:wrapper.getAttribute('popover')};
+    wrapper.setAttribute('popover','manual');
+    wrapper.dataset.kinokoLightbox = '';
+    Object.entries({position:'fixed',inset:'auto',top:context.viewportTop+'px',left:'0',width:'100vw',height:context.viewportHeight+'px',maxWidth:'none',maxHeight:'none',minHeight:'0',margin:'0',padding:'0',border:'0',overflow:'hidden'}).forEach(([key,value])=>wrapper.style.setProperty(key.replace(/[A-Z]/g,c=>'-'+c.toLowerCase()),value,'important'));
+    Object.assign(iframe.style,{height:context.viewportHeight+'px',width:'100%',position:'relative',display:'block'});
+    try { wrapper.showPopover(); } catch (_) { closeLightboxOverlay(); }
+  }
+  function closeLightboxOverlay() {
+    photoOpeningId = null;
+    if (!lightboxOverlay) return;
+    const saved = lightboxOverlay;
+    lightboxOverlay = null;
+    if (wrapper.matches(':popover-open')) wrapper.hidePopover();
+    for (const [node, value] of [[wrapper,saved.wrapperStyle],[iframe,saved.frameStyle]]) {
+      if (value === null) node.removeAttribute('style'); else node.setAttribute('style',value);
+    }
+    if (saved.popover === null) wrapper.removeAttribute('popover'); else wrapper.setAttribute('popover',saved.popover);
+    delete wrapper.dataset.kinokoLightbox;
+    saved.placeholder.remove();
+    // A rotation while the photo was open changed the underlying page layout.
+    // Do not recreate a min-height reservation from the pre-rotation position.
+    const width = iframe.getBoundingClientRect().width;
+    if (Math.abs(width - saved.openingWidth) > .5) {
+      releaseSpace();
+      widthResizePending = true;
+      previousWidth = width;
+    }
+    (saved.context.element || window).scrollTo({top:saved.context.scrollTop,behavior:'instant'});
+  }
 
   function getScrollContext() {
     const root = document.documentElement, body = document.body;
@@ -116,7 +174,10 @@
     // Initial about:blank still belongs to Hatena; wait for load or an
     // authenticated child message before posting to the exact gallery origin.
     if (!galleryReady) return;
-    iframe.contentWindow?.postMessage({ type:"requestHeight" }, galleryOrigin);
+    // Match the host viewport contract, including classic scrollbar space.
+    // The child keeps its actual width; this is a layout choice, not a resize.
+    iframe.contentWindow?.postMessage({ type:"requestHeight", overlayViewport:supportsOverlay, photoOpeningProtocol:supportsOverlay ? 1 : undefined,
+      portalWide:document.getElementById('kinoko-home-portal') ? window.innerWidth >= 900 : undefined }, galleryOrigin);
   }
   function releaseSpace() {
     wrapper.style.minHeight = originalMinHeight;
@@ -138,8 +199,11 @@
   function applyHeight(value) {
     if (typeof value !== 'number' || !Number.isFinite(value) || value < 0) return;
     const height = Math.ceil(value);
+    if (lightboxOverlay) return;
+    const skipReservation = widthResizePending;
+    widthResizePending = false;
     if (height === lastHeight) return;
-    preserveViewport(height);
+    if (!skipReservation) preserveViewport(height);
     lastHeight = height;
     iframe.style.height = height + 'px';
     iframe.style.opacity = '1';
@@ -156,6 +220,7 @@
       if (iframe.contentWindow.location.origin !== galleryOrigin) return;
     } catch (_) { /* Cross-origin gallery document: location is inaccessible. */ }
     galleryReady = true;
+    closeLightboxOverlay();
     // Navigation has already scrolled before ACK; load only fits the new page.
     navigationPending = null;
     releaseSpace();
@@ -191,14 +256,44 @@
       // Navigation is explicit; settle immediately, independently of height updates.
       scrollToTitle();
       setTimeout(requestHeight, 200);
+    } else if (data.type === 'photoOpening') {
+      if (typeof data.id !== 'string' || data.id.length > 80 ||
+          !/^photo-[0-9]+-[0-9]+$/.test(data.id)) return;
+      // Capture the host position and establish the viewport BEFORE the child
+      // calls showModal, whose focus may otherwise scroll the outer document.
+      if (lightboxOverlay && photoOpeningId !== data.id) {
+        iframe.contentWindow.postMessage({type:'photoOpeningAck', id:data.id, ok:false}, galleryOrigin);
+        return;
+      }
+      if (!lightboxOverlay) openLightboxOverlay();
+      const ok = !!lightboxOverlay;
+      if (ok) photoOpeningId = data.id;
+      iframe.contentWindow.postMessage({type:'photoOpeningAck', id:data.id, ok}, galleryOrigin);
+    } else if (data.type === 'photoOpeningCancel') {
+      if (photoOpeningId && data.id === photoOpeningId) {
+        closeLightboxOverlay();
+        requestHeight();
+      }
+    } else if (data.type === 'lgOpening') {
+      openLightboxOverlay();
     } else if (data.type === 'lgClosed') {
+      closeLightboxOverlay();
       if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
       [80, 250, 800].forEach(delay => setTimeout(requestHeight, delay));
     }
   });
   window.addEventListener('resize', () => {
+    if (lightboxOverlay) {
+      const c = lightboxOverlay.context;
+      const height = c.element ? c.element.clientHeight : window.innerHeight;
+      wrapper.style.height = height + 'px'; iframe.style.height = height + 'px';
+      return;
+    }
+    const width = iframe.getBoundingClientRect().width;
     getScrollContext();
-    if (lastHeight >= 0) preserveViewport(lastHeight);
+    if (Math.abs(width - previousWidth) > .5) {
+      releaseSpace(); widthResizePending = true; previousWidth = width;
+    } else if (lastHeight >= 0) preserveViewport(lastHeight);
     requestHeight();
   });
   window.addEventListener('click', event => {

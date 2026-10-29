@@ -131,6 +131,112 @@ document.addEventListener("DOMContentLoaded", () => {
   // ⭐ お気に入り保存キー
   // =========================
   const LG_FAVORITES_KEY = "lg_favorites";
+  let overlayParentOrigin = null;
+  let photoOpeningProtocol = false;
+  window.addEventListener('message', event => {
+    if (event.source !== window.parent || event.origin !== 'https://exsudoporus-ruber.hatenablog.jp' ||
+        event.data?.type !== 'requestHeight') return;
+    if (event.data.overlayViewport === true) overlayParentOrigin = event.origin;
+    photoOpeningProtocol = event.data.overlayViewport === true && event.data.photoOpeningProtocol === 1;
+    // Only this portal consumes the authenticated host's 900px layout choice.
+    // Standalone/older parents retain the existing child media-query fallback.
+    if (document.body.classList.contains('portal-index') && typeof event.data.portalWide === 'boolean') {
+      const columns = event.data.portalWide ? '2' : '1';
+      if (document.documentElement.dataset.portalColumns !== columns) {
+        document.documentElement.dataset.portalColumns = columns;
+        sendHeight('parent-breakpoint', true);
+      }
+    }
+  });
+
+  // Best Shot used raw _top images; research used raw _blank images. Intercept
+  // only an ordinary unmodified primary activation, and only with a viewport host.
+  let shotDialog = null, shotIndex = 0, shotTrigger = null, shotTouch = null;
+  const shots = Array.from(document.querySelectorAll('a.best-shot-photo, a.research-photo'));
+  let pendingShot = null, shotRequestSequence = 0;
+  function presentShot(requestId = null) {
+    try {
+      shotDialog.showModal();
+      shotDialog.querySelector('.shot-close').focus({preventScroll:true});
+    } catch (_) {
+      if (overlayParentOrigin) parent.postMessage(requestId
+        ? {type:'photoOpeningCancel', id:requestId} : {type:'lgClosed'}, overlayParentOrigin);
+      console.warn('写真の拡大を開始できませんでした。');
+    }
+  }
+  window.addEventListener('message', event => {
+    if (event.source !== window.parent || event.origin !== overlayParentOrigin ||
+        !pendingShot || event.data?.type !== 'photoOpeningAck' ||
+        event.data.id !== pendingShot.id || typeof event.data.ok !== 'boolean') return;
+    const request = pendingShot;
+    pendingShot = null;
+    clearTimeout(request.timer);
+    if (event.data.ok) presentShot(request.id);
+    else console.warn('写真の拡大準備を確認できませんでした。');
+  });
+  function closeShot() { if (shotDialog?.open) shotDialog.close(); }
+  function selectShot(index) {
+    shotIndex = (index + shots.length) % shots.length;
+    const image = shots[shotIndex].querySelector('img');
+    shotDialog.querySelector('img').src = shots[shotIndex].href;
+    shotDialog.querySelector('img').alt = image?.alt || 'Best Shot';
+    shotDialog.querySelector('p').textContent = `${image?.alt || 'Best Shot'} (${shotIndex + 1}/${shots.length})`;
+  }
+  function openShot(link) {
+    if (pendingShot || shotDialog?.open) return;
+    if (!shotDialog) {
+      shotDialog = document.createElement('dialog');
+      shotDialog.className = 'best-shot-dialog';
+      shotDialog.setAttribute('aria-label', '写真拡大');
+      shotDialog.innerHTML = '<button type="button" class="shot-close" aria-label="写真を閉じる">×</button><button type="button" class="shot-prev" aria-label="前の写真">‹</button><img alt=""><button type="button" class="shot-next" aria-label="次の写真">›</button><p aria-live="polite"></p>';
+      document.body.append(shotDialog);
+      shotDialog.querySelector('.shot-close').onclick = closeShot;
+      shotDialog.querySelector('.shot-prev').onclick = () => selectShot(shotIndex - 1);
+      shotDialog.querySelector('.shot-next').onclick = () => selectShot(shotIndex + 1);
+      shotDialog.addEventListener('close', () => {
+        if (overlayParentOrigin) parent.postMessage({type:'lgClosed'}, overlayParentOrigin);
+        shotTrigger?.focus({preventScroll:true});
+      });
+      shotDialog.addEventListener('keydown', event => {
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+          event.preventDefault(); selectShot(shotIndex + (event.key === 'ArrowRight' ? 1 : -1));
+        }
+      });
+      shotDialog.addEventListener('touchstart', event => {
+        const t = event.touches.length === 1 ? event.touches[0] : null;
+        shotTouch = t ? {x:t.clientX,y:t.clientY} : null;
+      }, {passive:true});
+      shotDialog.addEventListener('touchend', event => {
+        const t = event.changedTouches[0], start = shotTouch; shotTouch = null;
+        if (!t || !start) return;
+        const dx = t.clientX-start.x, dy = t.clientY-start.y;
+        if (Math.abs(dx) > 60 && Math.abs(dx) > 1.5*Math.abs(dy)) selectShot(shotIndex + (dx < 0 ? 1 : -1));
+      }, {passive:true});
+    }
+    shotTrigger = link; selectShot(shots.indexOf(link));
+    if (overlayParentOrigin && photoOpeningProtocol) {
+      const id = `photo-${Date.now()}-${++shotRequestSequence}`;
+      const timer = setTimeout(() => {
+        if (pendingShot?.id !== id) return;
+        pendingShot = null;
+        parent.postMessage({type:'photoOpeningCancel', id}, overlayParentOrigin);
+        console.warn('写真の拡大準備がタイムアウトしました。もう一度写真を選んでください。');
+      }, 2000);
+      pendingShot = {id, timer};
+      parent.postMessage({type:'photoOpening', id}, overlayParentOrigin);
+      return;
+    }
+    // An older host did not advertise the protocol; preserve its existing path.
+    if (overlayParentOrigin) parent.postMessage({type:'lgOpening'}, overlayParentOrigin);
+    presentShot();
+  }
+  document.addEventListener('click', event => {
+    const link = event.target.closest?.('a.best-shot-photo, a.research-photo');
+    if (!link || !shots.includes(link) || event.defaultPrevented || event.button !== 0 ||
+        event.ctrlKey || event.metaKey || event.shiftKey || event.altKey ||
+        typeof HTMLDialogElement === 'undefined' || (parent !== window && !overlayParentOrigin)) return;
+    event.preventDefault(); openShot(link);
+  });
 
   // Only observation-record exits request a one-time refresh after browser Back.
   // Storage failures (for example privacy settings) must never block navigation.
@@ -985,6 +1091,13 @@ galleries.forEach(gallery => {
       selector: "a.gallery-item",
       plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
       speed: 400,
+      closable: true,
+      showCloseIcon: true,
+      // LightGallery merges mobileSettings after the top-level options.
+      mobileSettings: {controls:false, showCloseIcon:true, download:false},
+      escKey: true,
+      swipeToClose: false,
+      hideBarsDelay: 0,
       thumbnail: true,
       showThumbByDefault: true,
       toggleThumb: true,
@@ -1010,6 +1123,9 @@ galleries.forEach(gallery => {
     // =========================
     // LightGalleryイベント：お気に入り連携
     // =========================
+    gallery.addEventListener('lgBeforeOpen', () => {
+      if (overlayParentOrigin) window.parent.postMessage({type:'lgOpening'}, overlayParentOrigin);
+    });
     gallery.addEventListener("lgAfterOpen", () => {
       reserveCaptionSpace();
       attachFavoriteButtonWithRetry();
@@ -1067,8 +1183,9 @@ galleries.forEach(gallery => {
     // =========================
     gallery.querySelectorAll("a.gallery-item").forEach(a => {
       a.addEventListener("click", () => {
+        if (overlayParentOrigin) return;
         const el = document.documentElement;
-        if (el.requestFullscreen) el.requestFullscreen();
+        if (el.requestFullscreen) el.requestFullscreen().catch(() => {});
         else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
         else if (el.msRequestFullscreen) el.msRequestFullscreen();
       });
