@@ -132,8 +132,12 @@ def test_annual_best_validation_and_monthly_card_remains():
     assert "2025年 年間ベストショット" in page
     assert page.count('data-selection-id="best-1"') == 2
     assert "🏆 年間ベスト" in page
-    assert page.count("本人が選んだ一枚") == 1
-    assert page.count("年間だけのコメント") == 1
+    from bs4 import BeautifulSoup
+    cards = BeautifulSoup(page, "html.parser").select(".best-shot-card")
+    assert [c.select_one(".best-shot-comment").text for c in cards] == ["年間だけのコメント", "本人が選んだ一枚"]
+    for card in cards:
+        caption = BeautifulSoup(card.select_one(".best-shot-photo")["data-sub-html"], "html.parser")
+        assert card.select_one(".best-shot-comment").text in caption.get_text()
     for annual in ({"2025": "missing"}, {"2024": "best-1"}, {"2025": "best-1", "2026": "best-1"}):
         with pytest.raises(best_shot_ui.BestShotConfigError):
             best_shot_ui.build_best_shot_model(config(annual=annual), portal())

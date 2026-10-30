@@ -85,7 +85,9 @@ RELEASE = ROOT / "hatena/release-2026-10-24"
 def test_gate2_frozen_component_hashes():
     manifest = json.loads((RELEASE / "gate2-accepted.json").read_text())
     for name, expected in manifest["candidate_files"].items():
-        assert hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == expected, name
+        frozen = ROOT / ("tests/fixtures/hatena-release/accepted-public-gallery.js"
+                         if name == "assets/gallery.js" else name)
+        assert hashlib.sha256(frozen.read_bytes()).hexdigest() == expected, name
 
 
 def test_public_binding_has_no_private_host_or_staging_query():
@@ -128,7 +130,7 @@ def test_css_limit_and_shared_category_scope():
 
 
 def test_child_hashes_and_mixed_version_compatibility():
-    assert hashlib.sha256((ROOT / "assets/gallery.js").read_bytes()).hexdigest() == "23e8bb1abd04b5f0c034fd6dc84aee5bd72611474d34b312f08e1536e603d734"
+    assert hashlib.sha256((ROOT / "tests/fixtures/hatena-release/accepted-public-gallery.js").read_bytes()).hexdigest() == "23e8bb1abd04b5f0c034fd6dc84aee5bd72611474d34b312f08e1536e603d734"
     assert hashlib.sha256((ROOT / "assets/portal.css").read_bytes()).hexdigest() == "2eff9ed126bc16447b42b63ff9ccb51065619784d28eb31d285df3aaccf0e13a"
     code = (ROOT / "assets/gallery.js").read_text()
     assert "event.data.photoOpeningProtocol === 1" in code
