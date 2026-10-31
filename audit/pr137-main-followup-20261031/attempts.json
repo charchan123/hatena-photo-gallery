@@ -1,0 +1,36 @@
+{
+  "local_initial_python": {
+    "status": "INCOMPLETE_FAILURE",
+    "setup_error_markers": 33,
+    "root_cause": "UNCONFIRMED"
+  },
+  "focused_sync": {
+    "passed": 34
+  },
+  "normal_full_retry": {
+    "passed": 1128
+  },
+  "final_full": {
+    "passed": 1131,
+    "skipped": 0,
+    "failed": 0
+  },
+  "local_browser": {
+    "status": "NOT_RUN_BROWSER_UNAVAILABLE",
+    "download_attempts": [
+      "playwright 1.62.1 chromium1234: invalid/truncated ZIP",
+      "playwright 1.58.0 chromium1208: invalid/truncated ZIP"
+    ],
+    "alternative_package_install": "FAILED_ENVIRONMENT_PERMISSIONS"
+  },
+  "cloudflare": {
+    "status": "NOT_RUN_NO_LOGIN_NO_APPROVAL",
+    "resources_created": 0,
+    "secrets_registered": 0,
+    "remote_migrations": 0,
+    "deployments": 0,
+    "billing_changes": 0
+  },
+  "physical_android": "NOT_RUN",
+  "user_windows_pc": "NOT_RUN"
+}

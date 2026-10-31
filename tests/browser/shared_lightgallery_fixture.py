@@ -14,9 +14,12 @@ import requests
 root = Path(sys.argv[1]).resolve()
 root.mkdir(parents=True, exist_ok=True)
 repo = Path(__file__).resolve().parents[2]
-with tarfile.open(fileobj=io.BytesIO(subprocess.check_output(['git', 'archive', 'origin/gh-pages']))) as archive:
-    archive.extractall(root / 'before', filter='data')
-shutil.copytree(root / 'before', root / 'after', dirs_exist_ok=True)
+# The original regression deliberately compares the old native dialog/star gaps
+# with the shared gallery. Keep that historical acceptance test after publication.
+baseline = sys.argv[2] if len(sys.argv) > 2 else 'origin/gh-pages'
+for variant, ref in [('before', baseline), ('after', 'origin/gh-pages')]:
+    with tarfile.open(fileobj=io.BytesIO(subprocess.check_output(['git', 'archive', ref]))) as archive:
+        archive.extractall(root / variant, filter='data')
 for name in ['gallery.js', 'record-stars.js', 'record-stars.css']:
     shutil.copy2(repo / 'assets' / name, root / 'after/assets' / name)
 portal = json.loads((root / 'before/portal-data.json').read_text())
@@ -35,6 +38,7 @@ parent = (repo / 'hatena/release-2026-10-24/footer-managed.html').read_text()
 handler = parent[parent.rfind('<script>'):]
 (root / 'parent-template.html').write_text('''<!doctype html><meta charset=utf-8><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0}header{height:300px}#kinoko-home-portal{margin:0}iframe{width:100%;border:0}html{overflow-y:scroll}</style><header>Isolated parent replay</header><section id="kinoko-home-portal"><iframe id="photoGallery" title="child" src="CHILD_URL" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation-by-user-activation" scrolling="no"></iframe></section>''' + handler)
 (root / 'manifest.json').write_text(json.dumps({
+    'historical_comparison': subprocess.check_output(['git', 'rev-parse', baseline], text=True).strip(),
     'main': subprocess.check_output(['git', 'rev-parse', 'origin/main'], text=True).strip(),
     'published': subprocess.check_output(['git', 'rev-parse', 'origin/gh-pages'], text=True).strip(),
     'best_shots': len(json.loads((repo / 'data/best-shots.json').read_text())['entries']),

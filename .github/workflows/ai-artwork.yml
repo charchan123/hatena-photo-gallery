@@ -7,6 +7,8 @@ on:
       - 'assets/*.css'
       - 'main.py'
       - 'tests/browser/ai_artwork*'
+      - 'tests/browser/comments_integration_protection.py'
+      - 'comments/staging/**'
       - 'tests/test_ai_artwork.py'
       - 'audit/ai-image-refresh-20261031/**'
       - '.github/workflows/ai-artwork.yml'

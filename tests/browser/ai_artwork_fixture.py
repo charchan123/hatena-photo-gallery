@@ -14,6 +14,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 import requests
 from bs4 import BeautifulSoup
 import main
+from comments_integration_protection import assert_reviewed_source
 from best_shot_ui import generate_best_shot_pages
 from detail_ui import build_detail_views
 from records_ui import build_observation_records, generate_records_page
@@ -72,7 +73,12 @@ for variant, module in [('before', before), ('after', main)]:
         for p in (repo / 'assets').glob('*.css'):
             (out / 'assets' / p.name).write_bytes(git('show', f'{base}:assets/{p.name}'))
         for record in manifest['assets']:
-            (out / 'assets' / record['asset']).unlink(missing_ok=True)
+            asset = 'assets/' + record['asset']
+            # A later integration baseline already contains the approved artwork.
+            # Keep it when tracked there; original replacement baselines lack it.
+            if subprocess.run(['git','cat-file','-e',f'{base}:{asset}'],cwd=repo,
+                              stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL).returncode:
+                (out / asset).unlink(missing_ok=True)
 # All generated content, links, photos and captions must be identical: only paint changes.
 html_files = sorted((root / 'after').glob('*.html'))
 assert html_files
@@ -104,7 +110,7 @@ protected = [p for p in git('ls-tree','-rz','--name-only',base).decode().split('
 hashes = {}
 for p in protected:
     before_bytes = git('show', f'{base}:{p}')
-    assert before_bytes == (repo / p).read_bytes(), p
+    assert_reviewed_source(base, p, (repo / p).read_bytes())
     hashes[p] = hashlib.sha256(before_bytes).hexdigest()
 for p in ('portal-data.json','article-sync-snapshot.json','research-comment-cases.json','research-comments-config.json'):
     assert (root/'published'/p).read_bytes() == (root/'after'/p).read_bytes(), p

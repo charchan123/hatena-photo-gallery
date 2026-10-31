@@ -36,11 +36,18 @@ jobs:
           git fetch origin gh-pages
       - name: Identity, D1 SQL migrations, API security, signed backup and restoration
         run: |
-          python -m pytest -q tests/test_research_comments.py tests/test_comments_staging.py
+          python -m pytest -q tests/test_research_comments.py tests/test_comments_staging.py tests/test_comments_preflight.py
           python comments/tools/seed.py
           git diff --exit-code -- comments/migrations/0003_reviewed_cases.sql
           node --test comments/tests/api.test.mjs comments/tests/staging.test.mjs
           python comments/staging/build.py
+          python tests/browser/comments_integration_protection.py "${{ runner.temp }}/comments-protection.json" "${{ github.event.pull_request.base.sha }}"
+      - name: Bundle closed staging template without Cloudflare authentication or deployment
+        env:
+          WRANGLER_SEND_METRICS: 'false'
+        run: |
+          npm install --prefix "${{ runner.temp }}/comments-wrangler" --no-save --ignore-scripts --no-audit --no-fund wrangler@4.151.3
+          node "${{ runner.temp }}/comments-wrangler/node_modules/wrangler/bin/wrangler.js" deploy --dry-run --config comments/staging/wrangler.example.jsonc --outdir "${{ runner.temp }}/comments-bundle"
       - name: Real isolated public UI, local Worker-SQLite and Windows-compatible admin
         env:
           PLAYWRIGHT_MODULE_PATH: ${{ runner.temp }}/comments-browser/node_modules/playwright
@@ -52,5 +59,7 @@ jobs:
         if: always()
         with:
           name: research-comments-${{ matrix.os }}-${{ github.event.pull_request.head.sha }}
-          path: ${{ runner.temp }}/research-comments-evidence/
+          path: |
+            ${{ runner.temp }}/research-comments-evidence/
+            ${{ runner.temp }}/comments-protection.json
           retention-days: 30

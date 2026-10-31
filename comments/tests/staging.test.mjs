@@ -8,7 +8,7 @@ async function setup(t) {const s=await stagingFixture();t.mock.method(globalThis
 
 test("JWT required on UI, assets, config, manifest, public/admin API and OPTIONS",async t=>{
   const s=await setup(t);
-  for(const path of ['/','/research.html','/assets/research-comments.js','/assets/synthetic.svg','/research-comments-config.json','/research-comment-cases.json',s.route,'/admin/cases']) {
+  for(const path of ['/','/research.html','/assets/research-comments.js','/assets/research.css','/assets/staging.css','/assets/synthetic.svg','/assets/unknown.json','/research-comments-config.json','/research-comment-cases.json',s.route,'/admin/cases']) {
     for(const token of [undefined,'forged.token.signature']) assert.equal((await s.call(path,{token})).status,403,path);
   }
   assert.equal((await s.call(s.route,{method:'OPTIONS',headers:{Origin:ORIGIN}})).status,403);
