@@ -28,6 +28,7 @@ const mime=f=>({'.html':'text/html','.js':'text/javascript','.css':'text/css','.
     const portrait=[...u.pathname].reduce((sum,c)=>sum+c.charCodeAt(0),0)%2===0;
     return route.fulfill({contentType:'image/svg+xml',body:svg(portrait?600:1200,portrait?900:600,portrait?'Portrait':'Landscape')});
    }
+   if(u.origin===CH&&blockedVendor&&u.pathname.includes('/lightgallery/'))return route.abort();
    if(u.origin===CH){const file=path.resolve(root,variant,'.'+decodeURIComponent(u.pathname.replace('/hatena-photo-gallery','')));if(file.startsWith(path.join(root,variant)+path.sep)&&fs.existsSync(file)&&fs.statSync(file).isFile())return route.fulfill({path:file,contentType:mime(file)});}
    return route.abort();
   });
@@ -37,7 +38,7 @@ const mime=f=>({'.html':'text/html','.js':'text/javascript','.css':'text/css','.
   });
   const p=await c.newPage();p.on('pageerror',e=>errors.push(e.message));return {c,p,requested};
  }
- const settle=f=>f.waitForFunction(()=>document.querySelector('.best-shot-photo[data-lg-id],.gallery-item[data-lg-id]'));
+ const settle=f=>f.waitForFunction(()=>document.querySelector('[data-best-shot-gallery-ready],.gallery-item[data-lg-id]'));
  async function bounds(f){
   await f.waitForFunction(()=>{const e=document.querySelector('.lg-current img.lg-object');return e?.complete&&e.naturalWidth>0});await f.waitForTimeout(800);
   return f.locator('.lg-current img.lg-object').evaluate(e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height,vw:innerWidth,vh:innerHeight,ratio:e.naturalWidth/e.naturalHeight}});

@@ -8,7 +8,7 @@ import os
 import re
 import shutil
 from urllib.parse import urlparse
-from gallery_dependencies import LIGHTGALLERY_TAGS
+from gallery_dependencies import BEST_SHOT_LIGHTGALLERY_TAGS
 
 
 SCHEMA_VERSION = 1
@@ -303,8 +303,7 @@ def _document(title, body):
 <title>{html.escape(title)}</title>
 <link rel="stylesheet" href="assets/gallery.css">
 <link rel="stylesheet" href="assets/best-shots.css">
-{LIGHTGALLERY_TAGS}
-<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+{BEST_SHOT_LIGHTGALLERY_TAGS}
 <script src="assets/gallery.js" defer></script>
 </head>
 <body class="best-shots-index">

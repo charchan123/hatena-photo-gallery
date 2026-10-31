@@ -44,8 +44,8 @@ def move_monthly_badges_only(document):
 def without_shared_gallery_additions(document):
     # Validate each new caption and exact shared dependency before comparing
     # the entire remaining document against the historical renderer.
-    from gallery_dependencies import LIGHTGALLERY_TAGS
-    dependencies = LIGHTGALLERY_TAGS + '\n<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>'
+    from gallery_dependencies import BEST_SHOT_LIGHTGALLERY_TAGS
+    dependencies = BEST_SHOT_LIGHTGALLERY_TAGS
     assert document.count(dependencies) == 1
     soup = BeautifulSoup(document.replace(dependencies, ''), 'html.parser')
     for card in soup.select('.best-shot-card'):

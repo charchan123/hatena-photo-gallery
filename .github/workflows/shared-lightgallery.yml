@@ -43,12 +43,17 @@ jobs:
       - name: PC and mobile shared gallery and native star layout
         env:
           PLAYWRIGHT_MODULE_PATH: /tmp/shared-gallery-browser/node_modules/playwright
-        run: node tests/browser/shared_lightgallery.cjs /tmp/shared-gallery
+        run: |
+          node tests/browser/shared_lightgallery.cjs /tmp/shared-gallery
+          node tests/browser/shared_lightgallery_safety.cjs /tmp/shared-gallery
+          python tests/browser/shared_lightgallery_protection.py /tmp/shared-gallery/protection.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: shared-gallery-${{ github.event.pull_request.head.sha }}
           path: |
+            /tmp/shared-gallery/safety*.json
+            /tmp/shared-gallery/protection.json
             /tmp/shared-gallery/result.json
             /tmp/shared-gallery/failure.json
             /tmp/shared-gallery/manifest.json

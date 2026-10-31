@@ -40,3 +40,8 @@ Draft PR: https://github.com/charchan123/hatena-photo-gallery/pull/139
 本番ページ、main、はてなデザイン、Cloudflare、写真/図鑑/Best Shotデータ、日次同期に対する変更・実行なし。専用ブランチ/Draft PRだけへ保存する。
 
 最終CIの結果を確認してDraft・未マージで停止する。本番反映は、PRレビュー後のmainマージと既存の自動生成・Pages公開への別途承認が必要。はてな親側3欄の保存/復元は不要。
+
+## 追加レビューの追跡
+
+同日、画像待ち・親通信前操作・CDN遅延の追加検証を実施。
+既存記録は上記のまま保持し、結果と追加修正を `audit/pr139-final-safety-2026-10-31/REPORT.md` に追記管理する。
