@@ -3,8 +3,8 @@
 .portal-records-hero,.portal-explore,.portal-independent-links .portal-card { overflow:hidden; border:1px solid var(--portal-panel-border); border-radius:var(--portal-panel-radius); background:var(--portal-paper); box-shadow:0 10px 30px rgba(42,61,45,.09); }
 .portal-records-hero,.portal-explore { display:flex; flex-direction:column; }
 .portal-records-visual,.portal-section-visual { position:relative; display:grid; height:150px; overflow:hidden; background-position:center; background-size:cover; isolation:isolate; }
-.portal-records-visual { background-image:url("field-notes-observation-final.webp"); background-size:cover; background-position:center center; background-repeat:no-repeat; }
-.portal-section-visual--explore { background-image:url("mushroom-guide-final.webp"); background-position:center center; background-size:cover; background-repeat:no-repeat; }
+.portal-records-visual { background-image:url("ai-field-notes-20261031.webp"); background-size:cover; background-position:center center; background-repeat:no-repeat; }
+.portal-section-visual--explore { background-image:url("ai-mushroom-guide-20261031.webp"); background-position:center center; background-size:cover; background-repeat:no-repeat; }
 .portal-visual-shade { position:absolute; z-index:0; inset:0; background:linear-gradient(to top,rgba(10,25,16,.70),rgba(10,25,16,.18) 55%,transparent); pointer-events:none; }
 .portal-records-heading,.portal-section-heading { z-index:1; align-self:end; width:100%; padding:24px 28px 20px; box-sizing:border-box; color:#fff; text-shadow:0 1px 3px rgba(8,20,12,.42); }
 .portal-eyebrow { margin:0 0 6px; color:inherit; font-size:.69rem; font-weight:800; letter-spacing:.18em; }
@@ -45,15 +45,15 @@
 .portal-card { position:relative; display:grid; min-height:130px; overflow:hidden; border-radius:16px; color:#fff; text-decoration:none; isolation:isolate; transition:transform .2s ease,box-shadow .2s ease; }
 .portal-guide-row .portal-card { background:linear-gradient(145deg,#426745,#173c2b 72%,#102f22); }
 /* Approved watercolor images are exclusive to new-top's three guide cards. */
-.portal-index .portal-guide-row .portal-card--guide .portal-card__visual { background-image:url("new-top-guide-watercolor.webp"); }
-.portal-index .portal-guide-row .portal-card--season .portal-card__visual { background-image:url("new-top-season-watercolor.webp"); }
-.portal-index .portal-guide-row .portal-card--features .portal-card__visual { background-image:url("new-top-features-watercolor.webp"); }
+.portal-index .portal-guide-row .portal-card--guide .portal-card__visual { background-image:url("ai-guide-book-20261031.webp"); }
+.portal-index .portal-guide-row .portal-card--season .portal-card__visual { background-image:url("ai-season-20261031.webp"); }
+.portal-index .portal-guide-row .portal-card--features .portal-card__visual { background-image:url("ai-features-20261031.webp"); }
 .portal-index .portal-guide-row .portal-card__visual { background-position:center; background-size:cover; background-repeat:no-repeat; filter:none; }
 .portal-index .portal-guide-row .portal-card__content { background:linear-gradient(90deg,rgba(0,0,0,.38),rgba(0,0,0,.20)); }
 .portal-card__visual,.portal-card__content { grid-area:1/1; }
 .portal-card__visual { background:radial-gradient(circle at 78% 25%,rgba(255,228,151,.18),transparent 28%),linear-gradient(140deg,#567358,#173c2b); background-position:center; background-size:cover; }
-.portal-card--research .portal-card__visual { background-image:url("research-lab-cabin.webp"); background-position:78% center; background-size:cover; background-repeat:no-repeat; }
-.portal-index .portal-card--best-shots .portal-card__visual { background-image:url("new-top-best-shots-camera-mushrooms.webp"); background-position:50% 58%; background-size:cover; background-repeat:no-repeat; }
+.portal-card--research .portal-card__visual { background-image:url("ai-research-lab-20261031.webp"); background-position:78% center; background-size:cover; background-repeat:no-repeat; }
+.portal-index .portal-card--best-shots .portal-card__visual { background-image:url("ai-best-shots-20261031.webp"); background-position:50% 58%; background-size:cover; background-repeat:no-repeat; }
 .portal-independent-links .portal-card__visual { filter:brightness(1.10) saturate(1.02); }
 .portal-card__content { z-index:1; display:block; align-self:end; padding:42px 18px 17px; background:linear-gradient(to top,rgba(10,25,16,.82),rgba(10,25,16,.22) 72%,transparent); }
 .portal-card__copy { display:grid; gap:5px; }

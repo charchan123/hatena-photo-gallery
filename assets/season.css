@@ -37,7 +37,7 @@ body.season-index {
   overflow:hidden;
   background:
     linear-gradient(90deg,rgba(11,34,20,.74) 0%,rgba(11,34,20,.46) 38%,rgba(11,34,20,.10) 68%,rgba(11,34,20,.03) 100%),
-    url("guide-action-season.webp") 66% 50%/cover no-repeat;
+    url("ai-season-20261031.webp") 66% 50%/cover no-repeat;
 }
 
 .season-index .season-hero::after {
