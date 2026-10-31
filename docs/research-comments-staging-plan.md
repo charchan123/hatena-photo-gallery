@@ -73,7 +73,7 @@ AccessをWorker単位のAll trafficで保護し、認証なしのAPI・UI・stat
 4. 対象DBの名前・IDを照合してから、staging専用設定を明示してmigration3本を適用。defaultの `comments/wrangler.jsonc` に対するremote実行は禁止。D1のinstallation_id、66 cases、aliases、registry SHA、FK/triggerを検証する。
 5. AccessのAll traffic、特定管理者・限定service tokenだけを許可。独自routeなし、preview無効を維持。未認証拒否を確認できるまでUI/APIを有効にしない。新Worker以外のAccessを変更しない。
 6. 実Turnstile hostnameを照合し、staging内だけREAD/WRITEを一時有効にする。連打試験は小規模で既存3/分・20/日の制限を維持し、試験を分割して実行。回数枠を緩めない。ページング用21件以上の合成レコードは、承認したstaging DBへのfixture seedとして用意し、投稿制限を回避した本番APIの試験と混同しない。
-7. [試験表](../audit/research-comments-staging-2026-10-22/test-matrix.json)を実行。実API・実D1・実Turnstile・障害注入・mock・Android実機の証跡を区別する。秘密付きcurl、raw HAR、token付きURLやログをGitHubへ保存しない。
+7. [引き継いだ試験表](../audit/pr137-main-followup-20261031/inherited-test-matrix.json)を実行。実API・実D1・実Turnstile・障害注入・mock・Android実機の証跡を区別する。秘密付きcurl、raw HAR、token付きURLやログをGitHubへ保存しない。
 8. 終了時はstaging WRITE=false、READ=false、releaseをnot-approvedへ戻し、Access保護を残す。新規投稿を拒否すること、本番Pages enabled=falseを確認。必要ならrouteも無効化する。エラーで終了しても最初に受付を閉じる。
 9. ステージングDBの本人削除は合成コメントに限定。DB自体の削除やservice tokenの失効などは対象を提示し別承認を得る。検証用リソースは勝手に消さず、保存・破棄期限を決める。
 
