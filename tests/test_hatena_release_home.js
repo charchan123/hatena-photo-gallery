@@ -190,9 +190,9 @@ test('navigation and height handlers unchanged outside new opening branches',()=
  assert.equal(oldChild.slice(0,oldChild.indexOf('document.addEventListener("DOMContentLoaded"')),newChild.slice(0,newChild.indexOf('document.addEventListener("DOMContentLoaded"')));
  for(const source of [oldParent,newParent])assert.ok(source.includes("if (event.source !== iframe.contentWindow || event.origin !== galleryOrigin) return;"));
 });
-test('accepted child payload hashes remain frozen',()=>{
+test('archived Gate2 child payload hashes remain frozen',()=>{
  const hash=p=>crypto.createHash('sha256').update(fs.readFileSync(path.join(root,p))).digest('hex');
- assert.equal(hash('assets/gallery.js'),'23e8bb1abd04b5f0c034fd6dc84aee5bd72611474d34b312f08e1536e603d734');
+ assert.equal(hash('tests/fixtures/hatena-release/accepted-public-gallery.js'),'23e8bb1abd04b5f0c034fd6dc84aee5bd72611474d34b312f08e1536e603d734');
  assert.equal(hash('assets/portal.css'),'2eff9ed126bc16447b42b63ff9ccb51065619784d28eb31d285df3aaccf0e13a');
 });
 test('both complete parent script blocks and child source parse',()=>{

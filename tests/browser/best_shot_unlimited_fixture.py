@@ -3,6 +3,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 import hashlib
 import json
+import re
 import subprocess
 import sys
 import types
@@ -40,9 +41,30 @@ def move_monthly_badges_only(document):
             card.select_one('.best-shot-photo').insert(0, badge.extract())
     return str(soup)
 
-assert move_monthly_badges_only(before.render_best_shot_page(old_model)) == str(BeautifulSoup(current.render_best_shot_page(baseline_model), 'html.parser'))
+def without_shared_gallery_additions(document):
+    # Validate each new caption and exact shared dependency before comparing
+    # the entire remaining document against the historical renderer.
+    from gallery_dependencies import BEST_SHOT_LIGHTGALLERY_TAGS
+    dependencies = BEST_SHOT_LIGHTGALLERY_TAGS
+    assert document.count(dependencies) == 1
+    soup = BeautifulSoup(document.replace(dependencies, ''), 'html.parser')
+    for card in soup.select('.best-shot-card'):
+        link = card.select_one('.best-shot-photo')
+        caption = BeautifulSoup(link['data-sub-html'], 'html.parser')
+        assert caption.h4.text == card.h3.text
+        for field in card.select('.best-shot-meta, .best-shot-comment'):
+            assert field.text in caption.get_text()
+        del link['data-sub-html']
+    return re.sub(r'>\s+<', '><', str(soup))
+
+
+def comparable_before(document):
+    return re.sub(r'>\s+<', '><', move_monthly_badges_only(document))
+
+
+assert comparable_before(before.render_best_shot_page(old_model)) == without_shared_gallery_additions(current.render_best_shot_page(baseline_model))
 for old, new in zip(old_model['years'], baseline_model['years']):
-    assert move_monthly_badges_only(before.render_best_shot_year_page(old)) == str(BeautifulSoup(current.render_best_shot_year_page(new), 'html.parser'))
+    assert comparable_before(before.render_best_shot_year_page(old)) == without_shared_gallery_additions(current.render_best_shot_year_page(new))
 
 # Independently validate the actual PR configuration with the current code.
 config = json.loads(Path('data/best-shots.json').read_text())

@@ -149,18 +149,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Best Shot used raw _top images; research used raw _blank images. Intercept
+  // Research retains its existing raw-image fallback. Intercept
   // only an ordinary unmodified primary activation, and only with a viewport host.
   let shotDialog = null, shotIndex = 0, shotTrigger = null, shotTouch = null;
-  const shots = Array.from(document.querySelectorAll('a.best-shot-photo, a.research-photo'));
+  const shots = Array.from(document.querySelectorAll('a.research-photo'));
   let pendingShot = null, shotRequestSequence = 0;
-  function presentShot(requestId = null) {
+  function presentShot(requestId = null, present = null, onFailure = null) {
     try {
-      shotDialog.showModal();
-      shotDialog.querySelector('.shot-close').focus({preventScroll:true});
+      if (present) present();
+      else {
+        shotDialog.showModal();
+        shotDialog.querySelector('.shot-close').focus({preventScroll:true});
+      }
     } catch (_) {
       if (overlayParentOrigin) parent.postMessage(requestId
         ? {type:'photoOpeningCancel', id:requestId} : {type:'lgClosed'}, overlayParentOrigin);
+      onFailure?.();
       console.warn('写真の拡大を開始できませんでした。');
     }
   }
@@ -171,8 +175,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const request = pendingShot;
     pendingShot = null;
     clearTimeout(request.timer);
-    if (event.data.ok) presentShot(request.id);
-    else console.warn('写真の拡大準備を確認できませんでした。');
+    if (event.data.ok) presentShot(request.id, request.present, request.onFailure);
+    else {
+      if (request.onFailure) {
+        parent.postMessage({type:'photoOpeningCancel', id:request.id}, overlayParentOrigin);
+        request.onFailure();
+      }
+      console.warn('写真の拡大準備を確認できませんでした。');
+    }
   });
   function closeShot() { if (shotDialog?.open) shotDialog.close(); }
   function selectShot(index) {
@@ -214,24 +224,29 @@ document.addEventListener("DOMContentLoaded", () => {
       }, {passive:true});
     }
     shotTrigger = link; selectShot(shots.indexOf(link));
+    requestPhotoOpening();
+  }
+  function requestPhotoOpening(present = null, onFailure = null) {
+    if (pendingShot) return;
     if (overlayParentOrigin && photoOpeningProtocol) {
       const id = `photo-${Date.now()}-${++shotRequestSequence}`;
       const timer = setTimeout(() => {
         if (pendingShot?.id !== id) return;
         pendingShot = null;
         parent.postMessage({type:'photoOpeningCancel', id}, overlayParentOrigin);
+        onFailure?.();
         console.warn('写真の拡大準備がタイムアウトしました。もう一度写真を選んでください。');
       }, 2000);
-      pendingShot = {id, timer};
+      pendingShot = {id, timer, present, onFailure};
       parent.postMessage({type:'photoOpening', id}, overlayParentOrigin);
       return;
     }
     // An older host did not advertise the protocol; preserve its existing path.
     if (overlayParentOrigin) parent.postMessage({type:'lgOpening'}, overlayParentOrigin);
-    presentShot();
+    presentShot(null, present, onFailure);
   }
   document.addEventListener('click', event => {
-    const link = event.target.closest?.('a.best-shot-photo, a.research-photo');
+    const link = event.target.closest?.('a.research-photo');
     if (!link || !shots.includes(link) || event.defaultPrevented || event.button !== 0 ||
         event.ctrlKey || event.metaKey || event.shiftKey || event.altKey ||
         typeof HTMLDialogElement === 'undefined' || (parent !== window && !overlayParentOrigin)) return;
@@ -349,7 +364,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // ④ 親iframe側へ「閉じた」を通知（あなたの既存仕様と整合）
       try {
-        window.parent.postMessage({ type: "lgClosed" }, "*");
+        if (lgInstance?.settings.selector !== "a.best-shot-photo") window.parent.postMessage({ type: "lgClosed" }, "*");
       } catch (e) {}
     }
 
@@ -1048,10 +1063,23 @@ function refreshDetailMosaic(gallery) {
 // .gallery / .favorite-gallery 両対応
 // =========================
 const galleries = document.querySelectorAll(
-  ".gallery, .favorite-gallery"
+  ".gallery, .favorite-gallery, .best-shots-page"
 );
 
 galleries.forEach(gallery => {
+  const isBestShot = gallery.classList.contains("best-shots-page");
+  let bestShotTrigger = null;
+  const bestShotNativeFallback = new WeakSet();
+  // A failed stylesheet can still expose a sheet object in Chromium. Require
+  // readable rules from our same-origin bundle, not just a truthy link.sheet.
+  let bestShotStyleReady = false;
+  if (isBestShot) {
+    try { bestShotStyleReady = document.querySelector("link[data-lightgallery-style]")?.sheet?.cssRules.length > 0; }
+    catch (_) { /* Missing/blocked styles retain native photograph links. */ }
+  }
+  if (isBestShot && (!bestShotStyleReady ||
+    ["lightGallery", "lgZoom", "lgThumbnail", "lgShare", "lgAutoplay"]
+      .some(name => typeof window[name] !== "function"))) return;
 
   // Detail galleries use the reference-style natural-ratio mosaic. Configure
   // the column count before images load so there is no square-grid flash.
@@ -1074,7 +1102,7 @@ galleries.forEach(gallery => {
     gallery.querySelectorAll("img").forEach(img => fadeObs.observe(img));
   }
 
-  imagesLoaded(gallery, () => {
+  function initializeGallery() {
     refreshDetailMosaic(gallery);
     gallery.style.visibility = "visible";
 
@@ -1089,6 +1117,8 @@ galleries.forEach(gallery => {
     // =========================
     const lg = lightGallery(gallery, {
       selector: "a.gallery-item",
+      // The parent restores its own captured position after the close animation.
+      ...(isBestShot ? {selector:"a.best-shot-photo", resetScrollPosition:false} : {}),
       plugins: [lgZoom, lgThumbnail, lgShare, lgAutoplay],
       speed: 400,
       closable: true,
@@ -1110,6 +1140,29 @@ galleries.forEach(gallery => {
       progressBar: true,
     });
 
+    // Use the same instance/options/styles as the guide. Capture activation before
+    // the vendor click handler so the authenticated parent snapshots scroll first.
+    if (isBestShot) {
+      gallery.addEventListener('click', event => {
+        const link = event.target.closest?.('a.best-shot-photo');
+        if (!link || !gallery.contains(link) || event.defaultPrevented || event.button !== 0 ||
+            event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        // Suppress the vendor handler, but keep the native photo link usable
+        // when this embedded host has not advertised the authenticated ACK.
+        event.stopImmediatePropagation();
+        if ((parent !== window && (!overlayParentOrigin || !photoOpeningProtocol)) ||
+            bestShotNativeFallback.has(link)) return;
+        event.preventDefault();
+        if (lg.lgOpened || pendingShot) return;
+        bestShotTrigger = link;
+        const index = Array.from(gallery.querySelectorAll('a.best-shot-photo')).indexOf(link);
+        requestPhotoOpening(() => lg.openGallery(index, link), () => {
+          bestShotNativeFallback.add(link);
+          link.title = '写真を直接開く（拡大表示との通信を確認できませんでした）';
+        });
+      }, true);
+    }
+
     // Wrapped captions can settle after LightGallery's initial measurement.
     // Re-reserve the measured caption and thumbnail height for the image area.
     function reserveCaptionSpace() {
@@ -1124,7 +1177,7 @@ galleries.forEach(gallery => {
     // LightGalleryイベント：お気に入り連携
     // =========================
     gallery.addEventListener('lgBeforeOpen', () => {
-      if (overlayParentOrigin) window.parent.postMessage({type:'lgOpening'}, overlayParentOrigin);
+      if (!isBestShot && overlayParentOrigin) window.parent.postMessage({type:'lgOpening'}, overlayParentOrigin);
     });
     gallery.addEventListener("lgAfterOpen", () => {
       reserveCaptionSpace();
@@ -1200,11 +1253,15 @@ galleries.forEach(gallery => {
         document.exitFullscreen().catch(() => {});
       }
 
-      // ★ 親へ通知（既存仕様）
-      window.parent.postMessage({ type: "lgClosed" }, "*");
+      // ★ Best Shot waits for the close animation; guide behavior is unchanged.
+      if (!isBestShot) window.parent.postMessage({ type: "lgClosed" }, "*");
     });
 
     gallery.addEventListener("lgAfterClose", () => {
+      if (isBestShot) {
+        bestShotTrigger?.focus({preventScroll:true});
+        if (overlayParentOrigin) window.parent.postMessage({type:"lgClosed"}, overlayParentOrigin);
+      }
       updateThumbnailFavorites();
       updateCardFavorites();
     });
@@ -1215,7 +1272,24 @@ galleries.forEach(gallery => {
         closeLGAndExitFullscreen(lg);
       }
     });
-  });
+  }
+  if (isBestShot) {
+    // The thumbnail plugin fetches its strip during construction. Wait for the
+    // first photo activation so it cannot defeat the card images' lazy loading.
+    function initializeBestShotOnClick(event) {
+      const link = event.target.closest?.('a.best-shot-photo');
+      if (!link || !gallery.contains(link) || event.defaultPrevented || event.button !== 0 ||
+          event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.stopImmediatePropagation();
+      if (parent !== window && (!overlayParentOrigin || !photoOpeningProtocol)) return;
+      event.preventDefault();
+      gallery.removeEventListener('click', initializeBestShotOnClick, true);
+      initializeGallery();
+      link.click();
+    }
+    gallery.addEventListener('click', initializeBestShotOnClick, true);
+    gallery.dataset.bestShotGalleryReady = 'true';
+  } else imagesLoaded(gallery, initializeGallery);
 
   if (gallery.classList.contains("gallery")
       && document.body.classList.contains("detail-page")) {

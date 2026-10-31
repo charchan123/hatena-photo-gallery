@@ -18,3 +18,9 @@
 .portal-index .record-stars-unconfirmed:focus{width:max-content;max-width:100%;height:auto;min-height:28px;clip-path:none;white-space:normal;padding:4px 6px;box-sizing:border-box;background:#fff;border-radius:4px;box-shadow:0 1px 6px #26352b33}
 @media(min-width:900px){.portal-index .portal-guide-list--3{grid-template-rows:repeat(3,minmax(min-content,1fr));align-content:stretch}}
 @media(hover:hover){.portal-index .record-preview-row .record-preview-excerpt:hover,.portal-index .record-stars-total:hover{text-decoration:underline}}
+
+/* Compact mobile previews without shrinking the official 28px touch targets. */
+@media(max-width:680px){
+ .portal-index .record-stars{width:fit-content;--record-star-scale:1}
+ .portal-index .record-stars-native{--record-star-control-width:32px}
+}

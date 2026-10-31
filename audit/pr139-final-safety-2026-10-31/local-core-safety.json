@@ -1,0 +1,174 @@
+{
+  "cases": [
+    {
+      "case": "uncompleted-or-failed-images",
+      "width": 320,
+      "failed": false,
+      "preOpenRequests": 0,
+      "heldRequests": 180
+    },
+    {
+      "case": "uncompleted-or-failed-images",
+      "width": 320,
+      "failed": true,
+      "preOpenRequests": 0,
+      "heldRequests": 180
+    },
+    {
+      "case": "uncompleted-or-failed-images",
+      "width": 360,
+      "failed": false,
+      "preOpenRequests": 0,
+      "heldRequests": 180
+    },
+    {
+      "case": "uncompleted-or-failed-images",
+      "width": 360,
+      "failed": true,
+      "preOpenRequests": 0,
+      "heldRequests": 180
+    },
+    {
+      "case": "uncompleted-or-failed-images",
+      "width": 390,
+      "failed": false,
+      "preOpenRequests": 1,
+      "heldRequests": 180
+    },
+    {
+      "case": "uncompleted-or-failed-images",
+      "width": 390,
+      "failed": true,
+      "preOpenRequests": 1,
+      "heldRequests": 181
+    },
+    {
+      "case": "uncompleted-or-failed-images",
+      "width": 430,
+      "failed": false,
+      "preOpenRequests": 1,
+      "heldRequests": 180
+    },
+    {
+      "case": "uncompleted-or-failed-images",
+      "width": 430,
+      "failed": true,
+      "preOpenRequests": 1,
+      "heldRequests": 181
+    },
+    {
+      "case": "uncompleted-or-failed-images",
+      "width": 1280,
+      "failed": false,
+      "preOpenRequests": 0,
+      "heldRequests": 180
+    },
+    {
+      "case": "uncompleted-or-failed-images",
+      "width": 1280,
+      "failed": true,
+      "preOpenRequests": 0,
+      "heldRequests": 180
+    },
+    {
+      "case": "parent-fallback",
+      "width": 390,
+      "mode": "noHost"
+    },
+    {
+      "case": "parent-fallback",
+      "width": 390,
+      "mode": "hostDelay"
+    },
+    {
+      "case": "parent-fallback",
+      "width": 390,
+      "mode": "legacy"
+    },
+    {
+      "case": "parent-fallback",
+      "width": 390,
+      "mode": "ackReject"
+    },
+    {
+      "case": "parent-fallback",
+      "width": 390,
+      "mode": "ackTimeout"
+    },
+    {
+      "case": "normal-ACK-both-close-paths",
+      "width": 390
+    },
+    {
+      "case": "dependency-fallback",
+      "width": 390,
+      "missingCSS": true
+    },
+    {
+      "case": "dependency-fallback",
+      "width": 390,
+      "missingJS": "lg-zoom.min.js"
+    },
+    {
+      "case": "dependency-fallback",
+      "width": 390,
+      "missingJS": "lightgallery.min.js"
+    },
+    {
+      "case": "uncompleted-scripts",
+      "width": 390
+    },
+    {
+      "case": "parent-fallback",
+      "width": 1280,
+      "mode": "noHost"
+    },
+    {
+      "case": "parent-fallback",
+      "width": 1280,
+      "mode": "hostDelay"
+    },
+    {
+      "case": "parent-fallback",
+      "width": 1280,
+      "mode": "legacy"
+    },
+    {
+      "case": "parent-fallback",
+      "width": 1280,
+      "mode": "ackReject"
+    },
+    {
+      "case": "parent-fallback",
+      "width": 1280,
+      "mode": "ackTimeout"
+    },
+    {
+      "case": "normal-ACK-both-close-paths",
+      "width": 1280
+    },
+    {
+      "case": "dependency-fallback",
+      "width": 1280,
+      "missingCSS": true
+    },
+    {
+      "case": "dependency-fallback",
+      "width": 1280,
+      "missingJS": "lg-zoom.min.js"
+    },
+    {
+      "case": "dependency-fallback",
+      "width": 1280,
+      "missingJS": "lightgallery.min.js"
+    },
+    {
+      "case": "uncompleted-scripts",
+      "width": 1280
+    }
+  ],
+  "errors": [],
+  "physicalAndroid": false,
+  "transport": "isolated SVG / fault-injected messages; no real star writes",
+  "checks": 2849
+}
