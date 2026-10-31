@@ -87,7 +87,7 @@ def test_season_page_reuses_shared_gallery_behavior_in_new_pc_layout():
     css = (Path(main.ASSETS_DIR) / "season.css").read_text(encoding="utf-8")
     assert "body.season-index" in css
     assert "width:min(100%,1180px)" in css
-    assert 'url("guide-action-season.webp")' in css
+    assert 'url("ai-season-20261031.webp")' in css
     assert "grid-template-columns:repeat(4,minmax(0,1fr))" in css
     assert ".season-index .season-results[hidden] { display:none; }" in css
 

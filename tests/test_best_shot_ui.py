@@ -181,9 +181,9 @@ def test_best_shot_pc_visual_contract():
     assert 'id="gallery-content-root"' in page
     assert "body.best-shots-index" in css
     assert "width:min(100%,1180px)" in css
-    assert 'url("new-top-best-shots-camera-mushrooms.webp")' in css
-    assert 'url("research-lab-final.webp")' not in css
-    assert (Path("assets") / "new-top-best-shots-camera-mushrooms.webp").is_file()
+    assert 'url("ai-best-shots-20261031.webp")' in css
+    assert 'url("ai-research-lab-20261031.webp")' not in css
+    assert (Path("assets") / "ai-best-shots-20261031.webp").is_file()
     assert "grid-template-columns:repeat(2,minmax(0,1fr))" in css
     assert ".best-shots-index .annual-best" in css
     assert ".best-shots-index .annual-best { margin:0 0 28px; padding:18px; border:1px solid #242a26; border-radius:16px; background:#0c0f0d;" in css

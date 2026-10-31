@@ -138,7 +138,7 @@ def test_page_and_css_design_contract():
     assert 'src="assets/gallery.js" defer' in page
     assert "body.research-index" in css
     assert "width:min(100%,1180px)" in css
-    assert 'url("research-lab-cabin.webp")' in css
+    assert 'url("ai-research-lab-20261031.webp")' in css
     assert "grid-template-columns:repeat(2,minmax(0,1fr))" in css
     assert "overflow-wrap:anywhere" in css
     for selector in (".research-status.is-unidentified", ".research-status.is-candidate",

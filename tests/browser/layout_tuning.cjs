@@ -5,7 +5,8 @@ const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),
 const root=path.resolve(process.argv[2]),fixture=JSON.parse(fs.readFileSync(path.join(root,'fixture.json')));
 const out=path.resolve(process.argv[3]||path.join(root,'results'));fs.mkdirSync(out,{recursive:true});
 const {standalonePortalCSS}=require('./standalone_portal_css.cjs');
-const standaloneUnchanged=standalonePortalCSS(fs.readFileSync(path.join(root,'before/assets/portal.css'),'utf8'))===standalonePortalCSS(fs.readFileSync(path.join(root,'after/assets/portal.css'),'utf8'));
+const layoutCSS=s=>standalonePortalCSS(s).replace(/url\([^)]*\)/g,'url(artwork)');
+const standaloneUnchanged=layoutCSS(fs.readFileSync(path.join(root,'before/assets/portal.css'),'utf8'))===layoutCSS(fs.readFileSync(path.join(root,'after/assets/portal.css'),'utf8'));
 // A host-breakpoint change alone is not a request to enlarge thumbnails again.
 // Keep the stricter equal-height/whitespace assertions for unchanged standalone CSS.
 if(standaloneUnchanged)process.env.LAYOUT_EXPECT_UNCHANGED='1';

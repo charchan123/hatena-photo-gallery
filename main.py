@@ -201,25 +201,19 @@ def copy_shared_assets():
         "update-notices.js",
         "guide.css",
         "aiuo.css",
-        "field-notes-observation-final.webp",
-        "mushroom-guide-final.webp",
-        "research-lab-final.webp",
-        "best-shots-final.webp",
-        "new-top-best-shots-camera-mushrooms.webp",
-        "new-top-guide-watercolor.webp",
-        "new-top-season-watercolor.webp",
-        "new-top-features-watercolor.webp",
-        "guide-action-book.webp",
-        "guide-action-season.webp",
-        "guide-action-features.webp",
-        "research-lab-cabin.webp",
-        "hero-amanita-background.webp",
-        "hero-amanita-cutout.png",
     ):
         shutil.copy2(
             os.path.join(ASSETS_DIR, filename),
             os.path.join(output_assets_dir, filename),
         )
+
+    # UI artwork is copied from its asset directory, including unreferenced legacy
+    # files needed by cached older CSS. Current CSS selects only versioned artwork.
+    for filename in os.listdir(ASSETS_DIR):
+        source = os.path.join(ASSETS_DIR, filename)
+        if filename.lower().endswith((".webp", ".png")) and os.path.isfile(source):
+            shutil.copy2(source, os.path.join(output_assets_dir, filename))
+
 
 # ===========================
 # EXIF キャッシュ

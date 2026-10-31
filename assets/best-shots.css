@@ -4,7 +4,7 @@ body.best-shots-index { max-width:none; margin:0; padding:0; background:#f7fcf4;
 .best-shots-index a { color:inherit; }
 .best-shots-index .best-shots-page { width:min(100%,1180px); margin:0 auto; padding:24px 22px 52px; }
 .best-shots-index .best-shots-hub,.best-shots-index .best-shots-content { overflow:hidden; border:1px solid #dce7d9; border-radius:22px; background:#fff; box-shadow:0 14px 36px rgba(39,63,44,.08); }
-.best-shots-index .best-shots-hero { position:relative; min-height:220px; overflow:hidden; background:linear-gradient(90deg,rgba(11,34,20,.74),rgba(11,34,20,.42) 38%,rgba(11,34,20,.08) 70%,rgba(11,34,20,.02)),url("new-top-best-shots-camera-mushrooms.webp") 72% 50%/cover no-repeat; }
+.best-shots-index .best-shots-hero { position:relative; min-height:220px; overflow:hidden; background:linear-gradient(90deg,rgba(11,34,20,.74),rgba(11,34,20,.42) 38%,rgba(11,34,20,.08) 70%,rgba(11,34,20,.02)),url("ai-best-shots-20261031.webp") 72% 50%/cover no-repeat; }
 .best-shots-index .best-shots-back-link { position:absolute; z-index:2; top:18px; left:22px; display:inline-flex; align-items:center; min-height:34px; padding:0 13px; border:1px solid rgba(255,255,255,.34); border-radius:999px; background:rgba(17,48,30,.48); color:#fff; font-size:.78rem; font-weight:700; text-decoration:none; backdrop-filter:blur(6px); }
 .best-shots-index .best-shots-hero-copy { position:absolute; left:46px; top:50%; width:min(570px,60%); transform:translateY(-38%); color:#fff; text-shadow:0 2px 10px rgba(0,0,0,.44); }
 .best-shots-index .best-shots-eyebrow { display:block; margin:0 0 6px; color:inherit; font-size:.68rem; font-weight:850; letter-spacing:.16em; }

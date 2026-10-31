@@ -53,7 +53,13 @@ const server=http.createServer((req,res)=>{
    for(let i=0;i<boxes.length;i++){
     const box=boxes[i],old=comparison.before[i];
     check(Math.abs(box.card.height-old.card.height)<=.02,true);check(box.card.width,old.card.width);
-    check(Math.abs(box.content.height-old.content.height)<=.02,true);check(box.signature,old.signature);
+    check(Math.abs(box.content.height-old.content.height)<=.02,true);
+    // Only these two intentional artwork replacements may differ from the
+    // historical notice baseline; every layout, typography and effect field stays exact.
+    const expectedSignature={...old.signature,background:old.signature.background
+     .replace('assets/research-lab-cabin.webp','assets/ai-research-lab-20261031.webp')
+     .replace('assets/new-top-best-shots-camera-mushrooms.webp','assets/ai-best-shots-20261031.webp')};
+    check(box.signature,expectedSignature);
     check(Math.abs(box.detailsReservation)<.02,true);
     check(Math.abs(box.belowDescription-box.paddingBottom-box.bottomBorder)<.02,true);
     if(box.notice){
