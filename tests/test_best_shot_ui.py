@@ -249,3 +249,27 @@ def test_config_contract_contains_only_manual_metadata_and_reference():
     allowed = {"selection_id", "observation_id", "comment", "annual_comment", "location", "order", "manual_capture_date", "manual_capture_date_origin", "manual_capture_source_ack"}
     assert best_shot_ui.ENTRY_FIELDS == allowed
     assert config(annual={"2025": "best-1"})["annual_best"]["2025"] == "best-1"
+
+
+def test_shared_gallery_dependencies_and_caption_match_native_card():
+    from bs4 import BeautifulSoup
+    from gallery_dependencies import LIGHTGALLERY_TAGS
+
+    model = best_shot_ui.build_best_shot_model(
+        config([entry(comment='<script>unsafe</script>', location='山 & 林')]),
+        portal(observation(name='名前 " & <tag>')),
+    )
+    for document in [best_shot_ui.render_best_shot_page(model),
+                     best_shot_ui.render_best_shot_year_page(model['years'][0])]:
+        assert document.count(LIGHTGALLERY_TAGS) == 1
+        soup = BeautifulSoup(document, 'html.parser')
+        sources = [script.get('src') for script in soup.select('script[src]')]
+        assert len(sources) == len(set(sources))
+        for card in soup.select('.best-shot-card'):
+            caption = BeautifulSoup(card.select_one('.best-shot-photo')['data-sub-html'], 'html.parser')
+            assert caption.h4.text == card.h3.text == '名前 " & <tag>'
+            assert not caption.select('script, tag')
+            assert '<script>unsafe</script>' in caption.get_text()
+            assert '山 & 林' in caption.get_text()
+            assert card.select_one('.best-shot-meta').text in caption.get_text()
+            assert 'ISO' not in caption.get_text()

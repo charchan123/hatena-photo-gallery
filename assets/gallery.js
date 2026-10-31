@@ -1061,6 +1061,9 @@ const galleries = document.querySelectorAll(
 galleries.forEach(gallery => {
   const isBestShot = gallery.classList.contains("best-shots-page");
   let bestShotTrigger = null;
+  // Keep native photo links and page/height startup usable when a CDN is blocked.
+  if (isBestShot && ["imagesLoaded", "lightGallery", "lgZoom", "lgThumbnail", "lgShare", "lgAutoplay"]
+    .some(name => typeof window[name] !== "function")) return;
 
   // Detail galleries use the reference-style natural-ratio mosaic. Configure
   // the column count before images load so there is no square-grid flash.

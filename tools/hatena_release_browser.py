@@ -35,6 +35,10 @@ def prepared(name, variant, marker=True, body_scroll=False):
             if 'jquery' not in t['src'].lower():t.decompose()
         elif not any(x in t.text for x in ['menu-btn','page_top','photoGallery']):t.decompose()
     if variant=='after':
+        # Public snapshots now already contain the activation marker. Explicitly
+        # choose the positive/negative fixture instead of inheriting that marker.
+        for existing_marker in s.select('#kinoko-home-release'):
+            existing_marker.decompose()
         for link in s.select('link[rel=stylesheet]'):
             if '/blog_style/' in link.get('href',''):
                 style=s.new_tag('style');style.string=(release/'design.css').read_text();link.replace_with(style)
