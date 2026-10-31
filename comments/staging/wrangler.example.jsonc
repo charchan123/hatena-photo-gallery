@@ -1,0 +1,17 @@
+{
+  "name": "kinoko-comments-staging-requires-approval",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": {"enabled": false},
+  "assets": {"directory": "generated", "binding": "ASSETS", "run_worker_first": true},
+  "vars": {
+    "ENVIRONMENT": "staging", "STAGING_ORIGIN": "", "STAGING_INSTALLATION_ID": "",
+    "ACCESS_TEAM_DOMAIN": "", "ACCESS_AUD": "", "REGISTRY_SHA256": "",
+    "PUBLIC_READ_ENABLED": "false", "PUBLIC_WRITE_ENABLED": "false",
+    "RELEASE_APPROVAL": "not-approved", "ALLOWED_ORIGINS": "",
+    "TURNSTILE_HOSTNAME": "", "TURNSTILE_SITE_KEY": "", "MANIFEST_URL": "staging:bundled"
+  },
+  "d1_databases": [{"binding":"DB", "database_name":"REQUIRES_STAGING_APPROVAL", "database_id":"00000000-0000-0000-0000-000000000000", "remote":false, "migrations_dir":"../migrations"}]
+}

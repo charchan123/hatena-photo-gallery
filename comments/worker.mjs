@@ -227,7 +227,7 @@ async function verify(fetcher, env, token, now) {
   )
     fail("HUMAN_CHECK_FAILED");
 }
-async function active(fetcher, db, env, id) {
+async function productionManifest(fetcher, env) {
   const u = new URL(env.MANIFEST_URL);
   if (
     u.protocol !== "https:" ||
@@ -243,7 +243,10 @@ async function active(fetcher, db, env, id) {
     redirect: "error",
   });
   if (!r.ok) fail("CASE_REVIEW_REQUIRED", 503);
-  const m = await r.json();
+  return r.json();
+}
+async function active(fetcher, db, env, id, loadManifest) {
+  const m = await loadManifest(fetcher, env);
   const stored = await first(
     db,
     "SELECT value FROM metadata WHERE key='registry_sha256'",
@@ -314,7 +317,7 @@ function audit(db, id, action, actor, now) {
     now,
   );
 }
-async function publicRoute(req, env, url, fetcher, now) {
+async function publicRoute(req, env, url, fetcher, now, loadManifest) {
   const db = env.DB,
     parts = url.pathname.split("/").filter(Boolean),
     caseId = parts[2];
@@ -366,7 +369,7 @@ async function publicRoute(req, env, url, fetcher, now) {
       );
       return { comment: safeComment(old), duplicate: true };
     }
-    await active(fetcher, db, env, c.id);
+    await active(fetcher, db, env, c.id, loadManifest);
     await verify(fetcher, env, body.turnstile_token, now);
     const id = crypto.randomUUID(),
       hash = await digest(id + ":" + body.delete_token);
@@ -628,6 +631,8 @@ async function adminRoute(req, env, url, now) {
 export function createWorker({
   fetcher = globalThis.fetch,
   clock = () => Date.now(),
+  // Trusted composition only: never selected by a request or environment flag.
+  loadManifest = productionManifest,
 } = {}) {
   return {
     async fetch(request, env) {
@@ -660,7 +665,7 @@ export function createWorker({
         }
         const run = admin
           ? adminRoute(request, env, url, clock())
-          : publicRoute(request, env, url, fetcher, clock());
+          : publicRoute(request, env, url, fetcher, clock(), loadManifest);
         let timer;
         const result = await Promise.race([
           run,
