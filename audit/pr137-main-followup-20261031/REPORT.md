@@ -48,6 +48,8 @@ merge commit `f784800f63cdf402096910a3c7300bfdbfe41419` は親が #137開始HEAD
 - 最新公開入力から333 HTMLを再生成しmainとのバイト一致、旧表示参照0、7用途・全階層の参照を照合。[artwork-generation.json](artwork-generation.json)。同期や公開は実行していない。
 - ローカルChromiumの取得はzip破損で失敗し、ローカルブラウザ再試験は実行できなかった。別版取得も失敗。環境のpackage導入も権限上成立しなかった。合格扱いにせず、最終HEADのGitHub ActionsでUbuntu/Windowsの実Chromiumを検証する。実Android・本人Windows端末・Cloudflare本体は未実施。
 - 最初のローカル全件試験はsetup error表示を含み正常終了レポートを取得できなかった。ゲート・テストを変えず、該当sync 34件を個別実行してPASS、通常全件1,128 PASSを確認。初回原因は確定していない。[attempts.json](attempts.json)に未成功を残す。最終合格は最終実行ログとCIを根拠にする。
+- 中間HEAD e33e833のCI生成は、手順書リンク修正によるPR HEAD変更を独立照合が検出し、DELETION_PENDING_REFERENCES_CHANGEDで安全停止。後続HEADでは同じ生成ゲートを変更せず通過した。
+- 中間HEAD 4c9de3bのWindowsはPython40/Worker24成功後、core.autocrlfによるCRLFを保護比較が検出して停止した。照合条件を緩めず、コメントCIのcheckout直後にcore.autocrlf=falseとcheckout-index --all --forceを指定し、追跡ファイルをGitの元バイトで展開する。失敗後にskipとなったdry-run/browserは中間結果の合格に数えない。[ci-attempts.json](ci-attempts.json)にrun/jobを保存し、修正後の最終HEADで全CIを再確認する。
 
 テストの削除・skip・安全条件緩和なし。旧PRのCI成功を最終HEADの代用にしない。最終CIの各job・重要step・ログはPR本文に記録する。実Cloudflare試験は[inherited-test-matrix.json](inherited-test-matrix.json)の17項目も含め未実施であり、模擬合格から状態を昇格させない。
 

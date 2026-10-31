@@ -21,6 +21,10 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
           persist-credentials: false
+      - name: Preserve exact tracked bytes before cross-platform protection checks
+        run: |
+          git config core.autocrlf false
+          git checkout-index --all --force
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
