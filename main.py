@@ -174,16 +174,7 @@ def normalize_japanese_search(value):
 STYLE_TAG = '<link rel="stylesheet" href="assets/gallery.css">'
 
 # ====== LightGallery 読み込みタグ ======
-LIGHTGALLERY_TAGS = """
-<link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/css/lightgallery-bundle.min.css">
-
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/lightgallery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/plugins/zoom/lg-zoom.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/plugins/thumbnail/lg-thumbnail.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/plugins/autoplay/lg-autoplay.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/plugins/share/lg-share.min.js"></script>
-"""
+from gallery_dependencies import LIGHTGALLERY_TAGS
 
 # ====== LightGallery スクリプト ======
 SCRIPT_TAG = """<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
@@ -210,25 +201,19 @@ def copy_shared_assets():
         "update-notices.js",
         "guide.css",
         "aiuo.css",
-        "field-notes-observation-final.webp",
-        "mushroom-guide-final.webp",
-        "research-lab-final.webp",
-        "best-shots-final.webp",
-        "new-top-best-shots-camera-mushrooms.webp",
-        "new-top-guide-watercolor.webp",
-        "new-top-season-watercolor.webp",
-        "new-top-features-watercolor.webp",
-        "guide-action-book.webp",
-        "guide-action-season.webp",
-        "guide-action-features.webp",
-        "research-lab-cabin.webp",
-        "hero-amanita-background.webp",
-        "hero-amanita-cutout.png",
     ):
         shutil.copy2(
             os.path.join(ASSETS_DIR, filename),
             os.path.join(output_assets_dir, filename),
         )
+
+    # UI artwork is copied from its asset directory, including unreferenced legacy
+    # files needed by cached older CSS. Current CSS selects only versioned artwork.
+    for filename in os.listdir(ASSETS_DIR):
+        source = os.path.join(ASSETS_DIR, filename)
+        if filename.lower().endswith((".webp", ".png")) and os.path.isfile(source):
+            shutil.copy2(source, os.path.join(output_assets_dir, filename))
+
 
 # ===========================
 # EXIF キャッシュ

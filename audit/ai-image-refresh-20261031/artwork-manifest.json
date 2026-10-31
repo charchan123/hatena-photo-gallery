@@ -1,0 +1,405 @@
+{
+  "base_main": "a1dffdc9e12071d43ff636f797bb5afe4c27268a",
+  "base_published": "a9652945ad4ea8d3ec12426bcb69c39a1a6ab51f",
+  "source_zip_sha256": "5cd3c6493d2f4d0e75ec42abe09c121167db7a1c37a6376a49935bce299d34ad",
+  "assets": [
+    {
+      "source_name": "ブログ差し替え画像/ChatGPT 画像 2026年10月31日 00_40_06-2.png",
+      "source_sha256": "6ecb0ce72874dc7f9498f336a7f680c859bbae03a040e8292ce30afb7d7777af",
+      "width": 1916,
+      "height": 821,
+      "alpha": false,
+      "source_bytes": 3113376,
+      "role": "mushroom-guide",
+      "usage": "キノコ図鑑",
+      "asset": "ai-mushroom-guide-20261031.webp",
+      "quality": 92,
+      "method": 6,
+      "webp_bytes": 509682,
+      "sha256": "14678243ce6f8ee626955a39bb551e6ae8aa1621d722b133e6dcb3e3028b07a8",
+      "comparisons": [
+        {
+          "quality": 90,
+          "bytes": 454738,
+          "psnr_db": 38.15
+        },
+        {
+          "quality": 92,
+          "bytes": 509682,
+          "psnr_db": 38.82
+        },
+        {
+          "quality": 93,
+          "bytes": 566958,
+          "psnr_db": 39.3
+        }
+      ]
+    },
+    {
+      "source_name": "ブログ差し替え画像/ChatGPT 画像 2026年10月31日 00_40_13-4.png",
+      "source_sha256": "c58ba2f24604cff4842e2f80dd18bb20c53dd9a5a979eacd7753bf423e97e253",
+      "width": 1916,
+      "height": 821,
+      "alpha": false,
+      "source_bytes": 2974266,
+      "role": "best-shots",
+      "usage": "Best Shot",
+      "asset": "ai-best-shots-20261031.webp",
+      "quality": 92,
+      "method": 6,
+      "webp_bytes": 471454,
+      "sha256": "a51f724688bdc74f6a455f64e6173355b4553a77ed6496d338f7311bdd83e188",
+      "comparisons": [
+        {
+          "quality": 90,
+          "bytes": 405568,
+          "psnr_db": 37.89
+        },
+        {
+          "quality": 92,
+          "bytes": 471454,
+          "psnr_db": 38.69
+        },
+        {
+          "quality": 93,
+          "bytes": 490964,
+          "psnr_db": 38.84
+        }
+      ]
+    },
+    {
+      "source_name": "ブログ差し替え画像/ChatGPT 画像 2026年10月31日 00_40_22-7.png",
+      "source_sha256": "93e8844cc3ffe69f19508cbf290f6ba1b47510a65cbaba8837e39ec2d3a84319",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "source_bytes": 3031642,
+      "role": "features",
+      "usage": "特徴",
+      "asset": "ai-features-20261031.webp",
+      "quality": 92,
+      "method": 6,
+      "webp_bytes": 485720,
+      "sha256": "892619b79aee9741b44c133ab776d51d728a74c0b3a265e7433b926043a6898b",
+      "comparisons": [
+        {
+          "quality": 90,
+          "bytes": 407306,
+          "psnr_db": 39.6
+        },
+        {
+          "quality": 92,
+          "bytes": 485720,
+          "psnr_db": 40.68
+        },
+        {
+          "quality": 93,
+          "bytes": 536228,
+          "psnr_db": 41.38
+        }
+      ]
+    },
+    {
+      "source_name": "ブログ差し替え画像/ChatGPT 画像 2026年10月31日 00_40_16-5.png",
+      "source_sha256": "7600ce0398d666d933eff5d6c05fbc1cb070fa5bbd39611123421e172431c728",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "source_bytes": 3014535,
+      "role": "guide-book",
+      "usage": "図鑑入口",
+      "asset": "ai-guide-book-20261031.webp",
+      "quality": 92,
+      "method": 6,
+      "webp_bytes": 480896,
+      "sha256": "6eac775c1b90b6faa899c49a438051487fbe4a816a646ce21ac0ddea4b5a7e9c",
+      "comparisons": [
+        {
+          "quality": 90,
+          "bytes": 406020,
+          "psnr_db": 38.27
+        },
+        {
+          "quality": 92,
+          "bytes": 480896,
+          "psnr_db": 39.12
+        },
+        {
+          "quality": 93,
+          "bytes": 510012,
+          "psnr_db": 39.58
+        }
+      ]
+    },
+    {
+      "source_name": "ブログ差し替え画像/ChatGPT 画像 2026年10月31日 00_40_09-3.png",
+      "source_sha256": "92cddb48b631928a037e940a5ab7bcdbb38ee8f28e71a9097fab1f008d5c66da",
+      "width": 1916,
+      "height": 821,
+      "alpha": false,
+      "source_bytes": 3001492,
+      "role": "research-lab",
+      "usage": "研究室",
+      "asset": "ai-research-lab-20261031.webp",
+      "quality": 92,
+      "method": 6,
+      "webp_bytes": 523880,
+      "sha256": "8af7155a1afc8e829801ac3a739cff7c9b2b37c823d909609c1d411218835b1c",
+      "comparisons": [
+        {
+          "quality": 90,
+          "bytes": 453050,
+          "psnr_db": 37.69
+        },
+        {
+          "quality": 92,
+          "bytes": 523880,
+          "psnr_db": 38.42
+        },
+        {
+          "quality": 93,
+          "bytes": 568126,
+          "psnr_db": 38.81
+        }
+      ]
+    },
+    {
+      "source_name": "ブログ差し替え画像/ChatGPT 画像 2026年10月31日 00_40_02-1.png",
+      "source_sha256": "f8bec880818fc6393770a1bef906bbc5d4c75da7636f83a077f015e27e58e450",
+      "width": 1916,
+      "height": 821,
+      "alpha": false,
+      "source_bytes": 3232078,
+      "role": "field-notes",
+      "usage": "観察記録",
+      "asset": "ai-field-notes-20261031.webp",
+      "quality": 92,
+      "method": 6,
+      "webp_bytes": 562952,
+      "sha256": "69e3df4cd79cff4dd9a0c7664e4b6e34057bad367911853c132db87a14071f9e",
+      "comparisons": [
+        {
+          "quality": 90,
+          "bytes": 504552,
+          "psnr_db": 37.51
+        },
+        {
+          "quality": 92,
+          "bytes": 562952,
+          "psnr_db": 38.13
+        },
+        {
+          "quality": 93,
+          "bytes": 612054,
+          "psnr_db": 38.51
+        }
+      ]
+    },
+    {
+      "source_name": "ブログ差し替え画像/ChatGPT 画像 2026年10月31日 00_40_19-6.png",
+      "source_sha256": "2cc41df27da6967049dc753f28f8066e8b7bdb804ebc7d49ac9c0a2ec1cc5f94",
+      "width": 1536,
+      "height": 1024,
+      "alpha": false,
+      "source_bytes": 2668934,
+      "role": "season",
+      "usage": "季節",
+      "asset": "ai-season-20261031.webp",
+      "quality": 92,
+      "method": 6,
+      "webp_bytes": 405844,
+      "sha256": "dca32ab7e2c8535b8fd8721600c0ff660f2e55b874d9df6eb1073f24d3e25534",
+      "comparisons": [
+        {
+          "quality": 90,
+          "bytes": 336234,
+          "psnr_db": 38.36
+        },
+        {
+          "quality": 92,
+          "bytes": 405844,
+          "psnr_db": 39.16
+        },
+        {
+          "quality": 93,
+          "bytes": 445976,
+          "psnr_db": 39.6
+        }
+      ]
+    }
+  ],
+  "replacements": {
+    "field-notes-observation-final.webp": "ai-field-notes-20261031.webp",
+    "mushroom-guide-final.webp": "ai-mushroom-guide-20261031.webp",
+    "research-lab-final.webp": "ai-research-lab-20261031.webp",
+    "research-lab-cabin.webp": "ai-research-lab-20261031.webp",
+    "best-shots-final.webp": "ai-best-shots-20261031.webp",
+    "new-top-best-shots-camera-mushrooms.webp": "ai-best-shots-20261031.webp",
+    "new-top-guide-watercolor.webp": "ai-guide-book-20261031.webp",
+    "guide-action-book.webp": "ai-guide-book-20261031.webp",
+    "new-top-season-watercolor.webp": "ai-season-20261031.webp",
+    "guide-action-season.webp": "ai-season-20261031.webp",
+    "new-top-features-watercolor.webp": "ai-features-20261031.webp",
+    "guide-action-features.webp": "ai-features-20261031.webp"
+  },
+  "legacy_files": "Retained unreferenced for cached old CSS; no active display references",
+  "out_of_scope_preserved": [
+    "hero-amanita-background.webp",
+    "hero-amanita-cutout.png"
+  ],
+  "css_non_artwork_sha256": {
+    "assets/records.css": "9ecf1523a6a588aba0bdc2e2d687a4a5555a95997bd67938b43e27817030ba5f",
+    "assets/favorite.css": "9fd02db9ec8d9a18588c3baa46372257a4df2ea729d749c7b2c46e2f4f19c4b2",
+    "assets/guide.css": "cb4df44a4c681b151f852654f5f29e8f2b79e0d4a19d7b027aff947cd0b11a78",
+    "assets/portal.css": "470da122f449a52f5e5504060cb6fa01d2d5211c84d2ce52ed38816396285714",
+    "assets/features.css": "366e1ffe888b59dc16289b9d5b8cc00697c5670fa9ae3b1c95c9fc7c2011f08a",
+    "assets/aiuo.css": "f16d97a4d9ac8c638098c351074ef90636807f115d6fd2d511386e2bc5b784d8",
+    "assets/detail.css": "5b60f8d265d138db5a6321ff9b9b13a4b7f8cf35af0e1bc539ba889c6d6211e7",
+    "assets/best-shots.css": "1858e8b00749809ffeed2a4991098c729a532400dfa17f3931f3726d7ae537b5",
+    "assets/season.css": "90a1a2b44f9b1ba9c8d9c18a341774f0a5668371905290c866e051b8ca9198a4",
+    "assets/research.css": "8f843a63a6b2c7d6f96eff35b9d3b771945238d50992a53bbe5f24055688a94e"
+  },
+  "source_uses": [
+    {
+      "file": "assets/records.css",
+      "line": 37,
+      "old": "field-notes-observation-final.webp",
+      "new": "ai-field-notes-20261031.webp"
+    },
+    {
+      "file": "assets/favorite.css",
+      "line": 39,
+      "old": "guide-action-book.webp",
+      "new": "ai-guide-book-20261031.webp"
+    },
+    {
+      "file": "assets/guide.css",
+      "line": 39,
+      "old": "mushroom-guide-final.webp",
+      "new": "ai-mushroom-guide-20261031.webp"
+    },
+    {
+      "file": "assets/guide.css",
+      "line": 336,
+      "old": "guide-action-book.webp",
+      "new": "ai-guide-book-20261031.webp"
+    },
+    {
+      "file": "assets/guide.css",
+      "line": 409,
+      "old": "guide-action-season.webp",
+      "new": "ai-season-20261031.webp"
+    },
+    {
+      "file": "assets/guide.css",
+      "line": 410,
+      "old": "guide-action-features.webp",
+      "new": "ai-features-20261031.webp"
+    },
+    {
+      "file": "assets/guide.css",
+      "line": 411,
+      "old": "research-lab-cabin.webp",
+      "new": "ai-research-lab-20261031.webp"
+    },
+    {
+      "file": "assets/guide.css",
+      "line": 412,
+      "old": "new-top-best-shots-camera-mushrooms.webp",
+      "new": "ai-best-shots-20261031.webp"
+    },
+    {
+      "file": "assets/portal.css",
+      "line": 6,
+      "old": "field-notes-observation-final.webp",
+      "new": "ai-field-notes-20261031.webp"
+    },
+    {
+      "file": "assets/portal.css",
+      "line": 7,
+      "old": "mushroom-guide-final.webp",
+      "new": "ai-mushroom-guide-20261031.webp"
+    },
+    {
+      "file": "assets/portal.css",
+      "line": 48,
+      "old": "new-top-guide-watercolor.webp",
+      "new": "ai-guide-book-20261031.webp"
+    },
+    {
+      "file": "assets/portal.css",
+      "line": 49,
+      "old": "new-top-season-watercolor.webp",
+      "new": "ai-season-20261031.webp"
+    },
+    {
+      "file": "assets/portal.css",
+      "line": 50,
+      "old": "new-top-features-watercolor.webp",
+      "new": "ai-features-20261031.webp"
+    },
+    {
+      "file": "assets/portal.css",
+      "line": 55,
+      "old": "research-lab-cabin.webp",
+      "new": "ai-research-lab-20261031.webp"
+    },
+    {
+      "file": "assets/portal.css",
+      "line": 56,
+      "old": "new-top-best-shots-camera-mushrooms.webp",
+      "new": "ai-best-shots-20261031.webp"
+    },
+    {
+      "file": "assets/features.css",
+      "line": 7,
+      "old": "guide-action-features.webp",
+      "new": "ai-features-20261031.webp"
+    },
+    {
+      "file": "assets/aiuo.css",
+      "line": 39,
+      "old": "mushroom-guide-final.webp",
+      "new": "ai-mushroom-guide-20261031.webp"
+    },
+    {
+      "file": "assets/detail.css",
+      "line": 43,
+      "old": "mushroom-guide-final.webp",
+      "new": "ai-mushroom-guide-20261031.webp"
+    },
+    {
+      "file": "assets/best-shots.css",
+      "line": 7,
+      "old": "new-top-best-shots-camera-mushrooms.webp",
+      "new": "ai-best-shots-20261031.webp"
+    },
+    {
+      "file": "assets/season.css",
+      "line": 40,
+      "old": "guide-action-season.webp",
+      "new": "ai-season-20261031.webp"
+    },
+    {
+      "file": "assets/research.css",
+      "line": 7,
+      "old": "research-lab-cabin.webp",
+      "new": "ai-research-lab-20261031.webp"
+    }
+  ],
+  "legacy_sha256": {
+    "best-shots-final.webp": "c64549b6eefed692efbd3ca7f167ea193ea55eb370f64a6c53cead08c503239a",
+    "field-notes-observation-final.webp": "9492c7411add400edf9ef46c0b7910852de4171dc5862781eb4945b67bd8d0db",
+    "guide-action-book.webp": "24f926b91e69e86ed9b2da412d9a7cfc7f5ef0f9fe3b734ef88ac1b3cb113e28",
+    "guide-action-features.webp": "f23b752a11cba42250ab8fd2131c9bcd1d42b22726dbb00824e5d3dd586da72c",
+    "guide-action-season.webp": "ff637e38587a30e9c49ba291ffa2694b42e2565cad43d0218e6b6dde2d43d160",
+    "mushroom-guide-final.webp": "0f700e7f8427b794b2c33408f43acde2c1f7a54f4ea09ebc1bbe9e40388df7e0",
+    "new-top-best-shots-camera-mushrooms.webp": "b09e172f05354bd8eecb002010d16f194f5458e213075ffc2edacce868fb53bc",
+    "new-top-features-watercolor.webp": "55ef1d93a4c0c93b36fcb2ee04c0af85a033ab6c89ef6295ac1267c6ffba2516",
+    "new-top-guide-watercolor.webp": "37db235ae8fb26206be82ad243dcdcaa5d3b919d22efb7631bfd2abac8279378",
+    "new-top-season-watercolor.webp": "dd5a52e0e492dd0d78ca166d97cfd0c112456c23b0c4651304ceec6472bb1bfd",
+    "research-lab-cabin.webp": "59d079fb9437b67a6086c65c5941bed07480757f142e34b1a14df9d8cdae8b2c",
+    "research-lab-final.webp": "fde50cab6a4872dde6b048e05b3e50b1532223d2f4a81a0db2fd59c97a2e910c"
+  },
+  "generator_source_excluding_asset_copy_sha256": "ab5d980ac03819a96a8e97d34c4d79d25e6e231c3aafafd692f34be7d94634b7"
+}

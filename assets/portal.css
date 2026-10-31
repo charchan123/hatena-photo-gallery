@@ -3,8 +3,8 @@
 .portal-records-hero,.portal-explore,.portal-independent-links .portal-card { overflow:hidden; border:1px solid var(--portal-panel-border); border-radius:var(--portal-panel-radius); background:var(--portal-paper); box-shadow:0 10px 30px rgba(42,61,45,.09); }
 .portal-records-hero,.portal-explore { display:flex; flex-direction:column; }
 .portal-records-visual,.portal-section-visual { position:relative; display:grid; height:150px; overflow:hidden; background-position:center; background-size:cover; isolation:isolate; }
-.portal-records-visual { background-image:url("field-notes-observation-final.webp"); background-size:cover; background-position:center center; background-repeat:no-repeat; }
-.portal-section-visual--explore { background-image:url("mushroom-guide-final.webp"); background-position:center center; background-size:cover; background-repeat:no-repeat; }
+.portal-records-visual { background-image:url("ai-field-notes-20261031.webp"); background-size:cover; background-position:center center; background-repeat:no-repeat; }
+.portal-section-visual--explore { background-image:url("ai-mushroom-guide-20261031.webp"); background-position:center center; background-size:cover; background-repeat:no-repeat; }
 .portal-visual-shade { position:absolute; z-index:0; inset:0; background:linear-gradient(to top,rgba(10,25,16,.70),rgba(10,25,16,.18) 55%,transparent); pointer-events:none; }
 .portal-records-heading,.portal-section-heading { z-index:1; align-self:end; width:100%; padding:24px 28px 20px; box-sizing:border-box; color:#fff; text-shadow:0 1px 3px rgba(8,20,12,.42); }
 .portal-eyebrow { margin:0 0 6px; color:inherit; font-size:.69rem; font-weight:800; letter-spacing:.18em; }
@@ -45,15 +45,15 @@
 .portal-card { position:relative; display:grid; min-height:130px; overflow:hidden; border-radius:16px; color:#fff; text-decoration:none; isolation:isolate; transition:transform .2s ease,box-shadow .2s ease; }
 .portal-guide-row .portal-card { background:linear-gradient(145deg,#426745,#173c2b 72%,#102f22); }
 /* Approved watercolor images are exclusive to new-top's three guide cards. */
-.portal-index .portal-guide-row .portal-card--guide .portal-card__visual { background-image:url("new-top-guide-watercolor.webp"); }
-.portal-index .portal-guide-row .portal-card--season .portal-card__visual { background-image:url("new-top-season-watercolor.webp"); }
-.portal-index .portal-guide-row .portal-card--features .portal-card__visual { background-image:url("new-top-features-watercolor.webp"); }
+.portal-index .portal-guide-row .portal-card--guide .portal-card__visual { background-image:url("ai-guide-book-20261031.webp"); }
+.portal-index .portal-guide-row .portal-card--season .portal-card__visual { background-image:url("ai-season-20261031.webp"); }
+.portal-index .portal-guide-row .portal-card--features .portal-card__visual { background-image:url("ai-features-20261031.webp"); }
 .portal-index .portal-guide-row .portal-card__visual { background-position:center; background-size:cover; background-repeat:no-repeat; filter:none; }
 .portal-index .portal-guide-row .portal-card__content { background:linear-gradient(90deg,rgba(0,0,0,.38),rgba(0,0,0,.20)); }
 .portal-card__visual,.portal-card__content { grid-area:1/1; }
 .portal-card__visual { background:radial-gradient(circle at 78% 25%,rgba(255,228,151,.18),transparent 28%),linear-gradient(140deg,#567358,#173c2b); background-position:center; background-size:cover; }
-.portal-card--research .portal-card__visual { background-image:url("research-lab-cabin.webp"); background-position:78% center; background-size:cover; background-repeat:no-repeat; }
-.portal-index .portal-card--best-shots .portal-card__visual { background-image:url("new-top-best-shots-camera-mushrooms.webp"); background-position:50% 58%; background-size:cover; background-repeat:no-repeat; }
+.portal-card--research .portal-card__visual { background-image:url("ai-research-lab-20261031.webp"); background-position:78% center; background-size:cover; background-repeat:no-repeat; }
+.portal-index .portal-card--best-shots .portal-card__visual { background-image:url("ai-best-shots-20261031.webp"); background-position:50% 58%; background-size:cover; background-repeat:no-repeat; }
 .portal-independent-links .portal-card__visual { filter:brightness(1.10) saturate(1.02); }
 .portal-card__content { z-index:1; display:block; align-self:end; padding:42px 18px 17px; background:linear-gradient(to top,rgba(10,25,16,.82),rgba(10,25,16,.22) 72%,transparent); }
 .portal-card__copy { display:grid; gap:5px; }
@@ -87,18 +87,19 @@
 .portal-card:focus-visible,.record-preview-row:focus-visible,.portal-more-link:focus-visible,.portal-about-links a:focus-visible { outline:4px solid #eeb947; outline-offset:3px; }
 @media (hover:hover) { .portal-card:hover { transform:translateY(-2px); box-shadow:0 9px 20px rgba(30,50,35,.16); }.record-preview-row:hover .record-preview-thumb img { transform:scale(1.08); }.record-preview-row:hover .record-preview-title { text-decoration:underline; } }
 @media (min-width:900px) {
-  .portal-index .portal-shell { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:20px; row-gap:18px; align-items:stretch; }
-  .portal-records-visual,.portal-section-visual { height:190px; }
-  .record-preview-body { display:block; }
-  .record-preview-title,.record-preview-date { display:block; }
-  .record-preview-date { margin-top:3px; }
-  .record-preview-excerpt { margin-top:5px; }
-  .portal-explore { margin-top:0; }
-  .portal-independent-links { grid-column:1/-1; width:100%; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; margin-top:0; }
-  .portal-independent-links .portal-card { min-height:155px; }
-  .portal-about { grid-column:1/-1; margin-top:4px; }
+  :root:not([data-portal-columns="1"]) .portal-index .portal-shell { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:20px; row-gap:18px; align-items:stretch; }
+  :root:not([data-portal-columns="1"]) .portal-records-visual,:root:not([data-portal-columns="1"]) .portal-section-visual { height:190px; }
+  :root:not([data-portal-columns="1"]) .record-preview-body { display:block; }
+  :root:not([data-portal-columns="1"]) .record-preview-title,:root:not([data-portal-columns="1"]) .record-preview-date { display:block; }
+  :root:not([data-portal-columns="1"]) .record-preview-date { margin-top:3px; }
+  :root:not([data-portal-columns="1"]) .record-preview-excerpt { margin-top:5px; }
+  :root:not([data-portal-columns="1"]) .portal-explore { margin-top:0; }
+  :root:not([data-portal-columns="1"]) .portal-independent-links { grid-column:1/-1; width:100%; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; margin-top:0; }
+  :root:not([data-portal-columns="1"]) .portal-independent-links .portal-card { min-height:155px; }
+  :root:not([data-portal-columns="1"]) .portal-about { grid-column:1/-1; margin-top:4px; }
+
 }
-@media (max-width:899px) { .portal-independent-links { grid-template-columns:1fr; } }
+@media (max-width:899px) { :root:not([data-portal-columns="2"]) .portal-independent-links { grid-template-columns:1fr; } }
 @media (max-width:680px) {
   .portal-index { --portal-panel-radius:15px; }
   .portal-index .portal-shell { padding:12px 10px 34px; }
@@ -140,8 +141,8 @@
 .portal-index .portal-guide-row .portal-card { height:120px; min-height:120px; }
 .portal-index .portal-guide-note { position:relative; top:calc((46px - 1.276rem)/2); }
 @media (min-width:681px) and (max-width:899px) {
-  .portal-index .portal-guide-row { padding-block:2px; }
-  .portal-index .portal-guide-row .portal-card { height:108px; min-height:108px; }
+  :root:not([data-portal-columns="2"]) .portal-index .portal-guide-row { padding-block:2px; }
+  :root:not([data-portal-columns="2"]) .portal-index .portal-guide-row .portal-card { height:108px; min-height:108px; }
 }
 @media (max-width:680px) {
   .portal-index .record-preview-thumb { height:100px; }
@@ -150,3 +151,16 @@
   /* Stacked copy follows its image at narrow widths, with no visual offset. */
   .portal-index .portal-guide-note { top:0; }
 }
+
+/* Authenticated host breakpoint; all sizes still fit the real iframe width. */
+  :root[data-portal-columns="2"] .portal-index .portal-shell { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:20px; row-gap:18px; align-items:stretch; }
+  :root[data-portal-columns="2"] .portal-records-visual,:root[data-portal-columns="2"] .portal-section-visual { height:190px; }
+  :root[data-portal-columns="2"] .record-preview-body { display:block; }
+  :root[data-portal-columns="2"] .record-preview-title,:root[data-portal-columns="2"] .record-preview-date { display:block; }
+  :root[data-portal-columns="2"] .record-preview-date { margin-top:3px; }
+  :root[data-portal-columns="2"] .record-preview-excerpt { margin-top:5px; }
+  :root[data-portal-columns="2"] .portal-explore { margin-top:0; }
+  :root[data-portal-columns="2"] .portal-independent-links { grid-column:1/-1; width:100%; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; margin-top:0; }
+  :root[data-portal-columns="2"] .portal-independent-links .portal-card { min-height:155px; }
+  :root[data-portal-columns="2"] .portal-about { grid-column:1/-1; margin-top:4px; }
+

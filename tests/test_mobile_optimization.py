@@ -40,6 +40,6 @@ def test_year_heading_preserves_words():
 def test_camera_artwork_copied_for_guide(monkeypatch, tmp_path):
     monkeypatch.setattr(main, 'OUTPUT_DIR', str(tmp_path))
     main.generate_index({}, {})
-    name = 'new-top-best-shots-camera-mushrooms.webp'
+    name = 'ai-best-shots-20261031.webp'
     assert (tmp_path / 'assets' / name).read_bytes() == (ROOT / 'assets' / name).read_bytes()
     assert name in (ROOT / 'assets/guide.css').read_text()

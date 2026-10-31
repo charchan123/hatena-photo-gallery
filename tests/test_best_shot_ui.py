@@ -132,8 +132,12 @@ def test_annual_best_validation_and_monthly_card_remains():
     assert "2025年 年間ベストショット" in page
     assert page.count('data-selection-id="best-1"') == 2
     assert "🏆 年間ベスト" in page
-    assert page.count("本人が選んだ一枚") == 1
-    assert page.count("年間だけのコメント") == 1
+    from bs4 import BeautifulSoup
+    cards = BeautifulSoup(page, "html.parser").select(".best-shot-card")
+    assert [c.select_one(".best-shot-comment").text for c in cards] == ["年間だけのコメント", "本人が選んだ一枚"]
+    for card in cards:
+        caption = BeautifulSoup(card.select_one(".best-shot-photo")["data-sub-html"], "html.parser")
+        assert card.select_one(".best-shot-comment").text in caption.get_text()
     for annual in ({"2025": "missing"}, {"2024": "best-1"}, {"2025": "best-1", "2026": "best-1"}):
         with pytest.raises(best_shot_ui.BestShotConfigError):
             best_shot_ui.build_best_shot_model(config(annual=annual), portal())
@@ -177,9 +181,9 @@ def test_best_shot_pc_visual_contract():
     assert 'id="gallery-content-root"' in page
     assert "body.best-shots-index" in css
     assert "width:min(100%,1180px)" in css
-    assert 'url("new-top-best-shots-camera-mushrooms.webp")' in css
-    assert 'url("research-lab-final.webp")' not in css
-    assert (Path("assets") / "new-top-best-shots-camera-mushrooms.webp").is_file()
+    assert 'url("ai-best-shots-20261031.webp")' in css
+    assert 'url("ai-research-lab-20261031.webp")' not in css
+    assert (Path("assets") / "ai-best-shots-20261031.webp").is_file()
     assert "grid-template-columns:repeat(2,minmax(0,1fr))" in css
     assert ".best-shots-index .annual-best" in css
     assert ".best-shots-index .annual-best { margin:0 0 28px; padding:18px; border:1px solid #242a26; border-radius:16px; background:#0c0f0d;" in css
@@ -245,3 +249,45 @@ def test_config_contract_contains_only_manual_metadata_and_reference():
     allowed = {"selection_id", "observation_id", "comment", "annual_comment", "location", "order", "manual_capture_date", "manual_capture_date_origin", "manual_capture_source_ack"}
     assert best_shot_ui.ENTRY_FIELDS == allowed
     assert config(annual={"2025": "best-1"})["annual_best"]["2025"] == "best-1"
+
+
+def test_shared_gallery_dependencies_and_caption_match_native_card():
+    from bs4 import BeautifulSoup
+    from gallery_dependencies import BEST_SHOT_LIGHTGALLERY_TAGS
+
+    model = best_shot_ui.build_best_shot_model(
+        config([entry(comment='<script>unsafe</script>', location='山 & 林')]),
+        portal(observation(name='名前 " & <tag>')),
+    )
+    for document in [best_shot_ui.render_best_shot_page(model),
+                     best_shot_ui.render_best_shot_year_page(model['years'][0])]:
+        assert document.count(BEST_SHOT_LIGHTGALLERY_TAGS) == 1
+        soup = BeautifulSoup(document, 'html.parser')
+        sources = [script.get('src') for script in soup.select('script[src]')]
+        assert len(sources) == len(set(sources))
+        for card in soup.select('.best-shot-card'):
+            caption = BeautifulSoup(card.select_one('.best-shot-photo')['data-sub-html'], 'html.parser')
+            assert caption.h4.text == card.h3.text == '名前 " & <tag>'
+            assert not caption.select('script, tag')
+            assert '<script>unsafe</script>' in caption.get_text()
+            assert '山 & 林' in caption.get_text()
+            assert card.select_one('.best-shot-meta').text in caption.get_text()
+            assert 'ISO' not in caption.get_text()
+
+
+def test_best_shot_deferred_local_dependencies_match_existing_vendor_and_leave_guide_unchanged():
+    from bs4 import BeautifulSoup
+    from gallery_dependencies import BEST_SHOT_LIGHTGALLERY_TAGS, LIGHTGALLERY_TAGS
+    model = best_shot_ui.build_best_shot_model(config(), portal())
+    soup = BeautifulSoup(best_shot_ui.render_best_shot_page(model), 'html.parser')
+    scripts = soup.select('script[src]')
+    assert all(script.has_attr('defer') for script in scripts)
+    assert not any('imagesloaded' in script['src'] for script in scripts)
+    vendor_scripts = [script['src'] for script in scripts if script['src'].startswith('lightgallery/')]
+    assert len(vendor_scripts) == 5 and len(set(vendor_scripts)) == 5
+    for src in vendor_scripts:
+        assert '2.8.3' in (Path(__file__).resolve().parents[1] / src).read_text()[:200]
+    assert soup.select_one('link[data-lightgallery-style]')['href'] == 'lightgallery/lightgallery-bundle.min.css'
+    assert main.LIGHTGALLERY_TAGS == LIGHTGALLERY_TAGS
+    assert 'https://cdn.jsdelivr.net/npm/lightgallery@2.8.3/' in LIGHTGALLERY_TAGS
+    assert 'https://' not in BEST_SHOT_LIGHTGALLERY_TAGS

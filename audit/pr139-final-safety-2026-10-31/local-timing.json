@@ -1,0 +1,18 @@
+{
+  "cases": [
+    {
+      "case": "delayed-host-and-slow-script-order",
+      "width": 390,
+      "externalScripts": []
+    },
+    {
+      "case": "delayed-host-and-slow-script-order",
+      "width": 1280,
+      "externalScripts": []
+    }
+  ],
+  "errors": [],
+  "physicalAndroid": false,
+  "transport": "isolated SVG / fault-injected messages; no real star writes",
+  "checks": 85
+}

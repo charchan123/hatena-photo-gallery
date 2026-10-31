@@ -1,0 +1,27 @@
+{
+  "cases": [
+    {
+      "kind": "image-wait",
+      "cards": 197,
+      "initialized": false,
+      "readyState": "complete"
+    },
+    {
+      "kind": "pre-host",
+      "cards": 17,
+      "initialized": true,
+      "readyState": "complete",
+      "openWithoutAuthenticatedRequest": true
+    },
+    {
+      "kind": "cdn-wait",
+      "cards": 0,
+      "initialized": false,
+      "readyState": "loading"
+    }
+  ],
+  "errors": [],
+  "physicalAndroid": false,
+  "transport": "isolated SVG / fault-injected messages; no real star writes",
+  "checks": 269
+}

@@ -1,0 +1,53 @@
+name: Read-only Hatena release preparation
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'hatena/release-2026-10-24/**'
+      - 'tools/hatena_release_*.py'
+      - 'tests/test_hatena_release*'
+      - '.github/workflows/hatena-release.yml'
+permissions:
+  contents: read
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install isolated Chromium
+        run: |
+          pip install -r requirements.txt -r requirements-dev.txt playwright==1.64.1
+          python -m playwright install --with-deps chromium
+      - name: Offline backup gates and authenticated iframe protocol regressions
+        run: |
+          python -m pytest -q tests/test_hatena_release_package.py
+          node --test tests/test_hatena_release_home.js tests/test_hatena_iframe_handler.js
+      - name: Read-only public snapshots and published child pages
+        run: |
+          git fetch origin gh-pages
+          git worktree add --detach /tmp/hatena-published origin/gh-pages
+          git rev-parse HEAD origin/gh-pages > /tmp/hatena-snapshot-refs.txt
+          python tools/hatena_release_capture.py /tmp/hatena-capture /tmp/hatena-published
+      - name: Eight widths and cross-origin iframe local replay
+        run: python tools/hatena_release_browser.py /tmp/hatena-capture /tmp/hatena-published /tmp/hatena-evidence
+      - name: Save exact-head local replay evidence (never a Hatena Staging claim)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hatena-release-${{ github.event.pull_request.head.sha }}
+          path: |
+            /tmp/hatena-evidence/
+            /tmp/hatena-capture/capture.json
+            /tmp/hatena-snapshot-refs.txt
+          retention-days: 30

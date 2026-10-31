@@ -1,0 +1,348 @@
+{
+  "checked_at_utc": "2026-10-23T16:47:18.894278+00:00",
+  "main_sha": "090eac16c25129695452a10a076532c752d8bd27",
+  "gh_pages_sha": "8cef60f355790e1a57a97b324e901ca816c8aed3",
+  "production_summary": {
+    "production_image_count": 933,
+    "observation_count": 933,
+    "subject_count": 313,
+    "article_count": 90,
+    "shadow_matched_observation_count": 933,
+    "shadow_src_only_fallback_count": 0,
+    "shadow_missing_observation_count": 0,
+    "exif_dated_observation_count": 903,
+    "exif_undated_observation_count": 30,
+    "confirmed_named_mushroom_count": 489,
+    "confirmed_mushroom_identity_uncertain_count": 12,
+    "manual_review_name_conflict_count": 6,
+    "legacy_review_count": 395,
+    "legacy_undetected_count": 31,
+    "legacy_shadow_missing_count": 0,
+    "human_reviewed_mushroom_count": 0,
+    "master_linked_subject_count": 47,
+    "master_unlinked_subject_count": 266,
+    "knowledge_record_count": 141,
+    "source_count": 419
+  },
+  "published_articles": 111,
+  "article_images": 980,
+  "best_shots": 17,
+  "new_events": 14,
+  "research_cases": 66,
+  "retired": 7,
+  "deletion_candidates": 0,
+  "comments_enabled": false,
+  "latest_sync_result": "SUCCESS",
+  "latest_sync_success": "2026-10-23T04:04:47.905597+00:00",
+  "photo_id_url_capture_sha256": "ee2b2c8ac9303d39897145896f5c1da10b2914eca84c2ddb2667cf5e07de9f57",
+  "public_files_sha256": {
+    "portal-data.json": "a0435d210b7e45ffcaff18934a4abb737c20958b0f9f32b16102768eecd48021",
+    "research-comment-cases.json": "61a786ac7bc3e12d0be302900ff4173952b01e077634872004b1e14a3900d648",
+    "research-comments-config.json": "4f7e8ee63c77b74ee00612227415e5a9a22df0dfa42bb69aa579fc1f6373816c",
+    "article-sync-status.json": "af0b47918215c71f2396191110ed957301b8459058eb1cc5548de9b2dfc0d7fa",
+    "article-sync-snapshot.json": "556e3d22cda968e9fda4c08e61351d7a871f3fe7633e0e08a0b8a41d3ab1f03b"
+  },
+  "protected_source_files_sha256": {
+    ".github/workflows/admin-pr-regressions.yml": "6ea1fba9614b6599e3390a66345f3ed57ee5b3cd22e61ff0527071b0c7ba8a9c",
+    ".github/workflows/admin-validate.yml": "748062b1c7e0cda2b337c428cc662af32a4647f90b1bc1288502e8f1b72aa659",
+    ".github/workflows/deletion-audit.yml": "c5f681456db233c8e16b5df086e4d8a1a08862571ccb2a03f218405318d65f30",
+    ".github/workflows/deletion-browser.yml": "c00493a24ec12ca7f5b5520cd7b6178741bfdb0b5155412a5d4f6996d43c9412",
+    ".github/workflows/generate.yml": "b19d57dcde77855f588c8f6225a6e7a628ee138c968128bc6777da842bcdd78e",
+    ".github/workflows/layout-tuning.yml": "fc51d7df64fee73ef2b593aa8b2534c4e590c43ad0f0994e8b50d9d6f7d9935a",
+    ".github/workflows/manual-capture-date.yml": "cc21ee3f34dd635639523b8f2ac8231d1d67ed3e93d17f91d115d2b370f767a9",
+    ".github/workflows/record-stars.yml": "1df614dd5b4bbdaed043505dcca252c203d613cfa6b6dc3c2a3f5f15bef35ed5",
+    ".github/workflows/research-comments.yml": "7573882b7e4afaaa5275bfa407fc86d4c43cb98481fa547d7c9b97710013d6c5",
+    "admin/__init__.py": "4d6402050574d2949b5f7b74d0f98613865151552be4d07a5b3b4d17abf0d4cc",
+    "admin/comments_client.py": "b0cf72709a23041ed2ab736048c87f8b7648b870eae13f81a7792199f06b5f00",
+    "admin/core.py": "a02042491fa16076c2b2347a1f075d9b3f80246bb42264cfac5b2836835029bc",
+    "admin/deletions.py": "c8105328281ae3a5a3d82ff1b0d78768784a9a33a7770a5ea6283a4e0d597483",
+    "admin/draft_store.py": "3a06b49dbb094bd2b49c5a93a50a733528925357bdba3047c32690fe95f0ef9b",
+    "admin/git_workflow.py": "2ca39d77196c4773f38dbb0f104b9e8411fc64508c6cf2a31516b51099122e9c",
+    "admin/knowledge.py": "af799f5624b8871ad4c7e4c3b7d31b59fafa56741595d88548f7bf4436c4da08",
+    "admin/server.py": "f9755516a1e9dbbbf25b6e9541bd976d0a7d9b147bd15a3f8499c7cc1f1ccef7",
+    "admin/start_admin.bat": "2eb7ecc9bb71c9a5f77731be68a0638a99d64b4d2e94d8da5143e583637dff00",
+    "admin/static/admin.css": "53ff48e880d9abdd6b7a2e4ee04b73c0c47db4755345d9c6bd09e4d62ec473c1",
+    "admin/static/admin.js": "30e9ff7653cd014abe3956fb29fd55ba4b427a07260353e773d8d0a8fec28fa8",
+    "admin/static/comments.js": "56a624bb67c40992ca55f6d95faa78f24638b5a684078dfaaf6537fe916e182e",
+    "admin/static/deletions.js": "0f8345d2ba2110d8fcbadccff8e94037fef08aa3d89a4df6cdae6c61d3ff5b72",
+    "admin/static/index.html": "d9d4741adfe6161fb19f2dabfd90cfdf919ba29ff694597b4b68bd0436c98fbb",
+    "admin/sync.py": "d9442ea7611ad2809a4da615abbcd22775ec982846c7f9491ee29a438f68300a",
+    "admin/sync_adoption.py": "427dddc91e188ae2f2ae0055bdb6b57cba09b39af58f6c0b676b29a0b4e732bc",
+    "admin/sync_exception.py": "25f09b065a46348f067347d6fe620ead86ca6982a8f579138a4a201ca02478ce",
+    "assets/aiuo.css": "28a06770b438dd1d804273c9699ff66d09c8b03bce0d976aed4c40a2f9d7cfd5",
+    "assets/best-shots-final.webp": "c64549b6eefed692efbd3ca7f167ea193ea55eb370f64a6c53cead08c503239a",
+    "assets/best-shots.css": "6843f50c74fd954c1b11af0c8ddec5d69ca9b0b18a77cfc9c8c4d9bdf480407a",
+    "assets/detail.css": "7c0bf0410142c5f7132783c16e4fe6973f3d9a02f350cc4780650d5002d3a80d",
+    "assets/favorite.css": "fc1be682d38356fd1efc38e29cc7af131b14aabf27be10abae3600f3b67c59db",
+    "assets/features.css": "308cfcb14f0ac4589bd3bda684a1af850d94bad42a0054b315b668a6eccc5b0c",
+    "assets/features.js": "40161904c136727790e56f471187c60361dee7ededaffde5f618130f06d0e0c5",
+    "assets/field-notes-observation-final.webp": "9492c7411add400edf9ef46c0b7910852de4171dc5862781eb4945b67bd8d0db",
+    "assets/gallery.css": "c313ec5deeb64b835832267597ac123b672002f136b1a75cb254b3e017ac0412",
+    "assets/gallery.js": "55295e4793354d0b800dd8e4c8e71d78da5b0768d556fe0690feff415f9b8c85",
+    "assets/guide-action-book.webp": "24f926b91e69e86ed9b2da412d9a7cfc7f5ef0f9fe3b734ef88ac1b3cb113e28",
+    "assets/guide-action-features.webp": "f23b752a11cba42250ab8fd2131c9bcd1d42b22726dbb00824e5d3dd586da72c",
+    "assets/guide-action-season.webp": "ff637e38587a30e9c49ba291ffa2694b42e2565cad43d0218e6b6dde2d43d160",
+    "assets/guide.css": "abd951a435ac586d3bca3e4b5793c4626c74677ad377450c40563b267d8f5ba5",
+    "assets/hero-amanita-background.webp": "5df0425963df0905ac3a147510a378ccfaf7c4dad8fbab4ec7a7704c80696600",
+    "assets/hero-amanita-cutout.png": "03132bdb4c5c42c98c1fd4427608f52a273062be2c128f99d95d182c44a92d0c",
+    "assets/mosaic-layout.js": "dafeab534534ceb2d0a767f345327d660acbb7a563369bf96ad1752dd9c89826",
+    "assets/mushroom-guide-final.webp": "0f700e7f8427b794b2c33408f43acde2c1f7a54f4ea09ebc1bbe9e40388df7e0",
+    "assets/new-top-best-shots-camera-mushrooms.webp": "b09e172f05354bd8eecb002010d16f194f5458e213075ffc2edacce868fb53bc",
+    "assets/new-top-features-watercolor.webp": "55ef1d93a4c0c93b36fcb2ee04c0af85a033ab6c89ef6295ac1267c6ffba2516",
+    "assets/new-top-guide-watercolor.webp": "37db235ae8fb26206be82ad243dcdcaa5d3b919d22efb7631bfd2abac8279378",
+    "assets/new-top-season-watercolor.webp": "dd5a52e0e492dd0d78ca166d97cfd0c112456c23b0c4651304ceec6472bb1bfd",
+    "assets/poison-spores.js": "b7b59668b30935ede05f328b6867b958e1db0680514d627fb0e8b885e74d2c0b",
+    "assets/portal.css": "5de79f8ea3d393499f9c4efb41b003f4b927124f97b485e77c717df63825ac5a",
+    "assets/record-stars.css": "33c27c151ff0ca22cca95465659be02d2d2c1fade8df39b97d1e662820ca80dc",
+    "assets/record-stars.js": "fa7c01faa5d636e678fabbec75f3f557e2e85193e6bcb84879c4981bbe56a587",
+    "assets/records.css": "661a53ad323a8ce4226c370396b1cdefaa47fb4c44646a55ed4b10deab367e5c",
+    "assets/research-comments.js": "6b72fbc43b8f3780ea291c9a702013cfad1122d2daeb837c787f1ca196498c66",
+    "assets/research-lab-cabin.webp": "59d079fb9437b67a6086c65c5941bed07480757f142e34b1a14df9d8cdae8b2c",
+    "assets/research-lab-final.webp": "fde50cab6a4872dde6b048e05b3e50b1532223d2f4a81a0db2fd59c97a2e910c",
+    "assets/research.css": "33b981c22c303b9ad0d4add673914dfddf358bfcee138b178ed10e59af186e90",
+    "assets/season.css": "7a04c772cfb4b1df17dbe2fc90f3a7a7c465da9f451bb51f5df3b135164aa927",
+    "assets/season.js": "9c8a76638a1d03de8ea5210b517afa01a68dbbb42874b74caa4d2fbd0b90b34b",
+    "assets/update-notices.css": "0401c52c4774db5d612a0b8a4deb9a4f5cca8c790fa19240f28c242560de4c4b",
+    "assets/update-notices.js": "9d4380f085b93dab450bcfb37e7172e8eb4f2cb550b4cd9bade1408cbbeedcf5",
+    "best_shot_ui.py": "77764ad4d3b92bc0677c551a03ce616f5ee9c7cd5e63b4e17c79b775baa3db79",
+    "data/best-shots.json": "87116b4939761a3f1817e296aad166ba8b5bc2a7c44e0ef4bd470c035b936f95",
+    "data/feature-facets.json": "6d4d987a535dca9c1d0d3668b65de245fbdc281f56c546af436c6fb853bdd84d",
+    "data/mushroom-master.json": "2ce8cfc61726ef04bb6f4bba26c42511e2c0bf1d4017b9e87e0a359d61decca4",
+    "data/research-identifications.json": "0c3a699408dacf0444e3f6e6b93e848c84fd59ef93debe7640c0d551c0ab15b1",
+    "data/sources.json": "d5213f1cf0881af1c60ea949c0321ae0eb854daa3f300135dae9e9f9ad2fdb66",
+    "data/subject-taxonomy.json": "c2afcd79e2de028fd164c073472d2452c68361007ac06a20f9fd31ae67f47f97",
+    "data/update-notices.json": "70bd12b9b1f464d89aab3f9d7a4068a35c884fcd67bd8435950197020e849590",
+    "research_identifications.py": "82272e031d5a610a88df26b1c94d71aee11a04bcbf95bb0032f467c3da726be7",
+    "research_ui.py": "da94a88b62622652afe7865de9d67f374516651b888bd5dedafb1ea6d3bf81c2"
+  },
+  "all_existing_tracked_files_unchanged": true,
+  "public_page_capture": {
+    "home": {
+      "url": "https://exsudoporus-ruber.hatenablog.jp/",
+      "final_url": "https://exsudoporus-ruber.hatenablog.jp/",
+      "status": 200,
+      "sha256": "682f8a78f055217eea87e6f25f9898be2340191226ec9c75d36272e42271eff5",
+      "bytes": 149806,
+      "body_class": [
+        "page-index",
+        "enable-top-editarea",
+        "enable-bottom-editarea",
+        "globalheader-ng-enabled"
+      ],
+      "canonical": "<link href=\"https://exsudoporus-ruber.hatenablog.jp/\" rel=\"canonical\"/>",
+      "native": {
+        "article.entry": 7,
+        ".hatena-star-container": 7,
+        ".comment-box": 7,
+        ".hatena-bookmark-button": 7,
+        ".hatena-module": 9,
+        "form[role=search]": 1
+      }
+    },
+    "new-top": {
+      "url": "https://exsudoporus-ruber.hatenablog.jp/new-top",
+      "final_url": "https://exsudoporus-ruber.hatenablog.jp/new-top",
+      "status": 200,
+      "sha256": "cbcbbf7f24ac54f7c0460b482fab4aaf15feb3e699102020a42e5d790bc8ad24",
+      "bytes": 34379,
+      "body_class": [
+        "page-static_page",
+        "enable-top-editarea",
+        "enable-bottom-editarea",
+        "static-page-new-top",
+        "static-page-layout-header-footer",
+        "globalheader-ng-enabled"
+      ],
+      "canonical": "<link href=\"https://exsudoporus-ruber.hatenablog.jp/new-top\" rel=\"canonical\"/>",
+      "native": {
+        "article.entry": 1,
+        ".hatena-star-container": 0,
+        ".comment-box": 0,
+        ".hatena-bookmark-button": 0,
+        ".hatena-module": 0,
+        "form[role=search]": 0
+      }
+    },
+    "article": {
+      "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+      "final_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327",
+      "status": 200,
+      "sha256": "bc75af28f87b64611fbfa5d16d1c1d5f3404b1b021c79b0e6b87e884c21836ef",
+      "bytes": 89206,
+      "body_class": [
+        "page-entry",
+        "enable-top-editarea",
+        "enable-bottom-editarea",
+        "category-キノコ探索日記",
+        "category-オオノウタケ",
+        "category-キイロイグチ",
+        "category-テングタケダマシ",
+        "category-アカヤマドリ",
+        "category-ムラサキヤマドリタケ",
+        "category-タマゴテングタケモドキ",
+        "category-ミドリニガイグチ",
+        "category-ベニイグチ",
+        "category-シロオニタケ",
+        "category-アンズタケ(広義)",
+        "category-オオワライタケ",
+        "category-ヤマドリタケモドキ",
+        "category-ニガイグチモドキ",
+        "category-キタマゴタケ",
+        "globalheader-ng-enabled"
+      ],
+      "canonical": "<link href=\"https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327\" rel=\"canonical\"/>",
+      "native": {
+        "article.entry": 1,
+        ".hatena-star-container": 1,
+        ".comment-box": 1,
+        ".hatena-bookmark-button": 1,
+        ".hatena-module": 10,
+        "form[role=search]": 1
+      }
+    },
+    "field": {
+      "url": "https://exsudoporus-ruber.hatenablog.jp/archive/category/キノコ探索日記",
+      "final_url": "https://exsudoporus-ruber.hatenablog.jp/archive/category/%E3%82%AD%E3%83%8E%E3%82%B3%E6%8E%A2%E7%B4%A2%E6%97%A5%E8%A8%98",
+      "status": 200,
+      "sha256": "0e060ac6c61e8d3a2c3fb6277baf3ea129902eece780b83b3f96c24c2bfdbc50",
+      "bytes": 189835,
+      "body_class": [
+        "page-archive",
+        "enable-top-editarea",
+        "enable-bottom-editarea",
+        "page-archive-category",
+        "category-キノコ探索日記",
+        "globalheader-ng-enabled"
+      ],
+      "canonical": "<link href=\"https://exsudoporus-ruber.hatenablog.jp/archive/category/%E3%82%AD%E3%83%8E%E3%82%B3%E6%8E%A2%E7%B4%A2%E6%97%A5%E8%A8%98\" rel=\"canonical\"/>",
+      "native": {
+        "article.entry": 0,
+        ".hatena-star-container": 0,
+        ".comment-box": 0,
+        ".hatena-bookmark-button": 0,
+        ".hatena-module": 9,
+        "form[role=search]": 1
+      }
+    },
+    "daily": {
+      "url": "https://exsudoporus-ruber.hatenablog.jp/archive/category/日常の記録",
+      "final_url": "https://exsudoporus-ruber.hatenablog.jp/archive/category/%E6%97%A5%E5%B8%B8%E3%81%AE%E8%A8%98%E9%8C%B2",
+      "status": 200,
+      "sha256": "039ff564eafc782258ce7822df83a5a19ecc83bc427cdb2b88e3aaf3a1be93d2",
+      "bytes": 84214,
+      "body_class": [
+        "page-archive",
+        "enable-top-editarea",
+        "enable-bottom-editarea",
+        "page-archive-category",
+        "category-日常の記録",
+        "globalheader-ng-enabled"
+      ],
+      "canonical": "<link href=\"https://exsudoporus-ruber.hatenablog.jp/archive/category/%E6%97%A5%E5%B8%B8%E3%81%AE%E8%A8%98%E9%8C%B2\" rel=\"canonical\"/>",
+      "native": {
+        "article.entry": 0,
+        ".hatena-star-container": 0,
+        ".comment-box": 0,
+        ".hatena-bookmark-button": 0,
+        ".hatena-module": 9,
+        "form[role=search]": 1
+      }
+    },
+    "about": {
+      "url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/03/22/032440",
+      "final_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/03/22/032440",
+      "status": 200,
+      "sha256": "3993dd7ba5e8c22c62ecb9cb0453c8f9c810a717541b905a1279e2656b642f73",
+      "bytes": 74239,
+      "body_class": [
+        "page-entry",
+        "enable-top-editarea",
+        "enable-bottom-editarea",
+        "category-自己紹介",
+        "globalheader-ng-enabled"
+      ],
+      "canonical": "<link href=\"https://exsudoporus-ruber.hatenablog.jp/entry/2025/03/22/032440\" rel=\"canonical\"/>",
+      "native": {
+        "article.entry": 1,
+        ".hatena-star-container": 1,
+        ".comment-box": 1,
+        ".hatena-bookmark-button": 1,
+        ".hatena-module": 10,
+        "form[role=search]": 1
+      }
+    },
+    "archive": {
+      "url": "https://exsudoporus-ruber.hatenablog.jp/archive",
+      "final_url": "https://exsudoporus-ruber.hatenablog.jp/archive",
+      "status": 200,
+      "sha256": "3f63e84550acfd86da2c8b030aca13d73f7d61915ec41fe77b734a8760654599",
+      "bytes": 178331,
+      "body_class": [
+        "page-archive",
+        "enable-top-editarea",
+        "enable-bottom-editarea",
+        "globalheader-ng-enabled"
+      ],
+      "canonical": "<link href=\"https://exsudoporus-ruber.hatenablog.jp/archive\" rel=\"canonical\"/>",
+      "native": {
+        "article.entry": 0,
+        ".hatena-star-container": 0,
+        ".comment-box": 0,
+        ".hatena-bookmark-button": 0,
+        ".hatena-module": 9,
+        "form[role=search]": 1
+      }
+    },
+    "feed": {
+      "url": "https://exsudoporus-ruber.hatenablog.jp/feed",
+      "final_url": "https://exsudoporus-ruber.hatenablog.jp/feed",
+      "status": 200,
+      "sha256": "9df7fd195918ad560b89fe59625d22f2206d64ea481e6b3c87a0dfdcdde00e0f",
+      "bytes": 204551,
+      "body_class": [],
+      "canonical": "None",
+      "native": {
+        "article.entry": 0,
+        ".hatena-star-container": 0,
+        ".comment-box": 0,
+        ".hatena-bookmark-button": 0,
+        ".hatena-module": 0,
+        "form[role=search]": 0
+      }
+    },
+    "rss": {
+      "url": "https://exsudoporus-ruber.hatenablog.jp/rss",
+      "final_url": "https://exsudoporus-ruber.hatenablog.jp/rss",
+      "status": 200,
+      "sha256": "b6d33a8e054182639885873ed167d6d3ee96f05cf3fa4bfe54bc87a24c6c1565",
+      "bytes": 169777,
+      "body_class": [],
+      "canonical": "None",
+      "native": {
+        "article.entry": 0,
+        ".hatena-star-container": 0,
+        ".comment-box": 0,
+        ".hatena-bookmark-button": 0,
+        ".hatena-module": 0,
+        "form[role=search]": 0
+      }
+    }
+  },
+  "independent_reference_checks": {
+    "17_best_observation_ids_exist": true,
+    "7_retired_ids_absent": true,
+    "66_case_ids_unique": true
+  },
+  "feed_validation": {
+    "feed": {
+      "well_formed": true,
+      "root": "{http://www.w3.org/2005/Atom}feed",
+      "items": 30
+    },
+    "rss": {
+      "well_formed": true,
+      "root": "rss",
+      "items": 30
+    }
+  }
+}

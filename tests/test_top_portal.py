@@ -152,7 +152,7 @@ def test_aiuo_pages_use_scoped_pc_portal_visual_language(monkeypatch, tmp_path):
     assert (tmp_path / "assets" / "aiuo.css").exists()
     assert "body.aiuo-index" in css
     assert "width:min(100%,1180px)" in css
-    assert 'url("mushroom-guide-final.webp")' in css
+    assert 'url("ai-mushroom-guide-20261031.webp")' in css
     assert ".aiuo-index .aiuo-filter-panel" in css
     assert "grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr)" in css
     assert ".aiuo-index .mushroom-list" in css
@@ -208,7 +208,7 @@ def test_guide_index_optional_routes_and_css_are_scoped(monkeypatch, tmp_path):
     assert "body.guide-index" in css
     assert ".guide-index .guide-shell" in css
     assert "width:min(100%,1180px)" in css
-    assert 'url("mushroom-guide-final.webp")' in css
+    assert 'url("ai-mushroom-guide-20261031.webp")' in css
     assert ".guide-index .guide-hub" in css
     assert ".guide-index .guide-hub-body" in css
     assert "grid-template-columns:minmax(0,2.15fr) 1px minmax(260px,.85fr)" in css
@@ -362,7 +362,7 @@ def test_portal_styles_are_compact_and_scoped(monkeypatch, tmp_path):
         "column-gap:20px",
         "row-gap:18px",
         "align-items:stretch",
-        ".portal-records-visual,.portal-section-visual { height:190px; }",
+        ":root:not([data-portal-columns=\"1\"]) .portal-records-visual,:root:not([data-portal-columns=\"1\"]) .portal-section-visual { height:190px; }",
         ".portal-explore { margin-top:0; }",
         ".portal-independent-links { grid-column:1/-1; width:100%; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px;",
         ".portal-independent-links .portal-card { min-height:155px; }",
@@ -380,23 +380,23 @@ def test_portal_styles_are_compact_and_scoped(monkeypatch, tmp_path):
         ".portal-independent-links .portal-card { min-height:155px; }",
     ):
         assert expected in mobile
-    artwork = Path(main.ASSETS_DIR) / "field-notes-observation-final.webp"
+    artwork = Path(main.ASSETS_DIR) / "ai-field-notes-20261031.webp"
     assert artwork.is_file()
-    deployed_artwork = tmp_path / "assets" / "field-notes-observation-final.webp"
+    deployed_artwork = tmp_path / "assets" / "ai-field-notes-20261031.webp"
     assert deployed_artwork.is_file()
     assert deployed_artwork.read_bytes() == artwork.read_bytes()
     records_visual = css[css.index(".portal-records-visual { "):css.index("}", css.index(".portal-records-visual { "))]
-    assert 'background-image:url("field-notes-observation-final.webp")' in records_visual
+    assert 'background-image:url("ai-field-notes-20261031.webp")' in records_visual
     assert "background-size:cover" in records_visual
     assert "background-position:center center" in records_visual
-    assert css.count("field-notes-observation-final.webp") == 1
+    assert css.count("ai-field-notes-20261031.webp") == 1
     for placeholder in (
         ".portal-section-visual--explore",
         ".portal-card--research .portal-card__visual",
         ".portal-card--best-shots .portal-card__visual",
     ):
         rule = css[css.index(placeholder):css.index("}", css.index(placeholder))]
-        assert "field-notes-observation-final.webp" not in rule
+        assert "ai-field-notes-20261031.webp" not in rule
     main.generate_index({}, {})
     assert "portal.css" not in (tmp_path / "index.html").read_text()
 
@@ -459,17 +459,13 @@ def test_portal_artwork_assets_are_deployed_verbatim(monkeypatch, tmp_path):
 
     assets = Path(main.ASSETS_DIR)
     expected = {
-        "new-top-guide-watercolor.webp": (1983, 793),
-        "new-top-season-watercolor.webp": (1983, 793),
-        "new-top-features-watercolor.webp": (1983, 793),
-        "mushroom-guide-final.webp": (2048, 768),
-        "research-lab-final.webp": (2048, 768),
-        "best-shots-final.webp": (2048, 768),
-        "new-top-best-shots-camera-mushrooms.webp": (1916, 821),
-        "guide-action-book.webp": (1698, 926),
-        "guide-action-season.webp": (1698, 926),
-        "guide-action-features.webp": (1698, 926),
-        "research-lab-cabin.webp": (2028, 302),
+        "ai-mushroom-guide-20261031.webp": (1916, 821),
+        "ai-best-shots-20261031.webp": (1916, 821),
+        "ai-features-20261031.webp": (1536, 1024),
+        "ai-guide-book-20261031.webp": (1536, 1024),
+        "ai-research-lab-20261031.webp": (1916, 821),
+        "ai-field-notes-20261031.webp": (1916, 821),
+        "ai-season-20261031.webp": (1536, 1024),
     }
 
     for filename, dimensions in expected.items():
@@ -483,18 +479,18 @@ def test_portal_artwork_assets_are_deployed_verbatim(monkeypatch, tmp_path):
             assert image.size == dimensions
 
     css = (assets / "portal.css").read_text()
-    assert 'background-image:url("mushroom-guide-final.webp")' in css
-    assert 'background-image:url("new-top-best-shots-camera-mushrooms.webp")' in css
-    assert ".portal-records-visual,.portal-section-visual { height:190px; }" in css
+    assert 'background-image:url("ai-mushroom-guide-20261031.webp")' in css
+    assert 'background-image:url("ai-best-shots-20261031.webp")' in css
+    assert ":root:not([data-portal-columns=\"1\"]) .portal-records-visual,:root:not([data-portal-columns=\"1\"]) .portal-section-visual { height:190px; }" in css
 
 def test_reference_portal_card_proportions_and_lower_artwork_assignment():
     css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
 
-    assert '.portal-card--research .portal-card__visual { background-image:url("research-lab-cabin.webp"); background-position:78% center;' in css
-    assert '.portal-index .portal-card--best-shots .portal-card__visual { background-image:url("new-top-best-shots-camera-mushrooms.webp"); background-position:50% 58%;' in css
+    assert '.portal-card--research .portal-card__visual { background-image:url("ai-research-lab-20261031.webp"); background-position:78% center;' in css
+    assert '.portal-index .portal-card--best-shots .portal-card__visual { background-image:url("ai-best-shots-20261031.webp"); background-position:50% 58%;' in css
 
     desktop = css[css.index("@media (min-width:900px)"):css.index("@media (max-width:680px)")]
-    assert ".portal-records-visual,.portal-section-visual { height:190px; }" in desktop
+    assert ":root:not([data-portal-columns=\"1\"]) .portal-records-visual,:root:not([data-portal-columns=\"1\"]) .portal-section-visual { height:190px; }" in desktop
     assert "column-gap:20px" in desktop
     assert "row-gap:18px" in desktop
     assert "align-items:stretch" in desktop
@@ -531,7 +527,7 @@ def test_guide_rows_use_record_style_separators_and_plain_notes(monkeypatch, tmp
     css = (Path(main.ASSETS_DIR) / "portal.css").read_text()
     desktop = css[css.index("@media (min-width:900px)"):css.index("@media (max-width:680px)")]
     assert "align-items:stretch" in desktop
-    assert ".portal-records-visual,.portal-section-visual { height:190px; }" in desktop
+    assert ":root:not([data-portal-columns=\"1\"]) .portal-records-visual,:root:not([data-portal-columns=\"1\"]) .portal-section-visual { height:190px; }" in desktop
     assert ".portal-guide-row { display:grid;" in css
     assert "grid-template-columns:150px minmax(0,1fr)" in css
     assert ".portal-guide-list { display:grid; flex:1 1 auto; min-height:0; align-content:start; border-top:1px solid #d9ddcf; }" in css
@@ -548,9 +544,9 @@ def test_guide_action_cards_use_scoped_approved_watercolors():
     css = (assets / "portal.css").read_text()
     rules = re.findall(r"([^{}]+)\{([^{}]*)\}", css)
     for modifier, filename in (
-        ("guide", "new-top-guide-watercolor.webp"),
-        ("season", "new-top-season-watercolor.webp"),
-        ("features", "new-top-features-watercolor.webp"),
+        ("guide", "ai-guide-book-20261031.webp"),
+        ("season", "ai-season-20261031.webp"),
+        ("features", "ai-features-20261031.webp"),
     ):
         matching = [(selector, body) for selector, body in rules if filename in body]
         assert len(matching) == 1
@@ -562,15 +558,14 @@ def test_guide_action_cards_use_scoped_approved_watercolors():
 
     assert '.portal-index .portal-guide-row .portal-card__visual { background-position:center; background-size:cover; background-repeat:no-repeat; filter:none; }' in css
     for stylesheet, artwork in (
-        ("guide.css", "guide-action-book.webp"),
-        ("season.css", "guide-action-season.webp"),
-        ("features.css", "guide-action-features.webp"),
+        ("guide.css", "ai-guide-book-20261031.webp"),
+        ("season.css", "ai-season-20261031.webp"),
+        ("features.css", "ai-features-20261031.webp"),
     ):
         destination_css = (assets / stylesheet).read_text()
         assert f'url("{artwork}")' in destination_css
-        for image in ('new-top-guide-watercolor.webp', 'new-top-season-watercolor.webp', 'new-top-features-watercolor.webp'):
-            assert image not in destination_css
-        assert f'url("{artwork}")' not in css
+        # The same approved artwork is now shared by the portal and its destinations.
+        assert f'url("{artwork}")' in css
 
 
 def test_approved_backgrounds_preserve_guide_text_and_links(monkeypatch, tmp_path):
@@ -606,6 +601,13 @@ def test_legacy_guide_and_new_portal_assets_are_copied(monkeypatch, tmp_path):
         "new-top-season-watercolor.webp",
         "new-top-features-watercolor.webp",
         "new-top-best-shots-camera-mushrooms.webp",
+        "ai-guide-book-20261031.webp",
+        "ai-season-20261031.webp",
+        "ai-features-20261031.webp",
+        "ai-research-lab-20261031.webp",
+        "ai-best-shots-20261031.webp",
+        "ai-mushroom-guide-20261031.webp",
+        "ai-field-notes-20261031.webp",
     )
     for filename in expected:
         source = assets / filename
@@ -615,10 +617,10 @@ def test_legacy_guide_and_new_portal_assets_are_copied(monkeypatch, tmp_path):
         assert deployed.read_bytes() == source.read_bytes()
 
     css = (assets / "portal.css").read_text()
-    assert 'url("guide-action-book.webp")' not in css
-    assert 'url("guide-action-season.webp")' not in css
-    assert 'url("guide-action-features.webp")' not in css
-    assert 'url("research-lab-cabin.webp")' in css
+    assert 'url("ai-guide-book-20261031.webp")' in css
+    assert 'url("ai-season-20261031.webp")' in css
+    assert 'url("ai-features-20261031.webp")' in css
+    assert 'url("ai-research-lab-20261031.webp")' in css
     assert 'background-position:78% center' in css
 
 def test_portal_artwork_brightness_preserves_text_layers():

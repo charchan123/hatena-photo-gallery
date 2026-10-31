@@ -1,0 +1,37 @@
+✔ height is direct, finite and authenticated; duplicates do not write (4.765423ms)
+✔ bottom collapse reserves outer space and reclaims on upward scroll (1.623953ms)
+✔ navigation, lightbox close and requestHeight remain source-bound (4.287657ms)
+✔ authenticated intent scrolls before ACK; load only reclaims short-page space (2.905369ms)
+✔ cancel clears pending intent without rollback or any additional scroll (1.291197ms)
+✔ repeated intent IDs ACK again but never scroll twice before load (1.719201ms)
+✔ window: no eager post to initial parent-origin document; initial load never scrolls (1.525431ms)
+✔ window: source/origin/path/ID validation precedes any scroll (2.648548ms)
+✔ window: in-place heights, resize and ordinary load never scroll (1.510626ms)
+✔ body: no eager post to initial parent-origin document; initial load never scrolls (3.6122ms)
+✔ body: source/origin/path/ID validation precedes any scroll (1.691801ms)
+✔ body: in-place heights, resize and ordinary load never scroll (3.436473ms)
+✔ measured Hatena BODY coordinates: 4000 → 272 before ACK, window remains 0 (1.573297ms)
+✔ BODY bottom collapse uses body viewport and reclaims on body upward scroll (1.276232ms)
+✔ BODY mode survives top/short content and transfers listeners on layout change (1.537701ms)
+✔ BODY border is excluded from content coordinates; resize uses clientHeight (1.894923ms)
+✔ BODY legacy navigation, lgClosed and bounded requestHeight retain authentication (1.975638ms)
+✔ root mount is additive, has native fallback and retains sandbox permissions (4.694846ms)
+✔ does not activate on {"marker":false} (1.013566ms)
+✔ does not activate on {"marker":"wrong"} (3.0771ms)
+✔ does not activate on {"pathname":"/new-top"} (3.308119ms)
+✔ does not activate on {"pathname":"/entry/a"} (2.05879ms)
+✔ does not activate on {"origin":"https://other.test"} (4.095822ms)
+✔ does not activate on {"search":"?page=2"} (2.751433ms)
+✔ does not activate on {"search":"?kinoko-native=1"} (6.338383ms)
+✔ does not activate on {"existing":true} (4.96951ms)
+✔ does not activate on {"pageClass":"page-entry"} (8.340508ms)
+✔ does not activate on {"contentOK":false} (8.445271ms)
+✔ tracking and same-origin preview queries do not break root mounting (25.281941ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 287.72429

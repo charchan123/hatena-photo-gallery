@@ -1,0 +1,55 @@
+{
+  "checks": 6030,
+  "page_renders": 176,
+  "page_types": [
+    "best-shots-2025.html",
+    "best-shots.html",
+    "favorite.html",
+    "features.html",
+    "index.html",
+    "new-top.html",
+    "records.html",
+    "research.html",
+    "season.html",
+    "あ行.html",
+    "アイタケ.html"
+  ],
+  "viewports": [
+    [
+      320,
+      844
+    ],
+    [
+      360,
+      844
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      430,
+      844
+    ],
+    [
+      844,
+      390
+    ],
+    [
+      899,
+      900
+    ],
+    [
+      900,
+      900
+    ],
+    [
+      1280,
+      900
+    ]
+  ],
+  "errors": [],
+  "missing": [],
+  "physicalAndroid": false,
+  "photoTransport": "SVG substitutes for unchanged photographs; AI WebP bytes are real"
+}

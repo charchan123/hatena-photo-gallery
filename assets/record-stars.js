@@ -37,7 +37,7 @@
   ':host>a,:host>button{min-width:20px;min-height:28px;justify-content:center}'+
   ':host>a[data-record-star-profile]{width:var(--record-star-cell,20px)!important;margin:0!important}'+
   '[data-record-star-avatar]{transform:scale(var(--record-star-scale,.9));transform-origin:center;margin:0!important}'+
-  '[part~=star-button-container]{min-width:36px;min-height:28px;margin:0!important}'+
+  '[part~=star-button-container]{min-width:var(--record-star-control-width,36px);min-height:28px;margin:0!important}'+
   ':host([data-record-star-touch])>a,:host([data-record-star-touch])>button{min-width:28px!important;min-height:28px!important}';
  function start(){
   for(const group of doc.querySelectorAll('.record-stars')){

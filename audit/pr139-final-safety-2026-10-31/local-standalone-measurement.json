@@ -1,0 +1,22 @@
+{
+  "checks": 213,
+  "metrics": [
+    {
+      "case": "standalone-close",
+      "width": 390,
+      "beforePointerAction": 9021,
+      "atClick": 9021,
+      "after": 9021
+    },
+    {
+      "case": "standalone-close",
+      "width": 1280,
+      "beforePointerAction": 6124,
+      "atClick": 6124,
+      "after": 6124
+    }
+  ],
+  "errors": [],
+  "physicalAndroid": false,
+  "photoTransport": "synthetic SVG; original URLs and ordering retained"
+}
