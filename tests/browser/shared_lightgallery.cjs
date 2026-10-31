@@ -44,6 +44,7 @@ const mime=f=>({'.html':'text/html','.js':'text/javascript','.css':'text/css','.
  }
  function fits(r){check(r.x>=-1&&r.right<=r.vw+1&&r.y>=-1&&r.bottom<=r.vh+1,'image within viewport '+JSON.stringify(r));check(Math.abs(r.width/r.height-r.ratio)<.02,'natural aspect ratio');}
  async function close(f,p,key=false){if(key)await p.keyboard.press('Escape');else await f.locator('.lg-close').click();await f.waitForSelector('.lg-show',{state:'detached'});await p.waitForTimeout(500);}
+ if (!process.argv.includes('--interactions-only')) {
  for(const variant of ['before','after']){
   const {c,p}=await setup(variant,390,844,true);await p.goto(PH+'/?child=best-shots-2025.html');const f=p.frames().find(x=>x.url().startsWith(CH));await f.waitForSelector('a.best-shot-photo');await p.waitForTimeout(1000);
   const link=f.locator('a.best-shot-photo').last();await link.scrollIntoViewIfNeeded();await p.waitForTimeout(300);await link.click();
@@ -99,5 +100,37 @@ const mime=f=>({'.html':'text/html','.js':'text/javascript','.css':'text/css','.
   const {c,p}=await setup('after',390,844,true,true);await p.goto(CH+'/hatena-photo-gallery/best-shots-2025.html');await p.waitForTimeout(500);
   check(await p.locator('a.best-shot-photo[href]').count()>0,'native links survive blocked CDN');check(await p.locator('dialog,.lg-outer').count()===0,'no broken overlay without dependencies');await c.close();
  }
- check(errors.length===0,'no browser exceptions: '+errors.join(';'));await browser.close();fs.writeFileSync(path.join(root,'result.json'),JSON.stringify({checks,metrics,errors,physicalAndroid:false,photoTransport:'synthetic SVG; original URLs and ordering retained'},null,2));console.log('PASS',checks,'isolated browser assertions');
+ }
+ // Additional touch/zoom/rotation coverage; may be run alone after the main suite.
+ {
+  const {c,p}=await setup('after',390,844,true);
+  await p.goto(PH+'/?child=best-shots-2025.html');
+  const f=p.frames().find(x=>x.url().startsWith(CH));await settle(f);
+  await f.locator('a.best-shot-photo').last().click();fits(await bounds(f));
+  const original=await f.locator('.lg-current img.lg-object').getAttribute('src');
+  const session=await c.newCDPSession(p);
+  // A real browser touch stream across the current image, not a fabricated slide event.
+  const box=await f.locator('.lg-current img.lg-object').boundingBox();
+  const x=box.x+box.width*.75,y=box.y+box.height*.5;
+  await session.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});
+  for(let i=1;i<=8;i++)await session.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x-i*20,y}]});
+  await session.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+  await f.waitForFunction(src=>document.querySelector('.lg-current img.lg-object')?.getAttribute('src')!==src,original);
+  fits(await bounds(f));check(true,'browser touch swipe changes photograph');
+  await f.locator('.lg-zoom-in').click();
+  await f.waitForFunction(()=>document.querySelector('.lg-outer')?.classList.contains('lg-zoomed'));
+  check(true,'user zoom enabled');await f.waitForTimeout(800);await f.locator('.lg-zoom-out').click();
+  await f.waitForFunction(()=>!document.querySelector('.lg-outer')?.classList.contains('lg-zoomed'));await f.waitForTimeout(800);
+  await p.setViewportSize({width:844,height:390});fits(await bounds(f));
+  await p.setViewportSize({width:390,height:844});fits(await bounds(f));
+  await p.screenshot({path:path.join(root,'screenshots','best-shot-after-390.png')});
+  await close(f,p);check(await p.locator('#photoGallery').evaluate(e=>e.getBoundingClientRect().height>844),'height restored after rotation');
+  await c.close();
+ }
+ for(const variant of ['before','after']){
+  const {c,p}=await setup(variant,390,844,true);await p.goto(CH+'/hatena-photo-gallery/new-top.html');
+  await p.waitForFunction(()=>document.querySelector('.record-stars')?.dataset.total==='14');
+  await p.screenshot({path:path.join(root,'screenshots',`stars-${variant}-390.png`)});await c.close();
+ }
+ check(errors.length===0,'no browser exceptions: '+errors.join(';'));await browser.close();fs.writeFileSync(path.join(root,process.argv.includes('--interactions-only')?'interactions-result.json':'result.json'),JSON.stringify({checks,metrics,errors,physicalAndroid:false,photoTransport:'synthetic SVG; original URLs and ordering retained'},null,2));console.log('PASS',checks,'isolated browser assertions');
 })().catch(async e=>{console.error(e);fs.writeFileSync(path.join(root,'failure.json'),JSON.stringify({checks,metrics,errors,error:String(e)},null,2));if(browser)await browser.close();process.exitCode=1});
