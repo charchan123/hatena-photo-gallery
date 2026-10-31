@@ -45,6 +45,14 @@ def test_current_assets_and_unreferenced_legacy_assets_are_delivered_verbatim(mo
         assert sha((tmp_path/'assets'/name).read_bytes()) == expected
 
 def test_generator_logic_outside_asset_delivery_is_identical():
-    source = ast.parse((ROOT/'main.py').read_text())
-    source.body = [n for n in source.body if not isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef)) or n.name != 'copy_shared_assets']
-    assert sha(ast.dump(source,include_attributes=False).encode()) == M['generator_ast_excluding_asset_copy_sha256']
+    # ast.dump differs between Python 3.11 and 3.12 (e.g. type_params).
+    # Locate the one permitted function with AST, then hash all other source
+    # verbatim, normalizing only its immediately surrounding empty lines.
+    source = (ROOT/'main.py').read_text()
+    lines = source.splitlines(keepends=True)
+    function = next(n for n in ast.parse(source).body
+                    if isinstance(n, ast.FunctionDef) and n.name == 'copy_shared_assets')
+    unchanged = (''.join(lines[:function.lineno-1]).rstrip('\n') +
+                 '\n<COPY_SHARED_ASSETS>\n' +
+                 ''.join(lines[function.end_lineno:]).lstrip('\n'))
+    assert sha(unchanged.encode()) == M['generator_source_excluding_asset_copy_sha256']
