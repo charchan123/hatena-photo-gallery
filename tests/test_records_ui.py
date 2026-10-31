@@ -127,7 +127,7 @@ def test_records_page_matches_new_top_field_notes_visual_contract():
     css = (root / "assets" / "records.css").read_text(encoding="utf-8")
     assert "body.records-index" in css
     assert "width:min(100%,1180px)" in css
-    assert 'url("field-notes-observation-final.webp")' in css
+    assert 'url("ai-field-notes-20261031.webp")' in css
     assert ".records-index .records-hub" in css
     assert ".records-index .record-list" in css
     assert "grid-template-columns:1fr" in css

@@ -4,7 +4,7 @@ body.feature-index { max-width:none; margin:0; padding:0; background:#f7fcf4; co
 .feature-index a { color:inherit; }
 .feature-index .feature-page { width:min(100%,1180px); margin:0 auto; padding:24px 22px 52px; }
 .feature-index .feature-hub,.feature-index .feature-results-panel { overflow:hidden; border:1px solid #dce7d9; border-radius:22px; background:#fff; box-shadow:0 14px 36px rgba(39,63,44,.08); }
-.feature-index .feature-hero { position:relative; min-height:220px; overflow:hidden; background:linear-gradient(90deg,rgba(11,34,20,.74),rgba(11,34,20,.45) 39%,rgba(11,34,20,.09) 70%,rgba(11,34,20,.03)),url("guide-action-features.webp") 70% 50%/cover no-repeat; }
+.feature-index .feature-hero { position:relative; min-height:220px; overflow:hidden; background:linear-gradient(90deg,rgba(11,34,20,.74),rgba(11,34,20,.45) 39%,rgba(11,34,20,.09) 70%,rgba(11,34,20,.03)),url("ai-features-20261031.webp") 70% 50%/cover no-repeat; }
 .feature-index .feature-back-link { position:absolute; z-index:2; top:18px; left:22px; display:inline-flex; align-items:center; min-height:34px; padding:0 13px; border:1px solid rgba(255,255,255,.34); border-radius:999px; background:rgba(17,48,30,.48); color:#fff; font-size:.78rem; font-weight:700; text-decoration:none; backdrop-filter:blur(6px); }
 .feature-index .feature-hero-copy { position:absolute; left:46px; top:50%; width:min(560px,60%); transform:translateY(-38%); color:#fff; text-shadow:0 2px 10px rgba(0,0,0,.44); }
 .feature-index .feature-eyebrow { display:block; margin:0 0 6px; color:inherit; font-size:.68rem; font-weight:850; letter-spacing:.16em; }

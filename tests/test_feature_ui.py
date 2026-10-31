@@ -106,7 +106,7 @@ def test_feature_css_uses_scoped_pc_portal_layout():
     css = (ROOT / "assets/features.css").read_text()
     assert "body.feature-index" in css
     assert "width:min(100%,1180px)" in css
-    assert 'url("guide-action-features.webp")' in css
+    assert 'url("ai-features-20261031.webp")' in css
     assert ".feature-index .feature-controls" in css
     assert ".feature-index .feature-card" in css
     assert "grid-template-columns:repeat(4,minmax(0,1fr))" in css

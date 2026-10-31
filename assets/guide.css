@@ -36,7 +36,7 @@ body.guide-index {
   overflow:hidden;
   background:
     linear-gradient(90deg,rgba(11,34,20,.76) 0%,rgba(11,34,20,.52) 37%,rgba(11,34,20,.12) 68%,rgba(11,34,20,.04) 100%),
-    url("mushroom-guide-final.webp") 68% 50%/cover no-repeat;
+    url("ai-mushroom-guide-20261031.webp") 68% 50%/cover no-repeat;
 }
 
 .guide-index .guide-hero::after {
@@ -333,7 +333,7 @@ body.guide-index {
   border-radius:14px;
   background:
     linear-gradient(120deg,rgba(0,0,0,.18),rgba(0,0,0,.30)),
-    url("guide-action-book.webp") center/cover;
+    url("ai-guide-book-20261031.webp") center/cover;
   color:#fff;
   text-decoration:none;
   box-shadow:0 8px 18px rgba(30,65,39,.11);
@@ -406,10 +406,10 @@ body.guide-index {
 
 .guide-index .guide-way:hover::before { transform:scale(1.04); filter:brightness(1.08); }
 
-.guide-index .guide-way--season::before { background-image:url("guide-action-season.webp"); background-position:62% 50%; }
-.guide-index .guide-way--features::before { background-image:url("guide-action-features.webp"); background-position:70% 50%; }
-.guide-index .guide-way--research::before { background-image:url("research-lab-cabin.webp"); background-position:78% center; }
-.guide-index .guide-way--best::before { background-image:url("new-top-best-shots-camera-mushrooms.webp"); background-position:50% 58%; }
+.guide-index .guide-way--season::before { background-image:url("ai-season-20261031.webp"); background-position:62% 50%; }
+.guide-index .guide-way--features::before { background-image:url("ai-features-20261031.webp"); background-position:70% 50%; }
+.guide-index .guide-way--research::before { background-image:url("ai-research-lab-20261031.webp"); background-position:78% center; }
+.guide-index .guide-way--best::before { background-image:url("ai-best-shots-20261031.webp"); background-position:50% 58%; }
 
 .guide-index .guide-way span {
   margin-bottom:4px;
