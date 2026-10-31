@@ -1,0 +1,9 @@
+{
+  "head": "dfe5843aaf670301e6fa602cf16bb388c35a3cc8",
+  "run": 41162972794,
+  "job": 124424358750,
+  "conclusion": "failure",
+  "step": "PC and mobile shared gallery and native star layout",
+  "assertion": "standalone restores scroll",
+  "measurement": "Old assertion used scrollY before the pointer action. Final assertion records trusted click capture before any application handler, and still requires return within one pixel. Both values are saved. This failed run is not a final pass."
+}

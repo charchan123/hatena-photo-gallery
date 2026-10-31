@@ -82,3 +82,9 @@ ACK正常時の順序・ID/origin/source照合・2秒タイムアウトは保持
 最終判断でAndroid実機未確認を必ず区別する。実機確認とmainマージ/Pages公開の承認は次段階。
 
 根拠: https://imagesloaded.desandro.com/ （callback/always仕様）、リポジトリ同梱 `lightgallery/lg-thumbnail.min.js` / `lightgallery.min.js` 2.8.3（実際に使用する版。最新3.xドキュメントの追加仕様は根拠にしない）。
+
+## 最終CIの計測追跡
+
+最初の修正HEAD `dfe5843aaf670301e6fa602cf16bb388c35a3cc8` の共通試験run `41162972794` は単独表示の位置復帰assertionでFAIL。この結果を成功扱いしない。
+従来の計測はpointer操作前300ms時点のscrollYを基準にしていた。遅延読み込みを残す条件では、Playwrightのクリック位置調整や画像読み込みにより、実際のクリックまでに位置が変わる可能性がある。
+そこで、アプリのhandlerより前のtrusted click captureで位置を採取し、閉じた後との**1px以内一致条件を維持**して切り分ける。操作前/実クリック/閉じた後をすべて成果物に残す。ローカル単独390/1280pxでは3値とも一致（`local-standalone-measurement.json`）。最終HEADのCIでも実クリック時位置と不一致なら、実装の問題として対処する。

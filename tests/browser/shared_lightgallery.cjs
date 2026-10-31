@@ -33,7 +33,8 @@ const mime=f=>({'.html':'text/html','.js':'text/javascript','.css':'text/css','.
    return route.abort();
   });
   await c.addInitScript(()=>{
-   window.__openingPositions=[];
+   window.__openingPositions=[];window.__photoClickPositions=[];
+   addEventListener('click',e=>{if(e.isTrusted&&e.target.closest?.('a.best-shot-photo'))window.__photoClickPositions.push(scrollY);},true);
    addEventListener('message',e=>{if(e.source===document.querySelector('#photoGallery')?.contentWindow&&e.origin==='https://charchan123.github.io'&&e.data?.type==='photoOpening')window.__openingPositions.push(scrollY);});
   });
   const p=await c.newPage();p.on('pageerror',e=>errors.push(e.message));return {c,p,requested};
@@ -80,7 +81,9 @@ const mime=f=>({'.html':'text/html','.js':'text/javascript','.css':'text/css','.
  for(const width of [390,1280]){
   const {c,p}=await setup('after',width,844,width===390);await p.goto(CH+'/hatena-photo-gallery/best-shots.html');await settle(p);await p.getByRole('link',{name:'2025年',exact:true}).click();await settle(p);const url=p.url();
   const link=p.locator('a.best-shot-photo').last();await link.scrollIntoViewIfNeeded();await p.waitForTimeout(300);const y=await p.evaluate(()=>scrollY);await link.click();fits(await bounds(p));await close(p,p);
-  check(p.url()===url,'opening does not alter history');check(Math.abs(await p.evaluate(()=>scrollY)-y)<=1,'standalone restores scroll');await p.goBack();await settle(p);check(new URL(p.url()).pathname.endsWith('/best-shots.html'),'Back');await p.goForward();await settle(p);check(p.url()===url,'Forward');await c.close();
+  const atClick=await p.evaluate(()=>window.__photoClickPositions.at(-1));
+  metrics.push({case:'standalone-close',width,beforePointerAction:y,atClick,after:await p.evaluate(()=>scrollY)});
+  check(p.url()===url,'opening does not alter history');check(Number.isFinite(atClick),'trusted photo activation observed');check(Math.abs(await p.evaluate(()=>scrollY)-atClick)<=1,'standalone restores scroll '+JSON.stringify(metrics.at(-1)));await p.goBack();await settle(p);check(new URL(p.url()).pathname.endsWith('/best-shots.html'),'Back');await p.goForward();await settle(p);check(p.url()===url,'Forward');await c.close();
  }
  const names=fs.readdirSync(path.join(root,'after')).filter(x=>x.endsWith('.html'));
  const guide=names.find(x=>fs.readFileSync(path.join(root,'after',x),'utf8').includes('class="gallery-item"'));check(Boolean(guide),'real generated guide');
