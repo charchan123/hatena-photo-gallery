@@ -44,6 +44,7 @@ jobs:
           python comments/tools/seed.py
           git diff --exit-code -- comments/migrations/0003_reviewed_cases.sql
           node --test comments/tests/api.test.mjs comments/tests/staging.test.mjs
+          node comments/staging/benchmark-registry.mjs "${{ runner.temp }}/comments-cpu-local.json"
           python comments/staging/build.py
           python tests/browser/comments_integration_protection.py "${{ runner.temp }}/comments-protection.json" "${{ github.event.pull_request.base.sha }}"
       - name: Bundle closed staging template without Cloudflare authentication or deployment
@@ -66,4 +67,5 @@ jobs:
           path: |
             ${{ runner.temp }}/research-comments-evidence/
             ${{ runner.temp }}/comments-protection.json
+            ${{ runner.temp }}/comments-cpu-local.json
           retention-days: 30

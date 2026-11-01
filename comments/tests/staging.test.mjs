@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 import { generateKeyPair, SignJWT } from "jose";
 import { stagingFixture, ORIGIN, ISSUER, AUD, ADMIN } from "./staging-fixture.mjs";
 import { createWorker } from "../worker.mjs";
+import "./registry.test.mjs";
+import "./access-snapshot.test.mjs";
 
 async function setup(t) {const s=await stagingFixture();t.mock.method(globalThis,"fetch",s.certFetch);return s;}
 
@@ -74,6 +76,18 @@ test("same-origin CORS, strict JSON and admin Origin restrictions are retained",
   assert.equal(preflight.headers.get('Access-Control-Allow-Credentials'),null);
   assert.equal((await s.call('/admin/cases',{token,headers:{Authorization:'Bearer '+ADMIN,Origin:ORIGIN}})).status,401);
   assert.equal((await s.call('/assets/other-secret.json',{token})).status,404);
+});
+
+test("Worker-internal OPTIONS accepts a valid assertion with preflight headers; this does not emulate Access",async t=>{
+  const s=await setup(t),token=await s.sign();
+  const headers={Origin:ORIGIN,'Access-Control-Request-Method':'POST','Access-Control-Request-Headers':'content-type'};
+  const response=await s.call(s.route,{token,method:'OPTIONS',headers});
+  assert.equal(response.status,204);
+  assert.equal(await response.text(),'');
+  assert.equal(response.headers.get('Access-Control-Allow-Origin'),ORIGIN);
+  assert.equal(response.headers.get('Access-Control-Allow-Headers'),'Content-Type');
+  assert.equal((await s.call(s.route,{method:'OPTIONS',headers})).status,403);
+  assert.equal((await s.call('/admin/cases',{token,method:'OPTIONS',headers})).status,403);
 });
 
 test("posting uses bundled case manifest; replay, quotas and 500-character guards remain",async t=>{

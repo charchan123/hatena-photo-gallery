@@ -20,6 +20,14 @@ async function start(cmd,args){const c=spawn(cmd,args,{cwd:root,stdio:['ignore',
  });
  const stats=async()=>await(await c.request.get(api+'/__test/stats')).json();
  const control=async values=>c.request.post(api+'/__test/control',{data:values});
+ // Negative boundary observation is separate from Worker OPTIONS=204 assertions.
+ // This is a local model, never a replacement/pass for the recorded real 403.
+ const edgeBefore=await stats();
+ const preflight=await c.request.fetch(api+'/v1/cases/'+edgeBefore.id+'/comments',{
+   method:'OPTIONS',headers:{Origin:'https://other.example.invalid','Access-Control-Request-Method':'POST'}});
+ check(preflight.status()===403,'local Access boundary denies preflight');
+ check((await stats()).workerCalls===edgeBefore.workerCalls,'denied preflight never reaches Worker');
+ const transportStart=await stats();
  await page.goto(origin+'/research.html');check((await page.textContent('body')).includes('ACCESS_DENIED'),'anonymous UI denied');
  await c.addCookies([{name:'CF_Authorization',value:'synthetic-access-session',url:origin,httpOnly:true,secure:true,sameSite:'Lax'}]);
  await page.addInitScript(()=>{window.turnstile={render:(box,opts)=>{queueMicrotask(()=>opts.callback('synthetic-human'));return 1;},remove:()=>{}};});
@@ -98,6 +106,10 @@ async function start(cmd,args){const c=spawn(cmd,args,{cwd:root,stdio:['ignore',
  check((await stats()).publicCalls===countBefore,'cross-origin config refused without API requests');
  check(!JSON.stringify(requests).includes('synthetic-service-key-')&&!JSON.stringify(requests).includes('synthetic-admin-secret-'),'credentials never enter browser requests');
  check(!JSON.stringify(requests).includes('Cf-Access-Jwt-Assertion'),'JWT not placed by public JS');
- fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({checks,environment:'LOCAL: real Chromium + signed synthetic Access JWT + in-memory SQLite + localhost Python proxy; no Cloudflare connection',widths:[1280,900,680,390,320],productionWrites:false},null,2));
+ const transportEnd=await stats();
+ check(transportEnd.optionsCalls===transportStart.optionsCalls,'real same-origin browser GET/JSON POST and localhost proxy need no OPTIONS');
+ check(transportEnd.serviceCalls>0&&!transportEnd.serviceHasBrowserHeaders,'Service Auth stays server-to-server without Origin/Cookie/preflight');
+ check(requests.filter(r=>r.url.startsWith(origin+'/v1/')).every(r=>new URL(r.url).origin===origin),'public API remains same-origin');
+ fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({checks,environment:'LOCAL: real Chromium + signed synthetic Access JWT + in-memory SQLite + localhost Python proxy; no Cloudflare connection',widths:[1280,900,680,390,320],productionWrites:false,transport:{browser:'same-origin cookie',admin:'localhost Python server-to-server Service Auth + distinct Bearer',preflightDuringSupportedFlows:transportEnd.optionsCalls-transportStart.optionsCalls,cloudflareEdgeVerified:false}},null,2));
  console.log(JSON.stringify({checks,out}));
 })().catch(async e=>{if(debugAdmin){await debugAdmin.screenshot({path:path.join(out,'failure.png'),fullPage:true});fs.writeFileSync(path.join(out,'failure.txt'),await debugAdmin.locator('body').innerText());}console.error(e);process.exitCode=1;}).finally(async()=>{if(browser)await browser.close();for(const c of children)c.kill();});

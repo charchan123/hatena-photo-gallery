@@ -10,6 +10,21 @@ PR137 = '1766b1693ec87a2945b98abc5456f48fc9a13026'
 PR135 = '090eac16c25129695452a10a076532c752d8bd27'
 REVIEWED = {'.gitignore', 'admin/comments_client.py', 'comments/worker.mjs',
             'comments/package.json', 'comments/package-lock.json'}
+CPU_BASE = '582a6c19e136fe5f7f6b2c2448cb0f63f14d1235'
+CPU_RUNTIME = {'comments/staging/worker.mjs', 'comments/staging/registry.mjs'}
+
+def assert_staging_source(path, content):
+    """Only the two explicitly reviewed CPU runtime files may differ in Nov 1.
+
+    Preserve all old frozen checks; use exact SHA pins for the intended update,
+    rather than exempting the entire staging directory from byte protection.
+    """
+    if path not in CPU_RUNTIME:
+        assert content == git('show', f'{PR137}:{path}'), path
+        return
+    pins = json.loads((ROOT/'audit/comments-cpu-options-20261101/runtime-hashes.json').read_text(encoding='utf-8'))
+    assert pins['baseline'] == CPU_BASE and set(pins['files']) == CPU_RUNTIME
+    assert hashlib.sha256(content).hexdigest() == pins['files'][path], path
 
 def git(*args):
     return subprocess.check_output(['git', *args], cwd=ROOT)
@@ -33,11 +48,12 @@ def collect(base='origin/main'):
         content = (ROOT / path).read_bytes()
         assert_reviewed_source(base, path, content)
         hashes[path] = hashlib.sha256(content).hexdigest()
-    # New staging runtime also stays byte-for-byte equal to the reviewed PR.
+    # Original runtime stays byte-for-byte equal except exact reviewed CPU pins.
     runtime = [p for p in git('ls-tree', '-rz', '--name-only', PR137, 'comments/staging').decode().split('\0') if p]
     runtime += ['comments/package.json', 'comments/package-lock.json']
+    runtime += ['comments/staging/registry.mjs']
     for path in runtime:
-        assert (ROOT/path).read_bytes() == git('show', f'{PR137}:{path}'), path
+        assert_staging_source(path, (ROOT/path).read_bytes())
     portal = json.loads(git('show', 'origin/gh-pages:portal-data.json'))
     read = lambda name: json.loads((ROOT/name).read_text(encoding='utf-8'))
     config = json.loads(git('show', 'origin/gh-pages:research-comments-config.json'))
@@ -73,6 +89,7 @@ def collect(base='origin/main'):
             'published':git('rev-parse','origin/gh-pages').decode().strip(),
             'reviewed_pr137':PR137, 'protected_files':hashes,
             'exact_reviewed_staging_files':runtime, 'registry_sha256':registry_digest(registry),
+            'cpu_runtime_review':CPU_BASE,
             'counts':{'photos':len(portal['observations']), 'best_shots':len(selections),
                       'notices':len(read('data/update-notices.json')['events']),
                       'research':len(cases), 'retired':snapshot['payload']['retirement']['retired_count'],

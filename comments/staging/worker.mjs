@@ -1,8 +1,9 @@
 // Separate entry: production never imports this module or its manifest policy.
-import { createWorker, canonical, digest } from "../worker.mjs";
+import { createWorker } from "../worker.mjs";
 import registry from "../cases.json" with { type: "json" };
 import manifest from "./manifest.json" with { type: "json" };
 import { createAccessVerifier } from "./access.mjs";
+import { createRegistryChecker } from "./registry.mjs";
 const headers = {
   "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff",
   "Referrer-Policy": "no-referrer",
@@ -37,28 +38,9 @@ async function bounded(operation) {
     })]);
   } finally { clearTimeout(timer); }
 }
-async function checkRegistry(env) {
-  const meta = (await env.DB.prepare("SELECT key,value FROM metadata").all()).results;
-  const values = Object.fromEntries(meta.map(r => [r.key, r.value]));
-  if (values.installation_id !== env.STAGING_INSTALLATION_ID || values.schema_version !== "1" ||
-      values.registry_sha256 !== manifest.registry_sha256 ||
-      await digest(canonical(registry)) !== manifest.registry_sha256)
-    throw Error("STAGING_REGISTRY_MISMATCH");
-  const expected = await Promise.all(registry.cases.map(async r => ({
-    id: r.id, identity_hash: await digest(canonical([r.article_identity, [...r.observation_ids].sort()])),
-  })));
-  const cases = (await env.DB.prepare("SELECT id,identity_hash FROM cases ORDER BY id").all()).results;
-  const aliases = (await env.DB.prepare("SELECT alias,case_id FROM aliases ORDER BY alias").all()).results;
-  const byId = (a,b) => a.id.localeCompare(b.id);
-  const byAlias = (a,b) => a.alias.localeCompare(b.alias);
-  const expectedAliases = registry.cases.flatMap(r => r.render_ids.map(alias => ({alias,case_id:r.id})));
-  if (canonical(cases) !== canonical(expected.sort(byId)) ||
-      canonical(aliases) !== canonical(expectedAliases.sort(byAlias)) ||
-      canonical(manifest.active_ids) !== canonical(expected.map(r=>r.id).sort()) || manifest.version !== 1)
-    throw Error("STAGING_REGISTRY_MISMATCH");
-}
 export function createStagingWorker({ fetcher = globalThis.fetch, clock = () => Date.now() } = {}) {
   const verifyAccess = createAccessVerifier();
+  const checkRegistry = createRegistryChecker(registry, manifest);
   const api = createWorker({ fetcher, clock, loadManifest: async () => manifest });
   return {
     async fetch(request, env) {

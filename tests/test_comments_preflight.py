@@ -57,3 +57,15 @@ def test_integration_allowance_never_accepts_changed_main_or_changed_pr137(monke
     monkeypatch.setattr(gate,'git',lambda *args:b'new main' if args[-1].startswith('base:') else git(*args))
     with pytest.raises(AssertionError,match='main advanced'):
         gate.assert_reviewed_source('base','admin/comments_client.py',b'reviewed')
+
+def test_cpu_runtime_pins_reject_unreviewed_changes(monkeypatch):
+    import runpy
+    gate=runpy.run_path(str(ROOT/'tests/browser/comments_integration_protection.py'))
+    check=gate['assert_staging_source']
+    for path in gate['CPU_RUNTIME']:
+        content=(ROOT/path).read_bytes()
+        check(path,content)
+        with pytest.raises(AssertionError):check(path,content+b'\n// unreviewed change')
+    # The rest of staging remains pinned to the original implementation.
+    with pytest.raises(AssertionError):
+        check('comments/staging/access.mjs',b'// disabled JWT verification')

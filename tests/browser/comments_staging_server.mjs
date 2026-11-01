@@ -12,11 +12,13 @@ s.env.ASSETS={fetch:async request=>{
 for(let i=0;i<23;i++)s.db.sql.prepare("INSERT INTO comments(id,case_id,role,nickname,body,created_at,delete_hash) VALUES(?,?,'visitor',?,?,?,?)")
   .run(crypto.randomUUID(),s.id,'森の試験参加者',i===0?'<img src=x onerror=alert(1)> 合成コメント':'合成コメント '+i,Date.now()-86400000+i,'f'.repeat(64));
 let publicCalls=0,adminCalls=0,cookieCalls=0,serviceCalls=0,adminDenied=false,fail=false;
+let optionsCalls=0,preflightCalls=0,workerCalls=0,serviceHasBrowserHeaders=false;
 const server=http.createServer(async(req,res)=>{
   try{
     let raw='';for await(const c of req)raw+=c;
     if(req.url==='/__test/stats'){
       res.setHeader('Content-Type','application/json');res.end(JSON.stringify({id:s.id,publicCalls,adminCalls,cookieCalls,serviceCalls,
+        optionsCalls,preflightCalls,workerCalls,serviceHasBrowserHeaders,
         comments:s.db.sql.prepare('SELECT id,state,role FROM comments ORDER BY seq').all()}));return;
     }
     if(req.url==='/__test/control'){
@@ -25,16 +27,24 @@ const server=http.createServer(async(req,res)=>{
     }
     const cookie=(req.headers.cookie||'').split(';').some(x=>x.trim()==='CF_Authorization=synthetic-access-session');
     const service=req.headers['cf-access-client-id']===ACCESS_ID&&req.headers['cf-access-client-secret']===ACCESS_SECRET;
+    if(req.method==='OPTIONS')optionsCalls++;
+    // Conservative LOCAL boundary model, not proof of Cloudflare edge behavior.
+    // Real browsers omit Access cookies/Service Auth secrets on CORS preflight.
+    if(req.method==='OPTIONS'&&req.headers['access-control-request-method']){
+      preflightCalls++;res.writeHead(403,{'Content-Type':'text/plain'});res.end('Synthetic Access preflight rejection');return;
+    }
     if(!cookie&&!service || adminDenied&&req.url.startsWith('/admin/')){
       res.writeHead(403,{'Content-Type':'application/json'});res.end('{"error":"ACCESS_DENIED"}');return;
     }
     if(cookie)cookieCalls++;if(service)serviceCalls++;
+    if(service&&(req.headers.origin||req.headers.cookie||req.headers['access-control-request-method']))serviceHasBrowserHeaders=true;
     if(req.url.startsWith('/v1/'))publicCalls++;
     if(req.url.startsWith('/admin/'))adminCalls++;
     if(fail&&req.url.startsWith('/v1/')){res.writeHead(503,{'Content-Type':'application/json'});res.end('{"error":"SERVICE_UNAVAILABLE"}');return;}
     const headers=new Headers();for(const[k,v]of Object.entries(req.headers))if(v)headers.set(k,Array.isArray(v)?v.join(','):v);
     // Emulated edge overwrites any caller-supplied identity header.
     headers.set('Cf-Access-Jwt-Assertion',token);headers.set('CF-Connecting-IP','198.51.100.24');
+    workerCalls++;
     const r=await s.worker.fetch(new Request(ORIGIN+req.url,{method:req.method,headers,body:['GET','HEAD'].includes(req.method)?undefined:raw}),s.env);
     res.writeHead(r.status,Object.fromEntries(r.headers));res.end(await r.text());
   }catch{res.writeHead(500);res.end('{}');}
