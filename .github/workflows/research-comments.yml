@@ -24,7 +24,16 @@ jobs:
       - name: Preserve exact tracked bytes before cross-platform protection checks
         run: |
           git config core.autocrlf false
-          git checkout-index --all --force
+          python - <<'PY'
+          import pathlib, shutil, subprocess, tempfile
+          # A fresh prefix avoids reusing existing checkout files. Set EOL
+          # explicitly as well as autocrlf; never normalize bytes in the tests.
+          with tempfile.TemporaryDirectory(prefix='comments-exact-') as directory:
+              prefix = pathlib.Path(directory).as_posix() + '/'
+              subprocess.run(['git', '-c', 'core.autocrlf=false', '-c', 'core.eol=lf',
+                              'checkout-index', '--all', '--force', '--prefix=' + prefix], check=True)
+              shutil.copytree(directory, pathlib.Path.cwd(), dirs_exist_ok=True)
+          PY
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'

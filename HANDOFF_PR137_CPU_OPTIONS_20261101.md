@@ -2,6 +2,8 @@
 
 2026-11-02追記：保存HEAD `c4728dd8b52687092bad48fc25f19b11c416305f` の確定CIは10 workflows成功/Validate1件失敗だった。[履歴不足の原因・最小修正・再利用した成績](audit/comments-cpu-options-20261101/ci-history-fix-20261102.md)を参照。最初のcheckoutがdepth1のため過去の固定SHAを読めず、1131 passed/1 failed。テストを変えず、admin-validate最初のcheckoutだけfetch-depth:0とした。最終HEADのCI結果はPR137の最新監査コメントを正本とする。以下は11月1日停止時点の履歴として保持する。Cloudflare操作は引き続き禁止。
 
+同日追加：履歴修正HEAD `8e40593d7980ab5d10bc0cde87d511fc709b9321` のValidateは1132 passed/JSも成功。comments WindowsだけCRLFによる固定SHA不一致で停止（40 passed/1 failed）。同じ監査資料に失敗を保存し、comments CIの準備stepを新規prefix＋明示LFでindex原本を復元する方式へ修正した。テストやruntimeは不変。次回は最新HEADの全13job結果をPR監査コメントで確認し、これらの途中HEADを全件成功と混同しない。
+
 保存日：2026-11-01 JST、21:14時点の確認に基づく。Work残量約7%の緊急指示により、新規実装・追加の長時間試験を停止し、成果保全を優先した。
 
 **次回はGitHubの最終HEADとCIを読むところから再開する。実装・全件試験・Cloudflare構築を最初からやり直さない。今回はCloudflareアカウント操作0件。実環境は別承認なしに再開しない。**

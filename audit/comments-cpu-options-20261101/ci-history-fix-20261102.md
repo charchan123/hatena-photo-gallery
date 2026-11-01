@@ -50,6 +50,16 @@ CPU最適化・OPTIONS設計・registry/manifest/migrations・JWT verifier・写
 
 ## 境界と残作業
 
+## 同日の追加CI：Windows CRLFの安全停止
+
+履歴修正HEAD `8e40593d7980ab5d10bc0cde87d511fc709b9321` のValidateは成功し、Python1132 passed、後続JSも成功。一方、[comments run 41349627606](https://github.com/charchan123/hatena-photo-gallery/actions/runs/41349627606) のWindows job `124976807206` はPython40 passed/1 failedとなった。`registry.mjs`の作業コピーにCRLFが残り、固定SHAとの厳密比較が拒否した。Ubuntu commentsは30 Node試験・D1/API/Access・dry-run・ブラウザを含め成功。他10 workflowsも成功。失敗を削除・成功扱いしない。
+
+ログ上、従来の `core.autocrlf=false` と既存作業コピーへの `checkout-index --all --force` は実行済みだった。そのWindows環境でCRLFが残った詳細要因（runner設定等）は未確定。テストに改行正規化を追加せず、comments workflowの準備stepだけを、新しい一時prefixへ `core.autocrlf=false` / `core.eol=lf` を明示してindexを出力し、そのバイトを作業コピーへ戻す方式にする。Git index/検査基準/ソースblobは不変。
+
+ローカルの一時Git repoでCRLF入力を作り、新方式で元blobと完全一致することを確認。Linuxでは旧方式でもLFへ戻ったため、Windowsの旧方式の不具合をローカル再現できたとは主張しない。最終Windows CIで確認する。変更範囲はCI準備だけで、runtime・テストの削除/skip/期待値/SHA緩和はなし。
+
+## 変更後も維持する境界
+
 ローカルCPU既存結果2.13228→0.18148ms（91.49%減）、67→0 SHA、D1 3→3を引き継ぐ。初回負荷と実Cloudflare10ms達成は未確認。過去のOPTIONS403/CPU未達の実履歴は消さない。
 
 今回Cloudflareアカウント接続・設定変更・実試験は0件。前回のURL閉鎖/READ・WRITE=false/not-approved/Service Token無効/構築API token削除の停止記録を維持し、再接続で確認したとは主張しない。実CPU cold/warm、実Accessの切り分け、実Turnstile、合成投稿/削除/返信/backup、実Windows/Androidは別承認後の作業。
