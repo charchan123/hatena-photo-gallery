@@ -9,6 +9,7 @@ on:
       - 'tests/browser/ai_artwork*'
       - 'tests/test_ai_artwork.py'
       - 'audit/ai-image-refresh-20261031/**'
+      - 'audit/guide-image-refresh-20261102/**'
       - '.github/workflows/ai-artwork.yml'
 permissions:
   contents: read

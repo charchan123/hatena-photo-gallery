@@ -2,7 +2,7 @@
 const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('node:assert/strict');
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE_PATH||'playwright');
 const root=path.resolve(process.argv[2]),CH='https://charchan123.github.io';
-const manifest=JSON.parse(fs.readFileSync(path.join(__dirname,'../../audit/ai-image-refresh-20261031/artwork-manifest.json')));
+const manifest=JSON.parse(fs.readFileSync(path.join(__dirname,'../../audit/guide-image-refresh-20261102/artwork-manifest.json')));
 const old=new Set(Object.keys(manifest.replacements)),fresh=new Map(manifest.assets.map(a=>[a.asset,a]));
 const star=fs.readFileSync(path.join(__dirname,'record_stars.cjs'),'utf8');
 const mock=vm.runInNewContext(star.slice(star.indexOf('const icons='),star.indexOf('const server='))+'\nmockSource');
