@@ -1,0 +1,39 @@
+{
+  "source_name": "2ec29d1b-187a-4386-8b9b-8af83fe5e175(1).png",
+  "source_sha256": "7bcc9a481f01e9299e2e32dce40d4d6c217743a8acba4fca4bac611539d0e3c4",
+  "width": 1672,
+  "height": 941,
+  "alpha": false,
+  "source_bytes": 4051998,
+  "role": "mushroom-guide",
+  "usage": "キノコを探す共通バナー",
+  "asset": "ai-mushroom-guide-20261102.webp",
+  "quality": 92,
+  "method": 6,
+  "webp_bytes": 597074,
+  "sha256": "4cdad63d52786970c1f23f2dafb3ff5940be31ce9a0811aafd305a7de89994a7",
+  "comparisons": [
+    {
+      "quality": 90,
+      "bytes": 537968,
+      "psnr_db": 37.07
+    },
+    {
+      "quality": 92,
+      "bytes": 597074,
+      "psnr_db": 37.66
+    },
+    {
+      "quality": 93,
+      "bytes": 656366,
+      "psnr_db": 38.1
+    }
+  ],
+  "pillow_version": "12.3.0",
+  "libwebp_version": "1.6.0",
+  "source_has_alpha_channel": true,
+  "source_alpha_extrema": [
+    255,
+    255
+  ]
+}

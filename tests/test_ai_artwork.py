@@ -8,9 +8,20 @@ from PIL import Image
 import main
 
 ROOT = Path(__file__).resolve().parents[1]
-M = json.loads((ROOT/'audit/ai-image-refresh-20261031/artwork-manifest.json').read_text())
+M = json.loads((ROOT/'audit/guide-image-refresh-20261102/artwork-manifest.json').read_text())
 
 def sha(b): return hashlib.sha256(b).hexdigest()
+
+def test_guide_refresh_preserves_other_six_assets_and_historical_manifest():
+    previous = json.loads((ROOT/M['previous_manifest']).read_text())
+    assert M['refreshed_roles'] == ['mushroom-guide']
+    for before, after in zip(previous['assets'], M['assets']):
+        assert before['role'] == after['role']
+        if before['role'] == 'mushroom-guide':
+            assert after['asset'] == 'ai-mushroom-guide-20261102.webp'
+            assert M['legacy_sha256'][before['asset']] == before['sha256']
+        else:
+            assert before == after
 
 def test_seven_original_resolution_nontransparent_webp_assets():
     assert len(M['assets']) == 7

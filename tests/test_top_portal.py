@@ -152,7 +152,7 @@ def test_aiuo_pages_use_scoped_pc_portal_visual_language(monkeypatch, tmp_path):
     assert (tmp_path / "assets" / "aiuo.css").exists()
     assert "body.aiuo-index" in css
     assert "width:min(100%,1180px)" in css
-    assert 'url("ai-mushroom-guide-20261031.webp")' in css
+    assert 'url("ai-mushroom-guide-20261102.webp")' in css
     assert ".aiuo-index .aiuo-filter-panel" in css
     assert "grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr)" in css
     assert ".aiuo-index .mushroom-list" in css
@@ -208,7 +208,7 @@ def test_guide_index_optional_routes_and_css_are_scoped(monkeypatch, tmp_path):
     assert "body.guide-index" in css
     assert ".guide-index .guide-shell" in css
     assert "width:min(100%,1180px)" in css
-    assert 'url("ai-mushroom-guide-20261031.webp")' in css
+    assert 'url("ai-mushroom-guide-20261102.webp")' in css
     assert ".guide-index .guide-hub" in css
     assert ".guide-index .guide-hub-body" in css
     assert "grid-template-columns:minmax(0,2.15fr) 1px minmax(260px,.85fr)" in css
@@ -459,7 +459,7 @@ def test_portal_artwork_assets_are_deployed_verbatim(monkeypatch, tmp_path):
 
     assets = Path(main.ASSETS_DIR)
     expected = {
-        "ai-mushroom-guide-20261031.webp": (1916, 821),
+        "ai-mushroom-guide-20261102.webp": (1672, 941),
         "ai-best-shots-20261031.webp": (1916, 821),
         "ai-features-20261031.webp": (1536, 1024),
         "ai-guide-book-20261031.webp": (1536, 1024),
@@ -479,7 +479,7 @@ def test_portal_artwork_assets_are_deployed_verbatim(monkeypatch, tmp_path):
             assert image.size == dimensions
 
     css = (assets / "portal.css").read_text()
-    assert 'background-image:url("ai-mushroom-guide-20261031.webp")' in css
+    assert 'background-image:url("ai-mushroom-guide-20261102.webp")' in css
     assert 'background-image:url("ai-best-shots-20261031.webp")' in css
     assert ":root:not([data-portal-columns=\"1\"]) .portal-records-visual,:root:not([data-portal-columns=\"1\"]) .portal-section-visual { height:190px; }" in css
 
@@ -606,7 +606,7 @@ def test_legacy_guide_and_new_portal_assets_are_copied(monkeypatch, tmp_path):
         "ai-features-20261031.webp",
         "ai-research-lab-20261031.webp",
         "ai-best-shots-20261031.webp",
-        "ai-mushroom-guide-20261031.webp",
+        "ai-mushroom-guide-20261102.webp",
         "ai-field-notes-20261031.webp",
     )
     for filename in expected:

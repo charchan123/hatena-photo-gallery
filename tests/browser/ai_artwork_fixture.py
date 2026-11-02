@@ -47,7 +47,7 @@ for p in (root / 'published').glob('*.html'):
 views = build_detail_views(portal)
 feature = main.validate_feature_production_state()
 assert feature['mushroom_master'] == portal['reference_data']['mushroom_master']
-manifest = json.loads((repo / 'audit/ai-image-refresh-20261031/artwork-manifest.json').read_text())
+manifest = json.loads((repo / 'audit/guide-image-refresh-20261102/artwork-manifest.json').read_text())
 before = types.ModuleType('artwork_baseline_main')
 before.__file__ = main.__file__
 sys.modules[before.__name__] = before
@@ -72,7 +72,12 @@ for variant, module in [('before', before), ('after', main)]:
         for p in (repo / 'assets').glob('*.css'):
             (out / 'assets' / p.name).write_bytes(git('show', f'{base}:assets/{p.name}'))
         for record in manifest['assets']:
-            (out / 'assets' / record['asset']).unlink(missing_ok=True)
+            asset = 'assets/' + record['asset']
+            # Preserve artwork already tracked by the comparison baseline.
+            # Only the new date-versioned asset is absent from this baseline.
+            if subprocess.run(['git', 'cat-file', '-e', f'{base}:{asset}'], cwd=repo,
+                              stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode:
+                (out / asset).unlink(missing_ok=True)
 # All generated content, links, photos and captions must be identical: only paint changes.
 html_files = sorted((root / 'after').glob('*.html'))
 assert html_files
