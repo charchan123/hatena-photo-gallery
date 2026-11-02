@@ -4,7 +4,7 @@
 .portal-records-hero,.portal-explore { display:flex; flex-direction:column; }
 .portal-records-visual,.portal-section-visual { position:relative; display:grid; height:150px; overflow:hidden; background-position:center; background-size:cover; isolation:isolate; }
 .portal-records-visual { background-image:url("ai-field-notes-20261031.webp"); background-size:cover; background-position:center center; background-repeat:no-repeat; }
-.portal-section-visual--explore { background-image:url("ai-mushroom-guide-20261031.webp"); background-position:center center; background-size:cover; background-repeat:no-repeat; }
+.portal-section-visual--explore { background-image:url("ai-mushroom-guide-20261102.webp"); background-position:center center; background-size:cover; background-repeat:no-repeat; }
 .portal-visual-shade { position:absolute; z-index:0; inset:0; background:linear-gradient(to top,rgba(10,25,16,.70),rgba(10,25,16,.18) 55%,transparent); pointer-events:none; }
 .portal-records-heading,.portal-section-heading { z-index:1; align-self:end; width:100%; padding:24px 28px 20px; box-sizing:border-box; color:#fff; text-shadow:0 1px 3px rgba(8,20,12,.42); }
 .portal-eyebrow { margin:0 0 6px; color:inherit; font-size:.69rem; font-weight:800; letter-spacing:.18em; }
