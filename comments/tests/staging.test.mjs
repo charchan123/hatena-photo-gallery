@@ -5,6 +5,7 @@ import { stagingFixture, ORIGIN, ISSUER, AUD, ADMIN } from "./staging-fixture.mj
 import { createWorker } from "../worker.mjs";
 import "./registry.test.mjs";
 import "./access-snapshot.test.mjs";
+import "./access-readiness.test.mjs";
 
 async function setup(t) {const s=await stagingFixture();t.mock.method(globalThis,"fetch",s.certFetch);return s;}
 

@@ -1,0 +1,32 @@
+{
+  "scope": "offline-only",
+  "cloudflare_account_connections": 0,
+  "cloudflare_mutations": 0,
+  "new_credentials": 0,
+  "local_tests": {
+    "node_comments": {
+      "passed": 56,
+      "failed": 0,
+      "skipped": 0
+    },
+    "python_comments_and_artwork": {
+      "passed": 46,
+      "failed": 0,
+      "skipped": 0
+    },
+    "integration_protection": "passed"
+  },
+  "commands": [
+    "node --test comments/tests/api.test.mjs comments/tests/staging.test.mjs",
+    "python -m pytest -q tests/test_research_comments.py tests/test_comments_staging.py tests/test_comments_preflight.py tests/test_ai_artwork.py",
+    "python tests/browser/comments_integration_protection.py /tmp/pr137-readiness-protection.json origin/main"
+  ],
+  "new_module_in_live_runner": false,
+  "live_cpu_retest": "not_executed",
+  "live_access_options_retest": "not_executed",
+  "source_sha256": {
+    "comments/tools/access-readiness.mjs": "61f744110f09e64f08213bb0c3abb4f982651d18b600a1601126baaf8cd82221",
+    "comments/tests/access-readiness.test.mjs": "4370946c982afcd530e16d7cbc6277122e97242baaaeee8bcd13e5e8ba14d240",
+    "comments/tests/staging.test.mjs": "ececfa9b7047dad88b11ef8a5160e08ed29126c30c6eca5352b5f505c1d47c8e"
+  }
+}

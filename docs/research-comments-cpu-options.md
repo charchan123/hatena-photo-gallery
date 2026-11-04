@@ -1,5 +1,7 @@
 # staging CPUとOPTIONSの検証境界（2026-11-01）
 
+2026-11-04追記：[前回のHTTP404停止と準備確認のオフライン改善](../audit/comments-access-readiness-20261104/README.md)。元の403/CPU未達を保持し、HTTP経路準備確認を独立させる補助コードと試験を追加した。Cloudflare再接続・再試験は行っていない。以下は11月1日当時の記録。
+
 今回はPR137のオフライン修正だけ。Cloudflareアカウント接続、token発行、URL有効化、migration、既存D1再seed、deploy、設定変更は行わない。実試験スクリプトを再実行しない。実環境再試験は別承認。
 
 ## 実環境の失敗履歴を維持
