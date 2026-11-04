@@ -8,6 +8,8 @@ on:
       - 'best_shot_ui.py'
       - 'gallery_dependencies.py'
       - 'tests/browser/shared_lightgallery*'
+      - 'tests/browser/comments_integration_protection.py'
+      - 'comments/staging/**'
       - '.github/workflows/shared-lightgallery.yml'
 permissions:
   contents: read
@@ -36,17 +38,17 @@ jobs:
         run: |
           python -m pytest -q tests/test_best_shot_ui.py tests/test_hatena_release_package.py
           node --test tests/test_hatena_release_home.js tests/test_hatena_iframe_handler.js tests/test_gallery_navigation.js tests/test_gallery_height.js
-      - name: Prepare published baseline and candidate without running sync
+      - name: Prepare historical acceptance baseline and current candidate without running sync
         run: |
           git fetch origin gh-pages
-          python tests/browser/shared_lightgallery_fixture.py /tmp/shared-gallery
+          python tests/browser/shared_lightgallery_fixture.py /tmp/shared-gallery 3de2dc74d1d48813d9ed411e88e4ce74f3d9784c
       - name: PC and mobile shared gallery and native star layout
         env:
           PLAYWRIGHT_MODULE_PATH: /tmp/shared-gallery-browser/node_modules/playwright
         run: |
           node tests/browser/shared_lightgallery.cjs /tmp/shared-gallery
           node tests/browser/shared_lightgallery_safety.cjs /tmp/shared-gallery
-          python tests/browser/shared_lightgallery_protection.py /tmp/shared-gallery/protection.json
+          python tests/browser/comments_integration_protection.py /tmp/shared-gallery/protection.json "${{ github.event.pull_request.base.sha }}"
       - uses: actions/upload-artifact@v4
         if: always()
         with:

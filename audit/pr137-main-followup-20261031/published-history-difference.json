@@ -1,0 +1,16 @@
+{
+  "previous_published": "f38bd04d9c953c1af77ab58724b3880df6bb46f9",
+  "current_published": "c95280a6265214945de11d5d438684f5ca36837b",
+  "same_photo_id_set": true,
+  "changed_observations": 933,
+  "changed_article_fields": {
+    "article_path": 933
+  },
+  "sample": {
+    "article_path": {
+      "before": "articles/article_8.html",
+      "after": "articles/article_9.html"
+    }
+  },
+  "same_except_article": true
+}

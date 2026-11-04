@@ -14,6 +14,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 import requests
 from bs4 import BeautifulSoup
 import main
+from comments_integration_protection import assert_reviewed_source
 from best_shot_ui import generate_best_shot_pages
 from detail_ui import build_detail_views
 from records_ui import build_observation_records, generate_records_page
@@ -109,7 +110,7 @@ protected = [p for p in git('ls-tree','-rz','--name-only',base).decode().split('
 hashes = {}
 for p in protected:
     before_bytes = git('show', f'{base}:{p}')
-    assert before_bytes == (repo / p).read_bytes(), p
+    assert_reviewed_source(base, p, (repo / p).read_bytes())
     hashes[p] = hashlib.sha256(before_bytes).hexdigest()
 for p in ('portal-data.json','article-sync-snapshot.json','research-comment-cases.json','research-comments-config.json'):
     assert (root/'published'/p).read_bytes() == (root/'after'/p).read_bytes(), p
