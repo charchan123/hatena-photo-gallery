@@ -60,3 +60,5 @@ ZIPは固定timestamp/Unix mode/順序とZIP_STOREDを使い、zlib版差を除�
 WindowsのCIはpwshに加えてnative PowerShell5.1でも同じwrapper試験を実行する。5.1のSet-Content UTF8が付けるBOMは、承認SHAを元bytesへ固定したままJSON decode時だけ扱い、通信なしの専用回帰も追加。初回CIのPowerShell assertionは全通過したが、意図した否定試験のLASTEXITCODE=1がshellへ残ったため失敗した。assertionを全通過した後だけ0へ戻すharness修正を行い、履歴とrun/job IDをtest-history.jsonに保存した。
 
 Windows CIで親終了後のwatchdog reportが残らない2件を検出した（b8d2d75、run41916790638/job126878473792）。子processをdetached=trueの独立groupにし、既存IPC handoff/timerを維持する修正を追加。待ち時間延長・試験skip・閉鎖成功条件の緩和は行わない。Node一次資料のoptions.detachedを根拠にし、Windows/Ubuntuで再確認する。https://nodejs.org/api/child_process.html#optionsdetached
+
+27b9a2fのWindows CIではNode97/97、Python41/41、PowerShell7と5.1、ブラウザ21+31が成功した。配布照合でmanifest SHAは同一なのにZIP SHAがWindows/Ubuntuで異なることを検出した。原因はnative PathのsortがWindowsでは大文字小文字を畳み、Posixでは畳まないためentry順序が変わること。ZIP entryのPOSIX名文字列でsortする最小修正を追加した。同梱12ファイルのbytes/manifestおよびrunnerの安全条件は変更していない。最終HEADの両OS receiptを再照合する。

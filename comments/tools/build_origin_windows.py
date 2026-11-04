@@ -35,7 +35,9 @@ def build(target):
     archive = target.with_suffix('.zip')
     # Stored entries avoid zlib-version differences across Windows/Ubuntu.
     with zipfile.ZipFile(archive,'x',compression=zipfile.ZIP_STORED) as z:
-        for p in sorted(target.rglob('*')):
+        # WindowsPath comparison folds case; PosixPath comparison does not.
+        # Sort the serialized ZIP entry names, not host-native Path objects.
+        for p in sorted(target.rglob('*'), key=lambda p: p.relative_to(target).as_posix()):
             if p.is_file():
                 info = zipfile.ZipInfo(p.relative_to(target).as_posix(),(1980,1,1,0,0,0))
                 info.compress_type = zipfile.ZIP_STORED

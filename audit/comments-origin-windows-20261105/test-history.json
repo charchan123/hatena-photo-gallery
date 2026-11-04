@@ -65,5 +65,16 @@
     "observation": "watchdog report absent after parent termination on Windows; Ubuntu succeeded",
     "fix": "fork detached=true with ignored stdio and existing IPC handoff/timer; do not enlarge timeout or skip tests",
     "actual_cloudflare_requests": 0
+  },
+  "cross_platform_zip_order": {
+    "head": "27b9a2fd0eb03fe2b3494a822b0450cc0e5d5522",
+    "windows_job": 126883352808,
+    "windows_tests": "Python41, Node97, PowerShell7/5.1, browser21+31 passed",
+    "manifest_sha256": "2cd99af7e9184230bf969aca0fb046f5131caeb93c0d1893bd6e46e4046e140d",
+    "linux_zip_sha256": "0770e8947a77febf510ecf80c40c4b0853f0fa9c58e60cfcee0aae010afd1974",
+    "windows_zip_sha256": "72619cd3d57b9a9e7ef65ceec59f679d6a0112c7c02234c0527ef2a463936f04",
+    "cause": "WindowsPath case-insensitive sort differs from PosixPath; file bytes and manifest matched",
+    "fix": "sort POSIX ZIP entry-name strings; keep fixed metadata and ZIP_STORED",
+    "remote_mutations": 0
   }
 }
