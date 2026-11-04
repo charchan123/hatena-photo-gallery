@@ -61,3 +61,5 @@ enableの応答が失われた場合も、既に有効化されている可能�
 保存するHTTP情報はstatus/MIME分類/サイズ/SHA/UTC/経過wall time/正規redirect分類と許可されたheader分類/Ray IDだけ。Worker実行はnot-establishedのまま（Ray/Serverだけで断定しない）。生HTML、Cookie、JWT、API token、本人メール、生Location/クエリは保存しない。wall timeはCPUではない。
 
 実試験・token発行/失効・現在のFree/閉鎖の実確認は今回未実施。過去CPU未達/OPTIONS403/404とmarkerは保持。CPU/Service Auth/全URL認証・コメント/Turnstile総合試験へは別承認なしに進まない。
+
+Windows CIではPowerShell7とnative Windows PowerShell5.1、UbuntuではPowerShell7のwrapper試験を行う。承認JSONのUTF8 BOMも受け付けるが、承認SHAはBOMを含む元bytesに対して検証する。本人PCでの実行は未実施。

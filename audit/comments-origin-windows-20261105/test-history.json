@@ -39,5 +39,19 @@
     "python_comments_passed": 41,
     "protection": "passed",
     "deterministic_packet": "two builds byte-identical (ZIP_STORED)"
+  },
+  "first_ci_harness_failure": {
+    "head": "55af7cb528febb7a2b47a78d33cde5be194a5c0d",
+    "run_id": 41915775034,
+    "job_id": 126874910069,
+    "assertions": "POWERSHELL_OFFLINE_OK emitted; all assertions passed",
+    "failure": "expected negative native test left LASTEXITCODE=1, pwsh shell propagated it",
+    "fix_commit": "b230d463503a5d35139f05c02a0a50494f6ab987",
+    "fix": "reset native exit status only after every assertion passed; no guard or assertion removed"
+  },
+  "windows_51_compatibility": {
+    "focused_bom_test_passed": 1,
+    "change": "accept UTF8 BOM during JSON decoding while hashing original bytes; add native powershell.exe CI invocation on Windows",
+    "local_native_powershell": "unavailable, no local execution claimed"
   }
 }

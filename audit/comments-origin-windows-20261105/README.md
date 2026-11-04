@@ -56,3 +56,5 @@ PowerShell構文、未承認入力0、hash改変拒否、成功/例外時のSecu
 本人Windowsの旧marker/reportの現在の存在は今回PCへ接続して確認したものではない。次回に指定されたEvidenceDirectoryで不足や不一致があれば停止する。今回証明したのは、保存済み正本の再利用と模擬旧ファイルの保全である。
 
 ZIPは固定timestamp/Unix mode/順序とZIP_STOREDを使い、zlib版差を除く。GitHub最終HEADの全CI成功後に同じsourceから配布ZIPを生成し、Windows/Ubuntuのbuilder receiptとファイル/ZIP SHAを照合する。旧packet/markerは置換しない。
+
+WindowsのCIはpwshに加えてnative PowerShell5.1でも同じwrapper試験を実行する。5.1のSet-Content UTF8が付けるBOMは、承認SHAを元bytesへ固定したままJSON decode時だけ扱い、通信なしの専用回帰も追加。初回CIのPowerShell assertionは全通過したが、意図した否定試験のLASTEXITCODE=1がshellへ残ったため失敗した。assertionを全通過した後だけ0へ戻すharness修正を行い、履歴とrun/job IDをtest-history.jsonに保存した。

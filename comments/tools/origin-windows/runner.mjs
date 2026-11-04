@@ -71,7 +71,9 @@ export function context(args){
   need(['validate','validate-close-only','read-only','diagnose','watchdog','close-only'].includes(mode),'MODE_INVALID');
   const manifest=packageIntegrity(manifestSha),bytes=readFileSync(approvalFile);
   need(sha(bytes)===approvalSha,'APPROVAL_BYTES_CHANGED');
-  const approval=validateApproval(JSON.parse(bytes),Date.now(),['close-only','validate-close-only'].includes(mode));
+  // Windows PowerShell5.1 Set-Content -Encoding UTF8 writes a BOM. The SHA
+  // still binds the original bytes; only JSON decoding ignores that prefix.
+  const approval=validateApproval(JSON.parse(bytes.toString('utf8').replace(/^\uFEFF/,'')),Date.now(),['close-only','validate-close-only'].includes(mode));
   need(approval.github_pr_sha===manifest.source_head,'PR_HEAD_APPROVAL_MISMATCH');
   need(resolve(runDir)!==resolve(evidenceDir)&&resolve(runDir)!==ROOT,'RUN_DIRECTORY_UNSAFE');
   need(process.env.LOCALAPPDATA&&resolve(runDir)===resolve(process.env.LOCALAPPDATA,

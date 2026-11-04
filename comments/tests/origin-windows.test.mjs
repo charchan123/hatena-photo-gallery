@@ -129,6 +129,12 @@ test('API scope disallows deploy, seed, tokens, Access edits and other Worker ch
   ])assert.throws(()=>controlGuard(path,method,body),/CONTROL_SCOPE_BLOCKED/);
   for(const sql of Object.values(SQL))assert.doesNotThrow(()=>controlGuard('/d1/database/'+C.db+'/query','POST',{sql,params:[]}));
 });
+test('PowerShell5.1 UTF8-BOM approval is hash-bound and validates without a network call',async t=>{
+  const x=prepare(t,'success');writeFileSync(x.paths.a,'\uFEFF'+JSON.stringify(x.approval));
+  x.base[1]=sha(readFileSync(x.paths.a));
+  const r=await x.invoke('validate');assert.equal(r.code,undefined,r.stdout||r.message);
+  assert.match(r.stdout,/APPROVAL_AND_PACKAGE_VALID/);assert.equal(readFileSync(x.paths.e,'utf8'),'');
+});
 test('packet SHA and old proof guard reject tampering, with no requests',async t=>{
   const x=prepare(t,'success');writeFileSync(join(x.packet,'comments/tools/access-readiness.mjs'),readFileSync(join(x.packet,'comments/tools/access-readiness.mjs'),'utf8')+'\n// tampered valid module\n');
   const r=await x.invoke('read-only');assert.match(r.stdout,/PACKAGE_BYTES_CHANGED/);assert.equal(readFileSync(x.paths.e,'utf8'),'');

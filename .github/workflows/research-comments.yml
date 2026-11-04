@@ -68,6 +68,10 @@ jobs:
           python comments/tools/build_origin_windows.py "${{ runner.temp }}/origin-windows-packet"
           if ($LASTEXITCODE -ne 0) { throw 'OFFLINE_PACKET_BUILD_FAILED' }
           ./comments/tests/origin-windows-powershell.ps1 -PackageDirectory "${{ runner.temp }}/origin-windows-packet"
+          if ($IsWindows) {
+            powershell.exe -NoProfile -NonInteractive -File ./comments/tests/origin-windows-powershell.ps1 -PackageDirectory "${{ runner.temp }}/origin-windows-packet"
+            if ($LASTEXITCODE -ne 0) { throw 'WINDOWS_POWERSHELL_51_OFFLINE_TEST_FAILED' }
+          }
       - name: Real isolated public UI, local Worker-SQLite and Windows-compatible admin
         env:
           PLAYWRIGHT_MODULE_PATH: ${{ runner.temp }}/comments-browser/node_modules/playwright
