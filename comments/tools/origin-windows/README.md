@@ -40,7 +40,7 @@ package-manifest.jsonに各同梱ファイルSHA256とGitHub source HEAD。公�
 
 ## watchdog・閉鎖失敗
 
-watchdogはmainとは別Node process。準備成功から90秒後に1回だけ対象URLをoffにし、結果をwatchdog-report.jsonへ保存。親のIPC切断でもtimerを止めない。main異常終了後の独立動作を模擬試験する。PC電源断/OSが両processを終了した場合まで保証しない。
+watchdogはmainとは別Node processで、Windowsでもdetached=trueの独立process groupとして起動する。準備成功から90秒後に1回だけ対象URLをoffにし、結果をwatchdog-report.jsonへ保存。親のIPC切断でもtimerを止めない。main異常終了後の独立動作を模擬試験する。PC電源断/OSが両processを終了した場合まで保証しない。
 
 enableの応答が失われた場合も、既に有効化されている可能性を捨てず、当座のoff読返しだけで閉鎖完了とせずwatchdogの遅延offを残す。main閉鎖失敗は最優先STOP、独立watchdogを切断/unrefして残す。URLを再開せず、同じ診断を再実行しない。本人がDashboardでProduction/Preview off・Access/flagsを即確認。必要なら既存承認tokenの有効中に-Phase CloseOnly（OFFのみ、観測0、再試行marker変更なし）を別の指示で実行できる。token期限切れ・権限不足・package異常なら新tokenを無断発行せずDashboardで閉鎖する。
 

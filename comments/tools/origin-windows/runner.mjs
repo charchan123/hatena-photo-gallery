@@ -180,7 +180,9 @@ export async function snapshot(api,owner,old){
 async function startWatchdog(ctx){
   const env={...process.env};for(const k of Object.keys(env))if(k.startsWith('KINOKO_'))delete env[k];
   const args=[ctx.approvalFile,ctx.approvalSha,ctx.manifestSha,ctx.runDir,ctx.evidenceDir,'watchdog','root-only','no-service-auth'];
-  const child=fork(SELF,args,{env,stdio:['ignore','ignore','ignore','ipc'],windowsHide:true});
+  // On Windows a non-detached child does not survive its parent's exit.
+  // Keep its own process group; only the normal confirmed-close path kills it.
+  const child=fork(SELF,args,{env,stdio:['ignore','ignore','ignore','ipc'],windowsHide:true,detached:true});
   await new Promise((ok,no)=>{const t=setTimeout(()=>{child.kill();no(Error('WATCHDOG_NOT_READY'));},30000);
     child.once('message',v=>{clearTimeout(t);v==='closed-and-armed'?ok():no(Error('WATCHDOG_NOT_READY'));});
     child.once('error',()=>{clearTimeout(t);no(Error('WATCHDOG_START_FAILED'));});

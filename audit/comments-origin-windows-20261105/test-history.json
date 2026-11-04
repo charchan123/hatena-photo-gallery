@@ -53,5 +53,17 @@
     "focused_bom_test_passed": 1,
     "change": "accept UTF8 BOM during JSON decoding while hashing original bytes; add native powershell.exe CI invocation on Windows",
     "local_native_powershell": "unavailable, no local execution claimed"
+  },
+  "windows_independence_failure": {
+    "head": "b8d2d75db080ca3b3cdd16ff3a6bf3cb311b3a67",
+    "run_id": 41916790638,
+    "job_id": 126878473792,
+    "failed_tests": [
+      "parent killed while URL open: independent child closes, marker prevents restart",
+      "lost enable response keeps the delayed OFF fallback and reports uncertainty"
+    ],
+    "observation": "watchdog report absent after parent termination on Windows; Ubuntu succeeded",
+    "fix": "fork detached=true with ignored stdio and existing IPC handoff/timer; do not enlarge timeout or skip tests",
+    "actual_cloudflare_requests": 0
   }
 }

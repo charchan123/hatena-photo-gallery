@@ -58,3 +58,5 @@ PowerShell構文、未承認入力0、hash改変拒否、成功/例外時のSecu
 ZIPは固定timestamp/Unix mode/順序とZIP_STOREDを使い、zlib版差を除く。GitHub最終HEADの全CI成功後に同じsourceから配布ZIPを生成し、Windows/Ubuntuのbuilder receiptとファイル/ZIP SHAを照合する。旧packet/markerは置換しない。
 
 WindowsのCIはpwshに加えてnative PowerShell5.1でも同じwrapper試験を実行する。5.1のSet-Content UTF8が付けるBOMは、承認SHAを元bytesへ固定したままJSON decode時だけ扱い、通信なしの専用回帰も追加。初回CIのPowerShell assertionは全通過したが、意図した否定試験のLASTEXITCODE=1がshellへ残ったため失敗した。assertionを全通過した後だけ0へ戻すharness修正を行い、履歴とrun/job IDをtest-history.jsonに保存した。
+
+Windows CIで親終了後のwatchdog reportが残らない2件を検出した（b8d2d75、run41916790638/job126878473792）。子processをdetached=trueの独立groupにし、既存IPC handoff/timerを維持する修正を追加。待ち時間延長・試験skip・閉鎖成功条件の緩和は行わない。Node一次資料のoptions.detachedを根拠にし、Windows/Ubuntuで再確認する。https://nodejs.org/api/child_process.html#optionsdetached
