@@ -41,9 +41,9 @@ test('saved404-302-404 sequence stops in readiness before independent gate or cr
   assert.equal(r.tests.length,0);assert.equal(r.authenticated_requests,0);
   assert.equal(calls.requests,3);assert.equal(calls.closed,1);assert.equal(calls.auth,0);
 });
-test('404 only is bounded to3 and never qualifies as a security refusal',async t=>{
+test('404 only stops on recurrence and never qualifies as a security refusal',async t=>{
   const {report:r,calls}=await attempt(t,[404,404,404]);
-  assert.equal(r.reason,'READINESS_NOT_ESTABLISHED');assert.equal(calls.requests,3);
+  assert.equal(r.reason,'HTTP_404_REPEATED');assert.equal(calls.requests,2);
   assert.equal(r.tests.length,0);assert.equal(r.closure_verified,true);
 });
 test('404 followed by only2 redirects never establishes the3-redirect window',async t=>{

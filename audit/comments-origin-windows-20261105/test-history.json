@@ -1,0 +1,43 @@
+{
+  "intermediate_failure": {
+    "suite": "origin-windows.test.mjs initial run",
+    "passed": 13,
+    "failed": 1,
+    "reason": "tamper fixture replaced module with invalid top-level code, failing before the expected integrity reason",
+    "fix": "append valid module comment for exact byte mismatch test; add PowerShell hash verification BEFORE Node imports and PowerShell corruption test",
+    "security_expectation_relaxed": false
+  },
+  "intermediate_successes": [
+    {
+      "tests": 14,
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "comment_node_tests": 94,
+      "passed": 94,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "comment_node_tests": 96,
+      "passed": 96,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "local_powershell": "not installed; required PowerShell execution is added to Windows and Ubuntu CI, pending at this audit commit",
+  "cloudflare_requests": 0,
+  "token_issued": 0,
+  "real_url_opened": 0,
+  "final_ci": "PR137 final audit comment is authoritative; not predeclared success",
+  "local_final": {
+    "comment_node_passed": 96,
+    "failed": 0,
+    "skipped": 0,
+    "python_comments_passed": 41,
+    "protection": "passed",
+    "deterministic_packet": "two builds byte-identical (ZIP_STORED)"
+  }
+}

@@ -7,6 +7,7 @@ import "./registry.test.mjs";
 import "./access-snapshot.test.mjs";
 import "./access-readiness.test.mjs";
 import "./access-origin-diagnostic.test.mjs";
+import "./origin-windows.test.mjs";
 
 async function setup(t) {const s=await stagingFixture();t.mock.method(globalThis,"fetch",s.certFetch);return s;}
 

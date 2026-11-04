@@ -7,7 +7,8 @@ import { setTimeout as pause } from 'node:timers/promises';
 export const READINESS_ORIGIN = 'https://kinoko-comments-staging-20261031.sasama-bb.workers.dev';
 const TEAM = 'https://floral-silence-7565.cloudflareaccess.com';
 const LIMIT = 65536;
-const REDIRECTS = new Set([301, 302, 303, 307, 308]);
+// This diagnostic requires Access302 specifically; other redirects stop.
+const REDIRECTS = new Set([302]);
 const APP = /data-research-thread|STAGING_ACCESS_DENIED|STAGING_UNAVAILABLE|"active_ids"|"identity_hash"/;
 export const DIAGNOSTIC_PROTOCOL = 'access-origin-diagnostic-v2';
 const STABLE_REDIRECTS = 3;
@@ -109,7 +110,7 @@ export async function waitForAccessReadiness({request, now = () => performance.n
       !Number.isFinite(intervalMs) || intervalMs < 1 || intervalMs > 3000 ||
       !Number.isInteger(maxObservations) || maxObservations < 1 || maxObservations > 3) throw new Error('INVALID_READINESS_BOUNDS');
   const start = now(), observations = [];
-  let redirects = 0;
+  let redirects = 0, seen404 = false;
   for (let i = 0; i < maxObservations; i++) {
     const remaining = budgetMs - (now() - start);
     if (remaining <= 0) break;
@@ -122,7 +123,10 @@ export async function waitForAccessReadiness({request, now = () => performance.n
       } else item.reason = 'ACCESS_REDIRECT_WINDOW_OBSERVED';
     } else if (item.reason === 'HTTP_404_UNCLASSIFIED' && redirects > 0) {
       item.decision = 'stop'; item.reason = 'ACCESS_REDIRECT_REGRESSED_TO_404';
+    } else if (item.reason === 'HTTP_404_UNCLASSIFIED' && seen404) {
+      item.decision = 'stop'; item.reason = 'HTTP_404_REPEATED';
     }
+    if (item.status === 404) seen404 = true;
     observations.push({method: 'GET', path: '/', authenticated: false,
       started_at, completed_at: utcNow(), wall_ms: Math.max(0, now() - begin),
       elapsed_ms: Math.max(0, now() - start), wall_is_not_cpu: true, ...item});

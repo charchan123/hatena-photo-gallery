@@ -34,11 +34,11 @@ test('three exact Access redirects form only a readiness window, never a securit
   assert.ok(r.readiness.observations.every(x => x.authenticated === false && x.wall_is_not_cpu));
 });
 
-test('three 404 observations stop without authenticated or security test requests', async () => {
+test('repeated404 stops on the second observation without authenticated or security test requests', async () => {
   const g = guard(async () => response(404, 'missing'));
   const r = await g.run();
-  assert.equal(r.result, 'STOP'); assert.equal(r.reason, 'READINESS_NOT_ESTABLISHED');
-  assert.equal(r.readiness.observations.length, 3);
+  assert.equal(r.result, 'STOP'); assert.equal(r.reason, 'HTTP_404_REPEATED');
+  assert.equal(r.readiness.observations.length, 2);
   assert.deepEqual(g.calls, {unauth: 0, auth: 0, close: 1});
 });
 
@@ -55,6 +55,7 @@ for (const [label, make] of [
   ['200 HTML', () => response(200, '<h1>application</h1>')],
   ['401', () => response(401)], ['403', () => response(403)],
   ['unknown 500', () => response(500)],
+  ...[301,303,307,308].map(status => ['non302 redirect '+status, () => response(status, '', login)]),
   ['foreign redirect', () => response(302, '', 'https://evil.test/cdn-cgi/access/login')],
   ['userinfo', () => response(302, '', login.replace('https://', 'https://user:secret@'))],
   ['team path mismatch', () => response(302, '', login.replace('/cdn-cgi/access/', '/other/'))],
@@ -123,7 +124,7 @@ test('closure failure overrides success while retaining the preceding failure', 
     assert.equal(r.closure_verified, false);
   }
   const r = await guard(async () => response(404), {close: async () => false}).run();
-  assert.equal(r.phase_reason, 'READINESS_NOT_ESTABLISHED');
+  assert.equal(r.phase_reason, 'HTTP_404_REPEATED');
 });
 
 test('bounds cannot be enlarged and missing closure cannot start a probe', async () => {

@@ -1,0 +1,535 @@
+{
+  "registry_sha256": "240e897c1edfddcef4d658f774885373be254c704c7f03b7535ac4f606bb10c5",
+  "cases": [
+    {
+      "id": "research-02b5e9c9e3332791",
+      "identity_hash": "8bbcd9c556de7337fbfd16554fbee8da0d094d87b730d4d5bce35880e82abff4"
+    },
+    {
+      "id": "research-034f45a913064038",
+      "identity_hash": "8b0a9c5c15b364ddee36710ab9913feb744d9bbeeda2ede20c86872a38d6af08"
+    },
+    {
+      "id": "research-0b06d6c3dee3592b",
+      "identity_hash": "0189d993b8b08f17b602ca916602598357c3b5089017ce5e7e3dfb40f85da04b"
+    },
+    {
+      "id": "research-13147035b777ef4a",
+      "identity_hash": "e824d780c55eeb4fe424dfe73b22501a848578be6e617666f00d0d4e1f062ef6"
+    },
+    {
+      "id": "research-136b75f4c71ef208",
+      "identity_hash": "6a763fc02ec08faf02a34dfbb7349916090555718b78c3eadc14a7aefdd28d90"
+    },
+    {
+      "id": "research-1474b3cbe7710440",
+      "identity_hash": "fe51afffda7dad4c506cd08513e29e6896dd2bb7a12d4c8b5e0fb2e257625fb4"
+    },
+    {
+      "id": "research-15153300844d02a7",
+      "identity_hash": "315baa64fc11bc789cec40421d41eedc2c09ae1c1a478d92a44c34adcf506474"
+    },
+    {
+      "id": "research-16842217afcce574",
+      "identity_hash": "5804cedcd01afa617cfe4435adb2cbf9d295c2ede905b58d7a30f7f8b3d7d0f1"
+    },
+    {
+      "id": "research-1698d1de140f1f05",
+      "identity_hash": "d8d92a2ec71b7d8257675fbdec1d3e0a568c88ecc4074a35336e6db9b06b8387"
+    },
+    {
+      "id": "research-19de152f1e7b1d28",
+      "identity_hash": "58d8812f59ed79f0899a91f713916d6e35a43a85243036b2a19147ed5c360cc2"
+    },
+    {
+      "id": "research-1cf3ed7b7815550b",
+      "identity_hash": "e2feb264b9566454c41348a468a9c749126b5e50fa3c2fdf5b3686cb0a642354"
+    },
+    {
+      "id": "research-1dfe93422c63837f",
+      "identity_hash": "fa44e2d0e47ec372ffbaf563e036d3cd3c2f06bb0e9dea4bfa87ed607eab8690"
+    },
+    {
+      "id": "research-1eb36b647ced8c3b",
+      "identity_hash": "6d10ded64ca2c2074f58aa7d9fd641956c31ac021e0fe39ca51370b6362455a4"
+    },
+    {
+      "id": "research-1ed46f56c8192c2a",
+      "identity_hash": "d34cf723096ec7db43635ac85b22900ff86e1eb03662bc0a3b37677dfcc7cc3e"
+    },
+    {
+      "id": "research-25c508197878011e",
+      "identity_hash": "e39d70ea2aa383a83ed175fa1a30ed1a1c11dc4fff7a9cf6a9741e3602500710"
+    },
+    {
+      "id": "research-2607b5e4dfa7e408",
+      "identity_hash": "638709b603734c44ac6ea3efedb4e59affaa934246ab3ba68ada7ecb1813eaee"
+    },
+    {
+      "id": "research-267ebea46c42b80c",
+      "identity_hash": "20f97239ec7c6c3267e8a30f8f3d697f9130e6b3968f3b1e3132f11009fdf4ca"
+    },
+    {
+      "id": "research-28b5c127d65b5125",
+      "identity_hash": "ee2b098730057ff82c2cd42be85b42ea0a62ce499dd4edb96c1bffecbb3f6f11"
+    },
+    {
+      "id": "research-34838a8326096f9a",
+      "identity_hash": "39a4e830b22cd0ef07d3e18d2d2bcd007cd4d306abca6477c90e89e8f199f140"
+    },
+    {
+      "id": "research-367181d1c59e3e64",
+      "identity_hash": "e31ba0a92bbf89254868e275d28d8696e72dc4efd16d4b1fa2476bf065e237eb"
+    },
+    {
+      "id": "research-3a307dea4589e834",
+      "identity_hash": "4c780fb023db5d21c878d8ccdc9c05dc18a2e2fa45bbd6e56cfd5a96135fa60f"
+    },
+    {
+      "id": "research-3a52df32a00c3332",
+      "identity_hash": "dd30ce3c16b2197dab6925051a6050e381a9e9df659e4be3aaddf585eb29cf3b"
+    },
+    {
+      "id": "research-3d251e332673710a",
+      "identity_hash": "f8fc5727a3d82d77e1a139d9ff0004fb8ed4ae15aacc33c051de7bc8115c3528"
+    },
+    {
+      "id": "research-426017a92f952255",
+      "identity_hash": "9eaf175ed6025d80e61c5cf617b5cd44cef19ac50c288dc8e074743a3f57f0c3"
+    },
+    {
+      "id": "research-49cec15302dd11db",
+      "identity_hash": "c630335101d105735fe809363baf3160474cb5da90292501f83b0bdf6f313f75"
+    },
+    {
+      "id": "research-4bb986c28e6942da",
+      "identity_hash": "5a00feb1bf37547a56d1fd7c8aec954f4ea351263aa63254b5f12aa0fa9879f5"
+    },
+    {
+      "id": "research-4d1dbf0021730989",
+      "identity_hash": "ef3e58ea29525015dd0f40f6b60babeed69080007984c10babc0cb0d7c979c23"
+    },
+    {
+      "id": "research-57635376951b1c01",
+      "identity_hash": "1aae839df050123bfbc79e6dc5795c28aeca83f879c8d3e5e802c895a29dd664"
+    },
+    {
+      "id": "research-5f31aea2f866bbbb",
+      "identity_hash": "3844281b3b3f95022c1c8b30d912bed3025218d01556e1cacd46a144e8c5d86e"
+    },
+    {
+      "id": "research-63b3c10913879d6d",
+      "identity_hash": "a2c81c39ac7e1f14a25dbc7bd32d473dd20d86a2d4c46e17944f3728ddc14d28"
+    },
+    {
+      "id": "research-66504f8922af6d9c",
+      "identity_hash": "d720ac120f854d7a0fe7db896a44d1eb30dfd01ffc3414ceea5f78dfef310635"
+    },
+    {
+      "id": "research-668053b00c3a3cd4",
+      "identity_hash": "566b61ffe6167448d052675ac0b8531943d6fae9ffd6a345edc15a2b53bf62ee"
+    },
+    {
+      "id": "research-688bec98a170d558",
+      "identity_hash": "943d1d8acba39dca22ce0ab153e665dd7c028cfbfe25f12716e68ea6bff80a9a"
+    },
+    {
+      "id": "research-6cd6aee5bdb97aa1",
+      "identity_hash": "1cf30165967a4bdca9cb9471e034db7c13aaf2599270db1f5a414c7c74811ca9"
+    },
+    {
+      "id": "research-7161236cd5d72c4f",
+      "identity_hash": "1b6e861b0cf2c0810d013cf46b310c88dc3710774fd024f12d41a05f3fbaab8c"
+    },
+    {
+      "id": "research-727dbbbbd63c322f",
+      "identity_hash": "6248a8a801c6b65c0ac99627bcf46202281f70765119ef2e6e87e2d14a0100d4"
+    },
+    {
+      "id": "research-735d7503a028f0d3",
+      "identity_hash": "17a10f98beb9f2faae7bc5858eff6cb53e59cc47629f35054a71c6e3391036c0"
+    },
+    {
+      "id": "research-7c20e18edeb8b4f5",
+      "identity_hash": "70cf233aae3b85354f47c13f8f6a4c0f3c9aa8f354a72cb94dd4e4eb6de262bd"
+    },
+    {
+      "id": "research-7c84021e1e81747c",
+      "identity_hash": "2f6ff1451b89f8adbe8e847fb0b0861a747fbc41aa305077788385c96de430d4"
+    },
+    {
+      "id": "research-837a57d69b0ca77c",
+      "identity_hash": "094a3b0910db2347c26cf5e23c7652b5646e951ca80f7a2213b03b543519ddae"
+    },
+    {
+      "id": "research-8a636af14b645408",
+      "identity_hash": "23c82f4d01a7f58b5e6f5176b70844d0371801e32247eac64e12b1b9919cb199"
+    },
+    {
+      "id": "research-8ade349609689d38",
+      "identity_hash": "e65077222680182e1baa97a970af41eb19303ab57b9cf0d45c5cb42b0e981b13"
+    },
+    {
+      "id": "research-96f02add14e941e9",
+      "identity_hash": "747f8488909b32db0d44dcd397eb6ad7eb37138a7b91e58170dfb269aebe346b"
+    },
+    {
+      "id": "research-97ddafc64c8cffcc",
+      "identity_hash": "28a964c45b288b4f0da74b683a6c7e3387aec44a5e5b8023ea28c16807164149"
+    },
+    {
+      "id": "research-9b3a6182ffb1bf81",
+      "identity_hash": "80d0db70b0efd52ad8161b9e1b0286dc876f5d9db94a29b82acae715cbb66684"
+    },
+    {
+      "id": "research-a144e6eb8aed41a0",
+      "identity_hash": "ddee647cc95b901986162de6add6be28f2b4b3a1a1b2eaaaa570fe75e13ee9ac"
+    },
+    {
+      "id": "research-a5374e2993f7b5ef",
+      "identity_hash": "341e8ae268a29492e40dc97d9d124dfa82118a74cad606506fdf760f98ccbdde"
+    },
+    {
+      "id": "research-a7fd6f724a0ac5cc",
+      "identity_hash": "ca215c8f6a675691ccdc032f6050924d11a34aac8a1dfaaac22af9b051ddeddd"
+    },
+    {
+      "id": "research-abb11b5e5fbfec69",
+      "identity_hash": "808c87b6de07deb07bb82f54172b627ba45335a14681812366484b493c18e74c"
+    },
+    {
+      "id": "research-ae849fa829dae956",
+      "identity_hash": "ed2b18b86d403ec50cf5ceabce556522f4004ae7abb944dbdfd84583003ef558"
+    },
+    {
+      "id": "research-b310988766fcf048",
+      "identity_hash": "307978575b5d43f9c6832b93111c984ecfdd2ff114db86aa6fd597e288ebfcf3"
+    },
+    {
+      "id": "research-b3240df0f68131b0",
+      "identity_hash": "3f80f0145b2d4b14b397c5ce51e5fd53cd8552580e83ead27ef920e72013b865"
+    },
+    {
+      "id": "research-ba6f55c735d0f6a0",
+      "identity_hash": "60e628d298a63ef55d2bdcd0cc94e2a0fbdc1a3db737fe67e808d77cdcbb350e"
+    },
+    {
+      "id": "research-c08f3c81d56d67b7",
+      "identity_hash": "55118a7316fec9dc51e7f2253a979bafc28f3991dfb28dcbace8b44482ab9663"
+    },
+    {
+      "id": "research-c60a64ea0db967a3",
+      "identity_hash": "29149d7c2e1bb03b3b0d9e876b62d11b6164f618a1f57edc0e11a8ff90fe1872"
+    },
+    {
+      "id": "research-cc0f8267ce2af5b2",
+      "identity_hash": "2a260d0e4b01bcc9f9d134ff5b340a69af5506c4351b9586f17ef33eef7b074c"
+    },
+    {
+      "id": "research-ced86c4d18215449",
+      "identity_hash": "5e0de0fe5ec07d1588e6b2dc2654516a689270d162c685bd462bc536f9d1c522"
+    },
+    {
+      "id": "research-d4206232dc160fdd",
+      "identity_hash": "c2027d6070e15ddf8b72d6417a813e50e8ff7fbe91c33352b92869cb9f82be37"
+    },
+    {
+      "id": "research-d4db39e0799bfaa8",
+      "identity_hash": "b94591f9d41e49c0abdf9a7bcd174ca8aff4b7439d6750025efc39db15f7a638"
+    },
+    {
+      "id": "research-e18acdea61874fbe",
+      "identity_hash": "6bdaab7e7ee12aaea9b14360ac5e7e4b6f56bba516ee16fbde2d2d250c7731ad"
+    },
+    {
+      "id": "research-e2679bc07f6c375b",
+      "identity_hash": "e97af11020fa3f660d364250bb7c8311970b4026d285251c324049f2662eb7bb"
+    },
+    {
+      "id": "research-e5099589af4ffca9",
+      "identity_hash": "90ca1b5aba3190e67468dd438ce0814ef2637869029bf7403555fb5d321fe1cb"
+    },
+    {
+      "id": "research-ed368befa5d43a9b",
+      "identity_hash": "b659701642992ce40da30d10ed24ba340586c7ee776116ed60edd35f406b4284"
+    },
+    {
+      "id": "research-f441dc6640bab1fc",
+      "identity_hash": "6866917da0996ff88609b4976df958d992a645b8f20383d87e7f855f8d7f6151"
+    },
+    {
+      "id": "research-f96fb935dd4b5540",
+      "identity_hash": "10447573036cdb787a87b0bb437cb0aa65df0a617ca3bcf0e11029bac27ca675"
+    },
+    {
+      "id": "research-f9cb62e956fa8604",
+      "identity_hash": "d223cd9a1f83c390b622fbb6221a4dae007284691dcd21bcb548c3b97b39588c"
+    }
+  ],
+  "aliases": [
+    {
+      "alias": "research-02b5e9c9e3332791",
+      "case_id": "research-02b5e9c9e3332791"
+    },
+    {
+      "alias": "research-034f45a913064038",
+      "case_id": "research-034f45a913064038"
+    },
+    {
+      "alias": "research-0b06d6c3dee3592b",
+      "case_id": "research-0b06d6c3dee3592b"
+    },
+    {
+      "alias": "research-13147035b777ef4a",
+      "case_id": "research-13147035b777ef4a"
+    },
+    {
+      "alias": "research-136b75f4c71ef208",
+      "case_id": "research-136b75f4c71ef208"
+    },
+    {
+      "alias": "research-1474b3cbe7710440",
+      "case_id": "research-1474b3cbe7710440"
+    },
+    {
+      "alias": "research-15153300844d02a7",
+      "case_id": "research-15153300844d02a7"
+    },
+    {
+      "alias": "research-16842217afcce574",
+      "case_id": "research-16842217afcce574"
+    },
+    {
+      "alias": "research-1698d1de140f1f05",
+      "case_id": "research-1698d1de140f1f05"
+    },
+    {
+      "alias": "research-19de152f1e7b1d28",
+      "case_id": "research-19de152f1e7b1d28"
+    },
+    {
+      "alias": "research-1cf3ed7b7815550b",
+      "case_id": "research-1cf3ed7b7815550b"
+    },
+    {
+      "alias": "research-1dfe93422c63837f",
+      "case_id": "research-1dfe93422c63837f"
+    },
+    {
+      "alias": "research-1eb36b647ced8c3b",
+      "case_id": "research-1eb36b647ced8c3b"
+    },
+    {
+      "alias": "research-1ed46f56c8192c2a",
+      "case_id": "research-1ed46f56c8192c2a"
+    },
+    {
+      "alias": "research-25c508197878011e",
+      "case_id": "research-25c508197878011e"
+    },
+    {
+      "alias": "research-2607b5e4dfa7e408",
+      "case_id": "research-2607b5e4dfa7e408"
+    },
+    {
+      "alias": "research-267ebea46c42b80c",
+      "case_id": "research-267ebea46c42b80c"
+    },
+    {
+      "alias": "research-28b5c127d65b5125",
+      "case_id": "research-28b5c127d65b5125"
+    },
+    {
+      "alias": "research-34838a8326096f9a",
+      "case_id": "research-34838a8326096f9a"
+    },
+    {
+      "alias": "research-367181d1c59e3e64",
+      "case_id": "research-367181d1c59e3e64"
+    },
+    {
+      "alias": "research-3a307dea4589e834",
+      "case_id": "research-3a307dea4589e834"
+    },
+    {
+      "alias": "research-3a52df32a00c3332",
+      "case_id": "research-3a52df32a00c3332"
+    },
+    {
+      "alias": "research-3d251e332673710a",
+      "case_id": "research-3d251e332673710a"
+    },
+    {
+      "alias": "research-426017a92f952255",
+      "case_id": "research-426017a92f952255"
+    },
+    {
+      "alias": "research-49cec15302dd11db",
+      "case_id": "research-49cec15302dd11db"
+    },
+    {
+      "alias": "research-4bb986c28e6942da",
+      "case_id": "research-4bb986c28e6942da"
+    },
+    {
+      "alias": "research-4d1dbf0021730989",
+      "case_id": "research-4d1dbf0021730989"
+    },
+    {
+      "alias": "research-57635376951b1c01",
+      "case_id": "research-57635376951b1c01"
+    },
+    {
+      "alias": "research-5f31aea2f866bbbb",
+      "case_id": "research-5f31aea2f866bbbb"
+    },
+    {
+      "alias": "research-63b3c10913879d6d",
+      "case_id": "research-63b3c10913879d6d"
+    },
+    {
+      "alias": "research-66504f8922af6d9c",
+      "case_id": "research-66504f8922af6d9c"
+    },
+    {
+      "alias": "research-668053b00c3a3cd4",
+      "case_id": "research-668053b00c3a3cd4"
+    },
+    {
+      "alias": "research-688bec98a170d558",
+      "case_id": "research-688bec98a170d558"
+    },
+    {
+      "alias": "research-6cd6aee5bdb97aa1",
+      "case_id": "research-6cd6aee5bdb97aa1"
+    },
+    {
+      "alias": "research-7161236cd5d72c4f",
+      "case_id": "research-7161236cd5d72c4f"
+    },
+    {
+      "alias": "research-727dbbbbd63c322f",
+      "case_id": "research-727dbbbbd63c322f"
+    },
+    {
+      "alias": "research-735d7503a028f0d3",
+      "case_id": "research-735d7503a028f0d3"
+    },
+    {
+      "alias": "research-7c20e18edeb8b4f5",
+      "case_id": "research-7c20e18edeb8b4f5"
+    },
+    {
+      "alias": "research-7c84021e1e81747c",
+      "case_id": "research-7c84021e1e81747c"
+    },
+    {
+      "alias": "research-837a57d69b0ca77c",
+      "case_id": "research-837a57d69b0ca77c"
+    },
+    {
+      "alias": "research-8a636af14b645408",
+      "case_id": "research-8a636af14b645408"
+    },
+    {
+      "alias": "research-8ade349609689d38",
+      "case_id": "research-8ade349609689d38"
+    },
+    {
+      "alias": "research-96f02add14e941e9",
+      "case_id": "research-96f02add14e941e9"
+    },
+    {
+      "alias": "research-97ddafc64c8cffcc",
+      "case_id": "research-97ddafc64c8cffcc"
+    },
+    {
+      "alias": "research-9b3a6182ffb1bf81",
+      "case_id": "research-9b3a6182ffb1bf81"
+    },
+    {
+      "alias": "research-a144e6eb8aed41a0",
+      "case_id": "research-a144e6eb8aed41a0"
+    },
+    {
+      "alias": "research-a5374e2993f7b5ef",
+      "case_id": "research-a5374e2993f7b5ef"
+    },
+    {
+      "alias": "research-a7fd6f724a0ac5cc",
+      "case_id": "research-a7fd6f724a0ac5cc"
+    },
+    {
+      "alias": "research-abb11b5e5fbfec69",
+      "case_id": "research-abb11b5e5fbfec69"
+    },
+    {
+      "alias": "research-ae849fa829dae956",
+      "case_id": "research-ae849fa829dae956"
+    },
+    {
+      "alias": "research-b310988766fcf048",
+      "case_id": "research-b310988766fcf048"
+    },
+    {
+      "alias": "research-b3240df0f68131b0",
+      "case_id": "research-b3240df0f68131b0"
+    },
+    {
+      "alias": "research-ba6f55c735d0f6a0",
+      "case_id": "research-ba6f55c735d0f6a0"
+    },
+    {
+      "alias": "research-c08f3c81d56d67b7",
+      "case_id": "research-c08f3c81d56d67b7"
+    },
+    {
+      "alias": "research-c60a64ea0db967a3",
+      "case_id": "research-c60a64ea0db967a3"
+    },
+    {
+      "alias": "research-cc0f8267ce2af5b2",
+      "case_id": "research-cc0f8267ce2af5b2"
+    },
+    {
+      "alias": "research-ced86c4d18215449",
+      "case_id": "research-ced86c4d18215449"
+    },
+    {
+      "alias": "research-d4206232dc160fdd",
+      "case_id": "research-d4206232dc160fdd"
+    },
+    {
+      "alias": "research-d4db39e0799bfaa8",
+      "case_id": "research-d4db39e0799bfaa8"
+    },
+    {
+      "alias": "research-e18acdea61874fbe",
+      "case_id": "research-e18acdea61874fbe"
+    },
+    {
+      "alias": "research-e2679bc07f6c375b",
+      "case_id": "research-e2679bc07f6c375b"
+    },
+    {
+      "alias": "research-e5099589af4ffca9",
+      "case_id": "research-e5099589af4ffca9"
+    },
+    {
+      "alias": "research-ed368befa5d43a9b",
+      "case_id": "research-ed368befa5d43a9b"
+    },
+    {
+      "alias": "research-f441dc6640bab1fc",
+      "case_id": "research-f441dc6640bab1fc"
+    },
+    {
+      "alias": "research-f96fb935dd4b5540",
+      "case_id": "research-f96fb935dd4b5540"
+    },
+    {
+      "alias": "research-f9cb62e956fa8604",
+      "case_id": "research-f9cb62e956fa8604"
+    }
+  ]
+}
