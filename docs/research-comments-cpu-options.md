@@ -1,5 +1,7 @@
 # staging CPUとOPTIONSの検証境界（2026-11-01）
 
+2026-11-04追加：[404→Access302→404のオフライン分析・限定診断設計](../audit/comments-404-origin-20261104/README.md)。Workerの通常返却経路とHTML404は不一致だが、発生元は未確定。3連続redirectの有限窓と独立root試験、限定ヘッダー監査を追加した。実環境へは接続せず、過去のCPU未達・OPTIONS403を保持する。
+
 2026-11-04追記：[前回のHTTP404停止と準備確認のオフライン改善](../audit/comments-access-readiness-20261104/README.md)。元の403/CPU未達を保持し、HTTP経路準備確認を独立させる補助コードと試験を追加した。Cloudflare再接続・再試験は行っていない。以下は11月1日当時の記録。
 
 今回はPR137のオフライン修正だけ。Cloudflareアカウント接続、token発行、URL有効化、migration、既存D1再seed、deploy、設定変更は行わない。実試験スクリプトを再実行しない。実環境再試験は別承認。

@@ -15,21 +15,21 @@ function guard(request, options = {}) {
     close: async () => {calls.close++; return true;}, ...options})};
 }
 
-test('readiness 404 then exact Access redirect does not count as a security test', async () => {
+test('three exact Access redirects form only a readiness window, never a security test', async () => {
   let n = 0;
   const g = guard(async (url, options) => {
     assert.equal(url, READINESS_ORIGIN + '/');
     assert.equal(options.redirect, 'manual'); assert.equal(options.credentials, 'omit');
     assert.deepEqual(options.headers, {}); assert.equal(options.method, 'GET');
     assert.ok(options.signal instanceof AbortSignal);
-    return n++ === 0 ? response(404, 'unclassified error page') : ready();
+    n++; return ready();
   });
   const r = await g.run();
   assert.equal(r.result, 'PHASE_COMPLETE'); assert.equal(r.closure_verified, true);
   assert.deepEqual(g.calls, {unauth: 1, auth: 1, close: 1});
-  assert.deepEqual(r.readiness.observations.map(x => x.decision), ['pending', 'ready']);
+  assert.deepEqual(r.readiness.observations.map(x => x.decision), ['pending', 'pending', 'ready']);
   assert.equal(r.readiness.security_tests_passed, 0);
-  assert.equal(r.readiness.observations[0].reason, 'HTTP_404_UNCLASSIFIED');
+  assert.equal(r.readiness.observations[0].reason, 'ACCESS_REDIRECT_CANDIDATE');
   assert.equal(r.readiness.observations[1].elapsed_ms, 3000);
   assert.ok(r.readiness.observations.every(x => x.authenticated === false && x.wall_is_not_cpu));
 });

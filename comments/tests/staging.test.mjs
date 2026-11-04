@@ -6,6 +6,7 @@ import { createWorker } from "../worker.mjs";
 import "./registry.test.mjs";
 import "./access-snapshot.test.mjs";
 import "./access-readiness.test.mjs";
+import "./access-origin-diagnostic.test.mjs";
 
 async function setup(t) {const s=await stagingFixture();t.mock.method(globalThis,"fetch",s.certFetch);return s;}
 
@@ -17,6 +18,19 @@ test("JWT required on UI, assets, config, manifest, public/admin API and OPTIONS
   assert.equal((await s.call(s.route,{method:'OPTIONS',headers:{Origin:ORIGIN}})).status,403);
   assert.equal(s.certCalls.length,0);assert.equal(s.outbound.length,0);
   assert.equal(s.db.sql.prepare('SELECT count(*) n FROM limits').get().n,0);
+});
+
+test("root never forwards asset 404 HTML, even after successful JWT verification",async t=>{
+  const s=await setup(t); let assets=0;
+  s.env.ASSETS.fetch=async()=>{assets++;return new Response('<h1>asset missing</h1>',{status:404});};
+  for(const token of [undefined,'forged.token.signature']) {
+    const r=await s.call('/',{token});assert.equal(r.status,403);
+    assert.deepEqual(await r.json(),{error:'STAGING_ACCESS_DENIED'});
+  }
+  assert.equal(assets,0,'no assets binding or D1 path before JWT');
+  const r=await s.call('/',{token:await s.sign()});
+  assert.equal(r.status,503);assert.deepEqual(await r.json(),{error:'ASSET_UNAVAILABLE'});
+  assert.equal(assets,1);
 });
 
 test("signed valid user and service assertions pass; cached keys fetched only from pinned team",async t=>{
