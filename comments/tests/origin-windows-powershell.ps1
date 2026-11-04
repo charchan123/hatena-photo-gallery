@@ -73,6 +73,9 @@ try {
     try { $null = & (Join-Path $scripts 'CONFIRM_CLEANUP.ps1') -RunDirectory $temp -ApprovalFile $approvalPath -ApprovalSHA256 $approvalSHA 6>&1 } catch { $duplicateRejected=$true }
     if (-not $duplicateRejected -or (Get-FileHash -LiteralPath (Join-Path $temp 'cleanup-receipt.json')).Hash -ne $previous) { throw 'CLEANUP_RECEIPT_OVERWRITTEN' }
     Write-Host 'POWERSHELL_OFFLINE_OK parsed=3 unapproved_no_input=true secure_cleanup_success_and_failure=true deletion_evidence=operator-only network=mocked'
+    # The expected native failure above set LASTEXITCODE=1. Only after every
+    # assertion passed, report this test process's success to the CI pwsh shell.
+    $global:LASTEXITCODE = 0
 } finally {
     Remove-Item Function:global:Read-Host, Function:global:node -ErrorAction SilentlyContinue
     Remove-Item Env:CLOUDFLARE_API_TOKEN, Env:KINOKO_RETEST_OWNER_EMAIL -ErrorAction SilentlyContinue
