@@ -51,9 +51,14 @@ const mime=f=>({'.html':'text/html','.js':'text/javascript','.css':'text/css','.
   const {c,p}=await setup(variant,390,844,true);await p.goto(PH+'/?child=best-shots-2025.html');const f=p.frames().find(x=>x.url().startsWith(CH));await f.waitForSelector('a.best-shot-photo');await p.waitForTimeout(1000);
   const link=f.locator('a.best-shot-photo').last();await link.scrollIntoViewIfNeeded();await p.waitForTimeout(300);await link.click();
   if(variant==='before'){
-   await f.waitForSelector('dialog[open]');await f.waitForFunction(()=>document.querySelector('dialog img')?.naturalWidth>0);
-   const r=await f.locator('dialog img').evaluate(e=>({width:e.getBoundingClientRect().width,height:e.getBoundingClientRect().height,viewport:innerWidth,viewportHeight:innerHeight,maxHeight:getComputedStyle(e).maxHeight,dialogBorder:getComputedStyle(e.closest('dialog')).borderTopWidth}));
-   check(r.maxHeight==='none'&&parseFloat(r.dialogBorder)>0,'unbounded native dialog baseline');metrics.push({case:'before-dialog',...r});
+   // Published gh-pages may already contain the accepted shared LightGallery.
+   // Preserve the historical-dialog check only if that baseline actually uses it.
+   await f.waitForFunction(()=>Boolean(document.querySelector('dialog[open], .lg-show')));
+   if(await f.locator('dialog[open]').count()){
+    await f.waitForFunction(()=>document.querySelector('dialog img')?.naturalWidth>0);
+    const r=await f.locator('dialog img').evaluate(e=>({width:e.getBoundingClientRect().width,height:e.getBoundingClientRect().height,viewport:innerWidth,viewportHeight:innerHeight,maxHeight:getComputedStyle(e).maxHeight,dialogBorder:getComputedStyle(e.closest('dialog')).borderTopWidth}));
+    check(r.maxHeight==='none'&&parseFloat(r.dialogBorder)>0,'historical unbounded native dialog baseline');metrics.push({case:'before-dialog',...r});
+   }else{const r=await bounds(f);fits(r);metrics.push({case:'already-shared-published-baseline',...r});}
   }else{const r=await bounds(f);fits(r);check(await f.locator('.best-shot-dialog').count()===0,'no Best Shot-specific dialog');metrics.push({case:'after-gallery',...r});}
   await p.screenshot({path:path.join(root,'screenshots',`best-shot-${variant}-390.png`)});await c.close();
  }
