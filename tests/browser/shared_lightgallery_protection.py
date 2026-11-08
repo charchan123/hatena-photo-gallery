@@ -4,10 +4,11 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+from lightgallery_css_guard import verify_gallery_css
 
 ROOT = Path(__file__).resolve().parents[2]
-START = 'd903207f457042ba165633162bf2772cc20738a1'
 MAIN = '8007a72708aff2dfa14e2e9638f44720bb449b76'
+BASE = sys.argv[2] if len(sys.argv) > 2 else 'origin/main'
 
 def git(*args):
     return subprocess.check_output(['git', *args], cwd=ROOT)
@@ -18,15 +19,21 @@ def value(ref, path):
 def digest(content):
     return hashlib.sha256(content).hexdigest()
 
-paths = git('ls-tree', '-rz', '--name-only', START).decode().split('\0')
+# The PR base includes the separately accepted artwork replacements. Preserve
+# those exact bytes rather than comparing current artwork to the old PR #139.
+paths = git('ls-tree', '-rz', '--name-only', BASE).decode().split('\0')
 mutable = {'assets/gallery.js', 'best_shot_ui.py', 'gallery_dependencies.py'}
 protected = [p for p in paths if p and p not in mutable and not p.startswith(
     ('.github/', 'audit/', 'tests/', 'docs/', 'tools/'))]
-before = {p: digest(git('show', f'{START}:{p}')) for p in protected}
+before = {p: digest(git('show', f'{BASE}:{p}')) for p in protected}
 after = {p: digest((ROOT / p).read_bytes()) for p in protected}
-assert before == after, [p for p in protected if before[p] != after[p]]
+gallery_css = 'assets/gallery.css'
+viewer_rules_added = verify_gallery_css(git('show', f'{BASE}:{gallery_css}'),
+                                        (ROOT / gallery_css).read_bytes())
+unexpected = [p for p in protected if p != gallery_css and before[p] != after[p]]
+assert not unexpected, unexpected
 # The latest main's protected data are independently byte-equal, not only counts.
-for p in protected:
+for p in git('ls-tree', '-rz', '--name-only', MAIN).decode().split('\0'):
     if p.startswith(('data/', 'sync-migrations/', 'admin/', 'comments/', 'hatena/', 'lightgallery/')):
         assert digest(git('show', f'{MAIN}:{p}')) == after[p], p
 
@@ -64,10 +71,12 @@ assert vendor_tree == git('rev-parse', 'origin/gh-pages:lightgallery').decode().
 output_paths = ['portal-data.json', 'article-sync-snapshot.json', 'research-comment-cases.json',
                 'research-comments-config.json']
 output_hashes = {p: digest(git('show', f'origin/gh-pages:{p}')) for p in output_paths}
-result = {'source_start': START, 'main': git('rev-parse', 'origin/main').decode().strip(),
+result = {'source_base': git('rev-parse', BASE).decode().strip(), 'historical_data_base': MAIN,
+          'main': git('rev-parse', 'origin/main').decode().strip(),
           'published': git('rev-parse', 'origin/gh-pages').decode().strip(),
           'protected_file_count': len(protected), 'protected_sha256': digest(json.dumps(after, sort_keys=True).encode()),
-          'before_after_equal': before == after, 'source_counts': source_counts,
+          'before_after_equal': before == after, 'reviewed_gallery_viewer_rules_added': viewer_rules_added,
+          'other_protected_sources_equal': not unexpected, 'source_counts': source_counts,
           'published_counts': published_counts, 'published_sha256': output_hashes,
           'critical_source_sha256': {p: after[p] for p in protected if p.startswith('data/')},
           'local_and_published_vendor_tree': vendor_tree, 'comments_enabled': comments['enabled'], 'external_mutations': []}

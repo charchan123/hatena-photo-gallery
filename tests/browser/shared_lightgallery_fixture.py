@@ -34,10 +34,18 @@ assert len(r.content) > 1000
 parent = (repo / 'hatena/release-2026-10-24/footer-managed.html').read_text()
 handler = parent[parent.rfind('<script>'):]
 scroll_lock = (repo / 'hatena/patches/lightgallery-overlay-scroll-lock-20261108.html').read_text()
-(root / 'parent-template.html').write_text('''<!doctype html><meta charset=utf-8><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0}header{height:300px}#kinoko-home-portal{margin:0}iframe{width:100%;border:0}html{overflow-y:scroll}</style><header>Isolated parent replay</header><section id="kinoko-home-portal"><iframe id="photoGallery" title="child" src="CHILD_URL" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation-by-user-activation" scrolling="no"></iframe></section>''' + handler + scroll_lock)
+parent_template = '''<!doctype html><meta charset=utf-8><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0}header{height:300px}iframe{width:100%;border:0}html{overflow-y:scroll}::-webkit-scrollbar{width:15px}</style><!-- HOST_SCROLL_STYLE --><header>Isolated parent replay</header><section id="kinoko-home-portal"><iframe id="photoGallery" title="child" src="CHILD_URL" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation-by-user-activation" scrolling="no"></iframe></section>''' + handler
+(root / 'parent-before-template.html').write_text(parent_template)
+(root / 'parent-template.html').write_text(parent_template + scroll_lock)
 (root / 'manifest.json').write_text(json.dumps({
     'main': subprocess.check_output(['git', 'rev-parse', 'origin/main'], text=True).strip(),
     'published': subprocess.check_output(['git', 'rev-parse', 'origin/gh-pages'], text=True).strip(),
     'best_shots': len(json.loads((repo / 'data/best-shots.json').read_text())['entries']),
+    'published_star_styles_match_candidate': (
+        (root / 'before/assets/record-stars.css').read_bytes() ==
+        (repo / 'assets/record-stars.css').read_bytes() and
+        (root / 'before/assets/record-stars.js').read_bytes() ==
+        (repo / 'assets/record-stars.js').read_bytes()
+    ),
 }, indent=2))
 print(root)

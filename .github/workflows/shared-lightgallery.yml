@@ -4,10 +4,13 @@ on:
     branches: [main]
     paths:
       - 'assets/gallery.js'
+      - 'assets/gallery.css'
       - 'assets/record-stars.*'
       - 'best_shot_ui.py'
       - 'gallery_dependencies.py'
       - 'tests/browser/shared_lightgallery*'
+      - 'tests/browser/lightgallery_css_guard.py'
+      - 'hatena/patches/lightgallery-overlay-scroll-lock-20261108.html'
       - '.github/workflows/shared-lightgallery.yml'
 permissions:
   contents: read
@@ -46,7 +49,7 @@ jobs:
         run: |
           node tests/browser/shared_lightgallery.cjs /tmp/shared-gallery
           node tests/browser/shared_lightgallery_safety.cjs /tmp/shared-gallery
-          python tests/browser/shared_lightgallery_protection.py /tmp/shared-gallery/protection.json
+          python tests/browser/shared_lightgallery_protection.py /tmp/shared-gallery/protection.json "${{ github.event.pull_request.base.sha }}"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
