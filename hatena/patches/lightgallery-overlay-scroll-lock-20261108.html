@@ -1,0 +1,16 @@
+<!--
+  Additive Hatena footer patch: paste as a separate block only after user
+  approval and verification against the live footer. Do not replace the
+  frozen 2026-10-24 footer-managed.html or the current Design CSS.
+-->
+<style id="kinoko-lightbox-scroll-lock">
+/* The viewport scrollbar belongs to the Hatena host, not the child iframe.
+   Apply only while our authenticated, manual popover is actually open.
+   Normal scroll styles and the host's saved scrollTop return on close. */
+html:has(#kinoko-home-portal[data-kinoko-lightbox]:popover-open),
+html:has(#galleryWrapper[data-kinoko-lightbox]:popover-open),
+body:has(#kinoko-home-portal[data-kinoko-lightbox]:popover-open),
+body:has(#galleryWrapper[data-kinoko-lightbox]:popover-open) {
+  overflow-y: hidden !important;
+}
+</style>
