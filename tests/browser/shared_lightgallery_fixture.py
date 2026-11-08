@@ -17,7 +17,7 @@ repo = Path(__file__).resolve().parents[2]
 with tarfile.open(fileobj=io.BytesIO(subprocess.check_output(['git', 'archive', 'origin/gh-pages']))) as archive:
     archive.extractall(root / 'before', filter='data')
 shutil.copytree(root / 'before', root / 'after', dirs_exist_ok=True)
-for name in ['gallery.js', 'record-stars.js', 'record-stars.css']:
+for name in ['gallery.js', 'gallery.css', 'record-stars.js', 'record-stars.css']:
     shutil.copy2(repo / 'assets' / name, root / 'after/assets' / name)
 portal = json.loads((root / 'before/portal-data.json').read_text())
 best_shot_ui.generate_best_shot_pages(portal, repo / 'data/best-shots.json', root / 'after', repo / 'assets')
@@ -33,7 +33,8 @@ assert len(r.content) > 1000
 (root / 'screenshots').mkdir(exist_ok=True)
 parent = (repo / 'hatena/release-2026-10-24/footer-managed.html').read_text()
 handler = parent[parent.rfind('<script>'):]
-(root / 'parent-template.html').write_text('''<!doctype html><meta charset=utf-8><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0}header{height:300px}#kinoko-home-portal{margin:0}iframe{width:100%;border:0}html{overflow-y:scroll}</style><header>Isolated parent replay</header><section id="kinoko-home-portal"><iframe id="photoGallery" title="child" src="CHILD_URL" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation-by-user-activation" scrolling="no"></iframe></section>''' + handler)
+scroll_lock = (repo / 'hatena/patches/lightgallery-overlay-scroll-lock-20261108.html').read_text()
+(root / 'parent-template.html').write_text('''<!doctype html><meta charset=utf-8><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0}header{height:300px}#kinoko-home-portal{margin:0}iframe{width:100%;border:0}html{overflow-y:scroll}</style><header>Isolated parent replay</header><section id="kinoko-home-portal"><iframe id="photoGallery" title="child" src="CHILD_URL" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-top-navigation-by-user-activation" scrolling="no"></iframe></section>''' + handler + scroll_lock)
 (root / 'manifest.json').write_text(json.dumps({
     'main': subprocess.check_output(['git', 'rev-parse', 'origin/main'], text=True).strip(),
     'published': subprocess.check_output(['git', 'rev-parse', 'origin/gh-pages'], text=True).strip(),
