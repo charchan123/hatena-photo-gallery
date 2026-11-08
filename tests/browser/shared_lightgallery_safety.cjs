@@ -101,6 +101,9 @@ const picture='<svg xmlns="http://www.w3.org/2000/svg" width="600" height="900">
      }
      await s.p.waitForTimeout(mode==='ackTimeout'?2200:200);
      check(await f.locator('.lg-show').count()===0,'failed ACK cannot open gallery');
+     check(await s.p.evaluate(()=>!document.querySelector('#kinoko-home-portal').matches(':popover-open')&&
+       getComputedStyle(document.documentElement).overflowY==='scroll'&&getComputedStyle(document.body).overflowY==='visible'),
+       'rejected or timed-out opening releases any host scroll lock');
      check((await s.p.evaluate(()=>window.__openYs.length))===1,'no duplicate pending request');
      const href=await f.locator('.best-shot-photo').first().getAttribute('href');await f.locator('.best-shot-photo').first().click();await s.p.waitForURL(href);
      check(new URL(s.p.url()).origin!==PH,'retry is native fallback');
