@@ -62,7 +62,28 @@ const mime=f=>({'.html':'text/html','.js':'text/javascript','.css':'text/css','.
   const links=f.locator('a.best-shot-photo'),hrefs=await links.evaluateAll(es=>es.map(e=>e.href)),ids=await f.locator('.best-shot-card').evaluateAll(es=>es.map(e=>e.dataset.selectionId));
   const link=links.last();await link.scrollIntoViewIfNeeded();await p.waitForTimeout(300);const y=await p.evaluate(()=>scrollY);
   await link.click();const r=await bounds(f),openingY=await p.evaluate(()=>window.__openingPositions.at(-1));check(Number.isFinite(openingY),'authenticated opening observed');fits(r);check(await f.locator('.lg-close').isVisible(),'close visible');check(await f.locator('.lg-thumb-item').count()===hrefs.length,'same photo count');check(await f.locator('.lg-current img.lg-object').getAttribute('src')===hrefs.at(-1),'selected photo matches');
+  // The host owns the visible viewport scrollbar; only an open, trusted
+  // photo popover may suppress it. The existing scroll restoration stays.
+  if(width===1280){
+   const toolbar=await f.locator('.lg-toolbar').evaluate(e=>{
+    const close=e.querySelector('.lg-close');
+    const icons=[...e.querySelectorAll('.lg-icon')].filter(n=>n.getBoundingClientRect().width>0&&getComputedStyle(n).display!=='none');
+    return {rightGap:innerWidth-close.getBoundingClientRect().right,iconWidths:icons.map(n=>n.getBoundingClientRect().width)};
+   });
+   check(toolbar.rightGap>=16&&toolbar.rightGap<=20,'desktop close has balanced right edge gutter '+JSON.stringify(toolbar));
+   check(toolbar.iconWidths.length>=3&&toolbar.iconWidths.every(w=>Math.abs(w-46)<=1),'desktop toolbar icons use uniform spacing '+JSON.stringify(toolbar));
+   const host=await p.evaluate(()=>({
+    active:document.querySelector('#kinoko-home-portal')?.matches(':popover-open'),
+    html:getComputedStyle(document.documentElement).overflowY,
+    body:getComputedStyle(document.body).overflowY,
+    bar:innerWidth-document.documentElement.clientWidth
+   }));
+   check(host.active===true&&host.html==='hidden'&&host.body==='hidden','only open parent popover hides both scrollbars '+JSON.stringify(host));
+   check(host.bar<=1,'opened lightbox has no visible host scrollbar '+JSON.stringify(host));
+   metrics.push({case:'toolbar-and-scrollbar',width,...toolbar,...host});
+  }
   await close(f,p);metrics.push({case:'close-position',width,beforePointerAction:y,atOpening:openingY,after:await p.evaluate(()=>scrollY)});check(Math.abs(await p.evaluate(()=>scrollY)-openingY)<=1,'close restores parent '+JSON.stringify(metrics.at(-1)));
+  if(width===1280)check(await p.evaluate(()=>getComputedStyle(document.documentElement).overflowY)==='scroll','host scroll styling restored after close');
   await link.click();await bounds(f);await p.keyboard.press('ArrowLeft');await p.waitForTimeout(700);check(await f.locator('.lg-current img.lg-object').getAttribute('src')===hrefs.at(-2),'previous photo');fits(await bounds(f));
   const escapeOpeningY=await p.evaluate(()=>window.__openingPositions.at(-1));await close(f,p,true);check(Math.abs(await p.evaluate(()=>scrollY)-escapeOpeningY)<=1,'Esc restores parent');
   check(JSON.stringify(await f.locator('.best-shot-card').evaluateAll(es=>es.map(e=>e.dataset.selectionId)))===JSON.stringify(ids),'selection/order unchanged');
