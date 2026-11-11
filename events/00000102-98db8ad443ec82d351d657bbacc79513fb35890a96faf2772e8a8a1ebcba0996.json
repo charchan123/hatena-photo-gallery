@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "seq": 102,
+  "previous": "1ebbb4f78c605295f9f3598c8b34618899c51ef2b19e5d39750b7d14e52e2745",
+  "event": {
+    "kind": "result",
+    "at": "2026-11-11T05:28:56.723027+00:00",
+    "run_id": "actions:42965963181:attempt:1:CANDIDATE_VALIDATED",
+    "independent_id": "actions:42965963181",
+    "baseline": "e64a4f2fd858bf1ff2d9414ee13407ba337921240487e8834eeb62de660dd3aa",
+    "baseline_commit": "84be5d542aa1eea545f8365109facf99a95c9ece",
+    "protection": "d30a4630c59db8398eb7090cf55350f299b9e43765c1f8dbe04b38c4bba4484d",
+    "source_sha256": "b9316719b4a83a6eff7390e13c4745bbde2dc49913132fae3d34613e99d497f2",
+    "healthy": true,
+    "error_code": null,
+    "candidates": {},
+    "findings": [],
+    "outcome": "CANDIDATE_VALIDATED",
+    "receipt_sha256": "ff1dbf27891a451937f3166b44f100c07f1e82d59a92133714819bb4a80662f4",
+    "output_portal_sha256": "1076ce74b6f302a4514fb3827bab8dfbd7a1c68026eb51be6dc67dab7cc85287"
+  },
+  "sha256": "98db8ad443ec82d351d657bbacc79513fb35890a96faf2772e8a8a1ebcba0996"
+}
