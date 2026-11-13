@@ -139,3 +139,131 @@ test('packet SHA and old proof guard reject tampering, with no requests',async t
   const x=prepare(t,'success');writeFileSync(join(x.packet,'comments/tools/access-readiness.mjs'),readFileSync(join(x.packet,'comments/tools/access-readiness.mjs'),'utf8')+'\n// tampered valid module\n');
   const r=await x.invoke('read-only');assert.match(r.stdout,/PACKAGE_BYTES_CHANGED/);assert.equal(readFileSync(x.paths.e,'utf8'),'');
 });
+
+for(const [scenario,enabled,gets,closed] of [
+  ['watchdog-before-ready',false,0,true],
+  ['watchdog-after-ready',false,0,true],
+  ['watchdog-before-enable',false,0,true],
+  ['watchdog-during-enable',true,0,true],
+  ['watchdog-enable-ambiguous',true,0,false],
+  ['watchdog-before-first-get',true,0,true],
+  ['watchdog-during-get',true,1,true],
+  ['watchdog-between-gets',true,1,true],
+  ['watchdog-disconnect',true,1,true],
+  ['watchdog-error',true,1,true],
+  ['watchdog-heartbeat-missing',true,1,true],
+  ['watchdog-close-fail',true,1,false],
+  ['watchdog-ipc-close-fail',true,1,false],
+  ['watchdog-normal-retirement',true,4,true],
+])test('packaged watchdog lifecycle: '+scenario,async t=>{
+  const x=prepare(t,scenario);
+  const oldBytes=readdirSync(x.evidence).map(n=>[n,readFileSync(join(x.evidence,n),'utf8')]);
+  assert.equal((await x.invoke('read-only')).code,undefined);
+  const start=events(x).length,result=await x.invoke('diagnose');
+  const reportFile=join(x.runDir,'diagnostic-report.json'),reportBytes=readFileSync(reportFile,'utf8');
+  const report=JSON.parse(reportBytes),calls=events(x).slice(start);
+  const writes=calls.filter(v=>v.type==='mutation').map(v=>v.body.enabled);
+  const faultEvent=scenario==='watchdog-heartbeat-missing'?'public-aborted':'watchdog-fault-observed';
+  const fault=calls.findIndex(v=>v.type===faultEvent);
+  const getsAfterFault=calls.slice(fault+1).filter(v=>v.type==='public').length;
+  const normal=scenario==='watchdog-normal-retirement';
+  assert.equal(writes.includes(true),enabled);
+  assert.equal(calls.filter(v=>v.type==='public').length,gets);
+  assert.equal(report.public_requests,gets);
+  assert.equal(report.authenticated_requests,0);
+  assert.equal(report.urls_closed,closed);
+  assert.equal(report.previous_evidence_preserved,true);
+  assert.deepEqual(readdirSync(x.evidence).map(n=>[n,readFileSync(join(x.evidence,n),'utf8')]),oldBytes);
+  if(normal){
+    assert.equal(result.code,undefined);
+    assert.equal(report.watchdog_failure,undefined);
+    assert.equal(report.result,'UNAUTHENTICATED_ROOT_WINDOW_COMPLETE');
+    assert.deepEqual(writes,[false,true,false]);
+  }else{
+    assert.notEqual(result.code,undefined);
+    assert.match(report.watchdog_failure,/^WATCHDOG_/);
+    assert.equal(report.result,'ORIGIN_STOP');
+    assert.notEqual(report.diagnostic.result,'UNAUTHENTICATED_ROOT_WINDOW_COMPLETE');
+    assert.equal(getsAfterFault,0);
+    assert.equal(report.post_checks_unchanged,undefined);
+    if(scenario==='watchdog-disconnect'||scenario==='watchdog-ipc-close-fail')assert.equal(report.watchdog_failure,'WATCHDOG_IPC_DISCONNECTED');
+    if(scenario==='watchdog-error')assert.equal(report.watchdog_failure,'WATCHDOG_PROCESS_ERROR');
+    if(scenario==='watchdog-heartbeat-missing')assert.equal(report.watchdog_failure,'WATCHDOG_HEARTBEAT_MISSING');
+    if(scenario!=='watchdog-before-ready'){
+      assert.notEqual(fault,-1);
+      for(const call of calls.slice(fault+1).filter(v=>v.type==='control')){
+        assert.ok(call.key.endsWith('/subdomain')||call.key.endsWith('/settings'),JSON.stringify(call));
+      }
+    }
+    if(!closed){
+      assert.equal(report.reason,'CLOSURE_UNCONFIRMED_CHECK_DASHBOARD');
+      assert.equal(report.phase_reason,report.watchdog_failure);
+      if(scenario==='watchdog-enable-ambiguous'){
+        assert.equal(report.closure_reason,'ENABLE_OUTCOME_AMBIGUOUS');
+        assert.equal(report.close_readback,true);
+      }else assert.equal(report.closure_reason,'CONTROL_HTTP_403');
+    }
+    if(scenario==='watchdog-during-enable'){
+      const ack=calls.findIndex(v=>v.type==='enable-response');
+      assert.ok(fault<ack&&ack<calls.findLastIndex(v=>v.type==='mutation'&&!v.body.enabled));
+    }
+    if(gets&&scenario!=='watchdog-between-gets')assert.ok(calls.some(v=>v.type==='public-aborted'));
+    assert.deepEqual(writes,enabled?[false,true,false]:scenario==='watchdog-before-ready'?[]:[false]);
+  }
+  if(scenario==='watchdog-ipc-close-fail'){
+    const fallback=await waitFile(join(x.runDir,'watchdog-report.json'));
+    assert.equal(fallback.closure_verified,true);
+  }else assert.equal(JSON.parse(readFileSync(x.paths.s)).enabled,!closed&&scenario!=='watchdog-enable-ambiguous');
+  for(const secret of [TOKEN,OWNER,'PRIVATE_']){
+    assert.ok(!reportBytes.includes(secret));
+    assert.ok(!result.stdout.includes(secret));
+  }
+  const marker=join(x.runDir,'host-attempt.json'),markerBytes=readFileSync(marker,'utf8');
+  const before=readFileSync(x.paths.e,'utf8'),retry=await x.invoke('diagnose');
+  assert.match(retry.stdout,/ATTEMPT_EXISTS_NO_RETRY/);
+  assert.equal(readFileSync(x.paths.e,'utf8'),before);
+  assert.equal(readFileSync(reportFile,'utf8'),reportBytes);
+  assert.equal(readFileSync(marker,'utf8'),markerBytes);
+  t.diagnostic(JSON.stringify({scenario,enabled,gets,getsAfterFault:normal?null:getsAfterFault,
+    offWrites:writes.filter(v=>!v).length,closureConfirmed:report.urls_closed,result:report.result,
+    reason:report.reason??null,watchdogFailure:report.watchdog_failure??null}));
+});
+
+test('closure failure remains visible if the report cannot be saved',async t=>{
+  const x=prepare(t,'watchdog-report-fail');
+  assert.equal((await x.invoke('read-only')).code,undefined);
+  const result=await x.invoke('diagnose');
+  assert.notEqual(result.code,undefined);
+  assert.match(result.stdout,/URLs_closed=false.*CLOSURE_UNCONFIRMED_CHECK_DASHBOARD.*report_save_failed=true/);
+  assert.match(result.stdout,/REPORT_SAVE_FAILED/);
+  assert.equal(readFileSync(join(x.runDir,'diagnostic-report.json'),'utf8'),'retained report bytes');
+  const calls=events(x);
+  assert.deepEqual(calls.filter(v=>v.type==='mutation').map(v=>v.body.enabled),[false,true,false]);
+  assert.equal(calls.filter(v=>v.type==='public').length,1);
+  t.diagnostic(JSON.stringify({scenario:'watchdog-report-fail',enabled:true,gets:1,getsAfterFault:0,
+    offWrites:2,closureConfirmed:false,result:'CLOSURE_UNCONFIRMED_CHECK_DASHBOARD',reportSaveFailed:true}));
+});
+
+test('both processes stopped while open: requires external closure and blocks a retry',async t=>{
+  const x=prepare(t,'watchdog-both-stopped');
+  assert.equal((await x.invoke('read-only')).code,undefined);
+  const parent=spawn(process.execPath,x.args('diagnose'),{env:x.env,stdio:'ignore',windowsHide:true});
+  for(let n=0;n<100&&!events(x).some(v=>v.type==='public');n++)await pause(50);
+  const calls=events(x),child=calls.find(v=>v.type==='watchdog-spawn');
+  const parentExit=new Promise(resolve=>parent.once('exit',resolve));
+  try{
+    assert.ok(child&&calls.some(v=>v.type==='public'));
+    assert.equal(JSON.parse(readFileSync(x.paths.s)).enabled,true);
+  }finally{
+    if(parent.exitCode===null&&parent.signalCode===null){parent.kill();await parentExit;}
+    if(child)process.kill(child.pid,'SIGTERM');
+  }
+  assert.equal(existsSync(join(x.runDir,'diagnostic-report.json')),false);
+  assert.equal(existsSync(join(x.runDir,'watchdog-report.json')),false);
+  assert.equal(JSON.parse(readFileSync(x.paths.s)).enabled,true);
+  const before=readFileSync(x.paths.e,'utf8'),retry=await x.invoke('diagnose');
+  assert.match(retry.stdout,/ATTEMPT_EXISTS_NO_RETRY/);
+  assert.equal(readFileSync(x.paths.e,'utf8'),before);
+  t.diagnostic(JSON.stringify({scenario:'watchdog-both-stopped',enabled:true,gets:1,getsAfterFault:0,
+    offWrites:1,closureConfirmed:false,result:'EXTERNAL_CLOSURE_REQUIRED'}));
+});

@@ -46,9 +46,17 @@ function redirectKind(location) {
   } catch { return 'unexpected'; }
 }
 
-async function observe(request, timeoutMs) {
+async function observe(request, timeoutMs, signal) {
+  if (signal?.aborted) return {decision: 'stop', reason: 'OBSERVATION_CANCELLED'};
   const controller = new AbortController();
-  let timer, reader;
+  let timer, reader, cancel;
+  const cancelled = new Promise((_, reject) => {
+    cancel = () => {
+      controller.abort();
+      reject(new Error('OBSERVATION_CANCELLED'));
+    };
+  });
+  signal?.addEventListener('abort', cancel, {once: true});
   const cancelReader = () => { if (reader) void reader.cancel().catch(() => {}); };
   controller.signal.addEventListener('abort', cancelReader, {once: true});
   try {
@@ -58,6 +66,10 @@ async function observe(request, timeoutMs) {
           method: 'GET', headers: {}, credentials: 'omit', redirect: 'manual', cache: 'no-store',
           signal: controller.signal,
         });
+        if (controller.signal.aborted) {
+          if (r.body) void r.body.cancel().catch(() => {});
+          controller.signal.throwIfAborted();
+        }
         const item = {status: r.status, content_type: 'other', redirect: redirectKind(r.headers.get('location')),
           diagnostic_headers: diagnosticHeaders(r.headers)};
         const mime = (r.headers.get('content-type') || '').split(';')[0].trim().toLowerCase();
@@ -95,15 +107,22 @@ async function observe(request, timeoutMs) {
       new Promise((_, reject) => { timer = setTimeout(() => {
         controller.abort(); reject(new Error('TIMEOUT'));
       }, timeoutMs); }),
+      cancelled,
     ]);
   } catch {
     // Never serialize response bodies, URLs, exception text or request secrets.
-    return {decision: 'stop', reason: controller.signal.aborted ? 'REQUEST_TIMEOUT' : 'REQUEST_FAILED'};
-  } finally { clearTimeout(timer); controller.signal.removeEventListener('abort', cancelReader); }
+    const reason = signal?.aborted ? 'OBSERVATION_CANCELLED' :
+      controller.signal.aborted ? 'REQUEST_TIMEOUT' : 'REQUEST_FAILED';
+    return {decision: 'stop', reason};
+  } finally {
+    clearTimeout(timer);
+    signal?.removeEventListener('abort', cancel);
+    controller.signal.removeEventListener('abort', cancelReader);
+  }
 }
 
 export async function waitForAccessReadiness({request, now = () => performance.now(), sleep = pause,
-  utcNow = () => new Date().toISOString(),
+  utcNow = () => new Date().toISOString(), signal,
   budgetMs = 15000, requestMs = 4000, intervalMs = 3000, maxObservations = 3}) {
   if (typeof request !== 'function' || !Number.isFinite(budgetMs) || budgetMs <= 0 || budgetMs > 15000 ||
       !Number.isFinite(requestMs) || requestMs <= 0 || requestMs > 4000 ||
@@ -115,7 +134,7 @@ export async function waitForAccessReadiness({request, now = () => performance.n
     const remaining = budgetMs - (now() - start);
     if (remaining <= 0) break;
     const started_at = utcNow(), begin = now();
-    const item = await observe(request, Math.min(requestMs, remaining));
+    const item = await observe(request, Math.min(requestMs, remaining), signal);
     if (item.decision === 'ready') {
       redirects++;
       if (redirects < STABLE_REDIRECTS) {
@@ -136,7 +155,7 @@ export async function waitForAccessReadiness({request, now = () => performance.n
     if (i + 1 < maxObservations) {
       const delay = Math.min(intervalMs, budgetMs - (now() - start));
       if (delay <= 0) break;
-      await sleep(delay);
+      await sleep(delay, undefined, {signal});
     }
   }
   return {state: 'stop', reason: 'READINESS_NOT_ESTABLISHED', observations,
@@ -146,10 +165,10 @@ export async function waitForAccessReadiness({request, now = () => performance.n
 // The independent security gate uses exactly the same root request/metadata
 // collector as readiness. It is not another wait/retry loop: any 404 stops.
 export async function verifyUnauthenticatedRoot({request, now = () => performance.now(),
-  utcNow = () => new Date().toISOString(), requestMs = 4000}) {
+  utcNow = () => new Date().toISOString(), requestMs = 4000, signal}) {
   if (typeof request !== 'function' || !Number.isFinite(requestMs) || requestMs <= 0 || requestMs > 4000)
     throw Error('INVALID_GATE_BOUNDS');
-  const started_at = utcNow(), begin = now(), item = await observe(request, requestMs);
+  const started_at = utcNow(), begin = now(), item = await observe(request, requestMs, signal);
   return {method: 'GET', path: '/', authenticated: false, started_at, completed_at: utcNow(),
     wall_ms: Math.max(0, now() - begin), wall_is_not_cpu: true, ...item,
     pass: item.decision === 'ready'};

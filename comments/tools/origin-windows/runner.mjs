@@ -5,6 +5,7 @@ import {createHash} from 'node:crypto';
 import {dirname,join,resolve} from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {fork} from 'node:child_process';
+import {performance} from 'node:perf_hooks';
 import {C,SQL,canonical,checkSettings,checkDb,checkOtherApps,checkTokens} from './preflight.mjs';
 import {codeReceipt,deployedVersion} from './code-receipt.mjs';
 import {validateAccessSnapshot} from '../../staging/access-snapshot.mjs';
@@ -14,6 +15,8 @@ const DIR=dirname(fileURLToPath(import.meta.url)),SELF=fileURLToPath(import.meta
 export const VERSION='6ff1d822-8419-47e7-8c46-15c1d4282493';
 export const PROTOCOL='origin-windows-v1';
 export const WATCHDOG_MS=90000;
+const WATCHDOG_HEARTBEAT_MS=1000;
+const WATCHDOG_HEARTBEAT_TIMEOUT_MS=3000;
 export const FILES=[
   'comments/tools/origin-windows/runner.mjs','comments/tools/origin-windows/preflight.mjs',
   'comments/tools/origin-windows/code-receipt.mjs','comments/tools/origin-windows/expected-seed.json',
@@ -91,16 +94,26 @@ export function controlGuard(path,method='GET',body){
     Array.isArray(body.params)&&!body.params.length&&Object.values(SQL).includes(body.sql))return;
   throw Error('CONTROL_SCOPE_BLOCKED');
 }
-async function bounded(operation,ms=8000){
-  const c=new AbortController();let timer;
-  try{return await Promise.race([operation(c.signal),new Promise((_,no)=>{timer=setTimeout(()=>{c.abort();no(Error('CONTROL_TIMEOUT'));},ms);})]);}
-  finally{clearTimeout(timer);}
+async function bounded(operation,signal){
+  signal?.throwIfAborted();
+  const controller=new AbortController();
+  let timer,cancel;
+  const interrupted=new Promise((_,reject)=>{
+    cancel=()=>{controller.abort();reject(Error('CONTROL_CANCELLED'));};
+    timer=setTimeout(()=>{controller.abort();reject(Error('CONTROL_TIMEOUT'));},8000);
+  });
+  signal?.addEventListener('abort',cancel,{once:true});
+  try{return await Promise.race([operation(controller.signal),interrupted]);}
+  finally{
+    clearTimeout(timer);
+    signal?.removeEventListener('abort',cancel);
+  }
 }
 export function client(ctx){
   need(process.env.CLOUDFLARE_ACCOUNT_ID===C.account&&/^[A-Za-z0-9_-]{20,200}$/.test(process.env.CLOUDFLARE_API_TOKEN||''),'BUILD_TOKEN_INPUT_INVALID');
   need(!Object.keys(process.env).some(k=>/^(KINOKO_ACCESS_CLIENT_|KINOKO_STAGING_ADMIN_TOKEN)/.test(k)&&process.env[k]),'SERVICE_OR_ADMIN_CREDENTIALS_FORBIDDEN');
   const token=process.env.CLOUDFLARE_API_TOKEN;
-  return async(path,method='GET',body,raw=false)=>{
+  return async(path,method='GET',body,raw=false,cancel)=>{
     controlGuard(path,method,body);
     const closing=method==='POST'&&path===B+'/subdomain'&&body.enabled===false;
     // Cleanup always targets OFF; it must survive a changed approval file or
@@ -120,7 +133,7 @@ export function client(ctx){
       need(r.ok&&d?.success===true,'CONTROL_HTTP_'+r.status);
       if(Array.isArray(d.result))need(d.result.length<100&&(!d.result_info?.total_pages||d.result_info.total_pages<=1),'CONTROL_LIST_INCOMPLETE');
       return d.result;
-    });
+    },cancel);
   };
 }
 export function evidence(dir){
@@ -146,7 +159,11 @@ export async function closed(api){
 }
 export async function turn(api,enabled){
   await api(B+'/subdomain','POST',{enabled,previews_enabled:false});
-  const u=await api(B+'/subdomain');need(u.enabled===enabled&&u.previews_enabled===false,'URL_STATE_UNCONFIRMED');
+  await verifyUrls(api,enabled);
+}
+async function verifyUrls(api,enabled){
+  const state=await api(B+'/subdomain');
+  need(state.enabled===enabled&&state.previews_enabled===false,'URL_STATE_UNCONFIRMED');
 }
 export async function snapshot(api,owner,old){
   need(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(owner||''),'OWNER_INPUT_REQUIRED');
@@ -177,16 +194,49 @@ export async function snapshot(api,owner,old){
     d1_sha256:digest(state),business_counts:state.counts[0],old_services_disabled_expired:5,
     migrations:3,cases:66,aliases:66,urls_closed:true,read:false,write:false,release:'not-approved'};
 }
-async function startWatchdog(ctx){
+function startWatchdog(ctx,onFailure){
   const env={...process.env};for(const k of Object.keys(env))if(k.startsWith('KINOKO_'))delete env[k];
   const args=[ctx.approvalFile,ctx.approvalSha,ctx.manifestSha,ctx.runDir,ctx.evidenceDir,'watchdog','root-only','no-service-auth'];
-  // On Windows a non-detached child does not survive its parent's exit.
-  // Keep its own process group; only the normal confirmed-close path kills it.
+  // Keep the independent fallback alive if the parent or its IPC goes away.
   const child=fork(SELF,args,{env,stdio:['ignore','ignore','ignore','ipc'],windowsHide:true,detached:true});
-  await new Promise((ok,no)=>{const t=setTimeout(()=>{child.kill();no(Error('WATCHDOG_NOT_READY'));},30000);
-    child.once('message',v=>{clearTimeout(t);v==='closed-and-armed'?ok():no(Error('WATCHDOG_NOT_READY'));});
-    child.once('error',()=>{clearTimeout(t);no(Error('WATCHDOG_START_FAILED'));});
-    child.once('exit',()=>{clearTimeout(t);no(Error('WATCHDOG_EARLY_EXIT'));});});return child;
+  let monitoring=true,armed=false,failure,timer,lastHeartbeat;
+  const ready=new Promise((resolve,reject)=>{
+    const fail=reason=>{
+      if(!monitoring||failure)return;
+      failure=reason;
+      clearTimeout(timer);
+      onFailure(reason);
+      reject(Error(reason));
+    };
+    timer=setTimeout(()=>fail('WATCHDOG_NOT_READY'),30000);
+    child.on('message',message=>{
+      if(!monitoring||failure)return;
+      if(!armed&&message==='closed-and-armed'){
+        armed=true;
+        resolve();
+      }else if(!armed||message!=='watchdog-alive'){
+        fail('WATCHDOG_UNEXPECTED_MESSAGE');
+        return;
+      }
+      lastHeartbeat=performance.now();
+      clearTimeout(timer);
+      timer=setTimeout(()=>fail('WATCHDOG_HEARTBEAT_MISSING'),WATCHDOG_HEARTBEAT_TIMEOUT_MS);
+    });
+    child.on('error',()=>fail('WATCHDOG_PROCESS_ERROR'));
+    child.on('exit',()=>fail('WATCHDOG_EXITED'));
+    child.on('disconnect',()=>fail('WATCHDOG_IPC_DISCONNECTED'));
+  });
+  return {
+    child,ready,
+    healthy(){
+      return armed&&!failure&&performance.now()-lastHeartbeat<WATCHDOG_HEARTBEAT_TIMEOUT_MS&&
+        child.connected&&!child.killed&&child.exitCode===null&&child.signalCode===null;
+    },
+    stop(){
+      monitoring=false;
+      clearTimeout(timer);
+    },
+  };
 }
 export async function watchdog(ctx){
   const api=client(ctx);need(existsSync(join(ctx.runDir,'host-attempt.json')),'HOST_MARKER_MISSING');
@@ -195,8 +245,14 @@ export async function watchdog(ctx){
   await turn(api,false);await closed(api);
   save(ctx.runDir,'watchdog-armed.json',{protocol:PROTOCOL,closure_probe_verified:true,
     armed_at:new Date().toISOString(),fallback_after_ms:WATCHDOG_MS});
-  process.send?.('closed-and-armed');
+  const notify=message=>{
+    // A vanished parent must never stop the independent OFF timer.
+    if(process.connected)process.send(message,()=>{});
+  };
+  notify('closed-and-armed');
+  const heartbeat=setInterval(()=>notify('watchdog-alive'),WATCHDOG_HEARTBEAT_MS);
   await new Promise(resolve=>setTimeout(resolve,WATCHDOG_MS));
+  clearInterval(heartbeat);
   const r={protocol:PROTOCOL,authorization_id:ctx.approval.authorization_id,result:'WATCHDOG_STOP',closure_verified:false};
   try{await turn(api,false);await closed(api);r.result='WATCHDOG_CLOSED';r.closure_verified=true;}catch(e){r.reason=safe(e);}
   save(ctx.runDir,'watchdog-report.json',r);if(process.connected)process.disconnect();
@@ -220,7 +276,39 @@ export async function main(ctx){
     authorization_id:ctx.approval.authorization_id,approval_sha256:ctx.approvalSha,started_at:new Date().toISOString(),
     authenticated_requests:0,public_requests:0,urls_closed:false,api_token_deletion:'pending-dashboard-confirmation',
     operator_checks:ctx.approval.dashboard_checks,github_main_sha:ctx.approval.github_main_sha,github_pages_sha:ctx.approval.github_pages_sha};
-  let child,openAttempt=false,enableConfirmed=false,before;
+  let monitor,openAttempt=false,enableAcknowledged=false,closureAttempted=false,before;
+  const observation=new AbortController();
+  const watchdogFailed=reason=>{
+    r.watchdog_failure??=reason;
+    observation.abort();
+  };
+  const checkWatchdog=()=>{
+    if(monitor.healthy())return;
+    watchdogFailed('WATCHDOG_NOT_RUNNING');
+    throw Error(r.watchdog_failure);
+  };
+  const monitoredRead=path=>{
+    checkWatchdog();
+    return api(path,'GET',undefined,false,observation.signal);
+  };
+  const verifyClosure=async()=>{
+    closureAttempted=true;
+    try{
+      if(openAttempt)await turn(api,false);
+      await closed(api);
+      if(openAttempt&&!enableAcknowledged){
+        r.enable_outcome_ambiguous=true;
+        r.close_readback=true;
+        r.closure_reason='ENABLE_OUTCOME_AMBIGUOUS';
+        return false;
+      }
+      r.urls_closed=true;
+      return true;
+    }catch(e){
+      r.closure_reason=safe(e);
+      return false;
+    }
+  };
   try{
     before=await snapshot(api,owner,old.prior);r.preflight=before;
     if(ctx.mode==='read-only'){r.result='ORIGIN_READ_ONLY_OK';r.urls_closed=true;return r;}
@@ -234,50 +322,77 @@ export async function main(ctx){
       preflight:async()=>{
         try{
           validateApproval(ctx.approval);need(sha(readFileSync(ctx.approvalFile))===ctx.approvalSha,'APPROVAL_BYTES_CHANGED');
-          child=await startWatchdog(ctx);r.watchdog_closure_probe_verified=true;await closed(api);
-          // This flag must precede the POST: a lost response may still enable it.
-          openAttempt=true;await turn(api,true);enableConfirmed=true;return true;
+          try{monitor=startWatchdog(ctx,watchdogFailed);}
+          catch{watchdogFailed('WATCHDOG_START_FAILED');throw Error(r.watchdog_failure);}
+          await monitor.ready;
+          r.watchdog_closure_probe_verified=true;
+          await closed(monitoredRead);
+          checkWatchdog();
+          // Wait for the bounded ON write before sending OFF. A delayed ON
+          // could otherwise overtake cleanup, even if we abort the client.
+          openAttempt=true;
+          await api(B+'/subdomain','POST',{enabled:true,previews_enabled:false});
+          enableAcknowledged=true;
+          await verifyUrls(monitoredRead,true);
+          checkWatchdog();
+          return true;
         }catch(e){r.preflight_error=safe(e);throw e;}
       },
       request:async(url,options)=>{
-        need(child&&child.exitCode===null&&!child.killed,'WATCHDOG_NOT_RUNNING');
+        checkWatchdog();
         need(Date.now()<Date.parse(ctx.approval.expires_at_utc)-60000,'LEASE_TOO_CLOSE');
         need(++r.public_requests<=4&&url===C.origin+'/'&&options.method==='GET'&&Object.getPrototypeOf(options.headers)===Object.prototype&&Object.keys(options.headers).length===0&&
           options.credentials==='omit'&&options.redirect==='manual'&&options.cache==='no-store','PUBLIC_SCOPE_BLOCKED');
         return fetch(url,options);
       },
-      close:async()=>{
-        if(openAttempt)await turn(api,false);await closed(api);
-        // A lost enable response may still have been applied remotely. Keep
-        // the independent delayed OFF fallback rather than declaring closure.
-        if(openAttempt&&!enableConfirmed){r.enable_outcome_ambiguous=true;r.close_readback=true;return false;}
-        r.urls_closed=true;return true;
-      },
+      close:verifyClosure,signal:observation.signal,
     });
-    if(r.urls_closed===true)child?.kill();
     r.result=r.diagnostic.result;
     if(r.diagnostic.reason)r.reason=r.diagnostic.reason;
   }catch(e){r.result='ORIGIN_STOP';r.reason=safe(e);}
   finally{
-    // A failed close is not retried by re-running this diagnostic. The already
-    // armed child remains alive for its single independent OFF fallback.
-    if(!openAttempt)try{await closed(api);r.urls_closed=true;}catch{}
-    if(child){
-      if(r.urls_closed)child.kill();
-      else {if(child.connected)child.disconnect();child.unref();}
+    if(!closureAttempted&&!r.urls_closed)await verifyClosure();
+    if(monitor){
+      if(!monitor.healthy())watchdogFailed('WATCHDOG_NOT_RUNNING');
+      monitor.stop();
+      const {child}=monitor;
+      // Keep any surviving fallback on an unconfirmed close.
+      try{
+        if(r.urls_closed){
+          if(child.exitCode===null&&child.signalCode===null)child.kill();
+        }else{
+          try{if(child.connected)child.disconnect();}
+          finally{child.unref();}
+        }
+      }catch{r.watchdog_cleanup_reason='WATCHDOG_CLEANUP_FAILED';}
     }
-    if(openAttempt&&!r.urls_closed){r.phase_reason=r.reason||null;r.reason='CLOSURE_UNCONFIRMED_CHECK_DASHBOARD';r.result='ORIGIN_STOP';}
-    if(r.urls_closed&&before)try{
+    if(r.watchdog_failure||r.watchdog_cleanup_reason){
+      r.result='ORIGIN_STOP';
+      r.reason=r.watchdog_failure||r.watchdog_cleanup_reason;
+      if(r.diagnostic?.result==='UNAUTHENTICATED_ROOT_WINDOW_COMPLETE'){
+        r.diagnostic.result='STOP';
+        r.diagnostic.reason=r.reason;
+      }
+    }
+    if((openAttempt||r.watchdog_failure)&&!r.urls_closed){
+      r.phase_reason=r.reason||null;
+      r.reason='CLOSURE_UNCONFIRMED_CHECK_DASHBOARD';
+      r.result='ORIGIN_STOP';
+    }
+    if(r.urls_closed&&before&&!r.watchdog_failure)try{
       const after=await snapshot(api,owner,old.prior);
       need(canonical(after)===canonical(before),'POST_SNAPSHOT_CHANGED');r.post_checks_unchanged=true;
     }catch(e){r.result='ORIGIN_STOP';r.post_check_reason=safe(e);}
     try{need(canonical(evidence(ctx.evidenceDir).hashes)===canonical(old.hashes),'PRIOR_EVIDENCE_CHANGED');r.previous_evidence_preserved=true;r.evidence_sha256=old.hashes;}
     catch{r.result='ORIGIN_STOP';r.post_check_reason='PRIOR_EVIDENCE_CHANGED';}
-    r.completed_at=new Date().toISOString();save(ctx.runDir,ctx.mode==='read-only'?'read-only-report.json':'diagnostic-report.json',r);
-    console.log(r.result+' requests='+r.public_requests+' authenticated_requests=0 URLs_closed='+r.urls_closed+
-      ' prior_evidence_preserved='+(r.previous_evidence_preserved===true)+(r.reason?' reason='+r.reason:''));
+    r.completed_at=new Date().toISOString();
+    const summary=r.result+' requests='+r.public_requests+' authenticated_requests=0 URLs_closed='+r.urls_closed+
+      ' prior_evidence_preserved='+(r.previous_evidence_preserved===true)+(r.reason?' reason='+r.reason:'');
+    try{save(ctx.runDir,ctx.mode==='read-only'?'read-only-report.json':'diagnostic-report.json',r);}
+    catch{console.log(summary+' report_save_failed=true');throw Error('REPORT_SAVE_FAILED');}
+    finally{delete process.env.CLOUDFLARE_API_TOKEN;delete process.env.KINOKO_RETEST_OWNER_EMAIL;}
+    console.log(summary);
     if(!r.urls_closed||r.post_check_reason||r.result==='ORIGIN_STOP'||r.result==='STOP')process.exitCode=1;
-    delete process.env.CLOUDFLARE_API_TOKEN;delete process.env.KINOKO_RETEST_OWNER_EMAIL;
   }
   return r;
 }
