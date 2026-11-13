@@ -20,6 +20,7 @@ from detail_ui import build_detail_views
 from records_ui import build_observation_records, generate_records_page
 from research_ui import generate_research_page
 from season_ui import generate_season_page
+from lightgallery_css_guard import verify_gallery_css
 
 root = Path(sys.argv[1]).resolve()
 root.mkdir(parents=True, exist_ok=True)
@@ -108,9 +109,14 @@ protected = [p for p in git('ls-tree','-rz','--name-only',base).decode().split('
              p != 'main.py' and p not in changed_styles and
              not p.startswith(('.github/','audit/','tests/','docs/','tools/'))]
 hashes = {}
+gallery_viewer_rules_added = False
 for p in protected:
     before_bytes = git('show', f'{base}:{p}')
-    assert_reviewed_source(base, p, (repo / p).read_bytes())
+    after_bytes = (repo / p).read_bytes()
+    if p == 'assets/gallery.css':
+        gallery_viewer_rules_added = verify_gallery_css(before_bytes, after_bytes)
+    else:
+        assert_reviewed_source(base, p, after_bytes)
     hashes[p] = hashlib.sha256(before_bytes).hexdigest()
 for p in ('portal-data.json','article-sync-snapshot.json','research-comment-cases.json','research-comments-config.json'):
     assert (root/'published'/p).read_bytes() == (root/'after'/p).read_bytes(), p
@@ -126,6 +132,7 @@ r.raise_for_status();assert len(r.content)>1000
 result = {'base_main':git('rev-parse',base).decode().strip(), 'published':git('rev-parse','origin/gh-pages').decode().strip(),
           'generated_html_count':len(html_files),'identical_html_before_after':True,'old_display_references':remaining,
           'pages_with_new_artwork':len(coverage),'coverage':coverage,'protected_source_files':len(protected),
+          'gallery_viewer_rules_added':gallery_viewer_rules_added,
           'protected_sha256':hashlib.sha256(json.dumps(hashes,sort_keys=True).encode()).hexdigest(),
           'published_portal_sha256':hashlib.sha256((root/'after/portal-data.json').read_bytes()).hexdigest(),
           'counts':{'photos':len(portal['observations']),'best_shots':best['entry_count'],'research':research['case_count'],

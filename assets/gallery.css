@@ -1095,6 +1095,23 @@ mark {
   margin-bottom: 24px;
 }
 
+/* LightGallery adds lg-on to this document while its full-page viewer is open. */
+html.lg-on {
+  overflow-y: hidden;
+}
+
+/* Space the desktop toolbar buttons without resizing the nested share menu. */
+@media (min-width: 769px) {
+  .lg-outer .lg-toolbar {
+    box-sizing: border-box;
+    padding-right: 18px;
+  }
+
+  .lg-outer .lg-toolbar > .lg-icon {
+    width: 46px;
+  }
+}
+
 /* ===== LightGallery：スマホでは×を常時表示 ===== */
 @media (max-width: 768px) {
   .lg-outer.lg-hide-items { opacity: 1 !important; } /* 保険 */
