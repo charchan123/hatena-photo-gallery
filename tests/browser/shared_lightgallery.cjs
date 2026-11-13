@@ -18,7 +18,7 @@ const mime=f=>({'.html':'text/html','.js':'text/javascript','.css':'text/css','.
   await c.route('**/*',async route=>{
    const req=route.request(),u=new URL(req.url());check(req.method()==='GET','read only request');requested.push(u.pathname);
    if(u.origin===PH){
-    const template=variant==='before'?'parent-before-template.html':'parent-template.html';
+    const template=variant==='after'?'parent-template.html':'parent-before-template.html';
     let html=fs.readFileSync(path.join(root,template),'utf8').replace('CHILD_URL',CH+'/hatena-photo-gallery/'+(u.searchParams.get('child')||'best-shots-2025.html'));
     if(u.searchParams.get('host')==='body')html=html.replace('id="kinoko-home-portal"','id="galleryWrapper"')
      .replace('<!-- HOST_SCROLL_STYLE -->','<style>html{overflow:hidden}body{height:100vh;overflow-y:scroll}</style>');
@@ -82,12 +82,11 @@ const mime=f=>({'.html':'text/html','.js':'text/javascript','.css':'text/css','.
   return geometry;
  }
  if (!process.argv.includes('--interactions-only')) {
- for(const variant of ['before','after']){
+ for(const variant of ['historical','after']){
   const {c,p}=await setup(variant,390,844,true);await p.goto(PH+'/?child=best-shots-2025.html');const f=p.frames().find(x=>x.url().startsWith(CH));await f.waitForSelector('a.best-shot-photo');await p.waitForTimeout(1000);
   const link=f.locator('a.best-shot-photo').last();await link.scrollIntoViewIfNeeded();await p.waitForTimeout(300);await link.click();
-  if(variant==='before'){
-   // Published gh-pages may already contain the accepted shared LightGallery.
-   // Preserve the historical-dialog check only if that baseline actually uses it.
+  if(variant==='historical'){
+   // The historical snapshot records the native dialog before shared LightGallery.
    await f.waitForFunction(()=>Boolean(document.querySelector('dialog[open], .lg-show')));
    if(await f.locator('dialog[open]').count()){
     await f.waitForFunction(()=>document.querySelector('dialog img')?.naturalWidth>0);
@@ -222,7 +221,7 @@ const mime=f=>({'.html':'text/html','.js':'text/javascript','.css':'text/css','.
  }
  for(const width of [320,360,390,430,1280]){
   const results=[];
-  for(const variant of ['before','after']){
+  for(const variant of ['historical','after']){
    const {c,p}=await setup(variant,width,844,width<500);await p.goto(CH+'/hatena-photo-gallery/new-top.html');await p.waitForFunction(()=>document.querySelector('.record-stars')?.dataset.total==='14');
    const r=await p.locator('.record-stars').first().evaluate(e=>{const s=e.querySelector('[data-hatena-star]').shadowRoot,items=[...s.querySelectorAll('a[data-record-star-profile]:not([data-record-star-hidden])')];return {group:e.getBoundingClientRect().width,native:e.querySelector('.record-stars-native').getBoundingClientRect().width,control:s.querySelector('[part~=star-button-container]').getBoundingClientRect().width,targets:items.map(a=>({w:a.getBoundingClientRect().width,h:a.getBoundingClientRect().height})),avatar:items[0]?.querySelector('picture img').getBoundingClientRect().width,total:e.dataset.total,ellipsis:!e.querySelector('.record-stars-ellipsis').hidden,overflow:document.documentElement.scrollWidth>innerWidth};});
    check(!r.overflow,'stars no overflow');check(r.total==='14'&&r.ellipsis,'count and ellipsis retained');if(width<500)check(r.targets.every(t=>t.w>=28&&t.h>=28),'28px touch targets');results.push(r);
@@ -272,7 +271,7 @@ const mime=f=>({'.html':'text/html','.js':'text/javascript','.css':'text/css','.
   check((await scrollState(p)).rootOverflow==='scroll','rotation close releases scroll lock');
   await c.close();
  }
- for(const variant of ['before','after']){
+ for(const variant of ['historical','after']){
   const {c,p}=await setup(variant,390,844,true);await p.goto(CH+'/hatena-photo-gallery/new-top.html');
   await p.waitForFunction(()=>document.querySelector('.record-stars')?.dataset.total==='14');
   await p.screenshot({path:path.join(root,'screenshots',`stars-${variant}-390.png`)});await c.close();

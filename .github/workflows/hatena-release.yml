@@ -6,6 +6,8 @@ on:
       - 'hatena/release-2026-10-24/**'
       - 'tools/hatena_release_*.py'
       - 'tests/test_hatena_release*'
+      - 'comments/staging/**'
+      - 'tests/browser/comments_integration_protection.py'
       - '.github/workflows/hatena-release.yml'
 permissions:
   contents: read

@@ -1,0 +1,7 @@
+{
+  "synthetic_windows_checkout": true,
+  "crlf_differs_from_git_blob": true,
+  "autocrlf_false_force_checkout_equals_git_blob": true,
+  "git_blob_sha256": "47860bf35f302f08eff3fe3f2d91ae0e963923f771bc2d68e4ce028387d46d4c",
+  "byte_gate_relaxed": false
+}

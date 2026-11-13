@@ -1,0 +1,27 @@
+{
+  "attempts": [
+    {
+      "head": "e33e8336170f2c8d4be7cf6514c854b8cc409f57",
+      "run_id": 41191034531,
+      "job_id": 124507698935,
+      "result": "failure",
+      "error": "DELETION_PENDING_REFERENCES_CHANGED",
+      "cause": "PR head changed during the independent before/after reference check",
+      "resolution": "Keep safety gate unchanged; validate stable final HEAD"
+    },
+    {
+      "head": "4c9de3b83a37c30d17281b232bf6cc500980df34",
+      "run_id": 41191077010,
+      "job_id": 124507817317,
+      "result": "failure",
+      "passed_before_failure": {"python": 40, "worker": 24},
+      "error": "PR137 changed: .gitignore",
+      "cause": "Windows core.autocrlf checkout conversion differs from exact committed bytes",
+      "resolution": "Set core.autocrlf=false and force checkout-index before tests; retain exact byte gate",
+      "not_passed": ["Wrangler dry-run", "Chromium public/staging browser suites"]
+    }
+  ],
+  "final_head_and_results": "Recorded in PR 137 description after all jobs and important steps are checked",
+  "production_gate_changes": [],
+  "cloudflare_mutations": []
+}

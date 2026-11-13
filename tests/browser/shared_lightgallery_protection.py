@@ -5,6 +5,7 @@ from pathlib import Path
 import subprocess
 import sys
 from lightgallery_css_guard import verify_gallery_css
+from comments_integration_protection import assert_reviewed_source
 
 ROOT = Path(__file__).resolve().parents[2]
 MAIN = '8007a72708aff2dfa14e2e9638f44720bb449b76'
@@ -30,12 +31,14 @@ after = {p: digest((ROOT / p).read_bytes()) for p in protected}
 gallery_css = 'assets/gallery.css'
 viewer_rules_added = verify_gallery_css(git('show', f'{BASE}:{gallery_css}'),
                                         (ROOT / gallery_css).read_bytes())
-unexpected = [p for p in protected if p != gallery_css and before[p] != after[p]]
-assert not unexpected, unexpected
+for p in protected:
+    if p != gallery_css:
+        assert_reviewed_source(BASE, p, (ROOT / p).read_bytes())
 # The latest main's protected data are independently byte-equal, not only counts.
 for p in git('ls-tree', '-rz', '--name-only', MAIN).decode().split('\0'):
     if p.startswith(('data/', 'sync-migrations/', 'admin/', 'comments/', 'hatena/', 'lightgallery/')):
-        assert digest(git('show', f'{MAIN}:{p}')) == after[p], p
+        assert digest(git('show', f'{MAIN}:{p}')) == before[p], p
+        assert_reviewed_source(BASE, p, (ROOT / p).read_bytes())
 
 portal = value('origin/gh-pages', 'portal-data.json')
 snapshot = value('origin/gh-pages', 'article-sync-snapshot.json')
@@ -76,7 +79,8 @@ result = {'source_base': git('rev-parse', BASE).decode().strip(), 'historical_da
           'published': git('rev-parse', 'origin/gh-pages').decode().strip(),
           'protected_file_count': len(protected), 'protected_sha256': digest(json.dumps(after, sort_keys=True).encode()),
           'before_after_equal': before == after, 'reviewed_gallery_viewer_rules_added': viewer_rules_added,
-          'other_protected_sources_equal': not unexpected, 'source_counts': source_counts,
+          'other_protected_sources_equal': all(before[p] == after[p] for p in protected if p != gallery_css),
+          'other_protected_sources_match_reviewed_bytes': True, 'source_counts': source_counts,
           'published_counts': published_counts, 'published_sha256': output_hashes,
           'critical_source_sha256': {p: after[p] for p in protected if p.startswith('data/')},
           'local_and_published_vendor_tree': vendor_tree, 'comments_enabled': comments['enabled'], 'external_mutations': []}

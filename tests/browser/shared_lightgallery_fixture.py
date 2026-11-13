@@ -14,12 +14,16 @@ import requests
 root = Path(sys.argv[1]).resolve()
 root.mkdir(parents=True, exist_ok=True)
 repo = Path(__file__).resolve().parents[2]
-with tarfile.open(fileobj=io.BytesIO(subprocess.check_output(['git', 'archive', 'origin/gh-pages']))) as archive:
-    archive.extractall(root / 'before', filter='data')
-shutil.copytree(root / 'before', root / 'after', dirs_exist_ok=True)
+# Replay the old dialog/star layout and the pre-toolbar LightGallery separately.
+# The current published snapshot already contains the accepted toolbar CSS.
+baseline = sys.argv[2] if len(sys.argv) > 2 else '3de2dc74d1d48813d9ed411e88e4ce74f3d9784c'
+pre_toolbar = sys.argv[3] if len(sys.argv) > 3 else 'ae08f456729e7d89619af9569b7daecdd85080cd'
+for variant, ref in [('historical', baseline), ('before', pre_toolbar), ('after', 'origin/gh-pages')]:
+    with tarfile.open(fileobj=io.BytesIO(subprocess.check_output(['git', 'archive', ref]))) as archive:
+        archive.extractall(root / variant, filter='data')
 for name in ['gallery.js', 'gallery.css', 'record-stars.js', 'record-stars.css']:
     shutil.copy2(repo / 'assets' / name, root / 'after/assets' / name)
-portal = json.loads((root / 'before/portal-data.json').read_text())
+portal = json.loads((root / 'after/portal-data.json').read_text())
 best_shot_ui.generate_best_shot_pages(portal, repo / 'data/best-shots.json', root / 'after', repo / 'assets')
 (root / 'vendor').mkdir(exist_ok=True)
 for name in ['lightgallery.min.js', 'lightgallery-bundle.min.css', 'lg-zoom.min.js', 'lg-thumbnail.min.js', 'lg-share.min.js', 'lg-autoplay.min.js']:
@@ -38,13 +42,15 @@ parent_template = '''<!doctype html><meta charset=utf-8><meta name="viewport" co
 (root / 'parent-before-template.html').write_text(parent_template)
 (root / 'parent-template.html').write_text(parent_template + scroll_lock)
 (root / 'manifest.json').write_text(json.dumps({
+    'pre_toolbar_comparison': subprocess.check_output(['git', 'rev-parse', pre_toolbar], text=True).strip(),
+    'historical_comparison': subprocess.check_output(['git', 'rev-parse', baseline], text=True).strip(),
     'main': subprocess.check_output(['git', 'rev-parse', 'origin/main'], text=True).strip(),
     'published': subprocess.check_output(['git', 'rev-parse', 'origin/gh-pages'], text=True).strip(),
     'best_shots': len(json.loads((repo / 'data/best-shots.json').read_text())['entries']),
     'published_star_styles_match_candidate': (
-        (root / 'before/assets/record-stars.css').read_bytes() ==
+        (root / 'historical/assets/record-stars.css').read_bytes() ==
         (repo / 'assets/record-stars.css').read_bytes() and
-        (root / 'before/assets/record-stars.js').read_bytes() ==
+        (root / 'historical/assets/record-stars.js').read_bytes() ==
         (repo / 'assets/record-stars.js').read_bytes()
     ),
 }, indent=2))

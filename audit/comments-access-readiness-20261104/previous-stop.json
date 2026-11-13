@@ -1,0 +1,76 @@
+{
+  "recorded_at": "2026-11-03T13:45:46.967879+00:00",
+  "source_head": "4fdb9bc70359c22f448cec02a864535984d41333",
+  "deployed_version": "6ff1d822-8419-47e7-8c46-15c1d4282493",
+  "first_probe": {
+    "result": "CPU_FIRST_STOP",
+    "reason": "UNAUTHENTICATED_GATE_FAILED",
+    "authenticated_requests": 0,
+    "urls_closed": true,
+    "access_unchanged": true,
+    "start": "2026-11-03T13:32:28.186Z",
+    "end": "2026-11-03T13:32:39.516Z",
+    "failed_http_status": 404,
+    "passed_unauthenticated_tests": 0,
+    "test_count": 1,
+    "d1_counts_unchanged": true,
+    "failed_test": {
+      "path": "/",
+      "method": "GET",
+      "status": 404,
+      "pass": false,
+      "app_error": "none",
+      "body_bytes": 19984
+    }
+  },
+  "dashboard_cleanup": {
+    "production_url_enabled": false,
+    "preview_urls_enabled": false,
+    "custom_domains_and_routes": 0,
+    "read": false,
+    "write": false,
+    "release": "not-approved",
+    "access_all_traffic": true,
+    "new_service_disabled": true,
+    "old_services_disabled": 3,
+    "service_policy_restored_to_old_r3": true,
+    "account_api_token_deleted": true,
+    "account_api_token_list_empty": true
+  },
+  "metrics": {
+    "dashboard_window": "Last 24 hours",
+    "state": "No data",
+    "cpu_limit_10ms": "not_evaluated",
+    "authenticated_options": "not_executed",
+    "authenticated_requests": 0
+  },
+  "github": {
+    "main": "cd51ca486c542ff6f33f2c9803397110b39893ec",
+    "gh_pages": "f59f1bf9cb897ac5d0663cd39e37e717b1cdafdc",
+    "pr137_head": "4fdb9bc70359c22f448cec02a864535984d41333",
+    "pr137_tree": "44cef9d68c4710e22870c4d0bf47b482368310cf",
+    "state": "open",
+    "draft": true,
+    "merged": false,
+    "ahead": 11,
+    "behind": 2,
+    "writes_this_retest": 0,
+    "source_worktree_clean": true
+  },
+  "windows_credential_memory_cleanup": "confirmed-by-user-local-script",
+  "retries_after_failed_gate": 0,
+  "evidence_updates": [
+    {
+      "received_client_date": "2026-11-04",
+      "source": "user-supplied local diagnostic output",
+      "local_credentials_cleared": true,
+      "remote_requests_for_this_diagnostic": 0
+    }
+  ],
+  "cause_assessment": {
+    "confirmed": "The first unauthenticated GET / returned 404; no authenticated request was sent.",
+    "unconfirmed": "Whether route propagation or another routing/edge condition caused the 404. Raw response body and routing headers were not retained.",
+    "gate_pass": false,
+    "cpu_pass": "not-evaluated"
+  }
+}
