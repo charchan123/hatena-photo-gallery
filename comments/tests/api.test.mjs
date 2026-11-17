@@ -135,6 +135,27 @@ test("visitor post is immediate, oldest first, paginated and never official", as
   assert.equal(second.data.next_cursor, null);
   assert.ok(!JSON.stringify(first.data).includes("delete_hash"));
 });
+test("latest view has bounded backwards paging and keeps existing forward paging", async () => {
+  const s = setup();
+  for (let n = 0; n < 43; n++)
+    assert.equal((await s.post({ ...s.packet(), body: "投稿 " + n })).status, 200);
+  let response = await s.call(route + "?latest=1");
+  assert.equal(response.status, 200);
+  assert.equal(response.data.comments[0].body, "投稿 23");
+  assert.equal(response.data.comments.at(-1).body, "投稿 42");
+  const allIds = new Set(response.data.comments.map(c => c.id));
+  for (const expected of [20, 3]) {
+    response = await s.call(route + "?before=" + response.data.previous_cursor);
+    assert.equal(response.status, 200);
+    assert.equal(response.data.comments.length, expected);
+    for (const comment of response.data.comments) allIds.add(comment.id);
+  }
+  assert.equal(response.data.previous_cursor, null);
+  assert.equal(allIds.size, 43);
+  assert.equal((await s.call(route)).data.comments[0].body, "投稿 0");
+  for (const query of ["latest=0", "before=0", "latest=1&after=1", "latest=1&before=2"])
+    assert.equal((await s.call(route + "?" + query)).status, 400);
+});
 test("strict payload lengths Unicode, reserved names, spoofed role and injection are handled", async () => {
   const s = setup();
   for (const extra of [

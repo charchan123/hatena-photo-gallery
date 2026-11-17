@@ -47,7 +47,7 @@ def test_integration_allowance_never_accepts_changed_main_or_changed_pr137(monke
     spec.loader.exec_module(gate)
     def git(*args):
         ref, path = args[-1].split(':',1)
-        return {'base':b'original',gate.PR135:b'original',gate.PR137:b'reviewed'}[ref]
+        return {'base':b'original',gate.PR135:b'original',gate.PR137:b'reviewed',gate.RELEASE_MAIN:b'original'}[ref]
     monkeypatch.setattr(gate,'git',git)
     gate.assert_reviewed_source('base','admin/comments_client.py',b'reviewed')
     with pytest.raises(AssertionError):

@@ -145,7 +145,7 @@ async function stop() {
   await page.waitForFunction(() =>
     document
       .querySelector(".research-comments[open]")
-      .textContent.includes("公開開始まで"),
+      .textContent.includes("現在、コメントの閲覧を停止しています"),
   );
   check(
     (await stats()).publicCalls === 0,
@@ -250,13 +250,15 @@ async function stop() {
   await a.waitForFunction(
     () => !document.querySelector("#comments-list textarea")?.disabled,
   );
-  await page.reload();
-  await thread.locator("summary").click();
-  await thread.locator(".comment").first().waitFor();
-  await thread
-    .getByRole("button", { name: "続きのコメントを読む", exact: true })
-    .click();
+  const refresh = thread.getByRole("button", { name: "コメント一覧を更新", exact: true });
+  const older = thread.getByRole("button", { name: "前のコメントを読む", exact: true });
+  await refresh.click();
   await thread.getByText("管理人からの公式返信です", { exact: true }).waitFor();
+  check((await thread.locator(".comment").count()) === 20, "refresh reaches latest with one page");
+  check(await older.isVisible(), "older history remains reachable");
+  await older.click();
+  await thread.locator('[data-comment-id="' + info.firstId + '"]').waitFor();
+  check((await thread.locator(".comment").count()) === 25, "history plus latest without duplicates");
   check(
     (await thread.locator(".comment-official-badge").count()) === 1,
     "official reply server authenticated",
@@ -272,13 +274,11 @@ async function stop() {
       document.querySelector("#comments-list article").dataset.state ===
       "hidden",
   );
-  await thread
-    .getByRole("button", { name: "最初から読み直す", exact: true })
-    .click();
-  await page.waitForFunction(
-    (id) => !document.querySelector('[data-comment-id="' + id + '"]'),
-    info.firstId,
-  );
+  await refresh.click();
+  await older.click();
+  await older.waitFor({ state: "hidden" });
+  check((await thread.getByText("管理人からの公式返信です", { exact: true }).count()) === 0,
+    "hidden parent's official reply disappears from latest and history");
   check(
     (await thread
       .locator('[data-comment-id="' + info.firstId + '"]')
@@ -291,9 +291,9 @@ async function stop() {
       document.querySelector("#comments-list article").dataset.state ===
       "visible",
   );
-  await thread
-    .getByRole("button", { name: "最初から読み直す", exact: true })
-    .click();
+  await refresh.click();
+  await thread.getByText("管理人からの公式返信です", { exact: true }).waitFor();
+  await older.click();
   await thread.locator('[data-comment-id="' + info.firstId + '"]').waitFor();
   check(true, "restored comment visible");
   const row = thread.locator('[data-comment-id="' + info.firstId + '"]');
@@ -327,9 +327,6 @@ async function stop() {
   await a.screenshot({ path: path.join(out, "admin-comments.png") });
   page.on("dialog", (d) => d.accept());
   await thread
-    .getByRole("button", { name: "続きのコメントを読む", exact: true })
-    .click();
-  await thread
     .getByRole("button", { name: "自分のコメントを削除", exact: true })
     .click();
   await page.waitForFunction(
@@ -339,9 +336,10 @@ async function stop() {
         .textContent.includes("写真の特徴についての合成コメントです"),
   );
   check(true, "author content removed");
+  const visibleBeforeFailure = await thread.locator(".comment").count();
   await context.request.post(api + "/__test/fail", { data: { fail: true } });
   await thread
-    .getByRole("button", { name: "最初から読み直す", exact: true })
+    .getByRole("button", { name: "コメント一覧を更新", exact: true })
     .click();
   await page.waitForFunction(() =>
     document
@@ -352,6 +350,8 @@ async function stop() {
     (await page.locator(".research-photo img").count()) > 0,
     "API failure leaves photographs intact",
   );
+  check((await thread.locator(".comment").count()) === visibleBeforeFailure,
+    "failed refresh preserves already visible comments");
   await page.screenshot({ path: path.join(out, "api-error.png") });
   fs.writeFileSync(
     path.join(out, "result.json"),

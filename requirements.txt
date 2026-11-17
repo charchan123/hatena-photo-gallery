@@ -3,3 +3,4 @@ beautifulsoup4
 lxml
 piexif
 Pillow
+truststore==0.10.5; sys_platform == "win32"

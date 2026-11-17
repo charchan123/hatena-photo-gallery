@@ -12,6 +12,11 @@ REVIEWED = {'.gitignore', 'admin/comments_client.py', 'comments/worker.mjs',
             'comments/package.json', 'comments/package-lock.json'}
 CPU_BASE = '582a6c19e136fe5f7f6b2c2448cb0f63f14d1235'
 CPU_RUNTIME = {'comments/staging/worker.mjs', 'comments/staging/registry.mjs'}
+RELEASE_MAIN = '249bf1845bdd5d3c7a46e7939f0cd54b6eef9792'
+RELEASE_FILES = {
+    'admin/comments_client.py', 'assets/research-comments.js', 'comments/worker.mjs',
+    'requirements.txt', 'research_comments.py', 'research_ui.py', 'comments/tests/api.test.mjs',
+}
 
 def assert_staging_source(path, content):
     """Only the two explicitly reviewed CPU runtime files may differ in Nov 1.
@@ -33,6 +38,17 @@ def assert_reviewed_source(base, path, current):
     """Never hide a main change behind the old PR's allowance."""
     original = git('show', f'{base}:{path}')
     if current == original:
+        return
+    if path in RELEASE_FILES:
+        # Keep the original reviewed PR bytes acceptable and pin the new release
+        # delta. Never accept a changed version of the same file from main.
+        baseline = git('show', f'{RELEASE_MAIN}:{path}')
+        assert original == baseline, f'main advanced: {path}'
+        if path in REVIEWED and current == git('show', f'{PR137}:{path}'):
+            return
+        pins = json.loads((ROOT/'audit/comments-release-prep-20261117/files.json').read_text(encoding='utf-8'))
+        assert pins['main'] == RELEASE_MAIN and set(pins['files']) == RELEASE_FILES
+        assert hashlib.sha256(current).hexdigest() == pins['files'][path], path
         return
     assert path in REVIEWED, path
     # package*.json are newly added in PR137, so not reached by a main file loop.

@@ -98,7 +98,7 @@ async function start(cmd,args){const c=spawn(cmd,args,{cwd:root,stdio:['ignore',
  const download=admin.waitForEvent('download');await admin.locator('#comments-backup').click();const file=await download;await file.saveAs(path.join(out,'synthetic-backup.json'));
  check(JSON.parse(fs.readFileSync(path.join(out,'synthetic-backup.json'))).signature,'signed backup verified before download');
  await admin.evaluate(()=>scrollTo(0,0));await admin.screenshot({path:path.join(out,'admin-access-success.png')});
- await control({fail:true});await thread.getByRole('button',{name:'最初から読み直す',exact:true}).click();
+ await control({fail:true});await thread.getByRole('button',{name:'コメント一覧を更新',exact:true}).click();
  await thread.getByText(/現在コメントを利用できません/).waitFor();check(await page.locator('.staging-case img').count()===66,'photos survive API outage');
  // Reject a cross-origin config before ANY API request is made.
  await c.route('**/research-comments-config.json',route=>route.fulfill({json:{version:1,enabled:true,release_approval:'SYNTHETIC',api_url:'https://evil.test',transport:'access-same-origin',turnstile_site_key:'synthetic'}}));

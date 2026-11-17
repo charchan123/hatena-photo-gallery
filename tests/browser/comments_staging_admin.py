@@ -23,7 +23,7 @@ class LocalTransport:
         assert req.full_url.startswith(origin+'/admin/')
         local=urllib.request.Request('http://127.0.0.1:'+sys.argv[2]+req.full_url[len(origin):],data=req.data,method=req.method,headers=dict(req.header_items()))
         return real_build(comments_client.NoRedirect()).open(local,timeout=timeout)
-comments_client.urllib.request.build_opener=lambda handler:LocalTransport()
+comments_client.urllib.request.build_opener=lambda *handlers:LocalTransport()
 class Handler(server.Handler):
     def log_message(self,*args):pass
 app=server.AdminServer(('127.0.0.1',0),Handler)

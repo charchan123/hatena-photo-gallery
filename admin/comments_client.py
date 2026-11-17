@@ -4,6 +4,8 @@ import hmac
 import json
 import os
 import re
+import ssl
+from sys import platform
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -14,6 +16,17 @@ class CommentsError(ValueError):
 class NoRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
         return None
+
+def comment_opener():
+    redirect = NoRedirect()
+    if platform != 'win32':
+        return urllib.request.build_opener(redirect)
+    try:
+        import truststore
+    except ImportError:
+        raise CommentsError('Windowsの証明書検証に必要な依存関係を requirements.txt からインストールしてください') from None
+    context = truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+    return urllib.request.build_opener(redirect, urllib.request.HTTPSHandler(context=context))
 
 def settings():
     base=os.environ.get('KINOKO_COMMENTS_API_URL','').rstrip('/')
@@ -81,10 +94,10 @@ def request(action,values=None):
         route='/admin/backup';body=None
     else:raise CommentsError('許可されていないコメント操作です')
     req=urllib.request.Request(base+route,data=body,method='POST' if body is not None else 'GET',
-          headers={**access_headers,'Authorization':'Bearer '+secret,'Accept':'application/json',**({'Content-Type':'application/json'} if body is not None else {})})
+          headers={**access_headers,'Authorization':'Bearer '+secret,'Accept':'application/json','User-Agent':'hatena-photo-gallery-admin',**({'Content-Type':'application/json'} if body is not None else {})})
     try:
         # Redirects never forward the credential. No remote URL comes from the UI.
-        with urllib.request.build_opener(NoRedirect()).open(req,timeout=10) as response:
+        with comment_opener().open(req,timeout=10) as response:
             if mode=='staging-access' and (response.status!=200 or response.headers.get_content_type()!='application/json'):
                 raise CommentsError('Access認証またはAPI応答を確認できません。Service Authポリシー・接続先を確認してください')
             raw=response.read(MAX_BYTES+1)

@@ -60,9 +60,31 @@ def test_service_keys_only_in_server_headers(configured):
     assert headers['cf-access-client-id']=='synthetic-id.access'
     assert headers['cf-access-client-secret']==ACCESS_SECRET
     assert headers['authorization']=='Bearer '+SECRET
+    assert headers['user-agent']=='hatena-photo-gallery-admin'
     assert not req.has_header('Origin') and not req.has_header('Cookie')
     assert SECRET not in str(client.status()) and ACCESS_SECRET not in str(client.status())
     assert 'client-id' not in str(client.status()).lower()
+
+
+def test_windows_comment_opener_uses_native_tls_and_rejects_redirects(monkeypatch):
+    import ssl
+    import sys
+    from types import SimpleNamespace
+
+    tls = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+    protocols = []
+
+    def native_context(protocol):
+        protocols.append(protocol)
+        return tls
+
+    monkeypatch.setattr(client, 'platform', 'win32')
+    monkeypatch.setitem(sys.modules, 'truststore', SimpleNamespace(SSLContext=native_context))
+    monkeypatch.setattr(client.urllib.request, 'build_opener', lambda *handlers: handlers)
+    redirect, https = client.comment_opener()
+    assert protocols == [ssl.PROTOCOL_TLS_CLIENT]
+    assert https._context is tls and tls.verify_mode == ssl.CERT_REQUIRED and tls.check_hostname
+    assert redirect.redirect_request(None, None, 302, '', {}, 'https://other.example') is None
 
 
 @pytest.mark.parametrize('code',[301,302,303,307,308,401,403,429,500,503])
