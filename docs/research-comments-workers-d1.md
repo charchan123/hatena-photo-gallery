@@ -2,6 +2,8 @@
 
 現段階は**Draft・未公開**。このPRをマージするだけではコメント受付は始まりません。Cloudflareアカウント接続、D1作成、secret登録、マイグレーション、Worker公開、ドメイン設定、公開設定の変更は、本書を確認した管理者の別途明示承認後に実施してください。本タスクでは実施していません。
 
+Accessで保護する隔離検証環境は、[専用入口・通信設定・Zero Trustの承認境界](research-comments-staging-access.md)を参照してください。本番用の以下の設定手順をstagingへそのまま流用しません。
+
 ## 構成と運用
 
 GitHub Pagesの研究室HTMLから、ケースの折り畳みを開いた時だけWorkersを呼びます。66ケース分を一括取得しません。コメント・公式返信・通報・監査履歴はD1へ保存します。写真・EXIF・記事・研究同定レジストリ・管理室の既存下書きはコメントDBへ移動しません。
@@ -47,7 +49,8 @@ Windows管理室の「研究室のコメント」からケース名検索、未�
 
 ## 公開API
 
-- `GET /v1/cases/:case/comments?after=SEQ`：古い順、20件ずつ。戻り値のnext_cursorで続ける。
+- `GET /v1/cases/:case/comments?after=SEQ`：初回は古い順に20件。戻り値のnext_cursorで続ける。
+- 同じURLに `?latest=1` を付けると最新20件を時系列順に取得。`?before=SEQ` とprevious_cursorで古い側へ移動する。
 - `POST /v1/cases/:case/comments`：nickname、body、request_id、delete_token、turnstile_token。
 - `POST /v1/cases/:case/comments/:id/delete`：本人のdelete_token。
 - `POST /v1/cases/:case/comments/:id/reports`：理由・要求ID・Turnstile。
@@ -56,13 +59,13 @@ Windows管理室の「研究室のコメント」からケース名検索、未�
 
 投稿前にブラウザで256bitの削除キーを安全乱数で発行し、要求IDとともにlocalStorageへ保存します。DBにはコメントIDに結び付けたSHA-256 hashだけを保存します。URL・ログ・DOMにキーを出しません。キーはニックネームと無関係で、削除後はDB hashも無効化します。他の端末への自動復元はできません。同じoriginの悪意あるスクリプトやブラウザ保存データの消去からキーを保護することはできないため、公開前に同origin上の信頼しないHTML/JSを置かないことを確認してください。
 
-送信結果が不明なら、要求ID・削除キー・入力を保持して同じ要求を再確認します。再送で新規登録せず、別payloadで同じ要求IDを使えば409です。投稿直後は古い順のページを保ちつつ、新しい自分の投稿をすぐ表示します。API障害ではコメント欄にエラーを出し、写真・リンク・研究室全体を維持します。
+送信結果が不明なら、要求ID・削除キー・入力を保持して同じ要求を再確認します。再送で新規登録せず、別payloadで同じ要求IDを使えば409です。初回は古い側から表示し、投稿直後は自分の投稿を画面に追加します。「コメント一覧を更新」で最新20件を取得し、前のページも閲覧できます。API障害ではコメント欄にエラーを出し、写真・リンク・研究室全体を維持します。
 
 本人削除は名前・本文・hashを消し、関連通報の理由も消します。公開側に本文を返さず、最小限のtombstoneと操作履歴を残します。投稿停止・Turnstile障害時も、削除キーが有効なら本人削除は可能です。管理者は本人削除を復元できません。通常モデレーションは非表示とし、本文を消さず復元できます。通報だけでは自動非表示にしません。
 
 ## 認証・制限・障害
 
-管理者APIは32文字以上の専用ランダムBearer token。Origin付き管理者要求を拒否し、公開CORSで管理者認証を許可しません。Windowsプロキシは固定HTTPSベースURLの許可された操作だけに接続し、redirectを追わず、10秒timeout・20MiB上限を設けます。ブラウザには設定済みかどうかだけを知らせます。
+管理者APIは32文字以上の専用ランダムBearer token。Origin付き管理者要求を拒否し、公開CORSで管理者認証を許可しません。Windowsプロキシは固定HTTPSベースURLの許可された操作だけに接続し、redirectを追わず、10秒timeout・20MiB上限を設けます。ブラウザには設定済みかどうかだけを知らせます。Windowsではrequirements.txtのtruststoreを使ってOSの信頼ストアで証明書とホスト名を検証し、Workerへのリクエストをhatena-photo-gallery-adminとして識別します。
 
 公開CORSは承認したHTTPS originだけ。POSTはJSONのみ、Cookieは使いません。TurnstileはWorkerでsiteverify・success・hostname・action・5分以内を検証します。検証は5秒、ケースmanifestは3秒、API全体は12秒、ブラウザは10秒でtimeoutします。D1処理が応答後に完了しても、同じ要求IDで安全に結果を再確認できます。
 
@@ -96,16 +99,23 @@ node comments/tools/restore.mjs backup.json current-signed-backup.json new-local
 
 ## 承認後の設定手順（本タスクでは実行禁止）
 
-1. 別の隔離staging用アカウント/DBと鍵を準備。実データを流し込まず、まず合成データで検証する。
+1. 完了済みの専用ステージング試験記録を引き継ぐ。PC・スマホの投稿・相互表示・本人削除・公式返信・非表示・復元は成功済み。Windows標準証明書検証と管理室識別名の正式反映をCIで確認し、本番固有の接続先・設定差分を確認する。
 2. 管理者承認後にD1作成。`comments/wrangler.jsonc`のplaceholder database_id/nameを置き換える。local検証は必ず `--local`、remote bindingはfalseを維持。本番migrationは別承認後だけ `wrangler d1 migrations apply ... --remote` を実行する。
 3. Turnstile widget作成。実hostnameを登録し、site keyだけを公開設定へ、secretをWorker secretへ。テスト用キーで本番受付を始めない。
 4. Worker secretとしてADMIN_TOKEN、RATE_SECRET、TURNSTILE_SECRETを設定（それぞれ十分な別の乱数）。secretをwrangler.jsonc、Git、HTML、JSに書かない。
 5. WorkersのMANIFEST_URLを固定Pages URLへ、TURNSTILE_HOSTNAME・ALLOWED_ORIGINS・REGISTRY_SHA256を承認値へ設定。migrationのmetadataと照合する。
-6. まず全公開flagをfalseのままWorkerを公開（これ自体も別承認）。管理室接続・実D1 migration・Turnstile・CORS・削除・backup/restoreをstagingで検証する。本PRはローカルSQL＋D1 adapterでの検証であり、未接続の実Cloudflare動作を確認済みとはしていない。
-7. Windowsのプロセス環境変数 `KINOKO_COMMENTS_API_URL` と `KINOKO_COMMENTS_ADMIN_TOKEN` を設定し、管理室を再起動。tokenはブラウザの設定欄へ入力しない。PR #134のPC更新作業は別タスクで下書きをバックアップしてから行う。
+6. まず全公開flagをfalseのままWorkerを準備する（これ自体も別承認）。本番用D1のbinding・installation ID・migration適用状況、Turnstile、許可origin、manifest、registry hash、バックアップ運用を確認する。既に成功した専用ステージングの管理機能試験を公開条件として最初から繰り返さない。実環境の閉鎖記録は本人の完了報告を引き継ぎ、公開操作前に読み取りで再確認する。
+7. Windows管理室の下書きをバックアップして正式ソースとrequirementsを更新する。実行するPythonの絶対パスを確認し、同じPythonで管理室を起動する。起動プロセス内でstaging用Access変数を解除し、`KINOKO_COMMENTS_TRANSPORT=direct` と本番用の `KINOKO_COMMENTS_API_URL`・`KINOKO_COMMENTS_ADMIN_TOKEN` を設定する。秘密値は安全な入力手順で設定し、ブラウザ・チャット・ログへ渡さない。
 8. 公開を明示承認後、WorkerのRELEASE_APPROVALをapproved、READをtrue。さらに新規受付承認後WRITEをtrueにし、`comments/public-config.json`をenabled・api_url・site key・release_approvalの承認識別子で更新する専用PRを作る。GitHub Pages公開も別承認。**両側の解除が揃わなければ公開投稿は始まらない。**
 
 Wranglerを使う場合は公式手順に従い、承認済みのWrangler 4系を隔離環境へインストールしてください。自動deployスクリプトやCloudflare credentialをCIへ加えていません。
+
+## 公開当日と切り戻し
+
+1. 承認対象のDraft PRのHEAD・最新main・CIを記録する。公開設定を無効のままマージする場合もGitHub Pagesの再生成対象になるため、マージ前に承認を取り、66ケースのID、写真・記事・図鑑の差分と公開設定を確認する。
+2. 本番用D1のbinding・installation ID・migrationの適用状況を照合する。既存DBがあればバックアップを取得し、初期seedの再適用を避ける。承認済みHTTPSルート、GitHub Pages origin、Turnstile hostname・鍵、manifest・registry digest、管理用secretを確認する。ステージングの設定と短期トークンは転用しない。
+3. 承認後に本番Workerを読み書きとも無効で準備する。公開を承認した段階でWorkerの公開読取とPagesのコメント表示を先に確認し、受付を承認した段階で書込を有効にする。PC・スマホのはてな埋め込みから正しい環境へ接続することを確認する。承認された本番疎通用コメントが必要な場合は1件に留める。
+4. 公開を戻す場合、WorkerのPUBLIC_WRITE_ENABLEDとPUBLIC_READ_ENABLEDをfalse、RELEASE_APPROVALをnot-approvedに戻し、Pagesのcomments/public-config.jsonを無効化して再生成する。HTTP応答とPC・スマホの表示を確認し、問題のあったWorker版とDBバックアップを保管する。投稿・監査履歴や識別子を旧データで上書きしない。
 
 ## 費用の目安（2026-10-22公式資料確認）
 

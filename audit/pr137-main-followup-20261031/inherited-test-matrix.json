@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "live_environment_created": false,
+  "results": [
+    {
+      "id": 1,
+      "name": "コメント投稿と即時表示",
+      "status": "NOT_RUN_AWAITING_APPROVAL",
+      "expected": "新規UUID1件のみ・再読込で同じID",
+      "evidence": null,
+      "environment": null
+    },
+    {
+      "id": 2,
+      "name": "ニックネーム保存と変更",
+      "status": "NOT_RUN_AWAITING_APPROVAL",
+      "expected": "同一browser保持・変更・別profile非復元",
+      "evidence": null,
+      "environment": null
+    },
+    {
+      "id": 3,
+      "name": "500文字制限",
+      "status": "NOT_RUN_AWAITING_APPROVAL",
+      "expected": "500 Unicode可・501拒否・DBに登録なし",
+      "evidence": null,
+      "environment": null
+    },
+    {
+      "id": 4,
+      "name": "古い順ページング",
+      "status": "NOT_RUN_AWAITING_APPROVAL",
+      "expected": "21件以上の合成fixtureで順序/重複なし",
+      "evidence": null,
+      "environment": null
+    },
+    {
+      "id": 5,
+      "name": "本人削除",
+      "status": "NOT_RUN_AWAITING_APPROVAL",
+      "expected": "本文/名前/hash消去、公開停止、同じkey再利用拒否",
+      "evidence": null,
+      "environment": null
+    },
+    {
+      "id": 6,
+      "name": "別人削除の拒否",
+      "status": "NOT_RUN_AWAITING_APPROVAL",
+      "expected": "nickname一致でも別keyなら403",
+      "evidence": null,
+      "environment": null
+    },
+    {
+      "id": 7,
+      "name": "通報",
+      "status": "NOT_RUN_AWAITING_APPROVAL",
+      "expected": "通報で自動削除なし・理由は管理APIのみ",
+      "evidence": null,
+      "environment": null
+    },
+    {
+      "id": 8,
+      "name": "管理人公式返信",
+      "status": "NOT_RUN_AWAITING_APPROVAL",
+      "expected": "Access＋管理Bearerが必要・一般role偽装拒否",
+      "evidence": null,
+      "environment": null
+    },
+    {
+      "id": 9,
+      "name": "非表示・復元・履歴",
+      "status": "NOT_RUN_AWAITING_APPROVAL",
+      "expected": "対象ID固定・論理非表示と復元・記録、本人削除は復元不可",
+      "evidence": null,
+      "environment": null
+    },
+    {
+      "id": 10,
+      "name": "JSON backupと署名検証",
+      "status": "NOT_RUN_AWAITING_APPROVAL",
+      "expected": "実D1 batch export・PythonでHMAC/SHA256、改変拒否",
+      "evidence": null,
+      "environment": null
+    },
+    {
+      "id": 11,
+      "name": "実Turnstile成功・失敗",
+      "status": "NOT_RUN_AWAITING_APPROVAL",
+      "expected": "実widget/Siteverifyでhostname/action/期限・再利用、ダミーと区別",
+      "evidence": null,
+      "environment": null
+    },
+    {
+      "id": 12,
+      "name": "未認証Access・管理APIの拒否",
+      "status": "NOT_RUN_AWAITING_APPROVAL",
+      "expected": "UI/API/static/preview無資格拒否、Access通過だけで管理権限なし",
+      "evidence": null,
+      "environment": null
+    },
+    {
+      "id": 13,
+      "name": "CORS・XSS・SQL injection",
+      "status": "NOT_RUN_AWAITING_APPROVAL",
+      "expected": "悪いorigin拒否、scriptはtext、SQLpayloadで構造不変",
+      "evidence": null,
+      "environment": null
+    },
+    {
+      "id": 14,
+      "name": "大量投稿・重複投稿",
+      "status": "NOT_RUN_AWAITING_APPROVAL",
+      "expected": "既存3/分20/日で小規模、同request_idで単一ID",
+      "evidence": null,
+      "environment": null
+    },
+    {
+      "id": 15,
+      "name": "66ケースのID保護",
+      "status": "NOT_RUN_AWAITING_APPROVAL",
+      "expected": "registry/D1/manifest照合、未知・衝突・変更は停止",
+      "evidence": null,
+      "environment": null
+    },
+    {
+      "id": 16,
+      "name": "Workers・D1障害の安全停止",
+      "status": "NOT_RUN_AWAITING_APPROVAL",
+      "expected": "stagingだけ制御故障を注入・DB不変、実基盤障害と区別",
+      "evidence": null,
+      "environment": null
+    },
+    {
+      "id": 17,
+      "name": "スマートフォン画面",
+      "status": "NOT_RUN_AWAITING_APPROVAL",
+      "expected": "Work Chromium390/320、Android実機は別欄",
+      "evidence": null,
+      "environment": null
+    }
+  ],
+  "android_physical_device": "NOT_RUN",
+  "note": "Local SQLite migration/previous mock CI do not count as live Cloudflare passes."
+}

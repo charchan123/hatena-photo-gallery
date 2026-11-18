@@ -33,7 +33,7 @@
     persist();
   } catch {}
   const errorText = {
-    COMMENTS_DISABLED: "コメントは準備中です。",
+    COMMENTS_DISABLED: "現在、コメントの閲覧を停止しています。",
     POSTING_DISABLED: "現在、新規投稿を停止しています。",
     HUMAN_CHECK_REQUIRED: "人間確認を完了してください。",
     HUMAN_CHECK_FAILED:
@@ -54,7 +54,7 @@
       if (!r.ok) throw Error("config");
       return r.json();
     })
-    .catch(() => ({ enabled: false }));
+    .catch(() => null);
   let turnstilePromise;
   function turnstile() {
     if (window.turnstile) return Promise.resolve(window.turnstile);
@@ -94,13 +94,17 @@
       status.setAttribute("role", "status");
       area.replaceChildren(status);
       const config = await configPromise;
+      if (config?.enabled === false) {
+        status.textContent = errorText.COMMENTS_DISABLED;
+        return;
+      }
       if (
-        config.enabled !== true ||
+        config?.enabled !== true ||
         !config.release_approval ||
         !/^https:\/\/[^/]+\/?$/.test(config.api_url || "")
       ) {
         status.textContent =
-          "コメント機能は準備中です。公開開始までお待ちください。";
+          "コメントの接続設定を取得できませんでした。ページを更新して再試行してください。";
         return;
       }
       const thread = details.dataset.researchThread,
@@ -108,6 +112,7 @@
         path = "/v1/cases/" + encodeURIComponent(thread) + "/comments";
       let busy = false,
         cursor = null,
+        recent = false,
         seen = new Set();
       async function api(route, body) {
         let r;
@@ -143,7 +148,7 @@
       }
       const list = $("div", undefined, "comments-list"),
         more = $("button", "続きのコメントを読む"),
-        reload = $("button", "最初から読み直す");
+        reload = $("button", "コメント一覧を更新");
       more.type = reload.type = "button";
       more.hidden = true;
       area.append(list, more, reload);
@@ -207,7 +212,7 @@
                 try {
                   persist();
                 } catch {}
-                await firstPage();
+                await refreshCurrent();
               } catch (e) {
                 status.textContent = e.message;
                 del.disabled = false;
@@ -225,18 +230,30 @@
         );
         list.insertBefore(box, next || null);
       }
-      async function loadPage(reset = false) {
+      async function loadPage(view) {
+        const reset = view !== "more",
+          backwards = view === "latest" || (!reset && recent),
+          query = view === "latest"
+            ? "?latest=1"
+            : reset ? "" : (backwards ? "?before=" : "?after=") + cursor;
         if (busy) return;
         busy = true;
         more.disabled = reload.disabled = true;
         try {
-          const v = await api(path + (reset ? "" : "?after=" + (cursor || 0)));
+          const v = await api(path + query);
+          const next = backwards ? v.previous_cursor : v.next_cursor;
+          if (!Array.isArray(v.comments) ||
+              (next !== null && (!Number.isSafeInteger(next) || next <= 0))) {
+            throw Error("コメント一覧の応答を確認できませんでした。再試行してください。");
+          }
           if (reset) {
             list.replaceChildren();
             seen.clear();
+            recent = backwards;
           }
           for (const c of v.comments) display(c);
-          cursor = v.next_cursor;
+          cursor = next;
+          more.textContent = backwards ? "前のコメントを読む" : "続きのコメントを読む";
           more.hidden = cursor === null;
           status.textContent = seen.size
             ? "同定の参考情報としてお読みください。"
@@ -248,9 +265,10 @@
           more.disabled = reload.disabled = false;
         }
       }
-      const firstPage = () => loadPage(true);
-      more.onclick = () => loadPage(false);
-      reload.onclick = firstPage;
+      const firstPage = () => loadPage("first"),
+        refreshCurrent = () => loadPage(recent ? "latest" : "first");
+      more.onclick = () => { if (cursor !== null) return loadPage("more"); };
+      reload.onclick = () => loadPage("latest");
       async function challenge(container) {
         const t = await turnstile();
         return new Promise((resolve, reject) => {
@@ -411,7 +429,7 @@
           submit.textContent = "コメントを投稿";
           counter();
           notice.textContent = "投稿しました。ありがとうございます！";
-          await firstPage();
+          await refreshCurrent();
           display(v.comment);
         } catch (e) {
           notice.textContent = e.message;

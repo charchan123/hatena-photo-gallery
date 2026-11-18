@@ -4,3 +4,11 @@ __pycache__/
 cache/
 /admin/inbox/
 /admin/local-state/
+
+/comments/node_modules/
+/comments/staging/generated/
+/comments/staging/*.local.jsonc
+/comments/.dev.vars*
+/comments/staging/.dev.vars*
+/comments/.wrangler/
+/comments/staging/.wrangler/

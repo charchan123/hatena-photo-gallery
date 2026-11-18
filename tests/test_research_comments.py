@@ -41,6 +41,16 @@ def test_identified_archive_keeps_same_thread_and_config_is_closed():
     assert public_config()['enabled'] is False
     assert 'release_approval' in public_config() and not public_config()['api_url']
 
+def test_release_copy_removed_without_removing_comment_threads():
+    portal = {'version': 1, 'observations': [source()]}
+    cases = build_research_cases(portal)
+    prepared = prepare(cases, registry_for(portal))
+    page = render_research_page(build_research_model(portal), comments=prepared)
+    for text in ('同定のヒントや感想を各ケースのコメント欄へ。', '受付開始までは準備中と表示します。', 'コメント機能は準備中です。'):
+        assert text not in page
+    assert 'data-research-thread=' in page
+
+
 def test_comment_bindings_extend_deletion_protection_without_relaxing_gates(tmp_path):
     from deletion_protection import curated_path,collect
     from test_sync_deletions import fixture,audit,T
@@ -76,7 +86,7 @@ def test_admin_proxy_fixed_routes_no_redirect_and_timeout(monkeypatch):
         def read(self,n):return b'{"cases":[]}'
     class Opener:
         def open(self,req,timeout):calls.append((req,timeout));return Response()
-    monkeypatch.setattr(comments_client.urllib.request,'build_opener',lambda handler:Opener())
+    monkeypatch.setattr(comments_client.urllib.request,'build_opener',lambda *handlers:Opener())
     assert comments_client.request('cases',{'q':'不明'})=={'cases':[]}
     req,timeout=calls[0];assert timeout==10 and req.full_url.startswith('https://comments.example.test/admin/cases?')
     assert req.headers['Authorization'].startswith('Bearer ') and not req.has_header('Origin')

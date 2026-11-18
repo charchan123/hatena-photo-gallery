@@ -1,0 +1,34 @@
+{
+  "baseline": "582a6c19e136fe5f7f6b2c2448cb0f63f14d1235",
+  "source_audit_sha256": "806365006eb39f4cd2901047a07496f5a8fb4e16d924a7ffcaf66c41a7ea7051",
+  "source_audit_filename": "kinoko-cloudflare-staging-audit-20261101.md",
+  "kind": "historical real Cloudflare observation; never rerun or relabeled",
+  "unauthenticated_passed": 29,
+  "fresh_passed": 16,
+  "fresh_attempted": 17,
+  "combined_passed_including_repeated_observations": 45,
+  "failure": {
+    "test": "authenticated-options",
+    "http": 403,
+    "expected_http": 204,
+    "app_error": null,
+    "reason": "AUTH_TEST_AUTHENTICATED_OPTIONS_FAILED"
+  },
+  "cpu_ms": {
+    "p50": 10.08,
+    "p90": 19.29,
+    "p99": 23.53,
+    "invocations": 15
+  },
+  "closure_record": {
+    "urls_closed": true,
+    "preview_disabled": true,
+    "read": false,
+    "write": false,
+    "release": "not-approved",
+    "service_tokens_disabled": true,
+    "build_token_deleted": true
+  },
+  "current_task_cloudflare_connections": 0,
+  "live_retest": "not authorized / not run"
+}

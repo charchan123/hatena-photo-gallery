@@ -1,0 +1,45 @@
+{
+  "environment_failures_preserved": [
+    {
+      "command": "node --test comments/tests/api.test.mjs comments/tests/staging.test.mjs",
+      "result": "13 passed; staging module could not load jose (ERR_MODULE_NOT_FOUND)"
+    },
+    {
+      "command": "python -m pytest targeted comments",
+      "result": "No module named pytest"
+    },
+    {
+      "command": "cpu-options-venv/bin/python",
+      "result": "missing interpreter; prior site-packages retained"
+    }
+  ],
+  "recovery": "npm ci --prefix comments --ignore-scripts --no-audit --no-fund; reuse existing Python3.12 site-packages through PYTHONPATH without modifying previous venv",
+  "success": [
+    {
+      "command": "node --test comments/tests/access-readiness.test.mjs comments/tests/access-origin-diagnostic.test.mjs",
+      "passed": 45,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "command": "node --test comments/tests/api.test.mjs comments/tests/staging.test.mjs",
+      "passed": 76,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "command": "PYTHONPATH=<existing site-packages> python -m pytest -q tests/test_research_comments.py tests/test_comments_staging.py tests/test_comments_preflight.py",
+      "passed": 41,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "command": "python tests/browser/comments_integration_protection.py /tmp/pr137-origin-protection.json origin/main",
+      "result": "passed; exact runtime and protected datasets"
+    }
+  ],
+  "real_cloudflare_requests": 0,
+  "browser_cloudflare_access": 0,
+  "cpu_benchmark_repeated": false,
+  "full_local_python_repeated": false
+}

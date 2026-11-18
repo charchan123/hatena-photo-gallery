@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "approved": false,
+  "authorization_id": "",
+  "not_before_utc": "",
+  "expires_at_utc": "",
+  "api_token_id": "",
+  "api_token_name": "",
+  "dashboard_checked_at_utc": "",
+  "github_main_sha": "",
+  "github_pages_sha": "",
+  "dashboard_checks": {
+    "workers_free": false,
+    "teams_free": false,
+    "single_worker_token_scope": false,
+    "pr138_worker_pages_unchanged": false,
+    "no_custom_domains_routes": false,
+    "production_comments_disabled": false
+  },
+  "github_checked_at_utc": "",
+  "github_pr_sha": ""
+}

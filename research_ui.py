@@ -196,7 +196,10 @@ def render_research_page(model, identified=None, comments=None):
     if comments and comments['archived']:
         comment_archive = '<section class="research-comment-archive"><h2>過去の研究ケースのコメント</h2><p>元のケースの履歴を保管しています。別のキノコへ自動で付け替えることはありません。</p>' + ''.join(
             '<article><h3>'+html.escape(row['label'])+'</h3>'+thread_mount(row['id'], True)+'</article>' for row in comments['archived'])+'</section>'
-    comment_notice = ('<strong>同定のヒントや感想を各ケースのコメント欄へ。</strong><br>受付開始までは準備中と表示します。' if comments else '<strong>コメント・返信機能は今後追加予定です。</strong><br>同定のヒントや情報を寄せられるようにする予定です。')
+    comment_notice = '' if comments else (
+        '<p class="research-coming-soon"><strong>コメント・返信機能は今後追加予定です。</strong>'
+        '<br>同定のヒントや情報を寄せられるようにする予定です。</p>'
+    )
     scripts = '<script src="assets/research-comments.js" defer></script>' if comments else ''
     return f'''<!doctype html>
 <html lang="ja">
@@ -232,7 +235,7 @@ def render_research_page(model, identified=None, comments=None):
       </div>
       <div class="research-notices">
         <p class="research-warning">「？」付きの名前は候補であり、同定が確定していることを意味しません。</p>
-        <p class="research-coming-soon">{comment_notice}</p>
+        {comment_notice}
       </div>
     </div>
   </section>

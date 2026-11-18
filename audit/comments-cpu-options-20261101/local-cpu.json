@@ -1,0 +1,151 @@
+{
+  "environment": "LOCAL Node process CPU + in-memory SQLite; no JWT/network/Cloudflare CPU claim",
+  "baseline": "582a6c19e136fe5f7f6b2c2448cb0f63f14d1235",
+  "node": "v24.22.1",
+  "platform": "linux",
+  "arch": "x64",
+  "cpu": "AMD EPYC 9V74 80-Core Processor",
+  "cases": 66,
+  "samples": [
+    {
+      "before": {
+        "calls": 100,
+        "cpu_ms": 211.182,
+        "wall_ms": 169.487348,
+        "sha_calls": 6700,
+        "d1_reads": 300
+      },
+      "after": {
+        "calls": 100,
+        "cpu_ms": 19.176,
+        "wall_ms": 18.66312800000003,
+        "sha_calls": 0,
+        "d1_reads": 300
+      }
+    },
+    {
+      "before": {
+        "calls": 100,
+        "cpu_ms": 269.949,
+        "wall_ms": 197.03205400000002,
+        "sha_calls": 6700,
+        "d1_reads": 300
+      },
+      "after": {
+        "calls": 100,
+        "cpu_ms": 18.148,
+        "wall_ms": 17.92339499999997,
+        "sha_calls": 0,
+        "d1_reads": 300
+      }
+    },
+    {
+      "before": {
+        "calls": 100,
+        "cpu_ms": 238.496,
+        "wall_ms": 183.14079300000003,
+        "sha_calls": 6700,
+        "d1_reads": 300
+      },
+      "after": {
+        "calls": 100,
+        "cpu_ms": 17.379,
+        "wall_ms": 17.20740699999999,
+        "sha_calls": 0,
+        "d1_reads": 300
+      }
+    },
+    {
+      "before": {
+        "calls": 100,
+        "cpu_ms": 230.626,
+        "wall_ms": 177.31778800000006,
+        "sha_calls": 6700,
+        "d1_reads": 300
+      },
+      "after": {
+        "calls": 100,
+        "cpu_ms": 18.475,
+        "wall_ms": 18.46846999999991,
+        "sha_calls": 0,
+        "d1_reads": 300
+      }
+    },
+    {
+      "before": {
+        "calls": 100,
+        "cpu_ms": 213.228,
+        "wall_ms": 180.78599300000008,
+        "sha_calls": 6700,
+        "d1_reads": 300
+      },
+      "after": {
+        "calls": 100,
+        "cpu_ms": 17.337,
+        "wall_ms": 17.171933999999965,
+        "sha_calls": 0,
+        "d1_reads": 300
+      }
+    },
+    {
+      "before": {
+        "calls": 100,
+        "cpu_ms": 212.646,
+        "wall_ms": 181.2045119999998,
+        "sha_calls": 6700,
+        "d1_reads": 300
+      },
+      "after": {
+        "calls": 100,
+        "cpu_ms": 17.151,
+        "wall_ms": 16.52428800000007,
+        "sha_calls": 0,
+        "d1_reads": 300
+      }
+    },
+    {
+      "before": {
+        "calls": 100,
+        "cpu_ms": 211.939,
+        "wall_ms": 179.8317830000001,
+        "sha_calls": 6700,
+        "d1_reads": 300
+      },
+      "after": {
+        "calls": 100,
+        "cpu_ms": 18.31,
+        "wall_ms": 18.00938199999996,
+        "sha_calls": 0,
+        "d1_reads": 300
+      }
+    }
+  ],
+  "first_request": {
+    "calls": 1,
+    "cpu_ms": 13.955,
+    "wall_ms": 11.436078999999992,
+    "sha_calls": 67,
+    "d1_reads": 3
+  },
+  "cold_20_instances": {
+    "calls": 20,
+    "cpu_ms": 47.501,
+    "wall_ms": 38.934653000000026,
+    "sha_calls": 1340,
+    "d1_reads": 60
+  },
+  "median_cpu_ms_per_check": {
+    "before": 2.13228,
+    "after": 0.18148,
+    "reduction_percent": 91.48892265556118
+  },
+  "warm_sha_per_check": {
+    "before": 67,
+    "after": 0
+  },
+  "d1_full_reads_per_check": {
+    "before": 3,
+    "after": 3
+  },
+  "remote_mutations": []
+}

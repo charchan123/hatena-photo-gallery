@@ -1,0 +1,7 @@
+{
+  "baseline": "582a6c19e136fe5f7f6b2c2448cb0f63f14d1235",
+  "files": {
+    "comments/staging/worker.mjs": "8c01bbf6ce6e888d3e3dd41854770968251f6e6fa86444eaa3c4cd6e1fa09b9d",
+    "comments/staging/registry.mjs": "ee24f01a02ba348d395c1bb43f87b3e318ec3ffcd3e78608a31e6a78e42a8e47"
+  }
+}

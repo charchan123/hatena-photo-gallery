@@ -1,0 +1,26 @@
+{
+  "code-receipt.mjs": {
+    "old_sha256": "73b95b2e4941d28bab4df04a3a25a95b3973fe658c656b935507618c90bd5a57",
+    "new_sha256": "73b95b2e4941d28bab4df04a3a25a95b3973fe658c656b935507618c90bd5a57",
+    "byte_equal": true
+  },
+  "expected-seed.json": {
+    "old_sha256": "d63785c37db7ee8914b2b6e2bc2982e6bfc2b6422507561db0fd40875b0c1480",
+    "new_sha256": "d63785c37db7ee8914b2b6e2bc2982e6bfc2b6422507561db0fd40875b0c1480",
+    "byte_equal": true
+  },
+  "preflight.mjs": {
+    "old_sha256": "563d61c67c99d706949d2fcbf8e529e4e06b2741af0fb53b2f74d4ab257be8d4",
+    "new_sha256": "b00d0497c0b6127f3461b92ffd25bc390888c64060f5278b408973fa1dc4bc84",
+    "reviewed_changes": [
+      "pure guard extraction; expired date and CLI removed",
+      "Access validator import points to repo canonical source",
+      "old Service inventory 4 -> 5, all disabled and expired; no new Service Token"
+    ]
+  },
+  "deployed_fixture": {
+    "source": "preserved Nov3 compiled Worker, test-only gzip/base64 fixture excluded from packet",
+    "worker_sha256": "0f363c931bd791aaa92b1b89d513fa4709b0ce5504ab5c1c206043c6d847d68a",
+    "worker_bytes": 100354
+  }
+}

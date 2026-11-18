@@ -1,0 +1,38 @@
+{
+  "comments/staging/worker.mjs": {
+    "sha256": "8c01bbf6ce6e888d3e3dd41854770968251f6e6fa86444eaa3c4cd6e1fa09b9d",
+    "unchanged_from_start": true
+  },
+  "comments/staging/build.py": {
+    "sha256": "2cd12088037c88c8524e7aeb616b96ff47d7acc0c6e78f93b98de6e77bd8d889",
+    "unchanged_from_start": true
+  },
+  "comments/staging/registry.mjs": {
+    "sha256": "ee24f01a02ba348d395c1bb43f87b3e318ec3ffcd3e78608a31e6a78e42a8e47",
+    "unchanged_from_start": true
+  },
+  "comments/staging/access.mjs": {
+    "sha256": "1b644cc633468e2c2218ab11b52765b675cf00606eb3aa23389e0cac67941f3c",
+    "unchanged_from_start": true
+  },
+  "comments/staging/manifest.json": {
+    "sha256": "e4a686e1c701b6eecd4ea6f2a227c59d2b9d9bbbf67d78d6af8bd5633859d65c",
+    "unchanged_from_start": true
+  },
+  "comments/staging/wrangler.example.jsonc": {
+    "sha256": "0bd93ec85e0787e902d2aac68fb10afbb48e300b02a99a0a3a829b1f26ee8e1c",
+    "unchanged_from_start": true
+  },
+  "comments/cases.json": {
+    "sha256": "0eb10eec543c77123be58d579b16ddc94d99e7bfb39b145e05dde7372adea57d",
+    "unchanged_from_start": true
+  },
+  "comments/worker.mjs": {
+    "sha256": "e57ccbc530cf166db9ffff832f5c52a2e1f0016457bb0973c180b1f6bec831da",
+    "unchanged_from_start": true
+  },
+  "admin/comments_client.py": {
+    "sha256": "9be21308dc479266e6eb12d743ad305a610dfc47c3ec4fd149d1f6a50d701928",
+    "unchanged_from_start": true
+  }
+}

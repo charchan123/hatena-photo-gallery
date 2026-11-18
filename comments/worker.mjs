@@ -227,7 +227,7 @@ async function verify(fetcher, env, token, now) {
   )
     fail("HUMAN_CHECK_FAILED");
 }
-async function active(fetcher, db, env, id) {
+async function productionManifest(fetcher, env) {
   const u = new URL(env.MANIFEST_URL);
   if (
     u.protocol !== "https:" ||
@@ -243,7 +243,10 @@ async function active(fetcher, db, env, id) {
     redirect: "error",
   });
   if (!r.ok) fail("CASE_REVIEW_REQUIRED", 503);
-  const m = await r.json();
+  return r.json();
+}
+async function active(fetcher, db, env, id, loadManifest) {
+  const m = await loadManifest(fetcher, env);
   const stored = await first(
     db,
     "SELECT value FROM metadata WHERE key='registry_sha256'",
@@ -271,10 +274,12 @@ function safeComment(c, admin = false) {
     ...(admin ? { reviewed: c.reviewed } : {}),
   };
 }
+const PUBLIC_COMMENT_VISIBILITY =
+  "c.state!='hidden' AND (c.parent_id IS NULL OR EXISTS(SELECT 1 FROM comments p WHERE p.id=c.parent_id AND p.state!='hidden'))";
 async function page(db, caseId, cursor, admin = false, unread = false) {
   const rows = await all(
     db,
-    `SELECT c.* FROM comments c WHERE c.case_id=? AND c.seq>? ${admin ? (unread ? "AND c.reviewed=0 AND c.role='visitor' AND c.state!='deleted'" : "") : "AND c.state!='hidden' AND (c.parent_id IS NULL OR EXISTS(SELECT 1 FROM comments p WHERE p.id=c.parent_id AND p.state!='hidden'))"} ORDER BY c.seq LIMIT ?`,
+    `SELECT c.* FROM comments c WHERE c.case_id=? AND c.seq>? ${admin ? (unread ? "AND c.reviewed=0 AND c.role='visitor' AND c.state!='deleted'" : "") : "AND " + PUBLIC_COMMENT_VISIBILITY} ORDER BY c.seq LIMIT ?`,
     caseId,
     cursor,
     PAGE + 1,
@@ -282,6 +287,20 @@ async function page(db, caseId, cursor, admin = false, unread = false) {
   return {
     comments: rows.slice(0, PAGE).map((c) => safeComment(c, admin)),
     next_cursor: rows.length > PAGE ? rows[PAGE - 1].seq : null,
+  };
+}
+async function recentPage(db, caseId, before) {
+  const rows = await all(
+    db,
+    `SELECT c.* FROM comments c WHERE c.case_id=? AND ${PUBLIC_COMMENT_VISIBILITY}
+     ${before === null ? "" : "AND c.seq < ?"} ORDER BY c.seq DESC LIMIT ?`,
+    caseId,
+    ...(before === null ? [] : [before]),
+    PAGE + 1,
+  );
+  return {
+    comments: rows.slice(0, PAGE).reverse().map((comment) => safeComment(comment)),
+    previous_cursor: rows.length > PAGE ? rows[PAGE - 1].seq : null,
   };
 }
 async function receipt(db, body, kind, payload) {
@@ -314,7 +333,7 @@ function audit(db, id, action, actor, now) {
     now,
   );
 }
-async function publicRoute(req, env, url, fetcher, now) {
+async function publicRoute(req, env, url, fetcher, now, loadManifest) {
   const db = env.DB,
     parts = url.pathname.split("/").filter(Boolean),
     caseId = parts[2];
@@ -332,7 +351,19 @@ async function publicRoute(req, env, url, fetcher, now) {
   if (req.method === "GET" && parts.length === 4 && parts[3] === "comments") {
     ready(env);
     await limit(db, env, req, "read", now);
-    return page(db, c.id, number(url.searchParams.get("after")));
+    const { searchParams } = url;
+    const latest = searchParams.get("latest"),
+      before = searchParams.get("before");
+    if (latest !== null || before !== null) {
+      if (searchParams.has("after") ||
+          (latest !== null && (latest !== "1" || before !== null))) {
+        fail("INVALID_CURSOR");
+      }
+      const previous = before === null ? null : number(before);
+      if (previous === 0) fail("INVALID_CURSOR");
+      return recentPage(db, c.id, previous);
+    }
+    return page(db, c.id, number(searchParams.get("after")));
   }
   if (req.method !== "POST") fail("NOT_FOUND", 404);
   const body = await json(req);
@@ -366,7 +397,7 @@ async function publicRoute(req, env, url, fetcher, now) {
       );
       return { comment: safeComment(old), duplicate: true };
     }
-    await active(fetcher, db, env, c.id);
+    await active(fetcher, db, env, c.id, loadManifest);
     await verify(fetcher, env, body.turnstile_token, now);
     const id = crypto.randomUUID(),
       hash = await digest(id + ":" + body.delete_token);
@@ -628,6 +659,8 @@ async function adminRoute(req, env, url, now) {
 export function createWorker({
   fetcher = globalThis.fetch,
   clock = () => Date.now(),
+  // Trusted composition only: never selected by a request or environment flag.
+  loadManifest = productionManifest,
 } = {}) {
   return {
     async fetch(request, env) {
@@ -660,7 +693,7 @@ export function createWorker({
         }
         const run = admin
           ? adminRoute(request, env, url, clock())
-          : publicRoute(request, env, url, fetcher, clock());
+          : publicRoute(request, env, url, fetcher, clock(), loadManifest);
         let timer;
         const result = await Promise.race([
           run,

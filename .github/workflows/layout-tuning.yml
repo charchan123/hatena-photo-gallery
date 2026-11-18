@@ -8,6 +8,8 @@ on:
       - 'assets/portal.css'
       - 'tests/browser/layout_tuning*'
       - 'tests/browser/layout_followup.cjs'
+      - 'comments/staging/**'
+      - 'tests/browser/comments_integration_protection.py'
       - 'audit/best-shot-layout-top-thumbs-2026-10-20/**'
       - '.github/workflows/layout-tuning.yml'
 permissions:
