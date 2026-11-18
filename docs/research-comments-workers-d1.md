@@ -99,13 +99,13 @@ node comments/tools/restore.mjs backup.json current-signed-backup.json new-local
 
 ## 承認後の設定手順（本タスクでは実行禁止）
 
-1. 別の隔離staging用アカウント/DBと鍵を準備。実データを流し込まず、まず合成データで検証する。
+1. 完了済みの専用ステージング試験記録を引き継ぐ。PC・スマホの投稿・相互表示・本人削除・公式返信・非表示・復元は成功済み。Windows標準証明書検証と管理室識別名の正式反映をCIで確認し、本番固有の接続先・設定差分を確認する。
 2. 管理者承認後にD1作成。`comments/wrangler.jsonc`のplaceholder database_id/nameを置き換える。local検証は必ず `--local`、remote bindingはfalseを維持。本番migrationは別承認後だけ `wrangler d1 migrations apply ... --remote` を実行する。
 3. Turnstile widget作成。実hostnameを登録し、site keyだけを公開設定へ、secretをWorker secretへ。テスト用キーで本番受付を始めない。
 4. Worker secretとしてADMIN_TOKEN、RATE_SECRET、TURNSTILE_SECRETを設定（それぞれ十分な別の乱数）。secretをwrangler.jsonc、Git、HTML、JSに書かない。
 5. WorkersのMANIFEST_URLを固定Pages URLへ、TURNSTILE_HOSTNAME・ALLOWED_ORIGINS・REGISTRY_SHA256を承認値へ設定。migrationのmetadataと照合する。
-6. まず全公開flagをfalseのままWorkerを公開（これ自体も別承認）。管理室接続・実D1 migration・Turnstile・CORS・削除・backup/restoreをstagingで検証する。本PRはローカルSQL＋D1 adapterでの検証であり、未接続の実Cloudflare動作を確認済みとはしていない。
-7. Windowsのプロセス環境変数 `KINOKO_COMMENTS_API_URL` と `KINOKO_COMMENTS_ADMIN_TOKEN` を設定し、管理室を再起動。tokenはブラウザの設定欄へ入力しない。PR #134のPC更新作業は別タスクで下書きをバックアップしてから行う。
+6. まず全公開flagをfalseのままWorkerを準備する（これ自体も別承認）。本番用D1のbinding・installation ID・migration適用状況、Turnstile、許可origin、manifest、registry hash、バックアップ運用を確認する。既に成功した専用ステージングの管理機能試験を公開条件として最初から繰り返さない。実環境の閉鎖記録は本人の完了報告を引き継ぎ、公開操作前に読み取りで再確認する。
+7. Windows管理室の下書きをバックアップして正式ソースとrequirementsを更新する。実行するPythonの絶対パスを確認し、同じPythonで管理室を起動する。起動プロセス内でstaging用Access変数を解除し、`KINOKO_COMMENTS_TRANSPORT=direct` と本番用の `KINOKO_COMMENTS_API_URL`・`KINOKO_COMMENTS_ADMIN_TOKEN` を設定する。秘密値は安全な入力手順で設定し、ブラウザ・チャット・ログへ渡さない。
 8. 公開を明示承認後、WorkerのRELEASE_APPROVALをapproved、READをtrue。さらに新規受付承認後WRITEをtrueにし、`comments/public-config.json`をenabled・api_url・site key・release_approvalの承認識別子で更新する専用PRを作る。GitHub Pages公開も別承認。**両側の解除が揃わなければ公開投稿は始まらない。**
 
 Wranglerを使う場合は公式手順に従い、承認済みのWrangler 4系を隔離環境へインストールしてください。自動deployスクリプトやCloudflare credentialをCIへ加えていません。
