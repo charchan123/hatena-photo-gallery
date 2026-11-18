@@ -1,4 +1,4 @@
-/* Comment UI is opt-in; no comment API or Turnstile request before opening. */
+/* Load case activity on entry. Fetch individual threads when opened. */
 (() => {
   "use strict";
   const $ = (tag, text, cls) => {
@@ -46,7 +46,7 @@
       "削除キーを確認できません。削除済みの場合、本文は公開されません。",
     INVALID_TEXT: "名前は30文字以内、本文は1〜500文字で入力してください。",
   };
-  let configPromise = fetch("research-comments-config.json", {
+  const configPromise = fetch("research-comments-config.json", {
     cache: "no-store",
     signal: AbortSignal.timeout(5000),
   })
@@ -55,6 +55,79 @@
       return r.json();
     })
     .catch(() => null);
+  function configured(config) {
+    return config?.enabled === true && config.release_approval &&
+      /^https:\/\/[^/]+\/?$/.test(config.api_url || "");
+  }
+  async function initializeCaseOrder(order) {
+    const grid = document.getElementById("research-open-cases"),
+      cards = [...grid.children],
+      byThread = new Map(cards.map((card) => [
+        card.querySelector("[data-research-thread]")?.dataset.researchThread, card,
+      ])),
+      controls = order.parentElement,
+      status = controls.querySelector('[role="status"]');
+    let pending, ranked;
+    function showCases() {
+      grid.classList.remove("research-case-order-pending");
+      grid.removeAttribute("aria-busy");
+    }
+    const alreadyOpened = grid.contains(document.activeElement) ||
+      !!grid.querySelector("[data-research-thread][open]");
+    if (!alreadyOpened) {
+      grid.classList.add("research-case-order-pending");
+      grid.setAttribute("aria-busy", "true");
+    }
+    const config = await configPromise;
+    if (!configured(config) || config.transport) {
+      showCases();
+      return;
+    }
+    async function applyOrder() {
+      pending?.abort();
+      status.textContent = "";
+      if (order.value === "capture") {
+        grid.append(...cards);
+        showCases();
+        return;
+      }
+      if (!ranked) {
+        pending = new AbortController();
+        const signal = pending.signal;
+        status.textContent = "新着コメントを確認しています…";
+        try {
+          const response = await fetch(config.api_url.replace(/\/$/, "") + "/v1/case-activity", {
+            cache: "no-store",
+            signal: AbortSignal.any([signal, AbortSignal.timeout(5000)]),
+            referrerPolicy: "no-referrer",
+            credentials: "omit"
+          });
+          if (!response.ok) throw Error("activity");
+          const { case_ids } = await response.json();
+          if (signal.aborted) return;
+          if (!Array.isArray(case_ids) || !case_ids.every((id) => typeof id === "string"))
+            throw Error("activity format");
+          ranked = new Set(case_ids.map((id) => byThread.get(id)).filter(Boolean));
+        } catch {
+          if (signal.aborted) return;
+          order.value = "capture";
+          grid.append(...cards);
+          status.textContent = "新着コメントを取得できなかったため、撮影日順で表示します。";
+          showCases();
+          return;
+        }
+      }
+      grid.append(...new Set([...ranked, ...cards]));
+      status.textContent = ranked.size ? "" : "新着順の対象になるコメントはありません。";
+      showCases();
+    }
+    controls.hidden = false;
+    order.addEventListener("change", applyOrder);
+    order.value = alreadyOpened ? "capture" : "activity";
+    if (!alreadyOpened) await applyOrder();
+  }
+  const order = document.getElementById("research-case-order");
+  if (order) initializeCaseOrder(order);
   let turnstilePromise;
   function turnstile() {
     if (window.turnstile) return Promise.resolve(window.turnstile);
@@ -98,11 +171,7 @@
         status.textContent = errorText.COMMENTS_DISABLED;
         return;
       }
-      if (
-        config?.enabled !== true ||
-        !config.release_approval ||
-        !/^https:\/\/[^/]+\/?$/.test(config.api_url || "")
-      ) {
+      if (!configured(config)) {
         status.textContent =
           "コメントの接続設定を取得できませんでした。ページを更新して再試行してください。";
         return;

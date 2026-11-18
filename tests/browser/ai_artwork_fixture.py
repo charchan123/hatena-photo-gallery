@@ -71,8 +71,9 @@ for variant, module in [('before', before), ('after', main)]:
                                 research_summary=research, best_shot_summary=best)
         module.generate_favorite_page(grouped)
     if variant == 'before':
-        for p in (repo / 'assets').glob('*.css'):
-            (out / 'assets' / p.name).write_bytes(git('show', f'{base}:assets/{p.name}'))
+        for asset in git('ls-tree', '-r', '--name-only', base, 'assets').decode().splitlines():
+            if asset.endswith('.css'):
+                (out / asset).write_bytes(git('show', f'{base}:{asset}'))
         for record in manifest['assets']:
             asset = 'assets/' + record['asset']
             # Preserve artwork already tracked by the comparison baseline.

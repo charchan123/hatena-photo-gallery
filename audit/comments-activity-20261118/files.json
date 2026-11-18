@@ -1,0 +1,9 @@
+{
+  "main": "dcd8d072bffa23495f7a1028a4636f3eb1f7ca70",
+  "files": {
+    "assets/research-comments.js": "5f16e89db9f9cf75d4ab8cc70efa4f43bd7f4d07849372a4dee3fa7cd30c533e",
+    "comments/worker.mjs": "d1b5deeb2efab83bdbdb36c24920ca332cbea80ed187aa937458b32b37700b18",
+    "comments/tests/api.test.mjs": "75120628da33ebe09fc6de06f7b019415a695f76e2447577b8f49258844398ef",
+    "research_ui.py": "5d0c9ad917babada11836bc50accd8d958fc6681e4613a96975bbca4019a33ba"
+  }
+}

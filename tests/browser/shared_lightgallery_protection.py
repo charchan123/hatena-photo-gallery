@@ -5,7 +5,7 @@ from pathlib import Path
 import subprocess
 import sys
 from lightgallery_css_guard import verify_gallery_css
-from comments_integration_protection import assert_reviewed_source
+from comments_integration_protection import ACTIVITY_MAIN, RELEASE_FILES, REVIEWED, assert_reviewed_source
 
 ROOT = Path(__file__).resolve().parents[2]
 MAIN = '8007a72708aff2dfa14e2e9638f44720bb449b76'
@@ -34,10 +34,13 @@ viewer_rules_added = verify_gallery_css(git('show', f'{BASE}:{gallery_css}'),
 for p in protected:
     if p != gallery_css:
         assert_reviewed_source(BASE, p, (ROOT / p).read_bytes())
-# The latest main's protected data are independently byte-equal, not only counts.
+# Bind protected files to independently reviewed bytes, including the approved
+# PR #137 changes that are now part of main.
+merged_comment_files = RELEASE_FILES | REVIEWED
 for p in git('ls-tree', '-rz', '--name-only', MAIN).decode().split('\0'):
     if p.startswith(('data/', 'sync-migrations/', 'admin/', 'comments/', 'hatena/', 'lightgallery/')):
-        assert digest(git('show', f'{MAIN}:{p}')) == before[p], p
+        reviewed_base = ACTIVITY_MAIN if p in merged_comment_files else MAIN
+        assert digest(git('show', f'{reviewed_base}:{p}')) == before[p], p
         assert_reviewed_source(BASE, p, (ROOT / p).read_bytes())
 
 portal = value('origin/gh-pages', 'portal-data.json')

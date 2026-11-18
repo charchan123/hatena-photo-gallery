@@ -156,6 +156,38 @@ test("latest view has bounded backwards paging and keeps existing forward paging
   for (const query of ["latest=0", "before=0", "latest=1&after=1", "latest=1&before=2"])
     assert.equal((await s.call(route + "?" + query)).status, 400);
 });
+test("activity ranks public visitor comments and replies, excluding hidden and deleted text", async () => {
+  const s = setup();
+  const ids = registry.cases.slice(0, 4).map(row => row.id);
+  function insert(caseId, created, parentId = null) {
+    const commentId = crypto.randomUUID();
+    s.db.sql.prepare(
+      "INSERT INTO comments(id,case_id,parent_id,role,nickname,body,created_at,delete_hash) VALUES(?,?,?,?,?,?,?,?)"
+    ).run(commentId, caseId, parentId, parentId ? "admin" : "visitor",
+      parentId ? "管理人" : "観察者", "合成コメント", created, parentId ? null : "f".repeat(64));
+    return commentId;
+  }
+  const oldest = insert(ids[0], 100);
+  insert(ids[1], 200);
+  const hidden = insert(ids[2], 900);
+  insert(ids[2], 1000, hidden);
+  await action(s, hidden, "hide");
+  const deleted = insert(ids[3], 1100);
+  s.db.sql.prepare("UPDATE comments SET state='deleted',nickname=NULL,body=NULL,delete_hash=NULL WHERE id=?").run(deleted);
+  const read = () => s.call("/v1/case-activity");
+  assert.deepEqual((await read()).data, { case_ids: [ids[1], ids[0]] });
+  const reply = insert(ids[0], 300, oldest);
+  assert.deepEqual((await read()).data.case_ids, [ids[0], ids[1]]);
+  await action(s, reply, "hide");
+  assert.deepEqual((await read()).data.case_ids, [ids[1], ids[0]]);
+  await action(s, hidden, "restore");
+  assert.deepEqual((await read()).data.case_ids, [ids[2], ids[1], ids[0]]);
+  s.env.PUBLIC_WRITE_ENABLED = "false";
+  assert.equal((await read()).status, 200);
+  assert.equal((await s.call("/v1/case-activity", undefined, { headers: {Origin: "https://untrusted.test"} })).status, 403);
+  s.env.PUBLIC_READ_ENABLED = "false";
+  assert.equal((await read()).status, 503);
+});
 test("strict payload lengths Unicode, reserved names, spoofed role and injection are handled", async () => {
   const s = setup();
   for (const extra of [
