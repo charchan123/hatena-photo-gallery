@@ -140,6 +140,7 @@ async function stop() {
     "66 stable case mounts",
   );
   check((await stats()).publicCalls === 0, "no eager API for 66 cases");
+  check(await page.locator(".research-case-order").isHidden(), "closed config hides ordering");
   const thread = page.locator('[data-research-thread="' + info.caseId + '"]');
   await thread.locator("summary").click();
   await page.waitForFunction(() =>
@@ -153,10 +154,35 @@ async function stop() {
   );
   enabled = true;
   await page.reload();
+  const order = page.locator("#research-case-order"),
+    cards = page.locator("#research-open-cases > .research-case"),
+    originalOrder = await cards.evaluateAll(xs => xs.map(x =>
+      x.querySelector("[data-research-thread]")?.dataset.researchThread || null));
+  await order.waitFor({ state: "visible" });
+  await order.selectOption("activity");
+  await page.waitForFunction(() =>
+    document.querySelector(".research-case-order [role=status]").textContent === "");
+  check((await stats()).publicCalls === 1, "one aggregate request ranks all cases");
+  check(await cards.first().locator("[data-research-thread]").getAttribute("data-research-thread") === info.caseId,
+    "commented case ranks first");
+  check((await cards.count()) === 66, "sorting keeps all cases");
+  await order.selectOption("capture");
+  check(JSON.stringify(await cards.evaluateAll(xs => xs.map(x =>
+    x.querySelector("[data-research-thread]")?.dataset.researchThread || null))) === JSON.stringify(originalOrder),
+    "capture order restores original nodes");
+  await context.request.post(api + "/__test/fail", { data: { fail: true } });
+  await order.selectOption("activity");
+  await page.getByText("新着コメントを取得できなかったため、撮影日順で表示します。", { exact: true }).waitFor();
+  check(await order.inputValue() === "capture", "failed activity restores capture selector");
+  check(JSON.stringify(await cards.evaluateAll(xs => xs.map(x =>
+    x.querySelector("[data-research-thread]")?.dataset.researchThread || null))) === JSON.stringify(originalOrder),
+    "failed activity preserves capture order");
+  await context.request.post(api + "/__test/fail", { data: { fail: false } });
+  const callsBeforeOpening = (await stats()).publicCalls;
   await thread.locator("summary").click();
   await thread.locator(".comment").first().waitFor();
   check((await thread.locator(".comment").count()) === 20, "page size 20");
-  check((await stats()).publicCalls === 1, "only opened case fetched");
+  check((await stats()).publicCalls === callsBeforeOpening + 1, "only opened case fetched");
   check(
     (await thread.locator(".comment-body img").count()) === 0,
     "XSS text remains text",
@@ -205,6 +231,13 @@ async function stop() {
   );
   for (const width of [1280, 390, 320]) {
     await page.setViewportSize({ width, height: 1000 });
+    await order.selectOption("activity");
+    await page.waitForFunction(() =>
+      document.querySelector(".research-case-order [role=status]").textContent === "");
+    check(await cards.first().locator("[data-research-thread]").getAttribute("data-research-thread") === info.caseId,
+      "activity works at width " + width);
+    check(await thread.locator(".comment").count() === 24, "sorting retains expanded thread");
+    await order.selectOption("capture");
     await thread.scrollIntoViewIfNeeded();
     check(
       await page.evaluate(

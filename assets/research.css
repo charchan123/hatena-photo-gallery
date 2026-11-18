@@ -24,6 +24,8 @@ body.research-index { max-width:none; margin:0; padding:0; background:#f7fcf4; c
 .research-index .research-cases-wrap { margin-top:20px; padding:22px; }
 .research-index .research-cases-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:18px; padding-bottom:12px; border-bottom:1px solid #dce5d9; }
 .research-index .research-cases-heading > span:last-child { color:#607067; font-size:.82rem; font-weight:750; }
+.research-index .research-case-order:not([hidden]) { display:flex; align-items:center; flex-wrap:wrap; gap:8px 12px; margin-bottom:16px; font-size:.85rem; }
+.research-index .research-case-order select { min-height:44px; max-width:100%; padding:8px; border:1px solid #a9bfa4; border-radius:8px; color:#294b32; background:#f7fbf5; font:inherit; }
 .research-index .research-cases { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
 .research-index .research-case { min-width:0; margin:0; padding:18px; display:grid; grid-template-rows:52px 52px 42px 190px auto; border:1px solid #e0e8de; border-radius:15px; background:#fff; box-shadow:0 5px 16px rgba(39,67,45,.055); }
 .research-index .research-case__header { display:grid; align-content:center; min-width:0; }

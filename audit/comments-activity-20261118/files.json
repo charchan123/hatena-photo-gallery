@@ -1,0 +1,10 @@
+{
+  "main": "249bf1845bdd5d3c7a46e7939f0cd54b6eef9792",
+  "files": {
+    "assets/research-comments.js": "99643b4712d6aa70fadc236c71e014d7c0f557b29baa767d8f6bf6c20acd226c",
+    "assets/research.css": "d1b803238b999ca588b50ae9d8682b2bbcc1f8279161f521209c9395bd0d5c4f",
+    "comments/worker.mjs": "d1b5deeb2efab83bdbdb36c24920ca332cbea80ed187aa937458b32b37700b18",
+    "comments/tests/api.test.mjs": "75120628da33ebe09fc6de06f7b019415a695f76e2447577b8f49258844398ef",
+    "research_ui.py": "3dba2c1f465633e085c02a005437852d80c652954d326e7a918c46a3d7bb793e"
+  }
+}

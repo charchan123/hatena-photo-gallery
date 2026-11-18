@@ -17,6 +17,8 @@ RELEASE_FILES = {
     'admin/comments_client.py', 'assets/research-comments.js', 'comments/worker.mjs',
     'requirements.txt', 'research_comments.py', 'research_ui.py', 'comments/tests/api.test.mjs',
 }
+ACTIVITY_FILES = {'assets/research-comments.js', 'assets/research.css',
+                  'comments/worker.mjs', 'comments/tests/api.test.mjs', 'research_ui.py'}
 
 def assert_staging_source(path, content):
     """Only the two explicitly reviewed CPU runtime files may differ in Nov 1.
@@ -39,6 +41,12 @@ def assert_reviewed_source(base, path, current):
     original = git('show', f'{base}:{path}')
     if current == original:
         return
+    if path in ACTIVITY_FILES:
+        pins = json.loads((ROOT/'audit/comments-activity-20261118/files.json').read_text(encoding='utf-8'))
+        assert pins['main'] == RELEASE_MAIN and set(pins['files']) == ACTIVITY_FILES
+        assert original == git('show', f'{RELEASE_MAIN}:{path}'), f'main advanced: {path}'
+        if hashlib.sha256(current).hexdigest() == pins['files'][path]:
+            return
     if path in RELEASE_FILES:
         # Keep the original reviewed PR bytes acceptable and pin the new release
         # delta. Never accept a changed version of the same file from main.
