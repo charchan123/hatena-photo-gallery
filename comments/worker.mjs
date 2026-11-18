@@ -1,4 +1,5 @@
 // No deployment side effects. All public flags default closed; secrets are bindings.
+import { notifyComments } from "./line/notify.mjs";
 export const TABLES = [
   "metadata",
   "cases",
@@ -663,7 +664,7 @@ export function createWorker({
   loadManifest = productionManifest,
 } = {}) {
   return {
-    async fetch(request, env) {
+    async fetch(request, env, context) {
       let origin = null,
         admin = false;
       try {
@@ -704,6 +705,8 @@ export function createWorker({
             );
           }),
         ]).finally(() => clearTimeout(timer));
+        if (request.method === "POST" && !admin && result.comment && !result.duplicate)
+          context?.waitUntil(notifyComments(env, { fetcher, now: clock() }));
         return response(result, 200, admin ? null : origin);
       } catch (error) {
         return response(
@@ -721,7 +724,8 @@ export function createWorker({
       }
     },
     async scheduled(event, env) {
-      if (env.DB)
+      await notifyComments(env, { fetcher, now: clock() });
+      if (env.DB && (!event?.cron || event.cron === "17 4 * * *"))
         await env.DB.batch([
           q(env.DB, "DELETE FROM limits WHERE expires<?", Date.now()),
           q(

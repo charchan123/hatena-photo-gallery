@@ -353,6 +353,14 @@ async function stop() {
   check((await thread.locator(".comment").count()) === visibleBeforeFailure,
     "failed refresh preserves already visible comments");
   await page.screenshot({ path: path.join(out, "api-error.png") });
+  await context.request.post(api + "/__test/fail", { data: { fail: false } });
+  const linked = await context.newPage();
+  await linked.goto(url + "#comments-" + info.caseId);
+  const linkedThread = linked.locator('[data-research-thread="' + info.caseId + '"]');
+  await linkedThread.getByText("管理人からの公式返信です", { exact: true }).waitFor();
+  check(await linkedThread.getAttribute("open") !== null, "notification opens the matching stable thread");
+  check(await linkedThread.locator(".comment").count() === 20, "notification link starts at the latest page");
+  await linked.close();
   fs.writeFileSync(
     path.join(out, "result.json"),
     JSON.stringify(

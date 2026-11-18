@@ -329,7 +329,7 @@
           }
         };
       }
-      await firstPage();
+      await (location.hash === "#comments-" + thread ? loadPage("latest") : firstPage());
       if (details.dataset.archived === "true") {
         area.append(
           $("p", "履歴保管中のため、この欄からの新規投稿は停止しています。"),
@@ -459,4 +459,7 @@
       };
     });
   }
+  const linkedThread = /^#comments-research-[0-9a-f]{16}$/.test(location.hash) &&
+    document.getElementById(location.hash.slice(1));
+  if (linkedThread?.matches("[data-research-thread]")) linkedThread.open = true;
 })();

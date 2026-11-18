@@ -81,7 +81,7 @@ def mount(case_id, prepared):
 
 def thread_mount(thread, archived=False):
     note = '過去のコメントを読む（新規投稿は停止）' if archived else '同定のヒント・コメント'
-    return f'<details class="research-comments" data-research-thread="{html.escape(thread,quote=True)}" data-archived="{str(archived).lower()}"><summary>{note}</summary><div class="research-comments-content"></div></details>'
+    return f'<details class="research-comments" id="comments-{html.escape(thread,quote=True)}" data-research-thread="{html.escape(thread,quote=True)}" data-archived="{str(archived).lower()}"><summary>{note}</summary><div class="research-comments-content"></div></details>'
 
 def public_config():
     from urllib.parse import urlsplit

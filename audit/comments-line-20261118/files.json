@@ -1,0 +1,9 @@
+{
+  "main": "249bf1845bdd5d3c7a46e7939f0cd54b6eef9792",
+  "files": {
+    "assets/research-comments.js": "f0af8c4238d0b8ff34f86993aea394c7c572784592970f9457fb23071d900909",
+    "comments/worker.mjs": "58c30a97ffa6f1a00ac8a2db77f37c6a1feac87639bbfad5416d8597a74fa92a",
+    "comments/wrangler.jsonc": "67e3ba9fef9b4ef4ebac9ab981eb59a125b82eb9f8c8293d27b218ba605028d4",
+    "research_comments.py": "887a3dfd2496f2195f9d89596486943f57a7a2c957a31803ce6a26fb059e0d72"
+  }
+}
