@@ -459,7 +459,7 @@
       };
     });
   }
-  const linkedThread = /^#comments-research-[0-9a-f]{16}$/.test(location.hash) &&
-    document.getElementById(location.hash.slice(1));
+  const linkedThread = /^#comments-research-[0-9a-f]{16}$/.test(location.hash)
+    ? document.getElementById(location.hash.slice(1)) : null;
   if (linkedThread?.matches("[data-research-thread]")) linkedThread.open = true;
 })();

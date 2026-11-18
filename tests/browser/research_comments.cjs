@@ -65,6 +65,8 @@ async function stop() {
       viewport: { width: 1280, height: 1000 },
     }),
     page = await context.newPage();
+  const scriptErrors = [];
+  page.on("pageerror", error => scriptErrors.push(error.message));
   let enabled = false;
   await context.route("**/*", async (route) => {
     const r = route.request(),
@@ -355,12 +357,14 @@ async function stop() {
   await page.screenshot({ path: path.join(out, "api-error.png") });
   await context.request.post(api + "/__test/fail", { data: { fail: false } });
   const linked = await context.newPage();
+  linked.on("pageerror", error => scriptErrors.push(error.message));
   await linked.goto(url + "#comments-" + info.caseId);
   const linkedThread = linked.locator('[data-research-thread="' + info.caseId + '"]');
   await linkedThread.getByText("管理人からの公式返信です", { exact: true }).waitFor();
   check(await linkedThread.getAttribute("open") !== null, "notification opens the matching stable thread");
   check(await linkedThread.locator(".comment").count() === 20, "notification link starts at the latest page");
   await linked.close();
+  check(scriptErrors.length === 0, "ordinary and notification URLs execute without script errors");
   fs.writeFileSync(
     path.join(out, "result.json"),
     JSON.stringify(
