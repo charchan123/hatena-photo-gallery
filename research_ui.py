@@ -205,8 +205,8 @@ def render_research_page(model, identified=None, comments=None):
     case_order = ('''<div class="research-case-order" hidden>
       <label for="research-case-order">並び順</label>
       <select id="research-case-order">
-        <option value="capture">撮影日順</option>
         <option value="activity">新着コメント順</option>
+        <option value="capture">撮影日順</option>
       </select>
       <span role="status"></span>
     </div>''' if comments and cards else "")

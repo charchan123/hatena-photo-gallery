@@ -19,6 +19,7 @@ RELEASE_FILES = {
 }
 ACTIVITY_FILES = {'assets/research-comments.js',
                   'comments/worker.mjs', 'comments/tests/api.test.mjs', 'research_ui.py'}
+ACTIVITY_MAIN = 'dcd8d072bffa23495f7a1028a4636f3eb1f7ca70'
 
 def assert_staging_source(path, content):
     """Only the two explicitly reviewed CPU runtime files may differ in Nov 1.
@@ -43,8 +44,8 @@ def assert_reviewed_source(base, path, current):
         return
     if path in ACTIVITY_FILES:
         pins = json.loads((ROOT/'audit/comments-activity-20261118/files.json').read_text(encoding='utf-8'))
-        assert pins['main'] == RELEASE_MAIN and set(pins['files']) == ACTIVITY_FILES
-        assert original == git('show', f'{RELEASE_MAIN}:{path}'), f'main advanced: {path}'
+        assert pins['main'] == ACTIVITY_MAIN and set(pins['files']) == ACTIVITY_FILES
+        assert original == git('show', f'{ACTIVITY_MAIN}:{path}'), f'main advanced: {path}'
         if hashlib.sha256(current).hexdigest() == pins['files'][path]:
             return
     if path in RELEASE_FILES:

@@ -16,3 +16,6 @@
   background: #f7fbf5;
   font: inherit;
 }
+.research-index .research-case-order-pending {
+  visibility: hidden;
+}
