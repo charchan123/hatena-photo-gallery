@@ -17,7 +17,7 @@ RELEASE_FILES = {
     'admin/comments_client.py', 'assets/research-comments.js', 'comments/worker.mjs',
     'requirements.txt', 'research_comments.py', 'research_ui.py', 'comments/tests/api.test.mjs',
 }
-ACTIVITY_FILES = {'assets/research-comments.js', 'assets/research.css',
+ACTIVITY_FILES = {'assets/research-comments.js',
                   'comments/worker.mjs', 'comments/tests/api.test.mjs', 'research_ui.py'}
 
 def assert_staging_source(path, content):

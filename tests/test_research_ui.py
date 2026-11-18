@@ -173,10 +173,12 @@ def test_generated_counts_are_derived_and_assets_copied(tmp_path):
     assets = tmp_path / "source-assets"; assets.mkdir()
     (assets / "research.css").write_text("mobile")
     (assets / "research-comments.js").write_text("// optional comments")
+    (assets / "research-comments-order.css").write_text("select { min-height:44px }")
     model = generate_research_page(portal(observation(0), observation(1)), tmp_path, assets)
     assert model["case_count"] == 1 and model["photo_count"] == 2
     assert "調査中 <strong>1</strong>件" in (tmp_path / "research.html").read_text()
     assert (tmp_path / "assets/research.css").read_text() == "mobile"
+    assert (tmp_path / "assets/research-comments-order.css").read_text() == "select { min-height:44px }"
 
 
 def test_failure_isolation_and_no_stale_read(monkeypatch):
