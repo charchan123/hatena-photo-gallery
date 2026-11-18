@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="assets/gallery.css">
 <link rel="stylesheet" href="assets/research.css">
 <script src="assets/gallery.js" defer></script>
-<script src="assets/research-comments.js" defer></script>
+<link rel="stylesheet" href="assets/research-comments-order.css"><script src="assets/research-comments.js" defer></script>
 </head>
 <body class="research-index">
 <main id="gallery-content-root" class="research-page">
@@ -42,7 +42,15 @@
       <div><span class="research-eyebrow">OPEN CASES</span><h2 id="research-cases-title">調査中の観察</h2></div>
       <span>66件</span>
     </header>
-    <div class="research-cases"><article class="research-case">
+    <div class="research-case-order" hidden>
+      <label for="research-case-order">並び順</label>
+      <select id="research-case-order">
+        <option value="activity">新着コメント順</option>
+        <option value="capture">撮影日順</option>
+      </select>
+      <span role="status"></span>
+    </div>
+    <div class="research-cases" id="research-open-cases"><article class="research-case">
 <header class="research-case__header">
   <div><span class="research-status is-unidentified">未同定</span><h2>不明</h2></div>
 </header>
