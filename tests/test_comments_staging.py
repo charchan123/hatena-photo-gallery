@@ -117,6 +117,8 @@ def test_failure_is_not_success_and_never_leaks_secret(configured,kind):
 
 def test_offline_build_only_changes_staging_transport(tmp_path):
     before=(ROOT/'assets/research-comments.js').read_bytes()
+    config_path=ROOT/'comments/public-config.json'
+    original_config=config_path.read_bytes()
     build=runpy.run_path(str(ROOT/'comments/staging/build.py'))['build']
     build(tmp_path)
     js=(tmp_path/'assets/research-comments.js').read_text(encoding="utf-8")
@@ -126,7 +128,8 @@ def test_offline_build_only_changes_staging_transport(tmp_path):
     assert before==(ROOT/'assets/research-comments.js').read_bytes()
     assert 'credentials: "omit"' in before.decode()
     assert (tmp_path/'research.html').read_text(encoding="utf-8").count('data-research-thread=')==66
-    assert json.loads((ROOT/'comments/public-config.json').read_text(encoding="utf-8"))=={'version':1,'enabled':False,'api_url':'','turnstile_site_key':'','release_approval':None}
+    assert config_path.read_bytes()==original_config
+    assert not (tmp_path/'research-comments-config.json').exists()
     for name,sha in json.loads((tmp_path/'build-hashes.json').read_text(encoding="utf-8")).items():
         assert hashlib.sha256((tmp_path/name).read_bytes()).hexdigest()==sha
 

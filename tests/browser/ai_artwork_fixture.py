@@ -119,10 +119,12 @@ for p in protected:
     else:
         assert_reviewed_source(base, p, after_bytes)
     hashes[p] = hashlib.sha256(before_bytes).hexdigest()
-for p in ('portal-data.json','article-sync-snapshot.json','research-comment-cases.json','research-comments-config.json'):
+for p in ('portal-data.json','article-sync-snapshot.json','research-comment-cases.json'):
     assert (root/'published'/p).read_bytes() == (root/'after'/p).read_bytes(), p
 config = json.loads((root/'after/research-comments-config.json').read_text())
-assert config['enabled'] is False
+assert config == json.loads((repo/'comments/public-config.json').read_bytes())
+assert json.loads((root/'published/research-comments-config.json').read_bytes()) in (
+    json.loads(git('show', f'{base}:comments/public-config.json')), config)
 (root/'screenshots').mkdir(exist_ok=True)
 (root/'vendor').mkdir(exist_ok=True)
 for p in (repo/'lightgallery').rglob('*'):
