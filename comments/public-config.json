@@ -1,1 +1,7 @@
-{"version":1,"enabled":false,"api_url":"","turnstile_site_key":"","release_approval":null}
+{
+  "version": 1,
+  "enabled": true,
+  "api_url": "https://kinoko-research-comments.sasama-bb.workers.dev",
+  "turnstile_site_key": "0x4AAAAAAGHm-vrRMMnTMtLN",
+  "release_approval": "research-comments-production-20261120"
+}

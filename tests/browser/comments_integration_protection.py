@@ -2,6 +2,7 @@
 import hashlib
 import json
 from pathlib import Path
+import re
 import subprocess
 import sys
 
@@ -20,6 +21,10 @@ RELEASE_FILES = {
 ACTIVITY_FILES = {'assets/research-comments.js',
                   'comments/worker.mjs', 'comments/tests/api.test.mjs', 'research_ui.py'}
 ACTIVITY_MAIN = 'dcd8d072bffa23495f7a1028a4636f3eb1f7ca70'
+PUBLIC_CONFIG = 'comments/public-config.json'
+PRODUCTION_ORIGIN = 'https://kinoko-research-comments.sasama-bb.workers.dev'
+RELEASE_ID = 'research-comments-production-20261120'
+DISABLED_CONFIG = {'version': 1, 'enabled': False, 'api_url': '', 'turnstile_site_key': '', 'release_approval': None}
 
 def assert_staging_source(path, content):
     """Only the two explicitly reviewed CPU runtime files may differ in Nov 1.
@@ -41,6 +46,14 @@ def assert_reviewed_source(base, path, current):
     """Never hide a main change behind the old PR's allowance."""
     original = git('show', f'{base}:{path}')
     if current == original:
+        return
+    if path == PUBLIC_CONFIG:
+        config = json.loads(current)
+        assert json.loads(original) == DISABLED_CONFIG or config == DISABLED_CONFIG
+        if config != DISABLED_CONFIG:
+            assert config == {'version': 1, 'enabled': True, 'api_url': PRODUCTION_ORIGIN,
+                              'turnstile_site_key': config['turnstile_site_key'], 'release_approval': RELEASE_ID}
+            assert re.fullmatch(r'0x[A-Za-z0-9_-]{12,100}', config['turnstile_site_key'])
         return
     if path in ACTIVITY_FILES:
         pins = json.loads((ROOT/'audit/comments-activity-20261118/files.json').read_text(encoding='utf-8'))
@@ -82,7 +95,9 @@ def collect(base='origin/main'):
     portal = json.loads(git('show', 'origin/gh-pages:portal-data.json'))
     read = lambda name: json.loads((ROOT/name).read_text(encoding='utf-8'))
     config = json.loads(git('show', 'origin/gh-pages:research-comments-config.json'))
-    assert config == read('comments/public-config.json') and config['enabled'] is False
+    source_config = read(PUBLIC_CONFIG)
+    base_config = json.loads(git('show', f'{base}:{PUBLIC_CONFIG}'))
+    assert config in (base_config, source_config)
     registry = read('comments/cases.json')
     sys.path.insert(0, str(ROOT))
     from research_comments import registry_digest, prepare
@@ -121,7 +136,7 @@ def collect(base='origin/main'):
                       'master':len(read('data/mushroom-master.json')['entries']),
                       'sources':len(read('data/sources.json')['sources']), 'webp':len(artworks)},
             'published_hashes':{p:hashlib.sha256(git('show',f'origin/gh-pages:{p}')).hexdigest() for p in output_names},
-            'comments_enabled':False, 'pending':state['pending'], 'remote_mutations':[]}
+            'comments_enabled':config['enabled'], 'pending':state['pending'], 'remote_mutations':[]}
 
 if __name__ == '__main__':
     result = collect(sys.argv[2] if len(sys.argv)>2 else 'origin/main')
