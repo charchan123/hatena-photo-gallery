@@ -60,7 +60,7 @@ def assert_reviewed_source(base, path, current):
         assert pins['base_main'] == EXHIBITION_BASE
         assert set(pins['files']) == EXHIBITION_MODIFIED | EXHIBITION_NEW
         assert original == git('show', f'{EXHIBITION_BASE}:{path}'), f'Best Shot main advanced: {path}'
-        blob = b'blob ' + str(len(current)).encode('ascii') + b'\\0' + current
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
         assert hashlib.sha1(blob).hexdigest() == pins['files'][path], path
         return
     if path in POST_RECOVERY_FILES:
@@ -114,7 +114,7 @@ def collect(base='origin/main'):
     assert set(pins['files']) == EXHIBITION_MODIFIED | EXHIBITION_NEW
     for path in EXHIBITION_NEW:
         current = (ROOT / path).read_bytes()
-        blob = b'blob ' + str(len(current)).encode('ascii') + b'\\0' + current
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
         assert hashlib.sha1(blob).hexdigest() == pins['files'][path], path
     # Original runtime stays byte-for-byte equal except exact reviewed CPU pins.
     runtime = [p for p in git('ls-tree', '-rz', '--name-only', PR137, 'comments/staging').decode().split('\0') if p]
