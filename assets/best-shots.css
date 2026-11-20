@@ -28,7 +28,7 @@ body.best-shots-index { max-width:none; margin:0; padding:0; background:#f3f1eb;
   content:""; position:absolute; z-index:-1; pointer-events:none; top:-28px; left:-12%; width:124%; height:255px;
   background:radial-gradient(ellipse 46% 42% at 50% 36%,rgba(255,248,221,.19),rgba(255,249,228,.07) 58%,transparent 84%);
 }
-.best-shots-index .best-shot-stage { --exhibit-row-height:170px; height:calc(var(--exhibit-row-height) + 18px); display:flex; align-items:flex-end; justify-content:center; min-width:0; }
+.best-shots-index .best-shot-stage { --exhibit-row-height:180px; height:calc(var(--exhibit-row-height) + 18px); display:flex; align-items:flex-end; justify-content:center; min-width:0; }
 .best-shots-index .best-shot-photo {
   position:relative; display:block; flex:none; width:max-content; max-width:100%; padding:8px; margin:0;
   border:1px solid #616a64; background:#151918; box-shadow:0 9px 16px rgba(7,10,9,.43); text-decoration:none;
