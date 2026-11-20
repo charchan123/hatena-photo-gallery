@@ -34,25 +34,25 @@ function setup() {
   };
   let human = true,
     manifest = true,
-    network = false;
+    network = false,
+    manifestRedirect = false,
+    humanChecks = 0;
   const worker = createWorker({
     clock: () => now,
-    fetcher: async (url) => {
+    fetcher: async (url, options) => {
       if (network) throw Error("network");
-      return Response.json(
-        String(url).includes("siteverify")
-          ? {
-              success: human,
-              hostname: "charchan123.github.io",
-              action: "research_comment",
-              challenge_ts: new Date(now).toISOString(),
-            }
-          : {
-              version: 1,
-              registry_sha256: sha,
-              active_ids: manifest ? [id] : [],
-            },
-      );
+      if (String(url).includes("siteverify")) {
+        humanChecks++;
+        return Response.json({
+          success: human,
+          hostname: "charchan123.github.io",
+          action: "research_comment",
+          challenge_ts: new Date(now).toISOString(),
+        });
+      }
+      assert.equal(options.redirect, "manual", "Workers requires manual redirect handling");
+      if (manifestRedirect) return Response.redirect("https://other.example/cases.json");
+      return Response.json({version: 1, registry_sha256: sha, active_ids: manifest ? [id] : []});
     },
   });
   let ip = 0;
@@ -94,6 +94,8 @@ function setup() {
     packet,
     human: (v) => (human = v),
     manifest: (v) => (manifest = v),
+    manifestRedirect: (v) => (manifestRedirect = v),
+    humanChecks: () => humanChecks,
     network: (v) => (network = v),
   };
 }
@@ -213,6 +215,12 @@ test("Turnstile rejection/unavailability and stale case manifest do not insert",
   s.human(true);
   s.manifest(false);
   assert.equal((await s.post(s.packet())).status, 409);
+  s.manifestRedirect(true);
+  const redirect = await s.post(s.packet());
+  assert.equal(redirect.status, 503);
+  assert.equal(redirect.data.error, "CASE_REVIEW_REQUIRED");
+  assert.equal(s.humanChecks(), 1);
+  s.manifestRedirect(false);
   s.network(true);
   assert.equal((await s.post(s.packet())).status, 503);
   assert.equal(s.db.sql.prepare("SELECT count(*) n FROM comments").get().n, 0);

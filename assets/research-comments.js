@@ -326,7 +326,7 @@
           more.hidden = cursor === null;
           status.textContent = seen.size
             ? "同定の参考情報としてお読みください。"
-            : "まだコメントはありません。最初の発見をどうぞ。";
+            : "まだコメントはありません。気づいたことや同定のヒントがあれば、ぜひ教えてください。";
         } catch (e) {
           status.textContent = e.message;
         } finally {

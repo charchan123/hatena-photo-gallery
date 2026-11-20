@@ -21,6 +21,8 @@ RELEASE_FILES = {
 ACTIVITY_FILES = {'assets/research-comments.js',
                   'comments/worker.mjs', 'comments/tests/api.test.mjs', 'research_ui.py'}
 ACTIVITY_MAIN = 'dcd8d072bffa23495f7a1028a4636f3eb1f7ca70'
+POST_RECOVERY_MAIN = '5dc43d89b2d8b05afd3985b3d6515c8b7f8de48b'
+POST_RECOVERY_FILES = {'assets/research-comments.js', 'comments/worker.mjs', 'comments/tests/api.test.mjs'}
 PUBLIC_CONFIG = 'comments/public-config.json'
 PRODUCTION_ORIGIN = 'https://kinoko-research-comments.sasama-bb.workers.dev'
 RELEASE_ID = 'research-comments-production-20261120'
@@ -47,6 +49,12 @@ def assert_reviewed_source(base, path, current):
     original = git('show', f'{base}:{path}')
     if current == original:
         return
+    if path in POST_RECOVERY_FILES:
+        pins = json.loads((ROOT/'audit/comments-post-recovery-20261120/files.json').read_text(encoding='utf-8'))
+        assert pins['main'] == POST_RECOVERY_MAIN and set(pins['files']) == POST_RECOVERY_FILES
+        if hashlib.sha256(current).hexdigest() == pins['files'][path]:
+            assert_reviewed_source(base, path, git('show', f'{POST_RECOVERY_MAIN}:{path}'))
+            return
     if path == PUBLIC_CONFIG:
         config = json.loads(current)
         assert json.loads(original) == DISABLED_CONFIG or config == DISABLED_CONFIG

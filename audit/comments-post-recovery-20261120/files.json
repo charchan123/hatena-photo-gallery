@@ -1,0 +1,8 @@
+{
+  "main": "5dc43d89b2d8b05afd3985b3d6515c8b7f8de48b",
+  "files": {
+    "assets/research-comments.js": "abdccb03d5afe3adb24574e5a1e57927cd8bd15dd55bb08bace0921c3bc368eb",
+    "comments/worker.mjs": "ecb97742b08376284c0ba14b38c0e26847ee717a443ba90c6d7a9e0cfaf527c1",
+    "comments/tests/api.test.mjs": "28c897fea2786f5ae287a27a66ec338df2f9301c95a2a644d3273e90517daccd"
+  }
+}
