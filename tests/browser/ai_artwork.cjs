@@ -4,6 +4,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE_PATH||'playwright');
 const root=path.resolve(process.argv[2]),CH='https://charchan123.github.io';
 const manifest=JSON.parse(fs.readFileSync(path.join(__dirname,'../../audit/guide-image-refresh-20261102/artwork-manifest.json')));
 const old=new Set(Object.keys(manifest.replacements)),fresh=new Map(manifest.assets.map(a=>[a.asset,a]));
+const approvedExhibition=fs.existsSync(path.join(__dirname,'../../audit/best-shot-exhibition-20261121/files.json'));
 const star=fs.readFileSync(path.join(__dirname,'record_stars.cjs'),'utf8');
 const mock=vm.runInNewContext(star.slice(star.indexOf('const icons='),star.indexOf('const server='))+'\nmockSource');
 let browser,checks=0;const rows=[],errors=[],missing=[];const check=(v,m)=>{assert.ok(v,m);checks++};
@@ -54,7 +55,14 @@ const svg='<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600"><rec
     if([390,1280].includes(width))await p.screenshot({path:path.join(root,'screenshots',`${variant}-${width}-${file.replace('.html','')}.png`),fullPage:file!=='records.html'});
     await c.close();
    }
-   check(JSON.stringify(measurements[0].geometry)===JSON.stringify(measurements[1].geometry),`${file} ${width}: layout dimensions unchanged`);
+   if(approvedExhibition && /^best-shots(?:-\\d{4})?\\.html$/.test(file)){
+    // Only the explicitly approved exhibition pages may change layout.
+    // Keep the original artwork check, no overflow and no browser errors.
+    check(measurements[0].geometry.length===measurements[1].geometry.length,`${file} ${width}: same artwork-bearing elements`);
+    check(measurements[1].geometry.every(e=>e.w>0&&e.h>0),`${file} ${width}: valid exhibition geometry`);
+   }else{
+    check(JSON.stringify(measurements[0].geometry)===JSON.stringify(measurements[1].geometry),`${file} ${width}: layout dimensions unchanged`);
+   }
    rows.push({file,width,height,before:measurements[0],after:measurements[1]});
   }
  }
