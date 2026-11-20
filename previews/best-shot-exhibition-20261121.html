@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Best Shot 写真展示室｜独立デザインプレビュー（未公開）</title><style>
+:root{--paper:#f7f4ee;--ink:#262b27;--wall:#292e2c;--brass:#b59b67;--link:#285b47}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#f3f1eb;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}
+.preview-toolbar{display:flex;align-items:center;flex-wrap:wrap;justify-content:space-between;gap:10px;padding:12px 18px;background:#e8ede8;border-bottom:1px solid #cbd6cc;font-size:13px}
+.preview-toolbar span{font-weight:700}.preview-toolbar button{cursor:pointer;border:1px solid #9baa9b;border-radius:8px;background:white;color:#294831;padding:9px 14px;font:inherit}
+.preview-toolbar button[aria-pressed="true"]{background:#294831;color:white}
+.preview-shell{max-width:1180px;margin:26px auto 70px;padding:0 20px;transition:max-width .2s ease}
+.exhibit-hero{min-height:205px;position:relative;border-radius:16px 16px 0 0;overflow:hidden;background:linear-gradient(90deg,rgba(11,34,20,.78),rgba(11,34,20,.45) 48%,rgba(11,34,20,.10)),url("https://charchan123.github.io/hatena-photo-gallery/assets/ai-best-shots-20261031.webp") 72% center/cover no-repeat}
+.hero-copy{position:absolute;top:47%;left:5%;transform:translateY(-35%);color:white;text-shadow:0 2px 10px #0009}
+.hero-copy small{letter-spacing:.22em;font-weight:800}.hero-copy h1{font-size:clamp(24px,3vw,36px);margin:7px 0}.hero-copy p{font-size:14px}
+.exhibit-wall{overflow:hidden;background:radial-gradient(ellipse at 50% 0%,#454b47 0%,var(--wall) 48%,#232827 100%);padding:32px clamp(16px,3vw,44px) 48px;color:#efeee6;border-radius:0 0 16px 16px}
+.section-heading{border-bottom:1px solid #bba98a40;margin:0 0 25px;padding:0 0 15px}
+.section-heading small{color:#c5b28c;letter-spacing:.22em;font-size:11px}
+.section-heading h2{font:400 clamp(20px,2.4vw,27px)/1.35 "Yu Mincho","Hiragino Mincho ProN",serif;margin:8px 0}
+.section-heading p{color:#d1d0c6;font-size:12px;line-height:1.8;margin:0}
+.annual-section{text-align:center;margin:0 auto 40px;max-width:720px}
+.annual-section>h3{font-size:12px;letter-spacing:.12em;font-weight:600;color:#dac8a0;margin:0 0 18px}
+.exhibit-piece{min-width:0;position:relative;isolation:isolate;display:flex;flex-direction:column}
+.exhibit-piece::before{content:"";position:absolute;z-index:-1;left:-12%;right:-12%;top:-28px;height:260px;pointer-events:none;background:radial-gradient(ellipse at 50% 40%,rgba(255,248,221,.19),rgba(255,249,228,.07) 54%,transparent 84%)}
+.exhibit-stage{--row-photo-height:180px;height:calc(var(--row-photo-height) + 18px);display:flex;align-items:flex-end;justify-content:center}
+.exhibit-frame{padding:8px;background:#151918;border:1px solid #616a64;box-shadow:0 8px 19px #070a0970;max-width:100%;width:max-content}
+.exhibit-photo,.exhibit-photo img{display:block}
+.exhibit-photo img{height:var(--row-photo-height);width:auto;max-width:100%;object-fit:contain}
+.exhibit-photo:focus-visible{outline:3px solid #dbbe83;outline-offset:4px}
+.exhibit-plate{display:flex;flex-direction:column;flex:1;align-items:stretch;width:96%;margin:12px auto 0;padding:14px 16px;background:var(--paper);color:var(--ink);text-align:left;border-left:3px solid var(--brass);box-shadow:0 6px 16px #04070455;overflow-wrap:anywhere}
+.exhibit-number{font-size:10px;letter-spacing:.16em;color:#967f56;margin-bottom:7px}
+.best-shot-card__body{display:flex;flex-direction:column;flex:1}
+.best-shot-card__body h3{font:600 19px/1.45 "Yu Mincho","Hiragino Mincho ProN",serif;letter-spacing:.04em;margin:0 0 8px}
+.best-shot-meta{margin:3px 0;color:#626964;font-size:12px;line-height:1.75}
+.best-shot-comment{padding-top:10px;margin:11px 0 12px;border-top:1px solid #e0ded7;font-size:12px;line-height:1.8;white-space:pre-wrap;flex:1}
+.best-shot-article{display:block;margin-top:auto;padding-top:9px;color:var(--link);font-size:12px;text-decoration:underline;text-underline-offset:3px;font-weight:700}
+.best-shot-badge{align-self:flex-start;background:#eee3c3;border:1px solid #d9c89d;border-radius:16px;padding:4px 9px;margin-bottom:9px;color:#69562d;font-size:11px}
+.exhibit-piece--annual{max-width:660px;margin:auto}
+.exhibit-piece--annual .exhibit-stage{height:auto;display:block}
+.exhibit-piece--annual .exhibit-frame{width:100%;margin:0 auto}
+.exhibit-piece--annual .exhibit-photo img{width:100%;height:auto;max-width:100%}
+.exhibit-piece--annual .exhibit-plate{max-width:94%}
+.month-heading{margin:34px 0 20px;font:400 21px "Yu Mincho","Hiragino Mincho ProN",serif;color:#e9e7df;border-bottom:1px solid #bba98a40;padding-bottom:10px}
+.exhibit-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:38px 28px;align-items:stretch}
+.exhibit-footer{margin:35px 0 0;padding-top:18px;border-top:1px solid #bba98a40;color:#c9c9be;font-size:12px;line-height:1.8;text-align:center}
+.exhibit-footer a{color:#e4ce9e}
+@media(max-width:700px){
+  .preview-shell{padding:0 10px;margin:12px auto 30px}
+  .exhibit-hero{min-height:175px}
+  .hero-copy{left:20px;top:50%;right:12px}
+  .hero-copy h1{font-size:25px}
+  .hero-copy p{font-size:12px}
+  .exhibit-wall{padding:25px 15px 36px}
+  .exhibit-grid{grid-template-columns:1fr;gap:30px}
+  .exhibit-stage{height:auto!important;display:block}
+  .exhibit-frame{width:100%;max-width:100%}
+  .exhibit-photo img{width:100%;height:auto!important;max-height:none}
+  .exhibit-plate{width:97%;padding:13px}
+}
+body.preview-mobile .preview-shell{max-width:390px;padding:0 10px}
+body.preview-mobile .exhibit-hero{min-height:170px}
+body.preview-mobile .hero-copy{left:18px}
+body.preview-mobile .hero-copy h1{font-size:24px}
+body.preview-mobile .hero-copy p{font-size:12px}
+body.preview-mobile .exhibit-wall{padding:23px 13px}
+body.preview-mobile .exhibit-grid{grid-template-columns:1fr;gap:28px}
+body.preview-mobile .exhibit-stage{height:auto!important;display:block}
+body.preview-mobile .exhibit-frame{width:100%}
+body.preview-mobile .exhibit-photo img{width:100%;height:auto!important;max-height:none}
+body.preview-mobile .exhibit-plate{width:97%;padding:13px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.preview-shell{transition:none}}
+</style></head>
+<body>
+<div class="preview-toolbar"><span>Best Shot 写真展示室｜デザイン確認用（本番未反映）</span><div><button id="mode-pc" type="button" aria-pressed="true">PC版</button> <button id="mode-mobile" type="button" aria-pressed="false">スマホ版（390px）</button></div></div>
+<div class="preview-shell">
+<header class="exhibit-hero"><div class="hero-copy"><small>BEST SHOTS</small><h1>ベストショット</h1><p>キノコ探索の中で出会った、とっておきの写真を集めました。</p></div></header>
+<main class="exhibit-wall">
+  <header class="section-heading"><small>PERMANENT EXHIBITION</small><h2>森で出会った、一瞬の作品</h2><p>2025年のベストショット · 写真を開くと元画像を表示</p></header>
+  <section class="annual-section"><h3>✦ 2025年 年間ベストショット ✦</h3><article class="exhibit-piece exhibit-piece--annual" data-selection-id="best-2025-10-benitengutake-02">
+  <div class="exhibit-stage"><div class="exhibit-frame"><a class="exhibit-photo" href="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261004/20261004221847.jpg" target="_blank" rel="noopener noreferrer" title="写真を元の大きさで表示"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261004/20261004221847.jpg" alt="ベニテングタケ" loading="eager"></a></div></div>
+  <div class="exhibit-plate"><span class="exhibit-number">SPECIAL EXHIBIT · NO. 01</span>
+   <span class="best-shot-badge">🏆 年間ベスト</span><h3>ベニテングタケ</h3>
+    <p class="best-shot-meta">撮影日：2025年10月5日</p><p class="best-shot-meta">場所：富士山(山梨県)</p>
+    <p class="best-shot-comment">新規開拓をしたところ、富士山では貴重な赤色がメインの傘をしたこの個体を発見。これだから新規開拓はやめられない。</p><a class="best-shot-article" href="https://exsudoporus-ruber.hatenablog.jp/entry/2025/10/05/231736" target="_top" title="2025年10月5日　富士山(山梨県)">この日の観察記録を見る</a>
+  
+  </div></article></section>
+  <section class="month-section"><h2 class="month-heading">11月の展示</h2><div class="exhibit-grid">
+    <article class="exhibit-piece" data-selection-id="best-1791809978741">
+  <div class="exhibit-stage"><div class="exhibit-frame"><a class="exhibit-photo" href="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103233126.jpg" target="_blank" rel="noopener noreferrer" title="写真を元の大きさで表示"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103233126.jpg" alt="センニンタケ" loading="lazy"></a></div></div>
+  <div class="exhibit-plate"><span class="exhibit-number">EXHIBIT · NO. 02</span>
+   <h3>センニンタケ</h3>
+    <p class="best-shot-meta">撮影日：2025年11月1日</p><p class="best-shot-meta">場所：静岡県沼津市</p>
+    <p class="best-shot-comment">撮影当初は、上手くアングルが決められず苦労したが開き直って適当に横にあった倒木をまたいで三脚をセットした所、良い感じのアングルになってくれた。</p><a class="best-shot-article" href="https://exsudoporus-ruber.hatenablog.jp/entry/2025/11/04/001435" target="_top" title="2025年11月1日　静岡県沼津市">この日の観察記録を見る</a>
+  
+  </div></article><article class="exhibit-piece" data-selection-id="best-1791810041879">
+  <div class="exhibit-stage"><div class="exhibit-frame"><a class="exhibit-photo" href="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103231007.jpg" target="_blank" rel="noopener noreferrer" title="写真を元の大きさで表示"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103231007.jpg" alt="ウラベニホテイシメジ" loading="lazy"></a></div></div>
+  <div class="exhibit-plate"><span class="exhibit-number">EXHIBIT · NO. 03</span>
+   <h3>ウラベニホテイシメジ</h3>
+    <p class="best-shot-meta">撮影日：2025年11月1日</p><p class="best-shot-meta">場所：静岡県沼津市</p>
+    <p class="best-shot-comment">11月初めという時期に9月の末から発生する本種がいい状態でまだ発生していた。</p><a class="best-shot-article" href="https://exsudoporus-ruber.hatenablog.jp/entry/2025/11/04/001435" target="_top" title="2025年11月1日　静岡県沼津市">この日の観察記録を見る</a>
+  
+  </div></article><article class="exhibit-piece" data-selection-id="best-1791810118964">
+  <div class="exhibit-stage"><div class="exhibit-frame"><a class="exhibit-photo" href="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251115/20251115003742.jpg" target="_blank" rel="noopener noreferrer" title="写真を元の大きさで表示"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251115/20251115003742.jpg" alt="ヒラタケ" loading="lazy"></a></div></div>
+  <div class="exhibit-plate"><span class="exhibit-number">EXHIBIT · NO. 04</span>
+   <h3>ヒラタケ</h3>
+    <p class="best-shot-meta">撮影日：2025年11月8日</p><p class="best-shot-meta">場所：静岡県掛川市</p>
+    <p class="best-shot-comment">11月上旬というキノコシーズン終了間近に歴代で1、2位を争う(とは言っても写真歴1年)最高の被写体がボコボコと切り株に株を成していた。</p><a class="best-shot-article" href="https://exsudoporus-ruber.hatenablog.jp/entry/2025/11/14/230510" target="_top" title="2025年11月8日　静岡県掛川市〜浜松市">この日の観察記録を見る</a>
+  
+  </div></article><article class="exhibit-piece" data-selection-id="best-2025-05-kiiro-suppontake-03">
+  <div class="exhibit-stage"><div class="exhibit-frame"><a class="exhibit-photo" href="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525195533.jpg" target="_blank" rel="noopener noreferrer" title="写真を元の大きさで表示"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250525/20250525195533.jpg" alt="キイロスッポンタケ" loading="lazy"></a></div></div>
+  <div class="exhibit-plate"><span class="exhibit-number">EXHIBIT · NO. 05</span>
+   <h3>キイロスッポンタケ</h3>
+    <p class="best-shot-meta">撮影日：2025年5月24日</p><p class="best-shot-meta">場所：富士山(静岡県)</p>
+    <p class="best-shot-comment">色がとても鮮やかで見ていて楽しいキノコ</p><a class="best-shot-article" href="https://exsudoporus-ruber.hatenablog.jp/entry/2025/05/25/205946" target="_top" title="2025年5月24日　富士山(静岡県)">この日の観察記録を見る</a>
+  
+  </div></article>
+  </div></section>
+  <footer class="exhibit-footer">実際のBest Shot登録写真・撮影情報・撮影者コメント・観察記録リンクを使用。写真自体には加工・切り抜きなし。<br>本ファイルは独立プレビューです。既存LightGalleryや本番生成コードへの組み込みはデザイン承認後に行います。<br><a href="https://charchan123.github.io/hatena-photo-gallery/best-shots-2025.html" target="_blank" rel="noopener">現在公開中の2025年Best Shotを見る</a></footer>
+</main></div><script>
+(() => {
+ const mobileButton=document.getElementById('mode-mobile'),pcButton=document.getElementById('mode-pc');
+ function mode(mobile){document.body.classList.toggle('preview-mobile',mobile);mobileButton.setAttribute('aria-pressed',String(mobile));pcButton.setAttribute('aria-pressed',String(!mobile));requestAnimationFrame(sync);}
+ mobileButton.addEventListener('click',()=>mode(true));
+ pcButton.addEventListener('click',()=>mode(false));
+ function sync(){
+  const narrow=window.innerWidth<=700||document.body.classList.contains('preview-mobile');
+  for(const grid of document.querySelectorAll('.exhibit-grid')){
+   const cards=[...grid.querySelectorAll('.exhibit-piece')];
+   for(let i=0;i<cards.length;i+=2){
+    const pair=cards.slice(i,i+2);
+    if(narrow){pair.forEach(card=>card.querySelector('.exhibit-stage').style.removeProperty('--row-photo-height'));continue;}
+    const desired=Math.min(240,Math.max(140,window.innerWidth*.18));
+    let h=desired;
+    for(const card of pair){
+     const img=card.querySelector('img'),stage=card.querySelector('.exhibit-stage');
+     if(img.naturalWidth&&img.naturalHeight){h=Math.min(h,Math.max(1,(stage.clientWidth-20)*img.naturalHeight/img.naturalWidth));}
+    }
+    for(const card of pair)card.querySelector('.exhibit-stage').style.setProperty('--row-photo-height',Math.floor(h)+'px');
+   }
+  }
+ }
+ let pending=false;
+ function schedule(){if(!pending){pending=true;requestAnimationFrame(()=>{pending=false;sync();});}}
+ window.addEventListener('resize',schedule);
+ for(const img of document.querySelectorAll('.exhibit-grid img'))img.addEventListener('load',schedule);
+ if('ResizeObserver'in window)new ResizeObserver(schedule).observe(document.querySelector('.exhibit-wall'));
+ schedule();
+})();
+</script></body></html>
