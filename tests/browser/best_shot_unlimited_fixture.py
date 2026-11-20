@@ -81,7 +81,7 @@ def presentation_independent_content(document):
         })
     return {
         'cards': cards,
-        'months': [re.search(r'\\d+月', h.get_text()).group()
+        'months': [re.search(r'\d+月', h.get_text()).group()
                    for h in soup.select('.best-shot-month > h2')],
         'annual': [c['data-selection-id'] for c in soup.select('.annual-best .best-shot-card')],
         'archives': [(a['href'], a.get_text()) for a in soup.select('.best-shots-archive a')],
