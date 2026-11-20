@@ -32,8 +32,15 @@ const svg='<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600"><rec
      return route.abort();
     });
     const p=await c.newPage();p.on('pageerror',e=>errors.push({file,variant,message:e.message}));
-    await p.goto(CH+'/hatena-photo-gallery/'+encodeURIComponent(file),{waitUntil:'load'});await p.waitForTimeout(200);
+    await p.goto(CH+'/hatena-photo-gallery/'+encodeURIComponent(file),{waitUntil:'load'});
     await p.evaluate(()=>document.fonts.ready);
+    if(file==='new-top.html'){
+      // Wait for the same responsive mode in both isolated browsers.
+      // A late portal-column update can otherwise create a false regression.
+      await p.waitForFunction(w=>document.documentElement.dataset.portalColumns===(w>=900?'2':'1'),width);
+    }
+    await p.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+    await p.waitForTimeout(200);
     const result=await p.evaluate(()=>{
      const selectors='.portal-records-visual,.portal-section-visual,.portal-card__visual,.guide-hero,.guide-way,.records-hero,.season-hero,.feature-hero,.research-hero,.best-shots-hero,.favorite-hero,.aiuo-hero,.detail-hero';
      const elements=[...document.querySelectorAll(selectors)];
@@ -61,7 +68,13 @@ const svg='<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600"><rec
     check(measurements[0].geometry.length===measurements[1].geometry.length,`${file} ${width}: same artwork-bearing elements`);
     check(measurements[1].geometry.every(e=>e.w>0&&e.h>0),`${file} ${width}: valid exhibition geometry`);
    }else{
-    check(JSON.stringify(measurements[0].geometry)===JSON.stringify(measurements[1].geometry),`${file} ${width}: layout dimensions unchanged`);
+    const equalGeometry=JSON.stringify(measurements[0].geometry)===JSON.stringify(measurements[1].geometry);
+    if(!equalGeometry){
+      const differences=measurements[1].geometry.map((after,i)=>({before:measurements[0].geometry[i],after}))
+        .filter(row=>JSON.stringify(row.before)!==JSON.stringify(row.after));
+      console.error('UNEXPECTED_GEOMETRY_DIFF',JSON.stringify({file,width,height,differences}));
+    }
+    check(equalGeometry,`${file} ${width}: layout dimensions unchanged`);
    }
    rows.push({file,width,height,before:measurements[0],after:measurements[1]});
   }
