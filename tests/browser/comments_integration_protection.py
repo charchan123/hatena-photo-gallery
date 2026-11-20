@@ -27,6 +27,12 @@ POST_RECOVERY_FILES = {'assets/research-comments.js', 'comments/worker.mjs', 'co
 EXHIBITION_BASE = '90fbdeb761abe217db7179e87d0fcf13a44b2b0b'
 EXHIBITION_MODIFIED = {'best_shot_ui.py', 'assets/best-shots.css'}
 EXHIBITION_NEW = {'assets/best-shot-exhibition.js', 'previews/best-shot-exhibition-20261121.html'}
+TAXONOMY_LINKS = {
+    'ヤマドリタケモドキ': 'yamadoritakemodoki',
+    'シイタケ': 'shiitake',
+    'ベニテングタケ': 'benitengutake',
+    'ドクヤマドリ': 'dokuyamadori',
+}
 PUBLIC_CONFIG = 'comments/public-config.json'
 PRODUCTION_ORIGIN = 'https://kinoko-research-comments.sasama-bb.workers.dev'
 RELEASE_ID = 'research-comments-production-20261120'
@@ -52,6 +58,18 @@ def assert_reviewed_source(base, path, current):
     """Never hide a main change behind the old PR's allowance."""
     original = git('show', f'{base}:{path}')
     if current == original:
+        return
+    if path == 'data/subject-taxonomy.json':
+        expected = json.loads(original)
+        linked = set()
+        for entry in expected['entries']:
+            name = entry['canonical_name']
+            if name in TAXONOMY_LINKS:
+                assert entry['subject_type'] == 'mushroom' and 'mushroom_master_id' not in entry, name
+                entry['mushroom_master_id'] = TAXONOMY_LINKS[name]
+                linked.add(name)
+        assert linked == TAXONOMY_LINKS.keys(), path
+        assert current == (json.dumps(expected, ensure_ascii=False, indent=2) + '\n').encode('utf-8'), path
         return
     if path in EXHIBITION_MODIFIED:
         # Exception only for this Best Shot draft's exact Git blobs.

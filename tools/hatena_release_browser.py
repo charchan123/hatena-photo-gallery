@@ -218,16 +218,27 @@ with sync_playwright() as pw:
             }).every(e=>e.complete&&e.naturalWidth>0)''')
             check(not p.evaluate("document.documentElement.scrollWidth>innerWidth+1"),name+str(width))
             if name.startswith('best-shots'):
-                mounts=p.locator('.best-shot-grid .best-shot-photo').evaluate_all('els=>els.map(e=>{const r=e.getBoundingClientRect();return {width:r.width,height:r.height,ratio:getComputedStyle(e).aspectRatio,fit:getComputedStyle(e.querySelector("img")).objectFit}})')
-                for mount in mounts:
-                    check(mount['fit']=='contain','Best Shot whole photograph retained')
-                    if width>680:check(abs(mount['width']/mount['height']-4/3)<.01,'Best Shot desktop shared 4:3 mount')
-                    else:check(mount['ratio']=='auto','Best Shot mobile intrinsic ratio')
-                if width>680:
-                    for grid in p.locator('.best-shot-grid').all():
-                        titles=grid.locator('.best-shot-card__body h3')
-                        if titles.count()>1:
-                            check(abs(titles.nth(0).bounding_box()['y']-titles.nth(1).bounding_box()['y'])<1,'Best Shot first-row captions aligned')
+                photos='.best-shot-grid .best-shot-photo img'
+                p.locator(photos).evaluate_all("images => images.forEach(img => { img.loading = 'eager'; })")
+                p.wait_for_function("(selector) => [...document.querySelectorAll(selector)].every(img => img.complete && img.naturalWidth > 0)", arg=photos)
+                p.evaluate("() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))")
+                grids=p.locator('.best-shot-grid').evaluate_all('''grids => grids.map(grid =>
+                    [...grid.querySelectorAll(':scope > .best-shot-card')].map(card => {
+                        const img=card.querySelector('.best-shot-photo img');
+                        const box=img.getBoundingClientRect();
+                        const title=card.querySelector('.best-shot-card__body h3').getBoundingClientRect();
+                        return {width:box.width,height:box.height,bottom:box.bottom,title: title.top,
+                                ratio:img.naturalWidth/img.naturalHeight,fit:getComputedStyle(img).objectFit};
+                    }))''')
+                for cards in grids:
+                    for photo in cards:
+                        check(photo['fit']=='contain','Best Shot whole photograph retained')
+                        check(abs(photo['width']-photo['height']*photo['ratio'])<2,'Best Shot natural image ratio')
+                    if width>700:
+                        for left,right in zip(cards[::2],cards[1::2]):
+                            check(abs(left['height']-right['height'])<1,'Best Shot desktop row image heights aligned')
+                            check(abs(left['bottom']-right['bottom'])<1,'Best Shot desktop row image bottoms aligned')
+                            check(abs(left['title']-right['title'])<1,'Best Shot desktop row captions aligned')
             p.screenshot(path=str(evidence/f'child-{name[:-5]}-{width}.jpg'),type='jpeg',quality=65);c.close()
     check(not blocked,'no external mutation attempted')
     browser.close()
