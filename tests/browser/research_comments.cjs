@@ -404,6 +404,19 @@ async function stop() {
   check((await thread.locator(".comment").count()) === visibleBeforeFailure,
     "failed refresh preserves already visible comments");
   await page.screenshot({ path: path.join(out, "api-error.png") });
+  await context.request.post(api + "/__test/fail", { data: { fail: false } });
+  await page.setViewportSize({ width: 360, height: 800 });
+  const emptyThread = page.locator(`[data-research-thread]:not([data-research-thread="${info.caseId}"])`).first();
+  await emptyThread.locator("summary").click();
+  const emptyMessage = emptyThread.getByText(
+    "まだコメントはありません。気づいたことや同定のヒントがあれば、ぜひ教えてください。", { exact: true },
+  );
+  await emptyMessage.waitFor({ state: "visible" });
+  check(await emptyMessage.evaluate(element => {
+    const text = document.createRange();
+    text.selectNodeContents(element);
+    return text.getClientRects().length > 1 && element.scrollWidth <= element.clientWidth + 1;
+  }), "empty comments guidance wraps on a narrow phone");
   fs.writeFileSync(
     path.join(out, "result.json"),
     JSON.stringify(

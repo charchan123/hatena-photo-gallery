@@ -240,7 +240,7 @@ async function productionManifest(fetcher, env) {
     fail("MANIFEST_CONFIGURATION", 503);
   const r = await fetcher(u.href, {
     signal: AbortSignal.timeout(3000),
-    redirect: "error",
+    redirect: "manual",
   });
   if (!r.ok) fail("CASE_REVIEW_REQUIRED", 503);
   return r.json();
