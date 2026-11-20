@@ -23,6 +23,10 @@ ACTIVITY_FILES = {'assets/research-comments.js',
 ACTIVITY_MAIN = 'dcd8d072bffa23495f7a1028a4636f3eb1f7ca70'
 POST_RECOVERY_MAIN = '5dc43d89b2d8b05afd3985b3d6515c8b7f8de48b'
 POST_RECOVERY_FILES = {'assets/research-comments.js', 'comments/worker.mjs', 'comments/tests/api.test.mjs'}
+# Independent Best Shot design PR. No comment/Worker file is exempted.
+EXHIBITION_BASE = '90fbdeb761abe217db7179e87d0fcf13a44b2b0b'
+EXHIBITION_MODIFIED = {'best_shot_ui.py', 'assets/best-shots.css'}
+EXHIBITION_NEW = {'assets/best-shot-exhibition.js', 'previews/best-shot-exhibition-20261121.html'}
 PUBLIC_CONFIG = 'comments/public-config.json'
 PRODUCTION_ORIGIN = 'https://kinoko-research-comments.sasama-bb.workers.dev'
 RELEASE_ID = 'research-comments-production-20261120'
@@ -48,6 +52,16 @@ def assert_reviewed_source(base, path, current):
     """Never hide a main change behind the old PR's allowance."""
     original = git('show', f'{base}:{path}')
     if current == original:
+        return
+    if path in EXHIBITION_MODIFIED:
+        # Exception only for this Best Shot draft's exact Git blobs.
+        # The baseline must be unchanged and all non-Best-Shot sources stay pinned.
+        pins = json.loads((ROOT/'audit/best-shot-exhibition-20261121/files.json').read_text(encoding='utf-8'))
+        assert pins['base_main'] == EXHIBITION_BASE
+        assert set(pins['files']) == EXHIBITION_MODIFIED | EXHIBITION_NEW
+        assert original == git('show', f'{EXHIBITION_BASE}:{path}'), f'Best Shot main advanced: {path}'
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
+        assert hashlib.sha1(blob).hexdigest() == pins['files'][path], path
         return
     if path in POST_RECOVERY_FILES:
         pins = json.loads((ROOT/'audit/comments-post-recovery-20261120/files.json').read_text(encoding='utf-8'))
@@ -94,6 +108,14 @@ def collect(base='origin/main'):
         content = (ROOT / path).read_bytes()
         assert_reviewed_source(base, path, content)
         hashes[path] = hashlib.sha256(content).hexdigest()
+    # Newly added exhibit assets are not in the baseline tree: pin explicitly.
+    pins = json.loads((ROOT/'audit/best-shot-exhibition-20261121/files.json').read_text(encoding='utf-8'))
+    assert pins['base_main'] == EXHIBITION_BASE
+    assert set(pins['files']) == EXHIBITION_MODIFIED | EXHIBITION_NEW
+    for path in EXHIBITION_NEW:
+        current = (ROOT / path).read_bytes()
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
+        assert hashlib.sha1(blob).hexdigest() == pins['files'][path], path
     # Original runtime stays byte-for-byte equal except exact reviewed CPU pins.
     runtime = [p for p in git('ls-tree', '-rz', '--name-only', PR137, 'comments/staging').decode().split('\0') if p]
     runtime += ['comments/package.json', 'comments/package-lock.json']

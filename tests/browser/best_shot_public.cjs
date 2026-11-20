@@ -41,8 +41,8 @@ const server=http.createServer((req,res)=>{
   for(const c of summary.cases){
    await page.goto(`${base}/month-${c.count}/best-shots.html`);await ready();
    const month=page.locator('.best-shot-month').first(),cards=month.locator('.best-shot-card');
-   check(await month.locator('h2').innerText(),'10月');check(await cards.count(),c.count);check(await cards.evaluateAll(es=>es.map(e=>e.dataset.selectionId)),c.ordered_ids);
-   check(await page.locator('.best-shot-month').nth(1).locator('h2').innerText(),'9月');
+   check((await month.locator('h2').innerText()).replace('の展示',''),'10月');check(await cards.count(),c.count);check(await cards.evaluateAll(es=>es.map(e=>e.dataset.selectionId)),c.ordered_ids);
+   check((await page.locator('.best-shot-month').nth(1).locator('h2').innerText()).replace('の展示',''),'9月');
    check(await page.locator('.annual-best [data-selection-id]').getAttribute('data-selection-id'),c.annual);
    check(await month.locator('.best-shot-grid').evaluate(e=>getComputedStyle(e).gridTemplateColumns.split(' ').length),width===1280?2:1);
    const rects=await cards.evaluateAll(es=>es.map(e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,right:r.right,bottom:r.bottom}}));
