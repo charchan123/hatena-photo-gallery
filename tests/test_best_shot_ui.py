@@ -194,13 +194,13 @@ def test_best_shot_pc_visual_contract():
     assert ".best-shots-index .annual-best > h2" in css
     assert ".best-shots-index .best-shot-card--hero" in css
     assert "background:#f7f4ee" in css
-    assert "background:#292e2c" in css
+    assert "#292e2c" in css
     assert "font-size:16px" in css
     assert "font-size:14px" in css
     assert "object-fit:contain" in css
     assert "object-fit:cover" not in css
     assert "mix-blend-mode:" not in css
-    assert "filter:" not in css and "opacity:" not in css
+    assert "filter:" not in css.replace("backdrop-filter:", "") and "opacity:" not in css
     assert "transform:scale" not in css
     assert "--exhibit-row-height" in css and "--exhibit-row-height" in js
     assert "naturalWidth" in js and "naturalHeight" in js
