@@ -62,9 +62,50 @@ def comparable_before(document):
     return re.sub(r'>\s+<', '><', move_monthly_badges_only(document))
 
 
-assert comparable_before(before.render_best_shot_page(old_model)) == without_shared_gallery_additions(current.render_best_shot_page(baseline_model))
-for old, new in zip(old_model['years'], baseline_model['years']):
-    assert comparable_before(before.render_best_shot_year_page(old)) == without_shared_gallery_additions(current.render_best_shot_year_page(new))
+def presentation_independent_content(document):
+    """Protect every selection, source photo, caption, link and monthly grouping."""
+    soup = BeautifulSoup(document, 'html.parser')
+    cards = []
+    for card in soup.select('.best-shot-card'):
+        photo = card.select_one('a.best-shot-photo')
+        image = photo.select_one('img')
+        article = card.select_one('a.best-shot-article')
+        cards.append({
+            'selection_id': card['data-selection-id'],
+            'photo_href': photo['href'], 'image_src': image['src'],
+            'image_alt': image['alt'], 'name': card.select_one('h3').get_text(),
+            'meta': [p.get_text() for p in card.select('.best-shot-meta')],
+            'comment': card.select_one('.best-shot-comment').get_text(),
+            'article': None if article is None else (article['href'], article.get('title'), article.get_text()),
+            'annual_badge': bool(card.select_one('.best-shot-badge')),
+        })
+    return {
+        'cards': cards,
+        'months': [re.search(r'\\d+月', h.get_text()).group()
+                   for h in soup.select('.best-shot-month > h2')],
+        'annual': [c['data-selection-id'] for c in soup.select('.annual-best .best-shot-card')],
+        'archives': [(a['href'], a.get_text()) for a in soup.select('.best-shots-archive a')],
+    }
+
+
+exhibition_pin = Path('audit/best-shot-exhibition-20261121/files.json')
+if exhibition_pin.is_file():
+    pins = json.loads(exhibition_pin.read_text())
+    assert pins['base_main'] == '90fbdeb761abe217db7179e87d0fcf13a44b2b0b'
+    assert set(pins['files']) == {
+        'best_shot_ui.py', 'assets/best-shots.css',
+        'assets/best-shot-exhibition.js', 'previews/best-shot-exhibition-20261121.html'
+    }
+    renderer_bytes = Path('best_shot_ui.py').read_bytes()
+    blob = b'blob ' + str(len(renderer_bytes)).encode('ascii') + b'\0' + renderer_bytes
+    assert hashlib.sha1(blob).hexdigest() == pins['files']['best_shot_ui.py']
+    assert presentation_independent_content(before.render_best_shot_page(old_model)) == presentation_independent_content(current.render_best_shot_page(baseline_model))
+    for old, new in zip(old_model['years'], baseline_model['years']):
+        assert presentation_independent_content(before.render_best_shot_year_page(old)) == presentation_independent_content(current.render_best_shot_year_page(new))
+else:
+    assert comparable_before(before.render_best_shot_page(old_model)) == without_shared_gallery_additions(current.render_best_shot_page(baseline_model))
+    for old, new in zip(old_model['years'], baseline_model['years']):
+        assert comparable_before(before.render_best_shot_year_page(old)) == without_shared_gallery_additions(current.render_best_shot_year_page(new))
 
 # Independently validate the actual PR configuration with the current code.
 config = json.loads(Path('data/best-shots.json').read_text())
@@ -132,6 +173,6 @@ summary = {'baseline': BASELINE, 'published_ref': subprocess.check_output(['git'
            'selection_ids': [e['selection_id'] for e in config['entries']], 'annual_best': config['annual_best'],
            'selected_years': [y['year'] for y in new_model['years']],
            'config_sha256': hashlib.sha256(Path('data/best-shots.json').read_bytes()).hexdigest(),
-           'published_model_identical': True, 'published_html_change_only': 'monthly_badge_moved_into_photo_link', 'cached_public_thumbnails': len(photos), 'cases': cases}
+           'published_model_identical': True, 'published_html_change_only': ('approved_exhibition_layout_preserving_all_content' if exhibition_pin.is_file() else 'monthly_badge_moved_into_photo_link'), 'cached_public_thumbnails': len(photos), 'cases': cases}
 (root / 'summary.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2))
-print('PASS: historical Best Shot model/HTML unchanged; current selections and isolated month cases 1/3/4/10/30/35 generated')
+print('PASS: historical Best Shot data, images, comments and links preserved; isolated month cases 1/3/4/10/30/35 generated')
