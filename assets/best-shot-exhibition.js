@@ -16,7 +16,7 @@
         for (const card of cards) card.querySelector(".best-shot-stage")?.style.removeProperty("--exhibit-row-height");
         continue;
       }
-      const target = Math.min(215, Math.max(150, window.innerWidth * .17));
+      const target = Math.min(240, Math.max(140, window.innerWidth * .18));
       for (let i = 0; i < cards.length; i += 2) {
         const row = cards.slice(i, i + 2);
         let height = target;
