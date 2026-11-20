@@ -255,7 +255,8 @@ def _http_url(value):
         return False
 
 
-def _card(entry, hero=False):
+def _card(entry, hero=False, exhibit_number=1):
+    """Render the same curated data as a museum exhibit without changing IDs."""
     esc = lambda value, quote=False: html.escape(str(value), quote=quote)
     src = esc(entry["src"], True)
     name = esc(entry["gallery_name"])
@@ -273,9 +274,13 @@ def _card(entry, hero=False):
                + location + (f"<p>{esc(comment)}</p>" if comment else "") + badge)
     photo_badge = badge if not hero else ""
     body_badge = badge if hero else ""
+    number = f'{"SPECIAL EXHIBIT" if hero else "EXHIBIT"} · NO. {exhibit_number:02d}'
     return f'''<article class="{classes}" data-selection-id="{esc(entry['selection_id'], True)}">
-  <a class="best-shot-photo" href="{src}" target="_top" data-sub-html="{esc(caption, True)}">{photo_badge}<img src="{src}" alt="{name}" loading="lazy"></a>
-  <div class="best-shot-card__body">{body_badge}<h3>{name}</h3>
+  <div class="best-shot-stage">
+    <a class="best-shot-photo" href="{src}" target="_top" data-sub-html="{esc(caption, True)}">{photo_badge}<img src="{src}" alt="{name}" loading="lazy"></a>
+  </div>
+  <div class="best-shot-card__body">
+    <span class="best-shot-exhibit-number">{number}</span>{body_badge}<h3>{name}</h3>
     <p class="best-shot-meta">撮影日：{captured.year}年{captured.month}月{captured.day}日</p>{location}
     <p class="best-shot-comment">{esc(comment)}</p>{article}
   </div>
@@ -285,12 +290,15 @@ def _card(entry, hero=False):
 def _year_content(year_model):
     annual = ""
     if year_model["annual_best"]:
-        annual = (f'<section class="annual-best"><h2>🏆 {year_model["year"]}年 年間ベストショット</h2>'
-                  f'{_card(year_model["annual_best"], hero=True)}</section>')
+        annual = (f'<section class="annual-best"><h2>✦ {year_model["year"]}年 年間ベストショット ✦</h2>'
+                  f'{_card(year_model["annual_best"], hero=True, exhibit_number=1)}</section>')
     months = []
+    number = 2 if year_model["annual_best"] else 1
     for month in year_model["months"]:
-        cards = "".join(_card(entry) for entry in month["entries"])
-        months.append(f'<section class="best-shot-month"><h2>{month["month"]}月</h2><div class="best-shot-grid">{cards}</div></section>')
+        cards = "".join(_card(entry, exhibit_number=number + index)
+                        for index, entry in enumerate(month["entries"]))
+        number += len(month["entries"])
+        months.append(f'<section class="best-shot-month"><h2>{month["month"]}月の展示</h2><div class="best-shot-grid">{cards}</div></section>')
     return annual + "".join(months)
 
 
@@ -305,6 +313,7 @@ def _document(title, body):
 <link rel="stylesheet" href="assets/best-shots.css">
 {BEST_SHOT_LIGHTGALLERY_TAGS}
 <script src="assets/gallery.js" defer></script>
+<script src="assets/best-shot-exhibition.js" defer></script>
 </head>
 <body class="best-shots-index">
 <main id="gallery-content-root" class="best-shots-page">{body}</main>
@@ -332,7 +341,7 @@ def render_best_shot_page(model):
     """Render the landing page with the latest selected capture year, if any."""
     header = _best_shots_hero(
         "ベストショット",
-        "キノコ探索の中で出会った、とっておきの写真を集めました。",
+        "これまで撮影したキノコの中から、特に気に入っている写真を選びました。",
     )
     if not model["years"]:
         content = '<section class="best-shots-content"><p class="best-shots-empty">ベストショットは現在選定中です。</p></section>'
@@ -340,8 +349,8 @@ def render_best_shot_page(model):
         latest = model["years"][0]
         content = (
             f'<section class="best-shots-content">'
-            f'<header class="best-shots-section-heading"><span class="best-shots-eyebrow">LATEST COLLECTION</span>'
-            f'<h2 class="best-shots-year-title">{latest["year"]}年のベストショット</h2></header>'
+            f'<header class="best-shots-section-heading"><span class="best-shots-eyebrow">PERMANENT EXHIBITION</span>'
+            f'<h2 class="best-shots-year-title">キノコの写真展</h2><p>{latest["year"]}年のベストショット</p></header>'
             f'{_year_content(latest)}'
         )
         older = model["years"][1:]
@@ -374,6 +383,7 @@ def render_best_shot_year_page(year_model):
     body = (
         '<section class="best-shots-hub">' + header + '</section>'
         + '<section class="best-shots-content">'
+        + f'<header class="best-shots-section-heading"><span class="best-shots-eyebrow">PERMANENT EXHIBITION</span><h2 class="best-shots-year-title">キノコの写真展</h2><p>{year}年のベストショット</p></header>'
         + _year_content(year_model)
         + '</section>'
         + '<footer class="best-shots-footer"><a href="best-shots.html">← ベストショット一覧へ戻る</a></footer>'
@@ -392,4 +402,5 @@ def generate_best_shot_pages(portal_data, config_path, output_dir, assets_dir):
         with open(os.path.join(output_dir, f'best-shots-{year_model["year"]}.html'), "w", encoding="utf-8") as stream:
             stream.write(render_best_shot_year_page(year_model))
     shutil.copy2(os.path.join(assets_dir, "best-shots.css"), os.path.join(output_dir, "assets", "best-shots.css"))
+    shutil.copy2(os.path.join(assets_dir, "best-shot-exhibition.js"), os.path.join(output_dir, "assets", "best-shot-exhibition.js"))
     return model
