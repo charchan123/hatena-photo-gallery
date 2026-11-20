@@ -55,7 +55,7 @@ const svg='<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600"><rec
     if([390,1280].includes(width))await p.screenshot({path:path.join(root,'screenshots',`${variant}-${width}-${file.replace('.html','')}.png`),fullPage:file!=='records.html'});
     await c.close();
    }
-   if(approvedExhibition && /^best-shots(?:-\\d{4})?\\.html$/.test(file)){
+   if(approvedExhibition && /^best-shots(?:-\d{4})?\.html$/.test(file)){
     // Only the explicitly approved exhibition pages may change layout.
     // Keep the original artwork check, no overflow and no browser errors.
     check(measurements[0].geometry.length===measurements[1].geometry.length,`${file} ${width}: same artwork-bearing elements`);
