@@ -17,7 +17,7 @@ body{margin:0;background:#f3f1eb;color:var(--ink);font-family:-apple-system,Blin
 .section-heading h2{font:400 clamp(20px,2.4vw,27px)/1.35 "Yu Mincho","Hiragino Mincho ProN",serif;margin:8px 0}
 .section-heading p{color:#d1d0c6;font-size:12px;line-height:1.8;margin:0}
 .annual-section{text-align:center;margin:0 auto 40px;max-width:720px}
-.annual-section>h3{font-size:12px;letter-spacing:.12em;font-weight:600;color:#dac8a0;margin:0 0 18px}
+.annual-section>h3{font-size:16px;letter-spacing:.12em;font-weight:600;color:#dac8a0;margin:0 0 18px}
 .exhibit-piece{min-width:0;position:relative;isolation:isolate;display:flex;flex-direction:column}
 .exhibit-piece::before{content:"";position:absolute;z-index:-1;left:-12%;right:-12%;top:-28px;height:260px;pointer-events:none;background:radial-gradient(ellipse at 50% 40%,rgba(255,248,221,.19),rgba(255,249,228,.07) 54%,transparent 84%)}
 .exhibit-stage{--row-photo-height:180px;height:calc(var(--row-photo-height) + 18px);display:flex;align-items:flex-end;justify-content:center}
@@ -50,6 +50,7 @@ body{margin:0;background:#f3f1eb;color:var(--ink);font-family:-apple-system,Blin
   .hero-copy p{font-size:12px}
   .exhibit-wall{padding:25px 15px 36px}
   .exhibit-grid{grid-template-columns:1fr;gap:30px}
+  .annual-section>h3{font-size:14px}
   .exhibit-stage{height:auto!important;display:block}
   .exhibit-frame{width:100%;max-width:100%}
   .exhibit-photo img{width:100%;height:auto!important;max-height:none}
@@ -62,6 +63,7 @@ body.preview-mobile .hero-copy h1{font-size:24px}
 body.preview-mobile .hero-copy p{font-size:12px}
 body.preview-mobile .exhibit-wall{padding:23px 13px}
 body.preview-mobile .exhibit-grid{grid-template-columns:1fr;gap:28px}
+body.preview-mobile .annual-section>h3{font-size:14px}
 body.preview-mobile .exhibit-stage{height:auto!important;display:block}
 body.preview-mobile .exhibit-frame{width:100%}
 body.preview-mobile .exhibit-photo img{width:100%;height:auto!important;max-height:none}
@@ -71,9 +73,9 @@ body.preview-mobile .exhibit-plate{width:97%;padding:13px}
 <body>
 <div class="preview-toolbar"><span>Best Shot 写真展示室｜デザイン確認用（本番未反映）</span><div><button id="mode-pc" type="button" aria-pressed="true">PC版</button> <button id="mode-mobile" type="button" aria-pressed="false">スマホ版（390px）</button></div></div>
 <div class="preview-shell">
-<header class="exhibit-hero"><div class="hero-copy"><small>BEST SHOTS</small><h1>ベストショット</h1><p>キノコ探索の中で出会った、とっておきの写真を集めました。</p></div></header>
+<header class="exhibit-hero"><div class="hero-copy"><small>BEST SHOTS</small><h1>ベストショット</h1><p>これまで撮影したキノコの中から、特に気に入っている写真を選びました。</p></div></header>
 <main class="exhibit-wall">
-  <header class="section-heading"><small>PERMANENT EXHIBITION</small><h2>森で出会った、一瞬の作品</h2><p>2025年のベストショット · 写真を開くと元画像を表示</p></header>
+  <header class="section-heading"><small>PERMANENT EXHIBITION</small><h2>キノコの写真展</h2><p>2025年のベストショット · 写真を開くと元画像を表示</p></header>
   <section class="annual-section"><h3>✦ 2025年 年間ベストショット ✦</h3><article class="exhibit-piece exhibit-piece--annual" data-selection-id="best-2025-10-benitengutake-02">
   <div class="exhibit-stage"><div class="exhibit-frame"><a class="exhibit-photo" href="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261004/20261004221847.jpg" target="_blank" rel="noopener noreferrer" title="写真を元の大きさで表示"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20261004/20261004221847.jpg" alt="ベニテングタケ" loading="eager"></a></div></div>
   <div class="exhibit-plate"><span class="exhibit-number">SPECIAL EXHIBIT · NO. 01</span>
