@@ -22,6 +22,9 @@ pages={urlsplit(v['final_url']).path:k for k,v in data['pages'].items() if k not
 allowed={'cdn-ak.f.st-hatena.com','cdn.image.st-hatena.com','usercss.blog.st-hatena.com',
  'cdn.blog.st-hatena.com','fonts.googleapis.com','fonts.gstatic.com','code.jquery.com','ajax.googleapis.com','cdn.jsdelivr.net','unpkg.com'}
 results=[]; blocked=[]; counts={'checks':0}
+RESPONSIVE_WIDTHS = [320, 360, 390, 430, 768, 900, 1280, 1440]
+EXHIBITION_WIDTHS = sorted([*RESPONSIVE_WIDTHS, 700, 701])
+
 def check(value, label):
     counts['checks']+=1
     if not value:raise AssertionError(label)
@@ -100,11 +103,89 @@ def compact(measurement):
     value['native_links_sha256']=hashlib.sha256(json.dumps(links,ensure_ascii=False).encode()).hexdigest()
     return value
 
+def check_best_shot_exhibition(page, name, width):
+    scope = f'{name} at {width}px'
+    images = page.locator('.best-shot-card .best-shot-photo img').all()
+    check(bool(images), f'{scope}: Best Shot photographs present')
+    for image in images:
+        # The lower rows load lazily. Measure after each original image is decoded.
+        image.scroll_into_view_if_needed()
+        image.evaluate('img => img.decode()')
+    page.evaluate('() => document.fonts.ready.then(() => new Promise(resolve => '
+                  'requestAnimationFrame(() => requestAnimationFrame(resolve))))')
+    cards = page.locator('.best-shot-card').evaluate_all('''cards => {
+      const rect = element => {
+        const {left, right, top, bottom, width, height} = element.getBoundingClientRect();
+        return {left, right, top, bottom, width, height};
+      };
+      return cards.map(card => {
+        const stage = card.querySelector('.best-shot-stage');
+        const frame = stage.querySelector('.best-shot-photo');
+        const image = frame.querySelector('img');
+        const caption = card.querySelector('.best-shot-card__body');
+        const style = getComputedStyle(image);
+        const frameStyle = getComputedStyle(frame);
+        const inset = ['paddingLeft', 'paddingRight', 'borderLeftWidth', 'borderRightWidth']
+          .reduce((total, property) => total + parseFloat(frameStyle[property]), 0);
+        return {
+          card: rect(card), stage: rect(stage), frame: rect(frame), image: rect(image),
+          caption: rect(caption), title: rect(caption.querySelector('h3')),
+          naturalWidth: image.naturalWidth, naturalHeight: image.naturalHeight,
+          fit: style.objectFit, transform: style.transform, filter: style.filter, inset
+        };
+      });
+    }''')
+    check(len(cards) == len(images), f'{scope}: each exhibit card has one photograph')
+    for card in cards:
+        image, frame, stage, caption = (card[key] for key in ('image', 'frame', 'stage', 'caption'))
+        check(card['naturalWidth'] > 0 and card['naturalHeight'] > 0
+              and image['width'] > 0 and image['height'] > 0, f'{scope}: decoded visible photograph')
+        natural_width = image['height'] * card['naturalWidth'] / card['naturalHeight']
+        check(abs(image['width'] - natural_width) <= 1 and card['fit'] == 'contain'
+              and card['transform'] == card['filter'] == 'none', f'{scope}: original photo ratio and framing')
+        check(abs(image['width'] + card['inset'] - frame['width']) <= 1
+              and abs((frame['left'] + frame['right']) / 2 - (stage['left'] + stage['right']) / 2) <= 1
+              and stage['left'] >= -1 and stage['right'] <= width + 1
+              and frame['left'] >= stage['left'] - 1 and frame['right'] <= stage['right'] + 1
+              and frame['top'] >= stage['top'] - 1 and frame['bottom'] <= stage['bottom'] + 1,
+              f'{scope}: centered frame fits its stage')
+        check(caption['top'] > frame['bottom'] and caption['left'] >= card['card']['left'] - 1
+              and caption['right'] <= card['card']['right'] + 1, f'{scope}: caption below its photo')
+        if width <= 700:
+            check(abs(frame['width'] - stage['width']) <= 1, f'{scope}: mobile frame fills its stage')
+
+    grids = page.locator('.best-shot-grid').evaluate_all('''grids => {
+      const indices = new Map([...document.querySelectorAll('.best-shot-card')]
+        .map((card, index) => [card, index]));
+      return grids.map(grid => ({
+        columns: getComputedStyle(grid).gridTemplateColumns.split(' ').length,
+        cards: [...grid.children].map(card => indices.get(card))
+      }));
+    }''')
+    columns = 1 if width <= 700 else 2
+    for grid in grids:
+        check(grid['columns'] == columns, f'{scope}: grid has {columns} column(s)')
+        group = [cards[index] for index in grid['cards']]
+        for index, previous in enumerate(group[:-1]):
+            current = group[index + 1]
+            if columns == 2 and index % 2 == 0:
+                check(previous['card']['right'] < current['card']['left']
+                      and all(abs(previous[part][edge] - current[part][edge]) <= 1
+                              for part, edge in (('image', 'top'), ('image', 'bottom'),
+                                                 ('caption', 'top'), ('title', 'top'))),
+                      f'{scope}: each desktop row has equal image heights and aligned captions')
+            else:
+                row = group[index - index % columns:index + 1]
+                check(max(card['card']['bottom'] for card in row) < current['card']['top'],
+                      f'{scope}: exhibit rows do not overlap')
+    page.evaluate('() => window.scrollTo(0, 0)')
+
+
 with sync_playwright() as pw:
     launch={'headless':True,'args':['--no-sandbox','--disable-dev-shm-usage']}
     if os.getenv('HATENA_CHROMIUM'):launch['executable_path']=os.environ['HATENA_CHROMIUM']
     browser=pw.chromium.launch(**launch)
-    for width in [320,360,390,430,768,900,1280,1440]:
+    for width in RESPONSIVE_WIDTHS:
         for name in ['home','new-top','article','field','daily','about','archive']:
             variants={}
             for variant in ['before','after']:
@@ -211,25 +292,17 @@ with sync_playwright() as pw:
         c.close()
     # Published responsive pages, unchanged generated bytes; collect screenshots.
     for name in ['index.html','best-shots.html','best-shots-2025.html','best-shots-2026.html','research.html','features.html']:
-        for width in [320,360,390,430,768,900,1280,1440]:
+        best_shot = name.startswith('best-shots')
+        for width in EXHIBITION_WIDTHS if best_shot else RESPONSIVE_WIDTHS:
             c=browser.new_context(viewport={'width':width,'height':960});c.route('**/*',route_for('after'));p=c.new_page();p.goto('https://charchan123.github.io/hatena-photo-gallery/'+name,wait_until='load')
             p.wait_for_function('''[...document.querySelectorAll('main img')].filter(e=>{
               const r=e.getBoundingClientRect();return r.top<innerHeight&&r.bottom>0;
             }).every(e=>e.complete&&e.naturalWidth>0)''')
             check(not p.evaluate("document.documentElement.scrollWidth>innerWidth+1"),name+str(width))
-            if name.startswith('best-shots'):
-                mounts=p.locator('.best-shot-grid .best-shot-photo').evaluate_all('els=>els.map(e=>{const r=e.getBoundingClientRect();return {width:r.width,height:r.height,ratio:getComputedStyle(e).aspectRatio,fit:getComputedStyle(e.querySelector("img")).objectFit}})')
-                for mount in mounts:
-                    check(mount['fit']=='contain','Best Shot whole photograph retained')
-                    if width>680:check(abs(mount['width']/mount['height']-4/3)<.01,'Best Shot desktop shared 4:3 mount')
-                    else:check(mount['ratio']=='auto','Best Shot mobile intrinsic ratio')
-                if width>680:
-                    for grid in p.locator('.best-shot-grid').all():
-                        titles=grid.locator('.best-shot-card__body h3')
-                        if titles.count()>1:
-                            check(abs(titles.nth(0).bounding_box()['y']-titles.nth(1).bounding_box()['y'])<1,'Best Shot first-row captions aligned')
+            if best_shot:
+                check_best_shot_exhibition(p, name, width)
             p.screenshot(path=str(evidence/f'child-{name[:-5]}-{width}.jpg'),type='jpeg',quality=65);c.close()
     check(not blocked,'no external mutation attempted')
     browser.close()
-(evidence/'results.json').write_text(json.dumps({'kind':'LOCAL_REPLAY_NOT_HATENA_STAGING','browser':browser.version,'checks':counts['checks'],'widths':[320,360,390,430,768,900,1280,1440],'rows':results,'protocol':protocol,'blocked_mutations':blocked},ensure_ascii=False,indent=2))
+(evidence/'results.json').write_text(json.dumps({'kind':'LOCAL_REPLAY_NOT_HATENA_STAGING','browser':browser.version,'checks':counts['checks'],'widths':RESPONSIVE_WIDTHS,'best_shot_widths':EXHIBITION_WIDTHS,'rows':results,'protocol':protocol,'blocked_mutations':blocked},ensure_ascii=False,indent=2))
 print('PASS:',counts['checks'],'real Chromium release checks; no external writes')
