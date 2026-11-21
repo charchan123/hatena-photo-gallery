@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "batch_id": "kinoko-guide-20261121-j",
+  "created_at": "2026-11-21T07:57:45+00:00",
+  "generator": "ChatGPT Work",
+  "origin": "Research continuation from guide backlog, primary journals",
+  "base_main_sha": "f19541524a989f2ab1979c78a9bff5e5e0274092",
+  "artifacts": [
+    {
+      "path": "candidate-delta.json",
+      "sha256": "0b4db26c937c371f5b1ac298f852f716c4bb99a9d51174ea3ee1a82aaf6e6756",
+      "bytes": 31434
+    },
+    {
+      "path": "source-snapshots.jsonl",
+      "sha256": "734ae5fb4ab453c7eef443758b86c5e732f0100d8ea3577363ad1198df3580f1",
+      "bytes": 4466
+    }
+  ],
+  "counts": {
+    "mushroom_additions": 7,
+    "source_additions": 7,
+    "assignment_candidates": 7,
+    "snapshots": 7
+  }
+}
