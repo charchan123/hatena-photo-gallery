@@ -1,0 +1,663 @@
+{
+  "mushroom_additions": [
+    {
+      "mushroom_id": "yamadoritake",
+      "canonical_name_ja": "ヤマドリタケ",
+      "aliases_ja": [],
+      "name_ja_sources": [
+        "guide-research-yamadoritake"
+      ],
+      "scientific_name": {
+        "value": "Boletus edulis",
+        "source_ids": [
+          "guide-research-yamadoritake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-research-yamadoritake"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "褐色系の傘は表面に粘りがあり、太い柄の上半分に網目模様がある。傘の裏の管孔は淡黄色からオリーブ緑色を帯びる。",
+        "source_ids": [
+          "guide-research-yamadoritake"
+        ]
+      },
+      "season": {
+        "summary": "中部山岳地の記録では夏〜秋（8〜9月）。",
+        "source_ids": [
+          "guide-research-yamadoritake"
+        ]
+      },
+      "habitat": {
+        "summary": "トウヒやモミなどの針葉樹林。ミズナラ林やシラカンバ林でも記録される。",
+        "source_ids": [
+          "guide-research-yamadoritake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "学名は引用資料の表記。対象は既存の掲載名で、個々の写真の同定とは別。"
+      }
+    },
+    {
+      "mushroom_id": "shirokikurage",
+      "canonical_name_ja": "シロキクラゲ",
+      "aliases_ja": [],
+      "name_ja_sources": [
+        "guide-research-shirokikurage"
+      ],
+      "scientific_name": {
+        "value": "Tremella fuciformis",
+        "source_ids": [
+          "guide-research-shirokikurage"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-research-shirokikurage"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "白く半透明でゼリー状の子実体がまとまる。乾くと小さく縮む。",
+        "source_ids": [
+          "guide-research-shirokikurage"
+        ]
+      },
+      "season": {
+        "summary": "初夏〜秋",
+        "source_ids": [
+          "guide-research-shirokikurage"
+        ]
+      },
+      "habitat": {
+        "summary": "広葉樹の枯れた幹や枝、倒木",
+        "source_ids": [
+          "guide-research-shirokikurage"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "学名は引用資料の表記。対象は既存の掲載名で、個々の写真の同定とは別。"
+      }
+    },
+    {
+      "mushroom_id": "sirosoumentake",
+      "canonical_name_ja": "シロソウメンタケ",
+      "aliases_ja": [],
+      "name_ja_sources": [
+        "guide-research-sirosoumentake"
+      ],
+      "scientific_name": {
+        "value": "Clavaria vermicularis",
+        "source_ids": [
+          "guide-research-sirosoumentake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-research-sirosoumentake"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "子実体は白く細長い棒状で、枝分かれせず、折れやすい。育つと淡い黄褐色を帯びることがある。",
+        "source_ids": [
+          "guide-research-sirosoumentake"
+        ]
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "habitat": {
+        "summary": null,
+        "source_ids": []
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "学名は引用資料の表記。対象は既存の掲載名で、個々の写真の同定とは別。"
+      }
+    },
+    {
+      "mushroom_id": "daidaiiguti",
+      "canonical_name_ja": "ダイダイイグチ",
+      "aliases_ja": [],
+      "name_ja_sources": [
+        "guide-research-daidaiiguti"
+      ],
+      "scientific_name": {
+        "value": "Boletus laetissimus",
+        "source_ids": [
+          "guide-research-daidaiiguti"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-research-daidaiiguti"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "子実体は鮮やかな橙色で、傷つくと強く青変する。傘は湿るとわずかに粘る。",
+        "source_ids": [
+          "guide-research-daidaiiguti"
+        ]
+      },
+      "season": {
+        "summary": "夏〜秋",
+        "source_ids": [
+          "guide-research-daidaiiguti"
+        ]
+      },
+      "habitat": {
+        "summary": "シイ・カシ林やコナラ林",
+        "source_ids": [
+          "guide-research-daidaiiguti"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "学名は引用資料の表記。対象は既存の掲載名で、個々の写真の同定とは別。"
+      }
+    },
+    {
+      "mushroom_id": "onitengutake",
+      "canonical_name_ja": "オニテングタケ",
+      "aliases_ja": [],
+      "name_ja_sources": [
+        "guide-research-onitengutake"
+      ],
+      "scientific_name": {
+        "value": "Amanita perpasta",
+        "source_ids": [
+          "guide-research-onitengutake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-research-onitengutake"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "淡い黄褐色の傘の表面に、円錐形の褐色のいぼが散る。大型になると記載されている。",
+        "source_ids": [
+          "guide-research-onitengutake"
+        ]
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "habitat": {
+        "summary": "コジイやアラカシなどの樹下",
+        "source_ids": [
+          "guide-research-onitengutake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "学名は引用資料の表記。対象は既存の掲載名で、個々の写真の同定とは別。"
+      }
+    }
+  ],
+  "source_additions": [
+    {
+      "source_id": "guide-research-yamadoritake",
+      "organization": "環境省",
+      "title": "第5次レッドデータブック ヤマドリタケ p.2",
+      "source_type": "government_fungi_report",
+      "url": "https://www.env.go.jp/nature/kisho/5th-rl-2025/FU0088_RDB5th.pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "資料記載の学名・発生環境と特徴箇所を照合。"
+    },
+    {
+      "source_id": "guide-research-shirokikurage",
+      "organization": "石川県白山自然保護センター",
+      "title": "はくさん 第21巻第4号 表紙解説 シロキクラゲ",
+      "source_type": "government_fungi_report",
+      "url": "https://www.pref.ishikawa.lg.jp/hakusan/publish/hakusan/documents/hakusan21-4.pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "資料記載の学名・発生環境と特徴箇所を照合。"
+    },
+    {
+      "source_id": "guide-research-sirosoumentake",
+      "organization": "神奈川県",
+      "title": "自然保護センター調査研究報告書 シロソウメンタケ p.78",
+      "source_type": "government_fungi_report",
+      "url": "https://www.pref.kanagawa.jp/documents/14725/hogocenter06.pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "資料記載の学名・発生環境と特徴箇所を照合。"
+    },
+    {
+      "source_id": "guide-research-daidaiiguti",
+      "organization": "広島県",
+      "title": "広島県レッドデータブック ダイダイイグチ p.731",
+      "source_type": "government_fungi_report",
+      "url": "https://www.pref.hiroshima.lg.jp/uploaded/attachment/478965.pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "資料記載の学名・発生環境と特徴箇所を照合。"
+    },
+    {
+      "source_id": "guide-research-onitengutake",
+      "organization": "青森県",
+      "title": "青森県レッドデータブック2020 オニテングタケ p.168",
+      "source_type": "government_fungi_report",
+      "url": "https://www.pref.aomori.lg.jp/soshiki/kankyo/shizen/files/RDB06_kinrui.pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "資料記載の学名・発生環境と特徴箇所を照合。"
+    }
+  ],
+  "assignment_additions": [
+    {
+      "candidate_id": "yamadoritake-stem_reticulate",
+      "mushroom_id": "yamadoritake",
+      "assignment": {
+        "facet_id": "stem_reticulate",
+        "evidence_text": "柄の上半分に網目模様がある。",
+        "source_ids": [
+          "guide-research-yamadoritake"
+        ],
+        "evidence_refs": [
+          "yamadoritake-stem_reticulate-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "yamadoritake-stem_reticulate-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-research-yamadoritake",
+          "source_url": "https://www.env.go.jp/nature/kisho/5th-rl-2025/FU0088_RDB5th.pdf",
+          "snapshot_identity": "guide-research-yamadoritake-2026-11-21-excerpt",
+          "extracted_text_sha256": "5810cfd5530399f9088e852449db7aef802371334390410851951eb1c883192a",
+          "text_snapshot_sha256": "5810cfd5530399f9088e852449db7aef802371334390410851951eb1c883192a",
+          "original_response_sha256": "0d3558abc34e57dcd3eee9ac990e8baa9ac0393ad30bf8c79e39c5f2db002224",
+          "evidence_id": "yamadoritake-stem_reticulate-evidence",
+          "decision_id": "yamadoritake-stem_reticulate-decision",
+          "mushroom_id": "yamadoritake",
+          "facet_id": "stem_reticulate",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "柄の上半分に網目模様がある。",
+          "qualifiers": [],
+          "quote": "上半部には網目模様がある。",
+          "quote_sha256": "5810cfd5530399f9088e852449db7aef802371334390410851951eb1c883192a",
+          "char_start": 0,
+          "char_end": 13,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "shirokikurage-gelatinous",
+      "mushroom_id": "shirokikurage",
+      "assignment": {
+        "facet_id": "gelatinous",
+        "evidence_text": "白く半透明のゼリー状の質感がある。",
+        "source_ids": [
+          "guide-research-shirokikurage"
+        ],
+        "evidence_refs": [
+          "shirokikurage-gelatinous-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "shirokikurage-gelatinous-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-research-shirokikurage",
+          "source_url": "https://www.pref.ishikawa.lg.jp/hakusan/publish/hakusan/documents/hakusan21-4.pdf",
+          "snapshot_identity": "guide-research-shirokikurage-2026-11-21-excerpt",
+          "extracted_text_sha256": "6f6374d979532812be262f18249ae4959025e5917fadf21204daabd314859651",
+          "text_snapshot_sha256": "6f6374d979532812be262f18249ae4959025e5917fadf21204daabd314859651",
+          "original_response_sha256": "35670311585db952769bf58e4ed4df49f159dc8045cf63cfb0ed674e2b510771",
+          "evidence_id": "shirokikurage-gelatinous-evidence",
+          "decision_id": "shirokikurage-gelatinous-decision",
+          "mushroom_id": "shirokikurage",
+          "facet_id": "gelatinous",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "白く半透明のゼリー状の質感がある。",
+          "qualifiers": [],
+          "quote": "半透明のゼリー質",
+          "quote_sha256": "6f6374d979532812be262f18249ae4959025e5917fadf21204daabd314859651",
+          "char_start": 0,
+          "char_end": 8,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "sirosoumentake-rod_cylindrical",
+      "mushroom_id": "sirosoumentake",
+      "assignment": {
+        "facet_id": "rod_cylindrical",
+        "evidence_text": "分岐しない棒状の子実体をつくる。",
+        "source_ids": [
+          "guide-research-sirosoumentake"
+        ],
+        "evidence_refs": [
+          "sirosoumentake-rod_cylindrical-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "sirosoumentake-rod_cylindrical-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-research-sirosoumentake",
+          "source_url": "https://www.pref.kanagawa.jp/documents/14725/hogocenter06.pdf",
+          "snapshot_identity": "guide-research-sirosoumentake-2026-11-21-excerpt",
+          "extracted_text_sha256": "7571b0734e8b14ccf789ca451e3e90d23f02631f827b723a26688c4b96c4bac3",
+          "text_snapshot_sha256": "7571b0734e8b14ccf789ca451e3e90d23f02631f827b723a26688c4b96c4bac3",
+          "original_response_sha256": "43c8a007a4f444a22c5b1110ff889b065e0d40f578229afe1ceafa0129e1c369",
+          "evidence_id": "sirosoumentake-rod_cylindrical-evidence",
+          "decision_id": "sirosoumentake-rod_cylindrical-decision",
+          "mushroom_id": "sirosoumentake",
+          "facet_id": "rod_cylindrical",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "分岐しない棒状の子実体をつくる。",
+          "qualifiers": [],
+          "quote": "分岐しない棒状",
+          "quote_sha256": "7571b0734e8b14ccf789ca451e3e90d23f02631f827b723a26688c4b96c4bac3",
+          "char_start": 0,
+          "char_end": 7,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "daidaiiguti-blue_stain",
+      "mushroom_id": "daidaiiguti",
+      "assignment": {
+        "facet_id": "blue_stain",
+        "evidence_text": "子実体が傷つくと強く青変する。",
+        "source_ids": [
+          "guide-research-daidaiiguti"
+        ],
+        "evidence_refs": [
+          "daidaiiguti-blue_stain-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "daidaiiguti-blue_stain-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-research-daidaiiguti",
+          "source_url": "https://www.pref.hiroshima.lg.jp/uploaded/attachment/478965.pdf",
+          "snapshot_identity": "guide-research-daidaiiguti-2026-11-21-excerpt",
+          "extracted_text_sha256": "b4221e8b50345a6f612d3311c3eedd5b0ac5da75d439390168e705f8e117ec87",
+          "text_snapshot_sha256": "b4221e8b50345a6f612d3311c3eedd5b0ac5da75d439390168e705f8e117ec87",
+          "original_response_sha256": "ea425bc8d631945b31488073492196f7ffe38043b8ca0a7763784e1929643aee",
+          "evidence_id": "daidaiiguti-blue_stain-evidence",
+          "decision_id": "daidaiiguti-blue_stain-decision",
+          "mushroom_id": "daidaiiguti",
+          "facet_id": "blue_stain",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "子実体が傷つくと強く青変する。",
+          "qualifiers": [],
+          "quote": "傷つくと強く青変する",
+          "quote_sha256": "b4221e8b50345a6f612d3311c3eedd5b0ac5da75d439390168e705f8e117ec87",
+          "char_start": 0,
+          "char_end": 10,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "onitengutake-cap_scales_warts",
+      "mushroom_id": "onitengutake",
+      "assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "傘の表面に円錐形のいぼが付く。",
+        "source_ids": [
+          "guide-research-onitengutake"
+        ],
+        "evidence_refs": [
+          "onitengutake-cap_scales_warts-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "onitengutake-cap_scales_warts-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-research-onitengutake",
+          "source_url": "https://www.pref.aomori.lg.jp/soshiki/kankyo/shizen/files/RDB06_kinrui.pdf",
+          "snapshot_identity": "guide-research-onitengutake-2026-11-21-excerpt",
+          "extracted_text_sha256": "66ad434fc4f568fbde3bdb9f6579a2c47ac09597a1d2f7dbbc3f1e63181da447",
+          "text_snapshot_sha256": "66ad434fc4f568fbde3bdb9f6579a2c47ac09597a1d2f7dbbc3f1e63181da447",
+          "original_response_sha256": "606982726200f20888fa54dd21a0045969483b4a0af879472420f0cbb60de3b4",
+          "evidence_id": "onitengutake-cap_scales_warts-evidence",
+          "decision_id": "onitengutake-cap_scales_warts-decision",
+          "mushroom_id": "onitengutake",
+          "facet_id": "cap_scales_warts",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の表面に円錐形のいぼが付く。",
+          "qualifiers": [],
+          "quote": "表面に円錐形褐色のいぼを散布する",
+          "quote_sha256": "66ad434fc4f568fbde3bdb9f6579a2c47ac09597a1d2f7dbbc3f1e63181da447",
+          "char_start": 0,
+          "char_end": 16,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    }
+  ],
+  "schema_version": 1
+}
