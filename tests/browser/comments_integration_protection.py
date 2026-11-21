@@ -7,6 +7,12 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
+GUIDE_LINK_CODE = {
+    'main.py': ('79bf5868acf63e5744f1b9f76f5316bf3885528c', '878dc6ce1e9951c08c40eb63c378069fef9cb671'),
+    'portal_data.py': ('03633d1dc150acb4c13249a2d51e1b7c6d3ac0cc', '334b006a39fb26f01029e3286eb17f10fa7888bd'),
+}
+GUIDE_LINK_DATA = 'data/guide-links.json'
+GUIDE_LINK_BLOB = 'e0dd8f241c9114bc99a702336685920bc1e84426'
 PR137 = '1766b1693ec87a2945b98abc5456f48fc9a13026'
 PR135 = '090eac16c25129695452a10a076532c752d8bd27'
 REVIEWED = {'.gitignore', 'admin/comments_client.py', 'comments/worker.mjs',
@@ -94,10 +100,19 @@ def assert_reviewed_source(base, path, current):
         assert pins['main'] == RELEASE_MAIN and set(pins['files']) == RELEASE_FILES
         assert hashlib.sha256(current).hexdigest() == pins['files'][path], path
         return
+    if path in GUIDE_LINK_CODE:
+        before, after = GUIDE_LINK_CODE[path]
+        assert git_blob_hash(original) == before and git_blob_hash(current) == after, path
+        return
     assert path in REVIEWED, path
     # package*.json are newly added in PR137, so not reached by a main file loop.
     assert original == git('show', f'{PR135}:{path}'), f'main advanced: {path}'
     assert current == git('show', f'{PR137}:{path}'), f'PR137 changed: {path}'
+
+def git_blob_hash(content):
+    header = b'blob ' + str(len(content)).encode('ascii') + b'\0'
+    return hashlib.sha1(header + content).hexdigest()
+
 
 def collect(base='origin/main'):
     git('merge-base', '--is-ancestor', base, 'HEAD')
@@ -108,6 +123,8 @@ def collect(base='origin/main'):
         content = (ROOT / path).read_bytes()
         assert_reviewed_source(base, path, content)
         hashes[path] = hashlib.sha256(content).hexdigest()
+    if GUIDE_LINK_DATA not in protected:
+        assert git_blob_hash((ROOT/GUIDE_LINK_DATA).read_bytes()) == GUIDE_LINK_BLOB
     # Newly added exhibit assets are not in the baseline tree: pin explicitly.
     pins = json.loads((ROOT/'audit/best-shot-exhibition-20261121/files.json').read_text(encoding='utf-8'))
     assert pins['base_main'] == EXHIBITION_BASE

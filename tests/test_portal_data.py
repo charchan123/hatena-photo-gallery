@@ -28,14 +28,14 @@ def shadow(src="image.jpg", *, gallery_name="菌名", legacy_alt="旧名",
     }
 
 
-def build(entries=None, shadows=None, exif=None, articles=None, refs=None):
+def build(entries=None, shadows=None, exif=None, articles=None, refs=None, guide_links=None):
     taxonomy, master, sources = refs or references()
     return portal_data.build_portal_data(
         production_entries=entries or [{"alt": "菌名", "src": "image.jpg"}],
         shadow_metadata=[shadow()] if shadows is None else shadows,
         article_metadata=articles or {}, exif_cache=exif or {},
         taxonomy=taxonomy, mushroom_master=master, sources=sources,
-        production_mode="phase3c_hybrid", cutover_active=True,
+        production_mode="phase3c_hybrid", cutover_active=True, guide_links=guide_links,
     )
 
 
@@ -100,6 +100,25 @@ def test_only_exact_canonical_names_link():
         result = build(entries=[{"alt": name, "src": "image.jpg"}],
                        shadows=[], refs=(taxonomy, master, sources))
         assert result["observations"][0]["mushroom_master_id"] is None
+
+
+def test_guide_only_link_preserves_occurrences_and_requires_exact_display_name():
+    _, master, sources = references()
+    refs = ({"entries": []}, master, sources)
+    names = ["菌名", "菌名？", "菌名(広義)", "菌名 sp.", "菌名 cf.", "別名"]
+    entries = [{"alt": name, "src": f"{i}.jpg"} for i, name in enumerate(names)]
+    shadows = [shadow(row["src"], gallery_name=None, legacy_alt=row["alt"],
+                      subject_type="review", detected_label=row["alt"]) for row in entries]
+    articles = {"article.html": {"article_id": "one", "url": "https://example.test/post"}}
+    before = build(entries, shadows, articles=articles, refs=refs)
+    after = build(entries, shadows, articles=articles, refs=refs, guide_links={"菌名": "fungus-id"})
+    expected = deepcopy(before)
+    expected["observations"][0]["mushroom_master_id"] = "fungus-id"
+    exact = next(row for row in expected["subjects"] if row["gallery_name"] == "菌名")
+    exact.update(mushroom_master_id="fungus-id", knowledge_available=True)
+    expected["summary"]["master_linked_subject_count"] += 1
+    expected["summary"]["master_unlinked_subject_count"] -= 1
+    assert after == expected
 
 
 def test_classification_statuses_use_existing_provenance_only():
