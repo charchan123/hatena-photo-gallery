@@ -1,0 +1,1725 @@
+{
+  "schema_version": 1,
+  "mushroom_additions": [
+    {
+      "mushroom_id": "numerisasatake",
+      "canonical_name_ja": "ヌメリササタケ",
+      "name_ja_sources": [
+        "numerisasatake-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Cortinarius pseudosalor",
+        "source_ids": [
+          "numerisasatake-guide"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "numerisasatake-guide"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘と柄に粘りがある。ひだの色は淡紫色から褐色に変わり、柄にクモの巣状の膜が残る。",
+        "source_ids": [
+          "numerisasatake-guide"
+        ]
+      },
+      "season": {
+        "summary": "秋",
+        "source_ids": [
+          "numerisasatake-guide"
+        ]
+      },
+      "habitat": {
+        "summary": "針葉樹林や広葉樹林",
+        "source_ids": [
+          "numerisasatake-guide"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "公的図鑑の資料掲載学名・形態・生態を確認。現行分類・食毒はこのバッチで判定していない。公開写真の同定は別途確認する。"
+      }
+    },
+    {
+      "mushroom_id": "hanagasaiguti",
+      "canonical_name_ja": "ハナガサイグチ",
+      "name_ja_sources": [
+        "hanagasaiguti-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Pulveroboletus auriflammeus",
+        "source_ids": [
+          "hanagasaiguti-guide"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "hanagasaiguti-guide"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "やや粉を帯びた傘の裏に管孔がある。柄は中実で網目模様が出る。",
+        "source_ids": [
+          "hanagasaiguti-guide"
+        ]
+      },
+      "season": {
+        "summary": "夏〜秋",
+        "source_ids": [
+          "hanagasaiguti-guide"
+        ]
+      },
+      "habitat": {
+        "summary": "マツ、コナラ林",
+        "source_ids": [
+          "hanagasaiguti-guide"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "公的図鑑の資料掲載学名・形態・生態を確認。現行分類・食毒はこのバッチで判定していない。公開写真の同定は別途確認する。"
+      }
+    },
+    {
+      "mushroom_id": "himekabairotake",
+      "canonical_name_ja": "ヒメカバイロタケ",
+      "name_ja_sources": [
+        "himekabairotake-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Xeromphalina campanella",
+        "source_ids": [
+          "himekabairotake-guide"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "himekabairotake-guide"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "湿ったときに傘のすじが見える。裏のひだは間隔を空けて並び、柄に沿って下がる。",
+        "source_ids": [
+          "himekabairotake-guide"
+        ]
+      },
+      "season": {
+        "summary": "夏〜秋",
+        "source_ids": [
+          "himekabairotake-guide"
+        ]
+      },
+      "habitat": {
+        "summary": "針葉樹の朽ち木",
+        "source_ids": [
+          "himekabairotake-guide"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "公的図鑑の資料掲載学名・形態・生態を確認。現行分類・食毒はこのバッチで判定していない。公開写真の同定は別途確認する。"
+      }
+    },
+    {
+      "mushroom_id": "himekikurage",
+      "canonical_name_ja": "ヒメキクラゲ",
+      "name_ja_sources": [
+        "himekikurage-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Exidia glandulosa",
+        "source_ids": [
+          "himekikurage-guide"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "himekikurage-guide"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "ゼラチン状で、表面に脳のような起伏と細かな突起が見られる。",
+        "source_ids": [
+          "himekikurage-guide"
+        ]
+      },
+      "season": {
+        "summary": "春",
+        "source_ids": [
+          "himekikurage-guide"
+        ]
+      },
+      "habitat": {
+        "summary": "広葉樹枯死部",
+        "source_ids": [
+          "himekikurage-guide"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "公的図鑑の資料掲載学名・形態・生態を確認。現行分類・食毒はこのバッチで判定していない。公開写真の同定は別途確認する。"
+      }
+    },
+    {
+      "mushroom_id": "hyoumonurabenigasa",
+      "canonical_name_ja": "ヒョウモンウラベニガサ",
+      "name_ja_sources": [
+        "hyoumonurabenigasa-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Pluteus pantherinus",
+        "source_ids": [
+          "hyoumonurabenigasa-guide"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "hyoumonurabenigasa-guide"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘に白い斑点が散る。ひだは柄から離れて密に並び、白色から肉色へ変わる。",
+        "source_ids": [
+          "hyoumonurabenigasa-guide"
+        ]
+      },
+      "season": {
+        "summary": "初夏〜秋",
+        "source_ids": [
+          "hyoumonurabenigasa-guide"
+        ]
+      },
+      "habitat": {
+        "summary": "広葉樹の朽ち木",
+        "source_ids": [
+          "hyoumonurabenigasa-guide"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "公的図鑑の資料掲載学名・形態・生態を確認。現行分類・食毒はこのバッチで判定していない。公開写真の同定は別途確認する。"
+      }
+    },
+    {
+      "mushroom_id": "fukuroturutake",
+      "canonical_name_ja": "フクロツルタケ",
+      "name_ja_sources": [
+        "fukuroturutake-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Amanita volvata",
+        "source_ids": [
+          "fukuroturutake-guide"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "fukuroturutake-guide"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘に淡い赤褐色の細かい鱗片がある。柄につばがなく、大きな袋状のつぼが付き、傷の周辺は次第に赤みを帯びる。",
+        "source_ids": [
+          "fukuroturutake-guide"
+        ]
+      },
+      "season": {
+        "summary": "夏〜秋",
+        "source_ids": [
+          "fukuroturutake-guide"
+        ]
+      },
+      "habitat": {
+        "summary": "針葉樹林や広葉樹林",
+        "source_ids": [
+          "fukuroturutake-guide"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "公的図鑑の資料掲載学名・形態・生態を確認。現行分類・食毒はこのバッチで判定していない。公開写真の同定は別途確認する。"
+      }
+    },
+    {
+      "mushroom_id": "fujiusutake",
+      "canonical_name_ja": "フジウスタケ",
+      "name_ja_sources": [
+        "fujiusutake-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Gomphus fujisanensis",
+        "source_ids": [
+          "fujiusutake-guide"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "fujiusutake-guide"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "中央のくぼみは基部まで達する。外側にしわが走り、柄は淡い黄土色。",
+        "source_ids": [
+          "fujiusutake-guide"
+        ]
+      },
+      "season": {
+        "summary": "夏〜秋",
+        "source_ids": [
+          "fujiusutake-guide"
+        ]
+      },
+      "habitat": {
+        "summary": "針葉樹林",
+        "source_ids": [
+          "fujiusutake-guide"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "公的図鑑の資料掲載学名・形態・生態を確認。現行分類・食毒はこのバッチで判定していない。公開写真の同定は別途確認する。"
+      }
+    },
+    {
+      "mushroom_id": "benihanaiguti",
+      "canonical_name_ja": "ベニハナイグチ",
+      "name_ja_sources": [
+        "benihanaiguti-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Suillus pictus",
+        "source_ids": [
+          "benihanaiguti-guide"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "benihanaiguti-guide"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘を繊維状の鱗片が覆い、裏の管孔は柄に沿って下がる。触れて傷が付くと赤く変わる。",
+        "source_ids": [
+          "benihanaiguti-guide"
+        ]
+      },
+      "season": {
+        "summary": "夏〜秋",
+        "source_ids": [
+          "benihanaiguti-guide"
+        ]
+      },
+      "habitat": {
+        "summary": "五針葉マツ林",
+        "source_ids": [
+          "benihanaiguti-guide"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "公的図鑑の資料掲載学名・形態・生態を確認。現行分類・食毒はこのバッチで判定していない。公開写真の同定は別途確認する。"
+      }
+    },
+    {
+      "mushroom_id": "benihigasa",
+      "canonical_name_ja": "ベニヒガサ",
+      "name_ja_sources": [
+        "benihigasa-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Hygrocybe cantharellus",
+        "source_ids": [
+          "benihigasa-guide"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "benihigasa-guide"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘に細かな鱗片が付き、縁にすじが見える。裏のひだはまばらで柄に沿って下がる。",
+        "source_ids": [
+          "benihigasa-guide"
+        ]
+      },
+      "season": {
+        "summary": "夏〜秋",
+        "source_ids": [
+          "benihigasa-guide"
+        ]
+      },
+      "habitat": {
+        "summary": "林内",
+        "source_ids": [
+          "benihigasa-guide"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "公的図鑑の資料掲載学名・形態・生態を確認。現行分類・食毒はこのバッチで判定していない。公開写真の同定は別途確認する。"
+      }
+    },
+    {
+      "mushroom_id": "miyamabeniiguti",
+      "canonical_name_ja": "ミヤマベニイグチ",
+      "name_ja_sources": [
+        "miyamabeniiguti-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Boletellus obscurecoccineus",
+        "source_ids": [
+          "miyamabeniiguti-guide"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "miyamabeniiguti-guide"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘の表面に鱗片や細かな粒のような模様があり、裏は管孔。柄は中実。",
+        "source_ids": [
+          "miyamabeniiguti-guide"
+        ]
+      },
+      "season": {
+        "summary": "夏〜秋",
+        "source_ids": [
+          "miyamabeniiguti-guide"
+        ]
+      },
+      "habitat": {
+        "summary": "ブナ科、マツ混成林",
+        "source_ids": [
+          "miyamabeniiguti-guide"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "公的図鑑の資料掲載学名・形態・生態を確認。現行分類・食毒はこのバッチで判定していない。公開写真の同定は別途確認する。"
+      }
+    },
+    {
+      "mushroom_id": "musasabitake",
+      "canonical_name_ja": "ムササビタケ",
+      "name_ja_sources": [
+        "musasabitake-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Psathyrella piluliformis",
+        "source_ids": [
+          "musasabitake-guide"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "musasabitake-guide"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘に放射状の細かいしわがあり、湿るとすじも見える。ひだは白色から暗褐色へ変わる。",
+        "source_ids": [
+          "musasabitake-guide"
+        ]
+      },
+      "season": {
+        "summary": "夏〜秋",
+        "source_ids": [
+          "musasabitake-guide"
+        ]
+      },
+      "habitat": {
+        "summary": "広葉樹の朽ち木",
+        "source_ids": [
+          "musasabitake-guide"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "公的図鑑の資料掲載学名・形態・生態を確認。現行分類・食毒はこのバッチで判定していない。公開写真の同定は別途確認する。"
+      }
+    },
+    {
+      "mushroom_id": "yaguratake",
+      "canonical_name_ja": "ヤグラタケ",
+      "name_ja_sources": [
+        "yaguratake-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Asterophora lycoperdoides",
+        "source_ids": [
+          "yaguratake-guide"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "yaguratake-guide"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘は育つと粉のかたまりのようになる。裏のひだは厚く、間隔が広い。",
+        "source_ids": [
+          "yaguratake-guide"
+        ]
+      },
+      "season": {
+        "summary": "夏〜秋",
+        "source_ids": [
+          "yaguratake-guide"
+        ]
+      },
+      "habitat": {
+        "summary": "老成したクロハツなどに寄生",
+        "source_ids": [
+          "yaguratake-guide"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "公的図鑑の資料掲載学名・形態・生態を確認。現行分類・食毒はこのバッチで判定していない。公開写真の同定は別途確認する。"
+      }
+    },
+    {
+      "mushroom_id": "watakarakasatake",
+      "canonical_name_ja": "ワタカラカサタケ",
+      "name_ja_sources": [
+        "watakarakasatake-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Lepiota ventriosospora",
+        "source_ids": [
+          "watakarakasatake-guide"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "watakarakasatake-guide"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘と中空の柄に、綿くずのような鱗片が見られる。ひだは柄から離れて並ぶ。",
+        "source_ids": [
+          "watakarakasatake-guide"
+        ]
+      },
+      "season": {
+        "summary": "夏〜秋",
+        "source_ids": [
+          "watakarakasatake-guide"
+        ]
+      },
+      "habitat": {
+        "summary": "林内",
+        "source_ids": [
+          "watakarakasatake-guide"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "公的図鑑の資料掲載学名・形態・生態を確認。現行分類・食毒はこのバッチで判定していない。公開写真の同定は別途確認する。"
+      }
+    }
+  ],
+  "source_additions": [
+    {
+      "source_id": "benihanaiguti-guide",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「ベニハナイグチ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/benihanaiguti.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。"
+    },
+    {
+      "source_id": "benihigasa-guide",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「ベニヒガサ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/benihigasa.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。"
+    },
+    {
+      "source_id": "fujiusutake-guide",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「フジウスタケ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/fujiusutake.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。"
+    },
+    {
+      "source_id": "fukuroturutake-guide",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「フクロツルタケ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/fukuroturutake.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。"
+    },
+    {
+      "source_id": "hanagasaiguti-guide",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「ハナガサイグチ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/hanagasaiguti.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。"
+    },
+    {
+      "source_id": "himekabairotake-guide",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「ヒメカバイロタケ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/himekabairotake.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。"
+    },
+    {
+      "source_id": "himekikurage-guide",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「ヒメキクラゲ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/himekikurage.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。"
+    },
+    {
+      "source_id": "hyoumonurabenigasa-guide",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「ヒョウモンウラベニガサ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/hyoumonurabenigasa.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。"
+    },
+    {
+      "source_id": "miyamabeniiguti-guide",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「ミヤマベニイグチ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/miyamabeniiguti.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。"
+    },
+    {
+      "source_id": "musasabitake-guide",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「ムササビタケ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/musasabitake.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。"
+    },
+    {
+      "source_id": "numerisasatake-guide",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「ヌメリササタケ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/numerisasatake.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。"
+    },
+    {
+      "source_id": "watakarakasatake-guide",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「ワタカラカサタケ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/watakarakasatake.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。"
+    },
+    {
+      "source_id": "yaguratake-guide",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「ヤグラタケ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/yaguratake.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。"
+    }
+  ],
+  "assignment_additions": [
+    {
+      "candidate_id": "numerisasatake-gills",
+      "mushroom_id": "numerisasatake",
+      "assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の裏側にひだがある。",
+        "source_ids": [
+          "numerisasatake-guide"
+        ],
+        "evidence_refs": [
+          "numerisasatake-gills-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "numerisasatake-gills-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "numerisasatake-gills-evidence",
+          "decision_id": "numerisasatake-gills-decision",
+          "mushroom_id": "numerisasatake",
+          "facet_id": "gills",
+          "source_id": "numerisasatake-guide",
+          "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/numerisasatake.html",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の裏側にひだがある。",
+          "qualifiers": [],
+          "quote": "傘の下面：ヒダ、直生～上生、やや疎、淡紫色後褐色",
+          "quote_sha256": "570563691a29c4f5c3e99d8e259d2fffe349472b411bbac4a8d95149afa28f15",
+          "char_start": 0,
+          "char_end": 24,
+          "snapshot_identity": "numerisasatake-guide-2026-11-21-excerpt",
+          "extracted_text_sha256": "570563691a29c4f5c3e99d8e259d2fffe349472b411bbac4a8d95149afa28f15",
+          "text_snapshot_sha256": "570563691a29c4f5c3e99d8e259d2fffe349472b411bbac4a8d95149afa28f15",
+          "original_response_sha256": "8de1ae319365b790dee472eb32aadc66a58c7d13dbd7c204bbee3e576d41c821",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "hanagasaiguti-pores",
+      "mushroom_id": "hanagasaiguti",
+      "assignment": {
+        "facet_id": "pores",
+        "evidence_text": "傘の裏側に管孔がある。",
+        "source_ids": [
+          "hanagasaiguti-guide"
+        ],
+        "evidence_refs": [
+          "hanagasaiguti-pores-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "hanagasaiguti-pores-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "hanagasaiguti-pores-evidence",
+          "decision_id": "hanagasaiguti-pores-decision",
+          "mushroom_id": "hanagasaiguti",
+          "facet_id": "pores",
+          "source_id": "hanagasaiguti-guide",
+          "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/hanagasaiguti.html",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の裏側に管孔がある。",
+          "qualifiers": [],
+          "quote": "傘の下面：菅孔、直生後湾入",
+          "quote_sha256": "cf909e7c3de1d39c30859ae6a90da4b2bebdbf9b6fddbc2a605fcb385eb9827e",
+          "char_start": 0,
+          "char_end": 13,
+          "snapshot_identity": "hanagasaiguti-guide-2026-11-21-excerpt",
+          "extracted_text_sha256": "cf909e7c3de1d39c30859ae6a90da4b2bebdbf9b6fddbc2a605fcb385eb9827e",
+          "text_snapshot_sha256": "cf909e7c3de1d39c30859ae6a90da4b2bebdbf9b6fddbc2a605fcb385eb9827e",
+          "original_response_sha256": "c1c4f4b1d68970a1d439c9e915a63a38073c6a68956715565000a02f447fae1e",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "himekabairotake-gills",
+      "mushroom_id": "himekabairotake",
+      "assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の裏側にひだがある。",
+        "source_ids": [
+          "himekabairotake-guide"
+        ],
+        "evidence_refs": [
+          "himekabairotake-gills-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "himekabairotake-gills-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "himekabairotake-gills-evidence",
+          "decision_id": "himekabairotake-gills-decision",
+          "mushroom_id": "himekabairotake",
+          "facet_id": "gills",
+          "source_id": "himekabairotake-guide",
+          "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/himekabairotake.html",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の裏側にひだがある。",
+          "qualifiers": [],
+          "quote": "傘の下面：ヒダ、垂生、疎",
+          "quote_sha256": "b196cdaf5babc49a8340335825718503ad69539e11e78e6a8f9458e327e2e6ab",
+          "char_start": 0,
+          "char_end": 12,
+          "snapshot_identity": "himekabairotake-guide-2026-11-21-excerpt",
+          "extracted_text_sha256": "b196cdaf5babc49a8340335825718503ad69539e11e78e6a8f9458e327e2e6ab",
+          "text_snapshot_sha256": "b196cdaf5babc49a8340335825718503ad69539e11e78e6a8f9458e327e2e6ab",
+          "original_response_sha256": "cbaeae7f9415de7e7ff73808101731335fa4d1776780988686dde36f78458dd5",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "himekikurage-gelatinous",
+      "mushroom_id": "himekikurage",
+      "assignment": {
+        "facet_id": "gelatinous",
+        "evidence_text": "子実体はゼラチン状の質感がある。",
+        "source_ids": [
+          "himekikurage-guide"
+        ],
+        "evidence_refs": [
+          "himekikurage-gelatinous-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "himekikurage-gelatinous-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "himekikurage-gelatinous-evidence",
+          "decision_id": "himekikurage-gelatinous-decision",
+          "mushroom_id": "himekikurage",
+          "facet_id": "gelatinous",
+          "source_id": "himekikurage-guide",
+          "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/himekikurage.html",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "子実体はゼラチン状の質感がある。",
+          "qualifiers": [],
+          "quote": "その他：ゼラチン質で表面は脳状であり突起におおわれる",
+          "quote_sha256": "da2e10437f17feb125d3fd90b3d8806e5b9e79430ae1995653579646c3a14e94",
+          "char_start": 0,
+          "char_end": 26,
+          "snapshot_identity": "himekikurage-guide-2026-11-21-excerpt",
+          "extracted_text_sha256": "da2e10437f17feb125d3fd90b3d8806e5b9e79430ae1995653579646c3a14e94",
+          "text_snapshot_sha256": "da2e10437f17feb125d3fd90b3d8806e5b9e79430ae1995653579646c3a14e94",
+          "original_response_sha256": "81530597ec7412fa71fdff654b01a5f04428933575009004735e07254988475c",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "hyoumonurabenigasa-gills",
+      "mushroom_id": "hyoumonurabenigasa",
+      "assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の裏側にひだがある。",
+        "source_ids": [
+          "hyoumonurabenigasa-guide"
+        ],
+        "evidence_refs": [
+          "hyoumonurabenigasa-gills-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "hyoumonurabenigasa-gills-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "hyoumonurabenigasa-gills-evidence",
+          "decision_id": "hyoumonurabenigasa-gills-decision",
+          "mushroom_id": "hyoumonurabenigasa",
+          "facet_id": "gills",
+          "source_id": "hyoumonurabenigasa-guide",
+          "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/hyoumonurabenigasa.html",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の裏側にひだがある。",
+          "qualifiers": [],
+          "quote": "傘の下面：ヒダ、離生、密、白色後肉色",
+          "quote_sha256": "2084c76636e4a3fadbb298ee2ee897ef6692f13d3ac2b4557849abf0cbb7364f",
+          "char_start": 0,
+          "char_end": 18,
+          "snapshot_identity": "hyoumonurabenigasa-guide-2026-11-21-excerpt",
+          "extracted_text_sha256": "2084c76636e4a3fadbb298ee2ee897ef6692f13d3ac2b4557849abf0cbb7364f",
+          "text_snapshot_sha256": "2084c76636e4a3fadbb298ee2ee897ef6692f13d3ac2b4557849abf0cbb7364f",
+          "original_response_sha256": "ff4ff078179538e3b5ffc8327ee2c353886ac2f68ef98d8f8c1a4ec01a7208fc",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "fukuroturutake-gills",
+      "mushroom_id": "fukuroturutake",
+      "assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の裏側にひだがある。",
+        "source_ids": [
+          "fukuroturutake-guide"
+        ],
+        "evidence_refs": [
+          "fukuroturutake-gills-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "fukuroturutake-gills-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "fukuroturutake-gills-evidence",
+          "decision_id": "fukuroturutake-gills-decision",
+          "mushroom_id": "fukuroturutake",
+          "facet_id": "gills",
+          "source_id": "fukuroturutake-guide",
+          "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/fukuroturutake.html",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の裏側にひだがある。",
+          "qualifiers": [],
+          "quote": "傘の下面：ヒダ、離生、密",
+          "quote_sha256": "94d75b3dce1019d51a7fe81c64da51ace4b24464a82463b683657a6caa521b9f",
+          "char_start": 0,
+          "char_end": 12,
+          "snapshot_identity": "fukuroturutake-guide-2026-11-21-excerpt",
+          "extracted_text_sha256": "94d75b3dce1019d51a7fe81c64da51ace4b24464a82463b683657a6caa521b9f",
+          "text_snapshot_sha256": "94d75b3dce1019d51a7fe81c64da51ace4b24464a82463b683657a6caa521b9f",
+          "original_response_sha256": "d2c43b2fcdfa39d85d6f281baba3ec3bb78e0329e43083c75be0207b900281e4",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "fujiusutake-cap_depressed",
+      "mushroom_id": "fujiusutake",
+      "assignment": {
+        "facet_id": "cap_depressed",
+        "evidence_text": "中央が基部まで深くくぼむ。",
+        "source_ids": [
+          "fujiusutake-guide"
+        ],
+        "evidence_refs": [
+          "fujiusutake-cap_depressed-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "fujiusutake-cap_depressed-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "fujiusutake-cap_depressed-evidence",
+          "decision_id": "fujiusutake-cap_depressed-decision",
+          "mushroom_id": "fujiusutake",
+          "facet_id": "cap_depressed",
+          "source_id": "fujiusutake-guide",
+          "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/fujiusutake.html",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "中央が基部まで深くくぼむ。",
+          "qualifiers": [],
+          "quote": "傘：中央部は基部まで窪む",
+          "quote_sha256": "091aa2b5f998fc75bf705bc9a1db01c00621a3a4b04e6516f8409860f2207177",
+          "char_start": 0,
+          "char_end": 12,
+          "snapshot_identity": "fujiusutake-guide-2026-11-21-excerpt",
+          "extracted_text_sha256": "091aa2b5f998fc75bf705bc9a1db01c00621a3a4b04e6516f8409860f2207177",
+          "text_snapshot_sha256": "091aa2b5f998fc75bf705bc9a1db01c00621a3a4b04e6516f8409860f2207177",
+          "original_response_sha256": "b562ddae3ff31c67dc175c2c25266e540ed3d9164dfe7cb6fd225d840cb91582",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "benihanaiguti-pores",
+      "mushroom_id": "benihanaiguti",
+      "assignment": {
+        "facet_id": "pores",
+        "evidence_text": "傘の裏側に管孔がある。",
+        "source_ids": [
+          "benihanaiguti-guide"
+        ],
+        "evidence_refs": [
+          "benihanaiguti-pores-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "benihanaiguti-pores-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "benihanaiguti-pores-evidence",
+          "decision_id": "benihanaiguti-pores-decision",
+          "mushroom_id": "benihanaiguti",
+          "facet_id": "pores",
+          "source_id": "benihanaiguti-guide",
+          "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/benihanaiguti.html",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の裏側に管孔がある。",
+          "qualifiers": [],
+          "quote": "傘の下面：菅孔、垂生",
+          "quote_sha256": "6dc09943f5c4af46e20ce3ea853bd171132acfe8eb04649a0b5059be2b1251e9",
+          "char_start": 0,
+          "char_end": 10,
+          "snapshot_identity": "benihanaiguti-guide-2026-11-21-excerpt",
+          "extracted_text_sha256": "6dc09943f5c4af46e20ce3ea853bd171132acfe8eb04649a0b5059be2b1251e9",
+          "text_snapshot_sha256": "6dc09943f5c4af46e20ce3ea853bd171132acfe8eb04649a0b5059be2b1251e9",
+          "original_response_sha256": "c4ea787a83030d014721698ea68537294a5580878bf53c76fadc4d9cbe8ad7e5",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "benihigasa-gills",
+      "mushroom_id": "benihigasa",
+      "assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の裏側にひだがある。",
+        "source_ids": [
+          "benihigasa-guide"
+        ],
+        "evidence_refs": [
+          "benihigasa-gills-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "benihigasa-gills-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "benihigasa-gills-evidence",
+          "decision_id": "benihigasa-gills-decision",
+          "mushroom_id": "benihigasa",
+          "facet_id": "gills",
+          "source_id": "benihigasa-guide",
+          "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/benihigasa.html",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の裏側にひだがある。",
+          "qualifiers": [],
+          "quote": "傘の下面：ヒダ、垂生、疎",
+          "quote_sha256": "b196cdaf5babc49a8340335825718503ad69539e11e78e6a8f9458e327e2e6ab",
+          "char_start": 0,
+          "char_end": 12,
+          "snapshot_identity": "benihigasa-guide-2026-11-21-excerpt",
+          "extracted_text_sha256": "b196cdaf5babc49a8340335825718503ad69539e11e78e6a8f9458e327e2e6ab",
+          "text_snapshot_sha256": "b196cdaf5babc49a8340335825718503ad69539e11e78e6a8f9458e327e2e6ab",
+          "original_response_sha256": "90db8ea87f835e9dddc9010d6cbc51c320f90377de100c4e729641a95e280d8a",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "miyamabeniiguti-pores",
+      "mushroom_id": "miyamabeniiguti",
+      "assignment": {
+        "facet_id": "pores",
+        "evidence_text": "傘の裏側に管孔がある。",
+        "source_ids": [
+          "miyamabeniiguti-guide"
+        ],
+        "evidence_refs": [
+          "miyamabeniiguti-pores-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "miyamabeniiguti-pores-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "miyamabeniiguti-pores-evidence",
+          "decision_id": "miyamabeniiguti-pores-decision",
+          "mushroom_id": "miyamabeniiguti",
+          "facet_id": "pores",
+          "source_id": "miyamabeniiguti-guide",
+          "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/miyamabeniiguti.html",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の裏側に管孔がある。",
+          "qualifiers": [],
+          "quote": "傘の下面：菅孔、上生～離生",
+          "quote_sha256": "9ab577d4752725c479b0025d27c0e2eb485dfb49eebc21bfefc0401c7777c16d",
+          "char_start": 0,
+          "char_end": 13,
+          "snapshot_identity": "miyamabeniiguti-guide-2026-11-21-excerpt",
+          "extracted_text_sha256": "9ab577d4752725c479b0025d27c0e2eb485dfb49eebc21bfefc0401c7777c16d",
+          "text_snapshot_sha256": "9ab577d4752725c479b0025d27c0e2eb485dfb49eebc21bfefc0401c7777c16d",
+          "original_response_sha256": "ba089a6164cb6212e639e56aaebac5231a1dc156b4ea77a546705734ce166ac9",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "musasabitake-gills",
+      "mushroom_id": "musasabitake",
+      "assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の裏側にひだがある。",
+        "source_ids": [
+          "musasabitake-guide"
+        ],
+        "evidence_refs": [
+          "musasabitake-gills-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "musasabitake-gills-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "musasabitake-gills-evidence",
+          "decision_id": "musasabitake-gills-decision",
+          "mushroom_id": "musasabitake",
+          "facet_id": "gills",
+          "source_id": "musasabitake-guide",
+          "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/musasabitake.html",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の裏側にひだがある。",
+          "qualifiers": [],
+          "quote": "傘の下面：ヒダ、上生、密、白色後暗褐色",
+          "quote_sha256": "3eaa0c465878d66114cf4af07941087b9211835bbba47b5a88feca4b143c7b49",
+          "char_start": 0,
+          "char_end": 19,
+          "snapshot_identity": "musasabitake-guide-2026-11-21-excerpt",
+          "extracted_text_sha256": "3eaa0c465878d66114cf4af07941087b9211835bbba47b5a88feca4b143c7b49",
+          "text_snapshot_sha256": "3eaa0c465878d66114cf4af07941087b9211835bbba47b5a88feca4b143c7b49",
+          "original_response_sha256": "deca9d2703f69c87e1c6d96520d63c3cb3879bbf6c2a2c1ff70d3fc9aa673b1a",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "yaguratake-gills",
+      "mushroom_id": "yaguratake",
+      "assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の裏側にひだがある。",
+        "source_ids": [
+          "yaguratake-guide"
+        ],
+        "evidence_refs": [
+          "yaguratake-gills-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "yaguratake-gills-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "yaguratake-gills-evidence",
+          "decision_id": "yaguratake-gills-decision",
+          "mushroom_id": "yaguratake",
+          "facet_id": "gills",
+          "source_id": "yaguratake-guide",
+          "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/yaguratake.html",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の裏側にひだがある。",
+          "qualifiers": [],
+          "quote": "傘の下面：ヒダ、厚く疎",
+          "quote_sha256": "eb9a1bbd5d4fc710e331397ec9e5552bdfcef541d4186f76227ec2da15f9b808",
+          "char_start": 0,
+          "char_end": 11,
+          "snapshot_identity": "yaguratake-guide-2026-11-21-excerpt",
+          "extracted_text_sha256": "eb9a1bbd5d4fc710e331397ec9e5552bdfcef541d4186f76227ec2da15f9b808",
+          "text_snapshot_sha256": "eb9a1bbd5d4fc710e331397ec9e5552bdfcef541d4186f76227ec2da15f9b808",
+          "original_response_sha256": "5f6f7e0a40ae3211b53f37b6ce27832202ff85c2832f22e2e37ace255fb5352a",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "watakarakasatake-gills",
+      "mushroom_id": "watakarakasatake",
+      "assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の裏側にひだがある。",
+        "source_ids": [
+          "watakarakasatake-guide"
+        ],
+        "evidence_refs": [
+          "watakarakasatake-gills-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "watakarakasatake-gills-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "watakarakasatake-gills-evidence",
+          "decision_id": "watakarakasatake-gills-decision",
+          "mushroom_id": "watakarakasatake",
+          "facet_id": "gills",
+          "source_id": "watakarakasatake-guide",
+          "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/watakarakasatake.html",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の裏側にひだがある。",
+          "qualifiers": [],
+          "quote": "傘の下面：ヒダ、離生",
+          "quote_sha256": "075d76a6d505b56bfdfab560ad8f86c6c94fb45a45058d6e5b64d5982ffe2c00",
+          "char_start": 0,
+          "char_end": 10,
+          "snapshot_identity": "watakarakasatake-guide-2026-11-21-excerpt",
+          "extracted_text_sha256": "075d76a6d505b56bfdfab560ad8f86c6c94fb45a45058d6e5b64d5982ffe2c00",
+          "text_snapshot_sha256": "075d76a6d505b56bfdfab560ad8f86c6c94fb45a45058d6e5b64d5982ffe2c00",
+          "original_response_sha256": "05719fd2e66d066f015588ad81c722f870697abb9aed1295c4747e806dcc9908",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    }
+  ]
+}
