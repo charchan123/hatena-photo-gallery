@@ -18,6 +18,10 @@ RELEASE_FILES = {
     'admin/comments_client.py', 'assets/research-comments.js', 'comments/worker.mjs',
     'requirements.txt', 'research_comments.py', 'research_ui.py', 'comments/tests/api.test.mjs',
 }
+LINE_MAIN = 'f19541524a989f2ab1979c78a9bff5e5e0274092'
+LINE_FILES = {'assets/research-comments.js', 'comments/worker.mjs',
+              'comments/wrangler.jsonc', 'research_comments.py'}
+LINE_NEW = {'comments/line/0001_outbox.sql', 'comments/line/notify.mjs'}
 ACTIVITY_FILES = {'assets/research-comments.js',
                   'comments/worker.mjs', 'comments/tests/api.test.mjs', 'research_ui.py'}
 ACTIVITY_MAIN = 'dcd8d072bffa23495f7a1028a4636f3eb1f7ca70'
@@ -53,6 +57,11 @@ def assert_reviewed_source(base, path, current):
     original = git('show', f'{base}:{path}')
     if current == original:
         return
+    if path in LINE_FILES:
+        pins = line_pins()
+        if hashlib.sha256(current).hexdigest() == pins[path]:
+            assert original == git('show', f'{LINE_MAIN}:{path}'), f'LINE main advanced: {path}'
+            return
     if path in EXHIBITION_MODIFIED:
         # Exception only for this Best Shot draft's exact Git blobs.
         # The baseline must be unchanged and all non-Best-Shot sources stay pinned.
@@ -99,6 +108,11 @@ def assert_reviewed_source(base, path, current):
     assert original == git('show', f'{PR135}:{path}'), f'main advanced: {path}'
     assert current == git('show', f'{PR137}:{path}'), f'PR137 changed: {path}'
 
+def line_pins():
+    pins = json.loads((ROOT/'audit/comments-line-20261118/files.json').read_text(encoding='utf-8'))
+    assert pins['main'] == LINE_MAIN and set(pins['files']) == LINE_FILES | LINE_NEW
+    return pins['files']
+
 def collect(base='origin/main'):
     git('merge-base', '--is-ancestor', base, 'HEAD')
     protected = [p for p in git('ls-tree', '-rz', '--name-only', base).decode().split('\0')
@@ -108,6 +122,10 @@ def collect(base='origin/main'):
         content = (ROOT / path).read_bytes()
         assert_reviewed_source(base, path, content)
         hashes[path] = hashlib.sha256(content).hexdigest()
+    if any((ROOT/path).exists() for path in LINE_NEW):
+        pins = line_pins()
+        for path in LINE_NEW:
+            assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest() == pins[path], path
     # Newly added exhibit assets are not in the baseline tree: pin explicitly.
     pins = json.loads((ROOT/'audit/best-shot-exhibition-20261121/files.json').read_text(encoding='utf-8'))
     assert pins['base_main'] == EXHIBITION_BASE

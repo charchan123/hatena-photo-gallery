@@ -126,8 +126,7 @@
     order.value = alreadyOpened ? "capture" : "activity";
     if (!alreadyOpened) await applyOrder();
   }
-  const order = document.getElementById("research-case-order");
-  if (order) initializeCaseOrder(order);
+  const commentLink = /^#(comments-research-[0-9a-f]{16})(?:\/([1-9][0-9]{0,14})\/([0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}))?$/.exec(location.hash);
   let turnstilePromise;
   function turnstile() {
     if (window.turnstile) return Promise.resolve(window.turnstile);
@@ -302,9 +301,11 @@
       async function loadPage(view) {
         const reset = view !== "more",
           backwards = view === "latest" || (!reset && recent),
+          linked = view === "linked",
           query = view === "latest"
             ? "?latest=1"
-            : reset ? "" : (backwards ? "?before=" : "?after=") + cursor;
+            : linked ? "?after=" + (Number(commentLink[2]) - 1)
+              : reset ? "" : (backwards ? "?before=" : "?after=") + cursor;
         if (busy) return;
         busy = true;
         more.disabled = reload.disabled = true;
@@ -327,6 +328,11 @@
           status.textContent = seen.size
             ? "同定の参考情報としてお読みください。"
             : "まだコメントはありません。気づいたことや同定のヒントがあれば、ぜひ教えてください。";
+          if (linked) {
+            const target = list.querySelector('[data-comment-id="' + commentLink[3] + '"]');
+            if (target) target.scrollIntoView({ block: "center" });
+            else status.textContent = "リンク先のコメントは表示できません。";
+          }
         } catch (e) {
           status.textContent = e.message;
         } finally {
@@ -398,7 +404,9 @@
           }
         };
       }
-      await firstPage();
+      await (commentLink?.[1] === details.id
+        ? loadPage(commentLink[2] ? "linked" : "latest")
+        : firstPage());
       if (details.dataset.archived === "true") {
         area.append(
           $("p", "履歴保管中のため、この欄からの新規投稿は停止しています。"),
@@ -528,4 +536,8 @@
       };
     });
   }
+  const linkedThread = commentLink ? document.getElementById(commentLink[1]) : null;
+  if (linkedThread?.matches("[data-research-thread]")) linkedThread.open = true;
+  const order = document.getElementById("research-case-order");
+  if (order) initializeCaseOrder(order);
 })();

@@ -8,6 +8,7 @@
   "triggers": {"crons": ["17 4 * * *"]},
   "vars": {
     "PUBLIC_READ_ENABLED": "false", "PUBLIC_WRITE_ENABLED": "false",
+    "LINE_ENABLED": "false", "LINE_MONTHLY_LIMIT": "0", "LINE_START_AT": "",
     "RELEASE_APPROVAL": "not-approved", "ALLOWED_ORIGINS": "",
     "TURNSTILE_HOSTNAME": "", "MANIFEST_URL": "", "REGISTRY_SHA256": ""
   },
