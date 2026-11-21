@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "batch_id": "kinoko-guide-20261121-g",
-  "created_at": "2026-11-21T10:25:45+09:00",
+  "created_at": "2026-11-21T10:32:06+09:00",
   "generator": "ChatGPT Work",
   "origin": "Japanese public fungal reports cited in the 2026-11-21 working review",
   "base_main_sha": "f19541524a989f2ab1979c78a9bff5e5e0274092",
   "artifacts": [
     {
       "path": "candidate-delta.json",
-      "sha256": "96bdedb3fb31ebfbbb9e2e66d258970554c49110ffa10d7615c61b34921fcbde",
-      "bytes": 22253
+      "sha256": "aa04c7f45e64b4d5a100c005ce1b6d7778d7764a1e2c485d9f4bc824bcbe4e08",
+      "bytes": 31413
     },
     {
       "path": "source-snapshots.jsonl",
-      "sha256": "c670e1b76956b887d5a473a6d87d3ddc669f4a71783f0f84681af539a7b15559",
-      "bytes": 3202
+      "sha256": "a938a8cf655d89d46604c2cc59721558609f934a553b78df95bb955986020dc8",
+      "bytes": 4570
     }
   ],
   "counts": {
-    "mushroom_additions": 5,
-    "source_additions": 5,
-    "assignment_candidates": 5,
-    "snapshots": 5
+    "mushroom_additions": 7,
+    "source_additions": 7,
+    "assignment_candidates": 7,
+    "snapshots": 7
   }
 }
