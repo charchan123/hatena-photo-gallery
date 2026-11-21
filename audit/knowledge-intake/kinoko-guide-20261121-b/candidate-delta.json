@@ -1,0 +1,1240 @@
+{
+  "schema_version": 1,
+  "mushroom_additions": [
+    {
+      "mushroom_id": "asinagaiguti",
+      "canonical_name_ja": "アシナガイグチ",
+      "name_ja_sources": [
+        "asinagaiguti-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Boletellus elatus",
+        "source_ids": [
+          "asinagaiguti-guide"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "asinagaiguti-guide"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘の裏は管孔。湿ったときに傘が少し粘り、柄は根元側が太くなる。",
+        "source_ids": [
+          "asinagaiguti-guide"
+        ]
+      },
+      "season": {
+        "summary": "夏〜秋",
+        "source_ids": [
+          "asinagaiguti-guide"
+        ]
+      },
+      "habitat": {
+        "summary": "マツ・コナラの林やシイ・カシの林",
+        "source_ids": [
+          "asinagaiguti-guide"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "公的図鑑の資料掲載学名・形態・生態を確認。現行分類・食毒はこのバッチで判定していない。公開写真の同定は別途確認する。"
+      }
+    },
+    {
+      "mushroom_id": "amisugitake",
+      "canonical_name_ja": "アミスギタケ",
+      "name_ja_sources": [
+        "amisugitake-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Polyporus arcularius",
+        "source_ids": [
+          "amisugitake-guide"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "amisugitake-guide"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘の中央はくぼみ、暗褐色の鱗片が多い。裏面の管孔は柄に沿って下がる。",
+        "source_ids": [
+          "amisugitake-guide"
+        ]
+      },
+      "season": {
+        "summary": "春〜秋",
+        "source_ids": [
+          "amisugitake-guide"
+        ]
+      },
+      "habitat": {
+        "summary": "広葉樹の倒木や切り株",
+        "source_ids": [
+          "amisugitake-guide"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "公的図鑑の資料掲載学名・形態・生態を確認。現行分類・食毒はこのバッチで判定していない。公開写真の同定は別途確認する。"
+      }
+    },
+    {
+      "mushroom_id": "tamakikurage",
+      "canonical_name_ja": "タマキクラゲ",
+      "name_ja_sources": [
+        "tamakikurage-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Exidia uvapassa",
+        "source_ids": [
+          "tamakikurage-guide"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "tamakikurage-guide"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "丸い粒やこまに似た形で、ゼラチン状の質感をしている。",
+        "source_ids": [
+          "tamakikurage-guide"
+        ]
+      },
+      "season": {
+        "summary": "春〜秋",
+        "source_ids": [
+          "tamakikurage-guide"
+        ]
+      },
+      "habitat": {
+        "summary": "広葉樹の枯れ枝",
+        "source_ids": [
+          "tamakikurage-guide"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "公的図鑑の資料掲載学名・形態・生態を確認。現行分類・食毒はこのバッチで判定していない。公開写真の同定は別途確認する。"
+      }
+    },
+    {
+      "mushroom_id": "tisiotake",
+      "canonical_name_ja": "チシオタケ",
+      "name_ja_sources": [
+        "tisiotake-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Mycena haematopoda",
+        "source_ids": [
+          "tisiotake-guide"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "tisiotake-guide"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘の縁が細かくギザギザになり、裏には間隔を空けてひだが並ぶ。柄に傷が付くと赤い汁が出る。",
+        "source_ids": [
+          "tisiotake-guide"
+        ]
+      },
+      "season": {
+        "summary": "夏〜秋",
+        "source_ids": [
+          "tisiotake-guide"
+        ]
+      },
+      "habitat": {
+        "summary": "広葉樹の朽ち木",
+        "source_ids": [
+          "tisiotake-guide"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "公的図鑑の資料掲載学名・形態・生態を確認。現行分類・食毒はこのバッチで判定していない。公開写真の同定は別途確認する。"
+      }
+    },
+    {
+      "mushroom_id": "hanaotibatake",
+      "canonical_name_ja": "ハナオチバタケ",
+      "name_ja_sources": [
+        "hanaotibatake-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Marasmius pulcherripes",
+        "source_ids": [
+          "hanaotibatake-guide"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "hanaotibatake-guide"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘の中央に小さな突起があり、表面にはすじが見える。柄は針金のように細い。",
+        "source_ids": [
+          "hanaotibatake-guide"
+        ]
+      },
+      "season": {
+        "summary": "夏〜秋",
+        "source_ids": [
+          "hanaotibatake-guide"
+        ]
+      },
+      "habitat": {
+        "summary": "針葉樹の落葉",
+        "source_ids": [
+          "hanaotibatake-guide"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "公的図鑑の資料掲載学名・形態・生態を確認。現行分類・食毒はこのバッチで判定していない。公開写真の同定は別途確認する。"
+      }
+    },
+    {
+      "mushroom_id": "yashaiguchi",
+      "canonical_name_ja": "ヤシャイグチ",
+      "name_ja_sources": [
+        "yashaiguchi-guide"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Austroboletus fusisporus",
+        "source_ids": [
+          "yashaiguchi-guide"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "yashaiguchi-guide"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "柄には縦に長い網目があり、網目のすじが盛り上がる。",
+        "source_ids": [
+          "yashaiguchi-guide"
+        ]
+      },
+      "season": {
+        "summary": "夏〜秋",
+        "source_ids": [
+          "yashaiguchi-guide"
+        ]
+      },
+      "habitat": {
+        "summary": "シイやカシの林の地上",
+        "source_ids": [
+          "yashaiguchi-guide"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "公的図鑑の資料掲載学名・形態・生態を確認。現行分類・食毒はこのバッチで判定していない。公開写真の同定は別途確認する。"
+      }
+    },
+    {
+      "mushroom_id": "ibotengutake",
+      "canonical_name_ja": "イボテングタケ",
+      "name_ja_sources": [
+        "ibotengutake-ibotengutake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Amanita ibotengutake",
+        "source_ids": [
+          "ibotengutake-ibotengutake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "ibotengutake-ibotengutake"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "テングタケ科",
+          "source_ids": [
+            "ibotengutake-ibotengutake"
+          ]
+        },
+        "genus": {
+          "value": "テングタケ属",
+          "source_ids": [
+            "ibotengutake-ibotengutake"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "poisonous_confirmed",
+        "source_ids": [
+          "ibotengutake-ibotengutake"
+        ],
+        "notes": "厚生労働省の資料で毒キノコとされている。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "大型になることがある。柄の根元につぼの名残が輪になって何段か残る点が、厚生労働省の資料でテングタケとの比較に使われている。傘のいぼは落ちることもある。",
+        "source_ids": [
+          "ibotengutake-ibotengutake"
+        ]
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "habitat": {
+        "summary": "アカマツなどの針葉樹が生える環境",
+        "source_ids": [
+          "ibotengutake-ibotengutake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "資料掲載学名。写真の種判定、掲載名の変更、別名の統合は行っていない。"
+      }
+    },
+    {
+      "mushroom_id": "oninaratake",
+      "canonical_name_ja": "オニナラタケ",
+      "name_ja_sources": [
+        "oninaratake-oninaratake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Armillaria ostoyae",
+        "source_ids": [
+          "oninaratake-oninaratake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "oninaratake-oninaratake"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": "ナラタケ属",
+          "source_ids": [
+            "oninaratake-oninaratake"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "淡い褐色の傘に暗い鱗片が散り、柄には目立つつばがある。傘の下のひだは淡色で、枯れ木にまとまって発生する。",
+        "source_ids": [
+          "oninaratake-oninaratake"
+        ]
+      },
+      "season": {
+        "summary": "主に秋。亜高山帯では夏の終わりから発生する記録がある。",
+        "source_ids": [
+          "oninaratake-oninaratake"
+        ]
+      },
+      "habitat": {
+        "summary": "トウヒ、モミ、ツガなど針葉樹の枯れ木",
+        "source_ids": [
+          "oninaratake-oninaratake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "資料掲載学名。写真の種判定、掲載名の変更、別名の統合は行っていない。"
+      }
+    },
+    {
+      "mushroom_id": "mousenashibeniiguchi",
+      "canonical_name_ja": "モウセンアシベニイグチ",
+      "name_ja_sources": [
+        "mousenashibeniiguchi-mousen-ja"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Boletus panniformis",
+        "source_ids": [
+          "mousenashibeniiguchi-mousen-ja",
+          "mousenashibeniiguchi-mousen-paper"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "mousenashibeniiguchi-mousen-ja",
+            "mousenashibeniiguchi-mousen-paper"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘はフェルトに似た手触りで、柄は赤みを帯びる。柄の上部には細かな網目があり、下へ向かうと目立たなくなることがある。",
+        "source_ids": [
+          "mousenashibeniiguchi-mousen-ja",
+          "mousenashibeniiguchi-mousen-paper"
+        ]
+      },
+      "season": {
+        "summary": "6〜9月の記録がある。",
+        "source_ids": [
+          "mousenashibeniiguchi-mousen-ja"
+        ]
+      },
+      "habitat": {
+        "summary": "ウラジロモミやコメツガなどの亜高山帯の針葉樹林",
+        "source_ids": [
+          "mousenashibeniiguchi-mousen-ja"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "資料掲載学名。写真の種判定、掲載名の変更、別名の統合は行っていない。"
+      }
+    }
+  ],
+  "assignment_additions": [
+    {
+      "candidate_id": "asinagaiguti-pores",
+      "mushroom_id": "asinagaiguti",
+      "assignment": {
+        "facet_id": "pores",
+        "evidence_text": "傘の裏側に管孔がある。",
+        "source_ids": [
+          "asinagaiguti-guide"
+        ],
+        "evidence_refs": [
+          "asinagaiguti-pores-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "asinagaiguti-pores-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "asinagaiguti-pores-evidence",
+          "decision_id": "asinagaiguti-pores-decision",
+          "mushroom_id": "asinagaiguti",
+          "facet_id": "pores",
+          "source_id": "asinagaiguti-guide",
+          "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/asinagaiguti.html",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の裏側に管孔がある。",
+          "qualifiers": [],
+          "quote": "傘の下面：菅孔、上生～離生",
+          "quote_sha256": "9ab577d4752725c479b0025d27c0e2eb485dfb49eebc21bfefc0401c7777c16d",
+          "char_start": 0,
+          "char_end": 13,
+          "snapshot_identity": "asinagaiguti-guide-2026-11-21-excerpt",
+          "extracted_text_sha256": "9ab577d4752725c479b0025d27c0e2eb485dfb49eebc21bfefc0401c7777c16d",
+          "text_snapshot_sha256": "9ab577d4752725c479b0025d27c0e2eb485dfb49eebc21bfefc0401c7777c16d",
+          "original_response_sha256": "3a3ffe7dce25086dca0be03cd684071c45f9a0c0452cbd4c3488579b83964f39",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "amisugitake-pores",
+      "mushroom_id": "amisugitake",
+      "assignment": {
+        "facet_id": "pores",
+        "evidence_text": "傘の裏側に管孔がある。",
+        "source_ids": [
+          "amisugitake-guide"
+        ],
+        "evidence_refs": [
+          "amisugitake-pores-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "amisugitake-pores-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "amisugitake-pores-evidence",
+          "decision_id": "amisugitake-pores-decision",
+          "mushroom_id": "amisugitake",
+          "facet_id": "pores",
+          "source_id": "amisugitake-guide",
+          "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/amisugitake.html",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の裏側に管孔がある。",
+          "qualifiers": [],
+          "quote": "傘の下面：菅孔、垂生",
+          "quote_sha256": "6dc09943f5c4af46e20ce3ea853bd171132acfe8eb04649a0b5059be2b1251e9",
+          "char_start": 0,
+          "char_end": 10,
+          "snapshot_identity": "amisugitake-guide-2026-11-21-excerpt",
+          "extracted_text_sha256": "6dc09943f5c4af46e20ce3ea853bd171132acfe8eb04649a0b5059be2b1251e9",
+          "text_snapshot_sha256": "6dc09943f5c4af46e20ce3ea853bd171132acfe8eb04649a0b5059be2b1251e9",
+          "original_response_sha256": "095228975f8e73be269b421a783035b20bb19335796af7412df417a90a95036c",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "tamakikurage-gelatinous",
+      "mushroom_id": "tamakikurage",
+      "assignment": {
+        "facet_id": "gelatinous",
+        "evidence_text": "子実体はゼラチン状の質感がある。",
+        "source_ids": [
+          "tamakikurage-guide"
+        ],
+        "evidence_refs": [
+          "tamakikurage-gelatinous-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "tamakikurage-gelatinous-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "tamakikurage-gelatinous-evidence",
+          "decision_id": "tamakikurage-gelatinous-decision",
+          "mushroom_id": "tamakikurage",
+          "facet_id": "gelatinous",
+          "source_id": "tamakikurage-guide",
+          "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/tamakikurage.html",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "子実体はゼラチン状の質感がある。",
+          "qualifiers": [],
+          "quote": "その他：類球形、洋こま形でゼラチン質である",
+          "quote_sha256": "4dbae3f8d7e3fb42a0ce32aa8395acd759af5ce2ae5b61ac16fd2432a915b97c",
+          "char_start": 0,
+          "char_end": 21,
+          "snapshot_identity": "tamakikurage-guide-2026-11-21-excerpt",
+          "extracted_text_sha256": "4dbae3f8d7e3fb42a0ce32aa8395acd759af5ce2ae5b61ac16fd2432a915b97c",
+          "text_snapshot_sha256": "4dbae3f8d7e3fb42a0ce32aa8395acd759af5ce2ae5b61ac16fd2432a915b97c",
+          "original_response_sha256": "0c4456afab079503d76036f02e9067543c74970da5adc04a99a215d701a94193",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "tisiotake-gills",
+      "mushroom_id": "tisiotake",
+      "assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の裏側にひだがある。",
+        "source_ids": [
+          "tisiotake-guide"
+        ],
+        "evidence_refs": [
+          "tisiotake-gills-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "tisiotake-gills-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "tisiotake-gills-evidence",
+          "decision_id": "tisiotake-gills-decision",
+          "mushroom_id": "tisiotake",
+          "facet_id": "gills",
+          "source_id": "tisiotake-guide",
+          "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/tisiotake.html",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の裏側にひだがある。",
+          "qualifiers": [],
+          "quote": "傘の下面：ヒダ、直生、疎",
+          "quote_sha256": "5e57e1857e6eb1d7379eef4bdeca0a524df081ed83c3c26774c07a920ac37859",
+          "char_start": 0,
+          "char_end": 12,
+          "snapshot_identity": "tisiotake-guide-2026-11-21-excerpt",
+          "extracted_text_sha256": "5e57e1857e6eb1d7379eef4bdeca0a524df081ed83c3c26774c07a920ac37859",
+          "text_snapshot_sha256": "5e57e1857e6eb1d7379eef4bdeca0a524df081ed83c3c26774c07a920ac37859",
+          "original_response_sha256": "b32ffadb524cbfbebe316b08d30f939ce1fda100e9f8c897a5749480cc1794a5",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "hanaotibatake-gills",
+      "mushroom_id": "hanaotibatake",
+      "assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の裏側にひだがある。",
+        "source_ids": [
+          "hanaotibatake-guide"
+        ],
+        "evidence_refs": [
+          "hanaotibatake-gills-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "hanaotibatake-gills-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "hanaotibatake-gills-evidence",
+          "decision_id": "hanaotibatake-gills-decision",
+          "mushroom_id": "hanaotibatake",
+          "facet_id": "gills",
+          "source_id": "hanaotibatake-guide",
+          "source_url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/hanaotibatake.html",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の裏側にひだがある。",
+          "qualifiers": [],
+          "quote": "傘の下面：ヒダ、直生～離生、疎",
+          "quote_sha256": "de6a032d8ed7e6c6d18566f0e4a5282f77db6e413b358cd259cc85d81bd7c1eb",
+          "char_start": 0,
+          "char_end": 15,
+          "snapshot_identity": "hanaotibatake-guide-2026-11-21-excerpt",
+          "extracted_text_sha256": "de6a032d8ed7e6c6d18566f0e4a5282f77db6e413b358cd259cc85d81bd7c1eb",
+          "text_snapshot_sha256": "de6a032d8ed7e6c6d18566f0e4a5282f77db6e413b358cd259cc85d81bd7c1eb",
+          "original_response_sha256": "1c2886402c8de56da589d3a6a9e37244e0b4667ca50869894d137eb448982ab2",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "yashaiguchi-stem_reticulate",
+      "mushroom_id": "yashaiguchi",
+      "assignment": {
+        "facet_id": "stem_reticulate",
+        "evidence_text": "柄に縦長で隆起した網目がある。",
+        "source_ids": [
+          "yashaiguchi-guide"
+        ],
+        "evidence_refs": [
+          "yashaiguchi-stem_reticulate-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "yashaiguchi-stem_reticulate-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "yashaiguchi-stem_reticulate-evidence",
+          "decision_id": "yashaiguchi-stem_reticulate-decision",
+          "mushroom_id": "yashaiguchi",
+          "facet_id": "stem_reticulate",
+          "source_id": "yashaiguchi-guide",
+          "source_url": "https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko037.html",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "柄に縦長で隆起した網目がある。",
+          "qualifiers": [],
+          "quote": "柄の隆起した縦長の編目が特徴的。",
+          "quote_sha256": "460cafab9b4f70b5fe83b806408fbd1568f13b40863e02e3657a61ad4f307e0b",
+          "char_start": 0,
+          "char_end": 16,
+          "snapshot_identity": "yashaiguchi-guide-2026-11-21-excerpt",
+          "extracted_text_sha256": "460cafab9b4f70b5fe83b806408fbd1568f13b40863e02e3657a61ad4f307e0b",
+          "text_snapshot_sha256": "460cafab9b4f70b5fe83b806408fbd1568f13b40863e02e3657a61ad4f307e0b",
+          "original_response_sha256": "a6181a8d2cb14af43fcf45ef66b23e0276c79bc74d3c665459ee7d729b6f8196",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "ibotengutake-volva",
+      "mushroom_id": "ibotengutake",
+      "assignment": {
+        "facet_id": "volva",
+        "evidence_text": "柄の基部につぼの名残がある。",
+        "source_ids": [
+          "ibotengutake-ibotengutake"
+        ],
+        "evidence_refs": [
+          "ibotengutake-ibotengutake-volva-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "ibotengutake-volva-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "ibotengutake-ibotengutake-volva-evidence",
+          "decision_id": "ibotengutake-volva-decision",
+          "mushroom_id": "ibotengutake",
+          "facet_id": "volva",
+          "source_id": "ibotengutake-ibotengutake",
+          "source_url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000142712.html",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "柄の基部につぼの名残がある。",
+          "qualifiers": [],
+          "quote": "つぼの名残りが何重にも環状に残る",
+          "quote_sha256": "f144d062c424034b672d0f6420efdae9d93f8eadf50d132eb5b02d3f8a69fb34",
+          "char_start": 0,
+          "char_end": 16,
+          "snapshot_identity": "ibotengutake-ibotengutake-2026-11-21-excerpt",
+          "extracted_text_sha256": "f144d062c424034b672d0f6420efdae9d93f8eadf50d132eb5b02d3f8a69fb34",
+          "text_snapshot_sha256": "f144d062c424034b672d0f6420efdae9d93f8eadf50d132eb5b02d3f8a69fb34",
+          "original_response_sha256": "24f2b4be05dec09ac30b37b3433d7d2b5475c9a935e7375dadd2799d5eecad1a",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "oninaratake-ring",
+      "mushroom_id": "oninaratake",
+      "assignment": {
+        "facet_id": "ring",
+        "evidence_text": "柄には目立つつばがある。",
+        "source_ids": [
+          "oninaratake-oninaratake"
+        ],
+        "evidence_refs": [
+          "oninaratake-oninaratake-ring-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "oninaratake-ring-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "oninaratake-oninaratake-ring-evidence",
+          "decision_id": "oninaratake-ring-decision",
+          "mushroom_id": "oninaratake",
+          "facet_id": "ring",
+          "source_id": "oninaratake-oninaratake",
+          "source_url": "https://www.jataff.or.jp/kinoko/0409/3.htm",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "柄には目立つつばがある。",
+          "qualifiers": [],
+          "quote": "明瞭なつばをもつ",
+          "quote_sha256": "cc91455280c403b8794d7d4cf488e1984089c673fd3cdd2c30754c76b78c8af1",
+          "char_start": 0,
+          "char_end": 8,
+          "snapshot_identity": "oninaratake-oninaratake-2026-11-21-excerpt",
+          "extracted_text_sha256": "cc91455280c403b8794d7d4cf488e1984089c673fd3cdd2c30754c76b78c8af1",
+          "text_snapshot_sha256": "cc91455280c403b8794d7d4cf488e1984089c673fd3cdd2c30754c76b78c8af1",
+          "original_response_sha256": "319751f9e6c95e6ad2dca2e807f09e9d60d368f83bb0e306b4a450dc7aac68b5",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "mousenashibeniiguchi-stem_reticulate",
+      "mushroom_id": "mousenashibeniiguchi",
+      "assignment": {
+        "facet_id": "stem_reticulate",
+        "evidence_text": "柄に細かな網目模様がある。",
+        "source_ids": [
+          "mousenashibeniiguchi-mousen-ja",
+          "mousenashibeniiguchi-mousen-paper"
+        ],
+        "evidence_refs": [
+          "mousenashibeniiguchi-mousen-ja-stem_reticulate-evidence",
+          "mousenashibeniiguchi-mousen-paper-stem_reticulate-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "mousenashibeniiguchi-stem_reticulate-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "evidence_id": "mousenashibeniiguchi-mousen-ja-stem_reticulate-evidence",
+          "decision_id": "mousenashibeniiguchi-stem_reticulate-decision",
+          "mushroom_id": "mousenashibeniiguchi",
+          "facet_id": "stem_reticulate",
+          "source_id": "mousenashibeniiguchi-mousen-ja",
+          "source_url": "https://boletus.sakura.ne.jp/labo/kisai/bts006.html",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "柄に細かな網目模様がある。",
+          "qualifiers": [],
+          "quote": "頂部に細かい網目を表し",
+          "quote_sha256": "f20a27a52628263ebd24679216b3070dd14f816b11cd5a804709f5b4fb426231",
+          "char_start": 0,
+          "char_end": 11,
+          "snapshot_identity": "mousenashibeniiguchi-mousen-ja-2026-11-21-excerpt",
+          "extracted_text_sha256": "f20a27a52628263ebd24679216b3070dd14f816b11cd5a804709f5b4fb426231",
+          "text_snapshot_sha256": "f20a27a52628263ebd24679216b3070dd14f816b11cd5a804709f5b4fb426231",
+          "original_response_sha256": "873f442b8d1cafac73a0c1f343870c2296c14d4d03a61188d30967d57cce2c2a",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        },
+        {
+          "evidence_id": "mousenashibeniiguchi-mousen-paper-stem_reticulate-evidence",
+          "decision_id": "mousenashibeniiguchi-stem_reticulate-decision",
+          "mushroom_id": "mousenashibeniiguchi",
+          "facet_id": "stem_reticulate",
+          "source_id": "mousenashibeniiguchi-mousen-paper",
+          "source_url": "https://www.jstage.jst.go.jp/article/mycosci/54/6/54_MYC54458/_article/-char/en",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "柄に細かな網目模様がある。",
+          "qualifiers": [],
+          "quote": "a finely reticulate, red stipe",
+          "quote_sha256": "f91ce7054f05e4658963897ae260f713af119d303d6f2051e674ac81159a1827",
+          "char_start": 0,
+          "char_end": 30,
+          "snapshot_identity": "mousenashibeniiguchi-mousen-paper-2026-11-21-excerpt",
+          "extracted_text_sha256": "f91ce7054f05e4658963897ae260f713af119d303d6f2051e674ac81159a1827",
+          "text_snapshot_sha256": "f91ce7054f05e4658963897ae260f713af119d303d6f2051e674ac81159a1827",
+          "original_response_sha256": "b0bbbe2ac70dbd719be3fb37a4a6baf85ccbb665773cf4dda76e275636d03dad",
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    }
+  ],
+  "source_additions": [
+    {
+      "source_id": "asinagaiguti-guide",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「アシナガイグチ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/asinagaiguti.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。"
+    },
+    {
+      "source_id": "amisugitake-guide",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「アミスギタケ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/amisugitake.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。"
+    },
+    {
+      "source_id": "tamakikurage-guide",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「タマキクラゲ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/tamakikurage.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。"
+    },
+    {
+      "source_id": "tisiotake-guide",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「チシオタケ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/tisiotake.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。"
+    },
+    {
+      "source_id": "hanaotibatake-guide",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「ハナオチバタケ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/hanaotibatake.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。"
+    },
+    {
+      "source_id": "yashaiguchi-guide",
+      "organization": "森林総合研究所 九州支所",
+      "title": "立田山のきのこ「ヤシャイグチ」",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko037.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。"
+    },
+    {
+      "source_id": "ibotengutake-ibotengutake",
+      "organization": "厚生労働省",
+      "title": "自然毒のリスクプロファイル：テングタケの近縁種イボテングタケ",
+      "source_type": "government_mushroom_guide",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000142712.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "図鑑解説用に資料の学名表記と観察形質を照合。"
+    },
+    {
+      "source_id": "oninaratake-oninaratake",
+      "organization": "農林水産・食品産業技術振興協会",
+      "title": "野生きのこの世界：オニナラタケ",
+      "source_type": "institutional_mushroom_guide",
+      "url": "https://www.jataff.or.jp/kinoko/0409/3.htm",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "図鑑解説用に資料の学名表記と観察形質を照合。"
+    },
+    {
+      "source_id": "mousenashibeniiguchi-mousen-ja",
+      "organization": "牛肝菌研究所",
+      "title": "モウセンアシベニイグチの記載和訳",
+      "source_type": "original_description_japanese_digest",
+      "url": "https://boletus.sakura.ne.jp/labo/kisai/bts006.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "図鑑解説用に資料の学名表記と観察形質を照合。"
+    },
+    {
+      "source_id": "mousenashibeniiguchi-mousen-paper",
+      "organization": "Mycoscience（日本菌学会誌）",
+      "title": "Notes on the boletes of Japan 1. Four new species of the genus Boletus",
+      "source_type": "peer_reviewed_paper",
+      "url": "https://www.jstage.jst.go.jp/article/mycosci/54/6/54_MYC54458/_article/-char/en",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "図鑑解説用に資料の学名表記と観察形質を照合。"
+    }
+  ]
+}
