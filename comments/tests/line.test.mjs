@@ -14,10 +14,11 @@ function setup() {
       LINE_CHANNEL_ACCESS_TOKEN: secret, LINE_RECIPIENT_ID: "U" + "a".repeat(32),
       LINE_START_AT: new Date(now - 1000).toISOString(), RELEASE_APPROVAL: "approved",
       PUBLIC_READ_ENABLED: "true", PUBLIC_WRITE_ENABLED: "true" };
-  const pushes = [];
+  const pushes = [], requests = [];
   let response = 200, usage = 0, acceptedHeader = false, network = false;
   const fetcher = async (url, options) => {
     assert.equal(options.redirect, "error");
+    requests.push(url);
     if (url.endsWith("/quota")) return Response.json({type:"limited",value:200});
     if (url.endsWith("/quota/consumption")) return Response.json({totalUsage:usage});
     pushes.push({body: options.body, key: options.headers["X-Line-Retry-Key"]});
@@ -34,7 +35,7 @@ function setup() {
   };
   const send = (time = now) => notifyComments(env,{fetcher,now:time});
   const row = id => db.sql.prepare("SELECT * FROM line_outbox WHERE comment_id=?").get(id);
-  return {db,env,id,post,pushes,fetcher,send,row, response:(v,h=false)=>{response=v;acceptedHeader=h},
+  return {db,env,id,post,pushes,requests,fetcher,send,row, response:(v,h=false)=>{response=v;acceptedHeader=h},
     usage:v=>{usage=v},network:v=>{network=v}};
 }
 test("outbox is part of the comment transaction and excludes official replies", async () => {
@@ -64,8 +65,9 @@ test("disabled, closed, invalid settings and missing extension never send", asyn
   assert.equal(s.pushes.length,0);
   s.env.DB=new LocalD1();
   assert.equal((await s.send()).status,"unavailable");
+  assert.deepEqual(s.requests,[]);
 });
-test("one committed comment sends once with a stable case link and no localhost link", async () => {
+test("one committed comment sends once with a direct comment link and no localhost link", async () => {
   const s=setup(), id=s.post();
   assert.equal((await s.send()).accepted,1);
   await s.send();
@@ -76,8 +78,10 @@ test("one committed comment sends once with a stable case link and no localhost 
   const body=JSON.parse(s.pushes[0].body);
   assert.equal(body.to,s.env.LINE_RECIPIENT_ID);
   assert.match(body.messages[0].text,/合成コメント🍄/);
-  assert.ok(body.messages[0].text.includes("#comments-"+s.id));
+  const seq = s.db.sql.prepare("SELECT seq FROM comments WHERE id=?").get(id).seq;
+  assert.ok(body.messages[0].text.includes("#comments-" + s.id + "/" + seq + "/" + id + "\n"));
   assert.ok(!body.messages[0].text.includes("127.0.0.1"));
+  assert.equal(s.requests.length, 3);
 });
 test("uncertain timeout retries identical content and recipient using the same LINE retry key", async () => {
   const s=setup(),id=s.post();s.network(true);

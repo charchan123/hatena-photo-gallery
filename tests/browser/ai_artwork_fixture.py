@@ -71,8 +71,9 @@ for variant, module in [('before', before), ('after', main)]:
                                 research_summary=research, best_shot_summary=best)
         module.generate_favorite_page(grouped)
     if variant == 'before':
-        for p in (repo / 'assets').glob('*.css'):
-            (out / 'assets' / p.name).write_bytes(git('show', f'{base}:assets/{p.name}'))
+        for asset in git('ls-tree', '-r', '--name-only', base, 'assets').decode().splitlines():
+            if asset.endswith('.css'):
+                (out / asset).write_bytes(git('show', f'{base}:{asset}'))
         for record in manifest['assets']:
             asset = 'assets/' + record['asset']
             # Preserve artwork already tracked by the comparison baseline.
@@ -80,11 +81,44 @@ for variant, module in [('before', before), ('after', main)]:
             if subprocess.run(['git', 'cat-file', '-e', f'{base}:{asset}'], cwd=repo,
                               stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode:
                 (out / asset).unlink(missing_ok=True)
-# All generated content, links, photos and captions must be identical: only paint changes.
+# Keep all non-Best-Shot HTML byte-identical. The explicitly approved
+# exhibition changes Best Shot markup and paint, but not curated content.
 html_files = sorted((root / 'after').glob('*.html'))
 assert html_files
+exhibition = (repo / 'audit/best-shot-exhibition-20261121/files.json').is_file()
+def retained_best_shot_data(path):
+    soup = BeautifulSoup(path.read_text(encoding='utf-8'), 'html.parser')
+    cards = []
+    for card in soup.select('.best-shot-card'):
+        photo = card.select_one('a.best-shot-photo')
+        image = photo.select_one('img')
+        article = card.select_one('a.best-shot-article')
+        assert photo and image and card.select_one('h3')
+        cards.append({
+            'id': card['data-selection-id'],
+            'image': (photo['href'], image['src'], image['alt']),
+            'caption': BeautifulSoup(photo.get('data-sub-html', ''), 'html.parser').get_text(),
+            'name': card.select_one('h3').get_text(),
+            'meta': [n.get_text() for n in card.select('.best-shot-meta')],
+            'comment': card.select_one('.best-shot-comment').get_text(),
+            'article': (article['href'], article.get('title'), article.get_text()) if article else None,
+            'badge': bool(card.select_one('.best-shot-badge'))
+        })
+    return {
+        'cards': cards,
+        'annual': [x['data-selection-id'] for x in soup.select('.annual-best .best-shot-card')],
+        'months': [(section.select_one('h2').get_text().split('月')[0] + '月',
+                    [x['data-selection-id'] for x in section.select('.best-shot-card')])
+                   for section in soup.select('.best-shot-month')],
+        'archives': [(a.get('href'), a.get_text()) for a in soup.select('.best-shots-archive a')]
+    }
 for p in html_files:
-    assert p.read_bytes() == (root / 'before' / p.name).read_bytes(), p.name
+    baseline = root / 'before' / p.name
+    if exhibition and (p.name == 'best-shots.html' or
+                       p.name.startswith('best-shots-') and p.name.endswith('.html')):
+        assert retained_best_shot_data(p) == retained_best_shot_data(baseline), p.name
+    else:
+        assert p.read_bytes() == baseline.read_bytes(), p.name
 old = set(manifest['replacements'])
 new = {a['asset'] for a in manifest['assets']}
 remaining = []
@@ -118,10 +152,12 @@ for p in protected:
     else:
         assert_reviewed_source(base, p, after_bytes)
     hashes[p] = hashlib.sha256(before_bytes).hexdigest()
-for p in ('portal-data.json','article-sync-snapshot.json','research-comment-cases.json','research-comments-config.json'):
+for p in ('portal-data.json','article-sync-snapshot.json','research-comment-cases.json'):
     assert (root/'published'/p).read_bytes() == (root/'after'/p).read_bytes(), p
 config = json.loads((root/'after/research-comments-config.json').read_text())
-assert config['enabled'] is False
+assert config == json.loads((repo/'comments/public-config.json').read_bytes())
+assert json.loads((root/'published/research-comments-config.json').read_bytes()) in (
+    json.loads(git('show', f'{base}:comments/public-config.json')), config)
 (root/'screenshots').mkdir(exist_ok=True)
 (root/'vendor').mkdir(exist_ok=True)
 for p in (repo/'lightgallery').rglob('*'):
@@ -130,7 +166,7 @@ r=requests.get('https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js',timeo
 r.raise_for_status();assert len(r.content)>1000
 (root/'vendor/imagesloaded.pkgd.min.js').write_bytes(r.content)
 result = {'base_main':git('rev-parse',base).decode().strip(), 'published':git('rev-parse','origin/gh-pages').decode().strip(),
-          'generated_html_count':len(html_files),'identical_html_before_after':True,'old_display_references':remaining,
+          'generated_html_count':len(html_files),'identical_html_before_after': not exhibition, 'best_shot_curated_data_identical': True, 'non_best_shot_html_identical': True,'old_display_references':remaining,
           'pages_with_new_artwork':len(coverage),'coverage':coverage,'protected_source_files':len(protected),
           'gallery_viewer_rules_added':gallery_viewer_rules_added,
           'protected_sha256':hashlib.sha256(json.dumps(hashes,sort_keys=True).encode()).hexdigest(),

@@ -67,11 +67,19 @@ async function stop() {
     page = await context.newPage();
   const scriptErrors = [];
   page.on("pageerror", error => scriptErrors.push(error.message));
-  let enabled = false;
+  let enabled = false, activityOverride, activityRequests = 0, holdActivity;
   await context.route("**/*", async (route) => {
     const r = route.request(),
       u = new URL(r.url());
     if (u.hostname === "comments.fixture.test") {
+      if (u.pathname === "/v1/case-activity") {
+        activityRequests++;
+        if (holdActivity) await holdActivity;
+        if (activityOverride) return route.fulfill({
+          json: { case_ids: activityOverride },
+          headers: { "Access-Control-Allow-Origin": "https://charchan123.github.io" },
+        });
+      }
       const response = await route.fetch({ url: api + u.pathname + u.search });
       return route.fulfill({ response });
     }
@@ -141,7 +149,8 @@ async function stop() {
     (await page.locator("[data-research-thread]").count()) === 66,
     "66 stable case mounts",
   );
-  check((await stats()).publicCalls === 0, "no eager API for 66 cases");
+  check((await stats()).publicCalls === 0 && activityRequests === 0, "closed config does not load comment activity");
+  check(await page.locator(".research-case-order").isHidden(), "closed config hides ordering");
   const thread = page.locator('[data-research-thread="' + info.caseId + '"]');
   await thread.locator("summary").click();
   await page.waitForFunction(() =>
@@ -153,12 +162,49 @@ async function stop() {
     (await stats()).publicCalls === 0,
     "disabled UI never contacts comment API",
   );
+  const order = page.locator("#research-case-order"),
+    cards = page.locator("#research-open-cases > .research-case"),
+    readOrder = () => cards.evaluateAll(xs => xs.map(x =>
+      x.querySelector("[data-research-thread]")?.dataset.researchThread || null));
+  const originalOrder = await readOrder();
+  const latestId = originalOrder.at(-1);
+  let releaseActivity;
+  holdActivity = new Promise(resolve => { releaseActivity = resolve; });
   enabled = true;
   await page.reload();
+  await order.waitFor({ state: "visible" });
+  check(await order.inputValue() === "activity", "newest comment is the default order");
+  check(await cards.first().isHidden(), "no capture-order flash while the initial ranking is loading");
+  releaseActivity();
+  holdActivity = undefined;
+  await cards.first().waitFor({ state: "visible" });
+  check((await stats()).publicCalls === 1, "one aggregate request ranks all cases");
+  assert.deepEqual(await readOrder(), [info.caseId, ...originalOrder.filter(id => id !== info.caseId)],
+    "active case leads and all remaining cases keep capture order");
+  activityOverride = [latestId, info.caseId];
+  check((await readOrder())[0] === info.caseId, "new activity does not move cases while reading");
+  await order.selectOption("capture");
+  assert.deepEqual(await readOrder(), originalOrder, "manual capture order restores original order");
+  await order.selectOption("activity");
+  check((await readOrder())[0] === info.caseId && activityRequests === 1, "manual switch reuses the loaded ranking");
+  await page.reload();
+  await order.waitFor({ state: "visible" });
+  await cards.first().waitFor({ state: "visible" });
+  check((await readOrder())[0] === latestId && activityRequests === 2, "reload loads the updated ranking once");
+  activityOverride = undefined;
+  await context.request.post(api + "/__test/fail", { data: { fail: true } });
+  await page.reload();
+  await page.getByText("新着コメントを取得できなかったため、撮影日順で表示します。", { exact: true }).waitFor();
+  check(await order.inputValue() === "capture", "failed activity restores capture selector");
+  assert.deepEqual(await readOrder(), originalOrder, "failed activity preserves capture order");
+  await context.request.post(api + "/__test/fail", { data: { fail: false } });
+  const callsBeforeOpening = (await stats()).publicCalls;
   await thread.locator("summary").click();
   await thread.locator(".comment").first().waitFor();
+  const firstCommentSelector = '[data-comment-id="' + info.firstId + '"]';
+  const initialSeq = await thread.locator(firstCommentSelector).getAttribute("data-seq");
   check((await thread.locator(".comment").count()) === 20, "page size 20");
-  check((await stats()).publicCalls === 1, "only opened case fetched");
+  check((await stats()).publicCalls === callsBeforeOpening + 1, "only opened case fetched");
   check(
     (await thread.locator(".comment-body img").count()) === 0,
     "XSS text remains text",
@@ -207,6 +253,13 @@ async function stop() {
   );
   for (const width of [1280, 390, 320]) {
     await page.setViewportSize({ width, height: 1000 });
+    await order.selectOption("activity");
+    await page.waitForFunction(() =>
+      document.querySelector(".research-case-order [role=status]").textContent === "");
+    check(await cards.first().locator("[data-research-thread]").getAttribute("data-research-thread") === info.caseId,
+      "activity works at width " + width);
+    check(await thread.locator(".comment").count() === 24, "sorting retains expanded thread");
+    await order.selectOption("capture");
     await thread.scrollIntoViewIfNeeded();
     check(
       await page.evaluate(
@@ -362,9 +415,29 @@ async function stop() {
   const linkedThread = linked.locator('[data-research-thread="' + info.caseId + '"]');
   await linkedThread.getByText("管理人からの公式返信です", { exact: true }).waitFor();
   check(await linkedThread.getAttribute("open") !== null, "notification opens the matching stable thread");
-  check(await linkedThread.locator(".comment").count() === 20, "notification link starts at the latest page");
+  check(await linkedThread.locator(".comment").count() === 20, "legacy thread link starts at the latest page");
+  await linked.setViewportSize({ width: 360, height: 800 });
+  await linked.goto(url + "?view=comment#comments-" + info.caseId + "/" + initialSeq + "/" + info.firstId);
+  const linkedComment = linkedThread.locator(firstCommentSelector);
+  await linkedComment.waitFor({ state: "visible" });
+  check(await linkedComment.evaluate(element => {
+    const rect = element.getBoundingClientRect();
+    return rect.top < window.innerHeight && rect.bottom > 0;
+  }), "notification scrolls to the exact older comment on a narrow phone");
   await linked.close();
   check(scriptErrors.length === 0, "ordinary and notification URLs execute without script errors");
+  await page.setViewportSize({ width: 360, height: 800 });
+  const emptyThread = page.locator(`[data-research-thread]:not([data-research-thread="${info.caseId}"])`).first();
+  await emptyThread.locator("summary").click();
+  const emptyMessage = emptyThread.getByText(
+    "まだコメントはありません。気づいたことや同定のヒントがあれば、ぜひ教えてください。", { exact: true },
+  );
+  await emptyMessage.waitFor({ state: "visible" });
+  check(await emptyMessage.evaluate(element => {
+    const text = document.createRange();
+    text.selectNodeContents(element);
+    return text.getClientRects().length > 1 && element.scrollWidth <= element.clientWidth + 1;
+  }), "empty comments guidance wraps on a narrow phone");
   fs.writeFileSync(
     path.join(out, "result.json"),
     JSON.stringify(

@@ -27,15 +27,26 @@ function message(row) {
   return JSON.stringify([{ type: "text", text:
     row.label + "に新しいコメント\n" + row.nickname + "\n" +
     [...row.body].slice(0, 120).join("") + (Array.from(row.body).length > 120 ? "…" : "") +
-    "\nhttps://charchan123.github.io/hatena-photo-gallery/research.html#comments-" + row.case_id +
+    "\nhttps://charchan123.github.io/hatena-photo-gallery/research.html#comments-" +
+      row.case_id + "/" + row.seq + "/" + row.comment_id +
     "\n管理はPCのローカル管理室でケースID " + row.case_id + " を検索してください。"
   }]);
 }
 async function sendBatch(env, fetcher, now) {
   const config = settings(env, now);
   if (!config) return { status: "disabled", accepted: 0 };
-  const db = env.DB,
-    headers = { Authorization: "Bearer " + env.LINE_CHANNEL_ACCESS_TOKEN },
+  const db = env.DB, month = monthAt(now), recipient = await recipientHash(config.to);
+  await run(db, "UPDATE line_outbox SET state='cancelled',payload=NULL WHERE state='pending' AND created_at<?", config.start);
+  await run(db, `UPDATE line_outbox SET state='stopped',payload=NULL
+    WHERE state='pending' AND first_attempt IS NOT NULL AND (first_attempt<? OR reserved_month!=? OR recipient_hash!=?)`,
+    now - MAX_AGE, month, recipient);
+  const pending = await rows(db, `SELECT o.*,c.case_id,c.seq,c.nickname,c.body,k.label FROM line_outbox o
+    JOIN comments c ON c.id=o.comment_id JOIN cases k ON k.id=c.case_id
+    WHERE o.state='pending' AND o.due_at<=? AND o.lease_until<=? AND c.state='visible'
+    AND EXISTS(SELECT 1 FROM requests r WHERE r.kind='post' AND r.resource_id=c.id)
+    ORDER BY o.created_at,o.comment_id LIMIT 10`, now, now);
+  if (pending.length === 0) return { status: "processed", accepted: 0 };
+  const headers = { Authorization: "Bearer " + env.LINE_CHANNEL_ACCESS_TOKEN },
     request = (path, options = {}) => fetcher(ENDPOINT + path, {
       ...options, headers: { ...headers, ...options.headers },
       redirect: "error", signal: AbortSignal.timeout(8000),
@@ -49,16 +60,6 @@ async function sendBatch(env, fetcher, now) {
       !Number.isInteger(usage.totalUsage) || usage.totalUsage < 0 ||
       usage.totalUsage >= Math.min(config.cap, quota.value))
     return { status: "quota-limited", accepted: 0 };
-  const month = monthAt(now), recipient = await recipientHash(config.to);
-  await run(db, "UPDATE line_outbox SET state='cancelled',payload=NULL WHERE state='pending' AND created_at<?", config.start);
-  await run(db, `UPDATE line_outbox SET state='stopped',payload=NULL
-    WHERE state='pending' AND first_attempt IS NOT NULL AND (first_attempt<? OR reserved_month!=? OR recipient_hash!=?)`,
-    now - MAX_AGE, month, recipient);
-  const pending = await rows(db, `SELECT o.*,c.case_id,c.nickname,c.body,k.label FROM line_outbox o
-    JOIN comments c ON c.id=o.comment_id JOIN cases k ON k.id=c.case_id
-    WHERE o.state='pending' AND o.due_at<=? AND o.lease_until<=? AND c.state='visible'
-    AND EXISTS(SELECT 1 FROM requests r WHERE r.kind='post' AND r.resource_id=c.id)
-    ORDER BY o.created_at,o.comment_id LIMIT 10`, now, now);
   let accepted = 0, remaining = Math.min(config.cap, quota.value) - usage.totalUsage;
   for (const row of pending) {
     if (remaining <= 0) break;

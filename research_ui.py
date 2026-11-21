@@ -200,7 +200,16 @@ def render_research_page(model, identified=None, comments=None):
         '<p class="research-coming-soon"><strong>コメント・返信機能は今後追加予定です。</strong>'
         '<br>同定のヒントや情報を寄せられるようにする予定です。</p>'
     )
-    scripts = '<script src="assets/research-comments.js" defer></script>' if comments else ''
+    scripts = ('<link rel="stylesheet" href="assets/research-comments-order.css">'
+               '<script src="assets/research-comments.js" defer></script>') if comments else ''
+    case_order = ('''<div class="research-case-order" hidden>
+      <label for="research-case-order">並び順</label>
+      <select id="research-case-order">
+        <option value="activity">新着コメント順</option>
+        <option value="capture">撮影日順</option>
+      </select>
+      <span role="status"></span>
+    </div>''' if comments and cards else "")
     return f'''<!doctype html>
 <html lang="ja">
 <head>
@@ -245,7 +254,8 @@ def render_research_page(model, identified=None, comments=None):
       <div><span class="research-eyebrow">OPEN CASES</span><h2 id="research-cases-title">調査中の観察</h2></div>
       <span>{model["case_count"]}件</span>
     </header>
-    <div class="research-cases">{''.join(cards)}</div>
+    {case_order}
+    <div class="research-cases" id="research-open-cases">{''.join(cards)}</div>
   </section>
   {comment_archive}
   <footer class="research-footer"><a href="index.html">← キノコ図鑑へ戻る</a></footer>
@@ -274,6 +284,7 @@ def generate_research_page(portal_data, output_dir, assets_dir, registry=None, m
         with open(os.path.join(output_dir,name),'w',encoding='utf-8') as stream:
             json.dump(value,stream,ensure_ascii=False)
     shutil.copy2(os.path.join(assets_dir,'research-comments.js'),os.path.join(output_dir,'assets','research-comments.js'))
+    shutil.copy2(os.path.join(assets_dir,'research-comments-order.css'),os.path.join(output_dir,'assets','research-comments-order.css'))
     with open(os.path.join(output_dir, "research.html"), "w", encoding="utf-8") as stream:
         stream.write(render_research_page(model, identified, prepared))
     shutil.copy2(os.path.join(assets_dir, "research.css"),

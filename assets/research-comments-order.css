@@ -1,0 +1,21 @@
+.research-index .research-case-order:not([hidden]) {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-bottom: 16px;
+  font-size: .85rem;
+}
+.research-index .research-case-order select {
+  min-height: 44px;
+  max-width: 100%;
+  padding: 8px;
+  border: 1px solid #a9bfa4;
+  border-radius: 8px;
+  color: #294b32;
+  background: #f7fbf5;
+  font: inherit;
+}
+.research-index .research-case-order-pending {
+  visibility: hidden;
+}

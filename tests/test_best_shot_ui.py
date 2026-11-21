@@ -173,12 +173,17 @@ def test_best_shot_pc_visual_contract():
         best_shot_ui.build_best_shot_model(config(), portal())
     )
     css = (Path("assets") / "best-shots.css").read_text(encoding="utf-8")
+    js = (Path("assets") / "best-shot-exhibition.js").read_text(encoding="utf-8")
     assert 'class="best-shots-index"' in page
     assert 'class="best-shots-hub"' in page
     assert 'class="best-shots-hero"' in page
     assert "BEST SHOTS" in page
     assert "← 図鑑へ戻る" in page
     assert 'id="gallery-content-root"' in page
+    assert 'キノコの写真展' in page
+    assert 'これまで撮影したキノコの中から、特に気に入っている写真を選びました。' in page
+    assert 'class="best-shot-stage"' in page
+    assert 'class="best-shot-exhibit-number"' in page
     assert "body.best-shots-index" in css
     assert "width:min(100%,1180px)" in css
     assert 'url("ai-best-shots-20261031.webp")' in css
@@ -186,15 +191,44 @@ def test_best_shot_pc_visual_contract():
     assert (Path("assets") / "ai-best-shots-20261031.webp").is_file()
     assert "grid-template-columns:repeat(2,minmax(0,1fr))" in css
     assert ".best-shots-index .annual-best" in css
-    assert ".best-shots-index .annual-best { margin:0 0 28px; padding:18px; border:1px solid #242a26; border-radius:16px; background:#0c0f0d;" in css
-    assert ".best-shots-index .annual-best > h2 { margin:0 0 14px; color:#f2f5f2;" in css
+    assert ".best-shots-index .annual-best > h2" in css
     assert ".best-shots-index .best-shot-card--hero" in css
-    assert "background:#fff" in css
-    assert "background:#111412" not in css
-    assert ".best-shots-index .best-shot-card--hero .best-shot-card__body h3 { color:#294a32; }" in css
-    assert ".best-shots-index .best-shot-card--hero .best-shot-badge" in css
-    assert "background:#fff0ad; color:#6d5200" in css
-    assert "@media (max-width:680px)" in css
+    assert "background:#f7f4ee" in css
+    assert "#292e2c" in css
+    assert "font-size:16px" in css
+    assert "font-size:14px" in css
+    assert "object-fit:contain" in css
+    assert "object-fit:cover" not in css
+    assert "mix-blend-mode:" not in css
+    assert "filter:" not in css.replace("backdrop-filter:", "") and "opacity:" not in css
+    assert "transform:scale" not in css
+    assert "--exhibit-row-height" in css and "--exhibit-row-height" in js
+    assert "naturalWidth" in js and "naturalHeight" in js
+    assert "ResizeObserver" in js and 'addEventListener("load"' in js
+    assert "@media (max-width:700px)" in css
+
+
+def test_best_shot_exhibition_numbers_still_reference_unchanged_selections():
+    from bs4 import BeautifulSoup
+    model = best_shot_ui.build_best_shot_model(
+        config([
+            entry("best-1", "obs-1", 1, comment="最初の作品"),
+            entry("best-2", "obs-2", 2, comment="次の作品"),
+        ], annual={"2025": "best-2"}),
+        portal(observation("obs-1"), observation("obs-2")),
+    )
+    page = BeautifulSoup(best_shot_ui.render_best_shot_page(model), "html.parser")
+    cards = page.select(".best-shot-card")
+    assert [card["data-selection-id"] for card in cards] == ["best-2", "best-1", "best-2"]
+    assert [card.select_one(".best-shot-exhibit-number").text.strip()
+            for card in cards] == [
+                "SPECIAL EXHIBIT · NO. 01",
+                "EXHIBIT · NO. 02",
+                "EXHIBIT · NO. 03",
+            ]
+    assert all(card.select_one(".best-shot-stage > a.best-shot-photo > img") for card in cards)
+    assert page.select_one(".annual-best > h2").text == "✦ 2025年 年間ベストショット ✦"
+    assert len(page.select('script[src="assets/best-shot-exhibition.js"]')) == 1
 
 
 def test_archive_latest_capture_year_and_all_year_pages(tmp_path):
@@ -204,6 +238,7 @@ def test_archive_latest_capture_year_and_all_year_pages(tmp_path):
     config_path.write_text(json.dumps(cfg), encoding="utf-8")
     assets = tmp_path / "source-assets"; assets.mkdir()
     (assets / "best-shots.css").write_text("body{}", encoding="utf-8")
+    (assets / "best-shot-exhibition.js").write_text("/* fixture */", encoding="utf-8")
     output = tmp_path / "output"
     model = best_shot_ui.generate_best_shot_pages(portal(*rows), config_path, output, assets)
     assert model["latest_year"] == 2026

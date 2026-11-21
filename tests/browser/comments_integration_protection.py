@@ -2,6 +2,7 @@
 import hashlib
 import json
 from pathlib import Path
+import re
 import subprocess
 import sys
 
@@ -17,8 +18,23 @@ RELEASE_FILES = {
     'admin/comments_client.py', 'assets/research-comments.js', 'comments/worker.mjs',
     'requirements.txt', 'research_comments.py', 'research_ui.py', 'comments/tests/api.test.mjs',
 }
+LINE_MAIN = 'f19541524a989f2ab1979c78a9bff5e5e0274092'
 LINE_FILES = {'assets/research-comments.js', 'comments/worker.mjs',
               'comments/wrangler.jsonc', 'research_comments.py'}
+LINE_NEW = {'comments/line/0001_outbox.sql', 'comments/line/notify.mjs'}
+ACTIVITY_FILES = {'assets/research-comments.js',
+                  'comments/worker.mjs', 'comments/tests/api.test.mjs', 'research_ui.py'}
+ACTIVITY_MAIN = 'dcd8d072bffa23495f7a1028a4636f3eb1f7ca70'
+POST_RECOVERY_MAIN = '5dc43d89b2d8b05afd3985b3d6515c8b7f8de48b'
+POST_RECOVERY_FILES = {'assets/research-comments.js', 'comments/worker.mjs', 'comments/tests/api.test.mjs'}
+# Independent Best Shot design PR. No comment/Worker file is exempted.
+EXHIBITION_BASE = '90fbdeb761abe217db7179e87d0fcf13a44b2b0b'
+EXHIBITION_MODIFIED = {'best_shot_ui.py', 'assets/best-shots.css'}
+EXHIBITION_NEW = {'assets/best-shot-exhibition.js', 'previews/best-shot-exhibition-20261121.html'}
+PUBLIC_CONFIG = 'comments/public-config.json'
+PRODUCTION_ORIGIN = 'https://kinoko-research-comments.sasama-bb.workers.dev'
+RELEASE_ID = 'research-comments-production-20261120'
+DISABLED_CONFIG = {'version': 1, 'enabled': False, 'api_url': '', 'turnstile_site_key': '', 'release_approval': None}
 
 def assert_staging_source(path, content):
     """Only the two explicitly reviewed CPU runtime files may differ in Nov 1.
@@ -42,9 +58,38 @@ def assert_reviewed_source(base, path, current):
     if current == original:
         return
     if path in LINE_FILES:
-        pins = json.loads((ROOT/'audit/comments-line-20261118/files.json').read_text(encoding='utf-8'))
-        assert pins['main'] == RELEASE_MAIN and set(pins['files']) == LINE_FILES
-        assert original == git('show', f'{RELEASE_MAIN}:{path}'), f'main advanced: {path}'
+        pins = line_pins()
+        if hashlib.sha256(current).hexdigest() == pins[path]:
+            assert original == git('show', f'{LINE_MAIN}:{path}'), f'LINE main advanced: {path}'
+            return
+    if path in EXHIBITION_MODIFIED:
+        # Exception only for this Best Shot draft's exact Git blobs.
+        # The baseline must be unchanged and all non-Best-Shot sources stay pinned.
+        pins = json.loads((ROOT/'audit/best-shot-exhibition-20261121/files.json').read_text(encoding='utf-8'))
+        assert pins['base_main'] == EXHIBITION_BASE
+        assert set(pins['files']) == EXHIBITION_MODIFIED | EXHIBITION_NEW
+        assert original == git('show', f'{EXHIBITION_BASE}:{path}'), f'Best Shot main advanced: {path}'
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
+        assert hashlib.sha1(blob).hexdigest() == pins['files'][path], path
+        return
+    if path in POST_RECOVERY_FILES:
+        pins = json.loads((ROOT/'audit/comments-post-recovery-20261120/files.json').read_text(encoding='utf-8'))
+        assert pins['main'] == POST_RECOVERY_MAIN and set(pins['files']) == POST_RECOVERY_FILES
+        if hashlib.sha256(current).hexdigest() == pins['files'][path]:
+            assert_reviewed_source(base, path, git('show', f'{POST_RECOVERY_MAIN}:{path}'))
+            return
+    if path == PUBLIC_CONFIG:
+        config = json.loads(current)
+        assert json.loads(original) == DISABLED_CONFIG or config == DISABLED_CONFIG
+        if config != DISABLED_CONFIG:
+            assert config == {'version': 1, 'enabled': True, 'api_url': PRODUCTION_ORIGIN,
+                              'turnstile_site_key': config['turnstile_site_key'], 'release_approval': RELEASE_ID}
+            assert re.fullmatch(r'0x[A-Za-z0-9_-]{12,100}', config['turnstile_site_key'])
+        return
+    if path in ACTIVITY_FILES:
+        pins = json.loads((ROOT/'audit/comments-activity-20261118/files.json').read_text(encoding='utf-8'))
+        assert pins['main'] == ACTIVITY_MAIN and set(pins['files']) == ACTIVITY_FILES
+        assert original == git('show', f'{ACTIVITY_MAIN}:{path}'), f'main advanced: {path}'
         if hashlib.sha256(current).hexdigest() == pins['files'][path]:
             return
     if path in RELEASE_FILES:
@@ -63,6 +108,11 @@ def assert_reviewed_source(base, path, current):
     assert original == git('show', f'{PR135}:{path}'), f'main advanced: {path}'
     assert current == git('show', f'{PR137}:{path}'), f'PR137 changed: {path}'
 
+def line_pins():
+    pins = json.loads((ROOT/'audit/comments-line-20261118/files.json').read_text(encoding='utf-8'))
+    assert pins['main'] == LINE_MAIN and set(pins['files']) == LINE_FILES | LINE_NEW
+    return pins['files']
+
 def collect(base='origin/main'):
     git('merge-base', '--is-ancestor', base, 'HEAD')
     protected = [p for p in git('ls-tree', '-rz', '--name-only', base).decode().split('\0')
@@ -72,6 +122,18 @@ def collect(base='origin/main'):
         content = (ROOT / path).read_bytes()
         assert_reviewed_source(base, path, content)
         hashes[path] = hashlib.sha256(content).hexdigest()
+    if any((ROOT/path).exists() for path in LINE_NEW):
+        pins = line_pins()
+        for path in LINE_NEW:
+            assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest() == pins[path], path
+    # Newly added exhibit assets are not in the baseline tree: pin explicitly.
+    pins = json.loads((ROOT/'audit/best-shot-exhibition-20261121/files.json').read_text(encoding='utf-8'))
+    assert pins['base_main'] == EXHIBITION_BASE
+    assert set(pins['files']) == EXHIBITION_MODIFIED | EXHIBITION_NEW
+    for path in EXHIBITION_NEW:
+        current = (ROOT / path).read_bytes()
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
+        assert hashlib.sha1(blob).hexdigest() == pins['files'][path], path
     # Original runtime stays byte-for-byte equal except exact reviewed CPU pins.
     runtime = [p for p in git('ls-tree', '-rz', '--name-only', PR137, 'comments/staging').decode().split('\0') if p]
     runtime += ['comments/package.json', 'comments/package-lock.json']
@@ -81,7 +143,9 @@ def collect(base='origin/main'):
     portal = json.loads(git('show', 'origin/gh-pages:portal-data.json'))
     read = lambda name: json.loads((ROOT/name).read_text(encoding='utf-8'))
     config = json.loads(git('show', 'origin/gh-pages:research-comments-config.json'))
-    assert config == read('comments/public-config.json') and config['enabled'] is False
+    source_config = read(PUBLIC_CONFIG)
+    base_config = json.loads(git('show', f'{base}:{PUBLIC_CONFIG}'))
+    assert config in (base_config, source_config)
     registry = read('comments/cases.json')
     sys.path.insert(0, str(ROOT))
     from research_comments import registry_digest, prepare
@@ -120,7 +184,7 @@ def collect(base='origin/main'):
                       'master':len(read('data/mushroom-master.json')['entries']),
                       'sources':len(read('data/sources.json')['sources']), 'webp':len(artworks)},
             'published_hashes':{p:hashlib.sha256(git('show',f'origin/gh-pages:{p}')).hexdigest() for p in output_names},
-            'comments_enabled':False, 'pending':state['pending'], 'remote_mutations':[]}
+            'comments_enabled':config['enabled'], 'pending':state['pending'], 'remote_mutations':[]}
 
 if __name__ == '__main__':
     result = collect(sys.argv[2] if len(sys.argv)>2 else 'origin/main')

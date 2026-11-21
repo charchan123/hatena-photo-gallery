@@ -241,7 +241,7 @@ async function productionManifest(fetcher, env) {
     fail("MANIFEST_CONFIGURATION", 503);
   const r = await fetcher(u.href, {
     signal: AbortSignal.timeout(3000),
-    redirect: "error",
+    redirect: "manual",
   });
   if (!r.ok) fail("CASE_REVIEW_REQUIRED", 503);
   return r.json();
@@ -338,6 +338,16 @@ async function publicRoute(req, env, url, fetcher, now, loadManifest) {
   const db = env.DB,
     parts = url.pathname.split("/").filter(Boolean),
     caseId = parts[2];
+  if (req.method === "GET" && url.pathname === "/v1/case-activity") {
+    ready(env);
+    await limit(db, env, req, "read", now);
+    const activity = await all(
+      db,
+      `SELECT c.case_id FROM comments c WHERE c.state='visible' AND ${PUBLIC_COMMENT_VISIBILITY}
+       GROUP BY c.case_id ORDER BY MAX(c.created_at) DESC, MAX(c.seq) DESC`,
+    );
+    return { case_ids: activity.map(({ case_id }) => case_id) };
+  }
   if (parts[0] !== "v1" || parts[1] !== "cases" || !caseId)
     fail("NOT_FOUND", 404);
   const deleting = req.method === "POST" && parts[5] === "delete";

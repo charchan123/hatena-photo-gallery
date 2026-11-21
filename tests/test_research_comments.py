@@ -34,7 +34,15 @@ def test_registry_collisions_and_unknown_fields_fail_closed():
         value=deepcopy(r);change(value)
         with pytest.raises(ValueError):validate_bindings(value)
 
-def test_identified_archive_keeps_same_thread_and_config_is_closed():
+def test_identified_archive_keeps_same_thread_and_config_is_closed(tmp_path, monkeypatch):
+    import research_comments
+    comments = tmp_path / 'comments'
+    comments.mkdir()
+    (comments / 'public-config.json').write_text(json.dumps({
+        'version': 1, 'enabled': False, 'api_url': '', 'turnstile_site_key': '',
+        'release_approval': None,
+    }), encoding='utf-8')
+    monkeypatch.setattr(research_comments, 'ROOT', tmp_path)
     p={'version':1,'observations':[source()]};case=build_research_cases(p)[0];r=registry_for(p);state=prepare([case],r)
     page=render_research_page({'cases':[],'case_count':0,'photo_count':0},[{'case':case,'identification':{'identified_name':'シイタケ','note':'同定'}}],state)
     assert 'data-research-thread="'+case['case_id']+'"' in page and '管理人' not in r['cases'][0]['label']

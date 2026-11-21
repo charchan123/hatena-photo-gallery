@@ -1,0 +1,10 @@
+{
+  "base_main": "90fbdeb761abe217db7179e87d0fcf13a44b2b0b",
+  "status": "Draft PR #147 only — not deployed",
+  "files": {
+    "best_shot_ui.py": "1e161ff1514d4362bd3fd5b2dc172871159ae72d",
+    "assets/best-shots.css": "91f9f5f2b249a3b4c230077965556432be808cfd",
+    "assets/best-shot-exhibition.js": "598264e930fc9508c21790822acd8074f91fbe70",
+    "previews/best-shot-exhibition-20261121.html": "2314400c239b0f2a20e11ab63c62a199a862ece6"
+  }
+}
