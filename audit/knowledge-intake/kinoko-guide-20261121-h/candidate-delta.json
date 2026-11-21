@@ -1,0 +1,269 @@
+{
+  "schema_version": 1,
+  "mushroom_additions": [
+    {
+      "mushroom_id": "kisamatsumodoki",
+      "canonical_name_ja": "キサマツモドキ",
+      "name_ja_sources": [
+        "guide-review-kisamatsumodoki"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Tricholomopsis decora",
+        "source_ids": [
+          "guide-review-kisamatsumodoki"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-review-kisamatsumodoki"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "features": {
+        "summary": "黄色から黄土色の傘に暗褐色の小さな鱗片が密に付き、中央がとくに濃く見える。ひだも黄色系。",
+        "source_ids": [
+          "guide-review-kisamatsumodoki"
+        ]
+      },
+      "season": {
+        "summary": "新潟・長野の供試標本は9月に採集された。",
+        "source_ids": [
+          "guide-review-kisamatsumodoki"
+        ]
+      },
+      "habitat": {
+        "summary": "国内の標本では、オオシラビソの枯木。",
+        "source_ids": [
+          "guide-review-kisamatsumodoki"
+        ]
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "日本の標本を用いた分子系統と形態の照合。写真の同定と食毒は未判定。"
+      }
+    },
+    {
+      "mushroom_id": "hagoromoitachitake",
+      "canonical_name_ja": "ハゴロモイタチタケ",
+      "name_ja_sources": [
+        "guide-review-hagoromoitachitake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Psathyrella delineata",
+        "source_ids": [
+          "guide-review-hagoromoitachitake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-review-hagoromoitachitake"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "features": {
+        "summary": "傘に放射状のしわが目立つ。幼い傘の縁には白っぽい被膜が残る。傘の裏は褐色系のひだ。",
+        "source_ids": [
+          "guide-review-hagoromoitachitake"
+        ]
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "habitat": {
+        "summary": null,
+        "source_ids": []
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "国内初記録の資料掲載学名。Species Fungorum 321153の現在名は Typhrasa delineata。先行論文が挙げた近縁種との関係は別途確認。写真の同定と食毒は未判定。"
+      }
+    }
+  ],
+  "source_additions": [
+    {
+      "source_id": "guide-review-kisamatsumodoki",
+      "organization": "日本菌学会",
+      "title": "形態と系統に基づく日本産サマツモドキ属菌の種多様性の解明 p.28、Table 1",
+      "source_type": "peer_reviewed_paper",
+      "url": "https://www.jstage.jst.go.jp/article/jjom/67/1/67_jjom.R8-21/_pdf/-char/ja",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "日本の標本を用いた分子系統と形態の照合。"
+    },
+    {
+      "source_id": "guide-review-hagoromoitachitake",
+      "organization": "日本菌学会",
+      "title": "日本新産種 Psathyrella delineata について p.20",
+      "source_type": "peer_reviewed_paper",
+      "url": "https://www.jstage.jst.go.jp/article/jjom/46/1/46_jjom.H16-19/_pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "国内初記録の資料掲載学名。Species Fungorum 321153の現在名は Typhrasa delineata。先行論文が挙げた近縁種との関係は別途確認。"
+    }
+  ],
+  "assignment_additions": [
+    {
+      "candidate_id": "kisamatsumodoki-cap_scales_warts",
+      "mushroom_id": "kisamatsumodoki",
+      "assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "傘に細かい鱗片が密にある。",
+        "source_ids": [
+          "guide-review-kisamatsumodoki"
+        ],
+        "evidence_refs": [
+          "kisamatsumodoki-cap_scales_warts-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "kisamatsumodoki-cap_scales_warts-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-review-kisamatsumodoki",
+          "source_url": "https://www.jstage.jst.go.jp/article/jjom/67/1/67_jjom.R8-21/_pdf/-char/ja",
+          "snapshot_identity": "guide-review-kisamatsumodoki-excerpt-20261121",
+          "extracted_text_sha256": "cdb6fca45faa05b87e4b28d4b25055cf1d8c43870931a9cfd6d6d8025b1cefe7",
+          "text_snapshot_sha256": "cdb6fca45faa05b87e4b28d4b25055cf1d8c43870931a9cfd6d6d8025b1cefe7",
+          "original_response_sha256": "05315a158bfaabac32fd9825c6d7ab97ada4d96f0838b1500bbecd7a6b8fbe3f",
+          "evidence_id": "kisamatsumodoki-cap_scales_warts-evidence",
+          "decision_id": "kisamatsumodoki-cap_scales_warts-decision",
+          "mushroom_id": "kisamatsumodoki",
+          "facet_id": "cap_scales_warts",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘に細かい鱗片が密にある。",
+          "qualifiers": [],
+          "quote": "綿毛状小鱗片に密に覆われ",
+          "quote_sha256": "cdb6fca45faa05b87e4b28d4b25055cf1d8c43870931a9cfd6d6d8025b1cefe7",
+          "char_start": 0,
+          "char_end": 12,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "hagoromoitachitake-gills",
+      "mushroom_id": "hagoromoitachitake",
+      "assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の裏にひだがある。",
+        "source_ids": [
+          "guide-review-hagoromoitachitake"
+        ],
+        "evidence_refs": [
+          "hagoromoitachitake-gills-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "hagoromoitachitake-gills-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-review-hagoromoitachitake",
+          "source_url": "https://www.jstage.jst.go.jp/article/jjom/46/1/46_jjom.H16-19/_pdf",
+          "snapshot_identity": "guide-review-hagoromoitachitake-excerpt-20261121",
+          "extracted_text_sha256": "77c5f689af4852e55e52cfbc6b6f6897080a35a8b006f57bdfc7c5d1decbfaf8",
+          "text_snapshot_sha256": "77c5f689af4852e55e52cfbc6b6f6897080a35a8b006f57bdfc7c5d1decbfaf8",
+          "original_response_sha256": "a15c199327e7e7069cf6fe8dee87b24aa6cd301d53d9e2928526e6f672e183d9",
+          "evidence_id": "hagoromoitachitake-gills-evidence",
+          "decision_id": "hagoromoitachitake-gills-decision",
+          "mushroom_id": "hagoromoitachitake",
+          "facet_id": "gills",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の裏にひだがある。",
+          "qualifiers": [],
+          "quote": "ひだは褐色",
+          "quote_sha256": "77c5f689af4852e55e52cfbc6b6f6897080a35a8b006f57bdfc7c5d1decbfaf8",
+          "char_start": 0,
+          "char_end": 5,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    }
+  ]
+}
