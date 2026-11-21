@@ -152,7 +152,7 @@ def _validate(data, production_entries, master_ids):
 
 def build_portal_data(*, production_entries, shadow_metadata, article_metadata,
                       exif_cache, taxonomy, mushroom_master, sources,
-                      production_mode, cutover_active):
+                      production_mode, cutover_active, guide_links=None):
     """Return schema v1 without mutating any caller-owned input."""
     shadows = shadow_metadata if isinstance(shadow_metadata, list) else []
     articles = {_normal_path(key): value for key, value in article_metadata.items()}
@@ -160,6 +160,16 @@ def build_portal_data(*, production_entries, shadow_metadata, article_metadata,
     master_entries = mushroom_master.get("entries", [])
     taxonomy_by_name = {row.get("canonical_name"): row for row in taxonomy_entries}
     master_ids = {row.get("mushroom_id") for row in master_entries}
+    master_by_name = {row["canonical_name_ja"]: row["mushroom_id"] for row in master_entries
+                      if "canonical_name_ja" in row}
+    guide_links = {} if guide_links is None else guide_links
+    if not isinstance(guide_links, dict):
+        raise ValueError("guide links must be an object")
+    for name, master_id in guide_links.items():
+        if (not isinstance(master_id, str) or master_by_name.get(name) != master_id
+                or any(mark in name for mark in ("?", "？", "広義", "sp.", "cf."))
+                or name in taxonomy_by_name):
+            raise ValueError(f"invalid standalone guide link: {name}")
     occurrences = Counter()
     observations = []
     for index, (entry, (shadow, match_status)) in enumerate(
@@ -173,7 +183,7 @@ def build_portal_data(*, production_entries, shadow_metadata, article_metadata,
         digest = hashlib.sha256(
             f"{src}\0{article_path}\0{ordinal}".encode("utf-8")
         ).hexdigest()
-        taxonomy_row, mushroom_id = _knowledge_link(
+        _, mushroom_id = _knowledge_link(
             gallery_name, taxonomy_by_name, master_ids
         )
         status = _classification_status(gallery_name, shadow)
@@ -196,7 +206,7 @@ def build_portal_data(*, production_entries, shadow_metadata, article_metadata,
             },
             "capture": _capture(exif_cache.get(src)),
             "article": article,
-            "mushroom_master_id": mushroom_id,
+            "mushroom_master_id": mushroom_id or guide_links.get(gallery_name),
         })
 
     grouped = defaultdict(list)
@@ -208,9 +218,10 @@ def build_portal_data(*, production_entries, shadow_metadata, article_metadata,
         dates = [row["capture"]["date"] for row in rows if row["capture"]["date"]]
         months = Counter(row["capture"]["month"] for row in rows
                          if row["capture"]["month"] is not None)
-        taxonomy_row, mushroom_id = _knowledge_link(
-            gallery_name, taxonomy_by_name, master_ids
-        )
+        taxonomy_row = taxonomy_by_name.get(gallery_name)
+        if taxonomy_row and taxonomy_row.get("subject_type") != "mushroom":
+            taxonomy_row = None
+        mushroom_id = rows[0]["mushroom_master_id"]
         article_keys = {
             (row["article"].get("article_path"), row["article"].get("article_id"))
             for row in rows if row["article"] is not None
