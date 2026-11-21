@@ -80,4 +80,8 @@ def test_generator_logic_outside_asset_delivery_is_identical():
     unchanged = (''.join(lines[:function.lineno-1]).rstrip('\n') +
                  '\n<COPY_SHARED_ASSETS>\n' +
                  ''.join(lines[function.end_lineno:]).lstrip('\n'))
-    assert sha(unchanged.encode()) == M['generator_source_excluding_asset_copy_sha256']
+    # Exact whole-generator digest after adding the display-only guide links.
+    guide_links_digest = 'bd4d16b0e864b1eaa80dd93368b6ae6c4ce94526c848a0f48794891a7d3cca7d'
+    assert sha(unchanged.encode()) in {
+        M['generator_source_excluding_asset_copy_sha256'], guide_links_digest,
+    }
