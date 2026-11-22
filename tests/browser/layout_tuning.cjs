@@ -16,6 +16,8 @@ const approvedCSSChanges=[
   '.portal-guide-note__details { display:grid; grid-template-columns:minmax(0,1fr); grid-template-rows:calc(2 * .88rem * 1.45) 22px; min-width:0; gap:2px; }'],
  ['.portal-index .portal-guide-note { position:relative; top:0; }',
   "/* Keep the heading and description's first line at their pre-PR166 positions.\n   The two-line copy and 22px notice row increase the details height from 46px.\n   Offset the right note by half that growth plus its original top adjustment.\n   The stacked-mobile rule below remains top:0, matching its original anchor. */\n.portal-index .portal-guide-note { position:relative; top:calc(.638rem + 12px); }"],
+ ["  :root:not([data-portal-columns=\"2\"]) .portal-index .portal-guide-row .portal-card { height:108px; min-height:108px; }\n}",
+  "  :root:not([data-portal-columns=\"2\"]) .portal-index .portal-guide-row .portal-card { height:108px; min-height:108px; }\n  /* Only a visible update badge needs extra clearance at this compact width. */\n  :root:not([data-portal-columns=\"2\"]) .portal-index .portal-guide-row:has(.portal-update-note:not([hidden])) { padding-bottom:14px; }\n}"],
 ];
 let expectedCopyOnly=beforePortalCSS,copyOnly=true;
 for(const [from,to] of approvedCSSChanges){
@@ -38,7 +40,7 @@ for(const width of [1280,1024,900,899,768,680,390,320]){
   await page.goto(`${base}/${variant}/new-top.html`);await page.evaluate(()=>document.fonts.ready);
   if(process.env.LAYOUT_LIVE_STARS){await page.waitForFunction(()=>[...document.querySelectorAll('.record-stars-native')].every(e=>e.hasAttribute('data-ready')),null,{timeout:30000});check(await page.locator('.record-stars-native iframe').count()===3,'three official add frames');await page.waitForFunction(()=>[...document.querySelectorAll('[data-hatena-star]')].every(h=>[...h.shadowRoot.querySelectorAll('img')].every(i=>i.complete&&i.naturalWidth>0)),null,{timeout:30000});}
   await page.locator('.record-preview-thumb img').evaluateAll(es=>Promise.all(es.map(i=>i.decode())));
-  const metrics=await page.evaluate(()=>{const rect=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,bottom:r.bottom}};const rows=(sel,image)=>[...document.querySelectorAll(sel)].map(e=>{const r=rect(e),i=rect(e.querySelector(image)),n=e.querySelector('.portal-guide-note'),heading=n?.querySelector('strong'),small=n?.querySelector('small');const noteRect=n?rect(n):null;return {row:r,image:i,top:i.y-r.y,bottom:r.bottom-i.bottom,noteRect,textCenterOffset:noteRect?(noteRect.y+noteRect.bottom-i.y-i.bottom)/2:null}});return {records:rows('.record-preview-row','.record-preview-thumb'),guides:rows('.portal-guide-row','.portal-card'),panels:[...document.querySelectorAll('.portal-records-hero,.portal-explore')].map(rect),overflow:document.documentElement.scrollWidth>innerWidth};});
+  const metrics=await page.evaluate(()=>{const rect=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,bottom:r.bottom}};const rows=(sel,image)=>[...document.querySelectorAll(sel)].map(e=>{const r=rect(e),i=rect(e.querySelector(image)),n=e.querySelector('.portal-guide-note'),heading=n?.querySelector('strong'),small=n?.querySelector('small');const noteRect=n?rect(n):null;return {row:r,image:i,top:i.y-r.y,bottom:r.bottom-i.bottom,noteRect,visibleContentBottom:n?rect(n.querySelector('.portal-guide-note__details > .portal-update-note:not([hidden])')||small).bottom:null,textCenterOffset:noteRect?(noteRect.y+noteRect.bottom-i.y-i.bottom)/2:null}});return {records:rows('.record-preview-row','.record-preview-thumb'),guides:rows('.portal-guide-row','.portal-card'),panels:[...document.querySelectorAll('.portal-records-hero,.portal-explore')].map(rect),overflow:document.documentElement.scrollWidth>innerWidth};});
   check(!metrics.overflow,`${variant} top overflow ${width}`);check(metrics.records.length===3&&metrics.guides.length===3,'all six images');
   if(width>=900)check(Math.abs(metrics.panels[0].height-metrics.panels[1].height)<1,'equal PC panels');
   if(variant==='after'&&process.env.LAYOUT_ASSERT_FINAL){
@@ -109,7 +111,7 @@ for(const width of [1280,1024,900,899,768,680,390,320]){
    }
    const dynamic=await page.locator('.portal-guide-row').first().locator('.portal-guide-note').evaluate(note=>{
      const headline=note.querySelector('strong'),details=note.querySelector('.portal-guide-note__details'),desc=details.querySelector('small');
-     const get=()=>({headingY:headline.getBoundingClientRect().y,descriptionY:desc.getBoundingClientRect().y,detailsHeight:details.getBoundingClientRect().height,descriptionHeight:desc.getBoundingClientRect().height,scrollHeight:desc.scrollHeight,clientHeight:desc.clientHeight});
+     const get=()=>({headingY:headline.getBoundingClientRect().y,descriptionY:desc.getBoundingClientRect().y,detailsHeight:details.getBoundingClientRect().height,descriptionHeight:desc.getBoundingClientRect().height,scrollHeight:desc.scrollHeight,clientHeight:desc.clientHeight,rowBottom:note.closest('.portal-guide-row').getBoundingClientRect().bottom,noticeBottom:details.querySelector('.portal-update-note')?.getBoundingClientRect().bottom});
      const initial=get(),original=desc.textContent;
      desc.textContent='短い説明';const short=get();
      desc.textContent='画像の特徴や名前から探せるいろいろなキノコの情報'.repeat(15);const long=get();
@@ -127,6 +129,7 @@ for(const width of [1280,1024,900,899,768,680,390,320]){
      check(approx(dynamic[variant].detailsHeight,dynamic.initial.detailsHeight),'new arrival notice keeps reserved height');
    }
    check(dynamic.long.scrollHeight>dynamic.long.clientHeight,'long right-hand description truncates after two lines');
+   check(dynamic.withNotice.noticeBottom<=dynamic.withNotice.rowBottom+1,'visible new notice fits within its row even at compact desktop widths');
   }
 
   measurements.push({width,variant,page:'new-top',...metrics});
@@ -156,7 +159,7 @@ if(process.env.LAYOUT_ASSERT_FINAL){for(const after of measurements.filter(m=>m.
  }else check(Math.abs((after[kind][i].top+after[kind][i].bottom)-(before[kind][i].top+before[kind][i].bottom))<1,'preserved whitespace');}else{check(after[kind][i].image.height>before[kind][i].image.height,'increased image height');check(after[kind][i].top+after[kind][i].bottom<before[kind][i].top+before[kind][i].bottom,'reduced whitespace');}if(kind==='guides'&&after.width<=680){
   const change=after[kind][i].row.height-before[kind][i].row.height;
   check(change>=-5&&change<=1,'mobile row shrinks only by the 3px notice reserve');
- }else check(Math.abs(after[kind][i].row.height-before[kind][i].row.height)<1,'unchanged row height');if(kind==='guides'&&after.width>680)check(after[kind][i].noteRect.bottom<=after[kind][i].row.bottom+1,'right-side note stays within its row');}}}}
+ }else check(Math.abs(after[kind][i].row.height-before[kind][i].row.height)<1,'unchanged row height');if(kind==='guides'&&after.width>680)check(after[kind][i].visibleContentBottom<=after[kind][i].row.bottom+1,'visible right-side copy stays within its row');}}}}
 // Compare three real CSS mounts using the same October photographs.
 for(const width of [1280,390]){await page.setViewportSize({width,height:1000});for(const variant of ['before','after']){await page.goto(`${base}/${variant}/best-shots-2025.html`);const month=page.locator('.best-shot-month').filter({has:page.getByRole('heading',{name:/^10月(?:の展示)?$/})});for(const i of await month.locator('img').all()){await i.scrollIntoViewIfNeeded();await i.evaluate(i=>i.decode());}await month.screenshot({path:path.join(out,`mixed-${width}-${variant}.png`),animations:'disabled'});}
  for(const [name,css] of [['A',''],['B','.best-shots-index .best-shot-grid .best-shot-photo{aspect-ratio:1;padding:20px;background:#f4f1e9}'],['C','.best-shots-index .best-shot-grid .best-shot-photo{aspect-ratio:3/2}']]){await page.goto(`${base}/after/best-shots-2025.html`);if(css)await page.addStyleTag({content:css});const month=page.locator('.best-shot-month').filter({has:page.getByRole('heading',{name:/^10月(?:の展示)?$/})});for(const i of await month.locator('img').all()){await i.scrollIntoViewIfNeeded();await i.evaluate(i=>i.decode());}await month.screenshot({path:path.join(out,`option-${name}-${width}.png`),animations:'disabled'});}

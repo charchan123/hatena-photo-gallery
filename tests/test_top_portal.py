@@ -542,6 +542,7 @@ def test_guide_rows_use_record_style_separators_and_plain_notes(monkeypatch, tmp
     assert ".portal-guide-note__details { display:grid; grid-template-columns:minmax(0,1fr); grid-template-rows:calc(2 * .88rem * 1.45) 22px; min-width:0; gap:2px; }" in css
     assert ".portal-guide-note__details > small { display:-webkit-box; min-width:0; overflow:hidden; white-space:normal; -webkit-box-orient:vertical; -webkit-line-clamp:2; }" in css
     assert ".portal-index .portal-guide-note { position:relative; top:calc(.638rem + 12px); }" in css
+    assert ':root:not([data-portal-columns="2"]) .portal-index .portal-guide-row:has(.portal-update-note:not([hidden])) { padding-bottom:14px; }' in css
     assert ".portal-guide-note strong { overflow:hidden; color:#24472f; font-size:1rem; font-weight:650;" in css
     assert ".portal-guide-note small { color:#526056; font-size:.88rem; line-height:1.45; }" in css
     assert "background:#eef5ea" not in css

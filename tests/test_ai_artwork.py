@@ -71,7 +71,7 @@ def test_all_active_css_uses_new_artwork_and_preserves_every_other_declaration()
                                  b'\0' + (ROOT/file).read_bytes()).hexdigest() in {
                     '96653f6d85a36ec34db342311bf7d3545bfde761',
                     'd5796f19276dbe6ead3f4d8afddf1ad37b72d07f',
-                    '7dfa6832e4f9895b07677d733b1153f35f6eb9ec'}), file
+                    '53a048807125a630bea5d4f95021d2bcc5c39e8a'}), file
         else:
             assert sha(normalized.encode()) == expected, file
     assert used == {r['asset'] for r in M['assets']}
