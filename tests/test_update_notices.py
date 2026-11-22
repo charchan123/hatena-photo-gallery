@@ -132,8 +132,8 @@ def test_best_shot_notice_precedes_eyebrow_outside_description(monkeypatch, tmp_
     soup = BeautifulSoup((tmp_path / "new-top.html").read_text(encoding="utf-8"), "html.parser")
     research = soup.select_one(".portal-card--research")
     best = soup.select_one(".portal-card--best-shots")
-    assert research.select_one("strong + .portal-card__details > small").get_text() == "正体を調べているキノコを見る"
-    assert best.select_one("strong + .portal-card__details > small").get_text() == "とっておきの一枚を集めた写真館"
+    assert research.select_one("strong + .portal-card__details > small").get_text() == "正体不明のキノコの写真を見る"
+    assert best.select_one("strong + .portal-card__details > small").get_text() == "お気に入りのキノコ写真を集めました"
     assert not research.select_one(".portal-update-note")
     note = best.select_one(".portal-card__copy > .portal-update-note")
     assert note is not None
@@ -199,7 +199,7 @@ def test_research_identified_notice_precedes_label_without_reserving_details(
                          "html.parser")
     card = soup.select_one(".portal-card--research")
     details = card.select_one("strong + .portal-card__details")
-    assert details.find("small", recursive=False).get_text(strip=True) == "正体を調べているキノコを見る"
+    assert details.find("small", recursive=False).get_text(strip=True) == "正体不明のキノコの写真を見る"
     assert not details.select_one(".portal-update-note")
     note = card.select_one(".portal-card__copy > .portal-update-note")
     assert note.find_next_sibling()["class"] == ["portal-eyebrow"]
