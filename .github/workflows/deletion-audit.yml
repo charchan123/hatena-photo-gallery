@@ -67,6 +67,40 @@ jobs:
           assert not Path('cache/never-published-deletion-preview').exists()
           print('PASS: real guard evaluated latest inventory; no output/ref writes')
           PY
+      - name: Diagnose pending-reference retrieval without changing guard decisions
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          from urllib.error import HTTPError
+          import deletion_protection as dp
+
+          original_urlopen = dp.urlopen
+          def trace_request(req, timeout=30):
+              try:
+                  return original_urlopen(req, timeout=timeout)
+              except HTTPError as err:
+                  print('REF_DIAG_HTTP_STATUS', err.code,
+                        'rate_remaining', err.headers.get('X-RateLimit-Remaining', '?'),
+                        'retry_after', err.headers.get('Retry-After', '?'))
+                  raise
+          dp.urlopen = trace_request
+
+          def trace_api(path):
+              stage = path.split('?', 1)[0].split('/', 1)[0]
+              try:
+                  return dp.github_get(path)
+              except Exception as exc:
+                  print('REF_DIAG_FETCH_FAILED', stage, type(exc).__name__)
+                  raise
+          try:
+              items = dp.open_selections(api=trace_api)
+              print('REF_DIAG_OPEN_SELECTIONS_OK', len(items))
+          except Exception as exc:
+              print('REF_DIAG_BLOCKED', type(exc).__name__, str(exc))
+          # Diagnostics do not override the earlier failing safety step.
+          PY
       - name: Save published-only evidence even on failure
         if: always()
         uses: actions/upload-artifact@v4
