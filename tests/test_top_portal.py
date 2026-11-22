@@ -535,10 +535,13 @@ def test_guide_rows_use_record_style_separators_and_plain_notes(monkeypatch, tmp
     assert ".portal-guide-list { display:grid; flex:1 1 auto; min-height:0; align-content:start; border-top:1px solid #d9ddcf; }" in css
     assert ".portal-guide-row { display:grid; grid-template-columns:176px minmax(0,1fr); gap:18px; align-items:center; min-height:96px; padding:8px 0; border-bottom:1px solid #d9ddcf;" in css
     assert ".portal-guide-row .portal-card { width:176px; height:96px; min-height:96px; border-radius:10px; }" in css
-    assert ".portal-guide-row .portal-card__copy { width:100%; min-width:0; grid-template-rows:22px calc(2 * .7rem * 1.3); gap:4px; }" in css
+    assert ".portal-guide-row .portal-card__copy { width:100%; min-width:0; grid-template-rows:22px calc(.7rem * 1.3); gap:4px; }" in css
     assert ".portal-guide-row .portal-card__copy strong { min-width:0; gap:7px; font-size:.92rem; white-space:nowrap; line-height:1.25; }" in css
     assert ".portal-guide-row .portal-card__copy strong > span { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }" in css
-    assert ".portal-guide-row .portal-card__copy small { display:-webkit-box; min-width:0; max-height:calc(2 * .7rem * 1.3); overflow:hidden; font-size:.7rem; line-height:1.3; white-space:normal; -webkit-box-orient:vertical; -webkit-line-clamp:2; }" in css
+    assert ".portal-guide-row .portal-card__copy small { display:block; min-width:0; overflow:hidden; text-overflow:ellipsis; font-size:.7rem; line-height:1.3; white-space:nowrap; }" in css
+    assert ".portal-guide-note__details { display:grid; grid-template-columns:minmax(0,1fr); grid-template-rows:calc(2 * .88rem * 1.45) 24px; min-width:0; gap:3px; }" in css
+    assert ".portal-guide-note__details > small { display:-webkit-box; min-width:0; overflow:hidden; white-space:normal; -webkit-box-orient:vertical; -webkit-line-clamp:2; }" in css
+    assert ".portal-index .portal-guide-note { position:relative; top:0; }" in css
     assert ".portal-guide-note strong { overflow:hidden; color:#24472f; font-size:1rem; font-weight:650;" in css
     assert ".portal-guide-note small { color:#526056; font-size:.88rem; line-height:1.45; }" in css
     assert "background:#eef5ea" not in css
@@ -688,16 +691,16 @@ def test_portal_notice_animation_is_subtle_and_motion_safe():
     assert ".update-badge--new::after { animation:none; display:none; }" in notice
     assert "[data-notice-start][hidden] { display:none !important; }" in notice
     assert ".portal-independent-links .portal-card__details" in portal
-    assert "min-height:46px" in portal
+    assert "grid-template-rows:calc(2 * .88rem * 1.45) 24px" in portal
     assert ".portal-independent-links .portal-card__copy > .portal-update-note" in portal
 
 
 def test_conditional_notice_description_styles_prevent_header_jump():
     from pathlib import Path
     css = (Path(main.ASSETS_DIR) / "portal.css").read_text(encoding="utf-8")
-    assert ".portal-guide-note__details { display:flex;" in css
-    assert "min-width:0; min-height:46px; gap:3px 8px;" in css
-    assert ".portal-guide-note__details > small { flex:1 1 100%;" in css
+    assert ".portal-guide-note__details { display:grid;" in css
+    assert "grid-template-rows:calc(2 * .88rem * 1.45) 24px;" in css
+    assert ".portal-guide-note__details > small { display:-webkit-box;" in css
     assert ".portal-guide-note__details > .portal-update-note { display:inline-flex;" in css
     assert ".portal-guide-note__details .portal-update-summary" in css
     assert ".portal-independent-links .portal-card__copy > .portal-update-note" in css

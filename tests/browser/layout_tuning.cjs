@@ -12,12 +12,17 @@ const standaloneUnchanged=layoutCSS(beforePortalCSS)===layoutCSS(afterPortalCSS)
 // The approved 2026-11-23 follow-up changes copy layout, not thumbnails.
 // Pin the complete CSS delta so unrelated layout changes cannot be excused.
 const approvedCSSChanges=[
- ['.portal-guide-row .portal-card__copy { width:100%; gap:4px; }',
-  '.portal-guide-row .portal-card__copy { width:100%; min-width:0; grid-template-rows:22px calc(2 * .7rem * 1.3); gap:4px; }'],
- ['.portal-guide-row .portal-card__copy strong { gap:7px; font-size:.92rem; white-space:normal; line-height:1.25; }',
-  '.portal-guide-row .portal-card__copy strong { min-width:0; gap:7px; font-size:.92rem; white-space:nowrap; line-height:1.25; }\n.portal-guide-row .portal-card__copy strong > span { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }'],
- ['.portal-guide-row .portal-card__copy small { font-size:.7rem; line-height:1.3; white-space:nowrap; }',
-  '.portal-guide-row .portal-card__copy small { display:-webkit-box; min-width:0; max-height:calc(2 * .7rem * 1.3); overflow:hidden; font-size:.7rem; line-height:1.3; white-space:normal; -webkit-box-orient:vertical; -webkit-line-clamp:2; }'],
+ ['.portal-guide-row .portal-card__copy { width:100%; min-width:0; grid-template-rows:22px calc(2 * .7rem * 1.3); gap:4px; }',
+  '.portal-guide-row .portal-card__copy { width:100%; min-width:0; grid-template-rows:22px calc(.7rem * 1.3); gap:4px; }'],
+ ['.portal-guide-row .portal-card__copy small { display:-webkit-box; min-width:0; max-height:calc(2 * .7rem * 1.3); overflow:hidden; font-size:.7rem; line-height:1.3; white-space:normal; -webkit-box-orient:vertical; -webkit-line-clamp:2; }',
+  '.portal-guide-row .portal-card__copy small { display:block; min-width:0; overflow:hidden; text-overflow:ellipsis; font-size:.7rem; line-height:1.3; white-space:nowrap; }'],
+ ['.portal-guide-note__details { display:flex; flex-wrap:wrap; align-content:center; align-items:center; min-width:0; min-height:46px; gap:3px 8px; align-content:flex-start; }',
+  '.portal-guide-note__details { display:grid; grid-template-columns:minmax(0,1fr); grid-template-rows:calc(2 * .88rem * 1.45) 24px; min-width:0; gap:3px; }'],
+ ['.portal-guide-note__details > small { flex:1 1 100%; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }',
+  '.portal-guide-note__details > small { display:-webkit-box; min-width:0; overflow:hidden; white-space:normal; -webkit-box-orient:vertical; -webkit-line-clamp:2; }'],
+ ['.portal-index .portal-guide-note { position:relative; top:calc((46px - 1.276rem)/2); }',
+  '.portal-index .portal-guide-note { position:relative; top:0; }'],
+ ['  .portal-guide-row .portal-card__copy small { white-space:normal; }\n',''],
 ];
 let expectedCopyOnly=beforePortalCSS,copyOnly=true;
 for(const [from,to] of approvedCSSChanges){
@@ -40,46 +45,71 @@ for(const width of [1280,1024,900,899,768,680,390,320]){
   await page.goto(`${base}/${variant}/new-top.html`);await page.evaluate(()=>document.fonts.ready);
   if(process.env.LAYOUT_LIVE_STARS){await page.waitForFunction(()=>[...document.querySelectorAll('.record-stars-native')].every(e=>e.hasAttribute('data-ready')),null,{timeout:30000});check(await page.locator('.record-stars-native iframe').count()===3,'three official add frames');await page.waitForFunction(()=>[...document.querySelectorAll('[data-hatena-star]')].every(h=>[...h.shadowRoot.querySelectorAll('img')].every(i=>i.complete&&i.naturalWidth>0)),null,{timeout:30000});}
   await page.locator('.record-preview-thumb img').evaluateAll(es=>Promise.all(es.map(i=>i.decode())));
-  const metrics=await page.evaluate(()=>{const rect=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,bottom:r.bottom}};const rows=(sel,image)=>[...document.querySelectorAll(sel)].map(e=>{const r=rect(e),i=rect(e.querySelector(image)),n=e.querySelector('.portal-guide-note'),heading=n?.querySelector('strong'),small=n?.querySelector('small');const text=n?{top:rect(heading).y,bottom:rect(small).bottom}:null;return {row:r,image:i,top:i.y-r.y,bottom:r.bottom-i.bottom,text,textCenterOffset:text?(text.top+text.bottom-i.y-i.bottom)/2:null}});return {records:rows('.record-preview-row','.record-preview-thumb'),guides:rows('.portal-guide-row','.portal-card'),panels:[...document.querySelectorAll('.portal-records-hero,.portal-explore')].map(rect),overflow:document.documentElement.scrollWidth>innerWidth};});
+  const metrics=await page.evaluate(()=>{const rect=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,bottom:r.bottom}};const rows=(sel,image)=>[...document.querySelectorAll(sel)].map(e=>{const r=rect(e),i=rect(e.querySelector(image)),n=e.querySelector('.portal-guide-note'),heading=n?.querySelector('strong'),small=n?.querySelector('small');const noteRect=n?rect(n):null;return {row:r,image:i,top:i.y-r.y,bottom:r.bottom-i.bottom,noteRect,textCenterOffset:noteRect?(noteRect.y+noteRect.bottom-i.y-i.bottom)/2:null}});return {records:rows('.record-preview-row','.record-preview-thumb'),guides:rows('.portal-guide-row','.portal-card'),panels:[...document.querySelectorAll('.portal-records-hero,.portal-explore')].map(rect),overflow:document.documentElement.scrollWidth>innerWidth};});
   check(!metrics.overflow,`${variant} top overflow ${width}`);check(metrics.records.length===3&&metrics.guides.length===3,'all six images');
   if(width>=900)check(Math.abs(metrics.panels[0].height-metrics.panels[1].height)<1,'equal PC panels');
   if(variant==='after'&&process.env.LAYOUT_ASSERT_FINAL){
-   const copies=await page.locator('.portal-guide-row .portal-card').evaluateAll(cards=>cards.map(card=>{
-    const heading=card.querySelector('.portal-card__copy strong');
-    const title=heading.querySelector('span');
-    const description=card.querySelector('.portal-card__copy small');
-    const cr=card.getBoundingClientRect(),hr=heading.getBoundingClientRect(),tr=title.getBoundingClientRect(),dr=description.getBoundingClientRect();
-    const ds=getComputedStyle(description),ts=getComputedStyle(title);
-    return {title:title.textContent,description:description.textContent,
-      headingTop:hr.y-cr.y,descriptionTop:dr.y-cr.y,
-      headingHeight:hr.height,titleHeight:tr.height,descriptionHeight:dr.height,
-      descriptionLineHeight:parseFloat(ds.lineHeight),
-      clamp:ds.webkitLineClamp,whiteSpace:ts.whiteSpace,cardHeight:cr.height};
+   const rows=await page.locator('.portal-guide-row').evaluateAll(items=>items.map(row=>{
+    const card=row.querySelector('.portal-card'),left=card.querySelector('.portal-card__copy');
+    const lh=left.querySelector('strong'),ls=left.querySelector('small'),name=lh.querySelector('span');
+    const note=row.querySelector('.portal-guide-note'),rh=note.querySelector('strong');
+    const details=note.querySelector('.portal-guide-note__details'),rs=details.querySelector('small');
+    const cr=card.getBoundingClientRect(),lr=lh.getBoundingClientRect(),sr=ls.getBoundingClientRect();
+    const rr=row.getBoundingClientRect(),nr=note.getBoundingClientRect(),hr=rh.getBoundingClientRect(),dr=rs.getBoundingClientRect();
+    const dcss=getComputedStyle(rs),lcss=getComputedStyle(ls);
+    return {
+      leftTitle:name.textContent,leftSubtitle:ls.textContent,
+      leftCenterOffset:(lr.y+sr.bottom)/2-(cr.y+cr.height/2),
+      leftTitleWhiteSpace:getComputedStyle(name).whiteSpace,leftSubtitleWhiteSpace:lcss.whiteSpace,
+      leftTitleLineHeight:parseFloat(getComputedStyle(lh).lineHeight),leftTitleHeight:lr.height,
+      leftSubtitleHeight:sr.height,leftSubtitleLineHeight:parseFloat(lcss.lineHeight),
+      rightTitle:rh.textContent,rightSubtitle:rs.textContent,
+      rightHeadingTop:hr.y-rr.y,rightFirstLineTop:dr.y-rr.y,
+      rightDetailsHeight:details.getBoundingClientRect().height,
+      rightDescHeight:dr.height,rightLineHeight:parseFloat(dcss.lineHeight),
+      rightClamp:dcss.webkitLineClamp,rightWhiteSpace:dcss.whiteSpace,
+      cardHeight:cr.height,noteCenterOffset:(nr.y+nr.height/2)-(cr.y+cr.height/2)
+    };
    }));
-   check(copies.length===3,'three guide cards with descriptions');
+   check(rows.length===3,'all three search cards have paired labels and right-hand explanations');
    const approved=[
-     ['図鑑を見る','キノコの名前から探す'],
-     ['季節から探す','季節ごとに写真を見る'],
-     ['特徴から探す','見た目の特徴から絞り込む']
+     ['図鑑を見る','キノコの名前から探す','名前から探したい場合は','名前を検索したり、五十音順の一覧から探せます。'],
+     ['季節から探す','季節ごとに写真を見る','季節ごとに写真を見たい場合は','このブログで撮影したキノコを、季節ごとにまとめています。'],
+     ['特徴から探す','見た目の特徴から絞り込む','名前がわからない場合は','傘やヒダなど、見た目の特徴から絞り込めます。']
    ];
    for(let i=0;i<3;i++){
-    const c=copies[i];
-    check(c.title===approved[i][0]&&c.description===approved[i][1],'approved guide title and subtitle');
-    check(c.whiteSpace==='nowrap'&&c.titleHeight<=c.headingHeight+1,'heading remains single-line');
-    check(c.clamp==='2','two-line CSS clamping enabled');
-    check(Math.abs(c.descriptionHeight-2*c.descriptionLineHeight)<1.1,'two description lines reserved');
-    check(Math.abs(c.headingTop-copies[0].headingTop)<1,'heading starts at identical card-relative position');
-    check(Math.abs(c.descriptionTop-copies[0].descriptionTop)<1,'description first line starts at identical card-relative position');
-    check(Math.abs(c.cardHeight-copies[0].cardHeight)<1,'all three card heights identical');
+    const c=rows[i],e=approved[i];
+    check(c.leftTitle===e[0]&&c.leftSubtitle===e[1]&&c.rightTitle===e[2]&&c.rightSubtitle===e[3],'approved left and right text unchanged');
+    check(c.leftTitleWhiteSpace==='nowrap'&&c.leftSubtitleWhiteSpace==='nowrap','left image text remains exactly two lines total');
+    check(Math.abs(c.leftSubtitleHeight-c.leftSubtitleLineHeight)<1.1,'left image subtitle reserves only one line');
+    check(Math.abs(c.leftCenterOffset)<1.1,'left image title and subtitle visually centered together');
+    check(c.rightClamp==='2'&&c.rightWhiteSpace==='normal','right explanations clamp to 2 lines');
+    check(Math.abs(c.rightDescHeight-2*c.rightLineHeight)<1.1,'right explanation reserves exactly two lines');
+    check(Math.abs(c.rightHeadingTop-rows[0].rightHeadingTop)<1.1,'right headings start at same vertical coordinate');
+    check(Math.abs(c.rightFirstLineTop-rows[0].rightFirstLineTop)<1.1,'right explanation first lines start at same vertical coordinate');
+    check(Math.abs(c.cardHeight-rows[0].cardHeight)<1,'search card thumbnail height unchanged');
+    if(width>680)check(Math.abs(c.noteCenterOffset)<1.1,'right note remains vertically centered beside image');
    }
-   const long=await page.locator('.portal-guide-row .portal-card').first().locator('small').evaluate(el=>{
-    const prev=el.textContent,top=el.getBoundingClientRect().y,height=el.getBoundingClientRect().height;
-    el.textContent='見た目の特徴から探せるキノコの名前を検索するための説明文'.repeat(12);
-    const next=el.getBoundingClientRect(),clipped=el.scrollHeight>el.clientHeight;
-    el.textContent=prev;
-    return {topStable:Math.abs(next.y-top)<1,heightStable:Math.abs(next.height-height)<1,clipped};
+   const dynamic=await page.locator('.portal-guide-row').first().locator('.portal-guide-note').evaluate(note=>{
+     const headline=note.querySelector('strong'),details=note.querySelector('.portal-guide-note__details'),desc=details.querySelector('small');
+     const get=()=>({headingY:headline.getBoundingClientRect().y,descriptionY:desc.getBoundingClientRect().y,detailsHeight:details.getBoundingClientRect().height,descriptionHeight:desc.getBoundingClientRect().height,scrollHeight:desc.scrollHeight,clientHeight:desc.clientHeight});
+     const initial=get(),original=desc.textContent;
+     desc.textContent='短い説明';const short=get();
+     desc.textContent='画像の特徴や名前から探せるいろいろなキノコの情報'.repeat(15);const long=get();
+     const fresh=document.createElement('span');fresh.className='portal-update-note';
+     const summary=document.createElement('span');summary.className='portal-update-summary';summary.textContent='新着';fresh.append(summary);details.append(fresh);
+     const withNotice=get();
+     fresh.remove();desc.textContent=original;
+     return {initial,short,long,withNotice};
    });
-   check(long.topStable&&long.heightStable&&long.clipped,'long subtitles truncate at two lines without reflow');
+   const approx=(a,b)=>Math.abs(a-b)<1.1;
+   for(const variant of ['short','long','withNotice']){
+     check(approx(dynamic[variant].headingY,dynamic.initial.headingY),'right heading does not jump on short/long copy or notice');
+     check(approx(dynamic[variant].descriptionY,dynamic.initial.descriptionY),'right first line does not jump on short/long copy or notice');
+     check(approx(dynamic[variant].descriptionHeight,dynamic.initial.descriptionHeight),'right two-line area remains fixed');
+     check(approx(dynamic[variant].detailsHeight,dynamic.initial.detailsHeight),'new arrival notice keeps reserved height');
+   }
+   check(dynamic.long.scrollHeight>dynamic.long.clientHeight,'long right-hand description truncates after two lines');
   }
 
   measurements.push({width,variant,page:'new-top',...metrics});
@@ -103,7 +133,13 @@ for(const width of [1280,1024,900,899,768,680,390,320]){
   }
  }
 }
-if(process.env.LAYOUT_ASSERT_FINAL){for(const after of measurements.filter(m=>m.page==='new-top'&&m.variant==='after')){const before=measurements.find(m=>m.page==='new-top'&&m.variant==='before'&&m.width===after.width);for(let i=0;i<2;i++)check(Math.abs(after.panels[i].height-before.panels[i].height)<1,'unchanged outer panel height');for(const kind of ['records','guides']){const heights=after[kind].map(r=>r.image.height);check(Math.max(...heights)-Math.min(...heights)<1,'equal thumbnail heights');for(let i=0;i<3;i++){if(process.env.LAYOUT_EXPECT_UNCHANGED==='1'){check(Math.abs(after[kind][i].image.height-before[kind][i].image.height)<1,'preserved image height');check(Math.abs((after[kind][i].top+after[kind][i].bottom)-(before[kind][i].top+before[kind][i].bottom))<1,'preserved whitespace');}else{check(after[kind][i].image.height>before[kind][i].image.height,'increased image height');check(after[kind][i].top+after[kind][i].bottom<before[kind][i].top+before[kind][i].bottom,'reduced whitespace');}check(Math.abs(after[kind][i].row.height-before[kind][i].row.height)<1,'unchanged row height');if(kind==='guides'&&after.width>680)check(Math.abs(after[kind][i].textCenterOffset)<.1,'centred visible heading and description');}}}}
+if(process.env.LAYOUT_ASSERT_FINAL){for(const after of measurements.filter(m=>m.page==='new-top'&&m.variant==='after')){const before=measurements.find(m=>m.page==='new-top'&&m.variant==='before'&&m.width===after.width);check(Math.abs(after.panels[0].height-before.panels[0].height)<1,'observation panel height preserved');if(after.width>680)check(Math.abs(after.panels[1].height-before.panels[1].height)<1,'guide panel height preserved on side-by-side layouts');else check(after.panels[1].height>=before.panels[1].height&&after.panels[1].height-before.panels[1].height<100,'only the reserved right-side description/notice area adds bounded mobile height');for(const kind of ['records','guides']){const heights=after[kind].map(r=>r.image.height);check(Math.max(...heights)-Math.min(...heights)<1,'equal thumbnail heights');for(let i=0;i<3;i++){if(process.env.LAYOUT_EXPECT_UNCHANGED==='1'){check(Math.abs(after[kind][i].image.height-before[kind][i].image.height)<1,'preserved image height');if(kind==='guides'&&after.width<=680){
+  const newSpace=after[kind][i].top+after[kind][i].bottom,oldSpace=before[kind][i].top+before[kind][i].bottom;
+  check(newSpace>=oldSpace-1&&newSpace-oldSpace<35,'only the new right-hand two-line text space increases mobile row whitespace');
+ }else check(Math.abs((after[kind][i].top+after[kind][i].bottom)-(before[kind][i].top+before[kind][i].bottom))<1,'preserved whitespace');}else{check(after[kind][i].image.height>before[kind][i].image.height,'increased image height');check(after[kind][i].top+after[kind][i].bottom<before[kind][i].top+before[kind][i].bottom,'reduced whitespace');}if(kind==='guides'&&after.width<=680){
+  const change=after[kind][i].row.height-before[kind][i].row.height;
+  check(change>=-1&&change<35,'mobile row height grows only to reserve two lines on the right');
+ }else check(Math.abs(after[kind][i].row.height-before[kind][i].row.height)<1,'unchanged row height');if(kind==='guides'&&after.width>680)check(Math.abs(after[kind][i].textCenterOffset)<.1,'right-side note centered in guide row');}}}}
 // Compare three real CSS mounts using the same October photographs.
 for(const width of [1280,390]){await page.setViewportSize({width,height:1000});for(const variant of ['before','after']){await page.goto(`${base}/${variant}/best-shots-2025.html`);const month=page.locator('.best-shot-month').filter({has:page.getByRole('heading',{name:/^10月(?:の展示)?$/})});for(const i of await month.locator('img').all()){await i.scrollIntoViewIfNeeded();await i.evaluate(i=>i.decode());}await month.screenshot({path:path.join(out,`mixed-${width}-${variant}.png`),animations:'disabled'});}
  for(const [name,css] of [['A',''],['B','.best-shots-index .best-shot-grid .best-shot-photo{aspect-ratio:1;padding:20px;background:#f4f1e9}'],['C','.best-shots-index .best-shot-grid .best-shot-photo{aspect-ratio:3/2}']]){await page.goto(`${base}/after/best-shots-2025.html`);if(css)await page.addStyleTag({content:css});const month=page.locator('.best-shot-month').filter({has:page.getByRole('heading',{name:/^10月(?:の展示)?$/})});for(const i of await month.locator('img').all()){await i.scrollIntoViewIfNeeded();await i.evaluate(i=>i.decode());}await month.screenshot({path:path.join(out,`option-${name}-${width}.png`),animations:'disabled'});}
