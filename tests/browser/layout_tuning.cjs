@@ -16,7 +16,7 @@ const approvedCSSChanges=[
  ['.portal-guide-row .portal-card__copy strong { gap:7px; font-size:1rem; white-space:nowrap; }',
   '.portal-guide-row .portal-card__copy strong { gap:7px; font-size:.92rem; white-space:normal; line-height:1.25; }'],
  ['.portal-guide-row .portal-card__copy small { font-size:.7rem; line-height:1.3; white-space:nowrap; }',
-  '.portal-guide-row .portal-card__copy small { font-size:.7rem; line-height:1.3; white-space:nowrap; }\\n.portal-guide-row .portal-card__copy small:empty { display:none; }']
+  '.portal-guide-row .portal-card__copy small { font-size:.7rem; line-height:1.3; white-space:nowrap; }\n.portal-guide-row .portal-card__copy small:empty { display:none; }']
 ];
 let expectedCopyOnly=beforePortalCSS,copyOnly=true;
 for(const [from,to] of approvedCSSChanges){
