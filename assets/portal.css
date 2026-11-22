@@ -148,8 +148,9 @@
 @media (min-width:681px) and (max-width:899px) {
   :root:not([data-portal-columns="2"]) .portal-index .portal-guide-row { padding-block:2px; }
   :root:not([data-portal-columns="2"]) .portal-index .portal-guide-row .portal-card { height:108px; min-height:108px; }
-  /* Only a visible update badge needs extra clearance at this compact width. */
-  :root:not([data-portal-columns="2"]) .portal-index .portal-guide-row:has(.portal-update-note:not([hidden])) { padding-bottom:14px; }
+  /* Show a visible update badge beside, rather than under, the heading.
+     This keeps every row and the approved first-line anchor completely still. */
+  :root:not([data-portal-columns="2"]) .portal-index .portal-guide-note__details > .portal-update-note:not([hidden]) { position:absolute; top:0; right:0; width:max-content; max-width:34%; margin:0; }
 }
 @media (max-width:680px) {
   .portal-index .record-preview-thumb { height:100px; }

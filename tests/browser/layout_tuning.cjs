@@ -17,7 +17,7 @@ const approvedCSSChanges=[
  ['.portal-index .portal-guide-note { position:relative; top:0; }',
   "/* Keep the heading and description's first line at their pre-PR166 positions.\n   The two-line copy and 22px notice row increase the details height from 46px.\n   Offset the right note by half that growth plus its original top adjustment.\n   The stacked-mobile rule below remains top:0, matching its original anchor. */\n.portal-index .portal-guide-note { position:relative; top:calc(.638rem + 12px); }"],
  ["  :root:not([data-portal-columns=\"2\"]) .portal-index .portal-guide-row .portal-card { height:108px; min-height:108px; }\n}",
-  "  :root:not([data-portal-columns=\"2\"]) .portal-index .portal-guide-row .portal-card { height:108px; min-height:108px; }\n  /* Only a visible update badge needs extra clearance at this compact width. */\n  :root:not([data-portal-columns=\"2\"]) .portal-index .portal-guide-row:has(.portal-update-note:not([hidden])) { padding-bottom:14px; }\n}"],
+  "  :root:not([data-portal-columns=\"2\"]) .portal-index .portal-guide-row .portal-card { height:108px; min-height:108px; }\n  /* Show a visible update badge beside, rather than under, the heading.\n     This keeps every row and the approved first-line anchor completely still. */\n  :root:not([data-portal-columns=\"2\"]) .portal-index .portal-guide-note__details > .portal-update-note:not([hidden]) { position:absolute; top:0; right:0; width:max-content; max-width:34%; margin:0; }\n}"],
 ];
 let expectedCopyOnly=beforePortalCSS,copyOnly=true;
 for(const [from,to] of approvedCSSChanges){
