@@ -16,7 +16,7 @@
 
 兵庫の図鑑では、夏から秋にコナラ林やシイ・カシ林に現れる大型のテングタケの仲間として紹介されています。傘の表面に褐色のいぼがあり、柄の根元が地中深くまで伸びる個体が記録されています。島根県のシイ林にも観察記録があります。
 
-- 兵庫県治山林道協会『兵庫のきのこ図鑑』（2012）p.18、写真と解説。形態・環境は同書の和名で扱われた個体に限る。p.59 文献欄は平山吉澄（1998）「オオオニテングタケ」『関西菌類談話会会報』21、pp.8–9を指す。会報本文と標本は要照合。[兵庫のきのこ図鑑](https://www.chisanrindou.jp/information/pdf/book23.pdf)
+- 藤堂千景・正井俊郎・山田裕司『兵庫のきのこ図鑑』（兵庫県治山林道協会、2012）p.18、写真と解説。形態・環境は同書の和名で扱われた個体に限る。p.59 文献欄は平山吉澄（1998）「オオオニテングタケ」『関西菌類談話会会報』21、pp.8–9を指す。会報本文と標本は要照合。[兵庫のきのこ図鑑](https://www.chisanrindou.jp/information/pdf/book23.pdf)
 - 島根県中山間地域研究センター研究報告21、目録8番には10月上旬・松江のシイ林地上、静岡県目録（2020）233番には和名と未成立名の扱いが記録される。川口（2016）も山口県の採集記録を未公表名で掲げる。正式発表と参照標本は未確認。[島根県](https://www1.pref.shimane.lg.jp/admin/region/kikan/chusankan/syoseki/research/No21_kenkyuhoukoku.data/Vol21houkokusyo-39-46.pdf) · [静岡県](https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf) · [山口県の採集報告](https://www.city.shimonoseki.lg.jp/uploaded/attachment/16861.pdf)
 
 ### ハマクサギタマゴタケ
