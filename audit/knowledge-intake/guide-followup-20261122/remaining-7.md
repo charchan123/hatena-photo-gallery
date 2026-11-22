@@ -1,8 +1,8 @@
 # 原稿未作成だった7項目
 
-2026年11月22日。#160から継承。仮称付きの原稿3件は資料が実際に記録した和名と観察範囲で審査する。写真は既存の掲載ラベルと状態を保持し、人による同定・接続審査に回す。3件とも正式な種学名欄は未設定。特徴検索と食毒の判定は独立して保留する。
+2026年11月22日。#160から継承。資料が実際に記録した和名と観察範囲で4原稿を審査する。写真は既存の掲載ラベルと状態を保持し、人による同定・接続審査に回す。仮称3件と、国内標本への適用を照合中のハイムラサキフウセンタケは種学名欄を未設定とする。特徴検索と食毒の判定は独立して保留する。
 
-## 掲載名で扱える原稿3件
+## 掲載名で扱える原稿4件
 
 ### スギカワタケ
 
@@ -27,11 +27,17 @@
 - 川口（2016）、テングタケ属の当該行。仮称と属止まり（*Amanita* sp.）。美祢市秋吉台の2014年7月27日、山口市の6・7・9月などの記録。本稿で個体の保存標本番号は確認できなかった。[豊田ホタルの里ミュージアム](https://www.city.shimonoseki.lg.jp/uploaded/attachment/16861.pdf)
 - 大分きのこ会編『大分と九州のきのこ』（2010年7月）の現物で、村上氏の掲載頁・原図と参照標本を照合する。書誌と琉球大学附属図書館の所蔵を確認した。本文は未閲覧。[CiNii Books](https://ci.nii.ac.jp/ncid/BB28816252)
 
-## 原稿を保留する4件
+### ハイムラサキフウセンタケ
+
+白山の菌類調査や山口県の採集報告に、この和名で記録されたフウセンタケの仲間です。白山の目録では *Cortinarius azureus*、山口県の報告ではその学名を *C. anomalus* に見直しています。山口県では春と秋の採集記録があります。
+
+- 米山競一・梅典雅の白山「きのこ類目録」37番は *C. azureus*。川口（2016）pp.73–74の当該行は学名見直しと複数月の採集地を記録。表の対象は両調査での掲載和名。月は報告の例で、種全体の発生期には一般化しない。[白山調査](https://www.biodic.go.jp/reports2/parts/6th/6_hakusan_h8/6_hakusan_h8_05.pdf) · [山口県の採集報告](https://www.city.shimonoseki.lg.jp/uploaded/attachment/16861.pdf)
+- 茅野市八ヶ岳総合博物館の論文は、今関・本郷の国内文献では2和名で扱い、Dimaら（2016）は現在のタイプの扱いでは *C. azureus* を *C. anomalus* の異名としたと整理する。Dimaらの記載は欧州標本が対象で、前者の名称が疑わしい名とみなせる可能性にも触れる。国内標本の比較と、既存のマルミノフウセンタケ名との対応は審査待ち。観察された個体の形態と掲載写真からの接続は保留。[茅野市博物館の分類報告](https://www.city.chino.lg.jp/uploaded/attachment/27228.pdf) · [Dimaら](https://doi.org/10.1007/s11557-016-1217-5)
+
+## 原稿を保留する3件
 
 | 掲載名 | 今回確認した範囲 | 調査再開の条件 |
 | --- | --- | --- |
 | ミヤマミドリニガイグチ（写真2枚） | 科博の書誌に保坂健太郎「フジヤマキノコ」⑤、『静岡新聞』2013年8月5日付p.6。静岡県の2020年目録には異表記「ミヤマミドリイガイグチ（仮称）」と *Tylopilus* sp.。観察会の解説はミドリニガイグチとの違いを挙げるが、比較標本番号は確認できなかった。 | 県立中央図書館の館内DBで新聞本文を確認し、標本番号、産地、同定者、県目録の表記との対応を照合。『グラフ青森』の巻号・頁は未確認。[科博書誌](https://www.kahaku.go.jp/kenkyu/kenkyusya/botany/khosaka/books_other.html) · [静岡県目録](https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf) · [館内DB](https://www.tosyokan.pref.shizuoka.jp/contents/institution/online_db.html) · [札幌きのこの会の比較記述](https://s-kinokonokai.sakura.ne.jp/kinoko/common/midorinigaiguti.htm) |
 | ツバマツオウジ | 静岡県レッドリストの仮称に当てられた *Neolentinus lepideus* は現行マスターのマツオウジと学名が一致。NITEの NBRC 110181 は別名 *N. suffrutescens* で登録され、Species Fungorumは同名を *N. lepideus* の異名と扱う。 | 科博のマツオウジ標本記録、両名のタイプ、つばのある国内の採集標本を比較し、和名の範囲を人が裁定。同一・別種どちらの扱いでも新IDは保留。[静岡県](https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/683/02_fungi_rlshiz_2020.pdf) · [NITE](https://www.nite.go.jp/nbrc/catalogue/NBRCCatalogueDetailServlet?CAT=00110181&ID=NBRC) · [Species Fungorum](https://www.speciesfungorum.org/names/NamesRecord.asp?RecordId=413569) · [科博](https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?area%5B%5D=H6&id=1111&p=26&s=area) |
-| ハイムラサキフウセンタケ | 観察資料の一つは掲載した個体をマルミノフウセンタケに訂正し、別の資料は近縁の別項目として掲載。白山目録の手掛かりから、両和名を同一の標本に結ぶ記載は確認できなかった。 | 白山調査の該当資料と同定台帳、国内で *Cortinarius anomalus* とされた標本と旧和名の原図を照合。訂正は出典の個体に限る。[白山調査](https://www.biodic.go.jp/reports2/parts/6th/6_hakusan_h8/6_hakusan_h8_05.pdf) · [個体の訂正](https://yuyukinoko.sakura.ne.jp/dokito/Nisshi2016/161107maruminohuusentake1.html) · [別扱いとする観察資料](https://moiwakinoko.sakura.ne.jp/kinoko/index.php?id=1043) |
 | ワセヌメリササタケ | 川口（2016）のフウセンタケ属の項に、池田仮の和名と2007～2014年の6・7月の採集記録。同項目に形態の記載は確認できなかった。池田良幸『北陸のきのこ図鑑』2005年版・新版の所蔵を確認。 | 両版の索引・図版で掲載の有無を調べ、池田の資料番号から同定済み標本にさかのぼる。次項の別種に付いた基質の備考は転用しない。[山口採集記録](https://www.city.shimonoseki.lg.jp/uploaded/attachment/16861.pdf) · [2005年版](https://ci.nii.ac.jp/ncid/BA73309320) · [新版の案内](https://ishikawa-kinoko.sakura.ne.jp/_userdata/Hokurikunokinokozukan.pdf) |

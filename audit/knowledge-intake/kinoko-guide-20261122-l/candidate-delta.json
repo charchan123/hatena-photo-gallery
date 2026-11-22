@@ -224,6 +224,82 @@
         "checked_at": "2026-11-22",
         "notes": "静岡県目録1122番と京都府自然環境目録は同学名。Species Fungorum 178864は知床報告の旧学名Panus torulosusを異名とする。知床報告p.11、IG-6589はケヤマハンノキ倒木。Yueら（2024）図8Bにも中国産のひだが写る。 写真への接続、食毒、公開は未審査。"
       }
+    },
+    {
+      "mushroom_id": "sennintake",
+      "canonical_name_ja": "センニンタケ",
+      "name_ja_sources": [
+        "guide-followup-sennintake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Albatrellus pes-caprae",
+        "source_ids": [
+          "guide-followup-sennintake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-followup-sennintake"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "features": {
+        "summary": "静岡県の解説では、傘は半円形か腎臓形で表面に鱗片があり、裏の管孔は柄に沿って下がる。",
+        "source_ids": [
+          "guide-followup-sennintake"
+        ]
+      },
+      "season": {
+        "summary": "静岡県の資料では秋。",
+        "source_ids": [
+          "guide-followup-sennintake"
+        ]
+      },
+      "habitat": {
+        "summary": "静岡県の資料では県内の亜高山帯針葉樹林の林床。",
+        "source_ids": [
+          "guide-followup-sennintake"
+        ]
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-22",
+        "notes": "学名は県資料・科博TNS-F-21793の表記。Species Fungorum 325956の現行名は同じ基礎異名からの組み替えScutiger pes-caprae。東アジアの近縁種と国内標本は個体ごとに照合する。 写真への接続、食毒、公開は未審査。"
+      }
     }
   ],
   "source_additions": [
@@ -256,6 +332,16 @@
       "record_id": null,
       "accessed_at": "2026-11-22",
       "notes": "静岡県目録1122番と京都府自然環境目録は同学名。Species Fungorum 178864は知床報告の旧学名Panus torulosusを異名とする。知床報告p.11、IG-6589はケヤマハンノキ倒木。Yueら（2024）図8Bにも中国産のひだが写る。 写真への接続、食毒、公開は未審査。"
+    },
+    {
+      "source_id": "guide-followup-sennintake",
+      "organization": "静岡県",
+      "title": "岸澤広晶、静岡県レッドデータブック（2020）p.453、センニンタケ",
+      "source_type": "official_prefecture_reference",
+      "url": "https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/686/2-2_fungi03_rdbshiz2020pla.pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-22",
+      "notes": "学名は県資料・科博TNS-F-21793の表記。Species Fungorum 325956の現行名は同じ基礎異名からの組み替えScutiger pes-caprae。東アジアの近縁種と国内標本は個体ごとに照合する。 写真への接続、食毒、公開は未審査。"
     }
   ],
   "assignment_additions": [
@@ -391,6 +477,52 @@
           "quote_sha256": "c778c3a59e08551f8fa19a5401635a57d8fdbef52669422a75511553bcd23608",
           "char_start": 0,
           "char_end": 5,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "sennintake-pores",
+      "mushroom_id": "sennintake",
+      "assignment": {
+        "facet_id": "pores",
+        "evidence_text": "静岡県の資料では、傘の裏に白色から黄土色の管孔があり、柄に沿って下がる。",
+        "source_ids": [
+          "guide-followup-sennintake"
+        ],
+        "evidence_refs": [
+          "sennintake-pores-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "sennintake-pores-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-followup-sennintake",
+          "source_url": "https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/686/2-2_fungi03_rdbshiz2020pla.pdf",
+          "snapshot_identity": "guide-followup-sennintake-excerpt-20261122",
+          "extracted_text_sha256": "d48a0abb0b7ce5fad9ee17b4313b6f81cddfd0cc66559fc7bd072843c34f1634",
+          "text_snapshot_sha256": "d48a0abb0b7ce5fad9ee17b4313b6f81cddfd0cc66559fc7bd072843c34f1634",
+          "original_response_sha256": "bc1ae7d54ee2d6eda9ea4142cc9c87d20486c7df5dce3d3a0bea19cfbfc552e4",
+          "evidence_id": "sennintake-pores-evidence",
+          "decision_id": "sennintake-pores-decision",
+          "mushroom_id": "sennintake",
+          "facet_id": "pores",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "静岡県の資料では、傘の裏に白色から黄土色の管孔があり、柄に沿って下がる。",
+          "qualifiers": [],
+          "quote": "子実層托は管孔で",
+          "quote_sha256": "d48a0abb0b7ce5fad9ee17b4313b6f81cddfd0cc66559fc7bd072843c34f1634",
+          "char_start": 0,
+          "char_end": 8,
           "snapshot_line_start": 1,
           "snapshot_line_end": 1,
           "evidence_text_exact_substring_of_this_quote": false
