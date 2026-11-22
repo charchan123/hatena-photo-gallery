@@ -10,7 +10,7 @@
   "classification_changes": 0,
   "possible_url_changes": 0,
   "url_changes": 0,
-  "last_success_at": "2026-11-22T18:25:11.195506+00:00",
+  "last_success_at": "2026-11-22T18:54:23.477976+00:00",
   "classification_review_count": 489,
   "fetch_error": null,
   "id_compatibility_error": null,
@@ -56,7 +56,7 @@
     "pending": 0,
     "states": {},
     "history_persisted": true,
-    "history_head": "bcba0189bbd5ed03eef8c4ad5a2b4fd3c316f6545bf8de7a2aab18f2ea95e163"
+    "history_head": "d4cef3c9509b6ba3e331157fd7392f75fe41a4fcbe29ce783b196148590453f8"
   },
   "retirement": {
     "migration_id": "hatena-draft-photo-retirement-2026-10-12",
