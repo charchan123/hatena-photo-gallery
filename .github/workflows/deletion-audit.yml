@@ -5,6 +5,10 @@ on:
   schedule:
     # Independent read-only monitoring continues even if deploy/history storage fails.
     - cron: '30 1 * * *'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 permissions:
   contents: read
   pull-requests: read
@@ -67,39 +71,25 @@ jobs:
           assert not Path('cache/never-published-deletion-preview').exists()
           print('PASS: real guard evaluated latest inventory; no output/ref writes')
           PY
-      - name: Diagnose pending-reference retrieval without changing guard decisions
+      - name: Record GitHub API quota after a blocked audit
         if: failure()
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           python - <<'PY'
-          from urllib.error import HTTPError
-          import deletion_protection as dp
-
-          original_urlopen = dp.urlopen
-          def trace_request(req, timeout=30):
-              try:
-                  return original_urlopen(req, timeout=timeout)
-              except HTTPError as err:
-                  print('REF_DIAG_HTTP_STATUS', err.code,
-                        'rate_remaining', err.headers.get('X-RateLimit-Remaining', '?'),
-                        'retry_after', err.headers.get('Retry-After', '?'))
-                  raise
-          dp.urlopen = trace_request
-
-          def trace_api(path):
-              stage = path.split('?', 1)[0].split('/', 1)[0]
-              try:
-                  return dp.github_get(path)
-              except Exception as exc:
-                  print('REF_DIAG_FETCH_FAILED', stage, type(exc).__name__)
-                  raise
+          import json, os
+          from urllib.request import Request, urlopen
+          req = Request('https://api.github.com/rate_limit', headers={
+              'User-Agent': 'kinoko-deletion-quota-check',
+              'Accept': 'application/vnd.github+json',
+              'Authorization': 'Bearer ' + os.environ['GH_TOKEN']})
           try:
-              items = dp.open_selections(api=trace_api)
-              print('REF_DIAG_OPEN_SELECTIONS_OK', len(items))
+              with urlopen(req, timeout=15) as response:
+                  core = json.load(response).get('resources', {}).get('core', {})
+              print('DELETION_REF_API_QUOTA', {'remaining': core.get('remaining'),
+                    'limit': core.get('limit'), 'reset_unix': core.get('reset')})
           except Exception as exc:
-              print('REF_DIAG_BLOCKED', type(exc).__name__, str(exc))
-          # Diagnostics do not override the earlier failing safety step.
+              print('DELETION_REF_QUOTA_CHECK_UNAVAILABLE', type(exc).__name__)
           PY
       - name: Save published-only evidence even on failure
         if: always()
