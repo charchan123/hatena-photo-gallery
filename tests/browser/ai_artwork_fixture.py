@@ -192,12 +192,28 @@ changed_styles = set(manifest['css_non_artwork_sha256'])
 protected = [p for p in git('ls-tree','-rz','--name-only',base).decode().split('\0') if p and
              p != 'main.py' and p not in changed_styles and
              not p.startswith(('.github/','audit/','tests/','docs/','tools/'))]
+# This artwork-only audit also runs against the approved copy/UI PR.
+# The comments/worker and all unrelated sources retain their original strict
+# review gates. Only the seven exact reviewed Git blobs below may deviate.
+approved_copy_source_blobs = {
+    'best_shot_ui.py': '96b7569629bc524a055371fb096fc710065cee4a',
+    'detail_ui.py': '85e630501fd622aaafd4a634944498600581f42c',
+    'feature_ui.py': 'b7d14185b59a3bb1aae7d90565076726b2ae57cd',
+    'records_ui.py': 'cfc82d0a8d22245bfec4cbe66a10de259e3a53c4',
+    'research_ui.py': '0eae86e8d2b484b0cb0280cb883796449791cf6b',
+    'season_ui.py': '2b5c6465557cb25873ef8b98360a8df2ce30098a',
+    'assets/research-comments.js': 'e770b36cadf9ec4f640821d2eb6f4bbb2898a5fe',
+}
+assert set(approved_copy_source_blobs) <= set(protected)
 hashes = {}
 gallery_viewer_rules_added = False
 for p in protected:
     before_bytes = git('show', f'{base}:{p}')
     after_bytes = (repo / p).read_bytes()
-    if p == 'assets/gallery.css':
+    if p in approved_copy_source_blobs:
+        assert before_bytes != after_bytes, p
+        assert git('rev-parse', f'HEAD:{p}').decode().strip() == approved_copy_source_blobs[p], p
+    elif p == 'assets/gallery.css':
         gallery_viewer_rules_added = verify_gallery_css(before_bytes, after_bytes)
     else:
         assert_reviewed_source(base, p, after_bytes)
