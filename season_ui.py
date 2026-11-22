@@ -104,7 +104,7 @@ def render_season_page(portal_data, safe_filename):
       <div class="season-hero-copy">
         <span class="season-eyebrow">SEASON FINDER</span>
         <h1 id="season-title">季節から探す</h1>
-        <p>このブログで実際に撮影した写真の撮影月から探せます。</p>
+        <p>実際に撮影した写真を、撮影月から探せます。</p>
       </div>
     </header>
 
@@ -112,10 +112,10 @@ def render_season_page(portal_data, safe_filename):
       <div class="season-picker-heading">
         <span class="season-eyebrow">CHOOSE A SEASON</span>
         <h2>季節を選ぶ</h2>
-        <p>撮影した時期から、ブログで出会ったキノコをたどれます。</p>
+        <p>季節を選ぶと、その季節に撮影したキノコが見られます。</p>
       </div>
       <div class="season-tabs" role="tablist" aria-label="季節を選ぶ">{''.join(buttons)}</div>
-      <p class="season-note">撮影月は写真のEXIF情報をもとにしています。表示しているのは、このブログで実際に観察・撮影した時期です。キノコの発生時期は地域や気候、その年の状況によって前後します。EXIF撮影月がない写真は推測配置していません。</p>
+      <p class="season-note">季節は、写真に記録された撮影月をもとに分けています。キノコの発生時期は地域や年によって異なるため、ここでは実際に撮影した時期を表示しています。撮影月が分からない写真は、季節ごとの一覧には含めていません。</p>
     </div>
   </section>
 

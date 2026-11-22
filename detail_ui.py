@@ -238,7 +238,7 @@ def render_detail_sections(view):
                      f'{source_html}</section>')
     elif view.get("knowledge_pending") is True:
         parts.append('<section class="knowledge-pending"><h2>図鑑情報は現在整理中です</h2>'
-                     '<p>名称や根拠資料を確認できた情報から順次追加しています。</p></section>')
+                     '<p>キノコの図鑑や研究資料などを参考に、情報を調べています。確認できた内容から順次追加していきます。</p></section>')
     articles = view.get("articles") or []
     if articles:
         items = [_render_article(article) for article in articles]

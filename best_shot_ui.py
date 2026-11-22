@@ -375,7 +375,7 @@ def render_best_shot_year_page(year_model):
     year = year_model["year"]
     header = _best_shots_hero(
         f"{year}年のベストショット",
-        "その年に選んだ、とっておきの一枚を月ごとに振り返ります。",
+        f"{year}年に撮影したキノコの中から、ベストショットを月ごとにまとめています。",
         "best-shots.html",
         "ベストショット一覧へ戻る",
         year=year,

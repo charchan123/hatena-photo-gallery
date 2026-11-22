@@ -94,7 +94,7 @@
       if (!ranked) {
         pending = new AbortController();
         const signal = pending.signal;
-        status.textContent = "新着コメントを確認しています…";
+        status.textContent = "新しいコメントを確認しています…";
         try {
           const response = await fetch(config.api_url.replace(/\/$/, "") + "/v1/case-activity", {
             cache: "no-store",

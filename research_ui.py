@@ -144,11 +144,6 @@ def render_research_page(model, identified=None, comments=None):
     cards = []
     for case in model["cases"]:
         name = html.escape(case["gallery_name"])
-        candidate_value = name if case["gallery_name"] != "不明" else "-"
-        candidate = (
-            f'<div class="research-candidate"><span>現在の候補名</span>'
-            f'<strong>{candidate_value}</strong></div>'
-        )
         dates = "、".join(_japanese_date(value) for value in case["capture_dates"]) or "不明"
         photos = []
         for number, photo in enumerate(case["photos"], 1):
@@ -169,11 +164,10 @@ def render_research_page(model, identified=None, comments=None):
 <header class="research-case__header">
   <div><span class="research-status {status_classes[status]}">{status}</span><h2>{name}</h2></div>
 </header>
-{candidate}
 <dl class="research-facts"><div><dt>撮影日</dt><dd>{dates}</dd></div>
 <div><dt>写真枚数</dt><dd>{case["photo_count"]}枚</dd></div></dl>
 <div class="research-photos">{''.join(photos)}</div>
-<div class="research-article"><span class="research-label">観察記録</span>{article_text}</div>
+<div class="research-article"><span class="research-label">掲載記事</span>{article_text}</div>
 {mount(case['case_id'], comments) if comments else ''}
 </article>''')
     archives = []
@@ -181,11 +175,11 @@ def render_research_page(model, identified=None, comments=None):
         case, identification = item["case"], item["identification"]
         photo = case["photos"][0] if case["photos"] else {"src": ""}
         article_url = _safe_web_url(case["article"].get("url"))
-        article_link = (f'<a href="{html.escape(article_url, quote=True)}" target="_top">観察記録を見る</a>'
+        article_link = (f'<a href="{html.escape(article_url, quote=True)}" target="_top">掲載記事を見る</a>'
                         if article_url else "")
         archives.append(f'''<article class="research-case research-case--identified">
 <img src="{html.escape(str(photo['src']), quote=True)}" alt="{html.escape(case['gallery_name'])}" loading="lazy">
-<div><span class="research-status is-identified">判明済み</span>
+<div><span class="research-status is-identified">正体判明！</span>
 <h3>{html.escape(case['gallery_name'])} <span aria-hidden="true">→</span> {html.escape(identification['identified_name'])}</h3>
 <p>{html.escape(str(identification.get('note') or ''))}</p>{article_link}</div>{mount(case['case_id'], comments) if comments else ''}</article>''')
     archive_html = (f'''<section class="research-cases-wrap" aria-labelledby="identified-title">
@@ -225,25 +219,25 @@ def render_research_page(model, identified=None, comments=None):
 <main id="gallery-content-root" class="research-page">
   <section class="research-hub" aria-labelledby="research-title">
     <header class="research-hero">
-      <a class="research-back-link" href="index.html">← 図鑑へ戻る</a>
+      <a class="research-back-link" href="index.html">← キノコ図鑑へ戻る</a>
       <div class="research-hero-copy">
         <span class="research-eyebrow">RESEARCH LAB</span>
         <h1 id="research-title">不明キノコ研究室</h1>
-        <p>まだ名前が分からないキノコや、候補名を調べているキノコを集めました。</p>
+        <p>名前の分からないキノコを、写真や特徴を手がかりに調べています。</p>
       </div>
     </header>
     <div class="research-overview">
       <div class="research-overview-copy">
         <span class="research-eyebrow">WORK IN PROGRESS</span>
-        <h2>名前が分かるまでの調査記録</h2>
-        <p>名前が分かるまでに調べたことや、候補になった特徴を記録しています。</p>
+        <h2>キノコの調査記録</h2>
+        <p>名前の候補や、気になった特徴を記録しています。</p>
       </div>
       <div class="research-summary">
         <span>調査中 <strong>{model["case_count"]}</strong>件</span>
         <span>写真 <strong>{model["photo_count"]}</strong>枚</span>
       </div>
       <div class="research-notices">
-        <p class="research-warning">「？」付きの名前は候補であり、同定が確定していることを意味しません。</p>
+        <div class="research-warning"><p>「？」が付いている名前は、まだ種類が確定していない候補名です。</p><p><strong>「同定」とは？</strong> キノコの特徴などを調べて、何の種類かを確かめることです。「未同定」は、まだ種類が確定していない状態を指します。</p></div>
         {comment_notice}
       </div>
     </div>
