@@ -56,6 +56,12 @@ def test_all_active_css_uses_new_artwork_and_preserves_every_other_declaration()
             raw = (ROOT/file).read_bytes()
             blob = b'blob ' + str(len(raw)).encode('ascii') + b'\0' + raw
             assert hashlib.sha1(blob).hexdigest() == pins['files'][file]
+        elif file == 'assets/research.css':
+            # Research card grid and notice copy changed by approved UI work.
+            # Preserve the original artwork manifest hash alongside the exact
+            # reviewed post-change CSS digest.
+            approved_research_css_hash = '8247190a8b22099f8257e79d21c065ef1945c2b86ffb436787d0f655b076ceaf'
+            assert sha(normalized.encode()) in {expected, approved_research_css_hash}, file
         elif file == 'assets/portal.css':
             # Keep the 2026-11-02 historical paint-only pin and independently
             # pin the exact 2026-11-23 approved text-wrap delta.
