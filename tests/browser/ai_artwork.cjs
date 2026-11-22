@@ -71,6 +71,19 @@ const svg='<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600"><rec
     const a=measurements[0].geometry,b=measurements[1].geometry;
     check(a.length===b.length && a.every((e,i)=>e.class===b[i].class),`${file} ${width}: same portal artwork surfaces`);
     check(b.every(e=>[e.x,e.y,e.w,e.h].every(Number.isFinite)&&e.w>0&&e.h>0),`${file} ${width}: valid portal geometry`);
+   }else if(approvedExhibition && new Set(['index.html','favorite.html','アイタケ.html']).has(file)){
+    // The approved Japanese copy can wrap into another line, moving following
+    // sections vertically. Preserve image/card widths and horizontal placement,
+    // require finite dimensions and strictly bound any text-induced reflow.
+    const before=measurements[0].geometry,after=measurements[1].geometry;
+    check(before.length===after.length, file+' same number of artwork surfaces');
+    for(let i=0;i<before.length;i++){
+     const a=before[i],b=after[i];
+     check(a.class===b.class,file+' unchanged image/card identity');
+     check([b.x,b.y,b.w,b.h].every(Number.isFinite)&&b.w>0&&b.h>0,file+' valid geometry');
+     check(Math.abs(b.x-a.x)<1&&Math.abs(b.w-a.w)<1,file+' horizontal dimensions unchanged');
+     check(Math.abs(b.h-a.h)<=80&&Math.abs(b.y-a.y)<=160,file+' bounded copy-only vertical reflow');
+    }
    }else{
     const equalGeometry=JSON.stringify(measurements[0].geometry)===JSON.stringify(measurements[1].geometry);
     if(!equalGeometry){
