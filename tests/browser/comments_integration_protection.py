@@ -31,6 +31,21 @@ POST_RECOVERY_FILES = {'assets/research-comments.js', 'comments/worker.mjs', 'co
 EXHIBITION_BASE = '90fbdeb761abe217db7179e87d0fcf13a44b2b0b'
 EXHIBITION_MODIFIED = {'best_shot_ui.py', 'assets/best-shots.css'}
 EXHIBITION_NEW = {'assets/best-shot-exhibition.js', 'previews/best-shot-exhibition-20261121.html'}
+# Only PR #164's reviewed reader-copy and layout bytes are permitted against
+# the frozen pre-copy main. Other protection gates and worker pins are unchanged.
+COPY_AUDIT_BASE = 'f791217b192c561a16541be2211758b8ec6ab3d0'
+COPY_AUDIT_BLOBS = {
+    'main.py': '0ff665f1a7b3cd07ffc25f1ab95f074c0331f478',
+    'assets/portal.css': '2d1c41bc5cabfa582aeea7b8e87532c2dedd4e50',
+    'assets/research.css': 'b1926a5a16310698377656dfe449e7a39052b8a3',
+    'assets/research-comments.js': 'e770b36cadf9ec4f640821d2eb6f4bbb2898a5fe',
+    'best_shot_ui.py': '96b7569629bc524a055371fb096fc710065cee4a',
+    'detail_ui.py': '85e630501fd622aaafd4a634944498600581f42c',
+    'feature_ui.py': 'b7d14185b59a3bb1aae7d90565076726b2ae57cd',
+    'records_ui.py': 'cfc82d0a8d22245bfec4cbe66a10de259e3a53c4',
+    'research_ui.py': '0eae86e8d2b484b0cb0280cb883796449791cf6b',
+    'season_ui.py': '2b5c6465557cb25873ef8b98360a8df2ce30098a',
+}
 PUBLIC_CONFIG = 'comments/public-config.json'
 PRODUCTION_ORIGIN = 'https://kinoko-research-comments.sasama-bb.workers.dev'
 RELEASE_ID = 'research-comments-production-20261120'
@@ -56,6 +71,12 @@ def assert_reviewed_source(base, path, current):
     """Never hide a main change behind the old PR's allowance."""
     original = git('show', f'{base}:{path}')
     if current == original:
+        return
+    if path in COPY_AUDIT_BLOBS and git('rev-parse', base).decode().strip() == COPY_AUDIT_BASE:
+        # Hash the exact Git blob bytes. Never exempt a whole directory or
+        # relax the existing reviewed Worker/comment/source protections.
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\\0' + current
+        assert hashlib.sha1(blob).hexdigest() == COPY_AUDIT_BLOBS[path], path
         return
     if path in LINE_FILES:
         pins = line_pins()
