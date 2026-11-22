@@ -97,8 +97,17 @@ if exhibition_pin.is_file():
         'assets/best-shot-exhibition.js', 'previews/best-shot-exhibition-20261121.html'
     }
     renderer_bytes = Path('best_shot_ui.py').read_bytes()
-    blob = b'blob ' + str(len(renderer_bytes)).encode('ascii') + b'\0' + renderer_bytes
-    assert hashlib.sha1(blob).hexdigest() == pins['files']['best_shot_ui.py']
+    # Retain the original 2026-11-21 audit pin; approve only the separately
+    # reviewed annual-introduction copy change without rewriting that evidence.
+    pinned_renderer_bytes = subprocess.check_output(
+        ['git', 'show', f"{pins['base_main']}:best_shot_ui.py"])
+    pinned_blob = (b'blob ' + str(len(pinned_renderer_bytes)).encode('ascii')
+                   + b'\0' + pinned_renderer_bytes)
+    assert hashlib.sha1(pinned_blob).hexdigest() == pins['files']['best_shot_ui.py']
+    old_intro = '"その年に選んだ、とっておきの一枚を月ごとに振り返ります。"'.encode('utf-8')
+    new_intro = 'f"{year}年に撮影したキノコの中から、ベストショットを月ごとにまとめています。"'.encode('utf-8')
+    assert pinned_renderer_bytes.count(old_intro) == 1
+    assert renderer_bytes == pinned_renderer_bytes.replace(old_intro, new_intro, 1)
     assert presentation_independent_content(before.render_best_shot_page(old_model)) == presentation_independent_content(current.render_best_shot_page(baseline_model))
     for old, new in zip(old_model['years'], baseline_model['years']):
         assert presentation_independent_content(before.render_best_shot_year_page(old)) == presentation_independent_content(current.render_best_shot_year_page(new))
