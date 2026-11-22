@@ -56,6 +56,8 @@ PORTAL_FOLLOWUP_BLOBS = {
 # This follow-up adjusts only the 3 portal guide cards; keep source checks exact.
 RIGHT_NOTE_MAIN = '2af083e7ddf47eb8e374f38b2244e2f71a1729ed'
 RIGHT_NOTE_CSS_BLOB = 'd5796f19276dbe6ead3f4d8afddf1ad37b72d07f'
+RIGHT_ANCHOR_MAIN = '8971cbb5b9250733270853be50de48a6eec2de9c'
+RIGHT_ANCHOR_CSS_BLOB = 'fa4e0476c1e5c18374b310a505a50aed06ab046a'
 PUBLIC_CONFIG = 'comments/public-config.json'
 PRODUCTION_ORIGIN = 'https://kinoko-research-comments.sasama-bb.workers.dev'
 RELEASE_ID = 'research-comments-production-20261120'
@@ -91,6 +93,10 @@ def assert_reviewed_source(base, path, current):
     if path in PORTAL_FOLLOWUP_BLOBS and git('rev-parse', base).decode().strip() == PORTAL_FOLLOWUP_BASE:
         blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
         assert hashlib.sha1(blob).hexdigest() == PORTAL_FOLLOWUP_BLOBS[path], path
+        return
+    if path == 'assets/portal.css' and git('rev-parse', base).decode().strip() == RIGHT_ANCHOR_MAIN:
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
+        assert hashlib.sha1(blob).hexdigest() == RIGHT_ANCHOR_CSS_BLOB, path
         return
     if path == 'assets/portal.css' and git('rev-parse', base).decode().strip() == RIGHT_NOTE_MAIN:
         blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current

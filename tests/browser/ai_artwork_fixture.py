@@ -168,8 +168,8 @@ for p in html_files:
         # For the CSS-only PR #166, the base already contains all PR #164/#165
         # wording. Comparing its generated HTML byte-for-byte is stricter than
         # reapplying historical substitutions that would corrupt the baseline.
-        css_only_baseline = '2af083e7ddf47eb8e374f38b2244e2f71a1729ed'
-        if git('rev-parse', base).decode().strip() != css_only_baseline:
+        css_only_baselines = {'2af083e7ddf47eb8e374f38b2244e2f71a1729ed', '8971cbb5b9250733270853be50de48a6eec2de9c'}
+        if git('rev-parse', base).decode().strip() not in css_only_baselines:
             for original, approved in approved_page_copy:
                 normalized = normalized.replace(original, approved)
         actual = p.read_text(encoding='utf-8')

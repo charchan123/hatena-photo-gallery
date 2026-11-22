@@ -12,17 +12,12 @@ const standaloneUnchanged=layoutCSS(beforePortalCSS)===layoutCSS(afterPortalCSS)
 // The approved 2026-11-23 follow-up changes copy layout, not thumbnails.
 // Pin the complete CSS delta so unrelated layout changes cannot be excused.
 const approvedCSSChanges=[
- ['.portal-guide-row .portal-card__copy { width:100%; min-width:0; grid-template-rows:22px calc(2 * .7rem * 1.3); gap:4px; }',
-  '.portal-guide-row .portal-card__copy { width:100%; min-width:0; grid-template-rows:22px calc(.7rem * 1.3); gap:4px; }'],
- ['.portal-guide-row .portal-card__copy small { display:-webkit-box; min-width:0; max-height:calc(2 * .7rem * 1.3); overflow:hidden; font-size:.7rem; line-height:1.3; white-space:normal; -webkit-box-orient:vertical; -webkit-line-clamp:2; }',
-  '.portal-guide-row .portal-card__copy small { display:block; min-width:0; overflow:hidden; text-overflow:ellipsis; font-size:.7rem; line-height:1.3; white-space:nowrap; }'],
- ['.portal-guide-note__details { display:flex; flex-wrap:wrap; align-content:center; align-items:center; min-width:0; min-height:46px; gap:3px 8px; align-content:flex-start; }',
-  '.portal-guide-note__details { display:grid; grid-template-columns:minmax(0,1fr); grid-template-rows:calc(2 * .88rem * 1.45) 24px; min-width:0; gap:3px; }'],
- ['.portal-guide-note__details > small { flex:1 1 100%; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }',
-  '.portal-guide-note__details > small { display:-webkit-box; min-width:0; overflow:hidden; white-space:normal; -webkit-box-orient:vertical; -webkit-line-clamp:2; }'],
- ['.portal-index .portal-guide-note { position:relative; top:calc((46px - 1.276rem)/2); }',
-  '.portal-index .portal-guide-note { position:relative; top:0; }'],
- ['  .portal-guide-row .portal-card__copy small { white-space:normal; }\n',''],
+ ['.portal-guide-note__details { display:grid; grid-template-columns:minmax(0,1fr); grid-template-rows:calc(2 * .88rem * 1.45) 24px; min-width:0; gap:3px; }',
+  '.portal-guide-note__details { display:grid; grid-template-columns:minmax(0,1fr); grid-template-rows:calc(2 * .88rem * 1.45) 22px; min-width:0; gap:2px; }'],
+ ['.portal-index .portal-guide-note { position:relative; top:0; }',
+  "/* Keep the heading and description's first line at their pre-PR166 positions.\n   The two-line copy and 22px notice row increase the details height from 46px.\n   Offset the right note by half that growth plus its original top adjustment.\n   The stacked-mobile rule below remains top:0, matching its original anchor. */\n.portal-index .portal-guide-note { position:relative; top:calc(.638rem + 12px); }"],
+ ["  :root:not([data-portal-columns=\"2\"]) .portal-index .portal-guide-row .portal-card { height:108px; min-height:108px; }\n}",
+  "  :root:not([data-portal-columns=\"2\"]) .portal-index .portal-guide-row .portal-card { height:108px; min-height:108px; }\n  /* Show a visible update badge beside, rather than under, the heading.\n     This keeps every row and the approved first-line anchor completely still. */\n  :root:not([data-portal-columns=\"2\"]) .portal-index .portal-guide-note__details > .portal-update-note:not([hidden]) { position:absolute; top:0; right:0; width:max-content; max-width:34%; margin:0; }\n}"],
 ];
 let expectedCopyOnly=beforePortalCSS,copyOnly=true;
 for(const [from,to] of approvedCSSChanges){
@@ -45,7 +40,7 @@ for(const width of [1280,1024,900,899,768,680,390,320]){
   await page.goto(`${base}/${variant}/new-top.html`);await page.evaluate(()=>document.fonts.ready);
   if(process.env.LAYOUT_LIVE_STARS){await page.waitForFunction(()=>[...document.querySelectorAll('.record-stars-native')].every(e=>e.hasAttribute('data-ready')),null,{timeout:30000});check(await page.locator('.record-stars-native iframe').count()===3,'three official add frames');await page.waitForFunction(()=>[...document.querySelectorAll('[data-hatena-star]')].every(h=>[...h.shadowRoot.querySelectorAll('img')].every(i=>i.complete&&i.naturalWidth>0)),null,{timeout:30000});}
   await page.locator('.record-preview-thumb img').evaluateAll(es=>Promise.all(es.map(i=>i.decode())));
-  const metrics=await page.evaluate(()=>{const rect=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,bottom:r.bottom}};const rows=(sel,image)=>[...document.querySelectorAll(sel)].map(e=>{const r=rect(e),i=rect(e.querySelector(image)),n=e.querySelector('.portal-guide-note'),heading=n?.querySelector('strong'),small=n?.querySelector('small');const noteRect=n?rect(n):null;return {row:r,image:i,top:i.y-r.y,bottom:r.bottom-i.bottom,noteRect,textCenterOffset:noteRect?(noteRect.y+noteRect.bottom-i.y-i.bottom)/2:null}});return {records:rows('.record-preview-row','.record-preview-thumb'),guides:rows('.portal-guide-row','.portal-card'),panels:[...document.querySelectorAll('.portal-records-hero,.portal-explore')].map(rect),overflow:document.documentElement.scrollWidth>innerWidth};});
+  const metrics=await page.evaluate(()=>{const rect=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,bottom:r.bottom}};const rows=(sel,image)=>[...document.querySelectorAll(sel)].map(e=>{const r=rect(e),i=rect(e.querySelector(image)),n=e.querySelector('.portal-guide-note'),heading=n?.querySelector('strong'),small=n?.querySelector('small');const noteRect=n?rect(n):null;return {row:r,image:i,top:i.y-r.y,bottom:r.bottom-i.bottom,noteRect,visibleContentBottom:n?rect(n.querySelector('.portal-guide-note__details > .portal-update-note:not([hidden])')||small).bottom:null,textCenterOffset:noteRect?(noteRect.y+noteRect.bottom-i.y-i.bottom)/2:null}});return {records:rows('.record-preview-row','.record-preview-thumb'),guides:rows('.portal-guide-row','.portal-card'),panels:[...document.querySelectorAll('.portal-records-hero,.portal-explore')].map(rect),overflow:document.documentElement.scrollWidth>innerWidth};});
   check(!metrics.overflow,`${variant} top overflow ${width}`);check(metrics.records.length===3&&metrics.guides.length===3,'all six images');
   if(width>=900)check(Math.abs(metrics.panels[0].height-metrics.panels[1].height)<1,'equal PC panels');
   if(variant==='after'&&process.env.LAYOUT_ASSERT_FINAL){
@@ -71,6 +66,30 @@ for(const width of [1280,1024,900,899,768,680,390,320]){
       cardHeight:cr.height,noteCenterOffset:(nr.y+nr.height/2)-(cr.y+cr.height/2)
     };
    }));
+   const historicAnchors=await page.evaluate(()=>{
+     const elements=[...document.querySelectorAll('.portal-guide-row')];
+     const take=()=>elements.map(row=>{
+       const card=row.querySelector('.portal-card').getBoundingClientRect();
+       const note=row.querySelector('.portal-guide-note');
+       const h=note.querySelector('strong').getBoundingClientRect(),d=note.querySelector('.portal-guide-note__details > small').getBoundingClientRect();
+       return {headingTop:h.y-card.y,firstLineTop:d.y-card.y};
+     });
+     const current=take(),style=document.createElement('style');
+     // Reproduce the exact PR #165 right-note layout; only this temporary
+     // reference style changes and it is removed before screenshots.
+     style.textContent=`
+       .portal-guide-note__details { display:flex; flex-wrap:wrap; align-content:flex-start; align-items:center; min-height:46px; gap:3px 8px; }
+       .portal-guide-note__details > small { display:block; flex:1 1 100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+       .portal-index .portal-guide-note { top:calc((46px - 1.276rem)/2); }
+       @media(max-width:680px) { .portal-index .portal-guide-note { top:0; } }
+     `;
+     document.head.append(style);const original=take();style.remove();
+     return {current,original};
+   });
+   for(let i=0;i<3;i++){
+     check(Math.abs(historicAnchors.current[i].headingTop-historicAnchors.original[i].headingTop)<1,'right heading matches exact pre-PR166 vertical position');
+     check(Math.abs(historicAnchors.current[i].firstLineTop-historicAnchors.original[i].firstLineTop)<1,'right copy first line matches exact pre-PR166 vertical position');
+   }
    check(rows.length===3,'all three search cards have paired labels and right-hand explanations');
    const approved=[
      ['図鑑を見る','キノコの名前から探す','名前から探したい場合は','名前を検索したり、五十音順の一覧から探せます。'],
@@ -88,11 +107,11 @@ for(const width of [1280,1024,900,899,768,680,390,320]){
     check(Math.abs(c.rightHeadingTop-rows[0].rightHeadingTop)<1.1,'right headings start at same vertical coordinate');
     check(Math.abs(c.rightFirstLineTop-rows[0].rightFirstLineTop)<1.1,'right explanation first lines start at same vertical coordinate');
     check(Math.abs(c.cardHeight-rows[0].cardHeight)<1,'search card thumbnail height unchanged');
-    if(width>680)check(Math.abs(c.noteCenterOffset)<1.1,'right note remains vertically centered beside image');
+    if(width>680)check(c.noteCenterOffset>0&&c.noteCenterOffset<27,'right note bottom extension stays within compact alignment');
    }
    const dynamic=await page.locator('.portal-guide-row').first().locator('.portal-guide-note').evaluate(note=>{
      const headline=note.querySelector('strong'),details=note.querySelector('.portal-guide-note__details'),desc=details.querySelector('small');
-     const get=()=>({headingY:headline.getBoundingClientRect().y,descriptionY:desc.getBoundingClientRect().y,detailsHeight:details.getBoundingClientRect().height,descriptionHeight:desc.getBoundingClientRect().height,scrollHeight:desc.scrollHeight,clientHeight:desc.clientHeight});
+     const get=()=>({headingY:headline.getBoundingClientRect().y,descriptionY:desc.getBoundingClientRect().y,detailsHeight:details.getBoundingClientRect().height,descriptionHeight:desc.getBoundingClientRect().height,scrollHeight:desc.scrollHeight,clientHeight:desc.clientHeight,rowBottom:note.closest('.portal-guide-row').getBoundingClientRect().bottom,noticeBottom:details.querySelector('.portal-update-note')?.getBoundingClientRect().bottom});
      const initial=get(),original=desc.textContent;
      desc.textContent='短い説明';const short=get();
      desc.textContent='画像の特徴や名前から探せるいろいろなキノコの情報'.repeat(15);const long=get();
@@ -110,6 +129,7 @@ for(const width of [1280,1024,900,899,768,680,390,320]){
      check(approx(dynamic[variant].detailsHeight,dynamic.initial.detailsHeight),'new arrival notice keeps reserved height');
    }
    check(dynamic.long.scrollHeight>dynamic.long.clientHeight,'long right-hand description truncates after two lines');
+   check(dynamic.withNotice.noticeBottom<=dynamic.withNotice.rowBottom+1,'visible new notice fits within its row even at compact desktop widths');
   }
 
   measurements.push({width,variant,page:'new-top',...metrics});
@@ -133,13 +153,13 @@ for(const width of [1280,1024,900,899,768,680,390,320]){
   }
  }
 }
-if(process.env.LAYOUT_ASSERT_FINAL){for(const after of measurements.filter(m=>m.page==='new-top'&&m.variant==='after')){const before=measurements.find(m=>m.page==='new-top'&&m.variant==='before'&&m.width===after.width);check(Math.abs(after.panels[0].height-before.panels[0].height)<1,'observation panel height preserved');if(after.width>680)check(Math.abs(after.panels[1].height-before.panels[1].height)<1,'guide panel height preserved on side-by-side layouts');else check(after.panels[1].height>=before.panels[1].height&&after.panels[1].height-before.panels[1].height<100,'only the reserved right-side description/notice area adds bounded mobile height');for(const kind of ['records','guides']){const heights=after[kind].map(r=>r.image.height);check(Math.max(...heights)-Math.min(...heights)<1,'equal thumbnail heights');for(let i=0;i<3;i++){if(process.env.LAYOUT_EXPECT_UNCHANGED==='1'){check(Math.abs(after[kind][i].image.height-before[kind][i].image.height)<1,'preserved image height');if(kind==='guides'&&after.width<=680){
+if(process.env.LAYOUT_ASSERT_FINAL){for(const after of measurements.filter(m=>m.page==='new-top'&&m.variant==='after')){const before=measurements.find(m=>m.page==='new-top'&&m.variant==='before'&&m.width===after.width);check(Math.abs(after.panels[0].height-before.panels[0].height)<1,'observation panel height preserved');if(after.width>680)check(Math.abs(after.panels[1].height-before.panels[1].height)<1,'guide panel height preserved on side-by-side layouts');else check(Math.abs(after.panels[1].height-before.panels[1].height)<20,'only the compact mobile notice reserve changes total panel height');for(const kind of ['records','guides']){const heights=after[kind].map(r=>r.image.height);check(Math.max(...heights)-Math.min(...heights)<1,'equal thumbnail heights');for(let i=0;i<3;i++){if(process.env.LAYOUT_EXPECT_UNCHANGED==='1'){check(Math.abs(after[kind][i].image.height-before[kind][i].image.height)<1,'preserved image height');if(kind==='guides'&&after.width<=680){
   const newSpace=after[kind][i].top+after[kind][i].bottom,oldSpace=before[kind][i].top+before[kind][i].bottom;
-  check(newSpace>=oldSpace-1&&newSpace-oldSpace<35,'only the new right-hand two-line text space increases mobile row whitespace');
+  check(newSpace-oldSpace>=-5&&newSpace-oldSpace<=1,'mobile right-hand copy clearance changes only by the 3px notice reserve');
  }else check(Math.abs((after[kind][i].top+after[kind][i].bottom)-(before[kind][i].top+before[kind][i].bottom))<1,'preserved whitespace');}else{check(after[kind][i].image.height>before[kind][i].image.height,'increased image height');check(after[kind][i].top+after[kind][i].bottom<before[kind][i].top+before[kind][i].bottom,'reduced whitespace');}if(kind==='guides'&&after.width<=680){
   const change=after[kind][i].row.height-before[kind][i].row.height;
-  check(change>=-1&&change<35,'mobile row height grows only to reserve two lines on the right');
- }else check(Math.abs(after[kind][i].row.height-before[kind][i].row.height)<1,'unchanged row height');if(kind==='guides'&&after.width>680)check(Math.abs(after[kind][i].textCenterOffset)<.1,'right-side note centered in guide row');}}}}
+  check(change>=-5&&change<=1,'mobile row shrinks only by the 3px notice reserve');
+ }else check(Math.abs(after[kind][i].row.height-before[kind][i].row.height)<1,'unchanged row height');if(kind==='guides'&&after.width>680)check(after[kind][i].visibleContentBottom<=after[kind][i].row.bottom+1,'visible right-side copy stays within its row');}}}}
 // Compare three real CSS mounts using the same October photographs.
 for(const width of [1280,390]){await page.setViewportSize({width,height:1000});for(const variant of ['before','after']){await page.goto(`${base}/${variant}/best-shots-2025.html`);const month=page.locator('.best-shot-month').filter({has:page.getByRole('heading',{name:/^10月(?:の展示)?$/})});for(const i of await month.locator('img').all()){await i.scrollIntoViewIfNeeded();await i.evaluate(i=>i.decode());}await month.screenshot({path:path.join(out,`mixed-${width}-${variant}.png`),animations:'disabled'});}
  for(const [name,css] of [['A',''],['B','.best-shots-index .best-shot-grid .best-shot-photo{aspect-ratio:1;padding:20px;background:#f4f1e9}'],['C','.best-shots-index .best-shot-grid .best-shot-photo{aspect-ratio:3/2}']]){await page.goto(`${base}/after/best-shots-2025.html`);if(css)await page.addStyleTag({content:css});const month=page.locator('.best-shot-month').filter({has:page.getByRole('heading',{name:/^10月(?:の展示)?$/})});for(const i of await month.locator('img').all()){await i.scrollIntoViewIfNeeded();await i.evaluate(i=>i.decode());}await month.screenshot({path:path.join(out,`option-${name}-${width}.png`),animations:'disabled'});}
