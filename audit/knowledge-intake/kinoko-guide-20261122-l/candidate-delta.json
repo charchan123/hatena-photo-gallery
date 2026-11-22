@@ -1,0 +1,401 @@
+{
+  "schema_version": 1,
+  "mushroom_additions": [
+    {
+      "mushroom_id": "budounigaiguchi",
+      "canonical_name_ja": "ブドウニガイグチ",
+      "name_ja_sources": [
+        "guide-followup-budounigaiguchi"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Tylopilus vinosobrunneus",
+        "source_ids": [
+          "guide-followup-budounigaiguchi"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-followup-budounigaiguchi"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "features": {
+        "summary": "兵庫の図鑑では、傘は紫がかった褐色からワイン色。新鮮な傘はビロードのように見え、傘の裏の管孔は白色から淡い紅色になる。",
+        "source_ids": [
+          "guide-followup-budounigaiguchi"
+        ]
+      },
+      "season": {
+        "summary": "兵庫の図鑑では夏から秋。",
+        "source_ids": [
+          "guide-followup-budounigaiguchi"
+        ]
+      },
+      "habitat": {
+        "summary": "兵庫の図鑑ではコナラなどの林。",
+        "source_ids": [
+          "guide-followup-budounigaiguchi"
+        ]
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-22",
+        "notes": "兵庫の記載範囲。静岡県目録850番およびS-Netの標本142048と和名・学名が一致。原記載標本と掲載個体の対応は未確認。 写真への接続、食毒、公開は未審査。"
+      }
+    },
+    {
+      "mushroom_id": "kusairohatsu",
+      "canonical_name_ja": "クサイロハツ",
+      "name_ja_sources": [
+        "guide-followup-kusairohatsu"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Russula aeruginea",
+        "source_ids": [
+          "guide-followup-kusairohatsu"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-followup-kusairohatsu"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "features": {
+        "summary": "傘は草色から淡い灰緑色で、縁に放射状の条線がある。ひだは密に並び、白色から淡い黄色になる。",
+        "source_ids": [
+          "guide-followup-kusairohatsu"
+        ]
+      },
+      "season": {
+        "summary": "兵庫の図鑑では夏から秋。",
+        "source_ids": [
+          "guide-followup-kusairohatsu"
+        ]
+      },
+      "habitat": {
+        "summary": "兵庫の図鑑ではシデ類などの広葉樹の下。",
+        "source_ids": [
+          "guide-followup-kusairohatsu"
+        ]
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-22",
+        "notes": "形態は兵庫の資料。静岡県目録1213番、利尻島の採集記録と和名・学名が一致。 写真への接続、食毒、公開は未審査。"
+      }
+    },
+    {
+      "mushroom_id": "kawakitake",
+      "canonical_name_ja": "カワキタケ",
+      "name_ja_sources": [
+        "guide-followup-kawakitake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Panus conchatus",
+        "source_ids": [
+          "guide-followup-kawakitake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-followup-kawakitake"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "features": {
+        "summary": "札幌近郊の解説では、傘の裏のひだが柄に沿って下がる。",
+        "source_ids": [
+          "guide-followup-kawakitake"
+        ]
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "habitat": {
+        "summary": null,
+        "source_ids": []
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-22",
+        "notes": "静岡県目録1122番と京都府自然環境目録は同学名。Species Fungorum 178864は知床報告の旧学名Panus torulosusを異名とする。知床報告p.11、IG-6589はケヤマハンノキ倒木。Yueら（2024）図8Bにも中国産のひだが写る。 写真への接続、食毒、公開は未審査。"
+      }
+    }
+  ],
+  "source_additions": [
+    {
+      "source_id": "guide-followup-budounigaiguchi",
+      "organization": "兵庫県治山林道協会",
+      "title": "兵庫のきのこ図鑑（2012）p.38、ブドウニガイグチ",
+      "source_type": "specialist_reference",
+      "url": "https://www.chisanrindou.jp/information/pdf/book23.pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-22",
+      "notes": "兵庫の記載範囲。静岡県目録850番およびS-Netの標本142048と和名・学名が一致。原記載標本と掲載個体の対応は未確認。 写真への接続、食毒、公開は未審査。"
+    },
+    {
+      "source_id": "guide-followup-kusairohatsu",
+      "organization": "兵庫県治山林道協会",
+      "title": "兵庫のきのこ図鑑（2012）p.42、クサイロハツ",
+      "source_type": "specialist_reference",
+      "url": "https://www.chisanrindou.jp/information/pdf/book23.pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-22",
+      "notes": "形態は兵庫の資料。静岡県目録1213番、利尻島の採集記録と和名・学名が一致。 写真への接続、食毒、公開は未審査。"
+    },
+    {
+      "source_id": "guide-followup-kawakitake",
+      "organization": "札幌きのこの会",
+      "title": "札幌近郊のきのこ、カワキタケの形態欄",
+      "source_type": "specialist_reference",
+      "url": "https://s-kinokonokai.sakura.ne.jp/kinoko/common/kawakitake.htm",
+      "record_id": null,
+      "accessed_at": "2026-11-22",
+      "notes": "静岡県目録1122番と京都府自然環境目録は同学名。Species Fungorum 178864は知床報告の旧学名Panus torulosusを異名とする。知床報告p.11、IG-6589はケヤマハンノキ倒木。Yueら（2024）図8Bにも中国産のひだが写る。 写真への接続、食毒、公開は未審査。"
+    }
+  ],
+  "assignment_additions": [
+    {
+      "candidate_id": "budounigaiguchi-pores",
+      "mushroom_id": "budounigaiguchi",
+      "assignment": {
+        "facet_id": "pores",
+        "evidence_text": "傘の裏には、白色から淡い紅色に変わる管孔がある。",
+        "source_ids": [
+          "guide-followup-budounigaiguchi"
+        ],
+        "evidence_refs": [
+          "budounigaiguchi-pores-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "budounigaiguchi-pores-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-followup-budounigaiguchi",
+          "source_url": "https://www.chisanrindou.jp/information/pdf/book23.pdf",
+          "snapshot_identity": "guide-followup-budounigaiguchi-excerpt-20261122",
+          "extracted_text_sha256": "12953aa1c63c77c5b765bb2b291e0f72e7cdf1533d84fb0a223c2c9dcae24a8b",
+          "text_snapshot_sha256": "12953aa1c63c77c5b765bb2b291e0f72e7cdf1533d84fb0a223c2c9dcae24a8b",
+          "original_response_sha256": "132fd8134df5c3f99f2948a3c57de4789c1cd5b6341fe1557f6472403de7e546",
+          "evidence_id": "budounigaiguchi-pores-evidence",
+          "decision_id": "budounigaiguchi-pores-decision",
+          "mushroom_id": "budounigaiguchi",
+          "facet_id": "pores",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の裏には、白色から淡い紅色に変わる管孔がある。",
+          "qualifiers": [],
+          "quote": "管孔は、白色のち淡紅色となる",
+          "quote_sha256": "12953aa1c63c77c5b765bb2b291e0f72e7cdf1533d84fb0a223c2c9dcae24a8b",
+          "char_start": 0,
+          "char_end": 14,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "kusairohatsu-gills",
+      "mushroom_id": "kusairohatsu",
+      "assignment": {
+        "facet_id": "gills",
+        "evidence_text": "兵庫の資料で、傘裏のひだは密と記載される。",
+        "source_ids": [
+          "guide-followup-kusairohatsu"
+        ],
+        "evidence_refs": [
+          "kusairohatsu-gills-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "kusairohatsu-gills-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-followup-kusairohatsu",
+          "source_url": "https://www.chisanrindou.jp/information/pdf/book23.pdf",
+          "snapshot_identity": "guide-followup-kusairohatsu-excerpt-20261122",
+          "extracted_text_sha256": "1d2d12d13243b1f2529d97e04da3bf8ca839b98d1d016aabf87aac2605a1d8ce",
+          "text_snapshot_sha256": "1d2d12d13243b1f2529d97e04da3bf8ca839b98d1d016aabf87aac2605a1d8ce",
+          "original_response_sha256": "132fd8134df5c3f99f2948a3c57de4789c1cd5b6341fe1557f6472403de7e546",
+          "evidence_id": "kusairohatsu-gills-evidence",
+          "decision_id": "kusairohatsu-gills-decision",
+          "mushroom_id": "kusairohatsu",
+          "facet_id": "gills",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "兵庫の資料で、傘裏のひだは密と記載される。",
+          "qualifiers": [],
+          "quote": "ひだは密",
+          "quote_sha256": "1d2d12d13243b1f2529d97e04da3bf8ca839b98d1d016aabf87aac2605a1d8ce",
+          "char_start": 0,
+          "char_end": 4,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "kawakitake-gills",
+      "mushroom_id": "kawakitake",
+      "assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘裏のひだは柄に沿って下がる。",
+        "source_ids": [
+          "guide-followup-kawakitake"
+        ],
+        "evidence_refs": [
+          "kawakitake-gills-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "kawakitake-gills-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-followup-kawakitake",
+          "source_url": "https://s-kinokonokai.sakura.ne.jp/kinoko/common/kawakitake.htm",
+          "snapshot_identity": "guide-followup-kawakitake-excerpt-20261122",
+          "extracted_text_sha256": "c778c3a59e08551f8fa19a5401635a57d8fdbef52669422a75511553bcd23608",
+          "text_snapshot_sha256": "c778c3a59e08551f8fa19a5401635a57d8fdbef52669422a75511553bcd23608",
+          "original_response_sha256": "15167f1b3783df39afff9c01f2d4a669855318009218b3f1d007db7fdfdcc76d",
+          "evidence_id": "kawakitake-gills-evidence",
+          "decision_id": "kawakitake-gills-decision",
+          "mushroom_id": "kawakitake",
+          "facet_id": "gills",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘裏のひだは柄に沿って下がる。",
+          "qualifiers": [],
+          "quote": "ひだは垂生",
+          "quote_sha256": "c778c3a59e08551f8fa19a5401635a57d8fdbef52669422a75511553bcd23608",
+          "char_start": 0,
+          "char_end": 5,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    }
+  ]
+}
