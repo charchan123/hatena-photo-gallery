@@ -123,7 +123,7 @@ def test_render_escapes_article_and_photo_and_links_only_valid_urls():
 def test_page_and_css_design_contract():
     page = render_research_page(build_research_model(portal(observation(0))))
     css = (ROOT / "assets/research.css").read_text()
-    assert "不明キノコ研究室" in page and "同定が確定していることを意味しません" in page
+    assert "不明キノコ研究室" in page and "まだ種類が確定していない候補名です。" in page
     assert "コメント・返信機能は今後追加予定" in page
     assert "同定のヒントや情報" in page and 'class="research-coming-soon"' in page
     assert all(forbidden not in page for forbidden in ("<form", "<textarea", "supabase"))
@@ -131,7 +131,7 @@ def test_page_and_css_design_contract():
     assert 'class="research-hub"' in page
     assert 'class="research-hero"' in page
     assert "RESEARCH LAB" in page
-    assert page.count("← 図鑑へ戻る") == 1
+    assert page.count("← キノコ図鑑へ戻る") == 2
     assert 'class="research-footer"' in page
     assert page.index('class="research-cases-wrap"') < page.index('class="research-footer"') < page.index("</main>")
     assert 'assets/research.css' in page and 'class="research-photos"' in page
