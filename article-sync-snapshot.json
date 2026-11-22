@@ -1,8 +1,78 @@
 {
   "payload": {
     "version": 1,
-    "last_success_at": "2026-11-22T05:54:52.178211+00:00",
+    "last_success_at": "2026-11-22T16:29:46.763814+00:00",
     "articles": {
+      "a232fbe92c9c730206908cf61359bbc9c3719d7f935e6f742661b2e3b41e40bb": {
+        "updated_hash": "9e5c992d54ac9ef0e5e89c323b7a7deca5ede357b1d08415b5bb2ce4110120ed",
+        "images": [
+          {
+            "url_hash": "623d641483ecba98c3680b6f3447b18473ef3d0f2838f2f3f0f18c16515bd28f",
+            "ordinal": 0,
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "50a37562b0d814cb0bc67f6b167404a8b0237f6db3cafa50a5b12113287ad9ca",
+            "label_hash": "50a37562b0d814cb0bc67f6b167404a8b0237f6db3cafa50a5b12113287ad9ca"
+          },
+          {
+            "url_hash": "5af1b0de1585ef894a31885aeed475e6e8fb67c138bf0aa74d17be7068b2a4a8",
+            "ordinal": 0,
+            "state": "named_mushroom",
+            "reason": "taxonomy_mushroom",
+            "name_hash": "ef93cee1ba734dc58c3013047a310e3cd02cbc1de6f189163cfa69fd9c56d74b",
+            "label_hash": "ef93cee1ba734dc58c3013047a310e3cd02cbc1de6f189163cfa69fd9c56d74b"
+          },
+          {
+            "url_hash": "3b55617c4a11590593dcb9dc51e99f5d6cd695c2f1ade1b4a57de9467ac176d7",
+            "ordinal": 0,
+            "state": "ambiguous",
+            "reason": "taxonomy_unmatched",
+            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "label_hash": "bd5a8814a3635ecb4ebc9785cbc8223ae32444a5a07329a811526c29cd45f77c"
+          },
+          {
+            "url_hash": "5debec5aa63fbbec0ef3a594d3715d03b34352d824beb92c83ca90d8f61c76bd",
+            "ordinal": 0,
+            "state": "ambiguous",
+            "reason": "taxonomy_unmatched",
+            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "label_hash": "bd5a8814a3635ecb4ebc9785cbc8223ae32444a5a07329a811526c29cd45f77c"
+          },
+          {
+            "url_hash": "26dc1d0dcbdc0e3f780fcb6c616f7b7450e1b4a3d3e5ca2f7aceb07d90fc991d",
+            "ordinal": 0,
+            "state": "ambiguous",
+            "reason": "taxonomy_unmatched",
+            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "label_hash": "bd5a8814a3635ecb4ebc9785cbc8223ae32444a5a07329a811526c29cd45f77c"
+          },
+          {
+            "url_hash": "0860cd7514dd0bd37d2bb12cdf77229b9829bf68c20f345ec31b0143f78f6adf",
+            "ordinal": 0,
+            "state": "ambiguous",
+            "reason": "taxonomy_unmatched",
+            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "label_hash": "bd5a8814a3635ecb4ebc9785cbc8223ae32444a5a07329a811526c29cd45f77c"
+          },
+          {
+            "url_hash": "5baa857aa7bf56e5cc6e86d64a0ce876dbe573b75e7638c9864ec0b2eaa142f4",
+            "ordinal": 0,
+            "state": "ambiguous",
+            "reason": "taxonomy_unmatched",
+            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "label_hash": "bd5a8814a3635ecb4ebc9785cbc8223ae32444a5a07329a811526c29cd45f77c"
+          },
+          {
+            "url_hash": "4e3b14fc86f12cf83731ce51df96f6c41ab305f87649e91a4b0db1b8730db09b",
+            "ordinal": 0,
+            "state": "ambiguous",
+            "reason": "taxonomy_unmatched",
+            "name_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "label_hash": "bd5a8814a3635ecb4ebc9785cbc8223ae32444a5a07329a811526c29cd45f77c"
+          }
+        ],
+        "article_url_hash": "b0f2a33857d0ace742329aaacaa190fdb866c0d284d03281997ed9812f046458"
+      },
       "e8a8627d2ad8f9a29f0f1b63f94080f54b3b2e345fc4831d97eb6f4aa7cd2ea7": {
         "updated_hash": "e41fa42267b5d0f3b00dc5872ff08a0b762b07495f9188f6f7379d712d4bca86",
         "images": [
@@ -8495,7 +8565,7 @@
         "article_url_hash": "f1471e35ea6be58d844ff49ac663903337393c8fb60cbae5f4dd890e3e880bf6"
       }
     },
-    "portal_sha256": "1076ce74b6f302a4514fb3827bab8dfbd7a1c68026eb51be6dc67dab7cc85287",
+    "portal_sha256": "2e4d51ef748096910112bcddd0d8bce5e117e843576ac45c43211e60cc634256",
     "retirement": {
       "migration_id": "hatena-draft-photo-retirement-2026-10-12",
       "manifest_sha256": "4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c",
@@ -8893,6 +8963,24 @@
         "classification_status": "confirmed_named_mushroom",
         "reason": "taxonomy_mushroom",
         "added_at": "2026-10-18T13:47:14.674761+00:00"
+      },
+      {
+        "observation_id": "obs-16031c9c576b08be85504a6d56a9cf46c17553c780a193642373665a11c86a15",
+        "article_hash": "a232fbe92c9c730206908cf61359bbc9c3719d7f935e6f742661b2e3b41e40bb",
+        "url_hash": "623d641483ecba98c3680b6f3447b18473ef3d0f2838f2f3f0f18c16515bd28f",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-11-22T16:29:46.763814+00:00"
+      },
+      {
+        "observation_id": "obs-6e53ef7e754694e6302cad9c6bb644282ba633549477173f490053b93b22ef39",
+        "article_hash": "a232fbe92c9c730206908cf61359bbc9c3719d7f935e6f742661b2e3b41e40bb",
+        "url_hash": "5af1b0de1585ef894a31885aeed475e6e8fb67c138bf0aa74d17be7068b2a4a8",
+        "ordinal": 0,
+        "classification_status": "confirmed_named_mushroom",
+        "reason": "taxonomy_mushroom",
+        "added_at": "2026-11-22T16:29:46.763814+00:00"
       }
     ],
     "deletions": [
@@ -9201,7 +9289,7 @@
         "sha256": "1767879599368ac0d6795cc38c38b3c4c19c591c5c66a4094afb367ba2474ce3"
       }
     ],
-    "deletion_history_head": "3124f71fc244e2656dd276e87a1e55e02e066a9230881221a160a65116010d4c"
+    "deletion_history_head": "03bfbd2155b5f6afa684f8f73c943aeb7b62d66f8513e16f18721811e4ba8809"
   },
-  "sha256": "fe0ff42ca32ee398984426ddc88dcc340c1bc5cfc6d3fac9185c9746ebaf2632"
+  "sha256": "a21b389b7c6bf3d3f14e5e409f00c561a21737e1546d8389353f6599fa51d74c"
 }
