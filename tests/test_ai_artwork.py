@@ -70,7 +70,8 @@ def test_all_active_css_uses_new_artwork_and_preserves_every_other_declaration()
                     hashlib.sha1(b'blob ' + str(len((ROOT/file).read_bytes())).encode() +
                                  b'\0' + (ROOT/file).read_bytes()).hexdigest() in {
                     '96653f6d85a36ec34db342311bf7d3545bfde761',
-                    'd5796f19276dbe6ead3f4d8afddf1ad37b72d07f'}), file
+                    'd5796f19276dbe6ead3f4d8afddf1ad37b72d07f',
+                    '7dfa6832e4f9895b07677d733b1153f35f6eb9ec'}), file
         else:
             assert sha(normalized.encode()) == expected, file
     assert used == {r['asset'] for r in M['assets']}
