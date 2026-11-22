@@ -2503,7 +2503,10 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
             f'              <a class="aiuo-link" href="{safe_filename(group)}.html">{group}</a>\n'
         )
 
-    index_parts.append("""            </div>
+    ways_extra = ("調査中のキノコやベストショットも掲載しています。"
+                  if research_summary and best_shot_summary
+                  and best_shot_summary.get("entry_count", 0) > 0 else "")
+    index_parts.append(f"""            </div>
           </article>
         </div>
 
@@ -2538,7 +2541,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     <div class="guide-section-heading guide-section-heading--compact">
       <span class="guide-eyebrow">OTHER WAYS</span>
       <h2 id="guide-ways-title">ほかの探し方</h2>
-      <p>季節や特徴など、名前以外の方法でもキノコを探せます。調査中のキノコやベストショットも掲載しています。</p>
+      <p>季節や特徴など、名前以外の方法でもキノコを探せます。{ways_extra}</p>
     </div>
     <div class="guide-way-grid">
       <a class="guide-way guide-way--season" href="season.html">
