@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "decision_id": "sennintake-photo-link-approval-20261122",
+  "approved_at": "2026-11-22",
+  "approval_status": "user_approved_candidate",
+  "approved_scope": "次の既存写真3枚のみを、掲載キー「センニンタケ」に接続する候補として承認。画像の改変・差替え・他写真への拡張は含まない。",
+  "gallery_key": "センニンタケ",
+  "expected_current_photo_count": 3,
+  "current_public_detail": {
+    "path": "センニンタケ.html",
+    "blob_sha": "cbe3cbefef00dc7b530ff5452bd7adf7d86abf5d",
+    "observed_photo_count": 3
+  },
+  "photos": [
+    {
+      "photo_id": "sennintake-2024-10-27-a",
+      "observation_date": "2024-10-27",
+      "article_published": "2025-03-16",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/03/16/133119",
+      "image_url": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316130005.jpg"
+    },
+    {
+      "photo_id": "sennintake-2024-10-27-b",
+      "observation_date": "2024-10-27",
+      "article_published": "2025-03-16",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/03/16/133119",
+      "image_url": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20250316/20250316131152.jpg"
+    },
+    {
+      "photo_id": "sennintake-2025-11-01-a",
+      "observation_date": "2025-11-01",
+      "article_published": "2025-11-04",
+      "article_url": "https://exsudoporus-ruber.hatenablog.jp/entry/2025/11/04/001435",
+      "image_url": "https://cdn-ak.f.st-hatena.com/images/fotolife/e/exsudoporus_ruber/20251103/20251103233126.jpg"
+    }
+  ],
+  "independent_publication_approval": "pending",
+  "notes": "写真接続のユーザー承認を記録する。図鑑解説本文と公開リリースの承認には転用しない。"
+}
