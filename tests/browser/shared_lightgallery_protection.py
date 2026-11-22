@@ -5,7 +5,7 @@ from pathlib import Path
 import subprocess
 import sys
 from lightgallery_css_guard import verify_gallery_css
-from comments_integration_protection import ACTIVITY_MAIN, PUBLIC_CONFIG, RELEASE_FILES, REVIEWED, assert_reviewed_source
+from comments_integration_protection import ACTIVITY_MAIN, LINE_MAIN, LINE_FILES, PUBLIC_CONFIG, RELEASE_FILES, REVIEWED, assert_reviewed_source
 
 ROOT = Path(__file__).resolve().parents[2]
 MAIN = '8007a72708aff2dfa14e2e9638f44720bb449b76'
@@ -39,7 +39,7 @@ for p in protected:
 merged_comment_files = RELEASE_FILES | REVIEWED
 for p in git('ls-tree', '-rz', '--name-only', MAIN).decode().split('\0'):
     if p.startswith(('data/', 'sync-migrations/', 'admin/', 'comments/', 'hatena/', 'lightgallery/')):
-        reviewed_base = ACTIVITY_MAIN if p in merged_comment_files else MAIN
+        reviewed_base = LINE_MAIN if p in LINE_FILES else ACTIVITY_MAIN if p in merged_comment_files else MAIN
         if p != PUBLIC_CONFIG:
             assert_reviewed_source(reviewed_base, p, git('show', f'{BASE}:{p}'))
         assert_reviewed_source(BASE, p, (ROOT / p).read_bytes())
