@@ -166,3 +166,55 @@ def test_export_failure_and_status_save_failure_are_isolated(monkeypatch):
         production_entries=entries, shadow_metadata=[], article_metadata={},
         exif_cache={}, taxonomy=None, production_mode="legacy_fallback",
     )
+
+def test_four_existing_subjects_link_to_real_master_and_cited_detail_sections():
+    """Exact name-only joins preserve all four gallery labels and photo references."""
+    import detail_ui
+    import mushroom_knowledge as knowledge
+
+    links = {
+        "ヤマドリタケモドキ": "yamadoritakemodoki",
+        "シイタケ": "shiitake",
+        "ベニテングタケ": "benitengutake",
+        "ドクヤマドリ": "dokuyamadori",
+    }
+    taxonomy = main.load_subject_taxonomy()
+    master = knowledge.load_mushroom_master()
+    sources = knowledge.load_sources()
+    entries = {row["canonical_name"]: row for row in taxonomy["entries"]}
+    master_by_id = {row["mushroom_id"]: row for row in master["entries"]}
+    source_ids = {row["source_id"] for row in sources["sources"]}
+    for name, mushroom_id in links.items():
+        assert entries[name]["subject_type"] == "mushroom"
+        assert entries[name]["mushroom_master_id"] == mushroom_id
+        assert entries[name]["verification_status"] == "project_seed"
+        assert master_by_id[mushroom_id]["canonical_name_ja"] == name
+        assert master_by_id[mushroom_id]["scientific_name"]["source_ids"]
+        assert set(master_by_id[mushroom_id]["scientific_name"]["source_ids"]) <= source_ids
+
+    photo_rows = [{"alt": name, "src": f"linked-photo-{i}.jpg"}
+                  for i, name in enumerate(links)]
+    shadows = [shadow(src=f"linked-photo-{i}.jpg", gallery_name=name,
+                      legacy_alt=name, detected_label=name, path=f"linked-article-{i}.html")
+               for i, name in enumerate(links)]
+    result = portal_data.build_portal_data(
+        production_entries=photo_rows, shadow_metadata=shadows,
+        article_metadata={}, exif_cache={}, taxonomy=taxonomy,
+        mushroom_master=master, sources=sources,
+        production_mode="phase3c_hybrid", cutover_active=True,
+    )
+    assert [(row["gallery_name"], row["src"]) for row in result["observations"]] == [
+        (row["alt"], row["src"]) for row in photo_rows
+    ]
+    assert result["summary"]["master_linked_subject_count"] == 4
+    views = detail_ui.build_detail_views(result)
+    for name, mushroom_id in links.items():
+        subject = next(row for row in result["subjects"] if row["gallery_name"] == name)
+        assert subject["mushroom_master_id"] == mushroom_id
+        assert subject["knowledge_available"] is True
+        assert views[name]["knowledge"] is not None
+        assert views[name]["knowledge"]["sources"]
+        html = detail_ui.render_detail_sections(views[name])
+        assert '<section class="knowledge-panel">' in html
+        assert "出典を見る" in html
+        assert "採取・調理・飲食の判断には使用しないでください" in html

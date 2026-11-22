@@ -9,7 +9,8 @@
       "sources": [
         "Phase 3B.2 project seed"
       ],
-      "notes": "Gallery subject taxonomy only; not a toxicity or edibility claim."
+      "notes": "Gallery subject taxonomy only; not a toxicity or edibility claim.",
+      "mushroom_master_id": "yamadoritakemodoki"
     },
     {
       "canonical_name": "シイタケ",
@@ -19,7 +20,8 @@
       "sources": [
         "Phase 3B.2 project seed"
       ],
-      "notes": "Gallery subject taxonomy only; not a toxicity or edibility claim."
+      "notes": "Gallery subject taxonomy only; not a toxicity or edibility claim.",
+      "mushroom_master_id": "shiitake"
     },
     {
       "canonical_name": "ベニテングタケ",
@@ -29,7 +31,8 @@
       "sources": [
         "Phase 3B.2 project seed"
       ],
-      "notes": "Gallery subject taxonomy only; not a toxicity or edibility claim."
+      "notes": "Gallery subject taxonomy only; not a toxicity or edibility claim.",
+      "mushroom_master_id": "benitengutake"
     },
     {
       "canonical_name": "ドクヤマドリ",
@@ -39,7 +42,8 @@
       "sources": [
         "Phase 3B.2 project seed"
       ],
-      "notes": "Gallery subject taxonomy only; not a toxicity or edibility claim."
+      "notes": "Gallery subject taxonomy only; not a toxicity or edibility claim.",
+      "mushroom_master_id": "dokuyamadori"
     },
     {
       "canonical_name": "カエンタケ",

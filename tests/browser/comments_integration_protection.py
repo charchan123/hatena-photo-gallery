@@ -58,6 +58,14 @@ RIGHT_NOTE_MAIN = '2af083e7ddf47eb8e374f38b2244e2f71a1729ed'
 RIGHT_NOTE_CSS_BLOB = 'd5796f19276dbe6ead3f4d8afddf1ad37b72d07f'
 RIGHT_ANCHOR_MAIN = '8971cbb5b9250733270853be50de48a6eec2de9c'
 RIGHT_ANCHOR_CSS_BLOB = 'fa4e0476c1e5c18374b310a505a50aed06ab046a'
+# Four existing, exact-name subject links. Never authorize classification or source edits.
+EXISTING_FOUR_LINK_BASE = '7da1d3e27d351b18ca8c6bc0f25bb3d73f7f7cf3'
+EXISTING_FOUR_LINKS = {
+    'ヤマドリタケモドキ': 'yamadoritakemodoki',
+    'シイタケ': 'shiitake',
+    'ベニテングタケ': 'benitengutake',
+    'ドクヤマドリ': 'dokuyamadori',
+}
 PUBLIC_CONFIG = 'comments/public-config.json'
 PRODUCTION_ORIGIN = 'https://kinoko-research-comments.sasama-bb.workers.dev'
 RELEASE_ID = 'research-comments-production-20261120'
@@ -83,6 +91,18 @@ def assert_reviewed_source(base, path, current):
     """Never hide a main change behind the old PR's allowance."""
     original = git('show', f'{base}:{path}')
     if current == original:
+        return
+    if path == 'data/subject-taxonomy.json' and git('rev-parse', base).decode().strip() == EXISTING_FOUR_LINK_BASE:
+        expected = json.loads(original)
+        linked = set()
+        for entry in expected['entries']:
+            name = entry['canonical_name']
+            if name in EXISTING_FOUR_LINKS:
+                assert entry['subject_type'] == 'mushroom' and 'mushroom_master_id' not in entry, name
+                entry['mushroom_master_id'] = EXISTING_FOUR_LINKS[name]
+                linked.add(name)
+        assert linked == EXISTING_FOUR_LINKS.keys(), path
+        assert current == (json.dumps(expected, ensure_ascii=False, indent=2) + '\n').encode('utf-8'), path
         return
     if path in COPY_AUDIT_BLOBS and git('rev-parse', base).decode().strip() == COPY_AUDIT_BASE:
         # Hash the exact Git blob bytes. Never exempt a whole directory or
