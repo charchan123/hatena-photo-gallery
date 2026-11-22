@@ -55,7 +55,7 @@ PORTAL_FOLLOWUP_BLOBS = {
 }
 # This follow-up adjusts only the 3 portal guide cards; keep source checks exact.
 RIGHT_NOTE_MAIN = '2af083e7ddf47eb8e374f38b2244e2f71a1729ed'
-RIGHT_NOTE_CSS_BLOB = '9a7a8faa5dc3419496890712f7f067280a218771'
+RIGHT_NOTE_CSS_BLOB = 'd5796f19276dbe6ead3f4d8afddf1ad37b72d07f'
 PUBLIC_CONFIG = 'comments/public-config.json'
 PRODUCTION_ORIGIN = 'https://kinoko-research-comments.sasama-bb.workers.dev'
 RELEASE_ID = 'research-comments-production-20261120'

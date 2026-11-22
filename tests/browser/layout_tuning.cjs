@@ -22,6 +22,7 @@ const approvedCSSChanges=[
   '.portal-guide-note__details > small { display:-webkit-box; min-width:0; overflow:hidden; white-space:normal; -webkit-box-orient:vertical; -webkit-line-clamp:2; }'],
  ['.portal-index .portal-guide-note { position:relative; top:calc((46px - 1.276rem)/2); }',
   '.portal-index .portal-guide-note { position:relative; top:0; }'],
+ ['  .portal-guide-row .portal-card__copy small { white-space:normal; }\n',''],
 ];
 let expectedCopyOnly=beforePortalCSS,copyOnly=true;
 for(const [from,to] of approvedCSSChanges){

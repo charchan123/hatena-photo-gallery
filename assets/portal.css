@@ -125,7 +125,6 @@
   .portal-guide-list--2,.portal-guide-list--3 { grid-template-rows:none; }
   .portal-guide-row { grid-template-columns:1fr; gap:8px; padding:12px 0; }
   .portal-guide-row .portal-card { width:100%; height:auto; min-height:98px; }
-  .portal-guide-row .portal-card__copy small { white-space:normal; }
   .portal-guide-note { padding:0 4px 2px; }
   .portal-card { min-height:112px; }
   .portal-independent-links { margin-top:20px; gap:18px; }

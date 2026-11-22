@@ -165,8 +165,13 @@ for p in html_files:
                     in p.read_text(encoding='utf-8')), p.name
     else:
         normalized = baseline.read_text(encoding='utf-8')
-        for original, approved in approved_page_copy:
-            normalized = normalized.replace(original, approved)
+        # For the CSS-only PR #166, the base already contains all PR #164/#165
+        # wording. Comparing its generated HTML byte-for-byte is stricter than
+        # reapplying historical substitutions that would corrupt the baseline.
+        css_only_baseline = '2af083e7ddf47eb8e374f38b2244e2f71a1729ed'
+        if git('rev-parse', base).decode().strip() != css_only_baseline:
+            for original, approved in approved_page_copy:
+                normalized = normalized.replace(original, approved)
         actual = p.read_text(encoding='utf-8')
         if normalized != actual:
             from difflib import unified_diff
