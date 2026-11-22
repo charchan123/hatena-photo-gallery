@@ -68,8 +68,9 @@ def test_all_active_css_uses_new_artwork_and_preserves_every_other_declaration()
             approved_copy_hash = '5e89b37ca256f6ced3f5f507565f483c109bbc171553f10b1940f413f6253afb'
             assert (sha(normalized.encode()) in {expected, approved_copy_hash} or
                     hashlib.sha1(b'blob ' + str(len((ROOT/file).read_bytes())).encode() +
-                                 b'\0' + (ROOT/file).read_bytes()).hexdigest() ==
-                    '96653f6d85a36ec34db342311bf7d3545bfde761'), file
+                                 b'\0' + (ROOT/file).read_bytes()).hexdigest() in {
+                    '96653f6d85a36ec34db342311bf7d3545bfde761',
+                    '9a7a8faa5dc3419496890712f7f067280a218771'}), file
         else:
             assert sha(normalized.encode()) == expected, file
     assert used == {r['asset'] for r in M['assets']}

@@ -53,6 +53,9 @@ PORTAL_FOLLOWUP_BLOBS = {
     'main.py': '6ab3f79a1be3cc55ddcaffe4f6381608458f1715',
     'assets/portal.css': '96653f6d85a36ec34db342311bf7d3545bfde761',
 }
+# This follow-up adjusts only the 3 portal guide cards; keep source checks exact.
+RIGHT_NOTE_MAIN = '2af083e7ddf47eb8e374f38b2244e2f71a1729ed'
+RIGHT_NOTE_CSS_BLOB = '9a7a8faa5dc3419496890712f7f067280a218771'
 PUBLIC_CONFIG = 'comments/public-config.json'
 PRODUCTION_ORIGIN = 'https://kinoko-research-comments.sasama-bb.workers.dev'
 RELEASE_ID = 'research-comments-production-20261120'
@@ -88,6 +91,10 @@ def assert_reviewed_source(base, path, current):
     if path in PORTAL_FOLLOWUP_BLOBS and git('rev-parse', base).decode().strip() == PORTAL_FOLLOWUP_BASE:
         blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
         assert hashlib.sha1(blob).hexdigest() == PORTAL_FOLLOWUP_BLOBS[path], path
+        return
+    if path == 'assets/portal.css' and git('rev-parse', base).decode().strip() == RIGHT_NOTE_MAIN:
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
+        assert hashlib.sha1(blob).hexdigest() == RIGHT_NOTE_CSS_BLOB, path
         return
     if path in LINE_FILES:
         pins = line_pins()
