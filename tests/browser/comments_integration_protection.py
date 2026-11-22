@@ -75,7 +75,7 @@ def assert_reviewed_source(base, path, current):
     if path in COPY_AUDIT_BLOBS and git('rev-parse', base).decode().strip() == COPY_AUDIT_BASE:
         # Hash the exact Git blob bytes. Never exempt a whole directory or
         # relax the existing reviewed Worker/comment/source protections.
-        blob = b'blob ' + str(len(current)).encode('ascii') + b'\\0' + current
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
         assert hashlib.sha1(blob).hexdigest() == COPY_AUDIT_BLOBS[path], path
         return
     if path in LINE_FILES:
