@@ -86,13 +86,15 @@ const server=http.createServer((req,res)=>{
   check(await p.locator('.record-stars[data-total="0"]').count(),0);
  }
  async function sizeExamples(p,width){
+  const sampleIndex=fixture.records.findIndex(r=>r.total>0);
+  if(sampleIndex<0){metrics.push({phase:'icon-options',width,skipped:'no real star avatars in the latest three articles'});return;}
   const options=[{name:'original-20-24',scale:'1',cell:'24px'},{name:'balanced-18-22',scale:'.9',cell:'22px'},{name:'dense-18-20',scale:'.9',cell:'20px'}],results=[];
   for(const o of options){
    await p.locator('.record-stars').evaluateAll((es,o)=>{for(const e of es){e.style.setProperty('--record-star-cell',o.cell);e.style.setProperty('--record-star-scale',o.scale)}window.dispatchEvent(new Event('resize'))},o);
    await p.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
-   const visible=await p.locator('.record-star-entry').first().locator('[data-record-star-profile]:not([data-record-star-hidden])').count();
-   const avatar=await p.locator('.record-star-entry').first().locator('[data-record-star-profile]:not([data-record-star-hidden]) picture img').first().boundingBox();
-   const targets=await p.locator('.record-star-entry').first().locator('[data-record-star-profile]:not([data-record-star-hidden])').evaluateAll(es=>es.map(e=>{const r=e.getBoundingClientRect();return {width:r.width,height:r.height}}));
+   const visible=await p.locator('.record-star-entry').nth(sampleIndex).locator('[data-record-star-profile]:not([data-record-star-hidden])').count();
+   const avatar=await p.locator('.record-star-entry').nth(sampleIndex).locator('[data-record-star-profile]:not([data-record-star-hidden]) picture img').first().boundingBox();
+   const targets=await p.locator('.record-star-entry').nth(sampleIndex).locator('[data-record-star-profile]:not([data-record-star-hidden])').evaluateAll(es=>es.map(e=>{const r=e.getBoundingClientRect();return {width:r.width,height:r.height}}));
    const touch=await p.evaluate(()=>navigator.maxTouchPoints>0||matchMedia('(any-pointer:coarse)').matches);
    check(targets.every(t=>t.width>=(touch?28:20)&&t.height>=28),true);
    results.push({option:o.name,visible,visual_width:avatar.width,touch,targets});await capture(p,{path:path.join(shots,`size-${width}-${o.name}.png`),animations:'disabled'});
@@ -144,12 +146,12 @@ const server=http.createServer((req,res)=>{
  let cookieRestriction=false;
  try{const cdp=await embedContext.newCDPSession(embed);await cdp.send('Network.enable');await cdp.send('Network.setCookieControls',{enableThirdPartyCookieRestriction:true,disableThirdPartyCookieMetadata:true,disableThirdPartyCookieHeuristics:true});cookieRestriction=true;}catch{}
  const publicURL=fixture.live_site.new_top_url;
- await embed.goto(publicURL,{waitUntil:'domcontentloaded'});await embed.waitForFunction(n=>document.querySelector('.record-stars')?.dataset.total===String(n),fixture.records[0].total);await bounds(embed);
+ await embed.goto(publicURL,{waitUntil:'domcontentloaded'});await embed.waitForFunction(n=>{const s=document.querySelector('.record-stars');return n===0?!!s?.querySelector('.record-stars-unconfirmed')&&!!s?.querySelector('.record-stars-native[data-ready]'):s?.dataset.total===String(n)},fixture.records[0].total);await bounds(embed);
  const parentURL='https://exsudoporus-ruber.hatenablog.jp/__isolated_record_star_preview__';
  await embed.route(parentURL,r=>r.fulfill({contentType:'text/html',body:'<!doctype html><meta name="viewport" content="width=device-width"><style>body{margin:0}iframe{width:100%;height:1200px;border:0}</style><script>window.Hatena={Star:{SiteConfig:{parentUnchanged:true}}}</script><iframe title="隔離した新トップページ" src="'+publicURL+'"></iframe>'}));
  await embed.goto(parentURL,{waitUntil:'domcontentloaded'});await embed.locator('iframe').waitFor({state:'attached'});
  let pageFrame;for(let i=0;i<100;i++){pageFrame=embed.frames().find(f=>f.url()===publicURL);if(pageFrame)break;await embed.waitForTimeout(50)}
- assert.ok(pageFrame);await pageFrame.waitForFunction(n=>document.querySelector('.record-stars')?.dataset.total===String(n),fixture.records[0].total);
+ assert.ok(pageFrame);await pageFrame.waitForFunction(n=>{const s=document.querySelector('.record-stars');return n===0?!!s?.querySelector('.record-stars-unconfirmed')&&!!s?.querySelector('.record-stars-native[data-ready]'):s?.dataset.total===String(n)},fixture.records[0].total);
  check(await embed.evaluate(()=>window.Hatena.Star.SiteConfig),{parentUnchanged:true});
  const embeddedURIs=await pageFrame.locator('.record-star-permalink').evaluateAll(es=>es.map(e=>e.href));check(embeddedURIs,fixture.records.map(r=>r.uri));
  check(await pageFrame.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
@@ -196,7 +198,7 @@ const server=http.createServer((req,res)=>{
  }
  // If the blog-specific renderer is unavailable, the original official SiteConfig path is retained.
  const fallbackContext=await context('profile-failure'),fallback=await fallbackContext.newPage();await fallback.goto(base+'/after/new-top.html');
- await fallback.waitForFunction(n=>document.querySelector('.record-stars')?.dataset.total===String(n),fixture.records[0].total);
+ await fallback.waitForFunction(n=>{const s=document.querySelector('.record-stars');return n===0?!!s?.querySelector('.record-stars-unconfirmed')&&!!s?.querySelector('.record-stars-native[data-ready]'):s?.dataset.total===String(n)},fixture.records[0].total);
  check(await fallback.locator('[data-hatena-star]').count(),3);check(new URL(await fallback.locator('iframe').first().getAttribute('src')).searchParams.get('url'),fixture.records[0].uri);await bounds(fallback);
  metrics.push({phase:'profile-renderer-blocked',generic_original_uri_fallback:true});await fallbackContext.close();
  const missingContext=await context('missing-adapter'),missing=await missingContext.newPage();
