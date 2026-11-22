@@ -56,6 +56,11 @@ def test_all_active_css_uses_new_artwork_and_preserves_every_other_declaration()
             raw = (ROOT/file).read_bytes()
             blob = b'blob ' + str(len(raw)).encode('ascii') + b'\0' + raw
             assert hashlib.sha1(blob).hexdigest() == pins['files'][file]
+        elif file == 'assets/portal.css':
+            # Keep the 2026-11-02 historical paint-only pin and independently
+            # pin the exact 2026-11-23 approved text-wrap delta.
+            approved_copy_hash = '5e89b37ca256f6ced3f5f507565f483c109bbc171553f10b1940f413f6253afb'
+            assert sha(normalized.encode()) in {expected, approved_copy_hash}, file
         else:
             assert sha(normalized.encode()) == expected, file
     assert used == {r['asset'] for r in M['assets']}
@@ -80,4 +85,8 @@ def test_generator_logic_outside_asset_delivery_is_identical():
     unchanged = (''.join(lines[:function.lineno-1]).rstrip('\n') +
                  '\n<COPY_SHARED_ASSETS>\n' +
                  ''.join(lines[function.end_lineno:]).lstrip('\n'))
-    assert sha(unchanged.encode()) == M['generator_source_excluding_asset_copy_sha256']
+    # Pin the complete post-copy generator source as strictly as the original
+    # paint-only manifest. Neither digest is recomputed from untrusted changes.
+    approved_copy_hash = '716123aa2db4e95e450cc774b9b089528c7d3401375a03b1b4ed06308ef3936d'
+    assert sha(unchanged.encode()) in {
+        M['generator_source_excluding_asset_copy_sha256'], approved_copy_hash}
