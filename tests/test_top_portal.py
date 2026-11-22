@@ -507,13 +507,15 @@ def test_guide_rows_use_record_style_separators_and_plain_notes(monkeypatch, tmp
     assert "図鑑・季節・見た目の特徴。3つの視点からキノコを探せます。" not in page
     assert 'class="portal-guide-list portal-guide-list--3"' in page
     assert page.count('class="portal-guide-row"') == 3
+    assert "図鑑を見る" in page
     assert "キノコの名前から探す" in page
+    assert "季節ごとに写真を見る" in page
     assert "名前、五十音順からキノコを探す" not in page
     assert "名前や写真、五十音からキノコを探す" not in page
     for phrase in (
         "名前から探したい場合は",
         "名前を検索したり、五十音順の一覧から探せます。",
-        "季節ごとに写真を見たいときは",
+        "季節ごとに写真を見たい場合は",
         "このブログで撮影したキノコを、季節ごとにまとめています。",
         "名前がわからない場合は",
         "傘やヒダなど、見た目の特徴から絞り込めます。",
@@ -533,7 +535,10 @@ def test_guide_rows_use_record_style_separators_and_plain_notes(monkeypatch, tmp
     assert ".portal-guide-list { display:grid; flex:1 1 auto; min-height:0; align-content:start; border-top:1px solid #d9ddcf; }" in css
     assert ".portal-guide-row { display:grid; grid-template-columns:176px minmax(0,1fr); gap:18px; align-items:center; min-height:96px; padding:8px 0; border-bottom:1px solid #d9ddcf;" in css
     assert ".portal-guide-row .portal-card { width:176px; height:96px; min-height:96px; border-radius:10px; }" in css
-    assert ".portal-guide-row .portal-card__copy small { font-size:.7rem; line-height:1.3; white-space:nowrap; }" in css
+    assert ".portal-guide-row .portal-card__copy { width:100%; min-width:0; grid-template-rows:22px calc(2 * .7rem * 1.3); gap:4px; }" in css
+    assert ".portal-guide-row .portal-card__copy strong { min-width:0; gap:7px; font-size:.92rem; white-space:nowrap; line-height:1.25; }" in css
+    assert ".portal-guide-row .portal-card__copy strong > span { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }" in css
+    assert ".portal-guide-row .portal-card__copy small { display:-webkit-box; min-width:0; max-height:calc(2 * .7rem * 1.3); overflow:hidden; font-size:.7rem; line-height:1.3; white-space:normal; -webkit-box-orient:vertical; -webkit-line-clamp:2; }" in css
     assert ".portal-guide-note strong { overflow:hidden; color:#24472f; font-size:1rem; font-weight:650;" in css
     assert ".portal-guide-note small { color:#526056; font-size:.88rem; line-height:1.45; }" in css
     assert "background:#eef5ea" not in css
@@ -572,8 +577,8 @@ def test_approved_backgrounds_preserve_guide_text_and_links(monkeypatch, tmp_pat
     page = render(monkeypatch, tmp_path, feature_search_available=True)
     soup = BeautifulSoup(page, "html.parser")
     expected = (
-        ("guide", "index.html", "キノコの名前から探す", "", "名前から探したい場合は", "名前を検索したり、五十音順の一覧から探せます。"),
-        ("season", "season.html", "季節から探す", "", "季節ごとに写真を見たいときは", "このブログで撮影したキノコを、季節ごとにまとめています。"),
+        ("guide", "index.html", "図鑑を見る", "キノコの名前から探す", "名前から探したい場合は", "名前を検索したり、五十音順の一覧から探せます。"),
+        ("season", "season.html", "季節から探す", "季節ごとに写真を見る", "季節ごとに写真を見たい場合は", "このブログで撮影したキノコを、季節ごとにまとめています。"),
         ("features", "features.html", "特徴から探す", "見た目の特徴から絞り込む", "名前がわからない場合は", "傘やヒダなど、見た目の特徴から絞り込めます。"),
     )
     rows = soup.select(".portal-guide-row")

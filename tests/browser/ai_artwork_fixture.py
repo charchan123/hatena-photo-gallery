@@ -147,6 +147,12 @@ approved_page_copy = [
      'このブログで撮影したキノコを、季節ごとにまとめています。'),
     ('正体を調べているキノコを見る', '正体不明のキノコの写真を見る'),
     ('とっておきの一枚を集めた写真館', 'お気に入りのキノコ写真を集めました'),
+    # Approved 2026-11-23 follow-up, comparing against merged PR #164.
+    ('<span>キノコの名前から探す</span></strong><small></small>',
+     '<span>図鑑を見る</span></strong><small>キノコの名前から探す</small>'),
+    ('<span>季節から探す</span></strong><small></small>',
+     '<span>季節から探す</span></strong><small>季節ごとに写真を見る</small>'),
+    ('季節ごとに写真を見たいときは', '季節ごとに写真を見たい場合は'),
 ]
 for p in html_files:
     baseline = root / 'before' / p.name
