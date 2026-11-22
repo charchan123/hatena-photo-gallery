@@ -168,7 +168,11 @@ for p in html_files:
         # For the CSS-only PR #166, the base already contains all PR #164/#165
         # wording. Comparing its generated HTML byte-for-byte is stricter than
         # reapplying historical substitutions that would corrupt the baseline.
-        css_only_baselines = {'2af083e7ddf47eb8e374f38b2244e2f71a1729ed', '8971cbb5b9250733270853be50de48a6eec2de9c'}
+        # A link-only taxonomy update leaves the generated HTML byte-for-byte
+        # unchanged when using the immutable published portal-data fixture.
+        # The exact four source links are separately validated below.
+        css_only_baselines = {'2af083e7ddf47eb8e374f38b2244e2f71a1729ed', '8971cbb5b9250733270853be50de48a6eec2de9c',
+                              '7da1d3e27d351b18ca8c6bc0f25bb3d73f7f7cf3'}
         if git('rev-parse', base).decode().strip() not in css_only_baselines:
             for original, approved in approved_page_copy:
                 normalized = normalized.replace(original, approved)
