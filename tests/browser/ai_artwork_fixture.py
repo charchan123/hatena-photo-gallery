@@ -147,6 +147,12 @@ approved_page_copy = [
      'このブログで撮影したキノコを、季節ごとにまとめています。'),
     ('正体を調べているキノコを見る', '正体不明のキノコの写真を見る'),
     ('とっておきの一枚を集めた写真館', 'お気に入りのキノコ写真を集めました'),
+    # Approved 2026-11-23 follow-up, comparing against merged PR #164.
+    ('<span>キノコの名前から探す</span></strong><small></small>',
+     '<span>図鑑を見る</span></strong><small>キノコの名前から探す</small>'),
+    ('<span>季節から探す</span></strong><small></small>',
+     '<span>季節から探す</span></strong><small>季節ごとに写真を見る</small>'),
+    ('季節ごとに写真を見たいときは', '季節ごとに写真を見たい場合は'),
 ]
 for p in html_files:
     baseline = root / 'before' / p.name
@@ -211,7 +217,8 @@ for p in protected:
     before_bytes = git('show', f'{base}:{p}')
     after_bytes = (repo / p).read_bytes()
     if p in approved_copy_source_blobs:
-        assert before_bytes != after_bytes, p
+        # PR #164 is now the comparison base, so these approved bytes can
+        # legitimately match the previous revision. The exact Git blob stays pinned.
         assert git('rev-parse', f'HEAD:{p}').decode().strip() == approved_copy_source_blobs[p], p
     elif p == 'assets/gallery.css':
         gallery_viewer_rules_added = verify_gallery_css(before_bytes, after_bytes)

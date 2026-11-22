@@ -9,14 +9,15 @@ const layoutCSS=s=>standalonePortalCSS(s).replace(/url\([^)]*\)/g,'url(artwork)'
 const beforePortalCSS=fs.readFileSync(path.join(root,'before/assets/portal.css'),'utf8');
 const afterPortalCSS=fs.readFileSync(path.join(root,'after/assets/portal.css'),'utf8');
 const standaloneUnchanged=layoutCSS(beforePortalCSS)===layoutCSS(afterPortalCSS);
-// Exact 2026-11-23 copy/label wrapping edits are not thumbnail resize requests.
-// Confirm the ONLY CSS changes are the two approved substitutions; preserve
-// the stricter equal-height and whitespace assertions for every viewport.
+// The approved 2026-11-23 follow-up changes copy layout, not thumbnails.
+// Pin the complete CSS delta so unrelated layout changes cannot be excused.
 const approvedCSSChanges=[
- ['.portal-guide-row .portal-card__copy strong { gap:7px; font-size:1rem; white-space:nowrap; }',
-  '.portal-guide-row .portal-card__copy strong { gap:7px; font-size:.92rem; white-space:normal; line-height:1.25; }'],
+ ['.portal-guide-row .portal-card__copy { width:100%; gap:4px; }',
+  '.portal-guide-row .portal-card__copy { width:100%; min-width:0; grid-template-rows:22px calc(2 * .7rem * 1.3); gap:4px; }'],
+ ['.portal-guide-row .portal-card__copy strong { gap:7px; font-size:.92rem; white-space:normal; line-height:1.25; }',
+  '.portal-guide-row .portal-card__copy strong { min-width:0; gap:7px; font-size:.92rem; white-space:nowrap; line-height:1.25; }\n.portal-guide-row .portal-card__copy strong > span { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }'],
  ['.portal-guide-row .portal-card__copy small { font-size:.7rem; line-height:1.3; white-space:nowrap; }',
-  '.portal-guide-row .portal-card__copy small { font-size:.7rem; line-height:1.3; white-space:nowrap; }\n.portal-guide-row .portal-card__copy small:empty { display:none; }']
+  '.portal-guide-row .portal-card__copy small { display:-webkit-box; min-width:0; max-height:calc(2 * .7rem * 1.3); overflow:hidden; font-size:.7rem; line-height:1.3; white-space:normal; -webkit-box-orient:vertical; -webkit-line-clamp:2; }'],
 ];
 let expectedCopyOnly=beforePortalCSS,copyOnly=true;
 for(const [from,to] of approvedCSSChanges){
@@ -42,6 +43,45 @@ for(const width of [1280,1024,900,899,768,680,390,320]){
   const metrics=await page.evaluate(()=>{const rect=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,bottom:r.bottom}};const rows=(sel,image)=>[...document.querySelectorAll(sel)].map(e=>{const r=rect(e),i=rect(e.querySelector(image)),n=e.querySelector('.portal-guide-note'),heading=n?.querySelector('strong'),small=n?.querySelector('small');const text=n?{top:rect(heading).y,bottom:rect(small).bottom}:null;return {row:r,image:i,top:i.y-r.y,bottom:r.bottom-i.bottom,text,textCenterOffset:text?(text.top+text.bottom-i.y-i.bottom)/2:null}});return {records:rows('.record-preview-row','.record-preview-thumb'),guides:rows('.portal-guide-row','.portal-card'),panels:[...document.querySelectorAll('.portal-records-hero,.portal-explore')].map(rect),overflow:document.documentElement.scrollWidth>innerWidth};});
   check(!metrics.overflow,`${variant} top overflow ${width}`);check(metrics.records.length===3&&metrics.guides.length===3,'all six images');
   if(width>=900)check(Math.abs(metrics.panels[0].height-metrics.panels[1].height)<1,'equal PC panels');
+  if(variant==='after'&&process.env.LAYOUT_ASSERT_FINAL){
+   const copies=await page.locator('.portal-guide-row .portal-card').evaluateAll(cards=>cards.map(card=>{
+    const heading=card.querySelector('.portal-card__copy strong');
+    const title=heading.querySelector('span');
+    const description=card.querySelector('.portal-card__copy small');
+    const cr=card.getBoundingClientRect(),hr=heading.getBoundingClientRect(),tr=title.getBoundingClientRect(),dr=description.getBoundingClientRect();
+    const ds=getComputedStyle(description),ts=getComputedStyle(title);
+    return {title:title.textContent,description:description.textContent,
+      headingTop:hr.y-cr.y,descriptionTop:dr.y-cr.y,
+      headingHeight:hr.height,titleHeight:tr.height,descriptionHeight:dr.height,
+      descriptionLineHeight:parseFloat(ds.lineHeight),
+      clamp:ds.webkitLineClamp,whiteSpace:ts.whiteSpace,cardHeight:cr.height};
+   }));
+   check(copies.length===3,'three guide cards with descriptions');
+   const approved=[
+     ['図鑑を見る','キノコの名前から探す'],
+     ['季節から探す','季節ごとに写真を見る'],
+     ['特徴から探す','見た目の特徴から絞り込む']
+   ];
+   for(let i=0;i<3;i++){
+    const c=copies[i];
+    check(c.title===approved[i][0]&&c.description===approved[i][1],'approved guide title and subtitle');
+    check(c.whiteSpace==='nowrap'&&c.titleHeight<=c.headingHeight+1,'heading remains single-line');
+    check(c.clamp==='2','two-line CSS clamping enabled');
+    check(Math.abs(c.descriptionHeight-2*c.descriptionLineHeight)<1.1,'two description lines reserved');
+    check(Math.abs(c.headingTop-copies[0].headingTop)<1,'heading starts at identical card-relative position');
+    check(Math.abs(c.descriptionTop-copies[0].descriptionTop)<1,'description first line starts at identical card-relative position');
+    check(Math.abs(c.cardHeight-copies[0].cardHeight)<1,'all three card heights identical');
+   }
+   const long=await page.locator('.portal-guide-row .portal-card').first().locator('small').evaluate(el=>{
+    const prev=el.textContent,top=el.getBoundingClientRect().y,height=el.getBoundingClientRect().height;
+    el.textContent='見た目の特徴から探せるキノコの名前を検索するための説明文'.repeat(12);
+    const next=el.getBoundingClientRect(),clipped=el.scrollHeight>el.clientHeight;
+    el.textContent=prev;
+    return {topStable:Math.abs(next.y-top)<1,heightStable:Math.abs(next.height-height)<1,clipped};
+   });
+   check(long.topStable&&long.heightStable&&long.clipped,'long subtitles truncate at two lines without reflow');
+  }
+
   measurements.push({width,variant,page:'new-top',...metrics});
   await page.screenshot({path:path.join(out,`top-${width}-${variant}.png`),fullPage:true,animations:'disabled'});
   for(const name of ['best-shots','best-shots-2025','best-shots-2026']){

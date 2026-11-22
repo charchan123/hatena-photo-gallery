@@ -46,6 +46,13 @@ COPY_AUDIT_BLOBS = {
     'research_ui.py': '0eae86e8d2b484b0cb0280cb883796449791cf6b',
     'season_ui.py': '2b5c6465557cb25873ef8b98360a8df2ce30098a',
 }
+# Follow-up to PR #164: precisely two user-approved portal-source blobs.
+# The reviewed base must be the merged PR #164 main, never an arbitrary PR.
+PORTAL_FOLLOWUP_BASE = 'd9acaed996ad7bb137e7d28c9c1bdcc77ffac37e'
+PORTAL_FOLLOWUP_BLOBS = {
+    'main.py': '6ab3f79a1be3cc55ddcaffe4f6381608458f1715',
+    'assets/portal.css': '96653f6d85a36ec34db342311bf7d3545bfde761',
+}
 PUBLIC_CONFIG = 'comments/public-config.json'
 PRODUCTION_ORIGIN = 'https://kinoko-research-comments.sasama-bb.workers.dev'
 RELEASE_ID = 'research-comments-production-20261120'
@@ -77,6 +84,10 @@ def assert_reviewed_source(base, path, current):
         # relax the existing reviewed Worker/comment/source protections.
         blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
         assert hashlib.sha1(blob).hexdigest() == COPY_AUDIT_BLOBS[path], path
+        return
+    if path in PORTAL_FOLLOWUP_BLOBS and git('rev-parse', base).decode().strip() == PORTAL_FOLLOWUP_BASE:
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
+        assert hashlib.sha1(blob).hexdigest() == PORTAL_FOLLOWUP_BLOBS[path], path
         return
     if path in LINE_FILES:
         pins = line_pins()
