@@ -97,10 +97,10 @@ if exhibition_pin.is_file():
         'assets/best-shot-exhibition.js', 'previews/best-shot-exhibition-20261121.html'
     }
     renderer_bytes = Path('best_shot_ui.py').read_bytes()
-    # Retain the original 2026-11-21 audit pin; approve only the separately
-    # reviewed annual-introduction copy change without rewriting that evidence.
+    # Verify the 2026-11-21 audit pin against the unchanged pre-copy main.
+    # This PR permits only its approved annual-introduction string edit.
     pinned_renderer_bytes = subprocess.check_output(
-        ['git', 'show', f"{pins['base_main']}:best_shot_ui.py"])
+        ['git', 'show', 'f791217b192c561a16541be2211758b8ec6ab3d0:best_shot_ui.py'])
     pinned_blob = (b'blob ' + str(len(pinned_renderer_bytes)).encode('ascii')
                    + b'\0' + pinned_renderer_bytes)
     assert hashlib.sha1(pinned_blob).hexdigest() == pins['files']['best_shot_ui.py']
