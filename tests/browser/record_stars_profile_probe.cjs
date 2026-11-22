@@ -30,7 +30,10 @@ const server=http.createServer((req,res)=>{res.setHeader('Content-Type','text/ht
   // Unrelated scripts are blocked; no account/session or add operation is used.
   const real=await browser.newContext({viewport:{width:768,height:700}});
   await real.route('**/*',route=>{const r=route.request(),u=new URL(r.url());if(r.method()!=='GET'||/(star\.add|star\.delete|\/stars?\/(add|delete|remove))/.test(u.pathname)){writes.push({method:r.method(),path:u.pathname});return route.abort()}if(r.resourceType()==='script'&&u.hostname!=='s.hatena.ne.jp')return route.abort();return route.continue()});
-  const original=await real.newPage();// Navigate to the exact audited article; the home page gains newer posts,\n  // and its first star container may belong to a different (starless) entry.\n  await original.goto(fixture.records[0].uri,{waitUntil:'domcontentloaded'});
+  const original=await real.newPage();
+  // Navigate to the exact audited article. Newer home-page posts must
+  // not change which star container is used as the live reference.
+  await original.goto(fixture.records[0].uri,{waitUntil:'domcontentloaded'});
   const blog=original.locator('[data-hatena-star-container]').filter({visible:true}).first();
   await blog.locator('a').first().waitFor({state:'visible'});
   await original.waitForFunction(()=>[...document.querySelectorAll('[data-hatena-star-container]')].filter(c=>c.getBoundingClientRect().width>0).slice(0,1).every(c=>{const h=c.querySelector('[data-hatena-star]');return h?.shadowRoot&&[...h.shadowRoot.querySelectorAll('img')].every(i=>i.complete&&i.naturalWidth>0)}));
