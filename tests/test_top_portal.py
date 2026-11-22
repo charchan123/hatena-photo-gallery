@@ -58,13 +58,13 @@ def test_new_top_counts_follow_build_inputs_and_update(monkeypatch, tmp_path):
         assert soup.select_one(".portal-more-link")["href"] == "https://exsudoporus-ruber.hatenablog.jp/archive/category/%E3%82%AD%E3%83%8E%E3%82%B3%E6%8E%A2%E7%B4%A2%E6%97%A5%E8%A8%98"
         assert soup.select_one(".portal-more-link")["target"] == "_top"
         for modifier, href, description in (
-            ("research", "research.html", "正体を調べているキノコを見る"),
-            ("best-shots", "best-shots.html", "とっておきの一枚を集めた写真館"),
+            ("research", "research.html", "正体不明のキノコの写真を見る"),
+            ("best-shots", "best-shots.html", "お気に入りのキノコ写真を集めました"),
         ):
             card = soup.select_one(f".portal-card--{modifier}")
             assert card["href"] == href
             assert card.select_one("small").get_text() == description
-        assert soup.select_one(".portal-records-heading > p:last-child").get_text() == "キノコ探索のブログ記事を、新しい順に紹介します。"
+        assert soup.select_one(".portal-records-heading > p:last-child").get_text() == "キノコ探索の記事を、新しい順に並べています。"
         assert soup.select_one(".portal-section-heading > p:last-child").get_text() == "名前や季節、見た目の特徴からキノコを探せます。"
 
 
@@ -248,7 +248,7 @@ def test_records_first_information_architecture(monkeypatch, tmp_path):
     page = render(monkeypatch, tmp_path, observation_records=[record(i) for i in range(4)])
     assert '<body class="portal-index">' in page and 'href="assets/portal.css"' in page
     assert 'class="portal-records-hero"' in page and page.index("観察記録") < page.index("キノコを探す")
-    assert 'class="portal-card portal-card--guide" href="index.html"' in page and "図鑑を見る" in page
+    assert 'class="portal-card portal-card--guide" href="index.html"' in page and "キノコの名前から探す" in page
     assert "季節から探す" in page and 'href="https://exsudoporus-ruber.hatenablog.jp/archive/category/%E3%82%AD%E3%83%8E%E3%82%B3%E6%8E%A2%E7%B4%A2%E6%97%A5%E8%A8%98" target="_top"' in page
     for i in range(3):
         assert f"photo{i}.jpg?width=500" in page and f"記事{i}" in page and f"本文{i}" in page
@@ -299,7 +299,7 @@ def test_optional_entrances_and_best_shot_condition(monkeypatch, tmp_path):
     assert "portal-guide-list portal-guide-list--3" in page
     assert "3つの視点" not in page
     assert 'class="portal-guide-row"' in page
-    assert "名前がわかる場合は" in page
+    assert "名前から探したい場合は" in page
     assert page.count('<svg class="portal-icon"') >= 9
     assert page.count('aria-hidden="true" focusable="false"') >= 9
     for emoji in ("📔", "🍄", "📖", "🗓️", "🔎", "❓", "📸"):
@@ -507,14 +507,14 @@ def test_guide_rows_use_record_style_separators_and_plain_notes(monkeypatch, tmp
     assert "図鑑・季節・見た目の特徴。3つの視点からキノコを探せます。" not in page
     assert 'class="portal-guide-list portal-guide-list--3"' in page
     assert page.count('class="portal-guide-row"') == 3
-    assert "名前、五十音順から探す" in page
+    assert "キノコの名前から探す" in page
     assert "名前、五十音順からキノコを探す" not in page
     assert "名前や写真、五十音からキノコを探す" not in page
     for phrase in (
-        "名前がわかる場合は",
-        "図鑑から名前や五十音順で探せます。",
-        "撮影した時期がわかる場合は",
-        "季節から候補をたどれます。",
+        "名前から探したい場合は",
+        "名前を検索したり、五十音順の一覧から探せます。",
+        "季節ごとに写真を見たいときは",
+        "このブログで撮影したキノコを、季節ごとにまとめています。",
         "名前がわからない場合は",
         "傘やヒダなど、見た目の特徴から絞り込めます。",
     ):
@@ -572,8 +572,8 @@ def test_approved_backgrounds_preserve_guide_text_and_links(monkeypatch, tmp_pat
     page = render(monkeypatch, tmp_path, feature_search_available=True)
     soup = BeautifulSoup(page, "html.parser")
     expected = (
-        ("guide", "index.html", "図鑑を見る", "名前、五十音順から探す", "名前がわかる場合は", "図鑑から名前や五十音順で探せます。"),
-        ("season", "season.html", "季節から探す", "撮影された季節からたどる", "撮影した時期がわかる場合は", "季節から候補をたどれます。"),
+        ("guide", "index.html", "キノコの名前から探す", "", "名前から探したい場合は", "名前を検索したり、五十音順の一覧から探せます。"),
+        ("season", "season.html", "季節から探す", "", "季節ごとに写真を見たいときは", "このブログで撮影したキノコを、季節ごとにまとめています。"),
         ("features", "features.html", "特徴から探す", "見た目の特徴から絞り込む", "名前がわからない場合は", "傘やヒダなど、見た目の特徴から絞り込めます。"),
     )
     rows = soup.select(".portal-guide-row")

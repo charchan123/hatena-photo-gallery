@@ -112,13 +112,63 @@ def retained_best_shot_data(path):
                    for section in soup.select('.best-shot-month')],
         'archives': [(a.get('href'), a.get_text()) for a in soup.select('.best-shots-archive a')]
     }
+# Only these exact approved reader-facing strings may differ. The generated
+# source, photography, URLs, attributes and markup must otherwise be byte-equal
+# to the immutable baseline after accounting for the reviewed copy edit.
+approved_page_copy = [
+    ('このブログで出会った写真と、確認できた図鑑情報をまとめています。',
+     '撮影したキノコの写真と、資料をもとに調べた情報をまとめています。'),
+    ('名前や五十音順から、ブログで出会ったキノコを探せます。',
+     'ブログに登場したキノコを、名前や五十音順から探せます。'),
+    ('名前が分かるときは検索、分からないときは五十音からたどれます。',
+     '名前を入力して検索するか、五十音順の一覧から探せます。'),
+    ('撮影時期や見た目の特徴など、別の手がかりから探せます。',
+     '季節や特徴など、名前以外の方法でもキノコを探せます。調査中のキノコやベストショットも掲載しています。'),
+    ('写真の撮影月から探せます', '撮影した月からキノコを探せます。'),
+    ('資料に記載された見た目の特徴から探す', 'キノコを見た目の特徴から探せます。'),
+    ('気になった写真を★で保存して、あとからまとめて見返せます。',
+     '★をつけた写真を、撮影時期ごとにまとめています。'),
+    ('気になった写真を★で保存して、あとから季節ごとに見返せます。',
+     '★をつけた写真を、撮影時期ごとにまとめています。'),
+    ('観察中の写真', '気になったキノコ'),
+    ('まだ、ここは静かです。', '★をつけた写真はまだありません'),
+    ('気になった写真に ★ をつけると、少しずつ並びはじめます。',
+     '気になった写真に★をつけると、ここに表示されます。'),
+    ('キノコ探索のブログ記事を、新しい順に紹介します。',
+     'キノコ探索の記事を、新しい順に並べています。'),
+    ('<span>図鑑を見る</span>', '<span>キノコの名前から探す</span>'),
+    ('<small>名前、五十音順から探す</small>', '<small></small>'),
+    ('名前がわかる場合は', '名前から探したい場合は'),
+    ('図鑑から名前や五十音順で探せます。',
+     '名前を検索したり、五十音順の一覧から探せます。'),
+    ('<small>撮影された季節からたどる</small>', '<small></small>'),
+    ('撮影した時期がわかる場合は', '季節ごとに写真を見たいときは'),
+    ('季節から候補をたどれます。',
+     'このブログで撮影したキノコを、季節ごとにまとめています。'),
+    ('正体を調べているキノコを見る', '正体不明のキノコの写真を見る'),
+    ('とっておきの一枚を集めた写真館', 'お気に入りのキノコ写真を集めました'),
+]
 for p in html_files:
     baseline = root / 'before' / p.name
     if exhibition and (p.name == 'best-shots.html' or
                        p.name.startswith('best-shots-') and p.name.endswith('.html')):
         assert retained_best_shot_data(p) == retained_best_shot_data(baseline), p.name
+        if p.name.startswith('best-shots-'):
+            year = p.stem.removeprefix('best-shots-')
+            assert (f'{year}年に撮影したキノコの中から、ベストショットを月ごとにまとめています。'
+                    in p.read_text(encoding='utf-8')), p.name
     else:
-        assert p.read_bytes() == baseline.read_bytes(), p.name
+        normalized = baseline.read_text(encoding='utf-8')
+        for original, approved in approved_page_copy:
+            normalized = normalized.replace(original, approved)
+        actual = p.read_text(encoding='utf-8')
+        if normalized != actual:
+            from difflib import unified_diff
+            report = ''.join(list(unified_diff(normalized.splitlines(True),
+                                               actual.splitlines(True),
+                                               fromfile='approved-copy-baseline',
+                                               tofile='actual'))[:35])
+            raise AssertionError(f'{p.name}: unapproved HTML difference:\\n{report}')
 old = set(manifest['replacements'])
 new = {a['asset'] for a in manifest['assets']}
 remaining = []
@@ -142,12 +192,28 @@ changed_styles = set(manifest['css_non_artwork_sha256'])
 protected = [p for p in git('ls-tree','-rz','--name-only',base).decode().split('\0') if p and
              p != 'main.py' and p not in changed_styles and
              not p.startswith(('.github/','audit/','tests/','docs/','tools/'))]
+# This artwork-only audit also runs against the approved copy/UI PR.
+# The comments/worker and all unrelated sources retain their original strict
+# review gates. Only the seven exact reviewed Git blobs below may deviate.
+approved_copy_source_blobs = {
+    'best_shot_ui.py': '96b7569629bc524a055371fb096fc710065cee4a',
+    'detail_ui.py': '85e630501fd622aaafd4a634944498600581f42c',
+    'feature_ui.py': 'b7d14185b59a3bb1aae7d90565076726b2ae57cd',
+    'records_ui.py': 'cfc82d0a8d22245bfec4cbe66a10de259e3a53c4',
+    'research_ui.py': '0eae86e8d2b484b0cb0280cb883796449791cf6b',
+    'season_ui.py': '2b5c6465557cb25873ef8b98360a8df2ce30098a',
+    'assets/research-comments.js': 'e770b36cadf9ec4f640821d2eb6f4bbb2898a5fe',
+}
+assert set(approved_copy_source_blobs) <= set(protected)
 hashes = {}
 gallery_viewer_rules_added = False
 for p in protected:
     before_bytes = git('show', f'{base}:{p}')
     after_bytes = (repo / p).read_bytes()
-    if p == 'assets/gallery.css':
+    if p in approved_copy_source_blobs:
+        assert before_bytes != after_bytes, p
+        assert git('rev-parse', f'HEAD:{p}').decode().strip() == approved_copy_source_blobs[p], p
+    elif p == 'assets/gallery.css':
         gallery_viewer_rules_added = verify_gallery_css(before_bytes, after_bytes)
     else:
         assert_reviewed_source(base, p, after_bytes)

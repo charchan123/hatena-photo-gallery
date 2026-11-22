@@ -170,7 +170,7 @@ def render_records_page(portal_data, *, now=None):
 <div class="records-hero-copy">
 <span class="records-eyebrow">FIELD NOTES</span>
 <h1 id="records-title">観察記録</h1>
-<p>キノコ探索のブログ記事を新しい順にまとめています。</p>
+<p>キノコ探索のブログ記事を、公開日の新しい順にまとめています。</p>
 </div>
 </header>
 <div class="records-hub-body">

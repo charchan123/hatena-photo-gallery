@@ -108,7 +108,7 @@ def test_index_uses_simple_season_entry_copy(monkeypatch, tmp_path):
     main.generate_index({}, {})
     rendered = (tmp_path / "index.html").read_text(encoding="utf-8")
     assert "季節から探す" in rendered
-    assert "写真の撮影月から探せます" in rendered
+    assert "撮影した月からキノコを探せます。" in rendered
     assert "EXIF撮影月から探せます" not in rendered
 
 
@@ -127,10 +127,10 @@ def test_index_keeps_season_and_note_routes_in_new_guide_layout(monkeypatch, tmp
 
 def test_page_explains_exif_source_and_not_general_occurrence_season():
     rendered = season_ui.render_season_page(data(), main.safe_filename)
-    assert "実際に撮影した写真の撮影月" in rendered
-    assert "撮影月は写真のEXIF情報をもとにしています" in rendered
-    assert "キノコの発生時期は地域や気候、その年の状況によって前後します" in rendered
-    assert "推測配置していません" in rendered
+    assert "実際に撮影した写真を、撮影月" in rendered
+    assert "季節は、写真に記録された撮影月をもとに分けています" in rendered
+    assert "キノコの発生時期は地域や年によって異なる" in rendered
+    assert "撮影月が分からない写真は、季節ごとの一覧には含めていません" in rendered
 
 
 def test_portal_failure_never_reads_stale_data_or_generates_season(monkeypatch):

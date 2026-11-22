@@ -6,10 +6,25 @@ const root=path.resolve(process.argv[2]),fixture=JSON.parse(fs.readFileSync(path
 const out=path.resolve(process.argv[3]||path.join(root,'results'));fs.mkdirSync(out,{recursive:true});
 const {standalonePortalCSS}=require('./standalone_portal_css.cjs');
 const layoutCSS=s=>standalonePortalCSS(s).replace(/url\([^)]*\)/g,'url(artwork)');
-const standaloneUnchanged=layoutCSS(fs.readFileSync(path.join(root,'before/assets/portal.css'),'utf8'))===layoutCSS(fs.readFileSync(path.join(root,'after/assets/portal.css'),'utf8'));
-// A host-breakpoint change alone is not a request to enlarge thumbnails again.
-// Keep the stricter equal-height/whitespace assertions for unchanged standalone CSS.
-if(standaloneUnchanged)process.env.LAYOUT_EXPECT_UNCHANGED='1';
+const beforePortalCSS=fs.readFileSync(path.join(root,'before/assets/portal.css'),'utf8');
+const afterPortalCSS=fs.readFileSync(path.join(root,'after/assets/portal.css'),'utf8');
+const standaloneUnchanged=layoutCSS(beforePortalCSS)===layoutCSS(afterPortalCSS);
+// Exact 2026-11-23 copy/label wrapping edits are not thumbnail resize requests.
+// Confirm the ONLY CSS changes are the two approved substitutions; preserve
+// the stricter equal-height and whitespace assertions for every viewport.
+const approvedCSSChanges=[
+ ['.portal-guide-row .portal-card__copy strong { gap:7px; font-size:1rem; white-space:nowrap; }',
+  '.portal-guide-row .portal-card__copy strong { gap:7px; font-size:.92rem; white-space:normal; line-height:1.25; }'],
+ ['.portal-guide-row .portal-card__copy small { font-size:.7rem; line-height:1.3; white-space:nowrap; }',
+  '.portal-guide-row .portal-card__copy small { font-size:.7rem; line-height:1.3; white-space:nowrap; }\n.portal-guide-row .portal-card__copy small:empty { display:none; }']
+];
+let expectedCopyOnly=beforePortalCSS,copyOnly=true;
+for(const [from,to] of approvedCSSChanges){
+ if(expectedCopyOnly.split(from).length!==2){copyOnly=false;break;}
+ expectedCopyOnly=expectedCopyOnly.replace(from,to);
+}
+const approvedCopyOnly=copyOnly&&expectedCopyOnly===afterPortalCSS;
+if(standaloneUnchanged||approvedCopyOnly)process.env.LAYOUT_EXPECT_UNCHANGED='1';
 console.log(JSON.stringify({standalonePortalCSSUnchanged:standaloneUnchanged,expectUnchanged:process.env.LAYOUT_EXPECT_UNCHANGED}));
 const server=http.createServer((req,res)=>{const f=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname));if(!f.startsWith(root+path.sep)||!fs.existsSync(f)||!fs.statSync(f).isFile()){res.writeHead(404);return res.end();}res.setHeader('Content-Type',({'.html':'text/html','.css':'text/css','.js':'text/javascript','.webp':'image/webp','.png':'image/png'})[path.extname(f)]||'application/octet-stream');res.end(fs.readFileSync(f));});
 let browser,assertions=0;const check=(v,message)=>{assert.ok(v,message);assertions++};

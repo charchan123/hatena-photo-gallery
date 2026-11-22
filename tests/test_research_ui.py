@@ -79,7 +79,7 @@ def test_status_priority_and_candidate_is_exact_only():
     page = render_research_page(build_research_model(portal(
         conflict, observation(1, "不明", article_id="b"),
         observation(2, "候補？", article_id="c"))))
-    assert "現在の候補名" in page and "候補？" in page
+    assert "現在の候補名" not in page and "候補？" in page
     assert 'class="research-status is-unidentified">未同定</span>' in page
     assert 'class="research-status is-candidate">候補名あり</span>' in page
     assert 'class="research-status is-review">名称確認中</span>' in page
@@ -123,7 +123,7 @@ def test_render_escapes_article_and_photo_and_links_only_valid_urls():
 def test_page_and_css_design_contract():
     page = render_research_page(build_research_model(portal(observation(0))))
     css = (ROOT / "assets/research.css").read_text()
-    assert "不明キノコ研究室" in page and "同定が確定していることを意味しません" in page
+    assert "不明キノコ研究室" in page and "まだ種類が確定していない候補名です。" in page
     assert "コメント・返信機能は今後追加予定" in page
     assert "同定のヒントや情報" in page and 'class="research-coming-soon"' in page
     assert all(forbidden not in page for forbidden in ("<form", "<textarea", "supabase"))
@@ -131,7 +131,7 @@ def test_page_and_css_design_contract():
     assert 'class="research-hub"' in page
     assert 'class="research-hero"' in page
     assert "RESEARCH LAB" in page
-    assert page.count("← 図鑑へ戻る") == 1
+    assert page.count("← キノコ図鑑へ戻る") == 2
     assert 'class="research-footer"' in page
     assert page.index('class="research-cases-wrap"') < page.index('class="research-footer"') < page.index("</main>")
     assert 'assets/research.css' in page and 'class="research-photos"' in page
@@ -146,23 +146,23 @@ def test_page_and_css_design_contract():
         assert selector in css
 
 
-def test_research_cards_keep_candidate_slot_and_pc_rows_aligned():
+def test_research_cards_remove_duplicate_candidate_slot_and_keep_pc_rows_aligned():
     page = render_research_page(build_research_model(portal(
         observation(0, "不明", article_id="unknown"),
         observation(1, "候補?", article_id="candidate"),
     )))
     css = (ROOT / "assets/research.css").read_text()
 
-    assert page.count("現在の候補名") == 2
-    assert '<div class="research-candidate"><span>現在の候補名</span><strong>-</strong></div>' in page
-    assert '<div class="research-candidate"><span>現在の候補名</span><strong>候補?</strong></div>' in page
-    assert "まだ名前が分からないキノコや、候補名を調べているキノコを集めました。" in page
-    assert "名前が分かるまでの調査記録" in page
-    assert "名前が分かるまでに調べたことや、候補になった特徴を記録しています。" in page
+    assert page.count("現在の候補名") == 0
+    assert '<h2>不明</h2>' in page
+    assert '<h2>候補?</h2>' in page
+    assert "名前の分からないキノコを、写真や特徴を手がかりに調べています。" in page
+    assert "キノコの調査記録" in page
+    assert "名前の候補や、気になった特徴を記録しています。" in page
     assert "調べている途中も観察記録" not in page
     assert "答えだけでなく、名前へたどり着く途中の情報も残しています。" not in page
 
-    assert "grid-template-rows:52px 52px 42px 190px auto" in css
+    assert "grid-template-rows:72px 42px 190px auto" in css
     assert ".research-index .research-photos { display:flex;" in css
     assert "height:190px" in css
     assert "overflow-x:auto" in css

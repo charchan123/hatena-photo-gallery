@@ -5,6 +5,10 @@ on:
   schedule:
     # Independent read-only monitoring continues even if deploy/history storage fails.
     - cron: '30 1 * * *'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 permissions:
   contents: read
   pull-requests: read
@@ -66,6 +70,26 @@ jobs:
           assert report['deletions']['history_persisted'] is False
           assert not Path('cache/never-published-deletion-preview').exists()
           print('PASS: real guard evaluated latest inventory; no output/ref writes')
+          PY
+      - name: Record GitHub API quota after a blocked audit
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from urllib.request import Request, urlopen
+          req = Request('https://api.github.com/rate_limit', headers={
+              'User-Agent': 'kinoko-deletion-quota-check',
+              'Accept': 'application/vnd.github+json',
+              'Authorization': 'Bearer ' + os.environ['GH_TOKEN']})
+          try:
+              with urlopen(req, timeout=15) as response:
+                  core = json.load(response).get('resources', {}).get('core', {})
+              print('DELETION_REF_API_QUOTA', {'remaining': core.get('remaining'),
+                    'limit': core.get('limit'), 'reset_unix': core.get('reset')})
+          except Exception as exc:
+              print('DELETION_REF_QUOTA_CHECK_UNAVAILABLE', type(exc).__name__)
           PY
       - name: Save published-only evidence even on failure
         if: always()

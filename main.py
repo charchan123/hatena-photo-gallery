@@ -2217,7 +2217,7 @@ def generate_gallery(entries, exif_cache, detail_views=None, multi_subject_overl
       <div class="detail-hero-copy">
         <span class="detail-eyebrow">MUSHROOM DETAIL</span>
         <h2 id="detail-title">{escaped_alt}</h2>
-        <p>このブログで出会った写真と、確認できた図鑑情報をまとめています。</p>
+        <p>撮影したキノコの写真と、資料をもとに調べた情報をまとめています。</p>
       </div>
     </header>
 
@@ -2466,7 +2466,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
       <div class="guide-hero-copy">
         <span class="guide-eyebrow">MUSHROOM GUIDE</span>
         <h1 id="guide-title">キノコ図鑑</h1>
-        <p>名前や五十音順から、ブログで出会ったキノコを探せます。</p>
+        <p>ブログに登場したキノコを、名前や五十音順から探せます。</p>
       </div>
     </header>
 
@@ -2475,7 +2475,7 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
         <div class="guide-section-heading">
           <span class="guide-eyebrow">FIND A MUSHROOM</span>
           <h2 id="guide-find-title">キノコを探す</h2>
-          <p>名前が分かるときは検索、分からないときは五十音からたどれます。</p>
+          <p>名前を入力して検索するか、五十音順の一覧から探せます。</p>
         </div>
 
         <div class="guide-find-grid">
@@ -2503,7 +2503,10 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
             f'              <a class="aiuo-link" href="{safe_filename(group)}.html">{group}</a>\n'
         )
 
-    index_parts.append("""            </div>
+    ways_extra = ("調査中のキノコやベストショットも掲載しています。"
+                  if research_summary and best_shot_summary
+                  and best_shot_summary.get("entry_count", 0) > 0 else "")
+    index_parts.append(f"""            </div>
           </article>
         </div>
 
@@ -2523,10 +2526,10 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
         <div class="guide-section-heading">
           <span class="guide-eyebrow">OBSERVATION NOTE</span>
           <h2 id="guide-note-title">観察ノート</h2>
-          <p>気になった写真を★で保存して、あとからまとめて見返せます。</p>
+          <p>★をつけた写真を、撮影時期ごとにまとめています。</p>
         </div>
         <a class="guide-note-action" href="favorite.html">
-          <strong>観察中の写真</strong>
+          <strong>気になったキノコ</strong>
           <span id="favorite-count"></span>
           <small>保存した写真を見る →</small>
         </a>
@@ -2538,17 +2541,17 @@ window.ALL_MUSHROOMS = {json.dumps(all_mushrooms_js, ensure_ascii=False)};
     <div class="guide-section-heading guide-section-heading--compact">
       <span class="guide-eyebrow">OTHER WAYS</span>
       <h2 id="guide-ways-title">ほかの探し方</h2>
-      <p>撮影時期や見た目の特徴など、別の手がかりから探せます。</p>
+      <p>季節や特徴など、名前以外の方法でもキノコを探せます。{ways_extra}</p>
     </div>
     <div class="guide-way-grid">
       <a class="guide-way guide-way--season" href="season.html">
-        <span>SEASON</span><strong>季節から探す</strong><small>写真の撮影月から探せます</small>
+        <span>SEASON</span><strong>季節から探す</strong><small>撮影した月からキノコを探せます。</small>
       </a>
 """)
 
     if feature_search_available:
         index_parts.append("""      <a class="guide-way guide-way--features" href="features.html">
-        <span>FEATURES</span><strong>特徴から探す</strong><small>資料に記載された見た目の特徴から探す</small>
+        <span>FEATURES</span><strong>特徴から探す</strong><small>キノコを見た目の特徴から探せます。</small>
       </a>
 """)
 
@@ -2648,7 +2651,7 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
     <header class="portal-records-heading">
       <p class="portal-eyebrow">FIELD NOTES</p>
       <h1 id="records-heading">{portal_icon("records")}<span>観察記録{content_count(records_count, "記事")}</span></h1>
-      <p>キノコ探索のブログ記事を、新しい順に紹介します。</p>
+      <p>キノコ探索の記事を、新しい順に並べています。</p>
     </header>
   </div>
   <div class="record-preview-list">{render_record_preview_rows(observation_records, limit=3)}</div>
@@ -2687,18 +2690,18 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
         (
             "guide",
             "index.html",
-            "図鑑を見る",
-            "名前、五十音順から探す",
-            "名前がわかる場合は",
-            "図鑑から名前や五十音順で探せます。",
+            "キノコの名前から探す",
+            "",
+            "名前から探したい場合は",
+            "名前を検索したり、五十音順の一覧から探せます。",
         ),
         (
             "season",
             "season.html",
             "季節から探す",
-            "撮影された季節からたどる",
-            "撮影した時期がわかる場合は",
-            "季節から候補をたどれます。",
+            "",
+            "季節ごとに写真を見たいときは",
+            "このブログで撮影したキノコを、季節ごとにまとめています。",
         ),
     ]
     if feature_search_available:
@@ -2737,9 +2740,9 @@ def generate_new_top(grouped, exif_cache, observation_records=None,
 
     independent_cards = []
     if research_summary:
-        independent_cards.append(("research", "research.html", "不明キノコ研究室", "正体を調べているキノコを見る", "RESEARCH LAB", research_summary.get("case_count"), "件"))
+        independent_cards.append(("research", "research.html", "不明キノコ研究室", "正体不明のキノコの写真を見る", "RESEARCH LAB", research_summary.get("case_count"), "件"))
     if best_shot_summary and best_shot_summary.get("entry_count", 0) > 0:
-        independent_cards.append(("best-shots", "best-shots.html", "ベストショット", "とっておきの一枚を集めた写真館", "BEST SHOTS", best_shot_summary["entry_count"], "枚"))
+        independent_cards.append(("best-shots", "best-shots.html", "ベストショット", "お気に入りのキノコ写真を集めました", "BEST SHOTS", best_shot_summary["entry_count"], "枚"))
     if independent_cards:
         parts.append('<section class="portal-independent-links" aria-label="特集コンテンツ">\n')
         for card in independent_cards:
@@ -2803,20 +2806,20 @@ def generate_favorite_page(grouped):
       <div class="favorite-hero-copy">
         <span class="favorite-eyebrow">OBSERVATION NOTE</span>
         <h1 id="favorite-title">観察ノート</h1>
-        <p>気になった写真を★で保存して、あとから季節ごとに見返せます。</p>
+        <p>★をつけた写真を、撮影時期ごとにまとめています。</p>
       </div>
     </header>
 
     <div class="favorite-hub-body">
       <div class="favorite-section-heading">
         <span class="favorite-eyebrow">SAVED PHOTOS</span>
-        <h2>観察中の写真</h2>
+        <h2>気になったキノコ</h2>
         <p>★をつけた写真を、撮影時期ごとにまとめています。</p>
       </div>
 
       <div class="favorite-empty">
-        まだ、ここは静かです。<br>
-        <small>気になった写真に ★ をつけると、少しずつ並びはじめます。</small>
+        ★をつけた写真はまだありません<br>
+        <small>気になった写真に★をつけると、ここに表示されます。</small>
       </div>
 
       <div class="favorite-gallery"></div>

@@ -83,7 +83,7 @@ def test_render_has_accessible_and_filter_contract(data):
     assert 'data-facet="rod_cylindrical"' in page and 'aria-pressed="false"' in page
     assert 'aria-live="polite"' in page and "選択をクリア" in page
     assert 'data-facets="rod_cylindrical"' in page and 'href="detail.html"' in page
-    assert "判定する機能ではありません" in page and 'target="_top"' not in page
+    assert "種類を特定することはできません" in page and 'target="_top"' not in page
     assert 'class="mushroom-list feature-results"' in page
     assert 'class="mushroom-card feature-card"' in page
     assert 'class="mushroom-card-thumb"' in page

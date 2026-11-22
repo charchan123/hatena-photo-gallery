@@ -626,17 +626,17 @@ def render_feature_page(model, safe_filename=None):
       <div class="feature-hero-copy">
         <span class="feature-eyebrow">FEATURE FINDER</span>
         <h1 id="feature-title">特徴から探す</h1>
-        <p>写真や資料に記載された見た目の特徴を組み合わせて探せます。</p>
+        <p>傘やヒダなどの特徴を選んで、キノコを探せます。</p>
       </div>
     </header>
     <div class="feature-hub-body">
       <div class="feature-heading">
         <span class="feature-eyebrow">FILTER BY APPEARANCE</span>
         <h2>特徴を選ぶ</h2>
-        <p>選んだ特徴をすべて含む図鑑登録種を表示します。条件は複数選択できます。</p>
+        <p>気になる特徴を選んでください。複数の特徴を組み合わせて探せます。</p>
       </div>
-      <p class="feature-warning">選んだ特徴が出典資料に明記されている図鑑登録種だけを表示します。特徴だけでキノコの種類を判定する機能ではありません。</p>
-      <p class="feature-warning">表示する状態や条件は、同じ個体で同時に現れることを保証するものではありません。</p>
+      <p class="feature-warning">選んだ特徴が資料で確認できたキノコだけを表示します。特徴だけでキノコの種類を特定することはできません。</p>
+      <p class="feature-warning">同じ種類のキノコでも、成長段階や個体によって見た目が違うことがあります。選んだ特徴がすべて同時に現れるとは限りません。</p>
       <div class="feature-coverage"><span>特徴検索対応</span><strong>{count}</strong><span>種類</span></div>
       <section class="feature-controls" aria-label="特徴で絞り込む">
         {''.join(groups)}
@@ -650,7 +650,7 @@ def render_feature_page(model, safe_filename=None):
       <div class="feature-result-count" aria-live="polite">{count}種類</div>
     </header>
     <div class="mushroom-list feature-results">{''.join(cards)}</div>
-    <p class="feature-empty" hidden>該当する図鑑登録種はありません。条件を減らしてみてください。</p>
+    <p class="feature-empty" hidden>条件に合うキノコは見つかりませんでした。条件を減らしてみてください。</p>
   </section>
   <footer class="feature-footer"><a href="index.html">← キノコ図鑑へ戻る</a></footer>
 </main>

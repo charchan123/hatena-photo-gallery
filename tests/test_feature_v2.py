@@ -66,7 +66,7 @@ def test_main_feature_cutover_uses_production_gate(package, monkeypatch, tmp_pat
     assert main.generate_feature_page_if_fresh({"build_ok": True}) is True
     page = (tmp_path / "features.html").read_text()
     assert "feature-qualifier" not in page
-    assert "判定する機能ではありません" in page
+    assert "種類を特定することはできません" in page
     assert TRUSTED_FEATURE_V2_MANIFEST_SHA256 not in page
 
 
@@ -231,10 +231,11 @@ def test_qualifiers_survive_model_but_are_hidden_from_cards(package):
     assert detail["qualifiers"] == assignment["qualifiers"]
     page = render_feature_page(model)
     assert assignment["evidence_text"] not in page
-    assert all(value not in page for value in assignment["qualifiers"])
+    card_section = page.split('<section class="feature-controls"', 1)[1]
+    assert all(value not in card_section for value in assignment["qualifiers"])
     assert "feature-qualifier" not in page
-    assert "同じ個体で同時に現れることを保証" in page
-    assert "特徴だけでキノコの種類を判定" in page
+    assert "選んだ特徴がすべて同時に現れるとは限りません" in page
+    assert "特徴だけでキノコの種類を特定することはできません" in page
 
 
 def test_missing_and_identity_swapped_snapshots_fail(package):
@@ -398,8 +399,9 @@ def test_representative_qualifier_categories_survive_model_but_not_render(
     assert detail["qualifiers"] == assignment["qualifiers"]
     page = render_feature_page(model)
     assert assignment["evidence_text"] not in page
-    assert expected not in page
-    assert all(value not in page for value in assignment["qualifiers"])
+    assert expected not in page.split('<section class="feature-controls"', 1)[1]
+    card_section = page.split('<section class="feature-controls"', 1)[1]
+    assert all(value not in card_section for value in assignment["qualifiers"])
     assert "feature-qualifier" not in page
 
 
