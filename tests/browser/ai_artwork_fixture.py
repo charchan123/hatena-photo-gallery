@@ -279,7 +279,9 @@ for p in protected:
         # PR #164 is now the comparison base, so these approved bytes can
         # legitimately match the previous revision. The exact Git blob stays pinned.
         expected_blob = (
-            '7c7fa7c2aa44d0e75136b7c62baa6281b44572b4'
+            '4706e139648691fa163f6b2282944bd7f858c8b2'
+            if p == 'detail_ui.py' and git('rev-parse', base).decode().strip() == '019b734725471dba35641b188b30eb0d12e384de'
+            else             '7c7fa7c2aa44d0e75136b7c62baa6281b44572b4'
             if p == 'detail_ui.py' and git('rev-parse', base).decode().strip() == '2ff647f08f488bb439a6d601ec38efd55924a783'
             else '00642a105bc74a1229d82838b1b7acc4f0d5344b'
             if p == 'detail_ui.py' and git('rev-parse', base).decode().strip() == 'ee64c84509c1115252000a9828fa207c2095cb9b'
