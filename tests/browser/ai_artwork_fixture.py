@@ -218,34 +218,10 @@ for p in html_files:
                 r'<div class="knowledge-note">([^<]*)</div>',
                 approved_food_note_display, normalized
             )
-        if git('rev-parse', base).decode().strip() == '3af0f671a610224c32e61fc1836d895d80c35409':
-            # Normalize only exact, human-reviewed food-note/label text.
-            # Every other HTML byte (photos, source links, scripts, warnings)
-            # must still match the immutable production baseline.
-            import html as html_module
-            import sys
-            sys.path.insert(0, str(repo))
-            from detail_ui import (FOOD_NOTE_REVIEWED, reader_facing_food_note,
-                                   YAMADORITAKEMODOKI_DISPLAY_NOTE, SHIITAKE_DISPLAY_NOTE)
-            name_index = {row[0]: row for row in FOOD_NOTE_REVIEWED.values()}
-            normalized = normalized.replace(
-                '公的・専門資料に毒性の記載あり', '公的・専門資料には毒性の記載があります'
-            ).replace('食毒情報は未確認', '食毒の区分は確認できていません')
-            reviewed = name_index.get(p.stem)
-            if reviewed and '<section class="knowledge-panel">' in normalized:
-                name, source_note, new_note = reviewed
-                old_note = (YAMADORITAKEMODOKI_DISPLAY_NOTE
-                            if name == 'ヤマドリタケモドキ' else
-                            SHIITAKE_DISPLAY_NOTE if name == 'シイタケ' else
-                            reader_facing_food_note(source_note))
-                if old_note is not None:
-                    old_html = '<div class="knowledge-note">' + html_module.escape(old_note) + '</div>'
-                    new_html = ('<div class="knowledge-note">' + html_module.escape(new_note) + '</div>'
-                                if new_note else '')
-                    assert normalized.count(old_html) == 1, (p.name, 'food-note baseline changed')
-                    normalized = normalized.replace(old_html, new_html, 1)
-                else:
-                    assert new_note is None, (name, 'missing prior note')
+        # Both before/after generators receive the same freshly built detail
+        # views from the pinned source module. Unlike historical main.py copy
+        # edits, knowledge prose already matches on both sides. Any further
+        # normalization would hide a real regression or introduce false diffs.
         actual = p.read_text(encoding='utf-8')
         if normalized != actual:
             from difflib import unified_diff
