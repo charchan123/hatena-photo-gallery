@@ -101,6 +101,13 @@ THIRD_FOUR_LINK_BLOBS = {
     'detail_ui.py': '216984bd6d0c017bb21e6c3874765a5b9397af6b',
     'data/guide-links.json': '772398ae86b28e8f9b78d0846d7eac06277261f5',
 }
+# Fourth group: the new source note renderer and the exact twelve-entry
+# manifest are the only two protected exceptions for this immutable base.
+FOURTH_FOUR_LINK_BASE = 'ee64c84509c1115252000a9828fa207c2095cb9b'
+FOURTH_FOUR_LINK_BLOBS = {
+    'detail_ui.py': '00642a105bc74a1229d82838b1b7acc4f0d5344b',
+    'data/guide-links.json': '21489ddcf589456f3a0b564e9ace78b55488f1d0',
+}
 PUBLIC_CONFIG = 'comments/public-config.json'
 PRODUCTION_ORIGIN = 'https://kinoko-research-comments.sasama-bb.workers.dev'
 RELEASE_ID = 'research-comments-production-20261120'
@@ -126,6 +133,10 @@ def assert_reviewed_source(base, path, current):
     """Never hide a main change behind the old PR's allowance."""
     original = git('show', f'{base}:{path}')
     if current == original:
+        return
+    if path in FOURTH_FOUR_LINK_BLOBS and git('rev-parse', base).decode().strip() == FOURTH_FOUR_LINK_BASE:
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
+        assert hashlib.sha1(blob).hexdigest() == FOURTH_FOUR_LINK_BLOBS[path], path
         return
     if path in THIRD_FOUR_LINK_BLOBS and git('rev-parse', base).decode().strip() == THIRD_FOUR_LINK_BASE:
         blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current

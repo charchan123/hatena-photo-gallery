@@ -118,7 +118,7 @@ def test_four_standalone_guide_links_reuse_exact_named_photos_without_classifica
         "ウラベニホテイシメジ": "urabenihoteisimeji",
         "オニイグチモドキ": "oniigutimodoki",
     }
-    assert len(manifest) == 8
+    assert len(manifest) == 12
     assert all(manifest.get(name) == key for name, key in links.items())
     taxonomy = main.load_subject_taxonomy()
     master = knowledge.load_mushroom_master()
@@ -180,7 +180,7 @@ def test_third_four_standalone_guide_links_preserve_photos_food_status_and_sourc
         "ガンタケ": ("gantake", "poisonous_confirmed", "公的・専門資料には毒性の記載があります"),
         "キツネタケ": ("kitunetake", "edibility_reported", "資料には食用との記載があります"),
     }
-    assert len(manifest) == 8
+    assert len(manifest) == 12
     assert all(manifest.get(name) == ident for name, (ident, _, _) in third.items())
 
     taxonomy = main.load_subject_taxonomy()
@@ -275,6 +275,132 @@ def test_third_four_display_text_is_not_reused_if_source_changes():
     food = next(row for row in renamed["rows"] if row["label"] == "食毒情報")
     assert food["note"] != detail_ui.THIRD_FOUR_FOOD_NOTE_CANDIDATES["gantake"][2]
 
+
+
+def test_fourth_four_exact_links_conflict_warning_and_source_integrity():
+    """Expose a food-status conflict without changing source evidence or photo identity."""
+    import detail_ui
+    import mushroom_knowledge as knowledge
+
+    root = Path(__file__).resolve().parents[1]
+    manifest = json.loads((root / "data/guide-links.json").read_text(encoding="utf-8"))
+    fourth = {
+        "キララタケ": ("kiraratake", "edibility_reported",
+                  detail_ui.KIRARATAKE_CONFLICT_LABEL),
+        "クチベニタケ": ("kutibenitake", "unknown",
+                   "食毒の区分は確認できていません"),
+        "クリタケ": ("kuritake", "edibility_reported",
+                "資料には食用との記載があります"),
+        "コタマゴテングタケ": ("kotamagotengutake", "poisonous_confirmed",
+                       "公的・専門資料には毒性の記載があります"),
+    }
+    assert len(manifest) == 12
+    assert all(manifest.get(name) == ident
+               for name, (ident, _, _) in fourth.items())
+
+    master = knowledge.load_mushroom_master()
+    sources = knowledge.load_sources()
+    taxonomy = main.load_subject_taxonomy()
+    by_id = {row["mushroom_id"]: row for row in master["entries"]}
+    known_sources = {row["source_id"] for row in sources["sources"]}
+    existing_taxonomy = {row["canonical_name"] for row in taxonomy["entries"]}
+    for name, (ident, status, label) in fourth.items():
+        record = by_id[ident]
+        assert name not in existing_taxonomy
+        assert record["canonical_name_ja"] == name
+        assert record["food_safety"]["status"] == status
+        assert record["scientific_name"]["source_ids"]
+        assert set(record["scientific_name"]["source_ids"]) <= known_sources
+        assert set(record["food_safety"]["source_ids"]) <= known_sources
+        name2, note, polished = detail_ui.FOURTH_FOUR_FOOD_NOTE_REVIEWED[ident]
+        assert (name2, note) == (name, record["food_safety"]["notes"])
+        assert polished.endswith("。")
+        assert label
+
+    speculative = [
+        "キララタケ？", "キララタケ cf.", "クチベニタケ sp.",
+        "クリタケ（広義）", "コタマゴテングタケ？", "不明",
+    ]
+    names = list(fourth) + speculative
+    photos = [{"alt": name, "src": f"fourth-photo-{i}.jpg"}
+              for i, name in enumerate(names)]
+
+    def project(links):
+        return portal_data.build_portal_data(
+            production_entries=photos, shadow_metadata=[], article_metadata={},
+            exif_cache={}, taxonomy=taxonomy, mushroom_master=master,
+            sources=sources, production_mode="phase3c_hybrid", cutover_active=True,
+            guide_links=links,
+        )
+
+    before = project({})
+    only_four = {name: data[0] for name, data in fourth.items()}
+    after = project(only_four)
+    expected = deepcopy(before)
+    for row in expected["observations"]:
+        row["mushroom_master_id"] = only_four.get(row["gallery_name"])
+    for row in expected["subjects"]:
+        ident = only_four.get(row["gallery_name"])
+        row["mushroom_master_id"] = ident
+        row["knowledge_available"] = ident is not None
+    expected["summary"]["master_linked_subject_count"] += 4
+    expected["summary"]["master_unlinked_subject_count"] -= 4
+    assert after == expected
+    assert [(row["src"], row["gallery_name"], row["classification"])
+            for row in after["observations"]] == [
+            (row["src"], row["gallery_name"], row["classification"])
+            for row in before["observations"]]
+
+    views = detail_ui.build_detail_views(after)
+    for name, (ident, status, label) in fourth.items():
+        section = views[name]
+        assert section["knowledge"] is not None
+        assert section["knowledge"]["sources"]
+        assert section["food_safety_status"] == status
+        info = next(row for row in section["knowledge"]["rows"]
+                    if row["label"] == "食毒情報")
+        assert info["value"] == label, name
+        assert info["note"] == detail_ui.FOURTH_FOUR_FOOD_NOTE_REVIEWED[ident][2]
+        html = detail_ui.render_detail_sections(section)
+        assert label in html
+        assert info["note"].replace("&", "&amp;") in html
+        assert "キノコを採ったり、調理したり、食べたりする判断には使わないでください" in html
+        assert "食用可否の自己判断には使用しない。" not in html
+    for name in speculative:
+        assert views[name]["knowledge"] is None
+
+    kirara = detail_ui.render_detail_sections(views["キララタケ"])
+    assert "資料によって食毒の記載が異なります" in kirara
+    assert "島根県" in kirara and "「毒」" in kirara
+    assert "中国" in kirara and "消化器症状" in kirara
+    assert "コプリンが含まれると確定したものではありません" in kirara
+    assert "資料には食用との記載があります" not in kirara
+
+
+def test_fourth_four_review_does_not_reapply_stale_source_prose():
+    import detail_ui
+    import mushroom_knowledge as knowledge
+
+    master = knowledge.load_mushroom_master()
+    by_id = {e["mushroom_id"]: e for e in master["entries"]}
+    for ident in ("kiraratake", "kutibenitake", "kuritake", "kotamagotengutake"):
+        record = by_id[ident]
+        exact = detail_ui._knowledge(record, {})
+        food = next(e for e in exact["rows"] if e["label"] == "食毒情報")
+        assert food["note"] == detail_ui.FOURTH_FOUR_FOOD_NOTE_REVIEWED[ident][2]
+
+        modified = deepcopy(record)
+        modified["food_safety"]["notes"] += " 再審査が必要な追加情報。"
+        changed = detail_ui._knowledge(modified, {})
+        food = next(e for e in changed["rows"] if e["label"] == "食毒情報")
+        assert food["note"] != detail_ui.FOURTH_FOUR_FOOD_NOTE_REVIEWED[ident][2]
+        assert "再審査が必要な追加情報" in food["note"]
+
+        changed_name = deepcopy(record)
+        changed_name["canonical_name_ja"] = "別の菌名"
+        renamed = detail_ui._knowledge(changed_name, {})
+        food = next(e for e in renamed["rows"] if e["label"] == "食毒情報")
+        assert food["note"] != detail_ui.FOURTH_FOUR_FOOD_NOTE_REVIEWED[ident][2]
 
 @pytest.mark.parametrize("invalid", [
     {"アミタケ": "not-in-master"},

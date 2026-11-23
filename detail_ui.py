@@ -151,6 +151,18 @@ THIRD_FOUR_FOOD_NOTE_CANDIDATES = {
 }
 
 
+# Fourth group: evidence-exact, source-pinned reader prose; retain the master unchanged.
+# Kiraratake has conflicting public source assessments, so its visible label
+# must not imply that the 'edibility_reported' master status proves edibility.
+FOURTH_FOUR_FOOD_NOTE_REVIEWED = {
+    "kiraratake": ("キララタケ", "石川県の「食」は食用記録として保持するが、島根県中山間地域研究センター2025年記事はキララタケを「毒」と明示し、資料間競合がある。中国ではCoprinellus micaceus名の消化器症状報告があるが、加熱・飲酒条件と各症例の同定根拠の細部は未確認。旧化学文献は同じクロマトグラフィー挙動の物質という留保を含み、日本産キララタケのコプリン含有や飲酒時のみの毒性は確定しない。edibility_reportedを安全保証や摂食推奨と解釈しない。食用可否の自己判断に使用せず、空の毒成分欄は無毒を意味しない。", "石川県の資料では「食」と記載されていますが、島根県中山間地域研究センターの2025年の観察会報告では「毒」と記載されています。中国で2021年に発生した中毒についても、Coprinellus micaceusという学名で消化器症状を伴う事例が報告されています。ただし、日本産のキララタケとの対応や、症例の詳しい同定方法、加熱・飲酒との関係は確認できていません。過去の化学研究にはコプリンまたは同じ分析上の挙動を示す物質の記載がありますが、日本産キララタケにコプリンが含まれると確定したものではありません。資料によって評価が異なるため、安全に食べられるとは判断できません。"),
+    "kutibenitake": ("クチベニタケ", "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「不食」。", "石川県の資料では、食毒欄に「不食」と記載されています。これは「毒」と同じ意味ではなく、この情報だけで毒性が確認されたとは判断できません。"),
+    "kuritake": ("クリタケ", "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。", "石川県の資料では、食毒欄に「食」と記載されています。これは資料上の区分であり、採取したキノコの安全性を保証するものではありません。"),
+    "kotamagotengutake": ("コタマゴテングタケ", "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「毒」。", "石川県の資料では、食毒欄に「毒」と記載されています。この記載だけで、採取したキノコの種類や安全性を判断することはできません。"),
+}
+KIRARATAKE_CONFLICT_LABEL = "資料によって食毒の記載が異なります"
+
+
 def reader_facing_food_note(note):
     """Show source-specific facts; the detail panel renders the safety warning separately."""
     note = _present(note)
@@ -256,6 +268,12 @@ def _knowledge(master, source_map):
     status = food.get("status")
     if status in FOOD_SAFETY_LABELS:
         add("食毒情報", FOOD_SAFETY_LABELS[status], food)
+        if (master.get("mushroom_id") == "kiraratake"
+                and master.get("canonical_name_ja") == "キララタケ"
+                and status == "edibility_reported"):
+            # Keep the original status and source record, but avoid a misleading
+            # food-friendly headline when public sources conflict.
+            rows[-1]["value"] = KIRARATAKE_CONFLICT_LABEL
         name_and_note = (master.get("canonical_name_ja"), food.get("notes"))
         approved_note = {
             ("ヤマドリタケモドキ", YAMADORITAKEMODOKI_SOURCE_NOTE): YAMADORITAKEMODOKI_DISPLAY_NOTE,
@@ -263,7 +281,8 @@ def _knowledge(master, source_map):
         }.get(name_and_note)
         reviewed = (FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
                     or NEXT_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
-                    or THIRD_FOUR_FOOD_NOTE_CANDIDATES.get(master.get("mushroom_id")))
+                    or THIRD_FOUR_FOOD_NOTE_CANDIDATES.get(master.get("mushroom_id"))
+                    or FOURTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id")))
         if (reviewed is not None and
                 reviewed[:2] == (master.get("canonical_name_ja"), food.get("notes"))):
             # None means this source contained only the repeated generic warning.
