@@ -172,10 +172,21 @@ for p in html_files:
         # unchanged when using the immutable published portal-data fixture.
         # The exact four source links are separately validated below.
         css_only_baselines = {'2af083e7ddf47eb8e374f38b2244e2f71a1729ed', '8971cbb5b9250733270853be50de48a6eec2de9c',
-                              '7da1d3e27d351b18ca8c6bc0f25bb3d73f7f7cf3'}
+                              '7da1d3e27d351b18ca8c6bc0f25bb3d73f7f7cf3',
+                              'f41901f452ef0046d8012355236c0dff82e587dc'}
         if git('rev-parse', base).decode().strip() not in css_only_baselines:
             for original, approved in approved_page_copy:
                 normalized = normalized.replace(original, approved)
+        # Approved 2026-11-23 shared-photo prose is the only main.py HTML
+        # difference from the immutable PR #168 baseline.
+        if git('rev-parse', base).decode().strip() == 'f41901f452ef0046d8012355236c0dff82e587dc':
+            old_shared = ('「複数種が写る写真」は元記事の記載に基づく参照表示です。'
+                          '図鑑トップ・観察記録の登録件数には加算しません。未登録の参照写真にはお気に入りの星を表示しません。')
+            new_shared = ('1枚の写真に複数の種類が写っている場合は、元の記事の記載をもとに、'
+                          'それぞれの図鑑ページにも写真を掲載しています。'
+                          'こうした写真は図鑑トップや観察記録の登録件数には含めず、'
+                          '未登録の写真にはお気に入りの星も表示していません。')
+            normalized = normalized.replace(old_shared, new_shared)
         actual = p.read_text(encoding='utf-8')
         if normalized != actual:
             from difflib import unified_diff
@@ -228,7 +239,10 @@ for p in protected:
     if p in approved_copy_source_blobs:
         # PR #164 is now the comparison base, so these approved bytes can
         # legitimately match the previous revision. The exact Git blob stays pinned.
-        assert git('rev-parse', f'HEAD:{p}').decode().strip() == approved_copy_source_blobs[p], p
+        expected_blob = ('df4751111a023756bf05c0d59b5df748c5326fe8'
+                         if p == 'detail_ui.py' and git('rev-parse', base).decode().strip() == 'f41901f452ef0046d8012355236c0dff82e587dc'
+                         else approved_copy_source_blobs[p])
+        assert git('rev-parse', f'HEAD:{p}').decode().strip() == expected_blob, p
     elif p == 'assets/gallery.css':
         gallery_viewer_rules_added = verify_gallery_css(before_bytes, after_bytes)
     else:

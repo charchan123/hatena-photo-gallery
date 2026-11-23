@@ -83,7 +83,8 @@ def test_unregistered_reference_cannot_offer_an_unresolvable_favorite(tmp_path, 
     assert soup.select_one('.shared-subject-note')
     assert not soup.select('.thumb-fav')
     assert soup.select_one('.gallery-item')['data-favorite-eligible'] == 'false'
-    assert '登録件数には加算しません' in soup.get_text()
+    assert '図鑑トップや観察記録の登録件数には含めず' in soup.get_text()
+    assert '未登録の写真にはお気に入りの星も表示していません' in soup.get_text()
 
 
 def test_source_disappearance_removes_both_display_pointers_in_fresh_generation(tmp_path, monkeypatch):

@@ -60,11 +60,21 @@ RIGHT_ANCHOR_MAIN = '8971cbb5b9250733270853be50de48a6eec2de9c'
 RIGHT_ANCHOR_CSS_BLOB = 'fa4e0476c1e5c18374b310a505a50aed06ab046a'
 # Four existing, exact-name subject links. Never authorize classification or source edits.
 EXISTING_FOUR_LINK_BASE = '7da1d3e27d351b18ca8c6bc0f25bb3d73f7f7cf3'
+# The shared LightGallery historical reviewer uses this older main, whose
+# taxonomy differs from the reviewed PR #168 only by these same four links.
+HISTORICAL_GALLERY_BASE = '8007a72708aff2dfa14e2e9638f44720bb449b76'
 EXISTING_FOUR_LINKS = {
     'ヤマドリタケモドキ': 'yamadoritakemodoki',
     'シイタケ': 'shiitake',
     'ベニテングタケ': 'benitengutake',
     'ドクヤマドリ': 'dokuyamadori',
+}
+# Copy-only change based on the immutable, reviewed PR #168 main.
+# Only the exact approved two source blobs are allowed to differ.
+DETAIL_COPY_BASE = 'f41901f452ef0046d8012355236c0dff82e587dc'
+DETAIL_COPY_BLOBS = {
+    'main.py': '82c60ac39243c22e18b65f90c81273bf27d59e8f',
+    'detail_ui.py': 'df4751111a023756bf05c0d59b5df748c5326fe8',
 }
 PUBLIC_CONFIG = 'comments/public-config.json'
 PRODUCTION_ORIGIN = 'https://kinoko-research-comments.sasama-bb.workers.dev'
@@ -92,7 +102,11 @@ def assert_reviewed_source(base, path, current):
     original = git('show', f'{base}:{path}')
     if current == original:
         return
-    if path == 'data/subject-taxonomy.json' and git('rev-parse', base).decode().strip() == EXISTING_FOUR_LINK_BASE:
+    if path in DETAIL_COPY_BLOBS and git('rev-parse', base).decode().strip() == DETAIL_COPY_BASE:
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
+        assert hashlib.sha1(blob).hexdigest() == DETAIL_COPY_BLOBS[path], path
+        return
+    if path == 'data/subject-taxonomy.json' and git('rev-parse', base).decode().strip() in {EXISTING_FOUR_LINK_BASE, HISTORICAL_GALLERY_BASE}:
         expected = json.loads(original)
         linked = set()
         for entry in expected['entries']:

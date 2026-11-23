@@ -58,19 +58,48 @@ def test_schema_and_explicit_master_link_only():
 
 def test_fields_safety_provenance_and_escaping():
     rendered = render_detail_sections(build_detail_views(fixture_portal())["リンク名？"])
-    for value in ("学名", "科", "属", "特徴", "生育環境", "資料に記載された発生時期", "資料に食用の記載あり", "成分A"):
+    for value in ("学名", "科", "属", "特徴", "生育環境", "資料に記載された発生時期", "資料には食用との記載があります", "成分A"):
         assert value in rendered
     assert "Fungus &lt;test&gt;" in rendered and "出典資料に記載された学名" in rendered
     assert "資料記載名" not in rendered
-    assert ">安全<" not in rendered and "食べられる" not in rendered
-    assert "採取・調理・飲食の判断には使用しないでください" in rendered
-    assert "情報がないことは安全を意味しません" in rendered
+    assert ">安全<" not in rendered and "食べられます" not in rendered
+    assert "参考にした資料の情報を掲載しています" in rendered
+    assert "食べられるかどうかについては、参考にした資料の情報を掲載しています。このページの情報を、キノコを採ったり、調理したり、食べたりする判断には使わないでください。毒性についての記載がなくても、安全とは限りません。" in rendered
     assert rendered.count("資料1") == 1 and rendered.count("資料2") == 1
     assert "missing" not in rendered and "https://source.test/1" in rendered
     assert 'target="_blank" rel="noopener noreferrer"' in rendered
     assert "組織2：資料2</li>" in rendered
     assert "注&lt;&amp;" in rendered and "None" not in rendered
 
+
+
+def test_approved_ishikawa_note_only_on_yamadoritakemodoki():
+    data = fixture_portal()
+    row = data["reference_data"]["mushroom_master"]["entries"][0]
+    row["canonical_name_ja"] = "ヤマドリタケモドキ"
+    row["food_safety"]["notes"] = "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。"
+    rendered = render_detail_sections(build_detail_views(data)["リンク名？"])
+    assert "石川県の資料では、食毒欄に「食」と記載されています。これは公的資料に食用との記載があることを示すもので、実際に採ったキノコの安全性を保証するものではありません。毒性についての記載がなくても安全とは限らないため、食べられるかどうかを自分で判断するためには使わないでください。" in rendered
+    assert "食べられるかどうかについては、参考にした資料の情報を掲載しています。このページの情報を、キノコを採ったり、調理したり、食べたりする判断には使わないでください。毒性についての記載がなくても、安全とは限りません。" in rendered
+    assert "資料には食用との記載があります" in rendered
+    assert "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。" not in rendered
+    # Many entries share the same source note. Do not silently rewrite them all.
+    row["canonical_name_ja"] = "ヒラタケ"
+    other = render_detail_sections(build_detail_views(data)["リンク名？"])
+    assert "石川県の資料では、食毒欄に「食」と記載されています。これは公的資料に食用との記載があることを示すもので、実際に採ったキノコの安全性を保証するものではありません。毒性についての記載がなくても安全とは限らないため、食べられるかどうかを自分で判断するためには使わないでください。" not in other
+    assert "石川県の食毒欄は「食」" in other
+
+
+def test_shared_subject_copy_without_changing_photo_identity(monkeypatch, tmp_path):
+    monkeypatch.setattr(main, "OUTPUT_DIR", str(tmp_path))
+    monkeypatch.setattr(main, "copy_shared_assets", lambda: None)
+    result = main.generate_gallery([{"alt": "リンク名？", "src": "original.jpg"}], {},
+                                   detail_views=build_detail_views(fixture_portal()),
+                                   multi_subject_overlays={"リンク名？": ["shared.jpg"]})
+    markup = (tmp_path / "リンク名？.html").read_text(encoding="utf-8")
+    assert "1枚の写真に複数の種類が写っている場合は、元の記事の記載をもとに、それぞれの図鑑ページにも写真を掲載しています。こうした写真は図鑑トップや観察記録の登録件数には含めず、未登録の写真にはお気に入りの星も表示していません。" in markup
+    assert 'data-favorite-eligible="false"' in markup
+    assert result == {"リンク名？": ["original.jpg"]}
 
 def test_name_only_source_is_not_rendered_as_provenance():
     data = fixture_portal()
@@ -143,7 +172,7 @@ def test_reader_facing_food_notes_and_duplicate_suppression():
     )
     output = render_detail_sections(build_detail_views(data)["リンク名？"])
     assert "食用可否の自己判断には使用しない" not in output
-    assert "採取・調理・飲食の判断には使用しないでください" in output
+    assert "食べられるかどうかについては、参考にした資料の情報を掲載しています。このページの情報を、キノコを採ったり、調理したり、食べたりする判断には使わないでください。毒性についての記載がなくても、安全とは限りません。" in output
 
 
 def test_all_repository_food_notes_hide_internal_terms_and_preserve_limits():

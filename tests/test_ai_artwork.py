@@ -101,6 +101,11 @@ def test_generator_logic_outside_asset_delivery_is_identical():
     approved_copy_hash = '716123aa2db4e95e450cc774b9b089528c7d3401375a03b1b4ed06308ef3936d'
     raw = source.encode()
     approved_followup_sha1 = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+    # The shared-subject note was separately approved in PR #169.
+    # Permit that exact Git blob only; keep the historical pin intact.
     assert (sha(unchanged.encode()) in {
         M['generator_source_excluding_asset_copy_sha256'], approved_copy_hash}
-        or approved_followup_sha1 == '6ab3f79a1be3cc55ddcaffe4f6381608458f1715')
+        or approved_followup_sha1 in {
+            '6ab3f79a1be3cc55ddcaffe4f6381608458f1715',
+            '82c60ac39243c22e18b65f90c81273bf27d59e8f',
+        })

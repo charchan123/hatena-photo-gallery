@@ -217,4 +217,5 @@ def test_four_existing_subjects_link_to_real_master_and_cited_detail_sections():
         html = detail_ui.render_detail_sections(views[name])
         assert '<section class="knowledge-panel">' in html
         assert "出典を見る" in html
-        assert "採取・調理・飲食の判断には使用しないでください" in html
+        assert "このページの情報を、キノコを採ったり、調理したり、食べたりする判断には使わないでください。" in html
+        assert "毒性についての記載がなくても、安全とは限りません。" in html
