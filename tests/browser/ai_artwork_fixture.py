@@ -175,7 +175,8 @@ for p in html_files:
                               '7da1d3e27d351b18ca8c6bc0f25bb3d73f7f7cf3',
                               'f41901f452ef0046d8012355236c0dff82e587dc',
                               'a580a7dd9913645efc290cd9235ea7f994386b8b',
-                              '3af0f671a610224c32e61fc1836d895d80c35409'}
+                              '3af0f671a610224c32e61fc1836d895d80c35409',
+                              'b01b0cbe66afc2ab30bc4ca08d8c9f845fcb868f'}
         if git('rev-parse', base).decode().strip() not in css_only_baselines:
             for original, approved in approved_page_copy:
                 normalized = normalized.replace(original, approved)
