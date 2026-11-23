@@ -108,4 +108,6 @@ def test_generator_logic_outside_asset_delivery_is_identical():
         or approved_followup_sha1 in {
             '6ab3f79a1be3cc55ddcaffe4f6381608458f1715',
             '82c60ac39243c22e18b65f90c81273bf27d59e8f',
+            # Exact four-guide-link portal export change, unrelated gallery paint.
+            'be519f9cc62dcb23ea3766270f40acfcf5960a2a',
         })
