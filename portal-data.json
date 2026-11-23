@@ -22,8 +22,8 @@
     "legacy_undetected_count": 31,
     "legacy_shadow_missing_count": 0,
     "human_reviewed_mushroom_count": 0,
-    "master_linked_subject_count": 63,
-    "master_unlinked_subject_count": 250,
+    "master_linked_subject_count": 67,
+    "master_unlinked_subject_count": 246,
     "knowledge_record_count": 141,
     "source_count": 419
   },
@@ -4351,8 +4351,8 @@
         "legacy_review": 3
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "turutake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "ツルタケの仲間",
@@ -4395,8 +4395,8 @@
         "legacy_review": 4
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "tengutake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "テングタケダマシ",
@@ -4778,8 +4778,8 @@
         "legacy_review": 2
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "nigakuritake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "ニシキタケ",
@@ -4902,8 +4902,8 @@
         "legacy_review": 2
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "numeriiguti",
+      "knowledge_available": true
     },
     {
       "gallery_name": "ヌメリササタケ",
@@ -9689,7 +9689,7 @@
         ],
         "excerpt": "この日は近所の山で探索をしてきた。 ウスキテングタケ(編集中) 道路脇に群生していた。しかし状態はあまり良くない。 キアシヤマドリタケ(仮称) 初の発見。見た目だけで言うと美味しそうだが本当は見た目と反してあまり美味しくないそうだ。 ヤグラタケ(編集中) 道路…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "tengutake"
     },
     {
       "observation_id": "obs-72db574d73cf8da4a02176447543018f3176a9625b3b9c72c3a02ffddb62e832",
@@ -10402,7 +10402,7 @@
         ],
         "excerpt": "しばらく雨が降り続いていたのでキノコが大量発生しているのでは？と期待を持ちながら、いつものフィールドへ行ってきた。 キイボカサタケ この日多く発生していたキノコの一つ。この他にもアカイボカサタケも発見できた。 カバイロツルタケ かなり綺麗な個体を発見。 ヘビキ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "tengutake"
     },
     {
       "observation_id": "obs-e6420f594bd4b6a3deb4aed26b60c05bced22099d4da78d391bfb935004273f2",
@@ -14900,7 +14900,7 @@
         ],
         "excerpt": "探索に出かけてからしばらく忙しく、記事を投稿できなかったが、ようやく落ち着いてきたので掲載。 不明 苔むしたアカマツの倒木から発生。名前は分からない。 ホコリタケの仲間 おそらく去年発生した個体だろう。大きくて立派な個体だった。 ニガクリタケ 一年中生えるキノ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "nigakuritake"
     },
     {
       "observation_id": "obs-eea84e21cda6176ea134d1e80c33150af101efa8400f8e651c5bd6b1df4d2ee8",
@@ -15496,7 +15496,7 @@
         ],
         "excerpt": "今年の1月にヒラタケが発生していた公会堂の切り株と、浜松市の里山へ探索に行ってきた。 ヒラタケ 切り株にびっしりと発生。おそらく今年1番の大物だと思う。今まで本種の姿は何十回と見てきたが、これほどの株は見たことが無い。 また本種は冬に発生し、毎回幼菌〜成菌のタ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "numeriiguti"
     },
     {
       "observation_id": "obs-198020f4a4f0fc25f00cb394b26a7be7cb9db8757b794f672b8aaf99bd54e85c",
@@ -15549,7 +15549,7 @@
         ],
         "excerpt": "今年の1月にヒラタケが発生していた公会堂の切り株と、浜松市の里山へ探索に行ってきた。 ヒラタケ 切り株にびっしりと発生。おそらく今年1番の大物だと思う。今まで本種の姿は何十回と見てきたが、これほどの株は見たことが無い。 また本種は冬に発生し、毎回幼菌〜成菌のタ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "numeriiguti"
     },
     {
       "observation_id": "obs-b65d1c73265fb65a734e33d64760371229a0a252f5d60e0d38134db68b67a94c",
@@ -35941,7 +35941,7 @@
         ],
         "excerpt": "伊豆の国市で静岡木の子の会の観察会が開催されたので参加してきた。 不明アワタケ 参加者が全員集まり探索開始。 しかし道端や林内はやはりとても乾燥していて、「キノコの発生は見込めないな。」と思いながら少し暗めの林に入ってみると見覚えのある傘が。裏面を確認するとア…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "tengutake"
     },
     {
       "observation_id": "obs-f171b021fa7df70bc0c265cbb5b99b1b6bf844615b88835224e8f6ce333a79e7",
@@ -35999,7 +35999,7 @@
         ],
         "excerpt": "伊豆の国市で静岡木の子の会の観察会が開催されたので参加してきた。 不明アワタケ 参加者が全員集まり探索開始。 しかし道端や林内はやはりとても乾燥していて、「キノコの発生は見込めないな。」と思いながら少し暗めの林に入ってみると見覚えのある傘が。裏面を確認するとア…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "tengutake"
     },
     {
       "observation_id": "obs-31268677d371c35d2d0f972fbb8807ec4230b5d4cdae2087dffcf585ae3ba20b",
@@ -45291,7 +45291,7 @@
         ],
         "excerpt": "散髪のついでに近辺の黒松の並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。 イ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "turutake"
     },
     {
       "observation_id": "obs-7d1e51caec7ee7fede4ab9ec323593cd2b61833c7214c371501dec4be725c382",
@@ -49771,7 +49771,7 @@
         ],
         "excerpt": "25℃を超えるような暑さが続き、夏キノコが発生しているのでは無いか？と思い近所の公園に小型菌が無いか探索してきた。 キクラゲ 前日の大雨で膨張し、拳サイズまで成長していた。 不明ベニタケ多数 早速ベニタケの仲間を発見。この固体はカワリハツに似ているがヒダの様子…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "turutake"
     },
     {
       "observation_id": "obs-eb2922e3d8276ccc679b33d87a50bbf4163c94c853e61a162841dbc5d252dc4c",
@@ -49826,7 +49826,7 @@
         ],
         "excerpt": "25℃を超えるような暑さが続き、夏キノコが発生しているのでは無いか？と思い近所の公園に小型菌が無いか探索してきた。 キクラゲ 前日の大雨で膨張し、拳サイズまで成長していた。 不明ベニタケ多数 早速ベニタケの仲間を発見。この固体はカワリハツに似ているがヒダの様子…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "turutake"
     },
     {
       "observation_id": "obs-26eeeb95ee3f4f94d7990f8b07addc0f1ae1c81a695c950dcf3c5412f530facd",
@@ -56464,7 +56464,7 @@
         ],
         "excerpt": "マツタケのシロが気になり、山を散策してきた。 オオワライタケ まず最初に大きな黄色いキノコが株状になって発生しているのを発見。近づいてみると本種だった。 幼菌も撮影。 オオワライタケは初めての発見だったこともあり、なかなかに嬉しい。 ニガクリタケ オオワライタ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "nigakuritake"
     },
     {
       "observation_id": "obs-e73b9497fbdcd9593127b73257b9cd405ff3c43dc1e6cb118562ea8cba5bb6f9",
