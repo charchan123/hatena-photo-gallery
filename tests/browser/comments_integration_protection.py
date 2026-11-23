@@ -98,7 +98,7 @@ NEXT_FOUR_LINK_BLOBS = {
 # Next group: only the exact reader-facing note render helper may change.
 THIRD_FOUR_LINK_BASE = '7b7f27fd2acc46f92d672320ac680fad4bb237a0'
 THIRD_FOUR_LINK_BLOBS = {
-    'detail_ui.py': 'a70655130daa008eaca9e450fb39ae3eba05ebed',
+    'detail_ui.py': '216984bd6d0c017bb21e6c3874765a5b9397af6b',
     'data/guide-links.json': '772398ae86b28e8f9b78d0846d7eac06277261f5',
 }
 PUBLIC_CONFIG = 'comments/public-config.json'
