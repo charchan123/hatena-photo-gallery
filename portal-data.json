@@ -22,8 +22,8 @@
     "legacy_undetected_count": 31,
     "legacy_shadow_missing_count": 0,
     "human_reviewed_mushroom_count": 0,
-    "master_linked_subject_count": 79,
-    "master_unlinked_subject_count": 234,
+    "master_linked_subject_count": 83,
+    "master_unlinked_subject_count": 230,
     "knowledge_record_count": 141,
     "source_count": 419
   },
@@ -3009,8 +3009,8 @@
         "legacy_review": 1
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "kurohatu",
+      "knowledge_available": true
     },
     {
       "gallery_name": "クロハナビラニカワタケ",
@@ -3345,8 +3345,8 @@
         "legacy_review": 3
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "kotubutake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "コツブタケ？",
@@ -4199,8 +4199,8 @@
         "legacy_review": 4
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "cyanamemututake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "ツクツクボウシタケ",
@@ -4262,8 +4262,8 @@
         "legacy_review": 1
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "tutiguri",
+      "knowledge_available": true
     },
     {
       "gallery_name": "ツチグリの仲間",
@@ -16669,7 +16669,7 @@
         ],
         "excerpt": "静岡木の子の会の観察会が沼津市の里山で行われたので参加してきた。 ハマクサギタマゴタケ 観察会は毎年10月で最後になるのだが、今年は様々な事情によ11月の観察となったそうだ。 しかし今回観察場所に選ばれた場所は比較的標高が高く、時期的なこともあり朝方は少々寒く…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "tutiguri"
     },
     {
       "observation_id": "obs-47d3d50196605f7ce266efcc93b2c15431a8615b30b966a10cbc5dbd34c9cf4a",
@@ -19658,7 +19658,7 @@
         ],
         "excerpt": "時期的におそらく今年最後となるキノコの発生がピークを迎えた富士山へ遠征してきた。 ムキタケ ポイントを向かう途中に高速道路で強い雨が降り続き、霧が濃くで始めたので探索が出来るか心配になったが、山梨県に入った途端に青空が広がり一安心。ポイントについてすぐの歩道脇…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "cyanamemututake"
     },
     {
       "observation_id": "obs-7a89d10bae765c55360dc72936abcf3ede1bc76234922e1d1e99cd7ac47c6b3a",
@@ -22914,7 +22914,7 @@
         ],
         "excerpt": "時期的におそらく今年最後となるキノコの発生がピークを迎えた富士山へ遠征してきた。 ムキタケ ポイントを向かう途中に高速道路で強い雨が降り続き、霧が濃くで始めたので探索が出来るか心配になったが、山梨県に入った途端に青空が広がり一安心。ポイントについてすぐの歩道脇…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "cyanamemututake"
     },
     {
       "observation_id": "obs-ea6850ba6292a577beb6e45cabd63ab16fa9e5e7e9b7802345d07304e1d1776c",
@@ -22988,7 +22988,7 @@
         ],
         "excerpt": "時期的におそらく今年最後となるキノコの発生がピークを迎えた富士山へ遠征してきた。 ムキタケ ポイントを向かう途中に高速道路で強い雨が降り続き、霧が濃くで始めたので探索が出来るか心配になったが、山梨県に入った途端に青空が広がり一安心。ポイントについてすぐの歩道脇…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "cyanamemututake"
     },
     {
       "observation_id": "obs-3f70ffe13d613d17752f828dec8882bf8d88d4949820dabfb6134cb4e9b86ef1",
@@ -24838,7 +24838,7 @@
         ],
         "excerpt": "ネット情報や師匠の富士山の近況情報を聞き、そろそろ高級キノコが狙える時期になったので今まで行ったことのない標高帯を歩いて来た。 ※今回は霧が良く出ていたので水滴が付いた写真が多くなっています。 追記 どうやらブログの不具合？で縦位置の写真が中央からバッサリ切ら…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "cyanamemututake"
     },
     {
       "observation_id": "obs-1872db887c45c9608c8180cf1306c06f85b439944e9709e2b4fb953969bfe214",
@@ -45341,7 +45341,7 @@
         ],
         "excerpt": "最近はキノコの発生量も増え、日々探索していたのだがあまり数が見つからず掲載ができていなかったのでまとめて掲載。 クロハツ 近所の公園に発生。この時期に本種は初めて見た。 不明 芝生に発生していた。 不明 朽木に発生。見た目はスギヒラタケに近いものを感じるが根元…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "kurohatu"
     },
     {
       "observation_id": "obs-6323f588dbdeb03b6e7ff6c63a754fbdbb152ac59550c48da07e2d8bddf2ce9f",
@@ -55836,7 +55836,7 @@
         ],
         "excerpt": "キノコが良く発生する近所の緑地でキノコを探してきた。 コツブタケ 前にコツブタケが発生していたポイントを見に行くと案の定発生していた。まるでパンのような見た目。 別アングルから。 コツブタケ以外のキノコを見つけることは出来なかった。しかしキノコが皆無ではなかっ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "kotubutake"
     },
     {
       "observation_id": "obs-cc3902327747d3a8b6ad99433707376a0bc47dd91b48c1b3b10fdfa6fbf9a8ef",
@@ -55881,7 +55881,7 @@
         ],
         "excerpt": "キノコが良く発生する近所の緑地でキノコを探してきた。 コツブタケ 前にコツブタケが発生していたポイントを見に行くと案の定発生していた。まるでパンのような見た目。 別アングルから。 コツブタケ以外のキノコを見つけることは出来なかった。しかしキノコが皆無ではなかっ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "kotubutake"
     },
     {
       "observation_id": "obs-2a33fd5ae6c540a7994fe2ae073601c5b5c685ec94c3772d9e752b04b5f273d4",
@@ -56601,7 +56601,7 @@
         ],
         "excerpt": "夏キノコが気になり、近所の緑地に行ってき た。 サトタマゴタケ 初めての一眼レフカメラでのキノコ撮影。 早速タマゴタケが菌輪を描いているのを発見した。 これほど近所に タマゴタケ が生えているのかと驚いた。 その次にコツブタケを発見した。 ここの場所に生える物…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "kotubutake"
     },
     {
       "observation_id": "obs-16031c9c576b08be85504a6d56a9cf46c17553c780a193642373665a11c86a15",
