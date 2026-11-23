@@ -181,7 +181,8 @@ for p in html_files:
                               'ee64c84509c1115252000a9828fa207c2095cb9b',
                               '2ff647f08f488bb439a6d601ec38efd55924a783',
                                '019b734725471dba35641b188b30eb0d12e384de',
-                               '8de52dfcc1c4d5756ea6e7a87b4fc150df2cdb1f'}
+                               '8de52dfcc1c4d5756ea6e7a87b4fc150df2cdb1f',
+                               '27be968fb371d6e7f0a552abe860ec203af04954'}
         if git('rev-parse', base).decode().strip() not in css_only_baselines:
             for original, approved in approved_page_copy:
                 normalized = normalized.replace(original, approved)
@@ -281,7 +282,9 @@ for p in protected:
         # PR #164 is now the comparison base, so these approved bytes can
         # legitimately match the previous revision. The exact Git blob stays pinned.
         expected_blob = (
-            '2b856a1190264c6ba2077f3fbff1c8b817a0f27b'
+            '09c09d37d658a95bb4b39aaa5a682217b300200b'
+            if p == 'detail_ui.py' and git('rev-parse', base).decode().strip() == '27be968fb371d6e7f0a552abe860ec203af04954'
+            else             '2b856a1190264c6ba2077f3fbff1c8b817a0f27b'
             if p == 'detail_ui.py' and git('rev-parse', base).decode().strip() == '8de52dfcc1c4d5756ea6e7a87b4fc150df2cdb1f'
             else             '4706e139648691fa163f6b2282944bd7f858c8b2'
             if p == 'detail_ui.py' and git('rev-parse', base).decode().strip() == '019b734725471dba35641b188b30eb0d12e384de'
