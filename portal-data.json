@@ -22,8 +22,8 @@
     "legacy_undetected_count": 31,
     "legacy_shadow_missing_count": 0,
     "human_reviewed_mushroom_count": 0,
-    "master_linked_subject_count": 75,
-    "master_unlinked_subject_count": 238,
+    "master_linked_subject_count": 79,
+    "master_unlinked_subject_count": 234,
     "knowledge_record_count": 141,
     "source_count": 419
   },
@@ -786,8 +786,8 @@
         "legacy_review": 4
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "anzutake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "アンズタケ(広義)",
@@ -1653,8 +1653,8 @@
         "legacy_review": 2
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "kakisimeji",
+      "knowledge_available": true
     },
     {
       "gallery_name": "カニノツメ",
@@ -1764,8 +1764,8 @@
         "legacy_review": 4
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "kabairoturutake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "カバイロツルタケ？",
@@ -2676,8 +2676,8 @@
         "legacy_review": 1
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "kusaurabenitake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "クサハツ",
@@ -9907,7 +9907,7 @@
         ],
         "excerpt": "しばらく雨が降り続いていたのでキノコが大量発生しているのでは？と期待を持ちながら、いつものフィールドへ行ってきた。 キイボカサタケ この日多く発生していたキノコの一つ。この他にもアカイボカサタケも発見できた。 カバイロツルタケ かなり綺麗な個体を発見。 ヘビキ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "kabairoturutake"
     },
     {
       "observation_id": "obs-40303ae2ecb79ed11f4941c52708115aac6d610a14815ed37dd804f931c38b64",
@@ -11110,7 +11110,7 @@
         ],
         "excerpt": "前回のアカヤマドリの双子の成長した姿を見たく、良い感じに成長していると思われるこの日に探索をしてきた。 ニガイグチモドキ 今年初のニガイグチの仲間。しかし撮影時設定を間違えていて、柄がかなりボケた写真になっている。 このように傘が開いた個体もたくさんあった。…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "kakisimeji"
     },
     {
       "observation_id": "obs-8dcdcb4b3d2071c2bbf68a9ebbc35cbe4366b487d0eefc69c337d1488b28fb6f",
@@ -15602,7 +15602,7 @@
         ],
         "excerpt": "今年の1月にヒラタケが発生していた公会堂の切り株と、浜松市の里山へ探索に行ってきた。 ヒラタケ 切り株にびっしりと発生。おそらく今年1番の大物だと思う。今まで本種の姿は何十回と見てきたが、これほどの株は見たことが無い。 また本種は冬に発生し、毎回幼菌〜成菌のタ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "kabairoturutake"
     },
     {
       "observation_id": "obs-b24b7fb2b0b1ee507e48f6a01323bad25dc6754014b0aff2414f760af9aeb474",
@@ -18428,7 +18428,7 @@
         ],
         "excerpt": "今年最後の静岡木の子の会の探索会が浜松市の里山で行われたので参加してきた。 クチベニタケ この場は本種の発生が多いのだが、その他県西部ではあまり見かけない。 ユキラッパタケ 発見当初はシロアンズタケかと思ったのだが、違うようだ。 追記 不明としていたが、種名を…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "kakisimeji"
     },
     {
       "observation_id": "obs-dcc47572197320ee37a2b0c70495de3c1f19073b900857130a0e789ddaf5c581",
@@ -19184,7 +19184,7 @@
         ],
         "excerpt": "今年最後の静岡木の子の会の探索会が浜松市の里山で行われたので参加してきた。 クチベニタケ この場は本種の発生が多いのだが、その他県西部ではあまり見かけない。 ユキラッパタケ 発見当初はシロアンズタケかと思ったのだが、違うようだ。 追記 不明としていたが、種名を…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "kabairoturutake"
     },
     {
       "observation_id": "obs-2f07856eab95863931ea4a2f9879b272f496cd070fbf3e3ddb5ca4ca025c733f",
@@ -24024,7 +24024,7 @@
         ],
         "excerpt": "ネット情報や師匠の富士山の近況情報を聞き、そろそろ高級キノコが狙える時期になったので今まで行ったことのない標高帯を歩いて来た。 ※今回は霧が良く出ていたので水滴が付いた写真が多くなっています。 追記 どうやらブログの不具合？で縦位置の写真が中央からバッサリ切ら…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "kusaurabenitake"
     },
     {
       "observation_id": "obs-48dca84e3107e0146af8d296d2b8664b3caa4657253517ad47bfe07042c9342d",
@@ -33120,7 +33120,7 @@
         ],
         "excerpt": "大雨から数日経ち、どうしても毎年アカヤマドリが多く発生するポイントが気になったので、5時から6時までの1時間しか無い短時間ですべてのポイントを回ってきた。 アンズタケ 歩き始めてすぐに発見。乾燥していて白くなっていた。 ウコンハツ 横構図で撮ったはずなのだが……"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "anzutake"
     },
     {
       "observation_id": "obs-90b94b8d9d0e7a44d0b5b48cc8d6d558af10e0027f9b9363804494fb8aca20ab",
@@ -34121,7 +34121,7 @@
         ],
         "excerpt": "静岡木の子の会の会員で静岡フォーレの最終下見が静岡県立森林公園行われたので参加してきた。(LUMIXG9ProIIの予行練習も含め) クサハツ 一カ月と1週間ほど雨が全く降らず、昨日の台風でようやく地に水が染み渡った様なのたが、まだ1日しか経っておらず流石にキ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "anzutake"
     },
     {
       "observation_id": "obs-a8c82b2dc5ad20b03503d2d318744baa557517ce308b0b5f75326df86a93531d",
@@ -34751,7 +34751,7 @@
         ],
         "excerpt": "静岡木の子の会の会員で静岡フォーレの最終下見が静岡県立森林公園行われたので参加してきた。(LUMIXG9ProIIの予行練習も含め) クサハツ 一カ月と1週間ほど雨が全く降らず、昨日の台風でようやく地に水が染み渡った様なのたが、まだ1日しか経っておらず流石にキ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "kabairoturutake"
     },
     {
       "observation_id": "obs-f45d0b251afcd1763437ef3ae6f0be621272b3db4e5acd7f90fbd6863c474a85",
@@ -39865,7 +39865,7 @@
         ],
         "excerpt": "静岡木の子の会の観察会が浜松市の里山で開催されたので参加してきた。 不明ハラタケ 2日前に雷雨で大雨が降ったにもかかわらず、山がカラカラに乾燥していてヒトクチタケしか見つからず、キノコが発生しているかも分からない状況だったが、本種は暗い遊歩道脇に発生していた。…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "anzutake"
     },
     {
       "observation_id": "obs-dcc82a942ee298734a60b381f5c23d539840b1db4ee1e56b4cbfa54d25e07f8d",
@@ -39922,7 +39922,7 @@
         ],
         "excerpt": "静岡木の子の会の観察会が浜松市の里山で開催されたので参加してきた。 不明ハラタケ 2日前に雷雨で大雨が降ったにもかかわらず、山がカラカラに乾燥していてヒトクチタケしか見つからず、キノコが発生しているかも分からない状況だったが、本種は暗い遊歩道脇に発生していた。…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "anzutake"
     },
     {
       "observation_id": "obs-b34467a301e352dcd1632e55939941b61a1e6f48698d25f6155ae3d1f95e6dc2",
