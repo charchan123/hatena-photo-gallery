@@ -22,8 +22,8 @@
     "legacy_undetected_count": 31,
     "legacy_shadow_missing_count": 0,
     "human_reviewed_mushroom_count": 0,
-    "master_linked_subject_count": 71,
-    "master_unlinked_subject_count": 242,
+    "master_linked_subject_count": 75,
+    "master_unlinked_subject_count": 238,
     "knowledge_record_count": 141,
     "source_count": 419
   },
@@ -5392,8 +5392,8 @@
         "legacy_review": 2
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "haratake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "ハルハラタケ(仮称)？",
@@ -6143,8 +6143,8 @@
         "legacy_review": 3
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "hokoritake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "ホコリタケの仲間",
@@ -6483,8 +6483,8 @@
         "legacy_review": 1
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "mukitake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "ムササビタケ",
@@ -6958,8 +6958,8 @@
         "legacy_review": 2
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "rurihatutake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "ワセヌメリササタケ",
@@ -15708,7 +15708,7 @@
         ],
         "excerpt": "今年の1月にヒラタケが発生していた公会堂の切り株と、浜松市の里山へ探索に行ってきた。 ヒラタケ 切り株にびっしりと発生。おそらく今年1番の大物だと思う。今まで本種の姿は何十回と見てきたが、これほどの株は見たことが無い。 また本種は冬に発生し、毎回幼菌〜成菌のタ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "rurihatutake"
     },
     {
       "observation_id": "obs-5d989a7a124d493311b69ffa6d984485ab345b7a6ccf5c789b5713bd5c570079",
@@ -18239,7 +18239,7 @@
         ],
         "excerpt": "今年最後の静岡木の子の会の探索会が浜松市の里山で行われたので参加してきた。 クチベニタケ この場は本種の発生が多いのだが、その他県西部ではあまり見かけない。 ユキラッパタケ 発見当初はシロアンズタケかと思ったのだが、違うようだ。 追記 不明としていたが、種名を…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "rurihatutake"
     },
     {
       "observation_id": "obs-6f28e6783d1c76e5365db8e27b5ec1a138aa7dd95c1ad9388114bd67bbcd4c1b",
@@ -19510,7 +19510,7 @@
         ],
         "excerpt": "時期的におそらく今年最後となるキノコの発生がピークを迎えた富士山へ遠征してきた。 ムキタケ ポイントを向かう途中に高速道路で強い雨が降り続き、霧が濃くで始めたので探索が出来るか心配になったが、山梨県に入った途端に青空が広がり一安心。ポイントについてすぐの歩道脇…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "mukitake"
     },
     {
       "observation_id": "obs-b713e69f8e8830cfe5a0f10adba9871e336962ac232e9dec1b392aaae5674cfd",
@@ -23284,7 +23284,7 @@
         ],
         "excerpt": "ネット情報や師匠の富士山の近況情報を聞き、そろそろ高級キノコが狙える時期になったので今まで行ったことのない標高帯を歩いて来た。 ※今回は霧が良く出ていたので水滴が付いた写真が多くなっています。 追記 どうやらブログの不具合？で縦位置の写真が中央からバッサリ切ら…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "hokoritake"
     },
     {
       "observation_id": "obs-0dd5ade02ca6f56c695209d90f6a8748ea7939c452e05c3abe49a192db244306",
@@ -30873,7 +30873,7 @@
         ],
         "excerpt": "最近は学校の用事が忙しく、キノコを撮影しても記事を投稿することが出来なかったので時間が空いた今日に掲載。 オオシロカラカサタケ 登校路を歩いていると、遠くに白い物体が見え近づいて見ると本種が発生していた。 田んぼを背景に撮影。この時期ならではの光景だ。 右の固…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "haratake"
     },
     {
       "observation_id": "obs-6572876bd86b04f37d08d321f22fa74f0269e7d50586b6710b2210c3b65de094",
@@ -32786,7 +32786,7 @@
         ],
         "excerpt": "待ちに待った静岡木の子の会の東部地区探索会が富士五湖周辺の民宿で行われたので富士山の亜高山帯を探索してきた。 追記 ブログ投稿後、タブレットにて再確認したところ雨の影響で水滴が付いていたり、低ISOで撮影したこともあり、思いのほかブレた写真などを量産してしまっ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "hokoritake"
     },
     {
       "observation_id": "obs-65866cedd0a5e3beeefd3a27e17562083a0abcf403e84a5120e127e0de4cffc8",
@@ -33071,7 +33071,7 @@
         ],
         "excerpt": "近所の公園にハラタケが発生していたので撮影してきた。 ハラタケ フェアリーリングになって発生していた。しかし実はこの日友人の家に向かう途中の工場の芝が植えられている所にも発生していて、更には友人の家にも本種が発生していた。 また後日談なのだが、翌日に行われた静…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "haratake"
     },
     {
       "observation_id": "obs-0725017fc8f81893b0485ed926f5e20e7cf5adc8e8d223b7c65584a800026fc9",
@@ -36292,7 +36292,7 @@
         ],
         "excerpt": "旅行のついでに北杜市の亜高山帯を2時間程探索してきた。 ウスタケ 駐車場に植えられたモミに発生。時期的にはもう発生していてもおかしく無いがこの個体以外は発生していなかった。 不明 こちらも駐車場に発生。テングタケ科なのは分かるが種名までは分からない。 ホコリタ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "hokoritake"
     },
     {
       "observation_id": "obs-22c1ddac051fcd8f341c85acea5685fa30a8c5d40cec4c49372f9bc03bba837f",
