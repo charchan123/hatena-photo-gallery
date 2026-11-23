@@ -6,7 +6,7 @@ import html
 
 FOOD_SAFETY_LABELS = {
     "poisonous_confirmed": "公的・専門資料に毒性の記載あり",
-    "edibility_reported": "資料に食用の記載あり",
+    "edibility_reported": "資料には食用との記載があります",
     "unknown": "食毒情報は未確認",
 }
 
@@ -25,6 +25,21 @@ FOOD_NOTE_REPLACEMENTS = (
     ("edibility", "食用可否"),
     ("master", "図鑑データ"),
 )
+
+# This source note occurs on many species. The approved extended wording is
+# specific to the reviewed Yamadoritakemodoki detail page, not a global rewrite.
+YAMADORITAKEMODOKI_SOURCE_NOTE = (
+    "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 "
+    "石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。"
+)
+YAMADORITAKEMODOKI_DISPLAY_NOTE = (
+    "石川県の資料では、食毒欄に「食」と記載されています。"
+    "これは公的資料に食用との記載があることを示すもので、"
+    "実際に採ったキノコの安全性を保証するものではありません。"
+    "毒性についての記載がなくても安全とは限らないため、"
+    "食べられるかどうかを自分で判断するためには使わないでください。"
+)
+
 
 FOOD_NOTE_SENTENCES = {
     "石川県の公的図鑑が「食」と記載しているというsource report。projectによる安全判定ではない。": (
@@ -129,7 +144,10 @@ def _knowledge(master, source_map):
     status = food.get("status")
     if status in FOOD_SAFETY_LABELS:
         add("食毒情報", FOOD_SAFETY_LABELS[status], food)
-        notes = reader_facing_food_note(food.get("notes"))
+        notes = (YAMADORITAKEMODOKI_DISPLAY_NOTE
+                 if master.get("canonical_name_ja") == "ヤマドリタケモドキ"
+                 and food.get("notes") == YAMADORITAKEMODOKI_SOURCE_NOTE
+                 else reader_facing_food_note(food.get("notes")))
         if notes:
             rows[-1]["note"] = notes
     toxin_names = []
@@ -233,8 +251,9 @@ def render_detail_sections(view):
                        f'<ul>{"".join(sources)}</ul></details>') if sources else ""
         parts.append('<section class="knowledge-panel"><h2 class="knowledge-title">図鑑情報</h2>'
                      f'<dl class="knowledge-facts">{"".join(rows)}</dl>'
-                     '<p class="knowledge-warning">食毒情報は参照資料の記載を整理したものです。'
-                     '採取・調理・飲食の判断には使用しないでください。情報がないことは安全を意味しません。</p>'
+                     '<p class="knowledge-warning">食べられるかどうかについては、参考にした資料の情報を掲載しています。'
+                     'このページの情報を、キノコを採ったり、調理したり、食べたりする判断には使わないでください。'
+                     '毒性についての記載がなくても、安全とは限りません。</p>'
                      f'{source_html}</section>')
     elif view.get("knowledge_pending") is True:
         parts.append('<section class="knowledge-pending"><h2>図鑑情報は現在整理中です</h2>'
