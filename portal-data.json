@@ -22,8 +22,8 @@
     "legacy_undetected_count": 31,
     "legacy_shadow_missing_count": 0,
     "human_reviewed_mushroom_count": 0,
-    "master_linked_subject_count": 67,
-    "master_unlinked_subject_count": 246,
+    "master_linked_subject_count": 71,
+    "master_unlinked_subject_count": 242,
     "knowledge_record_count": 141,
     "source_count": 419
   },
@@ -4948,8 +4948,8 @@
         "legacy_review": 3
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "numerisugitake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "ヌメリスギタケモドキ",
@@ -5106,8 +5106,8 @@
         "legacy_review": 1
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "hatakesimeji",
+      "knowledge_available": true
     },
     {
       "gallery_name": "ハダイロニガシメジ？",
@@ -5173,8 +5173,8 @@
         "legacy_review": 3
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "hatinosutake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "ハツタケ",
@@ -5196,8 +5196,8 @@
         "legacy_review": 3
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "hatutake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "ハナイグチ",
@@ -11462,7 +11462,7 @@
         ],
         "excerpt": "今月中に静岡木の子の会の探索会が行われる場所の下見に行ってきた。 ウスヒラタケ この時期の定番中の定番。 ハタケシメジ 個人的に初の発見。しかし誰かにへし折られた後だった。 チチアワタケ 大量に発生していた。この場所はとにかくこのキノコが多い。 アカヤマドリ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "hatakesimeji"
     },
     {
       "observation_id": "obs-c5d90a610646f43bbd357d8190ce1a18e54bfdfbab3b76768feecd19b5f45403",
@@ -14356,7 +14356,7 @@
         ],
         "excerpt": "しばらく雨が降り続いたので、キクラゲ類やエノキタケなどを求め沼津市の公園に行ってきた。 ヒメキクラゲ ここのところ雨が降り続いたので、水分を含んだ本種らしい姿を見せてくれた。 ハチノスタケ どこかで見たことのある構図だが、どこで見たのか分からない。 スギカワタ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "hatinosutake"
     },
     {
       "observation_id": "obs-fd29a904bd9a1a4be1072deac7a6f81752ae951a637d2cb0289313e0268737c6",
@@ -16846,7 +16846,7 @@
         ],
         "excerpt": "静岡木の子の会の観察会が沼津市の里山で行われたので参加してきた。 ハマクサギタマゴタケ 観察会は毎年10月で最後になるのだが、今年は様々な事情によ11月の観察となったそうだ。 しかし今回観察場所に選ばれた場所は比較的標高が高く、時期的なこともあり朝方は少々寒く…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "numerisugitake"
     },
     {
       "observation_id": "obs-a507d512aa484cb7babdf7cbab96747ada5c957bd01ac54883c57dd342fe3ebd",
@@ -19121,7 +19121,7 @@
         ],
         "excerpt": "今年最後の静岡木の子の会の探索会が浜松市の里山で行われたので参加してきた。 クチベニタケ この場は本種の発生が多いのだが、その他県西部ではあまり見かけない。 ユキラッパタケ 発見当初はシロアンズタケかと思ったのだが、違うようだ。 追記 不明としていたが、種名を…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "hatutake"
     },
     {
       "observation_id": "obs-c31ba9bc94143739d58f821f3b27e1d1e328be5350bc25f5a52f3095e5233341",
@@ -45241,7 +45241,7 @@
         ],
         "excerpt": "散髪のついでに近辺の黒松の並木に寄ったところ大型のキノコが発生していたので写真を撮影来てきた。 ベニタケ この固体はかなりの大型で傘が約20センチほどあった。この他にも並木中に散生していた。 オチバタケの仲間？ この種も多く発生していたが名前は分からない。 イ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "hatutake"
     },
     {
       "observation_id": "obs-5753922b387766dcba47cf35d90363223adadbfea10f2b5c5f676a34834539d3",
@@ -51590,7 +51590,7 @@
         ],
         "excerpt": "先日静岡木の子の会が行われた公園のアミガサタケが気になり、再び探索してきた。 ジャガイモタケ 歩道脇に発生。まるでジャガイモの種芋のような見た目をしている。 チャコブタケ 廃材置き場に発生。 シイタケ 実はこの個体、4月5日に成菌で発見しているのだが2週間経っ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "numerisugitake"
     },
     {
       "observation_id": "obs-e90f849accecf71edf2249196f15388e9245d272b8b34693da34989c45f8ae08",
@@ -54664,7 +54664,7 @@
         ],
         "excerpt": "市内にある池にキノコが発生してないか散歩がてらキノコを探してきた。 ハチノスタケ 綺麗な幼菌の状態だった。しかし手前に草が入っていることに気づかず、そのまま撮影してしまった。また、新しく購入したCanonEOSKissX５を初実戦投入。バリアングルモニターがか…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "hatinosutake"
     },
     {
       "observation_id": "obs-dae096e748fd9c3902a9e7bc8b7e613ba4c6b4bd5bf142039afa2551d46a8be4",
@@ -54709,7 +54709,7 @@
         ],
         "excerpt": "市内にある池にキノコが発生してないか散歩がてらキノコを探してきた。 ハチノスタケ 綺麗な幼菌の状態だった。しかし手前に草が入っていることに気づかず、そのまま撮影してしまった。また、新しく購入したCanonEOSKissX５を初実戦投入。バリアングルモニターがか…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "hatinosutake"
     },
     {
       "observation_id": "obs-f68559f288db82efac9eb44d68188ec00ebfaba14a3211273fd415da802bfc8b",
@@ -56276,7 +56276,7 @@
         ],
         "excerpt": "静岡木の子の会の観察会が沼津市で開催されたので参加してきた。 カワムラフウセンタケ？ ヒダ、柄の色合いが紫色を帯びており、本種に似ている。しかし似たものも多く一概に同定することは難しい。また、撮影したあと噛んだところ、苦味が強くあり疑念は強まるばかりだ。この他…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "numerisugitake"
     },
     {
       "observation_id": "obs-c0d81341ad80a67066fbd06e1c7098796589cc3f5e5e35f7916a9783a70cb204",
@@ -56326,7 +56326,7 @@
         ],
         "excerpt": "静岡木の子の会の観察会が沼津市で開催されたので参加してきた。 カワムラフウセンタケ？ ヒダ、柄の色合いが紫色を帯びており、本種に似ている。しかし似たものも多く一概に同定することは難しい。また、撮影したあと噛んだところ、苦味が強くあり疑念は強まるばかりだ。この他…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "hatutake"
     },
     {
       "observation_id": "obs-7b7eafb52b04e32522da3258525c9cdb959c92f3effb68e5f6432eed60e57e0c",
