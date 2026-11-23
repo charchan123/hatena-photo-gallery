@@ -76,6 +76,12 @@ DETAIL_COPY_BLOBS = {
     'main.py': '82c60ac39243c22e18b65f90c81273bf27d59e8f',
     'detail_ui.py': 'df4751111a023756bf05c0d59b5df748c5326fe8',
 }
+# Future and existing published detail pages are regenerated from one reviewed
+# presentation-only module. Data masters and comments remain byte-protected.
+FOOD_NOTE_COPY_BASE = 'a580a7dd9913645efc290cd9235ea7f994386b8b'
+FOOD_NOTE_COPY_BLOBS = {
+    'detail_ui.py': '3fe6f66947dfe1d83a99fc7fcca2179e0c606a6e',
+}
 PUBLIC_CONFIG = 'comments/public-config.json'
 PRODUCTION_ORIGIN = 'https://kinoko-research-comments.sasama-bb.workers.dev'
 RELEASE_ID = 'research-comments-production-20261120'
@@ -101,6 +107,10 @@ def assert_reviewed_source(base, path, current):
     """Never hide a main change behind the old PR's allowance."""
     original = git('show', f'{base}:{path}')
     if current == original:
+        return
+    if path in FOOD_NOTE_COPY_BLOBS and git('rev-parse', base).decode().strip() == FOOD_NOTE_COPY_BASE:
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
+        assert hashlib.sha1(blob).hexdigest() == FOOD_NOTE_COPY_BLOBS[path], path
         return
     if path in DETAIL_COPY_BLOBS and git('rev-parse', base).decode().strip() == DETAIL_COPY_BASE:
         blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
