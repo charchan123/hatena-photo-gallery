@@ -1,7 +1,7 @@
 {
   "payload": {
     "version": 1,
-    "last_success_at": "2026-11-23T01:25:41.727851+00:00",
+    "last_success_at": "2026-11-23T04:06:33.606129+00:00",
     "articles": {
       "a232fbe92c9c730206908cf61359bbc9c3719d7f935e6f742661b2e3b41e40bb": {
         "updated_hash": "9e5c992d54ac9ef0e5e89c323b7a7deca5ede357b1d08415b5bb2ce4110120ed",
@@ -8565,7 +8565,7 @@
         "article_url_hash": "f1471e35ea6be58d844ff49ac663903337393c8fb60cbae5f4dd890e3e880bf6"
       }
     },
-    "portal_sha256": "60b12ef90f4fc838e6ed9b39a2d6131254444062bb98043428ccac47c15e39cb",
+    "portal_sha256": "aef357faa63af870aabb34c155f8d866faa5e9eed68be17ffc74e940a9116cc9",
     "retirement": {
       "migration_id": "hatena-draft-photo-retirement-2026-10-12",
       "manifest_sha256": "4e081702d97bb62b0a05de33f02244e3af8376082e31a77fd03feda3b1d0a36c",
@@ -9289,7 +9289,7 @@
         "sha256": "1767879599368ac0d6795cc38c38b3c4c19c591c5c66a4094afb367ba2474ce3"
       }
     ],
-    "deletion_history_head": "0ba15612d6da6791783ec6857c1c6a6b5177fe8ec1ac7bd8b6b4c115acb108a6"
+    "deletion_history_head": "f0e7f2ac79cc0c7ee122867f60ac724744d72a0170fa844feb15e7a0e468ead8"
   },
-  "sha256": "3dc62a9416a6c26cd25211e8bff8488a27ad36e8f07ab4fce47989f403d21392"
+  "sha256": "f3d414ba636fd6055942c9d9530157406f7b471b902369bd1e374128d90dc225"
 }

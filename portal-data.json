@@ -22,8 +22,8 @@
     "legacy_undetected_count": 31,
     "legacy_shadow_missing_count": 0,
     "human_reviewed_mushroom_count": 0,
-    "master_linked_subject_count": 51,
-    "master_unlinked_subject_count": 262,
+    "master_linked_subject_count": 55,
+    "master_unlinked_subject_count": 258,
     "knowledge_record_count": 141,
     "source_count": 419
   },
@@ -414,8 +414,8 @@
         "legacy_review": 2
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "akamomitake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "アカヤマドリ",
@@ -653,8 +653,8 @@
         "legacy_review": 4
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "amitake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "アミヒラタケ？",
@@ -1163,8 +1163,8 @@
         "legacy_review": 1
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "urabenihoteisimeji",
+      "knowledge_available": true
     },
     {
       "gallery_name": "エノキタケ",
@@ -1518,8 +1518,8 @@
         "legacy_review": 2
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "oniigutimodoki",
+      "knowledge_available": true
     },
     {
       "gallery_name": "オニタケ？",
@@ -11310,7 +11310,7 @@
         ],
         "excerpt": "前回のアカヤマドリの双子の成長した姿を見たく、良い感じに成長していると思われるこの日に探索をしてきた。 ニガイグチモドキ 今年初のニガイグチの仲間。しかし撮影時設定を間違えていて、柄がかなりボケた写真になっている。 このように傘が開いた個体もたくさんあった。…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "amitake"
     },
     {
       "observation_id": "obs-3c3aa23fa2a44b3eccff1f6701b620f357261ae0fda0df7707d0ea5c03872eb4",
@@ -15814,7 +15814,7 @@
         ],
         "excerpt": "今年の1月にヒラタケが発生していた公会堂の切り株と、浜松市の里山へ探索に行ってきた。 ヒラタケ 切り株にびっしりと発生。おそらく今年1番の大物だと思う。今まで本種の姿は何十回と見てきたが、これほどの株は見たことが無い。 また本種は冬に発生し、毎回幼菌〜成菌のタ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "amitake"
     },
     {
       "observation_id": "obs-d84db6dfd682002019702cb30a2152fe296ce80253444e48f7f6bf70d0ef4be3",
@@ -15867,7 +15867,7 @@
         ],
         "excerpt": "今年の1月にヒラタケが発生していた公会堂の切り株と、浜松市の里山へ探索に行ってきた。 ヒラタケ 切り株にびっしりと発生。おそらく今年1番の大物だと思う。今まで本種の姿は何十回と見てきたが、これほどの株は見たことが無い。 また本種は冬に発生し、毎回幼菌〜成菌のタ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "amitake"
     },
     {
       "observation_id": "obs-df0e7b5c9b579d526aeec8c44eb067f88030b265b1141c162e4413c5821d6211",
@@ -16256,7 +16256,7 @@
         ],
         "excerpt": "静岡木の子の会の観察会が沼津市の里山で行われたので参加してきた。 ハマクサギタマゴタケ 観察会は毎年10月で最後になるのだが、今年は様々な事情によ11月の観察となったそうだ。 しかし今回観察場所に選ばれた場所は比較的標高が高く、時期的なこともあり朝方は少々寒く…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "urabenihoteisimeji"
     },
     {
       "observation_id": "obs-3a51c16a4dcc1cd3bd2c8a5a142f90bdf1a8cbd32a8da9b48f405180bbdef1c9",
@@ -21138,7 +21138,7 @@
         ],
         "excerpt": "時期的におそらく今年最後となるキノコの発生がピークを迎えた富士山へ遠征してきた。 ムキタケ ポイントを向かう途中に高速道路で強い雨が降り続き、霧が濃くで始めたので探索が出来るか心配になったが、山梨県に入った途端に青空が広がり一安心。ポイントについてすぐの歩道脇…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "akamomitake"
     },
     {
       "observation_id": "obs-54866d1afbc29236bb6a9bf907945c5b5f1e4bdd6aeb01ad8ececfc8614cc5fa",
@@ -25208,7 +25208,7 @@
         ],
         "excerpt": "ネット情報や師匠の富士山の近況情報を聞き、そろそろ高級キノコが狙える時期になったので今まで行ったことのない標高帯を歩いて来た。 ※今回は霧が良く出ていたので水滴が付いた写真が多くなっています。 追記 どうやらブログの不具合？で縦位置の写真が中央からバッサリ切ら…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "akamomitake"
     },
     {
       "observation_id": "obs-5c1ad0012961887a5e929a45eadb979afe1efdc2a06f417c637ce8be2f6c7a85",
@@ -28842,7 +28842,7 @@
         ],
         "excerpt": "日本菌学会が開催する静岡フォーレが静岡県立森林公園で開催されたので、探索コースの案内役として参加してきた。 ※探索時間に限りがあり、さらに案内役ということもあり、雑な写真を量産してしまった。 ※森林公園内での動植物(キノコを含む)の採集は禁止されています。 2…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "oniigutimodoki"
     },
     {
       "observation_id": "obs-ad2bbc1e25b0b4d7bc1ed6bee9788ed98b9e65f916d2f111b3af8f1275bb0336",
@@ -41425,7 +41425,7 @@
         ],
         "excerpt": "静岡木の子の会の西部探索会が浜松市の里山で開催されたので参加して来た。 アミスギタケ 朽ちた切り株に発生。乾燥していて状態は悪かった。 オオゴムタケ 暗い林の中の廃材置き場に発生。サイズはとても大きかった。 ニオイコベニタケ ソライロタケの発生実績のある場所を…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "oniigutimodoki"
     },
     {
       "observation_id": "obs-9e482c86a20e4d4a9f9c7e752c44422dc72ac9f79500fa29b344fd5bb923cf35",
@@ -49019,7 +49019,7 @@
         ],
         "excerpt": "前日に近所の公園を探索したところ、夏キノコが多く発生していたのでアカヤマドリやヤマドリタケモドキが多く発生するポイントを見回ってきた。 アミスギタケ カエデの切り株に発生。撮影当初はハチノスタケと思い撮影したが後に本種と判明。 アミタケ シダの下で発生。まさか…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "amitake"
     },
     {
       "observation_id": "obs-afd3c5fedcbb6f6ab4432d7d56f98995b41961560cd4d4514c1fc392ec6b1724",
