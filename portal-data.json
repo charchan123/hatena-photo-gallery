@@ -22,8 +22,8 @@
     "legacy_undetected_count": 31,
     "legacy_shadow_missing_count": 0,
     "human_reviewed_mushroom_count": 0,
-    "master_linked_subject_count": 83,
-    "master_unlinked_subject_count": 230,
+    "master_linked_subject_count": 85,
+    "master_unlinked_subject_count": 228,
     "knowledge_record_count": 141,
     "source_count": 419
   },
@@ -4621,8 +4621,8 @@
         "legacy_review": 3
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "naratake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "ナラタケ(広義)",
@@ -6299,8 +6299,8 @@
         "legacy_review": 2
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "mannentake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "ミドリニガイグチ",
@@ -15086,7 +15086,7 @@
         ],
         "excerpt": "前回の反省を生かし、午前中に探索を行いたいと思っていたのだが、まさかの寝坊で午後からの探索になってしまった。 フジイロタケモドキ？ 落ち葉に埋もれていてこの時期のフウセンタケの仲間は本当に発見が難しい。見つけた当初は頭の中に色々と種名が浮かんで来ていたが、自宅…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "naratake"
     },
     {
       "observation_id": "obs-bc5f43a00beb315cb08f084fe8f327d124cdab1dd8266cd9da93e22921b03e35",
@@ -21286,7 +21286,7 @@
         ],
         "excerpt": "時期的におそらく今年最後となるキノコの発生がピークを迎えた富士山へ遠征してきた。 ムキタケ ポイントを向かう途中に高速道路で強い雨が降り続き、霧が濃くで始めたので探索が出来るか心配になったが、山梨県に入った途端に青空が広がり一安心。ポイントについてすぐの歩道脇…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "naratake"
     },
     {
       "observation_id": "obs-f9a37c6849955ffecb1e9c2f897eb4cbf485e00d6717c718a28969c433e46f76",
@@ -37873,7 +37873,7 @@
         ],
         "excerpt": "数年前にキノコが大量発生していた場所があり、どうしても気になったのでポイントを2箇所探索してきた。 Lanmaoa angustispora(和名無し)？ 川沿いの緑地に発生。おそらく本種が今日で一番見つかったと思う。 別の個体。もはやここまで来たらパンケーキ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "mannentake"
     },
     {
       "observation_id": "obs-5291aa2801612f5e3e2be34158e032d14348b1fb0bf98dbb1781cb4df40514bf",
@@ -42332,7 +42332,7 @@
         ],
         "excerpt": "近所の緑地でも夏キノコが発生するようになってきたのだが、写真の数が全く集まらず3日分をまとめて掲載。 ヤマドリタケモドキ ひょうたんの受粉作業が早く終わり自宅横の本種の発生実績がある緑地を見たところ早速発見。腐ってはいるが今年初の本種なので記念として撮影。本種…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "mannentake"
     },
     {
       "observation_id": "obs-0832d06328a2076db6c69599aa3197e37c315aabbd416a79de73010e3acce303",
@@ -46681,7 +46681,7 @@
         ],
         "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "naratake"
     },
     {
       "observation_id": "obs-23f5a7bc7e35a5eb8d1129aae9b1a7da932fe914efc4c4f6d3a432482fff59d5",
