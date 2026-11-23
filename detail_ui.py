@@ -140,6 +140,17 @@ NEXT_FOUR_FOOD_NOTE_REVIEWED = {
 }
 
 
+# Draft-only display candidates for the third group of four existing pages.
+# Always match mushroom ID, canonical Japanese name, and exact source note.
+# The source master, food status, warnings and citations remain untouched.
+THIRD_FOUR_FOOD_NOTE_CANDIDATES = {
+    "kaninotume": ("カニノツメ", "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「不食」。", "石川県の資料では、食毒欄に「不食」と記載されています。この記載だけで毒性が確認されたとは判断できません。"),
+    "kawarihatu": ("カワリハツ", "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。", "石川県の資料では、食毒欄に「食」と記載されています。これは資料上の区分であり、採取したキノコの安全性を保証するものではありません。"),
+    "gantake": ("ガンタケ", "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「毒」。 厚労科研2021研究分担報告書の表4注2は、以前の「食用にできるが生食は毒」という扱いと区別し、現在は食用にすべきでないとする注意を記載する。加熱による安全性は保証しない。毒成分は追加推定しない。", "石川県の資料では、食毒欄に「毒」と記載されています。また、2021年の厚生労働科学研究の報告書には、以前は「食用にできるが生食は毒」とされていたものの、現在は食用にすべきでないという注意が記載されています。加熱すれば安全だと判断することはできません。"),
+    "kitunetake": ("キツネタケ", "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。", "石川県の資料では、食毒欄に「食」と記載されています。これは資料上の区分であり、採取したキノコの安全性を保証するものではありません."),
+}
+
+
 def reader_facing_food_note(note):
     """Show source-specific facts; the detail panel renders the safety warning separately."""
     note = _present(note)
@@ -251,7 +262,8 @@ def _knowledge(master, source_map):
             ("シイタケ", SHIITAKE_SOURCE_NOTE): SHIITAKE_DISPLAY_NOTE,
         }.get(name_and_note)
         reviewed = (FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
-                    or NEXT_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id")))
+                    or NEXT_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
+                    or THIRD_FOUR_FOOD_NOTE_CANDIDATES.get(master.get("mushroom_id")))
         if (reviewed is not None and
                 reviewed[:2] == (master.get("canonical_name_ja"), food.get("notes"))):
             # None means this source contained only the repeated generic warning.
