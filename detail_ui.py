@@ -163,6 +163,16 @@ FOURTH_FOUR_FOOD_NOTE_REVIEWED = {
 KIRARATAKE_CONFLICT_LABEL = "資料によって食毒の記載が異なります"
 
 
+# Fifth group: pin mushroom ID, source canonical name and exact original notes.
+# Never change source master, underlying food status, source IDs or safety warning.
+FIFTH_FOUR_FOOD_NOTE_REVIEWED = {
+    "turutake": ("ツルタケ", "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。", "石川県の資料では、食毒欄に「食」と記載されています。これは資料上の区分であり、採取したキノコの種類や安全性を保証するものではありません。"),
+    "tengutake": ("テングタケ", "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「毒」。 厚生労働省は中毒症状または事例を記載。", "石川県の資料では、食毒欄に「毒」と記載されています。厚生労働省の資料にも、嘔吐や下痢などの消化器症状のほか、神経系の症状を伴う中毒事例が記載されています。"),
+    "nigakuritake": ("ニガクリタケ", "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「毒」。 厚生労働省は中毒症状または事例を記載。 厚生労働省掲載のファシキュロール類等は報告成分として扱う。同資料は重篤・致死的中毒の毒性本体が明確でないことも記載しており、列挙成分が死亡原因と確定したという意味にしない。", "石川県の資料では、食毒欄に「毒」と記載されています。厚生労働省の資料には、嘔吐、下痢、腹痛などの症状や死亡例を含む重篤な中毒事例が記載されています。ファシキュロール類などの含有成分も報告されていますが、致死的な中毒を起こす原因物質が確定したという意味ではありません。"),
+    "numeriiguti": ("ヌメリイグチ", "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。", "石川県の資料では、食毒欄に「食」と記載されています。これは資料上の区分であり、採取したキノコの安全性を保証するものではありません。"),
+}
+
+
 def reader_facing_food_note(note):
     """Show source-specific facts; the detail panel renders the safety warning separately."""
     note = _present(note)
@@ -282,7 +292,8 @@ def _knowledge(master, source_map):
         reviewed = (FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
                     or NEXT_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
                     or THIRD_FOUR_FOOD_NOTE_CANDIDATES.get(master.get("mushroom_id"))
-                    or FOURTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id")))
+                    or FOURTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
+                    or FIFTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id")))
         if (reviewed is not None and
                 reviewed[:2] == (master.get("canonical_name_ja"), food.get("notes"))):
             # None means this source contained only the repeated generic warning.
