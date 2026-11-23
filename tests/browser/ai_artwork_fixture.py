@@ -217,6 +217,34 @@ for p in html_files:
                 r'<div class="knowledge-note">([^<]*)</div>',
                 approved_food_note_display, normalized
             )
+        if git('rev-parse', base).decode().strip() == '3af0f671a610224c32e61fc1836d895d80c35409':
+            # Normalize only exact, human-reviewed food-note/label text.
+            # Every other HTML byte (photos, source links, scripts, warnings)
+            # must still match the immutable production baseline.
+            import html as html_module
+            import sys
+            sys.path.insert(0, str(repo))
+            from detail_ui import (FOOD_NOTE_REVIEWED, reader_facing_food_note,
+                                   YAMADORITAKEMODOKI_DISPLAY_NOTE, SHIITAKE_DISPLAY_NOTE)
+            name_index = {row[0]: row for row in FOOD_NOTE_REVIEWED.values()}
+            normalized = normalized.replace(
+                '公的・専門資料に毒性の記載あり', '公的・専門資料には毒性の記載があります'
+            ).replace('食毒情報は未確認', '食毒の区分は確認できていません')
+            reviewed = name_index.get(p.stem)
+            if reviewed and '<section class="knowledge-panel">' in normalized:
+                name, source_note, new_note = reviewed
+                old_note = (YAMADORITAKEMODOKI_DISPLAY_NOTE
+                            if name == 'ヤマドリタケモドキ' else
+                            SHIITAKE_DISPLAY_NOTE if name == 'シイタケ' else
+                            reader_facing_food_note(source_note))
+                if old_note is not None:
+                    old_html = '<div class="knowledge-note">' + html_module.escape(old_note) + '</div>'
+                    new_html = ('<div class="knowledge-note">' + html_module.escape(new_note) + '</div>'
+                                if new_note else '')
+                    assert normalized.count(old_html) == 1, (p.name, 'food-note baseline changed')
+                    normalized = normalized.replace(old_html, new_html, 1)
+                else:
+                    assert new_note is None, (name, 'missing prior note')
         actual = p.read_text(encoding='utf-8')
         if normalized != actual:
             from difflib import unified_diff
@@ -270,7 +298,9 @@ for p in protected:
         # PR #164 is now the comparison base, so these approved bytes can
         # legitimately match the previous revision. The exact Git blob stays pinned.
         expected_blob = (
-            '3fe6f66947dfe1d83a99fc7fcca2179e0c606a6e'
+            'bac9e7d01f4575fe70a8f3b491def105e9af805e'
+            if p == 'detail_ui.py' and git('rev-parse', base).decode().strip() == '3af0f671a610224c32e61fc1836d895d80c35409'
+            else '3fe6f66947dfe1d83a99fc7fcca2179e0c606a6e'
             if p == 'detail_ui.py' and git('rev-parse', base).decode().strip() == 'a580a7dd9913645efc290cd9235ea7f994386b8b'
             else 'df4751111a023756bf05c0d59b5df748c5326fe8'
             if p == 'detail_ui.py' and git('rev-parse', base).decode().strip() == 'f41901f452ef0046d8012355236c0dff82e587dc'
