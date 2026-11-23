@@ -82,6 +82,11 @@ FOOD_NOTE_COPY_BASE = 'a580a7dd9913645efc290cd9235ea7f994386b8b'
 FOOD_NOTE_COPY_BLOBS = {
     'detail_ui.py': '3fe6f66947dfe1d83a99fc7fcca2179e0c606a6e',
 }
+# 51 reviewed source notes, exact user-facing renderer blob only.
+POLITE_51_BASE = '3af0f671a610224c32e61fc1836d895d80c35409'
+POLITE_51_BLOBS = {
+    'detail_ui.py': 'bac9e7d01f4575fe70a8f3b491def105e9af805e',
+}
 PUBLIC_CONFIG = 'comments/public-config.json'
 PRODUCTION_ORIGIN = 'https://kinoko-research-comments.sasama-bb.workers.dev'
 RELEASE_ID = 'research-comments-production-20261120'
@@ -107,6 +112,10 @@ def assert_reviewed_source(base, path, current):
     """Never hide a main change behind the old PR's allowance."""
     original = git('show', f'{base}:{path}')
     if current == original:
+        return
+    if path in POLITE_51_BLOBS and git('rev-parse', base).decode().strip() == POLITE_51_BASE:
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
+        assert hashlib.sha1(blob).hexdigest() == POLITE_51_BLOBS[path], path
         return
     if path in FOOD_NOTE_COPY_BLOBS and git('rev-parse', base).decode().strip() == FOOD_NOTE_COPY_BASE:
         blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
