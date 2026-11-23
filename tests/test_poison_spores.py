@@ -64,7 +64,7 @@ def test_only_explicit_poison_status_in_all_list_renderers(status, monkeypatch, 
     assert 'data-food-safety=' not in detail
     assert 'src="assets/poison-spores.js"' not in detail
     if status == "poisonous_confirmed":
-        assert "公的・専門資料に毒性の記載あり" in render_detail_sections(views["アリンク"])
+        assert "公的・専門資料には毒性の記載があります" in render_detail_sections(views["アリンク"])
     assert data == before  # No source data mutation, even in memory.
     assert (tmp_path / "assets/poison-spores.js").read_bytes() == Path("assets/poison-spores.js").read_bytes()
 
