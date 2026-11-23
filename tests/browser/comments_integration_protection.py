@@ -66,6 +66,13 @@ EXISTING_FOUR_LINKS = {
     'ベニテングタケ': 'benitengutake',
     'ドクヤマドリ': 'dokuyamadori',
 }
+# Copy-only change based on the immutable, reviewed PR #168 main.
+# Only the exact approved two source blobs are allowed to differ.
+DETAIL_COPY_BASE = 'f41901f452ef0046d8012355236c0dff82e587dc'
+DETAIL_COPY_BLOBS = {
+    'main.py': '82c60ac39243c22e18b65f90c81273bf27d59e8f',
+    'detail_ui.py': 'df4751111a023756bf05c0d59b5df748c5326fe8',
+}
 PUBLIC_CONFIG = 'comments/public-config.json'
 PRODUCTION_ORIGIN = 'https://kinoko-research-comments.sasama-bb.workers.dev'
 RELEASE_ID = 'research-comments-production-20261120'
@@ -91,6 +98,10 @@ def assert_reviewed_source(base, path, current):
     """Never hide a main change behind the old PR's allowance."""
     original = git('show', f'{base}:{path}')
     if current == original:
+        return
+    if path in DETAIL_COPY_BLOBS and git('rev-parse', base).decode().strip() == DETAIL_COPY_BASE:
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
+        assert hashlib.sha1(blob).hexdigest() == DETAIL_COPY_BLOBS[path], path
         return
     if path == 'data/subject-taxonomy.json' and git('rev-parse', base).decode().strip() == EXISTING_FOUR_LINK_BASE:
         expected = json.loads(original)
