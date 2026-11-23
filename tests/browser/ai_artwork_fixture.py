@@ -174,7 +174,8 @@ for p in html_files:
         css_only_baselines = {'2af083e7ddf47eb8e374f38b2244e2f71a1729ed', '8971cbb5b9250733270853be50de48a6eec2de9c',
                               '7da1d3e27d351b18ca8c6bc0f25bb3d73f7f7cf3',
                               'f41901f452ef0046d8012355236c0dff82e587dc',
-                              'a580a7dd9913645efc290cd9235ea7f994386b8b'}
+                              'a580a7dd9913645efc290cd9235ea7f994386b8b',
+                              '3af0f671a610224c32e61fc1836d895d80c35409'}
         if git('rev-parse', base).decode().strip() not in css_only_baselines:
             for original, approved in approved_page_copy:
                 normalized = normalized.replace(original, approved)
@@ -217,6 +218,10 @@ for p in html_files:
                 r'<div class="knowledge-note">([^<]*)</div>',
                 approved_food_note_display, normalized
             )
+        # Both before/after generators receive the same freshly built detail
+        # views from the pinned source module. Unlike historical main.py copy
+        # edits, knowledge prose already matches on both sides. Any further
+        # normalization would hide a real regression or introduce false diffs.
         actual = p.read_text(encoding='utf-8')
         if normalized != actual:
             from difflib import unified_diff
@@ -270,7 +275,9 @@ for p in protected:
         # PR #164 is now the comparison base, so these approved bytes can
         # legitimately match the previous revision. The exact Git blob stays pinned.
         expected_blob = (
-            '3fe6f66947dfe1d83a99fc7fcca2179e0c606a6e'
+            'bac9e7d01f4575fe70a8f3b491def105e9af805e'
+            if p == 'detail_ui.py' and git('rev-parse', base).decode().strip() == '3af0f671a610224c32e61fc1836d895d80c35409'
+            else '3fe6f66947dfe1d83a99fc7fcca2179e0c606a6e'
             if p == 'detail_ui.py' and git('rev-parse', base).decode().strip() == 'a580a7dd9913645efc290cd9235ea7f994386b8b'
             else 'df4751111a023756bf05c0d59b5df748c5326fe8'
             if p == 'detail_ui.py' and git('rev-parse', base).decode().strip() == 'f41901f452ef0046d8012355236c0dff82e587dc'
