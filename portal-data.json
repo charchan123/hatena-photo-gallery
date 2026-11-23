@@ -22,8 +22,8 @@
     "legacy_undetected_count": 31,
     "legacy_shadow_missing_count": 0,
     "human_reviewed_mushroom_count": 0,
-    "master_linked_subject_count": 55,
-    "master_unlinked_subject_count": 258,
+    "master_linked_subject_count": 59,
+    "master_unlinked_subject_count": 254,
     "knowledge_record_count": 141,
     "source_count": 419
   },
@@ -1674,8 +1674,8 @@
         "legacy_review": 1
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "kaninotume",
+      "knowledge_available": true
     },
     {
       "gallery_name": "カノシタ",
@@ -1939,8 +1939,8 @@
         "legacy_review": 1
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "kawarihatu",
+      "knowledge_available": true
     },
     {
       "gallery_name": "ガンタケ",
@@ -1960,8 +1960,8 @@
         "legacy_review": 1
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "gantake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "キアシヤマドリタケ(仮称)",
@@ -2323,8 +2323,8 @@
         "legacy_review": 2
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "kitunetake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "キツネナミハタケ",
@@ -8771,7 +8771,7 @@
         ],
         "excerpt": "前回の山にまた行く機会があり、道路から路肩を見ていると結構なキノコがあったため撮影してきた。 キイロオオフウセンタケ(仮称) この日一番の大物かもしれない。今まで本種の東限は浜松市だと言われていたが、この日東限を掛川市に変えてしまったかも知れない。 四つ子。…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "gantake"
     },
     {
       "observation_id": "obs-c4a1fe32d4edc3e165d5f655cc548def26be706bb8829e6255dd51ea85bdd673",
@@ -18302,7 +18302,7 @@
         ],
         "excerpt": "今年最後の静岡木の子の会の探索会が浜松市の里山で行われたので参加してきた。 クチベニタケ この場は本種の発生が多いのだが、その他県西部ではあまり見かけない。 ユキラッパタケ 発見当初はシロアンズタケかと思ったのだが、違うようだ。 追記 不明としていたが、種名を…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "kaninotume"
     },
     {
       "observation_id": "obs-6f24c7ddc65d2186dd2d37e59d099d9afd1b22ed8368fff369c050bc8295f4a5",
@@ -36351,7 +36351,7 @@
         ],
         "excerpt": "旅行のついでに北杜市の亜高山帯を2時間程探索してきた。 ウスタケ 駐車場に植えられたモミに発生。時期的にはもう発生していてもおかしく無いがこの個体以外は発生していなかった。 不明 こちらも駐車場に発生。テングタケ科なのは分かるが種名までは分からない。 ホコリタ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "kitunetake"
     },
     {
       "observation_id": "obs-e28a39c88ce0c785c5b44626d1f8139f5fa082758598677ce1624c80f6b515f8",
@@ -36469,7 +36469,7 @@
         ],
         "excerpt": "旅行のついでに北杜市の亜高山帯を2時間程探索してきた。 ウスタケ 駐車場に植えられたモミに発生。時期的にはもう発生していてもおかしく無いがこの個体以外は発生していなかった。 不明 こちらも駐車場に発生。テングタケ科なのは分かるが種名までは分からない。 ホコリタ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "kawarihatu"
     },
     {
       "observation_id": "obs-483ee39c11572186045b6d98a226d414904241691820a92b8db00300a0f35bd0",
@@ -50266,7 +50266,7 @@
         ],
         "excerpt": "25℃を超えるような暑さが続き、夏キノコが発生しているのでは無いか？と思い近所の公園に小型菌が無いか探索してきた。 キクラゲ 前日の大雨で膨張し、拳サイズまで成長していた。 不明ベニタケ多数 早速ベニタケの仲間を発見。この固体はカワリハツに似ているがヒダの様子…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "kitunetake"
     },
     {
       "observation_id": "obs-e989525127df8399f2bd07bf6b40c7b3d15a19643e7cff2c42a7b51746bea36f",
