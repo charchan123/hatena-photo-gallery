@@ -87,6 +87,14 @@ POLITE_51_BASE = '3af0f671a610224c32e61fc1836d895d80c35409'
 POLITE_51_BLOBS = {
     'detail_ui.py': 'bac9e7d01f4575fe70a8f3b491def105e9af805e',
 }
+# Four exact new display links based on current published baseline. Keep other
+# protected sources immutable and pin all three modified Python Git blobs.
+NEXT_FOUR_LINK_BASE = 'b01b0cbe66afc2ab30bc4ca08d8c9f845fcb868f'
+NEXT_FOUR_LINK_BLOBS = {
+    'main.py': 'be519f9cc62dcb23ea3766270f40acfcf5960a2a',
+    'portal_data.py': '197f501b4d669e9d72688e83267e3644c4f50978',
+    'detail_ui.py': 'd58b5f5bc09d2820c908eb57e89fb3aed03299c7',
+}
 PUBLIC_CONFIG = 'comments/public-config.json'
 PRODUCTION_ORIGIN = 'https://kinoko-research-comments.sasama-bb.workers.dev'
 RELEASE_ID = 'research-comments-production-20261120'
@@ -112,6 +120,10 @@ def assert_reviewed_source(base, path, current):
     """Never hide a main change behind the old PR's allowance."""
     original = git('show', f'{base}:{path}')
     if current == original:
+        return
+    if path in NEXT_FOUR_LINK_BLOBS and git('rev-parse', base).decode().strip() == NEXT_FOUR_LINK_BASE:
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
+        assert hashlib.sha1(blob).hexdigest() == NEXT_FOUR_LINK_BLOBS[path], path
         return
     if path in POLITE_51_BLOBS and git('rev-parse', base).decode().strip() == POLITE_51_BASE:
         blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current

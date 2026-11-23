@@ -152,7 +152,7 @@ def _validate(data, production_entries, master_ids):
 
 def build_portal_data(*, production_entries, shadow_metadata, article_metadata,
                       exif_cache, taxonomy, mushroom_master, sources,
-                      production_mode, cutover_active):
+                      production_mode, cutover_active, guide_links=None):
     """Return schema v1 without mutating any caller-owned input."""
     shadows = shadow_metadata if isinstance(shadow_metadata, list) else []
     articles = {_normal_path(key): value for key, value in article_metadata.items()}
@@ -160,6 +160,21 @@ def build_portal_data(*, production_entries, shadow_metadata, article_metadata,
     master_entries = mushroom_master.get("entries", [])
     taxonomy_by_name = {row.get("canonical_name"): row for row in taxonomy_entries}
     master_ids = {row.get("mushroom_id") for row in master_entries}
+    master_by_name = {
+        row["canonical_name_ja"]: row["mushroom_id"]
+        for row in master_entries
+        if isinstance(row, dict) and isinstance(row.get("canonical_name_ja"), str)
+        and isinstance(row.get("mushroom_id"), str)
+    }
+    guide_links = {} if guide_links is None else guide_links
+    if not isinstance(guide_links, dict):
+        raise ValueError("guide links must be an object")
+    for name, master_id in guide_links.items():
+        if (not isinstance(name, str) or not isinstance(master_id, str)
+                or master_by_name.get(name) != master_id
+                or any(mark in name for mark in ("?", "？", "広義", "sp.", "cf."))
+                or name in taxonomy_by_name):
+            raise ValueError(f"invalid standalone guide link: {name!r}")
     occurrences = Counter()
     observations = []
     for index, (entry, (shadow, match_status)) in enumerate(
@@ -176,6 +191,8 @@ def build_portal_data(*, production_entries, shadow_metadata, article_metadata,
         taxonomy_row, mushroom_id = _knowledge_link(
             gallery_name, taxonomy_by_name, master_ids
         )
+        # Exact display-name reference only; never change classification status.
+        mushroom_id = mushroom_id or guide_links.get(gallery_name)
         status = _classification_status(gallery_name, shadow)
         observations.append({
             "observation_id": f"obs-{digest}",
@@ -211,6 +228,7 @@ def build_portal_data(*, production_entries, shadow_metadata, article_metadata,
         taxonomy_row, mushroom_id = _knowledge_link(
             gallery_name, taxonomy_by_name, master_ids
         )
+        mushroom_id = mushroom_id or guide_links.get(gallery_name)
         article_keys = {
             (row["article"].get("article_path"), row["article"].get("article_id"))
             for row in rows if row["article"] is not None

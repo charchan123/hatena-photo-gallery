@@ -1,7 +1,10 @@
 from copy import deepcopy
+import json
+from pathlib import Path
 
 import main
 import portal_data
+import pytest
 
 
 def references(*, aliases=None, canonical="菌名"):
@@ -100,6 +103,90 @@ def test_only_exact_canonical_names_link():
         result = build(entries=[{"alt": name, "src": "image.jpg"}],
                        shadows=[], refs=(taxonomy, master, sources))
         assert result["observations"][0]["mushroom_master_id"] is None
+
+
+
+def test_four_standalone_guide_links_reuse_exact_named_photos_without_classification():
+    """The next four are display-only joins, never automatic photo identification."""
+    import detail_ui
+    import mushroom_knowledge as knowledge
+
+    manifest = json.loads((Path(__file__).resolve().parents[1] / "data/guide-links.json").read_text(encoding="utf-8"))
+    assert manifest == {
+        "アカモミタケ": "akamomitake",
+        "アミタケ": "amitake",
+        "ウラベニホテイシメジ": "urabenihoteisimeji",
+        "オニイグチモドキ": "oniigutimodoki",
+    }
+    taxonomy = main.load_subject_taxonomy()
+    master = knowledge.load_mushroom_master()
+    sources = knowledge.load_sources()
+    by_name = {row["canonical_name"]: row for row in taxonomy["entries"]}
+    masters = {row["mushroom_id"]: row for row in master["entries"]}
+    for name, key in manifest.items():
+        assert name not in by_name
+        assert masters[key]["canonical_name_ja"] == name
+        assert masters[key]["food_safety"]["status"] == "edibility_reported"
+        assert masters[key]["food_safety"]["notes"] == detail_ui.NEXT_FOUR_SOURCE_NOTE
+        assert masters[key]["scientific_name"]["source_ids"]
+
+    original_names = list(manifest) + ["アミタケ？", "アミタケ sp.", "アミタケ cf.", "アミタケ(広義)", "全く別のキノコ"]
+    photo_rows = [{"alt": name, "src": f"test-{i}.jpg"} for i, name in enumerate(original_names)]
+    def build_with(links):
+        return portal_data.build_portal_data(
+            production_entries=photo_rows, shadow_metadata=[], article_metadata={},
+            exif_cache={}, taxonomy=taxonomy, mushroom_master=master, sources=sources,
+            production_mode="phase3c_hybrid", cutover_active=True, guide_links=links
+        )
+    before = build_with({})
+    after = build_with(manifest)
+    expected = deepcopy(before)
+    for observation in expected["observations"]:
+        observation["mushroom_master_id"] = manifest.get(observation["gallery_name"])
+    for subject in expected["subjects"]:
+        key = manifest.get(subject["gallery_name"])
+        subject["mushroom_master_id"] = key
+        subject["knowledge_available"] = key is not None
+    expected["summary"]["master_linked_subject_count"] += 4
+    expected["summary"]["master_unlinked_subject_count"] -= 4
+    assert after == expected
+    assert [e["src"] for e in after["observations"]] == [e["src"] for e in photo_rows]
+    assert [e["gallery_name"] for e in after["observations"]] == original_names
+
+    views = detail_ui.build_detail_views(after)
+    for name, key in manifest.items():
+        rendered = detail_ui.render_detail_sections(views[name])
+        assert views[name]["knowledge"] is not None
+        assert views[name]["knowledge"]["sources"]
+        assert detail_ui.NEXT_FOUR_DISPLAY_NOTE in rendered
+        assert "資料には食用との記載があります" in rendered
+        assert "キノコを採ったり、調理したり、食べたりする判断には使わないでください" in rendered
+    for name in original_names[4:]:
+        assert views[name]["knowledge"] is None
+
+
+@pytest.mark.parametrize("invalid", [
+    {"アミタケ": "not-in-master"},
+    {"アミタケ？": "amitake"},
+    {"アミタケ sp.": "amitake"},
+    {"アミタケ cf.": "amitake"},
+    {"アミタケ(広義)": "amitake"},
+    {"菌名": "fungus-id"},  # already exists in subject taxonomy
+    [],
+])
+def test_standalone_guide_links_fail_closed_on_unknown_or_ambiguous_data(invalid):
+    if isinstance(invalid, dict) and "菌名" not in invalid:
+        taxonomy = {"version": 1, "entries": []}
+        master = {"version": 1, "entries": [{"mushroom_id": "amitake", "canonical_name_ja": "アミタケ"}]}
+    else:
+        taxonomy, master, _ = references()
+    with pytest.raises(ValueError):
+        portal_data.build_portal_data(
+            production_entries=[{"alt": "菌名", "src": "photo.jpg"}],
+            shadow_metadata=[], article_metadata={}, exif_cache={},
+            taxonomy=taxonomy, mushroom_master=master, sources={"version": 1, "sources": []},
+            production_mode="phase3c_hybrid", cutover_active=True, guide_links=invalid
+        )
 
 
 def test_classification_statuses_use_existing_provenance_only():

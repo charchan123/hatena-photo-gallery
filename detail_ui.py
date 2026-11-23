@@ -119,6 +119,27 @@ FOOD_NOTE_REVIEWED = {
 }
 
 
+# Four additional, already-named gallery subjects from the reviewed #149
+# candidate set. Never show these polished words unless source note and name
+# still match exactly. Human-reviewed master data and food status stay intact.
+NEXT_FOUR_SOURCE_NOTE = (
+    "食用可否の自己判断には使用しない。"
+    "毒性の記録がないことは安全を意味しない。 "
+    "石川県の食毒欄は「食」。"
+    "公的資料に食用記述があるという記録であり安全保証ではない。"
+)
+NEXT_FOUR_DISPLAY_NOTE = (
+    "石川県の資料では、食毒欄に「食」と記載されています。"
+    "これは資料上の区分であり、採取したキノコの安全性を保証するものではありません。"
+)
+NEXT_FOUR_FOOD_NOTE_REVIEWED = {
+    "akamomitake": ("アカモミタケ", NEXT_FOUR_SOURCE_NOTE, NEXT_FOUR_DISPLAY_NOTE),
+    "amitake": ("アミタケ", NEXT_FOUR_SOURCE_NOTE, NEXT_FOUR_DISPLAY_NOTE),
+    "urabenihoteisimeji": ("ウラベニホテイシメジ", NEXT_FOUR_SOURCE_NOTE, NEXT_FOUR_DISPLAY_NOTE),
+    "oniigutimodoki": ("オニイグチモドキ", NEXT_FOUR_SOURCE_NOTE, NEXT_FOUR_DISPLAY_NOTE),
+}
+
+
 def reader_facing_food_note(note):
     """Show source-specific facts; the detail panel renders the safety warning separately."""
     note = _present(note)
@@ -229,7 +250,8 @@ def _knowledge(master, source_map):
             ("ヤマドリタケモドキ", YAMADORITAKEMODOKI_SOURCE_NOTE): YAMADORITAKEMODOKI_DISPLAY_NOTE,
             ("シイタケ", SHIITAKE_SOURCE_NOTE): SHIITAKE_DISPLAY_NOTE,
         }.get(name_and_note)
-        reviewed = FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
+        reviewed = (FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
+                    or NEXT_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id")))
         if (reviewed is not None and
                 reviewed[:2] == (master.get("canonical_name_ja"), food.get("notes"))):
             # None means this source contained only the repeated generic warning.
