@@ -2230,8 +2230,10 @@ def generate_gallery(entries, exif_cache, detail_views=None, multi_subject_overl
 """]
 
         if display_only.get(alt):
-            html_parts.append('<p class="shared-subject-note">「複数種が写る写真」は元記事の記載に基づく参照表示です。'
-                              '図鑑トップ・観察記録の登録件数には加算しません。未登録の参照写真にはお気に入りの星を表示しません。</p>')
+            html_parts.append('<p class="shared-subject-note">1枚の写真に複数の種類が写っている場合は、元の記事の記載をもとに、'
+                              'それぞれの図鑑ページにも写真を掲載しています。'
+                              'こうした写真は図鑑トップや観察記録の登録件数には含めず、'
+                              '未登録の写真にはお気に入りの星も表示していません。</p>')
         html_parts.append("<div class='gallery'>")
 
         for src in imgs:
