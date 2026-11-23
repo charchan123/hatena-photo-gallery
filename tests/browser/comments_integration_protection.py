@@ -126,6 +126,12 @@ SEVENTH_FOUR_LINK_BLOBS = {
     'detail_ui.py': '2b856a1190264c6ba2077f3fbff1c8b817a0f27b',
     'data/guide-links.json': 'e0dd8f241c9114bc99a702336685920bc1e84426',
 }
+# Eighth group: only exact source blobs reviewed against the #177 main.
+EIGHTH_FOUR_LINK_BASE = '27be968fb371d6e7f0a552abe860ec203af04954'
+EIGHTH_FOUR_LINK_BLOBS = {
+    'detail_ui.py': '09c09d37d658a95bb4b39aaa5a682217b300200b',
+    'data/guide-links.json': 'ff00d8d4d03ff829d81e74b4074a87450b8a9a3e',
+}
 PUBLIC_CONFIG = 'comments/public-config.json'
 PRODUCTION_ORIGIN = 'https://kinoko-research-comments.sasama-bb.workers.dev'
 RELEASE_ID = 'research-comments-production-20261120'
@@ -151,6 +157,10 @@ def assert_reviewed_source(base, path, current):
     """Never hide a main change behind the old PR's allowance."""
     original = git('show', f'{base}:{path}')
     if current == original:
+        return
+    if path in EIGHTH_FOUR_LINK_BLOBS and git('rev-parse', base).decode().strip() == EIGHTH_FOUR_LINK_BASE:
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
+        assert hashlib.sha1(blob).hexdigest() == EIGHTH_FOUR_LINK_BLOBS[path], path
         return
     if path in SEVENTH_FOUR_LINK_BLOBS and git('rev-parse', base).decode().strip() == SEVENTH_FOUR_LINK_BASE:
         blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
