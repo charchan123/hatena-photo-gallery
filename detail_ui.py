@@ -211,6 +211,15 @@ NINTH_FOUR_FOOD_NOTE_REVIEWED = {
     "tutiguri": ("ツチグリ", "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「不食」。", "石川県の資料では、食毒欄に「不食」と記載されています。これは「毒」と同じ意味ではなく、この記載だけで毒性が確認されたとは判断できません。"),
 }
 
+# Tenth (final exact-name) group: conservative warnings for two new links.
+# Keep the source master unchanged and apply only when ID/name/full note match.
+TENTH_NARATAKE_CAUTION_LABEL = "資料に食用記載と注意情報があります"
+TENTH_MANNENTAKE_USE_LABEL = "資料には薬用・鑑賞との記載があります"
+TENTH_TWO_FOOD_NOTE_REVIEWED = {
+    "naratake": ("ナラタケ", "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。 茨城県はナラタケ類の摂食後事例と、ナラタケ・ナラタケモドキの多量摂取による消化不良への注意を記載する。原因種が確定した毒性試験と同一視せず、食用記録に注意を併記する。", "石川県の資料では、食毒欄に「食」と記載されています。一方、茨城県の資料では、ナラタケやナラタケモドキについて、食べ過ぎると消化不良を起こしやすいと注意しています。食用との記載があっても、採取したキノコの種類や安全性を判断することはできません。"),
+    "mannentake": ("マンネンタケ", "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「薬用、鑑賞」。", "石川県の資料では、食毒欄に「薬用、鑑賞」と記載されています。これは資料に記された利用区分であり、薬としての効果や、採取したキノコの安全性を示すものではありません。"),
+}
+
 
 def reader_facing_food_note(note):
     """Show source-specific facts; the detail panel renders the safety warning separately."""
@@ -336,7 +345,8 @@ def _knowledge(master, source_map):
                     or SIXTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
                     or SEVENTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
                     or EIGHTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
-                    or NINTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id")))
+                    or NINTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
+                    or TENTH_TWO_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id")))
         if (master.get("mushroom_id") == "anzutake" and
                 master.get("canonical_name_ja") == "アンズタケ" and
                 status == "edibility_reported" and reviewed is not None and
@@ -350,6 +360,14 @@ def _knowledge(master, source_map):
             # Explicit caution is more informative than a generic unknown
             # status; never recategorize the underlying master record.
             rows[-1]["value"] = NINTH_KUROHATU_WARNING_LABEL
+        if (reviewed is not None and
+                reviewed[:2] == (master.get("canonical_name_ja"), food.get("notes"))):
+            if (master.get("mushroom_id") == "naratake"
+                    and status == "edibility_reported"):
+                rows[-1]["value"] = TENTH_NARATAKE_CAUTION_LABEL
+            elif (master.get("mushroom_id") == "mannentake"
+                    and status == "unknown"):
+                rows[-1]["value"] = TENTH_MANNENTAKE_USE_LABEL
         if (reviewed is not None and
                 reviewed[:2] == (master.get("canonical_name_ja"), food.get("notes"))):
             # None means this source contained only the repeated generic warning.
