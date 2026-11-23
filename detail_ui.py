@@ -181,6 +181,15 @@ SIXTH_FOUR_FOOD_NOTE_REVIEWED = {
     "hatutake": ("ハツタケ", NEXT_FOUR_SOURCE_NOTE, NEXT_FOUR_DISPLAY_NOTE),
 }
 
+# Seventh group: source-backed, human-reviewable notes; do not alter master data.
+# Hokoritake's source explicitly says 幼時食: do not broaden this to all ages.
+SEVENTH_FOUR_FOOD_NOTE_REVIEWED = {
+    "haratake": ("ハラタケ", NEXT_FOUR_SOURCE_NOTE, NEXT_FOUR_DISPLAY_NOTE),
+    "hokoritake": ("ホコリタケ", "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「幼時食」。幼時に限定された食利用の記録であり、時期を限定しない食用判断へ拡張しない。公的資料に食用記述があるという記録であり安全保証ではない。", "石川県の資料では、食毒欄に「幼時食」と記載されています。これは若い時期に限った食用の記録であり、成長した個体まで食用と判断できるものではありません。また、採取したキノコの安全性を保証するものでもありません。"),
+    "mukitake": ("ムキタケ", NEXT_FOUR_SOURCE_NOTE, NEXT_FOUR_DISPLAY_NOTE),
+    "rurihatutake": ("ルリハツタケ", NEXT_FOUR_SOURCE_NOTE, NEXT_FOUR_DISPLAY_NOTE),
+}
+
 
 def reader_facing_food_note(note):
     """Show source-specific facts; the detail panel renders the safety warning separately."""
@@ -303,7 +312,8 @@ def _knowledge(master, source_map):
                     or THIRD_FOUR_FOOD_NOTE_CANDIDATES.get(master.get("mushroom_id"))
                     or FOURTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
                     or FIFTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
-                    or SIXTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id")))
+                    or SIXTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
+                    or SEVENTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id")))
         if (reviewed is not None and
                 reviewed[:2] == (master.get("canonical_name_ja"), food.get("notes"))):
             # None means this source contained only the repeated generic warning.
