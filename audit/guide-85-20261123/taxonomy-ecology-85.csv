@@ -1,0 +1,256 @@
+掲載名,master_id,欄,元記載,候補,判定,出典URL,読者の承認状態,根拠箇所・留意点
+アイタケ,aitake,科名,ベニタケ科,ベニタケ科,採用可（既存の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 
+アイタケ,aitake,属名,ベニタケ属,ベニタケ属,採用可（既存の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=453&p=304,未承認, 
+アイタケ,aitake,生態,,,未確認,,未承認, 
+アオロウジ,aorouji,科名,ニンギョウタケモドキ科,ニンギョウタケ科,保留（体系の差または適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+アオロウジ,aorouji,属名,,ニンギョウタケモドキ属,採用可（種と属の参照を照合）,https://soar-ir.repo.nii.ac.jp/record/10540/files/v38_01.pdf | https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+アオロウジ,aorouji,生態,,,未確認,,未承認, 
+アカジコウ,akajikou,科名,Boletaceae,イグチ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 国内の和名範囲と北米の旧 Boletus 名の対応を要確認。
+アカジコウ,akajikou,属名,Boletus,イグチ属,採用可（同属の和名）,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko042.html,未承認, 国内の和名範囲と北米の旧 Boletus 名の対応を要確認。
+アカジコウ,akajikou,生態,,,未確認,,未承認, 国内の和名範囲と北米の旧 Boletus 名の対応を要確認。
+アカモミタケ,akamomitake,科名,ベニタケ科,ベニタケ科,保留（分類・適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 京都・静岡・県図鑑に Lactarius laeticolor。現行マスターの laeticolorus は綴り候補として保留。
+アカモミタケ,akamomitake,属名,,チチタケ属,保留（同属の適用範囲）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=2348&p=275,未承認, 京都・静岡・県図鑑に Lactarius laeticolor。現行マスターの laeticolorus は綴り候補として保留。
+アカモミタケ,akamomitake,生態,,,未確認,,未承認, 京都・静岡・県図鑑に Lactarius laeticolor。現行マスターの laeticolorus は綴り候補として保留。
+アカヤマドリ,akayamadori,科名,イグチ科,イグチ科,採用可（既存の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 旧 Leccinum と Rugiboletus の組み合わせを確認。採集個体に一括適用しない。
+アカヤマドリ,akayamadori,属名,,ヤマイグチ属,保留（同属の適用範囲）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=705&p=53,未承認, 旧 Leccinum と Rugiboletus の組み合わせを確認。採集個体に一括適用しない。
+アカヤマドリ,akayamadori,生態,,,未確認,,未承認, 旧 Leccinum と Rugiboletus の組み合わせを確認。採集個体に一括適用しない。
+アミガサタケ,amigasatake,科名,Morchellaceae,アミガサタケ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 旧広義名と国内 Morchella の種範囲を要確認。食用利用と中毒記録は別。
+アミガサタケ,amigasatake,属名,Morchella,アミガサタケ属,採用可（同属の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=2731,未承認, 旧広義名と国内 Morchella の種範囲を要確認。食用利用と中毒記録は別。
+アミガサタケ,amigasatake,生態,,,未確認,,未承認, 旧広義名と国内 Morchella の種範囲を要確認。食用利用と中毒記録は別。
+アミタケ,amitake,科名,,ヌメリイグチ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+アミタケ,amitake,属名,Suillus,ヌメリイグチ属,採用可（同属の和名）,https://www1.pref.shimane.lg.jp/admin/region/kikan/chusankan/syoseki/research/No5_kenkyuhoukoku.data/kenkyuhoukokudai5gou15.pdf,未承認, 
+アミタケ,amitake,生態,,菌根菌,採用可（種別の明示記載）,https://soar-ir.repo.nii.ac.jp/record/10540/files/v38_01.pdf,未承認,山田（2002）の菌根性きのこ類の表に同和名・同学名。 
+アラゲキクラゲ,aragekikurage,科名,キクラゲ科,キクラゲ科,採用可（既存の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 国内流通・国内野生・旧 Auricularia polytricha の名の適用範囲を要確認。
+アラゲキクラゲ,aragekikurage,属名,Auricularia,,要確認（日本語資料・分類差）,,未承認, 国内流通・国内野生・旧 Auricularia polytricha の名の適用範囲を要確認。
+アラゲキクラゲ,aragekikurage,生態,,,未確認,,未承認, 国内流通・国内野生・旧 Auricularia polytricha の名の適用範囲を要確認。
+アンズタケ,anzutake,科名,,アンズタケ科,保留（体系の差または適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 国内の旧 C. cibarius は複数系統。資料上の食用・注意と種概念を分ける。
+アンズタケ,anzutake,属名,Cantharellus,,要確認（日本語資料・分類差）,,未承認, 国内の旧 C. cibarius は複数系統。資料上の食用・注意と種概念を分ける。
+アンズタケ,anzutake,生態,,,未確認,,未承認, 国内の旧 C. cibarius は複数系統。資料上の食用・注意と種概念を分ける。
+ウコンハツ,ukonhatsu,科名,ベニタケ科,ベニタケ科,採用可（既存の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 
+ウコンハツ,ukonhatsu,属名,Russula,ベニタケ属,採用可（同属の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=453&p=304,未承認, 
+ウコンハツ,ukonhatsu,生態,,,未確認,,未承認, 
+ウスタケ,usutake,科名,Gomphaceae,ラッパタケ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 静岡県目録に Turbinellus floccosus。薬理や食毒の旧和名を新分類へ一括適用しない。
+ウスタケ,usutake,属名,,,要確認（日本語資料・分類差）,,未承認, 静岡県目録に Turbinellus floccosus。薬理や食毒の旧和名を新分類へ一括適用しない。
+ウスタケ,usutake,生態,,,未確認,,未承認, 静岡県目録に Turbinellus floccosus。薬理や食毒の旧和名を新分類へ一括適用しない。
+ウスヒラタケ,usuhiratake,科名,ヒラタケ科,ヒラタケ科,採用可（既存の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 
+ウスヒラタケ,usuhiratake,属名,Pleurotus,ヒラタケ属,採用可（同属の和名）,https://www.maff.go.jp/j/pr/aff/2110/spe1_02.html,未承認, 
+ウスヒラタケ,usuhiratake,生態,,,未確認,,未承認, 
+ウラグロニガイグチ,uraguronigaiguchi,科名,イグチ科,イグチ科,保留（分類・適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 旧 Tylopilus・Leccinum、静岡の Sutorius、近縁・仮称・海外事例を分ける。
+ウラグロニガイグチ,uraguronigaiguchi,属名,,ニガイグチ属,保留（同属の適用範囲）,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko044.html,未承認, 旧 Tylopilus・Leccinum、静岡の Sutorius、近縁・仮称・海外事例を分ける。
+ウラグロニガイグチ,uraguronigaiguchi,生態,,,未確認,,未承認, 旧 Tylopilus・Leccinum、静岡の Sutorius、近縁・仮称・海外事例を分ける。
+ウラベニガサ,urabenigasa,科名,ウラベニガサ科,ウラベニガサ科,要確認（当該種と階級の出典）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 
+ウラベニガサ,urabenigasa,属名,ウラベニガサ属,ウラベニガサ属,要確認（日本語資料・分類差）,,未承認, 
+ウラベニガサ,urabenigasa,生態,,,未確認,,未承認, 
+ウラベニホテイシメジ,urabenihoteisimeji,科名,イッポンシメジ科,イッポンシメジ科,保留（分類・適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 静岡目録381に Entoloma sarcopum。旧 crassipes との範囲・類似有毒菌を要審査。
+ウラベニホテイシメジ,urabenihoteisimeji,属名,Entoloma,イッポンシメジ属,保留（同属の適用範囲）,https://www.nihs.go.jp/dnfi/pdf/E.rhodopolium-methods.pdf,未承認, 静岡目録381に Entoloma sarcopum。旧 crassipes との範囲・類似有毒菌を要審査。
+ウラベニホテイシメジ,urabenihoteisimeji,生態,,,未確認,,未承認, 静岡目録381に Entoloma sarcopum。旧 crassipes との範囲・類似有毒菌を要審査。
+エノキタケ,enokitake,科名,キシメジ科,タマバリタケ科,採用可（出典別の体系を注記）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=g12&id=3967&p=2 | https://www.maff.go.jp/j/pr/aff/2110/spe1_02.html,未承認,従来のキシメジ科との体系差。学名は元資料の表記。 科はキシメジ科からタマバリタケ科へ。科博の F. filiformis 標本をブログ写真に一括適用しない。
+エノキタケ,enokitake,属名,Flammulina,エノキタケ属,採用可（同属の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=g12&id=3967&p=2,未承認, 科はキシメジ科からタマバリタケ科へ。科博の F. filiformis 標本をブログ写真に一括適用しない。
+エノキタケ,enokitake,生態,,腐生菌,採用可（種別の明示記載）,https://www.maff.go.jp/j/pr/aff/2110/spe1_02.html,未承認,農林水産省の資料でエノキタケに示された生態。 科はキシメジ科からタマバリタケ科へ。科博の F. filiformis 標本をブログ写真に一括適用しない。
+オオキツネタケ,ookitunetake,科名,キシメジ科,ヒドナンギウム科,保留（体系の差または適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 旧キシメジ科と、京都府・静岡県目録のヒドナンギウム科。
+オオキツネタケ,ookitunetake,属名,Laccaria,キツネタケ属,採用可（同属の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=h07&id=1659&p=1,未承認, 旧キシメジ科と、京都府・静岡県目録のヒドナンギウム科。
+オオキツネタケ,ookitunetake,生態,,,未確認,,未承認, 旧キシメジ科と、京都府・静岡県目録のヒドナンギウム科。
+オオシロカラカサタケ,ooshirokarakasatake,科名,Agaricaceae,ハラタケ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+オオシロカラカサタケ,ooshirokarakasatake,属名,Chlorophyllum,オオシロカラカサタケ属,採用可（同属の和名）,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko023.html,未承認, 
+オオシロカラカサタケ,ooshirokarakasatake,生態,,,未確認,,未承認, 
+オオワライタケ,oowaraitake,科名,フウセンタケ科,フウセンタケ科,採用可（既存の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 京都府の旧 G. spectabilis と静岡の G. junonius・ヒメノガステル科。原因種の範囲を要審査。
+オオワライタケ,oowaraitake,属名,チャツムタケ属,チャツムタケ属,要確認（日本語資料・分類差）,,未承認, 京都府の旧 G. spectabilis と静岡の G. junonius・ヒメノガステル科。原因種の範囲を要審査。
+オオワライタケ,oowaraitake,生態,,,未確認,,未承認, 京都府の旧 G. spectabilis と静岡の G. junonius・ヒメノガステル科。原因種の範囲を要審査。
+オニイグチモドキ,oniigutimodoki,科名,,イグチ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+オニイグチモドキ,oniigutimodoki,属名,オニイグチ属,オニイグチ属,要確認（日本語資料・分類差）,,未承認, 
+オニイグチモドキ,oniigutimodoki,生態,,,未確認,,未承認, 
+カエンタケ,kaentake,科名,ニクザキン科,ボタンタケ科,保留（体系の差または適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 旧 Podostroma と Trichoderma。Hypocreaceae の和名と属の再整理を要審査。
+カエンタケ,kaentake,属名,ツノタケ属,ツノタケ属,要確認（日本語資料・分類差）,,未承認, 旧 Podostroma と Trichoderma。Hypocreaceae の和名と属の再整理を要審査。
+カエンタケ,kaentake,生態,,,未確認,,未承認, 旧 Podostroma と Trichoderma。Hypocreaceae の和名と属の再整理を要審査。
+カキシメジ,kakisimeji,科名,Tricholomataceae,キシメジ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 2021年改訂の T. kakishimeji ほか複数種と旧 T. ustale を区別。毒性警告を維持。
+カキシメジ,kakisimeji,属名,キシメジ属,キシメジ属,採用可（既存の和名）,https://www.maff.go.jp/j/pr/aff/2110/spe1_02.html,未承認, 2021年改訂の T. kakishimeji ほか複数種と旧 T. ustale を区別。毒性警告を維持。
+カキシメジ,kakisimeji,生態,,,未確認,,未承認, 2021年改訂の T. kakishimeji ほか複数種と旧 T. ustale を区別。毒性警告を維持。
+カニノツメ,kaninotume,科名,,スッポンタケ科,保留（分類・適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 科博の Linderia・アカカゴタケ科と、京都の Clathrus・スッポンタケ科、静岡の Laternea を区別。
+カニノツメ,kaninotume,属名,,カニノツメ属,保留（同属の適用範囲）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=c14&id=1361&p=1,未承認, 科博の Linderia・アカカゴタケ科と、京都の Clathrus・スッポンタケ科、静岡の Laternea を区別。
+カニノツメ,kaninotume,生態,,,未確認,,未承認, 科博の Linderia・アカカゴタケ科と、京都の Clathrus・スッポンタケ科、静岡の Laternea を区別。
+カバイロツルタケ,kabairoturutake,科名,テングタケ科,テングタケ科,保留（分類・適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 旧 A. vaginata var. fulva と A. fulva を比較。石川と森林総研の食毒記述を両方保持。
+カバイロツルタケ,kabairoturutake,属名,テングタケ属,テングタケ属,採用可（既存の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a11&id=404&p=1,未承認, 旧 A. vaginata var. fulva と A. fulva を比較。石川と森林総研の食毒記述を両方保持。
+カバイロツルタケ,kabairoturutake,生態,,,未確認,,未承認, 旧 A. vaginata var. fulva と A. fulva を比較。石川と森林総研の食毒記述を両方保持。
+カラカサタケ,karakasatake,科名,ハラタケ科,ハラタケ科,採用可（既存の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 島根県の注意表記の具体的理由は不明。食用記載の安全への一般化を避ける。
+カラカサタケ,karakasatake,属名,Macrolepiota,カラカサタケ属,採用可（同属の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=d14&id=1096&p=1,未承認, 島根県の注意表記の具体的理由は不明。食用記載の安全への一般化を避ける。
+カラカサタケ,karakasatake,生態,,,未確認,,未承認, 島根県の注意表記の具体的理由は不明。食用記載の安全への一般化を避ける。
+カワリハツ,kawarihatu,科名,Russulaceae,ベニタケ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+カワリハツ,kawarihatu,属名,Russula,ベニタケ属,採用可（同属の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=453&p=304,未承認, 
+カワリハツ,kawarihatu,生態,,,未確認,,未承認, 
+ガンタケ,gantake,科名,Amanitaceae,テングタケ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 国内旧 A. rubescens の分類範囲と毒性資料の適用先を再確認。
+ガンタケ,gantake,属名,Amanita,テングタケ属,採用可（同属の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a11&id=404&p=1,未承認, 国内旧 A. rubescens の分類範囲と毒性資料の適用先を再確認。
+ガンタケ,gantake,生態,,,未確認,,未承認, 国内旧 A. rubescens の分類範囲と毒性資料の適用先を再確認。
+キアミアシイグチ,kiamiashiiguchi,科名,イグチ科,イグチ科,採用可（既存の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, Boletus と Retiboletus の組み合わせ、著者名・国内標本を比較。
+キアミアシイグチ,kiamiashiiguchi,属名,,イグチ属,保留（同属の適用範囲）,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko042.html,未承認, Boletus と Retiboletus の組み合わせ、著者名・国内標本を比較。
+キアミアシイグチ,kiamiashiiguchi,生態,,,未確認,,未承認, Boletus と Retiboletus の組み合わせ、著者名・国内標本を比較。
+キイロスッポンタケ,kiirosuppontake,科名,スッポンタケ科,スッポンタケ科,保留（分類・適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 県目録 Phallus flavocostatus とマスター Phallus costatus は異なる。元出典・標本を確認。
+キイロスッポンタケ,kiirosuppontake,属名,,スッポンタケ属,保留（同属の適用範囲）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=2237&p=124,未承認, 県目録 Phallus flavocostatus とマスター Phallus costatus は異なる。元出典・標本を確認。
+キイロスッポンタケ,kiirosuppontake,生態,,,未確認,,未承認, 県目録 Phallus flavocostatus とマスター Phallus costatus は異なる。元出典・標本を確認。
+キクバナイグチ,kikubanaiguchi,科名,オニイグチ科,イグチ科,保留（分類・適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, Boletellus emodensis 広義と国内の B. floriformis 等、科の変更を別審査。
+キクバナイグチ,kikubanaiguchi,属名,キクバナイグチ属,キクバナイグチ属,採用可（既存の和名）,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko036.html,未承認, Boletellus emodensis 広義と国内の B. floriformis 等、科の変更を別審査。
+キクバナイグチ,kikubanaiguchi,生態,,,未確認,,未承認, Boletellus emodensis 広義と国内の B. floriformis 等、科の変更を別審査。
+キクラゲ,kikurage,科名,キクラゲ科,キクラゲ科,保留（分類・適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 現マスター A. heimuer と同じ和名を使う石川・農水省の旧学名を区別。
+キクラゲ,kikurage,属名,キクラゲ属,キクラゲ属,要確認（日本語資料・分類差）,,未承認, 現マスター A. heimuer と同じ和名を使う石川・農水省の旧学名を区別。
+キクラゲ,kikurage,生態,,,未確認,,未承認, 現マスター A. heimuer と同じ和名を使う石川・農水省の旧学名を区別。
+キツネタケ,kitunetake,科名,,ヒドナンギウム科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+キツネタケ,kitunetake,属名,Laccaria,キツネタケ属,採用可（同属の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=h07&id=1659&p=1,未承認, 
+キツネタケ,kitunetake,生態,,菌根菌,採用可（種別の明示記載）,https://www.forest.kyushu-u.ac.jp/jyoho/exhibition/miyaen/inpulse.html,未承認,九州大学の宮崎演習林でのキツネタケの記載。種内の範囲は資料に従う。 
+キニガイグチ,kinigaiguchi,科名,イグチ科,イグチ科,保留（分類・適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 旧 Tylopilus、京都の Rubinoboletus。国内写真と現行分類を別審査。
+キニガイグチ,kinigaiguchi,属名,ニガイグチ属,ニガイグチ属,採用可（既存の和名）,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko044.html,未承認, 旧 Tylopilus、京都の Rubinoboletus。国内写真と現行分類を別審査。
+キニガイグチ,kinigaiguchi,生態,,,未確認,,未承認, 旧 Tylopilus、京都の Rubinoboletus。国内写真と現行分類を別審査。
+キララタケ,kiraratake,科名,,ナヨタケ科,保留（分類・適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 旧 Coprinus と現行候補 Coprinellus、県の食／毒、症例と化学資料を区別。
+キララタケ,kiraratake,属名,,,要確認（日本語資料・分類差）,,未承認, 旧 Coprinus と現行候補 Coprinellus、県の食／毒、症例と化学資料を区別。
+キララタケ,kiraratake,生態,,,未確認,,未承認, 旧 Coprinus と現行候補 Coprinellus、県の食／毒、症例と化学資料を区別。
+クサウラベニタケ,kusaurabenitake,科名,Entolomataceae,イッポンシメジ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 国立衛研の国内近縁3種と旧 E. rhodopolium を分け、毒性表示を維持。
+クサウラベニタケ,kusaurabenitake,属名,イッポンシメジ属,イッポンシメジ属,採用可（既存の和名）,https://www.nihs.go.jp/dnfi/pdf/E.rhodopolium-methods.pdf,未承認, 国立衛研の国内近縁3種と旧 E. rhodopolium を分け、毒性表示を維持。
+クサウラベニタケ,kusaurabenitake,生態,,,未確認,,未承認, 国立衛研の国内近縁3種と旧 E. rhodopolium を分け、毒性表示を維持。
+クチベニタケ,kutibenitake,科名,クチベニタケ科,クチベニタケ科,要確認（当該種と階級の出典）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 
+クチベニタケ,kutibenitake,属名,Calostoma,クチベニタケ属,採用可（同属の和名）,https://soar-ir.repo.nii.ac.jp/record/2002781/files/AFC23-4.pdf,未承認, 
+クチベニタケ,kutibenitake,生態,,,未確認,,未承認, 
+クリタケ,kuritake,科名,モエギタケ科,モエギタケ科,保留（分類・適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 京都・静岡の H. lateritium と旧 H. sublateritium を区別する。属名は共通。
+クリタケ,kuritake,属名,Hypholoma,クリタケ属,保留（同属の適用範囲）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=b08&id=55&p=1&s=area,未承認, 京都・静岡の H. lateritium と旧 H. sublateritium を区別する。属名は共通。
+クリタケ,kuritake,生態,,,未確認,,未承認, 京都・静岡の H. lateritium と旧 H. sublateritium を区別する。属名は共通。
+クロカワ,kurokawa,科名,イボタケ科,マツバハリタケ科,保留（分類・適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, Boletopsis leucomelas の綴りと京都・静岡での leucomelaena、イボタケ科／マツバハリタケ科を比較。
+クロカワ,kurokawa,属名,Boletopsis,クロカワ属,保留（同属の適用範囲）,https://soar-ir.repo.nii.ac.jp/record/10540/files/v38_01.pdf,未承認, Boletopsis leucomelas の綴りと京都・静岡での leucomelaena、イボタケ科／マツバハリタケ科を比較。
+クロカワ,kurokawa,生態,,,未確認,,未承認, Boletopsis leucomelas の綴りと京都・静岡での leucomelaena、イボタケ科／マツバハリタケ科を比較。
+クロハツ,kurohatu,科名,Russulaceae,ベニタケ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 厚労科研は近縁種との扱いに注意。ニセクロハツの症例を対象種へ転用しない。
+クロハツ,kurohatu,属名,Russula,ベニタケ属,採用可（同属の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=453&p=304,未承認, 厚労科研は近縁種との扱いに注意。ニセクロハツの症例を対象種へ転用しない。
+クロハツ,kurohatu,生態,,,未確認,,未承認, 厚労科研は近縁種との扱いに注意。ニセクロハツの症例を対象種へ転用しない。
+コタマゴテングタケ,kotamagotengutake,科名,テングタケ科,テングタケ科,採用可（既存の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 
+コタマゴテングタケ,kotamagotengutake,属名,Amanita,テングタケ属,採用可（同属の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a11&id=404&p=1,未承認, 
+コタマゴテングタケ,kotamagotengutake,生態,,,未確認,,未承認, 
+コツブタケ,kotubutake,科名,,ニセショウロ科,保留（体系の差または適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, Pisolithus arrhizus と arhizus、旧 P. tinctorius の範囲と科体系を確認。
+コツブタケ,kotubutake,属名,,コツブタケ属,保留（同属の適用範囲）,https://soar-ir.repo.nii.ac.jp/record/10540/files/v38_01.pdf,未承認, Pisolithus arrhizus と arhizus、旧 P. tinctorius の範囲と科体系を確認。
+コツブタケ,kotubutake,生態,,,未確認,,未承認, Pisolithus arrhizus と arhizus、旧 P. tinctorius の範囲と科体系を確認。
+コテングタケモドキ,kotengutakemodoki,科名,テングタケ科,テングタケ科,採用可（既存の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 
+コテングタケモドキ,kotengutakemodoki,属名,テングタケ属,テングタケ属,採用可（既存の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a11&id=404&p=1,未承認, 
+コテングタケモドキ,kotengutakemodoki,生態,,,未確認,,未承認, 
+シイタケ,shiitake,科名,,ツキヨタケ科,採用可（出典別の体系を注記）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=g13&id=2623&p=4&s=sci | https://www.maff.go.jp/j/pr/aff/2110/spe1_02.html,未承認,農水省・科博の体系。別の公的資料には旧科名の記載あり。 農水省・科博・京都府はツキヨタケ科。厚労省の類似種比較表はキシメジ科。
+シイタケ,shiitake,属名,シイタケ属,シイタケ属,採用可（既存の和名）,,未承認, 農水省・科博・京都府はツキヨタケ科。厚労省の類似種比較表はキシメジ科。
+シイタケ,shiitake,生態,,腐生菌,採用可（種別の明示記載）,https://www.maff.go.jp/j/pr/aff/2110/spe1_02.html | https://www.maff.go.jp/j/pr/aff/2110/spe1_01.html,未承認,同学名に対する農林水産省の記載。 農水省・科博・京都府はツキヨタケ科。厚労省の類似種比較表はキシメジ科。
+ショウゲンジ,syougenji,科名,Cortinariaceae,フウセンタケ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, Rozites／Cortinarius 旧新の便宜上の表示を区別。
+ショウゲンジ,syougenji,属名,Cortinarius,フウセンタケ属,採用可（同属の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a11&id=2726&p=1,未承認, Rozites／Cortinarius 旧新の便宜上の表示を区別。
+ショウゲンジ,syougenji,生態,,,未確認,,未承認, Rozites／Cortinarius 旧新の便宜上の表示を区別。
+シロオニタケ,siroonitake,科名,Amanitaceae,テングタケ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+シロオニタケ,siroonitake,属名,テングタケ属,テングタケ属,採用可（既存の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a11&id=404&p=1,未承認, 
+シロオニタケ,siroonitake,生態,,,未確認,,未承認, 
+セイタカイグチ,seitakaiguchi,科名,オニイグチ科,イグチ科,保留（体系の差または適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, オニイグチ科と京都・静岡のイグチ科。属の日本語名にも資料差あり。
+セイタカイグチ,seitakaiguchi,属名,,キクバナイグチ属,保留（同属の適用範囲）,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko036.html,未承認, オニイグチ科と京都・静岡のイグチ科。属の日本語名にも資料差あり。
+セイタカイグチ,seitakaiguchi,生態,,,未確認,,未承認, オニイグチ科と京都・静岡のイグチ科。属の日本語名にも資料差あり。
+タマゴタケ,tamagotake,科名,テングタケ科,テングタケ科,採用可（既存の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 国内科博 TNS-F-61975 は A. caesareoides。旧 A. hemibapha と国内外の適用範囲を要審査。
+タマゴタケ,tamagotake,属名,Amanita,テングタケ属,採用可（同属の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a11&id=404&p=1,未承認, 国内科博 TNS-F-61975 は A. caesareoides。旧 A. hemibapha と国内外の適用範囲を要審査。
+タマゴタケ,tamagotake,生態,,,未確認,,未承認, 国内科博 TNS-F-61975 は A. caesareoides。旧 A. hemibapha と国内外の適用範囲を要審査。
+タマチョレイタケ,tamachoreitake,科名,タコウキン科,タマチョレイタケ科,保留（体系の差または適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, Polyporaceae の科和名候補が旧「タコウキン科」と資料間で異なる。
+タマチョレイタケ,tamachoreitake,属名,Polyporus,,要確認（日本語資料・分類差）,,未承認, Polyporaceae の科和名候補が旧「タコウキン科」と資料間で異なる。
+タマチョレイタケ,tamachoreitake,生態,,,未確認,,未承認, Polyporaceae の科和名候補が旧「タコウキン科」と資料間で異なる。
+チチアワタケ,chichiawatake,科名,,ヌメリイグチ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+チチアワタケ,chichiawatake,属名,Suillus,ヌメリイグチ属,採用可（同属の和名）,https://www1.pref.shimane.lg.jp/admin/region/kikan/chusankan/syoseki/research/No5_kenkyuhoukoku.data/kenkyuhoukokudai5gou15.pdf,未承認, 
+チチアワタケ,chichiawatake,生態,,菌根菌,採用可（種別の明示記載）,https://soar-ir.repo.nii.ac.jp/record/10540/files/v38_01.pdf,未承認,山田（2002）の菌根性きのこ類の表に同和名・同学名。 
+チチタケ,tititake,科名,Russulaceae,ベニタケ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, Lactarius と Lactifluus の属境界と国内の種群範囲を照合。
+チチタケ,tititake,属名,,チチタケ属,保留（同属の適用範囲）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=2348&p=275,未承認, Lactarius と Lactifluus の属境界と国内の種群範囲を照合。
+チチタケ,tititake,生態,,,未確認,,未承認, Lactarius と Lactifluus の属境界と国内の種群範囲を照合。
+チャアミガサタケ,chaamigasatake,科名,Morchellaceae,アミガサタケ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 旧品種名と国内の種概念、標本、特徴、生育環境、時期を確認。
+チャアミガサタケ,chaamigasatake,属名,Morchella,アミガサタケ属,採用可（同属の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=2731,未承認, 旧品種名と国内の種概念、標本、特徴、生育環境、時期を確認。
+チャアミガサタケ,chaamigasatake,生態,,,未確認,,未承認, 旧品種名と国内の種概念、標本、特徴、生育環境、時期を確認。
+チャナメツムタケ,cyanamemututake,科名,Strophariaceae,モエギタケ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+チャナメツムタケ,cyanamemututake,属名,Pholiota,スギタケ属,採用可（同属の和名）,https://www.maff.go.jp/j/pr/aff/2110/spe1_02.html,未承認, 
+チャナメツムタケ,cyanamemututake,生態,,,未確認,,未承認, 
+ツチグリ,tutiguri,科名,Diplocystidiaceae,ディプロシスチジア科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, Astraeus hygrometricus 広義から分離した国内分類群の適用と科の和名表記差を照合。
+ツチグリ,tutiguri,属名,ツチグリ属,ツチグリ属,要確認（日本語資料・分類差）,,未承認, Astraeus hygrometricus 広義から分離した国内分類群の適用と科の和名表記差を照合。
+ツチグリ,tutiguri,生態,,,未確認,,未承認, Astraeus hygrometricus 広義から分離した国内分類群の適用と科の和名表記差を照合。
+ツバアブラシメジ,tsubaaburashimeji,科名,Cortinariaceae,フウセンタケ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+ツバアブラシメジ,tsubaaburashimeji,属名,Cortinarius,フウセンタケ属,採用可（同属の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a11&id=2726&p=1,未承認, 
+ツバアブラシメジ,tsubaaburashimeji,生態,,,未確認,,未承認, 
+ツルタケ,turutake,科名,テングタケ科,テングタケ科,採用可（既存の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, A. vaginata の種群範囲と、国内標本・有毒近縁種の区別を要確認。
+ツルタケ,turutake,属名,,テングタケ属,保留（同属の適用範囲）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a11&id=404&p=1,未承認, A. vaginata の種群範囲と、国内標本・有毒近縁種の区別を要確認。
+ツルタケ,turutake,生態,,,未確認,,未承認, A. vaginata の種群範囲と、国内標本・有毒近縁種の区別を要確認。
+テングタケ,tengutake,科名,Amanitaceae,テングタケ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+テングタケ,tengutake,属名,テングタケ属,テングタケ属,採用可（既存の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a11&id=404&p=1,未承認, 
+テングタケ,tengutake,生態,,,未確認,,未承認, 
+トガリアミガサタケ,togariamigasatake,科名,アミガサタケ科,アミガサタケ科,採用可（既存の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, Morchella conica の適用範囲と中毒記載を独立に審査。
+トガリアミガサタケ,togariamigasatake,属名,Morchella,アミガサタケ属,採用可（同属の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=2731,未承認, Morchella conica の適用範囲と中毒記載を独立に審査。
+トガリアミガサタケ,togariamigasatake,生態,,,未確認,,未承認, Morchella conica の適用範囲と中毒記載を独立に審査。
+ドクツルタケ,dokutsurutake,科名,テングタケ科,テングタケ科,採用可（既存の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 国内で同名だった白色テングタケ類の適用範囲を個体別に扱う。毒性警告を維持。
+ドクツルタケ,dokutsurutake,属名,テングタケ属,テングタケ属,採用可（既存の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a11&id=404&p=1,未承認, 国内で同名だった白色テングタケ類の適用範囲を個体別に扱う。毒性警告を維持。
+ドクツルタケ,dokutsurutake,生態,,,未確認,,未承認, 国内で同名だった白色テングタケ類の適用範囲を個体別に扱う。毒性警告を維持。
+ドクヤマドリ,dokuyamadori,科名,イグチ科,,保留（分類・適用範囲）,,未承認, 分類更新と症例の対象名には公開食毒資料を維持し、近縁種へ拡張しない。
+ドクヤマドリ,dokuyamadori,属名,,イグチ属,保留（同属の適用範囲）,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko042.html,未承認, 分類更新と症例の対象名には公開食毒資料を維持し、近縁種へ拡張しない。
+ドクヤマドリ,dokuyamadori,生態,,,未確認,,未承認, 分類更新と症例の対象名には公開食毒資料を維持し、近縁種へ拡張しない。
+ナラタケ,naratake,科名,キシメジ科,タマバリタケ科,保留（分類・適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 広義のナラタケと近縁群、茨城県平成12・15年度記録の適用範囲を別審査。
+ナラタケ,naratake,属名,,,要確認（日本語資料・分類差）,,未承認, 広義のナラタケと近縁群、茨城県平成12・15年度記録の適用範囲を別審査。
+ナラタケ,naratake,生態,,,未確認,,未承認, 広義のナラタケと近縁群、茨城県平成12・15年度記録の適用範囲を別審査。
+ニガクリタケ,nigakuritake,科名,Strophariaceae,モエギタケ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+ニガクリタケ,nigakuritake,属名,クリタケ属,クリタケ属,採用可（既存の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=b08&id=55&p=1&s=area,未承認, 
+ニガクリタケ,nigakuritake,生態,,,未確認,,未承認, 
+ヌメリイグチ,numeriiguti,科名,,ヌメリイグチ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+ヌメリイグチ,numeriiguti,属名,Suillus,ヌメリイグチ属,採用可（同属の和名）,https://www1.pref.shimane.lg.jp/admin/region/kikan/chusankan/syoseki/research/No5_kenkyuhoukoku.data/kenkyuhoukokudai5gou15.pdf,未承認, 
+ヌメリイグチ,numeriiguti,生態,,菌根菌,採用可（種別の明示記載）,https://soar-ir.repo.nii.ac.jp/record/10540/files/v38_01.pdf,未承認,山田（2002）の菌根性きのこ類の表に同和名・同学名。 
+ヌメリスギタケ,numerisugitake,科名,Strophariaceae,モエギタケ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+ヌメリスギタケ,numerisugitake,属名,Pholiota,スギタケ属,採用可（同属の和名）,https://www.maff.go.jp/j/pr/aff/2110/spe1_02.html,未承認, 
+ヌメリスギタケ,numerisugitake,生態,,,未確認,,未承認, 
+ノウタケ,noutake,科名,ホコリタケ科,ハラタケ科,保留（体系の差または適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 旧ホコリタケ科と京都府・静岡県目録のハラタケ科。
+ノウタケ,noutake,属名,ノウタケ属,ノウタケ属,要確認（日本語資料・分類差）,,未承認, 旧ホコリタケ科と京都府・静岡県目録のハラタケ科。
+ノウタケ,noutake,生態,,,未確認,,未承認, 旧ホコリタケ科と京都府・静岡県目録のハラタケ科。
+ハタケシメジ,hatakesimeji,科名,,シメジ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+ハタケシメジ,hatakesimeji,属名,シメジ属,シメジ属,要確認（日本語資料・分類差）,,未承認, 
+ハタケシメジ,hatakesimeji,生態,,腐生菌,採用可（種別の明示記載）,https://www.forest.kyushu-u.ac.jp/jyoho/exhibition/miyaen/kinoko.html,未承認,九州大学のハタケシメジの記載。 
+ハチノスタケ,hatinosutake,科名,Polyporaceae,タマチョレイタケ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 旧 Polyporus と新組み合わせ、和名と国内標本を照合。
+ハチノスタケ,hatinosutake,属名,,,要確認（日本語資料・分類差）,,未承認, 旧 Polyporus と新組み合わせ、和名と国内標本を照合。
+ハチノスタケ,hatinosutake,生態,,,未確認,,未承認, 旧 Polyporus と新組み合わせ、和名と国内標本を照合。
+ハツタケ,hatutake,科名,ベニタケ科,ベニタケ科,保留（分類・適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 京都府 L. lividatus と国内目録 L. hatsudake を比較する。
+ハツタケ,hatutake,属名,Lactarius,チチタケ属,採用可（同属の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=2348&p=275,未承認, 京都府 L. lividatus と国内目録 L. hatsudake を比較する。
+ハツタケ,hatutake,生態,,,未確認,,未承認, 京都府 L. lividatus と国内目録 L. hatsudake を比較する。
+ハナイグチ,hanaiguchi,科名,イグチ科,ヌメリイグチ科,保留（体系の差または適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 旧イグチ科と京都・静岡のヌメリイグチ科。
+ハナイグチ,hanaiguchi,属名,Suillus,ヌメリイグチ属,採用可（同属の和名）,https://www1.pref.shimane.lg.jp/admin/region/kikan/chusankan/syoseki/research/No5_kenkyuhoukoku.data/kenkyuhoukokudai5gou15.pdf,未承認, 旧イグチ科と京都・静岡のヌメリイグチ科。
+ハナイグチ,hanaiguchi,生態,,菌根菌,採用可（種別の明示記載）,https://soar-ir.repo.nii.ac.jp/record/10540/files/v38_01.pdf,未承認,山田（2002）の菌根性きのこ類の表に同和名・同学名。 旧イグチ科と京都・静岡のヌメリイグチ科。
+ハラタケ,haratake,科名,Agaricaceae,ハラタケ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+ハラタケ,haratake,属名,Agaricus,ハラタケ属,採用可（同属の和名）,https://www.maff.go.jp/j/pr/aff/2110/spe1_02.html,未承認, 
+ハラタケ,haratake,生態,,,未確認,,未承認, 
+ヒラタケ,hiratake,科名,Pleurotaceae,ヒラタケ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+ヒラタケ,hiratake,属名,Pleurotus,ヒラタケ属,採用可（同属の和名）,https://www.maff.go.jp/j/pr/aff/2110/spe1_02.html,未承認, 
+ヒラタケ,hiratake,生態,,腐生菌,採用可（種別の明示記載）,https://www.maff.go.jp/j/pr/aff/2110/spe1_02.html,未承認,同学名に対する農林水産省の記載。 
+ヒロメノトガリアミガサタケ,hiromenotogariamigasatake,科名,Morchellaceae,,保留（分類・適用範囲）,,未承認, Morchella nipponensis と静岡県目録の M. costata は適用範囲を要確認。
+ヒロメノトガリアミガサタケ,hiromenotogariamigasatake,属名,Morchella,アミガサタケ属,保留（同属の適用範囲）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=2731,未承認, Morchella nipponensis と静岡県目録の M. costata は適用範囲を要確認。
+ヒロメノトガリアミガサタケ,hiromenotogariamigasatake,生態,,,未確認,,未承認, Morchella nipponensis と静岡県目録の M. costata は適用範囲を要確認。
+ヘビキノコモドキ,hebikinokomodoki,科名,テングタケ科,テングタケ科,採用可（既存の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 
+ヘビキノコモドキ,hebikinokomodoki,属名,テングタケ属,テングタケ属,採用可（既存の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a11&id=404&p=1,未承認, 
+ヘビキノコモドキ,hebikinokomodoki,生態,,,未確認,,未承認, 
+ベニテングタケ,benitengutake,科名,Amanitaceae,テングタケ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+ベニテングタケ,benitengutake,属名,Amanita,テングタケ属,採用可（同属の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a11&id=404&p=1,未承認, 
+ベニテングタケ,benitengutake,生態,,菌根菌,採用可（種別の明示記載）,https://www.forest.kyushu-u.ac.jp/2020/252,未承認,九州大学の北海道での樹木との共生記録。 
+ホコリタケ,hokoritake,科名,ホコリタケ科,,保留（分類・適用範囲）,,未承認, 旧ホコリタケ科と静岡県目録のハラタケ科。
+ホコリタケ,hokoritake,属名,Lycoperdon,ホコリタケ属,採用可（同属の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=2366&p=220,未承認, 旧ホコリタケ科と静岡県目録のハラタケ科。
+ホコリタケ,hokoritake,生態,,,未確認,,未承認, 旧ホコリタケ科と静岡県目録のハラタケ科。
+ホテイシメジ,hoteishimeji,科名,ヌメリガサ科,ヌメリガサ科,採用可（既存の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 旧 Clitocybe と Ampulloclitocybe、和名、食毒と参照事例を別審査。
+ホテイシメジ,hoteishimeji,属名,Ampulloclitocybe,,要確認（日本語資料・分類差）,,未承認, 旧 Clitocybe と Ampulloclitocybe、和名、食毒と参照事例を別審査。
+ホテイシメジ,hoteishimeji,生態,,,未確認,,未承認, 旧 Clitocybe と Ampulloclitocybe、和名、食毒と参照事例を別審査。
+マツオウジ,matsuouji,科名,Gloeophyllaceae,キカイガラタケ科,保留（分類・適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 同名に Neolentinus lepideus など複数の扱い。写真に適用する和名・標本を確認。
+マツオウジ,matsuouji,属名,Neolentinus,,要確認（日本語資料・分類差）,,未承認, 同名に Neolentinus lepideus など複数の扱い。写真に適用する和名・標本を確認。
+マツオウジ,matsuouji,生態,,,未確認,,未承認, 同名に Neolentinus lepideus など複数の扱い。写真に適用する和名・標本を確認。
+マツタケ,matutake,科名,Tricholomataceae,キシメジ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+マツタケ,matutake,属名,Tricholoma,キシメジ属,採用可（同属の和名）,https://www.maff.go.jp/j/pr/aff/2110/spe1_02.html,未承認, 
+マツタケ,matutake,生態,,菌根菌,採用可（種別の明示記載）,https://www.maff.go.jp/j/pr/aff/2110/spe1_02.html | https://www.forest.kyushu-u.ac.jp/jyoho/exhibition/miyaen/inpulse.html,未承認,農林水産省・九州大学の記載。 
+マンネンタケ,mannentake,科名,,マンネンタケ科,保留（体系の差または適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, Ganoderma lucidum 広義の地域差と、食薬の利用記録を安全・効能へ一般化しない。
+マンネンタケ,mannentake,属名,マンネンタケ属,マンネンタケ属,要確認（日本語資料・分類差）,,未承認, Ganoderma lucidum 広義の地域差と、食薬の利用記録を安全・効能へ一般化しない。
+マンネンタケ,mannentake,生態,,,未確認,,未承認, Ganoderma lucidum 広義の地域差と、食薬の利用記録を安全・効能へ一般化しない。
+ミドリニガイグチ,midorinigaiguchi,科名,イグチ科,イグチ科,採用可（既存の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 
+ミドリニガイグチ,midorinigaiguchi,属名,,ニガイグチ属,採用可（種と属の参照を照合）,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko044.html | https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+ミドリニガイグチ,midorinigaiguchi,生態,,,未確認,,未承認, 
+ミヤマタマゴタケ,miyamatamagotake,科名,テングタケ科,テングタケ科,採用可（既存の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 
+ミヤマタマゴタケ,miyamatamagotake,属名,Amanita,テングタケ属,採用可（同属の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a11&id=404&p=1,未承認, 
+ミヤマタマゴタケ,miyamatamagotake,生態,,,未確認,,未承認, 
+ムキタケ,mukitake,科名,,ガマノホタケ科,保留（分類・適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 弘前大の Sarcomyxa serotina と S. edulis の色型を区別。旧 Panellus からの一括置換は保留。
+ムキタケ,mukitake,属名,,,要確認（日本語資料・分類差）,,未承認, 弘前大の Sarcomyxa serotina と S. edulis の色型を区別。旧 Panellus からの一括置換は保留。
+ムキタケ,mukitake,生態,,,未確認,,未承認, 弘前大の Sarcomyxa serotina と S. edulis の色型を区別。旧 Panellus からの一括置換は保留。
+ヤナギマツタケ,yanagimatsutake,科名,,モエギタケ科,保留（分類・適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, Agrocybe と Cyclocybe、科の体系差・属和名を別審査。
+ヤナギマツタケ,yanagimatsutake,属名,Cyclocybe,,要確認（日本語資料・分類差）,,未承認, Agrocybe と Cyclocybe、科の体系差・属和名を別審査。
+ヤナギマツタケ,yanagimatsutake,生態,,,未確認,,未承認, Agrocybe と Cyclocybe、科の体系差・属和名を別審査。
+ヤマイグチ,yamaiguchi,科名,イグチ科,イグチ科,採用可（既存の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 
+ヤマイグチ,yamaiguchi,属名,Leccinum,ヤマイグチ属,採用可（同属の和名）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=705&p=53,未承認, 
+ヤマイグチ,yamaiguchi,生態,,,未確認,,未承認, 
+ヤマドリタケモドキ,yamadoritakemodoki,科名,Boletaceae,イグチ科,採用可（同じ分類群の和名）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,未承認, 
+ヤマドリタケモドキ,yamadoritakemodoki,属名,イグチ属,イグチ属,採用可（既存の和名）,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko042.html,未承認, 
+ヤマドリタケモドキ,yamadoritakemodoki,生態,,,未確認,,未承認, 
+ルリハツタケ,rurihatutake,科名,ベニタケ科,ベニタケ科,保留（分類・適用範囲）,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf,未承認, 旧 Lactarius indigo と国内目録の L. subindigo を比較。食毒を転用しない。
+ルリハツタケ,rurihatutake,属名,Lactarius,チチタケ属,保留（同属の適用範囲）,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=2348&p=275,未承認, 旧 Lactarius indigo と国内目録の L. subindigo を比較。食毒を転用しない。
+ルリハツタケ,rurihatutake,生態,,,未確認,,未承認, 旧 Lactarius indigo と国内目録の L. subindigo を比較。食毒を転用しない。

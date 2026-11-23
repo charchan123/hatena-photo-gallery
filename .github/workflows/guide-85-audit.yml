@@ -1,0 +1,50 @@
+name: Read-only guide detail display audit
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'audit/guide-85-20261123/**'
+      - 'data/taxonomy-display-ja.json'
+      - 'detail_ui.py'
+      - '.github/workflows/guide-85-audit.yml'
+permissions:
+  contents: read
+jobs:
+  guide-detail:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build pinned local read-only comparison fixtures
+        run: python audit/guide-85-20261123/browser_fixture.py /tmp/guide-detail
+      - name: Install isolated browser and public asset versions
+        run: |
+          npm install --prefix /tmp/guide-browser --no-save playwright@1.62.1 lightgallery@2.8.3 imagesloaded@5.0.0
+          /tmp/guide-browser/node_modules/.bin/playwright install --with-deps chromium
+      - name: Compare all 85 guide panels in desktop and touch layouts
+        env:
+          PLAYWRIGHT_MODULE_PATH: /tmp/guide-browser/node_modules/playwright
+          BROWSER_MODULES: /tmp/guide-browser/node_modules
+        run: |
+          scripts="$GITHUB_WORKSPACE/audit/guide-85-20261123"
+          cd /tmp/guide-detail
+          node "$scripts/browser.cjs" base base
+          node "$scripts/browser.cjs" draft draft
+          node "$scripts/browser_compare.cjs"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guide-85-viewport-results
+          path: |
+            /tmp/guide-detail/browser-*.json
+            /tmp/guide-detail/screens/
+          retention-days: 30

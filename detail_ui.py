@@ -2,6 +2,9 @@
 
 from datetime import datetime, timezone
 import html
+import json
+from pathlib import Path
+import re
 
 
 FOOD_SAFETY_LABELS = {
@@ -300,7 +303,49 @@ def _articles_for(gallery_name, observations):
     return result
 
 
-def _knowledge(master, source_map):
+TAXONOMY_DISPLAY_PATH = Path(__file__).resolve().parent / "data" / "taxonomy-display-ja.json"
+JAPANESE_TEXT = re.compile(r"[ぁ-んァ-ヺ一-龯]")
+
+
+def _load_taxonomy_display(path):
+    if path is None:
+        return {}, {}
+    try:
+        spec = json.loads(path.read_text(encoding="utf-8"))
+        if spec["version"] == 1 and all(isinstance(spec[key], dict) for key in ("entries", "sources")):
+            return spec["entries"], spec["sources"]
+    except (OSError, ValueError, KeyError, TypeError):
+        pass
+    return {}, {}
+
+
+def _taxonomy_display_fields(master, entry, sources):
+    taxonomy = master.get("taxonomy") or {}
+    identity = {
+        "name": master.get("canonical_name_ja"),
+        "scientific": (master.get("scientific_name") or {}).get("value"),
+        **{rank: (taxonomy.get(rank) or {}).get("value") for rank in ("family", "genus")},
+    }
+    if not isinstance(entry, dict) or entry.get("expected") != identity:
+        return {}
+    fields = entry.get("fields")
+    if not isinstance(fields, dict):
+        return {}
+    usable = {}
+    for rank in ("family", "genus", "ecology"):
+        item = fields.get(rank)
+        if not isinstance(item, dict):
+            continue
+        value = _present(item.get("value"))
+        linked = item.get("sources")
+        if (value and JAPANESE_TEXT.search(value) and isinstance(linked, list) and linked
+                and all(isinstance(ref, str) and isinstance(sources.get(ref), dict)
+                        and str(sources[ref].get("url", "")).startswith("https://") for ref in linked)):
+            usable[rank] = item
+    return usable
+
+
+def _knowledge(master, source_map, *, display_entry=None, display_sources=None):
     rows = []
     used_ids = []
 
@@ -316,8 +361,23 @@ def _knowledge(master, source_map):
         note="出典資料に記載された学名" if scientific.get("name_status") == "source_reported" else None)
     taxonomy = master.get("taxonomy") or {}
     family, genus = taxonomy.get("family") or {}, taxonomy.get("genus") or {}
-    add("科", family.get("value"), family)
-    add("属", genus.get("value"), genus)
+    display_sources = display_sources or {}
+    display_fields = _taxonomy_display_fields(master, display_entry, display_sources)
+    display_refs = []
+    for label, rank, original in (("科名", "family", family), ("属名", "genus", genus),
+                                   ("生態", "ecology", {})):
+        chosen = display_fields.get(rank)
+        raw = _present(original.get("value"))
+        if chosen:
+            note = " ".join(text for text in (chosen.get("latin"), chosen.get("note")) if text)
+            add(label, chosen["value"], original, note=note or None)
+            display_refs.extend(chosen["sources"])
+        elif rank == "ecology":
+            add(label, "未確認", original)
+        elif raw and JAPANESE_TEXT.search(raw):
+            add(label, raw, original, note="出典資料の表記")
+        else:
+            add(label, "確認中", original, note=f"資料に記載された名称：{raw}" if raw else None)
     for label, key in (("特徴", "features"), ("生育環境", "habitat"),
                        ("資料に記載された発生時期", "season")):
         field = master.get(key) or {}
@@ -391,10 +451,16 @@ def _knowledge(master, source_map):
         source = source_map.get(source_id)
         if isinstance(source, dict):
             sources.append({key: source.get(key) for key in ("source_id", "organization", "title", "url")})
+    existing_urls = {source["url"] for source in sources}
+    for key in dict.fromkeys(display_refs):
+        source = display_sources[key]
+        if source["url"] not in existing_urls:
+            sources.append({**source, "source_id": f"taxonomy-display-{key}"})
+            existing_urls.add(source["url"])
     return {"rows": rows, "sources": sources}
 
 
-def build_detail_views(portal_data):
+def build_detail_views(portal_data, *, taxonomy_display_path=TAXONOMY_DISPLAY_PATH):
     """Build detail models using only explicit links in portal schema v1."""
     if not isinstance(portal_data, dict) or portal_data.get("version") != 1:
         raise ValueError("detail UI requires portal-data schema version 1")
@@ -405,6 +471,7 @@ def build_detail_views(portal_data):
                if isinstance(row, dict) and _present(row.get("mushroom_id"))}
     source_map = {row.get("source_id"): row for row in source_root.get("sources", [])
                   if isinstance(row, dict) and _present(row.get("source_id"))}
+    display_entries, display_sources = _load_taxonomy_display(taxonomy_display_path)
     observations = portal_data.get("observations") or []
     views = {}
     for subject in portal_data.get("subjects") or []:
@@ -428,7 +495,10 @@ def build_detail_views(portal_data):
             "gallery_name": name,
             # Presentation metadata from the same explicit ID join as food labels.
             "food_safety_status": (master.get("food_safety") or {}).get("status") if master else None,
-            "knowledge": _knowledge(master, source_map) if master is not None else None,
+            "knowledge": _knowledge(
+                master, source_map, display_entry=display_entries.get(master.get("mushroom_id")),
+                display_sources=display_sources,
+            ) if master is not None else None,
             "knowledge_pending": master is None and (review_pending or taxonomy_pending),
             "articles": _articles_for(name, observations),
         }

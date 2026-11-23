@@ -1,0 +1,270 @@
+掲載名,master_id,資料ID,対象欄,URL,HTTP,形式,照合状態,共通記載欄,資料の記載と限界
+アイタケ,aitake,rinya-tohoku-fungi-guide,学名・科名,https://www.rinya.maff.go.jp/tohoku/koho/tohoku/3_zukan/0_kinrui/1_kinoko.html,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+アイタケ,aitake,research-gbif-russula-virescens,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Russula+virescens&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・ACCEPTED・Russula virescens・Russulaceae・Russula
+アイタケ,aitake,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+アイタケ,aitake,research-ffpri-kinoko049,属名,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko049.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+アイタケ,aitake,research-ishikawa-aitake,特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/aitake.html,200,html,種別資料の各欄を照合,食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 ひだ・条線・粘性）／生育環境欄（共通語 広葉樹）／時期欄（共通語 夏・秋）
+アオロウジ,aorouji,ishikawa-aorouji,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/aorouji.html,200,html,種別資料の各欄を照合,学名・科名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 管孔）／生育環境欄（共通語 針葉樹）／時期欄（共通語 秋）
+アオロウジ,aorouji,research-gbif-albatrellus-caeruleoporus,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Albatrellus+caeruleoporus&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・SYNONYM・Albatrellus caeruleoporus・Albatrellaceae・Neoalbatrellus
+アオロウジ,aorouji,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+アカジコウ,akajikou,research-ishikawa-akajikou,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/akajikou.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 孔口・管孔・粘性）／生育環境欄（共通語 マツ）／時期欄（共通語 夏・秋）
+アカジコウ,akajikou,research-gbif-boletus-speciosus,属名,https://api.gbif.org/v1/species/match?name=Boletus+speciosus&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Boletus speciosus・Boletaceae・Boletus
+アカジコウ,akajikou,research-kyoto-fungi-2015,科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+アカモミタケ,akamomitake,research-ishikawa-akamomitake,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/akamomitake.html,200,html,種別資料の各欄を照合,学名・科名・食毒・特徴・時期,食毒欄は食／特徴欄（共通語 ひだ）／生育環境欄あり／時期欄（共通語 秋）
+アカヤマドリ,akayamadori,ishikawa-akayamadori,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/akayamadori.html,200,html,種別資料の各欄を照合,学名・科名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 粘性・鱗片）／生育環境欄（共通語 マツ・広葉樹）／時期欄（共通語 夏・秋）
+アカヤマドリ,akayamadori,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+アミガサタケ,amigasatake,tottori-tufc-100721,学名,https://fungusdb.muses.tottori-u.ac.jp/catalog/info?id=100721,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+アミガサタケ,amigasatake,research-gbif-morchella-esculenta,属名,https://api.gbif.org/v1/species/match?name=Morchella+esculenta&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Morchella esculenta・Morchellaceae・Morchella
+アミガサタケ,amigasatake,research-kyoto-fungi-2015,科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+アミガサタケ,amigasatake,research-fukui-amigasatake,特徴・生育環境・時期・食毒,https://nature-museum.city.fukui.lg.jp/asuwayama/zukan/species/r0004.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+アミタケ,amitake,research-ishikawa-amitake,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/amitake.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 管孔・粘性）／生育環境欄（共通語 マツ）／時期欄（共通語 夏・秋）
+アミタケ,amitake,research-gbif-suillus-bovinus,属名,https://api.gbif.org/v1/species/match?name=Suillus+bovinus&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Suillus bovinus・Suillaceae・Suillus
+アミタケ,amitake,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+アラゲキクラゲ,aragekikurage,ishikawa-aragekikurage,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/aragekikurage.html,200,html,種別資料の各欄を照合,学名・科名・食毒・生育環境・時期,食毒欄は食／生育環境欄（共通語 倒木・広葉樹）／時期欄（共通語 春・秋）
+アラゲキクラゲ,aragekikurage,research-gbif-auricularia-polytricha,属名,https://api.gbif.org/v1/species/match?name=Auricularia+polytricha&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・SYNONYM・Auricularia polytricha・Auriculariaceae・Auricularia
+アラゲキクラゲ,aragekikurage,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+アンズタケ,anzutake,research-ishikawa-anzutake,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/anzutake.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 ひだ）／生育環境欄（共通語 林内）／時期欄（共通語 夏・秋）
+アンズタケ,anzutake,research-gbif-cantharellus-cibarius,属名,https://api.gbif.org/v1/species/match?name=Cantharellus+cibarius&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Cantharellus cibarius・Hydnaceae・Cantharellus
+アンズタケ,anzutake,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+アンズタケ,anzutake,audit-shimane-caution,食毒,https://www.pref.shimane.lg.jp/life/region/kikan/chusankan/kinokotokuyourinsanka/photo.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ウコンハツ,ukonhatsu,ishikawa-ukonhatsu,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/ukonhatu.html,200,html,種別資料の各欄を照合,学名・科名・食毒・特徴・生育環境・時期,食毒欄は不明／特徴欄（共通語 ひだ）／生育環境欄（共通語 マツ）／時期欄（共通語 夏・秋）
+ウコンハツ,ukonhatsu,research-gbif-russula-flavida,属名,https://api.gbif.org/v1/species/match?name=Russula+flavida&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Russula flavida・Russulaceae・Russula
+ウコンハツ,ukonhatsu,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ウスタケ,usutake,research-ishikawa-usutake,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/usutake.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は毒／特徴欄（共通語 ひだ）／生育環境欄（共通語 針葉樹）／時期欄（共通語 夏・秋）
+ウスタケ,usutake,research-gbif-gomphus-floccosus,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Gomphus+floccosus&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・SYNONYM・Gomphus floccosus・Gomphaceae・Turbinellus
+ウスタケ,usutake,research-kyoto-fungi-2015,科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ウスヒラタケ,usuhiratake,rinya-tohoku-fungi-guide,学名・科名,https://www.rinya.maff.go.jp/tohoku/koho/tohoku/3_zukan/0_kinrui/1_kinoko.html,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ウスヒラタケ,usuhiratake,research-gbif-pleurotus-pulmonarius,属名,https://api.gbif.org/v1/species/match?name=Pleurotus+pulmonarius&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Pleurotus pulmonarius・Pleurotaceae・Pleurotus
+ウスヒラタケ,usuhiratake,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ウスヒラタケ,usuhiratake,research-ishikawa-usuhiratake,特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/usuhiratake.html,200,html,種別資料の各欄を照合,食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 ひだ・肉）／生育環境欄（共通語 広葉樹・枯木）／時期欄（共通語 春・秋）
+ウラグロニガイグチ,uraguronigaiguchi,ishikawa-uraguronigaiguchi,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/uraguronigaiguti.html,200,html,種別資料の各欄を照合,学名・科名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 孔口・管孔・粘性・鱗片）／生育環境欄（共通語 広葉樹）／時期欄（共通語 夏・秋）
+ウラグロニガイグチ,uraguronigaiguchi,audit-shimane-caution,食毒,https://www.pref.shimane.lg.jp/life/region/kikan/chusankan/kinokotokuyourinsanka/photo.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ウラグロニガイグチ,uraguronigaiguchi,final-critical-kanto-2020,食毒,https://www.rinya.maff.go.jp/kanto/koho/koho_si/attach/pdf/index-195.pdf,200,pdf,本文確認不可,,
+ウラグロニガイグチ,uraguronigaiguchi,final-critical-das-2024,食毒,https://taiwania.ntu.edu.tw/pdf/tai.2024.69.294.pdf,200,pdf,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ウラグロニガイグチ,uraguronigaiguchi,final-critical-nama-2018-2020,食毒,https://namyco.org/wp-content/uploads/2023/08/2018-2020_Summary_of_Mushroom_Poisoning_Reports_Corrected_final.pdf,200,pdf,本文取得・対象箇所に未到達,,
+ウラベニガサ,urabenigasa,ishikawa-urabenigasa,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/urabenigasa.html,200,html,種別資料の各欄を照合,学名・科名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 ひだ・肉・鱗片）／生育環境欄（共通語 広葉樹・朽木）／時期欄（共通語 春・秋）
+ウラベニガサ,urabenigasa,research-ffpri-kinoko021,属名,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko021.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ウラベニホテイシメジ,urabenihoteisimeji,research-ishikawa-urabenihoteisimeji,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/urabenihoteisimeji.html,200,html,種別資料の各欄を照合,学名・科名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 ひだ・肉）／生育環境欄（共通語 ブナ）／時期欄（共通語 秋）
+ウラベニホテイシメジ,urabenihoteisimeji,research-gbif-entoloma-crassipes,属名,https://api.gbif.org/v1/species/match?name=Entoloma+crassipes&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Entoloma crassipes・Entolomataceae・Entoloma
+エノキタケ,enokitake,tottori-tufc-100533,学名・生育環境,https://fungusdb.muses.tottori-u.ac.jp/catalog/info?id=100533,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+エノキタケ,enokitake,ishikawa-enokitake,科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/enokitake.html,200,html,種別資料の各欄を照合,科名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 ひだ・粘性）／生育環境欄（共通語 切株・広葉樹・枯木）／時期欄（共通語 春・秋）
+エノキタケ,enokitake,research-gbif-flammulina-velutipes,属名,https://api.gbif.org/v1/species/match?name=Flammulina+velutipes&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Flammulina velutipes・Physalacriaceae・Flammulina
+オオキツネタケ,ookitunetake,ishikawa-ookitunetake,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/ookitunetake.html,200,html,種別資料の各欄を照合,学名・科名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 ひだ）／生育環境欄（共通語 林内）／時期欄（共通語 夏・秋）
+オオキツネタケ,ookitunetake,research-gbif-laccaria-bicolor,属名,https://api.gbif.org/v1/species/match?name=Laccaria+bicolor&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Laccaria bicolor・Hydnangiaceae・Laccaria
+オオキツネタケ,ookitunetake,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+オオシロカラカサタケ,ooshirokarakasatake,nmns-tnsf-32604,学名・科名・属名,https://db.kahaku.go.jp/webmuseum/col_b2_01/32604,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+オオシロカラカサタケ,ooshirokarakasatake,research-ishikawa-oosirokarakasatake,特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/oosirokarakasatake.html,200,html,種別資料の各欄を照合,食毒・特徴・生育環境・時期,食毒欄は毒／特徴欄（共通語 つば・ひだ・鱗片）／生育環境欄（共通語 草地）／時期欄（共通語 夏・秋）
+オオワライタケ,oowaraitake,ishikawa-oowaraitake,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/oowaraitake.html,200,html,種別資料の各欄を照合,学名・科名・食毒・特徴・生育環境・時期,食毒欄は毒／特徴欄（共通語 つば）／生育環境欄（共通語 切株・広葉樹・枯木）／時期欄（共通語 夏・秋）
+オオワライタケ,oowaraitake,research-gbif-gymnopilus-spectabilis,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Gymnopilus+spectabilis&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・ACCEPTED・Gymnopilus spectabilis・Hymenogastraceae・Gymnopilus
+オオワライタケ,oowaraitake,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+オオワライタケ,oowaraitake,research-ffpri-kinoko033,属名,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko033.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+オニイグチモドキ,oniigutimodoki,research-ishikawa-oniigutimodoki,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/oniigutimodoki.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 つば・管孔・鱗片）／生育環境欄（共通語 マツ・広葉樹）／時期欄（共通語 夏・秋）
+オニイグチモドキ,oniigutimodoki,research-gbif-strobilomyces-confusus,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Strobilomyces+confusus&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・ACCEPTED・Strobilomyces confusus・Boletaceae・Strobilomyces
+オニイグチモドキ,oniigutimodoki,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+オニイグチモドキ,oniigutimodoki,research-ffpri-kinoko035,属名,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko035.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+カエンタケ,kaentake,mhlw-kaentake,学名・科名・属名・特徴・生育環境・時期・食毒,https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000143427.html,200,html,本文で対象名を確認,学名,中毒症状または事例欄がある。各事例の病因の学名・同定は出典の範囲に限る。
+カエンタケ,kaentake,research-gbif-podostroma-cornu-damae,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Podostroma+cornu-damae&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・SYNONYM・Podostroma cornu-damae・Hypocreaceae・Trichoderma
+カエンタケ,kaentake,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+カキシメジ,kakisimeji,research-ishikawa-kakisimeji,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kakisimeji.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は毒／特徴欄（共通語 ひだ・粘性）／生育環境欄（共通語 広葉樹）／時期欄（共通語 秋）
+カキシメジ,kakisimeji,research-gbif-tricholoma-ustale,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Tricholoma+ustale&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・ACCEPTED・Tricholoma ustale・Tricholomataceae・Tricholoma
+カキシメジ,kakisimeji,research-kyoto-fungi-2015,科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+カキシメジ,kakisimeji,research-mhlw-0000142705,属名・食毒,https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000142705.html,200,html,本文で対象名を確認,,中毒症状または事例欄がある。各事例の病因の学名・同定は出典の範囲に限る。
+カニノツメ,kaninotume,research-ishikawa-kaninotume,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kaninotume.html,200,html,種別資料の各欄を照合,学名・時期,食毒欄は不食／生育環境欄あり／時期欄（共通語 秋）
+カニノツメ,kaninotume,research-gbif-linderia-bicolumnata,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Linderia+bicolumnata&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・SYNONYM・Linderia bicolumnata・Phallaceae・Laternea
+カバイロツルタケ,kabairoturutake,research-ishikawa-kabairoturutake,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kabairoturutake.html,200,html,種別資料の各欄を照合,学名・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 つば・つぼ・ひだ・条線）／生育環境欄（共通語 林内）／時期欄（共通語 夏・秋）
+カバイロツルタケ,kabairoturutake,research-gbif-amanita-vaginata-var-fulva,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Amanita+vaginata+var.+fulva&strict=true,200,json,分類DBの応答,,EXACT・VARIETY・SYNONYM・Amanita vaginata fulva・Amanitaceae・Amanita
+カバイロツルタケ,kabairoturutake,research-ffpri-kinoko009,科名・属名・食毒,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko009.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+カラカサタケ,karakasatake,ishikawa-karakasatake,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/karakasatake.html,200,html,種別資料の各欄を照合,学名・科名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 つば・鱗片）／生育環境欄（共通語 林内）／時期欄（共通語 夏・秋）
+カラカサタケ,karakasatake,research-gbif-macrolepiota-procera,学名・属名,https://api.gbif.org/v1/species/match?name=Macrolepiota+procera&strict=true,200,json,分類DBの応答,学名・属名,EXACT・SPECIES・ACCEPTED・Macrolepiota procera・Agaricaceae・Macrolepiota
+カラカサタケ,karakasatake,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+カラカサタケ,karakasatake,audit-shimane-caution,食毒,https://www.pref.shimane.lg.jp/life/region/kikan/chusankan/kinokotokuyourinsanka/photo.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+カワリハツ,kawarihatu,research-ishikawa-kawarihatu,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kawarihatu.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 ひだ・粘性）／生育環境欄（共通語 ブナ）／時期欄（共通語 夏・秋）
+カワリハツ,kawarihatu,research-gbif-russula-cyanoxantha,属名,https://api.gbif.org/v1/species/match?name=Russula+cyanoxantha&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Russula cyanoxantha・Russulaceae・Russula
+カワリハツ,kawarihatu,research-kyoto-fungi-2015,科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ガンタケ,gantake,research-ishikawa-gantake,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/gantake.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は毒／特徴欄（共通語 つば・つぼ・ひだ）／生育環境欄（共通語 広葉樹）／時期欄（共通語 夏・秋）
+ガンタケ,gantake,research-gbif-amanita-rubescens,属名,https://api.gbif.org/v1/species/match?name=Amanita+rubescens&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Amanita rubescens・Amanitaceae・Amanita
+ガンタケ,gantake,research-kyoto-fungi-2015,科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ガンタケ,gantake,audit-mhlw-grant-2021,食毒,https://mhlw-grants.niph.go.jp/system/files/report_pdf/202124033A-buntan6.pdf,200,pdf,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+キアミアシイグチ,kiamiashiiguchi,research-kyoto-fungi-2015,学名・科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+キアミアシイグチ,kiamiashiiguchi,research-gbif-boletus-ornatipes,学名,https://api.gbif.org/v1/species/match?name=Boletus+ornatipes&strict=true,200,json,分類DBの応答,学名,EXACT・SPECIES・SYNONYM・Boletus ornatipes・Boletaceae・Retiboletus
+キアミアシイグチ,kiamiashiiguchi,research-ishikawa-kiamiasiiguti,特徴・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kiamiasiiguti.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+キイロスッポンタケ,kiirosuppontake,rinya-tohoku-fungi-guide,学名・科名,https://www.rinya.maff.go.jp/tohoku/koho/tohoku/3_zukan/0_kinrui/1_kinoko.html,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+キイロスッポンタケ,kiirosuppontake,research-gap-env-kiirosuppontake2005,特徴,https://kanto.env.go.jp/to_2005/0908a_10.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+キクバナイグチ,kikubanaiguchi,ishikawa-kikubanaiguchi,特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kikubanaiguti.html,200,html,種別資料の各欄を照合,食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 管孔・鱗片）／生育環境欄（共通語 林内）／時期欄（共通語 夏・秋）
+キクバナイグチ,kikubanaiguchi,ffpri-kikubanaiguchi,学名・科名・属名・特徴・生育環境,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko036.html,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+キクバナイグチ,kikubanaiguchi,research-gbif-boletellus-emodensis,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Boletellus+emodensis&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・ACCEPTED・Boletellus emodensis・Boletaceae・Boletellus
+キクラゲ,kikurage,ishikawa-kikurage,科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kikurage.html,200,html,種別資料の各欄を照合,科名・食毒・生育環境・時期,食毒欄は食／生育環境欄（共通語 倒木・広葉樹）／時期欄（共通語 春・秋）
+キクラゲ,kikurage,tottori-tufc-100803,学名,https://fungusdb.muses.tottori-u.ac.jp/catalog/info?id=100803,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+キクラゲ,kikurage,research-gbif-auricularia-heimuer,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Auricularia+heimuer&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・ACCEPTED・Auricularia heimuer・Auriculariaceae・Auricularia
+キクラゲ,kikurage,research-ffpri-kinoko069,属名,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko069.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+キツネタケ,kitunetake,research-ishikawa-kitunetake,特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kitunetake.html,200,html,種別資料の各欄を照合,食毒・特徴・時期,食毒欄は食／特徴欄（共通語 ひだ・条線・鱗片）／生育環境欄あり／時期欄（共通語 夏・秋）
+キツネタケ,kitunetake,research-kyoto-fungi-2015,学名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+キツネタケ,kitunetake,research-gbif-laccaria-laccata,属名,https://api.gbif.org/v1/species/match?name=Laccaria+laccata&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Laccaria laccata・Hydnangiaceae・Laccaria
+キニガイグチ,kinigaiguchi,kyushu-u-forest-fungi,学名・科名,https://www.forest.kyushu-u.ac.jp/%E3%83%9B%E3%83%BC%E3%83%A0%E3%83%9A%E3%83%BC%E3%82%B8/%E7%A6%8F%E5%B2%A1%E6%BC%94%E7%BF%92%E6%9E%97/%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9-2/%E8%8F%8C%E9%A1%9E,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+キニガイグチ,kinigaiguchi,ishikawa-h23-chikurinkinoko,科名,https://www.pref.ishikawa.lg.jp/ringyo/publish/kenkyuuhoukoku/documents/h23-8_chikurinkinoko.pdf,200,pdf,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+キニガイグチ,kinigaiguchi,research-ffpri-kinoko044,属名,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko044.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+キニガイグチ,kinigaiguchi,research-ishikawa-kinigaiguti,特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kinigaiguti.html,200,html,種別資料の各欄を照合,食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 管孔・粘性）／生育環境欄（共通語 マツ）／時期欄（共通語 夏・秋）
+キララタケ,kiraratake,research-ishikawa-kiraratake,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kiraratake.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 ひだ・条線・粉）／生育環境欄（共通語 倒木・切株・広葉樹）／時期欄（共通語 夏・秋）
+キララタケ,kiraratake,research-gbif-coprinus-micaceus,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Coprinus+micaceus&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・SYNONYM・Coprinus micaceus・Psathyrellaceae・Coprinellus
+キララタケ,kiraratake,final-critical-shimane-2025-kirara,食毒,https://www1.pref.shimane.lg.jp/life/region/kikan/chusankan/column/20251118.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+キララタケ,kiraratake,final-critical-china-2021,食毒,https://pmc.ncbi.nlm.nih.gov/articles/PMC8796718/,203,html,本文取得・対象箇所に未到達,,
+キララタケ,kiraratake,final-critical-matthies-laatsch-1992,食毒,https://wwwuser.gwdguser.de/~hlaatsc/060_Coprin.pdf,200,pdf,本文確認不可,,
+クサウラベニタケ,kusaurabenitake,research-ishikawa-kusaurabenitake,特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kusaurabenitake.html,200,html,種別資料の各欄を照合,食毒・特徴・生育環境・時期,食毒欄は毒／特徴欄（共通語 ひだ・肉）／生育環境欄（共通語 マツ・広葉樹）／時期欄（共通語 夏・秋）
+クサウラベニタケ,kusaurabenitake,research-kyoto-fungi-2015,学名・科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+クサウラベニタケ,kusaurabenitake,research-gbif-entoloma-rhodopolium,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Entoloma+rhodopolium&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・ACCEPTED・Entoloma rhodopolium・Entolomataceae・Entoloma
+クサウラベニタケ,kusaurabenitake,research-mhlw-0000142692,属名・食毒,https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000142692.html,200,html,本文で対象名を確認,,中毒症状または事例欄がある。各事例の病因の学名・同定は出典の範囲に限る。
+クチベニタケ,kutibenitake,research-ishikawa-kutibenitake,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kutibenitake.html,200,html,種別資料の各欄を照合,学名・科名・生育環境・時期,食毒欄は不食／生育環境欄（共通語 林内）／時期欄（共通語 夏・秋）
+クチベニタケ,kutibenitake,research-gbif-calostoma-japonicum,属名,https://api.gbif.org/v1/species/match?name=Calostoma+japonicum&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Calostoma japonicum・Calostomataceae・Calostoma
+クリタケ,kuritake,research-ishikawa-kuritake,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kuritake.html,200,html,種別資料の各欄を照合,学名・科名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 ひだ・膜）／生育環境欄（共通語 倒木・切株・広葉樹）／時期欄（共通語 秋）
+クリタケ,kuritake,research-gbif-hypholoma-sublateritium,属名,https://api.gbif.org/v1/species/match?name=Hypholoma+sublateritium&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・SYNONYM・Hypholoma sublateritium・Strophariaceae・Hypholoma
+クロカワ,kurokawa,biodic-fujihoku-fungi,学名・科名,https://www.biodic.go.jp/reports2/parts/6th/6_fujihoku/6_fujihoku_15.pdf,200,pdf,本文確認不可,,
+クロカワ,kurokawa,research-gbif-boletopsis-leucomelas,属名,https://api.gbif.org/v1/species/match?name=Boletopsis+leucomelas&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・SYNONYM・Boletopsis leucomelas・Bankeraceae・Boletopsis
+クロハツ,kurohatu,research-ishikawa-kurohatu,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kurohatu.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は要注意／特徴欄（共通語 ひだ）／生育環境欄（共通語 ブナ・マツ）／時期欄（共通語 夏・秋）
+クロハツ,kurohatu,research-gbif-russula-nigricans,属名,https://api.gbif.org/v1/species/match?name=Russula+nigricans&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・SYNONYM・Russula nigricans・Russulaceae・Russula
+クロハツ,kurohatu,research-kyoto-fungi-2015,科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+クロハツ,kurohatu,audit-mhlw-grant-2021,食毒,https://mhlw-grants.niph.go.jp/system/files/report_pdf/202124033A-buntan6.pdf,200,pdf,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+コタマゴテングタケ,kotamagotengutake,research-ishikawa-kotamagotengutake,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kotamagotengutake.html,200,html,種別資料の各欄を照合,学名・科名・食毒・特徴・生育環境・時期,食毒欄は毒／特徴欄（共通語 つば・つぼ・ひだ・粘性・膜）／生育環境欄（共通語 広葉樹）／時期欄（共通語 夏・秋）
+コタマゴテングタケ,kotamagotengutake,research-gbif-amanita-citrina-var-citrina,属名,https://api.gbif.org/v1/species/match?name=Amanita+citrina+var.+citrina&strict=true,200,json,分類DBの応答,属名,EXACT・VARIETY・ACCEPTED・Amanita citrina citrina・Amanitaceae・Amanita
+コツブタケ,kotubutake,research-ishikawa-kotubutake,特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kotubutake.html,200,html,種別資料の各欄を照合,生育環境・時期,食毒欄は不食／生育環境欄（共通語 マツ）／時期欄（共通語 夏・秋）
+コツブタケ,kotubutake,research-kyoto-fungi-2015,学名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+コテングタケモドキ,kotengutakemodoki,ishikawa-kotengutakemodoki,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kotengutakemodoki.html,200,html,種別資料の各欄を照合,学名・科名・食毒・特徴・生育環境・時期,食毒欄は毒／特徴欄（共通語 つば・つぼ・ひだ・粘性）／生育環境欄（共通語 ブナ・マツ）／時期欄（共通語 夏・秋）
+コテングタケモドキ,kotengutakemodoki,research-gbif-amanita-pseudoporphyria,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Amanita+pseudoporphyria&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・ACCEPTED・Amanita pseudoporphyria・Amanitaceae・Amanita
+コテングタケモドキ,kotengutakemodoki,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+コテングタケモドキ,kotengutakemodoki,research-ffpri-kinoko013,属名,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko013.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+シイタケ,shiitake,research-ffpri-kinoko003,学名・属名・生育環境・時期,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko003.html,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+シイタケ,shiitake,research-gbif-lentinula-edodes,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Lentinula+edodes&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・ACCEPTED・Lentinula edodes・Omphalotaceae・Lentinula
+シイタケ,shiitake,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+シイタケ,shiitake,research-gap-maff-kinoko2016,時期・食毒,https://www.maff.go.jp/j/pr/aff/1610/spe1_03.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+シイタケ,shiitake,research-mhlw-0000142114,特徴,https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000142114.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ショウゲンジ,syougenji,research-ishikawa-syougenji,特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/syougenji.html,200,html,種別資料の各欄を照合,食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 つば・つぼ・ひだ）／生育環境欄（共通語 広葉樹）／時期欄（共通語 秋）
+ショウゲンジ,syougenji,research-kyoto-fungi-2015,学名・科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ショウゲンジ,syougenji,research-gbif-cortinarius-caperatus,属名,https://api.gbif.org/v1/species/match?name=Cortinarius+caperatus&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Cortinarius caperatus・Cortinariaceae・Cortinarius
+シロオニタケ,siroonitake,research-ishikawa-siroonitake,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/siroonitake.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は毒／特徴欄（共通語 つば・ひだ）／生育環境欄（共通語 マツ）／時期欄（共通語 夏・秋）
+シロオニタケ,siroonitake,research-gbif-amanita-virgineoides,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Amanita+virgineoides&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・ACCEPTED・Amanita virgineoides・Amanitaceae・Amanita
+シロオニタケ,siroonitake,research-kyoto-fungi-2015,科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+シロオニタケ,siroonitake,research-ffpri-kinoko018,属名,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko018.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+セイタカイグチ,seitakaiguchi,ishikawa-seitakaiguchi,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/seitakaiguti.html,200,html,種別資料の各欄を照合,学名・科名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 管孔）／生育環境欄（共通語 マツ）／時期欄（共通語 夏・秋）
+セイタカイグチ,seitakaiguchi,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+タマゴタケ,tamagotake,ishikawa-tamagotake,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/tamagotake.html,200,html,種別資料の各欄を照合,学名・科名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 つば・つぼ・ひだ・条線・粘性）／生育環境欄（共通語 広葉樹）／時期欄（共通語 夏・秋）
+タマゴタケ,tamagotake,research-gbif-amanita-hemibapha,属名,https://api.gbif.org/v1/species/match?name=Amanita+hemibapha&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Amanita hemibapha・Amanitaceae・Amanita
+タマゴタケ,tamagotake,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+タマチョレイタケ,tamachoreitake,research-ishikawa-tamacyoreitake,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/tamacyoreitake.html,200,html,種別資料の各欄を照合,学名・科名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 管孔・鱗片）／生育環境欄（共通語 林内）／時期欄（共通語 春・秋）
+タマチョレイタケ,tamachoreitake,research-gbif-polyporus-tuberaster,属名,https://api.gbif.org/v1/species/match?name=Polyporus+tuberaster&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Polyporus tuberaster・Polyporaceae・Polyporus
+タマチョレイタケ,tamachoreitake,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+チチアワタケ,chichiawatake,tottori-tufc-31903,学名,https://fungusdb.muses.tottori-u.ac.jp/catalog/info?id=31903,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+チチアワタケ,chichiawatake,research-gbif-suillus-granulatus,属名,https://api.gbif.org/v1/species/match?name=Suillus+granulatus&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Suillus granulatus・Suillaceae・Suillus
+チチアワタケ,chichiawatake,research-ishikawa-titiawatake,特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/titiawatake.html,200,html,種別資料の各欄を照合,食毒・特徴・生育環境・時期,食毒欄は要注意／特徴欄（共通語 つば・管孔・粘性）／生育環境欄（共通語 マツ）／時期欄（共通語 夏・秋）
+チチタケ,tititake,research-ishikawa-tititake,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/tititake.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 ひだ・粉）／生育環境欄（共通語 ブナ）／時期欄（共通語 夏・秋）
+チチタケ,tititake,research-gbif-lactarius-volemus,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Lactarius+volemus&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・SYNONYM・Lactarius volemus・Russulaceae・Lactifluus
+チチタケ,tititake,research-kyoto-fungi-2015,科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+チャアミガサタケ,chaamigasatake,nmns-tnsf-19379,学名・科名・属名,https://db.kahaku.go.jp/webmuseum/col_b2_01/19379,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+チャナメツムタケ,cyanamemututake,research-ishikawa-cyanamemututake,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/cyanamemututake.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 ひだ・粘性・鱗片）／生育環境欄（共通語 倒木・広葉樹・落葉）／時期欄（共通語 秋）
+チャナメツムタケ,cyanamemututake,research-gbif-pholiota-lubrica,属名,https://api.gbif.org/v1/species/match?name=Pholiota+lubrica&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Pholiota lubrica・Strophariaceae・Pholiota
+チャナメツムタケ,cyanamemututake,research-kyoto-fungi-2015,科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ツチグリ,tutiguri,research-ishikawa-tutiguri,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/tutiguri.html,200,html,種別資料の各欄を照合,学名・生育環境・時期,食毒欄は不食／生育環境欄（共通語 林内）／時期欄（共通語 春・秋）
+ツチグリ,tutiguri,research-gbif-astraeus-hygrometricus,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Astraeus+hygrometricus&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・ACCEPTED・Astraeus hygrometricus・Diplocystidiaceae・Astraeus
+ツチグリ,tutiguri,research-kyoto-fungi-2015,科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ツチグリ,tutiguri,research-ffpri-kinoko063,属名,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko063.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ツバアブラシメジ,tsubaaburashimeji,ishikawa-hakusan-sizen35,学名・特徴・生育環境,https://www.pref.ishikawa.lg.jp/hakusan/publish/sizen/documents/sizen35.pdf,200,pdf,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ツバアブラシメジ,tsubaaburashimeji,research-gbif-cortinarius-collinitus,属名,https://api.gbif.org/v1/species/match?name=Cortinarius+collinitus&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Cortinarius collinitus・Cortinariaceae・Cortinarius
+ツバアブラシメジ,tsubaaburashimeji,research-kyoto-fungi-2015,科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ツルタケ,turutake,research-ishikawa-turutake,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/turutake.html,200,html,種別資料の各欄を照合,学名・科名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 つば・つぼ・ひだ・条線・粘性・膜）／生育環境欄（共通語 広葉樹）／時期欄（共通語 夏・秋）
+テングタケ,tengutake,research-ishikawa-tengutake,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/tengutake.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は毒／特徴欄（共通語 つば・つぼ・ひだ・条線）／生育環境欄（共通語 ブナ）／時期欄（共通語 夏・秋）
+テングタケ,tengutake,research-gbif-amanita-pantherina,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Amanita+pantherina&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・ACCEPTED・Amanita pantherina・Amanitaceae・Amanita
+テングタケ,tengutake,research-kyoto-fungi-2015,科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+テングタケ,tengutake,research-ffpri-kinoko007,属名,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko007.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+テングタケ,tengutake,research-mhlw-0000142712,食毒,https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000142712.html,200,html,本文で対象名を確認,,中毒症状または事例欄がある。各事例の病因の学名・同定は出典の範囲に限る。
+トガリアミガサタケ,togariamigasatake,ishikawa-togariamigasatake,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/togariamigasatake.html,200,html,種別資料の各欄を照合,学名・科名・食毒・生育環境・時期,食毒欄は食／生育環境欄（共通語 林内）／時期欄（共通語 春）
+トガリアミガサタケ,togariamigasatake,research-gbif-morchella-conica,属名,https://api.gbif.org/v1/species/match?name=Morchella+conica&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・SYNONYM・Morchella conica・Morchellaceae・Morchella
+トガリアミガサタケ,togariamigasatake,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+トガリアミガサタケ,togariamigasatake,audit-morel-shimane,食毒,https://www.pref.shimane.lg.jp/life/region/kikan/chusankan/column/20190326.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ドクツルタケ,dokutsurutake,mhlw-dokutsurutake,学名・科名・属名・特徴・生育環境・時期・食毒,https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000142727.html,200,html,本文で対象名を確認,学名,中毒症状または事例欄がある。各事例の病因の学名・同定は出典の範囲に限る。
+ドクツルタケ,dokutsurutake,rinya-tohoku-fungi-guide,上位階級・和名等,https://www.rinya.maff.go.jp/tohoku/koho/tohoku/3_zukan/0_kinrui/1_kinoko.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ドクツルタケ,dokutsurutake,research-gbif-amanita-virosa,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Amanita+virosa&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・ACCEPTED・Amanita virosa・Amanitaceae・Amanita
+ドクツルタケ,dokutsurutake,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ドクヤマドリ,dokuyamadori,research-mhlw-0000143400,学名・科名・特徴・生育環境・時期・食毒,https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000143400.html,200,html,本文で対象名を確認,学名,中毒症状または事例欄がある。各事例の病因の学名・同定は出典の範囲に限る。
+ドクヤマドリ,dokuyamadori,research-gbif-boletus-venenatus,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Boletus+venenatus&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・SYNONYM・Boletus venenatus・Boletaceae・Sutorius
+ナラタケ,naratake,research-ishikawa-naratake,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/naratake.html,200,html,種別資料の各欄を照合,学名・科名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 つば・ひだ・鱗片）／生育環境欄（共通語 広葉樹・朽木）／時期欄（共通語 秋）
+ナラタケ,naratake,audit-naratake-ibaraki,食毒,https://www.pref.ibaraki.jp/nourinsuisan/ringyose/seikkinoko/sodan12.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ニガクリタケ,nigakuritake,research-ishikawa-nigakuritake,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/nigakuritake.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は毒／特徴欄（共通語 つば・ひだ・膜）／生育環境欄（共通語 切株・広葉樹）／時期欄（共通語 通年）
+ニガクリタケ,nigakuritake,research-gbif-hypholoma-fasciculare,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Hypholoma+fasciculare&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・ACCEPTED・Hypholoma fasciculare・Strophariaceae・Hypholoma
+ニガクリタケ,nigakuritake,research-kyoto-fungi-2015,科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ニガクリタケ,nigakuritake,research-mhlw-0000142698,属名・食毒,https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000142698.html,200,html,本文で対象名を確認,,中毒症状または事例欄がある。各事例の病因の学名・同定は出典の範囲に限る。
+ヌメリイグチ,numeriiguti,research-ishikawa-numeriiguti,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/numeriiguti.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 つば・管孔・粘性）／生育環境欄（共通語 マツ）／時期欄（共通語 秋）
+ヌメリイグチ,numeriiguti,research-gbif-suillus-luteus,属名,https://api.gbif.org/v1/species/match?name=Suillus+luteus&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Suillus luteus・Suillaceae・Suillus
+ヌメリイグチ,numeriiguti,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ヌメリスギタケ,numerisugitake,research-ishikawa-numerisugitake,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/numerisugitake.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 つば・ひだ・粘性・鱗片）／生育環境欄（共通語 倒木・広葉樹）／時期欄（共通語 秋）
+ヌメリスギタケ,numerisugitake,research-gbif-pholiota-adiposa,属名,https://api.gbif.org/v1/species/match?name=Pholiota+adiposa&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Pholiota adiposa・Strophariaceae・Pholiota
+ヌメリスギタケ,numerisugitake,research-kyoto-fungi-2015,科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ノウタケ,noutake,ishikawa-noutake,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/noutake.html,200,html,種別資料の各欄を照合,学名・科名・生育環境・時期,食毒欄は幼時食／生育環境欄（共通語 林内）／時期欄（共通語 秋）
+ノウタケ,noutake,research-gbif-calvatia-craniiformis,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Calvatia+craniiformis&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・ACCEPTED・Calvatia craniiformis・Lycoperdaceae・Calvatia
+ノウタケ,noutake,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ノウタケ,noutake,research-ffpri-kinoko064,属名,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko064.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ハタケシメジ,hatakesimeji,research-ishikawa-hatakesimeji,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/hatakesimeji.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・時期,食毒欄は食／特徴欄（共通語 ひだ）／生育環境欄あり／時期欄（共通語 秋）
+ハタケシメジ,hatakesimeji,research-gbif-lyophyllum-decastes,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Lyophyllum+decastes&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・ACCEPTED・Lyophyllum decastes・Lyophyllaceae・Lyophyllum
+ハタケシメジ,hatakesimeji,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ハタケシメジ,hatakesimeji,research-ffpri-kinoko001,属名,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko001.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ハチノスタケ,hatinosutake,research-ishikawa-hatinosutake,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/hatinosutake.html,200,html,種別資料の各欄を照合,学名・特徴・生育環境・時期,食毒欄は不食／特徴欄（共通語 管孔・鱗片）／生育環境欄（共通語 倒木・広葉樹）／時期欄（共通語 春・秋）
+ハチノスタケ,hatinosutake,research-gbif-polyporus-alveolaris,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Polyporus+alveolaris&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・SYNONYM・Polyporus alveolaris・Polyporaceae・Neofavolus
+ハチノスタケ,hatinosutake,research-kyoto-fungi-2015,科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ハツタケ,hatutake,research-ishikawa-hatutake,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/hatutake.html,200,html,種別資料の各欄を照合,学名・科名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 ひだ）／生育環境欄（共通語 マツ）／時期欄（共通語 夏・秋）
+ハツタケ,hatutake,research-gbif-lactarius-hatsudake,属名,https://api.gbif.org/v1/species/match?name=Lactarius+hatsudake&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Lactarius hatsudake・Russulaceae・Lactarius
+ハナイグチ,hanaiguchi,tottori-tufc-100699,学名・生育環境,https://fungusdb.muses.tottori-u.ac.jp/catalog/info?id=100699,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ハナイグチ,hanaiguchi,ishikawa-hanaiguchi,科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/hanaiguti.html,200,html,種別資料の各欄を照合,科名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 つば・粘性）／生育環境欄（共通語 カラマツ・マツ）／時期欄（共通語 秋）
+ハナイグチ,hanaiguchi,research-gbif-suillus-grevillei,属名,https://api.gbif.org/v1/species/match?name=Suillus+grevillei&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Suillus grevillei・Suillaceae・Suillus
+ハラタケ,haratake,research-ishikawa-haratake,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/haratake.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 つば・ひだ）／生育環境欄（共通語 草地）／時期欄（共通語 夏・秋）
+ハラタケ,haratake,research-gbif-agaricus-campestris,属名,https://api.gbif.org/v1/species/match?name=Agaricus+campestris&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Agaricus campestris・Agaricaceae・Agaricus
+ハラタケ,haratake,research-kyoto-fungi-2015,科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ヒラタケ,hiratake,tottori-tufc-100534,学名・生育環境,https://fungusdb.muses.tottori-u.ac.jp/catalog/info?id=100534,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ヒラタケ,hiratake,research-gbif-pleurotus-ostreatus,属名,https://api.gbif.org/v1/species/match?name=Pleurotus+ostreatus&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Pleurotus ostreatus・Pleurotaceae・Pleurotus
+ヒラタケ,hiratake,research-kyoto-fungi-2015,科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ヒラタケ,hiratake,research-ishikawa-hiratake,特徴・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/hiratake.html,200,html,種別資料の各欄を照合,食毒・特徴・時期,食毒欄は食／特徴欄（共通語 ひだ）／生育環境欄（共通語 広葉樹・枯木）／時期欄（共通語 春・秋）
+ヒロメノトガリアミガサタケ,hiromenotogariamigasatake,tochigi-rdb-2023-fungi,学名,https://www.pref.tochigi.lg.jp/d04/documents/20230302132346.pdf,200,pdf,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ヒロメノトガリアミガサタケ,hiromenotogariamigasatake,mycoscience-myc590,学名・科名・特徴・生育環境・時期,https://doi.org/10.47371/mycosci.2022.08.005,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ヒロメノトガリアミガサタケ,hiromenotogariamigasatake,research-gbif-morchella-nipponensis,属名,https://api.gbif.org/v1/species/match?name=Morchella+nipponensis&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Morchella nipponensis・Morchellaceae・Morchella
+ヘビキノコモドキ,hebikinokomodoki,ishikawa-hebikinokomodoki,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/hebikinokomodoki.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は毒／特徴欄（共通語 つぼ）／生育環境欄（共通語 ブナ・マツ）／時期欄（共通語 夏・秋）
+ヘビキノコモドキ,hebikinokomodoki,ffpri-hebikinokomodoki,学名・科名・属名・特徴・生育環境・時期,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko020.html,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ヘビキノコモドキ,hebikinokomodoki,research-gbif-amanita-spissacea,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Amanita+spissacea&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・ACCEPTED・Amanita spissacea・Amanitaceae・Amanita
+ヘビキノコモドキ,hebikinokomodoki,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ベニテングタケ,benitengutake,research-mhlw-0000142728,特徴・生育環境・時期・食毒,https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000142728.html,200,html,本文で対象名を確認,,中毒症状または事例欄がある。各事例の病因の学名・同定は出典の範囲に限る。
+ベニテングタケ,benitengutake,research-kyoto-fungi-2015,学名・科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ベニテングタケ,benitengutake,research-gbif-amanita-muscaria,属名,https://api.gbif.org/v1/species/match?name=Amanita+muscaria&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Amanita muscaria・Amanitaceae・Amanita
+ホコリタケ,hokoritake,research-ishikawa-hokoritake,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/hokoritake.html,200,html,種別資料の各欄を照合,学名・科名・生育環境・時期,食毒欄は幼時食／生育環境欄（共通語 朽木）／時期欄（共通語 秋）
+ホコリタケ,hokoritake,research-gbif-lycoperdon-perlatum,属名,https://api.gbif.org/v1/species/match?name=Lycoperdon+perlatum&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Lycoperdon perlatum・Lycoperdaceae・Lycoperdon
+ホテイシメジ,hoteishimeji,research-kyoto-fungi-2015,学名・科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ホテイシメジ,hoteishimeji,research-gbif-ampulloclitocybe-clavipes,属名,https://api.gbif.org/v1/species/match?name=Ampulloclitocybe+clavipes&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Ampulloclitocybe clavipes・Hygrophoraceae・Ampulloclitocybe
+ホテイシメジ,hoteishimeji,research-ishikawa-hoteisimeji,特徴・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/hoteisimeji.html,200,html,種別資料の各欄を照合,食毒・特徴・時期,食毒欄は要注意／特徴欄（共通語 ひだ）／生育環境欄あり／時期欄（共通語 秋）
+ホテイシメジ,hoteishimeji,audit-mhlw-grant-2021,食毒,https://mhlw-grants.niph.go.jp/system/files/report_pdf/202124033A-buntan6.pdf,200,pdf,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+マツオウジ,matsuouji,rinya-tohoku-fungi-guide,学名,https://www.rinya.maff.go.jp/tohoku/koho/tohoku/3_zukan/0_kinrui/1_kinoko.html,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+マツオウジ,matsuouji,research-gbif-neolentinus-lepideus,科名・属名,https://api.gbif.org/v1/species/match?name=Neolentinus+lepideus&strict=true,200,json,分類DBの応答,科名・属名,EXACT・SPECIES・ACCEPTED・Neolentinus lepideus・Gloeophyllaceae・Neolentinus
+マツオウジ,matsuouji,research-ishikawa-matuouji,特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/matuouji.html,200,html,種別資料の各欄を照合,食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 つば・ひだ・鱗片）／生育環境欄（共通語 倒木・針葉樹）／時期欄（共通語 夏・秋）
+マツタケ,matutake,research-ishikawa-matutake,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/matutake.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 つば・ひだ・鱗片）／生育環境欄（共通語 マツ）／時期欄（共通語 秋）
+マツタケ,matutake,research-gbif-tricholoma-matsutake,属名,https://api.gbif.org/v1/species/match?name=Tricholoma+matsutake&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Tricholoma matsutake・Tricholomataceae・Tricholoma
+マツタケ,matutake,research-kyoto-fungi-2015,科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+マンネンタケ,mannentake,research-ishikawa-mannentake,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/mannentake.html,200,html,種別資料の各欄を照合,学名・特徴・生育環境・時期,食毒欄は薬用、鑑賞／特徴欄（共通語 孔口・管孔）／生育環境欄（共通語 切株・広葉樹）／時期欄（共通語 夏・秋）
+マンネンタケ,mannentake,research-gbif-ganoderma-lucidum,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Ganoderma+lucidum&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・ACCEPTED・Ganoderma lucidum・Polyporaceae・Ganoderma
+マンネンタケ,mannentake,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+マンネンタケ,mannentake,research-ffpri-kinoko060,属名,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko060.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ミドリニガイグチ,midorinigaiguchi,ishikawa-h23-chikurinkinoko,学名・科名,https://www.pref.ishikawa.lg.jp/ringyo/publish/kenkyuuhoukoku/documents/h23-8_chikurinkinoko.pdf,200,pdf,本文取得・対象箇所に未到達,,
+ミドリニガイグチ,midorinigaiguchi,research-gbif-tylopilus-virens,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Tylopilus+virens&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・SYNONYM・Tylopilus virens・Boletaceae・Chiua
+ミドリニガイグチ,midorinigaiguchi,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ミドリニガイグチ,midorinigaiguchi,research-ishikawa-midorinigaiguti,特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/midorinigaiguti.html,200,html,種別資料の各欄を照合,食毒・特徴・生育環境・時期,食毒欄は不明／特徴欄（共通語 条線・管孔・粘性）／生育環境欄（共通語 マツ）／時期欄（共通語 夏・秋）
+ミヤマタマゴタケ,miyamatamagotake,research-kyoto-miyamatamagotake,学名・科名・特徴・生育環境,https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fun0099.html,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ミヤマタマゴタケ,miyamatamagotake,research-gbif-amanita-imazekii,属名,https://api.gbif.org/v1/species/match?name=Amanita+imazekii&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Amanita imazekii・Amanitaceae・Amanita
+ムキタケ,mukitake,research-ishikawa-mukitake,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/mukitake.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 ひだ）／生育環境欄（共通語 倒木・広葉樹）／時期欄（共通語 秋）
+ムキタケ,mukitake,research-gbif-panellus-serotinus,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Panellus+serotinus&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・SYNONYM・Panellus serotinus・Sarcomyxaceae・Sarcomyxa
+ヤナギマツタケ,yanagimatsutake,tottori-tufc-30149,学名,https://fungusdb.muses.tottori-u.ac.jp/catalog/info?id=30149,200,html,本文で対象名を確認,学名,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ヤナギマツタケ,yanagimatsutake,research-gbif-cyclocybe-cylindracea,属名,https://api.gbif.org/v1/species/match?name=Cyclocybe+cylindracea&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Cyclocybe cylindracea・Tubariaceae・Cyclocybe
+ヤナギマツタケ,yanagimatsutake,research-gap-ffpri-yanagimatsutake2013,食毒,https://www.ffpri.go.jp/news/2013/20131127buranichi/index.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ヤナギマツタケ,yanagimatsutake,research-chiba-yanagimatsutake,特徴・時期・食毒,https://www.chiba-muse.or.jp/natural/special/yama/news/2010/100519agrocybe.htm,200,html,本文取得・対象箇所に未到達,,
+ヤナギマツタケ,yanagimatsutake,research-kaizuka-nisikiplant,特徴,https://www.city.kaizuka.lg.jp/shizen/kaizuka/area/nishikinohama/nisikiplant.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ヤナギマツタケ,yanagimatsutake,research-gap-maff-kinoko2016,生育環境,https://www.maff.go.jp/j/pr/aff/1610/spe1_03.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ヤマイグチ,yamaiguchi,ishikawa-yamaiguchi,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/yamaiguti.html,200,html,種別資料の各欄を照合,学名・科名・食毒・特徴・時期,食毒欄は食／特徴欄（共通語 粘性・鱗片）／生育環境欄あり／時期欄（共通語 夏・秋）
+ヤマイグチ,yamaiguchi,research-gbif-leccinum-scabrum,属名,https://api.gbif.org/v1/species/match?name=Leccinum+scabrum&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Leccinum scabrum・Boletaceae・Leccinum
+ヤマイグチ,yamaiguchi,research-kyoto-fungi-2015,上位階級・和名等,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ヤマドリタケモドキ,yamadoritakemodoki,research-ishikawa-yamadoritakemodoki,学名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/yamadoritakemodoki.html,200,html,種別資料の各欄を照合,学名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 管孔・粘性）／生育環境欄（共通語 ブナ）／時期欄（共通語 夏・秋）
+ヤマドリタケモドキ,yamadoritakemodoki,research-gbif-boletus-reticulatus,上位階級・和名等,https://api.gbif.org/v1/species/match?name=Boletus+reticulatus&strict=true,200,json,分類DBの応答,,EXACT・SPECIES・ACCEPTED・Boletus reticulatus・Boletaceae・Boletus
+ヤマドリタケモドキ,yamadoritakemodoki,research-kyoto-fungi-2015,科名,https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ヤマドリタケモドキ,yamadoritakemodoki,research-ffpri-kinoko042,属名,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko042.html,200,html,本文で対象名を確認,,対象名を含む。種別の表・標本・症例の適用先は個別審査。
+ルリハツタケ,rurihatutake,research-ishikawa-rurihatutake,学名・科名・特徴・生育環境・時期・食毒,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/rurihatutake.html,200,html,種別資料の各欄を照合,学名・科名・食毒・特徴・生育環境・時期,食毒欄は食／特徴欄（共通語 ひだ・粘性）／生育環境欄（共通語 広葉樹）／時期欄（共通語 夏・秋）
+ルリハツタケ,rurihatutake,research-gbif-lactarius-indigo,属名,https://api.gbif.org/v1/species/match?name=Lactarius+indigo&strict=true,200,json,分類DBの応答,属名,EXACT・SPECIES・ACCEPTED・Lactarius indigo・Russulaceae・Lactarius
