@@ -169,13 +169,82 @@ def test_name_only_source_is_not_rendered_as_provenance():
 
 
 @pytest.mark.parametrize("status, wording", [
-    ("poisonous_confirmed", "公的・専門資料に毒性の記載あり"),
-    ("unknown", "食毒情報は未確認"),
+    ("poisonous_confirmed", "公的・専門資料には毒性の記載があります"),
+    ("unknown", "食毒の区分は確認できていません"),
 ])
 def test_other_food_safety_wording(status, wording):
     data = fixture_portal()
     data["reference_data"]["mushroom_master"]["entries"][0]["food_safety"]["status"] = status
     assert wording in render_detail_sections(build_detail_views(data)["リンク名？"])
+
+
+
+def test_all_51_linked_food_notes_have_exact_reviewed_polite_display():
+    """No silent status changes, unreviewed sources or lost species-specific cautions."""
+    import detail_ui
+    import main
+
+    taxonomy = main.load_subject_taxonomy()
+    master = json.loads(open("data/mushroom-master.json", encoding="utf-8").read())
+    linked = {e["mushroom_master_id"] for e in taxonomy["entries"]
+              if e.get("mushroom_master_id")}
+    assert len(linked) == 51
+    assert set(detail_ui.FOOD_NOTE_REVIEWED) == linked
+    masters = {e["mushroom_id"]: e for e in master["entries"]}
+    assert len(masters) == 141
+
+    for mushroom_id in sorted(linked):
+        mushroom = masters[mushroom_id]
+        name, source_note, copy = detail_ui.FOOD_NOTE_REVIEWED[mushroom_id]
+        assert name == mushroom["canonical_name_ja"]
+        assert source_note == mushroom["food_safety"]["notes"]
+        assert mushroom["food_safety"]["status"] in detail_ui.FOOD_SAFETY_LABELS
+        assert copy is None or copy.endswith("。"), name
+        assert copy is None or not any(
+            term in copy for term in ("source report", "project", "unknown",
+                                     "食用可否の自己判断には使用しない。", "記載あり",
+                                     "保証ではない。", "ではない。", "である。")
+        ), name
+
+        output = detail_ui._knowledge(mushroom, {})
+        food = next(row for row in output["rows"] if row["label"] == "食毒情報")
+        assert food["value"] == detail_ui.FOOD_SAFETY_LABELS[mushroom["food_safety"]["status"]]
+        assert food["note"] == copy, name
+        rendered = render_detail_sections({"knowledge": output, "articles": []})
+        assert ("このページの情報を、キノコを採ったり、調理したり、食べたりする判断には使わないでください。"
+                in rendered)
+        assert "食用可否の自己判断には使用しない。" not in rendered, name
+        assert "公的・専門資料に毒性の記載あり" not in rendered, name
+        assert "食毒情報は未確認" not in rendered, name
+        if copy is not None:
+            assert copy.replace("&", "&amp;").replace("<", "&lt;") in rendered
+
+    assert detail_ui.FOOD_NOTE_REVIEWED["yamadoritakemodoki"][2] == detail_ui.YAMADORITAKEMODOKI_DISPLAY_NOTE
+    assert detail_ui.FOOD_NOTE_REVIEWED["shiitake"][2] == detail_ui.SHIITAKE_DISPLAY_NOTE
+    assert detail_ui.FOOD_NOTE_REVIEWED["benitengutake"][2] == detail_ui.FOOD_NOTE_REVIEWED["dokuyamadori"][2]
+
+
+def test_new_or_changed_source_note_cannot_inherit_stale_reviewed_copy():
+    """Exact mushroom ID + canonical name + note must match for the polished prose."""
+    import detail_ui
+    data = fixture_portal()
+    master = data["reference_data"]["mushroom_master"]["entries"][0]
+    reviewed = detail_ui.FOOD_NOTE_REVIEWED["shiitake"]
+    master["mushroom_id"] = "shiitake"
+    master["canonical_name_ja"] = reviewed[0]
+    master["food_safety"]["notes"] = reviewed[1]
+    correct = detail_ui._knowledge(master, {})
+    assert next(row for row in correct["rows"] if row["label"] == "食毒情報")["note"] == reviewed[2]
+
+    master["food_safety"]["notes"] += " 新しい未審査の注意書き。"
+    changed = detail_ui._knowledge(master, {})
+    note = next(row for row in changed["rows"] if row["label"] == "食毒情報")["note"]
+    assert note != reviewed[2]
+    assert "新しい未審査の注意書き" in note
+    master["food_safety"]["notes"] = reviewed[1]
+    master["canonical_name_ja"] = "別の菌名"
+    renamed = detail_ui._knowledge(master, {})
+    assert next(row for row in renamed["rows"] if row["label"] == "食毒情報")["note"] != reviewed[2]
 
 
 def test_articles_exact_dedup_chronology_and_links():
