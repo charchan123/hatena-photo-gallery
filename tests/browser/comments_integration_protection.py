@@ -144,6 +144,12 @@ TENTH_TWO_LINK_BLOBS = {
     'detail_ui.py': 'c731a249807f30e473ae3a1d74ed31163bd20dca',
     'data/guide-links.json': '417d716ac932c1c71aa5608e968067adb8cd93c1',
 }
+# Guide audit changes only the exact presentation module and adds a
+# separate display data file. Keep all comment and legacy source byte checks.
+GUIDE_DISPLAY_BASE = '1cf063ae2f969c0eb58820c61a1c51c5eea06528'
+GUIDE_DISPLAY_BLOB = '2148844d8a3366760dbe2f398608d0d696b9aa35'
+GUIDE_DISPLAY_DATA = 'data/taxonomy-display-ja.json'
+GUIDE_DISPLAY_DATA_BLOB = '6bf71d25bc041f38cd6881a512e2fde3aca9aba9'
 PUBLIC_CONFIG = 'comments/public-config.json'
 PRODUCTION_ORIGIN = 'https://kinoko-research-comments.sasama-bb.workers.dev'
 RELEASE_ID = 'research-comments-production-20261120'
@@ -169,6 +175,10 @@ def assert_reviewed_source(base, path, current):
     """Never hide a main change behind the old PR's allowance."""
     original = git('show', f'{base}:{path}')
     if current == original:
+        return
+    if path == 'detail_ui.py' and git('rev-parse', base).decode().strip() == GUIDE_DISPLAY_BASE:
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
+        assert hashlib.sha1(blob).hexdigest() == GUIDE_DISPLAY_BLOB, path
         return
     if path in TENTH_TWO_LINK_BLOBS and git('rev-parse', base).decode().strip() == TENTH_TWO_LINK_BASE:
         blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
@@ -313,6 +323,12 @@ def collect(base='origin/main'):
         content = (ROOT / path).read_bytes()
         assert_reviewed_source(base, path, content)
         hashes[path] = hashlib.sha256(content).hexdigest()
+    if GUIDE_DISPLAY_DATA not in protected and (ROOT / GUIDE_DISPLAY_DATA).is_file():
+        assert git('rev-parse', base).decode().strip() == GUIDE_DISPLAY_BASE
+        content = (ROOT / GUIDE_DISPLAY_DATA).read_bytes()
+        blob = b'blob ' + str(len(content)).encode('ascii') + b'\0' + content
+        assert hashlib.sha1(blob).hexdigest() == GUIDE_DISPLAY_DATA_BLOB, GUIDE_DISPLAY_DATA
+        hashes[GUIDE_DISPLAY_DATA] = hashlib.sha256(content).hexdigest()
     if any((ROOT/path).exists() for path in LINE_NEW):
         pins = line_pins()
         for path in LINE_NEW:
