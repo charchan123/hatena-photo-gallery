@@ -22,8 +22,8 @@
     "legacy_undetected_count": 31,
     "legacy_shadow_missing_count": 0,
     "human_reviewed_mushroom_count": 0,
-    "master_linked_subject_count": 59,
-    "master_unlinked_subject_count": 254,
+    "master_linked_subject_count": 63,
+    "master_unlinked_subject_count": 250,
     "knowledge_record_count": 141,
     "source_count": 419
   },
@@ -2608,8 +2608,8 @@
         "legacy_review": 1
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "kiraratake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "キンチャワンタケ",
@@ -2787,8 +2787,8 @@
         "legacy_review": 3
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "kutibenitake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "クラガタノボリリュウorナガエノチャワンタケ？",
@@ -2871,8 +2871,8 @@
         "legacy_review": 1
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "kuritake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "クリフウセンタケ",
@@ -3303,8 +3303,8 @@
         "legacy_review": 1
       },
       "taxonomy": null,
-      "mushroom_master_id": null,
-      "knowledge_available": false
+      "mushroom_master_id": "kotamagotengutake",
+      "knowledge_available": true
     },
     {
       "gallery_name": "コツブオオワライタケ(仮称)",
@@ -16197,7 +16197,7 @@
         ],
         "excerpt": "静岡木の子の会の観察会が沼津市の里山で行われたので参加してきた。 ハマクサギタマゴタケ 観察会は毎年10月で最後になるのだが、今年は様々な事情によ11月の観察となったそうだ。 しかし今回観察場所に選ばれた場所は比較的標高が高く、時期的なこともあり朝方は少々寒く…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "kotamagotengutake"
     },
     {
       "observation_id": "obs-fd1e8788487bf7d17b445943e7ed96412daabc52d638236fb064ed5467e1e883",
@@ -16610,7 +16610,7 @@
         ],
         "excerpt": "静岡木の子の会の観察会が沼津市の里山で行われたので参加してきた。 ハマクサギタマゴタケ 観察会は毎年10月で最後になるのだが、今年は様々な事情によ11月の観察となったそうだ。 しかし今回観察場所に選ばれた場所は比較的標高が高く、時期的なこともあり朝方は少々寒く…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "kuritake"
     },
     {
       "observation_id": "obs-6fffbf067c6cc7e938bcccae0589d6d89c04ecc152d332beba70e98e2227344c",
@@ -16728,7 +16728,7 @@
         ],
         "excerpt": "静岡木の子の会の観察会が沼津市の里山で行われたので参加してきた。 ハマクサギタマゴタケ 観察会は毎年10月で最後になるのだが、今年は様々な事情によ11月の観察となったそうだ。 しかし今回観察場所に選ばれた場所は比較的標高が高く、時期的なこともあり朝方は少々寒く…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "kutibenitake"
     },
     {
       "observation_id": "obs-07e315ccc7d4aa1b3042b078d0d4a1edfaa6492385b0286f971c332c2bdb409a",
@@ -17987,7 +17987,7 @@
         ],
         "excerpt": "今年最後の静岡木の子の会の探索会が浜松市の里山で行われたので参加してきた。 クチベニタケ この場は本種の発生が多いのだが、その他県西部ではあまり見かけない。 ユキラッパタケ 発見当初はシロアンズタケかと思ったのだが、違うようだ。 追記 不明としていたが、種名を…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "kutibenitake"
     },
     {
       "observation_id": "obs-b4adc67fab8ed237977d5395412aedf1ab3528c584fb6ea322ed931406bff7d0",
@@ -33554,7 +33554,7 @@
         ],
         "excerpt": "静岡木の子の会の会員で静岡フォーレの最終下見が静岡県立森林公園行われたので参加してきた。(LUMIXG9ProIIの予行練習も含め) クサハツ 一カ月と1週間ほど雨が全く降らず、昨日の台風でようやく地に水が染み渡った様なのたが、まだ1日しか経っておらず流石にキ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "kutibenitake"
     },
     {
       "observation_id": "obs-0338d7327bf6d09435e42dd4b36f59bfdc5f01da7552f56ac886924e522afda4",
@@ -46297,7 +46297,7 @@
         ],
         "excerpt": "静岡木の子の会の観察会が富士山のブナ林で開催されたので参加してきた。 コツブオオワライタケ(仮称) ブナの倒木に発生。レフ板を敷いたが下部が暗くなってしまった。 不明 倒木に発生。キナメアシタケに似ている。 フサヒメホウキタケ 倒木に発生。状態は良かった。 キ…"
       },
-      "mushroom_master_id": null
+      "mushroom_master_id": "kiraratake"
     },
     {
       "observation_id": "obs-75e57b885ee391987189c47ce1bfecbd71c075bd34b03fb4c8b0f27ca6148cda",
