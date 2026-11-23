@@ -190,6 +190,16 @@ SEVENTH_FOUR_FOOD_NOTE_REVIEWED = {
     "rurihatutake": ("ルリハツタケ", NEXT_FOUR_SOURCE_NOTE, NEXT_FOUR_DISPLAY_NOTE),
 }
 
+# Eighth group: preserve source exactness, including caveats about a caution
+# listing and a raw-consumption warning. No species is re-identified here.
+EIGHTH_ANZUTAKE_WARNING_LABEL = "資料に食用記載と注意情報があります"
+EIGHTH_FOUR_FOOD_NOTE_REVIEWED = {
+    "anzutake": ("アンズタケ", "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。 島根県の公的一覧には「アンズタケ（注意）」と掲載される。注意理由は当該一覧だけでは未確認であり、毒性・毒成分・発症条件を推測しない。資料上の食用記録は安全保証ではない。", "石川県の資料では、食毒欄に「食」と記載されています。一方、島根県の資料では「アンズタケ（注意）」として掲載されています。この一覧だけでは注意が必要な理由までは確認できないため、毒性や発症条件を決めつけることはできません。資料の食用記載は、採取したキノコの安全性を保証するものではありません。"),
+    "kakisimeji": ("カキシメジ", "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「毒」。 厚生労働省は中毒症状または事例を記載。", "石川県の資料では、食毒欄に「毒」と記載されています。厚生労働省の資料には、嘔吐や下痢などの中毒症状・事例が記載されています。ただし、これらの資料だけで写真に写る個体の種を特定できるわけではありません。"),
+    "kabairoturutake": ("カバイロツルタケ", "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。条件付き毒性記述／注意記述があるため食用判定へ変換せずunknownとした。", "石川県の資料では、食毒欄に「食」と記載されています。一方、森林総合研究所の資料には「生食すると毒だといわれる」と記載されています。食用という記載だけで安全とは判断できず、加熱すれば安全という意味でもありません。"),
+    "kusaurabenitake": ("クサウラベニタケ", "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「毒」。 厚生労働省は中毒症状または事例を記載。", "石川県の資料では、食毒欄に「毒」と記載されています。厚生労働省の資料には、嘔吐や下痢などの中毒症状・事例が記載されています。ただし、これらの資料だけで写真に写る個体の種を特定できるわけではありません。"),
+}
+
 
 def reader_facing_food_note(note):
     """Show source-specific facts; the detail panel renders the safety warning separately."""
@@ -313,7 +323,14 @@ def _knowledge(master, source_map):
                     or FOURTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
                     or FIFTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
                     or SIXTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
-                    or SEVENTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id")))
+                    or SEVENTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
+                    or EIGHTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id")))
+        if (master.get("mushroom_id") == "anzutake" and
+                master.get("canonical_name_ja") == "アンズタケ" and
+                status == "edibility_reported" and reviewed is not None and
+                reviewed[:2] == (master.get("canonical_name_ja"), food.get("notes"))):
+            # The source retains '食', but another public source says '注意'.
+            rows[-1]["value"] = EIGHTH_ANZUTAKE_WARNING_LABEL
         if (reviewed is not None and
                 reviewed[:2] == (master.get("canonical_name_ja"), food.get("notes"))):
             # None means this source contained only the repeated generic warning.
