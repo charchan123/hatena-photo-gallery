@@ -101,6 +101,51 @@ def test_shared_subject_copy_without_changing_photo_identity(monkeypatch, tmp_pa
     assert 'data-favorite-eligible="false"' in markup
     assert result == {"リンク名？": ["original.jpg"]}
 
+
+def test_display_omits_repeated_stock_cautions_but_keeps_source_detail():
+    boilerplate = ("食用可否の自己判断には使用しない。"
+                   "毒性の記録がないことは安全を意味しない。")
+    assert reader_facing_food_note(boilerplate) is None
+    assert reader_facing_food_note(
+        boilerplate + " 石川県の食毒欄は「要注意」。"
+    ) == "石川県の食毒欄は「要注意」。"
+    assert reader_facing_food_note(
+        "石川県の食毒欄は「毒」。 " + boilerplate
+    ) == "石川県の食毒欄は「毒」。"
+
+    data = fixture_portal()
+    row = data["reference_data"]["mushroom_master"]["entries"][0]
+    row["food_safety"]["notes"] = boilerplate + " 石川県の食毒欄は「要注意」。"
+    rendered = render_detail_sections(build_detail_views(data)["リンク名？"])
+    assert "石川県の食毒欄は「要注意」。" in rendered
+    assert "食用可否の自己判断には使用しない。" not in rendered
+    assert "毒性の記録がないことは安全を意味しない。" not in rendered
+    assert "このページの情報を、キノコを採ったり、調理したり、食べたりする判断には使わないでください。" in rendered
+    assert "毒性についての記載がなくても、安全とは限りません。" in rendered
+
+
+def test_shiitake_uses_exact_maff_source_note_only_for_itself():
+    data = fixture_portal()
+    master = data["reference_data"]["mushroom_master"]["entries"][0]
+    master["canonical_name_ja"] = "シイタケ"
+    master["food_safety"]["notes"] = (
+        "食用可否の自己判断には使用しない。"
+        "毒性の記録がないことは安全を意味しない。 "
+        "農林水産省が食用きのこと明記した利用記録。"
+        "野生個体の判定には使用しない。"
+    )
+    rendered = render_detail_sections(build_detail_views(data)["リンク名？"])
+    assert ("農林水産省の資料では、シイタケを食用のキノコとして紹介しています。"
+            "ただし、この情報だけで野生のキノコの種類や安全性を判断することはできません。") in rendered
+    assert "食用可否の自己判断には使用しない。" not in rendered
+
+    # Do not invent an identification or attribution for a different species.
+    master["canonical_name_ja"] = "テスト菌"
+    other = render_detail_sections(build_detail_views(data)["リンク名？"])
+    assert "農林水産省の資料では、シイタケを食用のキノコとして紹介しています。" not in other
+    assert "農林水産省が食用きのこと明記した利用記録。" in other
+
+
 def test_name_only_source_is_not_rendered_as_provenance():
     data = fixture_portal()
     master = data["reference_data"]["mushroom_master"]["entries"][0]
@@ -189,6 +234,11 @@ def test_all_repository_food_notes_hide_internal_terms_and_preserve_limits():
     assert "飲酒" in rendered["ホテイシメジ"]
     assert "毒成分名" in rendered["オオワライタケ"]
     assert "安全を意味しない" in rendered["ウコンハツ"]
+    # Source data remains untouched; only reader-facing duplication is removed.
+    stock_sentences = ("食用可否の自己判断には使用しない。",
+                       "毒性の記録がないことは安全を意味しない。")
+    assert all(not any(sentence in note for sentence in stock_sentences)
+               for note in rendered.values() if note)
 
 
 @pytest.mark.parametrize("count, expected", [(1, None), (5, None), (6, 1), (10, 5)])
