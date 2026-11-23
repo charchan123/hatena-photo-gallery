@@ -172,6 +172,15 @@ FIFTH_FOUR_FOOD_NOTE_REVIEWED = {
     "numeriiguti": ("ヌメリイグチ", "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。", "石川県の資料では、食毒欄に「食」と記載されています。これは資料上の区分であり、採取したキノコの安全性を保証するものではありません。"),
 }
 
+# Sixth group: keep original source notes and food-safety status unchanged.
+# The reviewed display prose is applied only on exact ID, Japanese name and source note.
+SIXTH_FOUR_FOOD_NOTE_REVIEWED = {
+    "numerisugitake": ("ヌメリスギタケ", NEXT_FOUR_SOURCE_NOTE, NEXT_FOUR_DISPLAY_NOTE),
+    "hatakesimeji": ("ハタケシメジ", NEXT_FOUR_SOURCE_NOTE, NEXT_FOUR_DISPLAY_NOTE),
+    "hatinosutake": ("ハチノスタケ", "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「不食」。", "石川県の資料では、食毒欄に「不食」と記載されています。これは「毒」と同じ意味ではなく、この記載だけで毒性が確認されたとは判断できません。"),
+    "hatutake": ("ハツタケ", NEXT_FOUR_SOURCE_NOTE, NEXT_FOUR_DISPLAY_NOTE),
+}
+
 
 def reader_facing_food_note(note):
     """Show source-specific facts; the detail panel renders the safety warning separately."""
@@ -293,7 +302,8 @@ def _knowledge(master, source_map):
                     or NEXT_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
                     or THIRD_FOUR_FOOD_NOTE_CANDIDATES.get(master.get("mushroom_id"))
                     or FOURTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
-                    or FIFTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id")))
+                    or FIFTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id"))
+                    or SIXTH_FOUR_FOOD_NOTE_REVIEWED.get(master.get("mushroom_id")))
         if (reviewed is not None and
                 reviewed[:2] == (master.get("canonical_name_ja"), food.get("notes"))):
             # None means this source contained only the repeated generic warning.
