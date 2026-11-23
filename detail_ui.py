@@ -40,6 +40,18 @@ YAMADORITAKEMODOKI_DISPLAY_NOTE = (
     "食べられるかどうかを自分で判断するためには使わないでください。"
 )
 
+# Exact source-note match: never infer an edible mushroom from a similar name.
+SHIITAKE_SOURCE_NOTE = (
+    "食用可否の自己判断には使用しない。"
+    "毒性の記録がないことは安全を意味しない。 "
+    "農林水産省が食用きのこと明記した利用記録。"
+    "野生個体の判定には使用しない。"
+)
+SHIITAKE_DISPLAY_NOTE = (
+    "農林水産省の資料では、シイタケを食用のキノコとして紹介しています。"
+    "ただし、この情報だけで野生のキノコの種類や安全性を判断することはできません。"
+)
+
 
 FOOD_NOTE_SENTENCES = {
     "石川県の公的図鑑が「食」と記載しているというsource report。projectによる安全判定ではない。": (
@@ -50,12 +62,22 @@ FOOD_NOTE_SENTENCES = {
 
 
 def reader_facing_food_note(note):
-    """Translate internal data-management terms without changing source data."""
+    """Show source-specific facts; the detail panel renders the safety warning separately."""
     note = _present(note)
-    if note is None or note == GENERIC_FOOD_NOTE:
+    if note is None:
         return None
     if note in FOOD_NOTE_SENTENCES:
         return FOOD_NOTE_SENTENCES[note]
+    # These two stock cautions are already displayed in the full warning below.
+    # Strip only these exact sentences, keeping all species-specific caveats.
+    for stock_sentence in (
+        "食用可否の自己判断には使用しない。",
+        "毒性の記録がないことは安全を意味しない。",
+    ):
+        note = note.replace(stock_sentence, "")
+    note = " ".join(note.split())
+    if not note:
+        return None
     for internal, reader_facing in FOOD_NOTE_REPLACEMENTS:
         note = note.replace(internal, reader_facing)
     return note
@@ -144,10 +166,12 @@ def _knowledge(master, source_map):
     status = food.get("status")
     if status in FOOD_SAFETY_LABELS:
         add("食毒情報", FOOD_SAFETY_LABELS[status], food)
-        notes = (YAMADORITAKEMODOKI_DISPLAY_NOTE
-                 if master.get("canonical_name_ja") == "ヤマドリタケモドキ"
-                 and food.get("notes") == YAMADORITAKEMODOKI_SOURCE_NOTE
-                 else reader_facing_food_note(food.get("notes")))
+        name_and_note = (master.get("canonical_name_ja"), food.get("notes"))
+        approved_note = {
+            ("ヤマドリタケモドキ", YAMADORITAKEMODOKI_SOURCE_NOTE): YAMADORITAKEMODOKI_DISPLAY_NOTE,
+            ("シイタケ", SHIITAKE_SOURCE_NOTE): SHIITAKE_DISPLAY_NOTE,
+        }.get(name_and_note)
+        notes = approved_note if approved_note is not None else reader_facing_food_note(food.get("notes"))
         if notes:
             rows[-1]["note"] = notes
     toxin_names = []
