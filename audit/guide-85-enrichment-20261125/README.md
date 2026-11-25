@@ -49,3 +49,15 @@
 - 生態は種別資料で生活様式を確認した。山田明義（2002）の生態根拠は表2。属の日本語名は同論文のp.2の属名一覧などから照合した。撥音・訳語を推測で補わず、表示中の学名に対応する科・属の日本語を選んだ。
 
 #148・#149の接続設計、#150・#157〜#160・#162の調査と承認分離、#163の候補、#164〜#181の承認済み表示・保護条件を参照した。候補PRを重ねる依存関係はなく、#182に表示データと監査資料をまとめた。
+
+## 2026年11月26日 最終審査追記
+
+上の集計・比較CSV・代表画像はWork完了時のHEAD `d05e8d88229d4e953b9bbfbb4692cdcb4042d4fb` の記録として保持する。以下はその後の表示限定修正であり、最終版の差分はこの追記と表示JSONを合わせて確認する。
+
+- 85種の掲載学名の属とDraftの日本語主表示を横断照合。確認中を除く表記差は Boletus（アカジコウ・ヤマドリタケモドキ・ドクヤマドリ）と Boletellus（キクバナイグチ・セイタカイグチ）の2属。表示専用データ内の同一ラテン語科名に対する日本語名の衝突は0。
+- Boletus は科博 TNS-F-49046 の属名と厚労省ドクヤマドリ資料に合わせ、ヤマドリタケ属を主表示とする。森林総研のイグチ属表記も注記・出典に維持する。アカジコウとヤマドリタケモドキの表示欄のみ変更し、キアミアシイグチの分類保留は維持する。出典：https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a03&id=1012&p=1 ／ https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko042.html 。
+- Boletellus は森林総研のキクバナイグチ属に統一し、セイタカイグチの旧表示候補と山田（2002）の出典を注記に保持する。出典：https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko036.html 。森林総研の2008年論文Table 1にも同属のセイタカイグチがあるが、PDF画像取得はHTTP 429。山田（2002）のPDFも再取得時HTTP 429のため、旧表示候補の根拠はWorkの既存照合記録を引き継ぐ。
+- クロカワ：NCBI Taxonomy ID 178527のOther names欄で Boletopsis leucomelas が異名として掲載されることを確認。分類DBの対応は写真同定の証拠ではない。特徴・環境・時期・生態の資料範囲を注記し、学名・科名を維持する。出典：https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=178527&mode=Info 。
+- クリタケ：鳥取大学 TUFC 31709 の受入れ菌名・変更履歴、および Index Fungorum 169034 のCurrent name欄で Hypholoma sublateritium / H. lateritium の対応を確認。米国森林局掲載の2012年研究の範囲を注記する。出典：https://www.indexfungorum.org/names/namesrecord.asp?RecordID=169034 ／ https://fungusdb.muses.tottori-u.ac.jp/catalog/info?id=31709 。
+- 最終修正は5種・9表示欄（うち2欄はWorkの改善対象に追加）。公開版比では42種・67欄の値または注記を改善。科79、属76、両方73、生態27、各情報欄の記載数は変更なし。新規表示専用出典はWork版に対して4件追加（既存レジストリは変更しない）。
+- 写真・マスター・食毒区分・警告・既存出典・レンダラーは変更しない。表示JSONのみ正確なGit blob SHAを更新し、CI再検証を行う。実機操作と全原典の独立再照合は未実施。

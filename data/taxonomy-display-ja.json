@@ -26,6 +26,11 @@
       "title": "Das ほか（2024）Sutorius eximius 種複合体",
       "url": "https://taiwania.ntu.edu.tw/pdf/tai.2024.69.294.pdf"
     },
+    "ffpri-boletellus": {
+      "organization": "森林総合研究所",
+      "title": "立田山のきのこ（キクバナイグチ）",
+      "url": "https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko036.html"
+    },
     "ffpri-boletus": {
       "organization": "森林総合研究所",
       "title": "立田山のきのこ（ヤマドリタケモドキ）",
@@ -56,6 +61,11 @@
       "title": "野生きのこ相談室（平成15年度）",
       "url": "https://www.pref.ibaraki.jp/nourinsuisan/ringyose/seikkinoko/sodan15.html"
     },
+    "if-hypholoma": {
+      "organization": "Index Fungorum",
+      "title": "Hypholoma sublateritium（Record ID 169034）",
+      "url": "https://www.indexfungorum.org/names/namesrecord.asp?RecordID=169034"
+    },
     "ishikawa-chaamigasa": {
       "organization": "石川県林業試験場",
       "title": "いしかわ きのこ図鑑 チャアミガサタケ（2010）",
@@ -85,6 +95,11 @@
       "organization": "国立科学博物館",
       "title": "筑波実験植物園きのこ図鑑（テングタケ属）",
       "url": "https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a11&id=404&p=1"
+    },
+    "kahaku-boletus-reticulatus": {
+      "organization": "国立科学博物館",
+      "title": "筑波実験植物園きのこ図鑑 ヤマドリタケモドキ（TNS-F-49046）",
+      "url": "https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a03&id=1012&p=1"
     },
     "kahaku-chaamigasa": {
       "organization": "国立科学博物館",
@@ -241,6 +256,11 @@
       "title": "Clowez ほか（2022）Morchella nipponensis の原記載",
       "url": "https://www.jstage.jst.go.jp/article/mycosci/63/6/63_MYC590/_html/-char/en"
     },
+    "ncbi-boletopsis": {
+      "organization": "米国国立生物工学情報センター（NCBI）",
+      "title": "Taxonomy Browser: Boletopsis leucomelaena（Taxonomy ID 178527）",
+      "url": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=178527&mode=Info"
+    },
     "nihs-entoloma": {
       "organization": "国立医薬品食品衛生研究所",
       "title": "クサウラベニタケ類とその近縁種の判別法",
@@ -351,10 +371,12 @@
           ]
         },
         "genus": {
-          "value": "イグチ属",
+          "value": "ヤマドリタケ属",
           "latin": "Boletus",
+          "note": "国立科学博物館の属名表記。森林総合研究所の資料ではイグチ属。",
           "sources": [
-            "ffpri-boletus"
+            "ffpri-boletus",
+            "kahaku-boletus-reticulatus"
           ]
         }
       }
@@ -1227,10 +1249,11 @@
         },
         "ecology": {
           "value": "腐生菌",
-          "note": "学名 Hypholoma lateritium で木材を分解する菌として報告されています。",
+          "note": "米国の研究では Hypholoma lateritium の名で木材分解菌として報告されています。鳥取大学の菌株記録と Index Fungorum で掲載学名との対応を確認しています。",
           "sources": [
             "usfs-kuritake",
-            "tottori-kuritake"
+            "tottori-kuritake",
+            "if-hypholoma"
           ]
         }
       }
@@ -1269,7 +1292,7 @@
       "fields": {
         "features": {
           "value": "傘は灰白色からしだいに黒くなります。裏側には細かい穴（管孔）があり、白い傘の肉は傷が付くと赤紫色に変わります。",
-          "note": "静岡県資料の Boletopsis leucomelaena の記載",
+          "note": "静岡県の Boletopsis leucomelaena の記載です。",
           "sources": [
             "shizuoka-rdb-kurokawa"
           ]
@@ -1278,17 +1301,19 @@
           "value": "マツ林やモミ林などの地上に発生します。",
           "sources": [
             "shizuoka-rdb-kurokawa"
-          ]
+          ],
+          "note": "静岡県の同和名資料（Boletopsis leucomelaena）の記載です。"
         },
         "season": {
           "value": "秋",
           "sources": [
             "shizuoka-rdb-kurokawa"
-          ]
+          ],
+          "note": "静岡県の同和名資料（Boletopsis leucomelaena）の記載です。"
         },
         "ecology": {
           "value": "外生菌根菌",
-          "note": "マツやモミなどの根と共生します。",
+          "note": "京都府の Boletopsis leucomelaena の資料では、マツやモミなどの根と共生するとされています。",
           "sources": [
             "shizuoka-rdb-kurokawa",
             "kyoto-rdb-kurokawa"
@@ -1302,11 +1327,13 @@
           ]
         },
         "name_reference": {
-          "value": "静岡県や京都府のレッドデータブックは Boletopsis leucomelaena と表記しています。両資料ではマツバハリタケ科に置かれています。",
+          "value": "静岡県や京都府のレッドデータブックでは Boletopsis leucomelaena と表記し、マツバハリタケ科に分類しています。NCBIの分類データベースでは掲載学名 Boletopsis leucomelas を異名として登録しています。",
           "sources": [
             "shizuoka-rdb-kurokawa",
-            "kyoto-rdb-kurokawa"
-          ]
+            "kyoto-rdb-kurokawa",
+            "ncbi-boletopsis"
+          ],
+          "note": "以下の特徴・生育環境・発生時期・生態は両県の資料に基づきます。掲載写真の同定と学名・科名の更新は別途確認が必要です。"
         }
       }
     },
@@ -1676,10 +1703,12 @@
       },
       "fields": {
         "genus": {
-          "value": "アシナガイグチ属",
+          "value": "キクバナイグチ属",
           "latin": "Boletellus",
+          "note": "森林総合研究所の属名表記。山田（2002）の資料ではアシナガイグチ属。",
           "sources": [
-            "yamada-genus"
+            "yamada-genus",
+            "ffpri-boletellus"
           ]
         },
         "ecology": {
@@ -2050,6 +2079,15 @@
           "note": "山田（2002）表2・p.6の国内文献記録",
           "sources": [
             "yamada"
+          ]
+        },
+        "genus": {
+          "value": "ヤマドリタケ属",
+          "latin": "Boletus",
+          "note": "国立科学博物館の属名表記。森林総合研究所の資料ではイグチ属。",
+          "sources": [
+            "ffpri-boletus",
+            "kahaku-boletus-reticulatus"
           ]
         }
       }
