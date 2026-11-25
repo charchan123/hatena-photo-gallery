@@ -31,8 +31,8 @@ const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600"><r
  const browser=await chromium.launch({args:["--no-sandbox"]});
  try {
  const result={}, flow={};
- for(const [viewport,width,height] of [["PC",1440,1000],["スマホ",390,844]]){
-  const ctx=await browser.newContext({viewport:{width,height},isMobile:width===390,hasTouch:width===390,deviceScaleFactor:1});
+ for(const [viewport,width,height] of [["PC",1440,1000],["スマホ",390,844],["狭幅スマホ",320,720]]){
+  const ctx=await browser.newContext({viewport:{width,height},isMobile:width<600,hasTouch:width<600,deviceScaleFactor:1});
   await ctx.route("**/*",async (route)=>{
     const req=route.request(); if(req.url().startsWith(local)&&req.resourceType()!=="image")return route.continue();
     const name=new URL(req.url()).pathname.split("/").at(-1);
@@ -70,10 +70,11 @@ const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600"><r
                warningCount:panel.querySelectorAll(".knowledge-warning").length,
                safetyLabel:array.find(r=>r.children[0].textContent==="食毒情報")?.children[1].firstChild.textContent ?? null,
                warning:panel.querySelector(".knowledge-warning")?.textContent ?? panel.innerText.split("\n").slice(-1)[0],
+               foodNote:array.find(r=>r.children[0].textContent==="食毒情報")?.children[1].textContent ?? null,
                labels:array.map(row=>row.children[0].textContent)};
       });
       result[id]??={};result[id][viewport]=item;
-      if(["enokitake","naratake","mukitake","kakisimeji","uraguronigaiguchi"].includes(id)){
+      if(["enokitake","naratake","mukitake","kakisimeji","uraguronigaiguchi","kurokawa","chaamigasatake"].includes(id)){
        await page.locator(".knowledge-panel").screenshot({path:`screens/${label}-${id}-${width}.png`});
       }
     }

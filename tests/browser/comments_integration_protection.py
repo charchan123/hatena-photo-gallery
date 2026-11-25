@@ -146,6 +146,11 @@ TENTH_TWO_LINK_BLOBS = {
 }
 # Guide audit changes only the exact presentation module and adds a
 # separate display data file. Keep all comment and legacy source byte checks.
+GUIDE_ENRICHMENT_BASE = '1c9f76847e6ebd4c28e0c3a2c2a2b22e7b78018a'
+GUIDE_ENRICHMENT_BLOBS = {
+    'detail_ui.py': '8d522a7c9c299ceacdb22d41bf0d2edd8d23cd18',
+    'data/taxonomy-display-ja.json': '6d4d6b85d262470a0d49de4d783c8e5399f1255c',
+}
 GUIDE_DISPLAY_BASE = '1cf063ae2f969c0eb58820c61a1c51c5eea06528'
 GUIDE_DISPLAY_BLOB = '2148844d8a3366760dbe2f398608d0d696b9aa35'
 GUIDE_DISPLAY_DATA = 'data/taxonomy-display-ja.json'
@@ -175,6 +180,10 @@ def assert_reviewed_source(base, path, current):
     """Never hide a main change behind the old PR's allowance."""
     original = git('show', f'{base}:{path}')
     if current == original:
+        return
+    if path in GUIDE_ENRICHMENT_BLOBS and git('rev-parse', base).decode().strip() == GUIDE_ENRICHMENT_BASE:
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
+        assert hashlib.sha1(blob).hexdigest() == GUIDE_ENRICHMENT_BLOBS[path], path
         return
     if path == 'detail_ui.py' and git('rev-parse', base).decode().strip() == GUIDE_DISPLAY_BASE:
         blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current

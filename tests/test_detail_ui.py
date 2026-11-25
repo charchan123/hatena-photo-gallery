@@ -56,6 +56,56 @@ def test_schema_and_explicit_master_link_only():
     assert views["別名"]["articles"]
 
 
+def test_sourced_guide_supplements_fill_empty_rows_without_overriding_master(tmp_path):
+    portal = fixture_portal()
+    master = portal["reference_data"]["mushroom_master"]["entries"][0]
+    master["habitat"]["summary"] = None
+    source = {"organization": "出典機関", "title": "資料", "url": "https://source.test/supplement"}
+    entry = {
+        "expected": {"name": "別名", "scientific": "Fungus <test>", "family": "科", "genus": "属"},
+        "fields": {
+            "features": {"value": "置換候補", "sources": ["ref"]},
+            "habitat": {"value": "広葉樹林の地上", "sources": ["ref"]},
+            "season": {"value": "春", "sources": ["missing"]},
+            "name_reference": {"value": "分類に関する資料", "sources": ["ref"]},
+            "food_reference": {
+                "value": "相談資料の記録", "sources": ["ref"],
+                "expected_status": "edibility_reported", "expected_notes": "注<&",
+            },
+        },
+    }
+    spec = {"version": 1, "entries": {"linked": entry}, "sources": {"ref": source}}
+    display = tmp_path / "display.json"
+    display.write_text(json.dumps(spec), encoding="utf-8")
+
+    def read_panel():
+        views = build_detail_views(portal, taxonomy_display_path=display)
+        assert views["別名"]["knowledge"] is None
+        return views["リンク名？"]["knowledge"]
+
+    before = copy.deepcopy(portal)
+    panel = read_panel()
+    rows = {r["label"]: r["value"] for r in panel["rows"]}
+    assert rows["特徴"] == "特徴"
+    assert rows["生育環境"] == "広葉樹林の地上"
+    assert rows["資料に記載された発生時期"] == "夏"
+    assert rows["学名の資料比較"] == "分類に関する資料"
+    assert rows["食毒資料の補足"] == "相談資料の記録"
+    assert [s["url"] for s in panel["sources"]].count(source["url"]) == 1
+    assert portal == before
+
+    for key, value in (("notes", "審査後の記録"), ("status", "unknown")):
+        original = master["food_safety"][key]
+        master["food_safety"][key] = value
+        assert all(row["label"] != "食毒資料の補足" for row in read_panel()["rows"])
+        master["food_safety"][key] = original
+
+    master["scientific_name"]["value"] = "Fungus updated"
+    assert [row["label"] for row in read_panel()["rows"]] == [
+        "学名", "科名", "属名", "生態", "特徴", "資料に記載された発生時期", "食毒情報", "資料に記載された成分",
+    ]
+
+
 def test_fields_safety_provenance_and_escaping():
     rendered = render_detail_sections(build_detail_views(fixture_portal())["リンク名？"])
     for value in ("学名", "科", "属", "特徴", "生育環境", "資料に記載された発生時期", "資料には食用との記載があります", "成分A"):
