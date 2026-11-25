@@ -404,3 +404,36 @@ def test_source_data_is_not_mutated():
     data = fixture_portal(); original = copy.deepcopy(data)
     build_detail_views(data)
     assert data == original
+
+
+def test_japanese_taxonomy_display_requires_exact_master_and_sources(tmp_path):
+    data = fixture_portal()
+    entries = data["reference_data"]["mushroom_master"]["entries"]
+    mushroom = entries[0]
+    original = copy.deepcopy(data)
+    path = tmp_path / "display.json"
+    path.write_text(json.dumps({
+        "version": 1,
+        "sources": {"sample": {"title": "表示出典", "url": "https://example.org/classification"}},
+        "entries": {"linked": {
+            "expected": {"name": "別名", "scientific": "Fungus <test>", "family": "科", "genus": "属"},
+            "fields": {
+                "family": {"value": "試験科", "latin": "Testaceae", "sources": ["sample"]},
+                "ecology": {"value": "腐生菌", "sources": ["sample"]},
+                "genus": {"value": "根拠欠落属", "sources": ["unknown"]},
+            },
+        }},
+    }), encoding="utf-8")
+
+    def view():
+        return build_detail_views(data, taxonomy_display_path=path)["リンク名？"]
+
+    first = render_detail_sections(view())
+    assert "試験科" in first and "Testaceae" in first and "腐生菌" in first
+    assert "https://example.org/classification" in first
+    assert "根拠欠落属" not in first
+    assert data == original
+    mushroom["scientific_name"]["value"] = "Fungus changed"
+    result = render_detail_sections(view())
+    assert "試験科" not in result and "腐生菌" not in result and "未確認" in result
+    assert "https://example.org/classification" not in result

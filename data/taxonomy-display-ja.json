@@ -1,0 +1,1174 @@
+{
+  "version": 1,
+  "sources": {
+    "calostoma": {
+      "organization": "信州大学",
+      "title": "演習林報告23（2025）クチベニタケ属",
+      "url": "https://soar-ir.repo.nii.ac.jp/record/2002781/files/AFC23-4.pdf"
+    },
+    "ffpri-boletus": {
+      "organization": "森林総合研究所",
+      "title": "立田山のきのこ（ヤマドリタケモドキ）",
+      "url": "https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko042.html"
+    },
+    "ffpri-chloro": {
+      "organization": "森林総合研究所",
+      "title": "立田山のきのこ（オオシロカラカサタケ）",
+      "url": "https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko023.html"
+    },
+    "ffpri-tylopilus": {
+      "organization": "森林総合研究所",
+      "title": "立田山のきのこ（キニガイグチ）",
+      "url": "https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko044.html"
+    },
+    "kahaku-amanita": {
+      "organization": "国立科学博物館",
+      "title": "筑波実験植物園きのこ図鑑（テングタケ属）",
+      "url": "https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a11&id=404&p=1"
+    },
+    "kahaku-cortinarius": {
+      "organization": "国立科学博物館",
+      "title": "筑波実験植物園きのこ図鑑（フウセンタケ属）",
+      "url": "https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a11&id=2726&p=1"
+    },
+    "kahaku-enoki": {
+      "organization": "国立科学博物館",
+      "title": "筑波実験植物園きのこ図鑑（エノキタケ）",
+      "url": "https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=g12&id=3967&p=2"
+    },
+    "kahaku-laccaria": {
+      "organization": "国立科学博物館",
+      "title": "筑波実験植物園きのこ図鑑（キツネタケ属）",
+      "url": "https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=h07&id=1659&p=1"
+    },
+    "kahaku-lactarius": {
+      "organization": "国立科学博物館",
+      "title": "筑波実験植物園きのこ図鑑（チチタケ属）",
+      "url": "https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=2348&p=275"
+    },
+    "kahaku-leccinum": {
+      "organization": "国立科学博物館",
+      "title": "筑波実験植物園きのこ図鑑（ヤマイグチ属）",
+      "url": "https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=705&p=53"
+    },
+    "kahaku-lycoperdon": {
+      "organization": "国立科学博物館",
+      "title": "筑波実験植物園きのこ図鑑（ホコリタケ属）",
+      "url": "https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=2366&p=220"
+    },
+    "kahaku-macrolepiota": {
+      "organization": "国立科学博物館",
+      "title": "筑波実験植物園きのこ図鑑（カラカサタケ属）",
+      "url": "https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=d14&id=1096&p=1"
+    },
+    "kahaku-morel": {
+      "organization": "国立科学博物館",
+      "title": "筑波実験植物園きのこ図鑑（アミガサタケ属）",
+      "url": "https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=2731"
+    },
+    "kahaku-russula": {
+      "organization": "国立科学博物館",
+      "title": "筑波実験植物園きのこ図鑑（ベニタケ属）",
+      "url": "https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=453&p=304"
+    },
+    "kahaku-shiitake": {
+      "organization": "国立科学博物館",
+      "title": "筑波実験植物園きのこ図鑑（シイタケ）",
+      "url": "https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=g13&id=2623&p=4&s=sci"
+    },
+    "kyoto": {
+      "organization": "京都府",
+      "title": "京都府自然環境目録2015（菌類）",
+      "url": "https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html"
+    },
+    "kyushu-beni": {
+      "organization": "九州大学農学部附属演習林",
+      "title": "ベニテングタケ",
+      "url": "https://www.forest.kyushu-u.ac.jp/2020/252"
+    },
+    "kyushu-hatake": {
+      "organization": "九州大学農学部附属演習林",
+      "title": "キノコ・菌類研究",
+      "url": "https://www.forest.kyushu-u.ac.jp/jyoho/exhibition/miyaen/kinoko.html"
+    },
+    "kyushu-matsutake": {
+      "organization": "九州大学農学部附属演習林",
+      "title": "マツタケ・キツネタケの菌根菌の記載",
+      "url": "https://www.forest.kyushu-u.ac.jp/jyoho/exhibition/miyaen/inpulse.html"
+    },
+    "maff": {
+      "organization": "農林水産省",
+      "title": "おいしいきのこ図鑑（2021年10月）",
+      "url": "https://www.maff.go.jp/j/pr/aff/2110/spe1_02.html"
+    },
+    "shiitake-eco": {
+      "organization": "農林水産省",
+      "title": "不思議がいっぱい！きのこの生態と豆知識",
+      "url": "https://www.maff.go.jp/j/pr/aff/2110/spe1_01.html"
+    },
+    "suillus": {
+      "organization": "島根県中山間地域研究センター",
+      "title": "きのこ調査報告（ヌメリイグチ属）",
+      "url": "https://www1.pref.shimane.lg.jp/admin/region/kikan/chusankan/syoseki/research/No5_kenkyuhoukoku.data/kenkyuhoukokudai5gou15.pdf"
+    },
+    "yamada": {
+      "organization": "信州大学",
+      "title": "山田明義（2002）日本産菌根性きのこ類の食資源としての利用性（表2）",
+      "url": "https://soar-ir.repo.nii.ac.jp/record/10540/files/v38_01.pdf"
+    }
+  },
+  "entries": {
+    "aorouji": {
+      "expected": {
+        "name": "アオロウジ",
+        "scientific": "Albatrellus caeruleoporus",
+        "family": "ニンギョウタケモドキ科",
+        "genus": null
+      },
+      "fields": {
+        "genus": {
+          "value": "ニンギョウタケモドキ属",
+          "latin": "Albatrellus",
+          "sources": [
+            "yamada",
+            "kyoto"
+          ]
+        }
+      }
+    },
+    "akajikou": {
+      "expected": {
+        "name": "アカジコウ",
+        "scientific": "Boletus speciosus",
+        "family": "Boletaceae",
+        "genus": "Boletus"
+      },
+      "fields": {
+        "family": {
+          "value": "イグチ科",
+          "latin": "Boletaceae",
+          "sources": [
+            "kyoto"
+          ]
+        },
+        "genus": {
+          "value": "イグチ属",
+          "latin": "Boletus",
+          "sources": [
+            "ffpri-boletus"
+          ]
+        }
+      }
+    },
+    "amigasatake": {
+      "expected": {
+        "name": "アミガサタケ",
+        "scientific": "Morchella esculenta (L.) Pers.",
+        "family": "Morchellaceae",
+        "genus": "Morchella"
+      },
+      "fields": {
+        "family": {
+          "value": "アミガサタケ科",
+          "latin": "Morchellaceae",
+          "sources": [
+            "kyoto"
+          ]
+        },
+        "genus": {
+          "value": "アミガサタケ属",
+          "latin": "Morchella",
+          "sources": [
+            "kahaku-morel"
+          ]
+        }
+      }
+    },
+    "amitake": {
+      "expected": {
+        "name": "アミタケ",
+        "scientific": "Suillus bovinus",
+        "family": null,
+        "genus": "Suillus"
+      },
+      "fields": {
+        "family": {
+          "value": "ヌメリイグチ科",
+          "latin": "Suillaceae",
+          "sources": [
+            "kyoto"
+          ]
+        },
+        "genus": {
+          "value": "ヌメリイグチ属",
+          "latin": "Suillus",
+          "sources": [
+            "suillus"
+          ]
+        },
+        "ecology": {
+          "value": "菌根菌",
+          "latin": null,
+          "sources": [
+            "yamada"
+          ],
+          "note": "山田（2002）の菌根性きのこ類の表に同和名・同学名。"
+        }
+      }
+    },
+    "ukonhatsu": {
+      "expected": {
+        "name": "ウコンハツ",
+        "scientific": "Russula flavida",
+        "family": "ベニタケ科",
+        "genus": "Russula"
+      },
+      "fields": {
+        "genus": {
+          "value": "ベニタケ属",
+          "latin": "Russula",
+          "sources": [
+            "kahaku-russula"
+          ]
+        }
+      }
+    },
+    "usutake": {
+      "expected": {
+        "name": "ウスタケ",
+        "scientific": "Gomphus floccosus",
+        "family": "Gomphaceae",
+        "genus": null
+      },
+      "fields": {
+        "family": {
+          "value": "ラッパタケ科",
+          "latin": "Gomphaceae",
+          "sources": [
+            "kyoto"
+          ]
+        }
+      }
+    },
+    "usuhiratake": {
+      "expected": {
+        "name": "ウスヒラタケ",
+        "scientific": "Pleurotus pulmonarius",
+        "family": "ヒラタケ科",
+        "genus": "Pleurotus"
+      },
+      "fields": {
+        "genus": {
+          "value": "ヒラタケ属",
+          "latin": "Pleurotus",
+          "sources": [
+            "maff"
+          ]
+        }
+      }
+    },
+    "enokitake": {
+      "expected": {
+        "name": "エノキタケ",
+        "scientific": "Flammulina velutipes (Curtis) Singer",
+        "family": "キシメジ科",
+        "genus": "Flammulina"
+      },
+      "fields": {
+        "family": {
+          "value": "タマバリタケ科",
+          "latin": "Physalacriaceae",
+          "sources": [
+            "kahaku-enoki",
+            "maff"
+          ],
+          "note": "従来のキシメジ科との体系差。学名は元資料の表記。"
+        },
+        "genus": {
+          "value": "エノキタケ属",
+          "latin": "Flammulina",
+          "sources": [
+            "kahaku-enoki"
+          ]
+        },
+        "ecology": {
+          "value": "腐生菌",
+          "latin": null,
+          "sources": [
+            "maff"
+          ],
+          "note": "農林水産省の資料でエノキタケに示された生態。"
+        }
+      }
+    },
+    "ookitunetake": {
+      "expected": {
+        "name": "オオキツネタケ",
+        "scientific": "Laccaria bicolor",
+        "family": "キシメジ科",
+        "genus": "Laccaria"
+      },
+      "fields": {
+        "genus": {
+          "value": "キツネタケ属",
+          "latin": "Laccaria",
+          "sources": [
+            "kahaku-laccaria"
+          ]
+        }
+      }
+    },
+    "ooshirokarakasatake": {
+      "expected": {
+        "name": "オオシロカラカサタケ",
+        "scientific": "Chlorophyllum molybdites",
+        "family": "Agaricaceae",
+        "genus": "Chlorophyllum"
+      },
+      "fields": {
+        "family": {
+          "value": "ハラタケ科",
+          "latin": "Agaricaceae",
+          "sources": [
+            "kyoto"
+          ]
+        },
+        "genus": {
+          "value": "オオシロカラカサタケ属",
+          "latin": "Chlorophyllum",
+          "sources": [
+            "ffpri-chloro"
+          ]
+        }
+      }
+    },
+    "oniigutimodoki": {
+      "expected": {
+        "name": "オニイグチモドキ",
+        "scientific": "Strobilomyces confusus",
+        "family": null,
+        "genus": "オニイグチ属"
+      },
+      "fields": {
+        "family": {
+          "value": "イグチ科",
+          "latin": "Boletaceae",
+          "sources": [
+            "kyoto"
+          ]
+        }
+      }
+    },
+    "kakisimeji": {
+      "expected": {
+        "name": "カキシメジ",
+        "scientific": "Tricholoma ustale",
+        "family": "Tricholomataceae",
+        "genus": "キシメジ属"
+      },
+      "fields": {
+        "family": {
+          "value": "キシメジ科",
+          "latin": "Tricholomataceae",
+          "sources": [
+            "kyoto"
+          ]
+        }
+      }
+    },
+    "karakasatake": {
+      "expected": {
+        "name": "カラカサタケ",
+        "scientific": "Macrolepiota procera (Scop.) Singer",
+        "family": "ハラタケ科",
+        "genus": "Macrolepiota"
+      },
+      "fields": {
+        "genus": {
+          "value": "カラカサタケ属",
+          "latin": "Macrolepiota",
+          "sources": [
+            "kahaku-macrolepiota"
+          ]
+        }
+      }
+    },
+    "kawarihatu": {
+      "expected": {
+        "name": "カワリハツ",
+        "scientific": "Russula cyanoxantha",
+        "family": "Russulaceae",
+        "genus": "Russula"
+      },
+      "fields": {
+        "family": {
+          "value": "ベニタケ科",
+          "latin": "Russulaceae",
+          "sources": [
+            "kyoto"
+          ]
+        },
+        "genus": {
+          "value": "ベニタケ属",
+          "latin": "Russula",
+          "sources": [
+            "kahaku-russula"
+          ]
+        }
+      }
+    },
+    "gantake": {
+      "expected": {
+        "name": "ガンタケ",
+        "scientific": "Amanita rubescens",
+        "family": "Amanitaceae",
+        "genus": "Amanita"
+      },
+      "fields": {
+        "family": {
+          "value": "テングタケ科",
+          "latin": "Amanitaceae",
+          "sources": [
+            "kyoto"
+          ]
+        },
+        "genus": {
+          "value": "テングタケ属",
+          "latin": "Amanita",
+          "sources": [
+            "kahaku-amanita"
+          ]
+        }
+      }
+    },
+    "kitunetake": {
+      "expected": {
+        "name": "キツネタケ",
+        "scientific": "Laccaria laccata",
+        "family": null,
+        "genus": "Laccaria"
+      },
+      "fields": {
+        "family": {
+          "value": "ヒドナンギウム科",
+          "latin": "Hydnangiaceae",
+          "sources": [
+            "kyoto"
+          ]
+        },
+        "genus": {
+          "value": "キツネタケ属",
+          "latin": "Laccaria",
+          "sources": [
+            "kahaku-laccaria"
+          ]
+        },
+        "ecology": {
+          "value": "菌根菌",
+          "latin": null,
+          "sources": [
+            "kyushu-matsutake"
+          ],
+          "note": "九州大学の宮崎演習林でのキツネタケの記載。種内の範囲は資料に従う。"
+        }
+      }
+    },
+    "kusaurabenitake": {
+      "expected": {
+        "name": "クサウラベニタケ",
+        "scientific": "Entoloma rhodopolium",
+        "family": "Entolomataceae",
+        "genus": "イッポンシメジ属"
+      },
+      "fields": {
+        "family": {
+          "value": "イッポンシメジ科",
+          "latin": "Entolomataceae",
+          "sources": [
+            "kyoto"
+          ]
+        }
+      }
+    },
+    "kutibenitake": {
+      "expected": {
+        "name": "クチベニタケ",
+        "scientific": "Calostoma japonicum",
+        "family": "クチベニタケ科",
+        "genus": "Calostoma"
+      },
+      "fields": {
+        "genus": {
+          "value": "クチベニタケ属",
+          "latin": "Calostoma",
+          "sources": [
+            "calostoma"
+          ]
+        }
+      }
+    },
+    "kurohatu": {
+      "expected": {
+        "name": "クロハツ",
+        "scientific": "Russula nigricans",
+        "family": "Russulaceae",
+        "genus": "Russula"
+      },
+      "fields": {
+        "family": {
+          "value": "ベニタケ科",
+          "latin": "Russulaceae",
+          "sources": [
+            "kyoto"
+          ]
+        },
+        "genus": {
+          "value": "ベニタケ属",
+          "latin": "Russula",
+          "sources": [
+            "kahaku-russula"
+          ]
+        }
+      }
+    },
+    "kotamagotengutake": {
+      "expected": {
+        "name": "コタマゴテングタケ",
+        "scientific": "Amanita citrina var.citrina",
+        "family": "テングタケ科",
+        "genus": "Amanita"
+      },
+      "fields": {
+        "genus": {
+          "value": "テングタケ属",
+          "latin": "Amanita",
+          "sources": [
+            "kahaku-amanita"
+          ]
+        }
+      }
+    },
+    "shiitake": {
+      "expected": {
+        "name": "シイタケ",
+        "scientific": "Lentinula edodes",
+        "family": null,
+        "genus": "シイタケ属"
+      },
+      "fields": {
+        "family": {
+          "value": "ツキヨタケ科",
+          "latin": "Omphalotaceae",
+          "sources": [
+            "kahaku-shiitake",
+            "maff"
+          ],
+          "note": "農水省・科博の体系。別の公的資料には旧科名の記載あり。"
+        },
+        "ecology": {
+          "value": "腐生菌",
+          "latin": null,
+          "sources": [
+            "maff",
+            "shiitake-eco"
+          ],
+          "note": "同学名に対する農林水産省の記載。"
+        }
+      }
+    },
+    "syougenji": {
+      "expected": {
+        "name": "ショウゲンジ",
+        "scientific": "Cortinarius caperatus",
+        "family": "Cortinariaceae",
+        "genus": "Cortinarius"
+      },
+      "fields": {
+        "family": {
+          "value": "フウセンタケ科",
+          "latin": "Cortinariaceae",
+          "sources": [
+            "kyoto"
+          ]
+        },
+        "genus": {
+          "value": "フウセンタケ属",
+          "latin": "Cortinarius",
+          "sources": [
+            "kahaku-cortinarius"
+          ]
+        }
+      }
+    },
+    "siroonitake": {
+      "expected": {
+        "name": "シロオニタケ",
+        "scientific": "Amanita virgineoides",
+        "family": "Amanitaceae",
+        "genus": "テングタケ属"
+      },
+      "fields": {
+        "family": {
+          "value": "テングタケ科",
+          "latin": "Amanitaceae",
+          "sources": [
+            "kyoto"
+          ]
+        }
+      }
+    },
+    "tamagotake": {
+      "expected": {
+        "name": "タマゴタケ",
+        "scientific": "Amanita hemibapha",
+        "family": "テングタケ科",
+        "genus": "Amanita"
+      },
+      "fields": {
+        "genus": {
+          "value": "テングタケ属",
+          "latin": "Amanita",
+          "sources": [
+            "kahaku-amanita"
+          ]
+        }
+      }
+    },
+    "chichiawatake": {
+      "expected": {
+        "name": "チチアワタケ",
+        "scientific": "Suillus granulatus (L.) O. Kuntze",
+        "family": null,
+        "genus": "Suillus"
+      },
+      "fields": {
+        "family": {
+          "value": "ヌメリイグチ科",
+          "latin": "Suillaceae",
+          "sources": [
+            "kyoto"
+          ]
+        },
+        "genus": {
+          "value": "ヌメリイグチ属",
+          "latin": "Suillus",
+          "sources": [
+            "suillus"
+          ]
+        },
+        "ecology": {
+          "value": "菌根菌",
+          "latin": null,
+          "sources": [
+            "yamada"
+          ],
+          "note": "山田（2002）の菌根性きのこ類の表に同和名・同学名。"
+        }
+      }
+    },
+    "tititake": {
+      "expected": {
+        "name": "チチタケ",
+        "scientific": "Lactarius volemus",
+        "family": "Russulaceae",
+        "genus": null
+      },
+      "fields": {
+        "family": {
+          "value": "ベニタケ科",
+          "latin": "Russulaceae",
+          "sources": [
+            "kyoto"
+          ]
+        }
+      }
+    },
+    "chaamigasatake": {
+      "expected": {
+        "name": "チャアミガサタケ",
+        "scientific": "Morchella esculenta var. umbrina",
+        "family": "Morchellaceae",
+        "genus": "Morchella"
+      },
+      "fields": {
+        "family": {
+          "value": "アミガサタケ科",
+          "latin": "Morchellaceae",
+          "sources": [
+            "kyoto"
+          ]
+        },
+        "genus": {
+          "value": "アミガサタケ属",
+          "latin": "Morchella",
+          "sources": [
+            "kahaku-morel"
+          ]
+        }
+      }
+    },
+    "cyanamemututake": {
+      "expected": {
+        "name": "チャナメツムタケ",
+        "scientific": "Pholiota lubrica",
+        "family": "Strophariaceae",
+        "genus": "Pholiota"
+      },
+      "fields": {
+        "family": {
+          "value": "モエギタケ科",
+          "latin": "Strophariaceae",
+          "sources": [
+            "kyoto"
+          ]
+        },
+        "genus": {
+          "value": "スギタケ属",
+          "latin": "Pholiota",
+          "sources": [
+            "maff"
+          ]
+        }
+      }
+    },
+    "tutiguri": {
+      "expected": {
+        "name": "ツチグリ",
+        "scientific": "Astraeus hygrometricus",
+        "family": "Diplocystidiaceae",
+        "genus": "ツチグリ属"
+      },
+      "fields": {
+        "family": {
+          "value": "ディプロシスチジア科",
+          "latin": "Diplocystidiaceae",
+          "sources": [
+            "kyoto"
+          ]
+        }
+      }
+    },
+    "tsubaaburashimeji": {
+      "expected": {
+        "name": "ツバアブラシメジ",
+        "scientific": "Cortinarius collinitus",
+        "family": "Cortinariaceae",
+        "genus": "Cortinarius"
+      },
+      "fields": {
+        "family": {
+          "value": "フウセンタケ科",
+          "latin": "Cortinariaceae",
+          "sources": [
+            "kyoto"
+          ]
+        },
+        "genus": {
+          "value": "フウセンタケ属",
+          "latin": "Cortinarius",
+          "sources": [
+            "kahaku-cortinarius"
+          ]
+        }
+      }
+    },
+    "tengutake": {
+      "expected": {
+        "name": "テングタケ",
+        "scientific": "Amanita pantherina",
+        "family": "Amanitaceae",
+        "genus": "テングタケ属"
+      },
+      "fields": {
+        "family": {
+          "value": "テングタケ科",
+          "latin": "Amanitaceae",
+          "sources": [
+            "kyoto"
+          ]
+        }
+      }
+    },
+    "togariamigasatake": {
+      "expected": {
+        "name": "トガリアミガサタケ",
+        "scientific": "Morchella conica",
+        "family": "アミガサタケ科",
+        "genus": "Morchella"
+      },
+      "fields": {
+        "genus": {
+          "value": "アミガサタケ属",
+          "latin": "Morchella",
+          "sources": [
+            "kahaku-morel"
+          ]
+        }
+      }
+    },
+    "nigakuritake": {
+      "expected": {
+        "name": "ニガクリタケ",
+        "scientific": "Hypholoma fasciculare",
+        "family": "Strophariaceae",
+        "genus": "クリタケ属"
+      },
+      "fields": {
+        "family": {
+          "value": "モエギタケ科",
+          "latin": "Strophariaceae",
+          "sources": [
+            "kyoto"
+          ]
+        }
+      }
+    },
+    "numeriiguti": {
+      "expected": {
+        "name": "ヌメリイグチ",
+        "scientific": "Suillus luteus",
+        "family": null,
+        "genus": "Suillus"
+      },
+      "fields": {
+        "family": {
+          "value": "ヌメリイグチ科",
+          "latin": "Suillaceae",
+          "sources": [
+            "kyoto"
+          ]
+        },
+        "genus": {
+          "value": "ヌメリイグチ属",
+          "latin": "Suillus",
+          "sources": [
+            "suillus"
+          ]
+        },
+        "ecology": {
+          "value": "菌根菌",
+          "latin": null,
+          "sources": [
+            "yamada"
+          ],
+          "note": "山田（2002）の菌根性きのこ類の表に同和名・同学名。"
+        }
+      }
+    },
+    "numerisugitake": {
+      "expected": {
+        "name": "ヌメリスギタケ",
+        "scientific": "Pholiota adiposa",
+        "family": "Strophariaceae",
+        "genus": "Pholiota"
+      },
+      "fields": {
+        "family": {
+          "value": "モエギタケ科",
+          "latin": "Strophariaceae",
+          "sources": [
+            "kyoto"
+          ]
+        },
+        "genus": {
+          "value": "スギタケ属",
+          "latin": "Pholiota",
+          "sources": [
+            "maff"
+          ]
+        }
+      }
+    },
+    "hatakesimeji": {
+      "expected": {
+        "name": "ハタケシメジ",
+        "scientific": "Lyophyllum decastes",
+        "family": null,
+        "genus": "シメジ属"
+      },
+      "fields": {
+        "family": {
+          "value": "シメジ科",
+          "latin": "Lyophyllaceae",
+          "sources": [
+            "kyoto"
+          ]
+        },
+        "ecology": {
+          "value": "腐生菌",
+          "latin": null,
+          "sources": [
+            "kyushu-hatake"
+          ],
+          "note": "九州大学のハタケシメジの記載。"
+        }
+      }
+    },
+    "hatinosutake": {
+      "expected": {
+        "name": "ハチノスタケ",
+        "scientific": "Polyporus alveolaris",
+        "family": "Polyporaceae",
+        "genus": null
+      },
+      "fields": {
+        "family": {
+          "value": "タマチョレイタケ科",
+          "latin": "Polyporaceae",
+          "sources": [
+            "kyoto"
+          ]
+        }
+      }
+    },
+    "hatutake": {
+      "expected": {
+        "name": "ハツタケ",
+        "scientific": "Lactarius hatsudake",
+        "family": "ベニタケ科",
+        "genus": "Lactarius"
+      },
+      "fields": {
+        "genus": {
+          "value": "チチタケ属",
+          "latin": "Lactarius",
+          "sources": [
+            "kahaku-lactarius"
+          ]
+        }
+      }
+    },
+    "hanaiguchi": {
+      "expected": {
+        "name": "ハナイグチ",
+        "scientific": "Suillus grevillei (Klotzsch) Singer",
+        "family": "イグチ科",
+        "genus": "Suillus"
+      },
+      "fields": {
+        "genus": {
+          "value": "ヌメリイグチ属",
+          "latin": "Suillus",
+          "sources": [
+            "suillus"
+          ]
+        },
+        "ecology": {
+          "value": "菌根菌",
+          "latin": null,
+          "sources": [
+            "yamada"
+          ],
+          "note": "山田（2002）の菌根性きのこ類の表に同和名・同学名。"
+        }
+      }
+    },
+    "haratake": {
+      "expected": {
+        "name": "ハラタケ",
+        "scientific": "Agaricus campestris",
+        "family": "Agaricaceae",
+        "genus": "Agaricus"
+      },
+      "fields": {
+        "family": {
+          "value": "ハラタケ科",
+          "latin": "Agaricaceae",
+          "sources": [
+            "kyoto"
+          ]
+        },
+        "genus": {
+          "value": "ハラタケ属",
+          "latin": "Agaricus",
+          "sources": [
+            "maff"
+          ]
+        }
+      }
+    },
+    "hiratake": {
+      "expected": {
+        "name": "ヒラタケ",
+        "scientific": "Pleurotus ostreatus (Jacq.) P. Kumm.",
+        "family": "Pleurotaceae",
+        "genus": "Pleurotus"
+      },
+      "fields": {
+        "family": {
+          "value": "ヒラタケ科",
+          "latin": "Pleurotaceae",
+          "sources": [
+            "kyoto"
+          ]
+        },
+        "genus": {
+          "value": "ヒラタケ属",
+          "latin": "Pleurotus",
+          "sources": [
+            "maff"
+          ]
+        },
+        "ecology": {
+          "value": "腐生菌",
+          "latin": null,
+          "sources": [
+            "maff"
+          ],
+          "note": "同学名に対する農林水産省の記載。"
+        }
+      }
+    },
+    "benitengutake": {
+      "expected": {
+        "name": "ベニテングタケ",
+        "scientific": "Amanita muscaria",
+        "family": "Amanitaceae",
+        "genus": "Amanita"
+      },
+      "fields": {
+        "family": {
+          "value": "テングタケ科",
+          "latin": "Amanitaceae",
+          "sources": [
+            "kyoto"
+          ]
+        },
+        "genus": {
+          "value": "テングタケ属",
+          "latin": "Amanita",
+          "sources": [
+            "kahaku-amanita"
+          ]
+        },
+        "ecology": {
+          "value": "菌根菌",
+          "latin": null,
+          "sources": [
+            "kyushu-beni"
+          ],
+          "note": "九州大学の北海道での樹木との共生記録。"
+        }
+      }
+    },
+    "hokoritake": {
+      "expected": {
+        "name": "ホコリタケ",
+        "scientific": "Lycoperdon perlatum",
+        "family": "ホコリタケ科",
+        "genus": "Lycoperdon"
+      },
+      "fields": {
+        "genus": {
+          "value": "ホコリタケ属",
+          "latin": "Lycoperdon",
+          "sources": [
+            "kahaku-lycoperdon"
+          ]
+        }
+      }
+    },
+    "matutake": {
+      "expected": {
+        "name": "マツタケ",
+        "scientific": "Tricholoma matsutake",
+        "family": "Tricholomataceae",
+        "genus": "Tricholoma"
+      },
+      "fields": {
+        "family": {
+          "value": "キシメジ科",
+          "latin": "Tricholomataceae",
+          "sources": [
+            "kyoto"
+          ]
+        },
+        "genus": {
+          "value": "キシメジ属",
+          "latin": "Tricholoma",
+          "sources": [
+            "maff"
+          ]
+        },
+        "ecology": {
+          "value": "菌根菌",
+          "latin": null,
+          "sources": [
+            "maff",
+            "kyushu-matsutake"
+          ],
+          "note": "農林水産省・九州大学の記載。"
+        }
+      }
+    },
+    "midorinigaiguchi": {
+      "expected": {
+        "name": "ミドリニガイグチ",
+        "scientific": "Tylopilus virens",
+        "family": "イグチ科",
+        "genus": null
+      },
+      "fields": {
+        "genus": {
+          "value": "ニガイグチ属",
+          "latin": "Tylopilus",
+          "sources": [
+            "ffpri-tylopilus",
+            "kyoto"
+          ]
+        }
+      }
+    },
+    "miyamatamagotake": {
+      "expected": {
+        "name": "ミヤマタマゴタケ",
+        "scientific": "Amanita imazekii",
+        "family": "テングタケ科",
+        "genus": "Amanita"
+      },
+      "fields": {
+        "genus": {
+          "value": "テングタケ属",
+          "latin": "Amanita",
+          "sources": [
+            "kahaku-amanita"
+          ]
+        }
+      }
+    },
+    "yamaiguchi": {
+      "expected": {
+        "name": "ヤマイグチ",
+        "scientific": "Leccinum scabrum",
+        "family": "イグチ科",
+        "genus": "Leccinum"
+      },
+      "fields": {
+        "genus": {
+          "value": "ヤマイグチ属",
+          "latin": "Leccinum",
+          "sources": [
+            "kahaku-leccinum"
+          ]
+        }
+      }
+    },
+    "yamadoritakemodoki": {
+      "expected": {
+        "name": "ヤマドリタケモドキ",
+        "scientific": "Boletus reticulatus",
+        "family": "Boletaceae",
+        "genus": "イグチ属"
+      },
+      "fields": {
+        "family": {
+          "value": "イグチ科",
+          "latin": "Boletaceae",
+          "sources": [
+            "kyoto"
+          ]
+        }
+      }
+    }
+  }
+}

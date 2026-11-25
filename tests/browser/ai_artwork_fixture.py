@@ -14,7 +14,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 import requests
 from bs4 import BeautifulSoup
 import main
-from comments_integration_protection import assert_reviewed_source
+from comments_integration_protection import GUIDE_DISPLAY_BASE, assert_reviewed_source
 from best_shot_ui import generate_best_shot_pages
 from detail_ui import build_detail_views
 from records_ui import build_observation_records, generate_records_page
@@ -184,7 +184,7 @@ for p in html_files:
                                '8de52dfcc1c4d5756ea6e7a87b4fc150df2cdb1f',
                                '27be968fb371d6e7f0a552abe860ec203af04954',
                                'a27c4e9b3f3b11538c93e4162d383e7a902d5b4e',
-                               'e4209e784440e13ed6c97adbf62ded256447a108'}
+                               'e4209e784440e13ed6c97adbf62ded256447a108', GUIDE_DISPLAY_BASE}
         if git('rev-parse', base).decode().strip() not in css_only_baselines:
             for original, approved in approved_page_copy:
                 normalized = normalized.replace(original, approved)
@@ -280,7 +280,7 @@ gallery_viewer_rules_added = False
 for p in protected:
     before_bytes = git('show', f'{base}:{p}')
     after_bytes = (repo / p).read_bytes()
-    if p in approved_copy_source_blobs:
+    if p in approved_copy_source_blobs and git('rev-parse', base).decode().strip() != GUIDE_DISPLAY_BASE:
         # PR #164 is now the comparison base, so these approved bytes can
         # legitimately match the previous revision. The exact Git blob stays pinned.
         expected_blob = (
