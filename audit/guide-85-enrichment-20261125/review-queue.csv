@@ -1,0 +1,78 @@
+掲載名,マスターID,優先度,B個別審査,C旧方式の写真照合数,D根拠不足,未解決項目
+アオロウジ,aorouji,P1,,0,あり,既存の表2 p.9 と種名を保持。新しい属・科の整合は改訂論文・標本を待つ。／生態の根拠を追加調査
+アカジコウ,akajikou,P1,必要,0,あり,国内の和名範囲と北米の旧 Boletus 名の対応を要確認。／生態の根拠を追加調査
+アカモミタケ,akamomitake,P1,必要,2,,京都・静岡・県図鑑に Lactarius laeticolor。現行マスターの laeticolorus は綴り候補として保留。
+アカヤマドリ,akayamadori,P1,必要,0,あり,旧 Leccinum と Rugiboletus の組み合わせを確認。採集個体に一括適用しない。／生態の根拠を追加調査
+アミガサタケ,amigasatake,P1,必要,0,あり,旧広義名と国内 Morchella の種範囲を要確認。食用利用と中毒記録は別。／生態の根拠を追加調査
+アミタケ,amitake,P2,,4,,資料の対象と掲載写真の確認は別。
+アラゲキクラゲ,aragekikurage,P1,必要,0,あり,国内流通・国内野生・旧 Auricularia polytricha の名の適用範囲を要確認。／生態の根拠を追加調査
+アンズタケ,anzutake,P0,必要,4,あり,国内の旧 C. cibarius は複数系統。資料上の食用・注意と種概念を分ける。／生態の根拠を追加調査
+ウスタケ,usutake,P1,必要,0,あり,静岡県目録に Turbinellus floccosus。薬理や食毒の旧和名を新分類へ一括適用しない。／生態の根拠を追加調査
+ウラグロニガイグチ,uraguronigaiguchi,P0,必要,0,あり,旧 Tylopilus・Leccinum、静岡の Sutorius、近縁・仮称・海外事例を分ける。／生態の根拠を追加調査
+ウラベニガサ,urabenigasa,P1,,0,あり,資料の対象と掲載写真の確認は別。／生態の根拠を追加調査
+ウラベニホテイシメジ,urabenihoteisimeji,P0,必要,1,あり,静岡目録381に Entoloma sarcopum。旧 crassipes との範囲・類似有毒菌を要審査。／生態の根拠を追加調査
+エノキタケ,enokitake,P1,必要,0,,科はキシメジ科からタマバリタケ科へ。科博の F. filiformis 標本をブログ写真に一括適用しない。
+オオキツネタケ,ookitunetake,P1,必要,0,,旧キシメジ科と、京都府・静岡県目録のヒドナンギウム科。
+オオシロカラカサタケ,ooshirokarakasatake,P2,,0,あり,可動性のつばやひだ色は説明として保持。類似種の食毒をこの形態だけで判断できない。／生態の根拠を追加調査
+オオワライタケ,oowaraitake,P1,必要,4,あり,京都府の旧 G. spectabilis と静岡の G. junonius・ヒメノガステル科。原因種の範囲を要審査。／生態の根拠を追加調査
+オニイグチモドキ,oniigutimodoki,P1,,2,,資料の対象と掲載写真の確認は別。
+カエンタケ,kaentake,P0,必要,0,あり,旧 Podostroma と Trichoderma。Hypocreaceae の和名と属の再整理を要審査。／生態の根拠を追加調査
+カキシメジ,kakisimeji,P0,必要,2,あり,2021年改訂の T. kakishimeji ほか複数種と旧 T. ustale を区別。毒性警告を維持。／生態の根拠を追加調査
+カニノツメ,kaninotume,P1,必要,1,あり,科博の Linderia・アカカゴタケ科と、京都の Clathrus・スッポンタケ科、静岡の Laternea を区別。／生態の根拠を追加調査
+カバイロツルタケ,kabairoturutake,P0,必要,4,あり,旧 A. vaginata var. fulva と A. fulva を比較。石川と森林総研の食毒記述を両方保持。／生態の根拠を追加調査
+カラカサタケ,karakasatake,P0,必要,0,あり,島根県の注意表記の具体的理由は不明。食用記載の安全への一般化を避ける。／生態の根拠を追加調査
+カワリハツ,kawarihatu,P2,,1,,生育環境に列挙される樹木と、菌根の生活様式の根拠を分離。山田（2002）の国内文献記録を生態欄に出典付きで示す。
+ガンタケ,gantake,P0,必要,1,あり,国内旧 A. rubescens の分類範囲と毒性資料の適用先を再確認。／生態の根拠を追加調査
+キアミアシイグチ,kiamiashiiguchi,P1,必要,0,あり,山田（2002）表2 p.6 は Boletus retipes。外生菌根は掲載学名 B. ornatipes との対応が確立するまで保留。環境は石川県の同一学名資料の記述。／生態の根拠を追加調査
+キイロスッポンタケ,kiirosuppontake,P1,必要,0,あり,Kreisel（1996）p.278で旧学名と新名の関係を確認。食毒、京都の1記録からの発生期間の一般化は保留。／生態の根拠を追加調査
+キクバナイグチ,kikubanaiguchi,P1,必要,0,あり,山田（2002）表2 p.6 は B. emodensis の旧用法。B. floriformis 等を含む国内種群の生態は標本にひも付いた研究を要する。／生態の根拠を追加調査
+キクラゲ,kikurage,P0,必要,0,あり,現マスター A. heimuer と同じ和名を使う石川・農水省の旧学名を区別。／生態の根拠を追加調査
+キツネタケ,kitunetake,P2,,2,,資料の対象と掲載写真の確認は別。
+キニガイグチ,kinigaiguchi,P1,必要,0,あり,旧 Tylopilus、京都の Rubinoboletus。国内写真と現行分類を別審査。／生態の根拠を追加調査
+キララタケ,kiraratake,P0,必要,1,あり,旧 Coprinus と現行候補 Coprinellus、県の食／毒、症例と化学資料を区別。／生態の根拠を追加調査
+クサウラベニタケ,kusaurabenitake,P0,必要,1,あり,国立衛研の国内近縁3種と旧 E. rhodopolium を分け、毒性表示を維持。／生態の根拠を追加調査
+クチベニタケ,kutibenitake,P1,,3,あり,資料の対象と掲載写真の確認は別。／生態の根拠を追加調査
+クリタケ,kuritake,P1,必要,1,,京都・静岡の H. lateritium と旧 H. sublateritium を区別する。属名は共通。
+クロカワ,kurokawa,P1,必要,0,,京都・静岡の leucomelaena 資料を併記。イボタケ科とマツバハリタケ科の統一・食毒評価は独立審査。
+クロハツ,kurohatu,P0,必要,1,あり,厚労科研は近縁種との扱いに注意。ニセクロハツの症例を対象種へ転用しない。／生態の根拠を追加調査
+コタマゴテングタケ,kotamagotengutake,P2,,1,あり,資料の対象と掲載写真の確認は別。／生態の根拠を追加調査
+コツブタケ,kotubutake,P1,必要,3,あり,山田（2002）表3 p.12 は旧 P. tinctorius。P. arrhizus の国内標本、科・生態の適用範囲を追加照合する。／生態の根拠を追加調査
+コテングタケモドキ,kotengutakemodoki,P2,,0,あり,資料の対象と掲載写真の確認は別。／生態の根拠を追加調査
+シイタケ,shiitake,P1,必要,0,,農水省・科博・京都府はツキヨタケ科。厚労省の類似種比較表はキシメジ科。
+ショウゲンジ,syougenji,P1,必要,0,あり,Rozites／Cortinarius 旧新の便宜上の表示を区別。／生態の根拠を追加調査
+シロオニタケ,siroonitake,P2,,0,あり,資料の対象と掲載写真の確認は別。／生態の根拠を追加調査
+セイタカイグチ,seitakaiguchi,P1,必要,1,,山田（2002）属名一覧は Boletellus。科名は現表示のまま。国内の科体系の移動は独立審査。
+タマゴタケ,tamagotake,P0,必要,0,あり,国内科博 TNS-F-61975 は A. caesareoides。旧 A. hemibapha と国内外の適用範囲を要審査。／生態の根拠を追加調査
+タマチョレイタケ,tamachoreitake,P1,必要,0,あり,Polyporaceae の科和名候補が旧「タコウキン科」と資料間で異なる。／生態の根拠を追加調査
+チチタケ,tititake,P1,必要,0,あり,Lactarius と Lactifluus の属境界と国内の種群範囲を照合。／生態の根拠を追加調査
+チャアミガサタケ,chaamigasatake,P1,必要,0,あり,科博 TNS-F-19379 は4月採集の変種。特徴・環境は石川県の種レベルの説明と明示。変種固有の特徴・環境は原記載と標本照合待ち。／生態の根拠を追加調査
+チャナメツムタケ,cyanamemututake,P2,,4,あり,資料の対象と掲載写真の確認は別。／生態の根拠を追加調査
+ツチグリ,tutiguri,P1,必要,1,あり,Astraeus hygrometricus 広義から分離した国内分類群の適用と科の和名表記差を照合。／生態の根拠を追加調査
+ツバアブラシメジ,tsubaaburashimeji,P1,必要,0,,JATAFFが同学名で報告した秋を採用。高山帯と他地域の近縁群の種境界・食毒は再審査。
+ツルタケ,turutake,P1,必要,3,あり,A. vaginata の種群範囲と、国内標本・有毒近縁種の区別を要確認。／生態の根拠を追加調査
+テングタケ,tengutake,P2,必要,4,あり,山田（2002）表3 p.11 は当時 A. pantherina とされた和名。国内の近縁種・現行の食毒警告の適用範囲を独立審査。／生態の根拠を追加調査
+トガリアミガサタケ,togariamigasatake,P1,必要,0,あり,Morchella conica の適用範囲と中毒記載を独立に審査。／生態の根拠を追加調査
+ドクツルタケ,dokutsurutake,P0,必要,0,あり,国内で同名だった白色テングタケ類の適用範囲を個体別に扱う。毒性警告を維持。／生態の根拠を追加調査
+ドクヤマドリ,dokuyamadori,P0,,0,あり,分類更新と症例の対象名には公開食毒資料を維持し、近縁種へ拡張しない。／生態の根拠を追加調査
+ナラタケ,naratake,P0,必要,3,あり,広義のナラタケと近縁群、茨城県平成12・15年度記録の適用範囲を別審査。／生態の根拠を追加調査
+ニガクリタケ,nigakuritake,P2,,2,,資料の対象と掲載写真の確認は別。
+ヌメリイグチ,numeriiguti,P2,,2,,資料の対象と掲載写真の確認は別。
+ヌメリスギタケ,numerisugitake,P2,,3,あり,資料の対象と掲載写真の確認は別。／生態の根拠を追加調査
+ノウタケ,noutake,P1,必要,0,あり,旧ホコリタケ科と京都府・静岡県目録のハラタケ科。／生態の根拠を追加調査
+ハタケシメジ,hatakesimeji,P1,,1,,資料の対象と掲載写真の確認は別。
+ハチノスタケ,hatinosutake,P1,必要,3,あり,旧 Polyporus と新組み合わせ、和名と国内標本を照合。／生態の根拠を追加調査
+ハツタケ,hatutake,P1,必要,3,,京都府 L. lividatus と国内目録 L. hatsudake を比較する。
+ハナイグチ,hanaiguchi,P1,必要,0,,旧イグチ科と京都・静岡のヌメリイグチ科。
+ハラタケ,haratake,P2,,2,あり,資料の対象と掲載写真の確認は別。／生態の根拠を追加調査
+ヒロメノトガリアミガサタケ,hiromenotogariamigasatake,P1,必要,0,あり,Morchella nipponensis 原記載の科・属の日本語表記を追加。静岡の M. costata の標本の対応や食毒出典の適用は保留。／生態の根拠を追加調査
+ヘビキノコモドキ,hebikinokomodoki,P2,,1,あり,資料の対象と掲載写真の確認は別。／生態の根拠を追加調査
+ベニテングタケ,benitengutake,P2,必要,0,,厚労省詳細は学名欄に Amanita muscarina と記載。掲載 A. muscaria の綴りは維持し、出典の見出しと証拠資料を区別する。
+ホコリタケ,hokoritake,P1,必要,3,あり,旧ホコリタケ科と静岡県目録のハラタケ科。／生態の根拠を追加調査
+ホテイシメジ,hoteishimeji,P1,必要,0,あり,旧 Clitocybe と Ampulloclitocybe の同義はNITE NBRC 104524も記録。食毒は石川県・既存表示を保持。／生態の根拠を追加調査
+マツオウジ,matsuouji,P1,必要,0,あり,同名に Neolentinus lepideus など複数の扱い。写真に適用する和名・標本を確認。／生態の根拠を追加調査
+マンネンタケ,mannentake,P1,必要,2,あり,Ganoderma lucidum 広義の地域差と、食薬の利用記録を安全・効能へ一般化しない。／生態の根拠を追加調査
+ミドリニガイグチ,midorinigaiguchi,P2,必要,0,あり,山田（2002）表3 p.11 に掲載学名と同じ表記。食毒欄の旧文献と現行区分を別扱いし、新規の食毒採用は保留。／生態の根拠を追加調査
+ミヤマタマゴタケ,miyamatamagotake,P1,,0,あり,国立科博のタイプ標本の9月記録のみ採用。通常の発生期間は追加の国内標本・地域調査待ち。
+ムキタケ,mukitake,P0,必要,1,あり,弘前大の Sarcomyxa serotina と S. edulis の色型を区別。旧 Panellus からの一括置換は保留。／生態の根拠を追加調査
+ヤナギマツタケ,yanagimatsutake,P1,必要,0,あり,Agrocybe と Cyclocybe、科の体系差・属和名を別審査。／生態の根拠を追加調査
+ルリハツタケ,rurihatutake,P0,必要,2,あり,旧 Lactarius indigo と国内目録の L. subindigo を比較。食毒を転用しない。／生態の根拠を追加調査

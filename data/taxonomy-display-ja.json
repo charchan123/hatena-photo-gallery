@@ -1,6 +1,11 @@
 {
   "version": 1,
   "sources": {
+    "akaishi-sakuma-ashiu": {
+      "organization": "関西菌類談話会（京都大学・大阪市立自然史博物館）",
+      "title": "赤石・佐久間（2021）京都府芦生研究林で再発見されたキイロスッポンタケ",
+      "url": "https://kmc-jp.net/wp-content/uploads/2021/02/akaishi2021.pdf"
+    },
     "aoki-2021": {
       "organization": "日本菌学会（Mycoscience）",
       "title": "青木ほか（2021）日本産カキシメジ類の分類改訂",
@@ -56,10 +61,25 @@
       "title": "いしかわ きのこ図鑑 チャアミガサタケ（2010）",
       "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/cyaamigasatake.html"
     },
+    "ishikawa-ornatipes": {
+      "organization": "石川県林業試験場",
+      "title": "いしかわ きのこ図鑑 Boletus ornatipes（2010）",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kiamiasiiguti.html"
+    },
     "ishikawa-tamagotake": {
       "organization": "石川県林業試験場",
       "title": "いしかわ きのこ図鑑 タマゴタケ",
       "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/tamagotake.html"
+    },
+    "isme-nigakuritake": {
+      "organization": "The ISME Journal",
+      "title": "Valášková ほか（2009）ニガクリタケが腐朽させた木材の細菌群",
+      "url": "https://www.nature.com/articles/ismej200964"
+    },
+    "jataff-tsuba": {
+      "organization": "農林水産・食品産業技術振興協会",
+      "title": "きのこ図鑑 ツバアブラシメジ",
+      "url": "https://www.jataff.or.jp/kinoko/350.htm"
     },
     "kahaku-amanita": {
       "organization": "国立科学博物館",
@@ -161,10 +181,20 @@
       "title": "糟谷・横瀬・保坂（2020）日本産ドクツルタケとその近縁種の分類学的整理",
       "url": "https://www.jstage.jst.go.jp/article/msj7abst/64/0/64_22_1/_pdf"
     },
+    "kreisel-1996": {
+      "organization": "Czech Mycology",
+      "title": "Kreisel（1996）スッポンタケ属の分類、キイロスッポンタケの新名",
+      "url": "https://czechmycology.org/_cm/CM48407.pdf"
+    },
     "kyoto": {
       "organization": "京都府",
       "title": "京都府自然環境目録2015（菌類）",
       "url": "https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html"
+    },
+    "kyoto-oshima-polytricha": {
+      "organization": "京都大学フィールド科学教育研究センター",
+      "title": "紀伊大島きのこガイド2000 アラゲキクラゲ",
+      "url": "https://fserc.kyoto-u.ac.jp/oshima/inspection/pdf/2.pdf"
     },
     "kyoto-rdb-imazekii": {
       "organization": "京都府",
@@ -196,11 +226,6 @@
       "title": "マツタケ・キツネタケの菌根菌の記載",
       "url": "https://www.forest.kyushu-u.ac.jp/jyoho/exhibition/miyaen/inpulse.html"
     },
-    "lakomy": {
-      "organization": "ポズナン農業大学・ポーランド植物病理学会",
-      "title": "Łakomy 木材腐生菌とナラタケ類の切株での相互作用",
-      "url": "https://www1.up.poznan.pl/ptfit/sites/default/files/pdf/PP40a/PP40_69-72.pdf"
-    },
     "maff": {
       "organization": "農林水産省",
       "title": "おいしいきのこ図鑑（2021年10月）",
@@ -210,6 +235,11 @@
       "organization": "厚生労働省",
       "title": "自然毒のリスクプロファイル ドクヤマドリ",
       "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000143400.html"
+    },
+    "mycoscience-nipponensis": {
+      "organization": "日本菌学会（Mycoscience）",
+      "title": "Clowez ほか（2022）Morchella nipponensis の原記載",
+      "url": "https://www.jstage.jst.go.jp/article/mycosci/63/6/63_MYC590/_html/-char/en"
     },
     "nihs-entoloma": {
       "organization": "国立医薬品食品衛生研究所",
@@ -265,6 +295,11 @@
       "organization": "Manaaki Whenua（Biota of New Zealand）",
       "title": "Trichoderma cornu-damae 命名記録（Zhu・Zhuang 2014）",
       "url": "https://biotanz.landcareresearch.co.nz/scientific-names/1829917c-cbb7-483f-a40f-407b31baf141"
+    },
+    "usfs-kuritake": {
+      "organization": "米国森林局（Botany）",
+      "title": "Thorn ほか（2012）米国の木材腐朽菌 Hypholoma lateritium",
+      "url": "https://research.fs.usda.gov/treesearch/40802"
     },
     "wu-heimuer": {
       "organization": "Phytotaxa",
@@ -418,6 +453,13 @@
           "sources": [
             "tottori-anzutake"
           ]
+        },
+        "genus": {
+          "value": "アンズタケ属",
+          "latin": "Cantharellus",
+          "sources": [
+            "yamada-genus"
+          ]
         }
       }
     },
@@ -435,6 +477,23 @@
           "sources": [
             "yamada",
             "kyoto"
+          ]
+        }
+      }
+    },
+    "aragekikurage": {
+      "expected": {
+        "name": "アラゲキクラゲ",
+        "scientific": "Auricularia polytricha",
+        "family": "キクラゲ科",
+        "genus": "Auricularia"
+      },
+      "fields": {
+        "genus": {
+          "value": "キクラゲ属",
+          "latin": "Auricularia",
+          "sources": [
+            "kyoto-oshima-polytricha"
           ]
         }
       }
@@ -493,16 +552,21 @@
             "kahaku-morel"
           ]
         },
+        "name_reference": {
+          "value": "特徴と生育環境は、石川県の図鑑が Morchella esculenta の名で紹介するチャアミガサタケの記載です。科博の標本記録では変種名まで付いています。",
+          "sources": [
+            "ishikawa-chaamigasa",
+            "kahaku-chaamigasa"
+          ]
+        },
         "features": {
           "value": "石川県の図鑑では、頭部は暗褐色で、網目は多角形と説明されています。",
-          "note": "県の図鑑の学名表記は Morchella esculenta です。",
           "sources": [
             "ishikawa-chaamigasa"
           ]
         },
         "habitat": {
           "value": "石川県の図鑑では、林内や畑地に発生すると記録されています。",
-          "note": "県の図鑑の学名表記は Morchella esculenta です。",
           "sources": [
             "ishikawa-chaamigasa"
           ]
@@ -812,6 +876,32 @@
         }
       }
     },
+    "hiromenotogariamigasatake": {
+      "expected": {
+        "name": "ヒロメノトガリアミガサタケ",
+        "scientific": "Morchella nipponensis",
+        "family": "Morchellaceae",
+        "genus": "Morchella"
+      },
+      "fields": {
+        "family": {
+          "value": "アミガサタケ科",
+          "latin": "Morchellaceae",
+          "sources": [
+            "mycoscience-nipponensis",
+            "kyoto"
+          ]
+        },
+        "genus": {
+          "value": "アミガサタケ属",
+          "latin": "Morchella",
+          "sources": [
+            "mycoscience-nipponensis",
+            "kahaku-morel"
+          ]
+        }
+      }
+    },
     "hokoritake": {
       "expected": {
         "name": "ホコリタケ",
@@ -965,6 +1055,23 @@
         }
       }
     },
+    "kiamiashiiguchi": {
+      "expected": {
+        "name": "キアミアシイグチ",
+        "scientific": "Boletus ornatipes Peck",
+        "family": "イグチ科",
+        "genus": null
+      },
+      "fields": {
+        "habitat": {
+          "value": "石川県の図鑑では、ブナ科樹木のある場所で発生するとされています。",
+          "note": "石川県の同学名 Boletus ornatipes の記載",
+          "sources": [
+            "ishikawa-ornatipes"
+          ]
+        }
+      }
+    },
     "kiirosuppontake": {
       "expected": {
         "name": "キイロスッポンタケ",
@@ -973,6 +1080,26 @@
         "genus": null
       },
       "fields": {
+        "name_reference": {
+          "value": "Kreisel は、掲載学名と同じ綴りの別名が先にあったことから、1996年に Phallus flavocostatus という新しい名前を発表しました。",
+          "sources": [
+            "kreisel-1996"
+          ]
+        },
+        "habitat": {
+          "value": "広葉樹の朽木に発生します。",
+          "sources": [
+            "akaishi-sakuma-ashiu",
+            "kreisel-1996"
+          ]
+        },
+        "season": {
+          "value": "6月の発生記録があります。",
+          "note": "京都大学芦生研究林での確認例。発生期間全体は未確認です。",
+          "sources": [
+            "akaishi-sakuma-ashiu"
+          ]
+        },
         "genus": {
           "value": "スッポンタケ属",
           "latin": "Phallus",
@@ -1100,9 +1227,9 @@
         },
         "ecology": {
           "value": "腐生菌",
-          "note": "広葉樹材への定着と分解を扱った研究に記載されています。",
+          "note": "学名 Hypholoma lateritium で木材を分解する菌として報告されています。",
           "sources": [
-            "lakomy",
+            "usfs-kuritake",
             "tottori-kuritake"
           ]
         }
@@ -1380,9 +1507,9 @@
         },
         "ecology": {
           "value": "腐生菌",
-          "note": "広葉樹材への定着と分解を扱った研究に記載されています。",
+          "note": "白色腐朽を起こす菌として報告されています。",
           "sources": [
-            "lakomy"
+            "isme-nigakuritake"
           ]
         }
       }
@@ -1730,11 +1857,35 @@
             "kahaku-cortinarius"
           ]
         },
+        "season": {
+          "value": "秋",
+          "note": "同学名で記載された林内での発生記録",
+          "sources": [
+            "jataff-tsuba"
+          ]
+        },
         "ecology": {
           "value": "外生菌根菌",
           "note": "山田（2002）表2・p.5の国内文献記録",
           "sources": [
             "yamada"
+          ]
+        }
+      }
+    },
+    "turutake": {
+      "expected": {
+        "name": "ツルタケ",
+        "scientific": "Amanita vaginata var.vaginata",
+        "family": "テングタケ科",
+        "genus": null
+      },
+      "fields": {
+        "genus": {
+          "value": "テングタケ属",
+          "latin": "Amanita",
+          "sources": [
+            "kahaku-amanita"
           ]
         }
       }
@@ -1819,6 +1970,14 @@
             "das-2024",
             "shizuoka"
           ]
+        },
+        "genus": {
+          "value": "ニガイグチ属",
+          "latin": "Tylopilus",
+          "note": "掲載学名の属名",
+          "sources": [
+            "ffpri-tylopilus"
+          ]
         }
       }
     },
@@ -1859,6 +2018,14 @@
           "latin": "Gomphaceae",
           "sources": [
             "kyoto"
+          ]
+        },
+        "genus": {
+          "value": "ラッパタケ属",
+          "latin": "Gomphus",
+          "note": "掲載学名の属名。近年の資料には Turbinellus を使うものもあります。",
+          "sources": [
+            "yamada-genus"
           ]
         }
       }

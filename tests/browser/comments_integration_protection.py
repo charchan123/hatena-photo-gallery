@@ -149,7 +149,7 @@ TENTH_TWO_LINK_BLOBS = {
 GUIDE_ENRICHMENT_BASE = '1c9f76847e6ebd4c28e0c3a2c2a2b22e7b78018a'
 GUIDE_ENRICHMENT_BLOBS = {
     'detail_ui.py': '8d522a7c9c299ceacdb22d41bf0d2edd8d23cd18',
-    'data/taxonomy-display-ja.json': '6d4d6b85d262470a0d49de4d783c8e5399f1255c',
+    'data/taxonomy-display-ja.json': 'd32a9da70dd4db6001e1d306f16f90a7c0fa65e9',
 }
 GUIDE_DISPLAY_BASE = '1cf063ae2f969c0eb58820c61a1c51c5eea06528'
 GUIDE_DISPLAY_BLOB = '2148844d8a3366760dbe2f398608d0d696b9aa35'

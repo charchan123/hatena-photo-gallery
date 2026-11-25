@@ -1,0 +1,66 @@
+掲載名,マスターID,変更欄,公開値,公開注記,Draft値,Draft注記,資料URL
+アイタケ,aitake,生態,未確認,,外生菌根菌,山田（2002）表2・p.7の国内文献記録,https://soar-ir.repo.nii.ac.jp/record/10540/files/v38_01.pdf
+アカモミタケ,akamomitake,属名,確認中,,チチタケ属,Lactarius,https://www.pref.kyoto.jp/kankyo/rdb2002/bio/db/fun0046.html
+アカモミタケ,akamomitake,生態,未確認,,外生菌根菌,山田（2002）表2・p.7の国内文献記録,https://soar-ir.repo.nii.ac.jp/record/10540/files/v38_01.pdf
+アラゲキクラゲ,aragekikurage,属名,確認中,資料に記載された名称：Auricularia,キクラゲ属,Auricularia,https://fserc.kyoto-u.ac.jp/oshima/inspection/pdf/2.pdf
+アンズタケ,anzutake,属名,確認中,資料に記載された名称：Cantharellus,アンズタケ属,Cantharellus,https://soar-ir.repo.nii.ac.jp/records/10540
+アンズタケ,anzutake,学名の資料比較,,,鳥取大学には、Cantharellus cibarius の名で受け入れられ、現在は Cantharellus anzutake として登録されている国内の菌株があります。,この対応は当該菌株の記録です。,https://fungusdb.muses.tottori-u.ac.jp/catalog/info?id=101777
+ウコンハツ,ukonhatsu,生態,未確認,,外生菌根菌,山田（2002）表2・p.7の国内文献記録,https://soar-ir.repo.nii.ac.jp/record/10540/files/v38_01.pdf
+ウスタケ,usutake,属名,確認中,,ラッパタケ属,Gomphus 掲載学名の属名。近年の資料には Turbinellus を使うものもあります。,https://soar-ir.repo.nii.ac.jp/records/10540
+ウスヒラタケ,usuhiratake,生態,未確認,,腐生菌（木材を分解）,海外の分離株でブナ材の白色腐朽が確認されています。,https://www.mdpi.com/2076-2607/9/2/247
+ウラグロニガイグチ,uraguronigaiguchi,属名,確認中,,ニガイグチ属,Tylopilus 掲載学名の属名,https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko044.html
+ウラグロニガイグチ,uraguronigaiguchi,学名の資料比較,,,資料によって属の扱いが異なります。静岡県の目録は Sutorius eximius と表記し、2024年の分類研究ではこの名で広く扱われてきた群に複数種を区別しています。,研究標本の範囲と、国内の掲載写真への適用は別途確認が必要です。,https://taiwania.ntu.edu.tw/pdf/tai.2024.69.294.pdf | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf
+ウラベニホテイシメジ,urabenihoteisimeji,属名,確認中,資料に記載された名称：Entoloma,イッポンシメジ属,Entoloma,https://www.nihs.go.jp/dnfi/pdf/E.rhodopolium-methods.pdf
+ウラベニホテイシメジ,urabenihoteisimeji,学名の資料比較,,,静岡県の目録では Entoloma sarcopum と記載されています。国立医薬品食品衛生研究所の判別資料は、誤認されやすいクサウラベニタケ類と区別して扱っています。,,https://www.nihs.go.jp/dnfi/pdf/E.rhodopolium-methods.pdf | https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/681/02_fungi_wildlifelistshiz_2020.pdf
+オオキツネタケ,ookitunetake,生態,未確認,,外生菌根菌,山田（2002）表2・p.4の国内文献記録,https://soar-ir.repo.nii.ac.jp/record/10540/files/v38_01.pdf
+オニイグチモドキ,oniigutimodoki,生態,未確認,,外生菌根菌,山田（2002）表2・p.6の国内文献記録,https://soar-ir.repo.nii.ac.jp/record/10540/files/v38_01.pdf
+カエンタケ,kaentake,学名の資料比較,,,厚生労働省の資料では Podostroma cornu-damae と表記され、2014年に Trichoderma cornu-damae という組み合わせも発表されています。,,https://biotanz.landcareresearch.co.nz/scientific-names/1829917c-cbb7-483f-a40f-407b31baf141
+カキシメジ,kakisimeji,学名の資料比較,,,2021年の分類研究では、日本のカキシメジ類と近縁種の標本を4つの系統に分け、そのうち1つを Tricholoma kakishimeji と記載しています。,この研究による区分を個々の中毒事例や掲載写真へ当てはめるには、同定の確認が必要です。,https://www.jstage.jst.go.jp/article/mycosci/62/5/62_MYC548/_html/-char/ja
+カニノツメ,kaninotume,科名,確認中,,アカカゴタケ科,Clathraceae 掲載学名に対応する科博の扱い,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=c14&id=1361&p=1
+カニノツメ,kaninotume,属名,確認中,,カニノツメ属,Linderia,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=c14&id=1361&p=1
+カワリハツ,kawarihatu,生態,未確認,,外生菌根菌,山田（2002）表2・p.7の国内文献記録,https://soar-ir.repo.nii.ac.jp/record/10540/files/v38_01.pdf
+キアミアシイグチ,kiamiashiiguchi,生育環境,,,石川県の図鑑では、ブナ科樹木のある場所で発生するとされています。,石川県の同学名 Boletus ornatipes の記載,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kiamiasiiguti.html
+キイロスッポンタケ,kiirosuppontake,属名,確認中,,スッポンタケ属,Phallus,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=2237&p=124
+キイロスッポンタケ,kiirosuppontake,生育環境,,,広葉樹の朽木に発生します。,,https://kmc-jp.net/wp-content/uploads/2021/02/akaishi2021.pdf | https://czechmycology.org/_cm/CM48407.pdf
+キイロスッポンタケ,kiirosuppontake,発生時期,,,6月の発生記録があります。,京都大学芦生研究林での確認例。発生期間全体は未確認です。,https://kmc-jp.net/wp-content/uploads/2021/02/akaishi2021.pdf
+キイロスッポンタケ,kiirosuppontake,学名の資料比較,,,Kreisel は、掲載学名と同じ綴りの別名が先にあったことから、1996年に Phallus flavocostatus という新しい名前を発表しました。,,https://czechmycology.org/_cm/CM48407.pdf
+キクラゲ,kikurage,学名の資料比較,,,2014年の原記載では、中国で Auricularia auricula-judae と呼ばれていた研究標本を欧州の標本と区別し、Auricularia heimuer と記載しています。,旧学名が記された資料は、対象となった地域と標本を確認する必要があります。,https://www.mapress.com/phytotaxa/content/2014/f/p00186p253f.pdf | https://fungusdb.muses.tottori-u.ac.jp/catalog/info?id=100803
+キララタケ,kiraratake,学名の資料比較,,,石川県の図鑑は Coprinus micaceus、鳥取大学の菌株記録は Coprinellus micaceus と表記しています。,,https://fungusdb.muses.tottori-u.ac.jp/catalog/info?id=100921
+クサウラベニタケ,kusaurabenitake,学名の資料比較,,,国立医薬品食品衛生研究所の判別資料は、国内でクサウラベニタケとされてきた有毒な近縁3種を挙げています。,掲載写真と個々の中毒事例を、そのうちの1種へ結び付ける根拠は未確認です。,https://www.nihs.go.jp/dnfi/pdf/E.rhodopolium-methods.pdf
+クリタケ,kuritake,属名,確認中,資料に記載された名称：Hypholoma,クリタケ属,Hypholoma 国立科学博物館の表記,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=b08&id=55&p=1&s=area
+クリタケ,kuritake,生態,未確認,,腐生菌,学名 Hypholoma lateritium で木材を分解する菌として報告されています。,https://research.fs.usda.gov/treesearch/40802 | https://fungusdb.muses.tottori-u.ac.jp/catalog/info?id=31709
+クロカワ,kurokawa,属名,確認中,資料に記載された名称：Boletopsis,クロカワ属,Boletopsis,https://soar-ir.repo.nii.ac.jp/records/10540
+クロカワ,kurokawa,特徴,,,傘は灰白色からしだいに黒くなります。裏側には細かい穴（管孔）があり、白い傘の肉は傷が付くと赤紫色に変わります。,静岡県資料の Boletopsis leucomelaena の記載,https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/686/2-2_fungi02_rdbshiz2020pla.pdf
+クロカワ,kurokawa,生育環境,,,マツ林やモミ林などの地上に発生します。,,https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/686/2-2_fungi02_rdbshiz2020pla.pdf
+クロカワ,kurokawa,発生時期,,,秋,,https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/686/2-2_fungi02_rdbshiz2020pla.pdf
+クロカワ,kurokawa,生態,未確認,,外生菌根菌,マツやモミなどの根と共生します。,https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/686/2-2_fungi02_rdbshiz2020pla.pdf | https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fun0093.html
+クロカワ,kurokawa,学名の資料比較,,,静岡県や京都府のレッドデータブックは Boletopsis leucomelaena と表記しています。両資料ではマツバハリタケ科に置かれています。,,https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/686/2-2_fungi02_rdbshiz2020pla.pdf | https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fun0093.html
+コツブタケ,kotubutake,属名,確認中,,コツブタケ属,Pisolithus,https://soar-ir.repo.nii.ac.jp/records/10540
+セイタカイグチ,seitakaiguchi,属名,確認中,,アシナガイグチ属,Boletellus,https://soar-ir.repo.nii.ac.jp/records/10540
+セイタカイグチ,seitakaiguchi,生態,未確認,,外生菌根菌,山田（2002）表2・p.6の国内文献記録,https://soar-ir.repo.nii.ac.jp/record/10540/files/v38_01.pdf
+タマゴタケ,tamagotake,学名の資料比較,,,石川県の図鑑では Amanita hemibapha と記載されています。国立科学博物館には Amanita caesareoides として登録された国内のタマゴタケ標本があります。,,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/tamagotake.html | https://db.kahaku.go.jp/webmuseum/col_b2_01/61975
+チャアミガサタケ,chaamigasatake,特徴,,,石川県の図鑑では、頭部は暗褐色で、網目は多角形と説明されています。,,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/cyaamigasatake.html
+チャアミガサタケ,chaamigasatake,生育環境,,,石川県の図鑑では、林内や畑地に発生すると記録されています。,,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/cyaamigasatake.html
+チャアミガサタケ,chaamigasatake,発生時期,,,春（石川県の図鑑）。国立科学博物館には、4月に採集された掲載学名と同じ変種の標本があります。,,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/cyaamigasatake.html | https://db.kahaku.go.jp/webmuseum/col_b2_01/19379
+チャアミガサタケ,chaamigasatake,学名の資料比較,,,特徴と生育環境は、石川県の図鑑が Morchella esculenta の名で紹介するチャアミガサタケの記載です。科博の標本記録では変種名まで付いています。,,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/cyaamigasatake.html | https://db.kahaku.go.jp/webmuseum/col_b2_01/19379
+ツバアブラシメジ,tsubaaburashimeji,発生時期,,,秋,同学名で記載された林内での発生記録,https://www.jataff.or.jp/kinoko/350.htm
+ツバアブラシメジ,tsubaaburashimeji,生態,未確認,,外生菌根菌,山田（2002）表2・p.5の国内文献記録,https://soar-ir.repo.nii.ac.jp/record/10540/files/v38_01.pdf
+ツルタケ,turutake,属名,確認中,,テングタケ属,Amanita,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a11&id=404&p=1
+ドクツルタケ,dokutsurutake,学名の資料比較,,,日本菌学会の報告では、ドクツルタケと外見の似た白い近縁種を区別し、肉眼での見分けが難しいと指摘しています。,,https://www.jstage.jst.go.jp/article/msj7abst/64/0/64_22_1/_pdf
+ドクヤマドリ,dokuyamadori,属名,確認中,,ヤマドリタケ属,Boletus 厚生労働省資料の表記,https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000143400.html | https://fungusdb.muses.tottori-u.ac.jp/catalog/info?id=100717
+ナラタケ,naratake,食毒資料の補足,,,茨城県は、平成15年度にナラタケの相談を35件受けました。中毒例などを理由に、この年度の食用きのこの相談上位一覧からナラタケを外しています。,,https://www.pref.ibaraki.jp/nourinsuisan/ringyose/seikkinoko/sodan15.html
+ニガクリタケ,nigakuritake,生態,未確認,,腐生菌,白色腐朽を起こす菌として報告されています。,https://www.nature.com/articles/ismej200964
+ハツタケ,hatutake,生態,未確認,,外生菌根菌,山田（2002）表2・p.7の国内文献記録,https://soar-ir.repo.nii.ac.jp/record/10540/files/v38_01.pdf
+ヒロメノトガリアミガサタケ,hiromenotogariamigasatake,科名,確認中,資料に記載された名称：Morchellaceae,アミガサタケ科,Morchellaceae,https://www.jstage.jst.go.jp/article/mycosci/63/6/63_MYC590/_html/-char/en | https://www.pref.kyoto.jp/kankyo/mokuroku/bio/fungi.html
+ヒロメノトガリアミガサタケ,hiromenotogariamigasatake,属名,確認中,資料に記載された名称：Morchella,アミガサタケ属,Morchella,https://www.jstage.jst.go.jp/article/mycosci/63/6/63_MYC590/_html/-char/en | https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=2731
+ホテイシメジ,hoteishimeji,属名,確認中,資料に記載された名称：Ampulloclitocybe,ホテイシメジ属,Ampulloclitocybe,https://www.shirakami-database.jp/mushroom/?p=334
+ホテイシメジ,hoteishimeji,生育環境,,,針葉樹林や広葉樹林の地上に発生します。,,https://www.shirakami-database.jp/mushroom/?p=334
+マツオウジ,matsuouji,科名,確認中,資料に記載された名称：Gloeophyllaceae,キカイガラタケ科,Gloeophyllaceae,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?area%5B%5D=H6&id=1111&p=26&s=area
+マツオウジ,matsuouji,属名,確認中,資料に記載された名称：Neolentinus,マツオウジ属,Neolentinus,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?area%5B%5D=H6&id=1111&p=26&s=area
+ミヤマタマゴタケ,miyamatamagotake,発生時期,,,9月の採集記録があります。,岐阜県のタイプ標本の記録。発生期間全体は未確認です。,https://www.kahaku.go.jp/albums/abm.php?d=4704&f=abm00001822.pdf&n=BNMNS_B39-2_53-60.pdf
+ミヤマタマゴタケ,miyamatamagotake,生態,未確認,,外生菌根菌,,https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fun0099.html
+ムキタケ,mukitake,学名の資料比較,,,弘前大学の資料では、従来ムキタケと呼ばれた群を、ムキタケ（Sarcomyxa edulis）とオソムキタケ（Sarcomyxa serotina）に分けています。,,https://www.shirakami-database.jp/mushroom/?p=394
+ヤマイグチ,yamaiguchi,生態,未確認,,外生菌根菌,山田（2002）表2・p.7の国内文献記録,https://soar-ir.repo.nii.ac.jp/record/10540/files/v38_01.pdf
+ヤマドリタケモドキ,yamadoritakemodoki,生態,未確認,,外生菌根菌,山田（2002）表2・p.6の国内文献記録,https://soar-ir.repo.nii.ac.jp/record/10540/files/v38_01.pdf
+ルリハツタケ,rurihatutake,属名,確認中,資料に記載された名称：Lactarius,チチタケ属,Lactarius,https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=2348&p=275 | https://db.kahaku.go.jp/webmuseum/col_b2_01/74178
+ルリハツタケ,rurihatutake,学名の資料比較,,,国立科学博物館には、Lactarius subindigo の名で登録された国内のルリハツタケ標本があります。,掲載写真への適用は未確認です。,https://db.kahaku.go.jp/webmuseum/col_b2_01/74178
