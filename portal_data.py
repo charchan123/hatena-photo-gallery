@@ -360,7 +360,9 @@ def project_guide_expansion(data, path=GUIDE_EXPANSION_FILE):
             row["mushroom_master_id"] = links[name]
         subject.update(mushroom_master_id=links[name], knowledge_available=True)
         connected += 1
-    result["reference_data"].update(mushroom_master=merged_master, sources=merged_sources)
+    # Existing consumers compare these two reference registries to the feature
+    # approval ledger. Only the guide detail renderer reads this extra layer.
+    reference["guide_expansion"] = expansion
     result["summary"].update(
         knowledge_record_count=len(merged_master["entries"]),
         source_count=len(merged_sources["sources"]),

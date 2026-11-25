@@ -15,4 +15,4 @@
 | キタマゴタケ・390px | [整理中](screens/base-kitamagotake-390.webp) | [図鑑欄・注意](screens/draft-kitamagotake-390.webp) |
 | タマゴテングタケモドキ・1440px | [整理中](screens/base-tamagotengutakemodoki-1440.webp) | [図鑑欄・有毒資料](screens/draft-tamagotengutakemodoki-1440.webp) |
 
-代表画像は [初回の表示CI](https://github.com/charchan123/hatena-photo-gallery/actions/runs/45713396784) から取得した。後続コミットは検証用の固定ハッシュと審査資料を追加し、表示実装は同じ。
+代表画像は [初回の表示CI](https://github.com/charchan123/hatena-photo-gallery/actions/runs/45713396784) から取得した。後続コミットはポータルの既存参照フィールドを保護するため、追加データを独立したフィールドへ格納した。生成した図鑑欄のHTMLは代表画像を撮影した版と一致する。

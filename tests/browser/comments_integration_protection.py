@@ -151,8 +151,8 @@ GUIDE_EXPANSION_DATA = "data/guide-expansion.json"
 GUIDE_EXPANSION_BLOBS = {
     'main.py': 'ee7ccc74d8d70290d92b16488cc862d0bea1eb28',
     'mushroom_knowledge.py': 'e1d73ff3f261caca2f4054a094ae0d7fd0c9b771',
-    'portal_data.py': 'a0e868acff8c14bf45c642fd43ad0a22dfc68d73',
-    'detail_ui.py': '6be105225a198801c596901a44e44ed7cf6143e4',
+    'portal_data.py': '14bdd5aab300490677e103d76dd5906ee8dd583b',
+    'detail_ui.py': 'd3b468b3665a5be45f22ba9c44b1fa7e23e0bb9a',
     'data/taxonomy-display-ja.json': 'b8adc560d25e3b2ef8f7f35fad58183d487bc820',
     'data/guide-expansion.json': 'bbbc60f3e3ec557fd2588352ae67dbc7af77f1cf',
 }

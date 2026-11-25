@@ -45,8 +45,11 @@ def test_real_expansion_preserves_baseline_and_gates_exact_published_subjects():
     baseline = deepcopy(data)
     actual = project_guide_expansion(data)
     assert data == baseline
-    assert actual["reference_data"]["mushroom_master"]["entries"][:141] == baseline["reference_data"]["mushroom_master"]["entries"]
-    assert actual["reference_data"]["sources"]["sources"][:419] == baseline["reference_data"]["sources"]["sources"]
+    assert actual["reference_data"]["mushroom_master"] == baseline["reference_data"]["mushroom_master"]
+    assert actual["reference_data"]["sources"] == baseline["reference_data"]["sources"]
+    assert len(actual["reference_data"]["guide_expansion"]["entries"]) == 20
+    assert actual["summary"]["knowledge_record_count"] == 161
+    assert actual["summary"]["source_count"] == 453
     assert actual["summary"]["master_linked_subject_count"] == 3
     assert actual["summary"]["master_unlinked_subject_count"] == 5
     for original, updated in zip(baseline["observations"], actual["observations"]):

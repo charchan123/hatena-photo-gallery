@@ -58,9 +58,7 @@ for before, row in zip(portal["subjects"], draft_portal["subjects"]):
     write("draft/" + filename, result.encode())
 assert len(pages) == 85
 if expansion:
-    assert len(draft_pages) - len(pages) == len(
-        draft_portal["reference_data"]["mushroom_master"]["entries"]
-    ) - len(portal["reference_data"]["mushroom_master"]["entries"])
+    assert len(draft_pages) - len(pages) == len(draft_portal["reference_data"]["guide_expansion"]["entries"])
 for path in git("ls-tree", "-rz", "--name-only", PUBLISHED).decode().split("\0"):
     if path.startswith(("assets/", "lightgallery/")) and Path(path).suffix in (".js", ".css", ".woff", ".woff2", ".ttf", ".svg", ".json"):
         content = read_published(path)

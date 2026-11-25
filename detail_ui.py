@@ -487,9 +487,12 @@ def build_detail_views(portal_data, *, taxonomy_display_path=TAXONOMY_DISPLAY_PA
     reference = portal_data.get("reference_data") or {}
     master_root = reference.get("mushroom_master") or {}
     source_root = reference.get("sources") or {}
-    masters = {row.get("mushroom_id"): row for row in master_root.get("entries", [])
+    expansion = reference.get("guide_expansion") or {}
+    master_rows = expansion.get("entries", []) + master_root.get("entries", [])
+    source_rows = expansion.get("sources", []) + source_root.get("sources", [])
+    masters = {row.get("mushroom_id"): row for row in master_rows
                if isinstance(row, dict) and _present(row.get("mushroom_id"))}
-    source_map = {row.get("source_id"): row for row in source_root.get("sources", [])
+    source_map = {row.get("source_id"): row for row in source_rows
                   if isinstance(row, dict) and _present(row.get("source_id"))}
     display_entries, display_sources = _load_taxonomy_display(taxonomy_display_path)
     observations = portal_data.get("observations") or []
