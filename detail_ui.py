@@ -10,6 +10,8 @@ import re
 FOOD_SAFETY_LABELS = {
     "poisonous_confirmed": "公的・専門資料には毒性の記載があります",
     "edibility_reported": "資料には食用との記載があります",
+    "inedible_reported": "資料には不食との記載があります",
+    "conflicting": "資料によって食毒の記載が異なります",
     "unknown": "食毒の区分は確認できていません",
 }
 

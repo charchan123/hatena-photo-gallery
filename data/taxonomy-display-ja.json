@@ -335,6 +335,46 @@
       "organization": "信州大学",
       "title": "山田明義（2002）日本産菌根性きのこ類の食資源としての利用性 p.2 属名一覧",
       "url": "https://soar-ir.repo.nii.ac.jp/records/10540"
+    },
+    "expansion-kitamagotake": {
+      "organization": "日本菌学会",
+      "title": "Endo et al. 2017, Mycoscience 58, §4 Taxonomy p.465",
+      "url": "https://www.jstage.jst.go.jp/article/mycosci/58/6/58_MYC58457/_pdf"
+    },
+    "expansion-asinagaiguti": {
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「アシナガイグチ」",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/asinagaiguti.html"
+    },
+    "expansion-beniiguti": {
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「ベニイグチ」",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/beniiguti.html"
+    },
+    "expansion-yamakei-change": {
+      "organization": "山と溪谷社",
+      "title": "カラー名鑑きのこ 増補改訂版 第2版 変更一覧",
+      "url": "https://www.yamakei.co.jp/products/a0b77a014f8b3a79584975997f05650f.pdf"
+    },
+    "expansion-species-fungorum-agmo": {
+      "organization": "Species Fungorum",
+      "title": "Agaricus praeclaresquamosus 命名記録",
+      "url": "https://www.speciesfungorum.org/names/NamesRecord.asp?RecordId=308362"
+    },
+    "expansion-matsuyama-ramaria": {
+      "organization": "松山市",
+      "title": "松山市レッドデータブック 高等菌類",
+      "url": "https://www.city.matsuyama.ehime.jp/shisei/hozen/reddata.files/1200_Higher_Fungi.pdf"
+    },
+    "expansion-hygo": {
+      "organization": "日本菌学会",
+      "title": "日本産ヌメリガサ属の菌根に関する記述",
+      "url": "https://www.jstage.jst.go.jp/article/jjom/31/2/31_jjom.H01-281/_pdf/-char/ja"
+    },
+    "expansion-yamadoritake": {
+      "organization": "環境省",
+      "title": "第5次レッドデータブック ヤマドリタケ p.2",
+      "url": "https://www.env.go.jp/nature/kisho/5th-rl-2025/FU0088_RDB5th.pdf"
     }
   },
   "entries": {
@@ -2113,6 +2153,202 @@
           "sources": [
             "yamada"
           ]
+        }
+      }
+    },
+    "murasakiyamadoritake": {
+      "expected": {
+        "name": "ムラサキヤマドリタケ",
+        "scientific": "Boletus violaceofuscus",
+        "family": "イグチ科",
+        "genus": "ヤマドリタケ属"
+      },
+      "fields": {
+        "ecology": {
+          "value": "外生菌根菌",
+          "sources": [
+            "yamada"
+          ],
+          "note": "山田（2002）表2・p.6の国内文献記録"
+        }
+      }
+    },
+    "kitamagotake": {
+      "expected": {
+        "name": "キタマゴタケ",
+        "scientific": "Amanita kitamagotake",
+        "family": "テングタケ科",
+        "genus": "テングタケ属"
+      },
+      "fields": {
+        "name_reference": {
+          "value": "2017年の国内標本の研究は、キタマゴタケを狭義の Amanita javanica から区別して記載しています。",
+          "sources": [
+            "expansion-kitamagotake"
+          ]
+        }
+      }
+    },
+    "asinagaiguti": {
+      "expected": {
+        "name": "アシナガイグチ",
+        "scientific": "Boletellus elatus",
+        "family": "イグチ科",
+        "genus": "キクバナイグチ属"
+      },
+      "fields": {
+        "name_reference": {
+          "value": "石川県の図鑑はオニイグチ科、京都府の自然環境目録はイグチ科に掲載しています。",
+          "sources": [
+            "expansion-asinagaiguti",
+            "kyoto"
+          ]
+        }
+      }
+    },
+    "beniiguti": {
+      "expected": {
+        "name": "ベニイグチ",
+        "scientific": "Heimiella japonica",
+        "family": "オニイグチ科",
+        "genus": "ベニイグチ属"
+      },
+      "fields": {
+        "name_reference": {
+          "value": "石川県の図鑑の学名は Heimiella japonica です。山と溪谷社の改訂資料では Heimioporus japonicus と表記し、イグチ科に移しています。",
+          "sources": [
+            "expansion-beniiguti",
+            "expansion-yamakei-change"
+          ]
+        },
+        "ecology": {
+          "value": "外生菌根菌",
+          "sources": [
+            "yamada"
+          ],
+          "note": "山田（2002）表2・p.6の国内文献記録"
+        }
+      }
+    },
+    "kiiroiguti": {
+      "expected": {
+        "name": "キイロイグチ",
+        "scientific": "Pulveroboletus ravenelii",
+        "family": "イグチ科",
+        "genus": "キイロイグチ属"
+      },
+      "fields": {
+        "ecology": {
+          "value": "外生菌根菌",
+          "sources": [
+            "yamada"
+          ],
+          "note": "山田（2002）表2・p.6の国内文献記録"
+        }
+      }
+    },
+    "nakaguromorinokasa": {
+      "expected": {
+        "name": "ナカグロモリノカサ",
+        "scientific": "Agaricus praeclaresquamosus",
+        "family": "ハラタケ科",
+        "genus": "ハラタケ属"
+      },
+      "fields": {
+        "name_reference": {
+          "value": "Species Fungorum では、石川県の図鑑が使う学名に対応する現在名を Agaricus moelleri としています。",
+          "sources": [
+            "expansion-species-fungorum-agmo"
+          ]
+        }
+      }
+    },
+    "kihoukitake": {
+      "expected": {
+        "name": "キホウキタケ",
+        "scientific": "Ramaria flava",
+        "family": "ラッパタケ科",
+        "genus": "ホウキタケ属"
+      },
+      "fields": {
+        "name_reference": {
+          "value": "松山市ではアカマツ林での記録があります。国内の黄色いホウキタケ類と、この資料の学名が指す範囲は個別に確認が必要です。",
+          "sources": [
+            "expansion-matsuyama-ramaria"
+          ]
+        }
+      }
+    },
+    "kinchawantake": {
+      "expected": {
+        "name": "キンチャワンタケ",
+        "scientific": "Aleuria rhenana",
+        "family": "ピロネマキン科",
+        "genus": "ヒイロチャワンタケ属"
+      },
+      "fields": {
+        "name_reference": {
+          "value": "広島県の図鑑では Aleuria rhenana と表記します。山と溪谷社の改訂資料では Sowerbyella rhenana としています。",
+          "sources": [
+            "expansion-yamakei-change"
+          ]
+        }
+      }
+    },
+    "sakurasimejimodoki": {
+      "expected": {
+        "name": "サクラシメジモドキ",
+        "scientific": "Hygrophorus purpurascens",
+        "family": "ヌメリガサ科",
+        "genus": "ヌメリガサ属"
+      },
+      "fields": {
+        "name_reference": {
+          "value": "日本菌学会の資料では、ヒメサクラシメジ（Hygrophorus capreolarius）をサクラシメジモドキとは別に扱っています。",
+          "sources": [
+            "expansion-hygo"
+          ]
+        },
+        "ecology": {
+          "value": "外生菌根菌",
+          "sources": [
+            "yamada"
+          ],
+          "note": "山田（2002）表2・p.4の国内文献記録"
+        }
+      }
+    },
+    "mureoofusentake": {
+      "expected": {
+        "name": "ムレオオフウセンタケ",
+        "scientific": "Cortinarius praestans",
+        "family": "フウセンタケ科",
+        "genus": "フウセンタケ属"
+      },
+      "fields": {
+        "ecology": {
+          "value": "外生菌根菌",
+          "sources": [
+            "yamada"
+          ],
+          "note": "山田（2002）表2・p.5の国内文献記録"
+        }
+      }
+    },
+    "yamadoritake": {
+      "expected": {
+        "name": "ヤマドリタケ",
+        "scientific": "Boletus edulis",
+        "family": "イグチ科",
+        "genus": "ヤマドリタケ属"
+      },
+      "fields": {
+        "ecology": {
+          "value": "外生菌根菌",
+          "sources": [
+            "expansion-yamadoritake"
+          ],
+          "note": "環境省の第5次レッドデータブックに記載。"
         }
       }
     }

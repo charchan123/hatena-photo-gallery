@@ -8,10 +8,12 @@ import sys
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 from detail_ui import build_detail_views, render_detail_sections
+from portal_data import project_guide_expansion
 
 PUBLISHED = sys.argv[2] if len(sys.argv) > 2 else "345927a33c429d6846c3a08e00092ca7cbef883e"
 OUTPUT = Path(sys.argv[1]).resolve()
 PANEL = re.compile(r'<section class="knowledge-panel">.*?</section>', re.DOTALL)
+PENDING = re.compile(r'<section class="knowledge-pending">.*?</section>', re.DOTALL)
 
 def git(*args):
     return subprocess.check_output(["git", *args], cwd=ROOT)
@@ -25,28 +27,46 @@ def write(relative, content):
     destination.write_bytes(content)
 
 portal = json.loads(read_published("portal-data.json"))
-views = build_detail_views(portal)
+expansion = "--guide-expansion" in sys.argv[3:]
+draft_portal = project_guide_expansion(portal) if expansion else portal
+views = build_detail_views(draft_portal)
 pages = {}
-for row in portal["subjects"]:
+draft_pages = {}
+pending_pages = {}
+for before, row in zip(portal["subjects"], draft_portal["subjects"]):
     if not row["knowledge_available"]:
         continue
     subject = row["gallery_name"]
     filename = re.sub(r'[:<>"|*?\\/\r\n]', "_", subject).strip() + ".html"
-    pages[row["mushroom_master_id"]] = filename
+    draft_pages[row["mushroom_master_id"]] = filename
     original = read_published(filename)
     html = original.decode()
     view = {**views[subject], "articles": []}
     markup = render_detail_sections(view)
-    result, count = PANEL.subn(lambda _: markup, html)
-    assert count == 1, filename
-    assert PANEL.sub("", result) == PANEL.sub("", html), filename
-    write("base/" + filename, original)
+    if before["knowledge_available"]:
+        pages[row["mushroom_master_id"]] = filename
+        result, count = PANEL.subn(lambda _: markup, html)
+        assert count == 1, filename
+        assert PANEL.sub("", result) == PANEL.sub("", html), filename
+        write("base/" + filename, original)
+    else:
+        result, count = PENDING.subn(lambda _: markup, html)
+        assert count == 1 and not PANEL.search(html), filename
+        assert PANEL.sub("", result) == PENDING.sub("", html), filename
+        pending_pages[row["mushroom_master_id"]] = filename
+        write("base/" + filename, original)
     write("draft/" + filename, result.encode())
 assert len(pages) == 85
+if expansion:
+    assert len(draft_pages) - len(pages) == len(
+        draft_portal["reference_data"]["mushroom_master"]["entries"]
+    ) - len(portal["reference_data"]["mushroom_master"]["entries"])
 for path in git("ls-tree", "-rz", "--name-only", PUBLISHED).decode().split("\0"):
     if path.startswith(("assets/", "lightgallery/")) and Path(path).suffix in (".js", ".css", ".woff", ".woff2", ".ttf", ".svg", ".json"):
         content = read_published(path)
         write("base/" + path, content)
         write("draft/" + path, content)
 write("published-85.json", json.dumps(pages, ensure_ascii=False).encode())
+write("pending-guide-pages.json", json.dumps(pending_pages, ensure_ascii=False).encode())
+write("draft-guide-pages.json", json.dumps(draft_pages, ensure_ascii=False).encode())
 (OUTPUT / "screens").mkdir(exist_ok=True)

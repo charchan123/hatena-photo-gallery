@@ -13,7 +13,7 @@ from collections import Counter, defaultdict, deque
 
 from mushroom_knowledge import load_mushroom_master, load_sources
 from portal_data import (
-    build_portal_data, failure_status, save_json, success_status,
+    build_portal_data, failure_status, project_guide_expansion, save_json, success_status,
 )
 from season_ui import generate_season_page, load_fresh_portal_data
 from records_ui import generate_records_page, render_record_cards, render_record_preview_rows
@@ -3224,6 +3224,7 @@ def export_portal_data(*, production_entries, shadow_metadata, article_metadata=
                         guide_links=guide_links)
                     data = sync_run.annotate_adoptions(data)
             data = sync_run.reconcile(data, shadow_metadata)
+        data = project_guide_expansion(data)
         save_json(PORTAL_DATA_FILE, data)
         status = success_status(data)
     except Exception as error:

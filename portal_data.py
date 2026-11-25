@@ -6,6 +6,12 @@ from datetime import datetime
 import hashlib
 import json
 import os
+from pathlib import Path
+
+from mushroom_knowledge import validate_mushroom_master, validate_sources
+
+
+GUIDE_EXPANSION_FILE = Path(__file__).resolve().parent / "data" / "guide-expansion.json"
 
 
 CLASSIFICATION_STATUSES = (
@@ -297,6 +303,71 @@ def save_json(path, value):
     with open(path, "w", encoding="utf-8") as stream:
         json.dump(value, stream, ensure_ascii=False, indent=2)
         stream.write("\n")
+
+
+def project_guide_expansion(data, path=GUIDE_EXPANSION_FILE):
+    """Append reviewed guide records and link only exact, confirmed public subjects."""
+    expansion = json.loads(path.read_text(encoding="utf-8"))
+    if (not isinstance(expansion, dict) or type(expansion.get("version")) is not int
+            or expansion["version"] != 1 or not isinstance(expansion.get("entries"), list)
+            or not isinstance(expansion.get("sources"), list)):
+        raise ValueError("invalid guide expansion schema")
+    result = deepcopy(data)
+    reference = result["reference_data"]
+    master = reference["mushroom_master"]
+    sources = reference["sources"]
+    previous_names = {name for row in master["entries"]
+                      for name in (row["canonical_name_ja"], *row["aliases_ja"])}
+    previous_urls = {row["url"] for row in sources["sources"]}
+    extra_urls = [row["url"] for row in expansion["sources"]]
+    if previous_urls.intersection(extra_urls) or len(set(extra_urls)) != len(extra_urls):
+        raise ValueError("guide expansion duplicates a source URL")
+    merged_sources = validate_sources({**sources, "sources": sources["sources"] + expansion["sources"]})
+    merged_master = validate_mushroom_master(
+        {**master, "entries": master["entries"] + expansion["entries"]}, merged_sources
+    )
+    links = {}
+    for row in expansion["entries"]:
+        name = row["canonical_name_ja"]
+        if (name in previous_names or row["aliases_ja"] or any(mark in name for mark in
+                ("?", "？", "広義", "仮称", "不明", "sp.", "cf.", "の仲間", "&", "＆", "/", "／", " or "))):
+            raise ValueError(f"invalid guide expansion name: {name!r}")
+        links[name] = row["mushroom_id"]
+
+    observations_by_name = defaultdict(list)
+    for row in result["observations"]:
+        if row["gallery_name"] in links:
+            observations_by_name[row["gallery_name"]].append(row)
+    connected = 0
+    for subject in result["subjects"]:
+        name = subject["gallery_name"]
+        taxonomy = subject.get("taxonomy") or {}
+        if (name not in links or subject["knowledge_available"] or subject["mushroom_master_id"] is not None
+                or taxonomy.get("canonical_name") != name
+                or taxonomy.get("subject_type") != "mushroom"
+                or taxonomy.get("mushroom_master_id") is not None
+                or taxonomy.get("verification_status") != "externally_verified"):
+            continue
+        photos = observations_by_name[name]
+        if len(photos) != subject["photo_count"] or not photos or any(
+                row["mushroom_master_id"] is not None
+                or row["classification"]["status"] != "confirmed_named_mushroom"
+                or row["classification"]["taxonomy_canonical_name"] != name
+                or row["classification"]["taxonomy_match_type"] != "canonical_exact"
+                for row in photos):
+            continue
+        for row in photos:
+            row["mushroom_master_id"] = links[name]
+        subject.update(mushroom_master_id=links[name], knowledge_available=True)
+        connected += 1
+    result["reference_data"].update(mushroom_master=merged_master, sources=merged_sources)
+    result["summary"].update(
+        knowledge_record_count=len(merged_master["entries"]),
+        source_count=len(merged_sources["sources"]),
+        master_linked_subject_count=data["summary"]["master_linked_subject_count"] + connected,
+        master_unlinked_subject_count=data["summary"]["master_unlinked_subject_count"] - connected,
+    )
+    return result
 
 
 def success_status(data):
