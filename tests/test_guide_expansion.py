@@ -80,3 +80,27 @@ def test_expansion_rejects_duplicate_ids_missing_sources_and_uncertain_labels(tm
         path.write_text(json.dumps(candidate), encoding="utf-8")
         with pytest.raises(ValueError, match=problem):
             project_guide_expansion(data, path)
+
+
+def test_final_review_poisoning_and_species_scope():
+    expansion = json.loads(GUIDE_EXPANSION_FILE.read_text(encoding="utf-8"))
+    rows = {row["canonical_name_ja"]: row for row in expansion["entries"]}
+    names = ["ウスムラサキシメジ", "キタマゴタケ", "キホウキタケ", "ベニハナイグチ", "アシナガイグチ"]
+    data = {
+        "version": 1, "subjects": [published_subject(n) for n in names],
+        "observations": [observation(n) for n in names],
+        "summary": {"master_linked_subject_count": 0, "master_unlinked_subject_count": len(names)},
+        "reference_data": {"sources": load_sources(), "mushroom_master": load_mushroom_master()},
+    }
+    views = build_detail_views(project_guide_expansion(data))
+    assert rows["ウスムラサキシメジ"]["food_safety"]["status"] == "poisonous_confirmed"
+    assert "保存個体" in render_detail_sections(views[names[0]])
+    assert "公的・専門資料には毒性の記載があります" in render_detail_sections(views[names[0]])
+    assert "外生菌根菌" in render_detail_sections(views[names[1]])
+    assert "6月上旬" in render_detail_sections(views[names[1]])
+    assert "未公表" in render_detail_sections(views[names[1]])
+    assert "食毒の記載が異なります" in render_detail_sections(views[names[2]])
+    assert "ヌメリイグチ科" in render_detail_sections(views[names[3]])
+    assert "Suillus spraguei" in render_detail_sections(views[names[3]])
+    assert "オニイグチ科" in render_detail_sections(views[names[4]])
+    assert all('class="knowledge-warning"' in render_detail_sections(views[n]) for n in names)

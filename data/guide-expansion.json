@@ -132,7 +132,7 @@
         "source_ids": [
           "research-mhlw-0000143395"
         ],
-        "notes": "厚生労働省の資料は、猛毒のタマゴタケモドキとの取り違えに注意を促しています。"
+        "notes": "厚生労働省の資料には、キタマゴタケの食用記載と、猛毒のタマゴタケモドキとの取り違えに関する注意があります。同資料の和名が指す範囲と、2017年に記載された学名との対応は未確認です。"
       },
       "toxins": [],
       "features": {
@@ -148,7 +148,7 @@
         ]
       },
       "season": {
-        "summary": "原記載のタイプ標本は10月の採集です。",
+        "summary": "6月上旬～7月下旬、9月上旬～10月下旬（2017年の原記載）",
         "source_ids": [
           "guide-expansion-kitamagotake"
         ]
@@ -922,11 +922,11 @@
         }
       },
       "food_safety": {
-        "status": "unknown",
+        "status": "poisonous_confirmed",
         "source_ids": [
           "guide-expansion-usumurasakishimeji"
         ],
-        "notes": "青森県の中毒報告では、同じ場所で採り直した標本がウスムラサキシメジと同定されました。実際に食べたキノコの残品は確認されていません。"
+        "notes": "工藤・長沢（1995）は、青森県での中毒事例の原因菌をウスムラサキシメジと同定しました。患者が知人に分けた保存個体と、発生場所で再採集した標本を照合しています。実際に食べた個体の残品はなく、飲酒との関係や毒性の詳細には、さらに検討が必要とされています。"
       },
       "toxins": [],
       "features": {
@@ -1085,7 +1085,7 @@
           "guide-expansion-britannica-ramaria",
           "guide-expansion-alic-ramaria"
         ],
-        "notes": "百科事典には食用と症状の記録が併記され、農畜産業振興機構の資料では有毒とされています。ホウキタケとの取り違えに注意が必要です。"
+        "notes": "百科事典には食用の記載と下痢の事例が併記され、農畜産業振興機構の資料ではホウキタケに似た有毒種として挙げられています。国内の黄色いホウキタケ類の分類範囲は確認が必要で、安全に食べられるとは判断できません。"
       },
       "toxins": [],
       "features": {
@@ -1310,8 +1310,10 @@
       },
       "food_safety": {
         "status": "unknown",
-        "source_ids": [],
-        "notes": ""
+        "source_ids": [
+          "guide-expansion-benihanaiguti"
+        ],
+        "notes": "石川県の図鑑では Suillus pictus の名で食用と記載しています。新旧学名が指す国内の分類群の範囲は個別確認が必要で、掲載写真の安全性は判断できません。"
       },
       "toxins": [],
       "features": {
@@ -1717,12 +1719,12 @@
     {
       "source_id": "guide-expansion-kitamagotake",
       "organization": "日本菌学会",
-      "title": "Endo et al. 2017, Mycoscience 58, §4 Taxonomy p.465",
+      "title": "Endo et al. 2017, Mycoscience 58, §4 Taxonomy pp.465–467",
       "source_type": "guide_review_reference",
       "url": "https://www.jstage.jst.go.jp/article/mycosci/58/6/58_MYC58457/_pdf",
       "record_id": null,
       "accessed_at": "2026-11-26",
-      "notes": "Endo・Yamada ほか（2017）4 Taxonomy、pp.463–465、Fig.4、TNS-F-70004。旧 A. javanica と区別して国内標本から A. kitamagotake を記載。採集日は標本の記録。"
+      "notes": "Endo・Yamada ほか（2017）4 Taxonomy、pp.465–467、Fig.4、TNS-F-70004。旧 A. javanica と区別して国内標本から A. kitamagotake を記載。p.466 Habitat に年2回の発生時期と外生菌根形成（未公表データ）の記載。"
     },
     {
       "source_id": "guide-expansion-asinagaiguti",
@@ -1837,12 +1839,12 @@
     {
       "source_id": "guide-expansion-usumurasakishimeji",
       "organization": "日本菌学会",
-      "title": "工藤・長沢（1995）、p.104、肉眼的特徴",
+      "title": "工藤・長沢（1995）ウスムラサキシメジによる中毒について pp.103–106",
       "source_type": "guide_review_reference",
       "url": "https://www.jstage.jst.go.jp/article/jjom/36/3/36_jjom.H06-103/_pdf",
       "record_id": null,
       "accessed_at": "2026-11-26",
-      "notes": "工藤・長澤（1995）日本菌学会会報36 pp.103–106、標本の記載・中毒きのこの確認状況。青森で同じ場所から再採集された標本を同定。実際に摂食した残品は未回収。"
+      "notes": "日本菌学会会報36 pp.103–106。p.106に患者が知人に分けた保存個体と再採集標本の照合、原因菌の同定、飲酒との関係と毒性に追加検討が必要との記載。"
     },
     {
       "source_id": "guide-expansion-oonoutake",

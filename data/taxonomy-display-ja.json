@@ -338,7 +338,7 @@
     },
     "expansion-kitamagotake": {
       "organization": "日本菌学会",
-      "title": "Endo et al. 2017, Mycoscience 58, §4 Taxonomy p.465",
+      "title": "Endo et al. 2017, Mycoscience 58, §4 Taxonomy pp.465–467",
       "url": "https://www.jstage.jst.go.jp/article/mycosci/58/6/58_MYC58457/_pdf"
     },
     "expansion-asinagaiguti": {
@@ -375,6 +375,11 @@
       "organization": "環境省",
       "title": "第5次レッドデータブック ヤマドリタケ p.2",
       "url": "https://www.env.go.jp/nature/kisho/5th-rl-2025/FU0088_RDB5th.pdf"
+    },
+    "expansion-ncbi-suillus": {
+      "organization": "米国国立生物工学情報センター（NCBI）",
+      "title": "Taxonomy Browser: Suillus spraguei（Taxonomy ID 5383）",
+      "url": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=5383"
     }
   },
   "entries": {
@@ -2186,6 +2191,13 @@
           "sources": [
             "expansion-kitamagotake"
           ]
+        },
+        "ecology": {
+          "value": "外生菌根菌",
+          "note": "原記載の論文は、アラカシ・シラカシ・コナラとの外生菌根形成を確認したと記しています（基礎データは未公表）。",
+          "sources": [
+            "expansion-kitamagotake"
+          ]
         }
       }
     },
@@ -2202,7 +2214,8 @@
           "sources": [
             "expansion-asinagaiguti",
             "kyoto"
-          ]
+          ],
+          "note": "同属のセイタカイグチも、京都府ではイグチ科、石川県ではオニイグチ科です。本ページは京都府の体系を採用しています。"
         }
       }
     },
@@ -2349,6 +2362,32 @@
             "expansion-yamadoritake"
           ],
           "note": "環境省の第5次レッドデータブックに記載。"
+        }
+      }
+    },
+    "benihanaiguti": {
+      "expected": {
+        "name": "ベニハナイグチ",
+        "scientific": "Suillus pictus",
+        "family": "イグチ科",
+        "genus": "ヌメリイグチ属"
+      },
+      "fields": {
+        "family": {
+          "value": "ヌメリイグチ科",
+          "latin": "Suillaceae",
+          "note": "京都府のヌメリイグチ属の分類体系に準拠。石川県の種別資料ではイグチ科。",
+          "sources": [
+            "kyoto",
+            "expansion-ncbi-suillus"
+          ]
+        },
+        "name_reference": {
+          "value": "NCBIの分類データベースは Suillus pictus を Suillus spraguei の異名として掲載しています。",
+          "note": "新旧名称の関係と、国内の個体にどの学名が当てはまるかは別の問題です。特徴・環境・時期は石川県の同和名資料の記載に基づきます。",
+          "sources": [
+            "expansion-ncbi-suillus"
+          ]
         }
       }
     }

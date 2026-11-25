@@ -153,8 +153,8 @@ GUIDE_EXPANSION_BLOBS = {
     'mushroom_knowledge.py': 'e1d73ff3f261caca2f4054a094ae0d7fd0c9b771',
     'portal_data.py': '14bdd5aab300490677e103d76dd5906ee8dd583b',
     'detail_ui.py': 'd3b468b3665a5be45f22ba9c44b1fa7e23e0bb9a',
-    'data/taxonomy-display-ja.json': 'b8adc560d25e3b2ef8f7f35fad58183d487bc820',
-    'data/guide-expansion.json': 'bbbc60f3e3ec557fd2588352ae67dbc7af77f1cf',
+    'data/taxonomy-display-ja.json': 'c77626d8024535539ff2dd1109ae1d509c7b1c70',
+    'data/guide-expansion.json': '043089edd05de56ae8f7a0030fbe438ac2b74787',
 }
 GUIDE_ENRICHMENT_BASE = '1c9f76847e6ebd4c28e0c3a2c2a2b22e7b78018a'
 GUIDE_ENRICHMENT_BLOBS = {
