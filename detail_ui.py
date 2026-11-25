@@ -305,6 +305,9 @@ def _articles_for(gallery_name, observations):
 
 TAXONOMY_DISPLAY_PATH = Path(__file__).resolve().parent / "data" / "taxonomy-display-ja.json"
 JAPANESE_TEXT = re.compile(r"[ぁ-んァ-ヺ一-龯]")
+DISPLAY_GUIDE_ROWS = (
+    ("特徴", "features"), ("生育環境", "habitat"), ("資料に記載された発生時期", "season"),
+)
 
 
 def _load_taxonomy_display(path):
@@ -332,7 +335,8 @@ def _taxonomy_display_fields(master, entry, sources):
     if not isinstance(fields, dict):
         return {}
     usable = {}
-    for rank in ("family", "genus", "ecology"):
+    for rank in ("family", "genus", "ecology", "name_reference", "food_reference",
+                 *(key for _, key in DISPLAY_GUIDE_ROWS)):
         item = fields.get(rank)
         if not isinstance(item, dict):
             continue
@@ -364,24 +368,34 @@ def _knowledge(master, source_map, *, display_entry=None, display_sources=None):
     display_sources = display_sources or {}
     display_fields = _taxonomy_display_fields(master, display_entry, display_sources)
     display_refs = []
+
+    def add_display(label, choice, original):
+        note = " ".join(text for text in (choice.get("latin"), choice.get("note"))
+                        if isinstance(text, str) and text.strip())
+        add(label, choice["value"], original, note=note or None)
+        display_refs.extend(choice["sources"])
+
+    if "name_reference" in display_fields:
+        add_display("学名の資料比較", display_fields["name_reference"], {})
     for label, rank, original in (("科名", "family", family), ("属名", "genus", genus),
                                    ("生態", "ecology", {})):
         chosen = display_fields.get(rank)
         raw = _present(original.get("value"))
         if chosen:
-            note = " ".join(text for text in (chosen.get("latin"), chosen.get("note")) if text)
-            add(label, chosen["value"], original, note=note or None)
-            display_refs.extend(chosen["sources"])
+            add_display(label, chosen, original)
         elif rank == "ecology":
             add(label, "未確認", original)
         elif raw and JAPANESE_TEXT.search(raw):
             add(label, raw, original, note="出典資料の表記")
         else:
             add(label, "確認中", original, note=f"資料に記載された名称：{raw}" if raw else None)
-    for label, key in (("特徴", "features"), ("生育環境", "habitat"),
-                       ("資料に記載された発生時期", "season")):
+    for label, key in DISPLAY_GUIDE_ROWS:
         field = master.get(key) or {}
-        add(label, field.get("summary"), field)
+        summary = field.get("summary")
+        if _present(summary) is None and key in display_fields:
+            add_display(label, display_fields[key], field)
+        else:
+            add(label, summary, field)
     food = master.get("food_safety") or {}
     status = food.get("status")
     if status in FOOD_SAFETY_LABELS:
@@ -437,6 +451,10 @@ def _knowledge(master, source_map, *, display_entry=None, display_sources=None):
             notes = approved_note if approved_note is not None else reader_facing_food_note(food.get("notes"))
         if notes:
             rows[-1]["note"] = notes
+        food_reference = display_fields.get("food_reference")
+        if (food_reference and food_reference.get("expected_status") == status
+                and "expected_notes" in food_reference and food_reference["expected_notes"] == food.get("notes")):
+            add_display("食毒資料の補足", food_reference, {})
     toxin_names = []
     for toxin in master.get("toxins") or []:
         if not isinstance(toxin, dict) or not _present(toxin.get("name")):

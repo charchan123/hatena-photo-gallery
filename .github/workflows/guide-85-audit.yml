@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'audit/guide-85-20261123/**'
+      - 'audit/guide-85-enrichment-20261125/**'
       - 'data/taxonomy-display-ja.json'
       - 'detail_ui.py'
       - '.github/workflows/guide-85-audit.yml'
@@ -16,6 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-python@v5
@@ -25,7 +27,7 @@ jobs:
         with:
           node-version: '22'
       - name: Build pinned local read-only comparison fixtures
-        run: python audit/guide-85-20261123/browser_fixture.py /tmp/guide-detail
+        run: python audit/guide-85-20261123/browser_fixture.py /tmp/guide-detail a9b9c66e371b0abf309974f2aeb1bc90e3b9631a
       - name: Install isolated browser and public asset versions
         run: |
           npm install --prefix /tmp/guide-browser --no-save playwright@1.62.1 lightgallery@2.8.3 imagesloaded@5.0.0

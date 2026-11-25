@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 from detail_ui import build_detail_views, render_detail_sections
 
-PUBLISHED = "345927a33c429d6846c3a08e00092ca7cbef883e"
+PUBLISHED = sys.argv[2] if len(sys.argv) > 2 else "345927a33c429d6846c3a08e00092ca7cbef883e"
 OUTPUT = Path(sys.argv[1]).resolve()
 PANEL = re.compile(r'<section class="knowledge-panel">.*?</section>', re.DOTALL)
 

@@ -12,6 +12,7 @@ for (const [id, formats] of Object.entries(base.result)) {
     assert.equal(after.warning, before.warning, id);
     assert.equal(after.warningCount, 1, id);
     assert.equal(after.safetyLabel, before.safetyLabel, id);
+    assert.equal(after.foodNote, before.foodNote, id);
     assert.ok(before.sourceLinks.every(url => after.sourceLinks.includes(url)), id);
     assert.ok(after.opened && after.linksVisible, id);
     assert.ok(after.labels.includes("科名") && after.labels.includes("属名") && after.labels.includes("生態"), id);
@@ -25,4 +26,4 @@ for (const width of Object.keys(base.flow)) {
   assert.ok(draft.flow[width].opened && draft.flow[width].closed, JSON.stringify(draft.flow));
   assert.ok(draft.flow[width].scrollDifference <= Math.max(3, base.flow[width].scrollDifference));
 }
-console.log("PASS: 85 pinned pages at both widths, original source links and food text preserved, no added overflow; LightGallery opens, closes and restores scroll.");
+console.log("PASS: 85 pinned pages at three widths, original source links and food text preserved, no added overflow; LightGallery opens, closes and restores scroll.");
