@@ -165,6 +165,14 @@ GUIDE_DISPLAY_BASE = '1cf063ae2f969c0eb58820c61a1c51c5eea06528'
 GUIDE_DISPLAY_BLOB = '2148844d8a3366760dbe2f398608d0d696b9aa35'
 GUIDE_DISPLAY_DATA = 'data/taxonomy-display-ja.json'
 GUIDE_DISPLAY_DATA_BLOB = 'b1e84cbc158924218cfe968f3b3b9af9217230ef'
+# Only the exact local console integration is allowed against this baseline.
+# Existing Worker, comment UI, database, and public assets stay byte-protected.
+GUIDE_ADMIN_BASE = '69b73ec7f2b0df0a151464351dba92e441511e49'
+GUIDE_ADMIN_BLOBS = {
+    'admin/server.py': '1f0b33ff7ca51f2b19486c586ef93595636ba6e1',
+    'admin/static/admin.js': 'a5cc41edfc169ad3eaeec723f67f2065a45bd482',
+    'admin/static/index.html': '3a6acfcb11bec34aaba6f2fe90e5deeca4d3bcd5',
+}
 PUBLIC_CONFIG = 'comments/public-config.json'
 PRODUCTION_ORIGIN = 'https://kinoko-research-comments.sasama-bb.workers.dev'
 RELEASE_ID = 'research-comments-production-20261120'
@@ -190,6 +198,10 @@ def assert_reviewed_source(base, path, current):
     """Never hide a main change behind the old PR's allowance."""
     original = git('show', f'{base}:{path}')
     if current == original:
+        return
+    if path in GUIDE_ADMIN_BLOBS and git('rev-parse', base).decode().strip() == GUIDE_ADMIN_BASE:
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
+        assert hashlib.sha1(blob).hexdigest() == GUIDE_ADMIN_BLOBS[path], path
         return
     if path in GUIDE_EXPANSION_BLOBS and git('rev-parse', base).decode().strip() == GUIDE_EXPANSION_BASE:
         blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
