@@ -18,7 +18,9 @@ const cdn = {
 };
 const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600"><rect width="900" height="600" fill="#cbc8ac"/></svg>';
 (async () => {
- const pages=JSON.parse(await fs.readFile("published-85.json"));
+ const original=JSON.parse(await fs.readFile("published-85.json"));
+ const pending=JSON.parse(await fs.readFile("pending-guide-pages.json"));
+ const pages=label==="draft" ? JSON.parse(await fs.readFile("draft-guide-pages.json")) : {...original,...pending};
  const site=http.createServer(async (req,res)=>{
    try{
     const filename=decodeURIComponent(new URL(req.url,"http://localhost").pathname).replace(/^\//,"");
@@ -51,6 +53,18 @@ const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600"><r
       const [id,filename]=jobs[index++];
       const response=await page.goto(local+"/"+encodeURIComponent(filename),{waitUntil:"load",timeout:18000});
       assert.equal(response.status(),200);
+      if(label==="base" && id in pending){
+       assert.equal(await page.locator(".knowledge-panel").count(),0);
+       const visible=await page.locator(".knowledge-pending").isVisible();
+       assert.ok(visible,id);
+       result[id]??={};
+       result[id][viewport]={pending:true, outerOverflow:await page.evaluate(() =>
+        Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)-document.documentElement.clientWidth)};
+       if(["kitamagotake","tamagotengutakemodoki"].includes(id)){
+        await page.locator(".knowledge-pending").screenshot({path:`screens/${label}-${id}-${width}.png`});
+       }
+       continue;
+      }
       const details=page.locator(".knowledge-sources");
       await details.locator("summary").click();
       const item=await page.evaluate(()=>{
@@ -74,7 +88,7 @@ const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600"><r
                labels:array.map(row=>row.children[0].textContent)};
       });
       result[id]??={};result[id][viewport]=item;
-      if(["enokitake","naratake","mukitake","kakisimeji","uraguronigaiguchi","kurokawa","chaamigasatake"].includes(id)){
+      if(["enokitake","naratake","mukitake","kakisimeji","uraguronigaiguchi","kurokawa","chaamigasatake","kitamagotake","tamagotengutakemodoki","kihoukitake"].includes(id)){
        await page.locator(".knowledge-panel").screenshot({path:`screens/${label}-${id}-${width}.png`});
       }
     }
@@ -101,7 +115,7 @@ const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600"><r
   flow[viewport]={opened,closed,scrollDifference,error};
   await ctx.close();
  }
- console.log(JSON.stringify({label,pages:Object.keys(result).length,flow,issues:Object.entries(result).flatMap(([id,v])=>Object.entries(v).filter(([,q])=>q.outerOverflow>1||q.spills.length||q.overlaps||!q.opened||!q.linksVisible).map(([width,q])=>({id,width,outerOverflow:q.outerOverflow,spills:q.spills,overlaps:q.overlaps})))},null,2));
+ console.log(JSON.stringify({label,pages:Object.keys(result).length,flow,issues:Object.entries(result).flatMap(([id,v])=>Object.entries(v).filter(([,q])=>q.outerOverflow>1||(!q.pending&&(q.spills.length||q.overlaps||!q.opened||!q.linksVisible))).map(([width,q])=>({id,width,outerOverflow:q.outerOverflow,spills:q.spills,overlaps:q.overlaps})))},null,2));
  await fs.writeFile(`browser-${label}.json`,JSON.stringify({result,flow},null,2));
  } finally {await browser.close();site.close();}
 })().catch(e=>{console.error(e);process.exitCode=1});

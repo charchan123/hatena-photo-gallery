@@ -146,6 +146,16 @@ TENTH_TWO_LINK_BLOBS = {
 }
 # Guide audit changes only the exact presentation module and adds a
 # separate display data file. Keep all comment and legacy source byte checks.
+GUIDE_EXPANSION_BASE = '5befbfa8e037e054e441fe5e664ad5d8971dee2e'
+GUIDE_EXPANSION_DATA = "data/guide-expansion.json"
+GUIDE_EXPANSION_BLOBS = {
+    'main.py': 'ee7ccc74d8d70290d92b16488cc862d0bea1eb28',
+    'mushroom_knowledge.py': 'e1d73ff3f261caca2f4054a094ae0d7fd0c9b771',
+    'portal_data.py': '14bdd5aab300490677e103d76dd5906ee8dd583b',
+    'detail_ui.py': 'd3b468b3665a5be45f22ba9c44b1fa7e23e0bb9a',
+    'data/taxonomy-display-ja.json': 'c77626d8024535539ff2dd1109ae1d509c7b1c70',
+    'data/guide-expansion.json': '043089edd05de56ae8f7a0030fbe438ac2b74787',
+}
 GUIDE_ENRICHMENT_BASE = '1c9f76847e6ebd4c28e0c3a2c2a2b22e7b78018a'
 GUIDE_ENRICHMENT_BLOBS = {
     'detail_ui.py': '8d522a7c9c299ceacdb22d41bf0d2edd8d23cd18',
@@ -180,6 +190,10 @@ def assert_reviewed_source(base, path, current):
     """Never hide a main change behind the old PR's allowance."""
     original = git('show', f'{base}:{path}')
     if current == original:
+        return
+    if path in GUIDE_EXPANSION_BLOBS and git('rev-parse', base).decode().strip() == GUIDE_EXPANSION_BASE:
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
+        assert hashlib.sha1(blob).hexdigest() == GUIDE_EXPANSION_BLOBS[path], path
         return
     if path in GUIDE_ENRICHMENT_BLOBS and git('rev-parse', base).decode().strip() == GUIDE_ENRICHMENT_BASE:
         blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
@@ -332,6 +346,12 @@ def collect(base='origin/main'):
         content = (ROOT / path).read_bytes()
         assert_reviewed_source(base, path, content)
         hashes[path] = hashlib.sha256(content).hexdigest()
+    if GUIDE_EXPANSION_DATA not in protected and (ROOT / GUIDE_EXPANSION_DATA).is_file():
+        assert git('rev-parse', base).decode().strip() == GUIDE_EXPANSION_BASE
+        content = (ROOT / GUIDE_EXPANSION_DATA).read_bytes()
+        blob = b'blob ' + str(len(content)).encode('ascii') + b'\0' + content
+        assert hashlib.sha1(blob).hexdigest() == GUIDE_EXPANSION_BLOBS[GUIDE_EXPANSION_DATA]
+        hashes[GUIDE_EXPANSION_DATA] = hashlib.sha256(content).hexdigest()
     if GUIDE_DISPLAY_DATA not in protected and (ROOT / GUIDE_DISPLAY_DATA).is_file():
         assert git('rev-parse', base).decode().strip() == GUIDE_DISPLAY_BASE
         content = (ROOT / GUIDE_DISPLAY_DATA).read_bytes()

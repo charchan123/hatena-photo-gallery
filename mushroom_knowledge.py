@@ -72,7 +72,10 @@ def _source_ids(value, known, field, required=False):
 
 def load_sources(path=SOURCES_FILE):
     """Load and validate the source registry."""
-    raw = _read(path)
+    return validate_sources(_read(path))
+
+
+def validate_sources(raw):
     sources = _root(raw, "sources")
     seen = set()
     for index, source in enumerate(sources):
@@ -105,8 +108,11 @@ def _fact(value, known, field, key="value"):
 
 def load_mushroom_master(path=MUSHROOM_MASTER_FILE, sources_path=SOURCES_FILE):
     """Load and validate mushroom facts and every source reference."""
-    known = {source["source_id"] for source in load_sources(sources_path)["sources"]}
-    raw = _read(path)
+    return validate_mushroom_master(_read(path), load_sources(sources_path))
+
+
+def validate_mushroom_master(raw, sources):
+    known = {source["source_id"] for source in sources["sources"]}
     entries = _root(raw, "entries")
     ids, names = set(), set()
     for index, entry in enumerate(entries):

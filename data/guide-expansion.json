@@ -1,0 +1,1920 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "mushroom_id": "murasakiyamadoritake",
+      "canonical_name_ja": "ムラサキヤマドリタケ",
+      "name_ja_sources": [
+        "guide-expansion-murasakiyamadoritake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Boletus violaceofuscus",
+        "source_ids": [
+          "guide-expansion-murasakiyamadoritake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "イグチ科",
+          "source_ids": [
+            "guide-expansion-murasakiyamadoritake"
+          ]
+        },
+        "genus": {
+          "value": "ヤマドリタケ属",
+          "source_ids": [
+            "guide-expansion-kahaku-boletus"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "湿った傘は粘り、黄色いまだら模様が出ます。傘の裏は管孔状で、柄には網目模様があります。",
+        "source_ids": [
+          "guide-expansion-murasakiyamadoritake"
+        ]
+      },
+      "habitat": {
+        "summary": "ブナ科の樹木がある場所に発生します。",
+        "source_ids": [
+          "guide-expansion-murasakiyamadoritake"
+        ]
+      },
+      "season": {
+        "summary": "夏から秋",
+        "source_ids": [
+          "guide-expansion-murasakiyamadoritake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-26",
+        "notes": "資料の掲載学名と記載範囲に基づく。"
+      }
+    },
+    {
+      "mushroom_id": "kitamagotake",
+      "canonical_name_ja": "キタマゴタケ",
+      "name_ja_sources": [
+        "guide-expansion-kitamagotake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Amanita kitamagotake",
+        "source_ids": [
+          "guide-expansion-kitamagotake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "テングタケ科",
+          "source_ids": [
+            "guide-expansion-kahaku-amanita"
+          ]
+        },
+        "genus": {
+          "value": "テングタケ属",
+          "source_ids": [
+            "guide-expansion-kahaku-amanita"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [
+          "research-mhlw-0000143395"
+        ],
+        "notes": "厚生労働省の資料には、キタマゴタケの食用記載と、猛毒のタマゴタケモドキとの取り違えに関する注意があります。同資料の和名が指す範囲と、2017年に記載された学名との対応は未確認です。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘とひだは黄色系で、傘の縁に放射状のすじがあります。柄の根元を袋状のつぼが包みます。",
+        "source_ids": [
+          "guide-expansion-kitamagotake"
+        ]
+      },
+      "habitat": {
+        "summary": "冷温帯から暖温帯の、落葉性または常緑性のナラ類がある林に発生します。",
+        "source_ids": [
+          "guide-expansion-kitamagotake"
+        ]
+      },
+      "season": {
+        "summary": "6月上旬～7月下旬、9月上旬～10月下旬（2017年の原記載）",
+        "source_ids": [
+          "guide-expansion-kitamagotake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-26",
+        "notes": "資料の掲載学名と記載範囲に基づく。"
+      }
+    },
+    {
+      "mushroom_id": "asinagaiguti",
+      "canonical_name_ja": "アシナガイグチ",
+      "name_ja_sources": [
+        "guide-expansion-asinagaiguti"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Boletellus elatus",
+        "source_ids": [
+          "guide-expansion-asinagaiguti"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "イグチ科",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "genus": {
+          "value": "キクバナイグチ属",
+          "source_ids": [
+            "guide-expansion-ffpri-boletus"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "湿った傘には弱い粘りがあります。裏には細かい管孔が並び、柄は根元に近いところがふくらみます。",
+        "source_ids": [
+          "guide-expansion-asinagaiguti"
+        ]
+      },
+      "habitat": {
+        "summary": "マツ・コナラやシイ・カシの林に発生します。",
+        "source_ids": [
+          "guide-expansion-asinagaiguti"
+        ]
+      },
+      "season": {
+        "summary": "夏から秋",
+        "source_ids": [
+          "guide-expansion-asinagaiguti"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-26",
+        "notes": "資料の掲載学名と記載範囲に基づく。"
+      }
+    },
+    {
+      "mushroom_id": "tamagotengutakemodoki",
+      "canonical_name_ja": "タマゴテングタケモドキ",
+      "name_ja_sources": [
+        "guide-expansion-tamagotengutakemodoki"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Amanita longistriata",
+        "source_ids": [
+          "guide-expansion-tamagotengutakemodoki"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "テングタケ科",
+          "source_ids": [
+            "guide-expansion-tamagotengutakemodoki"
+          ]
+        },
+        "genus": {
+          "value": "テングタケ属",
+          "source_ids": [
+            "guide-expansion-kahaku-amanita"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "poisonous_confirmed",
+        "source_ids": [
+          "guide-expansion-tamagotengutakemodoki",
+          "guide-expansion-ffpri-longistriata"
+        ],
+        "notes": "石川県と森林総合研究所は、この学名で掲載したタマゴテングタケモドキを有毒としています。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘の縁にすじがあり、ひだは淡い紅色を帯びます。柄につばが付き、根元のつぼはさや状です。",
+        "source_ids": [
+          "guide-expansion-tamagotengutakemodoki"
+        ]
+      },
+      "habitat": {
+        "summary": "針葉樹林や広葉樹林に発生します。",
+        "source_ids": [
+          "guide-expansion-tamagotengutakemodoki"
+        ]
+      },
+      "season": {
+        "summary": "夏から秋",
+        "source_ids": [
+          "guide-expansion-tamagotengutakemodoki"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-26",
+        "notes": "資料の掲載学名と記載範囲に基づく。"
+      }
+    },
+    {
+      "mushroom_id": "kurifuusentake",
+      "canonical_name_ja": "クリフウセンタケ",
+      "name_ja_sources": [
+        "guide-expansion-kurifuusentake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Cortinarius tenuipes",
+        "source_ids": [
+          "guide-expansion-kurifuusentake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "フウセンタケ科",
+          "source_ids": [
+            "guide-expansion-kurifuusentake"
+          ]
+        },
+        "genus": {
+          "value": "フウセンタケ属",
+          "source_ids": [
+            "guide-expansion-kishimoto-kuri"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [
+          "guide-expansion-kurifuusentake",
+          "guide-expansion-kishimoto-kuri"
+        ],
+        "notes": "石川県の図鑑には食用の記載があります。地域によって有毒なカキシメジと同じ呼び名が使われるため、農林水産・食品産業技術振興協会の図鑑は取り違えに注意を促しています。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘の縁に絹糸のような膜が残り、柄にはクモの巣状のつばが付きます。ひだは密に並びます。",
+        "source_ids": [
+          "guide-expansion-kurifuusentake"
+        ]
+      },
+      "habitat": {
+        "summary": "広葉樹林に発生します。",
+        "source_ids": [
+          "guide-expansion-kurifuusentake"
+        ]
+      },
+      "season": {
+        "summary": "秋",
+        "source_ids": [
+          "guide-expansion-kurifuusentake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-26",
+        "notes": "Cortinarius tenuipes の和名が資料により異なる。現在の和名範囲と旧記録の食毒は別審査。"
+      }
+    },
+    {
+      "mushroom_id": "beniiguti",
+      "canonical_name_ja": "ベニイグチ",
+      "name_ja_sources": [
+        "guide-expansion-beniiguti"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Heimiella japonica",
+        "source_ids": [
+          "guide-expansion-beniiguti"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "オニイグチ科",
+          "source_ids": [
+            "guide-expansion-beniiguti"
+          ]
+        },
+        "genus": {
+          "value": "ベニイグチ属",
+          "source_ids": [
+            "guide-expansion-yamakei-change"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "湿った傘は少し粘ります。傘の裏には管孔があり、柄には網目模様が見られます。",
+        "source_ids": [
+          "guide-expansion-beniiguti"
+        ]
+      },
+      "habitat": {
+        "summary": "マツやコナラの林に発生します。",
+        "source_ids": [
+          "guide-expansion-beniiguti"
+        ]
+      },
+      "season": {
+        "summary": "夏から秋",
+        "source_ids": [
+          "guide-expansion-beniiguti"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-26",
+        "notes": "資料の掲載学名と記載範囲に基づく。"
+      }
+    },
+    {
+      "mushroom_id": "kiiroiguti",
+      "canonical_name_ja": "キイロイグチ",
+      "name_ja_sources": [
+        "guide-expansion-kiiroiguti"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Pulveroboletus ravenelii",
+        "source_ids": [
+          "guide-expansion-kiiroiguti"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "イグチ科",
+          "source_ids": [
+            "guide-expansion-kiiroiguti"
+          ]
+        },
+        "genus": {
+          "value": "キイロイグチ属",
+          "source_ids": [
+            "guide-expansion-yamada-genus"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘にはレモン色の粉が付き、裏側には細かい管孔が並びます。傷が付いた部分は青く変わります。",
+        "source_ids": [
+          "guide-expansion-kiiroiguti"
+        ]
+      },
+      "habitat": {
+        "summary": "針葉樹林や広葉樹林に発生します。",
+        "source_ids": [
+          "guide-expansion-kiiroiguti"
+        ]
+      },
+      "season": {
+        "summary": "夏から秋",
+        "source_ids": [
+          "guide-expansion-kiiroiguti"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-26",
+        "notes": "資料の掲載学名と記載範囲に基づく。"
+      }
+    },
+    {
+      "mushroom_id": "tengutakedamasi",
+      "canonical_name_ja": "テングタケダマシ",
+      "name_ja_sources": [
+        "guide-expansion-tengutakedamasi"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Amanita sychnopyramis",
+        "source_ids": [
+          "guide-expansion-tengutakedamasi"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "テングタケ科",
+          "source_ids": [
+            "guide-expansion-tengutakedamasi"
+          ]
+        },
+        "genus": {
+          "value": "テングタケ属",
+          "source_ids": [
+            "guide-expansion-kahaku-amanita"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "inedible_reported",
+        "source_ids": [
+          "guide-expansion-tengutakedamasi"
+        ],
+        "notes": "石川県の図鑑の食毒欄には「不食」と記載されています。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘には角ばったいぼが散り、縁にすじがあります。柄につばが付き、根元は丸くふくらみます。",
+        "source_ids": [
+          "guide-expansion-tengutakedamasi"
+        ]
+      },
+      "habitat": {
+        "summary": "林内に発生します。",
+        "source_ids": [
+          "guide-expansion-tengutakedamasi"
+        ]
+      },
+      "season": {
+        "summary": "夏から秋",
+        "source_ids": [
+          "guide-expansion-tengutakedamasi"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-26",
+        "notes": "資料の掲載学名と記載範囲に基づく。"
+      }
+    },
+    {
+      "mushroom_id": "nakaguromorinokasa",
+      "canonical_name_ja": "ナカグロモリノカサ",
+      "name_ja_sources": [
+        "guide-expansion-nakaguromorinokasa"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Agaricus praeclaresquamosus",
+        "source_ids": [
+          "guide-expansion-nakaguromorinokasa"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "ハラタケ科",
+          "source_ids": [
+            "guide-expansion-nakaguromorinokasa"
+          ]
+        },
+        "genus": {
+          "value": "ハラタケ属",
+          "source_ids": [
+            "guide-expansion-kahaku-agaricus"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "poisonous_confirmed",
+        "source_ids": [
+          "guide-expansion-nakaguromorinokasa"
+        ],
+        "notes": "石川県の図鑑では、この学名で扱ったナカグロモリノカサを有毒としています。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘に黒褐色の細かい鱗片があり、ひだは白色からチョコレート色に変わります。柄には膜状の二重のつばがあります。",
+        "source_ids": [
+          "guide-expansion-nakaguromorinokasa"
+        ]
+      },
+      "habitat": {
+        "summary": "林内の落ち葉の間に発生します。",
+        "source_ids": [
+          "guide-expansion-nakaguromorinokasa"
+        ]
+      },
+      "season": {
+        "summary": "夏から秋",
+        "source_ids": [
+          "guide-expansion-nakaguromorinokasa"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-26",
+        "notes": "資料の掲載学名と記載範囲に基づく。"
+      }
+    },
+    {
+      "mushroom_id": "budounigaiguchi",
+      "canonical_name_ja": "ブドウニガイグチ",
+      "name_ja_sources": [
+        "guide-expansion-budounigaiguchi"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Tylopilus vinosobrunneus",
+        "source_ids": [
+          "guide-expansion-budounigaiguchi"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "イグチ科",
+          "source_ids": [
+            "guide-expansion-budounigaiguchi"
+          ]
+        },
+        "genus": {
+          "value": "ニガイグチ属",
+          "source_ids": [
+            "research-ffpri-kinoko044"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "inedible_reported",
+        "source_ids": [
+          "guide-expansion-budounigaiguchi"
+        ],
+        "notes": "兵庫県の図鑑では、食用に適さないと記載されています。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘は紫を帯びた褐色からワイン色で、新鮮な傘はビロードのようです。管孔は白色から淡い紅色に変わります。",
+        "source_ids": [
+          "guide-expansion-budounigaiguchi"
+        ]
+      },
+      "habitat": {
+        "summary": "コナラなどの林に発生します。",
+        "source_ids": [
+          "guide-expansion-budounigaiguchi"
+        ]
+      },
+      "season": {
+        "summary": "夏から秋",
+        "source_ids": [
+          "guide-expansion-budounigaiguchi"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-26",
+        "notes": "資料の掲載学名と記載範囲に基づく。"
+      }
+    },
+    {
+      "mushroom_id": "yashaiguchi",
+      "canonical_name_ja": "ヤシャイグチ",
+      "name_ja_sources": [
+        "guide-expansion-yashaiguchi"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Austroboletus fusisporus",
+        "source_ids": [
+          "guide-expansion-yashaiguchi"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "オニイグチ科",
+          "source_ids": [
+            "guide-expansion-yashaiguchi"
+          ]
+        },
+        "genus": {
+          "value": "ヤシャイグチ属",
+          "source_ids": [
+            "guide-expansion-yashaiguchi"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "柄に縦長の網目があり、網目のすじが盛り上がります。",
+        "source_ids": [
+          "guide-expansion-yashaiguchi"
+        ]
+      },
+      "habitat": {
+        "summary": "シイやカシの林の地上に発生します。",
+        "source_ids": [
+          "guide-expansion-yashaiguchi"
+        ]
+      },
+      "season": {
+        "summary": "夏から秋",
+        "source_ids": [
+          "guide-expansion-yashaiguchi"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-26",
+        "notes": "科は森林総研資料の扱い。"
+      }
+    },
+    {
+      "mushroom_id": "usumurasakishimeji",
+      "canonical_name_ja": "ウスムラサキシメジ",
+      "name_ja_sources": [
+        "guide-expansion-usumurasakishimeji"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Lepista graveolens",
+        "source_ids": [
+          "guide-expansion-usumurasakishimeji"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "キシメジ科",
+          "source_ids": [
+            "guide-expansion-usumurasakishimeji"
+          ]
+        },
+        "genus": {
+          "value": "ムラサキシメジ属",
+          "source_ids": [
+            "guide-expansion-kahaku-lepista"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "poisonous_confirmed",
+        "source_ids": [
+          "guide-expansion-usumurasakishimeji"
+        ],
+        "notes": "工藤・長沢（1995）は、青森県での中毒事例の原因菌をウスムラサキシメジと同定しました。患者が知人に分けた保存個体と、発生場所で再採集した標本を照合しています。実際に食べた個体の残品はなく、飲酒との関係や毒性の詳細には、さらに検討が必要とされています。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘の淡い紫色は成長に伴って薄くなります。青森の標本では、はっきりした刺激臭が報告されています。",
+        "source_ids": [
+          "guide-expansion-usumurasakishimeji"
+        ]
+      },
+      "habitat": {
+        "summary": "腐植のある林内の地上に発生します。",
+        "source_ids": [
+          "guide-expansion-usumurasakishimeji"
+        ]
+      },
+      "season": {
+        "summary": "秋（国内の報告）",
+        "source_ids": [
+          "guide-expansion-usumurasakishimeji"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-26",
+        "notes": "資料の掲載学名と記載範囲に基づく。"
+      }
+    },
+    {
+      "mushroom_id": "oonoutake",
+      "canonical_name_ja": "オオノウタケ",
+      "name_ja_sources": [
+        "guide-expansion-oonoutake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Calvatia boninensis",
+        "source_ids": [
+          "guide-expansion-oonoutake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "ハラタケ科",
+          "source_ids": [
+            "guide-expansion-oonoutake"
+          ]
+        },
+        "genus": {
+          "value": "ノウタケ属",
+          "source_ids": [
+            "guide-expansion-kyoto-oon-2002"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "子実体は丸く、成熟すると表面が茶褐色になります。内部は胞子を含む粉状になります。",
+        "source_ids": [
+          "guide-expansion-oonoutake"
+        ]
+      },
+      "habitat": {
+        "summary": "腐葉土や落ち葉の上に発生します。",
+        "source_ids": [
+          "guide-expansion-oonoutake"
+        ]
+      },
+      "season": {
+        "summary": "7月から10月（京都府の記録）",
+        "source_ids": [
+          "guide-expansion-oonoutake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-26",
+        "notes": "資料の掲載学名と記載範囲に基づく。"
+      }
+    },
+    {
+      "mushroom_id": "kihoukitake",
+      "canonical_name_ja": "キホウキタケ",
+      "name_ja_sources": [
+        "guide-expansion-britannica-ramaria"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Ramaria flava",
+        "source_ids": [
+          "guide-expansion-britannica-ramaria"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "ラッパタケ科",
+          "source_ids": [
+            "guide-expansion-ramaria-rank"
+          ]
+        },
+        "genus": {
+          "value": "ホウキタケ属",
+          "source_ids": [
+            "guide-expansion-ramaria-rank"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "conflicting",
+        "source_ids": [
+          "guide-expansion-britannica-ramaria",
+          "guide-expansion-alic-ramaria"
+        ],
+        "notes": "百科事典には食用の記載と下痢の事例が併記され、農畜産業振興機構の資料ではホウキタケに似た有毒種として挙げられています。国内の黄色いホウキタケ類の分類範囲は確認が必要で、安全に食べられるとは判断できません。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "黄色い子実体が細かく枝分かれします。古くなると赤みを帯びることがあります。",
+        "source_ids": [
+          "guide-expansion-britannica-ramaria"
+        ]
+      },
+      "habitat": {
+        "summary": null,
+        "source_ids": []
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-26",
+        "notes": "資料の掲載学名と記載範囲に基づく。"
+      }
+    },
+    {
+      "mushroom_id": "kinchawantake",
+      "canonical_name_ja": "キンチャワンタケ",
+      "name_ja_sources": [
+        "guide-expansion-hiroshima-cup"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Aleuria rhenana",
+        "source_ids": [
+          "guide-expansion-hiroshima-cup"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "ピロネマキン科",
+          "source_ids": [
+            "guide-expansion-hiroshima-cup"
+          ]
+        },
+        "genus": {
+          "value": "ヒイロチャワンタケ属",
+          "source_ids": [
+            "guide-expansion-yamakei-change"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "子実体は杯のような形で、内側は橙黄色から鮮やかな黄色です。白い短い柄があります。",
+        "source_ids": [
+          "guide-expansion-hiroshima-cup"
+        ]
+      },
+      "habitat": {
+        "summary": "林内の地上に発生します。",
+        "source_ids": [
+          "guide-expansion-hiroshima-cup"
+        ]
+      },
+      "season": {
+        "summary": "夏から秋",
+        "source_ids": [
+          "guide-expansion-hiroshima-cup"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-26",
+        "notes": "資料の掲載学名と記載範囲に基づく。"
+      }
+    },
+    {
+      "mushroom_id": "sakurasimejimodoki",
+      "canonical_name_ja": "サクラシメジモドキ",
+      "name_ja_sources": [
+        "guide-expansion-kmc-hygro"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Hygrophorus purpurascens",
+        "source_ids": [
+          "guide-expansion-kmc-hygro"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "ヌメリガサ科",
+          "source_ids": [
+            "guide-expansion-hygo"
+          ]
+        },
+        "genus": {
+          "value": "ヌメリガサ属",
+          "source_ids": [
+            "guide-expansion-hygo"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "若いときにはクモの巣のような膜が見られます。",
+        "source_ids": [
+          "guide-expansion-kmc-hygro"
+        ]
+      },
+      "habitat": {
+        "summary": null,
+        "source_ids": []
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-26",
+        "notes": "資料の掲載学名と記載範囲に基づく。"
+      }
+    },
+    {
+      "mushroom_id": "benihanaiguti",
+      "canonical_name_ja": "ベニハナイグチ",
+      "name_ja_sources": [
+        "guide-expansion-benihanaiguti"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Suillus pictus",
+        "source_ids": [
+          "guide-expansion-benihanaiguti"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "イグチ科",
+          "source_ids": [
+            "guide-expansion-benihanaiguti"
+          ]
+        },
+        "genus": {
+          "value": "ヌメリイグチ属",
+          "source_ids": [
+            "guide-expansion-shimane-suillus"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [
+          "guide-expansion-benihanaiguti"
+        ],
+        "notes": "石川県の図鑑では Suillus pictus の名で食用と記載しています。新旧学名が指す国内の分類群の範囲は個別確認が必要で、掲載写真の安全性は判断できません。"
+      },
+      "toxins": [],
+      "features": {
+        "summary": "傘に繊維状の鱗片があり、傘の裏の管孔は柄に沿って下がります。傷が付いた部分は赤く変わります。",
+        "source_ids": [
+          "guide-expansion-benihanaiguti"
+        ]
+      },
+      "habitat": {
+        "summary": "葉が5本ずつまとまるマツの林に発生します。",
+        "source_ids": [
+          "guide-expansion-benihanaiguti"
+        ]
+      },
+      "season": {
+        "summary": "夏から秋",
+        "source_ids": [
+          "guide-expansion-benihanaiguti"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-26",
+        "notes": "掲載学名と Suillus spraguei の扱い、国内外での種範囲は別審査。"
+      }
+    },
+    {
+      "mushroom_id": "makukinugasatake",
+      "canonical_name_ja": "マクキヌガサタケ",
+      "name_ja_sources": [
+        "guide-expansion-makukinugasatake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Dictyophora duplicata",
+        "source_ids": [
+          "guide-expansion-makukinugasatake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "スッポンタケ科",
+          "source_ids": [
+            "guide-expansion-makukinugasatake"
+          ]
+        },
+        "genus": {
+          "value": "キヌガサタケ属",
+          "source_ids": [
+            "guide-expansion-makukinugasatake"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "白い中空の柄が伸び、傘の裏から網目のある幕が柄の途中まで垂れます。",
+        "source_ids": [
+          "guide-expansion-makukinugasatake"
+        ]
+      },
+      "habitat": {
+        "summary": "針葉樹林や広葉樹林の地上に発生します。",
+        "source_ids": [
+          "guide-expansion-makukinugasatake"
+        ]
+      },
+      "season": {
+        "summary": "夏から秋",
+        "source_ids": [
+          "guide-expansion-makukinugasatake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-26",
+        "notes": "資料の掲載学名と記載範囲に基づく。"
+      }
+    },
+    {
+      "mushroom_id": "mureoofusentake",
+      "canonical_name_ja": "ムレオオフウセンタケ",
+      "name_ja_sources": [
+        "guide-expansion-mureoofusentake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Cortinarius praestans",
+        "source_ids": [
+          "guide-expansion-mureoofusentake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "フウセンタケ科",
+          "source_ids": [
+            "guide-expansion-mureoofusentake"
+          ]
+        },
+        "genus": {
+          "value": "フウセンタケ属",
+          "source_ids": [
+            "guide-expansion-mureoofusentake"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "大きな傘は紫褐色を帯び、縁にしわのようなすじが出ます。ひだは成熟すると褐色を帯びます。",
+        "source_ids": [
+          "guide-expansion-mureoofusentake"
+        ]
+      },
+      "habitat": {
+        "summary": "ナラ類の林にまとまって発生します。",
+        "source_ids": [
+          "guide-expansion-mureoofusentake"
+        ]
+      },
+      "season": {
+        "summary": "秋",
+        "source_ids": [
+          "guide-expansion-mureoofusentake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-26",
+        "notes": "資料の掲載学名と記載範囲に基づく。"
+      }
+    },
+    {
+      "mushroom_id": "yamadoritake",
+      "canonical_name_ja": "ヤマドリタケ",
+      "name_ja_sources": [
+        "guide-expansion-yamadoritake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Boletus edulis",
+        "source_ids": [
+          "guide-expansion-yamadoritake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": null,
+          "source_ids": []
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": "イグチ科",
+          "source_ids": [
+            "research-kyoto-fungi-2015"
+          ]
+        },
+        "genus": {
+          "value": "ヤマドリタケ属",
+          "source_ids": [
+            "guide-expansion-kahaku-boletus"
+          ]
+        }
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "features": {
+        "summary": "褐色の傘はなめらかで粘りがあります。太い柄の上半分に網目模様が見られます。",
+        "source_ids": [
+          "guide-expansion-yamadoritake"
+        ]
+      },
+      "habitat": {
+        "summary": "トウヒやモミなどの針葉樹林に発生します。ミズナラ林やシラカンバ林にも記録があります。",
+        "source_ids": [
+          "guide-expansion-yamadoritake"
+        ]
+      },
+      "season": {
+        "summary": "夏から秋（中部山岳地方の記録では8〜9月）",
+        "source_ids": [
+          "guide-expansion-yamadoritake"
+        ]
+      },
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-26",
+        "notes": "資料の掲載学名と記載範囲に基づく。"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "guide-expansion-kahaku-amanita",
+      "organization": "国立科学博物館",
+      "title": "筑波実験植物園きのこ図鑑 テングタケ属",
+      "source_type": "guide_review_reference",
+      "url": "https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a11&id=404&p=1",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "科・属・学名。Amanitaceae テングタケ科、Amanita テングタケ属の日本語。種別生態・食毒の根拠には使用しない。"
+    },
+    {
+      "source_id": "guide-expansion-ffpri-boletus",
+      "organization": "森林総合研究所",
+      "title": "森林総合研究所研究報告7巻4号 イグチ類の供試菌株",
+      "source_type": "guide_review_reference",
+      "url": "https://repository.ffpri.go.jp/record/2003179/files/BF7-4-2.pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "表1の Boletellus elatus の行。国内分離株785202をBoletellus キクバナイグチ属の行に収録。"
+    },
+    {
+      "source_id": "guide-expansion-kahaku-boletus",
+      "organization": "国立科学博物館",
+      "title": "筑波実験植物園きのこ図鑑 ヤマドリタケ属",
+      "source_type": "guide_review_reference",
+      "url": "https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?grid=a03&id=1012&p=1",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "属・Genus。Boletus の日本語名。ヤマドリタケモドキの形態は他種へ転用しない。"
+    },
+    {
+      "source_id": "guide-expansion-hygo",
+      "organization": "日本菌学会",
+      "title": "日本産ヌメリガサ属の菌根に関する記述",
+      "source_type": "guide_review_reference",
+      "url": "https://www.jstage.jst.go.jp/article/jjom/31/2/31_jjom.H01-281/_pdf/-char/ja",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "日本菌学会会報31巻 サクラシメジモドキの和名欄。Hygrophorus purpurascens と H. capreolarius を別の和名で列挙。"
+    },
+    {
+      "source_id": "guide-expansion-kishimoto-kuri",
+      "organization": "農林水産・食品産業技術振興協会",
+      "title": "きのこ図鑑 クリフウセンタケ",
+      "source_type": "guide_review_reference",
+      "url": "https://www.jataff.or.jp/kinoko/314.htm",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "分類見出し・地方名。Cortinarius tenuipes。カキシメジと同じ地方名が使われる場合に注意。"
+    },
+    {
+      "source_id": "guide-expansion-ffpri-longistriata",
+      "organization": "森林総合研究所",
+      "title": "大谷達也（2023）今月の一枚 No.317 タマゴテングタケモドキ",
+      "source_type": "guide_review_reference",
+      "url": "https://www.ffpri.go.jp/skk/kenkyushokai/sikokudoshokubutu/tamagotengutakemodoki.html",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "種表記・末段。Amanita longistriata の有毒記載。似た和名の別種や写真個体に事例を転用しない。"
+    },
+    {
+      "source_id": "guide-expansion-yamakei-change",
+      "organization": "山と溪谷社",
+      "title": "カラー名鑑きのこ 増補改訂版 第2版 変更一覧",
+      "source_type": "guide_review_reference",
+      "url": "https://www.yamakei.co.jp/products/a0b77a014f8b3a79584975997f05650f.pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "No.355、No.572。ベニイグチ・キンチャワンタケの掲載学名と科属の変更を列挙。"
+    },
+    {
+      "source_id": "guide-expansion-kahaku-lepista",
+      "organization": "国立科学博物館",
+      "title": "筑波実験植物園きのこ図鑑 ムラサキシメジ属",
+      "source_type": "guide_review_reference",
+      "url": "https://www.kahaku.go.jp/research/db/botany/kinoco/search/detail.php?id=2321&p=230",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "科・属。Lepista の日本語表記。研究論文の対象とする種への分類学名の改訂は行わない。"
+    },
+    {
+      "source_id": "guide-expansion-britannica-ramaria",
+      "organization": "ブリタニカ国際大百科事典 小項目事典",
+      "title": "キホウキタケ（コトバンク収録）",
+      "source_type": "guide_review_reference",
+      "url": "https://kotobank.jp/word/%E3%81%8D%E3%81%BB%E3%81%86%E3%81%8D%E3%81%9F%E3%81%91-51538",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "キホウキタケの解説。Ramaria flava の枝分かれと色。食用記載と症状記録が併記されている。"
+    },
+    {
+      "source_id": "guide-expansion-alic-ramaria",
+      "organization": "農畜産業振興機構",
+      "title": "食用の野生キノコの同定",
+      "source_type": "guide_review_reference",
+      "url": "https://www.alic.go.jp/content/001186038.pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "2 食用の野生キノコの同定・表1。Ramaria flava をホウキタケと誤認しやすい有毒種の欄に記載。"
+    },
+    {
+      "source_id": "guide-expansion-ramaria-rank",
+      "organization": "図鑑.jp",
+      "title": "日本のきのこ キホウキタケ",
+      "source_type": "guide_review_reference",
+      "url": "https://i-zukan.jp/category/syu?category_id=22236",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "科名・属名・学名。ラッパタケ科ホウキタケ属の表記。国内群の種境界や毒性は別。"
+    },
+    {
+      "source_id": "guide-expansion-hiroshima-cup",
+      "organization": "広島県",
+      "title": "レッドデータブックひろしま2021 菌類",
+      "source_type": "guide_review_reference",
+      "url": "https://www.pref.hiroshima.lg.jp/uploaded/attachment/478965.pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "キンチャワンタケ・概要。Aleuria rhenana の形態・林内地上・夏から秋。ピロネマキン科を採用する資料。"
+    },
+    {
+      "source_id": "guide-expansion-kmc-hygro",
+      "organization": "関西菌類談話会",
+      "title": "関西菌類談話会会報36（2018）",
+      "source_type": "guide_review_reference",
+      "url": "https://kmc-jp.net/wp-content/uploads/2020/02/36%E5%8F%B7.pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "観察会報告 サクラシメジモドキとヒメサクラシメジの比較。H. purpurascens のクモの巣状の膜を記載。H. capreolarius を別種として区別。"
+    },
+    {
+      "source_id": "guide-expansion-murasakiyamadoritake",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「ムラサキヤマドリタケ」",
+      "source_type": "guide_review_reference",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/murasakiyamadoritake.html",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "学名・発生場所・発生時期・特徴の各欄。イグチ科、同じ学名。食用との資料記載を個体の安全性には適用しない。"
+    },
+    {
+      "source_id": "guide-expansion-kitamagotake",
+      "organization": "日本菌学会",
+      "title": "Endo et al. 2017, Mycoscience 58, §4 Taxonomy pp.465–467",
+      "source_type": "guide_review_reference",
+      "url": "https://www.jstage.jst.go.jp/article/mycosci/58/6/58_MYC58457/_pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "Endo・Yamada ほか（2017）4 Taxonomy、pp.465–467、Fig.4、TNS-F-70004。旧 A. javanica と区別して国内標本から A. kitamagotake を記載。p.466 Habitat に年2回の発生時期と外生菌根形成（未公表データ）の記載。"
+    },
+    {
+      "source_id": "guide-expansion-asinagaiguti",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「アシナガイグチ」",
+      "source_type": "guide_review_reference",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/asinagaiguti.html",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "学名・発生場所・発生時期・特徴の各欄。石川県の科はオニイグチ科。京都府2015の掲載する Boletellus elatus はイグチ科。"
+    },
+    {
+      "source_id": "guide-expansion-tamagotengutakemodoki",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「タマゴテングタケモドキ」",
+      "source_type": "guide_review_reference",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/tamagotengutakemodoki.html",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "学名・発生場所・発生時期・特徴の各欄。掲載学名は Amanita longistriata。似た和名の A. subjunquillea と独立した資料。"
+    },
+    {
+      "source_id": "guide-expansion-kurifuusentake",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「クリフウセンタケ」",
+      "source_type": "guide_review_reference",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kurifuusentake.html",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "学名・発生場所・発生時期・特徴の各欄。石川県の図鑑が Cortinarius tenuipes として扱った資料。地方名の類似と毒性は別。"
+    },
+    {
+      "source_id": "guide-expansion-beniiguti",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「ベニイグチ」",
+      "source_type": "guide_review_reference",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/beniiguti.html",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "学名・発生場所・発生時期・特徴の各欄。Heimiella japonica としての形態・発生環境。改訂資料は Heimioporus japonicus に移す。"
+    },
+    {
+      "source_id": "guide-expansion-kiiroiguti",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「キイロイグチ」",
+      "source_type": "guide_review_reference",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kiiroiguti.html",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "学名・発生場所・発生時期・特徴の各欄。Pulveroboletus ravenelii の国内資料。別地域の標本にそのまま適用しない。"
+    },
+    {
+      "source_id": "guide-expansion-yamada-genus",
+      "organization": "信州大学",
+      "title": "山田明義（2002）日本産菌根性きのこ類の食資源としての利用性",
+      "source_type": "guide_review_reference",
+      "url": "https://soar-ir.repo.nii.ac.jp/records/10540",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "添付PDF p.2 属名の一覧。Pulveroboletus とキイロイグチ属の対応。同論文の生態に関する根拠は表2。"
+    },
+    {
+      "source_id": "guide-expansion-tengutakedamasi",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「テングタケダマシ」",
+      "source_type": "guide_review_reference",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/tengutakedamasi.html",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "学名・発生場所・発生時期・特徴の各欄。Amanita sychnopyramis の記載。石川県の「不食」は資料上の区分。"
+    },
+    {
+      "source_id": "guide-expansion-nakaguromorinokasa",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「ナカグロモリノカサ」",
+      "source_type": "guide_review_reference",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/nakaguromorinokasa.html",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "学名・発生場所・発生時期・特徴の各欄。旧学名Agaricus praeclaresquamosus の毒性記載。資料の分類範囲に限定する。"
+    },
+    {
+      "source_id": "guide-expansion-kahaku-agaricus",
+      "organization": "国立科学博物館",
+      "title": "筑波実験植物園きのこ図鑑 ハラタケ属",
+      "source_type": "guide_review_reference",
+      "url": "https://www.kahaku.go.jp/research/db/botany/kinoco/search/list.php?grid=k08&p=1&s=sci",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "Agaricus sp. の標本一覧。Agaricus の和属名。"
+    },
+    {
+      "source_id": "guide-expansion-budounigaiguchi",
+      "organization": "兵庫県治山林道協会",
+      "title": "兵庫のきのこ図鑑（2012）p.38、ブドウニガイグチ",
+      "source_type": "guide_review_reference",
+      "url": "https://www.chisanrindou.jp/information/pdf/book23.pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "兵庫県のきのこガイド p.38、右上 ブドウニガイグチ。学名、形態、環境と季節。食用に適さないとの資料記載を毒性とは扱わない。"
+    },
+    {
+      "source_id": "guide-expansion-yashaiguchi",
+      "organization": "森林総合研究所 九州支所",
+      "title": "立田山のきのこ「ヤシャイグチ」",
+      "source_type": "guide_review_reference",
+      "url": "https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko037.html",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "所属・学名・生態欄。森林総研はオニイグチ科ヤシャイグチ属。発生場所の記載を生活様式とは扱わない。"
+    },
+    {
+      "source_id": "guide-expansion-usumurasakishimeji",
+      "organization": "日本菌学会",
+      "title": "工藤・長沢（1995）ウスムラサキシメジによる中毒について pp.103–106",
+      "source_type": "guide_review_reference",
+      "url": "https://www.jstage.jst.go.jp/article/jjom/36/3/36_jjom.H06-103/_pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "日本菌学会会報36 pp.103–106。p.106に患者が知人に分けた保存個体と再採集標本の照合、原因菌の同定、飲酒との関係と毒性に追加検討が必要との記載。"
+    },
+    {
+      "source_id": "guide-expansion-oonoutake",
+      "organization": "京都府",
+      "title": "京都府レッドデータブック2015 オオノウタケ、形態",
+      "source_type": "guide_review_reference",
+      "url": "https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fun0050.html",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "京都府レッドデータブック2015、形態・生態的特性。Calvatia boninensis。ノウタケとの区別は胞子の確認が必要。"
+    },
+    {
+      "source_id": "guide-expansion-kyoto-oon-2002",
+      "organization": "京都府",
+      "title": "京都府レッドデータブック2002 オオノウタケ",
+      "source_type": "guide_review_reference",
+      "url": "https://www.pref.kyoto.jp/kankyo/rdb2002/bio/db/fun0050.html",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "属名・形態。Calvatia をノウタケ属と表記。腐葉土や落葉の上で7～10月の記載。"
+    },
+    {
+      "source_id": "guide-expansion-benihanaiguti",
+      "organization": "石川県 農林総合研究センター林業試験場",
+      "title": "いしかわ きのこ図鑑「ベニハナイグチ」",
+      "source_type": "guide_review_reference",
+      "url": "https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/benihanaiguti.html",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "学名・発生場所・発生時期・特徴の各欄。石川県の Suillus pictus 表記。旧名の和名の範囲を維持。"
+    },
+    {
+      "source_id": "guide-expansion-shimane-suillus",
+      "organization": "島根県中山間地域研究センター",
+      "title": "きのこ調査報告 ヌメリイグチ属",
+      "source_type": "guide_review_reference",
+      "url": "https://www1.pref.shimane.lg.jp/admin/region/kikan/chusankan/syoseki/research/No5_kenkyuhoukoku.data/kenkyuhoukokudai5gou15.pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "ヌメリイグチ属の記載。Suillus の和属名。"
+    },
+    {
+      "source_id": "guide-expansion-makukinugasatake",
+      "organization": "弘前大学 白神自然環境研究センター",
+      "title": "白神山地きのこ情報 マクキヌガサタケ 形などの特徴",
+      "source_type": "guide_review_reference",
+      "url": "https://www.shirakami-database.jp/mushroom/?p=323",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "弘前大学 白神山地きのこ情報、学名・特徴・発生環境・発生時期。Dictyophora duplicata の種別ページ。旧属扱いと Phallus の組合せは別審査。"
+    },
+    {
+      "source_id": "guide-expansion-mureoofusentake",
+      "organization": "農林水産・食品産業技術振興協会",
+      "title": "きのこ図鑑 ムレオオフウセンタケ　特徴",
+      "source_type": "guide_review_reference",
+      "url": "https://www.jataff.or.jp/kinoko/311.htm",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "JATAFFきのこ図鑑、学名・特徴。Cortinarius praestans としての種別記載。新属への組み替えが提案されている。"
+    },
+    {
+      "source_id": "guide-expansion-yamadoritake",
+      "organization": "環境省",
+      "title": "第5次レッドデータブック ヤマドリタケ p.2",
+      "source_type": "guide_review_reference",
+      "url": "https://www.env.go.jp/nature/kisho/5th-rl-2025/FU0088_RDB5th.pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-26",
+      "notes": "吹春俊光（2025）環境省第5次レッドデータブック pp.1–2 形態・生育環境。Boletus edulis の国内事例。中部山岳地域に限った発生時期を記載。"
+    }
+  ]
+}
