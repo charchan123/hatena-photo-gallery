@@ -1,7 +1,7 @@
 {
   "payload": {
     "version": 1,
-    "last_success_at": "2026-11-26T04:13:46.100128+00:00",
+    "last_success_at": "2026-11-26T07:38:32.232663+00:00",
     "articles": {
       "a232fbe92c9c730206908cf61359bbc9c3719d7f935e6f742661b2e3b41e40bb": {
         "updated_hash": "9e5c992d54ac9ef0e5e89c323b7a7deca5ede357b1d08415b5bb2ce4110120ed",
@@ -9289,7 +9289,7 @@
         "sha256": "1767879599368ac0d6795cc38c38b3c4c19c591c5c66a4094afb367ba2474ce3"
       }
     ],
-    "deletion_history_head": "e65746e33c41593aab3524ffefd8f80a5c305b1a4d179bc4d8efc9ef24d5896d"
+    "deletion_history_head": "e7bdf852d6962a1278fa861993e2ae658f01d8488713dcfb491a17f303c15c93"
   },
-  "sha256": "157a25aa040c3c30a8aead41adcdf3e5dc3de2ac81f1d921b2c70815b83a46db"
+  "sha256": "5f77dc4fd63abc19312ebb7ef3fd847df75fa7eddcd071c1c353d92dba5f0da8"
 }
