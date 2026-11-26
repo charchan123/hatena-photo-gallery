@@ -1,0 +1,54 @@
+name: Read-only guide name review preview
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'audit/guide-review-125-20261126/**'
+      - '.github/workflows/guide-review-125.yml'
+permissions:
+  contents: read
+jobs:
+  audit-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate review data and verify protected paths
+        run: python audit/guide-review-125-20261126/verify-audit.py
+      - name: Install browser for local preview
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-noto-cjk
+          npm install --prefix /tmp/guide-review-npm --no-save playwright@1.62.1
+          /tmp/guide-review-npm/node_modules/.bin/playwright install --with-deps chromium
+      - name: Test all targets at three widths and record representative screens
+        env:
+          PLAYWRIGHT_MODULE_PATH: /tmp/guide-review-npm/node_modules/playwright
+        run: |
+          audit=audit/guide-review-125-20261126
+          python -m http.server --bind 127.0.0.1 --directory "$audit/preview" 8032 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          for attempt in {1..20}; do
+            if curl -fsS http://127.0.0.1:8032/ -o /dev/null; then break; fi
+            sleep 1
+          done
+          node "$audit/browser-check.cjs"
+          mkdir -p /tmp/guide-review-browser-delivery
+          cp -R "$audit/preview" /tmp/guide-review-browser-delivery/
+          cp -R /tmp/guide-review-browser /tmp/guide-review-browser-delivery/screenshots
+      - uses: actions/upload-artifact@v4
+        with:
+          name: guide-review-preview-${{ github.event.pull_request.head.sha }}
+          path: /tmp/guide-review-browser-delivery/
+          retention-days: 90
