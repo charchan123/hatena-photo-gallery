@@ -53,7 +53,8 @@ def operation(review, *, item=NAME, kind="name", decision="confirmed", scope="al
     ids = photos if photos is not None else [p["identity"]["id"] for p in state["item"]["photos"]]
     tickets = {photo: review.photo(key, photo)[2] for photo in ids} if kind == "name" and load and decision == "confirmed" else {}
     return {"revision": state["revision"], "item": key, "kind": kind, "decision": decision, "scope": scope,
-            "photos": ids, "tickets": tickets, "reviewer": "確認者", "note": "根拠のメモ", "ack": ack}
+            "photos": ids, "tickets": tickets, "reviewer": "確認者", "note": "根拠のメモ", "ack": ack,
+            "view_basis": state["item"]["view_basis"][kind]}
 
 
 def status(review, name=NAME):
@@ -196,3 +197,14 @@ def test_corrupt_database_is_preserved(setup):
     with pytest.raises(sqlite3.DatabaseError):
         review.records()
     assert review.path.read_bytes() == b"broken backup content"
+
+
+def test_stale_open_manuscript_cannot_approve_after_another_tab_refreshes(setup):
+    review, _, _, catalog = setup
+    displayed = operation(review, kind="manuscript", scope="editorial", photos=[])
+    catalog["items"][0]["draft"]["fields"]["特徴"] = "更新された原稿"
+    review.catalog.write_text(json.dumps(catalog, ensure_ascii=False), encoding="utf-8")
+    review.refresh()
+    with pytest.raises(ReviewError, match="情報が更新されました"):
+        review.change(displayed)
+    assert review.records() == []

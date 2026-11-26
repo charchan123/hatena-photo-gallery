@@ -142,9 +142,11 @@ def build_items(catalog, portal):
             "food": bool(food and not any(word in food for word in ("未審査", "未承認", "転用しない", "未確認"))),
             "features": False,
         }
+        name_basis = _fingerprint([row["question"], row["group"], row["reason"]])
+        content_basis = {kind: _fingerprint([kind, editorial]) for kind in KINDS[1:]}
         result[key] = {**row, "id": key, "photos": photos, "legacy_ids": legacy,
-                       "reviewable": reviewable, "name_basis": _fingerprint([row["question"], row["group"], row["reason"]]),
-                       "content_basis": {kind: _fingerprint([kind, editorial]) for kind in KINDS[1:]}}
+                       "reviewable": reviewable, "name_basis": name_basis, "content_basis": content_basis,
+                       "view_basis": {"name": _fingerprint([name_basis, photos, legacy]), **content_basis}}
     return result
 
 
@@ -347,12 +349,7 @@ class GuideReview:
 
     def change(self, body, *, restore=False):
         with self.lock:
-            previous = self.items
             self.refresh()
-            if isinstance(body.get("item"), str) and previous:
-                key = body["item"]
-                require(previous.get(key) == self.items.get(key),
-                        "写真・原稿・出典の情報が更新されました。再取得して確認してください")
             with closing(self.open()) as db:
                 db.execute("BEGIN IMMEDIATE")
                 current = self.load(db)
@@ -392,12 +389,14 @@ class GuideReview:
         return hashes
 
     def make_event(self, body, revision):
-        require(set(body) == {"revision", "item", "kind", "decision", "scope", "photos", "tickets", "reviewer", "note", "ack"}
+        require(set(body) == {"revision", "item", "kind", "decision", "scope", "photos", "tickets", "reviewer", "note", "ack", "view_basis"}
                 and type(body["item"]) is str and body["item"] in self.items
                 and body["kind"] in KINDS and body["decision"] in DECISIONS and revision <= MAX_EVENTS,
                 "対象・操作・記録上限を確認してください")
         item = self.items[body["item"]]
         kind, decision, scope = body["kind"], body["decision"], body["scope"]
+        require(body["view_basis"] == item["view_basis"][kind],
+                "写真・原稿・出典の情報が更新されました。再取得して確認してください")
         keys, tickets = body["photos"], body["tickets"]
         require(isinstance(keys, list) and isinstance(tickets, dict)
                 and all(identifier(key, PHOTO_ID) for key in keys) and len(set(keys)) == len(keys), "写真の指定が不正です")

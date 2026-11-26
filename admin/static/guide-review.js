@@ -14,7 +14,8 @@
   const selection = find("#guide-items");
   const zoom = find("#guide-zoom");
   let data, token, selected, view = 0, saving = false;
-  let reviewer = "", memo = "";
+  let reviewer = "";
+  const notes = new Map();
   let objectUrls = [];
   const loaded = new Map();
 
@@ -152,10 +153,11 @@
     try {
       const result = await request("save", {
         revision: data.revision, item: item.id, kind, decision, scope, photos: ids, tickets,
-        reviewer, note: memo, ack: decision === "confirmed",
+        reviewer, note: notes.get(item.id) || "", ack: decision === "confirmed",
+        view_basis: item.view_basis[kind],
       });
       report(`保存しました（改訂 ${result.revision}）`);
-      memo = "";
+      notes.delete(item.id);
       await open(next || item.id, false);
       if (next) itemRegion.scrollIntoView({block: "start"});
     } catch (error) {
@@ -308,7 +310,7 @@
     const line = element("p", `区分 ${item.group} · 公開写真 ${ids.length}枚 · ${labelStatus[item.status]}`);
     itemRegion.append(nav, title, line, element("p", item.question), element("p", item.reason, "meta"));
     itemRegion.append(control("確認者", "guide-reviewer", reviewer, v => { reviewer = v; }),
-      control("確認メモ", "guide-note", memo, v => { memo = v; }, true));
+      control("確認メモ", "guide-note", notes.get(item.id) || "", v => notes.set(item.id, v), true));
     if (item.legacy_ids.length) {
       itemRegion.append(element("p", "過去の写真接続承認は #163 の指定3枚です。最新画像の目視確認を記録できます。原稿・食毒・特徴・公開は個別に審査します。"),
         link("https://github.com/charchan123/hatena-photo-gallery/pull/163", "旧承認 #163 を開く"));
