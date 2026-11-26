@@ -1,0 +1,30 @@
+{
+  "items": {
+    "D": 14,
+    "B": 102,
+    "C": 7,
+    "A": 1,
+    "E": 1
+  },
+  "article_photo_evidence": {
+    "同じ節の見出しが一致": 187,
+    "当該写真の記述に同定の留保候補": 4,
+    "同じ節に複合・不確定表記": 2,
+    "ALT一致・節見出し要確認": 1,
+    "同一画像のALT一致のみ": 1
+  },
+  "prior_research": 124,
+  "originals_accessible": 50,
+  "number_of_articles": 50,
+  "draft_re_review": 89,
+  "old_v1_review": 73,
+  "primary_review_first": 16,
+  "newly_prepared_manuscripts": 0,
+  "classification_status": {
+    "confirmed_named_mushroom": 7,
+    "legacy_review": 186,
+    "legacy_undetected": 2
+  },
+  "status_changes_since_182": 0,
+  "status_changes_since_184": 0
+}

@@ -1,0 +1,74 @@
+掲載名,出典ID,資料名,機関,URL,資料の適用,資料の取得日（先行）
+サザナミイグチ,guide-research-sazanamiiguti,まもりたい静岡県の野生生物 サザナミイグチ PDF p.10,静岡県,https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/686/2-2_fungi03_rdbshiz2020pla.pdf,PDFの対象ページを目視し、文字化けした原文の該当箇所を転記。,2026-11-21
+ダイダイイグチ,guide-research-daidaiiguti,広島県レッドデータブック ダイダイイグチ p.731,広島県,https://www.pref.hiroshima.lg.jp/uploaded/attachment/478965.pdf,資料記載の学名・発生環境と特徴箇所を照合。,2026-11-21
+キヒダタケ,kihidatake-guide,いしかわ きのこ図鑑「キヒダタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kihidatake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+イボテングタケ,ibotengutake-ibotengutake,自然毒のリスクプロファイル：テングタケの近縁種イボテングタケ,厚生労働省,https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000142712.html,図鑑解説用に資料の学名表記と観察形質を照合。,2026-11-21
+ニガイグチモドキ,nigaigutimodoki-guide,いしかわ きのこ図鑑「ニガイグチモドキ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/nigaigutimodoki.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+オニテングタケ,guide-research-onitengutake,青森県レッドデータブック2020 オニテングタケ p.168,青森県,https://www.pref.aomori.lg.jp/soshiki/kankyo/shizen/files/RDB06_kinrui.pdf,資料記載の学名・発生環境と特徴箇所を照合。,2026-11-21
+カワキタケ,guide-followup-kawakitake,札幌近郊のきのこ、カワキタケの形態欄,札幌きのこの会,https://s-kinokonokai.sakura.ne.jp/kinoko/common/kawakitake.htm,静岡県目録1122番と京都府自然環境目録は同学名。Species Fungorum 178864は知床報告の旧学名Panus torulosusを異名とする。知床報告p.11、IG-6589はケヤマハンノキ倒木。Yueら（2024）図8Bにも中国産のひだが写る。 写真への接続、食毒、公開は未審査。,2026-11-22
+キイボカサタケ,kiibokasatake-guide,いしかわ きのこ図鑑「キイボカサタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kiibokasatake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+ヒトクチタケ,hitokutitake-guide,いしかわ きのこ図鑑「ヒトクチタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/hitokutitake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+センニンタケ,guide-followup-sennintake,岸澤広晶、静岡県レッドデータブック（2020）p.453、センニンタケ,静岡県,https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/686/2-2_fungi03_rdbshiz2020pla.pdf,学名は県資料・科博TNS-F-21793の表記。Species Fungorum 325956の現行名は同じ基礎異名からの組み替えScutiger pes-caprae。東アジアの近縁種と国内標本は個体ごとに照合する。 写真への接続、食毒、公開は未審査。,2026-11-22
+ハナオチバタケ,hanaotibatake-guide,いしかわ きのこ図鑑「ハナオチバタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/hanaotibatake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+アクニオイタケ,akunioitake-guide,いしかわ きのこ図鑑「アクニオイタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/akunioitake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+アミスギタケ,amisugitake-guide,いしかわ きのこ図鑑「アミスギタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/amisugitake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+オオキヌハダトマヤタケ,ookinuhadatomayatake-guide,いしかわ きのこ図鑑「オオキヌハダトマヤタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/ookinuhadatomayatake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+オオゴムタケ,oogomutake-guide,いしかわ きのこ図鑑「オオゴムタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/oogomutake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+オニナラタケ,oninaratake-oninaratake,野生きのこの世界：オニナラタケ,農林水産・食品産業技術振興協会,https://www.jataff.or.jp/kinoko/0409/3.htm,図鑑解説用に資料の学名表記と観察形質を照合。,2026-11-21
+キサマツモドキ,guide-review-kisamatsumodoki,形態と系統に基づく日本産サマツモドキ属菌の種多様性の解明 p.28、Table 1,日本菌学会,https://www.jstage.jst.go.jp/article/jjom/67/1/67_jjom.R8-21/_pdf/-char/ja,日本の標本を用いた分子系統と形態の照合。,2026-11-21
+クサハツ,kusahatu-guide,いしかわ きのこ図鑑「クサハツ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kusahatu.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+クロハナビラニカワタケ,kurohanabiranikawatake-guide,いしかわ きのこ図鑑「クロハナビラニカワタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kurohanabiranikawatake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+タマキクラゲ,tamakikurage-guide,いしかわ きのこ図鑑「タマキクラゲ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/tamakikurage.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+チシオタケ,tisiotake-guide,いしかわ きのこ図鑑「チシオタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/tisiotake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+ニオイコベニタケ,nioikobenitake-guide,いしかわ きのこ図鑑「ニオイコベニタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/nioikobenitake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+ニワタケ,niwatake-guide,いしかわ きのこ図鑑「ニワタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/niwatake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+ヒナノヒガサ,hinanohigasa-guide,いしかわ きのこ図鑑「ヒナノヒガサ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/hinanohigasa.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+ヒメコナカブリツルタケ,himekonagaburiturutake-guide,いしかわ きのこ図鑑「ヒメコナカブリツルタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/himekonagaburiturutake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+ヒロヒダタケ,hirohidatake-guide,いしかわ きのこ図鑑「ヒロヒダタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/hirohidatake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+ムラサキアブラシメジモドキ,murasakiaburasimejimodoki-guide,いしかわ きのこ図鑑「ムラサキアブラシメジモドキ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/murasakiaburasimejimodoki.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+カバイロコナテングタケ,kabairokonatengutake-guide,いしかわ きのこ図鑑「カバイロコナテングタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kabairokonatengutake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+クロタマゴテングタケ,kurotamagotengutake-guide,いしかわ きのこ図鑑「クロタマゴテングタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kurotamagotengutake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+ケショウハツ,kesyouhatu-guide,いしかわ きのこ図鑑「ケショウハツ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kesyouhatu.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+コガネキクバナイグチ,guide-review-koganekikubanaiguchi,"Sato and Hattori 2015, Taxonomy, Boletellus aurocontextus, Figs 2–3",PLOS One,https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0128184,国内標本の原記載。和名は関西菌類談話会会報37の図7と日本産きのこ目録の改訂表とも照合。写真への適用は別審査。,2026-11-21
+ハゴロモイタチタケ,guide-review-hagoromoitachitake,日本新産種 Psathyrella delineata について p.20,日本菌学会,https://www.jstage.jst.go.jp/article/jjom/46/1/46_jjom.H16-19/_pdf,国内初記録の資料掲載学名。Species Fungorum 321153の現在名は Typhrasa delineata。先行論文が挙げた近縁種との関係は別途確認。,2026-11-21
+ミヤママスタケ,guide-research-miyamamasutake,"Phylogeny and taxonomy of Laetiporus, key couplets 1–4",MycoKeys,https://pmc.ncbi.nlm.nih.gov/articles/PMC6081469/,検索表の黄色い管孔面から針葉樹、東アジア・欧州の枝をたどり種名を照合。本文データは NCBI BioC XML。,2026-11-21
+モリノカレバタケ,morinokarebatake-guide,いしかわ きのこ図鑑「モリノカレバタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/morinokarebatake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+アオゾメクロツブタケ,guide-review-aozomekurotsubutake,京都府レッドデータブック2015、形態,京都府,https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fun0069.html,現行名と旧和名を照合。後年の分類報告で区別された近縁種にも青変があり、写真への適用は別審査。,2026-11-21
+アカカバイロタケ,akakabairotake-guide,いしかわ きのこ図鑑「アカカバイロタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/akakabairotake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+アカキツネガサ,akakitunegasa-guide,いしかわ きのこ図鑑「アカキツネガサ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/akakitunegasa.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+イタチタケ,itatitake-guide,いしかわ きのこ図鑑「イタチタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/itatitake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+ウスキテングタケ,usukitengutake-guide,いしかわ きのこ図鑑「ウスキテングタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/usukitengutake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+オオダイアシベニイグチ,guide-review-oodaiashibeniiguchi,菌類資料No.5、標本F-00035、肉眼的特徴,茅野市八ヶ岳総合博物館,https://www.city.chino.lg.jp/uploaded/attachment/14172.pdf,Species Fungorum 309737で同名を確認。,2026-11-21
+カオリツムタケ,kaoritumutake-guide,いしかわ きのこ図鑑「カオリツムタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kaoritumutake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+キツネノハナガサ,kitunenohanagasa-guide,いしかわ きのこ図鑑「キツネノハナガサ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kitunenohanagasa.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+キヌメリガサ,guide-review-kinumerigasa,きのこ図鑑 キヌメリガサ　特徴,農林水産・食品産業技術振興協会,https://www.jataff.or.jp/kinoko/215.htm,環境省の白山の菌類目録に同和名・同学名。,2026-11-21
+キハツダケ,kihatudake-guide,いしかわ きのこ図鑑「キハツダケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kihatudake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+クサイロハツ,guide-followup-kusairohatsu,兵庫のきのこ図鑑（2012）p.42、クサイロハツ,兵庫県治山林道協会,https://www.chisanrindou.jp/information/pdf/book23.pdf,形態は兵庫の資料。静岡県目録1213番、利尻島の採集記録と和名・学名が一致。 写真への接続、食毒、公開は未審査。,2026-11-22
+クリイロイグチモドキ,guide-review-kuriiroiguchimodoki,茨城県新産3種の大型菌類 p.55・図1、標本INM-2-92298,ミュージアムパーク茨城県自然博物館,https://www.nat.museum.ibk.ed.jp/assets/data/materials/research/report/19/%E2%84%9619web-re.pdf,原記載を引用する国内報告。,2026-11-21
+クリカワヤシャイグチ,kurikawayasyaiguti-guide,いしかわ きのこ図鑑「クリカワヤシャイグチ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kurikawayasyaiguti.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+コウジタケ,koujitake-guide,いしかわ きのこ図鑑「コウジタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/koujitake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+コキララタケ,kokiraratake-guide,いしかわ きのこ図鑑「コキララタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/kokiraratake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+コゲエノヘラタケ,guide-review-kogeenoheratake,はくさん21巻3号 表紙解説 コゲエノヘラタケ,石川県白山自然保護センター,https://www.pref.ishikawa.lg.jp/hakusan/publish/hakusan/documents/hakusan21-3.pdf,Spathulariaは資料掲載名。Spathulariopsisの組み合わせもあり、和名は横須賀市の国内目録と照合。,2026-11-21
+シロウロコツルタケ,guide-review-shirourokotsurutake,Nakaiら 2026 Mycoscience 67 pp.13–14、緑OTU,日本菌学会,https://www.jstage.jst.go.jp/article/mycosci/67/1/67_MYC687/_pdf,和名は大阪市立自然史博物館のOMNH 12361も照合。旧同定は標本ごとに再検討が必要。,2026-11-21
+シロキクラゲ,guide-research-shirokikurage,はくさん 第21巻第4号 表紙解説 シロキクラゲ,石川県白山自然保護センター,https://www.pref.ishikawa.lg.jp/hakusan/publish/hakusan/documents/hakusan21-4.pdf,資料記載の学名・発生環境と特徴箇所を照合。,2026-11-21
+シロソウメンタケ,guide-research-sirosoumentake,自然保護センター調査研究報告書 シロソウメンタケ p.78,神奈川県,https://www.pref.kanagawa.jp/documents/14725/hogocenter06.pdf,資料記載の学名・発生環境と特徴箇所を照合。,2026-11-21
+シロヌメリイグチ,sironumeriiguti-guide,いしかわ きのこ図鑑「シロヌメリイグチ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/sironumeriiguti.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+ジャガイモタケ,guide-review-jagaimotake,愛媛県レッドデータブック、種の特徴,愛媛県,https://www.pref.ehime.jp/reddatabook2014/detail/13_07_013030_2.html,愛媛県・神奈川県とIndex Fungorumの学名が一致。愛媛県の形態欄を使用し、写真への適用は別審査。,2026-11-21
+テングツルタケ,tenguturutake-guide,いしかわ きのこ図鑑「テングツルタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/tenguturutake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+テングノメシガイ,guide-review-tengunomeshigai,改訂新版 世界大百科事典 テングノメシガイ、形態,平凡社,https://kotobank.jp/word/%E3%81%A6%E3%82%93%E3%81%90%E3%81%AE%E3%82%81%E3%81%97%E3%81%8C%E3%81%84-3160035,千葉県立中央博物館の菌類誌の検査標本で同和名と学名を照合。,2026-11-21
+ニシキタケ,nisikitake-guide,いしかわ きのこ図鑑「ニシキタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/nisikitake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+ヌメリササタケ,numerisasatake-guide,いしかわ きのこ図鑑「ヌメリササタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/numerisasatake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+ハナガサイグチ,hanagasaiguti-guide,いしかわ きのこ図鑑「ハナガサイグチ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/hanagasaiguti.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+ヒメカバイロタケ,himekabairotake-guide,いしかわ きのこ図鑑「ヒメカバイロタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/himekabairotake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+ヒメキクラゲ,himekikurage-guide,いしかわ きのこ図鑑「ヒメキクラゲ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/himekikurage.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+ヒョウモンウラベニガサ,hyoumonurabenigasa-guide,いしかわ きのこ図鑑「ヒョウモンウラベニガサ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/hyoumonurabenigasa.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+フクロツルタケ,fukuroturutake-guide,いしかわ きのこ図鑑「フクロツルタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/fukuroturutake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+フジウスタケ,fujiusutake-guide,いしかわ きのこ図鑑「フジウスタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/fujiusutake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+ベニヒガサ,benihigasa-guide,いしかわ きのこ図鑑「ベニヒガサ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/benihigasa.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+ミヤマベニイグチ,miyamabeniiguti-guide,いしかわ きのこ図鑑「ミヤマベニイグチ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/miyamabeniiguti.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+ムササビタケ,musasabitake-guide,いしかわ きのこ図鑑「ムササビタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/musasabitake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+モウセンアシベニイグチ,mousenashibeniiguchi-mousen-ja,モウセンアシベニイグチの記載和訳,牛肝菌研究所,https://boletus.sakura.ne.jp/labo/kisai/bts006.html,図鑑解説用に資料の学名表記と観察形質を照合。,2026-11-21
+モウセンアシベニイグチ,mousenashibeniiguchi-mousen-paper,Notes on the boletes of Japan 1. Four new species of the genus Boletus,Mycoscience（日本菌学会誌）,https://www.jstage.jst.go.jp/article/mycosci/54/6/54_MYC54458/_article/-char/en,図鑑解説用に資料の学名表記と観察形質を照合。,2026-11-21
+ヤグラタケ,yaguratake-guide,いしかわ きのこ図鑑「ヤグラタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/yaguratake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
+ユキラッパタケ,guide-review-yukirappatake,Takahashi 2000 Mycoscience 41 p.15、品種原記載,日本菌学会,https://www.jstage.jst.go.jp/article/mycosci/41/1/41_MYC41015/_pdf,科博標本 TNS-F-33588 の掲載報告で和名を照合。品種の階級を維持。,2026-11-21
+ワタカラカサタケ,watakarakasatake-guide,いしかわ きのこ図鑑「ワタカラカサタケ」,石川県 農林総合研究センター林業試験場,https://www.pref.ishikawa.lg.jp/ringyo/kinoko/data/watakarakasatake.html,公的図鑑の和名・学名・観察形質・発生時期・生育基質を確認。学名は資料掲載名。,2026-11-21
