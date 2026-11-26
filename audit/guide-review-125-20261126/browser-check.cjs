@@ -15,7 +15,7 @@ async function select(page, name) {
 
 async function main() {
   fs.mkdirSync(output, {recursive: true});
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({executablePath: process.env.GUIDE_REVIEW_CHROME || undefined});
   const errors = [];
   const screenshots = [];
   const protectedRequests = [];

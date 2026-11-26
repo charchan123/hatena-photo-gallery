@@ -27,10 +27,19 @@ jobs:
         run: python audit/guide-review-125-20261126/verify-audit.py
       - name: Install browser for local preview
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y fonts-noto-cjk
           npm install --prefix /tmp/guide-review-npm --no-save playwright@1.62.1
-          /tmp/guide-review-npm/node_modules/.bin/playwright install --with-deps chromium
+          echo "GUIDE_REVIEW_CHROME=$(command -v google-chrome)" >> "$GITHUB_ENV"
+          test -x "$(command -v google-chrome)"
+          if [ -z "$(fc-list :lang=ja)" ]; then
+            fonts="$RUNNER_TEMP/guide-review-fonts"
+            mkdir -p "$fonts"
+            curl -fLsS --max-time 30 'https://raw.githubusercontent.com/google/fonts/main/ofl/notosansjp/NotoSansJP%5Bwght%5D.ttf' -o "$fonts/NotoSansJP.ttf"
+            export XDG_DATA_HOME="$RUNNER_TEMP/guide-review-data"
+            mkdir -p "$XDG_DATA_HOME/fonts"
+            mv "$fonts/NotoSansJP.ttf" "$XDG_DATA_HOME/fonts/"
+            fc-cache -f "$XDG_DATA_HOME/fonts"
+            echo "XDG_DATA_HOME=$XDG_DATA_HOME" >> "$GITHUB_ENV"
+          fi
       - name: Test all targets at three widths and record representative screens
         env:
           PLAYWRIGHT_MODULE_PATH: /tmp/guide-review-npm/node_modules/playwright
