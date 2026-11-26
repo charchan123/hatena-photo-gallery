@@ -5,7 +5,9 @@ on:
     paths:
       - 'audit/guide-85-20261123/**'
       - 'audit/guide-85-enrichment-20261125/**'
+      - 'audit/guide-expansion-20261126/implementation/**'
       - 'data/taxonomy-display-ja.json'
+      - 'data/guide-expansion.json'
       - 'detail_ui.py'
       - '.github/workflows/guide-85-audit.yml'
 permissions:
@@ -27,12 +29,12 @@ jobs:
         with:
           node-version: '22'
       - name: Build pinned local read-only comparison fixtures
-        run: python audit/guide-85-20261123/browser_fixture.py /tmp/guide-detail a9b9c66e371b0abf309974f2aeb1bc90e3b9631a
+        run: python audit/guide-85-20261123/browser_fixture.py /tmp/guide-detail bd1b1eef5c9da0e30c9e5d02742782cb82949d1b --guide-expansion
       - name: Install isolated browser and public asset versions
         run: |
           npm install --prefix /tmp/guide-browser --no-save playwright@1.62.1 lightgallery@2.8.3 imagesloaded@5.0.0
           /tmp/guide-browser/node_modules/.bin/playwright install --with-deps chromium
-      - name: Compare all 85 guide panels in desktop and touch layouts
+      - name: Compare existing and newly connected guide pages at three widths
         env:
           PLAYWRIGHT_MODULE_PATH: /tmp/guide-browser/node_modules/playwright
           BROWSER_MODULES: /tmp/guide-browser/node_modules
