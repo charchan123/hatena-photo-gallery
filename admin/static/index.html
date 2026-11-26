@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>きのこブログ管理室</title><link rel="stylesheet" href="admin.css"><script src="admin.js" defer></script><script src="deletions.js" defer></script><script src="comments.js" defer></script></head>
+<title>きのこブログ管理室</title><link rel="stylesheet" href="admin.css"><script src="admin.js" defer></script><script src="deletions.js" defer></script><script src="comments.js" defer></script><link rel="stylesheet" href="guide-review.css"><script src="guide-review.js" defer></script></head>
 <body><aside><h1>🍄 きのこブログ<br>管理室</h1><nav>
 <button data-page="dashboard">ダッシュボード</button><button data-page="best">ベストショット</button>
 <button data-page="research">不明キノコ研究室</button><button data-page="comments">研究室のコメント</button><button data-page="notices">更新告知</button>
-<button data-page="sync">記事・写真の同期管理</button><button data-page="deletions">写真の削除・承認</button><button data-page="knowledge">情報拡充</button><button data-page="status">サイト状態</button><button data-page="changes">変更内容を確認</button>
+<button data-page="sync">記事・写真の同期管理</button><button data-page="deletions">写真の削除・承認</button><button data-page="knowledge">情報拡充</button><button data-page="guide-review">図鑑情報の確認</button><button data-page="status">サイト状態</button><button data-page="changes">変更内容を確認</button>
 </nav><p class="local">🔒 localhost 専用</p></aside><main>
 <header><h2 id="page-title">ダッシュボード</h2><span id="message" role="status"></span></header>
 <section id="dashboard" class="page"><div id="cards" class="cards"></div></section>
@@ -31,6 +31,29 @@
 <pre id="deletion-diff"></pre><details><summary>判断とDraft PRの履歴</summary><pre id="deletion-history"></pre></details>
 </section>
 <section id="knowledge" class="page" hidden><div class="knowledge-grid"><div><h3>Local research batches</h3><div id="knowledge-batches" class="list"></div></div><div><h3>候補レビュー</h3><div id="knowledge-candidates" class="list"></div><div class="actions"><button id="knowledge-preview">Promotion preview</button><button class="primary" id="knowledge-pr" disabled>知識更新PRを作成</button></div><pre id="knowledge-preview-result"></pre></div></div></section>
+<section id="guide-review" class="page" hidden>
+  <p id="guide-feedback" role="status"></p>
+  <div id="guide-counts" class="guide-counts" aria-label="確認項目の集計"></div>
+  <details class="guide-filters" open>
+    <summary>絞り込みと一覧</summary>
+    <div class="guide-filter-grid">
+      <label>名称<input id="guide-search" type="search"></label>
+      <label>優先度<select id="guide-priority"><option value="priority">優先候補</option><option value="">すべて</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option></select></label>
+      <label>写真枚数<select id="guide-size"><option value="">すべて</option><option value="1">1枚</option><option value="2">2枚</option><option value="3">3枚以上</option></select></label>
+      <label>確認状況<select id="guide-status"><option value="">すべて</option><option value="pending">未確認</option><option value="confirmed">名称確認済み</option><option value="individual">個別確認</option><option value="held">保留</option><option value="recheck">再確認</option></select></label>
+    </div>
+    <label id="guide-select-label">対象項目<select size="5" id="guide-items"></select></label>
+  </details>
+  <article id="guide-item" aria-label="選択した図鑑項目"></article>
+  <details class="guide-backup">
+    <summary>保存と復元</summary>
+    <p>確認操作のたびに、このPCの管理室へ自動保存します。バックアップには確認者名とメモが含まれます。</p>
+    <div class="actions"><button id="guide-export">JSONを書き出す</button><button id="guide-refresh">公開データと保存記録を再取得</button></div>
+    <label>復元するJSON<input type="file" id="guide-import" accept=".json,application/json"></label>
+    <button id="guide-restore">選んだJSONを取り込む</button>
+  </details>
+  <dialog id="guide-zoom" aria-label="確認写真の拡大"><form method="dialog"><button autofocus>写真を閉じる</button></form><img alt=""></dialog>
+</section>
 <section id="status" class="page" hidden><div id="site-status" class="panel"></div></section>
 <section id="changes" class="page" hidden><div id="preview" class="list"></div><div class="actions"><button id="validate">検証する</button><button class="primary" id="create-pr" disabled>PRを作成</button></div></section>
 </main>

@@ -16,7 +16,7 @@ from best_shot_ui import BestShotConfigError, validate_best_shot_config
 
 from research_ui import build_research_cases
 from research_identifications import split_research_cases
-from . import comments_client
+from . import comments_client, guide_review
 from .core import ChangeSet, DATA, ROOT, notice_window, read_json
 from .draft_store import DraftRecoveryError, DraftStore
 from .git_workflow import (GitWorkflowError, create_pull_request,
@@ -62,6 +62,7 @@ class AdminServer(ThreadingHTTPServer):
         self.sync_review = SyncReview()
         self.deletion_review = DeletionReview()
         self.csrf_token = secrets.token_urlsafe(32)
+        self.guide_review = guide_review.GuideReview()
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -83,12 +84,37 @@ class Handler(BaseHTTPRequestHandler):
 
     def _body(self):
         length = int(self.headers.get("Content-Length", "0"))
-        if not 0 <= length <= 1_000_000: raise ValueError("request too large")
+        maximum = 20_000_000 if self.path == "/api/guide-review/restore" else 1_000_000
+        if not 0 <= length <= maximum: raise ValueError("request too large")
         return json.loads(self.rfile.read(length) or b"{}")
 
     def do_GET(self):
         if not self._local_request(): return self._json({"error": "localhost only"}, 403)
         path = self.path.split("?", 1)[0]
+        if (getattr(self.server, "guide_trial", False) and path.startswith("/api/")
+                and path != "/api/state" and not path.startswith("/api/guide-review/")):
+            return self._json({"error": "実機試験では図鑑確認の操作のみ利用できます"}, 403)
+        if path.startswith("/api/guide-review/"):
+            try:
+                review = self.server.guide_review
+                query = parse_qs(urlsplit(self.path).query)
+                if path == "/api/guide-review/state":
+                    return self._json({**review.state(query.get("item", [None])[0]), "csrf": self.server.csrf_token})
+                if path == "/api/guide-review/export":
+                    return self._json(review.snapshot(review.records()))
+                if path == "/api/guide-review/photo":
+                    data, mime, ticket = review.photo(query["item"][0], query["id"][0])
+                    self.send_response(200)
+                    self.send_header("Content-Type", mime)
+                    self.send_header("Content-Length", str(len(data)))
+                    self.send_header("Cache-Control", "no-store")
+                    self.send_header("X-Content-Type-Options", "nosniff")
+                    self.send_header("X-Guide-Photo-Ticket", ticket)
+                    self.end_headers()
+                    return self.wfile.write(data)
+                return self._json({"error": "not found"}, 404)
+            except Exception as error:
+                return self._guide_error(error)
         if path == "/api/deletions/state":
             try:
                 review = self.server.deletion_review
@@ -150,7 +176,7 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(state)
         if path == "/": path = "/index.html"
         relative = unquote(path).lstrip("/")
-        if "/" in relative or ".." in relative or relative not in {"index.html", "admin.css", "admin.js", "deletions.js", "comments.js"}:
+        if "/" in relative or ".." in relative or relative not in {"index.html", "admin.css", "admin.js", "deletions.js", "comments.js", "guide-review.js", "guide-review.css"}:
             return self._json({"error": "not found"}, 404)
         data = (STATIC / relative).read_bytes(); mime = {"html":"text/html", "css":"text/css", "js":"text/javascript"}[relative.rsplit(".",1)[1]]
         self.send_response(200); self.send_header("Content-Type", mime + "; charset=utf-8"); self.send_header("Content-Length", str(len(data)))
@@ -161,7 +187,20 @@ class Handler(BaseHTTPRequestHandler):
         if not secrets.compare_digest(self.headers.get("X-CSRF-Token", ""), self.server.csrf_token):
             return self._json({"error": "CSRF validation failed"}, 403)
         try:
-            body = self._body(); draft = self.server.draft
+            body = self._body()
+            if self.path.startswith("/api/guide-review/"):
+                review = self.server.guide_review
+                if self.path == "/api/guide-review/refresh" and body == {}:
+                    review.refresh()
+                    return self._json(review.state())
+                if self.path in {"/api/guide-review/save", "/api/guide-review/restore"}:
+                    if not isinstance(body, dict):
+                        raise guide_review.ReviewError("確認記録の形式が不正です")
+                    return self._json(review.change(body, restore=self.path.endswith("/restore")))
+                return self._json({"error": "not found"}, 404)
+            if getattr(self.server, "guide_trial", False):
+                return self._json({"error": "実機試験では図鑑確認の操作のみ利用できます"}, 403)
+            draft = self.server.draft
             actions = {
                 "/api/best-shot/add": lambda: draft.add_best_shot(body["entry"], annual=body.get("annual", False), add_notice=body.get("add_notice", False), occurred_at=body.get("occurred_at")),
                 "/api/best-shot/update": lambda: draft.update_best_shot(body["selection_id"], body["changes"]),
@@ -239,6 +278,8 @@ class Handler(BaseHTTPRequestHandler):
             else: return self._json({"error": "not found"}, 404)
             return self._json(result)
         except Exception as error:
+            if self.path.startswith("/api/guide-review/"):
+                return self._guide_error(error)
             code = str(error)
             if self.path == "/api/comments/request":
                 message = str(error) if isinstance(error, comments_client.CommentsError) else "コメント操作に失敗しました。入力を保持して再確認してください"
@@ -271,8 +312,13 @@ class Handler(BaseHTTPRequestHandler):
                 code = "SYNC_OPERATION_FAILED"
             return self._json({"error": code}, 400)
 
+    def _guide_error(self, error):
+        message = (str(error) if isinstance(error, guide_review.ReviewError) else
+                   "図鑑確認データの取得・保存に失敗しました。保存済み記録を保持しています。")
+        return self._json({"error": message}, 400)
+
     def log_message(self, fmt, *args):
-        if self.path.startswith(("/api/sync/", "/api/deletions/")): return
+        if self.path.startswith(("/api/sync/", "/api/deletions/", "/api/guide-review/")): return
         print(f"[{datetime.now(timezone.utc).isoformat()}] {self.client_address[0]} {fmt % args}")
 
 
