@@ -1,0 +1,15 @@
+掲載名,区分,優先度,写真枚数,記事数,Best Shot数,記事URL,原記事照合,分類状態,分類台帳,既存マスター候補（審査用）,前回調査,前回状態,判定理由,接続判断
+不明ヤマイグチ,D,中,4,1,0,https://exsudoporus-ruber.hatenablog.jp/entry/2025/07/13/113015,本文文字列一致（文脈は未判定） 1件,"{""legacy_review"": 4}",,ヤマイグチ (yamaiguchi),,,疑問符・未同定・広義・仮称・複合等の表記。,接続保留
+アンズタケ(広義),D,中,3,3,0,https://exsudoporus-ruber.hatenablog.jp/entry/2026/08/28/065210 | https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/24/224759 | https://exsudoporus-ruber.hatenablog.jp/entry/2026/09/25/225327,本文文字列一致（文脈は未判定） 3件,"{""confirmed_named_mushroom"": 3}",project_seed,アンズタケ (anzutake),,,疑問符・未同定・広義・仮称・複合等の表記。,接続保留
+不明アワタケ,D,通常,2,2,0,https://exsudoporus-ruber.hatenablog.jp/entry/2025/06/22/133910 | https://exsudoporus-ruber.hatenablog.jp/entry/2025/08/24/113813,本文文字列一致（文脈は未判定） 2件,"{""legacy_review"": 2}",,アワタケ (awatake),,,疑問符・未同定・広義・仮称・複合等の表記。,接続保留
+アラゲキクラゲ(アルビノ)？,D,通常,2,1,0,https://exsudoporus-ruber.hatenablog.jp/entry/2026/03/30/220240,本文文字列一致（文脈は未判定） 1件,"{""legacy_review"": 2}",,アラゲキクラゲ (aragekikurage),,,疑問符・未同定・広義・仮称・複合等の表記。,接続保留
+アワタケ(広義),D,通常,2,1,0,https://exsudoporus-ruber.hatenablog.jp/entry/2025/06/22/133910,本文文字列一致（文脈は未判定） 1件,"{""legacy_review"": 2}",,アワタケ (awatake),,,疑問符・未同定・広義・仮称・複合等の表記。,接続保留
+ヌメリツバイグチ or ヌメリイグチ,D,通常,2,1,0,https://exsudoporus-ruber.hatenablog.jp/entry/2025/06/15/191757,本文に同一文字列なし 1件,"{""legacy_review"": 2}",,ヌメリイグチ (numeriiguti),,,疑問符・未同定・広義・仮称・複合等の表記。,接続保留
+アワタケの仲間,E,通常,1,1,0,https://exsudoporus-ruber.hatenablog.jp/entry/2025/07/06/220032,本文文字列一致（文脈は未判定） 1件,"{""legacy_undetected"": 1}",,アワタケ (awatake),,,表示用管理文字列または種より広いラベル。,対象外
+エノキタケ＆アラゲキクラゲ,D,通常,1,1,0,https://exsudoporus-ruber.hatenablog.jp/entry/2026/03/01/021543,本文に同一文字列なし 1件,"{""legacy_undetected"": 1}",,エノキタケ (enokitake) | アラゲキクラゲ (aragekikurage),,,疑問符・未同定・広義・仮称・複合等の表記。,接続保留
+カバイロツルタケ？,D,通常,1,1,0,https://exsudoporus-ruber.hatenablog.jp/entry/2025/10/05/231736,本文文字列一致（文脈は未判定） 1件,"{""legacy_review"": 1}",,カバイロツルタケ (kabairoturutake),,,疑問符・未同定・広義・仮称・複合等の表記。,接続保留
+コツブタケ？,D,通常,1,1,0,https://exsudoporus-ruber.hatenablog.jp/entry/2025/05/21/190107,本文文字列一致（文脈は未判定） 1件,"{""legacy_review"": 1}",,コツブタケ (kotubutake),,,疑問符・未同定・広義・仮称・複合等の表記。,接続保留
+ツチグリの仲間,E,通常,1,1,0,https://exsudoporus-ruber.hatenablog.jp/entry/2025/07/13/113015,本文文字列一致（文脈は未判定） 1件,"{""legacy_undetected"": 1}",,ツチグリ (tutiguri),,,表示用管理文字列または種より広いラベル。,対象外
+ツルタケの仲間,E,通常,1,1,0,https://exsudoporus-ruber.hatenablog.jp/entry/2025/05/21/190107,本文文字列一致（文脈は未判定） 1件,"{""legacy_undetected"": 1}",,ツルタケ (turutake),,,表示用管理文字列または種より広いラベル。,対象外
+ナラタケ(広義),D,通常,1,1,0,https://exsudoporus-ruber.hatenablog.jp/entry/2025/10/05/231736,本文文字列一致（文脈は未判定） 1件,"{""legacy_review"": 1}",,ナラタケ (naratake),,,疑問符・未同定・広義・仮称・複合等の表記。,接続保留
+ヤマドリタケモドキ(ヨゴレキアミアシイグチの可能性有り),D,通常,1,1,0,https://exsudoporus-ruber.hatenablog.jp/entry/2025/07/10/222315,本文文字列一致（文脈は未判定） 1件,"{""legacy_undetected"": 1}",,ヤマドリタケモドキ (yamadoritakemodoki),,,疑問符・未同定・広義・仮称・複合等の表記。,接続保留
