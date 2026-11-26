@@ -1,0 +1,63 @@
+name: Read-only guide name review preview
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'audit/guide-review-125-20261126/**'
+      - '.github/workflows/guide-review-125.yml'
+permissions:
+  contents: read
+jobs:
+  audit-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate review data and verify protected paths
+        run: python audit/guide-review-125-20261126/verify-audit.py
+      - name: Install browser for local preview
+        run: |
+          npm install --prefix /tmp/guide-review-npm --no-save playwright@1.62.1
+          echo "GUIDE_REVIEW_CHROME=$(command -v google-chrome)" >> "$GITHUB_ENV"
+          test -x "$(command -v google-chrome)"
+          if [ -z "$(fc-list :lang=ja)" ]; then
+            fonts="$RUNNER_TEMP/guide-review-fonts"
+            mkdir -p "$fonts"
+            curl -fLsS --max-time 30 'https://raw.githubusercontent.com/google/fonts/main/ofl/notosansjp/NotoSansJP%5Bwght%5D.ttf' -o "$fonts/NotoSansJP.ttf"
+            export XDG_DATA_HOME="$RUNNER_TEMP/guide-review-data"
+            mkdir -p "$XDG_DATA_HOME/fonts"
+            mv "$fonts/NotoSansJP.ttf" "$XDG_DATA_HOME/fonts/"
+            fc-cache -f "$XDG_DATA_HOME/fonts"
+            echo "XDG_DATA_HOME=$XDG_DATA_HOME" >> "$GITHUB_ENV"
+          fi
+      - name: Test all targets at three widths and record representative screens
+        env:
+          PLAYWRIGHT_MODULE_PATH: /tmp/guide-review-npm/node_modules/playwright
+        run: |
+          audit=audit/guide-review-125-20261126
+          python -m http.server --bind 127.0.0.1 --directory "$audit/preview" 8032 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          for attempt in {1..20}; do
+            if curl -fsS http://127.0.0.1:8032/ -o /dev/null; then break; fi
+            sleep 1
+          done
+          node "$audit/browser-check.cjs"
+          mkdir -p /tmp/guide-review-browser-delivery
+          cp -R "$audit/preview" /tmp/guide-review-browser-delivery/
+          cp -R /tmp/guide-review-browser /tmp/guide-review-browser-delivery/screenshots
+      - uses: actions/upload-artifact@v4
+        with:
+          name: guide-review-preview-${{ github.event.pull_request.head.sha }}
+          path: /tmp/guide-review-browser-delivery/
+          retention-days: 90
