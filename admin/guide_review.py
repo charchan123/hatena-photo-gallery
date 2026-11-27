@@ -193,10 +193,13 @@ def validate_event(event, revision, items):
             require(not hashes, "確認前の記録に画像確認結果が含まれています")
 
 
-def validate_backup(doc, items):
+def validate_backup(doc, items, target="kinoko-guide-review"):
+    allowed = {target}
+    if target == "kinoko-guide-review-trial":
+        allowed.add("kinoko-guide-review")  # Legacy untrusted backups remain usable in the trial.
     require(isinstance(doc, dict) and set(doc) == {"version", "target", "revision", "events", "checksum"}
             and type(doc["version"]) is int and doc["version"] == 1
-            and doc["target"] == "kinoko-guide-review"
+            and isinstance(doc["target"], str) and doc["target"] in allowed
             and type(doc["revision"]) is int and isinstance(doc["events"], list)
             and 0 <= len(doc["events"]) == doc["revision"] <= MAX_EVENTS, "バックアップの版・対象・改訂番号が違います")
     payload = {key: value for key, value in doc.items() if key != "checksum"}
@@ -206,11 +209,12 @@ def validate_backup(doc, items):
 
 
 class GuideReview:
-    def __init__(self, root=ROOT, portal_loader=published_portal, image_loader=fetch_photo, catalog=CATALOG):
+    def __init__(self, root=ROOT, portal_loader=published_portal, image_loader=fetch_photo, catalog=CATALOG, *, trial=False):
         self.path = Path(root) / "admin/local-state/guide-review.sqlite3"
         self.portal_loader = portal_loader
         self.image_loader = image_loader
         self.catalog = catalog
+        self.backup_target = "kinoko-guide-review-trial" if trial else "kinoko-guide-review"
         self.lock = RLock()
         self.items = None
         self.proofs = {}
@@ -253,7 +257,7 @@ class GuideReview:
         return events
 
     def snapshot(self, events):
-        doc = {"version": 1, "target": "kinoko-guide-review", "revision": len(events), "events": events}
+        doc = {"version": 1, "target": self.backup_target, "revision": len(events), "events": events}
         return {**doc, "checksum": _fingerprint(doc)}
 
     def records(self, with_trust=False):
@@ -426,7 +430,7 @@ class GuideReview:
                 if restore:
                     require(set(body) == {"revision", "backup"}, "取り込み形式が不正です")
                     incoming = body["backup"]
-                    validate_backup(incoming, self.items)
+                    validate_backup(incoming, self.items, self.backup_target)
                     common = min(len(current), incoming["revision"])
                     require(incoming["events"][:common] == current[:common], "別系統の記録です。現在の履歴を保持しました")
                     additions = incoming["events"][len(current):]

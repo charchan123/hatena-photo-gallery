@@ -134,6 +134,7 @@ def verify_actions(page, tab, url, items, inaccessible):
     with page.expect_download() as download:
         page.locator("#guide-export").click()
     backup = json.loads(Path(download.value.path()).read_text(encoding="utf-8"))
+    assert backup["target"] == "kinoko-guide-review-trial"
     assert backup["revision"] == 1 and backup["events"][0]["scope"] == "all"
     page.locator("#guide-import").set_input_files({"name": "bad.json", "mimeType": "application/json", "buffer": b"{}"})
     page.locator("#guide-restore").click()
@@ -150,7 +151,9 @@ def verify_actions(page, tab, url, items, inaccessible):
     expect(page.locator("#guide-item > p").first).to_contain_text("未確認")
 
 
-    page.get_by_role("button", name="写真ごとに確認", exact=True).click()
+    mode = page.get_by_role("button", name="写真ごとに確認", exact=True)
+    if mode.get_attribute("aria-expanded") == "false":
+        mode.click()
     page.get_by_role("button", name="この写真の掲載名を確認").first.click()
     expect(page.locator("#guide-feedback")).to_contain_text("改訂 3")
     expect(page.get_by_role("button", name="写真ごとに確認", exact=True)).to_have_attribute("aria-expanded", "true")
@@ -250,7 +253,7 @@ def main():
     portal = json.loads(args.portal.read_bytes())
     results = {}
     with TemporaryDirectory() as directory, sync_playwright() as playwright:
-        review = GuideReview(directory, lambda: portal)
+        review = GuideReview(directory, lambda: portal, trial=True)
         review.refresh()
         items = review.items
         legacy = items[item_id("センニンタケ")]

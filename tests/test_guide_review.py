@@ -228,3 +228,13 @@ def test_proposal_is_separate_from_review_and_checks_conflict_and_source(setup):
     with pytest.raises(ReviewError, match="元の原稿"):
         review.save_proposal(body | {"revision": 1})
     assert review.save_proposal(body | {"revision": 1, "proposal": None})["proposal"] is None
+
+
+def test_trial_backups_cannot_be_imported_into_the_normal_console(setup, tmp_path):
+    normal, portal, data, _ = setup
+    trial = GuideReview(tmp_path / "trial", lambda: portal, lambda url: data[url], normal.catalog, trial=True)
+    trial.change(operation(trial))
+    backup = trial.snapshot(trial.records())
+    with pytest.raises(ReviewError, match="バックアップの版・対象"):
+        normal.change({"revision": 0, "backup": backup}, restore=True)
+    assert normal.records() == []

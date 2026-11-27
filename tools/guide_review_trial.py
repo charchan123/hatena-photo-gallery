@@ -49,7 +49,7 @@ class TrialServer(AdminServer):
         ThreadingHTTPServer.__init__(self, ("127.0.0.1", port), TrialHandler)
         self.guide_trial = True
         self.csrf_token = secrets.token_urlsafe(32)
-        self.guide_review = review or GuideReview(root=state_root)
+        self.guide_review = review or GuideReview(root=state_root, trial=True)
 
 
 def main():
