@@ -302,8 +302,10 @@ def main():
                 verify_actions(context.new_page(), context.new_page(), url, items, inaccessible)
                 context.close()
                 if args.real_screenshots:
-                    review.image_loader = lambda url: published[url]
-                    screenshots(browser, url, args.output)
+                    with TemporaryDirectory() as screenshot_store:
+                        server.guide_review = GuideReview(screenshot_store, lambda: portal,
+                                                         lambda url: published[url], trial=True)
+                        screenshots(browser, url, args.output)
                 for width in (1440, 390):
                     page = browser.new_page(viewport={"width": width, "height": 920})
                     def serve_photo(route):

@@ -353,7 +353,8 @@
     retry.hidden = true;
     picture.disabled = true;
     image.hidden = true;
-    card.append(picture, retry, element("p", `撮影日 ${p.capture || "不明"}`),
+    const captureSource = row.date_source === "exif" ? "（EXIF）" : "";
+    card.append(picture, retry, element("p", `撮影日${captureSource} ${p.capture || "不明"}`),
       link(p.article, evidence?.title || "元記事を開く"));
     const excerpt = element("div");
     if (evidence) {

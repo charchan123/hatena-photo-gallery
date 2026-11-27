@@ -124,7 +124,8 @@ def build_items(catalog, portal):
                                       not original.get("article_revision") or original["article_revision"] == photo["article_revision"]))
             article = seen[photo["id"]]["article"]
             photos.append({"identity": photo, "evidence": original if match else None,
-                           "published": article.get("published") or ""})
+                           "published": article.get("published") or "",
+                           "date_source": seen[photo["id"]].get("capture", {}).get("date_source")})
         draft = row["draft"]
         subject = subjects.get(name, {})
         source_urls = {s.get("URL") for s in draft["sources"]} | {s.get("url") for s in draft["preview"]["sources"]}
