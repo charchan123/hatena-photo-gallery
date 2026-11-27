@@ -19,7 +19,7 @@
 #guide-review .guide-photo .guide-thumbnail {
   width: 100%; min-height: 100px; padding: 0; display: grid; place-items: center; background: #efefe9;
 }
-#guide-review .guide-thumbnail img { width: 100%; height: clamp(175px,28vw,320px); object-fit: contain; }
+#guide-review .guide-thumbnail img { width: 100%; height:auto; max-height:min(60dvh,560px); object-fit:contain; display:block; }
 #guide-review .guide-individual { display: none; }
 #guide-review .guide-show-individual .guide-individual { display: flex; flex-wrap: wrap; gap: 6px; }
 #guide-review .guide-nav, #guide-review .guide-dock { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -32,9 +32,6 @@
 #guide-review .guide-editorial dd { margin: 0 0 10px; }
 #guide-review .guide-editorial section { margin-bottom: 8px; }
 #guide-review .guide-editorial section button { margin-right: 6px; }
-#guide-zoom { max-width: min(95vw,1120px); max-height: 96vh; }
-#guide-zoom img { display: block; max-width: 100%; max-height: 80vh; object-fit: contain; margin: 8px auto 0; }
-#guide-zoom::backdrop { background: #242a20b8; }
 @media (max-width: 600px) {
   #guide-review .guide-filter-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
   #guide-review .guide-dock { gap: 5px; padding: 6px; }
@@ -46,3 +43,6 @@
 
 #guide-review { overflow-wrap: anywhere; }
 #guide-review .guide-backup .actions { flex-wrap: wrap; }
+
+#guide-review .guide-thumbnail:has(img:not([hidden])) { min-height:0; background:transparent; }
+#guide-review .guide-photos:has(.guide-photo:only-child) { max-width:760px; }

@@ -65,7 +65,7 @@ def verify_actions(page, tab, url, items, inaccessible):
     page.get_by_role("button", name="写真ごとに確認", exact=True).click()
     expect(page.get_by_role("button", name="この写真の掲載名を確認").nth(0)).to_be_disabled()
     page.get_by_role("button", name="写真を拡大").nth(1).click()
-    expect(page.get_by_role("dialog", name="確認写真の拡大")).to_be_visible()
+    expect(page.get_by_role("dialog", name="写真の拡大")).to_be_visible()
     page.get_by_role("button", name="写真を閉じる").click()
     inaccessible.clear()
     page.locator(".guide-backup summary").click()

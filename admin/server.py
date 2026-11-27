@@ -176,7 +176,7 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(state)
         if path == "/": path = "/index.html"
         relative = unquote(path).lstrip("/")
-        if "/" in relative or ".." in relative or relative not in {"index.html", "admin.css", "admin.js", "deletions.js", "comments.js", "guide-review.js", "guide-review.css"}:
+        if "/" in relative or ".." in relative or relative not in {"index.html", "admin.css", "admin.js", "deletions.js", "comments.js", "guide-review.js", "guide-review.css", "photo-viewer.js", "photo-viewer.css"}:
             return self._json({"error": "not found"}, 404)
         data = (STATIC / relative).read_bytes(); mime = {"html":"text/html", "css":"text/css", "js":"text/javascript"}[relative.rsplit(".",1)[1]]
         self.send_response(200); self.send_header("Content-Type", mime + "; charset=utf-8"); self.send_header("Content-Length", str(len(data)))

@@ -12,7 +12,8 @@
   const feedback = find("#guide-feedback");
   const itemRegion = find("#guide-item");
   const selection = find("#guide-items");
-  const zoom = find("#guide-zoom");
+  const viewer = window.adminPhotoViewer;
+  const visiblePhotos = new Map();
   let data, token, selected, view = 0, saving = false;
   let reviewer = "";
   const notes = new Map();
@@ -230,16 +231,19 @@
     card.append(element("h4", `写真 ${number} · ${labelStatus[item.photo_states[p.id]]}`));
     const image = element("img");
     image.alt = `${item.name}の写真 ${number}`;
-    const picture = action("写真を拡大", () => {
-      zoom.querySelector("img").src = image.src;
-      zoom.querySelector("img").alt = image.alt;
-      zoom.showModal();
+    const entry = {alt: image.alt, caption: `写真 ${number} · ${item.name}`};
+    const picture = action("", () => {
+      const entries = item.photos.map(row => visiblePhotos.get(row.identity.id)).filter(Boolean);
+      viewer.open(entries, entry, picture);
     }, "guide-thumbnail");
+    picture.setAttribute("aria-label", "写真を拡大");
     const failure = element("span", "画像の取得中");
     picture.append(image, failure);
+    const retry = action("写真を再取得", () => loadImage(), "guide-photo-retry");
+    retry.hidden = true;
     picture.disabled = true;
     image.hidden = true;
-    card.append(picture, element("p", `撮影日 ${p.capture || "不明"} · ${p.classification}`),
+    card.append(picture, retry, element("p", `撮影日 ${p.capture || "不明"} · ${p.classification}`),
       link(p.article, evidence?.title || "元記事を開く"));
     const excerpt = element("div");
     if (evidence) {
@@ -260,34 +264,42 @@
     card.append(individual);
     const photographs = find("#guide-photos");
     photographs.append(card);
-    try {
-      const params = new URLSearchParams({item: item.id, id: p.id});
-      const response = await fetch("/api/guide-review/photo?" + params);
-      const ticket = response.headers.get("X-Guide-Photo-Ticket");
-      if (!response.ok || !ticket) throw new Error();
-      const blob = await response.blob();
-      if (stamp !== view) return;
-      image.src = URL.createObjectURL(blob);
-      objectUrls.push(image.src);
-      await image.decode();
-      if (stamp !== view) return;
-      if (!image.naturalWidth) throw new Error();
-      image.hidden = false;
-      failure.hidden = true;
-      picture.disabled = false;
-      one.disabled = false;
-      loaded.set(p.id, ticket);
-      readiness();
-    } catch {
-      if (stamp === view) {
-        failure.textContent = "画像を読み込めません。再取得してください。";
-        readiness();
+    await loadImage();
+
+    async function loadImage() {
+      retry.hidden = true;
+      failure.textContent = "画像の取得中";
+      try {
+        const params = new URLSearchParams({item: item.id, id: p.id});
+        const response = await fetch("/api/guide-review/photo?" + params);
+        const ticket = response.headers.get("X-Guide-Photo-Ticket");
+        if (!response.ok || !ticket) throw new Error();
+        const blob = await response.blob();
+        if (stamp !== view) return;
+        image.src = URL.createObjectURL(blob);
+        objectUrls.push(image.src);
+        await image.decode();
+        if (stamp !== view) return;
+        if (!image.naturalWidth) throw new Error();
+        image.hidden = false;
+        failure.hidden = true;
+        picture.disabled = false;
+        one.disabled = false;
+        entry.src = image.src;
+        visiblePhotos.set(p.id, entry);
+        loaded.set(p.id, ticket);
+      } catch {
+        if (stamp !== view) return;
+        failure.textContent = "画像を読み込めません。";
+        retry.hidden = false;
       }
+      readiness();
     }
   }
 
   function render(item, stamp) {
-    if (zoom.open) zoom.close();
+    viewer.close();
+    visiblePhotos.clear();
     objectUrls.forEach(url => URL.revokeObjectURL(url));
     objectUrls = [];
     loaded.clear();

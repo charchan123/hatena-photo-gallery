@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>きのこブログ管理室</title><link rel="stylesheet" href="admin.css"><script src="admin.js" defer></script><script src="deletions.js" defer></script><script src="comments.js" defer></script><link rel="stylesheet" href="guide-review.css"><script src="guide-review.js" defer></script></head>
+<title>きのこブログ管理室</title><link rel="stylesheet" href="admin.css"><script src="admin.js" defer></script><script src="deletions.js" defer></script><link rel="stylesheet" href="photo-viewer.css"><script src="photo-viewer.js" defer></script><script src="comments.js" defer></script><link rel="stylesheet" href="guide-review.css"><script src="guide-review.js" defer></script></head>
 <body><aside><h1>🍄 きのこブログ<br>管理室</h1><button id="admin-menu" type="button" aria-controls="admin-navigation" aria-expanded="false" hidden>☰ メニュー</button><nav id="admin-navigation" aria-label="管理室の機能">
 <button data-page="dashboard">ダッシュボード</button><button data-page="best">ベストショット</button>
 <button data-page="research">不明キノコ研究室</button><button data-page="comments">研究室のコメント</button><button data-page="notices">更新告知</button>
@@ -53,11 +53,17 @@
     <label>復元するJSON<input type="file" id="guide-import" accept=".json,application/json"></label>
     <button id="guide-restore">選んだJSONを取り込む</button>
   </details>
-  <dialog id="guide-zoom" aria-label="確認写真の拡大"><form method="dialog"><button autofocus>写真を閉じる</button></form><img alt=""></dialog>
+  
 </section>
 <section id="status" class="page" hidden><div id="site-status" class="panel"></div></section>
 <section id="changes" class="page" hidden><div id="preview" class="list"></div><div class="actions"><button id="validate">検証する</button><button class="primary" id="create-pr" disabled>PRを作成</button></div></section>
 </main>
 <dialog id="editor" aria-labelledby="dialog-title"><form method="dialog"><button type="button" class="close" value="cancel" aria-label="閉じる">×</button><h3 id="dialog-title"></h3><div id="dialog-fields"></div><menu><button type="button" value="cancel">キャンセル</button><button id="dialog-save" class="primary" value="default">変更予定に追加</button></menu></form></dialog>
 <dialog id="confirm"><form method="dialog"><h3>確認</h3><p id="confirm-text"></p><menu><button value="cancel">キャンセル</button><button id="confirm-ok" class="danger" value="default">実行する</button></menu></form></dialog>
-</body></html>
+<dialog id="admin-photo-viewer" aria-label="写真の拡大">
+  <figure><img alt=""><figcaption></figcaption></figure>
+  <output aria-live="polite"></output>
+  <button class="viewer-close" type="button" aria-label="写真を閉じる">×</button>
+  <button class="viewer-prev" type="button" aria-label="前の写真">‹</button>
+  <button class="viewer-next" type="button" aria-label="次の写真">›</button>
+</dialog></body></html>
