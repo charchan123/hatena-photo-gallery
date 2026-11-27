@@ -85,3 +85,16 @@ dialog.best-editor{width:min(980px,calc(100% - 24px));max-height:calc(100dvh - 2
   main .item { grid-template-columns:55px minmax(0,1fr); }
   main .item .item-actions { grid-column:1/-1; max-width:none; }
 }
+.comments-case { display:grid; grid-template-columns:auto minmax(0,1fr); gap:10px; }
+.comments-case>div:only-child { grid-column:1/-1; }
+.comments-case>img { width:68px; height:60px; object-fit:contain; }
+.comments-case p, .comments-case h4 { margin:0 0 5px; }
+.comments-case [aria-current="true"] { outline:2px solid #427558; }
+.comments-photo-strip { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr)); gap:8px; margin-bottom:16px; }
+.comments-photo-strip figure { margin:0; min-width:0; overflow-wrap:anywhere; }
+.comments-photo-strip button { display:block; width:100%; padding:0; }
+.comments-photo-strip img { display:block; width:100%; max-height:210px; object-fit:contain; }
+@media(max-width:600px) {
+ .comments-photo-strip { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ #comments-cases { max-height:40dvh; }
+}

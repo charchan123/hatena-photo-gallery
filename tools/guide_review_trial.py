@@ -6,6 +6,7 @@ import webbrowser
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from admin.comment_trial import read_fixture
 from admin.guide_review import GuideReview
 from admin.server import AdminServer, Handler
 
@@ -16,8 +17,28 @@ class TrialHandler(Handler):
             # The integrated page only needs the initial navigation shell. Avoid
             # Git, GitHub, Cloudflare and other management actions in the trial.
             return self._json({"csrf": self.server.csrf_token,
-                               "trial": {"pages": ["dashboard", "guide-review"]}})
+                               "trial": {"pages": ["dashboard", "guide-review", "comments"]}})
+        if self.path == "/api/comments/status" and self._local_request():
+            return self._json({"configured": True, "trial": True, "message": "試験データを表示しています。本番のコメント操作は利用できません。"})
         return super().do_GET()
+
+    def do_POST(self):
+        if self.path != "/api/comments/request":
+            return super().do_POST()
+        import secrets
+        if not self._local_request() or not secrets.compare_digest(
+                self.headers.get("X-CSRF-Token", ""), self.server.csrf_token):
+            return self._json({"error": "localhost CSRF validation failed"}, 403)
+        try:
+            request = self._body()
+            action, values = request["action"], request["values"]
+            if action not in {"cases", "comments", "history"}:
+                return self._json({"message": "試験データは閲覧専用です。"}, 403)
+            if values.get("q") == "接続失敗":
+                return self._json({"message": "試験用の接続失敗です。"}, 503)
+            return self._json(read_fixture(self.server.guide_review.portal_loader(), action, values))
+        except (OSError, ValueError, TypeError, KeyError, StopIteration):
+            return self._json({"message": "試験データを取得できません。"}, 503)
 
 
 class TrialServer(AdminServer):
@@ -34,8 +55,10 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--port", type=int, default=8765)
     parser.add_argument("--no-browser", action="store_true")
+    parser.add_argument("--fresh", action="store_true", help="Use a new, isolated trial profile")
     args = parser.parse_args()
-    with TrialServer(args.port, Path.home() / "KinokoGuideReviewTrial") as server:
+    folder = "KinokoGuideReviewTrialFresh" if args.fresh else "KinokoGuideReviewTrial"
+    with TrialServer(args.port, Path.home() / folder) as server:
         url = f"http://127.0.0.1:{server.server_port}/"
         print("図鑑確認の実機試験 " + url, flush=True)
         if not args.no_browser:

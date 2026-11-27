@@ -16,7 +16,7 @@ from best_shot_ui import BestShotConfigError, validate_best_shot_config
 
 from research_ui import build_research_cases
 from research_identifications import split_research_cases
-from . import comments_client, guide_review
+from . import comment_photos, comments_client, guide_review
 from .core import ChangeSet, DATA, ROOT, notice_window, read_json
 from .draft_store import DraftRecoveryError, DraftStore
 from .git_workflow import (GitWorkflowError, create_pull_request,
@@ -250,6 +250,14 @@ class Handler(BaseHTTPRequestHandler):
                 if not isinstance(body, dict) or set(body) != {"action", "values"}:
                     raise comments_client.CommentsError("コメント操作の入力が不正です")
                 result = comments_client.request(body["action"], body["values"])
+                if body["action"] == "cases":
+                    try:
+                        media = comment_photos.entries(self.server.portal)
+                    except (AttributeError, KeyError, OSError, TypeError, ValueError):
+                        # A photo catalog failure must not block moderation or show a guessed case.
+                        media = {}
+                    for case in result["cases"]:
+                        case["media"] = media.get(case["id"])
             elif self.path == "/api/validate": result = draft.validate()
             elif self.path == "/api/pr":
                 # Serialize publication with edits; publish precisely the durable,

@@ -20,12 +20,13 @@ def main():
     args.output.parent.mkdir(parents=True, exist_ok=True)
     paths = subprocess.check_output(
         ["git", "ls-files", "-z", "--", "admin", "*.py", "requirements.txt",
-         "docs/guide-review-admin.md"], cwd=ROOT,
+         "docs/guide-review-admin.md", "comments/cases.json", "data/research-identifications.json"], cwd=ROOT,
     ).decode("utf-8").strip("\0").split("\0")
     with ZipFile(args.output, "w", ZIP_DEFLATED) as archive:
         for name in paths:
             if (name.startswith("admin/") and not name.startswith("admin/local-state/")
-                    or name in {"requirements.txt", "docs/guide-review-admin.md", "tools/guide_review_trial.py"}
+                    or name in {"requirements.txt", "docs/guide-review-admin.md", "tools/guide_review_trial.py",
+                                "comments/cases.json", "data/research-identifications.json"}
                     or ("/" not in name and name.endswith(".py"))):
                 archive.write(ROOT / name, name)
         archive.writestr("Start-Guide-Review.cmd", LAUNCHER.replace("\n", "\r\n"))
