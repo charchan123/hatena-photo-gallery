@@ -1,0 +1,929 @@
+{
+  "schema_version": 1,
+  "mushroom_additions": [
+    {
+      "mushroom_id": "usumurasakishimeji",
+      "canonical_name_ja": "ウスムラサキシメジ",
+      "name_ja_sources": [
+        "guide-review-usumurasakishimeji"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Lepista graveolens",
+        "source_ids": [
+          "guide-review-usumurasakishimeji"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-review-usumurasakishimeji"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "features": {
+        "summary": "傘は淡紫色から退色し、ひだは細く密に並ぶ。青森の標本では不快な刺激臭が記録される。",
+        "source_ids": [
+          "guide-review-usumurasakishimeji"
+        ]
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "habitat": {
+        "summary": null,
+        "source_ids": []
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "青森標本の形態と学名。論文は中毒事例も扱うため、食毒は別途審査。 写真への接続は未審査。"
+      }
+    },
+    {
+      "mushroom_id": "oodaiashibeniiguchi",
+      "canonical_name_ja": "オオダイアシベニイグチ",
+      "name_ja_sources": [
+        "guide-review-oodaiashibeniiguchi"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Boletus odaiensis",
+        "source_ids": [
+          "guide-review-oodaiashibeniiguchi"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-review-oodaiashibeniiguchi"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "features": {
+        "summary": "傘は丸山形からまんじゅう形に開く。裏面は淡黄色の管孔。白い肉の切り口はやや青変する。",
+        "source_ids": [
+          "guide-review-oodaiashibeniiguchi"
+        ]
+      },
+      "season": {
+        "summary": "茅野市の標本は8月に採集。",
+        "source_ids": [
+          "guide-review-oodaiashibeniiguchi"
+        ]
+      },
+      "habitat": {
+        "summary": "シラビソの針葉樹林。",
+        "source_ids": [
+          "guide-review-oodaiashibeniiguchi"
+        ]
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "Species Fungorum 309737で同名を確認。 写真への接続は未審査。"
+      }
+    },
+    {
+      "mushroom_id": "kinumerigasa",
+      "canonical_name_ja": "キヌメリガサ",
+      "name_ja_sources": [
+        "guide-review-kinumerigasa"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Hygrophorus lucorum",
+        "source_ids": [
+          "guide-review-kinumerigasa"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-review-kinumerigasa"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "features": {
+        "summary": "傘はレモン色でぬめりがある。ひだは白色から淡黄色で間隔が広く、柄に沿って下がる。",
+        "source_ids": [
+          "guide-review-kinumerigasa"
+        ]
+      },
+      "season": {
+        "summary": "晩秋。",
+        "source_ids": [
+          "guide-review-kinumerigasa"
+        ]
+      },
+      "habitat": {
+        "summary": "カラマツ林の地上。",
+        "source_ids": [
+          "guide-review-kinumerigasa"
+        ]
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "環境省の白山の菌類目録に同和名・同学名。 写真への接続は未審査。"
+      }
+    },
+    {
+      "mushroom_id": "kuriiroiguchimodoki",
+      "canonical_name_ja": "クリイロイグチモドキ",
+      "name_ja_sources": [
+        "guide-review-kuriiroiguchimodoki"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Gyroporus longicystidiatus",
+        "source_ids": [
+          "guide-review-kuriiroiguchimodoki"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-review-kuriiroiguchimodoki"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "features": {
+        "summary": "淡褐色から栗色でビロード状の傘。裏は白から淡黄色の小さな管孔で、調査標本では変色しなかった。",
+        "source_ids": [
+          "guide-review-kuriiroiguchimodoki"
+        ]
+      },
+      "season": {
+        "summary": "茨城県の標本は7月に採集。",
+        "source_ids": [
+          "guide-review-kuriiroiguchimodoki"
+        ]
+      },
+      "habitat": {
+        "summary": "シラカシとアカガシの林内の地上。",
+        "source_ids": [
+          "guide-review-kuriiroiguchimodoki"
+        ]
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "原記載を引用する国内報告。 写真への接続は未審査。"
+      }
+    },
+    {
+      "mushroom_id": "kogeenoheratake",
+      "canonical_name_ja": "コゲエノヘラタケ",
+      "name_ja_sources": [
+        "guide-review-kogeenoheratake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Spathularia velutipes",
+        "source_ids": [
+          "guide-review-kogeenoheratake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-review-kogeenoheratake"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "features": {
+        "summary": "へら形の頭部は暗い色を帯び、しわが入る。褐色の柄には短い毛が密に生える。",
+        "source_ids": [
+          "guide-review-kogeenoheratake"
+        ]
+      },
+      "season": {
+        "summary": "夏から秋。",
+        "source_ids": [
+          "guide-review-kogeenoheratake"
+        ]
+      },
+      "habitat": {
+        "summary": "ブナ帯の林の地面。",
+        "source_ids": [
+          "guide-review-kogeenoheratake"
+        ]
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "Spathulariaは資料掲載名。Spathulariopsisの組み合わせもあり、和名は横須賀市の国内目録と照合。 写真への接続は未審査。"
+      }
+    },
+    {
+      "mushroom_id": "makukinugasatake",
+      "canonical_name_ja": "マクキヌガサタケ",
+      "name_ja_sources": [
+        "guide-review-makukinugasatake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Dictyophora duplicata",
+        "source_ids": [
+          "guide-review-makukinugasatake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-review-makukinugasatake"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "features": {
+        "summary": "白い中空の柄を持ち、傘から網目のある幕が垂れる。傘は円錐形から鐘形。",
+        "source_ids": [
+          "guide-review-makukinugasatake"
+        ]
+      },
+      "season": {
+        "summary": "夏から秋。",
+        "source_ids": [
+          "guide-review-makukinugasatake"
+        ]
+      },
+      "habitat": {
+        "summary": "針葉樹林や広葉樹林の地上。",
+        "source_ids": [
+          "guide-review-makukinugasatake"
+        ]
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "弘前大学の旧属名を資料掲載名として保持。改訂図鑑とIndex Fungorumの Phallus duplicatus を照合。 写真への接続は未審査。"
+      }
+    },
+    {
+      "mushroom_id": "mureoofusentake",
+      "canonical_name_ja": "ムレオオフウセンタケ",
+      "name_ja_sources": [
+        "guide-review-mureoofusentake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Cortinarius praestans",
+        "source_ids": [
+          "guide-review-mureoofusentake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-review-mureoofusentake"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "features": {
+        "summary": "傘は紫褐色を帯び、縁にしわ状の溝がある。ひだは白色から淡褐色で、成熟すると褐色を帯びる。",
+        "source_ids": [
+          "guide-review-mureoofusentake"
+        ]
+      },
+      "season": {
+        "summary": "秋。",
+        "source_ids": [
+          "guide-review-mureoofusentake"
+        ]
+      },
+      "habitat": {
+        "summary": "ナラ類の林内。",
+        "source_ids": [
+          "guide-review-mureoofusentake"
+        ]
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "Cortinariusは兵庫県とJATAFFの資料掲載名。Species Fungorum 482057の組み替え名は Phlegmacium praestans。 写真への接続は未審査。"
+      }
+    }
+  ],
+  "source_additions": [
+    {
+      "source_id": "guide-review-usumurasakishimeji",
+      "organization": "日本菌学会",
+      "title": "工藤・長沢（1995）、p.104、肉眼的特徴",
+      "source_type": "peer_reviewed_paper",
+      "url": "https://www.jstage.jst.go.jp/article/jjom/36/3/36_jjom.H06-103/_pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "青森標本の形態と学名。論文は中毒事例も扱うため、食毒は別途審査。"
+    },
+    {
+      "source_id": "guide-review-oodaiashibeniiguchi",
+      "organization": "茅野市八ヶ岳総合博物館",
+      "title": "菌類資料No.5、標本F-00035、肉眼的特徴",
+      "source_type": "museum_specimen_report",
+      "url": "https://www.city.chino.lg.jp/uploaded/attachment/14172.pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "Species Fungorum 309737で同名を確認。"
+    },
+    {
+      "source_id": "guide-review-kinumerigasa",
+      "organization": "農林水産・食品産業技術振興協会",
+      "title": "きのこ図鑑 キヌメリガサ　特徴",
+      "source_type": "national_research_institute_guide",
+      "url": "https://www.jataff.or.jp/kinoko/215.htm",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "環境省の白山の菌類目録に同和名・同学名。"
+    },
+    {
+      "source_id": "guide-review-kuriiroiguchimodoki",
+      "organization": "ミュージアムパーク茨城県自然博物館",
+      "title": "茨城県新産3種の大型菌類 p.55・図1、標本INM-2-92298",
+      "source_type": "museum_specimen_report",
+      "url": "https://www.nat.museum.ibk.ed.jp/assets/data/materials/research/report/19/%E2%84%9619web-re.pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "原記載を引用する国内報告。"
+    },
+    {
+      "source_id": "guide-review-kogeenoheratake",
+      "organization": "石川県白山自然保護センター",
+      "title": "はくさん21巻3号 表紙解説 コゲエノヘラタケ",
+      "source_type": "government_fungi_guide",
+      "url": "https://www.pref.ishikawa.lg.jp/hakusan/publish/hakusan/documents/hakusan21-3.pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "Spathulariaは資料掲載名。Spathulariopsisの組み合わせもあり、和名は横須賀市の国内目録と照合。"
+    },
+    {
+      "source_id": "guide-review-makukinugasatake",
+      "organization": "弘前大学 白神自然環境研究センター",
+      "title": "白神山地きのこ情報 マクキヌガサタケ 形などの特徴",
+      "source_type": "university_fungi_guide",
+      "url": "https://www.shirakami-database.jp/mushroom/?p=323",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "弘前大学の旧属名を資料掲載名として保持。改訂図鑑とIndex Fungorumの Phallus duplicatus を照合。"
+    },
+    {
+      "source_id": "guide-review-mureoofusentake",
+      "organization": "農林水産・食品産業技術振興協会",
+      "title": "きのこ図鑑 ムレオオフウセンタケ　特徴",
+      "source_type": "national_research_institute_guide",
+      "url": "https://www.jataff.or.jp/kinoko/311.htm",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "Cortinariusは兵庫県とJATAFFの資料掲載名。Species Fungorum 482057の組み替え名は Phlegmacium praestans。"
+    }
+  ],
+  "assignment_additions": [
+    {
+      "candidate_id": "usumurasakishimeji-gills",
+      "mushroom_id": "usumurasakishimeji",
+      "assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下に細いひだが密に並ぶ。",
+        "source_ids": [
+          "guide-review-usumurasakishimeji"
+        ],
+        "evidence_refs": [
+          "usumurasakishimeji-gills-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "usumurasakishimeji-gills-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-review-usumurasakishimeji",
+          "source_url": "https://www.jstage.jst.go.jp/article/jjom/36/3/36_jjom.H06-103/_pdf",
+          "snapshot_identity": "guide-review-usumurasakishimeji-excerpt-20261121",
+          "extracted_text_sha256": "a60307a0cdebecf2f5ba598680d5d6942946adb075cb7cba2fa00915002b9ade",
+          "text_snapshot_sha256": "a60307a0cdebecf2f5ba598680d5d6942946adb075cb7cba2fa00915002b9ade",
+          "original_response_sha256": "bbcebfed3b722887cb105e6e9d988b0b71ccad516ffd716272fc749c3ec54cbf",
+          "evidence_id": "usumurasakishimeji-gills-evidence",
+          "decision_id": "usumurasakishimeji-gills-decision",
+          "mushroom_id": "usumurasakishimeji",
+          "facet_id": "gills",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の下に細いひだが密に並ぶ。",
+          "qualifiers": [],
+          "quote": "ひだは淡紫色，やや上生，密，狭幅",
+          "quote_sha256": "a60307a0cdebecf2f5ba598680d5d6942946adb075cb7cba2fa00915002b9ade",
+          "char_start": 0,
+          "char_end": 16,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "oodaiashibeniiguchi-pores",
+      "mushroom_id": "oodaiashibeniiguchi",
+      "assignment": {
+        "facet_id": "pores",
+        "evidence_text": "傘の裏に管孔がある。",
+        "source_ids": [
+          "guide-review-oodaiashibeniiguchi"
+        ],
+        "evidence_refs": [
+          "oodaiashibeniiguchi-pores-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "oodaiashibeniiguchi-pores-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-review-oodaiashibeniiguchi",
+          "source_url": "https://www.city.chino.lg.jp/uploaded/attachment/14172.pdf",
+          "snapshot_identity": "guide-review-oodaiashibeniiguchi-excerpt-20261121",
+          "extracted_text_sha256": "9d0ec1337d17247b8126cb4a82a707e2fddb601b352700b341d330f11737322d",
+          "text_snapshot_sha256": "9d0ec1337d17247b8126cb4a82a707e2fddb601b352700b341d330f11737322d",
+          "original_response_sha256": "ff98e1966833681c25e09feeee2d1a89188cbcf436ef9a5bb7c80e4e112a4ab9",
+          "evidence_id": "oodaiashibeniiguchi-pores-evidence",
+          "decision_id": "oodaiashibeniiguchi-pores-decision",
+          "mushroom_id": "oodaiashibeniiguchi",
+          "facet_id": "pores",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の裏に管孔がある。",
+          "qualifiers": [],
+          "quote": "管孔は湾生から直生し淡黄色",
+          "quote_sha256": "9d0ec1337d17247b8126cb4a82a707e2fddb601b352700b341d330f11737322d",
+          "char_start": 0,
+          "char_end": 13,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "kinumerigasa-gills",
+      "mushroom_id": "kinumerigasa",
+      "assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下にひだが疎に並ぶ。",
+        "source_ids": [
+          "guide-review-kinumerigasa"
+        ],
+        "evidence_refs": [
+          "kinumerigasa-gills-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "kinumerigasa-gills-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-review-kinumerigasa",
+          "source_url": "https://www.jataff.or.jp/kinoko/215.htm",
+          "snapshot_identity": "guide-review-kinumerigasa-excerpt-20261121",
+          "extracted_text_sha256": "64cfa51f6301e6760c64feed7cddf50640d6e43d8798700614c57a37dd71d430",
+          "text_snapshot_sha256": "64cfa51f6301e6760c64feed7cddf50640d6e43d8798700614c57a37dd71d430",
+          "original_response_sha256": "a419eb7449079e1cb11f14f01f02d0079f9b7960665d9dc713f98ffc109148c9",
+          "evidence_id": "kinumerigasa-gills-evidence",
+          "decision_id": "kinumerigasa-gills-decision",
+          "mushroom_id": "kinumerigasa",
+          "facet_id": "gills",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の下にひだが疎に並ぶ。",
+          "qualifiers": [],
+          "quote": "ひだは白色から淡黄色で並び方は疎",
+          "quote_sha256": "64cfa51f6301e6760c64feed7cddf50640d6e43d8798700614c57a37dd71d430",
+          "char_start": 0,
+          "char_end": 16,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "kuriiroiguchimodoki-pores",
+      "mushroom_id": "kuriiroiguchimodoki",
+      "assignment": {
+        "facet_id": "pores",
+        "evidence_text": "傘の裏の管孔は小さな丸い孔をもつ。",
+        "source_ids": [
+          "guide-review-kuriiroiguchimodoki"
+        ],
+        "evidence_refs": [
+          "kuriiroiguchimodoki-pores-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "kuriiroiguchimodoki-pores-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-review-kuriiroiguchimodoki",
+          "source_url": "https://www.nat.museum.ibk.ed.jp/assets/data/materials/research/report/19/%E2%84%9619web-re.pdf",
+          "snapshot_identity": "guide-review-kuriiroiguchimodoki-excerpt-20261121",
+          "extracted_text_sha256": "59a36ad0c5a6ab9cb405f685a1b9a531f7b93e7cfddda3b5feddec682142eef7",
+          "text_snapshot_sha256": "59a36ad0c5a6ab9cb405f685a1b9a531f7b93e7cfddda3b5feddec682142eef7",
+          "original_response_sha256": "8e1737ed55e832c09827eb1cf850d301d268ddb24a621e006180b69b75073352",
+          "evidence_id": "kuriiroiguchimodoki-pores-evidence",
+          "decision_id": "kuriiroiguchimodoki-pores-decision",
+          "mushroom_id": "kuriiroiguchimodoki",
+          "facet_id": "pores",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の裏の管孔は小さな丸い孔をもつ。",
+          "qualifiers": [],
+          "quote": "孔口は円形で小型",
+          "quote_sha256": "59a36ad0c5a6ab9cb405f685a1b9a531f7b93e7cfddda3b5feddec682142eef7",
+          "char_start": 0,
+          "char_end": 8,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "kogeenoheratake-hairy",
+      "mushroom_id": "kogeenoheratake",
+      "assignment": {
+        "facet_id": "hairy",
+        "evidence_text": "柄に短い毛が密に生える。",
+        "source_ids": [
+          "guide-review-kogeenoheratake"
+        ],
+        "evidence_refs": [
+          "kogeenoheratake-hairy-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "kogeenoheratake-hairy-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-review-kogeenoheratake",
+          "source_url": "https://www.pref.ishikawa.lg.jp/hakusan/publish/hakusan/documents/hakusan21-3.pdf",
+          "snapshot_identity": "guide-review-kogeenoheratake-excerpt-20261121",
+          "extracted_text_sha256": "7527e2c6de10f0afccf4cf58804f89c80454b7be46fbc42475cd361407250c76",
+          "text_snapshot_sha256": "7527e2c6de10f0afccf4cf58804f89c80454b7be46fbc42475cd361407250c76",
+          "original_response_sha256": "dfab5d45ac8968a500e70af547adfe5dc0e082d1041cbfb43d980fa45cef6e1c",
+          "evidence_id": "kogeenoheratake-hairy-evidence",
+          "decision_id": "kogeenoheratake-hairy-decision",
+          "mushroom_id": "kogeenoheratake",
+          "facet_id": "hairy",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "柄に短い毛が密に生える。",
+          "qualifiers": [],
+          "quote": "柄に短毛を密生",
+          "quote_sha256": "7527e2c6de10f0afccf4cf58804f89c80454b7be46fbc42475cd361407250c76",
+          "char_start": 0,
+          "char_end": 7,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "makukinugasatake-stem_hollow",
+      "mushroom_id": "makukinugasatake",
+      "assignment": {
+        "facet_id": "stem_hollow",
+        "evidence_text": "白い円筒形の柄は中空。",
+        "source_ids": [
+          "guide-review-makukinugasatake"
+        ],
+        "evidence_refs": [
+          "makukinugasatake-stem_hollow-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "makukinugasatake-stem_hollow-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-review-makukinugasatake",
+          "source_url": "https://www.shirakami-database.jp/mushroom/?p=323",
+          "snapshot_identity": "guide-review-makukinugasatake-excerpt-20261121",
+          "extracted_text_sha256": "b51e20c2f51899bf8f88a0afeaae9d7b18bea33f716f530ef57bb0dcad108f0a",
+          "text_snapshot_sha256": "b51e20c2f51899bf8f88a0afeaae9d7b18bea33f716f530ef57bb0dcad108f0a",
+          "original_response_sha256": "5f0f038e0506b338bf876e47574cb5b60691c046364644cd5afaf2f8e4d17e60",
+          "evidence_id": "makukinugasatake-stem_hollow-evidence",
+          "decision_id": "makukinugasatake-stem_hollow-decision",
+          "mushroom_id": "makukinugasatake",
+          "facet_id": "stem_hollow",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "白い円筒形の柄は中空。",
+          "qualifiers": [],
+          "quote": "柄は円筒形、白色で中空",
+          "quote_sha256": "b51e20c2f51899bf8f88a0afeaae9d7b18bea33f716f530ef57bb0dcad108f0a",
+          "char_start": 0,
+          "char_end": 11,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "mureoofusentake-gills",
+      "mushroom_id": "mureoofusentake",
+      "assignment": {
+        "facet_id": "gills",
+        "evidence_text": "傘の下にひだがあり、初めは白色から淡褐色。",
+        "source_ids": [
+          "guide-review-mureoofusentake"
+        ],
+        "evidence_refs": [
+          "mureoofusentake-gills-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "mureoofusentake-gills-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-review-mureoofusentake",
+          "source_url": "https://www.jataff.or.jp/kinoko/311.htm",
+          "snapshot_identity": "guide-review-mureoofusentake-excerpt-20261121",
+          "extracted_text_sha256": "04fdf0bd58f2935e463718c6a1098da2f2b4ef60087e31110c7475eea8118d81",
+          "text_snapshot_sha256": "04fdf0bd58f2935e463718c6a1098da2f2b4ef60087e31110c7475eea8118d81",
+          "original_response_sha256": "6c1d6f35305bc26ef9295b7ca4bb0572b1a39139e4fa030f3001db8608f5b2f1",
+          "evidence_id": "mureoofusentake-gills-evidence",
+          "decision_id": "mureoofusentake-gills-decision",
+          "mushroom_id": "mureoofusentake",
+          "facet_id": "gills",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の下にひだがあり、初めは白色から淡褐色。",
+          "qualifiers": [],
+          "quote": "ひだは初め白色から淡褐色",
+          "quote_sha256": "04fdf0bd58f2935e463718c6a1098da2f2b4ef60087e31110c7475eea8118d81",
+          "char_start": 0,
+          "char_end": 12,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    }
+  ]
+}
