@@ -227,13 +227,28 @@
   function manuscript(item) {
     const draft = item.draft;
     const box = element("div", undefined, "guide-editorial");
-    box.append(element("p", draft.status || "原稿なし"), element("p", draft.reference || ""));
+    const preview = element("article", undefined, "guide-manuscript-preview");
+    preview.append(element("p", "原稿候補のプレビュー"), element("h4", item.name),
+      element("p", draft.status || "原稿なし"));
     const fields = element("dl");
-    for (const [key, value] of Object.entries(draft.fields)) {
-      if (value) fields.append(element("dt", key), element("dd", value));
+    const names = {"資料掲載学名": "学名", "科": "科名", "属": "属名"};
+    for (const key of ["資料掲載学名", "科", "属", "生態", "特徴", "生育環境", "発生時期", "食毒"]) {
+      const value = draft.fields[key];
+      const text = key === "食毒" && item.editorial.food !== "confirmed" ? "別途審査中" : value || "確認中";
+      fields.append(element("dt", names[key] || key), element("dd", text));
     }
-    box.append(fields);
-    if (draft.notes) box.append(element("p", draft.notes));
+    fields.append(element("dt", "注意事項"), element("dd", "資料に基づく原稿候補です。掲載写真への適用は個別に確認します。"));
+    preview.append(fields);
+    const research = element("div");
+    research.append(element("p", draft.reference || ""), element("p", draft.notes || ""));
+    if (draft.fields["食毒"]) research.append(element("p", "審査用の食毒記録 " + draft.fields["食毒"]));
+    const proposal = details("原稿の修正案を保存", element("div"));
+    proposal.addEventListener("toggle", () => {
+      if (proposal.open && !proposal.dataset.loaded) {
+        proposal.dataset.loaded = "true";
+        proposalForm(item, proposal.lastElementChild);
+      }
+    });
     const urls = new Map(draft.preview.sources.map(s => [s.url, s.title]));
     draft.sources.forEach(s => urls.set(s.URL, s["資料名"]));
     const sources = element("ul");
@@ -242,7 +257,8 @@
       line.append(link(url, title || "出典を開く"));
       sources.append(line);
     });
-    box.append(sources);
+    if (sources.childElementCount) preview.append(element("h5", "出典"), sources);
+    box.append(preview, details("調査資料・原典の適用範囲", research), proposal);
     for (const kind of ["manuscript", "food", "features", "publication"]) {
       const status = kind === "publication" ? item.publication : item.editorial[kind];
       const section = element("section");
@@ -251,16 +267,68 @@
       if (kind === "publication") {
         section.append(element("p", "公開は別の審査工程で承認します。"));
       } else {
-        const approve = action("この審査を承認して保存", () => save(item, kind, "confirmed", "editorial", []));
+        const approve = action(kindLabels[kind] + "を承認", () => save(item, kind, "confirmed", "editorial", []));
         approve.disabled = !item.reviewable[kind];
         section.append(approve,
-          action("保留", () => save(item, kind, "held", "editorial", [])),
-          action("審査状態を訂正", () => save(item, kind, "reset", "editorial", [])));
-        if (kind === "features") section.append(element("p", "特徴の割当候補は「情報拡充」で確認できます。"));
+          action(kindLabels[kind] + "を保留", () => save(item, kind, "held", "editorial", [])),
+          action(kindLabels[kind] + "の承認を訂正", () => save(item, kind, "reset", "editorial", [])));
+        if (!item.reviewable[kind]) section.append(element("p", kind === "features" ?
+          "特徴検索の審査候補は「情報拡充」で確認できます。" : "承認に必要な原稿または根拠資料を確認中です。"));
       }
       box.append(section);
     }
     return details("図鑑原稿・出典・個別審査", box);
+  }
+
+  async function proposalForm(item, region) {
+    const status = element("p");
+    status.setAttribute("role", "status");
+    region.replaceChildren(status);
+    try {
+      const saved = await request("proposal?" + new URLSearchParams({item: item.id}));
+      const current = saved.proposal;
+      const field = element("select"), label = element("label", "修正対象");
+      for (const key of Object.keys(item.draft.fields)) field.append(new Option(key, key));
+      if (current) field.value = current.field;
+      label.append(field);
+      const before = element("p", item.draft.fields[field.value] || "記載なし");
+      const after = control("修正案", "guide-proposal-after", current?.after || "", () => {}, true);
+      const reason = control("修正理由・根拠", "guide-proposal-reason", current?.reason || "", () => {}, true);
+      after.querySelector("textarea").maxLength = 4000;
+      const check = element("input");
+      check.type = "checkbox";
+      const ack = element("label");
+      ack.append(check, "元資料と現在の原稿を照合しました");
+      field.onchange = () => {
+        before.textContent = item.draft.fields[field.value] || "記載なし";
+        check.checked = false;
+      };
+      async function submit(value) {
+        submitButton.disabled = cancel.disabled = true;
+        try {
+          const result = await request("proposal", {item: item.id, revision: saved.revision,
+            basis: item.view_basis.manuscript, proposal: value});
+          saved.revision = result.revision;
+          status.textContent = value ? "修正案を保存しました。原稿と承認の状態は独立しています。" : "修正案を取り消しました。";
+          cancel.hidden = !value;
+          if (!value) for (const area of region.querySelectorAll("textarea")) area.value = "";
+          check.checked = false;
+        } catch (error) { status.textContent = error.message; }
+        finally { submitButton.disabled = cancel.disabled = false; }
+      }
+      const submitButton = action("修正案を保存", () => submit({
+        field: field.value, before: item.draft.fields[field.value],
+        after: after.querySelector("textarea").value, reason: reason.querySelector("textarea").value,
+        checked: check.checked,
+      }));
+      const cancel = action("保存済みの修正案を取り消す", () => {
+        if (window.confirm("この修正案を取り消しますか？")) submit(null);
+      });
+      cancel.hidden = !current;
+      if (saved.stale) status.textContent = "元原稿が改訂されました。現在の文章と根拠を確認してから保存してください。";
+      if (saved.stale && current) region.append(element("p", "修正案を作ったときの原文 " + current.before));
+      region.append(label, element("strong", "現在の文章"), before, after, reason, ack, submitButton, cancel);
+    } catch (error) { status.textContent = error.message; }
   }
 
   async function photoCard(row, item, number, stamp, readiness) {

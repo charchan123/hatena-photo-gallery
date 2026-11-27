@@ -234,6 +234,9 @@ class GuideReview:
         try:
             connection.execute("""CREATE TABLE IF NOT EXISTS events (
                 revision INTEGER PRIMARY KEY, payload TEXT NOT NULL, local INTEGER NOT NULL CHECK(local IN (0,1)))""")
+            connection.execute("""CREATE TABLE IF NOT EXISTS proposals (
+                item TEXT PRIMARY KEY, revision INTEGER NOT NULL,
+                basis TEXT NOT NULL, payload TEXT NOT NULL)""")
         except sqlite3.Error:
             connection.close()
             raise
@@ -342,6 +345,51 @@ class GuideReview:
                 require(selected in self.items, "確認対象が見つかりません")
                 detail = self.items[selected] | statuses[selected] | {"history": grouped[selected]}
             return {"revision": len(events), "rows": rows, "item": detail}
+
+    def proposal(self, key):
+        with self.lock:
+            if self.items is None:
+                self.refresh()
+            require(key in self.items, "確認対象が見つかりません")
+            with closing(self.open()) as db:
+                return self.read_proposal(db, self.items[key])
+
+    def read_proposal(self, db, item):
+        row = db.execute("SELECT revision, basis, payload FROM proposals WHERE item=?", (item["id"],)).fetchone()
+        if row is None:
+            return {"revision": 0, "proposal": None, "stale": False}
+        revision, basis, encoded = row
+        return {"revision": revision, "proposal": json.loads(encoded),
+                "stale": basis != item["content_basis"]["manuscript"]}
+
+    def save_proposal(self, body):
+        require(isinstance(body, dict) and set(body) == {"item", "revision", "basis", "proposal"}
+                and isinstance(body["item"], str) and type(body["revision"]) is int,
+                "修正案の形式が不正です")
+        with self.lock:
+            self.refresh()
+            require(body["item"] in self.items, "確認対象が見つかりません")
+            item = self.items[body["item"]]
+            basis = item["content_basis"]["manuscript"]
+            value = body["proposal"]
+            if value is not None:
+                require(body["basis"] == basis, "元の原稿が改訂されました。再取得して根拠を確認してください")
+                require(isinstance(value, dict) and set(value) == {"field", "before", "after", "reason", "checked"}
+                        and isinstance(value["field"], str) and value["field"] in item["draft"]["fields"]
+                        and value["before"] == item["draft"]["fields"][value["field"]]
+                        and text(value["after"], 4000, True) and value["before"] != value["after"]
+                        and text(value["reason"], 2000, True) and value["checked"] is True,
+                        "原文・修正案・理由を記入し、元資料を確認してください")
+            with closing(self.open()) as db:
+                db.execute("BEGIN IMMEDIATE")
+                current = self.read_proposal(db, item)
+                require(body["revision"] == current["revision"], "別の画面で修正案が更新されました。再取得してください")
+                revision = current["revision"] + 1
+                db.execute("""INSERT INTO proposals VALUES (?,?,?,?) ON CONFLICT(item) DO UPDATE SET
+                    revision=excluded.revision, basis=excluded.basis, payload=excluded.payload""",
+                           (item["id"], revision, basis, json.dumps(value, ensure_ascii=False)))
+                db.execute("COMMIT")
+                return {"revision": revision, "proposal": value, "stale": False}
 
     def photo(self, key, observation):
         with self.lock:

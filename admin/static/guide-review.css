@@ -52,3 +52,6 @@
 #guide-review .guide-reason:empty { display:none; }
 #guide-review #guide-items option:checked { font-weight:700; }
 #guide-review #guide-item > details { margin:8px 0; }
+#guide-review .guide-manuscript-preview { border:1px solid #d9d9d0; padding:16px; border-radius:8px; background:#fff; }
+#guide-review .guide-manuscript-preview dl { display:grid; grid-template-columns:minmax(74px,auto) minmax(0,1fr); gap:8px 12px; }
+#guide-review input[type="checkbox"] { width:auto; justify-self:start; }

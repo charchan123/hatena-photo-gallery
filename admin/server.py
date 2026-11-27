@@ -100,6 +100,8 @@ class Handler(BaseHTTPRequestHandler):
                 query = parse_qs(urlsplit(self.path).query)
                 if path == "/api/guide-review/state":
                     return self._json({**review.state(query.get("item", [None])[0]), "csrf": self.server.csrf_token})
+                if path == "/api/guide-review/proposal":
+                    return self._json(review.proposal(query["item"][0]))
                 if path == "/api/guide-review/export":
                     return self._json(review.snapshot(review.records()))
                 if path == "/api/guide-review/photo":
@@ -193,6 +195,8 @@ class Handler(BaseHTTPRequestHandler):
                 if self.path == "/api/guide-review/refresh" and body == {}:
                     review.refresh()
                     return self._json(review.state())
+                if self.path == "/api/guide-review/proposal":
+                    return self._json(review.save_proposal(body))
                 if self.path in {"/api/guide-review/save", "/api/guide-review/restore"}:
                     if not isinstance(body, dict):
                         raise guide_review.ReviewError("確認記録の形式が不正です")
