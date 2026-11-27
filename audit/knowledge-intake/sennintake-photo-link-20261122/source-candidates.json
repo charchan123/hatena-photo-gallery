@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "source_id": "guide-followup-sennintake",
+      "organization": "静岡県",
+      "title": "岸澤広晶、静岡県レッドデータブック（2020）p.453、センニンタケ",
+      "source_type": "official_prefecture_reference",
+      "url": "https://www.pref.shizuoka.jp/_res/projects/default_project/_page_/001/017/686/2-2_fungi03_rdbshiz2020pla.pdf",
+      "record_id": "p.453",
+      "accessed_at": "2026-11-22",
+      "notes": "資料掲載学名 Albatrellus pes-caprae、科名、形態、発生時期、静岡県内の生育環境を確認。"
+    },
+    {
+      "source_id": "stalpers-1992-albatrellus",
+      "organization": "J.A. Stalpers / Persoonia",
+      "title": "Stalpers, J.A. (1992). Albatrellus and the Hericiaceae. Persoonia 14(4): 537–541, especially p.539.",
+      "source_type": "peer_reviewed_taxonomic_reference",
+      "url": "https://repository.naturalis.nl/pub/531717/PERS1992014004023.pdf",
+      "record_id": "Persoonia 14(4), p.539",
+      "accessed_at": "2026-11-22",
+      "notes": "Albatrellus pes-capraeの子実層托について、不規則で浅い管孔の間に針状突起が混在する形態を記載。"
+    }
+  ]
+}

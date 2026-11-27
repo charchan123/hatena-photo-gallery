@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "candidate_id": "sennintake-guide-r1",
+  "mushroom_id": "sennintake",
+  "canonical_name_ja": "センニンタケ",
+  "aliases_ja": [],
+  "scientific_name": {
+    "value": "Albatrellus pes-caprae",
+    "status": "source_reported",
+    "source_ids": [
+      "guide-followup-sennintake"
+    ]
+  },
+  "taxonomy": {
+    "family": {
+      "value": "ニンギョウタケモドキ科",
+      "source_ids": [
+        "guide-followup-sennintake"
+      ]
+    },
+    "genus": {
+      "value": null,
+      "source_ids": []
+    }
+  },
+  "claims": [
+    {
+      "claim_id": "sennintake-features-r1",
+      "field": "features",
+      "text": "静岡県の解説では、傘は半円形から腎臓形で、表面は暗黄緑色から緑褐色。やや毛羽立った鱗片で覆われる。裏面は管孔で、柄に垂生し、白色から黄土色になる。",
+      "source_ids": [
+        "guide-followup-sennintake"
+      ],
+      "source_location": "p.453"
+    },
+    {
+      "claim_id": "sennintake-season-r1",
+      "field": "season",
+      "text": "静岡県の資料では秋に発生する。",
+      "source_ids": [
+        "guide-followup-sennintake"
+      ],
+      "source_location": "p.453"
+    },
+    {
+      "claim_id": "sennintake-habitat-r1",
+      "field": "habitat",
+      "text": "静岡県内では亜高山帯のウラジロモミ林、コメツガ・シラビソ林で菌根共生し、尾根付近の原生的自然林内の腐植が少ない林床に生育する。",
+      "source_ids": [
+        "guide-followup-sennintake"
+      ],
+      "source_location": "p.453"
+    }
+  ],
+  "morphology_review_note": {
+    "text": "2024年の記事にある針状突起の観察は、Stalpers (1992) p.539がAlbatrellus pes-capraeについて記す不規則で浅い管孔と針状突起の混在と整合し得る。",
+    "source_ids": [
+      "stalpers-1992-albatrellus"
+    ],
+    "source_location": "p.539"
+  },
+  "food_safety": {
+    "status": "unknown",
+    "source_ids": [],
+    "notes": "食毒は未確認。食用可否・安全性の判断を示さない。"
+  },
+  "feature_search": {
+    "status": "not_reviewed",
+    "assignments": []
+  },
+  "review_status": {
+    "guide_text": "pending",
+    "photo_link": "user_approved",
+    "feature_search": "not_reviewed",
+    "food_safety": "unknown",
+    "publication": "pending"
+  },
+  "created_at": "2026-11-22"
+}
