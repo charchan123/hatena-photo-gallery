@@ -169,9 +169,11 @@ GUIDE_DISPLAY_DATA_BLOB = 'b1e84cbc158924218cfe968f3b3b9af9217230ef'
 # Existing Worker, comment UI, database, and public assets stay byte-protected.
 GUIDE_ADMIN_BASE = '69b73ec7f2b0df0a151464351dba92e441511e49'
 GUIDE_ADMIN_BLOBS = {
-    'admin/server.py': '1f0b33ff7ca51f2b19486c586ef93595636ba6e1',
-    'admin/static/admin.js': 'a5cc41edfc169ad3eaeec723f67f2065a45bd482',
-    'admin/static/index.html': '3a6acfcb11bec34aaba6f2fe90e5deeca4d3bcd5',
+    'admin/server.py': 'e531e454b6ff290938a2e0d7212369c13377737b',
+    'admin/static/admin.js': '56ea78c233ebf9f1d849f2b169aa6d52c3cddb2b',
+    'admin/static/index.html': 'bdf3c937775848d41f8dbe00fc9d8155fa17f875',
+    'admin/static/admin.css': '37f0b410b901c6c58681b75b653b78c8791f20c0',
+    'admin/static/comments.js': 'bd96ac3d829c4894127f1eab8d88687a90cfa89a',
 }
 PUBLIC_CONFIG = 'comments/public-config.json'
 PRODUCTION_ORIGIN = 'https://kinoko-research-comments.sasama-bb.workers.dev'

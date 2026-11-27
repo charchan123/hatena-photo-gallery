@@ -2,6 +2,7 @@
 import argparse
 from pathlib import Path
 import sys
+from tempfile import mkdtemp
 import webbrowser
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -57,10 +58,12 @@ def main():
     parser.add_argument("--no-browser", action="store_true")
     parser.add_argument("--fresh", action="store_true", help="Use a new, isolated trial profile")
     args = parser.parse_args()
-    folder = "KinokoGuideReviewTrialFresh" if args.fresh else "KinokoGuideReviewTrial"
-    with TrialServer(args.port, Path.home() / folder) as server:
+    root = (Path(mkdtemp(prefix="KinokoGuideReviewTrialFresh-", dir=Path.home())) if args.fresh
+            else Path.home() / "KinokoGuideReviewTrial")
+    with TrialServer(args.port, root) as server:
         url = f"http://127.0.0.1:{server.server_port}/"
-        print("図鑑確認の実機試験 " + url, flush=True)
+        print("管理室の実機試験 " + url, flush=True)
+        print("試験記録の保存先 " + str(root), flush=True)
         if not args.no_browser:
             webbrowser.open(url)
         server.serve_forever()

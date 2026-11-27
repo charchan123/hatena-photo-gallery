@@ -208,3 +208,23 @@ def test_stale_open_manuscript_cannot_approve_after_another_tab_refreshes(setup)
     with pytest.raises(ReviewError, match="情報が更新されました"):
         review.change(displayed)
     assert review.records() == []
+
+
+def test_proposal_is_separate_from_review_and_checks_conflict_and_source(setup):
+    review, _, _, catalog = setup
+    key = item_id(NAME)
+    body = {"item": key, "revision": 0, "basis": review.state(key)["item"]["view_basis"]["manuscript"],
+            "proposal": {"field": "特徴", "before": "試験用原稿", "after": "修正候補",
+                         "reason": "照合記録", "checked": True}}
+    first = review.save_proposal(body)
+    assert first["revision"] == 1 and review.proposal(key) == first
+    assert review.state(key)["revision"] == 0
+    with pytest.raises(ReviewError, match="別の画面"):
+        review.save_proposal(body)
+    catalog["items"][0]["draft"]["fields"]["特徴"] = "改訂原稿"
+    review.catalog.write_text(json.dumps(catalog, ensure_ascii=False), encoding="utf-8")
+    review.refresh()
+    assert review.proposal(key)["stale"]
+    with pytest.raises(ReviewError, match="元の原稿"):
+        review.save_proposal(body | {"revision": 1})
+    assert review.save_proposal(body | {"revision": 1, "proposal": None})["proposal"] is None
