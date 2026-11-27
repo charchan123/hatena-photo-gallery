@@ -5,7 +5,57 @@ async function api(path,body){const r=await fetch(path,{method:'POST',headers:{'
 function message(text,error=false){const e=$('#message');e.textContent=text;e.className=error?'error':''}
 function item(title,meta,img){const el=node('article',undefined,'item');if(img){const im=node('img');im.src=img;im.alt=title;el.append(im)}else el.append(node('div'));const body=node('div');body.append(node('h3',title),node('p',meta,'meta'));el.append(body);const actions=node('div',undefined,'item-actions');el.append(actions);return [el,actions,body]}
 function button(text,fn,danger=false){const b=node('button',text,danger?'danger':'');b.type='button';b.onclick=fn;return b}
-function show(page){document.body.dataset.adminPage=page;document.querySelectorAll('.page').forEach(e=>e.hidden=e.id!==page);document.querySelectorAll('nav button').forEach(e=>e.classList.toggle('active',e.dataset.page===page));$('#page-title').textContent=document.querySelector(`[data-page="${page}"]`).textContent;if(page==='changes')renderPreview();if(page==='sync')loadSync();if(page==='deletions')loadDeletions();if(page==='guide-review')window.guideReview?.open()}
+const menuButton = $('#admin-menu'), navigation = $('#admin-navigation');
+const compactNav = matchMedia('(max-width: 740px), (max-width: 950px) and (max-height: 500px)');
+function menu(open) {
+  menuButton.setAttribute('aria-expanded', String(open));
+  navigation.hidden = compactNav.matches && !open;
+}
+function adaptMenu() {
+  if (compactNav.matches && navigation.contains(document.activeElement)) {
+    menuButton.hidden = false;
+    menuButton.focus();
+  }
+  menuButton.hidden = !compactNav.matches;
+  menu(false);
+}
+compactNav.addEventListener('change', adaptMenu);
+menuButton.onclick = () => {
+  const open = menuButton.getAttribute('aria-expanded') === 'false';
+  menu(open);
+  if (open) (navigation.querySelector('[aria-current="page"]') || navigation.querySelector('button')).focus();
+};
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && !menuButton.hidden && menuButton.getAttribute('aria-expanded') === 'true'
+      && !document.querySelector('dialog[open]')) {
+    menu(false);
+    menuButton.focus();
+  }
+});
+adaptMenu();
+function show(page, focus = false) {
+  const enabled = !state?.trial || state.trial.pages.includes(page);
+  document.body.dataset.adminPage = page;
+  document.querySelectorAll('.page').forEach(e => e.hidden = e.id !== page || !enabled);
+  navigation.querySelectorAll('button').forEach(button => {
+    const active = button.dataset.page === page;
+    button.classList.toggle('active', active);
+    if (active) button.setAttribute('aria-current', 'page');
+    else button.removeAttribute('aria-current');
+  });
+  const heading = $('#page-title');
+  heading.textContent = navigation.querySelector(`[data-page="${page}"]`).textContent;
+  const notice = $('#trial-unavailable');
+  notice.hidden = enabled;
+  notice.textContent = enabled ? '' : '実機試験ではこの機能を利用できません。通常の管理室で開いてください。';
+  menu(false);
+  if (focus) heading.focus({preventScroll: true});
+  if (!enabled) return;
+  if (page === 'changes') renderPreview();
+  if (page === 'sync') loadSync();
+  if (page === 'deletions') loadDeletions();
+  if (page === 'guide-review') window.guideReview?.open();
+}
 function render(){const c=state.counts;const cards=[['ベストショット',c.best_shots+'件'],['年間Best',c.annual_years+'年'],['調査中キノコ',c.research_open+'件'],['判明済み',c.research_identified+'件'],['activeな告知',c.active_notices+'件'],['master登録種',c.master+'種'],['source',c.sources+'件'],['情報拡充',c.knowledge_batches+' batch'+(c.knowledge_pending?' / 未決 '+c.knowledge_pending+'件':'')]];$('#cards').replaceChildren(...cards.map(([a,b])=>{const e=node('div',undefined,'card');e.append(node('span',a),node('strong',b));return e}));renderBest();renderResearch();renderNotices();renderKnowledge();renderStatus()}
 
 function renderKnowledge(){const batches=$('#knowledge-batches'),candidates=$('#knowledge-candidates');batches.replaceChildren();candidates.replaceChildren();const rows=state.knowledge||[];if(!rows.length){batches.append(node('p','0 batch','meta'));$('#knowledge-pr').disabled=true;return}if(!rows.some(r=>r.batch_id===selectedKnowledge))selectedKnowledge=rows[0].batch_id;rows.forEach(r=>{const e=node('article',undefined,'item knowledge-batch'),body=node('div');body.append(node('h3',r.batch_id),node('p',`${r.status} / ${r.created_at||'-'} / ${r.generator||'-'} / ${r.origin||'-'}`,'badge'),node('p',`base: ${r.base_main_sha||'-'} / ${r.base_matches?'origin/main一致':'不一致'}`,'meta'),node('p',`${r.candidate_count}候補 / 採用 ${r.approved_count} / 保留 ${r.held_count} / 未決 ${r.pending_count}`,'meta'));if((r.blockers||[]).length)body.append(node('p',r.blockers.join(' / '),'error'));const actions=node('div',undefined,'item-actions');actions.append(button('選択',()=>{selectedKnowledge=r.batch_id;renderKnowledge()}));if(r.review_changed)actions.append(button('レビューをリセット',()=>confirmAction('batch内容が変更されたため、全候補を未決へリセットします。',()=>api('/api/knowledge/reset',{batch_id:r.batch_id})),true));e.append(body,actions);batches.append(e)});const batch=rows.find(r=>r.batch_id===selectedKnowledge);(batch.candidates||[]).forEach(c=>{const e=node('article',undefined,'item'),body=node('div'),actions=node('div',undefined,'item-actions');body.append(node('h3',`${c.mushroom_name} / ${c.mushroom_id}`),node('p',`${c.facet_label} / ${c.facet_id}`,'badge'));(c.evidence_records||[]).forEach((v,i)=>{const evidence=node('section',undefined,'knowledge-evidence');evidence.append(node('h4',`根拠 ${i+1}: ${v.evidence_id}`),node('p',`${v.evidence_kind} / source: ${v.source_id}`,'meta'),node('p',v.evidence_text),node('p',`qualifiers: ${(v.qualifiers||[]).join(', ')||'-'}`,'meta'),node('p',`quote: ${v.quote}`));if(/^https?:\/\//.test(v.source_url)){const a=node('a',v.source_url);a.href=v.source_url;a.target='_blank';a.rel='noopener noreferrer';evidence.append(a)}body.append(evidence)});body.append(node('p',`decision: ${c.decision_id} / 現在 ${c.human_decision}`,'meta'));const note=field('review note','note',c.note||'','textarea');body.append(note);['approved','held','pending'].forEach((v,i)=>actions.append(button(['採用','保留','未決に戻す'][i],async()=>{await api('/api/knowledge/decision',{batch_id:batch.batch_id,candidate_id:c.candidate_id,human_decision:v,note:note.querySelector('textarea').value});await load()})));e.append(body,actions);candidates.append(e)});$('#knowledge-pr').disabled=!(batch.status==='PASS'&&batch.base_matches&&batch.pending_count===0&&batch.approved_count>0&&state.repo.gh_authenticated)}
@@ -204,8 +254,16 @@ $('#validate').onclick=async()=>{try{const v=await api('/api/validate');message(
 $('#create-pr').onclick=()=>confirmAction('最新mainと変更前データを照合し、安全ならDraft PRを作成します。全テストと公開データ保護の検証はGitHub Actionsで行います。merge・deployはしません。',async()=>api('/api/pr',{operation:'admin-console'}));
 $('#knowledge-preview').onclick=async()=>{try{const v=await api('/api/knowledge/preview',{batch_id:selectedKnowledge});$('#knowledge-preview-result').textContent=JSON.stringify(v,null,2);$('#knowledge-pr').disabled=!(v.ready&&state.repo.gh_authenticated)}catch(e){message(e.message,true)}};
 $('#knowledge-pr').onclick=()=>confirmAction('承認済み候補のみをpromotionし、origin/mainから一時worktreeを作ってPRを作成します。merge・deployは行いません。',async()=>{const v=await api('/api/knowledge/pr',{batch_id:selectedKnowledge});message('PR: '+v.url)});
-document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>show(b.dataset.page));
-async function load(){try{const r=await fetch('/api/state');state=await r.json();if(!r.ok)throw Error(state.error);csrf=state.csrf;render();return true}catch(e){message(e.message,true);return false}}load();show('dashboard');
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>show(b.dataset.page,true));
+async function load(){try{const r=await fetch('/api/state');state=await r.json();if(!r.ok)throw Error(state.error);csrf=state.csrf;
+if (state.trial) {
+  const banner = $('#trial-banner');
+  banner.hidden = false;
+  banner.textContent = '実機試験モード。図鑑の確認記録は試験専用です。コメントは試験データを表示します。';
+  $('#cards').textContent = 'メニューから図鑑情報の確認、または研究室のコメントを開いてください。';
+  show(document.body.dataset.adminPage || 'dashboard');
+} else render();
+return true}catch(e){message(e.message,true);return false}}load();show('dashboard');
 
 //  server-side allow-list and local audit state.
 let syncState, syncPage=1, syncTotal=0;

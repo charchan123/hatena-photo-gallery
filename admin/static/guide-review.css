@@ -46,12 +46,3 @@
 
 #guide-review { overflow-wrap: anywhere; }
 #guide-review .guide-backup .actions { flex-wrap: wrap; }
-@media (max-width: 640px) {
-  body[data-admin-page="guide-review"] { display: block; }
-  body[data-admin-page="guide-review"] aside { position: static; height: auto; padding: 12px; }
-  body[data-admin-page="guide-review"] aside h1 { font-size: 1rem; margin: 0 0 8px; }
-  body[data-admin-page="guide-review"] nav { display: flex; overflow-x: auto; }
-  body[data-admin-page="guide-review"] nav button { flex: 0 0 auto; white-space: nowrap; min-height: 44px; }
-  body[data-admin-page="guide-review"] .local { position: static; margin: 8px 0 0; }
-  body[data-admin-page="guide-review"] main { padding: 14px; }
-}

@@ -15,7 +15,8 @@ class TrialHandler(Handler):
         if self.path == "/api/state" and self._local_request():
             # The integrated page only needs the initial navigation shell. Avoid
             # Git, GitHub, Cloudflare and other management actions in the trial.
-            return self._json({"error": "図鑑情報の確認の実機試験。左のメニューから開いてください。"}, 400)
+            return self._json({"csrf": self.server.csrf_token,
+                               "trial": {"pages": ["dashboard", "guide-review"]}})
         return super().do_GET()
 
 
