@@ -7,12 +7,15 @@ from pathlib import Path
 import sys
 from tempfile import TemporaryDirectory
 from threading import Thread
+from time import sleep
+from urllib.error import URLError
 
 from PIL import Image
 from playwright.sync_api import expect, sync_playwright
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
+from admin.comment_trial import fixtures
 from admin.guide_review import GuideReview, fetch_photo, item_id
 from tools.guide_review_trial import TrialServer
 
@@ -247,6 +250,23 @@ def screenshots(browser, url, output):
         page.close()
 
 
+def public_photos(portal, legacy):
+    urls = [photo["identity"]["url"] for photo in legacy["photos"]]
+    cases, _ = fixtures(portal)
+    urls += [photo["src"] for case in cases for photo in case["media"]["photos"]]
+    pictures = {}
+    for url in dict.fromkeys(urls):
+        for attempt in range(3):
+            try:
+                pictures[url] = fetch_photo(url)
+                break
+            except (OSError, URLError):
+                if attempt == 2:
+                    raise
+                sleep(1)
+    return pictures
+
+
 def main():
     args = read_args()
     args.output.mkdir(parents=True, exist_ok=True)
@@ -259,6 +279,7 @@ def main():
         legacy = items[item_id("センニンタケ")]
         inaccessible = {legacy["photos"][0]["identity"]["url"]}
         fixture = test_image()
+        published = public_photos(portal, legacy) if args.real_screenshots else {}
 
         def load(url):
             if url in inaccessible:
@@ -281,12 +302,14 @@ def main():
                 verify_actions(context.new_page(), context.new_page(), url, items, inaccessible)
                 context.close()
                 if args.real_screenshots:
-                    review.image_loader = fetch_photo
+                    review.image_loader = lambda url: published[url]
                     screenshots(browser, url, args.output)
                 for width in (1440, 390):
                     page = browser.new_page(viewport={"width": width, "height": 920})
-                    if not args.real_screenshots:
-                        page.route("https://cdn-ak.f.st-hatena.com/**", lambda route: route.fulfill(body=fixture[0], content_type=fixture[1]))
+                    def serve_photo(route):
+                        picture = published.get(route.request.url, fixture)
+                        route.fulfill(body=picture[0], content_type=picture[1])
+                    page.route("https://cdn-ak.f.st-hatena.com/**", serve_photo)
                     comments_screen(page, url, args.output)
                     page.close()
             finally:
