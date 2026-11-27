@@ -34,8 +34,9 @@
 <section id="knowledge" class="page" hidden><div class="knowledge-grid"><div><h3>Local research batches</h3><div id="knowledge-batches" class="list"></div></div><div><h3>候補レビュー</h3><div id="knowledge-candidates" class="list"></div><div class="actions"><button id="knowledge-preview">Promotion preview</button><button class="primary" id="knowledge-pr" disabled>知識更新PRを作成</button></div><pre id="knowledge-preview-result"></pre></div></div></section>
 <section id="guide-review" class="page" hidden>
   <p id="guide-feedback" role="status"></p>
-  <div id="guide-counts" class="guide-counts" aria-label="確認項目の集計"></div>
-  <details class="guide-filters" open>
+  <p id="guide-progress"></p>
+  <details><summary>全体の確認状況</summary><div id="guide-counts" class="guide-counts" aria-label="確認項目の集計"></div></details>
+  <details class="guide-filters">
     <summary>絞り込みと一覧</summary>
     <div class="guide-filter-grid">
       <label>名称<input id="guide-search" type="search"></label>

@@ -94,11 +94,11 @@ def build_items(catalog, portal):
     require(catalog.get("version") == 1 and portal.get("version") == 1, "確認資料の形式が変わりました")
     by_name = defaultdict(list)
     occurrences = Counter()
-    seen = set()
+    seen = {}
     for row in portal["observations"]:
         key = row["observation_id"]
         require(identifier(key, PHOTO_ID) and key not in seen, "公開写真IDを一意に確認できません")
-        seen.add(key)
+        seen[key] = row
         article = row["article"]
         occurrence = (article["article_id"], row["src"])
         occurrences[occurrence] += 1
@@ -122,7 +122,9 @@ def build_items(catalog, portal):
                                       original["status"] == photo["classification"], original["date"] == photo["capture"],
                                       not original["article_id"] or original["article_id"] == photo["article_id"],
                                       not original.get("article_revision") or original["article_revision"] == photo["article_revision"]))
-            photos.append({"identity": photo, "evidence": original if match else None})
+            article = seen[photo["id"]]["article"]
+            photos.append({"identity": photo, "evidence": original if match else None,
+                           "published": article.get("published") or ""})
         draft = row["draft"]
         subject = subjects.get(name, {})
         source_urls = {s.get("URL") for s in draft["sources"]} | {s.get("url") for s in draft["preview"]["sources"]}
@@ -265,7 +267,7 @@ class GuideReview:
 
     def status(self, item, records):
         photos = {p["identity"]["id"]: p["identity"] for p in item["photos"]}
-        states = {}
+        states, reasons = {}, {}
         for event in records:
             if event["kind"] != "name" or event["decision"] == "note":
                 continue
@@ -273,21 +275,34 @@ class GuideReview:
             if event["decision"] == "reset":
                 for key in (list(states) if event["scope"] == "all" else targets):
                     states.pop(key, None)
+                    reasons[key] = "corrected"
                 continue
             if event["scope"] == "all":
                 states.clear()
+                reasons.clear()
             changed_set = event["scope"] == "all" and targets.keys() != photos.keys()
             for key, photo in targets.items():
                 proof = self.current_proof(item, photo)
-                if (photos.get(key) != photo or event["basis"] != item["name_basis"] or changed_set or
-                        (event["decision"] == "confirmed" and not event["local"])):
-                    states[key] = "stale"
+                active = photos.get(key)
+                reason = None
+                if event["decision"] == "confirmed" and not event["local"]:
+                    reason = "restored"
+                elif changed_set or active is None:
+                    reason = "membership"
+                elif any(active[field] != photo[field] for field in
+                         ("article_id", "article", "occurrence", "article_revision")):
+                    reason = "article"
+                elif active != photo or event["basis"] != item["name_basis"]:
+                    reason = "updated"
+                elif event["decision"] == "confirmed" and proof and proof["sha"] != event["image_hashes"][key]:
+                    reason = "image"
+                if reason:
+                    states[key], reasons[key] = "stale", reason
                 elif event["decision"] == "held":
                     states[key] = "held"
-                elif not proof:
-                    states[key] = "verify"
                 else:
-                    states[key] = "confirmed" if proof["sha"] == event["image_hashes"][key] else "stale"
+                    states[key] = "confirmed" if proof else "verify"
+                    reasons.pop(key, None)
         current = {key: states.get(key, "pending") for key in photos}
         if "stale" in states.values() or "verify" in current.values():
             status = "recheck"
@@ -299,13 +314,18 @@ class GuideReview:
             status = "held"
         else:
             status = "pending"
-        editorial = {}
+        editorial, editorial_reasons = {}, {}
         for kind in KINDS[1:]:
             event = next((e for e in reversed(records) if e["kind"] == kind), None)
             editorial[kind] = (("stale" if event["basis"] != item["content_basis"][kind] or
                                 (event["decision"] == "confirmed" and not event["local"]) else event["decision"])
                                if event and event["decision"] != "reset" else "pending")
-        return {"status": status, "photo_states": current, "editorial": editorial, "publication": "locked"}
+            if event and editorial[kind] == "stale":
+                editorial_reasons[kind] = "restored" if not event["local"] else "manuscript"
+            elif event and event["decision"] == "reset":
+                editorial_reasons[kind] = "corrected"
+        return {"status": status, "photo_states": current, "photo_reasons": reasons, "editorial": editorial,
+                "editorial_reasons": editorial_reasons, "publication": "locked"}
 
     def state(self, selected=None):
         with self.lock:

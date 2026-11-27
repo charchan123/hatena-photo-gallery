@@ -46,3 +46,9 @@
 
 #guide-review .guide-thumbnail:has(img:not([hidden])) { min-height:0; background:transparent; }
 #guide-review .guide-photos:has(.guide-photo:only-child) { max-width:760px; }
+#guide-review #guide-progress { margin:0 0 4px; font-weight:600; }
+#guide-review .guide-dock { position:static; margin-top:12px; }
+#guide-review .guide-reason { color:#744600; font-size:.9rem; }
+#guide-review .guide-reason:empty { display:none; }
+#guide-review #guide-items option:checked { font-weight:700; }
+#guide-review #guide-item > details { margin:8px 0; }

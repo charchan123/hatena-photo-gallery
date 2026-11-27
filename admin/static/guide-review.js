@@ -6,7 +6,7 @@
   const labelStatus = {
     pending: "未確認", confirmed: "名称確認済み", individual: "個別確認",
     held: "保留", recheck: "再確認", verify: "画像の再照合待ち",
-    stale: "変更あり・再確認", reset: "訂正", note: "メモ保存", locked: "後工程",
+    stale: "再確認が必要", reset: "訂正", note: "メモ保存", locked: "後工程",
   };
   const kindLabels = {name: "写真と名称", manuscript: "図鑑原稿", food: "食毒情報", features: "特徴検索", publication: "公開"};
   const feedback = find("#guide-feedback");
@@ -15,8 +15,32 @@
   const viewer = window.adminPhotoViewer;
   const visiblePhotos = new Map();
   let data, token, selected, view = 0, saving = false;
-  let reviewer = "";
-  const notes = new Map();
+  const labels = {
+    restored: "バックアップから復元したため再確認", image: "画像の内容が変わったため再確認",
+    membership: "写真の構成が変わったため再確認", article: "記事の記録が変わったため再確認",
+    manuscript: "原稿・出典が更新されたため再確認", corrected: "確認内容を訂正したため未確認",
+    updated: "確認対象の情報が更新されています",
+  };
+  let preferences = {};
+  try { preferences = JSON.parse(localStorage.getItem("kinoko-guide-review-inputs")) || {}; } catch {}
+  let reviewer = typeof preferences.reviewer === "string" ? preferences.reviewer.slice(0, 80) : "";
+  const notes = new Map(Object.entries(preferences.notes || {}).filter(([key, value]) =>
+    /^[a-f0-9]{64}$/.test(key) && typeof value === "string" && value.length <= 2000));
+  const filterIds = ["#guide-search", "#guide-priority", "#guide-size", "#guide-status"];
+  const individualMode = new Set();
+  let scrollTarget = null;
+  for (const id of filterIds) {
+    const field = find(id), saved = preferences.filters?.[id];
+    if (typeof saved === "string" && (field.tagName !== "SELECT" || [...field.options].some(x => x.value === saved))) field.value = saved;
+  }
+  function remember() {
+    try {
+      localStorage.setItem("kinoko-guide-review-inputs", JSON.stringify({
+        reviewer, item: selected, notes: Object.fromEntries(notes),
+        filters: Object.fromEntries(filterIds.map(id => [id, find(id).value])),
+      }));
+    } catch { /* The SQLite confirmation API is independent of browser preferences. */ }
+  }
   let objectUrls = [];
   const loaded = new Map();
 
@@ -103,6 +127,15 @@
       return option;
     }));
     selection.value = selected || "";
+    if (selection.selectedIndex >= 0) {
+      const option = selection.options[selection.selectedIndex];
+      selection.scrollTop = Math.max(0, option.offsetTop - selection.options[0].offsetTop - selection.clientHeight / 2);
+    }
+    const allPriority = rows.filter(row => row.priority_candidate);
+    const rank = allPriority.slice().sort((a, b) => (a.name === "センニンタケ" ? -1 : b.name === "センニンタケ" ? 1 : a.priority - b.priority) || a.name.localeCompare(b.name, "ja"))
+      .findIndex(row => row.id === selected);
+    const remaining = allPriority.filter(row => row.status !== "confirmed").length;
+    find("#guide-progress").textContent = `確認対象 ${rows.filter(row => row.scope).length}項目＋関連${rows.filter(row => !row.scope).length}件 · 優先候補 ${rank >= 0 ? `${rank + 1} / ` : ""}${allPriority.length}件（残り${remaining}件）`;
     find("#guide-select-label").firstChild.textContent = `対象項目（${rowsFiltered.length}件）`;
   }
 
@@ -124,7 +157,9 @@
       token = result.csrf;
       selected = id;
       const first = useFirst && !id && filtered()[0];
+      if (id && !filtered().some(row => row.id === id) && useFirst) return open(filtered()[0]?.id, false);
       if (first) return open(first.id);
+      remember();
       updateList();
       render(result.item, stamp);
       if (!feedback.textContent) report(result.revision ? `保存済みの履歴を復元しました（改訂 ${result.revision}）` : "保存済みの確認記録はありません");
@@ -141,7 +176,9 @@
     if (saving) return;
     if (!reviewer.trim()) {
       report("確認者の名前を入力してください", true);
-      find("#guide-reviewer").focus();
+      const field = find("#guide-reviewer");
+      field.closest("details").open = true;
+      field.focus();
       return;
     }
     if (kind !== "name" && decision === "confirmed" &&
@@ -159,6 +196,7 @@
       });
       report(`保存しました（改訂 ${result.revision}）`);
       notes.delete(item.id);
+      if (scope === "photo") scrollTarget = ids[0];
       await open(next || item.id, false);
       if (next) itemRegion.scrollIntoView({block: "start"});
     } catch (error) {
@@ -209,6 +247,7 @@
       const status = kind === "publication" ? item.publication : item.editorial[kind];
       const section = element("section");
       section.append(element("h4", `${kindLabels[kind]} · ${status === "confirmed" ? "審査承認済み" : labelStatus[status] || status}`));
+      if (item.editorial_reasons[kind]) section.append(element("p", labels[item.editorial_reasons[kind]]));
       if (kind === "publication") {
         section.append(element("p", "公開は別の審査工程で承認します。"));
       } else {
@@ -228,7 +267,10 @@
     const p = row.identity;
     const evidence = row.evidence;
     const card = element("article", undefined, "guide-photo");
+    card.dataset.photoId = p.id;
     card.append(element("h4", `写真 ${number} · ${labelStatus[item.photo_states[p.id]]}`));
+    const reason = element("p", labels[item.photo_reasons[p.id]] || "", "guide-reason");
+    card.append(reason);
     const image = element("img");
     image.alt = `${item.name}の写真 ${number}`;
     const entry = {alt: image.alt, caption: `写真 ${number} · ${item.name}`};
@@ -243,7 +285,7 @@
     retry.hidden = true;
     picture.disabled = true;
     image.hidden = true;
-    card.append(picture, retry, element("p", `撮影日 ${p.capture || "不明"} · ${p.classification}`),
+    card.append(picture, retry, element("p", `撮影日 ${p.capture || "不明"}`),
       link(p.article, evidence?.title || "元記事を開く"));
     const excerpt = element("div");
     if (evidence) {
@@ -254,7 +296,17 @@
     } else {
       excerpt.append(element("p", "監査時の記述と照合できません。元記事でこの写真の前後を確認してください。"));
     }
-    excerpt.append(element("small", p.id));
+    const title = evidence?.title || "";
+    const recordedDate = title.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+    if (row.published) card.append(element("p", `記事の投稿日 ${row.published.slice(0, 10)}`));
+    if (recordedDate) {
+      const titled = recordedDate[1] + "-" + recordedDate[2].padStart(2, "0") + "-" + recordedDate[3].padStart(2, "0");
+      card.append(element("p", "記事タイトルに記載の日付 " + titled));
+      if (p.capture && Math.abs(Date.parse(titled) - Date.parse(p.capture)) > 86400000 * 366) {
+        card.append(element("p", "撮影日と記事の記載に1年以上の差があります。元記事と元画像を確認してください。", "guide-reason"));
+      }
+    }
+    excerpt.append(element("small", `写真ID ${p.id} · 分類コード ${p.classification}`));
     card.append(details("記事の該当箇所と写真ID", excerpt));
     const one = action("この写真の掲載名を確認", () => save(item, "name", "confirmed", "photo", [p.id]));
     const individual = element("div", undefined, "guide-individual");
@@ -320,19 +372,19 @@
     nav.append(previous, advance);
     const title = element("h3", item.name);
     const line = element("p", `区分 ${item.group} · 公開写真 ${ids.length}枚 · ${labelStatus[item.status]}`);
-    itemRegion.append(nav, title, line, element("p", item.question), element("p", item.reason, "meta"));
-    itemRegion.append(control("確認者", "guide-reviewer", reviewer, v => { reviewer = v; }),
-      control("確認メモ", "guide-note", notes.get(item.id) || "", v => notes.set(item.id, v), true));
-    if (item.legacy_ids.length) {
-      itemRegion.append(element("p", "過去の写真接続承認は #163 の指定3枚です。最新画像の目視確認を記録できます。原稿・食毒・特徴・公開は個別に審査します。"),
-        link("https://github.com/charchan123/hatena-photo-gallery/pull/163", "旧承認 #163 を開く"));
-    }
+    itemRegion.append(nav, title, line, element("p", item.question));
+    if (item.reason) itemRegion.append(details("確認対象の背景", element("p", item.reason, "meta")));
+    const identity = element("div");
+    identity.append(control("確認者", "guide-reviewer", reviewer, v => { reviewer = v; remember(); }),
+      control("確認メモ", "guide-note", notes.get(item.id) || "", v => { notes.set(item.id, v); remember(); }, true));
+    if (item.legacy_ids.length) identity.append(link("https://github.com/charchan123/hatena-photo-gallery/pull/163", "過去の指定3枚の記録"));
     const photos = element("div", undefined, "guide-photos");
     photos.id = "guide-photos";
-    itemRegion.append(photos, manuscript(item));
+    photos.classList.toggle("guide-show-individual", individualMode.has(item.id));
+    itemRegion.append(photos);
     const history = element("ol");
     for (const event of [...item.history].reverse()) {
-      const entry = element("li", `改訂 ${event.revision} · ${new Date(event.at).toLocaleString("ja-JP")} · ${event.reviewer} · ${kindLabels[event.kind]}／${labelStatus[event.decision]} · ${event.photos.length}枚${event.local ? "" : " · バックアップから復元"}`);
+      const entry = element("li", `改訂 ${event.revision} · ${new Date(event.at).toLocaleString("ja-JP")} · ${event.reviewer} · ${kindLabels[event.kind]}／${event.decision === "confirmed" && event.kind !== "name" ? "承認済み" : labelStatus[event.decision]}${event.kind === "name" ? ` · ${event.photos.length}枚` : ""}${event.local ? "" : " · バックアップから復元"}`);
       if (event.note) entry.append(element("p", event.note));
       if (event.photos.length) {
         const recorded = element("ul");
@@ -344,7 +396,7 @@
       history.append(entry);
     }
     if (!item.history.length) history.append(element("li", "新しい確認記録はありません"));
-    itemRegion.append(details("確認履歴", history));
+
     const dock = element("div", undefined, "guide-dock");
     const check = element("p");
     check.setAttribute("role", "status");
@@ -352,16 +404,21 @@
     const legacy = action("旧承認の指定3枚を再確認して保存", () => save(item, "name", "confirmed", "legacy", item.legacy_ids, pending || next));
     legacy.hidden = !item.legacy_ids.length;
     const individual = action("写真ごとに確認", () => {
-      photos.classList.toggle("guide-show-individual");
+      if (photos.classList.toggle("guide-show-individual")) individualMode.add(item.id);
+      else individualMode.delete(item.id);
+      individual.setAttribute("aria-expanded", String(individualMode.has(item.id)));
       photos.scrollIntoView({block: "start"});
     });
+    individual.setAttribute("aria-expanded", String(individualMode.has(item.id)));
     const hold = action("保留して次へ", () => save(item, "name", "held", "all", ids, pending || next));
-    dock.append(check, all, individual, hold, legacy, action("メモを保存", () => save(item, "name", "note", "all", ids)),
+    dock.append(check, all, individual, hold);
+    identity.append(legacy, action("メモを保存", () => save(item, "name", "note", "all", ids)),
       action("名称確認を訂正・再確認", () => {
         if (window.confirm(`${item.name}の名称確認を再開しますか？ 過去の記録は履歴に残ります。`))
           return save(item, "name", "reset", "all", ids);
       }));
-    itemRegion.append(dock);
+    const supplemental = details(`確認者・メモ・訂正（${reviewer || "確認者未入力"}）`, identity);
+    itemRegion.append(dock, supplemental, manuscript(item), details("確認履歴", history));
     function readiness() {
       check.textContent = `表示できた写真 ${loaded.size}／${ids.length}枚。写真を見てから、確認ボタンで記録してください。`;
       all.disabled = !ids.length || loaded.size !== ids.length || !["A", "B"].includes(item.group);
@@ -370,6 +427,12 @@
     readiness();
     Promise.all(item.photos.map((row, i) => photoCard(row, item, i + 1, stamp, readiness))).then(async () => {
       if (stamp !== view || !ids.length) return;
+      if (scrollTarget) {
+        const card = Array.from(photos.children).find(node => node.dataset.photoId === scrollTarget);
+        card?.scrollIntoView({block: "center"});
+        card?.querySelector(".guide-individual button")?.focus({preventScroll: true});
+        scrollTarget = null;
+      }
       try {
         const latest = await request("state?" + new URLSearchParams({item: item.id}));
         if (stamp !== view) return;
@@ -381,15 +444,17 @@
         line.textContent = `区分 ${item.group} · 公開写真 ${ids.length}枚 · ${labelStatus[latest.item.status]}`;
         photos.querySelectorAll("h4").forEach((heading, i) => {
           heading.textContent = `写真 ${i + 1} · ${labelStatus[latest.item.photo_states[ids[i]]]}`;
+          heading.parentElement.querySelector(".guide-reason").textContent = labels[latest.item.photo_reasons[ids[i]]] || "";
         });
       } catch (error) { if (stamp === view) report(error.message, true); }
     });
   }
 
   selection.addEventListener("change", () => open(selection.value));
-  for (const id of ["#guide-search", "#guide-priority", "#guide-size", "#guide-status"]) {
+  for (const id of filterIds) {
     find(id).addEventListener(id === "#guide-search" ? "input" : "change", () => {
       if (!data) return;
+      remember();
       updateList();
       if (!filtered().some(row => row.id === selected)) open(filtered()[0]?.id, false);
     });
@@ -426,5 +491,5 @@
       await open(selected);
     } catch (error) { report(error.message, true); }
   };
-  window.guideReview = {open: () => open(selected)};
+  window.guideReview = {open: () => open(selected || (/^[a-f0-9]{64}$/.test(preferences.item || "") ? preferences.item : undefined))};
 })();
