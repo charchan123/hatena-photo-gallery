@@ -238,3 +238,28 @@ def test_trial_backups_cannot_be_imported_into_the_normal_console(setup, tmp_pat
     with pytest.raises(ReviewError, match="バックアップの版・対象"):
         normal.change({"revision": 0, "backup": backup}, restore=True)
     assert normal.records() == []
+
+
+def test_previous_sqlite_format_preserves_complete_revision_history(setup):
+    review, _, _, _ = setup
+    decisions = [
+        dict(),
+        dict(decision="reset"),
+        dict(scope="photo", photos=[f"obs-{0:064x}"]),
+        dict(scope="photo", photos=[f"obs-{1:064x}"], decision="held"),
+        dict(item="別項目", decision="held"),
+        dict(kind="manuscript", scope="editorial", photos=[]),
+        dict(decision="note"),
+    ]
+    history = []
+    for revision, arguments in enumerate(decisions, 1):
+        review.change(operation(review, **arguments))
+        history = review.records()
+        assert len(history) == revision
+    # Reproduce the shipped SQLite schema, which had only the events table.
+    with sqlite3.connect(review.path) as db:
+        db.execute("DROP TABLE proposals")
+    reopened = GuideReview(review.path.parents[2], review.portal_loader, review.image_loader, review.catalog)
+    assert reopened.state(item_id(NAME))["revision"] == 7
+    assert reopened.records() == history
+    assert reopened.proposal(item_id(NAME))["revision"] == 0
