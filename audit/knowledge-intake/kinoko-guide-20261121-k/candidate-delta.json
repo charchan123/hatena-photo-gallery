@@ -1,0 +1,537 @@
+{
+  "schema_version": 1,
+  "mushroom_additions": [
+    {
+      "mushroom_id": "shirourokotsurutake",
+      "canonical_name_ja": "シロウロコツルタケ",
+      "name_ja_sources": [
+        "guide-review-shirourokotsurutake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Amanita clarisquamosa",
+        "source_ids": [
+          "guide-review-shirourokotsurutake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-review-shirourokotsurutake"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "features": {
+        "summary": "北海道で同定された標本は、白い傘に淡褐色の繊維状・綿毛状の鱗片をつけ、柄の根元に袋状のつぼがある。",
+        "source_ids": [
+          "guide-review-shirourokotsurutake"
+        ]
+      },
+      "season": {
+        "summary": "北海道の調査では8～10月。",
+        "source_ids": [
+          "guide-review-shirourokotsurutake"
+        ]
+      },
+      "habitat": {
+        "summary": "北海道の広葉樹林や針葉樹の混じる林の地上。",
+        "source_ids": [
+          "guide-review-shirourokotsurutake"
+        ]
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "和名は大阪市立自然史博物館のOMNH 12361も照合。旧同定は標本ごとに再検討が必要。 写真への接続と食毒は未審査。"
+      }
+    },
+    {
+      "mushroom_id": "yukirappatake",
+      "canonical_name_ja": "ユキラッパタケ",
+      "name_ja_sources": [
+        "guide-review-yukirappatake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Clitocybe trogioides var. odorifera",
+        "source_ids": [
+          "guide-review-yukirappatake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-review-yukirappatake"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "features": {
+        "summary": "小ぶりな白い傘は最初からじょうご形。白く細いひだが柄に向かって下がる。",
+        "source_ids": [
+          "guide-review-yukirappatake"
+        ]
+      },
+      "season": {
+        "summary": "原記載の採集期は7～10月。",
+        "source_ids": [
+          "guide-review-yukirappatake"
+        ]
+      },
+      "habitat": {
+        "summary": "コナラやシイ類などの低地の林の落ち葉。",
+        "source_ids": [
+          "guide-review-yukirappatake"
+        ]
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "科博標本 TNS-F-33588 の掲載報告で和名を照合。品種の階級を維持。 写真への接続と食毒は未審査。"
+      }
+    },
+    {
+      "mushroom_id": "oonoutake",
+      "canonical_name_ja": "オオノウタケ",
+      "name_ja_sources": [
+        "guide-review-oonoutake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Calvatia boninensis",
+        "source_ids": [
+          "guide-review-oonoutake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-review-oonoutake"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "features": {
+        "summary": "丸い子実体は成熟すると茶褐色になり、表面には亀裂状の粗い毛が見られる。内部は粉状になる。",
+        "source_ids": [
+          "guide-review-oonoutake"
+        ]
+      },
+      "season": {
+        "summary": "京都府の解説では7～10月。",
+        "source_ids": [
+          "guide-review-oonoutake"
+        ]
+      },
+      "habitat": {
+        "summary": "腐葉土や落ち葉の上。",
+        "source_ids": [
+          "guide-review-oonoutake"
+        ]
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "小笠原産菌類の原記載と学名を照合。近縁種の区別には胞子の確認を要する。 写真への接続と食毒は未審査。"
+      }
+    },
+    {
+      "mushroom_id": "tengunomeshigai",
+      "canonical_name_ja": "テングノメシガイ",
+      "name_ja_sources": [
+        "guide-review-tengunomeshigai"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Trichoglossum hirsutum",
+        "source_ids": [
+          "guide-review-tengunomeshigai"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-review-tengunomeshigai"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "features": {
+        "summary": "黒くて細長く、頭部はへら形に広がる。表面に細かい毛がある。",
+        "source_ids": [
+          "guide-review-tengunomeshigai"
+        ]
+      },
+      "season": {
+        "summary": "夏から秋。",
+        "source_ids": [
+          "guide-review-tengunomeshigai"
+        ]
+      },
+      "habitat": {
+        "summary": "林や庭園の地面。",
+        "source_ids": [
+          "guide-review-tengunomeshigai"
+        ]
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "千葉県立中央博物館の菌類誌の検査標本で同和名と学名を照合。 写真への接続と食毒は未審査。"
+      }
+    }
+  ],
+  "source_additions": [
+    {
+      "source_id": "guide-review-shirourokotsurutake",
+      "organization": "日本菌学会",
+      "title": "Nakaiら 2026 Mycoscience 67 pp.13–14、緑OTU",
+      "source_type": "peer_reviewed_taxonomic_paper",
+      "url": "https://www.jstage.jst.go.jp/article/mycosci/67/1/67_MYC687/_pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "和名は大阪市立自然史博物館のOMNH 12361も照合。旧同定は標本ごとに再検討が必要。"
+    },
+    {
+      "source_id": "guide-review-yukirappatake",
+      "organization": "日本菌学会",
+      "title": "Takahashi 2000 Mycoscience 41 p.15、品種原記載",
+      "source_type": "peer_reviewed_taxonomic_paper",
+      "url": "https://www.jstage.jst.go.jp/article/mycosci/41/1/41_MYC41015/_pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "科博標本 TNS-F-33588 の掲載報告で和名を照合。品種の階級を維持。"
+    },
+    {
+      "source_id": "guide-review-oonoutake",
+      "organization": "京都府",
+      "title": "京都府レッドデータブック2015 オオノウタケ、形態",
+      "source_type": "government_red_data_list",
+      "url": "https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fun0050.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "小笠原産菌類の原記載と学名を照合。近縁種の区別には胞子の確認を要する。"
+    },
+    {
+      "source_id": "guide-review-tengunomeshigai",
+      "organization": "平凡社",
+      "title": "改訂新版 世界大百科事典 テングノメシガイ、形態",
+      "source_type": "reference_encyclopedia",
+      "url": "https://kotobank.jp/word/%E3%81%A6%E3%82%93%E3%81%90%E3%81%AE%E3%82%81%E3%81%97%E3%81%8C%E3%81%84-3160035",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "千葉県立中央博物館の菌類誌の検査標本で同和名と学名を照合。"
+    }
+  ],
+  "assignment_additions": [
+    {
+      "candidate_id": "shirourokotsurutake-cap_scales_warts",
+      "mushroom_id": "shirourokotsurutake",
+      "assignment": {
+        "facet_id": "cap_scales_warts",
+        "evidence_text": "傘に繊維状または綿毛状の鱗片がある。",
+        "source_ids": [
+          "guide-review-shirourokotsurutake"
+        ],
+        "evidence_refs": [
+          "shirourokotsurutake-cap_scales_warts-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "shirourokotsurutake-cap_scales_warts-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-review-shirourokotsurutake",
+          "source_url": "https://www.jstage.jst.go.jp/article/mycosci/67/1/67_MYC687/_pdf",
+          "snapshot_identity": "guide-review-shirourokotsurutake-excerpt-20261121",
+          "extracted_text_sha256": "44beafbf82d2300f326169b5106a5aa3dea91caa21fd2b1432049d9feb136dee",
+          "text_snapshot_sha256": "44beafbf82d2300f326169b5106a5aa3dea91caa21fd2b1432049d9feb136dee",
+          "original_response_sha256": "b44de446c6d1204c77f7f59a413b13f155481e78fde094c3fc76e998190c1470",
+          "evidence_id": "shirourokotsurutake-cap_scales_warts-evidence",
+          "decision_id": "shirourokotsurutake-cap_scales_warts-decision",
+          "mushroom_id": "shirourokotsurutake",
+          "facet_id": "cap_scales_warts",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘に繊維状または綿毛状の鱗片がある。",
+          "qualifiers": [],
+          "quote": "Fibrous or floccose scales on pileus",
+          "quote_sha256": "44beafbf82d2300f326169b5106a5aa3dea91caa21fd2b1432049d9feb136dee",
+          "char_start": 0,
+          "char_end": 36,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "yukirappatake-cap_depressed",
+      "mushroom_id": "yukirappatake",
+      "assignment": {
+        "facet_id": "cap_depressed",
+        "evidence_text": "傘は中心が落ち込んだじょうご形。",
+        "source_ids": [
+          "guide-review-yukirappatake"
+        ],
+        "evidence_refs": [
+          "yukirappatake-cap_depressed-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "yukirappatake-cap_depressed-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-review-yukirappatake",
+          "source_url": "https://www.jstage.jst.go.jp/article/mycosci/41/1/41_MYC41015/_pdf",
+          "snapshot_identity": "guide-review-yukirappatake-excerpt-20261121",
+          "extracted_text_sha256": "a7d2cb50ae3ea50f58b7614d709b31aebb42e8a41d8c4e59cb881be6f3b6719a",
+          "text_snapshot_sha256": "a7d2cb50ae3ea50f58b7614d709b31aebb42e8a41d8c4e59cb881be6f3b6719a",
+          "original_response_sha256": "f5255e1242028cad95fcd1092581924233d7aa911bfba341a8d477c155ab8951",
+          "evidence_id": "yukirappatake-cap_depressed-evidence",
+          "decision_id": "yukirappatake-cap_depressed-decision",
+          "mushroom_id": "yukirappatake",
+          "facet_id": "cap_depressed",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘は中心が落ち込んだじょうご形。",
+          "qualifiers": [],
+          "quote": "infundibuliform from the",
+          "quote_sha256": "a7d2cb50ae3ea50f58b7614d709b31aebb42e8a41d8c4e59cb881be6f3b6719a",
+          "char_start": 0,
+          "char_end": 24,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "oonoutake-hairy",
+      "mushroom_id": "oonoutake",
+      "assignment": {
+        "facet_id": "hairy",
+        "evidence_text": "成熟した子実体の表面に粗い毛が見られる。",
+        "source_ids": [
+          "guide-review-oonoutake"
+        ],
+        "evidence_refs": [
+          "oonoutake-hairy-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "oonoutake-hairy-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-review-oonoutake",
+          "source_url": "https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fun0050.html",
+          "snapshot_identity": "guide-review-oonoutake-excerpt-20261121",
+          "extracted_text_sha256": "7fee6dde8a44a09bfcc93d42a6880ee07458f5fb4213cdedb1a693132a377b3b",
+          "text_snapshot_sha256": "7fee6dde8a44a09bfcc93d42a6880ee07458f5fb4213cdedb1a693132a377b3b",
+          "original_response_sha256": "55a19e9c4c11f3b698892963f916593343a065262351aded3bd5744ff4b212ed",
+          "evidence_id": "oonoutake-hairy-evidence",
+          "decision_id": "oonoutake-hairy-decision",
+          "mushroom_id": "oonoutake",
+          "facet_id": "hairy",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "成熟した子実体の表面に粗い毛が見られる。",
+          "qualifiers": [],
+          "quote": "表面に亀裂状の粗毛がでる",
+          "quote_sha256": "7fee6dde8a44a09bfcc93d42a6880ee07458f5fb4213cdedb1a693132a377b3b",
+          "char_start": 0,
+          "char_end": 12,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "tengunomeshigai-hairy",
+      "mushroom_id": "tengunomeshigai",
+      "assignment": {
+        "facet_id": "hairy",
+        "evidence_text": "子実体の表面に細かな毛が生える。",
+        "source_ids": [
+          "guide-review-tengunomeshigai"
+        ],
+        "evidence_refs": [
+          "tengunomeshigai-hairy-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "tengunomeshigai-hairy-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-review-tengunomeshigai",
+          "source_url": "https://kotobank.jp/word/%E3%81%A6%E3%82%93%E3%81%90%E3%81%AE%E3%82%81%E3%81%97%E3%81%8C%E3%81%84-3160035",
+          "snapshot_identity": "guide-review-tengunomeshigai-excerpt-20261121",
+          "extracted_text_sha256": "68dadcf0e11275b4afb0980f601749c3dcea9c797349192bffd643e40d012a17",
+          "text_snapshot_sha256": "68dadcf0e11275b4afb0980f601749c3dcea9c797349192bffd643e40d012a17",
+          "original_response_sha256": "64e155f08b6e74ae03d2b331c2dedbcc5bef1103799efe53e353e72e2ac16ed5",
+          "evidence_id": "tengunomeshigai-hairy-evidence",
+          "decision_id": "tengunomeshigai-hairy-decision",
+          "mushroom_id": "tengunomeshigai",
+          "facet_id": "hairy",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "子実体の表面に細かな毛が生える。",
+          "qualifiers": [],
+          "quote": "全面に黒い微細な毛が生えていて",
+          "quote_sha256": "68dadcf0e11275b4afb0980f601749c3dcea9c797349192bffd643e40d012a17",
+          "char_start": 0,
+          "char_end": 15,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    }
+  ]
+}
