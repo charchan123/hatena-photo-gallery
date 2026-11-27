@@ -161,6 +161,8 @@ GUIDE_ENRICHMENT_BLOBS = {
     'detail_ui.py': '8d522a7c9c299ceacdb22d41bf0d2edd8d23cd18',
     'data/taxonomy-display-ja.json': 'd0422a535fff0ddea8b8bca1ac432d4c744c94d4',
 }
+GUIDE_105_ENRICHMENT_BASE = '69b73ec7f2b0df0a151464351dba92e441511e49'
+GUIDE_105_ENRICHMENT_BLOB = 'b9451d46650ef9ed677356e651ff90ed09567773'
 GUIDE_DISPLAY_BASE = '1cf063ae2f969c0eb58820c61a1c51c5eea06528'
 GUIDE_DISPLAY_BLOB = '2148844d8a3366760dbe2f398608d0d696b9aa35'
 GUIDE_DISPLAY_DATA = 'data/taxonomy-display-ja.json'
@@ -194,6 +196,10 @@ def assert_reviewed_source(base, path, current):
     if path in GUIDE_EXPANSION_BLOBS and git('rev-parse', base).decode().strip() == GUIDE_EXPANSION_BASE:
         blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
         assert hashlib.sha1(blob).hexdigest() == GUIDE_EXPANSION_BLOBS[path], path
+        return
+    if path == GUIDE_DISPLAY_DATA and git('rev-parse', base).decode().strip() == GUIDE_105_ENRICHMENT_BASE:
+        blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
+        assert hashlib.sha1(blob).hexdigest() == GUIDE_105_ENRICHMENT_BLOB, path
         return
     if path in GUIDE_ENRICHMENT_BLOBS and git('rev-parse', base).decode().strip() == GUIDE_ENRICHMENT_BASE:
         blob = b'blob ' + str(len(current)).encode('ascii') + b'\0' + current
