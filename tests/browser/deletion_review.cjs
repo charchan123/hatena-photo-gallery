@@ -5,6 +5,13 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const root=path.resolve(__dirname,'../..'),out=process.env.DELETION_SCREENSHOTS;
 const oid='obs-'+ 'a'.repeat(64),cid='b'.repeat(64),fp='c'.repeat(64);
 function fixtures(){return {csrf:'fixture-token',observations:[],best_shots:{version:1,entries:[],annual_best:{}},cases:[],identified:[],notices:[],master:[],knowledge:[],preview:{},repo:{gh_authenticated:false},feature_facets:{},counts:{best_shots:0,annual_years:0,research_open:0,research_identified:0,active_notices:0,master:0,sources:0,knowledge_batches:0},portal_source:'fixture',portal_observation_count:0}}
+async function openPage(page){
+  const menu=page.locator('#admin-menu');
+  const compact=await menu.isVisible();
+  if(compact)await menu.click();
+  await page.click('[data-page=deletions]');
+  if(compact)assert.equal(await menu.getAttribute('aria-expanded'),'false');
+}
 (async()=>{
  const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_EXECUTABLE_PATH,args:['--no-sandbox',...(process.env.CHROMIUM_SINGLE_PROCESS?['--single-process','--no-zygote','--disable-gpu']:[])]});let assertions=0;
  const check=(actual,expected)=>{assert.deepEqual(actual,expected);assertions++};
@@ -31,7 +38,7 @@ function fixtures(){return {csrf:'fixture-token',observations:[],best_shots:{ver
    if(file)return route.fulfill({body:fs.readFileSync(path.join(root,'admin/static',file)),contentType:file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'text/html'});
    return route.fulfill({status:404,body:''});
   });
-  await page.goto('http://127.0.0.1:8765/');await page.waitForSelector('#cards .card');await page.click('[data-page=deletions]');await page.waitForSelector('.deletion-card');
+  await page.goto('http://127.0.0.1:8765/');await page.waitForSelector('#cards .card');await openPage(page);await page.waitForSelector('.deletion-card');
   return {context,page,state,writes,issues,fail:v=>failure=v};
  }
  const d=await setup({viewport:{width:1280,height:1000}}),p=d.page;
@@ -59,7 +66,7 @@ function fixtures(){return {csrf:'fixture-token',observations:[],best_shots:{ver
  const m=await setup({viewport:{width:390,height:844},isMobile:true,hasTouch:true}),mp=m.page;
  await mp.selectOption('[name=deletion-action]','hold');await mp.fill('[name=deletion-reason]','管理者の判断を待つ');await mp.getByRole('button',{name:'この1件の判断をローカル保存'}).tap();await mp.waitForFunction(()=>!deletionBusy);
  check(m.writes.length,1);check(m.writes[0].body.action,'hold');check(await mp.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);check(await mp.locator('#deletions').evaluate(e=>e.getBoundingClientRect().width>=340),true);
- await mp.reload();await mp.waitForSelector('#cards .card');await mp.click('[data-page=deletions]');await mp.waitForSelector('.deletion-card');
+ await mp.reload();await mp.waitForSelector('#cards .card');await openPage(mp);await mp.waitForSelector('.deletion-card');
  check(await mp.inputValue('[name=deletion-reason]'),'管理者の判断を待つ');check(m.writes.length,1);check(m.issues,[]);
  if(out)await mp.screenshot({path:path.join(out,'mobile-research-approval.png'),fullPage:true});
  if(!process.env.CHROMIUM_SINGLE_PROCESS)await d.context.close();if(!process.env.CHROMIUM_SINGLE_PROCESS)await m.context.close();await browser.close();console.log(`PASS: ${assertions} Chromium deletion-review assertions (desktop, keyboard, touch; isolated fixtures)`);
