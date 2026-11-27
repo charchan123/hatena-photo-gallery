@@ -1,0 +1,529 @@
+{
+  "schema_version": 1,
+  "mushroom_additions": [
+    {
+      "mushroom_id": "kitamagotake",
+      "canonical_name_ja": "キタマゴタケ",
+      "name_ja_sources": [
+        "guide-review-kitamagotake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Amanita kitamagotake",
+        "source_ids": [
+          "guide-review-kitamagotake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-review-kitamagotake"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "features": {
+        "summary": "傘とひだは黄色系で、傘の縁には放射状の溝。柄の下部を白っぽい袋状のつぼが包む。",
+        "source_ids": [
+          "guide-review-kitamagotake"
+        ]
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "habitat": {
+        "summary": "冷温帯から暖温帯の落葉・常緑のナラ類の林。",
+        "source_ids": [
+          "guide-review-kitamagotake"
+        ]
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "国内標本から種を記載。旧 A. javanica 名にチャタマゴタケの黄色型を含む。写真への適用は別審査。写真の同定と食毒は未判定。"
+      }
+    },
+    {
+      "mushroom_id": "koganekikubanaiguchi",
+      "canonical_name_ja": "コガネキクバナイグチ",
+      "name_ja_sources": [
+        "guide-review-koganekikubanaiguchi"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Boletellus aurocontextus",
+        "source_ids": [
+          "guide-review-koganekikubanaiguchi"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-review-koganekikubanaiguchi"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "features": {
+        "summary": "赤みのある鱗片の間から黄色い肉が見える。傘の裏に黄色い管孔があり、傷ついた部分は青変する。",
+        "source_ids": [
+          "guide-review-koganekikubanaiguchi"
+        ]
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "habitat": {
+        "summary": "原記載にアカマツとコナラの混交林での記録がある。",
+        "source_ids": [
+          "guide-review-koganekikubanaiguchi"
+        ]
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "国内標本の原記載。和名は関西菌類談話会会報37の図7と日本産きのこ目録の改訂表とも照合。写真への適用は別審査。写真の同定と食毒は未判定。"
+      }
+    },
+    {
+      "mushroom_id": "aozomekurotsubutake",
+      "canonical_name_ja": "アオゾメクロツブタケ",
+      "name_ja_sources": [
+        "guide-review-aozomekurotsubutake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Rossbeevera eucyanea",
+        "source_ids": [
+          "guide-review-aozomekurotsubutake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-review-aozomekurotsubutake"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "features": {
+        "summary": "白っぽい丸形の子実体を作り、触れた表面や切り口は青く変わる。内部は後に暗色になる。",
+        "source_ids": [
+          "guide-review-aozomekurotsubutake"
+        ]
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "habitat": {
+        "summary": "子実体は地中にあり、一部が地表に出ることがある。",
+        "source_ids": [
+          "guide-review-aozomekurotsubutake"
+        ]
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "現行名と旧和名を照合。後年の分類報告で区別された近縁種にも青変があり、写真への適用は別審査。写真の同定と食毒は未判定。"
+      }
+    },
+    {
+      "mushroom_id": "jagaimotake",
+      "canonical_name_ja": "ジャガイモタケ",
+      "name_ja_sources": [
+        "guide-review-jagaimotake"
+      ],
+      "aliases_ja": [],
+      "scientific_name": {
+        "value": "Heliogaster columellifer",
+        "source_ids": [
+          "guide-review-jagaimotake"
+        ],
+        "name_status": "source_reported"
+      },
+      "taxonomy": {
+        "kingdom": {
+          "value": "Fungi",
+          "source_ids": [
+            "guide-review-jagaimotake"
+          ]
+        },
+        "phylum": {
+          "value": null,
+          "source_ids": []
+        },
+        "class": {
+          "value": null,
+          "source_ids": []
+        },
+        "subclass": {
+          "value": null,
+          "source_ids": []
+        },
+        "order": {
+          "value": null,
+          "source_ids": []
+        },
+        "family": {
+          "value": null,
+          "source_ids": []
+        },
+        "genus": {
+          "value": null,
+          "source_ids": []
+        }
+      },
+      "features": {
+        "summary": "淡い黄褐色の丸みのある塊で、こぶが出ることがある。傷を付けた部分が青くなり、黒色に向かう。",
+        "source_ids": [
+          "guide-review-jagaimotake"
+        ]
+      },
+      "season": {
+        "summary": null,
+        "source_ids": []
+      },
+      "habitat": {
+        "summary": "林の土の中に発生する。",
+        "source_ids": [
+          "guide-review-jagaimotake"
+        ]
+      },
+      "food_safety": {
+        "status": "unknown",
+        "source_ids": [],
+        "notes": ""
+      },
+      "toxins": [],
+      "verification": {
+        "record_status": "partial",
+        "checked_at": "2026-11-21",
+        "notes": "愛媛県・神奈川県とIndex Fungorumの学名が一致。愛媛県の形態欄を使用し、写真への適用は別審査。写真の同定と食毒は未判定。"
+      }
+    }
+  ],
+  "source_additions": [
+    {
+      "source_id": "guide-review-kitamagotake",
+      "organization": "日本菌学会",
+      "title": "Endo et al. 2017, Mycoscience 58, §4 Taxonomy p.465",
+      "source_type": "peer_reviewed_taxonomic_paper",
+      "url": "https://www.jstage.jst.go.jp/article/mycosci/58/6/58_MYC58457/_pdf",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "国内標本から種を記載。旧 A. javanica 名にチャタマゴタケの黄色型を含む。写真への適用は別審査。"
+    },
+    {
+      "source_id": "guide-review-koganekikubanaiguchi",
+      "organization": "PLOS One",
+      "title": "Sato and Hattori 2015, Taxonomy, Boletellus aurocontextus, Figs 2–3",
+      "source_type": "peer_reviewed_taxonomic_paper",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0128184",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "国内標本の原記載。和名は関西菌類談話会会報37の図7と日本産きのこ目録の改訂表とも照合。写真への適用は別審査。"
+    },
+    {
+      "source_id": "guide-review-aozomekurotsubutake",
+      "organization": "京都府",
+      "title": "京都府レッドデータブック2015、形態",
+      "source_type": "government_red_data_list",
+      "url": "https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fun0069.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "現行名と旧和名を照合。後年の分類報告で区別された近縁種にも青変があり、写真への適用は別審査。"
+    },
+    {
+      "source_id": "guide-review-jagaimotake",
+      "organization": "愛媛県",
+      "title": "愛媛県レッドデータブック、種の特徴",
+      "source_type": "government_red_data_list",
+      "url": "https://www.pref.ehime.jp/reddatabook2014/detail/13_07_013030_2.html",
+      "record_id": null,
+      "accessed_at": "2026-11-21",
+      "notes": "愛媛県・神奈川県とIndex Fungorumの学名が一致。愛媛県の形態欄を使用し、写真への適用は別審査。"
+    }
+  ],
+  "assignment_additions": [
+    {
+      "candidate_id": "kitamagotake-volva",
+      "mushroom_id": "kitamagotake",
+      "assignment": {
+        "facet_id": "volva",
+        "evidence_text": "柄の基部に袋状のつぼがある。",
+        "source_ids": [
+          "guide-review-kitamagotake"
+        ],
+        "evidence_refs": [
+          "kitamagotake-volva-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "kitamagotake-volva-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-review-kitamagotake",
+          "source_url": "https://www.jstage.jst.go.jp/article/mycosci/58/6/58_MYC58457/_pdf",
+          "snapshot_identity": "guide-review-kitamagotake-excerpt-20261121",
+          "extracted_text_sha256": "9419e712a153167e4b2ea52285320c0f5c3653b5facca2c7293ceb3f06907dd0",
+          "text_snapshot_sha256": "9419e712a153167e4b2ea52285320c0f5c3653b5facca2c7293ceb3f06907dd0",
+          "original_response_sha256": "cb226c09537c5077fb0451238172416fc1d5e7cde40929a75290183889b5b1bf",
+          "evidence_id": "kitamagotake-volva-evidence",
+          "decision_id": "kitamagotake-volva-decision",
+          "mushroom_id": "kitamagotake",
+          "facet_id": "volva",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "柄の基部に袋状のつぼがある。",
+          "qualifiers": [],
+          "quote": "saccate, globose to subglobose",
+          "quote_sha256": "9419e712a153167e4b2ea52285320c0f5c3653b5facca2c7293ceb3f06907dd0",
+          "char_start": 0,
+          "char_end": 30,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "koganekikubanaiguchi-pores",
+      "mushroom_id": "koganekikubanaiguchi",
+      "assignment": {
+        "facet_id": "pores",
+        "evidence_text": "傘の裏に管孔がある。",
+        "source_ids": [
+          "guide-review-koganekikubanaiguchi"
+        ],
+        "evidence_refs": [
+          "koganekikubanaiguchi-pores-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "koganekikubanaiguchi-pores-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-review-koganekikubanaiguchi",
+          "source_url": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0128184",
+          "snapshot_identity": "guide-review-koganekikubanaiguchi-excerpt-20261121",
+          "extracted_text_sha256": "659297def1753db5f1c6c512e674452e64b31dfcfcc4271e81ab4aa41afc09f8",
+          "text_snapshot_sha256": "659297def1753db5f1c6c512e674452e64b31dfcfcc4271e81ab4aa41afc09f8",
+          "original_response_sha256": "a4ed6faea3843c70f08f46873b1f51e60c14b6bf1f49b1f8baead3e0c9aa99f6",
+          "evidence_id": "koganekikubanaiguchi-pores-evidence",
+          "decision_id": "koganekikubanaiguchi-pores-decision",
+          "mushroom_id": "koganekikubanaiguchi",
+          "facet_id": "pores",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傘の裏に管孔がある。",
+          "qualifiers": [],
+          "quote": "pores up to 1 mm wide, concolorous with tubes",
+          "quote_sha256": "659297def1753db5f1c6c512e674452e64b31dfcfcc4271e81ab4aa41afc09f8",
+          "char_start": 0,
+          "char_end": 45,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "aozomekurotsubutake-blue_stain",
+      "mushroom_id": "aozomekurotsubutake",
+      "assignment": {
+        "facet_id": "blue_stain",
+        "evidence_text": "切り口が青変する。",
+        "source_ids": [
+          "guide-review-aozomekurotsubutake"
+        ],
+        "evidence_refs": [
+          "aozomekurotsubutake-blue_stain-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "aozomekurotsubutake-blue_stain-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-review-aozomekurotsubutake",
+          "source_url": "https://www.pref.kyoto.jp/kankyo/rdb/bio/db/fun0069.html",
+          "snapshot_identity": "guide-review-aozomekurotsubutake-excerpt-20261121",
+          "extracted_text_sha256": "ee3bba9ca41593ec3e364e05dcd5aaf0efda4ee6eae10453254cefdbc0579dd2",
+          "text_snapshot_sha256": "ee3bba9ca41593ec3e364e05dcd5aaf0efda4ee6eae10453254cefdbc0579dd2",
+          "original_response_sha256": "aec23761a17bbc0eaf8c7d0bc92040b5c93ebc037def21d52b726e987fa6fa57",
+          "evidence_id": "aozomekurotsubutake-blue_stain-evidence",
+          "decision_id": "aozomekurotsubutake-blue_stain-decision",
+          "mushroom_id": "aozomekurotsubutake",
+          "facet_id": "blue_stain",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "切り口が青変する。",
+          "qualifiers": [],
+          "quote": "基本体も切断すると白色から青変し",
+          "quote_sha256": "ee3bba9ca41593ec3e364e05dcd5aaf0efda4ee6eae10453254cefdbc0579dd2",
+          "char_start": 0,
+          "char_end": 16,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    },
+    {
+      "candidate_id": "jagaimotake-blue_stain",
+      "mushroom_id": "jagaimotake",
+      "assignment": {
+        "facet_id": "blue_stain",
+        "evidence_text": "傷が青く変色する。",
+        "source_ids": [
+          "guide-review-jagaimotake"
+        ],
+        "evidence_refs": [
+          "jagaimotake-blue_stain-evidence"
+        ],
+        "evidence_kind": "source_supported_paraphrase",
+        "qualifiers": [],
+        "review": {
+          "decision_id": "jagaimotake-blue_stain-decision",
+          "status": "source_checked_candidate",
+          "reviewer_kind": "human_incremental_review",
+          "human_approval": null
+        }
+      },
+      "evidence_records": [
+        {
+          "source_id": "guide-review-jagaimotake",
+          "source_url": "https://www.pref.ehime.jp/reddatabook2014/detail/13_07_013030_2.html",
+          "snapshot_identity": "guide-review-jagaimotake-excerpt-20261121",
+          "extracted_text_sha256": "1cadb93d99d005ad1e4c62e171588233dc320eadd099495ee54e2cc6b856b74d",
+          "text_snapshot_sha256": "1cadb93d99d005ad1e4c62e171588233dc320eadd099495ee54e2cc6b856b74d",
+          "original_response_sha256": "2a25b31911d3aba84091e6c01f042ac7e9b489a8b60404286f20c2636fa606f9",
+          "evidence_id": "jagaimotake-blue_stain-evidence",
+          "decision_id": "jagaimotake-blue_stain-decision",
+          "mushroom_id": "jagaimotake",
+          "facet_id": "blue_stain",
+          "evidence_kind": "source_supported_paraphrase",
+          "evidence_text": "傷が青く変色する。",
+          "qualifiers": [],
+          "quote": "傷が付くと濃青色〜黒色に変わる",
+          "quote_sha256": "1cadb93d99d005ad1e4c62e171588233dc320eadd099495ee54e2cc6b856b74d",
+          "char_start": 0,
+          "char_end": 15,
+          "snapshot_line_start": 1,
+          "snapshot_line_end": 1,
+          "evidence_text_exact_substring_of_this_quote": false
+        }
+      ]
+    }
+  ]
+}
