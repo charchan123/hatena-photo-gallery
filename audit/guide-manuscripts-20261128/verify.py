@@ -105,7 +105,12 @@ for group, size in COUNTS.items():
         revision = r.pop("revision_sha256")
         assert revision == matrix[name]["改訂SHA-256"] == sha(r)
 assert set(seen) == matrix.keys()
+with (HERE / "remaining-34.csv").open(encoding="utf-8", newline="") as handle:
+    backlog = list(csv.DictReader(handle))
+backlog_names = {r["掲載名"] for r in backlog}
+assert len(backlog_names) == len(backlog) == SUMMARY["remaining_without_package"] == 34
+assert backlog_names == {r["掲載名"] for r in review} - seen
 assert len(by_name["センニンタケ"]["legacy_scope"]) == 3
 assert all(f.startswith("audit/guide-manuscripts-20261128/") for f in
            git("diff", "--name-only", SUMMARY["main"]).decode().splitlines())
-print("PASS: 65 exact priority matches, other 24, 2 partial records, 91 revisions and five pending decisions")
+print("PASS: 65 exact priority matches, other 24, 2 partial records, 91 revisions, 34 backlog items and five pending decisions")
