@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "batch_id": "kinoko-guide-20261122-l",
+  "created_at": "2026-11-22T09:41:36+09:00",
+  "generator": "ChatGPT Work",
+  "origin": "Follow-up to Draft PR #160",
+  "base_main_sha": "f791217b192c561a16541be2211758b8ec6ab3d0",
+  "artifacts": [
+    {
+      "path": "candidate-delta.json",
+      "bytes": 19108,
+      "sha256": "fbeed271863ec1ab13f0193d02128a15e206f001e5d6383d1992999cf9bd0eb6"
+    },
+    {
+      "path": "source-snapshots.jsonl",
+      "bytes": 2515,
+      "sha256": "962d34a895b1e3ee54775f68e4e877f83bdb543bde0d40691ebeac40d6723787"
+    }
+  ],
+  "counts": {
+    "mushroom_additions": 4,
+    "source_additions": 4,
+    "assignment_candidates": 4,
+    "snapshots": 4
+  }
+}
