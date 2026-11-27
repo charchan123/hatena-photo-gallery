@@ -1,0 +1,74 @@
+{
+  "main": "69b73ec7f2b0df0a151464351dba92e441511e49",
+  "pages": "250bc700bc74710a8d40dbc325f6d9229077325b",
+  "pr185": "b7961a0633288e940add911051da509e689c93a7",
+  "pr186": "189f2a7dc5fb90854bdb22a379590307ceea993d",
+  "remaining_without_package": 34,
+  "statuses": {
+    "priority65": {
+      "records": 65,
+      "with_scientific": 65,
+      "with_source": 65,
+      "no_features": 0,
+      "explicit_scope_holds": 17,
+      "verified_new_fields": 69,
+      "species_with_added_primary_evidence": 46,
+      "filled_fields": {
+        "scientific": 65,
+        "family": 43,
+        "genus": 37,
+        "ecology": 13,
+        "features": 65,
+        "habitat": 62,
+        "season": 60
+      },
+      "status_food_pending": 65,
+      "human_review_pending": 65
+    },
+    "other24": {
+      "records": 24,
+      "with_scientific": 15,
+      "with_source": 24,
+      "no_features": 9,
+      "explicit_scope_holds": 13,
+      "verified_new_fields": 22,
+      "species_with_added_primary_evidence": 13,
+      "filled_fields": {
+        "scientific": 15,
+        "family": 11,
+        "genus": 4,
+        "ecology": 1,
+        "features": 15,
+        "habitat": 15,
+        "season": 15
+      },
+      "status_food_pending": 24,
+      "human_review_pending": 24
+    },
+    "partial2": {
+      "records": 2,
+      "with_scientific": 2,
+      "with_source": 2,
+      "no_features": 2,
+      "explicit_scope_holds": 2,
+      "verified_new_fields": 10,
+      "species_with_added_primary_evidence": 2,
+      "filled_fields": {
+        "scientific": 2,
+        "family": 2,
+        "genus": 1,
+        "ecology": 2,
+        "features": 0,
+        "habitat": 2,
+        "season": 2
+      },
+      "status_food_pending": 2,
+      "human_review_pending": 2
+    }
+  },
+  "source_ids": 201,
+  "distinct_urls": 173,
+  "sources_with_old_snapshots": 72,
+  "distinct_urls_reused_from_older_snapshots": 72,
+  "retrieved_urls": 151
+}
