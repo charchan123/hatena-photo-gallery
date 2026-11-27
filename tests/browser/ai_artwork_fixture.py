@@ -116,6 +116,8 @@ def retained_best_shot_data(path):
 # Only these exact approved reader-facing strings may differ. The generated
 # source, photography, URLs, attributes and markup must otherwise be byte-equal
 # to the immutable baseline after accounting for the reviewed copy edit.
+# This baseline already generates the approved portal copy. Compare it verbatim.
+CURRENT_GUIDE_BASE = '69b73ec7f2b0df0a151464351dba92e441511e49'
 approved_page_copy = [
     ('このブログで出会った写真と、確認できた図鑑情報をまとめています。',
      '撮影したキノコの写真と、資料をもとに調べた情報をまとめています。'),
@@ -185,7 +187,7 @@ for p in html_files:
                                '8de52dfcc1c4d5756ea6e7a87b4fc150df2cdb1f',
                                '27be968fb371d6e7f0a552abe860ec203af04954',
                                'a27c4e9b3f3b11538c93e4162d383e7a902d5b4e',
-                               'e4209e784440e13ed6c97adbf62ded256447a108', GUIDE_DISPLAY_BASE, GUIDE_ENRICHMENT_BASE, GUIDE_EXPANSION_BASE}
+                               'e4209e784440e13ed6c97adbf62ded256447a108', GUIDE_DISPLAY_BASE, GUIDE_ENRICHMENT_BASE, GUIDE_EXPANSION_BASE, CURRENT_GUIDE_BASE}
         if git('rev-parse', base).decode().strip() not in css_only_baselines:
             for original, approved in approved_page_copy:
                 normalized = normalized.replace(original, approved)
@@ -282,7 +284,7 @@ for p in protected:
     before_bytes = git('show', f'{base}:{p}')
     after_bytes = (repo / p).read_bytes()
     if (p in approved_copy_source_blobs
-            and git('rev-parse', base).decode().strip() not in {GUIDE_DISPLAY_BASE, GUIDE_ENRICHMENT_BASE, GUIDE_EXPANSION_BASE}):
+            and git('rev-parse', base).decode().strip() not in {GUIDE_DISPLAY_BASE, GUIDE_ENRICHMENT_BASE, GUIDE_EXPANSION_BASE, CURRENT_GUIDE_BASE}):
         # PR #164 is now the comparison base, so these approved bytes can
         # legitimately match the previous revision. The exact Git blob stays pinned.
         expected_blob = (

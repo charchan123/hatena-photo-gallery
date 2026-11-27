@@ -1,0 +1,106 @@
+掲載名,写真数,マスターID,掲載学名,科名（現行）,科名（Draft）,属名（現行）,属名（Draft）,生態（現行）,生態（Draft）,保留と理由
+アカヤマドリ,38,akayamadori,Leccinum extremiorientale,イグチ科,イグチ科,確認中,ヤマイグチ属,未確認,外生菌根菌,
+ヤマドリタケモドキ,37,yamadoritakemodoki,Boletus reticulatus,イグチ科,イグチ科,ヤマドリタケ属,ヤマドリタケ属,外生菌根菌,外生菌根菌,
+オオワライタケ,20,oowaraitake,Gymnopilus spectabilis,フウセンタケ科,フウセンタケ科,チャツムタケ属,チャツムタケ属,未確認,木材腐朽菌,
+シイタケ,20,shiitake,Lentinula edodes,ツキヨタケ科,ツキヨタケ科,シイタケ属,シイタケ属,腐生菌,腐生菌,
+アミガサタケ,19,amigasatake,Morchella esculenta (L.) Pers.,アミガサタケ科,アミガサタケ科,アミガサタケ属,アミガサタケ属,未確認,未確認,国内の旧来の和名と狭義 M. esculenta の再照合が必要。広義名での生態や他のアミガサタケを転用しない。
+ヒロメノトガリアミガサタケ,19,hiromenotogariamigasatake,Morchella nipponensis,アミガサタケ科,アミガサタケ科,アミガサタケ属,アミガサタケ属,未確認,未確認,M. nipponensis 原記載（Mycoscience 63、MYC590、Taxonomy）で標本・発生場所を確認。生育場所から栄養様式を判断できない。
+キクラゲ,14,kikurage,"Auricularia heimuer F. Wu, B.K. Cui & Y.C. Dai",キクラゲ科,キクラゲ科,キクラゲ属,キクラゲ属,未確認,腐生菌（木材を分解）,
+オオシロカラカサタケ,13,ooshirokarakasatake,Chlorophyllum molybdites,ハラタケ科,ハラタケ科,オオシロカラカサタケ属,オオシロカラカサタケ属,未確認,腐生菌,
+チチアワタケ,13,chichiawatake,Suillus granulatus (L.) O. Kuntze,ヌメリイグチ科,ヌメリイグチ科,ヌメリイグチ属,ヌメリイグチ属,菌根菌,菌根菌,
+ヒラタケ,13,hiratake,Pleurotus ostreatus (Jacq.) P. Kumm.,ヒラタケ科,ヒラタケ科,ヒラタケ属,ヒラタケ属,腐生菌,腐生菌,
+チャアミガサタケ,12,chaamigasatake,Morchella esculenta var. umbrina,アミガサタケ科,アミガサタケ科,アミガサタケ属,アミガサタケ属,未確認,未確認,科博の M. esculenta var. umbrina 標本情報（19379）は学名・採集記録。変種に対応した生態の原典が必要。
+アイタケ,11,aitake,Russula virescens,ベニタケ科,ベニタケ科,ベニタケ属,ベニタケ属,外生菌根菌,外生菌根菌,
+ヘビキノコモドキ,11,hebikinokomodoki,Amanita spissacea,テングタケ科,テングタケ科,テングタケ属,テングタケ属,未確認,外生菌根菌,
+キイロスッポンタケ,10,kiirosuppontake,Phallus costatus,スッポンタケ科,スッポンタケ科,スッポンタケ属,スッポンタケ属,未確認,未確認,赤石・佐久間（2021）は P. flavocostatus と朽木上の発生を記載。栄養様式の直接の検証は未確認。
+ハナイグチ,10,hanaiguchi,Suillus grevillei (Klotzsch) Singer,イグチ科,イグチ科,ヌメリイグチ属,ヌメリイグチ属,菌根菌,菌根菌,
+カラカサタケ,9,karakasatake,Macrolepiota procera (Scop.) Singer,ハラタケ科,ハラタケ科,カラカサタケ属,カラカサタケ属,未確認,腐生菌,
+クロカワ,9,kurokawa,Boletopsis leucomelas (Pers.: Fr.) Fayod,イボタケ科,イボタケ科,クロカワ属,クロカワ属,外生菌根菌,外生菌根菌,
+ベニテングタケ,8,benitengutake,Amanita muscaria,テングタケ科,テングタケ科,テングタケ属,テングタケ属,菌根菌,菌根菌,
+ヤマイグチ,8,yamaiguchi,Leccinum scabrum,イグチ科,イグチ科,ヤマイグチ属,ヤマイグチ属,外生菌根菌,外生菌根菌,
+アオロウジ,7,aorouji,Albatrellus caeruleoporus,ニンギョウタケモドキ科,ニンギョウタケモドキ科,ニンギョウタケモドキ属,ニンギョウタケモドキ属,未確認,外生菌根菌,
+ウラベニガサ,7,urabenigasa,Pluteus atricapillus,ウラベニガサ科,ウラベニガサ科,ウラベニガサ属,ウラベニガサ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+キクバナイグチ,7,kikubanaiguchi,Boletellus emodensis (Berkeley) Singer,オニイグチ科,オニイグチ科,キクバナイグチ属,キクバナイグチ属,未確認,未確認,先行監査より。国内の旧広義 Boletellus emodensis と再分類の範囲を確認後、種別の生態を照合する。
+ドクツルタケ,7,dokutsurutake,Amanita virosa,テングタケ科,テングタケ科,テングタケ属,テングタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+キニガイグチ,6,kinigaiguchi,Tylopilus ballouii (Peck) Sing.,イグチ科,イグチ科,ニガイグチ属,ニガイグチ属,未確認,未確認,山田（2002）表2 p.7 に同名記録。Tylopilus ballouii 種群の地域差を個別に確認する。
+コテングタケモドキ,6,kotengutakemodoki,Amanita pseudoporphyria,テングタケ科,テングタケ科,テングタケ属,テングタケ属,未確認,未確認,千葉調査に同旧名。鳥取大学の複数菌株で旧同定名が見直されており、国内種の範囲を照合する。
+タマゴタケ,6,tamagotake,Amanita hemibapha,テングタケ科,テングタケ科,テングタケ属,テングタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+ノウタケ,6,noutake,Calvatia craniiformis,ホコリタケ科,ホコリタケ科,ノウタケ属,ノウタケ属,未確認,腐生菌,
+マツオウジ,6,matsuouji,Neolentinus lepideus,キカイガラタケ科,キカイガラタケ科,マツオウジ属,マツオウジ属,未確認,木材腐朽菌,
+アラゲキクラゲ,5,aragekikurage,Auricularia polytricha,キクラゲ科,キクラゲ科,キクラゲ属,キクラゲ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+ウスヒラタケ,5,usuhiratake,Pleurotus pulmonarius,ヒラタケ科,ヒラタケ科,ヒラタケ属,ヒラタケ属,腐生菌（木材を分解）,腐生菌（木材を分解）,
+ウラグロニガイグチ,5,uraguronigaiguchi,Tylopilus eximius,イグチ科,イグチ科,ニガイグチ属,ニガイグチ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+エノキタケ,5,enokitake,Flammulina velutipes (Curtis) Singer,タマバリタケ科,タマバリタケ科,エノキタケ属,エノキタケ属,腐生菌,腐生菌,
+キアミアシイグチ,5,kiamiashiiguchi,Boletus ornatipes Peck,イグチ科,イグチ科,確認中,ヤマドリタケ属,未確認,未確認,山田（2002）表2 p.6 は Boletus retipes。新旧学名・和名の適用範囲が揃うまで生態は保留。
+キタマゴタケ,5,kitamagotake,Amanita kitamagotake,テングタケ科,テングタケ科,テングタケ属,テングタケ属,外生菌根菌,外生菌根菌,
+シロオニタケ,5,siroonitake,Amanita virgineoides,テングタケ科,テングタケ科,テングタケ属,テングタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+ツバアブラシメジ,5,tsubaaburashimeji,Cortinarius collinitus,フウセンタケ科,フウセンタケ科,フウセンタケ属,フウセンタケ属,外生菌根菌,外生菌根菌,
+ミドリニガイグチ,5,midorinigaiguchi,Tylopilus virens,イグチ科,イグチ科,ニガイグチ属,ニガイグチ属,未確認,外生菌根菌,
+ミヤマタマゴタケ,5,miyamatamagotake,Amanita imazekii,テングタケ科,テングタケ科,テングタケ属,テングタケ属,外生菌根菌,外生菌根菌,
+ムラサキヤマドリタケ,5,murasakiyamadoritake,Boletus violaceofuscus,イグチ科,イグチ科,ヤマドリタケ属,ヤマドリタケ属,外生菌根菌,外生菌根菌,
+ヤナギマツタケ,5,yanagimatsutake,Cyclocybe cylindracea (DC.) Vizzini & Angelini,確認中,チャムクエタケ科,確認中,シクロシベ属,未確認,未確認,台湾・欧州等の Agrocybe aegerita の木材試験と、国内標本の Cyclocybe cylindracea を別に扱う。
+アシナガイグチ,4,asinagaiguti,Boletellus elatus,イグチ科,イグチ科,キクバナイグチ属,キクバナイグチ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+アミタケ,4,amitake,Suillus bovinus,ヌメリイグチ科,ヌメリイグチ科,ヌメリイグチ属,ヌメリイグチ属,菌根菌,菌根菌,
+アンズタケ,4,anzutake,Cantharellus cibarius,確認中,アンズタケ科,アンズタケ属,アンズタケ属,未確認,未確認,小川ほか（2018）は国内アンズタケ類を4系統に区分。種ごとに国内標本と生態を確認する。
+ウコンハツ,4,ukonhatsu,Russula flavida,ベニタケ科,ベニタケ科,ベニタケ属,ベニタケ属,外生菌根菌,外生菌根菌,
+オオキツネタケ,4,ookitunetake,Laccaria bicolor,キシメジ科,キシメジ科,キツネタケ属,キツネタケ属,外生菌根菌,外生菌根菌,
+カバイロツルタケ,4,kabairoturutake,Amanita vaginata var. fulva,テングタケ科,テングタケ科,テングタケ属,テングタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+クリフウセンタケ,4,kurifuusentake,Cortinarius tenuipes,フウセンタケ科,フウセンタケ科,フウセンタケ属,フウセンタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+ショウゲンジ,4,syougenji,Cortinarius caperatus,フウセンタケ科,フウセンタケ科,フウセンタケ属,フウセンタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+セイタカイグチ,4,seitakaiguchi,Boletellus russellii,オニイグチ科,オニイグチ科,キクバナイグチ属,キクバナイグチ属,外生菌根菌,外生菌根菌,
+タマゴテングタケモドキ,4,tamagotengutakemodoki,Amanita longistriata,テングタケ科,テングタケ科,テングタケ属,テングタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+チャナメツムタケ,4,cyanamemututake,Pholiota lubrica,モエギタケ科,モエギタケ科,スギタケ属,スギタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+テングタケ,4,tengutake,Amanita pantherina,テングタケ科,テングタケ科,テングタケ属,テングタケ属,未確認,未確認,山田（2002）表3は旧名の記録。イボテングタケとの区別後の生態資料を確認する。
+ドクヤマドリ,4,dokuyamadori,Boletus venenatus,イグチ科,イグチ科,ヤマドリタケ属,ヤマドリタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+ベニイグチ,4,beniiguti,Heimiella japonica,オニイグチ科,オニイグチ科,ベニイグチ属,ベニイグチ属,外生菌根菌,外生菌根菌,
+ウスタケ,3,usutake,Gomphus floccosus,ラッパタケ科,ラッパタケ科,ラッパタケ属,ラッパタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+キイロイグチ,3,kiiroiguti,Pulveroboletus ravenelii,イグチ科,イグチ科,キイロイグチ属,キイロイグチ属,外生菌根菌,外生菌根菌,
+クチベニタケ,3,kutibenitake,Calostoma japonicum,クチベニタケ科,クチベニタケ科,クチベニタケ属,クチベニタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+コツブタケ,3,kotubutake,Pisolithus arrhizus,確認中,ニセショウロ科,コツブタケ属,コツブタケ属,未確認,外生菌根菌,
+タマチョレイタケ,3,tamachoreitake,Polyporus tuberaster,タコウキン科,タコウキン科,確認中,タマチョレイタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+ツルタケ,3,turutake,Amanita vaginata var.vaginata,テングタケ科,テングタケ科,テングタケ属,テングタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+ナラタケ,3,naratake,Armillariella mellea,キシメジ科,キシメジ科,確認中,ナラタケ属,未確認,未確認,国内の旧広義群。千葉県の A. mellea の調査記載を国内の個別種に一般化できない。
+ヌメリスギタケ,3,numerisugitake,Pholiota adiposa,モエギタケ科,モエギタケ科,スギタケ属,スギタケ属,未確認,木材を分解する菌,
+ハチノスタケ,3,hatinosutake,Polyporus alveolaris,タマチョレイタケ科,タマチョレイタケ科,確認中,タマチョレイタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+ハツタケ,3,hatutake,Lactarius hatsudake,ベニタケ科,ベニタケ科,チチタケ属,チチタケ属,外生菌根菌,外生菌根菌,
+ホコリタケ,3,hokoritake,Lycoperdon perlatum,ホコリタケ科,ホコリタケ科,ホコリタケ属,ホコリタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+ホテイシメジ,3,hoteishimeji,Ampulloclitocybe clavipes,ヌメリガサ科,ヌメリガサ科,ホテイシメジ属,ホテイシメジ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+アカモミタケ,2,akamomitake,Lactarius laeticolorus,ベニタケ科,ベニタケ科,チチタケ属,チチタケ属,外生菌根菌,外生菌根菌,
+オニイグチモドキ,2,oniigutimodoki,Strobilomyces confusus,イグチ科,イグチ科,オニイグチ属,オニイグチ属,外生菌根菌,外生菌根菌,
+カエンタケ,2,kaentake,Podostroma cornu-damae,ニクザキン科,ニクザキン科,ツノタケ属,ツノタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+カキシメジ,2,kakisimeji,Tricholoma ustale,キシメジ科,キシメジ科,キシメジ属,キシメジ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+キツネタケ,2,kitunetake,Laccaria laccata,ヒドナンギウム科,ヒドナンギウム科,キツネタケ属,キツネタケ属,菌根菌,菌根菌,
+チチタケ,2,tititake,Lactarius volemus,ベニタケ科,ベニタケ科,確認中,チチタケ属,未確認,未確認,山田（2002）の L. volemus の記録を追跡。国内の旧来の学名と Lactifluus の種群を照合してから生態を判断。
+テングタケダマシ,2,tengutakedamasi,Amanita sychnopyramis,テングタケ科,テングタケ科,テングタケ属,テングタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+トガリアミガサタケ,2,togariamigasatake,Morchella conica,アミガサタケ科,アミガサタケ科,アミガサタケ属,アミガサタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+ナカグロモリノカサ,2,nakaguromorinokasa,Agaricus praeclaresquamosus,ハラタケ科,ハラタケ科,ハラタケ属,ハラタケ属,未確認,腐生菌,
+ニガクリタケ,2,nigakuritake,Hypholoma fasciculare,モエギタケ科,モエギタケ科,クリタケ属,クリタケ属,腐生菌,腐生菌,
+ヌメリイグチ,2,numeriiguti,Suillus luteus,ヌメリイグチ科,ヌメリイグチ科,ヌメリイグチ属,ヌメリイグチ属,菌根菌,菌根菌,
+ハラタケ,2,haratake,Agaricus campestris,ハラタケ科,ハラタケ科,ハラタケ属,ハラタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+ブドウニガイグチ,2,budounigaiguchi,Tylopilus vinosobrunneus,イグチ科,イグチ科,ニガイグチ属,ニガイグチ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+マツタケ,2,matutake,Tricholoma matsutake,キシメジ科,キシメジ科,キシメジ属,キシメジ属,菌根菌,菌根菌,
+マンネンタケ,2,mannentake,Ganoderma lucidum,確認中,マンネンタケ科,マンネンタケ属,マンネンタケ属,未確認,腐生菌,
+ヤシャイグチ,2,yashaiguchi,Austroboletus fusisporus,オニイグチ科,オニイグチ科,ヤシャイグチ属,ヤシャイグチ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+ルリハツタケ,2,rurihatutake,Lactarius indigo,ベニタケ科,ベニタケ科,チチタケ属,チチタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+アカジコウ,1,akajikou,Boletus speciosus,イグチ科,イグチ科,ヤマドリタケ属,ヤマドリタケ属,未確認,未確認,山田（2002）表2 p.6 は掲載学名と一致するが、北米産の名の適用と国内の組み替えを個別確認。
+ウスムラサキシメジ,1,usumurasakishimeji,Lepista graveolens,キシメジ科,キシメジ科,ムラサキシメジ属,ムラサキシメジ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+ウラベニホテイシメジ,1,urabenihoteisimeji,Entoloma crassipes,イッポンシメジ科,イッポンシメジ科,イッポンシメジ属,イッポンシメジ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+オオノウタケ,1,oonoutake,Calvatia boninensis,ハラタケ科,ハラタケ科,ノウタケ属,ノウタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+カニノツメ,1,kaninotume,Linderia bicolumnata,アカカゴタケ科,アカカゴタケ科,カニノツメ属,カニノツメ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+カワリハツ,1,kawarihatu,Russula cyanoxantha,ベニタケ科,ベニタケ科,ベニタケ属,ベニタケ属,外生菌根菌,外生菌根菌,
+ガンタケ,1,gantake,Amanita rubescens,テングタケ科,テングタケ科,テングタケ属,テングタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+キホウキタケ,1,kihoukitake,Ramaria flava,ラッパタケ科,ラッパタケ科,ホウキタケ属,ホウキタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+キララタケ,1,kiraratake,Coprinus micaceus,確認中,ヒトヨタケ科,確認中,ヒトヨタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+キンチャワンタケ,1,kinchawantake,Aleuria rhenana,ピロネマキン科,ピロネマキン科,ヒイロチャワンタケ属,ヒイロチャワンタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+クサウラベニタケ,1,kusaurabenitake,Entoloma rhodopolium,イッポンシメジ科,イッポンシメジ科,イッポンシメジ属,イッポンシメジ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+クリタケ,1,kuritake,Hypholoma sublateritium,モエギタケ科,モエギタケ科,クリタケ属,クリタケ属,腐生菌,腐生菌,
+クロハツ,1,kurohatu,Russula nigricans,ベニタケ科,ベニタケ科,ベニタケ属,ベニタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+コタマゴテングタケ,1,kotamagotengutake,Amanita citrina var.citrina,テングタケ科,テングタケ科,テングタケ属,テングタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+サクラシメジモドキ,1,sakurasimejimodoki,Hygrophorus purpurascens,ヌメリガサ科,ヌメリガサ科,ヌメリガサ属,ヌメリガサ属,外生菌根菌,外生菌根菌,
+ツチグリ,1,tutiguri,Astraeus hygrometricus,ディプロシスチジア科,ディプロシスチジア科,ツチグリ属,ツチグリ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+ハタケシメジ,1,hatakesimeji,Lyophyllum decastes,シメジ科,シメジ科,シメジ属,シメジ属,腐生菌,腐生菌,
+ベニハナイグチ,1,benihanaiguti,Suillus pictus,ヌメリイグチ科,ヌメリイグチ科,ヌメリイグチ属,ヌメリイグチ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+マクキヌガサタケ,1,makukinugasatake,Dictyophora duplicata,スッポンタケ科,スッポンタケ科,キヌガサタケ属,キヌガサタケ属,未確認,未確認,再利用した先行台帳と種名照合で表示に必要な根拠を確保できず。種別原典または分類上の適用範囲を追加確認。
+ムキタケ,1,mukitake,Panellus serotinus,確認中,キシメジ科,確認中,ワサビタケ属,未確認,未確認,弘前大学資料の S. edulis と S. serotina の区別を優先。Panellus serotinus の旧範囲を個々の資料で確認。
+ムレオオフウセンタケ,1,mureoofusentake,Cortinarius praestans,フウセンタケ科,フウセンタケ科,フウセンタケ属,フウセンタケ属,外生菌根菌,外生菌根菌,
+ヤマドリタケ,1,yamadoritake,Boletus edulis,イグチ科,イグチ科,ヤマドリタケ属,ヤマドリタケ属,外生菌根菌,外生菌根菌,

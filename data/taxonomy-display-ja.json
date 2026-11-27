@@ -380,6 +380,136 @@
       "organization": "米国国立生物工学情報センター（NCBI）",
       "title": "Taxonomy Browser: Suillus spraguei（Taxonomy ID 5383）",
       "url": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=5383"
+    },
+    "yamashina-ogawa2018": {
+      "organization": "日本菌学会",
+      "title": "Ogawaほか（2018）日本産アンズタケ類の系統解析",
+      "url": "https://www.jstage.jst.go.jp/article/mycosci/59/2/59_MYC59153/_pdf"
+    },
+    "ffpri-kirara": {
+      "organization": "森林総合研究所九州支所",
+      "title": "立田山のきのこ キララタケ",
+      "url": "https://www.ffpri.go.jp/kys/business/tatuta/kinoko/kinoko029.html"
+    },
+    "sakai-fungi2021": {
+      "organization": "堺市",
+      "title": "堺市野生生物目録（菌類）2021 No.303",
+      "url": "https://www.city.sakai.lg.jp/kurashi/gomi/kankyo_hozen/seibutsutayosei/redlist.files/2021mokuroku.pdf"
+    },
+    "ffpri-stand-class": {
+      "organization": "森林総合研究所九州支所",
+      "title": "立田山のきのこの分類体系",
+      "url": "https://www.ffpri.go.jp/kys/business/tatuta/kinoko/bunruitaikei.html"
+    },
+    "nihs-mukitake": {
+      "organization": "国立医薬品食品衛生研究所",
+      "title": "自然毒データベース（キノコ類） ムキタケの分類",
+      "url": "https://www.nihs.go.jp/dnfi/pdf/Nat.Tox-DB-data-mushrooms.pdf"
+    },
+    "ibamuseum-kitazawa2023": {
+      "organization": "ミュージアムパーク茨城県自然博物館",
+      "title": "北沢ほか（2023）筑波山塊で記録された大型菌類",
+      "url": "https://www.nat.museum.ibk.ed.jp/wp-content/uploads/2023/12/2023-12-20_09-02-14_239082.pdf"
+    },
+    "ffpri-boletes2008": {
+      "organization": "森林総合研究所",
+      "title": "森林総合研究所研究報告7巻4号 イグチ類の供試菌株",
+      "url": "https://repository.ffpri.go.jp/record/2003179/files/BF7-4-2.pdf"
+    },
+    "if-rugiboletus": {
+      "organization": "Index Fungorum",
+      "title": "Rugiboletus extremiorientalis 命名記録 No.810363",
+      "url": "https://www.indexfungorum.org/names/namesrecord.asp?RecordID=810363"
+    },
+    "saotome-2015": {
+      "organization": "日本菌学会",
+      "title": "早乙女（2015）Polyporus属とその関連属の分子系統分類学的研究",
+      "url": "https://www.jstage.jst.go.jp/article/jjom/56/2/56_jjom.H27-01/_pdf"
+    },
+    "snet-lactarius": {
+      "organization": "サイエンスミュージアムネット",
+      "title": "標本資料「チチタケ属」",
+      "url": "https://jpsearch.go.jp/item/s_net-6005454"
+    },
+    "kahaku-naratake": {
+      "organization": "国立科学博物館",
+      "title": "ナラタケ標本 pkey 230596",
+      "url": "https://db.kahaku.go.jp/webmuseum/detail?cls=col_b2_01&pkey=230596"
+    },
+    "naratake-genus-history": {
+      "organization": "林業薬剤協会",
+      "title": "林業と薬剤 No.243（2023）ナラタケ属の命名史",
+      "url": "https://www.rinyakukyo.com/upload/item/250_1.pdf"
+    },
+    "tufc-junonius11917": {
+      "organization": "鳥取大学菌類きのこ遺伝資源研究センター",
+      "title": "オオワライタケ 菌株 TUFC 11917",
+      "url": "https://fungusdb.muses.tottori-u.ac.jp/catalog/info?id=11917"
+    },
+    "szczepkowski-decay2022": {
+      "organization": "ポーランド植物病理学会学会要旨集",
+      "title": "Wood decay ability of Gymnopilus junonius（2022）",
+      "url": "https://sparrow.up.poznan.pl/ptfit2022/sites/default/files/ksiazka_abstraktow_konferencja_ptfit_7-8_09_2022.pdf"
+    },
+    "heimuer-hws1908": {
+      "organization": "Journal of Fungi",
+      "title": "Analysis of the Subculture Effect on the Auricularia heimuer Strain ‘HWS1908’ Based on Transcriptome",
+      "url": "https://www.mdpi.com/2309-608X/12/6/437"
+    },
+    "iowa-chlorophyllum": {
+      "organization": "Iowa State University Herbarium",
+      "title": "Chlorophyllum molybdites 種別資料",
+      "url": "https://www.herbarium.iastate.edu/files/fungi/Chlorophyllum%20molybdites%20%28Meyer%29%20Massee.pdf"
+    },
+    "kim2017-amanita": {
+      "organization": "韓国菌学会",
+      "title": "In Vitro Mycorrhization and Morphological Characterization of Xanthoconium affine with Pinus densiflora",
+      "url": "https://www.kjmycology.or.kr/4504-06/"
+    },
+    "ge-2010-macrolepiota": {
+      "organization": "Fungal Diversity",
+      "title": "Geほか The genus Macrolepiota (Agaricaceae, Basidiomycota) in China",
+      "url": "https://doi.org/10.1007/s13225-010-0062-0"
+    },
+    "aminoacid-fungi2020": {
+      "organization": "Functional Ecology",
+      "title": "Isotope analyses of amino acids in fungi and fungal feeding Diptera larvae",
+      "url": "https://doi.org/10.1111/1365-2435.13654"
+    },
+    "chiba-fukiharu2024": {
+      "organization": "千葉県立中央博物館",
+      "title": "吹春ほか（2024）生態園のイヌシデ・コナラ林における子実体からみた大型菌類群集の動態",
+      "url": "https://www.chiba-muse.or.jp/NATURAL/cms/wp-content/uploads/2024/04/journalsp_12_13fukiharu.pdf"
+    },
+    "burke-neolentinus": {
+      "organization": "University of Washington / Burke Herbarium",
+      "title": "Neolentinus lepideus 種別資料",
+      "url": "https://burkeherbarium.org/imagecollection/taxon.php?Taxon=Neolentinus+lepideus"
+    },
+    "nite-neolentinus": {
+      "organization": "製品評価技術基盤機構",
+      "title": "Neolentinus lepideus NBRC 114712 菌株情報",
+      "url": "https://www.nite.go.jp/nbrc/dbrp/dataview?dataId=STNB0000000114712"
+    },
+    "adachi2012-pisolithus": {
+      "organization": "日本食品機能研究会系資料",
+      "title": "足立ほか 食研報 No.29 コツブタケの菌糸生長に関する報告",
+      "url": "https://www.shokuken.or.jp/report/docs/029_003.pdf"
+    },
+    "tufc-pisolithus": {
+      "organization": "鳥取大学菌類きのこ遺伝資源研究センター",
+      "title": "コツブタケ 菌株 TUFC 102009",
+      "url": "https://fungusdb.muses.tottori-u.ac.jp/catalog/info?id=102009"
+    },
+    "pholiota-wood2012": {
+      "organization": "Bioresource Technology",
+      "title": "Saccharification of poplar biomass by using lignocellulases from Pholiota adiposa",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22831905/"
+    },
+    "shiretoko-igarashi2011": {
+      "organization": "斜里町立知床博物館",
+      "title": "五十嵐・袰屋（2011）知床博物館研究報告33 No.8 IG-6825",
+      "url": "https://shiretoko-museum.jpn.org/media/shuppan/kempo/3302s_igarashi-horoya.pdf"
     }
   },
   "entries": {
@@ -527,6 +657,15 @@
           "sources": [
             "yamada-genus"
           ]
+        },
+        "family": {
+          "value": "アンズタケ科",
+          "note": "掲載学名の属に対応する科名です。国内の旧アンズタケ類の種の範囲には別途確認が必要です。",
+          "sources": [
+            "yamada",
+            "yamashina-ogawa2018"
+          ],
+          "latin": "Cantharellaceae"
         }
       }
     },
@@ -544,6 +683,13 @@
           "sources": [
             "yamada",
             "kyoto"
+          ]
+        },
+        "ecology": {
+          "value": "外生菌根菌",
+          "note": "掲載学名を用いた国内資料では外生菌根菌とされています。",
+          "sources": [
+            "yamada"
           ]
         }
       }
@@ -884,6 +1030,15 @@
           "sources": [
             "kyoto"
           ]
+        },
+        "genus": {
+          "value": "タマチョレイタケ属",
+          "note": "掲載学名の属に対応する旧分類です。分類改訂では Neofavolus（ハチノスタケ属）に置く扱いがあります。",
+          "sources": [
+            "saotome-2015",
+            "shizuoka"
+          ],
+          "latin": "Polyporus"
         }
       }
     },
@@ -1088,6 +1243,14 @@
           "sources": [
             "kahaku-macrolepiota"
           ]
+        },
+        "ecology": {
+          "value": "腐生菌",
+          "note": "同じ学名で扱われた中国などの標本は腐生菌として報告されています。",
+          "sources": [
+            "ge-2010-macrolepiota",
+            "aminoacid-fungi2020"
+          ]
         }
       }
     },
@@ -1136,6 +1299,16 @@
           "sources": [
             "ishikawa-ornatipes"
           ]
+        },
+        "genus": {
+          "value": "ヤマドリタケ属",
+          "note": "掲載学名の属です。新しい属への組み替えと国内での和名の適用範囲は別途確認が必要です。",
+          "sources": [
+            "ffpri-boletus",
+            "ibamuseum-kitazawa2023",
+            "shizuoka"
+          ],
+          "latin": "Boletus"
         }
       }
     },
@@ -1191,6 +1364,13 @@
             "wu-heimuer",
             "tottori-heimuer"
           ]
+        },
+        "ecology": {
+          "value": "腐生菌（木材を分解）",
+          "note": "Auricularia heimuer は木材の成分を分解する白色腐朽菌として扱われています。旧名の別種には当てはめません。",
+          "sources": [
+            "heimuer-hws1908"
+          ]
         }
       }
     },
@@ -1207,6 +1387,22 @@
           "sources": [
             "tottori-micaceus"
           ]
+        },
+        "family": {
+          "value": "ヒトヨタケ科",
+          "note": "掲載学名に対応する森林総合研究所資料の旧分類です。近年の資料ではナヨタケ科に置かれます。",
+          "sources": [
+            "ffpri-kirara"
+          ],
+          "latin": "Coprinaceae"
+        },
+        "genus": {
+          "value": "ヒトヨタケ属",
+          "note": "掲載学名に対応する旧分類です。現在のキララタケ属（Coprinellus）とは表記を区別しています。",
+          "sources": [
+            "ffpri-kirara"
+          ],
+          "latin": "Coprinus"
         }
       }
     },
@@ -1272,6 +1468,22 @@
           "latin": "Pisolithus",
           "sources": [
             "yamada-genus"
+          ]
+        },
+        "family": {
+          "value": "ニセショウロ科",
+          "note": "堺市の目録での分類です。文献によってコツブタケ科とする扱いもあります。",
+          "sources": [
+            "sakai-fungi2021"
+          ],
+          "latin": "Sclerodermataceae"
+        },
+        "ecology": {
+          "value": "外生菌根菌",
+          "note": "同じ学名（資料の綴りは Pisolithus arhizus）を用いた国内研究で、外生菌根菌として扱われています。",
+          "sources": [
+            "adachi2012-pisolithus",
+            "tufc-pisolithus"
           ]
         }
       }
@@ -1444,6 +1656,14 @@
           "sources": [
             "kahaku-neolentinus"
           ]
+        },
+        "ecology": {
+          "value": "木材腐朽菌",
+          "note": "同じ学名の海外資料では、木材を分解する褐色腐朽菌とされています。国内の近縁種に関する記録とは区別します。",
+          "sources": [
+            "burke-neolentinus",
+            "nite-neolentinus"
+          ]
         }
       }
     },
@@ -1495,6 +1715,13 @@
             "ffpri-tylopilus",
             "kyoto"
           ]
+        },
+        "ecology": {
+          "value": "外生菌根菌",
+          "note": "千葉県立中央博物館の調査で、同じ学名の菌が外生菌根菌として記録されています。",
+          "sources": [
+            "chiba-fukiharu2024"
+          ]
         }
       }
     },
@@ -1541,6 +1768,24 @@
           "sources": [
             "hirosaki-mukitake"
           ]
+        },
+        "family": {
+          "value": "キシメジ科",
+          "note": "掲載学名に対応する資料の旧分類です。弘前大学資料にはムキタケ属とする別の分類が掲載されています。",
+          "sources": [
+            "nihs-mukitake",
+            "hirosaki-mukitake"
+          ],
+          "latin": "Tricholomataceae"
+        },
+        "genus": {
+          "value": "ワサビタケ属",
+          "note": "掲載学名に対応する旧分類です。弘前大学資料のムキタケとオソムキタケの区別は学名の資料比較をご覧ください。",
+          "sources": [
+            "nihs-mukitake",
+            "hirosaki-mukitake"
+          ],
+          "latin": "Panellus"
         }
       }
     },
@@ -1559,6 +1804,15 @@
           ],
           "expected_status": "edibility_reported",
           "expected_notes": "食用可否の自己判断には使用しない。毒性の記録がないことは安全を意味しない。 石川県の食毒欄は「食」。公的資料に食用記述があるという記録であり安全保証ではない。 茨城県はナラタケ類の摂食後事例と、ナラタケ・ナラタケモドキの多量摂取による消化不良への注意を記載する。原因種が確定した毒性試験と同一視せず、食用記録に注意を併記する。"
+        },
+        "genus": {
+          "value": "ナラタケ属",
+          "note": "掲載学名の属です。今日の資料では Armillaria を使い、国内の旧ナラタケ類を複数種に分ける扱いがあります。",
+          "sources": [
+            "kahaku-naratake",
+            "naratake-genus-history"
+          ],
+          "latin": "Armillariella"
         }
       }
     },
@@ -1639,6 +1893,14 @@
           "sources": [
             "maff"
           ]
+        },
+        "ecology": {
+          "value": "木材を分解する菌",
+          "note": "同じ学名の菌から、木材の成分を分解する酵素が報告されています。国内には生きた木の上での採集記録もあります。",
+          "sources": [
+            "pholiota-wood2012",
+            "calostoma"
+          ]
         }
       }
     },
@@ -1709,6 +1971,14 @@
           "value": "オオシロカラカサタケ属",
           "latin": "Chlorophyllum",
           "sources": [
+            "ffpri-chloro"
+          ]
+        },
+        "ecology": {
+          "value": "腐生菌",
+          "note": "同じ学名を用いたアイオワ州立大学の種別資料で、腐生菌に分類されています。",
+          "sources": [
+            "iowa-chlorophyllum",
             "ffpri-chloro"
           ]
         }
@@ -1889,6 +2159,16 @@
           "sources": [
             "kyoto"
           ]
+        },
+        "genus": {
+          "value": "チチタケ属",
+          "note": "掲載学名の Lactarius に対応する旧資料の属名です。別の分類では Lactifluus に同じ日本語名を用います。",
+          "sources": [
+            "yamada",
+            "snet-lactarius",
+            "calostoma"
+          ],
+          "latin": "Lactarius"
         }
       }
     },
@@ -2273,6 +2553,13 @@
           "sources": [
             "expansion-species-fungorum-agmo"
           ]
+        },
+        "ecology": {
+          "value": "腐生菌",
+          "note": "掲載学名を用いた千葉県での調査で、腐生菌として記録されています。",
+          "sources": [
+            "chiba-fukiharu2024"
+          ]
         }
       }
     },
@@ -2286,6 +2573,13 @@
       "fields": {
         "name_reference": {
           "value": "松山市ではアカマツ林での記録があります。国内の黄色いホウキタケ類と、この資料の学名が指す範囲は個別に確認が必要です。",
+          "sources": [
+            "expansion-matsuyama-ramaria"
+          ]
+        },
+        "habitat": {
+          "value": "松山市の目録には、Ramaria flava としてアカマツ林地での記録があります。",
+          "note": "この目録の学名と地域に限定。国内の黄色いホウキタケ類全体へ広げない。",
           "sources": [
             "expansion-matsuyama-ramaria"
           ]
@@ -2328,6 +2622,13 @@
             "yamada"
           ],
           "note": "山田（2002）表2・p.4の国内文献記録"
+        },
+        "habitat": {
+          "value": "知床の標本報告には、Hygrophorus purpurascens としてトドマツの下で採集された記録があります。",
+          "note": "この国内標本に限る。近縁種 H. capreolarius と区別する。",
+          "sources": [
+            "shiretoko-igarashi2011"
+          ]
         }
       }
     },
@@ -2387,6 +2688,157 @@
           "note": "新旧名称の関係と、国内の個体にどの学名が当てはまるかは別の問題です。特徴・環境・時期は石川県の同和名資料の記載に基づきます。",
           "sources": [
             "expansion-ncbi-suillus"
+          ]
+        }
+      }
+    },
+    "mannentake": {
+      "expected": {
+        "name": "マンネンタケ",
+        "scientific": "Ganoderma lucidum",
+        "family": null,
+        "genus": "マンネンタケ属"
+      },
+      "fields": {
+        "family": {
+          "value": "マンネンタケ科",
+          "note": "掲載学名に対応する科名です。旧学名が指す国内個体の範囲には引き続き確認が必要です。",
+          "sources": [
+            "ffpri-stand-class"
+          ],
+          "latin": "Ganodermataceae"
+        },
+        "ecology": {
+          "value": "腐生菌",
+          "note": "千葉県での調査では、掲載学名を用いた標本を腐生菌に分類しています。",
+          "sources": [
+            "chiba-fukiharu2024"
+          ]
+        }
+      }
+    },
+    "yanagimatsutake": {
+      "expected": {
+        "name": "ヤナギマツタケ",
+        "scientific": "Cyclocybe cylindracea (DC.) Vizzini & Angelini",
+        "family": null,
+        "genus": "Cyclocybe"
+      },
+      "fields": {
+        "family": {
+          "value": "チャムクエタケ科",
+          "note": "掲載学名に対応するミュージアムパーク茨城県自然博物館の目録表記です。",
+          "sources": [
+            "ibamuseum-kitazawa2023"
+          ],
+          "latin": "Tubariaceae"
+        },
+        "genus": {
+          "value": "シクロシベ属",
+          "note": "掲載学名に対応します。旧資料のフミヅキタケ属（Agrocybe）とは表記を区別しています。",
+          "sources": [
+            "expansion-yamakei-change",
+            "ibamuseum-kitazawa2023"
+          ],
+          "latin": "Cyclocybe"
+        }
+      }
+    },
+    "akayamadori": {
+      "expected": {
+        "name": "アカヤマドリ",
+        "scientific": "Leccinum extremiorientale",
+        "family": "イグチ科",
+        "genus": null
+      },
+      "fields": {
+        "genus": {
+          "value": "ヤマイグチ属",
+          "note": "掲載学名の属です。分類改訂では Rugiboletus とする扱いがあります。",
+          "sources": [
+            "ffpri-boletes2008",
+            "if-rugiboletus"
+          ],
+          "latin": "Leccinum"
+        },
+        "ecology": {
+          "value": "外生菌根菌",
+          "note": "掲載学名を用いた国内資料で、外生菌根菌として扱われています。",
+          "sources": [
+            "yamada",
+            "ffpri-boletes2008",
+            "if-rugiboletus"
+          ]
+        }
+      }
+    },
+    "tamachoreitake": {
+      "expected": {
+        "name": "タマチョレイタケ",
+        "scientific": "Polyporus tuberaster",
+        "family": "タコウキン科",
+        "genus": "Polyporus"
+      },
+      "fields": {
+        "genus": {
+          "value": "タマチョレイタケ属",
+          "note": "早乙女（2015）の分類で、掲載学名に対応します。",
+          "sources": [
+            "saotome-2015"
+          ],
+          "latin": "Polyporus"
+        }
+      }
+    },
+    "oowaraitake": {
+      "expected": {
+        "name": "オオワライタケ",
+        "scientific": "Gymnopilus spectabilis",
+        "family": "フウセンタケ科",
+        "genus": "チャツムタケ属"
+      },
+      "fields": {
+        "ecology": {
+          "value": "木材腐朽菌",
+          "note": "旧名から Gymnopilus junonius に改められた菌株があり、同学名を用いた海外の試験では木材の腐朽が報告されています。",
+          "sources": [
+            "tufc-junonius11917",
+            "szczepkowski-decay2022"
+          ]
+        }
+      }
+    },
+    "hebikinokomodoki": {
+      "expected": {
+        "name": "ヘビキノコモドキ",
+        "scientific": "Amanita spissacea",
+        "family": "テングタケ科",
+        "genus": "テングタケ属"
+      },
+      "fields": {
+        "ecology": {
+          "value": "外生菌根菌",
+          "note": "韓国の研究では、同じ学名の菌株を外生菌根菌として扱っています。",
+          "sources": [
+            "kim2017-amanita",
+            "shizuoka"
+          ]
+        }
+      }
+    },
+    "noutake": {
+      "expected": {
+        "name": "ノウタケ",
+        "scientific": "Calvatia craniiformis",
+        "family": "ホコリタケ科",
+        "genus": "ノウタケ属"
+      },
+      "fields": {
+        "ecology": {
+          "value": "腐生菌",
+          "note": "千葉県立中央博物館の調査で、同じ学名の菌が腐生菌として記録されています。",
+          "sources": [
+            "chiba-fukiharu2024"
           ]
         }
       }

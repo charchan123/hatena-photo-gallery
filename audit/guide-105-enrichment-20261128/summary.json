@@ -1,0 +1,28 @@
+{
+  "before": [
+    105,
+    99,
+    96,
+    34,
+    105,
+    103,
+    103
+  ],
+  "after": [
+    105,
+    105,
+    105,
+    48,
+    105,
+    105,
+    103
+  ],
+  "changed_fields": {
+    "family": 6,
+    "genus": 9,
+    "ecology": 14,
+    "habitat": 2
+  },
+  "species_changed": 25,
+  "added_sources": 26
+}
