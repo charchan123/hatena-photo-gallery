@@ -82,6 +82,7 @@ for name, old in before.items():
         assert render_detail_sections(old) == render_detail_sections(new)
 assert actual == {k: r["候補表示"] for k, r in approved.items()}
 tracked = git("diff", "--name-only", MAIN).decode().splitlines()
-assert all(f in {DISPLAY, "tests/browser/comments_integration_protection.py"}
+assert all(f in {DISPLAY, "tests/browser/comments_integration_protection.py",
+                 "tests/browser/ai_artwork_fixture.py"}
            or f.startswith("audit/guide-105-enrichment-20261128/") for f in tracked)
 print("PASS: 105 published views, 31 claimed additions, food warnings and old sources, protected paths")
