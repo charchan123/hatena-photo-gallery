@@ -19,6 +19,13 @@ let activeBrowser;
 const fixtures=()=>({csrf:'fixture-only',observations:records,best_shots:{version:1,entries:structuredClone(initial),annual_best:{'2026':'best-1'}},
  counts:{best_shots:2,annual_years:1,research_open:0,research_identified:0,active_notices:0,master:0,sources:0,knowledge_batches:0},
  cases:[],identified:[],notices:[],master:[],knowledge:[],preview:{},repo:{gh_authenticated:false},feature_facets:{},portal_source:'isolated fixture',portal_observation_count:records.length});
+async function openPage(page){
+  const menu=page.locator('#admin-menu');
+  const compact=await menu.isVisible();
+  if(compact)await menu.click();
+  await page.click('[data-page=best]');
+  if(compact)assert.equal(await menu.getAttribute('aria-expanded'),'false');
+}
 (async()=>{
  const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_EXECUTABLE_PATH,args:['--no-sandbox',...(process.env.CHROMIUM_SINGLE_PROCESS?['--single-process','--no-zygote','--disable-gpu']:[])]});
  activeBrowser=browser;
@@ -47,7 +54,7 @@ const fixtures=()=>({csrf:'fixture-only',observations:records,best_shots:{versio
    if(file)return route.fulfill({body:fs.readFileSync(before&&['admin.js','admin.css'].includes(file)?path.join(fixtureRoot,'before-'+file):path.join(root,'admin/static',file)),contentType:file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':'text/html'});
    return route.fulfill({status:404,body:''});
   });
-  await page.goto('http://127.0.0.1:8765/');await page.waitForSelector('#cards .card');await page.click('[data-page=best]');
+  await page.goto('http://127.0.0.1:8765/');await page.waitForSelector('#cards .card');await openPage(page);
   return {page,context,app,writes,issues,fail:value=>failure=value};
  }
  function candidate(page,id){return page.locator(`.photo-option[data-observation-id="${id}"]`)}
@@ -59,7 +66,7 @@ const fixtures=()=>({csrf:'fixture-only',observations:records,best_shots:{versio
   for(const width of [1280,390])for(const before of [true,false]){
    const x=await setup({viewport:{width,height:1000}},before),q=x.page;
    x.app.best_shots.entries.push({selection_id:'best-2',observation_id:'obs-2',comment:'3枚目の選択',order:2});x.app.counts.best_shots=3;
-   await q.reload();await q.click('[data-page=best]');await open(q);await q.fill('#photo-search','べ');await select(q,'obs-4');await q.fill('[name=comment]','4枚目の写真を追加');
+   await q.reload();await openPage(q);await open(q);await q.fill('#photo-search','べ');await select(q,'obs-4');await q.fill('[name=comment]','4枚目の写真を追加');
    check(await q.locator('#dialog-save').isDisabled(),before);check(await q.locator('[name=order]').inputValue(),before?'1':'4');
    await q.locator('.order-field').scrollIntoViewIfNeeded();await q.screenshot({path:path.join(out,`${width}-${before?'before-limit':'after-order-4'}.png`)});await x.context.close();
   }
@@ -152,7 +159,7 @@ const fixtures=()=>({csrf:'fixture-only',observations:records,best_shots:{versio
   for(const count of [1,3,4,10,30,35]){
    console.log('Best Shot monthly operations',JSON.stringify({width,count}));
    x.app.best_shots.entries=Array.from({length:count-1},(_,i)=>({selection_id:'fixture-'+i,observation_id:'bulk-'+i,comment:'保存済み '+i,order:i+1,annual_comment:'年間メモ',location:'静岡'}));x.app.best_shots.annual_best={};x.app.counts.best_shots=count-1;
-   await q.reload();await q.click('[data-page=best]');check(await q.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);await open(q);await q.fill('#photo-search','キノコ写真 '+(count-1));await select(q,'bulk-'+(count-1));check(await q.inputValue('[name=order]'),String(count));
+   await q.reload();await openPage(q);check(await q.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);await open(q);await q.fill('#photo-search','キノコ写真 '+(count-1));await select(q,'bulk-'+(count-1));check(await q.inputValue('[name=order]'),String(count));
    await q.fill('[name=comment]','月 '+count+' 枚のテスト');
    if(out&&count===30){await q.locator('.order-field').scrollIntoViewIfNeeded();await q.screenshot({path:path.join(out,`${width}-month-30-editor.png`)});}
    await q.click('#dialog-save');await q.waitForFunction(()=>!document.querySelector('#editor').open);check(x.app.best_shots.entries.length,count);const sid=x.writes.at(-1).body.entry.selection_id;
